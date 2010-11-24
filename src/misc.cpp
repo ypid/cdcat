@@ -106,9 +106,20 @@ char * getCDName ( const char *CDpath ) {
     DWORD  dwDummy;
     DWORD  dwFlags;
 
-    if ( !GetVolumeInformation ( ( LPCSTR ) CDpath, ( LPSTR ) name,64,NULL,
+	LPWSTR WSTR_CDpath = NULL;
+
+	int length = MultiByteToWideChar(CP_ACP,0,CDpath ,strlen(CDpath)+1,NULL,0);
+	MultiByteToWideChar(CP_ACP,0,CDpath ,strlen(CDpath)+1,WSTR_CDpath,length);
+
+	LPWSTR LPW_name=L"";
+    if ( !GetVolumeInformation ( WSTR_CDpath, LPW_name,64,NULL,
                                  &dwDummy,&dwFlags,NULL,0 ) )
-        strcpy ( name,"" );
+	{
+        strcpy ( name,"\0" );
+		return name;
+	}
+
+	WideCharToMultiByte(CP_ACP, 0, (LPWSTR)LPW_name, -1,name, 1000, NULL, NULL);
     return name;
 }
 #endif

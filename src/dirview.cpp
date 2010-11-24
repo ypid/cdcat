@@ -164,9 +164,9 @@ DirectoryView::DirectoryView ( QWidget *parent, const char *name )
     setTreeStepSize ( 10 );
 
     QFileInfoList *roots=new QFileInfoList ( QDir::drives() );
-#ifdef _WIN32
-    ++i; //Skip reading floppy drive on startup.
-#endif
+//#ifdef _WIN32
+//    ++i; //Skip reading floppy drive on startup.
+//#endif
 
     for ( int ri = 0; ri < roots->size(); ++ri ) {
         QFileInfo *fi = new QFileInfo ( roots->at ( ri ) );

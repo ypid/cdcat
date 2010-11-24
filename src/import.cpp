@@ -56,6 +56,7 @@ lineObject& lineObject::operator= ( const lineObject& newobj ) {
     this->filename = newobj.filename;
     this->size = newobj.size;
     this->datetime = newobj.datetime;
+	return *this;
 }
 
 

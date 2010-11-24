@@ -841,12 +841,14 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
     if ( d.exists() ) {
         d.setFilter ( QDir::Files );
         d.setNameFilter ( "cdcat_??.qm" );
-        const QFileInfoList *list = d.entryInfoList();
-        QFileInfoListIterator it ( *list );
-        QFileInfo *fi;
-        while ( ( fi = it.current() ) != 0 ) {
-            cbLang->insertItem ( ( fi->fileName() ).mid ( 6,2 ) );
-            ++it;
+        QFileInfoList list( d.entryInfoList());
+		//QFileInfoListIterator it ( list. );
+        //QFileInfo *fi;
+		foreach(const QFileInfo& fi , list )
+        //while ( ( fi = it.current() ) != 0 ) 
+		{
+            cbLang->insertItem ( ( fi.fileName() ).mid ( 6,2 ) );
+            //++it;
         }
         /*end scanning*/
     } else {
