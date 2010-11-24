@@ -987,7 +987,15 @@ int FileReader::readFrom ( Node *source ) {
             return 1;
         }
 
-        done = gzeof ( f );
+       // Olivier.Dormond@gmail.com
+       // This is apparently buggy most probably because it can be set when the eof
+       // of the gzipped file is seen but the decompressed content is bigger than
+       // the read buffer. In such a case, the very last chunk of data is never read
+       // and the XML_Parse call will fail because it will miss the closing tag.
+       // done = gzeof(f);
+       // So simply check we didn't get any more data to read as calling XML_Parse
+       // with an empty buffer is safe.
+       done = len == 0;
 
         if ( ! XML_Parse ( p, Buff, len, done ) ) {
             errormsg = QString ( "Parse error at line %1:\n%2\n" )

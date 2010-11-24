@@ -5,4 +5,5 @@
   - segfault at saving catalog fixed
   - win32 fixes (thanks to noragen)
   - string termination correction at mp3tag (based on patch from debian (http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=358929))
+  - patch for fixing gzip -> xml conversion applied (based on patch from gentoo (http://bugs.gentoo.org/show_bug.cgi?id=48826))
   
