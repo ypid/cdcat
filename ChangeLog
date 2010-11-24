@@ -2,4 +2,5 @@
   - ChangeLog added
   - double click on folder at display view fixed (thanks to Niels Horn)
   - details are not shown for an item when clicking on it fixed (thanks to Niels Horn)
+  - segfault at saving catalog fixed
   
