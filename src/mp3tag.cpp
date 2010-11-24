@@ -197,7 +197,7 @@ int ReadMp3Tag::ReadTAGv2 ( void ) {
     unsigned int pos=0;
     unsigned int framelen;
     char id[5];
-    id[5] ='\0';
+    id[4] ='\0';
 
     fseek ( mp3,0,SEEK_END );
     flen = ftell ( mp3 );
