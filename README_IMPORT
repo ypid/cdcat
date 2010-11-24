@@ -1,0 +1,51 @@
+This document discibes how to import your gtktalog database into cdcat.
+
+-------------------------------------------------------------------------
+Now you can import it much easier as in history.
+Simply create a report in gtktalog (DESELECT information and select xml as type, catalog.xml as filename).
+now you can import the file:
+open cdcat, select Import - import database
+select your xml file
+select xml as type
+check 'new database' if you want (if empty there allways a new, but disabling is useful for merging databases)
+click 'Import'
+finish!
+
+after a while (depends on your database) you will see you catalog in cdcat.
+press the save toolbutton to save your cdcat catalog.
+
+-------------------------------------------------------------------------
+If you want to import a csv file to can use the older method:
+
+First the lines have to be the following format:
+<media>/<path>/.../<file><seperator><size><seperator><day/month/year><space><hour>:<minute>:<second>
+
+First create a report on gtktalog:
+Catalog - Create report:
+select the following checkboxes (all others off):
+-Disks
+-Directories
+-Files
+-Sizes
+-Dates
+
+select Disk->Dir-File
+enter * as Separator
+Select output file, name ist as *.csv
+
+now you can import the file:
+open cdcat, select Import - import database
+select your csv file
+enter * as separator (replace the default ; )
+check 'new database' if you want
+check correct bad output style from gtktalog export
+press 'Import'
+
+after a while (depends on your database) you will see you catalog in cdcat.
+press the save toolbutton to save your cdcat catalog.
+
+
+greeings
+
+Crissi
+

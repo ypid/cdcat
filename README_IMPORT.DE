@@ -1,0 +1,37 @@
+Dieses Dokument beschreibt, wie man eine Datenbank von Gtktalog in CdCat importiert,
+
+---------------------------------------------------------
+
+Nun kann man viel einfacher als früher den Import durchführen:
+Einfach einen Report mit Gtktalog erstellen (Information ABWAEHLEN, xml als Typ und catalog.xml als Dateiname auswählen).
+Dann kann die Datei importiert werden.
+CdCat öffnen, Importieren - Datenbank importieren auswählen
+XML-Datei auswählen
+XML als Typ auwählen
+Neue Datenbank, wenn gewünscht, aktivieren (es wird bei einem leeren CdCat immer eine erstellt, deaktivieren ist aber nützlich zum Mischen)
+Importieren klicken
+Fertig!
+
+
+---------------------------------------------------------
+
+
+Mit der alten Methode kann man eine csv-Datei importieren:
+
+Zuerst müssen die Zeilen in folgendem Format sein:
+<Medium>/<Pfad>/.../<Datei><Trennzeichen><Grösse><Trennzeicnen><Tag/Monat/Jahr><Leerzeichen><Stunde>:<Minute>:<Sekunde>
+
+Dann kann die Datei importiert werden.
+CdCat öffnen, Importieren - Datenbank importieren auswählen
+csv-Datei auswählen
+Text als Typ auwählen
+Neue Datenbank, wenn gewünscht, aktivieren (es wird bei einem leeren CdCat immer eine erstellt, deaktivieren ist aber nützlich zum Mischen)
+Importieren klicken
+Fertig!
+
+
+---------------------------------------------------------
+
+
+Crissi ;)
+

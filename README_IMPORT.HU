@@ -1,0 +1,60 @@
+Ez a dokumentum leírja, hogy importálhatsz gtktalog -ból a cdcat-ba.
+
+Most sokkal könnyebben importálhatsz mint régebben!
+Egyszerüen készíts egy report-ot gtktalog-ban 
+(Válszd ki az xml -t típusként és catalog.xml -t fájlnévként)
+
+Es most importáljuk be a fájlt:
+Indítsd el a cdcat-ot, clikkelj az import-ra a felsõmenü Export/Import menüjében
+Válszd ki az elõbb létrehozott XML fált
+Állítsd a típust XML re, az információkat kapcsold ki.
+Ha kívánod állítsd be az 'Uj adatbázisként' kapcsolót.
+(Ha nem volt megnyitva semmi akkor létrehoz egy ujat, de a fenti kapcsoló letiltásával
+bõvíthetünk létezõ  cdcat adatbázisokat.)
+Kettints az Import gombra, és imádkozz :-)
+Ennyi!
+
+
+Egy idõ mulva (adatbázis méretétõl függõen az importált adatbázis megjelenik a cdcat-ban.
+Ezek után ajánlatos az adatbázist elmenteni.
+
+
+----------------------------------------------------------------------------
+Ha csv fájlból szeretnál importálni a következõképp járj el:
+
+Elõszöris a soroknak így kell kinézniük:
+<média>/<elérési út>/.../<fájl><szeperátor><méret><szeperátor><nap/hónap/év><space><óra>:<perc>:<másodperc>
+
+Ha gtkatalogból akarsz importálni akkor:
+Készits report-ot:
+A következõ  checkbox-okat állitsd be (a többi maradjon kikapcsolva):
+-Disks
+-Directories
+-Files
+-Sizes
+-Dates
+
+Válszd ki Disk->Dir-File
+Add meg szeparátornak a * ot.
+Add meg mi legyen a mentett fájl neve (*.csv) és exportálj.
+
+Beimportálás a cdcat-ba:
+Indítsd el a cdcat-ot, clikkelj az import-ra a felsõmenü Export/Import menüjében
+Válszd ki az elõbb létrehozott CSV fált
+Állítsd a típust CSV re.
+Add emg a szeparátort ami a CSV fájlban van. (Ha z elobbiek szerint importálsz gtktalog-bol akkor * )
+Ha kívánod állítsd be az 'Uj adatbázisként' kapcsolót.
+(Ha nem volt megnyitva semmi akkor létrehoz egy ujat, de a fenti kapcsoló letiltásával
+bõvíthetünk létezõ  cdcat adatbázisokat.)
+Allítsd me a rossz formátum korrekciója checkbox-ot.
+Kettints az Import gombra.
+Ennyi!
+
+Egy idõ mulva (adatbázis méretétõl függõen az importált adatbázis megjelenik a cdcat-ban.
+Ezek után ajánlatos az adatbázist elmenteni.
+
+
+Udv!
+
+Crissi & Hyper
+
