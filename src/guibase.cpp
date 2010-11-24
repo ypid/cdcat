@@ -426,7 +426,7 @@ int GuiSlave::standOn ( Q3ListViewItem *on ) {
     cerr<<"2"<<endl;
 
     tmp=NodePwd->child;
-    while ( tmp->getNameOf() == on->text ( 0 ) ) {
+    while ( tmp->getNameOf() != on->text ( 0 ) ) {
         tmp=tmp->next;
         if ( tmp == NULL )
             return 0;
@@ -451,7 +451,7 @@ int GuiSlave::doubleClickOn ( Q3ListViewItem *on ) {
         }
     } else { //step down
         tmp=NodePwd->child;
-        while ( tmp->getNameOf() == on->text ( 0 ) ) {
+        while ( tmp->getNameOf() != on->text ( 0 ) ) {
             tmp=tmp->next;
             if ( tmp == NULL ) return 0;
         }
