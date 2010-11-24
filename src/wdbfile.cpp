@@ -406,6 +406,7 @@ QDateTime FileReader::get_dcutf8 ( char *s ) {
     QDateTime r;
     int year,month,day;
     int hour,minute,second;
+	 char p[4];
 
     if ( sscanf ( s,"%d-%d-%d %d:%d:%d",&year,&month,&day,&hour,&minute,&second ) == 6 ) {
         r.setDate ( QDate ( year,month,day ) );
@@ -413,7 +414,27 @@ QDateTime FileReader::get_dcutf8 ( char *s ) {
         return r;
     }
 
-    /* ERROR | OLD VERSION FOUND */
+    /* OLD VERSION FOUND */
+    if ( sscanf ( s, "%s %02d %02d:%02d %04d",p,&day,&hour,&minute,&year ) == 5 ) {
+        if(!strcmp(p, "Jan")) month=1;
+	if(!strcmp(p, "Feb")) month=2;
+	if(!strcmp(p, "Mar")) month=3;
+	if(!strcmp(p, "Apr")) month=4;
+	if(!strcmp(p, "May")) month=5;
+	if(!strcmp(p, "Jun")) month=6;
+	if(!strcmp(p, "Jul")) month=7;
+	if(!strcmp(p, "Aug")) month=8;
+	if(!strcmp(p, "Sep")) month=9;
+	if(!strcmp(p, "Oct")) month=10;
+	if(!strcmp(p, "Nov")) month=11;
+	if(!strcmp(p, "Dec")) month=12;
+	 r.setDate ( QDate ( year,month,day ) );
+	r.setTime ( QTime ( hour,minute,0 ) );
+	return r;
+    }
+
+    r.setDate ( QDate::currentDate() );
+    r.setTime ( QTime::currentTime() );
     return r;
 
 // !!! Conversion ntfrom the old versions !!!

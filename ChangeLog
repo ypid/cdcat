@@ -7,4 +7,5 @@
   - string termination correction at mp3tag (based on patch from debian (http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=358929))
   - patch for fixing gzip -> xml conversion applied (based on patch from gentoo (http://bugs.gentoo.org/show_bug.cgi?id=48826))
   - help dialog converted to qt4 ui
+  - patch for import old date-format added (thanks to Niels Horn)
   
