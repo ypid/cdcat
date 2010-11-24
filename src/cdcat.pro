@@ -55,8 +55,7 @@ CONFIG		+= qt debug
 MOC_DIR         = moc_files/
 OBJECTS_DIR     = obj_files/ 
 unix:LIBS       += -lpcre -lz -lexpat
-#The following line was changed from INTERFACES to FORMS3 by qt3to4
-FORMS3      	= help.ui
+FORMS      	= help.ui
 TARGET          = cdcat
 TRANSLATIONS	= lang/cdcat_hu.ts \
                   lang/cdcat_de.ts \
@@ -96,6 +95,5 @@ INSTALLS += target translations distfiles
 
 #The following line was inserted by qt3to4
 QT +=  qt3support 
-#The following line was inserted by qt3to4
-CONFIG += uic3
+CONFIG += uic
 

@@ -48,7 +48,7 @@
 #include "adddialog.h"
 #include "find.h"
 #include "config.h"
-#include "help.h"
+#include "ui_help.h"
 #include "import.h"
 #include "exportcdcatdb.h"
 #include "info.h"
@@ -1384,8 +1384,11 @@ int GuiSlave::sortTiEvent ( void ) {
 }
 
 int GuiSlave::helpEvent ( void ) {
-    helpDialog *dh=new helpDialog ( mainw,"helpdialog",true );
-    dh->exec();
+	 QDialog dh;
+     Ui_helpDialog *ui_dh=new  Ui_helpDialog();
+	 ui_dh->setupUi((QDialog *)(&dh));
+	 dh.exec();
+	 delete ui_dh;
     return 0;
 }
 
