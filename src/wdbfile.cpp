@@ -140,14 +140,14 @@ FileWriter::~FileWriter() {
 }
 
 char * FileWriter::to_cutf8 ( QString s ) {
-//     return  strdup ( converter->fromUnicode ( s.replace ( QRegExp ( "<" ),"{" )
-//                      .replace ( QRegExp ( ">" ),"}" )
-//                      .replace ( QRegExp ( "&" ),"&amp;" )
-//                      .replace ( QRegExp ( "\"" ),"\'" )
-//                                             ) );
-  char *ret;
-  *ret = s.data()->toAscii();
-  return ret;
+    return  strdup ( converter->fromUnicode ( s.replace ( QRegExp ( "<" ),"{" )
+                     .replace ( QRegExp ( ">" ),"}" )
+                     .replace ( QRegExp ( "&" ),"&amp;" )
+                     .replace ( QRegExp ( "\"" ),"\'" )
+                                            ) );
+ // char *ret;
+  //*ret = s.data()->toLatin1();
+ // return ret;
 }
 
 char * FileWriter::to_dcutf8 ( QDateTime d ) {
@@ -160,10 +160,10 @@ char *ret;
                 qdd.year(),qdd.month(),qdd.day(),
                 qtt.hour(),qtt.minute(),qtt.second() );
 
-    //return strdup ( converter->fromUnicode ( o ) );
+    return strdup ( converter->fromUnicode ( o ) );
 	 
-  *ret = o.data()->toAscii();
-  return ret;
+  //*ret = o.data()->toAscii();
+  //return ret;
 }
 
 //---------------------------------
