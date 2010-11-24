@@ -1,4 +1,5 @@
 24. Nov 2010 Christoph Thielecke <christoph thielecke@gmx.de>
   - ChangeLog added
   - double click on folder at display view fixed (thanks to Niels Horn)
+  - details are not shown for an item when clicking on it fixed (thanks to Niels Horn)
   

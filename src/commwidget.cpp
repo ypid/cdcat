@@ -378,6 +378,7 @@ void  CommentWidget::resizeEvent ( QResizeEvent *re ) {
 void CommentWidget::showNode ( Node *node,int mod ) {
     act  = node;
     mode = mod;
+	 repaint();
 }
 
 int CommentWidget::editC ( void ) {
