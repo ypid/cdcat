@@ -83,19 +83,19 @@ char *getCDName ( const char *CDpath ) {
     FILE *deviceptr  = NULL;
 
     strcpy ( name      ,"" );
-
-    /** Read the volume name of the device *******************/
-
-    deviceptr = openDevice ( CDpath );
-    if ( !deviceptr ) return name;
-    fseek ( deviceptr,32808,SEEK_SET );
-    fread ( name,sizeof ( char ),32,deviceptr );
-    fclose ( deviceptr );
-    name[32]='\0';
-
-    //strip whitespaces
-    strcpy ( name, ( const char * ) QString ( name ).stripWhiteSpace() );
-
+    if (strlen(CDpath) != 0 ) {
+		/** Read the volume name of the device *******************/
+		
+		deviceptr = openDevice ( CDpath );
+		if ( !deviceptr ) return name;
+		fseek ( deviceptr,32808,SEEK_SET );
+		fread ( name,sizeof ( char ),32,deviceptr );
+		fclose ( deviceptr );
+		name[32]='\0';
+		
+		//strip whitespaces
+		strcpy ( name, ( const char * ) QString ( name ).stripWhiteSpace() );
+	 }
     return name;
 }
 

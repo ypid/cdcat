@@ -1,5 +1,6 @@
 25. Nov 2010 Christoph Thielecke <crissi99@gmx.de>
   - fixed wrong encoding on reading
+  - crash when adding new media fixed (thanks to Bernard Valentin)
 
 24. Nov 2010 Christoph Thielecke <crissi99@gmx.de>
   - ChangeLog added
