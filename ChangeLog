@@ -1,3 +1,6 @@
+25. Nov 2010 Christoph Thielecke <crissi99@gmx.de>
+  - fixed wrong encoding on reading
+
 24. Nov 2010 Christoph Thielecke <crissi99@gmx.de>
   - ChangeLog added
   - double click on folder at display view fixed (thanks to Niels Horn)

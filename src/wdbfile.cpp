@@ -145,9 +145,10 @@ char * FileWriter::to_cutf8 ( QString s ) {
                      .replace ( QRegExp ( "&" ),"&amp;" )
                      .replace ( QRegExp ( "\"" ),"\'" )
                                             ) );
- // char *ret;
-  //*ret = s.data()->toLatin1();
- // return ret;
+  /*char *ret;
+  ret = s.toLatin1().data();
+  return ret;*/
+  
 }
 
 char * FileWriter::to_dcutf8 ( QDateTime d ) {
@@ -395,9 +396,9 @@ QString FileReader::get_cutf8 ( char *s ) {
     if ( s == NULL )
         return QString ( "" );
     //cerr<<"Start-converting |"<<s<<"|"<<endl;
-    //ret = converter->toUnicode ( s );
+    ret = converter->toUnicode ( s );
     //cerr<<"End-converting   |" << qPrintable ( ret ) <<"|"<<endl;
-	 ret =  QString(s);
+	 //ret =  QString(s);
 
     return ret;
 }
