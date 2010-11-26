@@ -364,7 +364,9 @@ void  CommentWidget::paintEvent ( QPaintEvent *pe ) {
     }
     ButtonContent->show();
     ButtonEdit->show();
+#if (QT_VERSION >= QT_VERSION_CHECK(4, 6, 0)) // needs Qt 4.6.0 or better
     p.beginNativePainting();
+#endif
 
     //delete text;
 //cerr <<"paintEvent-end"<<endl;

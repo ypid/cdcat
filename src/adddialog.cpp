@@ -366,8 +366,9 @@ void PWw::paintEvent ( QPaintEvent *e ) {
     p.drawRect ( 1,1,78,66 );
     p.drawText ( begintext,18,tr ( "Please Wait..." ) );
     p.drawPixmap ( 20,25,* ( get_anim ( s ) ) );
-
+#if (QT_VERSION >= QT_VERSION_CHECK(4, 6, 0)) // needs Qt 4.6.0 or better
     p.beginNativePainting();
+#endif
     if ( ++s==5 ) s=0;
 }
 

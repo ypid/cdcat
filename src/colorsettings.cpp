@@ -58,7 +58,9 @@ void ColorSchemePreview::updColor ( void ) {
 void ColorPreview::paintEvent ( QPaintEvent *event ) {
     QPainter p ( this );
     p.fillRect ( 0,0,width(),height(),c );
+#if (QT_VERSION >= QT_VERSION_CHECK(4, 6, 0)) // needs Qt 4.6.0 or better
     p.beginNativePainting();
+#endif
 }
 
 void ColorSchemePreview::paintEvent ( QPaintEvent *event ) {
@@ -73,10 +75,12 @@ void ColorSchemePreview::paintEvent ( QPaintEvent *event ) {
     p.setPen ( td );
     p.drawText ( 25,50,tr ( "Road To Hell" ) );
     p.setPen ( fr );
+
     p.drawLine ( 10,65,width()-11,65 );
 
+#if (QT_VERSION >= QT_VERSION_CHECK(4, 6, 0)) // needs Qt 4.6.0 or better
     p.beginNativePainting();
-
+#endif
 }
 
 
