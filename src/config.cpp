@@ -536,7 +536,7 @@ int CdCatConfig::writeConfig ( void ) {
 #else
     if ( getenv ( "HOME" ) == NULL ) {
         QMessageBox::warning ( 0,tr ( "Error while saving config file..." ),
-                               tr ( "I can't get the $HOME environment variable.\nIt is necessary couse I'd like to save the config file into your home directory." ) );
+                               tr ( "I can't get the $HOME environment variable.\nIt is necessary because I'd like to save the config file into your home directory." ) );
 
         return 1;
     }
@@ -963,7 +963,7 @@ ConfigDialog::~ConfigDialog() {
 void ConfigDialog::languageChange() {
     setCaption ( tr ( "Configure  CdCat..." ) );
     cbAutoload->setText ( tr ( "Autoload DataBase on startup" ) );
-    cbAutosave->setText ( tr ( "Automatically save the database after every scan (for dafety sake)" ) );
+    cbAutosave->setText ( tr ( "Automatically save the database after every scan (for safety sake)" ) );
     cbNice->setText ( tr ( "Save the XML-db.file nicer format(needs more space)" ) );
     cancelButton->setText ( tr ( "Cancel" ) );
     okButton->setText ( tr ( "Ok" ) );

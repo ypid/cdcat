@@ -200,7 +200,7 @@ void SelReadable::languageChange() {
     rad_v2->setText ( tr ( "version" ) + " 2" );
 
     cbInfo->setText ( tr ( "Read mp3 technical info as comment (bitrate,freq,length...)" ) );
-    cbaInfo->setText ( tr ( "Read avi technical info as comment (codecs,lenhth,...)" ) );
+    cbaInfo->setText ( tr ( "Read avi technical info as comment (codecs,length,...)" ) );
     cbCont->setText ( tr ( "Store content of some files" ) );
     lineFiles->setText ( "*.nfo;*.dzi" );
     textLabel1->setText ( tr ( "; separated list of readable file patterns" ) );
