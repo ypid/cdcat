@@ -36,7 +36,7 @@ using namespace std;
 QString date_to_str ( QDateTime dt ) {
 
     QString text;
-    text.sprintf ( "%d-%d-%d %d:%d:%d",dt.date().year(), dt.date().month(),  dt.date().day(),
+    text.sprintf ( "%d-%02d-%02d %02d:%02d:%02d",dt.date().year(), dt.date().month(),  dt.date().day(),
                    dt.time().hour(), dt.time().minute(), dt.time().second() );
 
     return text;

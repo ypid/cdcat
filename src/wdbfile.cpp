@@ -157,7 +157,7 @@ char *ret;
     QDate qdd=d.date();
     QTime qtt=d.time();
 
-    o.sprintf ( "%d-%d-%d %d:%d:%d",
+    o.sprintf ( "%d-%02d-%02d %02d:%02d:%02d",
                 qdd.year(),qdd.month(),qdd.day(),
                 qtt.hour(),qtt.minute(),qtt.second() );
 
