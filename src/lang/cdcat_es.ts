@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0">
+<!DOCTYPE TS><TS>
 <context>
     <name>AddLnk</name>
     <message>
@@ -74,7 +72,7 @@ Check the file!
     <message>
         <source>I can&apos;t get the $HOME environment variable.
 It is necessary couse I&apos;d like to save the config file into your home directory.</source>
-        <translation>No se pudo obtener la variable de entorno $HOME.
+        <translation type="obsolete">No se pudo obtener la variable de entorno $HOME.
 Es necesario porque se pretende grabar el archivo de configuración en su directorio personal.</translation>
     </message>
     <message>
@@ -88,6 +86,11 @@ Es necesario porque se pretende grabar el archivo de configuración en su direct
     <message>
         <source>Error while saving config file...</source>
         <translation>Error al guardar el archivo de configuración...</translation>
+    </message>
+    <message>
+        <source>I can&apos;t get the $HOME environment variable.
+It is necessary because I&apos;d like to save the config file into your home directory.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -543,11 +546,15 @@ Es necesario porque se pretende grabar el archivo de configuración en su direct
     </message>
     <message>
         <source>Automatically save the database after every scan (for dafety sake)</source>
-        <translation>Guardar automaticamente la base de datos después de cada escaneo</translation>
+        <translation type="obsolete">Guardar automaticamente la base de datos después de cada escaneo</translation>
     </message>
     <message>
         <source>Select additional items to read</source>
         <translation>Opciones de exploración</translation>
+    </message>
+    <message>
+        <source>Automatically save the database after every scan (for safety sake)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1569,7 +1576,11 @@ debe ser
     </message>
     <message>
         <source>Read avi technical info as comment (codecs,lenhth,...)</source>
-        <translation>Leer información técnica del avi como comentario (codecs, longitud,...)</translation>
+        <translation type="obsolete">Leer información técnica del avi como comentario (codecs, longitud,...)</translation>
+    </message>
+    <message>
+        <source>Read avi technical info as comment (codecs,length,...)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

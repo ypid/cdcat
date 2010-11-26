@@ -58,7 +58,7 @@ Datei überprüfen!
     <message>
         <source>I can&apos;t get the $HOME environment variable.
 It is necessary couse I&apos;d like to save the config file into your home directory.</source>
-        <translation>Die $HOME-Umgebungsvariable kann nicht ausgelesen werden.
+        <translation type="obsolete">Die $HOME-Umgebungsvariable kann nicht ausgelesen werden.
 Diese ist notwendig, da cdcat die Konfigurationsdatei ins persönliche Verzeichnis schreiben muss.</translation>
     </message>
     <message>
@@ -72,6 +72,12 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei ins persönliche Verzeichn
     <message>
         <source>Error while saving config file...</source>
         <translation>Fehler beim Speichern der Konfigurationsdatei...</translation>
+    </message>
+    <message>
+        <source>I can&apos;t get the $HOME environment variable.
+It is necessary because I&apos;d like to save the config file into your home directory.</source>
+        <translation>Die $HOME-Umgebungsvariable kann nicht gelesen werden.
+Dies ist notwendig, da die Konfigurationsdatei im persönlichen Verzeichnis gespeichert wird.</translation>
     </message>
 </context>
 <context>
@@ -474,11 +480,15 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei ins persönliche Verzeichn
     </message>
     <message>
         <source>Automatically save the database after every scan (for dafety sake)</source>
-        <translation>Datenbank automatisch nach jedem Durchsuchen speichern</translation>
+        <translation type="obsolete">Datenbank automatisch nach jedem Durchsuchen speichern</translation>
     </message>
     <message>
         <source>Select additional items to read</source>
         <translation>Weitere Dateieigenschaften erkennen (Auswahl)</translation>
+    </message>
+    <message>
+        <source>Automatically save the database after every scan (for safety sake)</source>
+        <translation>Datenbank automatisch nach jedem Suchen speichern (um sicher zu gehen)</translation>
     </message>
 </context>
 <context>
@@ -1272,7 +1282,11 @@ wird zu
     </message>
     <message>
         <source>Read avi technical info as comment (codecs,lenhth,...)</source>
-        <translation>Technische AVI-Informationen als Kommentar lesen (Codecs, Länge, ...)</translation>
+        <translation type="obsolete">Technische AVI-Informationen als Kommentar lesen (Codecs, Länge, ...)</translation>
+    </message>
+    <message>
+        <source>Read avi technical info as comment (codecs,length,...)</source>
+        <translation type="unfinished">Technische AVI-Informationen als Kommentar lesen (Codecs, Länge, ...)</translation>
     </message>
 </context>
 <context>

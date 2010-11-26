@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0">
+<!DOCTYPE TS><TS>
 <context>
     <name>@default</name>
     <message>
@@ -120,7 +118,7 @@ Ellenőrizd a fájlt!</translation>
     <message>
         <source>I can&apos;t get the $HOME environment variable.
 It is necessary couse I&apos;d like to save the config file into your home directory.</source>
-        <translation>Nem tudom lekérdezni a $HOME környezeti változót.
+        <translation type="obsolete">Nem tudom lekérdezni a $HOME környezeti változót.
 Ez szükséges lenne, mert a home-könyvtárba kerülne a beállításokat tartalmazó fájl.</translation>
     </message>
     <message>
@@ -134,6 +132,11 @@ Ez szükséges lenne, mert a home-könyvtárba kerülne a beállításokat tarta
     <message>
         <source>Error while saving config file...</source>
         <translation>Hiba a configfájl mentése alatt...</translation>
+    </message>
+    <message>
+        <source>I can&apos;t get the $HOME environment variable.
+It is necessary because I&apos;d like to save the config file into your home directory.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -596,11 +599,15 @@ Ez szükséges lenne, mert a home-könyvtárba kerülne a beállításokat tarta
     </message>
     <message>
         <source>Automatically save the database after every scan (for dafety sake)</source>
-        <translation>Automatikusan menti az adatbázist minden beolvasás után (a biztonság kedvéért) </translation>
+        <translation type="obsolete">Automatikusan menti az adatbázist minden beolvasás után (a biztonság kedvéért) </translation>
     </message>
     <message>
         <source>Select additional items to read</source>
         <translation>Felolvasandó elemek kiválasztása</translation>
+    </message>
+    <message>
+        <source>Automatically save the database after every scan (for safety sake)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1737,7 +1744,11 @@ Létreh. dátuma</translation>
     </message>
     <message>
         <source>Read avi technical info as comment (codecs,lenhth,...)</source>
-        <translation>Az AVI fájlok technikai információinak felolvasása (hossz, kodek, stb,...)</translation>
+        <translation type="obsolete">Az AVI fájlok technikai információinak felolvasása (hossz, kodek, stb,...)</translation>
+    </message>
+    <message>
+        <source>Read avi technical info as comment (codecs,length,...)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

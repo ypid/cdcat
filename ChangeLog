@@ -3,6 +3,7 @@
   - crash if clicking on the "catalog" in the left panel fixed (thanks to Niels Horn)
   - format dates with leading zero (thanks to Niels Horn)
   - typos fixed (thanks to Niels Horn)
+  - translations updated
 
 25. Nov 2010 Christoph Thielecke <crissi99@gmx.de>
   - fixed wrong encoding on reading

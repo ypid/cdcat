@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0">
+<!DOCTYPE TS><TS>
 <context>
     <name>AddLnk</name>
     <message>
@@ -47,11 +45,6 @@ Check the file!
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>I can&apos;t get the $HOME environment variable.
-It is necessary couse I&apos;d like to save the config file into your home directory.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>I can&apos;t create or rewrite the ./cdcat.cfg file </source>
         <translation type="unfinished"></translation>
     </message>
@@ -61,6 +54,11 @@ It is necessary couse I&apos;d like to save the config file into your home direc
     </message>
     <message>
         <source>Error while saving config file...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I can&apos;t get the $HOME environment variable.
+It is necessary because I&apos;d like to save the config file into your home directory.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -463,11 +461,11 @@ It is necessary couse I&apos;d like to save the config file into your home direc
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Automatically save the database after every scan (for dafety sake)</source>
+        <source>Select additional items to read</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Select additional items to read</source>
+        <source>Automatically save the database after every scan (for safety sake)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1237,7 +1235,7 @@ Homepage: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Read avi technical info as comment (codecs,lenhth,...)</source>
+        <source>Read avi technical info as comment (codecs,length,...)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

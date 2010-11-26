@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0">
+<!DOCTYPE TS><TS>
 <context>
     <name>AddLnk</name>
     <message>
@@ -55,7 +53,7 @@ Periksa file!</translation>
     <message>
         <source>I can&apos;t get the $HOME environment variable.
 It is necessary couse I&apos;d like to save the config file into your home directory.</source>
-        <translation>Gagal mendapatkan variabel lingkungan $HOME.
+        <translation type="obsolete">Gagal mendapatkan variabel lingkungan $HOME.
 Variabel tersebut penting karena file konfigurasi disimpan pada direktori rumah Anda.</translation>
     </message>
     <message>
@@ -69,6 +67,11 @@ Variabel tersebut penting karena file konfigurasi disimpan pada direktori rumah 
     <message>
         <source>Error while saving config file...</source>
         <translation>Terjadi kesalahan saat menulis konfigurasi...</translation>
+    </message>
+    <message>
+        <source>I can&apos;t get the $HOME environment variable.
+It is necessary because I&apos;d like to save the config file into your home directory.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -471,11 +474,15 @@ Variabel tersebut penting karena file konfigurasi disimpan pada direktori rumah 
     </message>
     <message>
         <source>Automatically save the database after every scan (for dafety sake)</source>
-        <translation>Simpan database secara otomatis setiap kali melakukan scan (untuk keamanan)</translation>
+        <translation type="obsolete">Simpan database secara otomatis setiap kali melakukan scan (untuk keamanan)</translation>
     </message>
     <message>
         <source>Select additional items to read</source>
         <translation>Pilih item tambahan yang akan dibaca</translation>
+    </message>
+    <message>
+        <source>Automatically save the database after every scan (for safety sake)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1268,7 +1275,11 @@ menjadi
     </message>
     <message>
         <source>Read avi technical info as comment (codecs,lenhth,...)</source>
-        <translation>Baca informasi teknis avi sebagai komentar(codecs, length,...)</translation>
+        <translation type="obsolete">Baca informasi teknis avi sebagai komentar(codecs, length,...)</translation>
+    </message>
+    <message>
+        <source>Read avi technical info as comment (codecs,length,...)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

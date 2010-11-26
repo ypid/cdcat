@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0">
+<!DOCTYPE TS><TS>
 <context>
     <name>AddLnk</name>
     <message>
@@ -73,7 +71,7 @@ Zkontrolujte prosím soubor!</translation>
     <message>
         <source>I can&apos;t get the $HOME environment variable.
 It is necessary couse I&apos;d like to save the config file into your home directory.</source>
-        <translation>Nemohu zjistit cestu k domovskému adresáři.
+        <translation type="obsolete">Nemohu zjistit cestu k domovskému adresáři.
 Tu je nutné znát, protože do Vašeho  domovského adresáře se ukládá konfigurace.</translation>
     </message>
     <message>
@@ -87,6 +85,11 @@ Tu je nutné znát, protože do Vašeho  domovského adresáře se ukládá konf
     <message>
         <source>Error while saving config file...</source>
         <translation>Chyba při ukládání konfigurace...</translation>
+    </message>
+    <message>
+        <source>I can&apos;t get the $HOME environment variable.
+It is necessary because I&apos;d like to save the config file into your home directory.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -541,11 +544,15 @@ Tu je nutné znát, protože do Vašeho  domovského adresáře se ukládá konf
     </message>
     <message>
         <source>Automatically save the database after every scan (for dafety sake)</source>
-        <translation>Automaticky ukládat databázi po každém načtení média</translation>
+        <translation type="obsolete">Automaticky ukládat databázi po každém načtení média</translation>
     </message>
     <message>
         <source>Select additional items to read</source>
         <translation>Vyberte položky ke čtení</translation>
+    </message>
+    <message>
+        <source>Automatically save the database after every scan (for safety sake)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1542,7 +1549,11 @@ bude změněno na
     </message>
     <message>
         <source>Read avi technical info as comment (codecs,lenhth,...)</source>
-        <translation>Ukládat technické informace o avi souborech jako komentáře (kodeky, délka, ...)</translation>
+        <translation type="obsolete">Ukládat technické informace o avi souborech jako komentáře (kodeky, délka, ...)</translation>
+    </message>
+    <message>
+        <source>Read avi technical info as comment (codecs,length,...)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

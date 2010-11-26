@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0">
+<!DOCTYPE TS><TS>
 <context>
     <name>AddLnk</name>
     <message>
@@ -74,7 +72,7 @@ Sprawdz nazwe pliku!</translation>
     <message>
         <source>I can&apos;t get the $HOME environment variable.
 It is necessary couse I&apos;d like to save the config file into your home directory.</source>
-        <translation>Nie mogę odnaleść zmiennej środowiskowej $HOME.
+        <translation type="obsolete">Nie mogę odnaleść zmiennej środowiskowej $HOME.
 Jest potrzebna, gdyż chciałem zapisać ustawienia do twojego katalogu domowego.</translation>
     </message>
     <message>
@@ -88,6 +86,11 @@ Jest potrzebna, gdyż chciałem zapisać ustawienia do twojego katalogu domowego
     <message>
         <source>Error while saving config file...</source>
         <translation>Błąd podczas zapisywania pliku konfiguracyjnego...</translation>
+    </message>
+    <message>
+        <source>I can&apos;t get the $HOME environment variable.
+It is necessary because I&apos;d like to save the config file into your home directory.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -534,11 +537,15 @@ Jest potrzebna, gdyż chciałem zapisać ustawienia do twojego katalogu domowego
     </message>
     <message>
         <source>Automatically save the database after every scan (for dafety sake)</source>
-        <translation>Automatycznie zapisz baze danych po każdym skanowaniu (na wszelki wypadek)</translation>
+        <translation type="obsolete">Automatycznie zapisz baze danych po każdym skanowaniu (na wszelki wypadek)</translation>
     </message>
     <message>
         <source>Select additional items to read</source>
         <translation>Wybierz odczywywane pliki</translation>
+    </message>
+    <message>
+        <source>Automatically save the database after every scan (for safety sake)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1489,7 +1496,11 @@ zostanie zmieniony na
     </message>
     <message>
         <source>Read avi technical info as comment (codecs,lenhth,...)</source>
-        <translation>Odczytaj informacje o pliku AVI jako komentarz (Kodek,długość,...)</translation>
+        <translation type="obsolete">Odczytaj informacje o pliku AVI jako komentarz (Kodek,długość,...)</translation>
+    </message>
+    <message>
+        <source>Read avi technical info as comment (codecs,length,...)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
