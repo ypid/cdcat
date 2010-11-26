@@ -140,10 +140,10 @@ FileWriter::~FileWriter() {
 }
 
 char * FileWriter::to_cutf8 ( QString s ) {
-    return  strdup ( converter->fromUnicode ( s.replace ( QRegExp ( "<" ),"{" )
-                     .replace ( QRegExp ( ">" ),"}" )
-                     .replace ( QRegExp ( "&" ),"&amp;" )
-                     .replace ( QRegExp ( "\"" ),"\'" )
+    return  strdup ( converter->fromUnicode ( s.replace ( QRegExp ( "&" ),"&amp;" )
+                     .replace ( QRegExp ( "<" ),"&lt;" )
+                     .replace ( QRegExp ( ">" ),"&gt;" )
+                     .replace ( QRegExp ( "\"" ),"&quot;" )
                                             ) );
   /*char *ret;
   ret = s.toLatin1().data();
