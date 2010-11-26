@@ -262,13 +262,13 @@ void  CommentWidget::paintEvent ( QPaintEvent *pe ) {
                 text+=tr ( "Unknown" );
             if ( tmp->type==HC_CATALOG )
                 text+= ( ( DBCatalog * ) ( tmp->data ) )->name;
-            if ( tmp->type==HC_MEDIA )
+            if ( tmp->type==HC_MEDIA ) {
                 text+= QString().setNum ( ( ( DBMedia * ) ( tmp->data ) )->number ) + " / " + ( ( DBMedia * ) ( tmp->data ) )->name;
-            if ( ! ( ( ( DBMedia * ) ( tmp->data ) )->borrowing.isEmpty() ) ) {
-                p.setPen ( QPen ( QColor ( Qt::red ),2 ) );
-                p.drawLine ( width()-24,14,width()-14,24 );
-                p.drawLine ( width()-14,14,width()-24,24 );
-
+                if ( ! ( ( ( DBMedia * ) ( tmp->data ) )->borrowing.isEmpty() ) ) {
+                    p.setPen ( QPen ( QColor ( Qt::red ),2 ) );
+                    p.drawLine ( width()-24,14,width()-14,24 );
+                    p.drawLine ( width()-14,14,width()-24,24 );
+                }
             }
             p.setPen ( QPen ( *cconfig->comm_vtext,1 ) );
             p.drawText ( mx+15,my+w,text );
