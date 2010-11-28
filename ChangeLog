@@ -1,3 +1,6 @@
+28. Nov 2010 Christoph Thielecke <crissi99@gmx.de>
+  - parsing avi header fixed (thanks to Niels Horn)
+
 25. Nov 2010 Christoph Thielecke <crissi99@gmx.de>
   - allow "<", ">" and '"' in comments (thanks to Niels Horn)
   - crash if clicking on the "catalog" in the left panel fixed (thanks to Niels Horn)

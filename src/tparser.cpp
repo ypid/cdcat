@@ -33,6 +33,14 @@
 #include "tparser.h"
 #include "config.h"
 
+#ifdef _WIN32
+#define _UINT4 unsigned long
+#define _INT4 long
+#else
+#define _UINT4 unsigned int
+#define _INT4 int
+#endif
+
 /*
  *this version assumes only 2 streams in avi file, one video, one audio
  */
@@ -139,7 +147,7 @@
  *         char is 1 byte long
  */
 union _DWORD {
-    unsigned long hex;
+    _UINT4 hex;
     char txt[4];
 }strfFourCC,strfFourCC2,listDW;
 
@@ -152,20 +160,20 @@ union _WORD {
  *Rather messy helper tool
  */
 union _ALLC {
-    unsigned long hex;
+    _UINT4 hex;
     unsigned short shex[2];
     char txt[4];
 }allc[10];
 
 struct myStdHeader {
     _DWORD header;
-    unsigned long fSize;
+    _UINT4 fSize;
     _DWORD fType;
 } topHeader,listH,strl,strf,strf2,junk,junk2,list1,list2,listI,listI2;
 
 struct srtHeader {
     _DWORD header;
-    unsigned long fSize;
+    _UINT4 fSize;
 }infoH;
 /*
  *taken from:
@@ -175,18 +183,18 @@ struct srtHeader {
  */
 struct avih {
     _DWORD fcc;
-    unsigned long cb;
-    unsigned long dwMicroSecPerFrame;
-    unsigned long dwMaxBytesPerSec;
-    unsigned long dwPaddingGranularity;
-    unsigned long dwFlags;
-    unsigned long dwTotalFrames;
-    unsigned long dwInitialFrames;
-    unsigned long dwStreams;
-    unsigned long dwSuggestedBufferSize;
-    unsigned long dwWidth;
-    unsigned long dwHeight;
-    unsigned long dwReserved[4];
+    _UINT4 cb;
+    _UINT4 dwMicroSecPerFrame;
+    _UINT4 dwMaxBytesPerSec;
+    _UINT4 dwPaddingGranularity;
+    _UINT4 dwFlags;
+    _UINT4 dwTotalFrames;
+    _UINT4 dwInitialFrames;
+    _UINT4 dwStreams;
+    _UINT4 dwSuggestedBufferSize;
+    _UINT4 dwWidth;
+    _UINT4 dwHeight;
+    _UINT4 dwReserved[4];
 }avih;
 
 /*
@@ -196,20 +204,20 @@ struct avih {
  */
 struct _avistreamheader {
     _DWORD fcc;
-    unsigned long  cb;
+    _UINT4  cb;
     _DWORD fccType;
     _DWORD fccHandler;
-    unsigned long  dwFlags;
+    _UINT4  dwFlags;
     _WORD wPriority;
     _WORD wLanguage;
-    unsigned long dwInitialFrames;
-    unsigned long dwScale;
-    unsigned long dwRate;
-    unsigned long dwStart;
-    unsigned long dwLength;
-    unsigned long dwSuggestedBufferSize;
-    long dwQuality; /*yes, this is signed data, -1==default*/
-    unsigned long dwSampleSize;
+    _UINT4 dwInitialFrames;
+    _UINT4 dwScale;
+    _UINT4 dwRate;
+    _UINT4 dwStart;
+    _UINT4 dwLength;
+    _UINT4 dwSuggestedBufferSize;
+    _INT4 dwQuality; /*yes, this is signed data, -1==default*/
+    _UINT4 dwSampleSize;
     struct {
         short int left;
         short int top;
@@ -225,8 +233,8 @@ struct _avistreamheader {
 struct WAVEFORMATEX {
     _WORD  wFormatTag;
     unsigned short  nChannels;
-    unsigned long nSamplesPerSec;
-    unsigned long nAvgBytesPerSec;
+    _UINT4 nSamplesPerSec;
+    _UINT4 nAvgBytesPerSec;
     unsigned short nBlockAlign;
     unsigned short wBitsPerSample;
     unsigned short cbSize;
@@ -254,6 +262,7 @@ struct INFOLIST {
 unsigned int allcCount=0;/*temportarily used for additional data stored after waveH*/
 
 #include <iostream>
+using namespace std;
 
 QString parseAviHeader ( FILE* file ) {
     long filelength=0;
@@ -267,10 +276,10 @@ QString parseAviHeader ( FILE* file ) {
      *Since these are structs, we can point at the beginning and
      *overflow to other memebers.
      */
-    if ( filelength-ftell ( file ) < ( long ) sizeof ( unsigned long int ) * ( 3+3+16+3+16+3 ) )
+    if ( filelength-ftell ( file ) < ( long ) sizeof ( _UINT4 ) * ( 3+3+16+3+16+3 ) )
         return QObject::tr ( "Not a RIFF/AVI file OR header broken!" );
 
-    fread ( ( void* ) &topHeader.header,sizeof ( unsigned long int ),3,file );
+    fread ( ( void* ) &topHeader.header,sizeof ( _UINT4 ),3,file );
     if ( topHeader.header.hex!=RIFF&&topHeader.fType.hex!=_AVI ) {
 #ifdef DoAviDebug
         ReturnData+=QObject::tr ( "Not a RIFF/AVI file OR header broken!" );
@@ -282,13 +291,13 @@ QString parseAviHeader ( FILE* file ) {
                      .arg ( topHeader.header.txt[2] )
                      .arg ( topHeader.header.txt[3] );
         ReturnData+="\000";
-        cout << ReturnData;
+        cout << qPrintable(ReturnData)<<endl;
 #endif
         ReturnData+="\000";
         return ReturnData;
     }
-    fread ( ( void* ) &listH.header.hex,sizeof ( unsigned long int ),3,file );
-    if ( listH.header.hex!=LIST&&listH.fType.hex!=HDRL ) {
+    fread ( ( void* ) &listH.header.hex,sizeof ( _UINT4 ),3,file );
+    if ( listH.header.hex!=LIST && listH.fType.hex!=HDRL ) {
 #ifdef DoAviDebug
         ReturnData+=QObject::tr ( "Not a RIFF/AVI file OR header broken!" );
         ReturnData+= "\n";
@@ -299,14 +308,14 @@ QString parseAviHeader ( FILE* file ) {
                      .arg ( listH.header.txt[2] )
                      .arg ( listH.header.txt[3] );
         ReturnData+="\000";
-        cout << ReturnData;
+        cout << qPrintable(ReturnData)<<endl;
 #endif
         ReturnData+="\000";
         return ReturnData;
     }
-    fread ( ( void* ) &avih.fcc.hex,sizeof ( unsigned long int ),16,file );
-    fread ( ( void* ) &strl.header.hex,sizeof ( unsigned long int ),3,file );
-    if ( listH.header.hex!=LIST&&listH.fType.hex!=STRL ) {
+    fread ( ( void* ) &avih.fcc.hex,sizeof ( _UINT4 ),16,file );
+    fread ( ( void* ) &strl.header.hex,sizeof ( _UINT4 ),3,file );
+    if ( listH.header.hex!=LIST && listH.fType.hex!=STRL ) {
 #ifdef DoAviDebug
         ReturnData+=QObject::tr ( "Not a RIFF/AVI file OR header broken!" );
         ReturnData+= "\n";
@@ -317,18 +326,18 @@ QString parseAviHeader ( FILE* file ) {
                      .arg ( topHeader.header.txt[3] )
                      .arg ( topHeader.header.hex );
         ReturnData+="\000";
-        cout << ReturnData;
+        cout << qPrintable(ReturnData)<<endl;
 #endif
         ReturnData+="\000";
         return ReturnData;
     }
-    fread ( ( void* ) &streamH.fcc.hex,sizeof ( unsigned long int ),16,file );
-    fread ( ( void* ) &strf.header.hex,sizeof ( unsigned long int ),3,file );
+    fread ( ( void* ) &streamH.fcc.hex,sizeof ( _UINT4 ),16,file );
+    fread ( ( void* ) &strf.header.hex,sizeof ( _UINT4 ),3,file );
     /*
      *You can also find an idxh index header
      *Add IT!!!
      */
-    if ( strf.header.hex!=STRF&&strf.fType.hex!=0x00000028 ) { /*Broken? 0x28=="(   "*/
+    if ( strf.header.hex!=STRF && strf.fType.hex!=0x00000028 ) { /*Broken? 0x28=="(   "*/
 #ifdef DoAviDebug
         ReturnData+=QObject::tr ( "Not a RIFF/AVI file OR header broken!" );
         ReturnData+= "\n";
@@ -346,17 +355,17 @@ QString parseAviHeader ( FILE* file ) {
                      .arg ( strf.fType.txt[3] )
                      .arg ( strf.fType.hex );
         ReturnData+="\000";
-        cout << ReturnData;
+        cout << qPrintable(ReturnData)<<endl;
 #endif
         ReturnData+="\000";
         return ReturnData;
     }
     fseek ( file,12,SEEK_CUR );
-    if ( filelength-ftell ( file ) < ( long ) sizeof ( unsigned long int ) * 1 )
+    if ( filelength-ftell ( file ) < ( long ) sizeof ( _UINT4 ) * 1 )
         return QObject::tr ( "Not a RIFF/AVI file OR header broken!" );
-    fread ( ( void* ) &strfFourCC.hex,sizeof ( unsigned long int ),1,file );
+    fread ( ( void* ) &strfFourCC.hex,sizeof ( _UINT4 ),1,file );
     fseek ( file,strf.fSize-20,SEEK_CUR );
-    fread ( ( void* ) &junk.header.hex,sizeof ( unsigned long int ),3,file );
+    fread ( ( void* ) &junk.header.hex,sizeof ( _UINT4 ),3,file );
 
     if ( junk.header.hex!=JUNK ) {
         fseek ( file,-12,SEEK_CUR );
@@ -364,11 +373,11 @@ QString parseAviHeader ( FILE* file ) {
         fseek ( file, junk.fSize-4, SEEK_CUR );
     };
 
-    if ( filelength-ftell ( file ) < ( long ) sizeof ( unsigned long int ) * 21 )
+    if ( filelength-ftell ( file ) < ( long ) sizeof ( _UINT4 ) * 21 )
         return QObject::tr ( "Not a RIFF/AVI file OR header broken!" );
-    fread ( ( void* ) &list1.header.hex,sizeof ( unsigned long int ),3,file );
-    fread ( ( void* ) &streamH2.fcc.hex,sizeof ( unsigned long int ),16,file );
-    fread ( ( void* ) &strf2.header.hex,sizeof ( unsigned long int ),3,file );
+    fread ( ( void* ) &list1.header.hex,sizeof ( _UINT4 ),3,file );
+    fread ( ( void* ) &streamH2.fcc.hex,sizeof ( _UINT4 ),16,file );
+    fread ( ( void* ) &strf2.header.hex,sizeof ( _UINT4 ),3,file );
     if ( strf2.header.hex!=STRF ) { /*Broken? 0x28=="(   "*/
 #ifdef DoAviDebug
         ReturnData+=QObject::tr ( "Not a RIFF/AVI file OR header broken!" );
@@ -386,7 +395,7 @@ QString parseAviHeader ( FILE* file ) {
                      .arg ( strf2.fType.txt[3] )
                      .arg ( strf2.fType.hex );
         ReturnData+="\000";
-        cout << ReturnData;
+        cout << qPrintable(ReturnData)<<endl;
 #endif
         ReturnData+="\000";
         return ReturnData;
@@ -555,24 +564,25 @@ QString parseAviHeader ( FILE* file ) {
      *this part can, and will be modified to print
      *out only that what we need.
      */
-    ReturnData+=QObject::tr ( "Video:\n" );
-    ReturnData+="\n";
-    fourccSwitch ( strfFourCC.hex, ReturnData );
+    QString sH,sM,sS;
+    sH.sprintf("%d"  ,( int ) ( ( float ) avih.dwTotalFrames/_FPS ) /3600);
+    sM.sprintf("%02d",( int ) ( ( float ) avih.dwTotalFrames/_FPS ) % 3600 / 60); 
+    sS.sprintf("%02d",( int ) ( ( float ) avih.dwTotalFrames/_FPS ) % 60);
 
-    ReturnData+=QObject::tr ( "Total Time" ) + QString ( " = %1:%2:%3\n" ).arg ( ( unsigned long ) ( ( float ) avih.dwTotalFrames/_FPS ) /3600,2,10 ).arg ( ( unsigned long ) ( ( float ) avih.dwTotalFrames/_FPS ) /60,2,10 ).arg ( ( unsigned long ) ( ( float ) avih.dwTotalFrames/_FPS ) %60,2,10 );
+    ReturnData+=QObject::tr ( "Video:\n" );
+    fourccSwitch ( strfFourCC.hex, ReturnData );
+    ReturnData+=QObject::tr ( "Total Time" ) + QString ( " = %1:%2:%3\n" ) .arg(sH).arg(sM).arg(sS);
     ReturnData+=QObject::tr ( "Framerate" )  + QString ( " = %1 f/s\n" ).arg ( _FPS,0,'f',3 );
     ReturnData+=QObject::tr ( "Resolution" ) + QString ( " = %1x%2\n" ).arg ( avih.dwWidth ).arg ( avih.dwHeight );
     ReturnData+="\n";
-    ReturnData+=QObject::tr ( "Audio:" );
-    ReturnData+="\n";
+    ReturnData+=QObject::tr ( "Audio:\n" );
     fourccSwitch2 ( waveH.wFormatTag.hex, ReturnData );
     ReturnData+=QObject::tr ( "Channels" )  + QString ( " = %1 \n" ).arg ( waveH.nChannels );
     ReturnData+=QObject::tr ( "Sample/s" ) + QString ( " = %1kHz \n" ).arg ( ( float ) waveH.nSamplesPerSec/1000,0,'f',1 ); /*use waveH.nSamplesPerSec if you want to*/
     ReturnData+=QObject::tr ( "Bitrate" )   + QString ( " = %1 kBit\n" ).arg ( ( waveH.nAvgBytesPerSec*8 ) /1000 );
 
     ReturnData+="\n";
-    ReturnData+=QObject::tr ( "More Data:" );
-    ReturnData+="\n";
+    ReturnData+=QObject::tr ( "More Data:\n" );
 
     if ( infoList.IART!=NULL ) ReturnData+= QObject::tr ( "Artist" )        + QString ( " = %1\n" ).arg ( infoList.IART );
     if ( infoList.ICMT!=NULL ) ReturnData+= QObject::tr ( "Comments" )      + QString ( " = %1\n" ).arg ( infoList.ICMT );
