@@ -1,4 +1,7 @@
 28. Nov 2010 Christoph Thielecke <crissi99@gmx.de>
+  - support for (dead) symbolic links and system files improved (thanks to Bernard Valentin)
+
+28. Nov 2010 Christoph Thielecke <crissi99@gmx.de>
   - parsing avi header fixed (thanks to Niels Horn)
 
 25. Nov 2010 Christoph Thielecke <crissi99@gmx.de>

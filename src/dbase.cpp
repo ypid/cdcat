@@ -36,8 +36,11 @@ using namespace std;
 QString date_to_str ( QDateTime dt ) {
 
     QString text;
-    text.sprintf ( "%d-%02d-%02d %02d:%02d:%02d",dt.date().year(), dt.date().month(),  dt.date().day(),
+    if ( dt.isValid() )
+        text.sprintf ( "%d-%02d-%02d %02d:%02d:%02d",dt.date().year(), dt.date().month(),  dt.date().day(),
                    dt.time().hour(), dt.time().minute(), dt.time().second() );
+    else
+        text = DataBase::tr( "Not available" );
 
     return text;
 }
@@ -564,7 +567,7 @@ int DataBase::scanFsToNode ( QString what,Node *to ) {
     cerr <<"Loading node:"<< qPrintable ( what ) <<endl;
 
     int ret;
-    QString comm ( "" );
+    QString comm=NULL;
     QDir *dir=NULL;
     QFileInfoList *dirlist = NULL;
 
@@ -574,11 +577,11 @@ int DataBase::scanFsToNode ( QString what,Node *to ) {
         cerr << "dir " << qPrintable ( what ) << " is not readable" << endl;
         int i;
         if ( QFileInfo ( what ).isDir() )
-            errormsg = tr ( "Cannot read directory: %1" ).arg ( *what );
+            errormsg = tr ( "Cannot read directory: %1" ).arg ( what );
         else
-            errormsg = tr ( "Cannot read file: %1" ).arg ( *what );
+            errormsg = tr ( "Cannot read file: %1" ).arg ( what ); /* socket files and dead symbolic links end here */
 
-        i = 1 + ( QMessageBox::warning ( NULL,tr ( "Error" ),errormsg,tr ( "Ignore directory" ),tr ( "Cancel scanning" ) ) );
+        i = 1 + ( QMessageBox::warning ( NULL,tr ( "Error" ),errormsg,tr ( "Ignore" ),tr ( "Cancel scanning" ) ) );
         return i;
     }
     dirlist = new QFileInfoList ( dir->entryInfoList ( QString ( "*" ), QDir::All|QDir::Hidden|QDir::System ) );
@@ -589,11 +592,6 @@ int DataBase::scanFsToNode ( QString what,Node *to ) {
             continue;
         }
         cerr << "processing in dir " << qPrintable ( what ) << " node: " << qPrintable ( fileInfo->filePath() ) << endl;
-
-        if ( fileInfo->isDir() && fileInfo->isSymLink() ) {
-            cerr << qPrintable ( fileInfo->fileName() ) << " is dir or symlink => later" << endl;
-            continue; /* !!! Or do something else, later...*/
-        }
 
         /* Make a new node */
         Node *tt=to->child;
@@ -627,29 +625,56 @@ int DataBase::scanFsToNode ( QString what,Node *to ) {
 
             progress ( pww );
 
-            if ( fileInfo->isSymLink() ) {
-                comm = tr ( "Symbolic link#Points to:" ) + QString ( "" ) + fileInfo->readLink();
+            if ( fileInfo->isSymLink() ) { /* SYMBOLIC LINK to a FILE */
+                comm = tr ( "Symbolic link to file:#" )
+                            + dir->relativeFilePath(fileInfo->symLinkTarget());
+            } else {
+                comm =(char*) NULL;
             }
             tt->data= ( void * ) new DBFile ( fileInfo->fileName(),fileInfo->lastModified(),
                                               comm,s,st );
             scanFileProp ( fileInfo, ( DBFile * ) tt->data );
-        } else { /* DIRECTORY */
+        } else if ( fileInfo->isDir() ) { /* DIRECTORY */
             cerr << "adding dir: " << qPrintable ( fileInfo->fileName() ) << endl;
             progress ( pww );
 
-            tt->data= ( void * ) new DBDirectory (
-                          fileInfo->fileName(),
-                          fileInfo->lastModified(),
-                          NULL );
+            if ( fileInfo->isSymLink() ) { /* SYMBOLIC LINK to a DIRECTORY */
+                /* These links appear as empty directories in the GUI */
+                /* Change to DBFile for show them as files */
+                tt->data= ( void * ) new DBDirectory (
+                          fileInfo->fileName(), fileInfo->lastModified(),
+                          tr ( "Symbolic link to directory:#" )
+                               + dir->relativeFilePath(fileInfo->symLinkTarget()) );
+                continue; /* Do not recurse into symbolically linked directories */
+            } else {
+                tt->data= ( void * ) new DBDirectory (
+                          fileInfo->fileName(), fileInfo->lastModified(), (char*) NULL);
+            }
+
             /* Start recursion: */
 
             QString thr ( what );
             thr=thr.append ( "/" );
             thr=thr.append ( fileInfo->fileName() );
 
-
             if ( ( ret=scanFsToNode ( thr,tt ) ) == 2 )
                 return ret;
+
+        } else if ( fileInfo->isSymLink() ) { /* DEAD SYMBOLIC LINK */
+            cerr << "adding dead symlink: " << qPrintable ( fileInfo->fileName() ) << endl;
+            progress ( pww );
+
+            comm = tr ( "DEAD Symbolic link to:#" )
+                        + dir->relativeFilePath(fileInfo->symLinkTarget());
+            tt->data=( void * ) new DBFile ( fileInfo->fileName(),QDateTime(),
+                                          comm,0,BYTE );
+        } else { /* SYSTEM FILE (e.g. FIFO, socket or device file) */
+            cerr << "adding system file: " << qPrintable ( fileInfo->fileName() ) << endl;
+            progress ( pww );
+
+            comm = tr( "System file (e.g. FIFO, socket or device file)" );
+            tt->data=( void * ) new DBFile ( fileInfo->fileName(),fileInfo->lastModified(),
+                                          comm,0,BYTE );
         }
     }/*end of for,..next directory entry*/
     return ret;
