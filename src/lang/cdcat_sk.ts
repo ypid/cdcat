@@ -1,27 +1,34 @@
-<!DOCTYPE TS><TS>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS><TS version="1.1">
 <context>
     <name>AddLnk</name>
     <message>
+        <location filename="../adddialog.cpp" line="439"/>
         <source>Add a &quot;Catalog Link&quot; to the database</source>
         <translation>Pridať &quot;Katalógovú linku&quot; k databáze</translation>
     </message>
     <message>
+        <location filename="../adddialog.cpp" line="440"/>
         <source>Location of the .hcf file:</source>
         <translation>Cesta k súboru .hcf:</translation>
     </message>
     <message>
+        <location filename="../adddialog.cpp" line="442"/>
         <source>Cancel</source>
         <translation>Zrušiť</translation>
     </message>
     <message>
+        <location filename="../adddialog.cpp" line="443"/>
         <source>Ok</source>
         <translation>OK</translation>
     </message>
     <message>
+        <location filename="../adddialog.cpp" line="461"/>
         <source>CdCat databases (*.hcf )</source>
         <translation>CdCat databázy (*.hcf)</translation>
     </message>
     <message>
+        <location filename="../adddialog.cpp" line="461"/>
         <source>Open a file...</source>
         <translation>Otvoriť súbor...</translation>
     </message>
@@ -29,10 +36,12 @@
 <context>
     <name>CdCatConfig</name>
     <message>
+        <location filename="../config.cpp" line="148"/>
         <source>Error during autoload...</source>
         <translation>Chyba pri automatickom načítavaní...</translation>
     </message>
     <message>
+        <location filename="../config.cpp" line="150"/>
         <source>I can&apos;t open the autoload catalog.
 Check the file, or change the autoload option in the config dialog!
 </source>
@@ -41,14 +50,17 @@ Skontrolujte súbor alebo zmeňte nastavenie automatického načítania katalóg
 </translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Ok</source>
         <translation type="obsolete">OK</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Error during write config...</source>
         <translation type="obsolete">Chyba pri ukladaní konfigurácie...</translation>
     </message>
     <message>
+        <location filename="../config.cpp" line="150"/>
         <source>I can&apos;t open the autoload catalog according the first command line parameter.
 Check the file!
 </source>
@@ -57,24 +69,29 @@ Skontrolujte prosím súbor!
 </translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>I can&apos;t get the $HOME environment variable.
 It is necessary couse I&apos;d like to save the config file into your home directory.</source>
         <translation type="obsolete">Z premennej prostredia $HOME nie je možné zistiť cestu k Vášmu domovskému adresáru.
 Je potrebné ju poznať pre uloženie konfigurácie.</translation>
     </message>
     <message>
+        <location filename="../config.cpp" line="724"/>
         <source>I can&apos;t create or rewrite the ./cdcat.cfg file </source>
         <translation>Nemožno vytvoriť alebo prepísať ./cdcat.cfg</translation>
     </message>
     <message>
+        <location filename="../config.cpp" line="726"/>
         <source>I can&apos;t create or rewrite the $(HOME)/.cdcatconfig file </source>
         <translation>Nemožno vytvoriť alebo prepísať $(HOME)/.cdcatconfig</translation>
     </message>
     <message>
+        <location filename="../config.cpp" line="726"/>
         <source>Error while saving config file...</source>
         <translation>Chyba pri ukladaní konfigurácie...</translation>
     </message>
     <message>
+        <location filename="../config.cpp" line="539"/>
         <source>I can&apos;t get the $HOME environment variable.
 It is necessary because I&apos;d like to save the config file into your home directory.</source>
         <translation type="unfinished"></translation>
@@ -83,206 +100,257 @@ It is necessary because I&apos;d like to save the config file into your home dir
 <context>
     <name>CdCatMainWidget</name>
     <message>
+        <location filename="" line="0"/>
         <source>No selected item</source>
         <translation type="obsolete">Žiadna vybraná položka</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="133"/>
         <source>Directory Tree</source>
         <translation>Adresárový strom</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="136"/>
         <source>Name</source>
         <translation>Názov</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="137"/>
         <source>Size</source>
         <translation>Veľkosť</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="157"/>
         <source>New...</source>
         <translation>Nový...</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="158"/>
         <source>Open...</source>
         <translation>Otvoriť...</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="159"/>
         <source>Save</source>
         <translation>Uložiť</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="160"/>
         <source>Save As...</source>
         <translation>Uložiť ako...</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="171"/>
         <source>Close</source>
         <translation>Zatvoriť</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="173"/>
         <source>Quit</source>
         <translation>Koniec</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="175"/>
         <source>Add media...</source>
         <translation>Pridať médium...</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="177"/>
         <source>Rescan media...</source>
         <translation>Aktualizovať médium...</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="179"/>
         <source>Insert Catalog...</source>
         <translation>Vložiť katalóg...</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="181"/>
         <source>Rename node...</source>
         <translation>Premenovať položku...</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="183"/>
         <source>Delete node</source>
         <translation>Zmazať položku</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="185"/>
         <source>Sort media by number</source>
         <translation>Zoradiť média podľa čísla</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="186"/>
         <source>Sort media by name</source>
         <translation>Zoradiť média podľa názvu</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="187"/>
         <source>Sort media by type</source>
         <translation>Zoradiť média podľa typu</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="188"/>
         <source>Sort media by time</source>
         <translation>Zoradiť média podľa času</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="190"/>
         <source>Seek in database...</source>
         <translation>Hľadať...</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="193"/>
         <source>Node size</source>
         <translation>Veľkosť položky</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="194"/>
         <source>Configuration...</source>
         <translation>Konfigurácia...</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="333"/>
         <source>Help</source>
         <translation>Pomoc</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="340"/>
         <source>About</source>
         <translation>O programe</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="204"/>
         <source>Catalog</source>
         <translation>Katalóg</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="205"/>
         <source>Edit</source>
         <translation>Editovať</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="207"/>
         <source>Others</source>
         <translation>Ostatné</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="314"/>
         <source>Hyper&apos;s CD Catalogizer</source>
         <translation>Hyperov CD katalogizér</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="316"/>
         <source>Open a catalog from a file.</source>
         <translation>Otvoriť katalóg zo súboru.</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="322"/>
         <source>Close the actual catalog.</source>
         <translation>Zatvoriť aktuálny katalóg.</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="325"/>
         <source>Add a new media to the catalog.</source>
         <translation>Pridať do katalógu nové médium.</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Rescan the selected media from the disk.</source>
         <translation type="obsolete">Aktualizovať zvolené médium.</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="329"/>
         <source>Delete the selected media from the catalog.</source>
         <translation>Vymazať vybrané médium z katalógu.</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="331"/>
         <source>Configuration of the program.</source>
         <translation>Konfigurácia programu.</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="335"/>
         <source>Create a new, empty catalog and close the previous.</source>
         <translation>Vytvoriť nový, prázdny katalóg a zatvoriť predchádzajúci.</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="337"/>
         <source>Search an element in the database(catalog).You can search filenames, directory names, name parts or mp3 tags etc...</source>
         <translation>Vyhľadať položku v katalógu. Môžete hľadať podľa názvu/časti názvu adresára, súboru, ID3 Tagu atď...</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="338"/>
         <source>Search an element.</source>
         <translation>Vyhľadať položku.</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="163"/>
         <source>Recent files...</source>
         <translation>Nedávne súbory...</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="202"/>
         <source>Export database</source>
         <translation>Exportovať databázu</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="206"/>
         <source>Import/Export</source>
         <translation>Import/Export</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="182"/>
         <source>Re-Number media node...</source>
         <translation>Zmeň číslo média...</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="201"/>
         <source>Import database (csv/gtktalog)</source>
         <translation>Importovať databázu (csv/gtkatalog)</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="192"/>
         <source>Borrowing info...</source>
         <translation>Informácie o zapožičaní...</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="318"/>
         <source>Save all modifications to the disc.</source>
         <translation>Uložiť všetky zmeny na disk.</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="320"/>
         <source>Save the catalog to a new file.</source>
         <translation>Uložiť katalóg do nového súboru.</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="176"/>
         <source>Add a link to a CdCAt Catalog...</source>
         <translation>Pridaj linku ku katalógu CdCat...</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="195"/>
         <source>Set Colors...</source>
         <translation>Zvoliť farby...</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="128"/>
         <source>No item selected</source>
         <translation>Žiadna vybraná položka</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="327"/>
         <source>Rescan the selected media.</source>
         <translation>Aktualizovať zvolené médium.</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="191"/>
         <source>Seek in the panel</source>
         <translation>Hľadaj v paneli</translation>
     </message>
     <message>
+        <location filename="../mainwidget.cpp" line="342"/>
         <source>About Qt</source>
         <translation type="unfinished"></translation>
     </message>
@@ -290,10 +358,12 @@ It is necessary because I&apos;d like to save the config file into your home dir
 <context>
     <name>ColorSchemePreview</name>
     <message>
+        <location filename="../colorsettings.cpp" line="74"/>
         <source>Title:</source>
         <translation>Názov:</translation>
     </message>
     <message>
+        <location filename="../colorsettings.cpp" line="76"/>
         <source>Road To Hell</source>
         <translation>Cesta do pekla</translation>
     </message>
@@ -301,46 +371,57 @@ It is necessary because I&apos;d like to save the config file into your home dir
 <context>
     <name>ColorSettings</name>
     <message>
+        <location filename="../colorsettings.cpp" line="225"/>
         <source>ColorSettings</source>
         <translation>Nastavenie farieb</translation>
     </message>
     <message>
+        <location filename="../colorsettings.cpp" line="227"/>
         <source>Comment area background and the file higlighting line</source>
         <translation>Pozadie komentára a zvýrazňovanie súborov</translation>
     </message>
     <message>
+        <location filename="../colorsettings.cpp" line="228"/>
         <source>Frame of comment area</source>
         <translation>Rám okolo komentára</translation>
     </message>
     <message>
+        <location filename="../colorsettings.cpp" line="229"/>
         <source>Comment window static text (Program text)</source>
         <translation>Text komentára (nadpisy)</translation>
     </message>
     <message>
+        <location filename="../colorsettings.cpp" line="230"/>
         <source>Comment window variable text (Data)</source>
         <translation>Text komentára (premenné)</translation>
     </message>
     <message>
+        <location filename="../colorsettings.cpp" line="231"/>
         <source>color</source>
         <translation>farba</translation>
     </message>
     <message>
+        <location filename="../colorsettings.cpp" line="232"/>
         <source>Red:</source>
         <translation>Červená:</translation>
     </message>
     <message>
+        <location filename="../colorsettings.cpp" line="233"/>
         <source>Green:</source>
         <translation>Zelená:</translation>
     </message>
     <message>
+        <location filename="../colorsettings.cpp" line="234"/>
         <source>Blue:</source>
         <translation>Modrá:</translation>
     </message>
     <message>
+        <location filename="../colorsettings.cpp" line="235"/>
         <source>Ok</source>
         <translation>OK</translation>
     </message>
     <message>
+        <location filename="../colorsettings.cpp" line="236"/>
         <source>Cancel</source>
         <translation>Zrušiť</translation>
     </message>
@@ -348,86 +429,107 @@ It is necessary because I&apos;d like to save the config file into your home dir
 <context>
     <name>CommentWidget</name>
     <message>
+        <location filename="../commwidget.cpp" line="86"/>
         <source>Edit and refresh the actual comment page.</source>
         <translation>Editovať a obnoviť aktuálny komentár.</translation>
     </message>
     <message>
+        <location filename="../commwidget.cpp" line="148"/>
         <source>Upper container! (..)</source>
         <translation>Vyšší kontajner (..)</translation>
     </message>
     <message>
+        <location filename="../commwidget.cpp" line="166"/>
         <source> CdCat Catalog root</source>
         <translation>Koreňový adresár CdCat katalógu</translation>
     </message>
     <message>
+        <location filename="../commwidget.cpp" line="172"/>
         <source> Directory</source>
         <translation>Adresár</translation>
     </message>
     <message>
+        <location filename="../commwidget.cpp" line="175"/>
         <source> File</source>
         <translation>Súbor</translation>
     </message>
     <message>
+        <location filename="../commwidget.cpp" line="178"/>
         <source>Media</source>
         <translation>Médium</translation>
     </message>
     <message>
+        <location filename="../commwidget.cpp" line="187"/>
         <source>Size:</source>
         <translation>Veľkosť:</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Last moification:</source>
         <translation type="obsolete">Posledná zmena:</translation>
     </message>
     <message>
+        <location filename="../commwidget.cpp" line="236"/>
         <source>Owner:</source>
         <translation>Vlastník:</translation>
     </message>
     <message>
+        <location filename="../commwidget.cpp" line="262"/>
         <source>Unknown</source>
         <translation>Neznámy</translation>
     </message>
     <message>
+        <location filename="../commwidget.cpp" line="255"/>
         <source>Media (number/name):</source>
         <translation>Médium (číslo/názov):</translation>
     </message>
     <message>
+        <location filename="../commwidget.cpp" line="286"/>
         <source>Mp3-Tag:</source>
         <translation>MP3-Tag:</translation>
     </message>
     <message>
+        <location filename="../commwidget.cpp" line="288"/>
         <source>(Art/Tit/Alb/Year/Comm)</source>
         <translation>(Autor/Názov/Album/Rok/Kom)</translation>
     </message>
     <message>
+        <location filename="../commwidget.cpp" line="309"/>
         <source>Comment:</source>
         <translation>Komentár:</translation>
     </message>
     <message>
+        <location filename="../commwidget.cpp" line="81"/>
         <source>Shows the content of the file.</source>
         <translation>Zobraziť obsah súboru.</translation>
     </message>
     <message>
+        <location filename="../commwidget.cpp" line="153"/>
         <source>Name:</source>
         <translation>Názov:</translation>
     </message>
     <message>
+        <location filename="../commwidget.cpp" line="162"/>
         <source>Type:</source>
         <translation>Typ:</translation>
     </message>
     <message>
+        <location filename="../commwidget.cpp" line="352"/>
         <source>There is no selected element.</source>
         <translation>Nie je vybraná žiadna položka.</translation>
     </message>
     <message>
+        <location filename="../commwidget.cpp" line="169"/>
         <source> Link to a CdCat catalog</source>
         <translation>Linka ku katalógu CdCat</translation>
     </message>
     <message>
+        <location filename="../commwidget.cpp" line="199"/>
         <source>Location:</source>
         <translation>Umiestnenie:</translation>
     </message>
     <message>
+        <location filename="../commwidget.cpp" line="211"/>
         <source>Last modification:</source>
         <translation>Posledná zmena:</translation>
     </message>
@@ -435,74 +537,92 @@ It is necessary because I&apos;d like to save the config file into your home dir
 <context>
     <name>ConfigDialog</name>
     <message>
+        <location filename="../config.cpp" line="964"/>
         <source>Configure  CdCat...</source>
         <translation>Konfigurovať CdCat...</translation>
     </message>
     <message>
+        <location filename="../config.cpp" line="965"/>
         <source>Autoload DataBase on startup</source>
         <translation>Automaticky načítať databázu pri štarte</translation>
     </message>
     <message>
+        <location filename="../config.cpp" line="967"/>
         <source>Save the XML-db.file nicer format(needs more space)</source>
         <translation>Uložiť vo formáte XML-db (krajší formát, potrebuje viac miesta)</translation>
     </message>
     <message>
+        <location filename="../config.cpp" line="968"/>
         <source>Cancel</source>
         <translation>Zrušiť</translation>
     </message>
     <message>
+        <location filename="../config.cpp" line="969"/>
         <source>Ok</source>
         <translation>OK</translation>
     </message>
     <message>
+        <location filename="../config.cpp" line="972"/>
         <source>Application font size.(must restart cdcat!) </source>
         <translation>Veľkosť fontu aplikácie. (Prejaví sa až po reštarte cdcat-u)</translation>
     </message>
     <message>
+        <location filename="../config.cpp" line="986"/>
         <source>CdCat Databases (*.hcf)</source>
         <translation>CdCat databázy (*.hcf)</translation>
     </message>
     <message>
+        <location filename="../config.cpp" line="974"/>
         <source>Path to cdrom device</source>
         <translation>Cesta k CD-ROM</translation>
     </message>
     <message>
+        <location filename="../config.cpp" line="977"/>
         <source>Scanning: mount cdrom at start / eject when finish</source>
         <translation>Skenovanie: pripojiť CD-ROM pri zahájení / vysunúť CD po dokončení</translation>
     </message>
     <message>
+        <location filename="../config.cpp" line="971"/>
         <source>Use own font size</source>
         <translation>Použiť vlastnú veľkosť fontu</translation>
     </message>
     <message>
+        <location filename="../config.cpp" line="973"/>
         <source>Number of history entries</source>
         <translation>Počet položiek histórie</translation>
     </message>
     <message>
+        <location filename="../config.cpp" line="995"/>
         <source>Choose path to cdrom!</source>
         <translation>Vyberte cestu k CD-ROM!</translation>
     </message>
     <message>
+        <location filename="../config.cpp" line="979"/>
         <source>The language of CdCat interface</source>
         <translation>Jazyk programu CdCat</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Select readable items</source>
         <translation type="obsolete">Výber ďalších položiek pre čítanie</translation>
     </message>
     <message>
+        <location filename="../config.cpp" line="987"/>
         <source>Choose a file to load automatically!</source>
         <translation>Zvoľte súbor pre automatické načítanie!</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Automatically save the database after every scan (for dafety sake)</source>
         <translation type="obsolete">Automaticky uložiť databázu po každom skenovaní</translation>
     </message>
     <message>
+        <location filename="../config.cpp" line="970"/>
         <source>Select additional items to read</source>
         <translation>Výber ďalších položiek pre čítanie</translation>
     </message>
     <message>
+        <location filename="../config.cpp" line="966"/>
         <source>Automatically save the database after every scan (for safety sake)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -510,57 +630,100 @@ It is necessary because I&apos;d like to save the config file into your home dir
 <context>
     <name>DataBase</name>
     <message>
+        <location filename="../dbase.cpp" line="424"/>
         <source>I can&apos;t rewrite the file: %1</source>
         <translation>Nemožno prepísať súbor: %1</translation>
     </message>
     <message>
+        <location filename="../dbase.cpp" line="449"/>
         <source>I can&apos;t create the file: %1</source>
         <translation>Nemožno vytvoriť súbor: %1</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>There is not opened database!</source>
         <translation type="obsolete">Nie je otvorená žiadna databáza!</translation>
     </message>
     <message>
+        <location filename="../dbase.cpp" line="836"/>
         <source>I can&apos;t open the file: %1</source>
         <translation>Nemožno otvoriť súbor: %1</translation>
     </message>
     <message>
+        <location filename="../dbase.cpp" line="581"/>
         <source>Cannot read directory: %1</source>
         <translation>Nemožno prečítať adresár: %1</translation>
     </message>
     <message>
+        <location filename="../dbase.cpp" line="843"/>
         <source>Error</source>
         <translation>Chyba</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Ignore directory</source>
-        <translation>Ignorovať adresár</translation>
+        <translation type="obsolete">Ignorovať adresár</translation>
     </message>
     <message>
+        <location filename="../dbase.cpp" line="585"/>
         <source>Cancel scanning</source>
         <translation>Zrušiť prehľadávanie</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Symbolic link#Points to:</source>
-        <translation>Symbolická linka#Ukazuje na:</translation>
+        <translation type="obsolete">Symbolická linka#Ukazuje na:</translation>
     </message>
     <message>
+        <location filename="../dbase.cpp" line="843"/>
         <source>Error while parsing file: %1</source>
         <translation>Chyba pri čítaní informácií zo súboru: %1</translation>
     </message>
     <message>
+        <location filename="../dbase.cpp" line="473"/>
         <source>No database opened!</source>
         <translation>Nie je otvorená žiadna databáza!</translation>
     </message>
     <message>
+        <location filename="../dbase.cpp" line="583"/>
         <source>Cannot read file: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dbase.cpp" line="43"/>
+        <source>Not available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dbase.cpp" line="585"/>
+        <source>Ignore</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dbase.cpp" line="631"/>
+        <source>Symbolic link to file:#</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dbase.cpp" line="648"/>
+        <source>Symbolic link to directory:#</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dbase.cpp" line="669"/>
+        <source>DEAD Symbolic link to:#</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dbase.cpp" line="676"/>
+        <source>System file (e.g. FIFO, socket or device file)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>DirectoryView</name>
     <message>
+        <location filename="../dirview.cpp" line="163"/>
         <source>Name</source>
         <translation>Názov</translation>
     </message>
@@ -568,136 +731,169 @@ It is necessary because I&apos;d like to save the config file into your home dir
 <context>
     <name>GuiSlave</name>
     <message>
+        <location filename="" line="0"/>
         <source>No opened database.</source>
         <translation type="obsolete">Nie je otvorená žiadna databáza.</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>No selected item.</source>
         <translation type="obsolete">Žiadna vybraná položka.</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="348"/>
         <source>Directory</source>
         <translation>Adresár</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="335"/>
         <source>Catalog</source>
         <translation>Katalóg</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="338"/>
         <source>Unknown(DB)</source>
         <translation>Neznáma (DB)</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="339"/>
         <source>CD</source>
         <translation>CD</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="340"/>
         <source>DVD</source>
         <translation>DVD</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="341"/>
         <source>HardDisc</source>
         <translation>HardDisk</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="342"/>
         <source>Floppy</source>
         <translation>Disketa</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="343"/>
         <source>NetworkDrv</source>
         <translation>Sieťový disk</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="344"/>
         <source>FlashDrv</source>
         <translation>FlashDisk</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="345"/>
         <source>OtherDevice</source>
         <translation>Ostatné</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="349"/>
         <source>File</source>
         <translation>Súbor</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="487"/>
         <source>Hyper&apos;s CD Catalogizer (modified)</source>
         <translation>Hyperov CD katalogizér (upravený)</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="491"/>
         <source>Hyper&apos;s CD Catalogizer</source>
         <translation>Hyperov CD katalogizér</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="1274"/>
         <source>CdCat databases (*.hcf )</source>
         <translation>CdCat databázy (*.hcf)</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="807"/>
         <source>Open a file...</source>
         <translation>Otvoriť súbor...</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="1522"/>
         <source>Error while opening...</source>
         <translation>Chyba pri otváraní...</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Ok</source>
         <translation type="obsolete">OK</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="912"/>
         <source>Save to file...</source>
         <translation>Uložiť do súboru...</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="931"/>
         <source>Error while saving...</source>
         <translation>Chyba pri ukladaní...</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="952"/>
         <source>Closing previous database...</source>
         <translation>Zaváram predchádzajúcu databázu...</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="952"/>
         <source>Do you want to save the changes?</source>
         <translation>Chcete uložiť zmeny?</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="1584"/>
         <source>Yes</source>
         <translation>Áno</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="1584"/>
         <source>No</source>
         <translation>Nie</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="1339"/>
         <source>Error:</source>
         <translation>Chyba:</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="985"/>
         <source>Do you really want to delete this?: 
 %1</source>
         <translation>Naozaj zmazať nasledovnú položku?: 
 %1</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="1582"/>
         <source>Confirmation</source>
         <translation>Potvrdenie</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="1088"/>
         <source>Warning...</source>
         <translation>Varovanie...</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="1178"/>
         <source>You can refresh ONLY a MEDIA node!</source>
         <translation>Aktualizovať je možné iba položku MÉDIA!</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="1275"/>
         <source>Insert a database file...</source>
         <translation>Vložiť databázový súbor...</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>The Resoult:</source>
         <translation type="obsolete">Výsledky:</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="1345"/>
         <source>The size of &quot;%1&quot; : 
  %2 
  %3 file /%4 directory</source>
@@ -706,112 +902,138 @@ It is necessary because I&apos;d like to save the config file into your home dir
 %3 súbor(ov) /%4 adresár(ov)</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="1037"/>
         <source>Cannot mount CD</source>
         <translation>Nemožno pripojiť CD</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="1143"/>
         <source>Cannot eject CD!</source>
         <translation>Nemožno vysunúť CD!</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="1037"/>
         <source>I can&apos;t find the &quot;mount&quot; program</source>
         <translation>Nemožno nájsť program &quot;mount&quot;</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="1062"/>
         <source>Cannot mount CD!</source>
         <translation>Nemožno pripojiť CD!</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="1118"/>
         <source>Cannot eject CD</source>
         <translation>Nemožno vysunúť CD</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="1118"/>
         <source>I can&apos;t find the &quot;eject&quot; program</source>
         <translation>Nemožno nájsť program &quot;eject&quot;</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="574"/>
         <source>Rename node...</source>
         <translation>Premenovať položku...</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="575"/>
         <source>Delete node</source>
         <translation>Zmazať položku</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="584"/>
         <source>Rescan media...</source>
         <translation>Aktualizovať médium...</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="589"/>
         <source>Add media...</source>
         <translation>Pridať médium...</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="591"/>
         <source>Insert Catalog...</source>
         <translation>Vložiť katalóg...</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="1182"/>
         <source>Rescan %1</source>
         <translation>Aktualizovať %1</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="585"/>
         <source>Re-Number media...</source>
         <translation>Zmeň číslo média...</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="1324"/>
         <source>It is NOT a media node!</source>
         <translation>Toto nie je uzol média!</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="569"/>
         <source>Node size</source>
         <translation>Veľkosť položky</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="567"/>
         <source>View/Edit Comment...</source>
         <translation>Zobraziť/Editovať komentár...</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="594"/>
         <source>Close all branch</source>
         <translation>Zatvoriť všetky vetvy</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="524"/>
         <source>Show/Remove Content...</source>
         <translation>Zobraziť/Odstrániť obsah...</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="1339"/>
         <source>There is no selected item in the middle list box!</source>
         <translation>V strednom paneli nie je vybraná žiadna položka!</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="1088"/>
         <source>An error occured while scanning,
 the DataBase may be incomplete</source>
         <translation>Nastala chyba pri skenovaní,
 databáza pravdepodobne nebude kompletná</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="1174"/>
         <source>There is no selected Media in the middle list box!</source>
         <translation>V strednom paneli nie je vybrané žiadne médium!</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="1194"/>
         <source>An error occured while scanning, the rescan operation was cancelled: 
 %1</source>
         <translation>Nastala chyba pri skenovaní, aktualizácia bola zrušená:
 %1</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="580"/>
         <source>Borrow this media to...</source>
         <translation>Zapožičať médium...</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="1583"/>
         <source>Do you want to clear the borrowing mark from media &quot;%1&quot;?
 (Say yes if you got it back.)</source>
         <translation>Naozaj zmazať informácie o zapožičaní média:
 &quot;%1&quot;</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="582"/>
         <source>I got it back! (clear borrowing mark)</source>
         <translation>Mám ho späť! (zmazať informácie o zapožičaní)</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>The database file has newer version than this version of cdcat knows:
 I understand maximum %1 datafile version but readed %2
 
@@ -824,30 +1046,37 @@ Aktualizujte si program CdCat!!!
 Domovská stránka: %3</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="300"/>
         <source>Number</source>
         <translation>Číslo</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="302"/>
         <source>Size</source>
         <translation>Veľkosť</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="350"/>
         <source>Catalog Link</source>
         <translation>Linka ku katalógu</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="527"/>
         <source>Follow the link (Open it) !</source>
         <translation>Otvor súbor na ktorý ukazuje linka!</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="590"/>
         <source>Add a link to a CdCAt Catalog...</source>
         <translation>Pridaj linku ku katalógu CdCat...</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="1501"/>
         <source>The link is empty.</source>
         <translation>Linka neobsahuje žiadnu informáciu.</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="89"/>
         <source>The database file has newer version than this version of cdcat can work with:
 I understand maximum %1 datafile version but readed %2
 
@@ -860,14 +1089,17 @@ Aktualizujte si program CdCat!!!
 Domovská stránka: %3</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="110"/>
         <source>No database opened.</source>
         <translation>Nie je otvorená žiadna databáza.</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="112"/>
         <source>No item selected.</source>
         <translation>Nie je vybraná žiadna položka.</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="1350"/>
         <source>The resoult:</source>
         <translation>Výsledok:</translation>
     </message>
@@ -875,42 +1107,52 @@ Domovská stránka: %3</translation>
 <context>
     <name>HDirectoryView</name>
     <message>
+        <location filename="../hdirview.cpp" line="237"/>
         <source>Directory Tree</source>
         <translation>Adresárový strom</translation>
     </message>
     <message>
+        <location filename="../hdirview.cpp" line="238"/>
         <source>Type</source>
         <translation>Typ</translation>
     </message>
     <message>
+        <location filename="../hdirview.cpp" line="357"/>
         <source>Copy</source>
         <translation>Kopírovať</translation>
     </message>
     <message>
+        <location filename="../hdirview.cpp" line="360"/>
         <source>Move</source>
         <translation>Presunúť</translation>
     </message>
     <message>
+        <location filename="../hdirview.cpp" line="364"/>
         <source>Link</source>
         <translation>Linkovať</translation>
     </message>
     <message>
+        <location filename="../hdirview.cpp" line="368"/>
         <source>Unknown</source>
         <translation>Neznámy</translation>
     </message>
     <message>
+        <location filename="../hdirview.cpp" line="382"/>
         <source>Drop target</source>
         <translation>Upustiť cieľ</translation>
     </message>
     <message>
+        <location filename="../hdirview.cpp" line="426"/>
         <source>Not implemented</source>
         <translation>Nie je implementované</translation>
     </message>
     <message>
+        <location filename="../hdirview.cpp" line="425"/>
         <source>Drag source</source>
         <translation>Pretiahnuť zdroj</translation>
     </message>
     <message>
+        <location filename="../hdirview.cpp" line="426"/>
         <source>Delete </source>
         <translation>Zmazať</translation>
     </message>
@@ -918,14 +1160,17 @@ Domovská stránka: %3</translation>
 <context>
     <name>HQListView</name>
     <message>
+        <location filename="../guibase.cpp" line="681"/>
         <source>Name</source>
         <translation>Názov</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="682"/>
         <source>Size</source>
         <translation>Veľkosť</translation>
     </message>
     <message>
+        <location filename="../guibase.cpp" line="683"/>
         <source>Type</source>
         <translation>Typ</translation>
     </message>
@@ -933,95 +1178,118 @@ Domovská stránka: %3</translation>
 <context>
     <name>ImportDialog</name>
     <message>
+        <location filename="../importdialog.cpp" line="60"/>
         <source>Create new Database</source>
         <translation>Vytvoriť novú databázu</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Seperator:</source>
         <translation type="obsolete">Oddeľovač:</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>This is the seperator in dataline
 &lt;path&gt;SEPERATOR&lt;size&gt;SEPERATOR&lt;date&gt;&lt;space&gt;&lt;time&gt;</source>
         <translation type="obsolete">&lt;media&gt;/&lt;path&gt;/.../&lt;file&gt;SEP&lt;size&gt;SEP&lt;day/month/year&gt;SPACE&lt;hour&gt;:&lt;minute&gt;:&lt;second&gt;</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Seperator in data line</source>
         <translation type="obsolete">Oddeľovač v riadku</translation>
     </message>
     <message>
+        <location filename="../importdialog.cpp" line="158"/>
         <source>Cancel</source>
         <translation>Zrušiť</translation>
     </message>
     <message>
+        <location filename="../importdialog.cpp" line="159"/>
         <source>Import</source>
         <translation>Import</translation>
     </message>
     <message>
+        <location filename="../importdialog.cpp" line="179"/>
         <source>Open file dialog</source>
         <translation>Dialóg &quot;Otvoriť súbor&quot;</translation>
     </message>
     <message>
+        <location filename="../importdialog.cpp" line="183"/>
         <source>Corrects bad output style (gtktalog)</source>
         <translation>Opraviť zlý výstup (GtKatalog)</translation>
     </message>
     <message>
+        <location filename="../importdialog.cpp" line="197"/>
         <source>Error:</source>
         <translation>Chyba:</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Ok</source>
         <translation type="obsolete">OK</translation>
     </message>
     <message>
+        <location filename="../importdialog.cpp" line="227"/>
         <source>csv files(*.csv)</source>
         <translation>CSV súbory(*.csv)</translation>
     </message>
     <message>
+        <location filename="../importdialog.cpp" line="240"/>
         <source>open file dialog</source>
         <translation>dialóg &quot;Otvoriť súbor&quot;</translation>
     </message>
     <message>
+        <location filename="../importdialog.cpp" line="241"/>
         <source>Choose a file for import</source>
         <translation>Vyberte súbor pre import</translation>
     </message>
     <message>
+        <location filename="../importdialog.cpp" line="162"/>
         <source>Type</source>
         <translation>Typ</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>&amp;XML (gtktalog)</source>
         <translation type="obsolete">&amp;XML (gtktalog)</translation>
     </message>
     <message>
+        <location filename="../importdialog.cpp" line="184"/>
         <source>&lt;strong&gt;Please read the README_IMPORT before you import!&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;Pred importovaním databázy si prečítajte súbor README_IMPORT!&lt;/strong&gt;</translation>
     </message>
     <message>
+        <location filename="../importdialog.cpp" line="231"/>
         <source>xml files(*.xml)</source>
         <translation>XML súbory(*.xml)</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Correct bad style of gtktalog export</source>
         <translation type="obsolete">Opraviť zlý výstup exportu gtkatalog</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Select the type of import</source>
         <translation type="obsolete">Vyberte typ importu</translation>
     </message>
     <message>
+        <location filename="../importdialog.cpp" line="149"/>
         <source>Import CSV file</source>
         <translation>Importovať CSV súbor</translation>
     </message>
     <message>
+        <location filename="../importdialog.cpp" line="150"/>
         <source>File:</source>
         <translation>Súbor:</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>File dialog for selecting file to import.</source>
         <translation type="obsolete">Otvorí dialóg pre vyhľadanie súboru pre import.</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Corrects bad output style of gtktalog.
 &lt;media&gt;SEPERATOR/&lt;dir&gt;/SEPERATOR/&lt;dir&gt;
  will be to
@@ -1029,76 +1297,94 @@ Domovská stránka: %3</translation>
         <translation type="obsolete">Opraviť zlý výstup exportu gtkatalog</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>&amp;Text (CSV)</source>
         <translation type="obsolete">&amp;Text (CSV)</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Select this for importing text file (CSV)</source>
         <translation type="obsolete">Import z textových súborov (formát CSV)</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Select this for importing a XML report generated with gtktalog</source>
         <translation type="obsolete">Import XML súborov generovaných gtkatalógom</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>You must fill the &quot;Filename&quot; field!</source>
         <translation type="obsolete">Nebolo zadané meno súboru !</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>You must fill the &quot;Seperator&quot; field!</source>
         <translation type="obsolete">Nebol zadaný separátor !</translation>
     </message>
     <message>
+        <location filename="../importdialog.cpp" line="73"/>
         <source>Correct bad style from gtktalog export</source>
         <translation>Opraviť zlý výstup exportu gtkatalog</translation>
     </message>
     <message>
+        <location filename="../importdialog.cpp" line="153"/>
         <source>Separator:</source>
         <translation>Oddeľovač:</translation>
     </message>
     <message>
+        <location filename="../importdialog.cpp" line="155"/>
         <source>This is the separator in dataline
 &lt;path&gt;SEPARATOR&lt;size&gt;SEPARATOR&lt;date&gt;&lt;space&gt;&lt;time&gt;</source>
         <translation>Toto je separátor v riadku
 &lt;cesta&gt;SEPARÁTOR&lt;veľkosť&gt;SEPARÁTOR&lt;dátum&gt;&lt;medzera&gt;&lt;čas&gt;</translation>
     </message>
     <message>
+        <location filename="../importdialog.cpp" line="157"/>
         <source>Separator in data line</source>
         <translation>Separátor v riadku</translation>
     </message>
     <message>
+        <location filename="../importdialog.cpp" line="160"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
+        <location filename="../importdialog.cpp" line="163"/>
         <source>&amp;Text (csv)</source>
         <translation>&amp;Text (csv)</translation>
     </message>
     <message>
+        <location filename="../importdialog.cpp" line="164"/>
         <source>Gtktalog &amp;XML</source>
         <translation>Gtktalog &amp;XML</translation>
     </message>
     <message>
+        <location filename="../importdialog.cpp" line="165"/>
         <source>&amp;WhereIsIt XML (classic)</source>
         <translation>&amp;WhereIsIt XML (classic)</translation>
     </message>
     <message>
+        <location filename="../importdialog.cpp" line="168"/>
         <source>Select the type of import here</source>
         <translation>Zadajte typ importu</translation>
     </message>
     <message>
+        <location filename="../importdialog.cpp" line="171"/>
         <source>Select this for importing a text import (csv)</source>
         <translation>Vyberte toto pre importovanie textu (csv)</translation>
     </message>
     <message>
+        <location filename="../importdialog.cpp" line="174"/>
         <source>Select this for importing a xml report generated frm gtktalog</source>
         <translation>Import XML súborov generovaných gtkatalógom</translation>
     </message>
     <message>
+        <location filename="../importdialog.cpp" line="177"/>
         <source>Open the file dialog for selecting file to import.</source>
         <translation>Vyber súbor pre import.</translation>
     </message>
     <message>
+        <location filename="../importdialog.cpp" line="181"/>
         <source>Corrects bad output style from gtktalog.
 &lt;media&gt;SEPARATOR/&lt;dir&gt;/SEPARATOR/&lt;dir&gt;
  will be to
@@ -1109,14 +1395,17 @@ na
 &lt;médium&gt;/&lt;adresár&gt;/&lt;adresár&gt;</translation>
     </message>
     <message>
+        <location filename="../importdialog.cpp" line="192"/>
         <source>You must be fill the &quot;Filename&quot; field!</source>
         <translation>Nebolo zadané meno súboru !</translation>
     </message>
     <message>
+        <location filename="../importdialog.cpp" line="197"/>
         <source>You must be fill the &quot;Separator&quot; field!</source>
         <translation>Nebolo zadaný separátor!</translation>
     </message>
     <message>
+        <location filename="../importdialog.cpp" line="233"/>
         <source>all files(*.*)</source>
         <translation>všetky súbory (*.*)</translation>
     </message>
@@ -1124,66 +1413,82 @@ na
 <context>
     <name>InfoDialog</name>
     <message>
+        <location filename="../info.cpp" line="93"/>
         <source>German translation &amp; additional programming</source>
         <translation>Nemecký preklad &amp; programovanie</translation>
     </message>
     <message>
+        <location filename="../info.cpp" line="107"/>
         <source>Spanish translation</source>
         <translation>Španielský preklad</translation>
     </message>
     <message>
+        <location filename="../info.cpp" line="113"/>
         <source>Czech translation</source>
         <translation>Český preklad</translation>
     </message>
     <message>
+        <location filename="../info.cpp" line="425"/>
         <source>About cdcat</source>
         <translation>O programe</translation>
     </message>
     <message>
+        <location filename="../info.cpp" line="426"/>
         <source>close</source>
         <translation>zatvoriť</translation>
     </message>
     <message>
+        <location filename="../info.cpp" line="428"/>
         <source>About Cdcat</source>
         <translation>O programe</translation>
     </message>
     <message>
+        <location filename="../info.cpp" line="430"/>
         <source>License</source>
         <translation>Licencia</translation>
     </message>
     <message>
+        <location filename="../info.cpp" line="432"/>
         <source>Thanks</source>
         <translation>Poďakovanie</translation>
     </message>
     <message>
+        <location filename="../info.cpp" line="75"/>
         <source>-= CdCatalog by Hyper =-</source>
         <translation>-= CdKatalogizér od Hypera =-</translation>
     </message>
     <message>
+        <location filename="../info.cpp" line="79"/>
         <source>Version:</source>
         <translation>Verzia:</translation>
     </message>
     <message>
+        <location filename="../info.cpp" line="82"/>
         <source>Author:</source>
         <translation>Autor:</translation>
     </message>
     <message>
+        <location filename="../info.cpp" line="84"/>
         <source>Copyright (C) 2003 Peter Deak (GPL)</source>
         <translation>Copyright (C) 2003 Peter Deak (GPL)</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Polish translation</source>
         <translation type="obsolete">Poľský preklad</translation>
     </message>
     <message>
+        <location filename="../info.cpp" line="101"/>
         <source>AVI reader plugin &amp; Polish translation</source>
         <translation>AVI plugin &amp; Poľský preklad</translation>
     </message>
     <message>
+        <location filename="../info.cpp" line="86"/>
         <source>Copyright (C) 2010 Christoph Thielecke (GPL)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../info.cpp" line="95"/>
         <source>Ported to Qt4</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1191,6 +1496,7 @@ na
 <context>
     <name>PWw</name>
     <message>
+        <location filename="../adddialog.cpp" line="367"/>
         <source>Please Wait...</source>
         <translation>Prosím čakajte...</translation>
     </message>
@@ -1198,201 +1504,261 @@ na
 <context>
     <name>QObject</name>
     <message>
+        <location filename="../hdirview.cpp" line="188"/>
         <source>Directory</source>
         <translation>Adresár</translation>
     </message>
     <message>
+        <location filename="../dirview.cpp" line="132"/>
         <source>Unreadable Directory</source>
         <translation>Nečitateľný adresár</translation>
     </message>
     <message>
+        <location filename="../hdirview.cpp" line="175"/>
         <source>Catalog</source>
         <translation>Katalóg</translation>
     </message>
     <message>
+        <location filename="../hdirview.cpp" line="178"/>
         <source>Unknown(DB)</source>
         <translation>Neznáma (DB)</translation>
     </message>
     <message>
+        <location filename="../hdirview.cpp" line="179"/>
         <source>CD</source>
         <translation>CD</translation>
     </message>
     <message>
+        <location filename="../hdirview.cpp" line="180"/>
         <source>DVD</source>
         <translation>DVD</translation>
     </message>
     <message>
+        <location filename="../hdirview.cpp" line="181"/>
         <source>HardDisc</source>
         <translation>HardDisk</translation>
     </message>
     <message>
+        <location filename="../hdirview.cpp" line="182"/>
         <source>Floppy</source>
         <translation>Disketa</translation>
     </message>
     <message>
+        <location filename="../hdirview.cpp" line="183"/>
         <source>NetworkDrv</source>
         <translation>Sieťový disk</translation>
     </message>
     <message>
+        <location filename="../hdirview.cpp" line="184"/>
         <source>FlashDrv</source>
         <translation>FlashDisk</translation>
     </message>
     <message>
+        <location filename="../hdirview.cpp" line="185"/>
         <source>OtherDevice</source>
         <translation>Ostatné</translation>
     </message>
     <message>
+        <location filename="../tparser.cpp" line="572"/>
         <source>Video:
 </source>
         <translation>Video:
 </translation>
     </message>
     <message>
+        <location filename="../tparser.cpp" line="574"/>
         <source>Total Time</source>
         <translation>Celkový čas</translation>
     </message>
     <message>
+        <location filename="../tparser.cpp" line="575"/>
         <source>Framerate</source>
         <translation>Snímková frekvencia</translation>
     </message>
     <message>
+        <location filename="../tparser.cpp" line="576"/>
         <source>Resolution</source>
         <translation>Rozlíšenie</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Audio:</source>
-        <translation>Zvuk:</translation>
+        <translation type="obsolete">Zvuk:</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>More Data:</source>
-        <translation>Ďalšie detaily:</translation>
+        <translation type="obsolete">Ďalšie detaily:</translation>
     </message>
     <message>
+        <location filename="../tparser.cpp" line="587"/>
         <source>Artist</source>
         <translation>Interpret</translation>
     </message>
     <message>
+        <location filename="../tparser.cpp" line="588"/>
         <source>Comments</source>
         <translation>Komentár</translation>
     </message>
     <message>
+        <location filename="../tparser.cpp" line="589"/>
         <source>Copyright</source>
         <translation>Copyright</translation>
     </message>
     <message>
+        <location filename="../tparser.cpp" line="590"/>
         <source>Creation Date</source>
         <translation>Dátum vytvorenia</translation>
     </message>
     <message>
+        <location filename="../tparser.cpp" line="591"/>
         <source>Engineer</source>
         <translation>Inžinier</translation>
     </message>
     <message>
+        <location filename="../tparser.cpp" line="593"/>
         <source>Name</source>
         <translation>Názov</translation>
     </message>
     <message>
+        <location filename="../tparser.cpp" line="594"/>
         <source>Product</source>
         <translation>Produkt</translation>
     </message>
     <message>
+        <location filename="../tparser.cpp" line="595"/>
         <source>Software</source>
         <translation>Softvér</translation>
     </message>
     <message>
+        <location filename="../tparser.cpp" line="596"/>
         <source>Source</source>
         <translation>Zdroj</translation>
     </message>
     <message>
+        <location filename="../tparser.cpp" line="597"/>
         <source>Subject</source>
         <translation>Subjekt</translation>
     </message>
     <message>
+        <location filename="../tparser.cpp" line="598"/>
         <source>Technician</source>
         <translation>Technik</translation>
     </message>
     <message>
+        <location filename="../tparser.cpp" line="663"/>
         <source>Unknown/not implemented/broken header
 </source>
         <translation>Neznáma/neimplementovaná/poškodená hlavička
 </translation>
     </message>
     <message>
+        <location filename="../tparser.cpp" line="580"/>
         <source>Channels</source>
         <translation>Kanály</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Samples/s</source>
         <translation type="obsolete">Sample</translation>
     </message>
     <message>
+        <location filename="../tparser.cpp" line="582"/>
         <source>Bitrate</source>
         <translation>Dátový tok</translation>
     </message>
     <message>
+        <location filename="../tparser.cpp" line="592"/>
         <source>Genre</source>
         <translation>Žáner</translation>
     </message>
     <message>
+        <location filename="../tparser.cpp" line="450"/>
         <source>Not a RIFF/AVI file OR header broken!</source>
         <translation>Toto nie je RIFF/AVI súbor alebo má poškodenú hlavičku!</translation>
     </message>
     <message>
+        <location filename="../tparser.cpp" line="581"/>
         <source>Sample/s</source>
         <translation>Vzorky</translation>
     </message>
     <message>
+        <location filename="../import.cpp" line="951"/>
         <source>importuser</source>
         <translation type="unfinished">vlastník importu</translation>
+    </message>
+    <message>
+        <location filename="../tparser.cpp" line="578"/>
+        <source>Audio:
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tparser.cpp" line="585"/>
+        <source>More Data:
+</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SelReadable</name>
     <message>
+        <location filename="../selreadable.cpp" line="195"/>
         <source>Select readable items</source>
         <translation>Výber ďalších položiek pre čítanie</translation>
     </message>
     <message>
+        <location filename="../selreadable.cpp" line="196"/>
         <source>Read mp3 tags</source>
         <translation>Čítať MP3 tagy</translation>
     </message>
     <message>
+        <location filename="../selreadable.cpp" line="204"/>
         <source>Store content of some files</source>
         <translation>Ukladať obsah niektorých súborov</translation>
     </message>
     <message>
+        <location filename="../selreadable.cpp" line="208"/>
         <source>Ok</source>
         <translation>OK</translation>
     </message>
     <message>
+        <location filename="../selreadable.cpp" line="209"/>
         <source>Cancel</source>
         <translation>Zrušiť</translation>
     </message>
     <message>
+        <location filename="../selreadable.cpp" line="207"/>
         <source>content size limit in kByte</source>
         <translation>maximálna veľkosť pre ukladanie obsahu v kB</translation>
     </message>
     <message>
+        <location filename="../selreadable.cpp" line="206"/>
         <source>; separated list of readable file patterns</source>
         <translation>&quot;;&quot; oddelený zoznam vzorov načítaných súborov</translation>
     </message>
     <message>
+        <location filename="../selreadable.cpp" line="198"/>
         <source>Default tag</source>
         <translation>Predvolený tag</translation>
     </message>
     <message>
+        <location filename="../selreadable.cpp" line="200"/>
         <source>version</source>
         <translation>verzia</translation>
     </message>
     <message>
+        <location filename="../selreadable.cpp" line="202"/>
         <source>Read mp3 technical info as comment (bitrate,freq,length...)</source>
         <translation>Ukladať parametre MP3 súborov (bitrate, frekvencia, dĺžka,komentár...)</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Read avi technical info as comment (codecs,lenhth,...)</source>
         <translation type="obsolete">Ukladať informácie o avi súboroch (kodeky, dĺžka, komentáre...)</translation>
     </message>
     <message>
+        <location filename="../selreadable.cpp" line="203"/>
         <source>Read avi technical info as comment (codecs,length,...)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1400,62 +1766,77 @@ na
 <context>
     <name>ShowContent</name>
     <message>
+        <location filename="../showcontent.cpp" line="79"/>
         <source>Content of %1</source>
         <translation>Obsah položky %1</translation>
     </message>
     <message>
+        <location filename="../showcontent.cpp" line="113"/>
         <source>Close</source>
         <translation>Zatvoriť</translation>
     </message>
     <message>
+        <location filename="../showcontent.cpp" line="152"/>
         <source>Confirmation</source>
         <translation>Potvrdenie</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Are you sure want to delete this file&apos;s content from the database?</source>
         <translation type="obsolete">Chcete naozaj zmazať obsah tohto súboru z databázy?</translation>
     </message>
     <message>
+        <location filename="../showcontent.cpp" line="155"/>
         <source>Yes</source>
         <translation>Áno</translation>
     </message>
     <message>
+        <location filename="../showcontent.cpp" line="155"/>
         <source>No</source>
         <translation>Nie</translation>
     </message>
     <message>
+        <location filename="../showcontent.cpp" line="65"/>
         <source>Remove the file content from the database. (Warning: Unrecoverable!)</source>
         <translation>Odstrániť obsah súboru z databázy. (Pozor: Nevratné!)</translation>
     </message>
     <message>
+        <location filename="../showcontent.cpp" line="89"/>
         <source>%1 kByte</source>
         <translation>%1 kB</translation>
     </message>
     <message>
+        <location filename="../showcontent.cpp" line="69"/>
         <source>Save this content to a new file</source>
         <translation>Uložiť obsah do nového súboru</translation>
     </message>
     <message>
+        <location filename="../showcontent.cpp" line="133"/>
         <source>Save content...</source>
         <translation>Uložiť obsah...</translation>
     </message>
     <message>
+        <location filename="../showcontent.cpp" line="133"/>
         <source>Select a filename below</source>
         <translation>Vyberte názov súboru</translation>
     </message>
     <message>
+        <location filename="../showcontent.cpp" line="137"/>
         <source>I can&apos;t rewrite the file: %1</source>
         <translation>Nemožno prepísať súbor: %1</translation>
     </message>
     <message>
+        <location filename="../showcontent.cpp" line="138"/>
         <source>Error while saving...</source>
         <translation>Chyba pri ukladaní...</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Ok</source>
         <translation type="obsolete">OK</translation>
     </message>
     <message>
+        <location filename="../showcontent.cpp" line="154"/>
         <source>Sure to delete this file&apos;s content from the database?</source>
         <translation>Chcete naozaj zmazať obsah tohto súboru z databázy?</translation>
     </message>
@@ -1463,106 +1844,132 @@ na
 <context>
     <name>addDialog</name>
     <message>
+        <location filename="../adddialog.cpp" line="75"/>
         <source>Directory Browser</source>
         <translation>Prechádzať adresáre</translation>
     </message>
     <message>
+        <location filename="../adddialog.cpp" line="248"/>
         <source>New Disk %1</source>
         <translation>Nový Disk %1</translation>
     </message>
     <message>
+        <location filename="../adddialog.cpp" line="198"/>
         <source>Add Media to the Database</source>
         <translation>Pridať médium do databázy</translation>
     </message>
     <message>
+        <location filename="../adddialog.cpp" line="199"/>
         <source>Choose a directory to scan:</source>
         <translation>Vyberte adresár na skenovanie:</translation>
     </message>
     <message>
+        <location filename="../adddialog.cpp" line="200"/>
         <source>Media Name:</source>
         <translation>Názov média:</translation>
     </message>
     <message>
+        <location filename="../adddialog.cpp" line="201"/>
         <source>Serial number of Media:</source>
         <translation>Sériové číslo média:</translation>
     </message>
     <message>
+        <location filename="../adddialog.cpp" line="202"/>
         <source>Owner:</source>
         <translation>Vlastník:</translation>
     </message>
     <message>
+        <location filename="../adddialog.cpp" line="203"/>
         <source>Type:</source>
         <translation>Typ:</translation>
     </message>
     <message>
+        <location filename="../adddialog.cpp" line="204"/>
         <source>Comment:</source>
         <translation>Komentár:</translation>
     </message>
     <message>
+        <location filename="../adddialog.cpp" line="205"/>
         <source>Cancel</source>
         <translation>Zrušiť</translation>
     </message>
     <message>
+        <location filename="../adddialog.cpp" line="206"/>
         <source>OK / Scan</source>
         <translation>OK / Skenuj</translation>
     </message>
     <message>
+        <location filename="../adddialog.cpp" line="209"/>
         <source>CD</source>
         <translation>CD</translation>
     </message>
     <message>
+        <location filename="../adddialog.cpp" line="210"/>
         <source>DVD</source>
         <translation>DVD</translation>
     </message>
     <message>
+        <location filename="../adddialog.cpp" line="211"/>
         <source>HardDisc</source>
         <translation>HardDisk</translation>
     </message>
     <message>
+        <location filename="../adddialog.cpp" line="212"/>
         <source>Floppy</source>
         <translation>Disketa</translation>
     </message>
     <message>
+        <location filename="../adddialog.cpp" line="213"/>
         <source>NetworkPlace</source>
         <translation>Sieťový disk</translation>
     </message>
     <message>
+        <location filename="../adddialog.cpp" line="214"/>
         <source>FlashDrive</source>
         <translation>FlashDisk</translation>
     </message>
     <message>
+        <location filename="../adddialog.cpp" line="215"/>
         <source>OtherDevice</source>
         <translation>Ostatné</translation>
     </message>
     <message>
+        <location filename="../adddialog.cpp" line="277"/>
         <source>Error:</source>
         <translation>Chyba:</translation>
     </message>
     <message>
+        <location filename="../adddialog.cpp" line="258"/>
         <source>You must be fill the &quot;Name&quot; field!</source>
         <translation>Nebolo zadané meno súboru !</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Ok</source>
         <translation type="obsolete">OK</translation>
     </message>
     <message>
+        <location filename="../adddialog.cpp" line="268"/>
         <source>The Media Name must be unique! Please change it!</source>
         <translation>Názov média musí byť jednoznačný! Zmeňte ho prosím!</translation>
     </message>
     <message>
+        <location filename="../adddialog.cpp" line="207"/>
         <source>Select readable items</source>
         <translation>Výber ďalších položiek pre čítanie</translation>
     </message>
     <message>
+        <location filename="../adddialog.cpp" line="272"/>
         <source>The Value of Serial Number must be unique! Please change it!</source>
         <translation>Sériové číslo musí byť jednoznačné! Zmeňte ho, prosím!</translation>
     </message>
     <message>
+        <location filename="../adddialog.cpp" line="277"/>
         <source>You haven&apos;t selected a directory! Please select one!</source>
         <translation>Nie je vybraný žiadny adresár!</translation>
     </message>
     <message>
+        <location filename="../adddialog.cpp" line="263"/>
         <source>The media name can&apos;t begin with the &quot;@&quot; character!</source>
         <translation>Názov média nemôže začínať znakom &quot;@&quot; !</translation>
     </message>
@@ -1570,26 +1977,32 @@ na
 <context>
     <name>borrowDialog</name>
     <message>
+        <location filename="../borrow.cpp" line="114"/>
         <source>Ok</source>
         <translation>OK</translation>
     </message>
     <message>
+        <location filename="../borrow.cpp" line="115"/>
         <source>Cancel</source>
         <translation>Zrušiť</translation>
     </message>
     <message>
+        <location filename="../borrow.cpp" line="73"/>
         <source>I borrow the &quot;%1&quot; named media to:</source>
         <translation>Požičiavam médium &quot;%1&quot;:</translation>
     </message>
     <message>
+        <location filename="../borrow.cpp" line="85"/>
         <source>unknown</source>
         <translation>neznámy</translation>
     </message>
     <message>
+        <location filename="../borrow.cpp" line="113"/>
         <source>I borrow the &quot;&quot; named media to:</source>
         <translation>Požičiavam médium &quot;&quot;:</translation>
     </message>
     <message>
+        <location filename="../borrow.cpp" line="112"/>
         <source>Borrowing...</source>
         <translation>Požičiavanie...</translation>
     </message>
@@ -1597,90 +2010,112 @@ na
 <context>
     <name>borrowingDialog</name>
     <message>
+        <location filename="" line="0"/>
         <source>Borrwing info...</source>
         <translation type="obsolete">Informácie o zapožičaní...</translation>
     </message>
     <message>
+        <location filename="../borrow.cpp" line="210"/>
         <source>Media borrowing info:</source>
         <translation>Informácie o zapožičaní média:</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Only show borrowed items</source>
         <translation type="obsolete">Zobraz len požičané položky</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Clear all borrowing</source>
         <translation type="obsolete">Vymaž info o požičaní</translation>
     </message>
     <message>
+        <location filename="../borrow.cpp" line="251"/>
         <source>Media</source>
         <translation>Médium</translation>
     </message>
     <message>
+        <location filename="../borrow.cpp" line="252"/>
         <source>Borrowed</source>
         <translation>Požičané</translation>
     </message>
     <message>
+        <location filename="../borrow.cpp" line="253"/>
         <source>where is it now?</source>
         <translation>kde je teraz ?</translation>
     </message>
     <message>
+        <location filename="../borrow.cpp" line="217"/>
         <source>Ok</source>
         <translation>OK</translation>
     </message>
     <message>
+        <location filename="../borrow.cpp" line="256"/>
         <source>0</source>
         <translation>0</translation>
     </message>
     <message>
+        <location filename="../borrow.cpp" line="417"/>
         <source>No</source>
         <translation>Nie</translation>
     </message>
     <message>
+        <location filename="../borrow.cpp" line="424"/>
         <source>Yes</source>
         <translation>Áno</translation>
     </message>
     <message>
+        <location filename="../borrow.cpp" line="307"/>
         <source>unknown</source>
         <translation>neznámy</translation>
     </message>
     <message>
+        <location filename="../borrow.cpp" line="310"/>
         <source>Error</source>
         <translation>Chyba</translation>
     </message>
     <message>
+        <location filename="../borrow.cpp" line="310"/>
         <source>Set &quot;Yes&quot; or &quot;No&quot; !</source>
         <translation>Zvoľte &quot;Áno&quot; alebo &quot;Nie&quot; !</translation>
     </message>
     <message>
+        <location filename="../borrow.cpp" line="370"/>
         <source>Warning</source>
         <translation>Varovanie</translation>
     </message>
     <message>
+        <location filename="../borrow.cpp" line="332"/>
         <source>Do you save the changes?</source>
         <translation>Chcete uložiť zmeny?</translation>
     </message>
     <message>
+        <location filename="../borrow.cpp" line="370"/>
         <source>Are you sure want to clear all borrow?</source>
         <translation>Naozaj zmazať všetky informácie o zapožičaní ?</translation>
     </message>
     <message>
+        <location filename="../borrow.cpp" line="393"/>
         <source>I got it back!</source>
         <translation>Mám to späť!</translation>
     </message>
     <message>
+        <location filename="../borrow.cpp" line="394"/>
         <source>&lt;&lt; </source>
         <translation>&lt;&lt;</translation>
     </message>
     <message>
+        <location filename="../borrow.cpp" line="209"/>
         <source>Borrowing info...</source>
         <translation>Informácie o zapožičaní...</translation>
     </message>
     <message>
+        <location filename="../borrow.cpp" line="211"/>
         <source>Show only borrowed items</source>
         <translation>Zobraz len požičané položky</translation>
     </message>
     <message>
+        <location filename="../borrow.cpp" line="212"/>
         <source>Clear all borrowing info</source>
         <translation>Zmazať všetky informácie o požičaní</translation>
     </message>
@@ -1688,14 +2123,17 @@ na
 <context>
     <name>commentEdit</name>
     <message>
+        <location filename="../commwidget.cpp" line="463"/>
         <source>Edit Comment</source>
         <translation>Editovať komentár</translation>
     </message>
     <message>
+        <location filename="../commwidget.cpp" line="464"/>
         <source>Cancel</source>
         <translation>Zrušiť</translation>
     </message>
     <message>
+        <location filename="../commwidget.cpp" line="465"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -1703,166 +2141,207 @@ na
 <context>
     <name>exportCdcatDB</name>
     <message>
+        <location filename="../exportcdcatdb.cpp" line="254"/>
         <source>Availiable media</source>
         <translation>Dostupné médiá</translation>
     </message>
     <message>
+        <location filename="../exportcdcatdb.cpp" line="265"/>
         <source>Media to export</source>
         <translation>Médiá na export</translation>
     </message>
     <message>
+        <location filename="../exportcdcatdb.cpp" line="266"/>
         <source>All media</source>
         <translation>Všetky médiá</translation>
     </message>
     <message>
+        <location filename="../exportcdcatdb.cpp" line="273"/>
         <source>separator:</source>
         <translation>oddeľovač:</translation>
     </message>
     <message>
+        <location filename="../exportcdcatdb.cpp" line="274"/>
         <source>File to export:</source>
         <translation>Súbor pre export:</translation>
     </message>
     <message>
+        <location filename="../exportcdcatdb.cpp" line="275"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
+        <location filename="../exportcdcatdb.cpp" line="276"/>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
     <message>
+        <location filename="../exportcdcatdb.cpp" line="292"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Zrušiť</translation>
     </message>
     <message>
+        <location filename="../exportcdcatdb.cpp" line="394"/>
         <source>Filename missing</source>
         <translation>Chýba meno súboru</translation>
     </message>
     <message>
+        <location filename="../exportcdcatdb.cpp" line="394"/>
         <source>Please enter a filename!</source>
         <translation>Prosím zadajte názov súboru!</translation>
     </message>
     <message>
+        <location filename="../exportcdcatdb.cpp" line="396"/>
         <source>Separator missing</source>
         <translation>Chýba separátor</translation>
     </message>
     <message>
+        <location filename="../exportcdcatdb.cpp" line="396"/>
         <source>Please enter a separator!</source>
         <translation>Prosím zadajte separátor!</translation>
     </message>
     <message>
+        <location filename="../exportcdcatdb.cpp" line="458"/>
         <source>Error during write config...</source>
         <translation>Chyba pri ukladaní konfigurácie...</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Ok</source>
         <translation type="obsolete">OK</translation>
     </message>
     <message>
+        <location filename="../exportcdcatdb.cpp" line="506"/>
         <source>All files (*.*)</source>
         <translation>Všetky súbory (*.*)</translation>
     </message>
     <message>
+        <location filename="../exportcdcatdb.cpp" line="507"/>
         <source>file chooser</source>
         <translation>výber súboru</translation>
     </message>
     <message>
+        <location filename="../exportcdcatdb.cpp" line="507"/>
         <source>Choose a file!</source>
         <translation>Vyberte súbor!</translation>
     </message>
     <message>
+        <location filename="../exportcdcatdb.cpp" line="262"/>
         <source>Add media</source>
         <translation>Pridať médium</translation>
     </message>
     <message>
+        <location filename="../exportcdcatdb.cpp" line="259"/>
         <source>Remove media</source>
         <translation>Vymazať médium</translation>
     </message>
     <message>
+        <location filename="../exportcdcatdb.cpp" line="269"/>
         <source>Type</source>
         <translation>Typ</translation>
     </message>
     <message>
+        <location filename="../exportcdcatdb.cpp" line="270"/>
         <source>export as HTML</source>
         <translation>exportovať ako HTML</translation>
     </message>
     <message>
+        <location filename="../exportcdcatdb.cpp" line="271"/>
         <source>export as CSV</source>
         <translation>exportovať ako CSV</translation>
     </message>
     <message>
+        <location filename="../exportcdcatdb.cpp" line="384"/>
         <source>Media</source>
         <translation>Médium</translation>
     </message>
     <message>
+        <location filename="../exportcdcatdb.cpp" line="373"/>
         <source>File</source>
         <translation>Súbor</translation>
     </message>
     <message>
+        <location filename="../exportcdcatdb.cpp" line="376"/>
         <source>Size</source>
         <translation>Veľkosť</translation>
     </message>
     <message>
+        <location filename="../exportcdcatdb.cpp" line="378"/>
         <source>Date</source>
         <translation>Veľkosť</translation>
     </message>
     <message>
+        <location filename="../exportcdcatdb.cpp" line="458"/>
         <source>I can&apos;t create or rewrite the file</source>
         <translation>Nemožno vytvoriť alebo prepísať súbor</translation>
     </message>
     <message>
+        <location filename="../exportcdcatdb.cpp" line="364"/>
         <source>Export from cdcat:</source>
         <translation>Export z cdcatu:</translation>
     </message>
     <message>
+        <location filename="../exportcdcatdb.cpp" line="56"/>
         <source>Export database...</source>
         <translation>Exportovať databázu...</translation>
     </message>
     <message>
+        <location filename="../exportcdcatdb.cpp" line="135"/>
         <source>What to export</source>
         <translation>Čo exportovať</translation>
     </message>
     <message>
+        <location filename="../exportcdcatdb.cpp" line="267"/>
         <source>Only media name</source>
         <translation>Len názov média</translation>
     </message>
     <message>
+        <location filename="../exportcdcatdb.cpp" line="277"/>
         <source>Media name</source>
         <translation>Názov média</translation>
     </message>
     <message>
+        <location filename="../exportcdcatdb.cpp" line="278"/>
         <source>Path</source>
         <translation>Cesta</translation>
     </message>
     <message>
+        <location filename="../exportcdcatdb.cpp" line="380"/>
         <source>Comment</source>
         <translation>Komentár</translation>
     </message>
     <message>
+        <location filename="../exportcdcatdb.cpp" line="284"/>
         <source>HTML headline</source>
         <translation>HTML hlavička</translation>
     </message>
     <message>
+        <location filename="../exportcdcatdb.cpp" line="285"/>
         <source>table header</source>
         <translation>hlavička tabuľky</translation>
     </message>
     <message>
+        <location filename="../exportcdcatdb.cpp" line="422"/>
         <source>Overwrite?</source>
         <translation>Prepísať?</translation>
     </message>
     <message>
+        <location filename="../exportcdcatdb.cpp" line="423"/>
         <source>Do you want overwrite this file?</source>
         <translation>Chcete naozaj prepísať tento súbor?</translation>
     </message>
     <message>
+        <location filename="../exportcdcatdb.cpp" line="428"/>
         <source>Yes</source>
         <translation>Áno</translation>
     </message>
     <message>
+        <location filename="../exportcdcatdb.cpp" line="429"/>
         <source>Discard</source>
         <translation>Zrušiť</translation>
     </message>
     <message>
+        <location filename="../exportcdcatdb.cpp" line="314"/>
         <source>Export CdCat database: </source>
         <translation>Export CdCat databázy:</translation>
     </message>
@@ -1870,106 +2349,132 @@ na
 <context>
     <name>findDialog</name>
     <message>
+        <location filename="../find.cpp" line="214"/>
         <source>Name</source>
         <translation>Názov</translation>
     </message>
     <message>
+        <location filename="../find.cpp" line="215"/>
         <source>Type</source>
         <translation>Typ</translation>
     </message>
     <message>
+        <location filename="../find.cpp" line="216"/>
         <source>Media</source>
         <translation>Médium</translation>
     </message>
     <message>
+        <location filename="../find.cpp" line="217"/>
         <source>Path</source>
         <translation>Cesta</translation>
     </message>
     <message>
+        <location filename="../find.cpp" line="218"/>
         <source>Modification</source>
         <translation>Posledná zmena</translation>
     </message>
     <message>
+        <location filename="../find.cpp" line="211"/>
         <source>Search in the database...</source>
         <translation>Hľadať...</translation>
     </message>
     <message>
+        <location filename="../find.cpp" line="237"/>
         <source>Close / Go to selected</source>
         <translation>Zatvoriť / Choď na označené</translation>
     </message>
     <message>
+        <location filename="../find.cpp" line="219"/>
         <source>Find:</source>
         <translation>Nájsť:</translation>
     </message>
     <message>
+        <location filename="../find.cpp" line="212"/>
         <source>Seek in:</source>
         <translation>Hľadať v:</translation>
     </message>
     <message>
+        <location filename="../find.cpp" line="213"/>
         <source>Owner:</source>
         <translation>Vlastník:</translation>
     </message>
     <message>
+        <location filename="../find.cpp" line="226"/>
         <source>Comment</source>
         <translation>Komentár</translation>
     </message>
     <message>
+        <location filename="../find.cpp" line="220"/>
         <source>File name</source>
         <translation>Meno súboru</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Directory name</source>
         <translation type="obsolete">Meno adresára</translation>
     </message>
     <message>
+        <location filename="../find.cpp" line="223"/>
         <source>mp3-tag Comment</source>
         <translation>mp3-tag Komentár</translation>
     </message>
     <message>
+        <location filename="../find.cpp" line="221"/>
         <source>mp3-tag Album</source>
         <translation>mp3-tag Album</translation>
     </message>
     <message>
+        <location filename="../find.cpp" line="225"/>
         <source>mp3-tag Title</source>
         <translation>mp3-tag Názov</translation>
     </message>
     <message>
+        <location filename="../find.cpp" line="222"/>
         <source>mp3-tag Artist</source>
         <translation>mp3-tag Interpret</translation>
     </message>
     <message>
+        <location filename="../find.cpp" line="238"/>
         <source>Case sensitive</source>
         <translation>Rozlišovať malé/VEĽKÉ</translation>
     </message>
     <message>
+        <location filename="../find.cpp" line="239"/>
         <source>Use easy matching instead regex</source>
         <translation>Použiť jednoduché porovnávanie</translation>
     </message>
     <message>
+        <location filename="../find.cpp" line="269"/>
         <source>All/Everybody</source>
         <translation>Všetci</translation>
     </message>
     <message>
+        <location filename="../find.cpp" line="273"/>
         <source>All media</source>
         <translation>Všetky médiá</translation>
     </message>
     <message>
+        <location filename="../find.cpp" line="228"/>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
     <message>
+        <location filename="../find.cpp" line="232"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Zrušiť</translation>
     </message>
     <message>
+        <location filename="../find.cpp" line="236"/>
         <source>Results</source>
         <translation>Výsledky</translation>
     </message>
     <message>
+        <location filename="../find.cpp" line="227"/>
         <source>Content</source>
         <translation>Obsah</translation>
     </message>
     <message>
+        <location filename="../find.cpp" line="224"/>
         <source>Media / Directory name</source>
         <translation>Médium / Názov adresára</translation>
     </message>
@@ -1977,14 +2482,17 @@ na
 <context>
     <name>helpDialog</name>
     <message>
+        <location filename="../help.ui" line="14"/>
         <source>help</source>
         <translation>pomoc</translation>
     </message>
     <message>
+        <location filename="../help.ui" line="56"/>
         <source>close</source>
         <translation>zatvoriť</translation>
     </message>
     <message>
+        <location filename="../help.ui" line="20"/>
         <source>&lt;p align=&quot;center&quot;&gt;&lt;font size=&quot;+1&quot;&gt;&lt;b&gt;Help&lt;/b&gt;&lt;/font&gt;&lt;/p&gt;&lt;br&gt;
 
 &lt;b&gt;What&apos;s this?&lt;/b&gt;&lt;br&gt;
@@ -2049,71 +2557,88 @@ nájdete na domovskej stránke programu CdCat:&lt;br&gt;&lt;tt&gt;http://cdcat.s
 <context>
     <name>importCsv</name>
     <message>
+        <location filename="" line="0"/>
         <source>Import was successful.</source>
         <translation type="obsolete">Import prebehol úspešne.</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>1 media</source>
         <translation type="obsolete">1 médium</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>media</source>
         <translation type="obsolete">médium</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>1 directory:,
 </source>
         <translation type="obsolete">1 adresár</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>directories</source>
         <translation type="obsolete">adresáre</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>1 File</source>
         <translation type="obsolete">1 Súbor</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>files</source>
         <translation type="obsolete">súbory</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>are imported.</source>
         <translation type="obsolete">sú importované.</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Import successful</source>
         <translation type="obsolete">Import úspešný</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>file read error</source>
         <translation type="obsolete">chyba pri čítaní súboru</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Fatal error</source>
         <translation type="obsolete">Fatálna chyba</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Fatal error occured.</source>
         <translation type="obsolete">Vyskytla sa fatálna chyba.</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>file open error</source>
         <translation type="obsolete">chyba pri čítaní súboru</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>importuser</source>
         <translation type="obsolete">vlastník importu</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Could not read file</source>
         <translation type="obsolete">Nemožno čítať súbor</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Could not open file</source>
         <translation type="obsolete">Nemožno otvoriť súbor</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Importing CSV...</source>
         <translation type="obsolete">Importovanie CSV...</translation>
     </message>
@@ -2121,71 +2646,88 @@ nájdete na domovskej stránke programu CdCat:&lt;br&gt;&lt;tt&gt;http://cdcat.s
 <context>
     <name>importGtktalogCsv</name>
     <message>
+        <location filename="../import.cpp" line="140"/>
         <source>Importing CSV...</source>
         <translation>Importovanie CSV...</translation>
     </message>
     <message>
+        <location filename="../import.cpp" line="280"/>
         <source>Import was successful.</source>
         <translation>Import prebehol úspešne.</translation>
     </message>
     <message>
+        <location filename="../import.cpp" line="283"/>
         <source>1 media</source>
         <translation>1 médium</translation>
     </message>
     <message>
+        <location filename="../import.cpp" line="285"/>
         <source>media</source>
         <translation>médium</translation>
     </message>
     <message>
+        <location filename="../import.cpp" line="288"/>
         <source>1 directory:,
 </source>
         <translation>1 adresár</translation>
     </message>
     <message>
+        <location filename="../import.cpp" line="290"/>
         <source>directories</source>
         <translation>adresáre</translation>
     </message>
     <message>
+        <location filename="../import.cpp" line="293"/>
         <source>1 File</source>
         <translation>1 Súbor</translation>
     </message>
     <message>
+        <location filename="../import.cpp" line="295"/>
         <source>files</source>
         <translation>súbory</translation>
     </message>
     <message>
+        <location filename="../import.cpp" line="297"/>
         <source>are imported.</source>
         <translation>sú importované.</translation>
     </message>
     <message>
+        <location filename="../import.cpp" line="299"/>
         <source>Import successful</source>
         <translation>Import úspešný</translation>
     </message>
     <message>
+        <location filename="../import.cpp" line="304"/>
         <source>file read error</source>
         <translation>chyba pri čítaní súboru</translation>
     </message>
     <message>
+        <location filename="../import.cpp" line="304"/>
         <source>Could not read file</source>
         <translation>Nemožno čítať súbor</translation>
     </message>
     <message>
+        <location filename="../import.cpp" line="307"/>
         <source>Fatal error</source>
         <translation>Fatálna chyba</translation>
     </message>
     <message>
+        <location filename="../import.cpp" line="307"/>
         <source>Fatal error occured.</source>
         <translation>Vyskytla sa fatálna chyba.</translation>
     </message>
     <message>
+        <location filename="../import.cpp" line="310"/>
         <source>file open error</source>
         <translation>chyba pri čítaní súboru</translation>
     </message>
     <message>
+        <location filename="../import.cpp" line="310"/>
         <source>Could not open file</source>
         <translation>Nemožno otvoriť súbor</translation>
     </message>
     <message>
+        <location filename="../import.cpp" line="342"/>
         <source>importuser</source>
         <translation>vlastník importu</translation>
     </message>
@@ -2193,55 +2735,68 @@ nájdete na domovskej stránke programu CdCat:&lt;br&gt;&lt;tt&gt;http://cdcat.s
 <context>
     <name>importGtktalogXml</name>
     <message>
+        <location filename="../import.cpp" line="666"/>
         <source>Importing XML...</source>
         <translation>Importovanie XML...</translation>
     </message>
     <message>
+        <location filename="../import.cpp" line="734"/>
         <source>XML import was successful.</source>
         <translation>XML import prebehol úspešne.</translation>
     </message>
     <message>
+        <location filename="../import.cpp" line="737"/>
         <source>1 media</source>
         <translation>1 médium</translation>
     </message>
     <message>
+        <location filename="../import.cpp" line="739"/>
         <source>media</source>
         <translation>médium</translation>
     </message>
     <message>
+        <location filename="../import.cpp" line="742"/>
         <source>1 directory:,
 </source>
         <translation>1 adresár</translation>
     </message>
     <message>
+        <location filename="../import.cpp" line="744"/>
         <source>directories</source>
         <translation>adresáre</translation>
     </message>
     <message>
+        <location filename="../import.cpp" line="747"/>
         <source>1 File</source>
         <translation>1 Súbor</translation>
     </message>
     <message>
+        <location filename="../import.cpp" line="749"/>
         <source>files</source>
         <translation>súbory</translation>
     </message>
     <message>
+        <location filename="../import.cpp" line="751"/>
         <source>are imported.</source>
         <translation>sú importované.</translation>
     </message>
     <message>
+        <location filename="../import.cpp" line="753"/>
         <source>Import successful</source>
         <translation>Import úspešný</translation>
     </message>
     <message>
+        <location filename="../import.cpp" line="757"/>
         <source>parse error</source>
         <translation>chyba v syntaxy</translation>
     </message>
     <message>
+        <location filename="../import.cpp" line="757"/>
         <source>error during parsing</source>
         <translation>chyba pri čítaní syntaxe</translation>
     </message>
     <message>
+        <location filename="../import.cpp" line="787"/>
         <source>importuser</source>
         <translation>vlastník importu</translation>
     </message>
@@ -2249,51 +2804,63 @@ nájdete na domovskej stránke programu CdCat:&lt;br&gt;&lt;tt&gt;http://cdcat.s
 <context>
     <name>importWhereIsItXml</name>
     <message>
+        <location filename="../import.cpp" line="1392"/>
         <source>Importing XML...</source>
         <translation>Importovanie XML...</translation>
     </message>
     <message>
+        <location filename="../import.cpp" line="1479"/>
         <source>Importing XML from WhereIsIt was successful.</source>
         <translation>Importovanie XML z WhereIsIt bolo úspešné.</translation>
     </message>
     <message>
+        <location filename="../import.cpp" line="1482"/>
         <source>1 media</source>
         <translation>1 médium</translation>
     </message>
     <message>
+        <location filename="../import.cpp" line="1484"/>
         <source>media</source>
         <translation>médium</translation>
     </message>
     <message>
+        <location filename="../import.cpp" line="1487"/>
         <source>1 directory:,
 </source>
         <translation>1 adresár</translation>
     </message>
     <message>
+        <location filename="../import.cpp" line="1489"/>
         <source>directories</source>
         <translation>adresáre</translation>
     </message>
     <message>
+        <location filename="../import.cpp" line="1492"/>
         <source>1 File</source>
         <translation>1 Súbor</translation>
     </message>
     <message>
+        <location filename="../import.cpp" line="1494"/>
         <source>files</source>
         <translation>súbory</translation>
     </message>
     <message>
+        <location filename="../import.cpp" line="1496"/>
         <source>are imported.</source>
         <translation>sú importované.</translation>
     </message>
     <message>
+        <location filename="../import.cpp" line="1498"/>
         <source>Import successful</source>
         <translation>Import úspešný</translation>
     </message>
     <message>
+        <location filename="../import.cpp" line="1502"/>
         <source>parse error</source>
         <translation>chyba v syntaxy</translation>
     </message>
     <message>
+        <location filename="../import.cpp" line="1502"/>
         <source>error during parsing</source>
         <translation>chyba pri čítaní syntaxe</translation>
     </message>
@@ -2301,55 +2868,68 @@ nájdete na domovskej stránke programu CdCat:&lt;br&gt;&lt;tt&gt;http://cdcat.s
 <context>
     <name>importXml</name>
     <message>
+        <location filename="" line="0"/>
         <source>Importing XML...</source>
         <translation type="obsolete">Importovanie XML...</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>XML import was successful.</source>
         <translation type="obsolete">XML import prebehol úspešne.</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>1 media</source>
         <translation type="obsolete">1 médium</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>media</source>
         <translation type="obsolete">médium</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>1 directory:,
 </source>
         <translation type="obsolete">1 adresár</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>directories</source>
         <translation type="obsolete">adresáre</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>1 File</source>
         <translation type="obsolete">1 Súbor</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>files</source>
         <translation type="obsolete">súbory</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>are imported.</source>
         <translation type="obsolete">sú importované.</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Import successful</source>
         <translation type="obsolete">Import úspešný</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>parse error</source>
         <translation type="obsolete">chyba v syntaxy</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>error during parsing</source>
         <translation type="obsolete">chyba pri čítaní syntaxe</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>importuser</source>
         <translation type="obsolete">vlastník importu</translation>
     </message>
@@ -2357,42 +2937,47 @@ nájdete na domovskej stránke programu CdCat:&lt;br&gt;&lt;tt&gt;http://cdcat.s
 <context>
     <name>newdbdialog</name>
     <message>
+        <location filename="../newdbdialog.cpp" line="116"/>
         <source>DataBase&apos;s Properties</source>
         <translation>Vlastnosti databázy</translation>
     </message>
     <message>
+        <location filename="../newdbdialog.cpp" line="117"/>
         <source>DataBase Name:</source>
         <translation>Meno databázy:</translation>
     </message>
     <message>
+        <location filename="../newdbdialog.cpp" line="118"/>
         <source>DataBase Owner:</source>
         <translation>Vlastník databázy:</translation>
     </message>
     <message>
+        <location filename="../newdbdialog.cpp" line="119"/>
         <source>Comment:</source>
         <translation>Komentár:</translation>
     </message>
     <message>
+        <location filename="../newdbdialog.cpp" line="120"/>
         <source>Catalog</source>
         <translation>Katalóg</translation>
     </message>
     <message>
+        <location filename="../newdbdialog.cpp" line="121"/>
         <source>hcat-user</source>
         <translation>hcat-user</translation>
     </message>
     <message>
+        <location filename="../newdbdialog.cpp" line="122"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
+        <location filename="../newdbdialog.cpp" line="123"/>
         <source>Cancel</source>
         <translation>Zrušiť</translation>
     </message>
     <message>
-        <source></source>
-        <translation></translation>
-    </message>
-    <message>
+        <location filename="../newdbdialog.cpp" line="124"/>
         <source> </source>
         <translation type="unfinished"></translation>
     </message>
@@ -2400,34 +2985,42 @@ nájdete na domovskej stránke programu CdCat:&lt;br&gt;&lt;tt&gt;http://cdcat.s
 <context>
     <name>renamedialog</name>
     <message>
+        <location filename="../newdbdialog.cpp" line="189"/>
         <source>Rename node...</source>
         <translation>Premenovať položku...</translation>
     </message>
     <message>
+        <location filename="../newdbdialog.cpp" line="190"/>
         <source>Give the new name:</source>
         <translation>Zadajte nové meno:</translation>
     </message>
     <message>
+        <location filename="../newdbdialog.cpp" line="191"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
+        <location filename="../newdbdialog.cpp" line="192"/>
         <source>Cancel</source>
         <translation>Zrušiť</translation>
     </message>
     <message>
+        <location filename="../newdbdialog.cpp" line="216"/>
         <source>Error:</source>
         <translation>Chyba:</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Ok</source>
         <translation type="obsolete">OK</translation>
     </message>
     <message>
+        <location filename="../newdbdialog.cpp" line="211"/>
         <source>The new (media) name must be unique!</source>
         <translation>Nový názov musí byť jednoznačný!</translation>
     </message>
     <message>
+        <location filename="../newdbdialog.cpp" line="216"/>
         <source>The new media name can&apos;t starts with &quot;@&quot; !</source>
         <translation>Názov média nemôže začínať znakom &quot;@&quot; !</translation>
     </message>
@@ -2435,42 +3028,52 @@ nájdete na domovskej stránke programu CdCat:&lt;br&gt;&lt;tt&gt;http://cdcat.s
 <context>
     <name>renumberdialog</name>
     <message>
+        <location filename="../newdbdialog.cpp" line="326"/>
         <source>Error:</source>
         <translation>Chyba:</translation>
     </message>
     <message>
+        <location filename="../newdbdialog.cpp" line="260"/>
         <source>The element is NOT a Media!</source>
         <translation>Táto položka nie je médium!</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Ok</source>
         <translation type="obsolete">OK</translation>
     </message>
     <message>
+        <location filename="../newdbdialog.cpp" line="297"/>
         <source>Re-Number media...</source>
         <translation>Zmeň číslo média...</translation>
     </message>
     <message>
+        <location filename="../newdbdialog.cpp" line="298"/>
         <source>Give the new serial number:</source>
         <translation>Zadajte nové sériové číslo média:</translation>
     </message>
     <message>
+        <location filename="../newdbdialog.cpp" line="299"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
+        <location filename="../newdbdialog.cpp" line="300"/>
         <source>Cancel</source>
         <translation>Zrušiť</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>I Cannot understand the text as number!</source>
         <translation type="obsolete">Sériové číslo musí byť číselná hodnota!</translation>
     </message>
     <message>
+        <location filename="../newdbdialog.cpp" line="326"/>
         <source>The new media-number must be unique!</source>
         <translation>Nové číslo média musí byť jednoznačné!</translation>
     </message>
     <message>
+        <location filename="../newdbdialog.cpp" line="321"/>
         <source>Please enter number value!</source>
         <translation>Prosím zadajte číselnú hodnotu!</translation>
     </message>
@@ -2478,30 +3081,37 @@ nájdete na domovskej stránke programu CdCat:&lt;br&gt;&lt;tt&gt;http://cdcat.s
 <context>
     <name>seekEngine</name>
     <message>
+        <location filename="../find.cpp" line="405"/>
         <source>Error in the pattern:</source>
         <translation>Chyba vo vzorke:</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Ok</source>
         <translation type="obsolete">OK</translation>
     </message>
     <message>
+        <location filename="../find.cpp" line="439"/>
         <source>There is no matching.</source>
         <translation>Nič nenájdené.</translation>
     </message>
     <message>
+        <location filename="../find.cpp" line="582"/>
         <source>dir</source>
         <translation>adr</translation>
     </message>
     <message>
+        <location filename="../find.cpp" line="585"/>
         <source>file</source>
         <translation>súbor</translation>
     </message>
     <message>
+        <location filename="../find.cpp" line="590"/>
         <source>error</source>
         <translation>chyba</translation>
     </message>
     <message>
+        <location filename="../find.cpp" line="578"/>
         <source>media</source>
         <translation>médium</translation>
     </message>
