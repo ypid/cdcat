@@ -338,7 +338,7 @@ DataBase::DataBase ( void ) {
     storeLimit      = 32*1024;
     root            = new Node ( HC_CATALOG,NULL );
     root->data      = ( void * ) new DBCatalog();
-
+    XML_ENCODING ="UTF-8";
 }
 
 DataBase::~DataBase ( void ) {
@@ -410,7 +410,7 @@ int DataBase::addMedia ( QString what,QString name,int number,int type,QString o
     return returnv;
 }
 /***************************************************************************/
-int   DataBase::saveDB ( void ) {
+int   DataBase::saveDB ( void) {
     int i;
     gzFile f=NULL;
     FileWriter *fw = NULL;
@@ -426,7 +426,7 @@ int   DataBase::saveDB ( void ) {
     }
     progress ( pww );
 
-    fw = new FileWriter ( f,nicef );
+    fw = new FileWriter ( f,nicef, this->XML_ENCODING);
     fw->pww = pww;
     progress ( pww );
     i=fw->writeDown ( root );
@@ -451,7 +451,7 @@ int   DataBase::saveAsDB ( char *filename ) {
     }
 
     progress ( pww );
-    fw = new FileWriter ( f,nicef );
+    fw = new FileWriter ( f,nicef, this->XML_ENCODING );
     fw->pww = pww;
     i=fw->writeDown ( root );
     ( ( DBCatalog * ) ( root->data ) )->writed = 1;
@@ -534,6 +534,7 @@ int   DataBase::openDB ( char *filename ) {
 
     progress ( pww );
     i=fw->readFrom ( root );
+    this->XML_ENCODING = fw->XML_ENCODING;
 
 
     if ( i==1 ) {

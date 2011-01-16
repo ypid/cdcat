@@ -285,7 +285,7 @@ public:
     //save the full database to the file, if the file specified before:
     // The file opened or saved before this function.
 
-    int   saveAsDB ( char *filename );
+    int   saveAsDB ( char *filename);
     //Save the full database to the specified file.
 
     int   openDB ( char *filename );
@@ -319,6 +319,7 @@ private:
 
     int   scanFsToNode ( QString what,Node *to );
     int   scanFileProp ( QFileInfo *fi,DBFile *fc );
+    QString XML_ENCODING;
 
 public:
 

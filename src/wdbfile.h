@@ -40,7 +40,7 @@ private:
     int level;
 
 public:
-    FileWriter ( gzFile ff,bool nicefp );
+    FileWriter ( gzFile ff,bool nicefp, QString encoding );
     ~FileWriter();
 
     PWw *pww;
@@ -60,6 +60,7 @@ private:
     int  writeMp3Tag ( Node *source );
     int  writeContent ( Node *source );
     int  writeCatLnk ( Node *source );
+    QString XML_ENCODING;
 };
 
 
@@ -67,7 +68,7 @@ class FileReader {
 public:
     QString get_cutf8 ( char *s );
     QDateTime get_dcutf8 ( char *s );
-
+    QString XML_ENCODING;
 private:
     gzFile f;
 
