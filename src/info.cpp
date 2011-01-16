@@ -80,7 +80,7 @@ InfoDialog::InfoDialog ( QWidget* parent, const char* name, bool modal, Qt::WFla
     infotext+=QString ( VERSION ) +" (Qt "+QString ( QT_VERSION_STR ) +")";
     infotext+="</h2><br>\n";
     infotext+=tr ( "Author:" );
-    infotext+="<br><font size=\"+2\"><b>Peter Deak (hyperr@freemail.hu)</b><br></font><br>\n";
+    infotext+="<br><font size=\"+2\"><b>Christoph Thielecke (crissi99@gmx.de)</b><br></font><br>\n";
     infotext+=tr ( "Copyright (C) 2003 Peter Deak (GPL)" );
     infotext+="<br>\n";
     infotext+=tr ( "Copyright (C) 2010 Christoph Thielecke (GPL)" );
