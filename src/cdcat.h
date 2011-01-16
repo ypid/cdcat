@@ -18,7 +18,7 @@
 #define DVERS    "2.0"
 
 // CdCat homepage location:
-#define HOMEPAGE "http://cdcat.sf.net"
+#define HOMEPAGE "<a href=\"http://cdcat.sf.net\">http://cdcat.sf.net</a>"
 // + help.ui
 
 
