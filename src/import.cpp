@@ -30,7 +30,7 @@ using namespace std;
 #include "importdialog.h"
 #include "mainwidget.h"
 #include "dbase.h"
-#include "config.h"
+#include "cdcat.h"
 
 lineObject::lineObject ( QString medianame, QString path, QString filename,
                          float size, QDateTime datetime ) {
@@ -469,7 +469,7 @@ extern "C" {
     }
 
     static void endElement_gtktalog_parse ( void * userData, const char * name ) {
-
+        DEBUG_INFO_ENABLED = init_debug_info();
         QString name2 = QString::fromLatin1 ( name ).stripWhiteSpace();
 
         class_link->last_tag = "";
@@ -908,6 +908,7 @@ extern "C" {
     }
 
     static void endElement_whereisit_parse ( void * userData, const char * name ) {
+        DEBUG_INFO_ENABLED = init_debug_info();
 
         QString name2 = QString::fromLocal8Bit ( name ).stripWhiteSpace();
 
@@ -917,16 +918,19 @@ extern "C" {
         if ( name2 == "DATA" ) {
             if ( class_link_whereisit->last_type == media ) {
                 QString line = "\"" + class_link_whereisit->new_medianame + "\"\n";
-                //	std::cout << "media name found: " << line << endl;
+                //if(*DEBUG_INFO_ENABLED)
+		//	std::cout << "media name found: " << line << endl;
             }
 
             if ( class_link_whereisit->last_type == folder ) {
                 QString line = "\"" + class_link_whereisit->folder + "\"\n";
-                //		std::cout << "folder name found: " << line << endl;
+                //if(*DEBUG_INFO_ENABLED)
+		//	std::cout << "folder name found: " << line << endl;
             }
 
             if ( class_link_whereisit->last_type == file ) {
                 QString line = "\"" + class_link_whereisit->file + "\"\n";
+                 //if(*DEBUG_INFO_ENABLED)
                 //	std::cout << "file name found: " << line << endl;
             }
         }

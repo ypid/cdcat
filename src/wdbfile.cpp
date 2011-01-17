@@ -17,12 +17,14 @@
 #include <qregexp.h>
 
 #include <QStringList>
+#include <QtDebug>
 #include <qtextcodec.h>
-
 #include "wdbfile.h"
 #include "adddialog.h"
 #include "dbase.h"
+
 #include "cdcat.h"
+
 
 #define BUFFSIZE	8192
 //#define AUTHOR "Pe'ter Dea'k  hyperr@freemail.hu"
@@ -117,7 +119,9 @@ char * FileWriter::spg ( int spn ) {
 FileWriter::FileWriter ( gzFile ff,bool nicefp, QString encoding ) {
     int i;
     XML_ENCODING=encoding;
-    cerr <<"using encoding for writing: " << XML_ENCODING.toAscii().constData() <<endl;
+    DEBUG_INFO_ENABLED = init_debug_info();
+    if(*DEBUG_INFO_ENABLED)
+	std::cerr <<"using encoding for writing: " << XML_ENCODING.toAscii().constData() <<endl;
     if (XML_ENCODING != "UTF-8") {
 	converter = QTextCodec::codecForName ( "utf8" );
     }
@@ -146,11 +150,7 @@ char * FileWriter::to_cutf8 ( QString s ) {
 		) );
 	}
 	else {
-		return  (char *)( s.replace ( QRegExp ( "&" ),"&amp;" )
-			.replace ( QRegExp ( "<" ),"&lt;" )
-			.replace ( QRegExp ( ">" ),"&gt;" )
-			.replace ( QRegExp ( "\"" ),"&quot;" )
-		).toUtf8().constData();
+		return  strdup ( (char *)s.toUtf8().constData());
 	}
 }
 
@@ -410,18 +410,21 @@ XML_Parser *pp = NULL;
 
 
 QString FileReader::get_cutf8 ( char *s) {
+    DEBUG_INFO_ENABLED = init_debug_info();
     QString ret;
-
+    
     if ( s == NULL )
         return QString ( "" );
-    //cerr<<"Start-converting |"<<s<<"|"<<endl;
+    //if(*DEBUG_INFO_ENABLED)
+    //	cerr<<"Start-converting |"<<s<<"|"<<endl;
     if (XML_ENCODING != "UTF8") {
 	ret = converter->toUnicode ( s );
    }
    else {
 	return QString(s);
    }
-    //cerr<<"End-converting   |" << qPrintable ( ret ) <<"|"<<endl;
+   //if(*DEBUG_INFO_ENABLED)
+   //	cerr<<"End-converting   |" << qPrintable ( ret ) <<"|"<<endl;
 	 //ret =  QString(s);
 
     return ret;
@@ -588,6 +591,7 @@ int FileReader::isthere ( const char **from,char *what ) {
 DBMp3Tag *tmp_tagp=NULL;
 
 static void start ( void *data, const char *el, const char **attr ) {
+    DEBUG_INFO_ENABLED = init_debug_info();
     QString ts1,ts2,ts3,ts4,ts5,ts6;
     QDateTime td1;
     float tf1;
@@ -595,7 +599,8 @@ static void start ( void *data, const char *el, const char **attr ) {
 
     if ( FREA->error ) return;
     /*That case I found an error in file -> needs exit the pasing as fast as I can.*/
-//     cerr <<"Start_start:"<<el<<endl;
+       //if(*DEBUG_INFO_ENABLED)
+      //     cerr <<"Start_start:"<<el<<endl;
     clearbuffer = 1;
     if ( !strcmp ( el,"catalog" ) ) {
         if ( FREA->insert ) return;
@@ -765,20 +770,25 @@ Please change it with an older version or rewrite it in the xml file!" )
             tt=tt->next;
         }
         /*Fill data part:*/
-//         cerr <<"1"<<endl;
+        //if(*DEBUG_INFO_ENABLED)
+        //	cerr <<"1"<<endl;
         ts1 = FREA->get_cutf8 ( FREA->getStr ( attr,"name"  ,"Error while parsing \"file\" node" ) );
-//         cerr <<"2"<<endl;
+        //if(*DEBUG_INFO_ENABLED)
+        //	cerr <<"2"<<endl;
 
         if ( FREA->error ) return;
 
         td1 = FREA->get_dcutf8 ( FREA->getStr ( attr,"time"  ,"Error while parsing \"file\" node" ) );
-//         cerr <<"3"<<endl;
+        //if(*DEBUG_INFO_ENABLED)
+        //	cerr <<"3"<<endl;
 
         if ( FREA->error ) return;
-//         cerr <<"4"<<endl;
+        //if(*DEBUG_INFO_ENABLED)
+        //	cerr <<"4"<<endl;
 
         tf1 = getSizeFS ( FREA->getStr ( attr,"size","Error while parsing \"file\" node" ) );
-//         cerr <<"5"<<endl;
+        //if(*DEBUG_INFO_ENABLED)
+        //	cerr <<"5"<<endl;
 
         if ( FREA->error ) return;
         if ( tf1 == -1 ) {
@@ -855,13 +865,15 @@ Please change it with an older version or rewrite it in the xml file!" )
     if ( !strcmp ( el,"borrow" ) ) {
         /*nothing*/
     }
-
-//     cerr <<"end_start:"<<el<<endl;
+        //if(*DEBUG_INFO_ENABLED)    
+       //	cerr <<"end_start:"<<el<<endl;
 
 }
 /*********************************************************************/
 static void end ( void *data, const char *el ) {
-//     cerr <<"Start_end:"<<el<<endl;
+    //DEBUG_INFO_ENABLED = init_debug_info();
+    //if(*DEBUG_INFO_ENABLED)
+   //	cerr <<"Start_end:"<<el<<endl;
 
 
     if ( FREA->error ) return;
@@ -889,12 +901,16 @@ static void end ( void *data, const char *el ) {
     }
     if ( !strcmp ( el,"mp3tag" ) ) {
         //strcpy(tmp_tagp->comment,FREA->dataBuffer);
-//         cerr <<"1"<<endl;
-//         cerr <<"2"<<endl;
+    //if(*DEBUG_INFO_ENABLED)
+    //	cerr <<"1"<<endl;
+    //if(*DEBUG_INFO_ENABLED)
+    //	cerr <<"2"<<endl;
         tmp_tagp->comment = FREA->get_cutf8 ( FREA->dataBuffer );
-//         cerr <<"3"<<endl;
+    //if(*DEBUG_INFO_ENABLED)
+    //	cerr <<"3"<<endl;
         tmp_tagp = NULL;
-//         cerr <<"4"<<endl;
+    //if(*DEBUG_INFO_ENABLED)
+    //	cerr <<"4"<<endl;
     }
     if ( !strcmp ( el,"catlnk" ) ) {
         /*Restore the parent node tho the actual node:*/
@@ -967,7 +983,8 @@ static void end ( void *data, const char *el ) {
     }
 
     clearbuffer = 1;
-//     cerr <<"end_end:"<<el<<endl;
+    //if(*DEBUG_INFO_ENABLED)
+    //	cerr <<"end_end:"<<el<<endl;
 
 }
 
@@ -992,6 +1009,7 @@ void getCharDataFromXML ( void *data,const char *s,int len ) {
 
 
 int FileReader::readFrom ( Node *source ) {
+    DEBUG_INFO_ENABLED = init_debug_info();
     char *Buff = new char[BUFFSIZE];
     char line[80]; // encoding detect
     XML_Parser p = XML_ParserCreate ( NULL );
@@ -1002,18 +1020,20 @@ int FileReader::readFrom ( Node *source ) {
 
 
     dataBuffer = new char[ ( MAX_STORED_SIZE*2 ) +64];
-    //I allocated MAX_STORED_SIZE*2 becouse the hexadecimal data is twice
+    //I allocated MAX_STORED_SIZE*2 because the hexadecimal data is twice
     //  as long than the normal data
     //WARNING: big data segment 256 kByte !!!
 
     if ( p == NULL ) {
         errormsg = QString ( "Couldn't allocate memory for parser" );
+        if (*DEBUG_INFO_ENABLED)
+		std::cerr << "Couldn't allocate memory for parser" << endl;
         delete [] Buff;
         delete [] dataBuffer;
         return 1;
     }
-
-    //     cerr <<"Start Cycle"<<endl;
+    if(*DEBUG_INFO_ENABLED)
+         cerr <<"Start Cycle"<<endl;
 
     XML_SetUserData ( p,this );
     XML_SetElementHandler ( p, start, end );
@@ -1023,10 +1043,13 @@ int FileReader::readFrom ( Node *source ) {
     int len = gzread(f, line, 80);
     //cerr <<"line: " << line <<endl;
     QString line2(line);
-    //cerr <<"line2: " << line2.constData() <<endl;
+    if (*DEBUG_INFO_ENABLED)
+        std::cerr <<"line2: " << line2.constData() <<endl;
     QStringList encodingline_parts = line2.split('"');
     XML_ENCODING = encodingline_parts.at(3);
-    cerr <<"deteced encoding: " << XML_ENCODING.toAscii().constData() <<endl;
+
+    if (*DEBUG_INFO_ENABLED)
+	std::cerr <<"deteced encoding: " << XML_ENCODING.toAscii().constData() <<endl;
     gzrewind(f);
     XML_SetEncoding ( p, XML_ENCODING.toAscii().constData() );
 
@@ -1059,6 +1082,9 @@ int FileReader::readFrom ( Node *source ) {
                        .arg ( XML_GetCurrentLineNumber ( p ) )
                        .arg ( XML_ErrorString ( XML_GetErrorCode ( p ) ) );
 
+        if (*DEBUG_INFO_ENABLED)
+		std::cerr << qPrintable(QString ( "Parse error at line %1:\n%2\n" ).arg ( XML_GetCurrentLineNumber ( p ) )
+                       .arg ( XML_ErrorString ( XML_GetErrorCode ( p )))) << endl;
             delete [] Buff;
             delete [] dataBuffer;
             return 1;
@@ -1070,8 +1096,8 @@ int FileReader::readFrom ( Node *source ) {
             return error;
         }
     }
-//     cerr <<"End Cycle"<<endl;
-
+     if (*DEBUG_INFO_ENABLED)
+	std::cerr <<"End Cycle" << endl;
 }
 
 FileReader::FileReader ( gzFile ff,int ins ) {
@@ -1127,6 +1153,7 @@ QString FileReader::getCatName ( void ) {
         }
     }
 }
+
 
 
 

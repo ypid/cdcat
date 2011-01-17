@@ -26,6 +26,7 @@
 #include "mp3tag.h"
 #include "wdbfile.h"
 #include "adddialog.h"
+#include "config.h"
 
 #include "tparser.h"
 
@@ -467,7 +468,7 @@ int   DataBase::insertDB ( char *filename ) {
     int i;
     gzFile f=NULL;
     FileReader *fw = NULL;
-
+    DEBUG_INFO_ENABLED = init_debug_info();
 
     if ( root==NULL ) {
         errormsg = tr ( "No database opened!" );
@@ -491,7 +492,8 @@ int   DataBase::insertDB ( char *filename ) {
     if ( i==1 ) {
         progress ( pww );
         errormsg = fw->errormsg;
-        // cerr <<"error:"<< fw->errormsg <<endl;
+        if(*DEBUG_INFO_ENABLED)
+		cerr <<"error:"<< qPrintable(fw->errormsg) <<endl;
         delete fw;
         gzclose ( f );
         return 1;
@@ -510,6 +512,8 @@ int   DataBase::openDB ( char *filename ) {
     int i;
     gzFile f=NULL;
     FileReader *fw = NULL;
+
+    DEBUG_INFO_ENABLED = init_debug_info();
 
     progress ( pww );
     f = gzopen ( filename,"rb" );
@@ -540,7 +544,9 @@ int   DataBase::openDB ( char *filename ) {
     if ( i==1 ) {
         progress ( pww );
         errormsg = fw->errormsg;
-        // cerr <<"error:"<< fw->errormsg <<endl;
+	if (*DEBUG_INFO_ENABLED)
+		std::cerr <<"error:"<< qPrintable(fw->errormsg) << std::endl;
+        
         delete root;
         root = NULL;
         delete fw;
@@ -565,8 +571,11 @@ void DBCatalog::touch ( void ) {
 }
 /*************************************************************************/
 int DataBase::scanFsToNode ( QString what,Node *to ) {
-    cerr <<"Loading node:"<< qPrintable ( what ) <<endl;
+    DEBUG_INFO_ENABLED = init_debug_info();
+    if (*DEBUG_INFO_ENABLED)
+	std::cerr <<"Loading node:"<< qPrintable ( what ) <<endl;
 
+    
     int ret;
     QString comm=NULL;
     QDir *dir=NULL;
@@ -575,7 +584,9 @@ int DataBase::scanFsToNode ( QString what,Node *to ) {
     ret=0;
     dir = new QDir ( what );
     if ( !dir->isReadable() ) {
-        cerr << "dir " << qPrintable ( what ) << " is not readable" << endl;
+        if (*DEBUG_INFO_ENABLED)
+		std::cerr << "dir " << qPrintable ( what ) << " is not readable";
+        
         int i;
         if ( QFileInfo ( what ).isDir() )
             errormsg = tr ( "Cannot read directory: %1" ).arg ( what );
@@ -592,7 +603,9 @@ int DataBase::scanFsToNode ( QString what,Node *to ) {
         if ( fileInfo->fileName() == "." || fileInfo->fileName() == ".." ) {
             continue;
         }
-        cerr << "processing in dir " << qPrintable ( what ) << " node: " << qPrintable ( fileInfo->filePath() ) << endl;
+
+        if (*DEBUG_INFO_ENABLED)
+		std::cerr << "processing in dir " << qPrintable ( what ) << " node: " << qPrintable ( fileInfo->filePath() ) << endl;
 
         /* Make a new node */
         Node *tt=to->child;
@@ -605,7 +618,9 @@ int DataBase::scanFsToNode ( QString what,Node *to ) {
         }
         /*Fill the data field */
         if ( fileInfo->isFile() ) { /* FILE */
-            cerr << "adding file: " << qPrintable ( fileInfo->fileName() ) << endl;
+            if (*DEBUG_INFO_ENABLED)
+		std::cerr << "adding file: " << qPrintable ( fileInfo->fileName() ) << endl;
+            
             uint size = fileInfo->size();
             float s;
             int   st;
@@ -636,7 +651,10 @@ int DataBase::scanFsToNode ( QString what,Node *to ) {
                                               comm,s,st );
             scanFileProp ( fileInfo, ( DBFile * ) tt->data );
         } else if ( fileInfo->isDir() ) { /* DIRECTORY */
-            cerr << "adding dir: " << qPrintable ( fileInfo->fileName() ) << endl;
+        
+            if (*DEBUG_INFO_ENABLED)
+		std::cerr << "adding dir: " << qPrintable ( fileInfo->fileName() ) << endl;
+            
             progress ( pww );
 
             if ( fileInfo->isSymLink() ) { /* SYMBOLIC LINK to a DIRECTORY */
@@ -662,7 +680,10 @@ int DataBase::scanFsToNode ( QString what,Node *to ) {
                 return ret;
 
         } else if ( fileInfo->isSymLink() ) { /* DEAD SYMBOLIC LINK */
-            cerr << "adding dead symlink: " << qPrintable ( fileInfo->fileName() ) << endl;
+
+            if (*DEBUG_INFO_ENABLED)
+		std::cerr << "adding dead symlink: " << qPrintable ( fileInfo->fileName() ) << endl;
+            
             progress ( pww );
 
             comm = tr ( "DEAD Symbolic link to:#" )
@@ -670,7 +691,10 @@ int DataBase::scanFsToNode ( QString what,Node *to ) {
             tt->data=( void * ) new DBFile ( fileInfo->fileName(),QDateTime(),
                                           comm,0,BYTE );
         } else { /* SYSTEM FILE (e.g. FIFO, socket or device file) */
-            cerr << "adding system file: " << qPrintable ( fileInfo->fileName() ) << endl;
+        
+            if (*DEBUG_INFO_ENABLED)
+            std::cerr << "adding system file: " << qPrintable ( fileInfo->fileName() ) << endl;
+            
             progress ( pww );
 
             comm = tr( "System file (e.g. FIFO, socket or device file)" );

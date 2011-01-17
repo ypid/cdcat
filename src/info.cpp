@@ -19,9 +19,12 @@
 #include <q3whatsthis.h>
 //Added by qt3to4:
 #include <Q3GridLayout>
+#include <QLocale>
 
 #include "cdcat.h"
 #include "icons.h"
+
+
 
 /*
  *  Constructs a InfoDialog as a child of 'parent', with the
@@ -77,8 +80,13 @@ InfoDialog::InfoDialog ( QWidget* parent, const char* name, bool modal, Qt::WFla
     infotext+=HOMEPAGE;
     infotext+="<br></font>\n<h2>";
     infotext+=tr ( "Version:" ) +" ";
-    infotext+=QString ( VERSION ) +" (Qt "+QString ( QT_VERSION_STR ) +")";
-    infotext+="</h2><br>\n";
+#ifdef QT_DEBUG
+QString DEBUG_INFO=tr(" (with debug)")+"<br>\n";
+#else
+QString DEBUG_INFO="";
+#endif
+    infotext+=QString ( VERSION ) +" (Qt "+QString ( QT_VERSION_STR ) +")"+DEBUG_INFO;
+    infotext+="</h2>\n";
     infotext+=tr ( "Author:" );
     infotext+="<br><font size=\"+2\"><b>Christoph Thielecke (crissi99@gmx.de)</b><br></font><br>\n";
     infotext+=tr ( "Copyright (C) 2003 Peter Deak (GPL)" );

@@ -22,7 +22,6 @@ Copyright : (C) 2003 Peter Deak
 
 #include "dbase.h"
 #include "cdcat.h"
-#include "config.h"
 #include "mainwidget.h"
 #include "icons.h"
 
@@ -31,9 +30,15 @@ Copyright : (C) 2003 Peter Deak
 
 using namespace std;
 
+bool*  init_debug_info() {
+	if (DEBUG_INFO_ENABLED == NULL)
+		DEBUG_INFO_ENABLED = new bool();
+	return DEBUG_INFO_ENABLED;
+}
+
 int main ( int argi, char **argc ) {
     QApplication app ( argi, argc );
-    CdCatConfig *cconfig = new CdCatConfig();;
+    CdCatConfig *cconfig = new CdCatConfig();
     QTranslator *translator = 0;
     int font_size = 8;
 
@@ -44,6 +49,13 @@ int main ( int argi, char **argc ) {
         font_size = cconfig->fsize;
     else
         cconfig->writeConfig();
+
+    DEBUG_INFO_ENABLED = init_debug_info();
+    *DEBUG_INFO_ENABLED = cconfig->debug_info_enabled;
+    if (*DEBUG_INFO_ENABLED)
+	cerr << qPrintable(QString("DEBUG_INFO_ENABLED: true")) << endl;
+    else
+	cerr << qPrintable(QString("DEBUG_INFO_ENABLED: false")) << endl;
 
     QFont *font = new QFont();
     font->setPointSize ( font_size );

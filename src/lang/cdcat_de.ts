@@ -475,6 +475,10 @@ Dies ist notwendig, da die Konfigurationsdatei im persönlichen Verzeichnis gesp
       <source>Automatically save the database after every scan (for safety sake)</source>
       <translation>Datenbank automatisch nach jedem Suchen speichern (um sicher zu gehen)</translation>
     </message>
+    <message>
+      <source>Display debug info on console</source>
+      <translation>Debuginfo auf Konsole ausgeben</translation>
+    </message>
   </context>
   <context>
     <name>DataBase</name>
@@ -1075,6 +1079,10 @@ wird zu
     <message>
       <source>Ported to Qt4</source>
       <translation>Portiert nach Qt4</translation>
+    </message>
+    <message>
+      <source> (with debug)</source>
+      <translation> (mit Debug)</translation>
     </message>
   </context>
   <context>

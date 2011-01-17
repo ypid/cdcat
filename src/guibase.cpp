@@ -103,7 +103,10 @@ GuiSlave::GuiSlave ( CdCatMainWidget *p ) {
 }
 
 void GuiSlave::updateStatusl ( Node *n ) {
-    cerr<<"F-updateStatusl"<<endl;
+    DEBUG_INFO_ENABLED = init_debug_info();
+    if (*DEBUG_INFO_ENABLED)
+	std::cerr <<"F-updateStatusl" << endl;
+   
     QString o ( "" );
     if ( n == NULL ) {
         if ( mainw->db == NULL )
@@ -112,12 +115,15 @@ void GuiSlave::updateStatusl ( Node *n ) {
             mainw->statusl->setText ( tr ( "No item selected." ) );
         return;
     }
-//    cerr<<"F-updateStatusl: " << qPrintable(n->getFullPath())<<endl;
+    if(*DEBUG_INFO_ENABLED)
+	cerr<<"F-updateStatusl: " << qPrintable(n->getFullPath())<<endl;
     mainw->statusl->setText ( n->getFullPath() );
 }
 
 int GuiSlave::isIdentical ( int i ) {
-    cerr<<"F-isIdentical"<<endl;
+    DEBUG_INFO_ENABLED = init_debug_info();
+    if (*DEBUG_INFO_ENABLED)
+         std::cerr <<"F-isIdentical" << endl;
     Node *t;
 
     if ( mainw->db == NULL ) return 1;
@@ -134,7 +140,9 @@ int GuiSlave::isIdentical ( int i ) {
 }
 
 bool GuiSlave::haveContent ( Node *node ) {
-    cerr<<"F-haveContent"<<endl;
+    DEBUG_INFO_ENABLED = init_debug_info();
+    if(*DEBUG_INFO_ENABLED)
+	cerr<<"F-haveContent"<<endl;
     bool need_showc = false;
     Node *tmp = NULL;
 
@@ -154,7 +162,9 @@ bool GuiSlave::haveContent ( Node *node ) {
 }
 
 int GuiSlave::isIdentical ( QString q ) {
-    cerr<<"F-isIdentical"<<endl;
+    DEBUG_INFO_ENABLED = init_debug_info();
+    if (*DEBUG_INFO_ENABLED)
+	cerr<<"F-isIdentical"<<endl;
     Node *t;
 
     if ( mainw->db == NULL ) return 1;
@@ -172,6 +182,7 @@ int GuiSlave::isIdentical ( QString q ) {
 
 Node *GuiSlave::getNodeFromFullName ( Node *root,const QString& newloc ) {
     QString name;
+    DEBUG_INFO_ENABLED = init_debug_info();
     /*------------*/
     Node *tmp=NULL;
     Node *step =  root;
@@ -182,7 +193,8 @@ Node *GuiSlave::getNodeFromFullName ( Node *root,const QString& newloc ) {
     while ( index != strl.size() ) {
 //     cerr << "index: " << index << endl;
         name= strl.at ( index-1 );
-//     cerr << "new name: " << qPrintable(name) << endl;
+       if(*DEBUG_INFO_ENABLED)
+	cerr << "new name: " << qPrintable(name) << endl;
 
         if ( down == 0 ) {
             if ( QString ( name ) != step->getNameOf() )
@@ -258,16 +270,23 @@ Node *GuiSlave::getNodeFromFullName ( Node *root,const QString& newloc ) {
  */
 
 int GuiSlave::listUpdate ( const QString& newloc ) {
-    cerr<<"F-listUpdate"<<endl;
+    DEBUG_INFO_ENABLED = init_debug_info();
+    if (*DEBUG_INFO_ENABLED)
+	cerr<<"F-listUpdate"<<endl;
     if ( mainw->db == NULL ) {
         return 0;
     }
     Node *pdir = getNodeFromFullName ( mainw->db->getRootNode(),newloc );
-    cerr<<"F-listUpdate: newloc: " << qPrintable ( newloc ) <<endl;
-    if ( pdir )
-        cerr<<"F-listUpdate: pdir: " << qPrintable ( pdir->getNameOf() ) <<endl;
-    else
-        cerr<<"F-listUpdate: pdir: null" <<endl;
+    if (*DEBUG_INFO_ENABLED)
+	cerr<<"F-listUpdate: newloc: " << qPrintable ( newloc ) <<endl;
+    if ( pdir ) {
+        if(*DEBUG_INFO_ENABLED)
+		cerr<<"F-listUpdate: pdir: " << qPrintable ( pdir->getNameOf() ) <<endl;
+    }
+    else {
+        if(*DEBUG_INFO_ENABLED)
+		cerr<<"F-listUpdate: pdir: null" <<endl;
+    }
     updateStatusl ( pdir );
     mainw->commentWidget->showNode ( pdir,0 );
     standON = NULL;
@@ -275,7 +294,9 @@ int GuiSlave::listUpdate ( const QString& newloc ) {
 }
 
 int GuiSlave::updateListFromNode ( Node *pdir ) {
-    cerr<<"F-updateListFromNode"<<endl;
+    DEBUG_INFO_ENABLED = init_debug_info();
+    if(*DEBUG_INFO_ENABLED)
+	cerr<<"F-updateListFromNode"<<endl;
     int fflag=0;
     Node *tmp;
     HQListViewItem *lvi=NULL;
@@ -283,7 +304,8 @@ int GuiSlave::updateListFromNode ( Node *pdir ) {
     QString qstr2;
 
     if ( pdir == NULL )  {
-        cerr<<"F-updateListFromNode: pdir is null"<<endl;
+        if(*DEBUG_INFO_ENABLED)
+		cerr<<"F-updateListFromNode: pdir is null"<<endl;
         pdir = NodePwd;
     }
 
@@ -350,13 +372,14 @@ int GuiSlave::updateListFromNode ( Node *pdir ) {
         case HC_CATLNK:      qstr2=tr ( "Catalog Link" );    break;
         }
 
-
-        cerr <<"GETNAMEOF-----------"<<qPrintable ( tmp->getNameOf() ) <<endl;
+        if(*DEBUG_INFO_ENABLED)
+		cerr <<"GETNAMEOF-----------"<<qPrintable ( tmp->getNameOf() ) <<endl;
         QString valami;
         valami=tmp->getNameOf();
 //!!!
 //valami.append("---1");
-        cerr <<"GETNAMEOF-----------"<<qPrintable ( valami ) <<endl;
+        if(*DEBUG_INFO_ENABLED)
+		cerr <<"GETNAMEOF-----------"<<qPrintable ( valami ) <<endl;
 
         lvi = new HQListViewItem ( mainw->listView,valami,qstr1,qstr2 );
 
@@ -402,20 +425,26 @@ int GuiSlave::updateListFromNode ( Node *pdir ) {
     if ( !fflag )
         mainw->listView->setCurrentItem ( mainw->listView->firstChild() );
 
-    cerr <<"BEACON-1"<<endl;
+    if(*DEBUG_INFO_ENABLED)
+	cerr <<"BEACON-1"<<endl;
     mainw->listView->changed();
-    cerr <<"BEACON-2"<<endl;
+    if(*DEBUG_INFO_ENABLED)
+	cerr <<"BEACON-2"<<endl;
     mainw->DirView->setDir ( NodePwd );
-    cerr <<"BEACON-3"<<endl;
+    if(*DEBUG_INFO_ENABLED)
+	cerr <<"BEACON-3"<<endl;
     return 0;
 }
 
 int GuiSlave::standOn ( Q3ListViewItem *on ) {
-    cerr<<"F-standOn"<<endl;
+    DEBUG_INFO_ENABLED = init_debug_info();
+    if (*DEBUG_INFO_ENABLED)
+	cerr<<"F-standOn"<<endl;
     Node *tmp;
 
     if ( on == NULL || on == 0 ) return 0;
-    cerr<<"1"<<endl;
+    if(*DEBUG_INFO_ENABLED)
+	cerr<<"1"<<endl;
     mainw->listView->setSelected ( on,true );
     if ( on->text ( 0 ) == ".." ) {
         mainw->commentWidget->showNode ( NodePwd,1 );
@@ -423,7 +452,8 @@ int GuiSlave::standOn ( Q3ListViewItem *on ) {
         standON = NULL;
         return 0;
     }
-    cerr<<"2"<<endl;
+    if (*DEBUG_INFO_ENABLED)
+	cerr<<"2"<<endl;
 
     tmp=NodePwd->child;
     while ( tmp->getNameOf() != on->text ( 0 ) ) {
@@ -431,18 +461,24 @@ int GuiSlave::standOn ( Q3ListViewItem *on ) {
         if ( tmp == NULL )
             return 0;
     }
-    cerr<<"3"<<endl;
+    if(*DEBUG_INFO_ENABLED)
+	cerr<<"3"<<endl;
     standON = tmp;
-    cerr<<"4"<<endl;
+    if(*DEBUG_INFO_ENABLED)
+	cerr<<"4"<<endl;
     mainw->commentWidget->showNode ( tmp,0 );
-    cerr<<"5"<<endl;
+    if(*DEBUG_INFO_ENABLED)
+	cerr<<"5"<<endl;
     updateStatusl ( tmp );
-    cerr<<"6"<<endl;
+    if(*DEBUG_INFO_ENABLED)
+	cerr<<"6"<<endl;
     return 0;
 }
 
 int GuiSlave::doubleClickOn ( Q3ListViewItem *on ) {
-    cerr<<"F-doubleClickOn"<<endl;
+    DEBUG_INFO_ENABLED = init_debug_info();
+    if(*DEBUG_INFO_ENABLED)
+	cerr<<"F-doubleClickOn"<<endl;
     Node *tmp;
     if ( on->text ( 0 ) == ".." ) {
         if ( NodePwd->parent != NULL ) {
@@ -470,7 +506,9 @@ int GuiSlave::doubleClickOn ( Q3ListViewItem *on ) {
 }
 
 void GuiSlave::panelsOFF ( void ) {
-    cerr<<"F-panelsOFF"<<endl;
+    DEBUG_INFO_ENABLED = init_debug_info();
+    if(*DEBUG_INFO_ENABLED)
+	cerr<<"F-panelsOFF"<<endl;
     mainw->DirView->clear();
     mainw->listView->clear();
     if ( mainw->db != NULL )
@@ -481,22 +519,29 @@ void GuiSlave::panelsOFF ( void ) {
 }
 
 int  GuiSlave::cHcaption ( void ) {
-    cerr<<"F-cHcaption"<<endl;
+    DEBUG_INFO_ENABLED = init_debug_info();
+    if (*DEBUG_INFO_ENABLED)
+	cerr<<"F-cHcaption"<<endl;
     if ( ( mainw->db != NULL ) && ( ( ( DBCatalog * ) ( mainw->db->getRootNode()->data ) )->writed == 0 ) ) {
-        cerr<<"case:1"<<endl;
+        if (*DEBUG_INFO_ENABLED)
+		cerr<<"case:1"<<endl;
         mainw->setCaption ( tr ( "Hyper's CD Catalogizer (modified)" ) );
     } else {
-        cerr<<"case:2"<<endl;
+        if (*DEBUG_INFO_ENABLED)
+		cerr<<"case:2"<<endl;
 
         mainw->setCaption ( tr ( "Hyper's CD Catalogizer" ) );
     }
 
-    cerr<<"....F-done."<<endl;
+    if (*DEBUG_INFO_ENABLED)
+	cerr<<"....F-done."<<endl;
     return 0;
 }
 
 void GuiSlave::panelsON ( void ) {
-    cerr<<"F-panelsON"<<endl;
+    DEBUG_INFO_ENABLED = init_debug_info();
+    if (*DEBUG_INFO_ENABLED)
+	cerr<<"F-panelsON"<<endl;
     panelsOFF(); //That case you forget the OFF before...
 
     mainw->DirView->start();
@@ -803,6 +848,7 @@ int GuiSlave::openEvent ( void ) {
     char fnc[256];
     QString fn;
     int ret_val=0;
+    DEBUG_INFO_ENABLED = init_debug_info();
 
     fn = Q3FileDialog::getOpenFileName ( NULL,tr ( "CdCat databases (*.hcf )" ),mainw,"openfiled",tr ( "Open a file..." ) );
     if ( fn.isEmpty() )  return 0;
@@ -829,9 +875,11 @@ int GuiSlave::openEvent ( void ) {
     checkversion ( mainw,mainw->db );
 
     progress ( pww );
-    cerr<<"FLAG-1"<<endl;
+    if(*DEBUG_INFO_ENABLED)
+	cerr<<"FLAG-1"<<endl;
     panelsON();
-    cerr<<"FLAG-2"<<endl;
+    if(*DEBUG_INFO_ENABLED)
+	cerr<<"FLAG-2"<<endl;
 
     progress ( pww );
 
@@ -839,32 +887,42 @@ int GuiSlave::openEvent ( void ) {
     //QMessageBox::information(0,"new history element",fn);
     if ( ret_val == 0 && !fn.isEmpty() ) {
 
-//cerr <<"LIST:"<<mainw->cconfig->hlist.join("|")<<endl;
+       if(*DEBUG_INFO_ENABLED)
+		cerr <<"LIST:"<<qPrintable(mainw->cconfig->hlist.join("|"))<<endl;
 
-        cerr<<"0-1"<<endl;
+        if(*DEBUG_INFO_ENABLED)
+		cerr<<"0-1"<<endl;
         if ( mainw->cconfig->hlist.isEmpty() ) cerr <<"emptlyysdsaféashfk"<<endl;
-        cerr<<"0-2"<<endl;
+        if(*DEBUG_INFO_ENABLED)
+		cerr<<"0-2"<<endl;
         mainw->cconfig->hlist.grep ( "AAAA" );
-        cerr<<"0-3"<<endl;
+        if(*DEBUG_INFO_ENABLED)
+		cerr<<"0-3"<<endl;
 
 
         if ( mainw->cconfig->hlist.isEmpty() ||
                 mainw->cconfig->hlist.grep ( "^"+QString ( fn ) +"$" ).isEmpty() ) {
-            cerr<<"1"<<endl;
+            if(*DEBUG_INFO_ENABLED)
+		cerr<<"1"<<endl;
             mainw->cconfig->hlist.append ( QString ( fn ) );
-            cerr<<"2"<<endl;
+            if(*DEBUG_INFO_ENABLED)
+		cerr<<"2"<<endl;
             mainw->historyMenu->addAction ( *get_t_open_icon(),fn );
-            cerr<<"3"<<endl;
+            if(*DEBUG_INFO_ENABLED)
+		cerr<<"3"<<endl;
             if ( ( int ) mainw->cconfig->hlist.count() > ( int ) mainw->cconfig->historysize ) {
-                cerr<<"4"<<endl;
+                if(*DEBUG_INFO_ENABLED)
+			cerr<<"4"<<endl;
                 ( mainw->cconfig->hlist ).remove ( mainw->cconfig->hlist.begin() );
-                cerr<<"5"<<endl;
+                if(*DEBUG_INFO_ENABLED)
+			cerr<<"5"<<endl;
                 mainw->historyMenu->removeItemAt ( 0 );
             }
         }
     }
 
-    cerr<<"FLAG-3"<<endl;
+    if(*DEBUG_INFO_ENABLED)
+	cerr<<"FLAG-3"<<endl;
 
     progress ( pww );
     pww->end();
@@ -995,6 +1053,7 @@ int GuiSlave::deleteEvent ( void ) {
 
 int GuiSlave::addEvent ( void ) {
     int i;
+    DEBUG_INFO_ENABLED = init_debug_info();
     if ( mainw->db == NULL )
         newEvent();
     if ( mainw->db == NULL )
@@ -1012,7 +1071,8 @@ int GuiSlave::addEvent ( void ) {
     mainw->db->storeContent = mainw->cconfig->readcontent;
     mainw->db->storeLimit      = mainw->cconfig->readclimit;
     mainw->db->storedFiles = mainw->cconfig->readcfiles;
-    cerr<<"ADDEVENT-1"<<endl;
+    if(*DEBUG_INFO_ENABLED)
+	cerr<<"ADDEVENT-1"<<endl;
     PWw *pww = new PWw ( mainw,mainw->app );
     mainw->db->pww = pww;
 
@@ -1037,8 +1097,8 @@ int GuiSlave::addEvent ( void ) {
                 ( d,tr ( "Cannot mount CD" ),tr ( "I can't find the \"mount\" program" ) );
                 arg[0] = mstr ( "mount" );
             }
-
-            fprintf ( stderr,"Call:%s %s...",arg[0], ( const char * ) mainw->cconfig->cdrompath );
+            if(*DEBUG_INFO_ENABLED)
+		fprintf ( stderr,"Call:%s %s...",arg[0], ( const char * ) mainw->cconfig->cdrompath );
             arg[1] = mstr ( mainw->cconfig->cdrompath );
             arg[2] = 0;
             env[0] = mstr ( "PATH=/usr/local/bin:/usr/bin:/bin" );
@@ -1065,7 +1125,8 @@ int GuiSlave::addEvent ( void ) {
             delete []arg;
         }
 #endif
-    cerr<<"ADDEVENT-2"<<endl;
+    if(*DEBUG_INFO_ENABLED)
+	cerr<<"ADDEVENT-2"<<endl;
     progress ( pww );
 
     if ( d->OK == 1 ) {
@@ -1081,7 +1142,8 @@ int GuiSlave::addEvent ( void ) {
                     retv=saveasEvent();
             }
         }
-        cerr<<"ADDEVENT-3"<<endl;
+        if(*DEBUG_INFO_ENABLED)
+		cerr<<"ADDEVENT-3"<<endl;
         panelsON();
         if ( i!=0 ) {
             QMessageBox::warning ( mainw,
@@ -1096,7 +1158,8 @@ int GuiSlave::addEvent ( void ) {
         }
     }
     progress ( pww );
-    cerr<<"ADDEVENT-4"<<endl;
+    if(*DEBUG_INFO_ENABLED)
+	cerr<<"ADDEVENT-4"<<endl;
 #ifndef _WIN32
     if ( mainw->cconfig->mounteject )
         if ( ( d->type == CD || d->type == DVD ) &&
@@ -1119,7 +1182,8 @@ int GuiSlave::addEvent ( void ) {
                 arg[0] = mstr ( "eject" );
             }
 
-            fprintf ( stderr,"Call:%s %s...",arg[0], ( const char * ) mainw->cconfig->cdrompath );
+            if(*DEBUG_INFO_ENABLED)
+		fprintf ( stderr,"Call:%s %s...",arg[0], ( const char * ) mainw->cconfig->cdrompath );
             arg[1] = mstr ( mainw->cconfig->cdrompath );
             arg[2] = 0;
             env[0] = mstr ( "PATH=/usr/local/bin:/usr/bin:/bin" );
@@ -1138,6 +1202,7 @@ int GuiSlave::addEvent ( void ) {
                     usleep ( 500 );
                 }
                 pww->refreshTime = 100;
+                if(*DEBUG_INFO_ENABLED)
                 fprintf ( stderr,"done.\n" );
                 if ( WEXITSTATUS ( v ) != 0 )
                     QMessageBox::warning ( 0,tr ( "Cannot eject CD!" ),tr ( "Cannot eject CD!" ) );
@@ -1146,13 +1211,17 @@ int GuiSlave::addEvent ( void ) {
             delete []arg;
         }
 #endif
-    cerr<<"ADDEVENT-5"<<endl;
+    if(*DEBUG_INFO_ENABLED)
+	cerr<<"ADDEVENT-5"<<endl;
     pww->end();
-    cerr<<"ADDEVENT-6"<<endl;
+    if(*DEBUG_INFO_ENABLED)
+	cerr<<"ADDEVENT-6"<<endl;
     mainw->db->pww = NULL;
-    cerr<<"ADDEVENT-7"<<endl;
+    if(*DEBUG_INFO_ENABLED)
+	cerr<<"ADDEVENT-7"<<endl;
     delete pww;
-    cerr<<"ADDEVENT-8"<<endl;
+    if(*DEBUG_INFO_ENABLED)
+	cerr<<"ADDEVENT-8"<<endl;
     return 0;
 }
 
@@ -1633,7 +1702,9 @@ QPosDialog::QPosDialog ( CdCatMainWidget *parent )
 int QPosDialog::pos ( const QString & str ) {
     int len;
     char pattit[256];
-    cerr << "QPosDialog::pos() str: " << qPrintable ( str ) << endl;
+    DEBUG_INFO_ENABLED = init_debug_info();
+    if(*DEBUG_INFO_ENABLED)
+	cerr << "QPosDialog::pos() str: " << qPrintable ( str ) << endl;
 
     strcpy ( pattit, ( const char * ) str );
     len = strlen ( pattit );

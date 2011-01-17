@@ -7,11 +7,16 @@
  Copyright : (C) 2003 Peter Deak
 ****************************************************************************/
 
+#include "config.h"
+#include "cdcat.h"
 #include "mp3tag.h"
 #include <string.h>
 #include <stdio.h>
 #include <ctype.h>
 #include <stdlib.h>
+#include <iostream>
+
+using namespace std;
 
 #define TITLE  0
 #define ARTIST 1
@@ -119,7 +124,9 @@ char * ReadMp3Tag::strbcut ( char *a ) { //Oly used by A ReadTAG function
 }
 
 int ReadMp3Tag::Work ( const char *filename ) {
-    //cerr<<"Load file: "<<filename<<" ...";
+    DEBUG_INFO_ENABLED = init_debug_info();
+    if(*DEBUG_INFO_ENABLED)
+	cerr<<"Load file: "<<filename<<" ...";
     bTAGreaded = 1;
     bTAGexist  = 0;
     if ( ( mp3 = fopen ( filename,"rb" ) ) ==NULL ) {

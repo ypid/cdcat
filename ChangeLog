@@ -1,3 +1,7 @@
+17. Jan 2011 Christoph Thielecke <crissi99@gmx.de>
+	- option for debug output on console added
+	- string converstion on save fixed
+
 16. Jan 2011 Christoph Thielecke <crissi99@gmx.de>
 	- xml encoding detection added
 	- save new catalog in UTF8

@@ -10,6 +10,8 @@
 #ifndef CDCAT_CDCAT
 #define CDCAT_CDCAT
 
+#include "config.h"
+
 // CdCat version text:
 #define VERSION  "UNICODE 1.0 (beta release)"
 
@@ -28,5 +30,6 @@ char  * mstr ( const char *imp );
 QString applicationDirPath ( char **argc );
 QString applicationFilePath ( char **argc );
 
+bool * init_debug_info();
 #endif
 

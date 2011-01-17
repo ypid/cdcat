@@ -36,7 +36,8 @@
 #include <iostream>
 using namespace std;
 
-
+#include "config.h"
+#include "cdcat.h"
 #include "dbase.h"
 #include "mainwidget.h"
 #include "guibase.h"
@@ -245,8 +246,10 @@ HDirectoryView::HDirectoryView ( DataBase** dbp, QWidget *parent, const char *na
 void HDirectoryView::slotFolderSelected ( Q3ListViewItem *i ) {
     if ( !i )	return;
     if ( i==NULL ) return;
+    DEBUG_INFO_ENABLED = init_debug_info();
     LNode *lnode = ( LNode* ) i;
-    cerr << "HDirectoryView::slotFolderSelected node: " << qPrintable ( lnode->fullName() ) << endl;
+    if(*DEBUG_INFO_ENABLED)
+	cerr << "HDirectoryView::slotFolderSelected node: " << qPrintable ( lnode->fullName() ) << endl;
     emit folderSelected ( lnode->fullName() );
 }
 
@@ -254,10 +257,12 @@ void HDirectoryView::slotFolderSelected ( Q3ListViewItem *i ) {
 
 void HDirectoryView::slotFolderSelectedR ( Q3ListViewItem *i ) {
     if ( i==NULL ) return;
+    DEBUG_INFO_ENABLED = init_debug_info();
     LNode *lnode = ( LNode* ) i;
-//    cerr << lnode->fullName()<<endl;
-    cerr << "HDirectoryView::slotFolderSelectedR node: " << qPrintable ( lnode->fullName() ) << endl;
-
+    if(*DEBUG_INFO_ENABLED) {
+	//cerr << lnode->fullName()<<endl;
+	cerr << "HDirectoryView::slotFolderSelectedR node: " << qPrintable ( lnode->fullName() ) << endl;
+    }
     emit folderSelected ( lnode->fullName() );
     //i->setSelected(true);
 }

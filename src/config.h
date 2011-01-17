@@ -44,6 +44,7 @@ public:
     char errormsg[512];
 
     CdCatConfig ( void );
+    ~CdCatConfig ( void );
 
     int startProgram ( DataBase **dbp,QWidget *mw );
     int writeConfig();
@@ -63,14 +64,12 @@ public:
     bool    nice;
     bool    autosave;
     bool    ownfont;
-
     bool    readtag;
     bool    v1_over_v2;
     bool    readinfo;
-
     bool    readavii;
-
     bool    readcontent;
+    bool	debug_info_enabled;
     QString readcfiles;
     unsigned long readclimit;
 
@@ -108,6 +107,7 @@ public:
 #endif
 
     bool linkf;
+    
 
     /*end configureable items*/
 
@@ -131,6 +131,7 @@ public:
     QLabel* lab;
     QLabel *labHistorySize;
     QCheckBox* cbNice;
+    QCheckBox* cbEnableDebugInfo;
     QLineEdit* cdrompath_lineedit;
     QLabel* cdrom_lab;
     Q3Frame* line2;
@@ -183,3 +184,9 @@ protected slots:
 };
 
 #endif // CONFIGDIALOG_H
+
+#ifndef __DEBUG_INFO__
+#define __DEBUG_INFO__
+static bool *DEBUG_INFO_ENABLED;
+#endif
+

@@ -54,7 +54,7 @@
 #define CONFIGFILE ".cdcatconf"
 #endif
 
-
+using namespace std;
 
 
 
@@ -76,7 +76,7 @@ CdCatConfig::CdCatConfig ( void ) {
     cdrompath  = "";
     hlist.clear();
     autosave   = false;
-
+    debug_info_enabled = false;
     readtag    = true;
     v1_over_v2 = false;
     readinfo   = true;
@@ -123,7 +123,12 @@ CdCatConfig::CdCatConfig ( void ) {
 #else
     lang       = "eng";
 #endif
+}
 
+CdCatConfig::~CdCatConfig(void) {
+	DEBUG_INFO_ENABLED = init_debug_info();
+	if (DEBUG_INFO_ENABLED != NULL)
+		delete DEBUG_INFO_ENABLED;
 }
 
 void CdCatConfig::setParameter ( char *par ) {
@@ -514,6 +519,13 @@ int CdCatConfig::readConfig ( void ) {
                     continue;
                 }
 
+                if ( var=="debug_info_enabled" ) {
+                    if ( val=="true" )
+                        debug_info_enabled=true;
+                    else
+                        debug_info_enabled=false;
+                    continue;
+                }
 
                 fprintf ( stderr,"Unknown key founded: %s\n", ( const char * ) var );
                 error = 1;
@@ -716,6 +728,10 @@ int CdCatConfig::writeConfig ( void ) {
         else
             str << "catalog_link_is_first=false" <<endl;
 
+        if ( debug_info_enabled )
+            str << "debug_info_enabled=true" <<endl;
+        else
+            str << "debug_info_enabled=false" <<endl;
 
         f.close();
         return 0;
@@ -789,7 +805,6 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
     line8->setFrameShadow ( Q3Frame::Sunken );
     line8->setFrameShape ( Q3Frame::HLine );
     ConfigDialogBaseLayout->addWidget ( line8, 7, 0 );
-
 
     cbNice = new QCheckBox ( this, "cbNice" );
     ConfigDialogBaseLayout->addWidget ( cbNice, 8, 0 );
@@ -906,6 +921,9 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 
     ConfigDialogBaseLayout->addLayout ( layout7, 18, 0 );
 
+    cbEnableDebugInfo = new QCheckBox ( this, "cbEnableDebugInfo" );
+    ConfigDialogBaseLayout->addWidget ( cbEnableDebugInfo, 19, 0 );
+
     connect ( searchButton2, SIGNAL ( clicked() ), this, SLOT ( cdrombutton() ) );
 
     languageChange();
@@ -949,7 +967,7 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
         if ( p->cconfig->lang == cbLang->text ( i ) )
             cbLang->setCurrentItem ( i );
 #endif
-
+    cbEnableDebugInfo->setChecked(p->cconfig->debug_info_enabled);
 }
 
 /*
@@ -978,6 +996,7 @@ void ConfigDialog::languageChange() {
 #else
     langLabel->setText ( tr ( "The language of CdCat interface" ) );
 #endif
+    cbEnableDebugInfo->setText( tr("Display debug info on console") );
 }
 
 
@@ -1033,7 +1052,9 @@ void ConfigDialog::okExit() {
     p->app->installTranslator ( translator );
 
 #endif
-
+    p->cconfig->debug_info_enabled = cbEnableDebugInfo->isChecked();
+    DEBUG_INFO_ENABLED = init_debug_info();
+    *DEBUG_INFO_ENABLED = cbEnableDebugInfo->isChecked();
     p->cconfig->writeConfig();
 
     QFont *font=new QFont();
