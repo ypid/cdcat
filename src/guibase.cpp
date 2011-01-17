@@ -197,6 +197,8 @@ Node *GuiSlave::getNodeFromFullName ( Node *root,const QString& newloc ) {
 	cerr << "new name: " << qPrintable(name) << endl;
 
         if ( down == 0 ) {
+		//if(*DEBUG_INFO_ENABLED)
+		//	cerr << "step->getNameOf(): " << qPrintable(step->getNameOf()) << endl;
             if ( QString ( name ) != step->getNameOf() )
                 return NULL; /* error Not matching catalog name! */
             down++;
@@ -205,8 +207,12 @@ Node *GuiSlave::getNodeFromFullName ( Node *root,const QString& newloc ) {
             if ( tmp==NULL )
                 return NULL;  /* I couldn't find the requested element! */
 
+		//if(*DEBUG_INFO_ENABLED)
+		//	cerr << "1 tmp->getNameOf(): " << qPrintable(tmp->getNameOf()) << endl;
             while ( tmp->getNameOf() != QString ( name ) ) {
                 tmp=tmp->next;
+		//if(*DEBUG_INFO_ENABLED)
+		//	cerr << "2 tmp->getNameOf(): " << qPrintable(tmp->getNameOf()) << endl;
                 if ( tmp==NULL )
                     return NULL;  /* I couldn't find the requested element! */
                 down++;
@@ -272,13 +278,13 @@ Node *GuiSlave::getNodeFromFullName ( Node *root,const QString& newloc ) {
 int GuiSlave::listUpdate ( const QString& newloc ) {
     DEBUG_INFO_ENABLED = init_debug_info();
     if (*DEBUG_INFO_ENABLED)
-	cerr<<"F-listUpdate"<<endl;
+	cerr<<"F-listUpdate 1 newloc: " << qPrintable(newloc)<<endl;
     if ( mainw->db == NULL ) {
         return 0;
     }
-    Node *pdir = getNodeFromFullName ( mainw->db->getRootNode(),newloc );
+    Node *pdir = getNodeFromFullName ( mainw->db->getRootNode(), newloc );
     if (*DEBUG_INFO_ENABLED)
-	cerr<<"F-listUpdate: newloc: " << qPrintable ( newloc ) <<endl;
+	cerr<<"F-listUpdate: 2 newloc: " << qPrintable ( newloc ) <<endl;
     if ( pdir ) {
         if(*DEBUG_INFO_ENABLED)
 		cerr<<"F-listUpdate: pdir: " << qPrintable ( pdir->getNameOf() ) <<endl;
@@ -288,7 +294,7 @@ int GuiSlave::listUpdate ( const QString& newloc ) {
 		cerr<<"F-listUpdate: pdir: null" <<endl;
     }
     updateStatusl ( pdir );
-    mainw->commentWidget->showNode ( pdir,0 );
+    mainw->commentWidget->showNode ( pdir, 0 );
     standON = NULL;
     return updateListFromNode ( pdir );
 }
@@ -372,14 +378,14 @@ int GuiSlave::updateListFromNode ( Node *pdir ) {
         case HC_CATLNK:      qstr2=tr ( "Catalog Link" );    break;
         }
 
-        if(*DEBUG_INFO_ENABLED)
-		cerr <<"GETNAMEOF-----------"<<qPrintable ( tmp->getNameOf() ) <<endl;
+        //if(*DEBUG_INFO_ENABLED)
+	//	cerr <<"GETNAMEOF-----------"<<qPrintable ( tmp->getNameOf() ) <<endl;
         QString valami;
         valami=tmp->getNameOf();
 //!!!
 //valami.append("---1");
-        if(*DEBUG_INFO_ENABLED)
-		cerr <<"GETNAMEOF-----------"<<qPrintable ( valami ) <<endl;
+        //if(*DEBUG_INFO_ENABLED)
+	//	cerr <<"GETNAMEOF-----------"<<qPrintable ( valami ) <<endl;
 
         lvi = new HQListViewItem ( mainw->listView,valami,qstr1,qstr2 );
 

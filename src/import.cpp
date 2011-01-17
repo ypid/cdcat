@@ -31,6 +31,7 @@ using namespace std;
 #include "mainwidget.h"
 #include "dbase.h"
 #include "cdcat.h"
+#include "config.h"
 
 lineObject::lineObject ( QString medianame, QString path, QString filename,
                          float size, QDateTime datetime ) {
@@ -43,20 +44,20 @@ lineObject::lineObject ( QString medianame, QString path, QString filename,
 
 lineObject::~lineObject() {}
 lineObject::lineObject ( const lineObject& newobj ) {
-    this->medianame = newobj.medianame;
-    this->path = newobj.path;
-    this->filename = newobj.filename;
-    this->size = newobj.size;
-    this->datetime = newobj.datetime;
+    medianame = newobj.medianame;
+    path = newobj.path;
+    filename = newobj.filename;
+    size = newobj.size;
+    datetime = newobj.datetime;
 }
 
 lineObject& lineObject::operator= ( const lineObject& newobj ) {
-    this->medianame = newobj.medianame;
-    this->path = newobj.path;
-    this->filename = newobj.filename;
-    this->size = newobj.size;
-    this->datetime = newobj.datetime;
-	return *this;
+    medianame = newobj.medianame;
+    path = newobj.path;
+    filename = newobj.filename;
+    size = newobj.size;
+    datetime = newobj.datetime;
+    return *this;
 }
 
 
@@ -94,6 +95,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
     this->correctbadstyle = correctbadstyle;
     this->createdatabase = createdatabase;
     this->separator = separator;
+    DEBUG_INFO_ENABLED = init_debug_info();
 
     if ( !filename.isEmpty() ) {
 
@@ -151,51 +153,79 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
                     QString line;
                     QString fullpath;
                     QString path;
+                    QString dirpath;
                     float size;
                     //QDate date;
                     QString new_medianame;
                     QString datetimestring;
+		    QString pathsep = "/";
 
 
                     line = t.readLine();	// line of text excluding '\n'
 
                     if ( !line.startsWith ( "#" ) && !line.isEmpty() ) {
-
+			if (line.contains('\\'))
+				pathsep = "\\";
                         if ( correctbadstyle ) {
                             //     QMessageBox::warning (0, "wrong", line);
                             int idx = 0;
                             while ( idx != -1 ) {
-                                idx = line.find ( QString ( separator + "/" ), idx );
+                                idx = line.find ( QString ( separator + pathsep ), idx );
                                 if ( idx != -1 ) {
-                                    line.replace ( idx, QString ( separator + "/" ).length(), "/" );
+                                    line.replace ( idx, QString ( separator + pathsep ).length(), "/" );
                                 }
                             }
                             idx = 0;
                             while ( idx != -1 ) {
-                                idx = line.find ( QString ( "/" + separator ), idx );
+                                idx = line.find ( QString ( pathsep+ separator ), idx );
                                 if ( idx != -1 ) {
-                                    line.replace ( idx, QString ( "/" + separator ).length(), "/" );
+                                    line.replace ( idx, QString ( pathsep + separator ).length(), "/" );
                                 }
                             }
                             //   QMessageBox::warning (0, "fine", line);
                         }
 
-                        int mediaindex = line.find ( '/', 0 );
+                        int mediaindex = line.find ( pathsep, 0 );
                         int pathindex = line.find ( separator, mediaindex + 1 );
                         fullpath = ( line.mid ( mediaindex, pathindex - mediaindex ) );
+			
+			if(pathsep == "\\")
+				fullpath = fullpath.replace("\\", "/");
+			if(fullpath.at(0) != '/')
+				fullpath = "/"+fullpath;
+			//if(*DEBUG_INFO_ENABLED)
+			//	cerr << "importGtktalogCsv fullpath: " << qPrintable(fullpath) << endl;
+
+
                         new_medianame = ( line.left ( mediaindex ) );
+			//if(*DEBUG_INFO_ENABLED)
+			//	cerr << "importGtktalogCsv new_medianame: " << qPrintable(new_medianame) << endl;
 
-
-                        //   path = fullpath.mid(mediaindex + 1, medianame.length()+1);
+                        path = fullpath.mid(mediaindex + 1, medianame.length()+1);
+			//if(*DEBUG_INFO_ENABLED)
+			//	cerr << "importGtktalogCsv path: " << qPrintable(path) << endl;
 
                         int sizeindex = line.find ( separator, pathindex + 1 );
                         QString sizestring = line.mid ( pathindex + 1, sizeindex - pathindex - 1 ).stripWhiteSpace();
+                        //if(*DEBUG_INFO_ENABLED)
+			//	cerr << "importGtktalogCsv sizestring: " << qPrintable(sizestring) << endl;
                         size = ( ( line.mid ( pathindex + 1, sizeindex - pathindex - 1 ) ).stripWhiteSpace() ).toFloat();
 
-                        datetimestring = ( line.mid ( sizeindex + 1, line.length() ) ).stripWhiteSpace();
+                        //if(*DEBUG_INFO_ENABLED)
+			//	cerr << "importGtktalogCsv size: " << size << endl;
 
-                        int dayindex = datetimestring.find ( "/" );
-                        int monthindex = datetimestring.find ( "/", dayindex + 1 );
+                        datetimestring = ( line.mid ( sizeindex + 1, line.length() ) ).stripWhiteSpace();
+                        if(*DEBUG_INFO_ENABLED)
+				cerr << "importGtktalogCsv datetimestring: " << qPrintable(datetimestring) << endl;
+
+			// date is normally day/month/year hour:minute:second
+			QString datesep = "/";
+
+			// date in other format: day.month.year hour:minute:second
+			if(datetimestring.contains('.'))
+				datesep = ".";
+                        int dayindex = datetimestring.find ( datesep );
+                        int monthindex = datetimestring.find ( datesep, dayindex + 1 );
                         int yearindex = datetimestring.find ( " ", monthindex + 1 );
                         int hourindex = datetimestring.find ( ":", yearindex + 1 );
                         int minuteindex = datetimestring.find ( ":", hourindex + 1 );
@@ -208,21 +238,24 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 
                         int hour = ( datetimestring.mid ( yearindex + 1, minuteindex - hourindex - 1 ) ).toInt();
                         int minute = ( datetimestring.mid ( hourindex + 1, minuteindex - 1 - hourindex ) ).toInt();
-                        ;
+                        
                         int second = ( datetimestring.mid ( minuteindex + 1, datetimestring.length() - 1 ) ).toInt();
                         QDate date ( year, month, day );
                         QTime time ( hour, minute, second );
 
                         QDateTime datetime = QDateTime ( date, time );
 
-                        int fileindex = fullpath.findRev ( '/' );
+                        int fileindex = fullpath.lastIndexOf ( '/' );
+                        //if(*DEBUG_INFO_ENABLED)
+			//	cerr << "importGtktalogCsv fileindex: " << fileindex << endl;
 
                         QString dirpath = "";
                         if ( fileindex != 0 )
-                            dirpath = fullpath.mid ( 1, fileindex - 1 );
+                            dirpath = fullpath.mid ( 1, fileindex-1 );
                         QString filename = fullpath.mid ( fileindex + 1, fullpath.length() - fileindex );
 
-                        /*
+			
+                        if (*DEBUG_INFO_ENABLED)
                         //if (!validDate)
                         {
                         	QString msg;
@@ -238,17 +271,18 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
                         	msg += "minute: " + QString().setNum(minute) + "\n";
                         	msg += "second: " + QString().setNum(second) + "\n";
                         	msg += "year: " + QString().setNum(year) + "\n";
-                        	msg += "dat_: " + day_ + "\n";
+                        	msg += "day: " + QString().setNum(day) + "\n";
                         	msg += "datetimestring: " + datetimestring + "\n";
                         	msg += "new_medianame: " + new_medianame + "\n";
-                        	msg+= "directory path:"+dirpath+"\n";
+                        	msg+= "directory path: "+dirpath+"\n";
                         	msg+="file name: "+filename+"\n";
 
-                        	QMessageBox::warning(0, "line", msg);
+                        	//QMessageBox::warning(0, "line", msg);
                         }
-                        */
-                        if ( medianame == "" )
-                            medianame = new_medianame;
+			
+                        
+                        if ( medianame == ""  )
+				medianame = new_medianame;
 
                         if ( medianame != new_medianame ) {
                             //        QMessageBox::warning (0, "info", medianame);
@@ -256,6 +290,8 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
                             medialines->clear();
                             medianame = new_medianame;
                             addNewItem ( new_medianame, dirpath, filename, size, datetime );
+
+
                         } else {
                             //        QMessageBox::warning (0, "info", "new item");
                             addNewItem ( new_medianame, dirpath, filename, size, datetime );
@@ -316,10 +352,15 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 
 importGtktalogCsv::~importGtktalogCsv() {}
 
-int
-importGtktalogCsv::addNewItem ( QString medianame, QString path,
+int importGtktalogCsv::addNewItem ( QString medianame, QString path,
                                 QString filename, float size, QDateTime datetime ) {
+    DEBUG_INFO_ENABLED = init_debug_info();
     lineObject l ( medianame, path, filename, size, datetime );
+    if(*DEBUG_INFO_ENABLED)
+    	cerr << "importGtktalogCsv::addNewItem: medianame: " <<
+qPrintable(medianame) << ", path: " << qPrintable(path) << ", filename: " <<
+qPrintable(filename) << ", size: " << size << ", date: " <<
+qPrintable(datetime.toString()) << endl;
     medialines->append ( l );
 
     // QMessageBox::critical( 0, "item", "new item!");
@@ -328,7 +369,9 @@ importGtktalogCsv::addNewItem ( QString medianame, QString path,
 }
 
 int importGtktalogCsv::addNewMedia ( QString new_medianame, QList < lineObject > *medialines ) {
-    // QMessageBox::critical(0, "media", new_medianame);
+   DEBUG_INFO_ENABLED = init_debug_info();
+   //if(*DEBUG_INFO_ENABLED)
+   //	cerr << "importGtktalogCsv::addNewMedia media: " <<  qPrintable(new_medianame) << endl;
 
     if ( guislave->mainw->db == NULL )
         guislave->newEvent();
@@ -342,20 +385,21 @@ int importGtktalogCsv::addNewMedia ( QString new_medianame, QList < lineObject >
         curr = db->putMediaNode ( new_medianame , mediacount, tr ( "importuser" ), CD, "" );
 
     QString msg;
-    lineObject *obj;
-
-    for ( int i = 0; i < medialines->size(); ++i ) {
-        *obj = medialines->at ( i );
+    lineObject obj("", "", "", 0.0, QDateTime());
+    for ( int i = 0; i < medialines->size(); i++ ) {
+        //if(*DEBUG_INFO_ENABLED)
+	//	cerr << "importGtktalogCsv::addNewMedia medialine: " << i << endl;
+        obj = medialines->at ( i );
         env = curr;
 
-        QString path = obj->getPath();
+        QString path = obj.getPath();
 
         //        QMessageBox::warning(0, "path", obj->getPath());
         int startindex = 0;
         int dirindex = 0;
 
 
-        if ( !obj->getPath().isEmpty() ) {
+        if ( !obj.getPath().isEmpty() ) {
             path += "/";
             dirindex = path.find ( "/" );
             while ( dirindex != -1 ) {
@@ -365,7 +409,7 @@ int importGtktalogCsv::addNewMedia ( QString new_medianame, QList < lineObject >
 
                 curr = db->getDirectoryNode ( env, dir );
                 if ( curr == NULL ) {
-                    curr = db->putDirectoryNode ( env,  dir , obj->getDateTime() , "" );
+                    curr = db->putDirectoryNode ( env,  dir , obj.getDateTime() , "" );
                     dircount++;
 
                 }
@@ -379,7 +423,7 @@ int importGtktalogCsv::addNewMedia ( QString new_medianame, QList < lineObject >
         }
         dirindex = -1;
 
-        uint size = ( uint ) obj->getSize();
+        uint size = ( uint ) obj.getSize();
         float s;
         int st;
 
@@ -400,9 +444,9 @@ int importGtktalogCsv::addNewMedia ( QString new_medianame, QList < lineObject >
         }
 
         env = curr;
-        curr = db->getFileNode ( env, QString ( obj->getFileName() ) );
+        curr = db->getFileNode ( env, QString ( obj.getFileName() ) );
         if ( curr == NULL )
-            curr = db->putFileNode ( env,  obj->getFileName() , obj->getDateTime() , "", st, s );
+            curr = db->putFileNode ( env,  obj.getFileName() , obj.getDateTime() , "", st, s );
 
         curr = db->getMediaNode ( new_medianame );
 
