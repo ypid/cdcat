@@ -20,7 +20,8 @@
 #include <QLabel>
 #include <Q3Frame>
 #include <QCloseEvent>
-#include <pcre.h>
+// #include <pcre.h>
+#include <QRegExp>
 
 class Q3VBoxLayout;
 class Q3HBoxLayout;
@@ -45,10 +46,12 @@ class seekEngine : public QObject {
 private:
     int founded;
     PWw *pww;
-    pcre *re;
+//     pcre *re;
+    QRegExp re;
+
     char *patt;
     int  offsets[99];
-    pcre_extra *hints;
+//     pcre_extra *hints;
     const char *error;
     int errptr;
 

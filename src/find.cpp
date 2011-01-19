@@ -32,7 +32,8 @@
 #include <Q3VBoxLayout>
 #include <QCloseEvent>
 
-#include <pcre.h>
+// #include <pcre.h>
+#include <QRegExp>
 #include <string.h>
 #include <ctype.h>
 
@@ -42,6 +43,7 @@
 #include "guibase.h"
 #include "adddialog.h"
 #include "config.h"
+#include "cdcat.h"
 #include "icons.h"
 
 findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool modal, Qt::WFlags fl )
@@ -379,6 +381,7 @@ seekEngine::~seekEngine ( void ) {
 }
 /***************************************************************************/
 int seekEngine::start_seek ( void ) {
+    DEBUG_INFO_ENABLED = init_debug_info();
     //get the pattern
     strcpy ( patt, ( const char * ) ( ( QTextCodec::codecForLocale() )->fromUnicode ( fd->leText->text() ) ) );
 
@@ -391,20 +394,23 @@ int seekEngine::start_seek ( void ) {
         caseSensConversion ( patt );
 
     //fprintf(stderr,"The complete pattern is \"%s\"\n",patt);
-    re = pcre_compile ( patt,0,&error,&errptr,NULL );
+//     re = pcre_compile ( patt,0,&error,&errptr,NULL );
+    re.setPattern(QString( patt));
 
-    if ( re == NULL ) {
+//     if ( re == NULL ) {
+       if(!re.isValid()) {
         sprintf ( patt,"%s: %d",error,errptr );
         QMessageBox::warning ( fd,tr ( "Error in the pattern:" ),patt );
         return 1;
     }
 
-    hints = pcre_study ( re,0,&error );
+    //// this tries to opimize pattern
+//     hints = pcre_study ( re,0,&error );
 
-    if ( error != NULL ) {
-        QMessageBox::warning ( fd,tr ( "Error in the pattern:" ),error );
-        return 1;
-    }
+//     if ( error != NULL ) {
+//         QMessageBox::warning ( fd,tr ( "Error in the pattern:" ),error );
+//         return 1;
+//     }
 
     pww=new PWw ( fd );
     pww->refreshTime=200;
@@ -558,7 +564,8 @@ int seekEngine::matchIt ( QString txt ) {
     if ( txt == "" ) return 0;
 
     encoded = ( const char * ) ( ( QTextCodec::codecForLocale() )->fromUnicode ( txt ) );
-    match   = pcre_exec ( re,hints,encoded,strlen ( encoded ),0,0,offsets,99 );
+    //match   = pcre_exec ( re,hints,encoded,strlen ( encoded ),0,0,offsets,99 );
+    match = re.indexIn(QString( encoded));
 
     if ( match == 1 )
         return 1;

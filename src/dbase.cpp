@@ -19,7 +19,8 @@
 #include <ctype.h>
 
 #include <zlib.h>
-#include <pcre.h>
+// #include <pcre.h>
+#include <QRegExp>
 
 #include "dbase.h"
 #include "cdcat.h"
@@ -707,6 +708,7 @@ int DataBase::scanFsToNode ( QString what,Node *to ) {
 /***************************************************************************/
 
 int DataBase::scanFileProp ( QFileInfo *fi,DBFile *fc ) {
+    DEBUG_INFO_ENABLED = init_debug_info();
     /***MP3 tag scanning */
 
     if ( storeMp3tags || storeMp3techinfo )
@@ -769,10 +771,10 @@ int DataBase::scanFileProp ( QFileInfo *fi,DBFile *fc ) {
 
     /***File content scanning */
     if ( storeContent ) {
-        pcre       *pcc = NULL;
-        const char *error;
-        int         erroroffset;
-        int         ovector[30];
+//         pcre       *pcc = NULL;
+//         const char *error;
+//         int         erroroffset;
+//         int         ovector[30];
         bool match = false;
 
         QStringList exts ( QStringList::split ( ";",storedFiles ) );
@@ -782,10 +784,20 @@ int DataBase::scanFileProp ( QFileInfo *fi,DBFile *fc ) {
             strcpy ( pattern, ( const char * ) ( *it ) );
             easyFormConversion ( pattern );
             caseSensConversion ( pattern );
-            pcc   = pcre_compile ( pattern,0,&error,&erroroffset,NULL );
-            if ( 1 == pcre_exec ( pcc,NULL, ( const char * ) QFile::encodeName ( fi->fileName() )
-                                  ,strlen ( ( const char * ) QFile::encodeName ( fi->fileName() ) )
-                                  ,0,0,ovector,30 ) ) {
+            QRegExp pcc2;
+            pcc2.setPattern(QString( pattern));
+            //pcc2.setCaseSensitivity(Qt::CaseInsensitive);
+            //pcc   = pcre_compile ( pattern,0,&error,&erroroffset,NULL );
+	    if(*DEBUG_INFO_ENABLED)
+		cerr << "pcc2 pattern: " << pattern << ", match: " << pcc2.exactMatch(QString(( const char * ) QFile::encodeName ( fi->fileName()))) << endl;
+	    //if(*DEBUG_INFO_ENABLED)
+// 		cerr << "pcre_exec match: " << pcre_exec ( pcc,NULL, ( const char * ) QFile::encodeName ( fi->fileName() )
+//                                   ,strlen ( ( const char * ) QFile::encodeName ( fi->fileName() ) )
+//                                   ,0,0,ovector,30 )  << endl;
+//             if ( 1 == pcre_exec ( pcc,NULL, ( const char * ) QFile::encodeName ( fi->fileName() )
+//                                   ,strlen ( ( const char * ) QFile::encodeName ( fi->fileName() ) )
+//                                   ,0,0,ovector,30 ) ) {
+                if (int(pcc2.indexIn(QString(( const char * ) QFile::encodeName ( fi->fileName())))) == 1) {
                 match = true;
                 break;
             }

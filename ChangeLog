@@ -1,3 +1,6 @@
+19. Jan 2011 Christoph Thielecke <crissi99@gmx.de>
+	- pcre replaced by QRegExp
+
 17. Jan 2011 Christoph Thielecke <crissi99@gmx.de>
 	- option for debug output on console added
 	- string converstion on save fixed
