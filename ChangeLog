@@ -2,6 +2,7 @@
 	- pcre replaced by QRegExp
 	- version adjusted
 	- parsing date fixed (missing old format2 added: "Apr.12 15:43 2001"
+	- searching date added (start, end, start+end)
 
 17. Jan 2011 Christoph Thielecke <crissi99@gmx.de>
 	- option for debug output on console added

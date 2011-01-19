@@ -22,6 +22,7 @@
 #include <QCloseEvent>
 // #include <pcre.h>
 #include <QRegExp>
+#include <QtGui/QDateTimeEdit>
 
 class Q3VBoxLayout;
 class Q3HBoxLayout;
@@ -36,6 +37,7 @@ class Q3ListViewItem;
 class Q3HBoxLayout;
 class Q3VBoxLayout;
 class QPushButton;
+class DateTimeEdit;
 class CdCatMainWidget;
 class findDialog;
 class Node;
@@ -80,8 +82,14 @@ private:
     bool allmedia;
     bool allowner;
 
+    bool dateStartChecked;
+    bool dateEndChecked;
+
     QString  media;
     QString  owner;
+
+    QDateTime dateStart;
+    QDateTime dateEnd;
 };
 
 /***********************************************************************/
@@ -108,9 +116,13 @@ public:
     QLabel* textLabel1;
     QLabel* textLabel2;
     QLabel* textLabel5;
+    QLabel* textLabel6;
+    QLabel* textLabel7;
     Q3Frame* line2;
     Q3ListView* resultsl;
     QLineEdit* leText;
+    QDateTimeEdit* deDateStart;
+    QDateTimeEdit* deDateEnd;
     QCheckBox* cbComment;
     QCheckBox* cbFilename;
     QCheckBox* cbDirname;
@@ -121,6 +133,8 @@ public:
     QCheckBox* cbCasesens;
     QCheckBox* cbEasy;
     QCheckBox* cbContent;
+    QCheckBox* cbDateStart;
+    QCheckBox* cbDateEnd;
 
 protected:
     int fillCBox ( void );
@@ -144,6 +158,10 @@ protected slots:
     int cancele ( void );
     int seeke ( void );
     int saveState ( void );
+    void dateStartChanged(int);
+    void dateEndChanged(int);
+    void dateStartDoubleClicked();
+    void dateEndDoubleClicked();
 };
 
 #endif // FINDDIALOG_H

@@ -31,6 +31,11 @@
 #include <Q3GridLayout>
 #include <Q3VBoxLayout>
 #include <QCloseEvent>
+#include <QDateTimeEdit>
+#include <QDateTime>
+#include <QDate>
+#include <QCalendarWidget>
+#include <QMouseEvent>
 
 // #include <pcre.h>
 #include <QRegExp>
@@ -45,6 +50,9 @@
 #include "config.h"
 #include "cdcat.h"
 #include "icons.h"
+
+#include <iostream>
+using namespace std;
 
 findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool modal, Qt::WFlags fl )
         : QDialog ( parent, name, modal, fl )
@@ -81,6 +89,9 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool modal, 
     layout16 = new Q3GridLayout ( 0, 1, 1, 0, 6, "layout16" );
 
     leText = new QLineEdit ( this, "leText" );
+    
+    deDateStart = new QDateTimeEdit ( QDateTime(QDate(1,1,1900)) ,this );
+    deDateEnd = new QDateTimeEdit ( QDateTime (QDate().currentDate()), this );
 
     cbCasesens = new QCheckBox ( this, "cbCasesens" );
     cbEasy = new QCheckBox ( this, "cbEasy" );
@@ -94,6 +105,8 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool modal, 
     cbTitle = new QCheckBox ( this, "cbTitle" );
     cbAlbum = new QCheckBox ( this, "cbAlbum" );
     cbTcomm = new QCheckBox ( this, "cbTcomm" );
+    cbDateStart = new QCheckBox ( this, "cbDateStart" );
+    cbDateEnd = new QCheckBox ( this, "cbDateEnd" );
 
     cbOwner = new QComboBox ( FALSE, this, "cbOwner" );
     cbOwner->setMinimumSize ( QSize ( 0, 0 ) );
@@ -122,6 +135,7 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool modal, 
     textLabel1 = new QLabel ( this, "textLabel1" );
     textLabel2 = new QLabel ( this, "textLabel2" );
     textLabel5 = new QLabel ( this, "textLabel5" );
+    textLabel6 = new QLabel ( this, "textLabel6" );
 
     /* saved ops: */
 
@@ -135,6 +149,7 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool modal, 
     cbFilename -> setChecked ( mainw->cconfig->find_fi );
     cbDirname  -> setChecked ( mainw->cconfig->find_di );
     cbContent  -> setChecked ( mainw->cconfig->find_ct );
+//     cbDate  -> setChecked ( mainw->cconfig->find_date );
 
     /* layouts:   */
     layout36->addWidget ( cbCasesens, 1, 0 );
@@ -148,6 +163,11 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool modal, 
     layout36->addWidget ( cbAlbum , 4, 1 );
     layout36->addWidget ( cbTcomm , 5, 1 );
     layout36->addMultiCellWidget ( leText, 0, 0, 0, 1 );
+    layout36->addWidget ( cbDateStart , 6, 0 );
+    layout36->addWidget ( cbDateEnd , 7, 0 );
+    layout36->addWidget ( deDateStart, 6, 1 );
+    layout36->addWidget ( deDateEnd, 7, 1 );
+
 
     layout37->addWidget ( cbOwner, 3, 1 );
     layout37->addWidget ( cbSin, 2, 1 );
@@ -197,6 +217,13 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool modal, 
     connect ( buttonClose,SIGNAL ( clicked() ),this,SLOT ( closee() ) );
     connect ( resultsl,SIGNAL ( currentChanged ( Q3ListViewItem * ) ),this,SLOT ( select ( Q3ListViewItem * ) ) );
     connect ( resultsl,SIGNAL ( clicked ( Q3ListViewItem * ) ),this,SLOT ( select ( Q3ListViewItem * ) ) );
+    connect ( cbDateStart, SIGNAL ( stateChanged(int)),this,SLOT ( dateStartChanged(int)));
+    connect ( cbDateEnd, SIGNAL ( stateChanged(int)),this,SLOT ( dateEndChanged(int)));
+    //connect ( deDateStart, SIGNAL ( clicked()),this,SLOT ( dateStartDoubleClicked()));
+    //connect ( deDateEnd, SIGNAL ( ),this,SLOT ( dateEndDoubleClicked()));
+
+    deDateStart->setEnabled(false);
+    deDateEnd->setEnabled(false);
 
     setTabOrder ( leText,buttonOk );
     leText->setFocus();
@@ -227,6 +254,8 @@ void findDialog::languageChange() {
     cbTitle->setText ( tr ( "mp3-tag Title" ) );
     cbComment->setText ( tr ( "Comment" ) );
     cbContent->setText ( tr ( "Content" ) );
+    cbDateStart->setText ( tr ( "Date start" ) );
+    cbDateEnd->setText ( tr ( "Date end" ) );
     buttonOk->setText ( tr ( "&OK" ) );
 #ifndef _WIN32
     buttonOk->setAccel ( QKeySequence ( QString::null ) );
@@ -357,7 +386,7 @@ int findDialog::seeke ( void ) {
     if ( mainw == NULL && mainw->db == NULL )
         return 0;
 
-    if ( ( leText->text() ).isEmpty() )
+    if ( ( leText->text() ).isEmpty() && !cbDateStart->isChecked() && !cbDateEnd->isChecked() )
         return 0;
 
     se = new seekEngine ( this );
@@ -365,6 +394,30 @@ int findDialog::seeke ( void ) {
     delete se;
     return 0;
 }
+
+void findDialog::dateStartChanged(int) {
+	if (cbDateStart->isChecked())
+		deDateStart->setEnabled(true);
+	else
+		deDateStart->setEnabled(false);
+}
+
+void findDialog::dateEndChanged(int) {
+	if (cbDateEnd->isChecked())
+		deDateEnd->setEnabled(true);
+	else
+		deDateEnd->setEnabled(false);
+}
+
+void findDialog::dateStartDoubleClicked() {
+	DEBUG_INFO_ENABLED = init_debug_info();
+	if (*DEBUG_INFO_ENABLED)
+		std::cerr <<"dateStartDoubleClicked" <<endl;
+}
+
+void findDialog::dateEndDoubleClicked() {
+}
+
 /***************************************************************************
 
   Seek engine Class
@@ -381,6 +434,7 @@ seekEngine::~seekEngine ( void ) {
 }
 /***************************************************************************/
 int seekEngine::start_seek ( void ) {
+
     DEBUG_INFO_ENABLED = init_debug_info();
     //get the pattern
     strcpy ( patt, ( const char * ) ( ( QTextCodec::codecForLocale() )->fromUnicode ( fd->leText->text() ) ) );
@@ -427,6 +481,10 @@ int seekEngine::start_seek ( void ) {
     tcomment = fd->cbTcomm   ->isChecked();
     talbum   = fd->cbAlbum   ->isChecked();
     content  = fd->cbContent ->isChecked();
+    dateStartChecked  = fd->cbDateStart ->isChecked();
+    dateEndChecked  = fd->cbDateEnd ->isChecked();
+    dateStart = fd->deDateStart->dateTime();
+    dateEnd = fd->deDateEnd->dateTime();
 
     allmedia = false;
     allowner = false;
@@ -475,6 +533,30 @@ int seekEngine::analyzeNode ( Node *n,Node *pa ) {
                 if ( matchIt ( ( ( DBMedia * ) ( n->data ) )->comment ) )
                     putNodeToList ( n );
 
+        if ( dateStartChecked && !dateEndChecked)
+            if (  (( DBMedia * )(n->data  ))->modification >= dateStart  ) {
+                putNodeToList ( n );
+                analyzeNode ( n->next );
+                return 0;
+
+            }
+
+        if ( !dateStartChecked && dateEndChecked)
+            if (  (( DBMedia * )(n->data  ))->modification <= dateEnd ) {
+                putNodeToList ( n );
+                analyzeNode ( n->next );
+                return 0;
+
+            }
+
+        if ( dateStartChecked && dateEndChecked)
+            if (  (( DBMedia * )(n->data  ))->modification >= dateStart && (( DBMedia * )(n->data  ))->modification <= dateEnd ) {
+                putNodeToList ( n );
+                analyzeNode ( n->next );
+                return 0;
+
+            }
+
             analyzeNode ( n->child );
         }
         analyzeNode ( n->next );
@@ -499,6 +581,30 @@ int seekEngine::analyzeNode ( Node *n,Node *pa ) {
             if ( matchIt ( ( ( DBDirectory * ) ( n->data ) )->comment ) )
                 putNodeToList ( n );
 
+        if ( dateStartChecked && !dateEndChecked)
+            if (  (( DBDirectory * )(n->data  ))->modification >= dateStart  ) {
+                putNodeToList ( n );
+                analyzeNode ( n->next );
+                return 0;
+
+            }
+
+        if ( !dateStartChecked && dateEndChecked)
+            if (  (( DBDirectory * )(n->data  ))->modification <= dateEnd ) {
+                putNodeToList ( n );
+                analyzeNode ( n->next );
+                return 0;
+
+            }
+
+        if ( dateStartChecked && dateEndChecked)
+            if (  (( DBDirectory * )(n->data  ))->modification >= dateStart && (( DBDirectory * )(n->data  ))->modification <= dateEnd ) {
+                putNodeToList ( n );
+                analyzeNode ( n->next );
+                return 0;
+
+            }
+
         analyzeNode ( n->child );
         analyzeNode ( n->next );
         return 0;
@@ -517,6 +623,33 @@ int seekEngine::analyzeNode ( Node *n,Node *pa ) {
                 return 0;
 
             }
+
+        if ( dateStartChecked && !dateEndChecked)
+            if (  (( DBFile * )(n->data  ))->modification >= dateStart  ) {
+                putNodeToList ( n );
+                analyzeNode ( n->next );
+                return 0;
+
+            }
+
+        if ( !dateStartChecked && dateEndChecked)
+            if (  (( DBFile * )(n->data  ))->modification <= dateEnd ) {
+                putNodeToList ( n );
+                analyzeNode ( n->next );
+                return 0;
+
+            }
+
+        if ( dateStartChecked && dateEndChecked)
+            if (  (( DBFile * )(n->data  ))->modification >= dateStart && (( DBFile * )(n->data  ))->modification <= dateEnd ) {
+                putNodeToList ( n );
+                analyzeNode ( n->next );
+                return 0;
+
+            }
+
+
+
         analyzeNode ( ( ( DBFile * ) ( n->data ) )->prop,n );
         analyzeNode ( n->next );
         return 0;

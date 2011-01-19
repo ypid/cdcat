@@ -1833,6 +1833,14 @@ wird zu
       <source>Media / Directory name</source>
       <translation>Medium / Verzeichnisname</translation>
     </message>
+    <message>
+      <source>Date start</source>
+      <translation>Datum Start:</translation>
+    </message>
+    <message>
+      <source>Date end</source>
+      <translation>Datum Ende:</translation>
+    </message>
   </context>
   <context>
     <name>helpDialog</name>
