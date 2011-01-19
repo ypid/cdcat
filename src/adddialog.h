@@ -90,7 +90,9 @@ protected slots:
     int bCan();
     int sread();
     int setMediaName ( const QString & ds );
+#ifndef _WIN32
     void autoDetectAtMountToggled();
+#endif
 
 private:
     QPixmap image0;
