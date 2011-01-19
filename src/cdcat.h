@@ -13,7 +13,7 @@
 #include "config.h"
 
 // CdCat version text:
-#define VERSION  "UNICODE 1.0 (beta release)"
+#define VERSION  "UNICODE 1.1 (beta2 release)"
 
 // Datafile version:
 // The known versions listed in guibase.cpp - checkversion !
