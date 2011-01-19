@@ -1446,6 +1446,10 @@ wird zu
       <source>The media name can't begin with the &quot;@&quot; character!</source>
       <translation>Der Medienname kann nicht mit dem \&quot;@\&quot;-Zeichen beginnen!</translation>
     </message>
+    <message>
+      <source>detect CDCROM/DVD media name after mount</source>
+      <translation>CDCROM/DVD-Medienname nach dem Mounten erkennen</translation>
+    </message>
   </context>
   <context>
     <name>borrowDialog</name>

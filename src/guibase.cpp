@@ -56,6 +56,8 @@
 
 #include "icons.h"
 
+#include "misc.h"
+
 
 
 #include <iostream>
@@ -1059,6 +1061,9 @@ int GuiSlave::deleteEvent ( void ) {
 
 int GuiSlave::addEvent ( void ) {
     int i;
+#ifndef _WIN32
+    bool mount_successful = false;
+#endif
     DEBUG_INFO_ENABLED = init_debug_info();
     if ( mainw->db == NULL )
         newEvent();
@@ -1126,11 +1131,28 @@ int GuiSlave::addEvent ( void ) {
                 fprintf ( stderr,"done.\n" );
                 if ( WEXITSTATUS ( v ) != 0 )
                     QMessageBox::warning ( 0,tr ( "Cannot mount CD!" ),tr ( "Cannot mount CD!" ) );
+                else {
+                   mount_successful = true;
+                   if(d->cbAutoDetectAtMount->isChecked()) {
+			// mount succeded, read media name
+			QString new_medianame = getCDName ( mainw->cconfig->cdrompath );
+			if(! new_medianame.isEmpty() ) {
+				if(*DEBUG_INFO_ENABLED)
+					cerr<<"new_medianame after mount: "  << qPrintable(new_medianame) <<endl;
+			d->dName = new_medianame;
+			}
+                   }
+                }
             }
             delete []env;
             delete []arg;
         }
 #endif
+
+#ifndef _WIN32
+    if (mount_successful) {
+#endif
+
     if(*DEBUG_INFO_ENABLED)
 	cerr<<"ADDEVENT-2"<<endl;
     progress ( pww );
@@ -1217,6 +1239,13 @@ int GuiSlave::addEvent ( void ) {
             delete []arg;
         }
 #endif
+
+#ifndef _WIN32
+    // mount_successful
+    }
+#endif
+
+
     if(*DEBUG_INFO_ENABLED)
 	cerr<<"ADDEVENT-5"<<endl;
     pww->end();

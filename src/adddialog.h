@@ -21,6 +21,7 @@
 #include <QLabel>
 #include <QMouseEvent>
 #include <QPaintEvent>
+#include <QCheckBox>
 
 class Q3VBoxLayout;
 class Q3HBoxLayout;
@@ -33,6 +34,7 @@ class Q3ListViewItem;
 class QPushButton;
 class QSpinBox;
 class Q3MultiLineEdit;
+class QCheckbox;
 class DirectoryView;
 class GuiSlave;
 class QApplication;
@@ -65,6 +67,11 @@ public:
     QLineEdit* leName;
     DirectoryView* dirView;
 
+
+#ifndef _WIN32
+    QCheckBox *cbAutoDetectAtMount;
+#endif
+
 protected:
     Q3GridLayout* addDialogLayout;
     Q3VBoxLayout* layout10;
@@ -83,6 +90,7 @@ protected slots:
     int bCan();
     int sread();
     int setMediaName ( const QString & ds );
+    void autoDetectAtMountToggled();
 
 private:
     QPixmap image0;

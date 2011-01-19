@@ -12,9 +12,17 @@
 #include <qfile.h>
 #include <q3textstream.h>
 
+#include "config.h"
+#include "cdcat.h"
+#include <iostream>
+
+using namespace std;
+
 #ifdef _WIN32
 #include <windows.h>
 #endif
+
+
 
 
 #ifndef _WIN32
@@ -82,6 +90,9 @@ char *getCDName ( const char *CDpath ) {
     char *name       = new char[64]; //return value
     FILE *deviceptr  = NULL;
 
+    DEBUG_INFO_ENABLED = init_debug_info();
+
+
     strcpy ( name      ,"" );
     if (strlen(CDpath) != 0 ) {
 		/** Read the volume name of the device *******************/
@@ -91,6 +102,9 @@ char *getCDName ( const char *CDpath ) {
 		fseek ( deviceptr,32808,SEEK_SET );
 		fread ( name,sizeof ( char ),32,deviceptr );
 		fclose ( deviceptr );
+
+    if(*DEBUG_INFO_ENABLED)
+	std::cerr <<"getCDName: " << name <<endl;
 		name[32]='\0';
 		
 		//strip whitespaces
