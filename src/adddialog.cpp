@@ -214,7 +214,9 @@ void addDialog::languageChange() {
     buttonCancel->setText ( tr ( "Cancel" ) );
     buttonOK->setText ( tr ( "OK / Scan" ) );
     buttonPli->setText ( tr ( "Select readable items" ) );
+#ifndef _WIN32
     cbAutoDetectAtMount->setText( tr("detect CDCROM/DVD media name after mount"));
+#endif
     cbType->clear();
     cbType->insertItem ( *get_m_cd_icon(), tr ( "CD" ) );
     cbType->insertItem ( *get_m_dvd_icon(), tr ( "DVD" ) );
