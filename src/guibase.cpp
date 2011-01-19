@@ -1155,12 +1155,13 @@ int GuiSlave::addEvent ( void ) {
 
 #ifdef _WIN32
 	if(d->cbAutoDetectAtMount->isChecked()) {
-	// mount succeded, read media name
-	QString new_medianame = getCDName ( mainw->cconfig->cdrompath );
-	if(! new_medianame.isEmpty() ) {
-		if(*DEBUG_INFO_ENABLED)
-			cerr<<"new_medianame after mount: "  << qPrintable(new_medianame) <<endl;
-	d->dName = new_medianame;
+		// mount succeded, read media name
+		QString new_medianame = getCDName ( mainw->cconfig->cdrompath );
+		if(! new_medianame.isEmpty() ) {
+			if(*DEBUG_INFO_ENABLED)
+				cerr<<"new_medianame after mount: "  << qPrintable(new_medianame) <<endl;
+		d->dName = new_medianame;
+		}
 	}
 #endif
 
