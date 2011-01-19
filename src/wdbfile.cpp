@@ -434,9 +434,17 @@ QDateTime FileReader::get_dcutf8 ( char *s ) {
     QDateTime r;
     int year,month,day;
     int hour,minute,second;
-	 char p[4];
+    char p[4];
+    char p2[10];
+    char p3[10];
+
+    DEBUG_INFO_ENABLED = init_debug_info();
+    if (*DEBUG_INFO_ENABLED)
+	std::cerr <<"FileReader::get_dcutf8 datestr:"<<  s  <<endl;
 
     if ( sscanf ( s,"%d-%d-%d %d:%d:%d",&year,&month,&day,&hour,&minute,&second ) == 6 ) {
+ if (*DEBUG_INFO_ENABLED)
+	std::cerr <<"FileReader::get_dcutf8 new format found"<<endl;
         r.setDate ( QDate ( year,month,day ) );
         r.setTime ( QTime ( hour,minute,second ) );
         return r;
@@ -444,7 +452,49 @@ QDateTime FileReader::get_dcutf8 ( char *s ) {
 
     /* OLD VERSION FOUND */
     if ( sscanf ( s, "%s %02d %02d:%02d %04d",p,&day,&hour,&minute,&year ) == 5 ) {
+	if (*DEBUG_INFO_ENABLED)
+	std::cerr <<"FileReader::get_dcutf8 old format found"<<endl;
         if(!strcmp(p, "Jan")) month=1;
+	if(!strcmp(p, "Feb")) month=2;
+	if(!strcmp(p, "Mar")) month=3;
+	if(!strcmp(p, "Apr")) month=4;
+	if(!strcmp(p, "May")) month=5;
+	if(!strcmp(p, "Jun")) month=6;
+	if(!strcmp(p, "Jul")) month=7;
+	if(!strcmp(p, "Aug")) month=8;
+	if(!strcmp(p, "Sep")) month=9;
+	if(!strcmp(p, "Oct")) month=10;
+	if(!strcmp(p, "Nov")) month=11;
+	if(!strcmp(p, "Dec")) month=12;
+	 r.setDate ( QDate ( year,month,day ) );
+	r.setTime ( QTime ( hour,minute,0 ) );
+	return r;
+    }
+
+    /* date format is: "Apr.12 15:43 2001" => "MonthShort.DayNum HourNum,MinuteNum YearLong" */
+    if ( sscanf ( s, "%s %s %04d",p2, p3, &year ) == 3 ) {
+	        if (*DEBUG_INFO_ENABLED)
+	 	std::cerr <<"FileReader::get_dcutf8 old format2 found"<<endl;
+	if (QString(p2).contains('.')) {
+		//if (*DEBUG_INFO_ENABLED)
+		//std::cerr <<"FileReader::get_dcutf8 p2 0: " << qPrintable(QString(p2).split('.').at(0)) << ", p2 1: " << qPrintable(QString(p2).split('.').at(1))<<endl;
+		strcpy(p, QString(p2).split('.').at(0).toLocal8Bit().data());
+		day = QString(p2).split('.').at(1).toInt();
+	}
+
+	if (QString(p3).contains(':')) {
+		if (*DEBUG_INFO_ENABLED)
+		//std::cerr <<"FileReader::get_dcutf8 p3 0: " << qPrintable(QString(p3).split(':').at(0)) << ", p3 1: " << qPrintable(QString(p3).split(':').at(1))<<endl;
+		hour= QString(p3).split(':').at(0).toInt();
+		minute = QString(p3).split(':').at(1).toInt();
+		second = 0;
+	}
+
+
+       if (*DEBUG_INFO_ENABLED)
+	std::cerr <<"FileReader::get_dcutf8 p: " << p  << ", p2: " << p2 << ", p3: " << p3 << ", day: " << day << ", minute: " << minute << ", hour: " << hour <<", year: " << year << endl;
+	
+	if(!strcmp(p, "Jan")) month=1;
 	if(!strcmp(p, "Feb")) month=2;
 	if(!strcmp(p, "Mar")) month=3;
 	if(!strcmp(p, "Apr")) month=4;
@@ -865,15 +915,16 @@ Please change it with an older version or rewrite it in the xml file!" )
     if ( !strcmp ( el,"borrow" ) ) {
         /*nothing*/
     }
+
         //if(*DEBUG_INFO_ENABLED)    
        //	cerr <<"end_start:"<<el<<endl;
 
 }
 /*********************************************************************/
 static void end ( void *data, const char *el ) {
-    //DEBUG_INFO_ENABLED = init_debug_info();
-    //if(*DEBUG_INFO_ENABLED)
-   //	cerr <<"Start_end:"<<el<<endl;
+    DEBUG_INFO_ENABLED = init_debug_info();
+    if(*DEBUG_INFO_ENABLED)
+   	cerr <<"Start_end:"<<el<<endl;
 
 
     if ( FREA->error ) return;
@@ -981,6 +1032,7 @@ static void end ( void *data, const char *el ) {
 
         }
     }
+
 
     clearbuffer = 1;
     //if(*DEBUG_INFO_ENABLED)
