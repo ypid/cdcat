@@ -112,8 +112,9 @@ char *getCDName ( const char *CDpath ) {
 	 }
     return name;
 }
+#endif
 
-#else
+#ifdef _WIN32
 // Win32:
 char * getCDName ( const char *CDpath ) {
     char  *name = new char[64];
@@ -126,8 +127,8 @@ char * getCDName ( const char *CDpath ) {
 	MultiByteToWideChar(CP_ACP,0,CDpath ,strlen(CDpath)+1,WSTR_CDpath,length);
 
 	LPWSTR LPW_name=L"";
-    if ( !GetVolumeInformation ( WSTR_CDpath, LPW_name,64,NULL,
-                                 &dwDummy,&dwFlags,NULL,0 ) )
+    //if ( !GetVolumeInformation ( WSTR_CDpath, LPW_name,64,NULL, &dwDummy,&dwFlags,NULL,0 ) )
+    if ( !GetVolumeInformation ( WSTR_CDpath, LPW_name,                0,   0, 0, 0, 0, 0 ))
 	{
         strcpy ( name,"\0" );
 		return name;
