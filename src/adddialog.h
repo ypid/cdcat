@@ -67,10 +67,7 @@ public:
     QLineEdit* leName;
     DirectoryView* dirView;
 
-
-#ifndef _WIN32
     QCheckBox *cbAutoDetectAtMount;
-#endif
 
 protected:
     Q3GridLayout* addDialogLayout;
