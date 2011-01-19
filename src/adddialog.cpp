@@ -309,14 +309,16 @@ int addDialog::bCan ( void ) {
 }
 
 
-#ifndef _WIN32
+
 void addDialog::autoDetectAtMountToggled() {
+#ifndef _WIN32
 	if (cbAutoDetectAtMount->isChecked())
 		leName->setEnabled(false);
 	else
 		leName->setEnabled(true);
-}
 #endif
+}
+
 
 /**************************************************************************/
 
