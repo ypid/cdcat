@@ -52,7 +52,7 @@ Datei überprüfen!
     </message>
     <message>
       <source>I can't create or rewrite the ./cdcat.cfg file </source>
-      <translation>Datei ./cdcatcfg kann nicht erstellt/überschrieben werden</translation>
+      <translation>Datei ./cdcat.cfg kann nicht erstellt/überschrieben werden</translation>
     </message>
     <message>
       <source>I can't create or rewrite the $(HOME)/.cdcatconfig file </source>
@@ -66,7 +66,7 @@ Datei überprüfen!
       <source>I can't get the $HOME environment variable.
 It is necessary because I'd like to save the config file into your home directory.</source>
       <translation>Die $HOME-Umgebungsvariable kann nicht gelesen werden.
-Dies ist notwendig, da die Konfigurationsdatei im persönlichen Verzeichnis gespeichert wird.</translation>
+Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzeichnis schreiben muss.</translation>
     </message>
   </context>
   <context>
@@ -473,7 +473,7 @@ Dies ist notwendig, da die Konfigurationsdatei im persönlichen Verzeichnis gesp
     </message>
     <message>
       <source>Automatically save the database after every scan (for safety sake)</source>
-      <translation>Datenbank automatisch nach jedem Suchen speichern (um sicher zu gehen)</translation>
+      <translation>Datenbank automatisch nach jedem Einlesen speichern (um sicher zu gehen)</translation>
     </message>
     <message>
       <source>Display debug info on console</source>
@@ -985,7 +985,7 @@ Homepage: %3</translation>
     </message>
     <message>
       <source>Select the type of import here</source>
-      <translation>Typ des Imports hier setzen</translation>
+      <translation>Typ des Imports auswählen</translation>
     </message>
     <message>
       <source>Select this for importing a text import (csv)</source>
@@ -1440,7 +1440,7 @@ wird zu
     </message>
     <message>
       <source>You haven't selected a directory! Please select one!</source>
-      <translation>Es ist kein Verzeichnis ausgewählt! Bitte eines auswählen!</translation>
+      <translation>Es ist kein Verzeichnis ausgewählt! Bitte ein Verzeichnis auswählen!</translation>
     </message>
     <message>
       <source>The media name can't begin with the &quot;@&quot; character!</source>
@@ -1896,7 +1896,7 @@ E-mail: hyperr@freemail.hu
 &lt;b>Benutzung&lt;/b>
 &lt;blockquote>
 &lt;i>Einen neuen Katalog erstellen&lt;/i>:Das &lt;tt>Neu&lt;/tt>-Kommando aus dem Katalogmenü wählen. Dann muss der Name des neuen Katalogs eingegeben werden. Es kann der Standardbenutzer des Mediums (welches später duchsucht wird) angegeben und ein Kommentar zum Katalog hinzugefügt werden.&lt;br>Wenn dies abgeschlossen ist, kann das Medium mit dem &lt;tt>Medium hinzufügen &lt;/tt>-Kommando aus dem Bearbeitenmenü hinzugefügt werden. In diesem Dialog muss muss das Verzeichnis/oder Laufwerk des Mediums, das benutzt werden soll, angegeben werden. Es wird empfohlen, den Namen und die Nummer des Medium, welche einzigartig sein müssen, anzugeben (Das Programm generiert immer identischen Namen und Nummer). Es kann das Medium, wenn erforderlich,  einem Benutzer zugeordnet werden.
-&lt;br>Wenn das Medium durchsucht wird, kann man es im Browserfenster duchsuchen (wie beim mc), oder in ihm suchen. Der Katalog kann mit dem &lt;tt>Speichern&lt;/tt>-Kommando aus dem Katalogmenü gespeichert werden.
+&lt;br>Wenn das Medium durchsucht wird, kann man im Browserfenster suchen (wie beim mc), oder das Medium kann durchsucht werdenn. Der Katalog kann mit dem &lt;tt>Speichern&lt;/tt>-Kommando aus dem Katalogmenü gespeichert werden.
 &lt;br>
 &lt;br>
 &lt;i>Einen existierenden Katalog öffnen:&lt;/i>Das &lt;tt>Öffnen&lt;/tt>-Kommando aus dem Katalogmenü wählen und die Datei des Katalogs auswählen (*.hcf) Nach dem Öffnen kann man dann im Katalog blättern oder ihn durchsuchen.
@@ -1987,7 +1987,7 @@ E-mail: hyperr@freemail.hu
     </message>
     <message>
       <source>importuser</source>
-      <translation>importbenutzer</translation>
+      <translation>Importbenutzer</translation>
     </message>
   </context>
   <context>
@@ -2044,7 +2044,7 @@ E-mail: hyperr@freemail.hu
     </message>
     <message>
       <source>importuser</source>
-      <translation>importbenutzer</translation>
+      <translation>Importbenutzer</translation>
     </message>
   </context>
   <context>
@@ -2209,7 +2209,7 @@ E-mail: hyperr@freemail.hu
     <name>seekEngine</name>
     <message>
       <source>Error in the pattern:</source>
-      <translation>Fehler in Suchmuster:</translation>
+      <translation>Fehler im Suchmuster:</translation>
     </message>
     <message>
       <source>dir</source>
