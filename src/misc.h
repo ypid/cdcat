@@ -10,7 +10,9 @@
 #ifndef CDCAT_MISC_HEADER
 #define CDCAT_MISC_HEADER
 
-char *getCDName ( const char *CDpath );
+#include <QString>
+
+QString getCDName ( const char *CDpath );
 bool diskIsDVD ( const char *CDpath );
 
 #endif

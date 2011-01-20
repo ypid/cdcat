@@ -84,8 +84,10 @@ addDialog::addDialog ( GuiSlave *c, QWidget* parent, const char* name, bool moda
     textLabel1 = new QLabel ( this, "textLabel1" );
     layout7->addWidget ( textLabel1 );
 
+#ifndef _WIN32
     cbAutoDetectAtMount = new QCheckBox ( this, "cbAutoDetectAtMount" );
     layout7->addWidget ( cbAutoDetectAtMount );
+#endif
 
     leName = new QLineEdit ( this, "leName" );
     layout7->addWidget ( leName );
@@ -162,7 +164,9 @@ addDialog::addDialog ( GuiSlave *c, QWidget* parent, const char* name, bool moda
 
     connect ( dirView,SIGNAL ( folderSelected ( const QString & ) ),this,SLOT ( setMediaName ( const QString & ) ) );
 
+#ifndef _WIN32
     connect ( cbAutoDetectAtMount, SIGNAL ( clicked() ), this, SLOT ( autoDetectAtMountToggled()) );
+#endif
 
     for ( i=1;!caller->isIdentical ( i );i++ );
     sbNumber->setValue ( i );
@@ -210,7 +214,9 @@ void addDialog::languageChange() {
     buttonCancel->setText ( tr ( "Cancel" ) );
     buttonOK->setText ( tr ( "OK / Scan" ) );
     buttonPli->setText ( tr ( "Select readable items" ) );
+#ifndef _WIN32
     cbAutoDetectAtMount->setText( tr("detect CDCROM/DVD media name after mount"));
+#endif
     cbType->clear();
     cbType->insertItem ( *get_m_cd_icon(), tr ( "CD" ) );
     cbType->insertItem ( *get_m_dvd_icon(), tr ( "DVD" ) );
@@ -235,9 +241,21 @@ int addDialog::setMediaName ( const QString & ds ) {
 
     QApplication::setOverrideCursor ( Qt::waitCursor );
 
+
+#ifndef _WIN32
+    if ( ( cbType->currentItem() +1 == CD ) && ( confdir  == selected )) {
+      tm = getCDName ( caller->mainw->cconfig->cdrompath );
+    }
     if ( ( cbType->currentItem() +1 == CD ) &&
             ( confdir  == selected )         &&
-            ! ( tm = getCDName ( caller->mainw->cconfig->cdrompath ) ).isEmpty() ) {
+            ! ( tm.isEmpty() )) {
+#endif
+#ifdef _WIN32
+    if ( ( cbType->currentItem() +1 == CD ) &&
+            ( confdir  == selected )         &&
+            ! ( tm = getCDName ( caller->mainw->cconfig->cdrompath.replace("/", "\\" )) ).isEmpty() ) {
+#endif
+
         leName->setText ( tm );
 
 #ifndef _WIN32
@@ -247,7 +265,7 @@ int addDialog::setMediaName ( const QString & ds ) {
         else
             cbType->setCurrentItem ( CD - 1 );
 #endif
-        volumename = 1;
+        //volumename = 1;
     } else {
         if ( volumename == 1 ) {
             volumename = 0;
@@ -305,10 +323,12 @@ int addDialog::bCan ( void ) {
 
 
 void addDialog::autoDetectAtMountToggled() {
+#ifndef _WIN32
 	if (cbAutoDetectAtMount->isChecked())
 		leName->setEnabled(false);
 	else
 		leName->setEnabled(true);
+#endif
 }
 
 

@@ -23,6 +23,7 @@ using namespace std;
 #endif
 
 
+#include <QMessageBox>
 
 
 #ifndef _WIN32
@@ -86,7 +87,7 @@ bool diskIsDVD ( const char *CDpath ) {
     return ( size>450000 );
 }
 
-char *getCDName ( const char *CDpath ) {
+QString getCDName ( const char *CDpath ) {
     char *name       = new char[64]; //return value
     FILE *deviceptr  = NULL;
 
@@ -110,32 +111,43 @@ char *getCDName ( const char *CDpath ) {
 		//strip whitespaces
 		strcpy ( name, ( const char * ) QString ( name ).stripWhiteSpace() );
 	 }
-    return name;
+    return QString(name);
 }
 #endif
 
 #ifdef _WIN32
 // Win32:
-char * getCDName ( const char *CDpath ) {
-    char  *name = new char[64];
-    DWORD  dwDummy;
-    DWORD  dwFlags;
+void TCharToChar(const wchar_t* Src, char* Dest, int Size) 
+ { 
+ WideCharToMultiByte(CP_ACP, 0, Src, wcslen(Src)+1, Dest , Size, NULL, NULL); 
+ } 
 
-	LPWSTR WSTR_CDpath = NULL;
+QString getCDName ( const char *CDpath ) {
+    char bufName1[128];
+    DWORD dwSerial;
+    //char  *name = new char[64];
+    char *name;
+    //DWORD  dwDummy;
+    //DWORD  dwFlags;
+    //LPWSTR WSTR_CDpath = NULL;
+    //int length = MultiByteToWideChar(CP_ACP,0,CDpath ,strlen(CDpath)+1,NULL,0);
+    //MultiByteToWideChar(CP_ACP,0,CDpath ,strlen(CDpath)+1,WSTR_CDpath,length);
+    //LPWSTR LPW_name=L"";
 
-	int length = MultiByteToWideChar(CP_ACP,0,CDpath ,strlen(CDpath)+1,NULL,0);
-	MultiByteToWideChar(CP_ACP,0,CDpath ,strlen(CDpath)+1,WSTR_CDpath,length);
-
-	LPWSTR LPW_name=L"";
-    //if ( !GetVolumeInformation ( WSTR_CDpath, LPW_name,64,NULL, &dwDummy,&dwFlags,NULL,0 ) )
-    if ( !GetVolumeInformation ( WSTR_CDpath, LPW_name,                0,   0, 0, 0, 0, 0 ))
+        DWORD dwVolumeSerialNumber;
+    if ( !GetVolumeInformationA(CDpath, bufName1, sizeof(bufName1), &dwSerial, NULL, NULL, NULL, 0) )
+    //if ( !GetVolumeInformation ( WSTR_CDpath, LPW_name,                0,   0, 0, 0, 0, 0 ))
+    //  if(!GetVolumeInformation(LPWSTR("D:\\"),LPW_name,64,NULL,&dwDummy,&dwFlags,NULL,0))
 	{
         strcpy ( name,"\0" );
+
 		return name;
 	}
-
-	WideCharToMultiByte(CP_ACP, 0, (LPWSTR)LPW_name, -1,name, 1000, NULL, NULL);
-    return name;
+    name = QString(bufName1).toLocal8Bit().data();
+    //WideCharToMultiByte(CP_ACP, 0, (LPWSTR)LPW_name, -1,name, 1000, NULL, NULL);    
+    QMessageBox::information(0, "vol1", "path: "+QString(CDpath)+"\nname: \""+QString(name)+"\""); 
+    //return name;
+    return QString(bufName1);
 }
 #endif
 

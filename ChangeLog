@@ -1,3 +1,6 @@
+20. Jan 2011 Christoph Thielecke <crissi99@gmx.de>
+	cdrom/dvd volume name at win32 fixed
+
 19. Jan 2011 Christoph Thielecke <crissi99@gmx.de>
 	- pcre replaced by QRegExp
 	- version adjusted
