@@ -1436,7 +1436,7 @@ wird zu
     </message>
     <message>
       <source>The Value of Serial Number must be unique! Please change it!</source>
-      <translation>Die Seriennummer muss identisch sein! Bitte den Wert ändern!</translation>
+      <translation>Die Seriennummer muss einzigartig sein! Bitte den Wert ändern!</translation>
     </message>
     <message>
       <source>You haven't selected a directory! Please select one!</source>
@@ -1895,7 +1895,7 @@ E-mail: hyperr@freemail.hu
 &lt;br>
 &lt;b>Benutzung&lt;/b>
 &lt;blockquote>
-&lt;i>Einen neuen Katalog erstellen&lt;/i>:Das &lt;tt>Neu&lt;/tt>-Kommando aus dem Katalogmenü wählen. Dann muss der Name des neuen Katalogs eingegeben werden. Es kann der Standardbenutzer des Mediums (welches später duchsucht wird) angegeben und ein Kommentar zum Katalog hinzugefügt werden.&lt;br>Wenn dies abgeschlossen ist, kann das Medium mit dem &lt;tt>Medium hinzufügen &lt;/tt>-Kommando aus dem Bearbeitenmenü hinzugefügt werden. In diesem Dialog muss muss das Verzeichnis/oder Laufwerk des Mediums, das benutzt werden soll, angegeben werden. Es wird empfohlen, den Namen und die Nummer des Medium, welche identisch sein müssen, anzugeben (Das Programm generiert immer identischen Namen und Nummer). Es kann das Medium, wenn erforderlich,  einem Benutzer zugeordnet werden.
+&lt;i>Einen neuen Katalog erstellen&lt;/i>:Das &lt;tt>Neu&lt;/tt>-Kommando aus dem Katalogmenü wählen. Dann muss der Name des neuen Katalogs eingegeben werden. Es kann der Standardbenutzer des Mediums (welches später duchsucht wird) angegeben und ein Kommentar zum Katalog hinzugefügt werden.&lt;br>Wenn dies abgeschlossen ist, kann das Medium mit dem &lt;tt>Medium hinzufügen &lt;/tt>-Kommando aus dem Bearbeitenmenü hinzugefügt werden. In diesem Dialog muss muss das Verzeichnis/oder Laufwerk des Mediums, das benutzt werden soll, angegeben werden. Es wird empfohlen, den Namen und die Nummer des Medium, welche einzigartig sein müssen, anzugeben (Das Programm generiert immer identischen Namen und Nummer). Es kann das Medium, wenn erforderlich,  einem Benutzer zugeordnet werden.
 &lt;br>Wenn das Medium durchsucht wird, kann man es im Browserfenster duchsuchen (wie beim mc), oder in ihm suchen. Der Katalog kann mit dem &lt;tt>Speichern&lt;/tt>-Kommando aus dem Katalogmenü gespeichert werden.
 &lt;br>
 &lt;br>
@@ -2163,7 +2163,7 @@ E-mail: hyperr@freemail.hu
     </message>
     <message>
       <source>The new (media) name must be unique!</source>
-      <translation>Der neue (Medien-)Name muss identisch sein!</translation>
+      <translation>Der neue (Medien-)Name muss einzigartig sein!</translation>
     </message>
     <message>
       <source>The new media name can't starts with &quot;@&quot; !</source>
@@ -2198,7 +2198,7 @@ E-mail: hyperr@freemail.hu
     </message>
     <message>
       <source>The new media-number must be unique!</source>
-      <translation>Die Mediennummer muss einmalig sein!</translation>
+      <translation>Die Mediennummer muss einzigartig sein!</translation>
     </message>
     <message>
       <source>Please enter number value!</source>
