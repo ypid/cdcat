@@ -123,30 +123,60 @@ void TCharToChar(const wchar_t* Src, char* Dest, int Size)
  } 
 
 QString getCDName ( const char *CDpath ) {
+    /* wide char */
+    /*
+    // this does not work correctly!
+    char  *name = new char[64];
+    
+    DWORD  dwDummy;
+    DWORD  dwFlags;
+    LPWSTR WSTR_CDpath = NULL;
+    
+    int length = MultiByteToWideChar(CP_ACP,0,CDpath ,strlen(CDpath)+1,NULL,0);
+    MultiByteToWideChar(CP_ACP,0,CDpath ,strlen(CDpath)+1,WSTR_CDpath,length);
+    LPWSTR LPW_name=L"";
+    DWORD dwVolumeSerialNumber;
+    if ( !GetVolumeInformationW(WSTR_CDpath, LPW_name, 64, NULL, NULL, NULL, NULL, 0) )
+    //if ( !GetVolumeInformation ( WSTR_CDpath, LPW_name, 0, 0, 0, 0, 0, 0 ))
+    {
+    	return QString("");
+    }
+    
+    WideCharToMultiByte(CP_ACP, 0, (LPWSTR)LPW_name, 64,name, 64, NULL, NULL);    
+    QMessageBox::information(0, "vol1", "path: "+QString(CDpath)+"\nname: \""+QString(name)+"\""); 
+    return QString(name);
+    */
+    /*end wide char */
+
+    /* test2 */
+    /*
+    char  *name = new char[64];
+    DWORD  dwDummy;
+    DWORD  dwFlags;
+    
+    if(!GetVolumeInformationW((LPCSTR)CDpath,(LPSTR)name,64,NULL,&dwDummy,&dwFlags,NULL,0))
+        strcpy(name,"");
+    QMessageBox::information(0, "vol1", "path: "+QString(CDpath)+"\nname: \""+QString(name)+"\""); 
+    return QString(name);
+    */
+    /* end test2 */
+
+
+    /* ANSI */
+    // works with german special chars too :)
     char bufName1[64];
     DWORD dwSerial;
-    //char  *name = new char[64];
     char *name;
-    //DWORD  dwDummy;
-    //DWORD  dwFlags;
-    //LPWSTR WSTR_CDpath = NULL;
-    //int length = MultiByteToWideChar(CP_ACP,0,CDpath ,strlen(CDpath)+1,NULL,0);
-    //MultiByteToWideChar(CP_ACP,0,CDpath ,strlen(CDpath)+1,WSTR_CDpath,length);
-    //LPWSTR LPW_name=L"";
-
-        DWORD dwVolumeSerialNumber;
-    if ( !GetVolumeInformationA(CDpath, bufName1, sizeof(bufName1), &dwSerial, NULL, NULL, NULL, 0) )
-    //if ( !GetVolumeInformation ( WSTR_CDpath, LPW_name,                0,   0, 0, 0, 0, 0 ))
-    //  if(!GetVolumeInformation(LPWSTR("D:\\"),LPW_name,64,NULL,&dwDummy,&dwFlags,NULL,0))
-	{
-		//strcpy ( name,"\0" );
-		return QString("");
-	}
+    if ( !GetVolumeInformationA(CDpath, bufName1, 64, &dwSerial, NULL, NULL, NULL, 0) )
+    {
+	return QString("");
+    }
     name = QString(bufName1).toLocal8Bit().data();
-    //WideCharToMultiByte(CP_ACP, 0, (LPWSTR)LPW_name, -1,name, 1000, NULL, NULL);    
     //QMessageBox::information(0, "vol1", "path: "+QString(CDpath)+"\nname: \""+QString(name)+"\""); 
-    //return name;
     return QString(bufName1);
+    /* end ANSI */
+
+
 }
 #endif
 
