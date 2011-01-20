@@ -1,5 +1,7 @@
 20. Jan 2011 Christoph Thielecke <crissi99@gmx.de>
-	cdrom/dvd volume name at win32 fixed
+	- cdrom/dvd volume name at win32 fixed
+	- option "detect cdrom/dvd media name after mount" at win32 removed (not nessary)
+	- set default value for cdrom device
 
 19. Jan 2011 Christoph Thielecke <crissi99@gmx.de>
 	- pcre replaced by QRegExp

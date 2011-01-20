@@ -73,7 +73,12 @@ CdCatConfig::CdCatConfig ( void ) {
     autoload   = false;
     autoloadfn = "";
     nice       = true;
-    cdrompath  = "";
+    // set dummy
+#ifdef _WIN32
+    cdrompath = "D:/";
+#else
+    cdrompath = "/dev/sr0";
+#endif
     hlist.clear();
     autosave   = false;
     debug_info_enabled = false;
@@ -610,8 +615,7 @@ int CdCatConfig::writeConfig ( void ) {
             str << "niceformat=true" << endl;
         else
             str << "niceformat=false" << endl;
-
-
+        
         str << "cdrompath="+cdrompath << endl;
 
 #ifndef _WIN32
