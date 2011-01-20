@@ -139,9 +139,8 @@ QString getCDName ( const char *CDpath ) {
     //if ( !GetVolumeInformation ( WSTR_CDpath, LPW_name,                0,   0, 0, 0, 0, 0 ))
     //  if(!GetVolumeInformation(LPWSTR("D:\\"),LPW_name,64,NULL,&dwDummy,&dwFlags,NULL,0))
 	{
-        strcpy ( name,"\0" );
-
-		return name;
+		//strcpy ( name,"\0" );
+		return QString("");
 	}
     name = QString(bufName1).toLocal8Bit().data();
     //WideCharToMultiByte(CP_ACP, 0, (LPWSTR)LPW_name, -1,name, 1000, NULL, NULL);    
