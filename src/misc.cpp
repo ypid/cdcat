@@ -123,7 +123,7 @@ void TCharToChar(const wchar_t* Src, char* Dest, int Size)
  } 
 
 QString getCDName ( const char *CDpath ) {
-    char bufName1[128];
+    char bufName1[64];
     DWORD dwSerial;
     //char  *name = new char[64];
     char *name;
@@ -144,7 +144,7 @@ QString getCDName ( const char *CDpath ) {
 	}
     name = QString(bufName1).toLocal8Bit().data();
     //WideCharToMultiByte(CP_ACP, 0, (LPWSTR)LPW_name, -1,name, 1000, NULL, NULL);    
-    QMessageBox::information(0, "vol1", "path: "+QString(CDpath)+"\nname: \""+QString(name)+"\""); 
+    //QMessageBox::information(0, "vol1", "path: "+QString(CDpath)+"\nname: \""+QString(name)+"\""); 
     //return name;
     return QString(bufName1);
 }
