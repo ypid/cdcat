@@ -1428,7 +1428,7 @@ wird zu
     </message>
     <message>
       <source>The Media Name must be unique! Please change it!</source>
-      <translation>Der neue Medienname muss identisch sein! Bitte ändern!</translation>
+      <translation>Der neue Medienname muss einzigartig sein! Bitte ändern!</translation>
     </message>
     <message>
       <source>Select readable items</source>
