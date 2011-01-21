@@ -51,7 +51,7 @@ SOURCES		=   adddialog.cpp \
             unix:system(lrelease cdcat.pro)
 
             win32:system(lrelease cdcat.pro)
-CONFIG		+= qt xml debug
+CONFIG		+= qt debug
 MOC_DIR         = moc_files/
 OBJECTS_DIR     = obj_files/ 
 unix:LIBS       += -lz -lexpat
@@ -95,6 +95,7 @@ win32:translations.path += c:\program files\cdcat
 win32:distfiles.path +=c:\program files\cdcat
 INSTALLS += target translations distfiles
 
+QT += xml
 
 #The following line was inserted by qt3to4
 QT +=  qt3support 

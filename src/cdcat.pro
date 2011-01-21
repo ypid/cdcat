@@ -98,6 +98,7 @@ win32:translations.path += c:\program files\cdcat
 win32:distfiles.path +=c:\program files\cdcat
 INSTALLS += target translations distfiles
 
+QT += xml
 
 #The following line was inserted by qt3to4
 QT +=  qt3support 
