@@ -11,10 +11,11 @@
 #define CDCAT_WDBFILE
 
 #include <stdio.h>
-#include <expat.h>
 #include <zlib.h>
 //Added by qt3to4:
 #include <Q3CString>
+
+#include <QtXml/QXmlDefaultHandler>
 
 class Node;
 class PWw;
@@ -89,14 +90,31 @@ public:
     
 
     int      readFrom ( Node *source );
-    float    getFloat ( const char **from,char *what,char *err );
-    char *   getStr ( const char **from,char *what,char *err );
+//     float    getFloat ( const char **from,char *what,char *err );
+//     char *   getStr ( const char **from,char *what,char *err );
+    QString getStr2(const QXmlAttributes &atts,char *what,char *err );
+    float getFloat2 (const QXmlAttributes &atts,char *what,char *err );
     int      isthere ( const char **from,char *what );
-
     FileReader ( gzFile ff, char *allocated_buffer, long long int allocated_buffer_len, int ins = 0 );
+    QXmlSimpleReader xmlReader;
 
     QString getCatName ( void );
 };
+
+class CdCatXmlHandler : public QXmlDefaultHandler {
+	public:
+		CdCatXmlHandler(FileReader *r, bool onlyCatalog=false);
+		~CdCatXmlHandler();
+		bool characters(const QString & ch);
+		bool endElement ( const QString & namespaceURI, const QString & localName, const QString & qName );
+		bool startElement ( const QString & namespaceURI, const QString & localName, const QString & qName, const QXmlAttributes & atts );
+		bool fatalError(const QXmlParseException &exception);
+	private:
+		FileReader *r;
+		QString currentText;
+		bool onlyCatalog;
+};
+
 
 
 #endif

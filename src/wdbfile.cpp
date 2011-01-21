@@ -10,7 +10,7 @@
 #include <stdio.h>
 #include <ctype.h>
 
-#include <expat.h>
+#include <QtXml/QXmlInputSource>
 #include <zlib.h>
 #include <qstring.h>
 #include <qdatetime.h>
@@ -406,7 +406,6 @@ int  FileWriter::writeCatLnk ( Node *source ) {
 *****************************************************************************/
 int clearbuffer = 1;
 unsigned long buffpos=0;
-XML_Parser *pp = NULL;
 
 
 QString FileReader::get_cutf8 ( char *s) {
@@ -561,66 +560,73 @@ unsigned char decodeHexa ( char a,char b ) //try to decode a hexadecimal byte to
     return r;
 }
 
-float FileReader::getFloat ( const char **from,char *what,char *err ) {
-    float r;
+
+QString FileReader::getStr2(const QXmlAttributes &atts,char *what,char *err ) {
     int i;
-
-    if ( from == NULL ) {
-        errormsg = QString ( "Line %1: %2" ).arg ( XML_GetCurrentLineNumber ( *pp ) ).arg ( err );
-        error = 1;
-        return 0;
-    }
-    for ( i=0;;i+=2 ) {
-        if ( from[i] == NULL ) {
-            errormsg = QString ( "Line %1: %2,I can't find \"%3\" attribute" )
-                       .arg ( XML_GetCurrentLineNumber ( *pp ) ).arg ( err ).arg ( what );
-            error  = 1;
-            return   0;
-        }
-        if ( !strcmp ( from[i],what ) ) {
-            if ( from[i+1] == NULL ) {
-                errormsg = QString ( "Line %1: %2" ).arg ( XML_GetCurrentLineNumber ( *pp ) ).arg ( err );
-                error  = 1;
-                return 0;
-            }
-            if ( 1 != sscanf ( from[i+1],"%f",& r ) ) {
-                errormsg = QString ( "Line %1: %2:I can't understanding \"%3\" attribute." )
-                           .arg ( XML_GetCurrentLineNumber ( *pp ) ).arg ( err ).arg ( what );
-                error  = 1;
-                return   0;
-            }
-            return r;
-        }
-    }
-    return 0;
-}
-
-char * FileReader::getStr ( const char **from,char *what,char *err ) {
-    int i;
-
-    if ( from == NULL ) {
-        errormsg = QString ( "Line %1: %2" ).arg ( XML_GetCurrentLineNumber ( *pp ) ).arg ( err );
+ DEBUG_INFO_ENABLED = init_debug_info();
+    if ( atts.length() == 0 ) {
+//         errormsg = QString ( "Line %1: %2" ).arg ( XML_GetCurrentLineNumber ( *pp ) ).arg ( err );
+        errormsg = QString ( "%2" ).arg ( err );
         error=1;
         return NULL;
     }
-    for ( i=0;;i+=2 ) {
-        if ( from[i] == NULL ) {
-            errormsg = QString ( "Line %1: %2:I can't find \"%3\" attribute." )
-                       .arg ( XML_GetCurrentLineNumber ( *pp ) ).arg ( err ).arg ( what );
+
+    bool attribute_found = false;
+    for ( i=0; i < atts.length();i++ ) {
+	if (QString(what) == atts.qName(i))
+		attribute_found = true;
+		return atts.value(QString(what));
+     }
+        if ( !attribute_found ) {
+//             errormsg = QString ( "Line %1: %2:I can't find \"%3\" attribute." )
+//                        .arg ( XML_GetCurrentLineNumber ( *pp ) ).arg ( err ).arg ( what );
+            errormsg = QString ( "%1:I can't find \"%2\" attribute." ).arg ( err ).arg ( what );
             error  = 1;
             return   NULL;
         }
-        if ( !strcmp ( from[i],what ) ) {
-            if ( from[i+1] == NULL ) {
-                errormsg = QString ( "Line %1: %2" ).arg ( XML_GetCurrentLineNumber ( *pp ) ).arg ( err );
-                error = 1;
-                return NULL;
-            }
-            return ( ( char * ) ( from[i+1] ) );
-        }
-    }
+	
+    
     return NULL;
 }
+
+float FileReader::getFloat2 ( const QXmlAttributes &atts,char *what,char *err ) {
+    float r;
+    int i;
+
+    if ( atts.length() == 0 ) {
+//         errormsg = QString ( "Line %1: %2" ).arg ( XML_GetCurrentLineNumber ( *pp ) ).arg ( err );
+	errormsg = QString ( "%1" ).arg ( err );
+        error = 1;
+        return 0;
+    }
+    bool attribute_found = false;
+    for ( i=0; i < atts.length();i++ ) {
+	if (QString(what) == atts.qName(i))
+		attribute_found = true;
+		 return atts.value(QString(what)).toFloat();
+     }
+        if ( !attribute_found ) {
+//             errormsg = QString ( "Line %1: %2,I can't find \"%3\" attribute" )
+//                        .arg ( XML_GetCurrentLineNumber ( *pp ) ).arg ( err ).arg ( what );
+            errormsg = QString ( "%1,I can't find \"%2\" attribute" )
+                       .arg ( err ).arg ( what );
+            error  = 1;
+            return   0;
+        }
+            if ( 1 != sscanf ( atts.value(i).toLocal8Bit().constData(),"%f",& r ) ) {
+//                 errormsg = QString ( "Line %1: %2:I can't understanding \"%3\" attribute." )
+//                            .arg ( XML_GetCurrentLineNumber ( *pp ) ).arg ( err ).arg ( what );
+                errormsg = QString ( "%1:I can't understanding \"%2\" attribute." )
+                           .arg ( err ).arg ( what );
+                error  = 1;
+                return   0;
+            }
+           
+
+    return 0;
+}
+
+
 
 int FileReader::isthere ( const char **from,char *what ) {
     int i;
@@ -640,46 +646,255 @@ int FileReader::isthere ( const char **from,char *what ) {
 
 DBMp3Tag *tmp_tagp=NULL;
 
-static void start ( void *data, const char *el, const char **attr ) {
+
+void getCharDataFromXML ( void *data,const char *s,int len ) {
+    int copylen=len;
+
+    if ( FREA->error ) return;
+    /*That case I found an error in file -> needs exit the pasing as fast as I can.*/
+
+    if ( clearbuffer ) {
+        buffpos = 0;
+        clearbuffer = 0;
+    }
+
+    if ( buffpos + len >= ( MAX_STORED_SIZE*2 ) )
+        copylen = ( MAX_STORED_SIZE*2 ) - buffpos;
+
+    memcpy ( ( FREA->dataBuffer ) +buffpos,s,sizeof ( char ) * copylen );
+    buffpos += copylen;
+    FREA->dataBuffer[buffpos] = '\0';
+}
+
+
+int FileReader::readFrom ( Node *source ) {
+	DEBUG_INFO_ENABLED = init_debug_info();
+	char line[80]; // encoding detect
+	error = 0;
+	sp    = source;
+	
+	if(*DEBUG_INFO_ENABLED)
+		cerr <<"Start Cycle"<<endl;
+	
+	// detect encoding
+	int len = gzread(f, line, 80);
+	//cerr <<"line: " << line <<endl;
+	QString line2(line);
+	//if (*DEBUG_INFO_ENABLED)
+	//	std::cerr <<"line2: " << line2.constData() <<endl;
+	QStringList encodingline_parts = line2.split('"');
+	XML_ENCODING = encodingline_parts.at(3);
+	
+	if (*DEBUG_INFO_ENABLED)
+		std::cerr <<"deteced encoding: " << XML_ENCODING.toAscii().constData() <<endl;
+	gzrewind(f);
+// 	XML_SetEncoding ( p, XML_ENCODING.toAscii().constData() );
+	
+	/* now read the buffer */
+	len = 0;
+	int readcount = 0;
+	char tmpbuffer[1024];
+	
+	if (*DEBUG_INFO_ENABLED)
+		std::cerr <<"start reading file..." <<endl;
+	while (len != allocated_buffer_len  ) {
+		progress ( pww );
+		readcount = gzread(f, tmpbuffer, 1024);
+		len += readcount;
+		//if(*DEBUG_INFO_ENABLED)
+		//  cerr << "readcount: " << readcount << endl;
+		strncat(dataBuffer, tmpbuffer, 1024);
+	}
+	
+	if (*DEBUG_INFO_ENABLED)
+		std::cerr << "read done: " << len << " of " << allocated_buffer_len << " bytes" << endl;
+	
+	CdCatXmlHandler *handler = new CdCatXmlHandler(this);
+	xmlReader.setContentHandler(handler);
+	xmlReader.setErrorHandler(handler);
+	
+	QXmlInputSource mysource;
+	if (XML_ENCODING.toAscii().constData() == "UTF-8") {
+		if (*DEBUG_INFO_ENABLED)
+			std::cerr <<"set data source text..." <<endl;
+		mysource.setData(QString(dataBuffer));
+	}
+	else {
+		if (*DEBUG_INFO_ENABLED)
+			std::cerr <<"set data source to utf8  converted text..." <<endl;
+		mysource.setData(converter->toUnicode (QString(dataBuffer)));
+	}
+	
+	int done=0;
+	
+	if ( ! xmlReader.parse(mysource) ) {
+            errormsg = QString ( "Parse error\n" );
+	}
+	
+	delete handler;
+	if (*DEBUG_INFO_ENABLED)
+		std::cerr <<"parsing done" <<endl;
+	
+	if (*DEBUG_INFO_ENABLED)
+		std::cerr <<"End Cycle" << endl;
+	return done;
+}
+
+FileReader::FileReader ( gzFile ff, char *allocated_buffer, long long int allocated_buffer_len, int ins ) {
+    f = ff;
+    insert=ins;
+    converter = QTextCodec::codecForName ( "utf8" );
+    dataBuffer = allocated_buffer;
+    this->allocated_buffer_len = allocated_buffer_len;
+}
+
+
+/* ********************************************************************* */
+QString catname="";
+
+QString FileReader::getCatName ( void ) {
+	DEBUG_INFO_ENABLED = init_debug_info();
+	catname = "";
+	
+	char line[80]; // encoding detect
+	error = 0;
+	// detect encoding
+	int len = gzread(f, line, 80);
+	//cerr <<"line: " << line <<endl;
+	QString line2(line);
+	//if (*DEBUG_INFO_ENABLED)
+	//	std::cerr <<"line2: " << line2.constData() <<endl;
+	QStringList encodingline_parts = line2.split('"');
+	XML_ENCODING = encodingline_parts.at(3);
+	
+	if (*DEBUG_INFO_ENABLED)
+		std::cerr <<"deteced encoding: " << XML_ENCODING.toAscii().constData() <<endl;
+	gzrewind(f);
+// 	XML_SetEncoding ( p, XML_ENCODING.toAscii().constData() );
+	
+	/* now read the buffer */
+	len = 0;
+	int readcount = 0;
+	char tmpbuffer[1024];
+	
+	if (*DEBUG_INFO_ENABLED)
+		std::cerr <<"start reading file..." <<endl;
+	while (len != 20  ) {
+		progress ( pww );
+		readcount = gzread(f, tmpbuffer, 1024);
+		len += readcount;
+		//if(*DEBUG_INFO_ENABLED)
+		//  cerr << "readcount: " << readcount << endl;
+		strncat(dataBuffer, tmpbuffer, 1024);
+	}
+	
+	if (*DEBUG_INFO_ENABLED)
+		std::cerr << "read done: " << len << " of " << allocated_buffer_len << " bytes" << endl;
+	
+	CdCatXmlHandler *handler = new CdCatXmlHandler(this, true); // only catalog name
+	xmlReader.setContentHandler(handler);
+	xmlReader.setErrorHandler(handler);
+	
+	QXmlInputSource mysource;
+	if (XML_ENCODING.toAscii().constData() == "UTF-8") {
+		if (*DEBUG_INFO_ENABLED)
+			std::cerr <<"set data source text..." <<endl;
+		mysource.setData(QString(dataBuffer));
+	}
+	else {
+		if (*DEBUG_INFO_ENABLED)
+			std::cerr <<"set data source to utf8  converted text..." <<endl;
+		mysource.setData(converter->toUnicode (QString(dataBuffer)));
+	} 
+	
+	if ( ! xmlReader.parse(mysource) ) {
+		errormsg = QString ( "Parse error\n" );
+	}
+	int done=0;
+	
+	delete handler;
+	if (*DEBUG_INFO_ENABLED)
+		std::cerr <<"parsing done" <<endl;
+
+	delete handler;
+	if ( done || catname != "" ) {
+		return catname;
+	}
+}
+
+CdCatXmlHandler::CdCatXmlHandler(FileReader *r, bool onlyCatalog) {
+	this->r = r;
+	this->onlyCatalog=onlyCatalog;
+}
+
+CdCatXmlHandler::~CdCatXmlHandler() {
+
+}
+
+bool CdCatXmlHandler::characters(const QString & ch) {
+	if (ch.length() == 0)
+		return true;
+	DEBUG_INFO_ENABLED = init_debug_info();
+// 	if(*DEBUG_INFO_ENABLED)
+// 		cerr << "CdCatXmlHandler::characters: " << qPrintable(ch) << endl;
+	currentText+= ch;
+	return true;
+}
+
+bool CdCatXmlHandler::startElement ( const QString & namespaceURI, const QString & localName, const QString & el, const QXmlAttributes & attr ) {
     DEBUG_INFO_ENABLED = init_debug_info();
     QString ts1,ts2,ts3,ts4,ts5,ts6;
     QDateTime td1;
     float tf1;
     int   ti1;
 
-    if ( FREA->error ) return;
+    void *data = r;
+
+    if ( FREA->error )
+	return false;
     /*That case I found an error in file -> needs exit the pasing as fast as I can.*/
-       //if(*DEBUG_INFO_ENABLED)
-      //     cerr <<"Start_start:"<<el<<endl;
+//     if(*DEBUG_INFO_ENABLED)
+//           cerr <<"Start_start:"<<qPrintable(el)<<endl;
     clearbuffer = 1;
-    if ( !strcmp ( el,"catalog" ) ) {
-        if ( FREA->insert ) return;
+    if ( el == "catalog"  ) {
+        if ( FREA->insert )
+		return false;
+
+	if (onlyCatalog) {
+		catname = FREA->get_cutf8 ( FREA->getStr2 ( attr,"name","Error while parsing \"catalog\" node" ).toAscii().data() );
+		return true;
+	}
 
         ( ( DBCatalog * ) ( ( FREA->sp )->data ) ) ->name =
-            FREA->get_cutf8 ( FREA->getStr ( attr,"name","Error while parsing \"catalog\" node" ) );
-        if ( FREA->error ) return;
+            FREA->get_cutf8 ( FREA->getStr2 ( attr,"name","Error while parsing \"catalog\" node" ).toAscii().data() );
+        if ( FREA->error )
+		return false;
 
         ( ( DBCatalog * ) ( ( FREA->sp )->data ) ) ->owner=
-            FREA->get_cutf8 ( FREA->getStr ( attr,"owner","Error while parsing \"catalog\" node" ) );
-        if ( FREA->error ) return;
+            FREA->get_cutf8 ( FREA->getStr2 ( attr,"owner","Error while parsing \"catalog\" node" ).toAscii().data() );
+        if ( FREA->error )
+		return false;
 
         ( ( DBCatalog * ) ( ( FREA->sp )->data ) ) ->modification=
-            FREA->get_dcutf8 ( FREA->getStr ( attr,"time","Error while parsing \"catalog\" node" ) );
-        if ( FREA->error ) return;
+            FREA->get_dcutf8 ( FREA->getStr2 ( attr,"time","Error while parsing \"catalog\" node" ).toAscii().data() );
+        if ( FREA->error )
+		return false;
     }
 
-    if ( !strcmp ( el,"datafile" ) ) {
+    if ( el == "datafile"  ) {
         Node *tmp=FREA->sp;
-        if ( FREA->insert ) return;
+        if ( FREA->insert )
+		return false;
 
         while ( tmp->type != HC_CATALOG ) tmp=tmp->parent;
 
         ( ( DBCatalog * ) ( tmp->data ) ) ->fileversion =
-            FREA->get_cutf8 ( FREA->getStr ( attr,"version","Error while parsing \"datafile\" node" ) );
-        if ( FREA->error ) return;
+            FREA->get_cutf8 ( FREA->getStr2 ( attr,"version","Error while parsing \"datafile\" node" ).toAscii().data() );
+        if ( FREA->error )
+		return false;
     }
 
-    if ( !strcmp ( el,"media" ) ) {
+    if ( el == "media" ) {
         Node *tt = FREA->sp->child;
 
         if ( tt == NULL ) FREA->sp->child = tt = new Node ( HC_MEDIA,FREA->sp );
@@ -695,22 +910,23 @@ static void start ( void *data, const char *el, const char **attr ) {
             QString newname;
 
 
-            newname = FREA->get_cutf8 ( FREA->getStr ( attr,"name"  ,"Error while parsing \"media\" node" ) );
-            if ( FREA->error ) return;
+            newname = FREA->get_cutf8 ( FREA->getStr2 ( attr,"name"  ,"Error while parsing \"media\" node" ).toAscii().data() );
+            if ( FREA->error )
+		return false;
 
             if ( newname.startsWith ( "@" ) ) {
                 FREA->errormsg = QString (
-                                     "Line %1: The media name begin with \"@\".\n\
+                                     "The media name begin with \"@\".\n\
 It is disallowed since cdcat version 0.98 !\n\
-Please change it with an older version or rewrite it in the xml file!" )
-                                 .arg ( XML_GetCurrentLineNumber ( *pp ) );
+Please change it with an older version or rewrite it in the xml file!" );
 
                 FREA->error = 1;
-                return;
+                return false;
             }
 
-            newnum = ( int ) FREA->getFloat ( attr,"number","Error while parsing \"media\" node" );
-            if ( FREA->error ) return;
+            newnum = ( int ) FREA->getFloat2 ( attr,"number","Error while parsing \"media\" node" );
+            if ( FREA->error )
+		return false;
 
             /*make the number unique*/
             for ( i=1;i==1; ) {
@@ -739,49 +955,61 @@ Please change it with an older version or rewrite it in the xml file!" )
 
 
             /*Fill data part:*/
-            ts1 = FREA->get_cutf8 ( FREA->getStr ( attr,"owner" ,"Error while parsing \"media\" node" ) );
-            if ( FREA->error ) return;
-            td1 = FREA->get_dcutf8 ( FREA->getStr ( attr,"time"  ,"Error while parsing \"media\" node" ) );
-            if ( FREA->error ) return;
+            ts1 = FREA->get_cutf8 ( FREA->getStr2 ( attr,"owner" ,"Error while parsing \"media\" node" ).toAscii().data() );
+            if ( FREA->error )
+		return false;
+            td1 = FREA->get_dcutf8 ( FREA->getStr2 ( attr,"time"  ,"Error while parsing \"media\" node" ).toAscii().data() );
+            if ( FREA->error )
+		return false;
 
-            ti1 = getTypeFS ( FREA->getStr ( attr,"type"  ,"Error while parsing \"media\" node" ) );
-            if ( FREA->error ) return;
+            ti1 = getTypeFS ( FREA->getStr2 ( attr,"type"  ,"Error while parsing \"media\" node" ) );
+            if ( FREA->error )
+		return false;
             if ( ti1 == UNKNOWN ) {
-                FREA->errormsg = QString ( "Line %1: Unknown media type in the file. (\"%2\")" )
-                                 .arg ( XML_GetCurrentLineNumber ( *pp ) )
-                                 .arg ( ( const char * ) FREA->getStr ( attr,"type"  ,"Error while parsing \"media\" node" ) );
+//                 FREA->errormsg = QString ( "Line %1: Unknown media type in the file. (\"%2\")" )
+//                                  .arg ( XML_GetCurrentLineNumber ( *pp ) )
+//                                  .arg ( ( const char * ) FREA->getStr2 ( attr,"type"  ,"Error while parsing \"media\" node" ) );
+
+                FREA->errormsg = QString ( "Unknown media type in the file. (\"%1\")" )
+                                 .arg ( ( const char * ) FREA->getStr2 ( attr,"type"  ,"Error while parsing \"media\" node" ).toAscii().data() );
+
                 FREA->error = 1;
-                return;
+                return false;
             }
 
             tt->data = ( void * ) new DBMedia ( newname,newnum,ts1,ti1,"",td1 );
 
         } else {
             /*Fill data part:*/
-            ts1 = FREA->get_cutf8 ( FREA->getStr ( attr,"name"  ,"Error while parsing \"media\" node" ) );
-            ts2 = FREA->get_cutf8 ( FREA->getStr ( attr,"owner" ,"Error while parsing \"media\" node" ) );
-            tf1 = FREA->getFloat ( attr,"number","Error while parsing \"media\" node" );
-            td1 = FREA->get_dcutf8 ( FREA->getStr ( attr,"time"  ,"Error while parsing \"media\" node" ) );
+            ts1 = FREA->get_cutf8 ( FREA->getStr2 ( attr,"name"  ,"Error while parsing \"media\" node" ).toAscii().data() );
+            ts2 = FREA->get_cutf8 ( FREA->getStr2 ( attr,"owner" ,"Error while parsing \"media\" node" ).toAscii().data() );
+            tf1 = FREA->getFloat2 ( attr,"number","Error while parsing \"media\" node" );
+            td1 = FREA->get_dcutf8 ( FREA->getStr2 ( attr,"time"  ,"Error while parsing \"media\" node" ).toAscii().data() );
 
-            if ( FREA->error ) return;
+            if ( FREA->error )
+		return false;
 
             if ( ts2.startsWith ( "@" ) ) {
-                FREA->errormsg = QString (
-                                     "Line %1: The media name begin with \"@\".\n\
-It is disallowed since cdcat version 0.98 !\n\
-Please change it with an older version or rewrite it in the xml file!" )
-                                 .arg ( XML_GetCurrentLineNumber ( *pp ) );
+//                 FREA->errormsg = QString (
+//                                      "Line %1: The media name begin with \"@\".\n\
+// It is disallowed since cdcat version 0.98 !\n\
+// Please change it with an older version or rewrite it in the xml file!" )
+//                                  .arg ( XML_GetCurrentLineNumber ( *pp ) );
+                FREA->errormsg = QString ("The media name begin with \"@\".\nIt is disallowed since cdcat version 0.98 !\nPlease change it with an older version or rewrite it in the xml file!" ) ;
                 FREA->error = 1;
-                return;
+                return false;
             }
 
-            ti1 = getTypeFS ( FREA->getStr ( attr,"type"  ,"Error while parsing \"media\" node" ) );
-            if ( FREA->error ) return;
+            ti1 = getTypeFS ( FREA->getStr2 ( attr,"type"  ,"Error while parsing \"media\" node" ).toAscii().data() );
+            if ( FREA->error )
+		return false;
             if ( ti1 == UNKNOWN ) {
-                FREA->errormsg = QString ( "Line %1: Unknown media type in the file. (\"%2\")" )
-                                 .arg ( XML_GetCurrentLineNumber ( *pp ) ).arg ( FREA->getStr ( attr,"type"  ,"Error while parsing \"media\" node" ) );
+//                 FREA->errormsg = QString ( "Line %1: Unknown media type in the file. (\"%2\")" )
+//                                  .arg ( XML_GetCurrentLineNumber ( *pp ) ).arg ( FREA->getStr2 ( attr,"type"  ,"Error while parsing \"media\" node" ) );
+                FREA->errormsg = QString ( "Line %1: Unknown media type in the file. (\"%1\")" )
+                                 .arg ( FREA->getStr2 ( attr,"type"  ,"Error while parsing \"media\" node" ).toAscii().data() );
                 FREA->error = 1;
-                return;
+                return false;
             }
 
             tt->data = ( void * ) new DBMedia ( ts1, ( int ) tf1,ts2,ti1,"",td1 );
@@ -790,7 +1018,7 @@ Please change it with an older version or rewrite it in the xml file!" )
         FREA->sp = tt;
     }
 
-    if ( !strcmp ( el,"directory" ) ) {
+    if ( el == "directory" ) {
         Node *tt = FREA->sp->child;
 
         if ( tt == NULL ) FREA->sp->child = tt = new Node ( HC_DIRECTORY,FREA->sp );
@@ -800,16 +1028,17 @@ Please change it with an older version or rewrite it in the xml file!" )
             tt=tt->next;
         }
         /*Fill data part:*/
-        ts1 = FREA->get_cutf8 ( FREA->getStr ( attr,"name"  ,"Error while parsing \"directory\" node" ) );
-        td1 = FREA->get_dcutf8 ( FREA->getStr ( attr,"time" ,"Error while parsing \"directory\" node" ) );
-        if ( FREA->error ) return;
+        ts1 = FREA->get_cutf8 ( FREA->getStr2 ( attr,"name"  ,"Error while parsing \"directory\" node" ).toAscii().data() );
+        td1 = FREA->get_dcutf8 ( FREA->getStr2 ( attr,"time" ,"Error while parsing \"directory\" node" ).toAscii().data() );
+        if ( FREA->error )
+		return false;
         tt->data = ( void * ) new DBDirectory ( ts1,td1,"" );
 
         /*Make this node to the actual node:*/
         FREA->sp = tt;
     }
 
-    if ( !strcmp ( el,"file" ) ) {
+    if ( el == "file" ) {
 
         Node *tt = FREA->sp->child;
 
@@ -822,39 +1051,47 @@ Please change it with an older version or rewrite it in the xml file!" )
         /*Fill data part:*/
         //if(*DEBUG_INFO_ENABLED)
         //	cerr <<"1"<<endl;
-        ts1 = FREA->get_cutf8 ( FREA->getStr ( attr,"name"  ,"Error while parsing \"file\" node" ) );
+        ts1 = FREA->get_cutf8 ( FREA->getStr2 ( attr,"name"  ,"Error while parsing \"file\" node" ).toAscii().data() );
         //if(*DEBUG_INFO_ENABLED)
         //	cerr <<"2"<<endl;
 
-        if ( FREA->error ) return;
+        if ( FREA->error )
+		return false;
 
-        td1 = FREA->get_dcutf8 ( FREA->getStr ( attr,"time"  ,"Error while parsing \"file\" node" ) );
+        td1 = FREA->get_dcutf8 ( FREA->getStr2 ( attr,"time"  ,"Error while parsing \"file\" node" ).toAscii().data() );
         //if(*DEBUG_INFO_ENABLED)
         //	cerr <<"3"<<endl;
 
-        if ( FREA->error ) return;
+        if ( FREA->error )
+		return false;
         //if(*DEBUG_INFO_ENABLED)
         //	cerr <<"4"<<endl;
 
-        tf1 = getSizeFS ( FREA->getStr ( attr,"size","Error while parsing \"file\" node" ) );
+        tf1 = getSizeFS ( FREA->getStr2 ( attr,"size","Error while parsing \"file\" node" ).toAscii().data() );
         //if(*DEBUG_INFO_ENABLED)
         //	cerr <<"5"<<endl;
 
-        if ( FREA->error ) return;
+        if ( FREA->error )
+		return false;
         if ( tf1 == -1 ) {
-            FREA->errormsg = QString ( "Line %1: Unknown size data in file node. (\"%2\")" )
-                             .arg ( XML_GetCurrentLineNumber ( *pp ) ).arg ( FREA->getStr ( attr,"size","Error while parsing \"file\" node" ) );
+//             FREA->errormsg = QString ( "Line %1: Unknown size data in file node. (\"%2\")" )
+//                              .arg ( XML_GetCurrentLineNumber ( *pp ) ).arg ( FREA->getStr2 ( attr,"size","Error while parsing \"file\" node" ) );
+            FREA->errormsg = QString ( "Unknown size data in file node. (\"%1\")" )
+                             .arg ( FREA->getStr2 ( attr,"size","Error while parsing \"file\" node" ).toAscii().data() );
             FREA->error = 1;
-            return;
+            return false;
         }
 
-        ti1 = getSizetFS ( FREA->getStr ( attr,"size","Error while parsing \"file\" node" ) );
-        if ( FREA->error ) return;
+        ti1 = getSizetFS ( FREA->getStr2 ( attr,"size","Error while parsing \"file\" node" ) );
+        if ( FREA->error )
+		return false;
         if ( ti1 == -1 ) {
-            FREA->errormsg = QString ( "Line %1: Unknown size type in file node. (\"%2\")" )
-                             .arg ( XML_GetCurrentLineNumber ( *pp ) ).arg ( FREA->getStr ( attr,"size","Error while parsing \"file\" node" ) );
+//             FREA->errormsg = QString ( "Line %1: Unknown size type in file node. (\"%2\")" )
+//                              .arg ( XML_GetCurrentLineNumber ( *pp ) ).arg ( FREA->getStr2 ( attr,"size","Error while parsing \"file\" node" ) );
+            FREA->errormsg = QString ( "Unknown size type in file node. (\"%1\")" )
+                             .arg ( FREA->getStr2 ( attr,"size","Error while parsing \"file\" node" ).toAscii().data() );
             FREA->error = 1;
-            return;
+            return false;
         }
 
         tt->data = ( void * ) new DBFile ( ts1,td1,"",tf1,ti1 );
@@ -863,7 +1100,7 @@ Please change it with an older version or rewrite it in the xml file!" )
         FREA->sp = tt;
 
     }
-    if ( !strcmp ( el,"mp3tag" ) ) {
+    if (  el =="mp3tag" ) {
         Node *tt = ( ( DBFile * ) ( FREA->sp->data ) )->prop;
         if ( tt == NULL ) ( ( DBFile * ) ( FREA->sp->data ) )->prop = tt = new Node ( HC_MP3TAG,FREA->sp );
         else {
@@ -872,11 +1109,12 @@ Please change it with an older version or rewrite it in the xml file!" )
             tt=tt->next;
         }
         /*Fill data part:*/
-        ts1 = FREA->get_cutf8 ( FREA->getStr ( attr,"artist"  ,"Error while parsing \"mp3tag\" node" ) );
-        ts2 = FREA->get_cutf8 ( FREA->getStr ( attr,"title"   ,"Error while parsing \"mp3tag\" node" ) );
-        ts3 = FREA->get_cutf8 ( FREA->getStr ( attr,"album"  ,"Error while parsing \"mp3tag\" node" ) );
-        ts4 = FREA->get_cutf8 ( FREA->getStr ( attr,"year"   ,"Error while parsing \"mp3tag\" node" ) );
-        if ( FREA->error ) return;
+        ts1 = FREA->get_cutf8 ( FREA->getStr2 ( attr,"artist"  ,"Error while parsing \"mp3tag\" node" ).toAscii().data() );
+        ts2 = FREA->get_cutf8 ( FREA->getStr2 ( attr,"title"   ,"Error while parsing \"mp3tag\" node" ).toAscii().data() );
+        ts3 = FREA->get_cutf8 ( FREA->getStr2 ( attr,"album"  ,"Error while parsing \"mp3tag\" node" ).toAscii().data() );
+        ts4 = FREA->get_cutf8 ( FREA->getStr2 ( attr,"year"   ,"Error while parsing \"mp3tag\" node" ).toAscii().data() );
+        if ( FREA->error )
+		return false;
 
         tmp_tagp = new DBMp3Tag ( ts1,ts2,"no comment",ts3,ts4 );
 
@@ -884,7 +1122,7 @@ Please change it with an older version or rewrite it in the xml file!" )
         /*I don't make this node to the actual node because this won't be parent.*/
     }
 
-    if ( !strcmp ( el,"catlnk" ) ) {
+    if ( el == "catlnk" ) {
         char *readed_loc;
         Node *tt = FREA->sp->child;
 
@@ -895,9 +1133,10 @@ Please change it with an older version or rewrite it in the xml file!" )
             tt=tt->next;
         }
         /*Fill data part:*/
-        ts1 = FREA->get_cutf8 ( FREA->getStr ( attr,"name"  ,"Error while parsing \"catlnk\" node" ) );
-        readed_loc = mstr ( FREA->getStr ( attr,"location" ,"Error while parsing \"catlnk\" node" ) );
-        if ( FREA->error ) return;
+        ts1 = FREA->get_cutf8 ( FREA->getStr2 ( attr,"name"  ,"Error while parsing \"catlnk\" node" ).toAscii().data() );
+        readed_loc = mstr ( FREA->getStr2 ( attr,"location" ,"Error while parsing \"catlnk\" node" ).toAscii().data() );
+        if ( FREA->error )
+		return false;
 
         tt->data = ( void * ) new DBCatLnk ( ts1.prepend ( "@" ),readed_loc,NULL );
 
@@ -905,52 +1144,58 @@ Please change it with an older version or rewrite it in the xml file!" )
         FREA->sp = tt;
     }
 
-    if ( !strcmp ( el,"content" ) ) {
+    if ( el == "content"  ) {
         /*nothing*/
     }
 
-    if ( !strcmp ( el,"comment" ) ) {
+    if (  el == "comment"  ) {
         /*nothing*/
     }
-    if ( !strcmp ( el,"borrow" ) ) {
+    if (  el == "borrow" ) {
         /*nothing*/
     }
-
-        //if(*DEBUG_INFO_ENABLED)    
-       //	cerr <<"end_start:"<<el<<endl;
-
+//         if(*DEBUG_INFO_ENABLED)    
+//        	cerr <<"end_start:"<<qPrintable(el)<<endl;
+    return true;
 }
 /*********************************************************************/
-static void end ( void *data, const char *el ) {
+bool CdCatXmlHandler::endElement ( const QString & namespaceURI, const QString & localName, const QString & el ) {
+//static void end ( void *data, const char *el ) {
     DEBUG_INFO_ENABLED = init_debug_info();
-    if(*DEBUG_INFO_ENABLED)
-   	cerr <<"Start_end:"<<el<<endl;
 
+   void *data = r;
+   
+//     if(*DEBUG_INFO_ENABLED)
+//    	cerr <<"Start_end:"<<qPrintable(el)<<endl;
 
-    if ( FREA->error ) return;
+    getCharDataFromXML ( r,currentText.toAscii().data(),currentText.length());
+    currentText = "";
+
+    if ( FREA->error )
+	return false;
     /*That case I found an error in file -> needs exit the pasing as fast as I can.*/
 
-    if ( !strcmp ( el,"catalog" ) ) {
+    if (el == "catalog") {
         //End parsing !
     }
 
-    if ( !strcmp ( el,"datafile" ) ) {
+    if ( el == "datafile" ) {
         //End parsing !
     }
 
-    if ( !strcmp ( el,"media" ) ) {
+    if ( el == "media") {
         /*Restore the parent node tho the actual node:*/
         FREA->sp = FREA->sp->parent;
     }
-    if ( !strcmp ( el,"directory" ) ) {
+    if ( el == "directory" ) {
         /*Restore the parent node tho the actual node:*/
         FREA->sp = FREA->sp->parent;
     }
-    if ( !strcmp ( el,"file" ) ) {
+    if ( el == "file" ) {
         /*Restore the parent node tho the actual node:*/
         FREA->sp = FREA->sp->parent;
     }
-    if ( !strcmp ( el,"mp3tag" ) ) {
+    if ( el == "mp3tag" ) {
         //strcpy(tmp_tagp->comment,FREA->dataBuffer);
     //if(*DEBUG_INFO_ENABLED)
     //	cerr <<"1"<<endl;
@@ -963,12 +1208,12 @@ static void end ( void *data, const char *el ) {
     //if(*DEBUG_INFO_ENABLED)
     //	cerr <<"4"<<endl;
     }
-    if ( !strcmp ( el,"catlnk" ) ) {
+    if ( el == "catlnk" ) {
         /*Restore the parent node tho the actual node:*/
         FREA->sp = FREA->sp->parent;
     }
 
-    if ( !strcmp ( el,"content" ) ) {
+    if ( el == "content" ) {
         unsigned char *bytes;
         unsigned long rsize,i;
 
@@ -988,7 +1233,7 @@ static void end ( void *data, const char *el ) {
         tt->data = ( void * ) new DBContent ( bytes,rsize );
     }
 
-    if ( !strcmp ( el,"comment" ) ) {
+    if ( el == "comment" ) {
         switch ( FREA->sp->type ) {
         case HC_CATALOG  :
 
@@ -1007,23 +1252,25 @@ static void end ( void *data, const char *el ) {
             ( ( DBCatLnk    * ) ( FREA->sp->data ) ) -> comment = FREA->get_cutf8 ( FREA->dataBuffer );
             break;
         case HC_MP3TAG:
-            FREA->errormsg = QString ( "Line %1: It isnt allowed comment node in mp3tag node." )
-                             .arg ( XML_GetCurrentLineNumber ( *pp ) );
+//             FREA->errormsg = QString ( "Line %1: It isnt allowed comment node in mp3tag node." )
+//                              .arg ( XML_GetCurrentLineNumber ( *pp ) );
+            FREA->errormsg = QString ( "It isnt allowed comment node in mp3tag node." );
             FREA->error = 1;
             break;
 
         }
     }
 
-    if ( !strcmp ( el,"borrow" ) ) {
+    if ( el == "borrow" ) {
         switch ( FREA->sp->type ) {
         case HC_CATALOG  :
         case HC_DIRECTORY:
         case HC_FILE     :
         case HC_MP3TAG   :
         case HC_CATLNK   :
-            FREA->errormsg = QString ( "Line %1: The borrow node only allowed in media node." )
-                             .arg ( XML_GetCurrentLineNumber ( *pp ) );
+//             FREA->errormsg = QString ( "Line %1: The borrow node only allowed in media node." )
+//                              .arg ( XML_GetCurrentLineNumber ( *pp ) );
+            FREA->errormsg = QString ( "The borrow node only allowed in media node." );
             FREA->error = 1;
             break;
         case HC_MEDIA    :
@@ -1033,168 +1280,17 @@ static void end ( void *data, const char *el ) {
         }
     }
 
-
     clearbuffer = 1;
-    //if(*DEBUG_INFO_ENABLED)
-    //	cerr <<"end_end:"<<el<<endl;
-
+//     if(*DEBUG_INFO_ENABLED)
+//     	cerr <<"end_end:"<<qPrintable(el)<<endl;
+    return true;
 }
 
-void getCharDataFromXML ( void *data,const char *s,int len ) {
-    int copylen=len;
-
-    if ( FREA->error ) return;
-    /*That case I found an error in file -> needs exit the pasing as fast as I can.*/
-
-    if ( clearbuffer ) {
-        buffpos = 0;
-        clearbuffer = 0;
-    }
-
-    if ( buffpos + len >= ( MAX_STORED_SIZE*2 ) )
-        copylen = ( MAX_STORED_SIZE*2 ) - buffpos;
-
-    memcpy ( ( FREA->dataBuffer ) +buffpos,s,sizeof ( char ) * copylen );
-    buffpos += copylen;
-    FREA->dataBuffer[buffpos] = '\0';
+bool CdCatXmlHandler::fatalError(const QXmlParseException &exception)
+{
+    std::cerr << "Parse error at line " << exception.lineNumber()
+              << ", " << "column " << exception.columnNumber() << ": "
+              << qPrintable(exception.message()) << std::endl;
+    return true;
 }
-
-
-int FileReader::readFrom ( Node *source ) {
-	DEBUG_INFO_ENABLED = init_debug_info();
-	char line[80]; // encoding detect
-	error = 0;
-	sp    = source;
-	
-	XML_Parser p = XML_ParserCreate ( NULL );
-	pp = &p;
-	if ( p == NULL ) {
-		errormsg = QString ( "Couldn't allocate memory for parser" );
-		if (*DEBUG_INFO_ENABLED)
-			std::cerr << "Couldn't allocate memory for parser" << endl;
-		//delete [] Buff;
-		//delete [] dataBuffer;
-		return 1;
-	}
-	if(*DEBUG_INFO_ENABLED)
-		cerr <<"Start Cycle"<<endl;
-	
-	// detect encoding
-	int len = gzread(f, line, 80);
-	//cerr <<"line: " << line <<endl;
-	QString line2(line);
-	//if (*DEBUG_INFO_ENABLED)
-	//	std::cerr <<"line2: " << line2.constData() <<endl;
-	QStringList encodingline_parts = line2.split('"');
-	XML_ENCODING = encodingline_parts.at(3);
-	
-	if (*DEBUG_INFO_ENABLED)
-		std::cerr <<"deteced encoding: " << XML_ENCODING.toAscii().constData() <<endl;
-	gzrewind(f);
-	XML_SetEncoding ( p, XML_ENCODING.toAscii().constData() );
-	
-	/* now read the buffer */
-	len = 0;
-	int readcount = 0;
-	char tmpbuffer[1024];
-	
-	if (*DEBUG_INFO_ENABLED)
-		std::cerr <<"start reading file..." <<endl;
-	while (len != allocated_buffer_len  ) {
-		progress ( pww );
-		readcount = gzread(f, tmpbuffer, 1024);
-		len += readcount;
-		//if(*DEBUG_INFO_ENABLED)
-		//  cerr << "readcount: " << readcount << endl;
-		strncat(dataBuffer, tmpbuffer, 1024);
-	}
-	
-	if (*DEBUG_INFO_ENABLED)
-		std::cerr << "read done: " << len << " of " << allocated_buffer_len << " bytes" << endl;
-	
-	XML_SetUserData ( p,this );
-	XML_SetElementHandler ( p, start, end );
-	XML_SetCharacterDataHandler ( p,getCharDataFromXML );
-	
-	int done=0;
-	if (*DEBUG_INFO_ENABLED)
-		std::cerr <<"start parsing structure..." <<endl;
-	if ( ! XML_Parse ( p, dataBuffer, allocated_buffer_len, done ) ) {
-		errormsg = QString ( "Parse error at line %1:\n%2\n" )
-			.arg ( XML_GetCurrentLineNumber ( p ) )
-			.arg ( XML_ErrorString ( XML_GetErrorCode ( p ) ) );
-		
-		if (*DEBUG_INFO_ENABLED)
-			std::cerr << qPrintable(QString ( "Parse error at line %1:\n%2\n" ).arg ( XML_GetCurrentLineNumber ( p ) )
-				.arg ( XML_ErrorString ( XML_GetErrorCode ( p )))) << endl;
-			return 1;
-	}
-	
-	if (*DEBUG_INFO_ENABLED)
-		std::cerr <<"parsing done" <<endl;
-	
-	if (*DEBUG_INFO_ENABLED)
-		std::cerr <<"End Cycle" << endl;
-	return done;
-}
-
-FileReader::FileReader ( gzFile ff, char *allocated_buffer, long long int allocated_buffer_len, int ins ) {
-    f = ff;
-    insert=ins;
-    converter = QTextCodec::codecForName ( "utf8" );
-    dataBuffer = allocated_buffer;
-    this->allocated_buffer_len = allocated_buffer_len;
-}
-
-
-/* ********************************************************************* */
-QString catname;
-
-static void gn_start ( void *data, const char *el, const char **attr ) {
-    if ( !strcmp ( el,"catalog" ) ) {
-        catname = FREA->get_cutf8 ( FREA->getStr ( attr,"name","Error while parsing \"catalog\" node" ) );
-    }
-}
-
-static void gn_end ( void *data, const char *el ) {
-}
-
-QString FileReader::getCatName ( void ) {
-    catname = "";
-    char *Buff = new char[BUFFSIZE];
-    XML_Parser p = XML_ParserCreate ( NULL );
-
-    if ( p == NULL ) {
-        delete [] Buff;
-        return QString ( "" );
-    }
-
-    XML_SetUserData ( p,this );
-    XML_SetElementHandler ( p, gn_start, gn_end );
-    for ( ;; ) {
-        int done;
-        int len;
-
-        len = gzread ( f,Buff,BUFFSIZE );
-        if ( len == -1 ) {
-            delete [] Buff;
-            return QString ( "" );
-        }
-
-        done = gzeof ( f );
-        if ( ! XML_Parse ( p, Buff, len, done ) ) {
-            delete [] Buff;
-            return QString ( "" );
-        }
-
-        if ( done || catname != "" ) {
-            delete [] Buff;
-            return catname;
-        }
-    }
-}
-
-
-
-
 

@@ -2,6 +2,7 @@
 	- detect uncompressed file size added
 	- test for enough memory at catalog reading added
 	- read file in chunks instead of in one
+	- use qxmlsimplereader instead of expat for catalog parsing
 
 20. Jan 2011 Christoph Thielecke <crissi99@gmx.de>
 	- cdrom/dvd volume name at win32 fixed
