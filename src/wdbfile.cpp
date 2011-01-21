@@ -1116,18 +1116,18 @@ int FileReader::readFrom ( Node *source ) {
 	XML_SetElementHandler ( p, start, end );
 	XML_SetCharacterDataHandler ( p,getCharDataFromXML );
 	
-	int done;
+	int done=0;
 	if (*DEBUG_INFO_ENABLED)
 		std::cerr <<"start parsing structure..." <<endl;
 	if ( ! XML_Parse ( p, dataBuffer, allocated_buffer_len, done ) ) {
 		errormsg = QString ( "Parse error at line %1:\n%2\n" )
 			.arg ( XML_GetCurrentLineNumber ( p ) )
 			.arg ( XML_ErrorString ( XML_GetErrorCode ( p ) ) );
-	
-	if (*DEBUG_INFO_ENABLED)
-		std::cerr << qPrintable(QString ( "Parse error at line %1:\n%2\n" ).arg ( XML_GetCurrentLineNumber ( p ) )
-			.arg ( XML_ErrorString ( XML_GetErrorCode ( p )))) << endl;
-		return 1;
+		
+		if (*DEBUG_INFO_ENABLED)
+			std::cerr << qPrintable(QString ( "Parse error at line %1:\n%2\n" ).arg ( XML_GetCurrentLineNumber ( p ) )
+				.arg ( XML_ErrorString ( XML_GetErrorCode ( p )))) << endl;
+			return 1;
 	}
 	
 	if (*DEBUG_INFO_ENABLED)
