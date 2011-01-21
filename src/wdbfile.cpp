@@ -1135,6 +1135,7 @@ int FileReader::readFrom ( Node *source ) {
 	
 	if (*DEBUG_INFO_ENABLED)
 		std::cerr <<"End Cycle" << endl;
+	return done;
 }
 
 FileReader::FileReader ( gzFile ff, char *allocated_buffer, long long int allocated_buffer_len, int ins ) {
