@@ -1061,101 +1061,71 @@ void getCharDataFromXML ( void *data,const char *s,int len ) {
 
 
 int FileReader::readFrom ( Node *source ) {
-    DEBUG_INFO_ENABLED = init_debug_info();
-    char *Buff = new char[BUFFSIZE];
-    char line[80]; // encoding detect
-    XML_Parser p = XML_ParserCreate ( NULL );
-    pp = &p;
-
-    error = 0;
-    sp    = source;
-
-
-    dataBuffer = new char[ ( MAX_STORED_SIZE*2 ) +64];
-    //I allocated MAX_STORED_SIZE*2 because the hexadecimal data is twice
-    //  as long than the normal data
-    //WARNING: big data segment 256 kByte !!!
-
-    if ( p == NULL ) {
-        errormsg = QString ( "Couldn't allocate memory for parser" );
-        if (*DEBUG_INFO_ENABLED)
-		std::cerr << "Couldn't allocate memory for parser" << endl;
-        delete [] Buff;
-        delete [] dataBuffer;
-        return 1;
-    }
-    if(*DEBUG_INFO_ENABLED)
-         cerr <<"Start Cycle"<<endl;
-
-    XML_SetUserData ( p,this );
-    XML_SetElementHandler ( p, start, end );
-    XML_SetCharacterDataHandler ( p,getCharDataFromXML );
-
-    // detect encoding
-    int len = gzread(f, line, 80);
-    //cerr <<"line: " << line <<endl;
-    QString line2(line);
-    if (*DEBUG_INFO_ENABLED)
-        std::cerr <<"line2: " << line2.constData() <<endl;
-    QStringList encodingline_parts = line2.split('"');
-    XML_ENCODING = encodingline_parts.at(3);
-
-    if (*DEBUG_INFO_ENABLED)
-	std::cerr <<"deteced encoding: " << XML_ENCODING.toAscii().constData() <<endl;
-    gzrewind(f);
-    XML_SetEncoding ( p, XML_ENCODING.toAscii().constData() );
-
-    for ( ;; ) {
-        int done;
-        int len;
-
-        progress ( pww );
-
-        len = gzread ( f,Buff,BUFFSIZE );
-        if ( len == -1 ) {
-            errormsg = QString ( "Read error" );
-            delete [] Buff;
-            delete [] dataBuffer;
-            return 1;
-        }
-
-       // Olivier.Dormond@gmail.com
-       // This is apparently buggy most probably because it can be set when the eof
-       // of the gzipped file is seen but the decompressed content is bigger than
-       // the read buffer. In such a case, the very last chunk of data is never read
-       // and the XML_Parse call will fail because it will miss the closing tag.
-       // done = gzeof(f);
-       // So simply check we didn't get any more data to read as calling XML_Parse
-       // with an empty buffer is safe.
-       done = len == 0;
-
-        if ( ! XML_Parse ( p, Buff, len, done ) ) {
-            errormsg = QString ( "Parse error at line %1:\n%2\n" )
-                       .arg ( XML_GetCurrentLineNumber ( p ) )
-                       .arg ( XML_ErrorString ( XML_GetErrorCode ( p ) ) );
-
-        if (*DEBUG_INFO_ENABLED)
+	DEBUG_INFO_ENABLED = init_debug_info();
+	char line[80]; // encoding detect
+	error = 0;
+	sp    = source;
+	
+	XML_Parser p = XML_ParserCreate ( NULL );
+	pp = &p;
+	if ( p == NULL ) {
+		errormsg = QString ( "Couldn't allocate memory for parser" );
+		if (*DEBUG_INFO_ENABLED)
+			std::cerr << "Couldn't allocate memory for parser" << endl;
+		//delete [] Buff;
+		//delete [] dataBuffer;
+		return 1;
+	}
+	if(*DEBUG_INFO_ENABLED)
+		cerr <<"Start Cycle"<<endl;
+	
+	// detect encoding
+	int len = gzread(f, line, 80);
+	//cerr <<"line: " << line <<endl;
+	QString line2(line);
+	if (*DEBUG_INFO_ENABLED)
+		std::cerr <<"line2: " << line2.constData() <<endl;
+	QStringList encodingline_parts = line2.split('"');
+	XML_ENCODING = encodingline_parts.at(3);
+	
+	if (*DEBUG_INFO_ENABLED)
+		std::cerr <<"deteced encoding: " << XML_ENCODING.toAscii().constData() <<endl;
+	gzrewind(f);
+	XML_SetEncoding ( p, XML_ENCODING.toAscii().constData() );
+	
+	/* now read the buffer */
+	len = 0;
+	len = gzread(f, dataBuffer, allocated_buffer_len);
+	
+	if (*DEBUG_INFO_ENABLED)
+		std::cerr << "read done: " << len << " of " << allocated_buffer_len << " bytes" << endl;
+	
+	XML_SetUserData ( p,this );
+	XML_SetElementHandler ( p, start, end );
+	XML_SetCharacterDataHandler ( p,getCharDataFromXML );
+	
+	int done;
+	if ( ! XML_Parse ( p, dataBuffer, allocated_buffer_len, done ) ) {
+		errormsg = QString ( "Parse error at line %1:\n%2\n" )
+			.arg ( XML_GetCurrentLineNumber ( p ) )
+			.arg ( XML_ErrorString ( XML_GetErrorCode ( p ) ) );
+	
+	if (*DEBUG_INFO_ENABLED)
 		std::cerr << qPrintable(QString ( "Parse error at line %1:\n%2\n" ).arg ( XML_GetCurrentLineNumber ( p ) )
-                       .arg ( XML_ErrorString ( XML_GetErrorCode ( p )))) << endl;
-            delete [] Buff;
-            delete [] dataBuffer;
-            return 1;
-        }
-
-        if ( done || error ) {
-            delete [] Buff;
-            delete [] dataBuffer;
-            return error;
-        }
-    }
-     if (*DEBUG_INFO_ENABLED)
-	std::cerr <<"End Cycle" << endl;
+			.arg ( XML_ErrorString ( XML_GetErrorCode ( p )))) << endl;
+		return 1;
+	}
+	
+	if (*DEBUG_INFO_ENABLED)
+		std::cerr <<"End Cycle" << endl;
 }
 
-FileReader::FileReader ( gzFile ff,int ins ) {
+FileReader::FileReader ( gzFile ff, char *allocated_buffer, long long int allocated_buffer_len, int ins ) {
     f = ff;
     insert=ins;
     converter = QTextCodec::codecForName ( "utf8" );
+    dataBuffer = allocated_buffer;
+    this->allocated_buffer_len = allocated_buffer_len;
 }
 
 

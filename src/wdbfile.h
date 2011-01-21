@@ -82,15 +82,18 @@ public:
     int  error;
     int  insert;
 
+    long long int allocated_buffer_len;
+
     Node *sp;
     char *dataBuffer;
+    
 
     int      readFrom ( Node *source );
     float    getFloat ( const char **from,char *what,char *err );
     char *   getStr ( const char **from,char *what,char *err );
     int      isthere ( const char **from,char *what );
 
-    FileReader ( gzFile ff,int ins = 0 );
+    FileReader ( gzFile ff, char *allocated_buffer, long long int allocated_buffer_len, int ins = 0 );
 
     QString getCatName ( void );
 };

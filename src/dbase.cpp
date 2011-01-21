@@ -482,8 +482,35 @@ int   DataBase::insertDB ( char *filename ) {
         return 1;
     }
 
+    // check free memory
+    char testbuffer[1024];
+    long long int filesize = 0;
+    int readcount = 0;
+    readcount = gzread(f, testbuffer, 1024);
+    while (readcount != 0 ) {
+        filesize += readcount;
+        //if(*DEBUG_INFO_ENABLED)
+	//  cerr << "readcount: " << readcount << endl;
+       readcount = gzread(f, testbuffer, 1024);
+    }
+    gzrewind(f);
+    if(*DEBUG_INFO_ENABLED)
+	cerr << "detected uncompressed size: " << filesize << endl;
+
+    char *allocated_buffer = NULL;
+    allocated_buffer = (char *)calloc(filesize, sizeof(QChar));
+    if (allocated_buffer == NULL) {
+      // fail => no enough memory
+      errormsg = tr ( "Not enough memory to open the file: %1" ).arg ( filename );
+      return 1;
+    }
+    else {
+       //free(allocated_buffer); // we keep the memory, delete after read
+    }
+    /* end memtest */
+
     progress ( pww );
-    fw = new FileReader ( f,1 );
+    fw = new FileReader ( f, allocated_buffer, filesize, 1 );
 
     fw->pww=pww;
     progress ( pww );
@@ -497,6 +524,7 @@ int   DataBase::insertDB ( char *filename ) {
 		cerr <<"error:"<< qPrintable(fw->errormsg) <<endl;
         delete fw;
         gzclose ( f );
+        free(allocated_buffer);
         return 1;
     }
 
@@ -504,6 +532,7 @@ int   DataBase::insertDB ( char *filename ) {
     progress ( pww );
 
     gzclose ( f );
+    free(allocated_buffer);
     delete fw;
     return 0;
 }
@@ -523,8 +552,35 @@ int   DataBase::openDB ( char *filename ) {
         return 1;
     }
 
+    // check free memory
+    char testbuffer[1024];
+    long long int filesize = 0;
+    int readcount = 0;
+    readcount = gzread(f, testbuffer, 1024);
+    while (readcount != 0 ) {
+        filesize += readcount;
+        //if(*DEBUG_INFO_ENABLED)
+	//  cerr << "readcount: " << readcount << endl;
+       readcount = gzread(f, testbuffer, 1024);
+    }
+    gzrewind(f);
+    if(*DEBUG_INFO_ENABLED)
+	cerr << "detected uncompressed size: " << filesize << endl;
+
+    char *allocated_buffer = NULL;
+    allocated_buffer = (char *)calloc(filesize, sizeof(QChar));
+    if (allocated_buffer == NULL) {
+      // fail => no enough memory
+      errormsg = tr ( "Not enough memory to open the file: %1" ).arg ( filename );
+      return 1;
+    }
+    else {
+       //free(allocated_buffer); // we keep the memory, delete after read
+    }
+    /* end memtest */
+
     progress ( pww );
-    fw = new FileReader ( f );
+    fw = new FileReader ( f, allocated_buffer, filesize);
 
     fw->pww=pww;
     progress ( pww );
@@ -552,6 +608,7 @@ int   DataBase::openDB ( char *filename ) {
         root = NULL;
         delete fw;
         gzclose ( f );
+        free(allocated_buffer);
         return 1;
     }
 
@@ -562,6 +619,7 @@ int   DataBase::openDB ( char *filename ) {
     progress ( pww );
 
     gzclose ( f );
+    free(allocated_buffer);
     delete fw;
     return 0;
 }
@@ -873,15 +931,44 @@ void DataBase::addLnk ( const char *loc ) {
         return;
     }
 
-    fw = new FileReader ( f );
+    // check free memory
+    char testbuffer[1024];
+    long long int filesize = 0;
+    int readcount = 0;
+    readcount = gzread(f, testbuffer, 1024);
+    while (readcount != 0 ) {
+        filesize += readcount;
+        //if(*DEBUG_INFO_ENABLED)
+	//  cerr << "readcount: " << readcount << endl;
+       readcount = gzread(f, testbuffer, 1024);
+    }
+    gzrewind(f);
+    if(*DEBUG_INFO_ENABLED)
+	cerr << "detected uncompressed size: " << filesize << endl;
+
+    char *allocated_buffer = NULL;
+    allocated_buffer = (char *)calloc(filesize, sizeof(QChar));
+    if (allocated_buffer == NULL) {
+      // fail => no enough memory
+     QMessageBox::warning ( NULL,tr ( "Error" ), tr ( "Not enough memory to open the file: %1" ).arg ( QString(loc) ));
+      return;
+    }
+    else {
+       //free(allocated_buffer); // we keep the memory, delete after read
+    }
+    /* end memtest */
+
+    fw = new FileReader ( f, allocated_buffer, filesize );
     catname=fw->getCatName();
     if ( catname.isEmpty() ) {
         QMessageBox::warning ( NULL,tr ( "Error" ),tr ( "Error while parsing file: %1" ).arg ( loc ) );
         delete fw;
         gzclose ( f );
+        free(allocated_buffer);
         return;
     }
     gzclose ( f );
+    free(allocated_buffer);
     delete fw;
     /* end reading from the file */
 
