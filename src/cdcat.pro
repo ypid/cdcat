@@ -51,7 +51,7 @@ SOURCES	    =   adddialog.cpp \
                 unix:system(lrelease cdcat.pro)
 
             win32:system(lrelease cdcat.pro)
-CONFIG		+= qt release
+CONFIG		+= qt xml release
 MOC_DIR         = moc_files/
 OBJECTS_DIR     = obj_files/ 
 #unix:LIBS       += -lpcre -lz -lexpat
