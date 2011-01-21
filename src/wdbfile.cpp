@@ -439,12 +439,12 @@ QDateTime FileReader::get_dcutf8 ( char *s ) {
     char p3[10];
 
     DEBUG_INFO_ENABLED = init_debug_info();
-    if (*DEBUG_INFO_ENABLED)
-	std::cerr <<"FileReader::get_dcutf8 datestr:"<<  s  <<endl;
+//     if (*DEBUG_INFO_ENABLED)
+// 	std::cerr <<"FileReader::get_dcutf8 datestr:"<<  s  <<endl;
 
     if ( sscanf ( s,"%d-%d-%d %d:%d:%d",&year,&month,&day,&hour,&minute,&second ) == 6 ) {
- if (*DEBUG_INFO_ENABLED)
-	std::cerr <<"FileReader::get_dcutf8 new format found"<<endl;
+//  if (*DEBUG_INFO_ENABLED)
+// 	std::cerr <<"FileReader::get_dcutf8 new format found"<<endl;
         r.setDate ( QDate ( year,month,day ) );
         r.setTime ( QTime ( hour,minute,second ) );
         return r;
@@ -452,8 +452,8 @@ QDateTime FileReader::get_dcutf8 ( char *s ) {
 
     /* OLD VERSION FOUND */
     if ( sscanf ( s, "%s %02d %02d:%02d %04d",p,&day,&hour,&minute,&year ) == 5 ) {
-	if (*DEBUG_INFO_ENABLED)
-	std::cerr <<"FileReader::get_dcutf8 old format found"<<endl;
+// 	if (*DEBUG_INFO_ENABLED)
+// 	std::cerr <<"FileReader::get_dcutf8 old format found"<<endl;
         if(!strcmp(p, "Jan")) month=1;
 	if(!strcmp(p, "Feb")) month=2;
 	if(!strcmp(p, "Mar")) month=3;
@@ -473,8 +473,8 @@ QDateTime FileReader::get_dcutf8 ( char *s ) {
 
     /* date format is: "Apr.12 15:43 2001" => "MonthShort.DayNum HourNum,MinuteNum YearLong" */
     if ( sscanf ( s, "%s %s %04d",p2, p3, &year ) == 3 ) {
-	        if (*DEBUG_INFO_ENABLED)
-	 	std::cerr <<"FileReader::get_dcutf8 old format2 found"<<endl;
+// 	        if (*DEBUG_INFO_ENABLED)
+// 	 	std::cerr <<"FileReader::get_dcutf8 old format2 found"<<endl;
 	if (QString(p2).contains('.')) {
 		//if (*DEBUG_INFO_ENABLED)
 		//std::cerr <<"FileReader::get_dcutf8 p2 0: " << qPrintable(QString(p2).split('.').at(0)) << ", p2 1: " << qPrintable(QString(p2).split('.').at(1))<<endl;
@@ -491,8 +491,8 @@ QDateTime FileReader::get_dcutf8 ( char *s ) {
 	}
 
 
-       if (*DEBUG_INFO_ENABLED)
-	std::cerr <<"FileReader::get_dcutf8 p: " << p  << ", p2: " << p2 << ", p3: " << p3 << ", day: " << day << ", minute: " << minute << ", hour: " << hour <<", year: " << year << endl;
+//        if (*DEBUG_INFO_ENABLED)
+// 	std::cerr <<"FileReader::get_dcutf8 p: " << p  << ", p2: " << p2 << ", p3: " << p3 << ", day: " << day << ", minute: " << minute << ", hour: " << hour <<", year: " << year << endl;
 	
 	if(!strcmp(p, "Jan")) month=1;
 	if(!strcmp(p, "Feb")) month=2;
@@ -1083,8 +1083,8 @@ int FileReader::readFrom ( Node *source ) {
 	int len = gzread(f, line, 80);
 	//cerr <<"line: " << line <<endl;
 	QString line2(line);
-	if (*DEBUG_INFO_ENABLED)
-		std::cerr <<"line2: " << line2.constData() <<endl;
+	//if (*DEBUG_INFO_ENABLED)
+	//	std::cerr <<"line2: " << line2.constData() <<endl;
 	QStringList encodingline_parts = line2.split('"');
 	XML_ENCODING = encodingline_parts.at(3);
 	
@@ -1095,7 +1095,19 @@ int FileReader::readFrom ( Node *source ) {
 	
 	/* now read the buffer */
 	len = 0;
-	len = gzread(f, dataBuffer, allocated_buffer_len);
+	int readcount = 0;
+	char tmpbuffer[1024];
+	
+	if (*DEBUG_INFO_ENABLED)
+		std::cerr <<"start reading file..." <<endl;
+	while (len != allocated_buffer_len  ) {
+		progress ( pww );
+		readcount = gzread(f, tmpbuffer, 1024);
+		len += readcount;
+		//if(*DEBUG_INFO_ENABLED)
+		//  cerr << "readcount: " << readcount << endl;
+		strncat(dataBuffer, tmpbuffer, 1024);
+	}
 	
 	if (*DEBUG_INFO_ENABLED)
 		std::cerr << "read done: " << len << " of " << allocated_buffer_len << " bytes" << endl;
@@ -1105,6 +1117,8 @@ int FileReader::readFrom ( Node *source ) {
 	XML_SetCharacterDataHandler ( p,getCharDataFromXML );
 	
 	int done;
+	if (*DEBUG_INFO_ENABLED)
+		std::cerr <<"start parsing structure..." <<endl;
 	if ( ! XML_Parse ( p, dataBuffer, allocated_buffer_len, done ) ) {
 		errormsg = QString ( "Parse error at line %1:\n%2\n" )
 			.arg ( XML_GetCurrentLineNumber ( p ) )
@@ -1115,6 +1129,9 @@ int FileReader::readFrom ( Node *source ) {
 			.arg ( XML_ErrorString ( XML_GetErrorCode ( p )))) << endl;
 		return 1;
 	}
+	
+	if (*DEBUG_INFO_ENABLED)
+		std::cerr <<"parsing done" <<endl;
 	
 	if (*DEBUG_INFO_ENABLED)
 		std::cerr <<"End Cycle" << endl;

@@ -492,6 +492,7 @@ int   DataBase::insertDB ( char *filename ) {
         //if(*DEBUG_INFO_ENABLED)
 	//  cerr << "readcount: " << readcount << endl;
        readcount = gzread(f, testbuffer, 1024);
+       progress ( pww );
     }
     gzrewind(f);
     if(*DEBUG_INFO_ENABLED)
@@ -562,6 +563,7 @@ int   DataBase::openDB ( char *filename ) {
         //if(*DEBUG_INFO_ENABLED)
 	//  cerr << "readcount: " << readcount << endl;
        readcount = gzread(f, testbuffer, 1024);
+       progress ( pww );
     }
     gzrewind(f);
     if(*DEBUG_INFO_ENABLED)
@@ -941,6 +943,7 @@ void DataBase::addLnk ( const char *loc ) {
         //if(*DEBUG_INFO_ENABLED)
 	//  cerr << "readcount: " << readcount << endl;
        readcount = gzread(f, testbuffer, 1024);
+       progress ( pww );
     }
     gzrewind(f);
     if(*DEBUG_INFO_ENABLED)
