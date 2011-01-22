@@ -1,6 +1,8 @@
 22. Jan 2011 Christoph Thielecke <crissi99@gmx.de>
 	- save last dir on open catalog
 	- use qt4 filedialogs
+	-  use qxmlsimplereader instead of expat for xml import
+	- import datetime for media fixed
 
 21. Jan 2011 Christoph Thielecke <crissi99@gmx.de>
 	- detect uncompressed file size added

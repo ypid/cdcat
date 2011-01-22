@@ -358,7 +358,7 @@ public:
     */
 
     Node * getMediaNode ( QString name );
-    Node * putMediaNode ( QString name,int number,QString owner,int type,QString comment );
+    Node * putMediaNode ( QString name,int number,QString owner,int type,QString comment, QDateTime modification );
     Node * getMediaNode ( int id );
 
     //step only one directory with one call!

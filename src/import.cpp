@@ -14,7 +14,8 @@ Copyright : (C) 2003 Christoph Thielecke
 #include <q3progressdialog.h>
 //Added by qt3to4:
 #include <QList>
-#include <expat.h>
+#include <QtXml/QXmlInputSource>
+#include <QtXml/QXmlAttributes>
 #include <iostream>
 #include <stdio.h>
 
@@ -382,7 +383,7 @@ int importGtktalogCsv::addNewMedia ( QString new_medianame, QList < lineObject >
     Node *env, *curr;
     curr = db->getMediaNode ( new_medianame );
     if ( curr == NULL )
-        curr = db->putMediaNode ( new_medianame , mediacount, tr ( "importuser" ), CD, "" );
+        curr = db->putMediaNode ( new_medianame , mediacount, tr ( "importuser" ), CD, "", QDateTime().currentDateTime() );
 
     QString msg;
     lineObject obj("", "", "", 0.0, QDateTime());
@@ -495,32 +496,27 @@ int importGtktalogCsv::addNewMedia ( QString new_medianame, QList < lineObject >
 importGtktalogXml* class_link;
 
 QString tmpdirname;
-extern "C" {
-    static void startElement_gtktalog_parse ( void * userData, const char * name, const char **atts ) {
-        int * depthPtr = ( int * ) userData;
-        QString name2 = QString::fromLatin1 ( name ).stripWhiteSpace();
+bool importGtktalogXml::startDocument() {
+	//cout << "startDocument: " << endl;
+	return TRUE;
+}
+bool importGtktalogXml::startElement( const QString&, const QString&,
+                                      const QString & name2,
+                                      const QXmlAttributes& ) {
+	QString line = "";
+	last_tag = name2;
+	return TRUE;
+}
+bool importGtktalogXml::endElement( const QString&, const QString & tag, const QString& ) {
+	//cout << "endElement: "  << "tag: " << tag << endl;
+	QString name2 = tag;
+	QString line = "";
 
         class_link->last_tag = name2;
 
-        /*
         if (name2 == "information"){
         	// found information
-
-        }
-        */
-
-        *depthPtr += 1;
-    }
-
-    static void endElement_gtktalog_parse ( void * userData, const char * name ) {
-        DEBUG_INFO_ENABLED = init_debug_info();
-        QString name2 = QString::fromLatin1 ( name ).stripWhiteSpace();
-
-        class_link->last_tag = "";
-        QString line = "";
-
-        class_link->path = class_link->directory + "/" + class_link->filename;
-
+		}
         if ( name2 == "name" ) {
             line += "catalogName: " + class_link->catalogName + "\n";
         }
@@ -528,6 +524,19 @@ extern "C" {
             class_link->guislave->mainw->db->setName ( class_link->catalogName );
         }
         if ( name2 == "directory" ) {
+		//	std::cout << "directory tag ended. " << std::endl;
+		line += "new_medianame: " + new_medianame + "\n";
+		line += "directory: " + directory + "\n";
+		line += "filename: " + filename + "\n";
+		line += "Full path: " + path + "\n";
+		line += "size: " + QString().setNum( size ) + "\n";
+		line += "datetimestring: " + datetimestring + "\n";
+		line += "category: " + categorie + "\n";
+		line += "description: " + description + "\n";
+		line += "information: " + information + "\n";
+
+		//		cerr << line << endl << endl << endl;
+
 
             line += "new_medianame: " + class_link->new_medianame + "\n";
             line += "directory: " + class_link->directory + "\n";
@@ -569,19 +578,12 @@ extern "C" {
             class_link->progress->setProgress ( class_link->linecount );
         }
 
+	return TRUE;
+}
 
-        int * depthPtr = ( int * ) userData;
-        *depthPtr -= 1;
-    }
+bool importGtktalogXml::characters ( const QString & ch ) {
 
-    static void getCdata_gtktalog_parse ( void * userData, const XML_Char * s, int len ) {
-
-        QString tmp2 = "";
-        for ( int i = 0;i < len;i++ ) {
-            tmp2 += s[ i ];
-        }
-
-        QString name2 = tmp2.stripWhiteSpace();
+	QString name2 = ch;
 
         if ( class_link->last_tag == "name" ) {
             // found catalog name
@@ -658,10 +660,11 @@ extern "C" {
             class_link->information = name2;
         }
 
-
-    }
-
+	return TRUE;
 }
+
+
+
 
 importGtktalogXml::importGtktalogXml ( GuiSlave * parent, QString filename, bool createdatabase ) {
     this->guislave = parent;
@@ -722,42 +725,12 @@ importGtktalogXml::importGtktalogXml ( GuiSlave * parent, QString filename, bool
 
         // now we need a link to itself :(
         class_link = this;
-
-        /*
-
-        XML_ParserCreate(ISO-8859-1);
-        */
-
-        //char buf[ BUFSIZ ];
-        parser = XML_ParserCreate ( NULL );
-        int done = 0;
-        int depth = 0;
-        XML_SetUserData ( parser, &depth );
-        XML_SetElementHandler ( parser, startElement_gtktalog_parse, endElement_gtktalog_parse );
-        XML_SetCharacterDataHandler ( class_link->parser, getCdata_gtktalog_parse );
-
-        QString document_string = "";
-        QByteArray array;
-        if ( f.open ( QIODevice::ReadOnly ) ) {
-            array = f.readAll();
-        }
-        int len = array.size();
-
-        if ( len > 0 ) {
-            if ( ! XML_Parse ( parser, ( char* ) array.data(), len, done ) ) {
-                fprintf ( stderr,
-                          "%s at line %d\n",
-                          XML_ErrorString ( XML_GetErrorCode ( parser ) ),
-                          XML_GetCurrentLineNumber ( parser ) );
-                import_ok = false;
-            }
-            document_string = "";
-        }
-
-
-        XML_ParserFree ( parser );
-        // end parse
-
+		QXmlInputSource source( f );
+		QXmlSimpleReader reader;
+		reader.setContentHandler( this );
+		reader.setErrorHandler(this);
+		reader.parse( source );
+		progress->hide();
     } else {
         import_ok = false;
     }
@@ -828,7 +801,7 @@ int importGtktalogXml::addNewMedia ( QString new_medianame, QList < lineObject >
     Node *env, *curr;
     curr = db->getMediaNode ( new_medianame );
     if ( curr == NULL )
-        curr = db->putMediaNode ( new_medianame , mediacount, tr ( "importuser" ), CD, "" );
+        curr = db->putMediaNode ( new_medianame , mediacount, tr ( "importuser" ), CD, "",  class_link->datetime );
 
     QString msg;
     lineObject *obj;
@@ -908,298 +881,111 @@ int importGtktalogXml::addNewMedia ( QString new_medianame, QList < lineObject >
     return 0;
 }
 
+bool importGtktalogXml::fatalError(const QXmlParseException &exception)
+{
+    std::cerr << "Parse error at line " << exception.lineNumber()
+              << ", " << "column " << exception.columnNumber() << ": "
+              << qPrintable(exception.message()) << std::endl;
+    return true;
+}
+
 // ------------------ WhereIsIt classic ---------------------
-
 importWhereIsItXml* class_link_whereisit;
-
 QString tmpdirname_whereisit;
 int lines;
 
+bool importWhereIsItXml::startDocument() {
 
-extern "C" {
-    static void startElement_whereisit_parse ( void * userData, const char * name, const char **atts ) {
-        int * depthPtr = ( int * ) userData;
-        QString name2 = QString::fromLocal8Bit ( name ).stripWhiteSpace();
+	//cout << "startDocument: " << endl;
+	return TRUE;
+}
+
+
+
+bool importWhereIsItXml::startElement( const QString&, const QString&,
+                                       const QString & name2,
+                                       const QXmlAttributes & atts ) {
+	cout << "startElement: " << qPrintable(name2) << endl;
+	currentText = "";
+
+	if(atts.length() > 0) {
+		cout << "atts: ";
+		for (int i=0;i<atts.length();i++) {
+			cout << "atts[" << i << "]: "  << qPrintable(atts.qName(i)) << "=" << qPrintable(atts.value(i)) << endl;
+			
+		}
+		cout  << endl;
+	}
+
         QString line = "";
-        class_link_whereisit->last_tag = name2;
+        last_tag = name2;
 
 
         if ( name2 == "REPORT" ) {
-            if ( ( QString ( atts[ 0 ] ).stripWhiteSpace() ) == "Title" ) {
-                class_link_whereisit->catalogName = ( QString ( atts[ 1 ] ).stripWhiteSpace() );
-                line += "catalogName: \"" + class_link_whereisit->catalogName + "\"\n";
-                class_link_whereisit->guislave->mainw->db->setName ( class_link_whereisit->catalogName );
-                //		std::cout << line << endl;
-            }
-        }
+                catalogName = atts.value( "Title").stripWhiteSpace();
+                line += "catalogName: \"" + catalogName + "\"\n";
+                guislave->mainw->db->setName ( catalogName );
+                std::cout << qPrintable(line) << endl;
+         }
 
         if ( name2 == "ITEM" ) {
-            //std::cout << "Itemtype: " << QString ( atts[ 1 ] ) << endl;
+            std::cout << "Itemtype: " << qPrintable ( atts.value("ItemType") ) << endl;
 
-            if ( ( QString ( atts[ 0 ] ).stripWhiteSpace() ) == "ItemType" ) {
-                if ( ( QString ( atts[ 1 ] ).stripWhiteSpace() ) == "Disk" )
-                    class_link_whereisit->last_type = media;
+		if ( atts.value("ItemType") == "Disk" )
+			last_type = "media";
 
-                if ( ( QString ( atts[ 1 ] ).stripWhiteSpace() ) == "File" )
-                    class_link_whereisit->last_type = file;
+		if ( atts.value("ItemType") == "File" )
+			last_type = "file";
 
-                if ( ( QString ( atts[ 1 ] ).stripWhiteSpace() ) == "Folder" )
-                    class_link_whereisit->last_type = folder;
-            }
+		if ( atts.value("ItemType") == "Folder" )
+			last_type = "folder";
+
         }
 
-        *depthPtr += 1;
-    }
 
-    static void endElement_whereisit_parse ( void * userData, const char * name ) {
-        DEBUG_INFO_ENABLED = init_debug_info();
+	return TRUE;
+}
 
-        QString name2 = QString::fromLocal8Bit ( name ).stripWhiteSpace();
+bool importWhereIsItXml::endElement( const QString&, const QString & tag, const QString& ) {
+	cout << "endElement: "  << "tag: " << qPrintable(tag) << endl;
 
-        class_link_whereisit->last_tag = "";
-        QString line = "";
+			cout << "cdata: " << qPrintable(currentText) << endl;
 
-        if ( name2 == "DATA" ) {
-            if ( class_link_whereisit->last_type == media ) {
-                QString line = "\"" + class_link_whereisit->new_medianame + "\"\n";
-                //if(*DEBUG_INFO_ENABLED)
-		//	std::cout << "media name found: " << line << endl;
-            }
-
-            if ( class_link_whereisit->last_type == folder ) {
-                QString line = "\"" + class_link_whereisit->folder + "\"\n";
-                //if(*DEBUG_INFO_ENABLED)
-		//	std::cout << "folder name found: " << line << endl;
-            }
-
-            if ( class_link_whereisit->last_type == file ) {
-                QString line = "\"" + class_link_whereisit->file + "\"\n";
-                 //if(*DEBUG_INFO_ENABLED)
-                //	std::cout << "file name found: " << line << endl;
-            }
-        }
-
-        if ( name2 == "ITEM" ) {
-            if ( class_link_whereisit->last_type == media ) {
-                //			std::cout << "add media: " << class_link_whereisit->new_medianame << endl;
-                //        QMessageBox::warning (0, "info", class_link_whereisit->medianame);
-                class_link_whereisit->medianame = class_link_whereisit->new_medianame;
-                //QDateTime datetime = class_link_whereisit->datetime;
-
-                if ( class_link_whereisit->guislave->mainw->db == NULL ) {
-                    class_link_whereisit->guislave->newEvent();
-                    class_link_whereisit->guislave->mainw->db->setDBName ( class_link_whereisit->catalogName );
-                }
-
-                /* create new media */
-                Node *env, *curr;
-
-                env = class_link_whereisit->db->getRootNode();
-                curr = class_link_whereisit->db->putMediaNode ( class_link_whereisit->new_medianame ,
-                        class_link_whereisit->number, QObject::tr ( "importuser" ) , CD, class_link_whereisit->comment );
-
-                class_link_whereisit->mediacount++;
-                class_link_whereisit->linecount++;
-                //class_link_whereisit->last_upper_container_node = class_link_whereisit->db->getRootNode();
-                class_link_whereisit->last_type = empty;
-                //			class_link_whereisit->guislave->mainw->app->processEvents();
-            } // media
-
-            if ( class_link_whereisit->last_type == folder ) {
-
-                if ( class_link_whereisit->db != NULL ) {
-                    //				std::cout << "add folder: " << class_link_whereisit->folder << endl;
-                    Node * env2, *curr2, *curr3;
-                    int number = class_link_whereisit->number;
-                    QString folder = class_link_whereisit->folder;
-                    QString path = class_link_whereisit->path;
-                    QDateTime datetime = class_link_whereisit->datetime;
-                    //	QString datetime = "";
-                    QString comment = class_link_whereisit->comment;
-
-                    env2 = class_link_whereisit->db->getMediaNode ( number ) ;
-
-
-                    if ( env2 != NULL ) {
-                        curr3 = env2;
-                        if ( path.length() > 1 ) {
-                            //				std::cout << "path: \"" << path << "\"" << endl;
-
-                            QString tmp_path = path;
-                            QString tmp_path2 = "";
-                            /*							int index = 1;
-                            							int index2 = 1;*/
-                            QStringList fields = QStringList::split ( '\\', tmp_path );
-
-                            for ( QStringList::Iterator point = fields.begin(); point != fields.end(); ++point ) {
-                                tmp_path2 = *point;
-
-                                //				std::cout << "subpath: \"" << tmp_path2 << "\"" << endl;
-
-                                if ( tmp_path2 != "" ) {
-                                    curr2 = curr3;
-                                    curr3 = class_link_whereisit->db->getDirectoryNode ( curr3, tmp_path2 );
-
-                                    if ( curr3 == NULL )
-                                        curr3 = class_link_whereisit->db->putDirectoryNode ( curr2, tmp_path2 , datetime , class_link_whereisit->comment );
-                                    class_link_whereisit->comment="";
-                                }
-                            }
-
-                        }
-                        curr3 = class_link_whereisit->db->putDirectoryNode ( curr3 , folder , datetime , class_link_whereisit->comment );
-                        class_link_whereisit->comment="";
-
-
-                    }
-                }
-
-                class_link_whereisit->dircount++;
-                class_link_whereisit->linecount++;
-                class_link_whereisit->last_type = empty;
-                //			class_link_whereisit->guislave->mainw->app->processEvents();
-            } // folder
-
-            if ( class_link_whereisit->last_type == file ) {
-
-                if ( class_link_whereisit->db != NULL ) {
-                    //				std::cout << "add file: " << class_link_whereisit->file << endl;
-                    Node * env2, *curr2, *curr3;
-                    int number = class_link_whereisit->number;
-                    QString file = class_link_whereisit->file;
-                    QString path = class_link_whereisit->path;
-
-                    QDateTime datetime = class_link_whereisit->datetime;
-                    QString comment = class_link_whereisit->comment;
-
-                    //QString datetime = "";
-
-
-                    uint size = ( uint ) class_link_whereisit->size;
-                    float s;
-                    int st;
-
-                    if ( size > ( uint ) ( 1024 * 1024 * 1024 * 2 ) ) {
-                        s = ( double ) size / ( double ) ( 1024 * 1024 * 1024 );
-                        st = GBYTE;
-                    }
-                    if ( size > ( uint ) ( 1024 * 1024 ) ) {
-                        s = ( double ) size / ( double ) ( 1024 * 1024 );
-                        st = MBYTE;
-                    }
-                    if ( size > ( uint ) 1024 ) {
-                        s = ( double ) size / ( double ) 1024;
-                        st = KBYTE;
-                    } else {
-                        s = size;
-                        st = BYTE;
-                    }
-
-                    env2 = class_link_whereisit->db->getMediaNode ( number ) ;
-
-
-                    if ( env2 != NULL ) {
-                        curr3 = env2;
-                        if ( path.length() > 1 ) {
-                            //				std::cout << "path: \"" << path << "\"" << endl;
-
-                            QString tmp_path = path;
-                            QString tmp_path2 = "";
-                            /*							int index = 1;
-                            							int index2 = 1;*/
-                            QStringList fields = QStringList::split ( '\\', tmp_path );
-
-                            for ( QStringList::Iterator point = fields.begin(); point != fields.end(); ++point ) {
-                                tmp_path2 = *point;
-
-                                //				std::cout << "subpath: \"" << tmp_path2 << "\"" << endl;
-
-                                if ( tmp_path2 != "" ) {
-                                    curr2 = curr3;
-                                    curr3 = class_link_whereisit->db->getDirectoryNode ( curr3,  tmp_path2 );
-
-                                    if ( curr3 == NULL )
-                                        curr3 = class_link_whereisit->db->putDirectoryNode ( curr2, tmp_path2 , datetime , comment );
-                                    class_link_whereisit->comment="";
-                                }
-                            }
-
-                        }
-
-                        //			std::cout << "file: \"" << file << "\"" << endl;
-
-                        curr3 = class_link_whereisit->db->putFileNode ( curr3 ,  file ,  datetime , class_link_whereisit->comment , st, s );
-                        class_link_whereisit->comment="";
-
-
-                    }
-                }
-
-                class_link_whereisit->filecount++;
-                class_link_whereisit->linecount++;
-                class_link_whereisit->last_type = empty;
-                class_link_whereisit->setProgress();
-
-
-
-            } // file
-
-        } // ITEM
-
-
-
-        int * depthPtr = ( int * ) userData;
-        *depthPtr -= 1;
-
-    }
-
-    static void getCdata_whereisit_parse ( void * userData, const XML_Char * s, int len ) {
-
-        //QString tmp2 = QCString( s, len + 1 );
-        /*
-        for ( int i = 0;i < len;i++ ) {
-        	tmp2 += s[ i ];
-        }
-        */
-        QString tmp2 = QString::fromUtf8 ( ( const char* ) ( s ), len );
-
-        QString name2 = tmp2.stripWhiteSpace();
-
-        if ( class_link_whereisit->last_tag == "ITEM" ) {
+	if ( last_tag == "ITEM" ) {
             // found ITEM entry: for each file there is one
             // just the start of each file
         }
 
-        if ( class_link_whereisit->last_tag == "DISK_NUM" ) {
-            class_link_whereisit->number = name2.toInt();
-            //		std::cout << "number: " << QString().setNum( class_link_whereisit->number ) << endl;
+        if ( last_tag == "DISK_NUM" ) {
+            number = currentText.toInt();
+            //		std::cout << "number: " << QString().setNum( number ) << endl;
 
         }
 
-        if ( class_link_whereisit->last_tag == "SIZE" ) {
-            if ( class_link_whereisit->last_type == file ) {
-                name2 = /*name2.remove( ' ' );*/
-                    name2.replace ( QRegExp ( " " ),"" );
-                //				std::cout << "cleaned: " << name2 << endl;
-                class_link_whereisit->size = name2.toInt();
+        if ( last_tag == "SIZE" ) {
+            if ( last_type == "file" ) {
+                currentText = currentText.remove( ' ' );
+                    currentText.replace ( QRegExp ( " " ),"" );
+                //				std::cout << "cleaned: " << currentText << endl;
+                size = currentText.toInt();
             }
         }
 
-        if ( class_link_whereisit->last_tag == "DATE" ) {
+        if ( last_tag == "DATE" ) {
 
-            name2.stripWhiteSpace();
+            currentText.stripWhiteSpace();
 
-            /*
-            int dayindex = class_link_whereisit->datetimestring.find( "-" );
-            int monthindex = class_link_whereisit->datetimestring.find( "-", dayindex + 1 );
-            int yearindex = class_link_whereisit->datetimestring.length() - 1;
-            */
-            //			std::cout << "date: " << name2 << endl;
-            int day = ( name2.mid ( 0, 2 ) ).toInt();
-            //		std::cout << "day: " << day << endl;
+            int dayindex = currentText.find( "-",0 );
+            int monthindex = currentText.find( "-", dayindex - 1 );
+            int yearindex = currentText.find("-", monthindex+1);
+//             std::cout << "date: " << qPrintable(currentText) << endl;
 
-            QString month_str = name2.mid ( 3, 3 ) ;
-            //	std::cout << "month_str: " << month_str << endl;
+//             std::cout << "daystr: " << qPrintable(currentText.mid ( 0, dayindex ))  << ", dayindex: " << dayindex << endl;
+            int day = ( currentText.mid ( 0, dayindex ) ).toInt();
+//             		std::cout << "day: " << day << endl;
+
+            QString month_str = currentText.mid ( monthindex+1, yearindex-monthindex-dayindex-3 ) ;
+//             	std::cout << "month_str: " << qPrintable( month_str) << endl;
             int month=1;
             if ( month_str == "JAN" )
                 month = 1;
@@ -1228,95 +1014,279 @@ extern "C" {
 
             //			std::cout << "month: " << month << endl;
 
-            int year = ( name2.mid ( 7, 2 ) ).toInt();
+            int year = currentText.mid( yearindex+1).toInt();
 
-            //		std::cout << "year : " << name2.mid( 7, 4 ) << endl;
+//             std::cout << "year : " << qPrintable( currentText.mid( yearindex+1)) << endl;
             QDate date ( year, month, day );
             if ( !date.isValid() )
                 date = QDate::currentDate ();
 
-            class_link_whereisit->datetime.setDate ( date );
+            datetime.setDate ( date );
         }
 
-        if ( class_link_whereisit->last_tag == "DISK_NAME" ) {
-            if ( class_link_whereisit->last_type == media ) {}
+        if ( last_tag == "DISK_NAME" ) {
+            if ( last_type == "media" ) {}
         }
 
-        if ( class_link_whereisit->last_tag == "DISK_TYPE" ) {
-            if ( class_link_whereisit->last_type == media ) {}
+        if ( last_tag == "DISK_TYPE" ) {
+            if ( last_type == "media" ) {}
         }
 
-        if ( class_link_whereisit->last_tag == "PATH" ) {
-            if ( class_link_whereisit->last_type == folder ) {
-                //			std::cout << "getCdata_whereisit_parse(): PATH: \"" << name2 << "\"" << endl;
-                class_link_whereisit->path = name2;
+        if ( last_tag == "PATH" ) {
+            if ( last_type == "folder" ) {
+//                 			std::cout << "getCdata_whereisit_parse(): PATH: \"" << qPrintable(currentText.replace("\n", "")) << "\"" << endl;
+                path = currentText.replace("\n", "");
             }
 
-            if ( class_link_whereisit->last_type == file ) {
-                //			std::cout << "getCdata_whereisit_parse(): PATH: \"" << name2 << "\"" << endl;
-                class_link_whereisit->path = name2;
+            if ( last_type == "file" ) {
+//                 			std::cout << "getCdata_whereisit_parse(): PATH: \"" << qPrintable(currentText.replace("\n", "")) << "\"" << endl;
+                path = currentText.replace("\n", "");
             }
 
         }
 
-        if ( class_link_whereisit->last_tag == "NAME" ) {
-            if ( class_link_whereisit->last_type == media ) {
-                //std::cout << "getCdata_whereisit_parse(): NAME: \"" << name2 << "\"" << endl;
-                class_link_whereisit->new_medianame = name2;
+        if ( last_tag == "NAME" ) {
+            if ( last_type == "media" ) {
+                //std::cout << "getCdata_whereisit_parse(): NAME: \"" << currentText.replace("\n", "") << "\"" << endl;
+                new_medianame = currentText.replace("\n", "");
             }
 
-            if ( class_link_whereisit->last_type == folder ) {
-                //			std::cout << "getCdata_whereisit_parse(): DATA: \"" << name2 << "\"" << endl;
-                class_link_whereisit->folder = name2;
+            if ( last_type == "folder" ) {
+                //			std::cout << "getCdata_whereisit_parse(): DATA: \"" << currentText.replace("\n", "") << "\"" << endl;
+                folder = currentText.replace("\n", "");
             }
 
-            if ( class_link_whereisit->last_type == file ) {
-                //std::cout << "getCdata_whereisit_parse(): DATA: \"" << name2 << "\"" << endl;
-                class_link_whereisit->file = name2;
+            if ( last_type == "file" ) {
+                //std::cout << "getCdata_whereisit_parse(): DATA: \"" << currentText.replace("\n", "") << "\"" << endl;
+                file = currentText.replace("\n", "");
             }
         }
 
-        if ( class_link_whereisit->last_tag == "TIME" ) {
+        if ( last_tag == "TIME" ) {
             // found file time
 
-            class_link_whereisit->datetimestring = name2.stripWhiteSpace();
+            datetimestring = currentText.stripWhiteSpace();
 
-            int hourindex = class_link_whereisit->datetimestring.find ( ":", 1 );
-            int minuteindex = class_link_whereisit->datetimestring.find ( ":", hourindex + 1 );
-            int hour = ( class_link_whereisit->datetimestring.mid ( 0, minuteindex - hourindex - 1 ) ).toInt();
-            int minute = ( class_link_whereisit->datetimestring.mid ( hourindex + 1, minuteindex - 1 - hourindex ) ).toInt();
-            int second = ( class_link_whereisit->datetimestring.mid ( minuteindex + 1, class_link_whereisit->datetimestring.length() - 1 ) ).toInt();
+            int hourindex = datetimestring.find ( ":", 1 );
+            int minuteindex = datetimestring.find ( ":", hourindex + 1 );
+            int hour = ( datetimestring.mid ( 0, minuteindex - hourindex - 1 ) ).toInt();
+            int minute = ( datetimestring.mid ( hourindex + 1, minuteindex - 1 - hourindex ) ).toInt();
+            int second = ( datetimestring.mid ( minuteindex + 1, datetimestring.length() - 1 ) ).toInt();
 
 
             QTime time ( hour, minute, second );
 
 
-            class_link_whereisit->datetime.setTime ( time );
+            datetime.setTime ( time );
 
         }
 
-        if ( class_link_whereisit->last_tag == "DESC" ) {
+        if ( last_tag == "DESC" ) {
             // tmp
-            name2.truncate ( 254 );
+            currentText.truncate ( 254 );
 
-            if ( class_link_whereisit->last_type == media ) {
-                class_link_whereisit->comment = name2;
+            if ( last_type == "media" ) {
+                comment = currentText;
             }
 
-            if ( class_link_whereisit->last_type == folder ) {
-                class_link_whereisit->comment = name2;
+            if ( last_type == "folder" ) {
+                comment = currentText;
             }
 
-            if ( class_link_whereisit->last_type == file ) {
-                class_link_whereisit->comment = name2;
+            if ( last_type == "file" ) {
+                comment = currentText;
             }
         }
 
-        class_link_whereisit->setProgress();
+	
 
-    } // parse
 
+        QString name2 = tag;
+
+        last_tag = "";
+        QString line = "";
+
+        if ( name2 == "DATA" ) {
+            if ( last_type == "media" ) {
+                QString line = "\"" + new_medianame + "\"\n";
+                if(*DEBUG_INFO_ENABLED)
+			std::cout << "media name found: " << qPrintable(line) << endl;
+            }
+
+            if ( last_type == "folder" ) {
+                QString line = "\"" + folder + "\"\n";
+                if(*DEBUG_INFO_ENABLED)
+			std::cout << "folder name found: " << qPrintable(line) << endl;
+            }
+
+            if ( last_type == "file" ) {
+                QString line = "\"" + file + "\"\n";
+                 if(*DEBUG_INFO_ENABLED)
+                	std::cout << "file name found: " << qPrintable(line) << endl;
+            }
+        }
+
+        if ( name2 == "ITEM" ) {
+            if ( last_type == "media" ) {
+                			std::cout << "add media: " << qPrintable(new_medianame) << endl;
+                //        QMessageBox::warning (0, "info", medianame);
+                medianame = new_medianame;
+                //QDateTime datetime = datetime;
+
+                if ( guislave->mainw->db == NULL ) {
+                    guislave->newEvent();
+                    guislave->mainw->db->setDBName ( catalogName );
+                }
+
+                /* create new media */
+                Node *env, *curr;
+
+                env = db->getRootNode();
+                curr = db->putMediaNode ( new_medianame ,
+                        number, QObject::tr ( "importuser" ) , CD, comment, datetime );
+
+                mediacount++;
+                linecount++;
+                //last_upper_container_node = db->getRootNode();
+                last_type = "empty";
+                //			guislave->mainw->app->processEvents();
+            } // media
+
+            if ( last_type == "folder" ) {
+
+                if ( db != NULL ) {
+                    				std::cout << "add folder: " << qPrintable(folder) << endl;
+                    Node * env2, *curr2, *curr3;
+                    env2 = db->getMediaNode ( number ) ;
+
+
+                    if ( env2 != NULL ) {
+                        curr3 = env2;
+                        if ( path.length() > 1 ) {
+                            //				std::cout << "path: \"" << path << "\"" << endl;
+
+                            QString tmp_path = path;
+                            QString tmp_path2 = "";
+                            /*							int index = 1;
+                            							int index2 = 1;*/
+                            QStringList fields = QStringList::split ( '\\', tmp_path );
+
+                            for ( QStringList::Iterator point = fields.begin(); point != fields.end(); ++point ) {
+                                tmp_path2 = *point;
+
+                                //				std::cout << "subpath: \"" << tmp_path2 << "\"" << endl;
+
+                                if ( tmp_path2 != "" ) {
+                                    curr2 = curr3;
+                                    curr3 = db->getDirectoryNode ( curr3, tmp_path2 );
+
+                                    if ( curr3 == NULL )
+                                        curr3 = db->putDirectoryNode ( curr2, tmp_path2 , datetime , comment );
+                                    comment="";
+                                }
+                            }
+
+                        }
+                        curr3 = db->putDirectoryNode ( curr3 , folder , datetime , comment );
+                        comment="";
+
+
+                    }
+                }
+
+                dircount++;
+                linecount++;
+                last_type = "empty";
+                //			guislave->mainw->app->processEvents();
+            } // folder
+
+            if ( last_type == "file" ) {
+
+                if ( db != NULL ) {
+                    				std::cout << "add file: " << qPrintable(file) << endl;
+                    Node * env2, *curr2, *curr3;
+                    float s;
+                    int st;
+
+                    if ( size > ( uint ) ( 1024 * 1024 * 1024 * 2 ) ) {
+                        s = ( double ) size / ( double ) ( 1024 * 1024 * 1024 );
+                        st = GBYTE;
+                    }
+                    if ( size > ( uint ) ( 1024 * 1024 ) ) {
+                        s = ( double ) size / ( double ) ( 1024 * 1024 );
+                        st = MBYTE;
+                    }
+                    if ( size > ( uint ) 1024 ) {
+                        s = ( double ) size / ( double ) 1024;
+                        st = KBYTE;
+                    } else {
+                        s = size;
+                        st = BYTE;
+                    }
+
+                    env2 = db->getMediaNode ( number ) ;
+
+
+                    if ( env2 != NULL ) {
+                        curr3 = env2;
+                        if ( path.length() > 1 ) {
+                            //				std::cout << "path: \"" << path << "\"" << endl;
+
+                            QString tmp_path = path;
+                            QString tmp_path2 = "";
+                            /*							int index = 1;
+                            							int index2 = 1;*/
+                            QStringList fields = QStringList::split ( '\\', tmp_path );
+
+                            for ( QStringList::Iterator point = fields.begin(); point != fields.end(); ++point ) {
+                                tmp_path2 = *point;
+
+                                //				std::cout << "subpath: \"" << tmp_path2 << "\"" << endl;
+
+                                if ( tmp_path2 != "" ) {
+                                    curr2 = curr3;
+                                    curr3 = db->getDirectoryNode ( curr3,  tmp_path2 );
+
+                                    if ( curr3 == NULL )
+                                        curr3 = db->putDirectoryNode ( curr2, tmp_path2 , datetime , comment );
+                                    comment="";
+                                }
+                            }
+
+                        }
+
+                        			std::cout << "file: \"" << qPrintable(file) << "\"" << endl;
+
+                        curr3 = db->putFileNode ( curr3 ,  file ,  datetime , comment , st, s );
+                        comment="";
+
+
+                    }
+                }
+
+                filecount++;
+                linecount++;
+                last_type = "empty";
+                setProgress();
+
+
+
+            } // file
+
+        } // ITEM
+	currentText = "";
+	return TRUE;
 }
+
+
+bool importWhereIsItXml::characters ( const QString & ch ) {
+	//xmldata = ch;
+
+	QString name2 = ch;
+	currentText+= ch;
+	return true;
+}
+
 
 
 
@@ -1324,7 +1294,7 @@ importWhereIsItXml::importWhereIsItXml ( GuiSlave * parent, QString filename, bo
     this->guislave = parent;
     bool import_ok = true;
     last_tag = "";
-    last_type = empty;
+    last_type = "empty";
     if ( !filename.isEmpty() ) {
 
         if ( parent->mainw->db == NULL )
@@ -1417,102 +1387,12 @@ importWhereIsItXml::importWhereIsItXml ( GuiSlave * parent, QString filename, bo
         filenumber = 0;
         linecount = 0;
 
-
-
-
-        //XML_ParserCreate(ISO-8859-1);
-
-
-        //char buf[ BUFSIZ ];
-        parser = XML_ParserCreate ( "ISO-8859-1" );
-        int done = 0;
-        int depth = 0;
-        XML_SetUserData ( parser, &depth );
-        XML_SetElementHandler ( parser, startElement_whereisit_parse, endElement_whereisit_parse );
-        XML_SetCharacterDataHandler ( class_link_whereisit->parser, getCdata_whereisit_parse );
-
-        QString document_string = "";
-        QByteArray array;
-        if ( f.open ( QIODevice::ReadOnly ) ) { // old
-            //	if ( f_tmp.open( IO_ReadOnly ) ) {
-// 			int lines = 0;
-            Q3ProgressDialog progress ( 0, "Progressdialog", true );
-            progress.setLabelText ( tr ( "Importing XML..." ) );
-            progress.setCancelButton ( 0 );
-            progress.setTotalSteps ( all_lines );
-            progress.show();
-            array = f.readAll(); // old
-            /*
-            QTextStream t( &f );	// use a text stream
-            while ( !t.eof() ) {
-            document_string.append(t.readLine());
-            document_string.append('\n');
-            guislave->mainw->app->processEvents();
-            lines++;
-            progress.setProgress(lines);
-
-            }
-            */
-            //	array = f_tmp.readAll();
-        }
-        /*std::cout << "file read." << endl;*/
-
-        int len = array.size();
-
-        document_string = QString ( array );
-        /*std::cout << "string created." << endl;*/
-        //document_string.stripWhiteSpace();
-        //std::cout << "string stripped." << endl;
-        for ( int i = 1;i < 32;i++ ) {
-            if ( i != 10 )
-                /*document_string.remove( QChar( i ) );*/
-                document_string.replace ( QRegExp ( QString ( QChar ( i ) ) ),"" );
-            /*std::cout << "remove char: " << QString().setNum( i ) << endl;*/
-        }
-
-
-        /*
-        	^B ==> ACSII 02
-
-
-        */
-        /*
-        		int fails = 0;
-        		for ( int x = 1; x < 26;x++ ) {
-        			if ( x != 10 ) {
-        				int idx = array.find( x );
-        				while ( idx > 0 ) {
-        					array[ idx ] = ' ';
-        					fails++;
-        					idx = array.find( x, idx + 1 );
-        				}
-        			}
-        		}
-        */
-
-
-
-
-        if ( len > 0 ) {
-            if ( ! XML_Parse ( parser, document_string.latin1(), document_string.length(), done ) ) {
-                //		if ( ! XML_Parse( parser, ( char * ) array.data(), len, done ) ) {
-                fprintf ( stderr,
-                          "%s at line %d\n",
-                          XML_ErrorString ( XML_GetErrorCode ( parser ) ),
-                          XML_GetCurrentLineNumber ( parser ) );
-                import_ok = false;
-            }
-            //			document_string = "";
-        }
-
-
-        XML_ParserFree ( parser );
-        // end parse
-
-
-        //		f_tmp.close();
-        //	f_tmp.remove();
-
+		QXmlInputSource source( f );
+		QXmlSimpleReader reader;
+		reader.setContentHandler( this );
+		reader.setErrorHandler(this);
+		reader.parse( source );
+		progress->hide();
     } else {
         import_ok = false;
     }
@@ -1558,10 +1438,19 @@ importWhereIsItXml::~importWhereIsItXml() {
 
 void importWhereIsItXml::setProgress() {
     //std::cout << "setProgress(): " << linecount << "\n";
-    int line = XML_GetCurrentLineNumber ( parser );
-    progress->setProgress ( line );
-    class_link_whereisit->guislave->mainw->app->processEvents();
+//     int line = XML_GetCurrentLineNumber ( parser );
+//     progress->setProgress ( line );
+    guislave->mainw->app->processEvents();
 }
+
+bool importWhereIsItXml::fatalError(const QXmlParseException &exception)
+{
+    std::cerr << "Parse error at line " << exception.lineNumber()
+              << ", " << "column " << exception.columnNumber() << ": "
+              << qPrintable(exception.message()) << std::endl;
+    return true;
+}
+
 
 // -------- end ----------
 

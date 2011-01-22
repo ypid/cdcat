@@ -54,8 +54,8 @@ SOURCES		=   adddialog.cpp \
 CONFIG		+= qt debug
 MOC_DIR         = moc_files/
 OBJECTS_DIR     = obj_files/ 
-unix:LIBS       += -lz -lexpat
-win32:LIBS       += "c:\Expat\Bin\libexpat.lib" "c:\zlib\lib\libz.a"
+unix:LIBS       += -lz 
+win32:LIBS       += "c:\zlib\lib\libz.a"
 
 win32:INCLUDEPATH   += c:\Expat\Source\lib c:\zlib\include c:\pcre\include"
 FORMS      	= help.ui

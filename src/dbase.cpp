@@ -1205,11 +1205,11 @@ Node * DataBase::getMediaNode ( QString name ) {
     return NULL;
 }
 
-Node * DataBase::putMediaNode ( QString name,int number,QString owner,int type,QString comment ) {
+Node * DataBase::putMediaNode ( QString name,int number,QString owner,int type,QString comment, QDateTime modification ) {
     Node *t=NULL,*n=NULL;
 
     n = new Node ( HC_MEDIA,root );
-    n->data = ( void * ) new DBMedia ( name,number,owner,type,comment );
+    n->data = ( void * ) new DBMedia ( name,number,owner,type,comment, modification );
 
     if ( root->child == NULL )
         root->child = n;

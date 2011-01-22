@@ -13,12 +13,13 @@ Copyright : (C) 2003 Christoph Thielecke
 
 #include <qobject.h>
 #include <q3listview.h>
-#include <q3filedialog.h>
+#include <qfiledialog.h>
 #include <qwidget.h>
 #include <qdatetime.h>
 
 #include <q3progressdialog.h>
-#include <expat.h>
+
+#include <QtXml/QXmlDefaultHandler>
 
 #include <string.h>
 #include <stdio.h>
@@ -99,7 +100,7 @@ protected:
 };
 
 
-class importGtktalogXml : public QObject {
+class importGtktalogXml : public QObject, public QXmlDefaultHandler {
 Q_OBJECT public:
     importGtktalogXml ( GuiSlave * parent, QString filename, bool createdatabase );
     ~importGtktalogXml();
@@ -142,22 +143,31 @@ Q_OBJECT public:
     QString information;
     QDateTime datetime;
     QString directory;
-    XML_Parser parser;
     QString last_tag;
+		QString tag_content;
     GuiSlave * guislave;
     QList < lineObject > *medialines;
     Q3ProgressDialog *progress;
+		bool startDocument();
+		bool startElement( const QString&, const QString&, const QString& , const QXmlAttributes& );
+		bool endElement( const QString&, const QString&, const QString& );
+		bool characters ( const QString & ch ) ;
+		bool fatalError(const QXmlParseException &exception);
+		QXmlAttributes attr;
 
+	protected:
 protected:
     DataBase *db;
     bool createdatabase;
+    QString currentText;
 
 };
 
-enum tag_type {empty, media, file, folder};
+//enum tag_type {empty, media,file,folder};
 
-class importWhereIsItXml : public QObject {
-Q_OBJECT public:
+class importWhereIsItXml : public QObject, public QXmlDefaultHandler {
+Q_OBJECT
+public:
     importWhereIsItXml ( GuiSlave * parent, QString filename, bool createdatabase );
     ~importWhereIsItXml();
 
@@ -169,6 +179,7 @@ Q_OBJECT public:
     int filecount;
     int dircount;
     int refreshcount;
+		int tagcount;
     QString fullpath;
     QString path;
     QString filename;
@@ -189,16 +200,27 @@ Q_OBJECT public:
     QDateTime datetime;
     QString directory;
     QString comment;
-    XML_Parser parser;
     QString last_tag;
-    tag_type last_type;
+		//tag_type last_type;
+		QString last_type;
     GuiSlave * guislave;
     Q3ProgressDialog *progress;
     Node *last_upper_container_node;
     DataBase *db;
 protected:
 
-    bool createdatabase;
+
+		bool startDocument();
+		bool startElement( const QString&, const QString&, const QString& , const QXmlAttributes& );
+		bool endElement( const QString&, const QString&, const QString& );
+		bool characters ( const QString & ch ) ;
+		bool fatalError(const QXmlParseException &exception);
+
+		QXmlAttributes attr;
+	
+	protected:
+		bool createdatabase;
+		QString currentText;
 
 };
 
