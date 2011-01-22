@@ -502,9 +502,7 @@ void exportCdcatDB::removeMedia() {
 }
 
 void exportCdcatDB::browseFile() {
-    QString s;
-    s = Q3FileDialog::getSaveFileName ( QString::null, tr ( "All files (*.*)" ), this,
-                                        tr ( "file chooser" ), tr ( "Choose a file!" ) );
+    QString s = QFileDialog::getSaveFileName(0, tr ( "Choose a file!" ), "", tr ( "All files (*.*)" ));
     if ( !s.isEmpty() )
         fileName->setText ( s );
 }

@@ -14,7 +14,7 @@
 #include <qwidget.h>
 #include <qvariant.h>
 #include <qcheckbox.h>
-#include <q3filedialog.h>
+#include <qfiledialog.h>
 #include <qlineedit.h>
 #include <qpushbutton.h>
 #include <qlayout.h>
@@ -76,9 +76,12 @@ CdCatConfig::CdCatConfig ( void ) {
     // set dummy
 #ifdef _WIN32
     cdrompath = "D:/";
+    lastDir = getenv("USER_PROFILE");
 #else
     cdrompath = "/dev/sr0";
+    lastDir = getenv("HOME");
 #endif
+    
     hlist.clear();
     autosave   = false;
     debug_info_enabled = false;
@@ -220,12 +223,12 @@ int CdCatConfig::readConfig ( void ) {
                     continue;
                 }
 
-                if ( var=="history_size" ) {
+                else if ( var=="history_size" ) {
                     historysize=val.toInt();
                     continue;
                 }
 
-                if ( var=="history" ) {
+                else if ( var=="history" ) {
                     QString history=val;
                     if ( !history.isEmpty() ) {
                         int idx=0;
@@ -244,7 +247,7 @@ int CdCatConfig::readConfig ( void ) {
                     continue;
                 } // history
 
-                if ( var=="autoload" ) {
+                else if ( var=="autoload" ) {
                     if ( val=="true" )
                         autoload=true;
                     else
@@ -252,7 +255,7 @@ int CdCatConfig::readConfig ( void ) {
                     continue;
                 }
 
-                if ( var=="autosave" ) {
+                else if ( var=="autosave" ) {
                     if ( val=="true" )
                         autosave=true;
                     else
@@ -260,7 +263,7 @@ int CdCatConfig::readConfig ( void ) {
                     continue;
                 }
 
-                if ( var=="ownfont" ) {
+                else if ( var=="ownfont" ) {
                     if ( val=="true" )
                         ownfont=true;
                     else
@@ -268,12 +271,12 @@ int CdCatConfig::readConfig ( void ) {
                     continue;
                 }
 
-                if ( var=="autoload_file" ) {
+                else if ( var=="autoload_file" ) {
                     autoloadfn=val;
                     continue;
                 }
 
-                if ( var=="niceformat" ) {
+                else if ( var=="niceformat" ) {
                     if ( val=="true" )
                         nice=true;
                     else
@@ -281,15 +284,14 @@ int CdCatConfig::readConfig ( void ) {
                     continue;
                 }
 
-                if ( var=="cdrompath" ) {
+                else if ( var=="cdrompath" ) {
                     if ( !val.isEmpty() )
                         cdrompath=val;
                     continue;
                 }
 
 #ifndef _WIN32
-
-                if ( var=="mounteject" ) {
+                else if ( var=="mounteject" ) {
                     if ( val=="true" )
                         mounteject=true;
                     else
@@ -297,107 +299,107 @@ int CdCatConfig::readConfig ( void ) {
                     continue;
                 }
 #else
-                if ( var=="lang" ) {
+                else if ( var=="lang" ) {
                     lang = val;
                     continue;
                 }
 #endif
 
-                if ( var=="windowSize_height" ) {
+                else if ( var=="windowSize_height" ) {
                     windowSize_height = val.toInt();
                     continue;
                 }
-                if ( var=="windowSize_width" ) {
+                else if ( var=="windowSize_width" ) {
                     windowSize_width = val.toInt();
                     continue;
                 }
-                if ( var=="windowPos_x" ) {
+                else if ( var=="windowPos_x" ) {
                     windowPos.setX ( val.toInt() );
                     continue;
                 }
-                if ( var=="windowPos_y" ) {
+                else if ( var=="windowPos_y" ) {
                     windowPos.setY ( val.toInt() );
                     continue;
                 }
 
-                if ( var=="dirview_size" ) {
+                else if ( var=="dirview_size" ) {
                     mainP1 =val.toInt();
                     continue;
                 }
-                if ( var=="listview_size" ) {
+                else if ( var=="listview_size" ) {
                     mainP2 =val.toInt();
                     continue;
                 }
-                if ( var=="commentview_size" ) {
+                else if ( var=="commentview_size" ) {
                     mainP3 =val.toInt();
                     continue;
                 }
 
                 // Read the options of find dialog
-                if ( var=="find_checkbox_casesens" ) {
+                else if ( var=="find_checkbox_casesens" ) {
                     if ( val=="true" )
                         find_cs=true;
                     else
                         find_cs=false;
                     continue;
                 }
-                if ( var=="find_checkbox_easymatch" ) {
+                else if ( var=="find_checkbox_easymatch" ) {
                     if ( val=="true" )
                         find_em=true;
                     else
                         find_em=false;
                     continue;
                 }
-                if ( var=="find_checkbox_directory" ) {
+                else if ( var=="find_checkbox_directory" ) {
                     if ( val=="true" )
                         find_di=true;
                     else
                         find_di=false;
                     continue;
                 }
-                if ( var=="find_checkbox_file" ) {
+                else if ( var=="find_checkbox_file" ) {
                     if ( val=="true" )
                         find_fi=true;
                     else
                         find_fi=false;
                     continue;
                 }
-                if ( var=="find_checkbox_comment" ) {
+                else if ( var=="find_checkbox_comment" ) {
                     if ( val=="true" )
                         find_co=true;
                     else
                         find_co=false;
                     continue;
                 }
-                if ( var=="find_checkbox_content" ) {
+                else if ( var=="find_checkbox_content" ) {
                     if ( val=="true" )
                         find_ct=true;
                     else
                         find_ct=false;
                     continue;
                 }
-                if ( var=="find_checkbox_mp3artist" ) {
+                else if ( var=="find_checkbox_mp3artist" ) {
                     if ( val=="true" )
                         find_mar=true;
                     else
                         find_mar=false;
                     continue;
                 }
-                if ( var=="find_checkbox_mp3title" ) {
+                else if ( var=="find_checkbox_mp3title" ) {
                     if ( val=="true" )
                         find_mti=true;
                     else
                         find_mti=false;
                     continue;
                 }
-                if ( var=="find_checkbox_mp3album" ) {
+                else if ( var=="find_checkbox_mp3album" ) {
                     if ( val=="true" )
                         find_mal=true;
                     else
                         find_mal=false;
                     continue;
                 }
-                if ( var=="find_checkbox_mp3comment" ) {
+                else if ( var=="find_checkbox_mp3comment" ) {
                     if ( val=="true" )
                         find_mco=true;
                     else
@@ -405,24 +407,24 @@ int CdCatConfig::readConfig ( void ) {
                     continue;
                 }
 
-                if ( var=="findPos_x" ) {
+                else if ( var=="findPos_x" ) {
                     findX =val.toInt();
                     continue;
                 }
-                if ( var=="findPos_y" ) {
+                else if ( var=="findPos_y" ) {
                     findY =val.toInt();
                     continue;
                 }
-                if ( var=="findSize_width" ) {
+                else if ( var=="findSize_width" ) {
                     findWidth =val.toInt();
                     continue;
                 }
-                if ( var=="findSize_height" ) {
+                else if ( var=="findSize_height" ) {
                     findHeight =val.toInt();
                     continue;
                 }
 
-                if ( var=="read_avi_techinfo" ) {
+                else if ( var=="read_avi_techinfo" ) {
                     if ( val=="true" )
                         readavii=true;
                     else
@@ -430,7 +432,7 @@ int CdCatConfig::readConfig ( void ) {
                     continue;
                 }
 
-                if ( var=="read_mp3tag" ) {
+                else if ( var=="read_mp3tag" ) {
                     if ( val=="true" )
                         readtag=true;
                     else
@@ -438,7 +440,7 @@ int CdCatConfig::readConfig ( void ) {
                     continue;
                 }
 
-                if ( var=="mp3tag_default_v1" ) {
+                else if ( var=="mp3tag_default_v1" ) {
                     if ( val=="true" )
                         v1_over_v2=true;
                     else
@@ -446,7 +448,7 @@ int CdCatConfig::readConfig ( void ) {
                     continue;
                 }
 
-                if ( var=="read_mp3techinfo" ) {
+                else if ( var=="read_mp3techinfo" ) {
                     if ( val=="true" )
                         readinfo=true;
                     else
@@ -454,19 +456,19 @@ int CdCatConfig::readConfig ( void ) {
                     continue;
                 }
 
-                if ( var=="read_content" ) {
+                else if ( var=="read_content" ) {
                     if ( val=="true" )
                         readcontent=true;
                     else
                         readcontent=false;
                     continue;
                 }
-                if ( var=="read_content_files" ) {
+                else if ( var=="read_content_files" ) {
                     if ( !val.isEmpty() )
                         readcfiles=val;
                     continue;
                 }
-                if ( var=="read_content_limit" ) {
+                else if ( var=="read_content_limit" ) {
                     readclimit =val.toInt();
                     continue;
                 }
@@ -483,7 +485,7 @@ int CdCatConfig::readConfig ( void ) {
                     continue;
                 }
 
-                if ( var=="comment_fr_color" ) {
+                else if ( var=="comment_fr_color" ) {
                     int r=0,g=0,b=0;
 
                     r=secv ( val,0 );
@@ -494,7 +496,7 @@ int CdCatConfig::readConfig ( void ) {
                     continue;
                 }
 
-                if ( var=="comment_ts_color" ) {
+                else if ( var=="comment_ts_color" ) {
                     int r=0,g=0,b=0;
 
                     r=secv ( val,0 );
@@ -505,7 +507,7 @@ int CdCatConfig::readConfig ( void ) {
                     continue;
                 }
 
-                if ( var=="comment_td_color" ) {
+                else if ( var=="comment_td_color" ) {
                     int r=0,g=0,b=0;
 
                     r=secv ( val,0 );
@@ -516,7 +518,7 @@ int CdCatConfig::readConfig ( void ) {
                     continue;
                 }
 
-                if ( var=="catalog_link_is_first" ) {
+                else if ( var=="catalog_link_is_first" ) {
                     if ( val=="true" )
                         linkf=true;
                     else
@@ -524,11 +526,17 @@ int CdCatConfig::readConfig ( void ) {
                     continue;
                 }
 
-                if ( var=="debug_info_enabled" ) {
+                else if ( var=="debug_info_enabled" ) {
                     if ( val=="true" )
                         debug_info_enabled=true;
                     else
                         debug_info_enabled=false;
+                    continue;
+                }
+
+                else if ( var=="last_dir" ) {
+                    if ( !val.isEmpty() )
+                        lastDir=val;
                     continue;
                 }
 
@@ -736,6 +744,8 @@ int CdCatConfig::writeConfig ( void ) {
             str << "debug_info_enabled=true" <<endl;
         else
             str << "debug_info_enabled=false" <<endl;
+
+        str << "last_dir="+lastDir << endl;
 
         f.close();
         return 0;
@@ -1005,17 +1015,15 @@ void ConfigDialog::languageChange() {
 
 
 void ConfigDialog::ffdbutton() {
-    QString s;
-    s = Q3FileDialog::getOpenFileName ( QString::null,tr ( "CdCat Databases (*.hcf)" ),this,
-                                        "autoload file chooser",tr ( "Choose a file to load automatically!" ) );
+    QString s = QFileDialog::getOpenFileName(0, tr ( "Choose a file to load automatically!" ), p->cconfig->lastDir, tr ( "CdCat databases (*.hcf )" ));
     if ( !s.isEmpty() )
         filename->setText ( s );
 }
 
 
 void ConfigDialog::cdrombutton() {
-    QString s;
-    s = Q3FileDialog::getExistingDirectory ( QString::null,this,"cdrom path chooser",tr ( "Choose path to cdrom!" ) );
+    QString s = QFileDialog::getExistingDirectory(0, tr ( "Choose path to cdrom!" ), p->cconfig->lastDir );
+
     if ( !s.isEmpty() )
         cdrompath_lineedit->setText ( s );
 }

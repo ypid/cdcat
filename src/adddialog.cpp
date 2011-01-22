@@ -34,7 +34,7 @@
 #include <qdatetime.h>
 #include <qapplication.h>
 #include <qfontmetrics.h>
-#include <q3filedialog.h>
+#include <qfiledialog.h>
 //Added by qt3to4:
 #include <Q3HBoxLayout>
 #include <QPaintEvent>
@@ -423,8 +423,10 @@ void progress ( PWw *p ) {
 
 /**************************************************************************/
 
-AddLnk::AddLnk ( QWidget *parent )
+AddLnk::AddLnk (GuiSlave *c, QWidget *parent )
         : QDialog ( parent,"addlnkdialog",true ) {
+
+    caller = c;
     setName ( "addlnkdialog" );
     setIcon ( *get_p_icon() );
 
@@ -492,8 +494,7 @@ int AddLnk::scancel ( void ) {
 
 int AddLnk::sselect ( void ) {
     QString fn;
-
-    fn = Q3FileDialog::getOpenFileName ( NULL,tr ( "CdCat databases (*.hcf )" ),this,"openlnfiled",tr ( "Open a file..." ) );
+    fn = QFileDialog::getOpenFileName(0, tr ( "Open a file..." ), caller->mainw->cconfig->lastDir, tr ( "CdCat databases (*.hcf )" ));
     if ( fn.isEmpty() )  return 0;
 
     fname->setText ( fn );

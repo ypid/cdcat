@@ -17,7 +17,7 @@
 #include <qlayout.h>
 #include <qobject.h>
 #include <q3listview.h>
-#include <q3filedialog.h>
+#include <qfiledialog.h>
 #include <qwidget.h>
 #include <qdatetime.h>
 #include <qdialog.h>
@@ -46,7 +46,6 @@
 #include <qfile.h>
 #include <QLayout>
 
-#include <expat.h>
 
 #include "guibase.h"
 #include "dbase.h"

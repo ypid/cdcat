@@ -17,7 +17,7 @@ Copyright : (C) 2003 Christoph Thielecke
 #include <qtooltip.h>
 #include <q3whatsthis.h>
 #include <qfile.h>
-#include <q3filedialog.h>
+#include <qfiledialog.h>
 //Added by qt3to4:
 #include <Q3GridLayout>
 #include <stdio.h>
@@ -232,14 +232,14 @@ void ImportDialog::getFileName() {
     else
         filetypes = QString ( tr ( "all files(*.*)" ) );
 
-    filename_lineedit->setText ( Q3FileDialog::getOpenFileName (
-                                     getenv ( "HOME" ),
-                                     //     "/data/compile/CdCat-0.91/",
-                                     filetypes,
-                                     0,
-                                     tr ( "open file dialog" ),
-                                     tr ( "Choose a file for import" ) ) );
+    QString homedir;
+#ifndef _WIN32
+	homedir = getenv("HOME");
+#else
+	homedir = getenv("USER_PROFILE");
+#endif
 
+    filename_lineedit->setText (QFileDialog::getOpenFileName(0, tr ( "Choose a file for import" ), homedir, filetypes ));
     filename= filename_lineedit->text();
 }
 

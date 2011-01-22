@@ -136,7 +136,7 @@ class AddLnk : public QDialog {
     Q_OBJECT
 
 public:
-    AddLnk ( QWidget *parent );
+    AddLnk ( GuiSlave *c, QWidget *parent );
 
     bool ok;
     QLineEdit *fname;
@@ -158,6 +158,9 @@ public slots:
 
 protected slots:
     virtual void languageChange();
+
+protected:
+    GuiSlave *caller;
 
 };
 

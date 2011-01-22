@@ -79,6 +79,7 @@ public:
     int windowSize_height;
     int windowSize_width;
     QString cdrompath;
+    QString lastDir;
     int  mainP1;
     int  mainP2;
     int  mainP3;

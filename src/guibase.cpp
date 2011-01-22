@@ -18,7 +18,8 @@
 #include <qregexp.h>
 #include <qpixmap.h>
 #include <qmessagebox.h>
-#include <q3filedialog.h>
+#include <QFileDialog>
+#include <QFileInfo>
 #include <qapplication.h>
 #include <qsplitter.h>
 //Added by qt3to4:
@@ -857,9 +858,12 @@ int GuiSlave::openEvent ( void ) {
     QString fn;
     int ret_val=0;
     DEBUG_INFO_ENABLED = init_debug_info();
+    
+    fn = QFileDialog::getOpenFileName(0, tr ( "Open a file..." ), mainw->cconfig->lastDir, tr ( "CdCat databases (*.hcf )" ));
+    if ( fn.isEmpty() )
+         return 0;
 
-    fn = Q3FileDialog::getOpenFileName ( NULL,tr ( "CdCat databases (*.hcf )" ),mainw,"openfiled",tr ( "Open a file..." ) );
-    if ( fn.isEmpty() )  return 0;
+    mainw->cconfig->lastDir = QFileInfo( fn ).absoluteDir().absolutePath();
 
     strcpy ( fnc, ( const char * ) ( QFile::encodeName ( fn ) ) );
     while ( closeEvent() !=0 );
@@ -975,7 +979,7 @@ int GuiSlave::saveasEvent ( void ) {
     QString fn;
 
     if ( mainw->db == NULL ) return 0;
-    fn = Q3FileDialog::getSaveFileName ( NULL,tr ( "CdCat databases (*.hcf )" ),mainw,"savefdlg",tr ( "Save to file..." ) );
+    fn = QFileDialog::getSaveFileName(0, tr ( "Save to file..." ), mainw->cconfig->lastDir, tr ( "CdCat databases (*.hcf )" ));
     if ( fn.isEmpty() )  return 0;
 
 
@@ -1284,7 +1288,7 @@ int GuiSlave::rescanEvent ( void ) {
     }
 
     o=tr ( "Rescan %1" ).arg ( standON->getNameOf() );
-    rfd = Q3FileDialog::getExistingDirectory ( NULL,mainw,"rescand",o );
+    rfd = QFileDialog::getExistingDirectory(0, tr ( "Select directory" ), o);
     if ( rfd.isEmpty() ) return 0;
 
     PWw *pww = new PWw ( mainw,mainw->app );
@@ -1375,8 +1379,7 @@ int GuiSlave::insertcEvent ( void ) {
         newEvent();
     if ( mainw->db == NULL )
         return 0;
-    fn = Q3FileDialog::getOpenFileName ( NULL,tr ( "CdCat databases (*.hcf )" ),
-                                         mainw,"openfiled",tr ( "Insert a database file..." ) );
+    fn = QFileDialog::getOpenFileName(0, tr ( "Insert a database file..." ), mainw->cconfig->lastDir, tr ( "CdCat databases (*.hcf )" ));
     if ( fn.isEmpty() )  return 0;
 
     strcpy ( fnc, ( const char * ) QFile::encodeName ( fn ) );
@@ -1582,7 +1585,7 @@ int GuiSlave::showContent ( void ) {
 int GuiSlave::addlnkEvent ( void ) {
     if ( mainw->db == NULL ) return 0;
 
-    AddLnk *al = new AddLnk ( mainw );
+    AddLnk *al = new AddLnk ( this, mainw );
     al->exec();
     if ( al->ok ) {
         panelsOFF();

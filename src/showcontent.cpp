@@ -19,7 +19,7 @@
 #include <qpixmap.h>
 #include <qlabel.h>
 #include <qmessagebox.h>
-#include <q3filedialog.h>
+#include <qfiledialog.h>
 //Added by qt3to4:
 #include <Q3GridLayout>
 #include <Q3HBoxLayout>
@@ -128,9 +128,7 @@ int ShowContent::savenode ( void ) {
     } else return 0;
     if ( mynode == NULL ) return 0;
 
-    fname =
-        Q3FileDialog::getSaveFileName ( parentnode->getNameOf(),NULL,this,
-                                        tr ( "Save content..." ),tr ( "Select a filename below" ) );
+    fname = QFileDialog::getSaveFileName(0, tr ( "Select a filename below" ), parentnode->getNameOf(), tr ( "CdCat databases (*.hcf )" ));
     if ( !fname.isEmpty() ) {
         f = fopen ( QFile::encodeName ( fname ),"w" );
         if ( f == NULL ) {
