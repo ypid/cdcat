@@ -251,9 +251,18 @@ int addDialog::setMediaName ( const QString & ds ) {
             ! ( tm.isEmpty() )) {
 #endif
 #ifdef _WIN32
-    if ( ( cbType->currentItem() +1 == CD ) &&
-            ( confdir  == selected )         &&
-            ! ( tm = getCDName ( caller->mainw->cconfig->cdrompath.replace("/", "\\" )) ).isEmpty() ) {
+    if ( ( cbType->currentItem() +1 == CD ) && ( confdir  == selected )) {
+			if (!caller->mainw->cconfig->cdrompath.replace("/", "\\" ).isEmpty()) {
+				tm = getCDName ( caller->mainw->cconfig->cdrompath.replace("/", "\\" ));
+			}
+	}
+	else {
+				//QMessageBox::warning ( ( QWidget * ) this,tr ( "Warning:" ),tr ( "Trying selected drive name" ) );
+				tm = getCDName (dirView->sDir.replace("/", "\\" ));
+	}
+	
+			
+	if (!tm.isEmpty()) {
 #endif
 
         leName->setText ( tm );
@@ -308,8 +317,13 @@ int addDialog::bOk ( void ) {
     dName  = leName->text();
     dOwner = leOwner->text();
     dComm  = teComm->text();
+#ifdef _WIN32
     dDir   = dirView->sDir;
-
+#else
+	dDir   = dirView->sDir;
+#endif
+	
+	
     close();
     return 0;
 }
