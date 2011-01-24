@@ -173,7 +173,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp,QApplication *appp,QWidget* 
     fileMenu->insertItem ( tr ( "Quit" ),this,SLOT ( close() ),Qt::CTRL+Qt::Key_Q );
 
     editMenu->insertItem ( *get_t_add_icon() ,tr ( "Add media..." ),guis,SLOT ( addEvent() ),Qt::Key_A );
-    editMenu->insertItem ( *get_p_icon(),tr ( "Add a link to a CdCAt Catalog..." ),guis,SLOT ( addlnkEvent() ),Qt::CTRL+Qt::Key_L );
+    editMenu->insertItem ( *get_p_icon(),tr ( "Add a link to a CdCat Catalog..." ),guis,SLOT ( addlnkEvent() ),Qt::CTRL+Qt::Key_L );
     editMenu->insertItem ( *get_t_rescan_icon() ,tr ( "Rescan media..." ),guis,SLOT ( rescanEvent() ),Qt::CTRL+Qt::Key_R );
     editMenu->insertSeparator();
     editMenu->insertItem ( *get_m_import_icon(),tr ( "Insert Catalog..." ),guis,SLOT ( insertcEvent() ) );
@@ -326,7 +326,7 @@ void CdCatMainWidget::languageChange() {
     ButtonRescan->setText ( QString::null );
     QToolTip::add ( ButtonRescan, tr ( "Rescan the selected media." ) );
     ButtonDelete->setText ( QString::null );
-    QToolTip::add ( ButtonDelete, tr ( "Delete the selected media from the catalog." ) );
+    QToolTip::add ( ButtonDelete, tr ( "Delete selected node." ) );
     ButtonConfig->setText ( QString::null );
     QToolTip::add ( ButtonConfig, tr ( "Configuration of the program." ) );
     ButtonHelp->setText ( QString::null );

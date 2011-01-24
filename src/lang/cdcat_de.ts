@@ -61,10 +61,6 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
       <translation>Neues Medium zu Katalog hinzufügen</translation>
     </message>
     <message>
-      <source>Delete the selected media from the catalog.</source>
-      <translation>Ausgewähltes Medium aus Katalog löschen</translation>
-    </message>
-    <message>
       <source>Configuration of the program.</source>
       <translation>Konfiguration des Programms</translation>
     </message>
@@ -213,10 +209,6 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
       <translation>Katalog in eine neue Datei speichern.</translation>
     </message>
     <message>
-      <source>Add a link to a CdCAt Catalog...</source>
-      <translation>Verknüpfung zu einem CdCat-Katalog hinzufügen</translation>
-    </message>
-    <message>
       <source>Set Colors...</source>
       <translation>Farben setzen...</translation>
     </message>
@@ -239,6 +231,14 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     <message>
       <source>Import database (Gtktalog/Kat-CeDe/WhereIsIt?)</source>
       <translation>Datenbank importieren (Gtkatalog/Kat-CeDe/WhereIsIt?)</translation>
+    </message>
+    <message>
+      <source>Add a link to a CdCat Catalog...</source>
+      <translation>Verweis auf CdCat-Datenbank hinzufügen...</translation>
+    </message>
+    <message>
+      <source>Delete selected node.</source>
+      <translation>Ausgewählten Knoten löschen</translation>
     </message>
   </context>
   <context>

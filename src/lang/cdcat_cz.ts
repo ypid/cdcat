@@ -287,7 +287,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location filename="../mainwidget.cpp" line="329"/>
         <source>Delete the selected media from the catalog.</source>
-        <translation>Smazat vybrané médium z katalogu.</translation>
+        <translation type="obsolete">Smazat vybrané médium z katalogu.</translation>
     </message>
     <message>
         <location filename="../mainwidget.cpp" line="331"/>
@@ -362,7 +362,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location filename="../mainwidget.cpp" line="176"/>
         <source>Add a link to a CdCAt Catalog...</source>
-        <translation>Přidat odkaz na CdCat katalog...</translation>
+        <translation type="obsolete">Přidat odkaz na CdCat katalog...</translation>
     </message>
     <message>
         <location filename="../mainwidget.cpp" line="195"/>
@@ -392,6 +392,16 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location filename="../mainwidget.cpp" line="201"/>
         <source>Import database (Gtktalog/Kat-CeDe/WhereIsIt?)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwidget.cpp" line="176"/>
+        <source>Add a link to a CdCat Catalog...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwidget.cpp" line="329"/>
+        <source>Delete selected node.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
