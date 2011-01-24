@@ -37,6 +37,10 @@
 #include <QPixmap>
 #include <QLatin1String>
 
+#ifdef _WIN32
+#include <QPlastiqueStyle>
+#endif
+
 #include "commwidget.h"
 #include "hdirview.h"
 #include "dbase.h"
@@ -262,7 +266,9 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp,QApplication *appp,QWidget* 
     splitMain->setSizes ( splitterSizesList );
     splitMain->setResizeMode ( DirView, QSplitter::Stretch );
     splitMain->setResizeMode ( listView, QSplitter::Stretch );
-
+#ifdef _WIN32
+	splitMain->setStyle(new QPlastiqueStyle());
+#endif
 
     connect ( DirView ,SIGNAL ( folderSelected ( const QString& ) ),guis,SLOT ( listUpdate ( const QString& ) ) );
     connect ( DirView ,SIGNAL ( hitkey ( QKeyEvent * ) ),guis,SLOT ( hotKeys ( QKeyEvent * ) ) );
