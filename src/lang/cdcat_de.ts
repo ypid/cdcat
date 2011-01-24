@@ -748,7 +748,7 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     </message>
     <message>
       <source>There is no selected item in the middle list box!</source>
-      <translation>Kein ausgewähltes Element in der mittleren Auswahlbox!</translation>
+      <translation>Es ist kein Element im mittleren Ansichtsfenster ausgewählt!</translation>
     </message>
     <message>
       <source>An error occured while scanning,

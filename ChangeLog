@@ -1,5 +1,6 @@
-22. Jan 2011 Christoph Thielecke <crissi99@gmx.de>
+24. Jan 2011 Christoph Thielecke <crissi99@gmx.de>
 	- scanning cdrom/dvd if no cdrom path is set fixed (win32)
+	- wrong translation fixed (thanks to Thomas Nehrenheim)
 
 22. Jan 2011 Christoph Thielecke <crissi99@gmx.de>
 	- save last dir on open catalog
@@ -36,50 +37,31 @@
 	- translation update
 
 28. Nov 2010 Christoph Thielecke <crissi99@gmx.de>
-
 	- support for (dead) symbolic links and system files improved (thanks to Bernard Valentin)
 
 28. Nov 2010 Christoph Thielecke <crissi99@gmx.de>
-
 	- parsing avi header fixed (thanks to Niels Horn)
 
 25. Nov 2010 Christoph Thielecke <crissi99@gmx.de>
-
 	- allow "<", ">" and '"' in comments (thanks to Niels Horn)
-
 	- crash if clicking on the "catalog" in the left panel fixed (thanks to Niels Horn)
-
 	- format dates with leading zero (thanks to Niels Horn)
-
 	- typos fixed (thanks to Niels Horn)
-
 	- translations updated
-
 	- compile fix for qt < 4.6.0 added
 
 25. Nov 2010 Christoph Thielecke <crissi99@gmx.de>
-
 	- fixed wrong encoding on reading
-
 	- crash when adding new media fixed (thanks to Bernard Valentin)
 
 24. Nov 2010 Christoph Thielecke <crissi99@gmx.de>
-
 	- ChangeLog added
-
 	- double click on folder at display view fixed (thanks to Niels Horn)
-
 	- details are not shown for an item when clicking on it fixed (thanks to Niels Horn)
-
 	- segfault at saving catalog fixed
-
 	- win32 fixes (thanks to noragen)
-
 	- string termination correction at mp3tag (based on patch from debian (http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=358929))
-
 	- patch for fixing gzip -> xml conversion applied (based on patch from gentoo (http://bugs.gentoo.org/show_bug.cgi?id=48826))
-
 	- help dialog converted to qt4 ui
-
 	- patch for import old date-format added (thanks to Niels Horn)
   
