@@ -622,7 +622,7 @@ int exportCdcatDB::writeFile ( Node *source ) {
             outstring += "<td>";
             outstring += QString().setNum ( ( ( DBFile * ) ( source->data ) ) ->size );
             outstring +=" ";
-            outstring += QString ( getSType ( ( ( ( DBFile * ) ( source->data ) ) ->sizeType ) ) );
+            outstring += QString ( getSType ( ( ( ( DBFile * ) ( source->data ) ) ->sizeType, true ) ) );
             outstring += "</td>";
         }
 

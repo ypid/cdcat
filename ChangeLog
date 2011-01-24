@@ -4,6 +4,8 @@
 	- csv import added (Kat-CeDe)
 	- media number/name at comment widget moved below type
 	- do automatic linebreak in comment widget if comment has oversized lines (>40 chars)
+	- display size units correctly (Kib, Mib, ...)
+	- made size units translateable
 
 22. Jan 2011 Christoph Thielecke <crissi99@gmx.de>
 	- save last dir on open catalog

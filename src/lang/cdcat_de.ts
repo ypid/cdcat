@@ -519,6 +519,22 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
       <source>Not enough memory to open the file: %1</source>
       <translation>Nicht genug Hauptspeicher um Datei %1 zu öffnen</translation>
     </message>
+    <message>
+      <source>Byte</source>
+      <translation>Byte</translation>
+    </message>
+    <message>
+      <source>Kib</source>
+      <translation>Kib</translation>
+    </message>
+    <message>
+      <source>Mib</source>
+      <translation>Mib</translation>
+    </message>
+    <message>
+      <source>Gib</source>
+      <translation>Gib</translation>
+    </message>
   </context>
   <context>
     <name>DirectoryView</name>
@@ -802,12 +818,12 @@ Homepage: %3</translation>
       <translation>Kein Element ausgewählt.</translation>
     </message>
     <message>
-      <source>The resoult:</source>
-      <translation>Das Ergebnis:</translation>
-    </message>
-    <message>
       <source>Select directory</source>
       <translation>Verzeichnis auswählen</translation>
+    </message>
+    <message>
+      <source>The result:</source>
+      <translation>Das Ergebnis:</translation>
     </message>
   </context>
   <context>

@@ -97,12 +97,22 @@ int   getSizetFS ( const char *str ) {
     return -1;
 }
 
-const char *getSType ( int t ) {
-    switch ( t ) {
-    case BYTE : return " byte";
-    case KBYTE: return " Kb";
-    case MBYTE: return " Mb";
-    case GBYTE: return " Gb";
+const char *getSType ( int t, bool localized ) {
+	if(localized) {
+		switch ( t ) {
+			case BYTE : return " "+DataBase::tr("Byte");
+			case KBYTE: return " "+DataBase::tr("Kib");
+			case MBYTE: return " "+DataBase::tr("Mib");
+			case GBYTE: return " "+DataBase::tr("Gib");
+		}
+    }
+    else {
+	switch ( t ) {
+		case BYTE : return " byte";
+		case KBYTE: return " Kb";
+		case MBYTE: return " Mb";
+		case GBYTE: return " Gb";
+	}
     }
     return NULL;
 }

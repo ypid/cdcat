@@ -771,6 +771,26 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <source>Not enough memory to open the file: %1</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../wdbfile.cpp" line="103"/>
+        <source>Byte</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../wdbfile.cpp" line="104"/>
+        <source>Kib</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../wdbfile.cpp" line="105"/>
+        <source>Mib</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../wdbfile.cpp" line="106"/>
+        <source>Gib</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DirectoryView</name>
@@ -1155,13 +1175,13 @@ Homepage: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1457"/>
-        <source>The resoult:</source>
+        <location filename="../guibase.cpp" line="1291"/>
+        <source>Select directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1291"/>
-        <source>Select directory</source>
+        <location filename="../guibase.cpp" line="1457"/>
+        <source>The result:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

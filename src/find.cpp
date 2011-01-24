@@ -724,7 +724,7 @@ void seekEngine::putNodeToList ( Node *n ) {
         break;
     case HC_FILE:      type = tr ( "file" ) + QString().sprintf ( "/ %.1f%s",
                                   ( ( DBFile * ) ( n->data ) )->size,
-                                  getSType ( ( ( DBFile * ) ( n->data ) )->sizeType ) );
+                                  getSType ( ( ( DBFile * ) ( n->data ) )->sizeType, true ) );
         mod  = ( ( DBFile * ) ( n->data ) )->modification;
         break;
     default:           type = tr ( "error" );

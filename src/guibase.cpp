@@ -354,7 +354,7 @@ int GuiSlave::updateListFromNode ( Node *pdir ) {
         if ( tmp->type == HC_FILE )
             qstr1.sprintf ( "%.2f %s",
                             ( ( DBFile * ) ( tmp->data ) )->size,
-                            getSType ( ( ( DBFile * ) ( tmp->data ) )->sizeType ) );
+                            getSType ( ( ( DBFile * ) ( tmp->data ) )->sizeType, true ) );
         else if ( tmp->type == HC_MEDIA )
             qstr1.setNum ( ( ( DBMedia * ) ( tmp->data ) )->number );
         else
@@ -1447,14 +1447,14 @@ int GuiSlave::sizeEvent ( void ) {
         return 0;
     }
 
-    sprintf ( text,"%.2f Mb",mainw->db->getSize ( standON ) );
+    sprintf ( text,"%.2f Mib",mainw->db->getSize ( standON ) );
     qtext = tr ( "The size of \"%1\" : \n %2 \n %3 file /%4 directory" )
             .arg ( standON->getNameOf() )
             .arg ( text )
             .arg ( mainw->db->getCountFiles ( standON ) )
             .arg ( mainw->db->getCountDirs ( standON ) );
 
-    QMessageBox::information ( mainw,tr ( "The resoult:" ),qtext );
+    QMessageBox::information ( mainw,tr ( "The result:" ),qtext );
     return 0;
 }
 
