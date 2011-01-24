@@ -790,7 +790,7 @@ Datenbank kann unvollständig sein</translation>
     </message>
     <message>
       <source>Add a link to a CdCAt Catalog...</source>
-      <translation>Verknüpfung zu einem CdCat-Katalog huinzufügen</translation>
+      <translation>Verknüpfung zu einem CdCat-Katalog hinzufügen</translation>
     </message>
     <message>
       <source>The link is empty.</source>
