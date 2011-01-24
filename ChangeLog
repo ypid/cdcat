@@ -2,6 +2,8 @@
 	- scanning cdrom/dvd if no cdrom path is set fixed (win32)
 	- wrong translation fixed (thanks to Thomas Nehrenheim)
 	- csv import added (Kat-CeDe)
+	- media number/name at comment widget moved below type
+	- do automatic linebreak in comment widget if comment has oversized lines (>40 chars)
 
 22. Jan 2011 Christoph Thielecke <crissi99@gmx.de>
 	- save last dir on open catalog

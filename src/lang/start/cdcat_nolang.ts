@@ -375,57 +375,52 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../commwidget.cpp" line="166"/>
+        <location filename="../../commwidget.cpp" line="192"/>
         <source> CdCat Catalog root</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../commwidget.cpp" line="172"/>
+        <location filename="../../commwidget.cpp" line="198"/>
         <source> Directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../commwidget.cpp" line="175"/>
+        <location filename="../../commwidget.cpp" line="201"/>
         <source> File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../commwidget.cpp" line="178"/>
+        <location filename="../../commwidget.cpp" line="204"/>
         <source>Media</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../commwidget.cpp" line="187"/>
+        <location filename="../../commwidget.cpp" line="216"/>
         <source>Size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../commwidget.cpp" line="236"/>
+        <location filename="../../commwidget.cpp" line="265"/>
         <source>Owner:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../commwidget.cpp" line="262"/>
+        <location filename="../../commwidget.cpp" line="271"/>
         <source>Unknown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../commwidget.cpp" line="255"/>
-        <source>Media (number/name):</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../commwidget.cpp" line="286"/>
+        <location filename="../../commwidget.cpp" line="293"/>
         <source>Mp3-Tag:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../commwidget.cpp" line="288"/>
+        <location filename="../../commwidget.cpp" line="295"/>
         <source>(Art/Tit/Alb/Year/Comm)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../commwidget.cpp" line="309"/>
+        <location filename="../../commwidget.cpp" line="316"/>
         <source>Comment:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -435,33 +430,38 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../commwidget.cpp" line="153"/>
+        <location filename="../../commwidget.cpp" line="154"/>
         <source>Name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../commwidget.cpp" line="162"/>
+        <location filename="../../commwidget.cpp" line="188"/>
         <source>Type:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../commwidget.cpp" line="352"/>
+        <location filename="../../commwidget.cpp" line="381"/>
         <source>There is no selected element.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../commwidget.cpp" line="169"/>
+        <location filename="../../commwidget.cpp" line="195"/>
         <source> Link to a CdCat catalog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../commwidget.cpp" line="199"/>
+        <location filename="../../commwidget.cpp" line="228"/>
         <source>Location:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../commwidget.cpp" line="211"/>
+        <location filename="../../commwidget.cpp" line="240"/>
         <source>Last modification:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../commwidget.cpp" line="164"/>
+        <source>At media (number/name):</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1908,17 +1908,17 @@ Homepage: %3</source>
 <context>
     <name>commentEdit</name>
     <message>
-        <location filename="../../commwidget.cpp" line="463"/>
+        <location filename="../../commwidget.cpp" line="492"/>
         <source>Edit Comment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../commwidget.cpp" line="464"/>
+        <location filename="../../commwidget.cpp" line="493"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../commwidget.cpp" line="465"/>
+        <location filename="../../commwidget.cpp" line="494"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>

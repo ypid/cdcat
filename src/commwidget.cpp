@@ -148,6 +148,7 @@ void  CommentWidget::paintEvent ( QPaintEvent *pe ) {
             p.drawText ( mx+15,my+w,tr ( "Upper container! (..)" ) );
             w+=pixelsHigh+10;
         }
+
         /*name*/
         p.setPen ( *cconfig->comm_stext );
         p.drawText ( mx+15,my+w,tr ( "Name:" ) );
@@ -157,6 +158,31 @@ void  CommentWidget::paintEvent ( QPaintEvent *pe ) {
         p.setPen ( *cconfig->comm_vtext );
         p.drawText ( mx+15,my+w,text );
         w+=pixelsHigh+ispace;
+
+            /*media*/
+            p.setPen ( *cconfig->comm_stext );
+            p.drawText ( mx+15,my+w,tr ( "At media (number/name):" ) );
+            w+=pixelsHigh;
+            tmp=act;
+            while ( tmp !=NULL && tmp->type != HC_MEDIA && tmp->type != HC_CATALOG )
+                tmp=tmp->parent;
+            text=" ";
+            if ( tmp==NULL )
+                text+=tr ( "Unknown" );
+            if ( tmp->type==HC_CATALOG )
+                text+= ( ( DBCatalog * ) ( tmp->data ) )->name;
+            if ( tmp->type==HC_MEDIA ) {
+                text+= QString().setNum ( ( ( DBMedia * ) ( tmp->data ) )->number ) + " / " + ( ( DBMedia * ) ( tmp->data ) )->name;
+                if ( ! ( ( ( DBMedia * ) ( tmp->data ) )->borrowing.isEmpty() ) ) {
+                    p.setPen ( QPen ( QColor ( Qt::red ),2 ) );
+                    p.drawLine ( width()-24,14,width()-14,24 );
+                    p.drawLine ( width()-14,14,width()-24,24 );
+                }
+            }
+            p.setPen ( QPen ( *cconfig->comm_vtext,1 ) );
+            p.drawText ( mx+15,my+w,text );
+            w+=pixelsHigh+ispace;
+
         /*type*/
         p.setPen ( *cconfig->comm_stext );
         p.drawText ( mx+15,my+w,tr ( "Type:" ) );
@@ -181,6 +207,9 @@ void  CommentWidget::paintEvent ( QPaintEvent *pe ) {
         p.setPen ( *cconfig->comm_vtext );
         p.drawText ( mx+15,my+w,text );
         w+=pixelsHigh+ispace;
+
+
+
         /*if file->size*/
         if ( act->type == HC_FILE ) {
             p.setPen ( *cconfig->comm_stext );
@@ -250,29 +279,7 @@ void  CommentWidget::paintEvent ( QPaintEvent *pe ) {
             w+=pixelsHigh+ispace;
 
 
-            /*media*/
-            p.setPen ( *cconfig->comm_stext );
-            p.drawText ( mx+15,my+w,tr ( "Media (number/name):" ) );
-            w+=pixelsHigh;
-            tmp=act;
-            while ( tmp !=NULL && tmp->type != HC_MEDIA && tmp->type != HC_CATALOG )
-                tmp=tmp->parent;
-            text=" ";
-            if ( tmp==NULL )
-                text+=tr ( "Unknown" );
-            if ( tmp->type==HC_CATALOG )
-                text+= ( ( DBCatalog * ) ( tmp->data ) )->name;
-            if ( tmp->type==HC_MEDIA ) {
-                text+= QString().setNum ( ( ( DBMedia * ) ( tmp->data ) )->number ) + " / " + ( ( DBMedia * ) ( tmp->data ) )->name;
-                if ( ! ( ( ( DBMedia * ) ( tmp->data ) )->borrowing.isEmpty() ) ) {
-                    p.setPen ( QPen ( QColor ( Qt::red ),2 ) );
-                    p.drawLine ( width()-24,14,width()-14,24 );
-                    p.drawLine ( width()-14,14,width()-24,24 );
-                }
-            }
-            p.setPen ( QPen ( *cconfig->comm_vtext,1 ) );
-            p.drawText ( mx+15,my+w,text );
-            w+=pixelsHigh+ispace;
+
         }
         /*file properties*/
         if ( act->type == HC_FILE && ( ( DBFile * ) ( act->data ) )->prop != NULL ) { //File props:
@@ -327,10 +334,32 @@ void  CommentWidget::paintEvent ( QPaintEvent *pe ) {
         }
         p.setPen ( *cconfig->comm_vtext );
 
-        textList = QStringList::split ( QRegExp ( "#|\n" ),text,TRUE );
+        textList = QStringList::split ( QRegExp ( "#|\n|\r\n" ),text,TRUE );
         for ( QStringList::Iterator it=textList.begin(); it != textList.end();++it ) {
-            p.drawText ( mx+20,my+w, ( *it ) );
-            w+=pixelsHigh;
+	   int max_comment_len = 20;
+	    int stringlen = (*it).size();
+            if(stringlen > max_comment_len) {
+// 		cerr << "oversized comment line (" << stringlen <<"): " << qPrintable(*it) << endl;
+		int curlen=0;
+		QStringList textList2;
+		for (int curidx=0;curidx < stringlen;curidx++) {
+			if(curlen == max_comment_len) {
+				textList2.append((*it).mid(curidx-max_comment_len, curidx));
+// 				cerr << "added sub comment line (" << (*it).mid(curidx-max_comment_len, curidx).length() <<"): " << qPrintable((*it).mid(curidx-max_comment_len, curidx)) << endl;
+				curlen =0;
+			}
+			curlen++;
+		}
+		for ( QStringList::Iterator it2=textList2.begin(); it2 != textList2.end();++it2 ) {
+			p.drawText ( mx+20,my+w, ( *it2 ) );
+			w+=pixelsHigh;
+		}
+	    }
+	    else {
+// 		cerr << "undersized comment line (" << stringlen <<"): " << qPrintable(*it) << endl;
+		p.drawText ( mx+20,my+w, ( *it ) );
+		w+=pixelsHigh;
+	    }
         }
 
 
@@ -439,7 +468,7 @@ commentEdit::commentEdit ( QString cc, QWidget* parent, const char* name, bool m
 
     CommentEditBaseLayout->addLayout ( layout5, 0, 0 );
     languageChange();
-    resize ( QSize ( 275, 199 ).expandedTo ( minimumSizeHint() ) );
+    resize ( QSize ( 600, 199 ).expandedTo ( minimumSizeHint() ) );
 
     // signals and slots connections
     connect ( buttonOk, SIGNAL ( clicked() ), this, SLOT ( pushOk() ) );

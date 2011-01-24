@@ -338,10 +338,6 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
       <translation>Unbekannt</translation>
     </message>
     <message>
-      <source>Media (number/name):</source>
-      <translation>Medium (Nummer/Name):</translation>
-    </message>
-    <message>
       <source>Mp3-Tag:</source>
       <translation>MP3-Tag:</translation>
     </message>
@@ -380,6 +376,10 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     <message>
       <source>Last modification:</source>
       <translation>Letzte Änderungen:</translation>
+    </message>
+    <message>
+      <source>At media (number/name):</source>
+      <translation>Auf Medium (Nummer/Name):</translation>
     </message>
   </context>
   <context>
