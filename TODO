@@ -1,3 +1,5 @@
 - Archive reading /platform independent way !!/
 - "Go to original" after found file at search (ask user for insert the right media, mount it and got to containing dir)
-
+- store newest file/folder date/name at media node and display name/date of it in comment (last change was...)
+- dont refresh full tree after delete a node, update only containing folder
+- userdefined pattern template for medianame (e.g. pc[%d])
