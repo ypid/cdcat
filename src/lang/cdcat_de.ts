@@ -525,15 +525,15 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     </message>
     <message>
       <source>Kib</source>
-      <translation>Kib</translation>
+      <translation>KiB</translation>
     </message>
     <message>
       <source>Mib</source>
-      <translation>Mib</translation>
+      <translation>MiB</translation>
     </message>
     <message>
       <source>Gib</source>
-      <translation>Gib</translation>
+      <translation>GiB</translation>
     </message>
   </context>
   <context>
