@@ -1092,8 +1092,7 @@ int GuiSlave::addEvent ( void ) {
     mainw->db->pww = pww;
 
 #ifndef _WIN32
-    if ( mainw->cconfig->mounteject )
-        if ( ( d->type == CD || d->type == DVD ) &&
+        if ( ( d->type == CD || d->type == DVD )  &&  mainw->cconfig->mounteject &&
                 d->dDir == mainw->cconfig->cdrompath ) {
             int pid;
 
@@ -1151,10 +1150,14 @@ int GuiSlave::addEvent ( void ) {
             delete []env;
             delete []arg;
         }
+	else {
+		if(*DEBUG_INFO_ENABLED)
+			cerr<<"mount not needed"<<endl;
+	}
 #endif
 
 #ifndef _WIN32
-    if (mount_successful) {
+    if ( ((d->type == CD || d->type == DVD ) && mainw->cconfig->mounteject && mount_successful )  || ( d->type != CD && d->type != DVD )) {
 #endif
 
     if(*DEBUG_INFO_ENABLED)
@@ -1242,11 +1245,20 @@ int GuiSlave::addEvent ( void ) {
             delete []env;
             delete []arg;
         }
+    else {
+    if(*DEBUG_INFO_ENABLED)
+	cerr<<"umount not needed"<<endl;
+    }
 #endif
 
 #ifndef _WIN32
     // mount_successful
     }
+     if ( (d->type == CD || d->type == DVD ) && mainw->cconfig->mounteject && !mount_successful ) {
+	if(*DEBUG_INFO_ENABLED)
+		cerr<<"mount failed"<<endl;
+	QMessageBox::warning ( 0,tr ( "Cannot mount CD!" ),tr ( "Cannot mount CD!" ) );
+     }
 #endif
 
 

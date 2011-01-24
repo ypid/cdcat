@@ -7,6 +7,8 @@
 	- display size units correctly (Kib, Mib, ...)
 	- made size units translateable
 	- workaround for displaying rubberband again (win32)
+	- scanning non cdrom fixed (linux)
+	- displaying error message if cd/dvd could not mounted (linux)
 
 22. Jan 2011 Christoph Thielecke <crissi99@gmx.de>
 	- save last dir on open catalog

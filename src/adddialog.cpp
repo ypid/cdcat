@@ -274,7 +274,7 @@ int addDialog::setMediaName ( const QString & ds ) {
         else
             cbType->setCurrentItem ( CD - 1 );
 #endif
-        //volumename = 1;
+        volumename = 1;
     } else {
         if ( volumename == 1 ) {
             volumename = 0;
@@ -317,11 +317,7 @@ int addDialog::bOk ( void ) {
     dName  = leName->text();
     dOwner = leOwner->text();
     dComm  = teComm->text();
-#ifdef _WIN32
     dDir   = dirView->sDir;
-#else
-	dDir   = dirView->sDir;
-#endif
 	
 	
     close();
