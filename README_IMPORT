@@ -1,5 +1,8 @@
-This document discibes how to import your gtktalog database into cdcat.
+This document descibes how to import catalogs from other catalog programs into cdcat.
 
+
+Gtktalog
+======
 -------------------------------------------------------------------------
 Now you can import it much easier as in history.
 Simply create a report in gtktalog (DESELECT information and select xml as type, catalog.xml as filename).
@@ -44,8 +47,40 @@ press 'Import'
 after a while (depends on your database) you will see you catalog in cdcat.
 press the save toolbutton to save your cdcat catalog.
 
+WhereIsIt?
+========
+Export - csv - classical
 
-greeings
 
-Crissi
+Kat-DeCe
+=======
+Select Edit - Output, then set the following options:
+
+
+Target:
+	- File: test.csv
+	- Header [x]
+What:
+	- All media (*)
+
+How:
+	- Database (.CSV) [x]
+
+Information:
+	- Location/Number [x]
+	- Media name [x]
+	- File/directory name [x]
+	- Extension [x]
+	- Length [x]
+	- Date [x]
+	- Path [x]
+	- comment [x]
+	- Manufacturer [x]
+	- Distributor [x]
+	- Order number [x]
+	- Price [x]
+	- Change date [x]
+	- Media info [x]
+	- category [x]
+	- free space [ ]
 

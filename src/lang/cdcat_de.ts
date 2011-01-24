@@ -1,33 +1,6 @@
 <!DOCTYPE TS>
 <TS>
   <context>
-    <name>AddLnk</name>
-    <message>
-      <source>Add a &quot;Catalog Link&quot; to the database</source>
-      <translation>Eine &quot;Katalogverknüpfung&quot; zur Datenbank erstellen</translation>
-    </message>
-    <message>
-      <source>Location of the .hcf file:</source>
-      <translation>Ort der .hcf-Datei:</translation>
-    </message>
-    <message>
-      <source>Cancel</source>
-      <translation>Abbrechen</translation>
-    </message>
-    <message>
-      <source>Ok</source>
-      <translation>OK</translation>
-    </message>
-    <message>
-      <source>CdCat databases (*.hcf )</source>
-      <translation>CdCat-Datenbanken (*.hcf)</translation>
-    </message>
-    <message>
-      <source>Open a file...</source>
-      <translation>Datei öffnen...</translation>
-    </message>
-  </context>
-  <context>
     <name>CdCatConfig</name>
     <message>
       <source>Error during autoload...</source>
@@ -228,10 +201,6 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
       <translation>Medienknoten umnummerieren...</translation>
     </message>
     <message>
-      <source>Import database (csv/gtktalog)</source>
-      <translation>Datenbank importieren (csv/gtktalog)</translation>
-    </message>
-    <message>
       <source>Borrowing info...</source>
       <translation>Ausleihinformation...</translation>
     </message>
@@ -266,6 +235,10 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     <message>
       <source>About Qt</source>
       <translation>Über Qt</translation>
+    </message>
+    <message>
+      <source>Import database (Gtktalog/Kat-CeDe/WhereIsIt?)</source>
+      <translation>Datenbank importieren (Gtkatalog/Kat-CeDe/WhereIsIt?)</translation>
     </message>
   </context>
   <context>
@@ -428,10 +401,6 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
       <translation>OK</translation>
     </message>
     <message>
-      <source>CdCat Databases (*.hcf)</source>
-      <translation>CdCat-Datenbanken (*.hcf)</translation>
-    </message>
-    <message>
       <source>Application font size.(must restart cdcat!) </source>
       <translation>Schriftgrösse der Anwendung (erfordert Neustart von CdCat!) </translation>
     </message>
@@ -478,6 +447,10 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     <message>
       <source>Display debug info on console</source>
       <translation>Debuginfo auf Konsole ausgeben</translation>
+    </message>
+    <message>
+      <source>CdCat databases (*.hcf )</source>
+      <translation>CdCat-Datenbanken (*.hcf)</translation>
     </message>
   </context>
   <context>
@@ -541,6 +514,10 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     <message>
       <source>System file (e.g. FIFO, socket or device file)</source>
       <translation>Systemdatei (z.B. FIFO, Socket oder Gerätedatei)</translation>
+    </message>
+    <message>
+      <source>Not enough memory to open the file: %1</source>
+      <translation>Nicht genug Hauptspeicher um Datei %1 zu öffnen</translation>
     </message>
   </context>
   <context>
@@ -828,6 +805,10 @@ Homepage: %3</translation>
       <source>The resoult:</source>
       <translation>Das Ergebnis:</translation>
     </message>
+    <message>
+      <source>Select directory</source>
+      <translation>Verzeichnis auswählen</translation>
+    </message>
   </context>
   <context>
     <name>HDirectoryView</name>
@@ -918,10 +899,6 @@ Homepage: %3</translation>
       <translation>CSV-Dateien (*.csv)</translation>
     </message>
     <message>
-      <source>open file dialog</source>
-      <translation>Dateidialog öffnen</translation>
-    </message>
-    <message>
       <source>Choose a file for import</source>
       <translation>Datei zum Importieren auswählen</translation>
     </message>
@@ -936,10 +913,6 @@ Homepage: %3</translation>
     <message>
       <source>Type</source>
       <translation>Typ</translation>
-    </message>
-    <message>
-      <source>&amp;Text (csv)</source>
-      <translation>&amp;Text (csv)</translation>
     </message>
     <message>
       <source>&lt;strong>Please read the README_IMPORT before you import!&lt;/strong></source>
@@ -988,14 +961,6 @@ Homepage: %3</translation>
       <translation>Typ des Imports auswählen</translation>
     </message>
     <message>
-      <source>Select this for importing a text import (csv)</source>
-      <translation>Dies auswählen, um einen Textimport vorzunehmen (csv)</translation>
-    </message>
-    <message>
-      <source>Select this for importing a xml report generated frm gtktalog</source>
-      <translation>Dies auswählen, um einen XML-Bericht , der von Gtktalog generiert wurde, zu importieren</translation>
-    </message>
-    <message>
       <source>Open the file dialog for selecting file to import.</source>
       <translation>Öffnet den Dateidialog zum Auwählen der Datei, die importiert werden soll</translation>
     </message>
@@ -1016,6 +981,30 @@ wird zu
     <message>
       <source>all files(*.*)</source>
       <translation>Alle Dateien(*.*)</translation>
+    </message>
+    <message>
+      <source>&amp;Gtktalog (csv)</source>
+      <translation>&amp;Gtktalog (CSV)</translation>
+    </message>
+    <message>
+      <source>Select this for importing a text import (csv) generated from Gtktalog</source>
+      <translation>Wählen Sie dies, um einen Textimport (CSV), welcher von Gtktalog generiert wurde, durchzuführen</translation>
+    </message>
+    <message>
+      <source>&amp;Kat-CeDe (csv)</source>
+      <translation>&amp;Kat-CeDe (CSV)</translation>
+    </message>
+    <message>
+      <source>Select this for importing a text import (csv) generated from Kat-CeDe.</source>
+      <translation>Wählen Sie dies, um einen Textimport (CSV), welcher von Kat-CeDe generiert wurde, durchzuführen</translation>
+    </message>
+    <message>
+      <source>Select this for importing a xml report generated from gtktalog</source>
+      <translation>Wählen Sie dies, um einen XML-Import, welcher von Gtktalog generiert wurde, durchzuführen</translation>
+    </message>
+    <message>
+      <source>Select this for importing a xml report generated from WhereIsIt?</source>
+      <translation>Wählen Sie dies, um einen XML-Import, welcher von WhereIsIt? generiert wurde, durchzuführen</translation>
     </message>
   </context>
   <context>
@@ -1083,13 +1072,6 @@ wird zu
     <message>
       <source> (with debug)</source>
       <translation> (mit Debug)</translation>
-    </message>
-  </context>
-  <context>
-    <name>PWw</name>
-    <message>
-      <source>Please Wait...</source>
-      <translation>Bitte warten...</translation>
     </message>
   </context>
   <context>
@@ -1324,10 +1306,6 @@ wird zu
       <translation>Diesen Inhalt in eine neue Datei speichern</translation>
     </message>
     <message>
-      <source>Save content...</source>
-      <translation>Inhalt speichern...</translation>
-    </message>
-    <message>
       <source>Select a filename below</source>
       <translation>Dateiname unten auswählen</translation>
     </message>
@@ -1342,6 +1320,10 @@ wird zu
     <message>
       <source>Sure to delete this file's content from the database?</source>
       <translation>Soll dieser Inhalt der Datei wirklich von der Datenbank gelöscht werden?</translation>
+    </message>
+    <message>
+      <source>CdCat databases (*.hcf )</source>
+      <translation>CdCat-Datenbanken (*.hcf)</translation>
     </message>
   </context>
   <context>
@@ -1449,6 +1431,30 @@ wird zu
     <message>
       <source>detect CDCROM/DVD media name after mount</source>
       <translation>CDCROM/DVD-Medienname nach dem Mounten erkennen</translation>
+    </message>
+    <message>
+      <source>Please Wait...</source>
+      <translation>Bitte warten...</translation>
+    </message>
+    <message>
+      <source>Add a &quot;Catalog Link&quot; to the database</source>
+      <translation>Eine &quot;Katalogverknüpfung&quot; zur Datenbank erstellen</translation>
+    </message>
+    <message>
+      <source>Location of the .hcf file:</source>
+      <translation>Ort der .hcf-Datei:</translation>
+    </message>
+    <message>
+      <source>Ok</source>
+      <translation>Ok</translation>
+    </message>
+    <message>
+      <source>Open a file...</source>
+      <translation>Datei öffnen...</translation>
+    </message>
+    <message>
+      <source>CdCat databases (*.hcf )</source>
+      <translation>CdCat-Datenbanken (*.hcf)</translation>
     </message>
   </context>
   <context>
@@ -1645,10 +1651,6 @@ wird zu
     <message>
       <source>All files (*.*)</source>
       <translation>Alle Dateien (*.*)</translation>
-    </message>
-    <message>
-      <source>file chooser</source>
-      <translation>Dateiauswähler</translation>
     </message>
     <message>
       <source>Choose a file!</source>

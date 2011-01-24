@@ -1,5 +1,8 @@
-Dieses Dokument beschreibt, wie man eine Datenbank von Gtktalog in CdCat importiert,
+Dieses Dokument beschreibt, wie man eine Datenbank von anderen Katalogprogrammen in CdCat importiert.
 
+
+Gtktalog
+======
 ---------------------------------------------------------
 
 Nun kann man viel einfacher als früher den Import durchführen:
@@ -29,9 +32,40 @@ Neue Datenbank, wenn gewünscht, aktivieren (es wird bei einem leeren CdCat immer
 Importieren klicken
 Fertig!
 
+WhereIsIt?
+========
+Export - csv - klassisch
 
----------------------------------------------------------
+
+Kat-DeCe
+=======
+Bearbeiten - Ausgeben auswählen, dann die folgenden Option setzen:
 
 
-Crissi ;)
+Ziel:
+	- datei: test.csv
+	- header [x]
+Was:
+	- alle Medien (*)
+
+Wie:
+	- Datenbank (.CSV) [x]
+
+Information:
+	- Ort/Nummer [x]
+	- Medium Name [x]
+	- Datei/verzeichnisname [x]
+	- Erweiterung [x]
+	- Länge [x]
+	- Datum [x]
+	- Pfad [x]
+	- Kommentar [x]
+	- Hersteller [x]
+	- Lieferant [x]
+	- Bestellnummer [x]
+	- Preis [x]
+	- Änderungsdatum [x]
+	- Medium-Info [x]
+	- Kategorie [x]
+	- freier Speicher [ ]
 

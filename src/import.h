@@ -67,7 +67,7 @@ protected:
 class importGtktalogCsv: public QObject {
     Q_OBJECT
 public:
-    importGtktalogCsv ( GuiSlave * parent, QString separator, QString filename, bool createdatabase, bool correctbadstyle );
+    importGtktalogCsv ( GuiSlave * parent, QString separator, QString filename, bool createdatabase, bool correctbadstyle, QString csvtype="gtktalog" );
     ~importGtktalogCsv();
 
     /*

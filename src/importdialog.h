@@ -50,7 +50,8 @@ public:
     QLineEdit* separator_lineedit;
     QCheckBox *newdatabase;
     QCheckBox *correctbadstyle;
-    QRadioButton *importTypeCsv;
+    QRadioButton *importTypeCsvGtktalog;
+    QRadioButton *importTypeCsvKatCeDe;
     QRadioButton *importTypeGtktalogXml;
     QRadioButton *importTypeWhereisitXml;
     Q3ButtonGroup *importButtonBox;
