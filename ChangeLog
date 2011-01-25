@@ -8,6 +8,7 @@
 	- display export date in report
 	- media number, mp3tag and borrow information can be exported now
 	- csv export allows now to select fields for export
+	- crash at searching fixed
 
 24. Jan 2011 Christoph Thielecke <crissi99@gmx.de>
 	- scanning cdrom/dvd if no cdrom path is set fixed (win32)

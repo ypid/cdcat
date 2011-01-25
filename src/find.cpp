@@ -453,8 +453,7 @@ int seekEngine::start_seek ( void ) {
 
 //     if ( re == NULL ) {
        if(!re.isValid()) {
-        sprintf ( patt,"%s: %d",error,errptr );
-        QMessageBox::warning ( fd,tr ( "Error in the pattern:" ),patt );
+        QMessageBox::warning ( fd,tr ( "Error in the pattern:" ),QString(patt) );
         return 1;
     }
 
