@@ -2510,42 +2510,42 @@ bude změněno na
         <translation type="obsolete">exportovat Cdcat DB databázi</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="253"/>
+        <location filename="../exportcdcatdb.cpp" line="263"/>
         <source>Availiable media</source>
         <translation>Dostupná média</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="264"/>
+        <location filename="../exportcdcatdb.cpp" line="274"/>
         <source>Media to export</source>
         <translation>Média pro export</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="265"/>
+        <location filename="../exportcdcatdb.cpp" line="275"/>
         <source>All media</source>
         <translation>Všechna média</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="272"/>
+        <location filename="../exportcdcatdb.cpp" line="282"/>
         <source>separator:</source>
         <translation>oddělovač:</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="273"/>
+        <location filename="../exportcdcatdb.cpp" line="283"/>
         <source>File to export:</source>
         <translation>Soubor pro export:</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="274"/>
+        <location filename="../exportcdcatdb.cpp" line="284"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="275"/>
+        <location filename="../exportcdcatdb.cpp" line="285"/>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="291"/>
+        <location filename="../exportcdcatdb.cpp" line="303"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Zrušit</translation>
     </message>
@@ -2555,27 +2555,27 @@ bude změněno na
         <translation type="obsolete">exportovat Cdcat DB databázi:</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="398"/>
+        <location filename="../exportcdcatdb.cpp" line="354"/>
         <source>Filename missing</source>
         <translation>Chybí název souboru</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="398"/>
+        <location filename="../exportcdcatdb.cpp" line="354"/>
         <source>Please enter a filename!</source>
         <translation>Zadejte název souboru, prosím!</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="400"/>
+        <location filename="../exportcdcatdb.cpp" line="356"/>
         <source>Separator missing</source>
         <translation>Chybí oddělovač</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="400"/>
+        <location filename="../exportcdcatdb.cpp" line="356"/>
         <source>Please enter a separator!</source>
         <translation>Zadejte oddělovač, prosím!</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="462"/>
+        <location filename="../exportcdcatdb.cpp" line="522"/>
         <source>Error during write config...</source>
         <translation>Chyba při ukládání konfigurace......</translation>
     </message>
@@ -2585,7 +2585,7 @@ bude změněno na
         <translation type="obsolete">OK</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="509"/>
+        <location filename="../exportcdcatdb.cpp" line="569"/>
         <source>All files (*.*)</source>
         <translation>Všechny soubory (*.*)</translation>
     </message>
@@ -2595,32 +2595,32 @@ bude změněno na
         <translation type="obsolete">výběr souboru</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="509"/>
+        <location filename="../exportcdcatdb.cpp" line="569"/>
         <source>Choose a file!</source>
         <translation>Vyberte soubor!</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="261"/>
+        <location filename="../exportcdcatdb.cpp" line="271"/>
         <source>Add media</source>
         <translation>Přidat média</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="258"/>
+        <location filename="../exportcdcatdb.cpp" line="268"/>
         <source>Remove media</source>
         <translation>Odebrat média</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="268"/>
+        <location filename="../exportcdcatdb.cpp" line="278"/>
         <source>Type</source>
         <translation>Typ</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="269"/>
+        <location filename="../exportcdcatdb.cpp" line="279"/>
         <source>export as HTML</source>
         <translation>exportovat jako HTML</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="270"/>
+        <location filename="../exportcdcatdb.cpp" line="280"/>
         <source>export as CSV</source>
         <translation>Exportovat jako CSV</translation>
     </message>
@@ -2630,32 +2630,32 @@ bude změněno na
         <translation type="obsolete">Exportovat z CdCat pro katalog:</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="388"/>
+        <location filename="../exportcdcatdb.cpp" line="428"/>
         <source>Media</source>
         <translation>Média</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="377"/>
+        <location filename="../exportcdcatdb.cpp" line="414"/>
         <source>File</source>
         <translation>Soubor</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="380"/>
+        <location filename="../exportcdcatdb.cpp" line="453"/>
         <source>Size</source>
         <translation>Velikost</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="382"/>
+        <location filename="../exportcdcatdb.cpp" line="458"/>
         <source>Date</source>
         <translation>Datum</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="462"/>
+        <location filename="../exportcdcatdb.cpp" line="522"/>
         <source>I can&apos;t create or rewrite the file</source>
         <translation>Nemohu vytvořit nebo přepsat soubor</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="353"/>
+        <location filename="../exportcdcatdb.cpp" line="388"/>
         <source>Export from cdcat:</source>
         <translation>Exportovat z Cdcatu:</translation>
     </message>
@@ -2670,68 +2670,128 @@ bude změněno na
         <translation>Co exportovat</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="266"/>
+        <location filename="../exportcdcatdb.cpp" line="276"/>
         <source>Only media name</source>
         <translation>Pouze názvy médií</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="276"/>
+        <location filename="../exportcdcatdb.cpp" line="438"/>
         <source>Media name</source>
         <translation>Název média</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="277"/>
+        <location filename="../exportcdcatdb.cpp" line="448"/>
         <source>Path</source>
         <translation>Cesta</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="384"/>
+        <location filename="../exportcdcatdb.cpp" line="463"/>
         <source>Comment</source>
         <translation>Komentář</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="283"/>
+        <location filename="../exportcdcatdb.cpp" line="295"/>
         <source>HTML headline</source>
         <translation>hlavička HTML</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="284"/>
+        <location filename="../exportcdcatdb.cpp" line="296"/>
         <source>table header</source>
-        <translation>hlavička tabulky</translation>
+        <translation type="obsolete">hlavička tabulky</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="426"/>
+        <location filename="../exportcdcatdb.cpp" line="486"/>
         <source>Overwrite?</source>
         <translation>Přepsat?</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="427"/>
+        <location filename="../exportcdcatdb.cpp" line="487"/>
         <source>Do you want overwrite this file?</source>
         <translation>Chcete přepsat tento soubor?</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="432"/>
+        <location filename="../exportcdcatdb.cpp" line="492"/>
         <source>Yes</source>
         <translation>Ano</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="433"/>
+        <location filename="../exportcdcatdb.cpp" line="493"/>
         <source>Discard</source>
         <translation>Zrušit</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="313"/>
+        <location filename="../exportcdcatdb.cpp" line="325"/>
         <source>Export CdCat database: </source>
         <translation>Export CdCat databáze:</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="368"/>
+        <location filename="../exportcdcatdb.cpp" line="403"/>
         <source>Export from cdcat, catalog:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="369"/>
+        <location filename="../exportcdcatdb.cpp" line="404"/>
         <source>Generated at:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../exportcdcatdb.cpp" line="443"/>
+        <source>Media number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../exportcdcatdb.cpp" line="293"/>
+        <source>export mp3 tag</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../exportcdcatdb.cpp" line="294"/>
+        <source>export borrow information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../exportcdcatdb.cpp" line="412"/>
+        <source>#</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../exportcdcatdb.cpp" line="468"/>
+        <source>MP3 tag</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../exportcdcatdb.cpp" line="472"/>
+        <source>Borrow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../exportcdcatdb.cpp" line="807"/>
+        <source>Artist:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../exportcdcatdb.cpp" line="808"/>
+        <source>Title:</source>
+        <translation type="unfinished">Název:</translation>
+    </message>
+    <message>
+        <location filename="../exportcdcatdb.cpp" line="809"/>
+        <source>Album:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../exportcdcatdb.cpp" line="810"/>
+        <source>Year:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../exportcdcatdb.cpp" line="296"/>
+        <source>table header/comment line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../exportcdcatdb.cpp" line="435"/>
+        <source>field list</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

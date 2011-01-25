@@ -1737,10 +1737,6 @@ wird zu
       <translation>HTML-Überschrift</translation>
     </message>
     <message>
-      <source>table header</source>
-      <translation>Tabellenkopf</translation>
-    </message>
-    <message>
       <source>Overwrite?</source>
       <translation>Überschreiben?</translation>
     </message>
@@ -1767,6 +1763,54 @@ wird zu
     <message>
       <source>Generated at:</source>
       <translation>Generiert am:</translation>
+    </message>
+    <message>
+      <source>Media number</source>
+      <translation>Mediennummer</translation>
+    </message>
+    <message>
+      <source>export mp3 tag</source>
+      <translation>MP3-Tag exportieren</translation>
+    </message>
+    <message>
+      <source>export borrow information</source>
+      <translation>Ausleihinformation exportieren</translation>
+    </message>
+    <message>
+      <source>#</source>
+      <translation>#</translation>
+    </message>
+    <message>
+      <source>MP3 tag</source>
+      <translation>MP3-Tag</translation>
+    </message>
+    <message>
+      <source>Borrow</source>
+      <translation>Ausgeliehen</translation>
+    </message>
+    <message>
+      <source>Artist:</source>
+      <translation>Künstler:</translation>
+    </message>
+    <message>
+      <source>Title:</source>
+      <translation>Titel:</translation>
+    </message>
+    <message>
+      <source>Album:</source>
+      <translation>Album:</translation>
+    </message>
+    <message>
+      <source>Year:</source>
+      <translation>Jahr:</translation>
+    </message>
+    <message>
+      <source>table header/comment line</source>
+      <translation>Tabellenkopf/Kommentarzeile</translation>
+    </message>
+    <message>
+      <source>field list</source>
+      <translation>Feldliste</translation>
     </message>
   </context>
   <context>

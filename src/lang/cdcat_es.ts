@@ -2537,42 +2537,42 @@ debe ser
         <translation type="obsolete">exportCdcatDB database</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="253"/>
+        <location filename="../exportcdcatdb.cpp" line="263"/>
         <source>Availiable media</source>
         <translation>Medios disponibles</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="264"/>
+        <location filename="../exportcdcatdb.cpp" line="274"/>
         <source>Media to export</source>
         <translation>Medio a exportar</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="265"/>
+        <location filename="../exportcdcatdb.cpp" line="275"/>
         <source>All media</source>
         <translation>Todos los medios</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="272"/>
+        <location filename="../exportcdcatdb.cpp" line="282"/>
         <source>separator:</source>
         <translation>separador:</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="273"/>
+        <location filename="../exportcdcatdb.cpp" line="283"/>
         <source>File to export:</source>
         <translation>Archivo a exportar:</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="274"/>
+        <location filename="../exportcdcatdb.cpp" line="284"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="275"/>
+        <location filename="../exportcdcatdb.cpp" line="285"/>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="291"/>
+        <location filename="../exportcdcatdb.cpp" line="303"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Cancelar</translation>
     </message>
@@ -2582,27 +2582,27 @@ debe ser
         <translation type="obsolete">exportCdcatDB database: </translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="398"/>
+        <location filename="../exportcdcatdb.cpp" line="354"/>
         <source>Filename missing</source>
         <translation>No se encuentra el nombre de archivo</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="398"/>
+        <location filename="../exportcdcatdb.cpp" line="354"/>
         <source>Please enter a filename!</source>
         <translation>¡Por  favor introduce un nombre de archivo!</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="400"/>
+        <location filename="../exportcdcatdb.cpp" line="356"/>
         <source>Separator missing</source>
         <translation>No hay separador</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="400"/>
+        <location filename="../exportcdcatdb.cpp" line="356"/>
         <source>Please enter a separator!</source>
         <translation>¡Por  favor introduce un separador!</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="462"/>
+        <location filename="../exportcdcatdb.cpp" line="522"/>
         <source>Error during write config...</source>
         <translation>Error al escribir la configuración...</translation>
     </message>
@@ -2612,7 +2612,7 @@ debe ser
         <translation type="obsolete">Ok</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="509"/>
+        <location filename="../exportcdcatdb.cpp" line="569"/>
         <source>All files (*.*)</source>
         <translation>Todos los archivos (*.*)</translation>
     </message>
@@ -2622,62 +2622,62 @@ debe ser
         <translation type="obsolete">Seleccionar archivo</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="509"/>
+        <location filename="../exportcdcatdb.cpp" line="569"/>
         <source>Choose a file!</source>
         <translation>¡Seleccionar un archivo!</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="261"/>
+        <location filename="../exportcdcatdb.cpp" line="271"/>
         <source>Add media</source>
         <translation>Añadir medio</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="258"/>
+        <location filename="../exportcdcatdb.cpp" line="268"/>
         <source>Remove media</source>
         <translation>Eliminar medio</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="268"/>
+        <location filename="../exportcdcatdb.cpp" line="278"/>
         <source>Type</source>
         <translation>Tipo</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="269"/>
+        <location filename="../exportcdcatdb.cpp" line="279"/>
         <source>export as HTML</source>
         <translation>exportar como HTML</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="270"/>
+        <location filename="../exportcdcatdb.cpp" line="280"/>
         <source>export as CSV</source>
         <translation>exportar como CSV</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="388"/>
+        <location filename="../exportcdcatdb.cpp" line="428"/>
         <source>Media</source>
         <translation>Medio</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="377"/>
+        <location filename="../exportcdcatdb.cpp" line="414"/>
         <source>File</source>
         <translation>Archivo</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="380"/>
+        <location filename="../exportcdcatdb.cpp" line="453"/>
         <source>Size</source>
         <translation>Tamaño</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="382"/>
+        <location filename="../exportcdcatdb.cpp" line="458"/>
         <source>Date</source>
         <translation>Fecha</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="462"/>
+        <location filename="../exportcdcatdb.cpp" line="522"/>
         <source>I can&apos;t create or rewrite the file</source>
         <translation>No se pudo crear o reescribir el archivo</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="353"/>
+        <location filename="../exportcdcatdb.cpp" line="388"/>
         <source>Export from cdcat:</source>
         <translation>Exportar desde cdcat:</translation>
     </message>
@@ -2692,68 +2692,128 @@ debe ser
         <translation>Qué exportar</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="266"/>
+        <location filename="../exportcdcatdb.cpp" line="276"/>
         <source>Only media name</source>
         <translation>Solo nombre del medio</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="276"/>
+        <location filename="../exportcdcatdb.cpp" line="438"/>
         <source>Media name</source>
         <translation>Nombre del medio</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="277"/>
+        <location filename="../exportcdcatdb.cpp" line="448"/>
         <source>Path</source>
         <translation>Ruta</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="384"/>
+        <location filename="../exportcdcatdb.cpp" line="463"/>
         <source>Comment</source>
         <translation>Comentario</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="283"/>
+        <location filename="../exportcdcatdb.cpp" line="295"/>
         <source>HTML headline</source>
         <translation>Cabecera HTML</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="284"/>
+        <location filename="../exportcdcatdb.cpp" line="296"/>
         <source>table header</source>
-        <translation>cabecera de la tabla</translation>
+        <translation type="obsolete">cabecera de la tabla</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="426"/>
+        <location filename="../exportcdcatdb.cpp" line="486"/>
         <source>Overwrite?</source>
         <translation>¿Sobreescribir?</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="427"/>
+        <location filename="../exportcdcatdb.cpp" line="487"/>
         <source>Do you want overwrite this file?</source>
         <translation>¿Quieres sobreescribir este archivo?</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="432"/>
+        <location filename="../exportcdcatdb.cpp" line="492"/>
         <source>Yes</source>
         <translation>Si</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="433"/>
+        <location filename="../exportcdcatdb.cpp" line="493"/>
         <source>Discard</source>
         <translation>Descartar</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="313"/>
+        <location filename="../exportcdcatdb.cpp" line="325"/>
         <source>Export CdCat database: </source>
         <translation>Exportar base de datos CdCat:</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="368"/>
+        <location filename="../exportcdcatdb.cpp" line="403"/>
         <source>Export from cdcat, catalog:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="369"/>
+        <location filename="../exportcdcatdb.cpp" line="404"/>
         <source>Generated at:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../exportcdcatdb.cpp" line="443"/>
+        <source>Media number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../exportcdcatdb.cpp" line="293"/>
+        <source>export mp3 tag</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../exportcdcatdb.cpp" line="294"/>
+        <source>export borrow information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../exportcdcatdb.cpp" line="412"/>
+        <source>#</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../exportcdcatdb.cpp" line="468"/>
+        <source>MP3 tag</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../exportcdcatdb.cpp" line="472"/>
+        <source>Borrow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../exportcdcatdb.cpp" line="807"/>
+        <source>Artist:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../exportcdcatdb.cpp" line="808"/>
+        <source>Title:</source>
+        <translation type="unfinished">Título:</translation>
+    </message>
+    <message>
+        <location filename="../exportcdcatdb.cpp" line="809"/>
+        <source>Album:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../exportcdcatdb.cpp" line="810"/>
+        <source>Year:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../exportcdcatdb.cpp" line="296"/>
+        <source>table header/comment line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../exportcdcatdb.cpp" line="435"/>
+        <source>field list</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

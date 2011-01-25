@@ -76,12 +76,15 @@ public:
     QCheckBox* checkAllMedia;
     QCheckBox* checkOnlyMediaName;
     QCheckBox* checkExportMediaName;
+    QCheckBox* checkExportMediaNumber;
     QCheckBox* checkExportPath;
     QCheckBox* checkExportFile;
     QCheckBox* checkExportSize;
     QCheckBox* checkExportDate;
     QCheckBox* checkExportComment;
     QCheckBox* checkExportMp3Tag;
+    QCheckBox* checkExportBorrow;
+
     QCheckBox* checkExportTitle;
     QCheckBox* checkExportTableHeader;
     Q3ButtonGroup* buttonGroup1;
@@ -150,6 +153,8 @@ private:
     QString medianame;
     QString currentpath;
     QString lastMedianame;
+    QString mediaborrow;
+    int medianumber;
     CdCatMainWidget *mainw;
 };
 
