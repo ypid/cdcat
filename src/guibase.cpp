@@ -1512,7 +1512,7 @@ int GuiSlave::helpEvent ( void ) {
 }
 
 int GuiSlave::exportEvent ( void ) {
-    exportCdcatDB i ( mainw->app,mainw->db );
+    exportCdcatDB i ( mainw );
     i.exec();
     return 0;
 }

@@ -2,6 +2,10 @@
 	- csv import added (Disclib)
 	- dont give a error message if same name at rename dialog
 	- dont give a error message if same number at renumber dialog
+	- use last used path for directory at export
+	- generate standard html header
+	- us utf8 as encoding at html export 
+	- display export date in report
 
 24. Jan 2011 Christoph Thielecke <crissi99@gmx.de>
 	- scanning cdrom/dvd if no cdrom path is set fixed (win32)

@@ -50,6 +50,7 @@
 #include "guibase.h"
 #include "dbase.h"
 #include "wdbfile.h"
+#include "mainwidget.h"
 
 class QLabel;
 class QLineEdit;
@@ -61,7 +62,7 @@ class exportCdcatDB : public QDialog {
     Q_OBJECT
 
 public:
-    exportCdcatDB ( QApplication *appp,DataBase *db,QWidget* parent=0, const char* name=0, bool modal=true, Qt::WFlags fl=0 );
+    exportCdcatDB ( CdCatMainWidget *mainw, QWidget* parent=0, const char* name=0, bool modal=true, Qt::WFlags fl=0 );
     ~exportCdcatDB();
 
 
@@ -149,6 +150,7 @@ private:
     QString medianame;
     QString currentpath;
     QString lastMedianame;
+    CdCatMainWidget *mainw;
 };
 
 #endif
