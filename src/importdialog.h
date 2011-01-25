@@ -52,6 +52,7 @@ public:
     QCheckBox *correctbadstyle;
     QRadioButton *importTypeCsvGtktalog;
     QRadioButton *importTypeCsvKatCeDe;
+    QRadioButton *importTypeCsvDisclib;
     QRadioButton *importTypeGtktalogXml;
     QRadioButton *importTypeWhereisitXml;
     Q3ButtonGroup *importButtonBox;

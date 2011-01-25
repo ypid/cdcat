@@ -69,3 +69,34 @@ Information:
 	- Kategorie [x]
 	- freier Speicher [ ]
 
+
+Disclib
+=====
+
+Bibliothek - exportieren
+
+Dateiname: test.csv
+Felder:
+	[x] Name
+	[x] Volume
+	[x] FilePath
+	[x] Path
+	[x] Size
+	[x] VolumeSerial
+	[x] Date
+	[x] Type
+	[x] Category
+	[x] Comments
+	[x] Location
+
+Optionen:
+	Trenner: *
+	[ ] Unindent Unterfelder
+	Text-Qualifizierer: "
+	Größe in: Bytes
+	[ ] Ebene
+	[ ] Archive contents
+	[x] Als Zeile exportieren
+	[ ] Nur Ordner
+	[x] Zeige alle Eigenschaften
+

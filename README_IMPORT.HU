@@ -20,6 +20,8 @@ Ezek után ajánlatos az adatbázist elmenteni.
 
 
 ----------------------------------------------------------------------------
+Gtktalog
+=======
 Ha csv fájlból szeretnál importálni a következõképp járj el:
 
 Elõszöris a soroknak így kell kinézniük:
@@ -54,7 +56,69 @@ Egy idõ mulva (adatbázis méretétõl függõen az importált adatbázis megjelenik a c
 Ezek után ajánlatos az adatbázist elmenteni.
 
 
-Udv!
+WhereIsIt?
+========
+Export - csv - classical
 
-Crissi & Hyper
 
+Kat-DeCe
+=======
+Select Edit - Output, then set the following options:
+
+
+Target:
+	- File: test.csv
+	- Header [x]
+What:
+	- All media (*)
+
+How:
+	- Database (.CSV) [x]
+
+Information:
+	- Location/Number [x]
+	- Media name [x]
+	- File/directory name [x]
+	- Extension [x]
+	- Length [x]
+	- Date [x]
+	- Path [x]
+	- comment [x]
+	- Manufacturer [x]
+	- Distributor [x]
+	- Order number [x]
+	- Price [x]
+	- Change date [x]
+	- Media info [x]
+	- category [x]
+	- free space [ ]
+
+Disklib
+=====
+
+Library - export
+
+File name: test.csv
+Fields:
+	[x] Name
+	[x] Volume
+	[x] FilePath
+	[x] Path
+	[x] Size
+	[x] VolumeSerial
+	[x] Date
+	[x] Type
+	[x] Category
+	[x] Comments
+	[x] Location
+
+Options:
+	Seperator: *
+	[ ] Unindent subfields
+	textqualifier: "
+	Size in: Bytes
+	[ ] Level
+	[ ] Archive contents
+	[x] Export as line
+	[ ] Folder only
+	[x] Display all properties

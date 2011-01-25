@@ -84,3 +84,32 @@ Information:
 	- category [x]
 	- free space [ ]
 
+Disklib
+=====
+
+Library - export
+
+File name: test.csv
+Fields:
+	[x] Name
+	[x] Volume
+	[x] FilePath
+	[x] Path
+	[x] Size
+	[x] VolumeSerial
+	[x] Date
+	[x] Type
+	[x] Category
+	[x] Comments
+	[x] Location
+
+Options:
+	Seperator: *
+	[ ] Unindent subfields
+	textqualifier: "
+	Size in: Bytes
+	[ ] Level
+	[ ] Archive contents
+	[x] Export as line
+	[ ] Folder only
+	[x] Display all properties

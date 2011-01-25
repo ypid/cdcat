@@ -52,6 +52,7 @@ ImportDialog::ImportDialog ( QWidget* parent, const char* name, bool modal, Qt::
     importButtonBox->setRadioButtonExclusive ( true );
     importTypeCsvGtktalog = new QRadioButton ( "&Gtktalog CSV",importButtonBox, "importTypeCsvGtktalog" );
     importTypeCsvKatCeDe = new QRadioButton ( "&Kat-DeCe CSV",importButtonBox, "importTypeCsvKatCeDe" );
+    importTypeCsvDisclib = new QRadioButton ( "&Disclib CSV",importButtonBox, "importTypeCsvDisclib" );
     importTypeGtktalogXml = new QRadioButton ( "Gtktalog &XML",importButtonBox ,"importTypeGtktalogXml" );
     importTypeWhereisitXml = new QRadioButton ( "&WhereIsIt XML (classic)", importButtonBox, "importTypeWhereisitXml" );
 
@@ -112,6 +113,7 @@ ImportDialog::ImportDialog ( QWidget* parent, const char* name, bool modal, Qt::
     connect ( buttonGetFile, SIGNAL ( clicked() ), this, SLOT ( getFileName() ) );
     connect ( importTypeCsvGtktalog, SIGNAL ( clicked() ), this, SLOT ( typeChanged() ) );
     connect ( importTypeCsvKatCeDe, SIGNAL ( clicked() ), this, SLOT ( typeChanged() ) );
+    connect ( importTypeCsvDisclib, SIGNAL ( clicked() ), this, SLOT ( typeChanged() ) );
     connect ( importTypeGtktalogXml, SIGNAL ( clicked() ), this, SLOT ( typeChanged() ) );
     connect ( importTypeWhereisitXml, SIGNAL ( clicked() ), this, SLOT ( typeChanged() ) );
     separator_lab->setEnabled ( false );
@@ -164,6 +166,7 @@ void ImportDialog::languageChange() {
     importButtonBox->setTitle ( tr ( "Type" ) );
     importTypeCsvGtktalog->setText ( tr ( "&Gtktalog (csv)" ) );
     importTypeCsvKatCeDe->setText ( tr ( "&Kat-CeDe (csv)" ) );
+    importTypeCsvDisclib->setText ( tr ( "&Disclib (csv)" ) );
     importTypeGtktalogXml->setText ( tr ( "Gtktalog &XML" ) );
     importTypeWhereisitXml->setText ( tr ( "&WhereIsIt XML (classic)" ) );
 
@@ -175,6 +178,9 @@ void ImportDialog::languageChange() {
 
     QToolTip::add
     ( importTypeCsvKatCeDe , tr ( "Select this for importing a text import (csv) generated from Kat-CeDe." ) );
+
+    QToolTip::add
+    ( importTypeCsvDisclib , tr ( "Select this for importing a text import (csv) generated from Disclib." ) );
 
     QToolTip::add
     ( importTypeGtktalogXml , tr ( "Select this for importing a xml report generated from gtktalog" ) );
@@ -214,6 +220,8 @@ int ImportDialog::bOk ( void ) {
         type = 0;
     if ( importTypeCsvKatCeDe->isChecked() )
         type = 3;
+    if ( importTypeCsvDisclib->isChecked() )
+        type = 4;
     if ( importTypeGtktalogXml->isChecked() )
         type = 1;
     if ( importTypeWhereisitXml->isChecked() )
@@ -234,7 +242,7 @@ int ImportDialog::bCan ( void ) {
 void ImportDialog::getFileName() {
     QString filetypes;
 
-    if ( importTypeCsvGtktalog->isChecked() || importTypeCsvKatCeDe->isChecked() )
+    if ( importTypeCsvGtktalog->isChecked() || importTypeCsvKatCeDe->isChecked() || importTypeCsvDisclib->isChecked())
         filetypes = QString ( tr ( "csv files(*.csv)" ) );
     if ( importTypeGtktalogXml->isChecked() )
         filetypes = QString ( tr ( "xml files(*.xml)" ) );
@@ -255,16 +263,23 @@ void ImportDialog::getFileName() {
 }
 
 void ImportDialog::typeChanged() {
-    if ( importTypeCsvGtktalog->isChecked() || importTypeCsvKatCeDe->isChecked() ) {
-	if(importTypeCsvGtktalog->isChecked()) {
+    if ( importTypeCsvGtktalog->isChecked() || importTypeCsvKatCeDe->isChecked() || importTypeCsvKatCeDe->isChecked() ) {
+	if(importTypeCsvGtktalog->isChecked() || importTypeCsvDisclib->isChecked()) {
 		correctbadstyle->setEnabled ( true );
 		separator_lab->setEnabled ( true );
+		separator_lineedit->setEnabled ( true );
 	}
 	else {
 		correctbadstyle->setEnabled ( false );
 		separator_lab->setEnabled ( false );
+		separator_lineedit->setEnabled ( false );
         }
-        separator_lineedit->setEnabled ( true );
+        if (importTypeCsvGtktalog->isChecked()) {
+		separator_lineedit->setText(";");
+	}
+        if (importTypeCsvDisclib->isChecked()) {
+		separator_lineedit->setText("*");
+	}
 
     } else {
         correctbadstyle->setEnabled ( false );
