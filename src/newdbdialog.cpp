@@ -201,13 +201,13 @@ void renamedialog::languageChange() {
 
 
 int renamedialog::ok ( void ) {
-    if ( ( leText->text() ).isEmpty() ) {
+    if ( ( leText->text() ).isEmpty() ||  QString(leText->text()) == QString(patient->getNameOf())  ) {
         close();
         return 0;
     }
 
     if ( patient->type == HC_MEDIA ) {
-        if ( !slave->isIdentical ( leText->text() ) ) {
+        if (  !slave->isIdentical ( leText->text() ) ) {
             QMessageBox::warning ( this,tr ( "Error:" ),tr ( "The new (media) name must be unique!" ) );
             return 0;
         }
@@ -322,7 +322,12 @@ int renumberdialog::ok ( void ) {
         return 0;
     }
 
-    if ( !slave->isIdentical ( newnumber ) ) {
+    if (( ( DBMedia * ) ( patient->data ) )->number == newnumber) {
+	close();
+	return 0;
+    }
+
+    if (  !slave->isIdentical ( newnumber ) ) {
         QMessageBox::warning ( this,tr ( "Error:" ),tr ( "The new media-number must be unique!" ) );
         return 0;
     }
