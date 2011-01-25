@@ -3,3 +3,4 @@
 - store newest file/folder date/name at media node and display name/date of it in comment (last change was...)
 - dont refresh full tree after delete a node, update only containing folder
 - userdefined pattern template for medianame (e.g. pc[%d])
+- select several files/directories in order to calculate their total size
