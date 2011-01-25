@@ -27,7 +27,6 @@
  */
 //#include <iostream> for debug only
 #include <stdio.h>
-#include <malloc.h>
 #include <qstring.h>
 
 #include "tparser.h"
