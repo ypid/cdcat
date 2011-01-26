@@ -3,6 +3,7 @@
 	- progressbar at csv import fixed
 	- q3textstream replaced by qtextstream at import
 	- q3progressdialog replaced by qprogressdialog at import
+	- language selector at preferencesdialog at osx added
 
 25. Jan 2011 Christoph Thielecke <crissi99@gmx.de>
 	- csv import added (Disclib)

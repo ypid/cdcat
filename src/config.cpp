@@ -128,7 +128,13 @@ CdCatConfig::CdCatConfig ( void ) {
 
 #ifndef _WIN32
     mounteject = false;
-#else
+#endif
+
+#ifdef _WIN32
+    lang       = "eng";
+#endif
+
+#ifdef Q_WS_MAC
     lang       = "eng";
 #endif
 }
@@ -298,7 +304,15 @@ int CdCatConfig::readConfig ( void ) {
                         mounteject=false;
                     continue;
                 }
-#else
+#endif
+
+#ifdef _WIN32
+                else if ( var=="lang" ) {
+                    lang = val;
+                    continue;
+                }
+#endif
+#ifdef Q_WS_MAC
                 else if ( var=="lang" ) {
                     lang = val;
                     continue;
@@ -632,9 +646,14 @@ int CdCatConfig::writeConfig ( void ) {
             str << "mounteject=true" << endl;
         else
             str << "mounteject=false" << endl;
-        ;
-#else
+#endif
+
+#ifdef _WIN32
         str <<"lang="+lang << endl;
+#endif
+
+#ifdef Q_WS_MAC
+	str <<"lang="+lang << endl;
 #endif
 
         str << "windowSize_height=" << windowSize.height() << endl;
@@ -850,10 +869,11 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 
 
 #ifndef _WIN32
-
     cbMoEj = new QCheckBox ( this, "cbMoEj" );
     ConfigDialogBaseLayout->addWidget ( cbMoEj, 12, 0 );
-#else
+#endif
+
+#ifdef _WIN32
     layout9   = new Q3HBoxLayout ( 0,0,5,"layout9" );
     cbLang    = new QComboBox ( this,"languageselector" );
     langLabel = new QLabel ( this,"langlabel" );
@@ -861,7 +881,41 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
     layout9->insertWidget ( 1,cbLang );
     layout9->insertWidget ( 2,langLabel );
     layout9->insertSpacing ( 3,5 );
-    ConfigDialogBaseLayout->addLayout ( layout9, 12, 0 );
+    ConfigDialogBaseLayout->addLayout ( layout9, 13, 0 );
+
+    /*scanning existing languages:*/
+    cbLang->insertItem ( "eng",0 );
+    QDir d ( "./lang" );
+
+    if ( d.exists() ) {
+        d.setFilter ( QDir::Files );
+        d.setNameFilter ( "cdcat_??.qm" );
+        QFileInfoList list( d.entryInfoList());
+		//QFileInfoListIterator it ( list. );
+        //QFileInfo *fi;
+		foreach(const QFileInfo& fi , list )
+        //while ( ( fi = it.current() ) != 0 ) 
+		{
+            cbLang->insertItem ( ( fi.fileName() ).mid ( 6,2 ) );
+            //++it;
+        }
+        /*end scanning*/
+    } else {
+        cbLang->setEnabled ( false );
+        cbLang->insertItem ( "eng" );
+    }
+#endif
+
+#ifdef Q_WS_MAC
+// 	cerr << "config: mac! " << endl;
+    layout9   = new Q3HBoxLayout ( 0,0,5,"layout9" );
+    cbLang    = new QComboBox ( this,"languageselector" );
+    langLabel = new QLabel ( this,"langlabel" );
+    layout9->insertSpacing ( 0,5 );
+    layout9->insertWidget ( 1,cbLang );
+    layout9->insertWidget ( 2,langLabel );
+    layout9->insertSpacing ( 3,5 );
+    ConfigDialogBaseLayout->addLayout ( layout9, 13, 0 );
 
     /*scanning existing languages:*/
     cbLang->insertItem ( "eng",0 );
@@ -890,7 +944,7 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
     line5->setFrameShape ( Q3Frame::HLine );
     line5->setFrameShadow ( Q3Frame::Sunken );
     line5->setFrameShape ( Q3Frame::HLine );
-    ConfigDialogBaseLayout->addWidget ( line5, 13, 0 );
+    ConfigDialogBaseLayout->addWidget ( line5, 14, 0 );
 
     layout6 = new Q3HBoxLayout ( 0, 0, 6, "layout6" );
     spinHistorySize = new QSpinBox ( this,"spinHistorySize" );
@@ -898,23 +952,23 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
     layout6->addWidget ( spinHistorySize );
     labHistorySize = new QLabel ( this, "labHistorySize" );
     layout6->addWidget ( labHistorySize );
-    ConfigDialogBaseLayout->addLayout ( layout6, 14, 0 );
+    ConfigDialogBaseLayout->addLayout ( layout6, 15, 0 );
 
     line6 = new Q3Frame ( this, "line6" );
     line6->setFrameShape ( Q3Frame::HLine );
     line6->setFrameShadow ( Q3Frame::Sunken );
     line6->setFrameShape ( Q3Frame::HLine );
-    ConfigDialogBaseLayout->addWidget ( line6, 15, 0 );
+    ConfigDialogBaseLayout->addWidget ( line6, 16, 0 );
 
 
     riButton = new QPushButton ( this,"ributton" );
-    ConfigDialogBaseLayout->addWidget ( riButton, 16, 0 );
+    ConfigDialogBaseLayout->addWidget ( riButton, 17, 0 );
 
     line7 = new Q3Frame ( this, "line7" );
     line7->setFrameShape ( Q3Frame::HLine );
     line7->setFrameShadow ( Q3Frame::Sunken );
     line7->setFrameShape ( Q3Frame::HLine );
-    ConfigDialogBaseLayout->addWidget ( line7, 17, 0 );
+    ConfigDialogBaseLayout->addWidget ( line7, 18, 0 );
 
     layout7 = new Q3HBoxLayout ( 0, 0, 6, "layout7" );
     QSpacerItem* spacer = new QSpacerItem ( 110, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
@@ -933,10 +987,10 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
     QSpacerItem* spacer_2 = new QSpacerItem ( 130, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
     layout7->addItem ( spacer_2 );
 
-    ConfigDialogBaseLayout->addLayout ( layout7, 18, 0 );
+    ConfigDialogBaseLayout->addLayout ( layout7, 19, 0 );
 
     cbEnableDebugInfo = new QCheckBox ( this, "cbEnableDebugInfo" );
-    ConfigDialogBaseLayout->addWidget ( cbEnableDebugInfo, 19, 0 );
+    ConfigDialogBaseLayout->addWidget ( cbEnableDebugInfo, 20, 0 );
 
     connect ( searchButton2, SIGNAL ( clicked() ), this, SLOT ( cdrombutton() ) );
 
@@ -975,12 +1029,22 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
     cdrompath_lineedit->setText ( p->cconfig->cdrompath );
 #ifndef _WIN32
     cbMoEj ->setChecked ( p->cconfig->mounteject );
-#else
+#endif
+
+#ifdef _WIN32
     cbLang->setCurrentItem ( 0 );
     for ( int i=0;i<cbLang->count();i++ )
         if ( p->cconfig->lang == cbLang->text ( i ) )
             cbLang->setCurrentItem ( i );
 #endif
+
+#ifdef Q_WS_MAC
+    cbLang->setCurrentItem ( 0 );
+    for ( int i=0;i<cbLang->count();i++ )
+        if ( p->cconfig->lang == cbLang->text ( i ) )
+            cbLang->setCurrentItem ( i );
+#endif
+
     cbEnableDebugInfo->setChecked(p->cconfig->debug_info_enabled);
 }
 
@@ -1007,9 +1071,16 @@ void ConfigDialog::languageChange() {
 
 #ifndef _WIN32
     cbMoEj->setText ( tr ( "Scanning: mount cdrom at start / eject when finish" ) );
-#else
+#endif
+
+#ifdef _WIN32
     langLabel->setText ( tr ( "The language of CdCat interface" ) );
 #endif
+
+#ifdef Q_WS_MAC
+    langLabel->setText ( tr ( "The language of CdCat interface" ) );
+#endif
+
     cbEnableDebugInfo->setText( tr("Display debug info on console") );
 }
 
@@ -1040,8 +1111,9 @@ void ConfigDialog::okExit() {
     p->cconfig->cdrompath   = cdrompath_lineedit->text();
 #ifndef _WIN32
     p->cconfig->mounteject  = cbMoEj->isChecked();
-#else
+#endif
 
+#ifdef _WIN32
     QTranslator *translator = 0;
     QString langfile ( "./lang/cdcat_" );
     langfile += p->cconfig->lang;
@@ -1062,8 +1134,32 @@ void ConfigDialog::okExit() {
     translator = new QTranslator ( 0 );
     translator->load ( langfile,"." );
     p->app->installTranslator ( translator );
-
 #endif
+
+#ifdef Q_WS_MAC
+    QTranslator *translator = 0;
+    QString langfile ( "./lang/cdcat_" );
+    langfile += p->cconfig->lang;
+    langfile += ".qm";
+
+    translator = new QTranslator ( 0 );
+    translator->load ( langfile,"." );
+    p->app->removeTranslator ( translator );
+
+    //read the value
+    p->cconfig->lang        = cbLang->currentText();
+
+    translator = 0;
+    langfile = "./lang/cdcat_";
+    langfile += p->cconfig->lang;
+    langfile += ".qm";
+
+    translator = new QTranslator ( 0 );
+    translator->load ( langfile,"." );
+    p->app->installTranslator ( translator );
+#endif
+
+
     p->cconfig->debug_info_enabled = cbEnableDebugInfo->isChecked();
     DEBUG_INFO_ENABLED = init_debug_info();
     *DEBUG_INFO_ENABLED = cbEnableDebugInfo->isChecked();

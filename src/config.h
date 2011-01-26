@@ -103,9 +103,16 @@ public:
     QFont *defaultfont;
 #ifndef _WIN32
     bool    mounteject;
-#else
+#endif
+
+#ifdef _WIN32
     QString lang;
 #endif
+#ifdef Q_WS_MAC
+    QString lang;
+#endif
+
+
 
     bool linkf;
     
@@ -164,7 +171,15 @@ protected:
 
 #ifndef _WIN32
     QCheckBox* cbMoEj;
-#else
+#endif
+
+#ifdef _WIN32
+    Q3HBoxLayout* layout9;
+    QComboBox  * cbLang;
+    QLabel     * langLabel;
+#endif
+
+#ifdef Q_WS_MAC
     Q3HBoxLayout* layout9;
     QComboBox  * cbLang;
     QLabel     * langLabel;
