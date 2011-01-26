@@ -25,7 +25,7 @@
  *
  *Copyright Piotr "|TEcHNO|" Lewandowski, 2004
  */
-//#include <iostream> for debug only
+#include <iostream> for debug only
 #include <stdio.h>
 #include <qstring.h>
 
