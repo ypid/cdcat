@@ -1535,23 +1535,23 @@ será
         <translation>Outro Dispositivo</translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="572"/>
+        <location filename="../tparser.cpp" line="571"/>
         <source>Video:
 </source>
         <translation>Vídeo:</translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="574"/>
+        <location filename="../tparser.cpp" line="573"/>
         <source>Total Time</source>
         <translation>Tempo Total</translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="575"/>
+        <location filename="../tparser.cpp" line="574"/>
         <source>Framerate</source>
         <translation>Frames por segundo</translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="576"/>
+        <location filename="../tparser.cpp" line="575"/>
         <source>Resolution</source>
         <translation>Resolução</translation>
     </message>
@@ -1566,104 +1566,104 @@ será
         <translation type="obsolete">Mais dados:</translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="587"/>
+        <location filename="../tparser.cpp" line="586"/>
         <source>Artist</source>
         <translation>Artista</translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="588"/>
+        <location filename="../tparser.cpp" line="587"/>
         <source>Comments</source>
         <translation>Comentários</translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="589"/>
+        <location filename="../tparser.cpp" line="588"/>
         <source>Copyright</source>
         <translation>Direitos de autor</translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="590"/>
+        <location filename="../tparser.cpp" line="589"/>
         <source>Creation Date</source>
         <translation>Data de criação</translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="591"/>
+        <location filename="../tparser.cpp" line="590"/>
         <source>Engineer</source>
         <translation>Engenheiro</translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="593"/>
+        <location filename="../tparser.cpp" line="592"/>
         <source>Name</source>
         <translation>Nome</translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="594"/>
+        <location filename="../tparser.cpp" line="593"/>
         <source>Product</source>
         <translation>Produto</translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="595"/>
+        <location filename="../tparser.cpp" line="594"/>
         <source>Software</source>
         <translation>Software</translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="596"/>
+        <location filename="../tparser.cpp" line="595"/>
         <source>Source</source>
         <translation>Fonte</translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="597"/>
+        <location filename="../tparser.cpp" line="596"/>
         <source>Subject</source>
         <translation>Assunto</translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="598"/>
+        <location filename="../tparser.cpp" line="597"/>
         <source>Technician</source>
         <translation>Técnico</translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="663"/>
+        <location filename="../tparser.cpp" line="662"/>
         <source>Unknown/not implemented/broken header
 </source>
         <translation>Desconhecido/não implementado/cabeçalho inválido</translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="580"/>
+        <location filename="../tparser.cpp" line="579"/>
         <source>Channels</source>
         <translation>Canais</translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="582"/>
+        <location filename="../tparser.cpp" line="581"/>
         <source>Bitrate</source>
         <translation>Bitrate</translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="592"/>
+        <location filename="../tparser.cpp" line="591"/>
         <source>Genre</source>
         <translation>Género</translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="450"/>
+        <location filename="../tparser.cpp" line="449"/>
         <source>Not a RIFF/AVI file OR header broken!</source>
         <translation>Não é um ficheiro RIFF/AVI ou cabeçalho danificado</translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="581"/>
+        <location filename="../tparser.cpp" line="580"/>
         <source>Sample/s</source>
         <translation>Amostra(s)</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1375"/>
+        <location filename="../import.cpp" line="1393"/>
         <source>importuser</source>
         <translation type="unfinished">importar utilizador</translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="578"/>
+        <location filename="../tparser.cpp" line="577"/>
         <source>Audio:
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="585"/>
+        <location filename="../tparser.cpp" line="584"/>
         <source>More Data:
 </source>
         <translation type="unfinished"></translation>
@@ -2185,7 +2185,7 @@ será
         <translation>Introduzir um separador!</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="522"/>
+        <location filename="../exportcdcatdb.cpp" line="524"/>
         <source>Error during write config...</source>
         <translation>Erro durante a escrita da configuração...</translation>
     </message>
@@ -2195,7 +2195,7 @@ será
         <translation type="obsolete">Ok</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="569"/>
+        <location filename="../exportcdcatdb.cpp" line="571"/>
         <source>All files (*.*)</source>
         <translation>Todos os ficheiros (*.*)</translation>
     </message>
@@ -2205,7 +2205,7 @@ será
         <translation type="obsolete">seleccionador de ficheiro</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="569"/>
+        <location filename="../exportcdcatdb.cpp" line="571"/>
         <source>Choose a file!</source>
         <translation>Escolher ficheiro!</translation>
     </message>
@@ -2245,17 +2245,17 @@ será
         <translation>Ficheiro</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="453"/>
+        <location filename="../exportcdcatdb.cpp" line="455"/>
         <source>Size</source>
         <translation>Tamanho</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="458"/>
+        <location filename="../exportcdcatdb.cpp" line="460"/>
         <source>Date</source>
         <translation>Data</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="522"/>
+        <location filename="../exportcdcatdb.cpp" line="524"/>
         <source>I can&apos;t create or rewrite the file</source>
         <translation>Impossível criar ou reescrever o ficheiro</translation>
     </message>
@@ -2280,17 +2280,17 @@ será
         <translation>Apenas o nome de media</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="438"/>
+        <location filename="../exportcdcatdb.cpp" line="440"/>
         <source>Media name</source>
         <translation>Nome do media</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="448"/>
+        <location filename="../exportcdcatdb.cpp" line="450"/>
         <source>Path</source>
         <translation>Caminho</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="463"/>
+        <location filename="../exportcdcatdb.cpp" line="465"/>
         <source>Comment</source>
         <translation>Comentário</translation>
     </message>
@@ -2305,22 +2305,22 @@ será
         <translation type="obsolete">Cabeçalho da tabela</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="486"/>
+        <location filename="../exportcdcatdb.cpp" line="488"/>
         <source>Overwrite?</source>
         <translation>Sobreescrever?</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="487"/>
+        <location filename="../exportcdcatdb.cpp" line="489"/>
         <source>Do you want overwrite this file?</source>
         <translation>Sobreescrever o ficheiro?</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="492"/>
+        <location filename="../exportcdcatdb.cpp" line="494"/>
         <source>Yes</source>
         <translation>Sim</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="493"/>
+        <location filename="../exportcdcatdb.cpp" line="495"/>
         <source>Discard</source>
         <translation>Descartar</translation>
     </message>
@@ -2330,17 +2330,17 @@ será
         <translation>Exportar catálogo CdCat: </translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="403"/>
+        <location filename="../exportcdcatdb.cpp" line="435"/>
         <source>Export from cdcat, catalog:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="404"/>
+        <location filename="../exportcdcatdb.cpp" line="436"/>
         <source>Generated at:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="443"/>
+        <location filename="../exportcdcatdb.cpp" line="445"/>
         <source>Media number</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2360,32 +2360,32 @@ será
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="468"/>
+        <location filename="../exportcdcatdb.cpp" line="470"/>
         <source>MP3 tag</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="472"/>
+        <location filename="../exportcdcatdb.cpp" line="474"/>
         <source>Borrow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="807"/>
+        <location filename="../exportcdcatdb.cpp" line="809"/>
         <source>Artist:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="808"/>
+        <location filename="../exportcdcatdb.cpp" line="810"/>
         <source>Title:</source>
         <translation type="unfinished">Título:</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="809"/>
+        <location filename="../exportcdcatdb.cpp" line="811"/>
         <source>Album:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="810"/>
+        <location filename="../exportcdcatdb.cpp" line="812"/>
         <source>Year:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2395,7 +2395,7 @@ será
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="435"/>
+        <location filename="../exportcdcatdb.cpp" line="437"/>
         <source>field list</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2588,224 +2588,239 @@ E-mail: hyperr@freemail.hu
 <context>
     <name>importGtktalogCsv</name>
     <message>
-        <location filename="../import.cpp" line="546"/>
+        <location filename="../import.cpp" line="570"/>
         <source>Import was successful.</source>
         <translation>Importação concluída com sucesso.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="549"/>
+        <location filename="../import.cpp" line="573"/>
         <source>1 media</source>
         <translation>1 media</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="551"/>
+        <location filename="../import.cpp" line="575"/>
         <source>media</source>
         <translation>media</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="554"/>
+        <location filename="../import.cpp" line="578"/>
         <source>1 directory:,
 </source>
         <translation>1 directoria:,
 </translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="556"/>
+        <location filename="../import.cpp" line="580"/>
         <source>directories</source>
         <translation>directorias</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="559"/>
+        <location filename="../import.cpp" line="583"/>
         <source>1 File</source>
         <translation>1 Ficheiro</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="561"/>
+        <location filename="../import.cpp" line="585"/>
         <source>files</source>
         <translation>ficheiros</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="563"/>
+        <location filename="../import.cpp" line="587"/>
         <source>are imported.</source>
         <translation>está importado</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="565"/>
+        <location filename="../import.cpp" line="589"/>
         <source>Import successful</source>
         <translation>Importação bem sucedida</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="570"/>
+        <location filename="../import.cpp" line="594"/>
         <source>file read error</source>
         <translation>erro ao ler o ficheiro</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="570"/>
+        <location filename="../import.cpp" line="594"/>
         <source>Could not read file</source>
         <translation>Impossível ler o ficheiro</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="573"/>
+        <location filename="../import.cpp" line="597"/>
         <source>Fatal error</source>
         <translation>Erro fatal</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="573"/>
+        <location filename="../import.cpp" line="597"/>
         <source>Fatal error occured.</source>
         <translation>Ocorreu um erro fatal.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="576"/>
+        <location filename="../import.cpp" line="600"/>
         <source>file open error</source>
         <translation>erro ao abrir o ficheiro</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="576"/>
+        <location filename="../import.cpp" line="600"/>
         <source>Could not open file</source>
         <translation>Impossível abrir o ficheiro</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="615"/>
+        <location filename="../import.cpp" line="639"/>
         <source>importuser</source>
         <translation>importar utilizador</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="143"/>
+        <location filename="../import.cpp" line="152"/>
         <source>Importing CSV...</source>
         <translation>Importar CSV...</translation>
+    </message>
+    <message>
+        <location filename="../import.cpp" line="152"/>
+        <source>Cancel</source>
+        <translation type="unfinished">Cancelar</translation>
     </message>
 </context>
 <context>
     <name>importGtktalogXml</name>
     <message>
-        <location filename="../import.cpp" line="942"/>
+        <location filename="../import.cpp" line="964"/>
         <source>Importing XML...</source>
         <translation>Importar XML...</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="980"/>
+        <location filename="../import.cpp" line="1000"/>
         <source>XML import was successful.</source>
         <translation>Importação XML com sucesso.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="983"/>
+        <location filename="../import.cpp" line="1003"/>
         <source>1 media</source>
         <translation>1 media</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="985"/>
+        <location filename="../import.cpp" line="1005"/>
         <source>media</source>
         <translation>media</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="988"/>
+        <location filename="../import.cpp" line="1008"/>
         <source>1 directory:,
 </source>
         <translation>1 directoria:,</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="990"/>
+        <location filename="../import.cpp" line="1010"/>
         <source>directories</source>
         <translation>directorias</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="993"/>
+        <location filename="../import.cpp" line="1013"/>
         <source>1 File</source>
         <translation>1 Ficheiro</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="995"/>
+        <location filename="../import.cpp" line="1015"/>
         <source>files</source>
         <translation>ficheiros</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="997"/>
+        <location filename="../import.cpp" line="1017"/>
         <source>are imported.</source>
         <translation>está importado</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="999"/>
+        <location filename="../import.cpp" line="1019"/>
         <source>Import successful</source>
         <translation>Importação bem sucedida</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1003"/>
+        <location filename="../import.cpp" line="1023"/>
         <source>parse error</source>
         <translation>erro de análise</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1003"/>
+        <location filename="../import.cpp" line="1023"/>
         <source>error during parsing</source>
         <translation>erro durante a análise</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1033"/>
+        <location filename="../import.cpp" line="1053"/>
         <source>importuser</source>
         <translation>importar utilizador</translation>
+    </message>
+    <message>
+        <location filename="../import.cpp" line="964"/>
+        <source>Cancel</source>
+        <translation type="unfinished">Cancelar</translation>
     </message>
 </context>
 <context>
     <name>importWhereIsItXml</name>
     <message>
-        <location filename="../import.cpp" line="1598"/>
+        <location filename="../import.cpp" line="1610"/>
         <source>Importing XML...</source>
         <translation>Importar XML...</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1636"/>
+        <location filename="../import.cpp" line="1646"/>
         <source>Importing XML from WhereIsIt was successful.</source>
         <translation>Importação XML de WhereIsIt com sucesso.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1639"/>
+        <location filename="../import.cpp" line="1649"/>
         <source>1 media</source>
         <translation>1 media</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1641"/>
+        <location filename="../import.cpp" line="1651"/>
         <source>media</source>
         <translation>media</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1644"/>
+        <location filename="../import.cpp" line="1654"/>
         <source>1 directory:,
 </source>
         <translation>1 directoria</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1646"/>
+        <location filename="../import.cpp" line="1656"/>
         <source>directories</source>
         <translation>directorias</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1649"/>
+        <location filename="../import.cpp" line="1659"/>
         <source>1 File</source>
         <translation>1 Ficheiro</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1651"/>
+        <location filename="../import.cpp" line="1661"/>
         <source>files</source>
         <translation>ficheiros</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1653"/>
+        <location filename="../import.cpp" line="1663"/>
         <source>are imported.</source>
         <translation>importado</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1655"/>
+        <location filename="../import.cpp" line="1665"/>
         <source>Import successful</source>
         <translation>Importação sucedida</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1659"/>
+        <location filename="../import.cpp" line="1669"/>
         <source>parse error</source>
         <translation>erro de análise</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1659"/>
+        <location filename="../import.cpp" line="1669"/>
         <source>error during parsing</source>
         <translation>erro durante a análise</translation>
+    </message>
+    <message>
+        <location filename="../import.cpp" line="1610"/>
+        <source>Cancel</source>
+        <translation type="unfinished">Cancelar</translation>
     </message>
 </context>
 <context>
@@ -2950,7 +2965,7 @@ E-mail: hyperr@freemail.hu
 <context>
     <name>seekEngine</name>
     <message>
-        <location filename="../find.cpp" line="457"/>
+        <location filename="../find.cpp" line="456"/>
         <source>Error in the pattern:</source>
         <translation>Erro no padrão:</translation>
     </message>
@@ -2960,27 +2975,27 @@ E-mail: hyperr@freemail.hu
         <translation type="obsolete">Ok</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="503"/>
+        <location filename="../find.cpp" line="502"/>
         <source>There is no matching.</source>
         <translation>Combinação inexistente.</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="722"/>
+        <location filename="../find.cpp" line="721"/>
         <source>dir</source>
         <translation>directoria</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="725"/>
+        <location filename="../find.cpp" line="724"/>
         <source>file</source>
         <translation>ficheiro</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="730"/>
+        <location filename="../find.cpp" line="729"/>
         <source>error</source>
         <translation>erro</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="718"/>
+        <location filename="../find.cpp" line="717"/>
         <source>media</source>
         <translation>media</translation>
     </message>

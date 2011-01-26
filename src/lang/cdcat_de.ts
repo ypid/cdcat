@@ -2067,6 +2067,10 @@ E-mail: hyperr@freemail.hu
       <source>importuser</source>
       <translation>Importbenutzer</translation>
     </message>
+    <message>
+      <source>Cancel</source>
+      <translation>Abbrechen</translation>
+    </message>
   </context>
   <context>
     <name>importGtktalogXml</name>
@@ -2124,6 +2128,10 @@ E-mail: hyperr@freemail.hu
       <source>importuser</source>
       <translation>Importbenutzer</translation>
     </message>
+    <message>
+      <source>Cancel</source>
+      <translation>Abbrechen</translation>
+    </message>
   </context>
   <context>
     <name>importWhereIsItXml</name>
@@ -2176,6 +2184,10 @@ E-mail: hyperr@freemail.hu
     <message>
       <source>error during parsing</source>
       <translation>Fehler während des Parsens</translation>
+    </message>
+    <message>
+      <source>Cancel</source>
+      <translation>Abbrechen</translation>
     </message>
   </context>
   <context>

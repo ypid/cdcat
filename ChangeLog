@@ -1,3 +1,9 @@
+26. Jan 2011 Christoph Thielecke <crissi99@gmx.de>
+	- support for importing comment and category at Kat-CeDe and Disclib added
+	- progressbar at csv import fixed
+	- q3textstream replaced by qtextstream at import
+	- q3progressdialog replaced by qprogressdialog at import
+
 25. Jan 2011 Christoph Thielecke <crissi99@gmx.de>
 	- csv import added (Disclib)
 	- dont give a error message if same name at rename dialog

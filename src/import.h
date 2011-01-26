@@ -12,12 +12,11 @@ Copyright : (C) 2003 Christoph Thielecke
 
 
 #include <qobject.h>
-#include <q3listview.h>
 #include <qfiledialog.h>
 #include <qwidget.h>
 #include <qdatetime.h>
 
-#include <q3progressdialog.h>
+#include <qprogressdialog.h>
 
 #include <QtXml/QXmlDefaultHandler>
 
@@ -44,7 +43,7 @@ public:
      * file @param date Date of file @param time Mod time of file
      */
     lineObject ( QString medianame, QString path, QString filename,
-                 float size, QDateTime datetime );
+                 float size, QDateTime datetime, QString comment, QString category );
     ~lineObject();
     lineObject ( const lineObject& );
     lineObject& operator= ( const lineObject& );
@@ -54,12 +53,16 @@ public:
     QString getFileName();
     float getSize();
     QDateTime getDateTime();
+    QString getComment();
+    QString getCategory();
 
 protected:
     QString medianame;
     QString path;
     QString filename;
     QDateTime datetime;
+    QString comment;
+    QString category;
     float size;
 };
 
@@ -76,7 +79,7 @@ public:
       * file @param datetime Date + time of file
       */
     int addNewItem ( QString medianame, QString path, QString filename,
-                     float size, QDateTime datetime );
+                     float size, QDateTime datetime, QString comment, QString category );
 
     /*
      * @param new_medianame Name of new media
@@ -147,13 +150,13 @@ Q_OBJECT public:
 		QString tag_content;
     GuiSlave * guislave;
     QList < lineObject > *medialines;
-    Q3ProgressDialog *progress;
-		bool startDocument();
-		bool startElement( const QString&, const QString&, const QString& , const QXmlAttributes& );
-		bool endElement( const QString&, const QString&, const QString& );
-		bool characters ( const QString & ch ) ;
-		bool fatalError(const QXmlParseException &exception);
-		QXmlAttributes attr;
+    QProgressDialog *progress;
+	bool startDocument();
+	bool startElement( const QString&, const QString&, const QString& , const QXmlAttributes& );
+	bool endElement( const QString&, const QString&, const QString& );
+	bool characters ( const QString & ch ) ;
+	bool fatalError(const QXmlParseException &exception);
+	QXmlAttributes attr;
 
 	protected:
 protected:
@@ -204,7 +207,7 @@ public:
 		//tag_type last_type;
 		QString last_type;
     GuiSlave * guislave;
-    Q3ProgressDialog *progress;
+    QProgressDialog *progress;
     Node *last_upper_container_node;
     DataBase *db;
 protected:

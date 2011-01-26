@@ -9,10 +9,9 @@ Copyright : (C) 2003 Christoph Thielecke
 
 #include <qmessagebox.h>
 #include <qfile.h>
-#include <q3textstream.h>
+#include <QTextStream>
 #include <qdatetime.h>
-#include <q3progressdialog.h>
-//Added by qt3to4:
+#include <QProgressDialog>
 #include <QList>
 #include <QtXml/QXmlInputSource>
 #include <QtXml/QXmlAttributes>
@@ -35,15 +34,18 @@ using namespace std;
 #include "config.h"
 
 lineObject::lineObject ( QString medianame, QString path, QString filename,
-                         float size, QDateTime datetime ) {
+                         float size, QDateTime datetime, QString comment, QString category ) {
     this->medianame = medianame;
     this->path = path;
     this->filename = filename;
     this->size = size;
     this->datetime = datetime;
+    this->comment = comment;
+    this->category = category;
 }
 
 lineObject::~lineObject() {}
+
 lineObject::lineObject ( const lineObject& newobj ) {
     medianame = newobj.medianame;
     path = newobj.path;
@@ -60,8 +62,6 @@ lineObject& lineObject::operator= ( const lineObject& newobj ) {
     datetime = newobj.datetime;
     return *this;
 }
-
-
 
 QString lineObject::getMediaName() {
     return medianame;
@@ -82,6 +82,15 @@ float lineObject::getSize() {
 QDateTime lineObject::getDateTime() {
     return datetime;
 }
+
+QString lineObject::getComment() {
+    return comment;
+}
+
+QString lineObject::getCategory() {
+    return category;
+}
+
 
 /*
  * import a file with following format:
@@ -131,26 +140,25 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
                 QTextStream in ( &f );
                 while ( !in.atEnd() ) {
                     QString line = in.readLine();
-                    if ( line.contains ( '\n' ) or line.contains ( "\r\n" ) )
                         lines ++;
                 }
                 f.close();
+                if(*DEBUG_INFO_ENABLED)
+                        cerr << "importGtktalogCsv:: " << lines << " lines found." << endl;    
             }
 
             if ( f.open ( QIODevice::ReadOnly ) ) {	     // file opened successfully
 
-                Q3ProgressDialog progress ( 0, "progressdialog", true );
-                progress.setLabelText ( tr ( "Importing CSV..." ) );
-                progress.setCancelButton ( 0 );
-                progress.setTotalSteps ( lines );
-
-                Q3TextStream t ( &f );	             // use a text stream
+                QProgressDialog *progress = new QProgressDialog( tr ( "Importing CSV..." ), tr("Cancel"), 1, lines);
+                progress->setCancelButton ( 0 );
+                
+                QTextStream t ( &f );	             // use a text stream
                 QString medianame = "";
 
                 medialines = new QList < lineObject > ();
                 //medialines->setAutoDelete( TRUE );	// the list owns the objects
 
-                while ( !t.eof() ) {
+                while ( !t.atEnd() ) {
                     QString line;
                     QString fullpath;
                     QString path;
@@ -161,6 +169,8 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
                     QString new_medianame;
                     QString datetimestring;
                     QString pathsep = "/";
+                    QString comment = "";
+                    QString category = "";
 
 
                     line = t.readLine();	// line of text excluding '\n'
@@ -284,7 +294,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
                         if (csvtype == "kat-dece") {
                                 /*
                                  * format:
-                                 * "Number";"Location";"CD name";"CD categy";"Name";"Extension";"Length";"Date";"Path";"Comment"
+                                 * "Number";"Location";"CD name";"CD category";"Name";"Extension";"Length";"Date";"Path";"Comment"
                                  * 
                                  * sample line:
                                  * "";"";"newiso";"! Alle Medien  ";"empire-efi-logo-alt256";".png";" 11,669";"2010.01.07  08:05";"Extra\Themes\Default\";""
@@ -358,6 +368,15 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 
 //                                 if(*DEBUG_INFO_ENABLED)
 //                                      cerr << "importGtktalogCsv fullpath: " << qPrintable(fullpath) << endl;
+                                
+                                comment = QString(csvList.at(9)).replace("\"","");
+//                                 if(*DEBUG_INFO_ENABLED)
+//                                      cerr << "importGtktalogCsv comment: " << qPrintable(comment) << endl;
+                                
+                                category = QString(csvList.at(3)).replace("\"","");
+//                                 if(*DEBUG_INFO_ENABLED)
+//                                      cerr << "importGtktalogCsv category: " << qPrintable(category) << endl;
+
 
                                 if (*DEBUG_INFO_ENABLED)
                                 //if (!validDate)
@@ -478,7 +497,8 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 //                                 if(*DEBUG_INFO_ENABLED)
 //                                      cerr << "importGtktalogCsv fullpath: " << qPrintable(fullpath) << endl;
                                 
-                                QString comment = QString( csvList.at(8)).replace("\"","");
+                                category = QString( csvList.at(7)).replace("\"","");
+                                comment = QString( csvList.at(8)).replace("\"","");
 
                                 if (*DEBUG_INFO_ENABLED)
                                 //if (!validDate)
@@ -502,6 +522,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
                                         msg += "directory path: "+dirpath+"\n";
                                         msg +="file name: "+filename+"\n";
                                         msg += "comment: " + comment + "\n";
+                                        msg += "category: " + category + "\n";
                                         
                                         cerr << "msg: " << qPrintable(msg) << endl;
 
@@ -519,18 +540,21 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
                             addNewMedia ( medianame, medialines );
                                 medialines->clear();
                                 medianame = new_medianame;
-                                addNewItem ( new_medianame, dirpath, filename, size, datetime );
+                                addNewItem ( new_medianame, dirpath, filename, size, datetime, comment, category );
 
 
                             } else {
                                 //        QMessageBox::warning (0, "info", "new item");
-                                addNewItem ( new_medianame, dirpath, filename, size, datetime );
+                                addNewItem ( new_medianame, dirpath, filename, size, datetime, comment, category );
                             }
 
                     }			// valid line
                     linecount++;
-                    progress.setProgress ( linecount );
+                    progress->setValue ( linecount );
+                    if(parent->mainw->app->hasPendingEvents())
+                        parent->mainw->app->processEvents();
                 }
+                delete progress;
                 f.close();
                 if ( !medialines->isEmpty() ) {
                     addNewMedia ( medianame, medialines );
@@ -583,14 +607,14 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 importGtktalogCsv::~importGtktalogCsv() {}
 
 int importGtktalogCsv::addNewItem ( QString medianame, QString path,
-                                    QString filename, float size, QDateTime datetime ) {
+                                    QString filename, float size, QDateTime datetime, QString comment, QString category ) {
     DEBUG_INFO_ENABLED = init_debug_info();
-    lineObject l ( medianame, path, filename, size, datetime );
+    lineObject l ( medianame, path, filename, size, datetime, comment, category );
     if (*DEBUG_INFO_ENABLED)
         cerr << "importGtktalogCsv::addNewItem: medianame: " <<
              qPrintable(medianame) << ", path: " << qPrintable(path) << ", filename: " <<
              qPrintable(filename) << ", size: " << size << ", date: " <<
-             qPrintable(datetime.toString()) << endl;
+             qPrintable(datetime.toString())  << ", comment: " << qPrintable(comment) << ", category: " << qPrintable(category )<< endl;
     medialines->append ( l );
 
     // QMessageBox::critical( 0, "item", "new item!");
@@ -615,7 +639,7 @@ int importGtktalogCsv::addNewMedia ( QString new_medianame, QList < lineObject >
         curr = db->putMediaNode ( new_medianame , mediacount, tr ( "importuser" ), CD, "", QDateTime().currentDateTime() );
 
     QString msg;
-    lineObject obj("", "", "", 0.0, QDateTime());
+    lineObject obj("", "", "", 0.0, QDateTime(), "", "");
     for ( int i = 0; i < medialines->size(); i++ ) {
         //if(*DEBUG_INFO_ENABLED)
         //	cerr << "importGtktalogCsv::addNewMedia medialine: " << i << endl;
@@ -639,7 +663,7 @@ int importGtktalogCsv::addNewMedia ( QString new_medianame, QList < lineObject >
 
                 curr = db->getDirectoryNode ( env, dir );
                 if ( curr == NULL ) {
-                    curr = db->putDirectoryNode ( env,  dir , obj.getDateTime() , "" );
+                    curr = db->putDirectoryNode ( env,  dir , obj.getDateTime() , obj.getComment() );
                     dircount++;
 
                 }
@@ -676,7 +700,7 @@ int importGtktalogCsv::addNewMedia ( QString new_medianame, QList < lineObject >
         env = curr;
         curr = db->getFileNode ( env, QString ( obj.getFileName() ) );
         if ( curr == NULL )
-            curr = db->putFileNode ( env,  obj.getFileName() , obj.getDateTime() , "", st, s );
+            curr = db->putFileNode ( env,  obj.getFileName() , obj.getDateTime() , obj.getComment(), st, s );
 
         curr = db->getMediaNode ( new_medianame );
 
@@ -729,6 +753,7 @@ bool importGtktalogXml::startDocument() {
     //cout << "startDocument: " << endl;
     return TRUE;
 }
+
 bool importGtktalogXml::startElement( const QString&, const QString&,
                                       const QString & name2,
                                       const QXmlAttributes& ) {
@@ -736,6 +761,7 @@ bool importGtktalogXml::startElement( const QString&, const QString&,
     last_tag = name2;
     return TRUE;
 }
+
 bool importGtktalogXml::endElement( const QString&, const QString & tag, const QString& ) {
     //cout << "endElement: "  << "tag: " << tag << endl;
     QString name2 = tag;
@@ -804,7 +830,7 @@ bool importGtktalogXml::endElement( const QString&, const QString & tag, const Q
         tmpdirname = "";
 
         class_link->linecount++;
-        class_link->progress->setProgress ( class_link->linecount );
+        class_link->progress->setValue ( class_link->linecount );
     }
 
     return TRUE;
@@ -892,9 +918,6 @@ bool importGtktalogXml::characters ( const QString & ch ) {
     return TRUE;
 }
 
-
-
-
 importGtktalogXml::importGtktalogXml ( GuiSlave * parent, QString filename, bool createdatabase ) {
     this->guislave = parent;
     bool import_ok = true;
@@ -925,11 +948,11 @@ importGtktalogXml::importGtktalogXml ( GuiSlave * parent, QString filename, bool
         guislave->panelsOFF();
 
         QFile f ( filename );
-        Q3TextStream t ( &f );	// use a text stream
+        QTextStream t ( &f );	// use a text stream
 
         if ( f.open ( QIODevice::ReadOnly ) ) {
             QString tmp = "";
-            while ( !t.eof() ) {
+            while ( !t.atEnd() ) {
                 tmp = t.readLine();
                 if ( tmp.contains ( "<directory>" ) )
                     lines++;
@@ -938,11 +961,9 @@ importGtktalogXml::importGtktalogXml ( GuiSlave * parent, QString filename, bool
             f.close();
         }
 
-        progress = new Q3ProgressDialog ( 0, "progressdialog", true );
-        progress->setLabelText ( tr ( "Importing XML..." ) );
+        new QProgressDialog( tr ( "Importing XML..." ), tr("Cancel"), 1, lines);
         progress->setCancelButton ( 0 );
-        progress->setTotalSteps ( lines );
-
+        
         medialines = new QList < lineObject > ();
 
         line = "";
@@ -959,7 +980,6 @@ importGtktalogXml::importGtktalogXml ( GuiSlave * parent, QString filename, bool
         reader.setContentHandler( this );
         reader.setErrorHandler(this);
         reader.parse( source );
-        progress->hide();
     } else {
         import_ok = false;
     }
@@ -1003,7 +1023,7 @@ importGtktalogXml::importGtktalogXml ( GuiSlave * parent, QString filename, bool
         QMessageBox::critical ( 0, tr ( "parse error" ), tr ( "error during parsing" ) );
         QApplication::restoreOverrideCursor();
     } // file dialog canceled
-
+       
 }
 
 importGtktalogXml::~importGtktalogXml() {
@@ -1011,7 +1031,7 @@ importGtktalogXml::~importGtktalogXml() {
 }
 
 int importGtktalogXml::addNewItem ( QString medianame, QString path, QString filename, float size, QDateTime datetime ) {
-    medialines->append ( lineObject ( medianame, path, filename, size, datetime ) );
+    medialines->append ( lineObject ( medianame, path, filename, size, datetime, "", "" ) );
 
     // QMessageBox::critical( 0, "item", "new item!");
     return 0;
@@ -1128,8 +1148,6 @@ bool importWhereIsItXml::startDocument() {
     //cout << "startDocument: " << endl;
     return TRUE;
 }
-
-
 
 bool importWhereIsItXml::startElement( const QString&, const QString&,
                                        const QString & name2,
@@ -1507,7 +1525,6 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
     return TRUE;
 }
 
-
 bool importWhereIsItXml::characters ( const QString & ch ) {
     //xmldata = ch;
 
@@ -1515,9 +1532,6 @@ bool importWhereIsItXml::characters ( const QString & ch ) {
     currentText+= ch;
     return true;
 }
-
-
-
 
 importWhereIsItXml::importWhereIsItXml ( GuiSlave * parent, QString filename, bool createdatabase ) {
     this->guislave = parent;
@@ -1550,7 +1564,7 @@ importWhereIsItXml::importWhereIsItXml ( GuiSlave * parent, QString filename, bo
         guislave->panelsOFF();
 
         QFile f ( filename );
-        Q3TextStream t ( &f );	// use a text stream
+        QTextStream t ( &f );	// use a text stream
 
         int all_lines = 0;
 
@@ -1593,12 +1607,8 @@ importWhereIsItXml::importWhereIsItXml ( GuiSlave * parent, QString filename, bo
 
         // now we need a link to itself :(
         class_link_whereisit = this;
-
-        progress = new Q3ProgressDialog ( 0, "progressdialog", true );
-        progress->setLabelText ( tr ( "Importing XML..." ) );
+        progress = new QProgressDialog( tr ( "Importing XML..." ), tr("Cancel"), 1, lines);
         progress->setCancelButton ( 0 );
-        progress->setTotalSteps ( lines );
-        progress->show();
 
         //	guislave->mainw->status->setText(tr("Importing xml..."));
 
