@@ -952,6 +952,8 @@ int GuiSlave::saveEvent ( void ) {
     progress ( pww );
 
     mainw->db->setNice ( mainw->cconfig->nice );
+    if(mainw->cconfig->saveAlwaysCatalogInUtf8)
+	mainw->db->XML_ENCODING = "UTF-8";
     if ( mainw->db->saveDB() != 0 ) {
         progress ( pww );
         pww->end();
@@ -997,6 +999,8 @@ int GuiSlave::saveasEvent ( void ) {
     progress ( pww );
 
     mainw->db->setNice ( mainw->cconfig->nice );
+    if(mainw->cconfig->saveAlwaysCatalogInUtf8)
+	mainw->db->XML_ENCODING = "UTF-8";
     if ( mainw->db->saveAsDB ( fnc ) != 0 ) { // An error occured
         QMessageBox::warning ( mainw,tr ( "Error while saving..." ),mainw->db->errormsg );
         retv=2;

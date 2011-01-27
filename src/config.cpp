@@ -91,6 +91,7 @@ CdCatConfig::CdCatConfig ( void ) {
     readcontent = false;
     readcfiles = "*.nfo;*.diz";
     readclimit = 32*1024;
+    saveAlwaysCatalogInUtf8 = true;
 
     readavii   = true;
 
@@ -554,6 +555,14 @@ int CdCatConfig::readConfig ( void ) {
                     continue;
                 }
 
+                else if ( var=="saveAlwaysCatalogInUtf8" ) {
+                    if ( val=="true" )
+                        saveAlwaysCatalogInUtf8=true;
+                    else
+                        saveAlwaysCatalogInUtf8=false;
+                    continue;
+                }
+
                 fprintf ( stderr,"Unknown key founded: %s\n", ( const char * ) var );
                 error = 1;
 
@@ -763,6 +772,11 @@ int CdCatConfig::writeConfig ( void ) {
             str << "debug_info_enabled=true" <<endl;
         else
             str << "debug_info_enabled=false" <<endl;
+
+        if ( saveAlwaysCatalogInUtf8 )
+            str << "saveAlwaysCatalogInUtf8=true" <<endl;
+        else
+            str << "saveAlwaysCatalogInUtf8=false" <<endl;
 
         str << "last_dir="+lastDir << endl;
 
@@ -992,6 +1006,9 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
     cbEnableDebugInfo = new QCheckBox ( this, "cbEnableDebugInfo" );
     ConfigDialogBaseLayout->addWidget ( cbEnableDebugInfo, 20, 0 );
 
+    cbSaveCatalogAlwaysInUtf8 = new QCheckBox ( this, "cbSaveCatalogAlwaysInUtf8" );
+    ConfigDialogBaseLayout->addWidget ( cbSaveCatalogAlwaysInUtf8, 21, 0 );
+
     connect ( searchButton2, SIGNAL ( clicked() ), this, SLOT ( cdrombutton() ) );
 
     languageChange();
@@ -1046,6 +1063,7 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 #endif
 
     cbEnableDebugInfo->setChecked(p->cconfig->debug_info_enabled);
+    cbSaveCatalogAlwaysInUtf8->setChecked(p->cconfig->saveAlwaysCatalogInUtf8);
 }
 
 /*
@@ -1082,6 +1100,7 @@ void ConfigDialog::languageChange() {
 #endif
 
     cbEnableDebugInfo->setText( tr("Display debug info on console") );
+    cbSaveCatalogAlwaysInUtf8->setText( tr("Save catalogs always as UTF8") );
 }
 
 

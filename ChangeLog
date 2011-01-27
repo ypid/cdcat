@@ -6,6 +6,7 @@
 	- q3textbrowser by qtextbrowser replaced
 	- reading catalog file enhanced
 	- saving special chars fixed
+	- option for saving catalogs always in UTF8 added (disabling keeps old encoding)
 
 26. Jan 2011 Christoph Thielecke <crissi99@gmx.de>
 	- support for importing comment and category at Kat-CeDe and Disclib added

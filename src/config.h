@@ -69,7 +69,8 @@ public:
     bool    readinfo;
     bool    readavii;
     bool    readcontent;
-    bool	debug_info_enabled;
+    bool    debug_info_enabled;
+    bool    saveAlwaysCatalogInUtf8;
     QString readcfiles;
     unsigned long readclimit;
 
@@ -140,6 +141,7 @@ public:
     QLabel *labHistorySize;
     QCheckBox* cbNice;
     QCheckBox* cbEnableDebugInfo;
+    QCheckBox* cbSaveCatalogAlwaysInUtf8;
     QLineEdit* cdrompath_lineedit;
     QLabel* cdrom_lab;
     Q3Frame* line2;

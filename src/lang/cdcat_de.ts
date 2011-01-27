@@ -452,6 +452,10 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
       <source>CdCat databases (*.hcf )</source>
       <translation>CdCat-Datenbanken (*.hcf)</translation>
     </message>
+    <message>
+      <source>Save catalogs always as UTF8</source>
+      <translation>Kataloge immer als UTF8 speichern</translation>
+    </message>
   </context>
   <context>
     <name>DataBase</name>
@@ -542,6 +546,10 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     <message>
       <source>Parsing file, please wait...</source>
       <translation>Datei wird analysiert, bitte warten...</translation>
+    </message>
+    <message>
+      <source>Converting to unicode, please wait...</source>
+      <translation>Umwandlung zu Unicode, bitte warten...</translation>
     </message>
   </context>
   <context>
@@ -832,6 +840,10 @@ Homepage: %3</translation>
     <message>
       <source>The result:</source>
       <translation>Das Ergebnis:</translation>
+    </message>
+    <message>
+      <source>MiB</source>
+      <translation>MiB</translation>
     </message>
   </context>
   <context>
