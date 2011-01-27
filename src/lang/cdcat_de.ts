@@ -535,6 +535,14 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
       <source>Gib</source>
       <translation>GiB</translation>
     </message>
+    <message>
+      <source>Reading file, please wait...</source>
+      <translation>Datei wird gelesen, bitte warten...</translation>
+    </message>
+    <message>
+      <source>Parsing file, please wait...</source>
+      <translation>Datei wird analysiert, bitte warten...</translation>
+    </message>
   </context>
   <context>
     <name>DirectoryView</name>

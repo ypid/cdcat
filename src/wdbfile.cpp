@@ -16,13 +16,13 @@
 #include <qdatetime.h>
 #include <qregexp.h>
 
+
 #include <QStringList>
 #include <QtDebug>
 #include <qtextcodec.h>
 #include "wdbfile.h"
 #include "adddialog.h"
 #include "dbase.h"
-
 #include "cdcat.h"
 
 
@@ -696,30 +696,46 @@ int FileReader::readFrom ( Node *source ) {
 	XML_ENCODING = encodingline_parts.at(3);
 	
 	if (*DEBUG_INFO_ENABLED)
-		std::cerr <<"deteced encoding: " << XML_ENCODING.toAscii().constData() <<endl;
+		std::cerr <<"detected encoding: " << XML_ENCODING.toAscii().constData() <<endl;
 	gzrewind(f);
 // 	XML_SetEncoding ( p, XML_ENCODING.toAscii().constData() );
 	
 	/* now read the buffer */
 	len = 0;
 	int readcount = 0;
-	char tmpbuffer[1024];
+	linecount=0;
+	char tmpbuffer[4096];
 	
 	if (*DEBUG_INFO_ENABLED)
 		std::cerr <<"start reading file..." <<endl;
+
+	pww->showProgress = true;
+	pww->steps = allocated_buffer_len;
+	pww->setProgressText(DataBase::tr("Reading file, please wait..."));
 	while (len != allocated_buffer_len  ) {
-		progress ( pww );
-		readcount = gzread(f, tmpbuffer, 1024);
+		readcount = gzread(f, tmpbuffer, 4096);
 		len += readcount;
 		//if(*DEBUG_INFO_ENABLED)
 		//  cerr << "readcount: " << readcount << endl;
-		strncat(dataBuffer, tmpbuffer, 1024);
+		strncat(dataBuffer, tmpbuffer, 4096);
+		progress ( pww, len );
 	}
+
+
+// 	pww->showProgress = false;
+// 	pww->steps = 0;
 	
 	if (*DEBUG_INFO_ENABLED)
 		std::cerr << "read done: " << len << " of " << allocated_buffer_len << " bytes" << endl;
+
+	linecount+= QString(dataBuffer).count('\n');
+	if(*DEBUG_INFO_ENABLED)
+		 cerr << "linecount: " << linecount << endl;
 	
 	CdCatXmlHandler *handler = new CdCatXmlHandler(this);
+	pww->steps = linecount;
+	pww->setProgressText(DataBase::tr("Parsing file, please wait..."));
+	handler->setPww(pww);
 	xmlReader.setContentHandler(handler);
 	xmlReader.setErrorHandler(handler);
 	
@@ -735,6 +751,7 @@ int FileReader::readFrom ( Node *source ) {
 		mysource.setData(converter->toUnicode (QString(dataBuffer)));
 	}
 	
+	pww->showProgress = false;
 	int done=0;
 	
 	if ( ! xmlReader.parse(mysource) ) {
@@ -801,7 +818,13 @@ QString FileReader::getCatName ( void ) {
 	if (*DEBUG_INFO_ENABLED)
 		std::cerr << "read done: " << len << " of " << allocated_buffer_len << " bytes" << endl;
 	
+
+	
 	CdCatXmlHandler *handler = new CdCatXmlHandler(this, true); // only catalog name
+	pww->showProgress = true;
+	pww->steps = linecount;
+	pww->setProgressText(DataBase::tr("Parsing file, please wait..."));
+	handler->setPww(pww);
 	xmlReader.setContentHandler(handler);
 	xmlReader.setErrorHandler(handler);
 	
@@ -820,6 +843,8 @@ QString FileReader::getCatName ( void ) {
 	if ( ! xmlReader.parse(mysource) ) {
 		errormsg = QString ( "Parse error\n" );
 	}
+	
+	pww->showProgress = false;
 	int done=0;
 	
 	delete handler;
@@ -839,6 +864,11 @@ CdCatXmlHandler::CdCatXmlHandler(FileReader *r, bool onlyCatalog) {
 
 CdCatXmlHandler::~CdCatXmlHandler() {
 
+}
+
+void CdCatXmlHandler::setPww( PWw *pww) {
+	this->lines = lines;
+	this->pww = pww;
 }
 
 bool CdCatXmlHandler::characters(const QString & ch) {
@@ -865,6 +895,11 @@ bool CdCatXmlHandler::startElement ( const QString & namespaceURI, const QString
     /*That case I found an error in file -> needs exit the pasing as fast as I can.*/
 //     if(*DEBUG_INFO_ENABLED)
 //           cerr <<"Start_start:"<<qPrintable(el)<<endl;
+
+//     if(*DEBUG_INFO_ENABLED)
+//     	cerr <<"line number:"<<locator->lineNumber()<<endl;
+    progress ( pww, locator->lineNumber() );
+
     clearbuffer = 1;
     if ( el == "catalog"  ) {
         if ( FREA->insert )
@@ -1164,13 +1199,16 @@ Please change it with an older version or rewrite it in the xml file!" );
     if (  el == "borrow" ) {
         /*nothing*/
     }
+
+
+
 //         if(*DEBUG_INFO_ENABLED)    
 //        	cerr <<"end_start:"<<qPrintable(el)<<endl;
     return true;
 }
+
 /*********************************************************************/
 bool CdCatXmlHandler::endElement ( const QString & namespaceURI, const QString & localName, const QString & el ) {
-//static void end ( void *data, const char *el ) {
     DEBUG_INFO_ENABLED = init_debug_info();
 
    void *data = r;
@@ -1292,6 +1330,10 @@ bool CdCatXmlHandler::endElement ( const QString & namespaceURI, const QString &
 
     clearbuffer = 1;
 //     if(*DEBUG_INFO_ENABLED)
+//     	cerr <<"line number:"<<locator->lineNumber()<<endl;
+    progress ( pww, locator->lineNumber() );
+
+//     if(*DEBUG_INFO_ENABLED)
 //     	cerr <<"end_end:"<<qPrintable(el)<<endl;
     return true;
 }
@@ -1302,5 +1344,10 @@ bool CdCatXmlHandler::fatalError(const QXmlParseException &exception)
               << ", " << "column " << exception.columnNumber() << ": "
               << qPrintable(exception.message()) << std::endl;
     return true;
+}
+
+void CdCatXmlHandler::setDocumentLocator ( QXmlLocator * locator ) {
+	this->locator = locator;
+	QXmlDefaultHandler::setDocumentLocator(locator);
 }
 

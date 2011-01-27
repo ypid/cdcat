@@ -16,6 +16,7 @@
 #include <Q3CString>
 
 #include <QtXml/QXmlDefaultHandler>
+#include <QtXml/QXmlLocator>
 
 class Node;
 class PWw;
@@ -82,7 +83,7 @@ public:
     QString errormsg;
     int  error;
     int  insert;
-
+    int linecount;
     long long int allocated_buffer_len;
 
     Node *sp;
@@ -109,10 +110,15 @@ class CdCatXmlHandler : public QXmlDefaultHandler {
 		bool endElement ( const QString & namespaceURI, const QString & localName, const QString & qName );
 		bool startElement ( const QString & namespaceURI, const QString & localName, const QString & qName, const QXmlAttributes & atts );
 		bool fatalError(const QXmlParseException &exception);
+		void setDocumentLocator ( QXmlLocator * locator );
+		void setPww(PWw *pww);
 	private:
 		FileReader *r;
 		QString currentText;
 		bool onlyCatalog;
+		QXmlLocator *locator;
+		long long int lines;
+		PWw *pww;
 };
 
 

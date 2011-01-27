@@ -42,6 +42,8 @@
 #include <QMouseEvent>
 #include <Q3VBoxLayout>
 
+#include <iostream>
+
 #include "dirview.h"
 #include "icons.h"
 #include "mainwidget.h"
@@ -168,7 +170,7 @@ addDialog::addDialog ( GuiSlave *c, QWidget* parent, const char* name, bool moda
     connect ( cbAutoDetectAtMount, SIGNAL ( clicked() ), this, SLOT ( autoDetectAtMountToggled()) );
 #endif
 
-    for ( i=1;!caller->isIdentical ( i );i++ );
+    for ( i=1;!caller->isIdentical ( i );i++ ) { };
     sbNumber->setValue ( i );
 
     volumename = 1; //so, the next line will set up the name
@@ -344,7 +346,7 @@ void addDialog::autoDetectAtMountToggled() {
 
 /**************************************************************************/
 
-PWw::PWw ( QWidget *parent,QApplication *qapp ) : QWidget ( parent,"PleaseWaitBox",
+PWw::PWw ( QWidget *parent,QApplication *qapp, bool showProgress, long long int steps, QString progresstext ) : QWidget ( parent,"PleaseWaitBox",
 #ifdef QT_NO_COMPAT
                 Qt::WType_Dialog | Qt::WStyle_Customize | Qt::WStyle_NoBorder | Qt::WShowModal
 #else
@@ -352,16 +354,30 @@ PWw::PWw ( QWidget *parent,QApplication *qapp ) : QWidget ( parent,"PleaseWaitBo
 #endif
                                                                   ) {
     int i;
+    int myheight;
+    int mywidth;
     QFont ownf;
     refreshTime = 100;
     appl=qapp;
-    setMinimumSize ( 80,68 );
-    setMaximumSize ( 80,68 );
+    this->showProgress = showProgress;
+    this->steps = steps;
+    if(!progresstext.isEmpty())
+	this->progresstext = progresstext;
+    else
+	this->progresstext = tr ( "Please Wait..." );  
+ 
+    if(showProgress)
+	myheight=68;
+    else
+	myheight=98;
+    mywidth=160;
 
-    setGeometry ( parent->x() + ( ( parent->width()-80 ) /2 ),
-                  parent->y() + ( ( parent->height()-68 ) /2 ),
-                  80,
-                  68 );
+    setMinimumSize ( 10, myheight );
+    setMaximumSize ( mywidth, myheight );
+
+    setGeometry ( parent->x() + ( ( parent->width()-mywidth ) /2 ),
+                  parent->y() + ( ( parent->height()-myheight ) /2 ),
+                  mywidth, myheight );
 
     /* Calculate the necesary font size*/
     QFontMetrics *fm=NULL;
@@ -373,8 +389,8 @@ PWw::PWw ( QWidget *parent,QApplication *qapp ) : QWidget ( parent,"PleaseWaitBo
         if ( fm != NULL ) delete fm;
         fm = new QFontMetrics ( ownf );
         if ( i<4 ) break;
-    } while ( fm->width ( tr ( "Please Wait..." ) ) > ( width()-5 ) );
-    begintext = ( width() - fm->width ( tr ( "Please Wait..." ) ) ) / 2;
+    } while ( fm->width ( this->progresstext ) > ( width()-5 ) );
+    begintext = ( width() - fm->width (this->progresstext ) ) / 2;
 
     if ( fm != NULL ) delete fm;
     setFont ( ownf );
@@ -389,11 +405,38 @@ void PWw::end ( void ) {
     close();
 }
 
-void PWw::step ( void ) {
+void PWw::setProgressText ( QString progresstext ){
+    int i;
+    int myheight;
+    QFont ownf;
+    if(!progresstext.isEmpty())
+	this->progresstext = progresstext;
+
+    /* Calculate the necesary font size*/
+    QFontMetrics *fm=NULL;
+    ownf = font();
+    i=15;
+    do {
+        i--;
+        ownf.setPointSize ( i );
+        if ( fm != NULL ) delete fm;
+        fm = new QFontMetrics ( ownf );
+        if ( i<4 ) break;
+    } while ( fm->width ( this->progresstext ) > ( width()-5 ) );
+    begintext = ( width() - fm->width (this->progresstext ) ) / 2;
+
+    if ( fm != NULL ) delete fm;
+    setFont ( ownf );
+}
+
+void PWw::step ( long long int progress_step ) {
     QTime tt;
     tt=QTime::currentTime();
     if ( t.msecsTo ( tt ) < refreshTime ) return;
     t = tt;
+
+    if(showProgress)
+	this->progress_step=progress_step;
 
     if ( !isActiveWindow() )
         show();
@@ -406,14 +449,25 @@ void PWw::step ( void ) {
 
 void PWw::paintEvent ( QPaintEvent *e ) {
     QPainter p ( this );
-
     p.setClipping ( FALSE );
-    p.drawRect ( 1,1,78,66 );
-    p.drawText ( begintext,18,tr ( "Please Wait..." ) );
-    p.drawPixmap ( 20,25,* ( get_anim ( s ) ) );
 #if (QT_VERSION >= QT_VERSION_CHECK(4, 6, 0)) // needs Qt 4.6.0 or better
     p.beginNativePainting();
 #endif
+    p.drawRect ( 1,1,width()-4,66 );
+    p.drawText ( begintext,18, progresstext );
+    if(showProgress) {
+	p.setPen(QPen(QColor().black()));
+	p.drawRect(1, height()-25, width()-2, 20);
+	
+	int percent = progress_step/(steps/100);
+	p.setBrush(QBrush(Qt::blue));
+	p.drawRect(2, height()-24, (width()-3)*percent/100, 18);
+        //p.drawRect(myrect);
+//         std::cerr << progress_step << "/"<< steps <<  " p: " << percent << "%" << std::endl;
+    }
+    p.drawPixmap ( ((width()/4)-2)*1.5,25,* ( get_anim ( s ) ) );
+
+
     if ( ++s==5 ) s=0;
 }
 
@@ -426,10 +480,11 @@ void PWw::mouseMoveEvent ( QMouseEvent *me ) {
     move ( me->globalX()-lastx,me->globalY()-lasty );
 }
 
-void progress ( PWw *p ) {
+void progress ( PWw *p, long long int progress_step ) {
     if ( p != NULL )
-        p->step();
+        p->step(progress_step);
 }
+
 
 /**************************************************************************/
 

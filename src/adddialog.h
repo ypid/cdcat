@@ -115,10 +115,15 @@ public:
     int s;
     int refreshTime;
     QApplication *appl;
-    PWw ( QWidget *parent,QApplication *qapp = NULL );
+    PWw ( QWidget *parent,QApplication *qapp = NULL, bool showProgress=false, long long int steps=0, QString progresstext="" );
     int begintext;
+    bool showProgress;
+    long long int steps;
+    long long int progress_step;
+    QString progresstext;
 
-    void step ( void );
+    void setProgressText ( QString progresstext );
+    void step ( long long int progress_step=0 );
     void end ( void );
 
 protected:
@@ -129,7 +134,7 @@ protected:
     void mousePressEvent ( QMouseEvent *me );
 };
 
-void progress ( PWw *p );
+void progress ( PWw *p, long long int progress_step=0 );
 
 
 class AddLnk : public QDialog {

@@ -36,12 +36,12 @@
 <context>
     <name>CdCatConfig</name>
     <message>
-        <location filename="../config.cpp" line="161"/>
+        <location filename="../config.cpp" line="167"/>
         <source>Error during autoload...</source>
         <translation>Error durante la autocarga...</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="163"/>
+        <location filename="../config.cpp" line="169"/>
         <source>I can&apos;t open the autoload catalog.
 Check the file, or change the autoload option in the config dialog!
 </source>
@@ -76,7 +76,7 @@ Es necesario porque se pretende grabar el archivo de configuración en su direct
         <translation type="obsolete">No se pudo crear o reescribir $(HOME)./cdcatconfig</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="163"/>
+        <location filename="../config.cpp" line="169"/>
         <source>I can&apos;t open the autoload catalog according the first command line parameter.
 Check the file!
 </source>
@@ -92,22 +92,22 @@ It is necessary couse I&apos;d like to save the config file into your home direc
 Es necesario porque se pretende grabar el archivo de configuración en su directorio personal.</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="754"/>
+        <location filename="../config.cpp" line="773"/>
         <source>I can&apos;t create or rewrite the ./cdcat.cfg file </source>
         <translation>No se pudo crear o reescribir ./cdcat.cfg</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="756"/>
+        <location filename="../config.cpp" line="775"/>
         <source>I can&apos;t create or rewrite the $(HOME)/.cdcatconfig file </source>
         <translation>No se pudo crear o reescribir $(HOME)./cdcatconfig</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="756"/>
+        <location filename="../config.cpp" line="775"/>
         <source>Error while saving config file...</source>
         <translation>Error al guardar el archivo de configuración...</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="564"/>
+        <location filename="../config.cpp" line="578"/>
         <source>I can&apos;t get the $HOME environment variable.
 It is necessary because I&apos;d like to save the config file into your home directory.</source>
         <translation type="unfinished"></translation>
@@ -614,32 +614,32 @@ It is necessary because I&apos;d like to save the config file into your home dir
 <context>
     <name>ConfigDialog</name>
     <message>
-        <location filename="../config.cpp" line="996"/>
+        <location filename="../config.cpp" line="1060"/>
         <source>Configure  CdCat...</source>
         <translation>Configurar CdCat...</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="997"/>
+        <location filename="../config.cpp" line="1061"/>
         <source>Autoload DataBase on startup</source>
         <translation>Autocargar una base de datos al arrancar</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="999"/>
+        <location filename="../config.cpp" line="1063"/>
         <source>Save the XML-db.file nicer format(needs more space)</source>
         <translation>Salvar el archivo XML en un formato más legible (requiere más espacio)</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1000"/>
+        <location filename="../config.cpp" line="1064"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1001"/>
+        <location filename="../config.cpp" line="1065"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1004"/>
+        <location filename="../config.cpp" line="1068"/>
         <source>Application font size.(must restart cdcat!) </source>
         <translation>Tamaño de la fuente de la aplicación (¡se necesita reiniciar cdcat!)</translation>
     </message>
@@ -654,32 +654,32 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">¡Elegir un archivo para cargar automáticamente!</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1006"/>
+        <location filename="../config.cpp" line="1070"/>
         <source>Path to cdrom device</source>
         <translation>Ruta al dispositivo de CD-ROM</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1009"/>
+        <location filename="../config.cpp" line="1073"/>
         <source>Scanning: mount cdrom at start / eject when finish</source>
         <translation>Escaneando: montar CDROM al inicio / expulsar al finalizar</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1003"/>
+        <location filename="../config.cpp" line="1067"/>
         <source>Use own font size</source>
         <translation>Usar tamaño de fuente propio</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1005"/>
+        <location filename="../config.cpp" line="1069"/>
         <source>Number of history entries</source>
         <translation>Nº máximo de archivos recientes</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1025"/>
+        <location filename="../config.cpp" line="1096"/>
         <source>Choose path to cdrom!</source>
         <translation>¡Ruta a unidad de cdrom!</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1011"/>
+        <location filename="../config.cpp" line="1081"/>
         <source>The language of CdCat interface</source>
         <translation>Idioma de la interfaz de cdcat</translation>
     </message>
@@ -689,7 +689,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Opciones de exploración</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1018"/>
+        <location filename="../config.cpp" line="1089"/>
         <source>Choose a file to load automatically!</source>
         <translation>¡Elegir un archivo para cargar automáticamente!</translation>
     </message>
@@ -699,22 +699,22 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Guardar automaticamente la base de datos después de cada escaneo</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1002"/>
+        <location filename="../config.cpp" line="1066"/>
         <source>Select additional items to read</source>
         <translation>Opciones de exploración</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="998"/>
+        <location filename="../config.cpp" line="1062"/>
         <source>Automatically save the database after every scan (for safety sake)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1013"/>
+        <location filename="../config.cpp" line="1084"/>
         <source>Display debug info on console</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1018"/>
+        <location filename="../config.cpp" line="1089"/>
         <source>CdCat databases (*.hcf )</source>
         <translation type="unfinished">Bases de datos CdCat (*.hcf)</translation>
     </message>
@@ -834,6 +834,16 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location filename="../wdbfile.cpp" line="106"/>
         <source>Gib</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../wdbfile.cpp" line="714"/>
+        <source>Reading file, please wait...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../wdbfile.cpp" line="737"/>
+        <source>Parsing file, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2180,107 +2190,107 @@ debe ser
 <context>
     <name>addDialog</name>
     <message>
-        <location filename="../adddialog.cpp" line="76"/>
+        <location filename="../adddialog.cpp" line="78"/>
         <source>Directory Browser</source>
         <translation>Explorador de directorios</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="281"/>
+        <location filename="../adddialog.cpp" line="283"/>
         <source>New Disk %1</source>
         <translation>Nuevo disco %1</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="207"/>
+        <location filename="../adddialog.cpp" line="209"/>
         <source>Add Media to the Database</source>
         <translation>Añadir un medio a la base de datos</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="208"/>
+        <location filename="../adddialog.cpp" line="210"/>
         <source>Choose a directory to scan:</source>
         <translation>Elegir un directorio a escanear:</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="209"/>
+        <location filename="../adddialog.cpp" line="211"/>
         <source>Media Name:</source>
         <translation>Nombre del medio:</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="210"/>
+        <location filename="../adddialog.cpp" line="212"/>
         <source>Serial number of Media:</source>
         <translation>Número de serie del medio:</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="211"/>
+        <location filename="../adddialog.cpp" line="213"/>
         <source>Owner:</source>
         <translation>Dueño:</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="212"/>
+        <location filename="../adddialog.cpp" line="214"/>
         <source>Type:</source>
         <translation>Tipo:</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="213"/>
+        <location filename="../adddialog.cpp" line="215"/>
         <source>Comment:</source>
         <translation>Comentario:</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="489"/>
+        <location filename="../adddialog.cpp" line="544"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="215"/>
+        <location filename="../adddialog.cpp" line="217"/>
         <source>OK / Scan</source>
         <translation>OK / Escanear</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="221"/>
+        <location filename="../adddialog.cpp" line="223"/>
         <source>CD</source>
         <translation>CD</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="222"/>
+        <location filename="../adddialog.cpp" line="224"/>
         <source>DVD</source>
         <translation>DVD</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="223"/>
+        <location filename="../adddialog.cpp" line="225"/>
         <source>HardDisc</source>
         <translation>Disco duro</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="224"/>
+        <location filename="../adddialog.cpp" line="226"/>
         <source>Floppy</source>
         <translation>Disco</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="225"/>
+        <location filename="../adddialog.cpp" line="227"/>
         <source>NetworkPlace</source>
         <translation>Unidad de Red</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="226"/>
+        <location filename="../adddialog.cpp" line="228"/>
         <source>FlashDrive</source>
         <translation>Unidad flash</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="227"/>
+        <location filename="../adddialog.cpp" line="229"/>
         <source>OtherDevice</source>
         <translation>Otra unidad</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="310"/>
+        <location filename="../adddialog.cpp" line="312"/>
         <source>Error:</source>
         <translation>Error:</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="291"/>
+        <location filename="../adddialog.cpp" line="293"/>
         <source>You must be fill the &quot;Name&quot; field!</source>
         <translation>¡Debe rellenar el campo &quot;Nombre del archivo&quot;!</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="490"/>
+        <location filename="../adddialog.cpp" line="545"/>
         <source>Ok</source>
         <translation type="unfinished">Ok</translation>
     </message>
@@ -2300,7 +2310,7 @@ debe ser
         <translation type="obsolete">¡No ha seleccionado ningún directorio! ¡Por favor seleccione uno!</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="301"/>
+        <location filename="../adddialog.cpp" line="303"/>
         <source>The Media Name must be unique! Please change it!</source>
         <translation>¡EL nombre del medio debe ser único! ¡Por favor cambielo!</translation>
     </message>
@@ -2310,52 +2320,52 @@ debe ser
         <translation type="obsolete">¡El valor del número de serie debe ser idéntico! ¡Por favor cambie el valor!</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="216"/>
+        <location filename="../adddialog.cpp" line="218"/>
         <source>Select readable items</source>
         <translation>Opciones de exploración</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="305"/>
+        <location filename="../adddialog.cpp" line="307"/>
         <source>The Value of Serial Number must be unique! Please change it!</source>
         <translation>¡El valor del número de serie debe ser idéntico! ¡Por favor cambie el valor!</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="310"/>
+        <location filename="../adddialog.cpp" line="312"/>
         <source>You haven&apos;t selected a directory! Please select one!</source>
         <translation>¡No ha seleccionado ningún directorio! ¡Por favor seleccione uno!</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="296"/>
+        <location filename="../adddialog.cpp" line="298"/>
         <source>The media name can&apos;t begin with the &quot;@&quot; character!</source>
         <translation>¡El nombre del medio no puede comenzar con el caracter &quot;@&quot;!</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="218"/>
+        <location filename="../adddialog.cpp" line="220"/>
         <source>detect CDCROM/DVD media name after mount</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="412"/>
+        <location filename="../adddialog.cpp" line="367"/>
         <source>Please Wait...</source>
         <translation type="unfinished">Espere...</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="486"/>
+        <location filename="../adddialog.cpp" line="541"/>
         <source>Add a &quot;Catalog Link&quot; to the database</source>
         <translation type="unfinished">Añadir un &quot;enlace a Catálogo&quot; en la base de datos</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="487"/>
+        <location filename="../adddialog.cpp" line="542"/>
         <source>Location of the .hcf file:</source>
         <translation type="unfinished">Localización del archivo .hcf:</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="507"/>
+        <location filename="../adddialog.cpp" line="562"/>
         <source>Open a file...</source>
         <translation type="unfinished">Abrir un archivo...</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="507"/>
+        <location filename="../adddialog.cpp" line="562"/>
         <source>CdCat databases (*.hcf )</source>
         <translation type="unfinished">Bases de datos CdCat (*.hcf)</translation>
     </message>
