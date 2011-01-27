@@ -49,7 +49,7 @@ private:
     int founded;
     PWw *pww;
 //     pcre *re;
-    QRegExp re;
+    QRegExp *re;
 
     char *patt;
     int  offsets[99];

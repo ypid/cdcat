@@ -380,6 +380,7 @@ int findDialog::cancele ( void ) {
     close();
     return 0;
 }
+
 int findDialog::seeke ( void ) {
     seekEngine *se;
 
@@ -427,17 +428,22 @@ void findDialog::dateEndDoubleClicked() {
 seekEngine::seekEngine ( findDialog *fdp ) {
     fd   = fdp;
     patt = new char[2048];
+    re = new QRegExp();
 }
 /***************************************************************************/
 seekEngine::~seekEngine ( void ) {
     delete [] patt;
+    delete re;
 }
 /***************************************************************************/
 int seekEngine::start_seek ( void ) {
 
     DEBUG_INFO_ENABLED = init_debug_info();
     //get the pattern
-    strcpy ( patt, ( const char * ) ( ( QTextCodec::codecForLocale() )->fromUnicode ( fd->leText->text() ) ) );
+    if ( fd->cbEasy->isChecked() )
+	strcpy ( patt, ( const char * ) ( ( QTextCodec::codecForLocale() )->fromUnicode ( "*"+fd->leText->text()+"*" ) ) );
+    else
+        strcpy ( patt, ( const char * ) ( ( QTextCodec::codecForLocale() )->fromUnicode ( fd->leText->text() ) ) );
 
     //recode the pattern /easy/  put ^$ and ? -> .  * -> .*
     if ( fd->cbEasy->isChecked() )
@@ -446,13 +452,17 @@ int seekEngine::start_seek ( void ) {
     //recode the pattern /Case sens/ lok -> [l|L][o|O][k|K]
     if ( !fd->cbCasesens->isChecked() )
         caseSensConversion ( patt );
-
-    //fprintf(stderr,"The complete pattern is \"%s\"\n",patt);
+    if(*DEBUG_INFO_ENABLED)
+	fprintf(stderr,"The complete pattern is \"%s\"\n",patt);
 //     re = pcre_compile ( patt,0,&error,&errptr,NULL );
-    re.setPattern(QString( patt));
+    re->setPattern(QString( patt));
+//     if ( !fd->cbEasy->isChecked() )
+// 	re->setPatternSyntax(QRegExp::Wildcard);
+//     else
+	re->setPatternSyntax(QRegExp::RegExp2);
 
 //     if ( re == NULL ) {
-       if(!re.isValid()) {
+       if(!re->isValid()) {
         QMessageBox::warning ( fd,tr ( "Error in the pattern:" ),QString(patt) );
         return 1;
     }
@@ -693,11 +703,15 @@ int seekEngine::analyzeNode ( Node *n,Node *pa ) {
 int seekEngine::matchIt ( QString txt ) {
     const char *encoded;
     int  match;
-    if ( txt == "" ) return 0;
+    if ( txt.isEmpty() ) return 0;
 
-    encoded = ( const char * ) ( ( QTextCodec::codecForLocale() )->fromUnicode ( txt ) );
+    
+
+//     encoded = ( const char * ) ( ( QTextCodec::codecForLocale() )->fromUnicode ( txt ) );
     //match   = pcre_exec ( re,hints,encoded,strlen ( encoded ),0,0,offsets,99 );
-    match = re.indexIn(QString( encoded));
+//     match = re->exactMatch (QString( encoded));
+    match = re->exactMatch (QString( txt));
+//     cerr << "matchit: " << qPrintable(txt) << " <==> " << qPrintable(re->pattern()) <<" result: " << match << endl;
 
     if ( match == 1 )
         return 1;
