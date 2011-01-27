@@ -462,7 +462,7 @@ void PWw::paintEvent ( QPaintEvent *e ) {
 	int percent = progress_step/(steps/100);
 	p.setBrush(QBrush(Qt::blue));
 	p.drawRect(2, height()-24, (width()-3)*percent/100, 18);
-        //p.drawRect(myrect);
+
 //         std::cerr << progress_step << "/"<< steps <<  " p: " << percent << "%" << std::endl;
     }
     p.drawPixmap ( ((width()/4)-2)*1.5,25,* ( get_anim ( s ) ) );
