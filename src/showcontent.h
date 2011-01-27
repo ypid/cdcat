@@ -16,6 +16,7 @@
 #include <Q3VBoxLayout>
 #include <Q3GridLayout>
 #include <Q3HBoxLayout>
+#include <QTextBrowser>
 #include <QLabel>
 
 class Q3VBoxLayout;
@@ -37,7 +38,7 @@ public:
     QPushButton* closeButton;
     QToolButton* deleteButton;
     QToolButton* saveButton;
-    Q3TextBrowser* textBrowser;
+    QTextBrowser* textBrowser;
     QLabel* sizel;
 
 public slots:

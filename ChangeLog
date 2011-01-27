@@ -3,6 +3,7 @@
 	- display more informative text in busydialog on loading/parsing file
 	- made unit in node sizedialog translateable
 	- q3textstream by qtextstream replaced
+	- q3textbrowser by qtextbrowser replaced
 
 26. Jan 2011 Christoph Thielecke <crissi99@gmx.de>
 	- support for importing comment and category at Kat-CeDe and Disclib added

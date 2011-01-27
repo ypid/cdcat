@@ -10,7 +10,7 @@
 
 #include <qvariant.h>
 #include <qpushbutton.h>
-#include <q3textbrowser.h>
+#include <qtextbrowser.h>
 #include <qtoolbutton.h>
 #include <qlayout.h>
 #include <qtooltip.h>
@@ -73,7 +73,7 @@ ShowContent::ShowContent ( Node *node,QWidget* parent, const char* name, bool mo
 
     ShowContentLayout->addLayout ( layout1, 0, 0 );
 
-    textBrowser = new Q3TextBrowser ( this, "textBrowser" );
+    textBrowser = new QTextBrowser ( this, "textBrowser" );
 
     if ( node != NULL && node->type == HC_FILE ) {
         setCaption ( tr ( "Content of %1" ).arg ( node->getNameOf() ) );
@@ -85,7 +85,7 @@ ShowContent::ShowContent ( Node *node,QWidget* parent, const char* name, bool mo
         }
     }
     if ( mynode != NULL ) {
-        textBrowser->setText ( QString ( ( const char * ) ( ( DBContent * ) ( mynode->data ) )->bytes ) );
+        textBrowser->setPlainText ( QString ( ( const char * ) ( ( DBContent * ) ( mynode->data ) )->bytes ) );
         sizel->setText ( tr ( "%1 kByte" ).arg ( ( ( DBContent * ) ( mynode->data ) )->storedSize / 1024.0 ) );
     }
 
