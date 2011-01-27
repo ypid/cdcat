@@ -1459,10 +1459,10 @@ int GuiSlave::sizeEvent ( void ) {
         return 0;
     }
 
-    sprintf ( text,"%.2f Mib",mainw->db->getSize ( standON ) );
+    sprintf ( text,"%.2f",mainw->db->getSize ( standON ) );
     qtext = tr ( "The size of \"%1\" : \n %2 \n %3 file /%4 directory" )
             .arg ( standON->getNameOf() )
-            .arg ( text )
+            .arg ( QString(text)+" "+ tr("MiB") )
             .arg ( mainw->db->getCountFiles ( standON ) )
             .arg ( mainw->db->getCountDirs ( standON ) );
 
