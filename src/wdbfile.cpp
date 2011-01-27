@@ -704,7 +704,8 @@ int FileReader::readFrom ( Node *source ) {
 	len = 0;
 	int readcount = 0;
 	linecount=0;
-	char tmpbuffer[4096];
+	long long int offset=0;
+	char tmpbuffer[2048];
 	
 	if (*DEBUG_INFO_ENABLED)
 		std::cerr <<"start reading file..." <<endl;
@@ -713,17 +714,16 @@ int FileReader::readFrom ( Node *source ) {
 	pww->steps = allocated_buffer_len;
 	pww->setProgressText(DataBase::tr("Reading file, please wait..."));
 	while (len != allocated_buffer_len  ) {
-		readcount = gzread(f, tmpbuffer, 4096);
+		readcount = gzread(f, tmpbuffer, 2048);
 		len += readcount;
 		//if(*DEBUG_INFO_ENABLED)
 		//  cerr << "readcount: " << readcount << endl;
-		strncat(dataBuffer, tmpbuffer, 4096);
+		for (int i=0;i<readcount;i++)
+			dataBuffer[i+offset]=tmpbuffer[i];
+// 		strncat(dataBuffer, tmpbuffer, 2048);
+		offset+=readcount;
 		progress ( pww, len );
 	}
-
-
-// 	pww->showProgress = false;
-// 	pww->steps = 0;
 	
 	if (*DEBUG_INFO_ENABLED)
 		std::cerr << "read done: " << len << " of " << allocated_buffer_len << " bytes" << endl;
@@ -821,10 +821,10 @@ QString FileReader::getCatName ( void ) {
 
 	
 	CdCatXmlHandler *handler = new CdCatXmlHandler(this, true); // only catalog name
+	handler->setPww(pww);
 	pww->showProgress = true;
 	pww->steps = linecount;
-	pww->setProgressText(DataBase::tr("Parsing file, please wait..."));
-	handler->setPww(pww);
+	
 	xmlReader.setContentHandler(handler);
 	xmlReader.setErrorHandler(handler);
 	
@@ -835,10 +835,16 @@ QString FileReader::getCatName ( void ) {
 		mysource.setData(QString(dataBuffer));
 	}
 	else {
+		pww->setProgressText(DataBase::tr("Converting to unicode, please wait..."));
 		if (*DEBUG_INFO_ENABLED)
 			std::cerr <<"set data source to utf8  converted text..." <<endl;
 		mysource.setData(converter->toUnicode (QString(dataBuffer)));
-	} 
+	}
+
+	pww->setProgressText(DataBase::tr("Parsing file, please wait..."));
+
+	if (*DEBUG_INFO_ENABLED)
+		std::cerr <<"starting parsing" <<endl;
 	
 	if ( ! xmlReader.parse(mysource) ) {
 		errormsg = QString ( "Parse error\n" );
