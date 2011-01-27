@@ -268,7 +268,7 @@ public:
     unsigned long storeLimit;
     // up to this size limitation (bytes)
 
-
+    QString XML_ENCODING;
 
     void  setDBName ( QString n );
     void  setDBOwner ( QString o );
@@ -319,7 +319,7 @@ private:
 
     int   scanFsToNode ( QString what,Node *to );
     int   scanFileProp ( QFileInfo *fi,DBFile *fc );
-    QString XML_ENCODING;
+    
 
 public:
 

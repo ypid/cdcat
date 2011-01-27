@@ -427,7 +427,7 @@ int   DataBase::saveDB ( void) {
         return 2;
     }
     progress ( pww );
-
+    
     fw = new FileWriter ( f,nicef, this->XML_ENCODING);
     fw->pww = pww;
     progress ( pww );
