@@ -10,7 +10,7 @@
 #include <string.h>
 #include <qregexp.h>
 #include <qfile.h>
-#include <q3textstream.h>
+#include <qtextstream.h>
 
 #include "config.h"
 #include "cdcat.h"
@@ -42,9 +42,9 @@ FILE *openDevice ( const char *CDpath ) {
     QString line;
 
     if ( f.open ( QIODevice::ReadOnly ) ) {	// file opened successfully
-        Q3TextStream t ( &f );	// use a text stream
+        QTextStream t ( &f );	// use a text stream
 
-        while ( !t.eof() ) {
+        while ( !t.atEnd() ) {
             line = t.readLine();	// line of text excluding '\n'
 
             if ( !line.startsWith ( "#" ) && !line.isEmpty() ) {

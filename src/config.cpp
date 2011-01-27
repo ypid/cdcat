@@ -26,7 +26,7 @@
 #include <qfont.h>
 #include <qcolor.h>
 #include <q3frame.h>
-#include <q3textstream.h>
+#include <qtextstream.h>
 #include <qcombobox.h>
 //Added by qt3to4:
 #include <Q3HBoxLayout>
@@ -208,9 +208,9 @@ int CdCatConfig::readConfig ( void ) {
 
     QString msg;
     if ( f.open ( QIODevice::ReadOnly ) ) {   // file opened successfully
-        Q3TextStream t ( &f );     // use a text stream
+        QTextStream t ( &f );     // use a text stream
 
-        while ( !t.eof() ) {
+        while ( !t.atEnd() ) {
             QString line;
             line= t.readLine();       // line of text excluding '\n'
             msg+=line;
@@ -585,8 +585,8 @@ int CdCatConfig::writeConfig ( void ) {
 #endif
 
     if ( f.open ( QIODevice::WriteOnly ) ) {
-        Q3TextStream str ( &f ); // we will serialize the data into file f
-        str.setEncoding ( Q3TextStream::Latin1 );
+        QTextStream str ( &f ); // we will serialize the data into file f
+        str.setEncoding ( QTextStream::Latin1 );
 
         QString fsize_str,historysize_str,historylength_str,history_str;
 

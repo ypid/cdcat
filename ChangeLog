@@ -1,7 +1,8 @@
 27. Jan 2011 Christoph Thielecke <crissi99@gmx.de>
 	- progressbar at busydialog on loading/parsing file added
 	- display more informative text in busydialog on loading/parsing file
-	- made uinit in node sizedialog translateable
+	- made unit in node sizedialog translateable
+	- q3textstream by qtextstream replaced
 
 26. Jan 2011 Christoph Thielecke <crissi99@gmx.de>
 	- support for importing comment and category at Kat-CeDe and Disclib added
