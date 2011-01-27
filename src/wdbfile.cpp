@@ -160,7 +160,10 @@ char * FileWriter::to_cutf8 ( QString s ) {
 		) );
 	}
 	else {
-		return  strdup ( (char *)s.toUtf8().constData());
+		return  strdup ( (char *)(s.replace ( QRegExp ( "&" ),"&amp;" )
+			.replace ( QRegExp ( "<" ),"&lt;" )
+			.replace ( QRegExp ( ">" ),"&gt;" )
+			.replace ( QRegExp ( "\"" ),"&quot;" )).toUtf8().constData());
 	}
 }
 
