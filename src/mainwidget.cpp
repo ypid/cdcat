@@ -37,6 +37,8 @@
 #include <QPixmap>
 #include <QLatin1String>
 
+#include <iostream>
+
 #ifdef _WIN32
 #include <QPlastiqueStyle>
 #endif
@@ -364,4 +366,10 @@ void CdCatMainWidget::closeEvent ( QCloseEvent *e ) {
 
     cconfig->writeConfig();
     QWidget::closeEvent ( e );
+}
+
+void CdCatMainWidget::pathScanned(QString path)
+{
+// 	std::cerr <<"CdCatMainWidget::pathScanned: " << qPrintable(path) << std::endl;
+	statusl->setText(tr("Scanning:")+" "+path);
 }

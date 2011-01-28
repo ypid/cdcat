@@ -82,6 +82,9 @@ protected:
 protected slots:
     virtual void languageChange();
 
+public slots:
+	void pathScanned(QString path);
+
 private:
     QPixmap image0;
     QPixmap image1;

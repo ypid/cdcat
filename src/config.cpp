@@ -92,6 +92,7 @@ CdCatConfig::CdCatConfig ( void ) {
     readcfiles = "*.nfo;*.diz";
     readclimit = 32*1024;
     saveAlwaysCatalogInUtf8 = true;
+    showProgressedFileInStatus = true;
 
     readavii   = true;
 
@@ -563,6 +564,16 @@ int CdCatConfig::readConfig ( void ) {
                     continue;
                 }
 
+                else if ( var=="showProgressedFileInStatus" ) {
+                    if ( val=="true" )
+                        showProgressedFileInStatus=true;
+                    else
+                        showProgressedFileInStatus=false;
+                    continue;
+                }
+
+
+
                 fprintf ( stderr,"Unknown key founded: %s\n", ( const char * ) var );
                 error = 1;
 
@@ -777,6 +788,13 @@ int CdCatConfig::writeConfig ( void ) {
             str << "saveAlwaysCatalogInUtf8=true" <<endl;
         else
             str << "saveAlwaysCatalogInUtf8=false" <<endl;
+
+        if ( showProgressedFileInStatus )
+            str << "showProgressedFileInStatus=true" <<endl;
+        else
+            str << "showProgressedFileInStatus=false" <<endl;
+
+
 
         str << "last_dir="+lastDir << endl;
 
@@ -1009,6 +1027,9 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
     cbSaveCatalogAlwaysInUtf8 = new QCheckBox ( this, "cbSaveCatalogAlwaysInUtf8" );
     ConfigDialogBaseLayout->addWidget ( cbSaveCatalogAlwaysInUtf8, 21, 0 );
 
+    cbShowProgressedFileInStatus = new QCheckBox ( this, "cbShowProgressedFileInStatus" );
+    ConfigDialogBaseLayout->addWidget ( cbShowProgressedFileInStatus, 22, 0 );
+
     connect ( searchButton2, SIGNAL ( clicked() ), this, SLOT ( cdrombutton() ) );
 
     languageChange();
@@ -1064,6 +1085,7 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 
     cbEnableDebugInfo->setChecked(p->cconfig->debug_info_enabled);
     cbSaveCatalogAlwaysInUtf8->setChecked(p->cconfig->saveAlwaysCatalogInUtf8);
+    cbShowProgressedFileInStatus->setChecked(p->cconfig->showProgressedFileInStatus);
 }
 
 /*
@@ -1101,6 +1123,7 @@ void ConfigDialog::languageChange() {
 
     cbEnableDebugInfo->setText( tr("Display debug info on console") );
     cbSaveCatalogAlwaysInUtf8->setText( tr("Save catalogs always as UTF8") );
+    cbShowProgressedFileInStatus->setText( tr("Show progressed file at scanning in status label") );
 }
 
 
@@ -1182,6 +1205,8 @@ void ConfigDialog::okExit() {
     p->cconfig->debug_info_enabled = cbEnableDebugInfo->isChecked();
     DEBUG_INFO_ENABLED = init_debug_info();
     *DEBUG_INFO_ENABLED = cbEnableDebugInfo->isChecked();
+    p->cconfig->saveAlwaysCatalogInUtf8 = cbSaveCatalogAlwaysInUtf8->isChecked();
+    p->cconfig->showProgressedFileInStatus = cbShowProgressedFileInStatus->isChecked();
     p->cconfig->writeConfig();
 
     QFont *font=new QFont();

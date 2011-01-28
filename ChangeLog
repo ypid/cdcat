@@ -1,3 +1,6 @@
+28. Jan 2011 Christoph Thielecke <crissi99@gmx.de>
+	- option for displaying progressed file at scanning directory tree added
+
 27. Jan 2011 Christoph Thielecke <crissi99@gmx.de>
 	- progressbar at busydialog on loading/parsing file added
 	- display more informative text in busydialog on loading/parsing file

@@ -240,6 +240,10 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
       <source>Import database (Gtktalog/Kat-CeDe/Disclib/WhereIsIt?)</source>
       <translation>Datenbank importieren (Gtktalog/Kat-CeDe/Disclib/WhereIsIt?)</translation>
     </message>
+    <message>
+      <source>Scanning:</source>
+      <translation>Durchsuche:</translation>
+    </message>
   </context>
   <context>
     <name>ColorSchemePreview</name>
@@ -455,6 +459,10 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     <message>
       <source>Save catalogs always as UTF8</source>
       <translation>Kataloge immer als UTF8 speichern</translation>
+    </message>
+    <message>
+      <source>Show progressed file at scanning in status label</source>
+      <translation>Zu verarbeitende Datei beim Durchsuchen in Statusleiste anzeigen</translation>
     </message>
   </context>
   <context>

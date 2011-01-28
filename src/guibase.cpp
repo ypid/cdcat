@@ -1170,9 +1170,16 @@ int GuiSlave::addEvent ( void ) {
 
     if ( d->OK == 1 ) {
         panelsOFF();
-        i=  mainw->db->addMedia ( d->dDir,d->dName,d->serial,d->type,
+	if(mainw->cconfig->showProgressedFileInStatus) {
+		mainw->db->setShowProgressedFileInStatus(mainw->cconfig->showProgressedFileInStatus);
+		connect (mainw->db, SIGNAL(pathScanned(QString)), mainw, SLOT(pathScanned(QString)));
+	}
+        
+	i=  mainw->db->addMedia ( d->dDir,d->dName,d->serial,d->type,
                                   ( d->dOwner.isEmpty() ? QString ( "" ) : d->dOwner ) );
-
+	
+	if(mainw->cconfig->showProgressedFileInStatus)
+		disconnect (mainw->db, SIGNAL(pathScanned(QString)), mainw, SLOT(pathScanned(QString)));
         //Do autosave if the user ask it in the config
         if ( mainw->cconfig->autosave ) {
             int retv=0;

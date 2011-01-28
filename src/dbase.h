@@ -319,6 +319,8 @@ private:
 
     int   scanFsToNode ( QString what,Node *to );
     int   scanFileProp ( QFileInfo *fi,DBFile *fc );
+
+    bool showProgressedFileInStatus;
     
 
 public:
@@ -371,6 +373,10 @@ public:
 
     Node * putTagInfo ( Node *file,QString artist,QString title,QString comment,QString album,QString year );
 
+    void setShowProgressedFileInStatus(bool showProgressedFileInStatus);
+
+    signals:
+	void pathScanned(QString path);
 
 };
 

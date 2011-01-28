@@ -336,6 +336,7 @@ DataBase::DataBase ( void ) {
     pww             = NULL;
     storeMp3tags    = true;
     storeContent    = true;
+    showProgressedFileInStatus = true;
     storedFiles     = "*.nfo;*.diz;readme.txt";
     storeLimit      = 32*1024;
     root            = new Node ( HC_CATALOG,NULL );
@@ -667,6 +668,9 @@ int DataBase::scanFsToNode ( QString what,Node *to ) {
 
         if (*DEBUG_INFO_ENABLED)
 		std::cerr << "processing in dir " << qPrintable ( what ) << " node: " << qPrintable ( fileInfo->filePath() ) << endl;
+	
+	if (showProgressedFileInStatus)
+		emit pathScanned(fileInfo->filePath());
 
         /* Make a new node */
         Node *tt=to->child;
@@ -765,6 +769,7 @@ int DataBase::scanFsToNode ( QString what,Node *to ) {
     }/*end of for,..next directory entry*/
     return ret;
 }
+
 /***************************************************************************/
 
 int DataBase::scanFileProp ( QFileInfo *fi,DBFile *fc ) {
@@ -1138,6 +1143,13 @@ void DataBase::sortM ( int mode ) {
         }
     root->touchDB();
 }
+
+void DataBase::setShowProgressedFileInStatus(bool showProgressedFileInStatus)
+{
+	this->showProgressedFileInStatus = showProgressedFileInStatus;
+}
+
+
 /*************************************************************************/
 const char *shortMonthName0 ( int i ) {
     switch ( i ) {

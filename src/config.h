@@ -71,6 +71,7 @@ public:
     bool    readcontent;
     bool    debug_info_enabled;
     bool    saveAlwaysCatalogInUtf8;
+    bool    showProgressedFileInStatus;
     QString readcfiles;
     unsigned long readclimit;
 
@@ -142,6 +143,7 @@ public:
     QCheckBox* cbNice;
     QCheckBox* cbEnableDebugInfo;
     QCheckBox* cbSaveCatalogAlwaysInUtf8;
+    QCheckBox* cbShowProgressedFileInStatus;
     QLineEdit* cdrompath_lineedit;
     QLabel* cdrom_lab;
     Q3Frame* line2;
