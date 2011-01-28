@@ -1012,6 +1012,15 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
     QSpacerItem* spacer = new QSpacerItem ( 110, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
     layout7->addItem ( spacer );
 
+    cbEnableDebugInfo = new QCheckBox ( this, "cbEnableDebugInfo" );
+    ConfigDialogBaseLayout->addWidget ( cbEnableDebugInfo, 19, 0 );
+
+    cbSaveCatalogAlwaysInUtf8 = new QCheckBox ( this, "cbSaveCatalogAlwaysInUtf8" );
+    ConfigDialogBaseLayout->addWidget ( cbSaveCatalogAlwaysInUtf8, 20, 0 );
+
+    cbShowProgressedFileInStatus = new QCheckBox ( this, "cbShowProgressedFileInStatus" );
+    ConfigDialogBaseLayout->addWidget ( cbShowProgressedFileInStatus, 21, 0 );
+
     okButton = new QPushButton ( this, "okButton" );
     okButton->setMinimumSize ( QSize ( 100, 0 ) );
     okButton->setAutoDefault ( TRUE );
@@ -1025,16 +1034,9 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
     QSpacerItem* spacer_2 = new QSpacerItem ( 130, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
     layout7->addItem ( spacer_2 );
 
-    ConfigDialogBaseLayout->addLayout ( layout7, 19, 0 );
+    ConfigDialogBaseLayout->addLayout ( layout7, 22, 0 );
 
-    cbEnableDebugInfo = new QCheckBox ( this, "cbEnableDebugInfo" );
-    ConfigDialogBaseLayout->addWidget ( cbEnableDebugInfo, 20, 0 );
 
-    cbSaveCatalogAlwaysInUtf8 = new QCheckBox ( this, "cbSaveCatalogAlwaysInUtf8" );
-    ConfigDialogBaseLayout->addWidget ( cbSaveCatalogAlwaysInUtf8, 21, 0 );
-
-    cbShowProgressedFileInStatus = new QCheckBox ( this, "cbShowProgressedFileInStatus" );
-    ConfigDialogBaseLayout->addWidget ( cbShowProgressedFileInStatus, 22, 0 );
 
     connect ( searchButton2, SIGNAL ( clicked() ), this, SLOT ( cdrombutton() ) );
 
