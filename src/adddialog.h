@@ -119,6 +119,9 @@ public:
     QApplication *appl;
     PWw ( QWidget *parent,QApplication *qapp = NULL, bool showProgress=false, long long int steps=0, QString progresstext="" );
     int begintext;
+    int myheight;
+    int mywidth;
+    int baseheight;
     bool showProgress;
     long long int steps;
     long long int progress_step;

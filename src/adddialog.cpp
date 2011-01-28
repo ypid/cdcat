@@ -175,7 +175,7 @@ addDialog::addDialog ( GuiSlave *c, QWidget* parent, const char* name, bool moda
     volumename = 1; //so, the next line will set up the name
     setMediaName ( " " );
 
-    type = caller->mainw->cconfig->lastMediaType-1;
+    type = caller->mainw->cconfig->lastMediaType;
     cbType->setCurrentIndex(caller->mainw->cconfig->lastMediaType-1);
    
     if ( cbType->currentItem() +1 == CD || cbType->currentItem() +1 == DVD ) {
@@ -362,10 +362,8 @@ PWw::PWw ( QWidget *parent,QApplication *qapp, bool showProgress, long long int 
 #endif
                                                                   ) {
     int i;
-    int myheight;
-    int mywidth;
     QFont ownf;
-    refreshTime = 100;
+    refreshTime = 50;
     appl=qapp;
     this->showProgress = showProgress;
     this->steps = steps;
@@ -374,31 +372,43 @@ PWw::PWw ( QWidget *parent,QApplication *qapp, bool showProgress, long long int 
     else
 	this->progresstext = tr ( "Please Wait..." );  
  
+
+    baseheight=50;
     if(showProgress)
-	myheight=68;
-    else
-	myheight=98;
+	baseheight+=30;
+
+
     mywidth=160;
+    myheight = baseheight;
+
+    /* Calculate the necesary font size*/
+    QFontMetrics *fm=NULL;
+    ownf = font();
+    i=10;
+//     do {
+//         i--;
+//         ownf.setPointSize ( i );
+//         if ( fm != NULL ) delete fm;
+//         fm = new QFontMetrics ( ownf );
+//         if ( i<10 ) break;
+//     } while ( fm->width ( this->progresstext ) > ( width()-5 ) );
+    
+    ownf.setPointSize ( i );
+    fm = new QFontMetrics ( ownf );
+    mywidth = (fm->width ( this->progresstext ))+10;
+    myheight = fm->height()+baseheight;
+
+//     std::cerr << "mywidth: " << mywidth << std::endl;
+    
 
     setMinimumSize ( 10, myheight );
     setMaximumSize ( mywidth, myheight );
 
     setGeometry ( parent->x() + ( ( parent->width()-mywidth ) /2 ),
-                  parent->y() + ( ( parent->height()-myheight ) /2 ),
-                  mywidth, myheight );
+    parent->y() + ( ( parent->height()-myheight ) /2 ),
+    mywidth, myheight );
 
-    /* Calculate the necesary font size*/
-    QFontMetrics *fm=NULL;
-    ownf = font();
-    i=15;
-    do {
-        i--;
-        ownf.setPointSize ( i );
-        if ( fm != NULL ) delete fm;
-        fm = new QFontMetrics ( ownf );
-        if ( i<4 ) break;
-    } while ( fm->width ( this->progresstext ) > ( width()-5 ) );
-    begintext = ( width() - fm->width (this->progresstext ) ) / 2;
+   begintext = 5;
 
     if ( fm != NULL ) delete fm;
     setFont ( ownf );
@@ -425,18 +435,37 @@ void PWw::setProgressText ( QString progresstext ){
     /* Calculate the necesary font size*/
     QFontMetrics *fm=NULL;
     ownf = font();
-    i=15;
-    do {
-        i--;
-        ownf.setPointSize ( i );
-        if ( fm != NULL ) delete fm;
-        fm = new QFontMetrics ( ownf );
-        if ( i<4 ) break;
-    } while ( fm->width ( this->progresstext ) > ( width()-5 ) );
-    begintext = ( width() - fm->width (this->progresstext ) ) / 2;
+    i=10;
+//     do {
+//         i--;
+//         ownf.setPointSize ( i );
+//         if ( fm != NULL ) delete fm;
+//         fm = new QFontMetrics ( ownf );
+//         if ( i<4 ) break;
+//     } while ( fm->width ( this->progresstext ) > ( width()-5 ) );
+
+    ownf.setPointSize ( i );
+    fm = new QFontMetrics ( ownf );
+
+    baseheight=50;
+    if(showProgress)
+	baseheight+=30;
+
+    mywidth = (fm->width ( progresstext ))+10;
+    myheight = fm->height()+baseheight;
+    begintext = 5;
 
     if ( fm != NULL ) delete fm;
     setFont ( ownf );
+
+    if( width() != mywidth) {
+	hide();
+	setMinimumSize ( mywidth, myheight );
+	setMaximumSize ( mywidth, myheight );
+        setGeometry ( x(), y(), mywidth, myheight );
+	show();
+    }
+
 }
 
 void PWw::step ( long long int progress_step ) {
@@ -450,7 +479,6 @@ void PWw::step ( long long int progress_step ) {
 
     if ( !isActiveWindow() )
         show();
-
     repaint();
 
     if ( appl != NULL )
@@ -460,22 +488,23 @@ void PWw::step ( long long int progress_step ) {
 void PWw::paintEvent ( QPaintEvent *e ) {
     QPainter p ( this );
     p.setClipping ( FALSE );
-    int borderless_width = width()-4;
+    int borderless_width = mywidth-4;
 #if (QT_VERSION >= QT_VERSION_CHECK(4, 6, 0)) // needs Qt 4.6.0 or better
     p.beginNativePainting();
 #endif
-	p.drawRect ( 1,1,borderless_width,66 );
+	p.drawRect ( 1,1, borderless_width,66 );
 	p.drawText ( begintext,18, progresstext );
 	if(showProgress) {
 		p.setPen(QPen(QColor().black()));
-		p.drawRect(1, height()-25, width()-4, 20);
+		p.drawRect(1, myheight-25, mywidth-4, 20);
 		int percent = progress_step/(steps/100);
 		p.setBrush(QBrush(Qt::blue));
-		p.drawRect(2, height()-24, (borderless_width-4)*percent/100, 18);
+		p.drawRect(2, myheight-24, (borderless_width-4)*percent/100, 18);
 	
 	//         std::cerr << progress_step << "/"<< steps <<  " p: " << percent << "%" << std::endl;
 	}
-	p.drawPixmap ( ((width()/4)-2)*1.5, 25, anim_list.at(s) );
+	QPixmap pm = anim_list.at(s);
+	p.drawPixmap ( (mywidth/2)-(pm.width()/2), 25, pm );
 #if (QT_VERSION >= QT_VERSION_CHECK(4, 6, 0)) // needs Qt 4.6.0 or better
     p.endNativePainting();
 #endif
