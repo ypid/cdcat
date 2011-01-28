@@ -802,7 +802,7 @@ int CdCatConfig::writeConfig ( void ) {
 
 
         str << "last_dir="+lastDir << endl;
-        str << "lastMediaType="+lastMediaType << endl;
+        str << "lastMediaType="+QString().setNum(lastMediaType) << endl;
 
         f.close();
         return 0;
