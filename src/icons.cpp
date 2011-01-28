@@ -5710,6 +5710,13 @@ QPixmap * get_anim ( int i ) {
     }
 }
 
+QList<QPixmap> get_anim_list() {
+	QList<QPixmap> animlist;
+	for (int i=0;i<5;i++)
+		animlist.append(*get_anim(i));
+	return animlist;
+}
+
 
 
 

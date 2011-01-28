@@ -395,6 +395,9 @@ PWw::PWw ( QWidget *parent,QApplication *qapp, bool showProgress, long long int 
     if ( fm != NULL ) delete fm;
     setFont ( ownf );
 
+    
+    anim_list = get_anim_list();
+
     /*Get the firt value of the timer*/
     t=QTime::currentTime();
     s=0;
@@ -407,7 +410,6 @@ void PWw::end ( void ) {
 
 void PWw::setProgressText ( QString progresstext ){
     int i;
-    int myheight;
     QFont ownf;
     if(!progresstext.isEmpty())
 	this->progresstext = progresstext;
@@ -450,25 +452,28 @@ void PWw::step ( long long int progress_step ) {
 void PWw::paintEvent ( QPaintEvent *e ) {
     QPainter p ( this );
     p.setClipping ( FALSE );
+    int borderless_width = width()-4;
 #if (QT_VERSION >= QT_VERSION_CHECK(4, 6, 0)) // needs Qt 4.6.0 or better
     p.beginNativePainting();
 #endif
-    p.drawRect ( 1,1,width()-4,66 );
-    p.drawText ( begintext,18, progresstext );
-    if(showProgress) {
-	p.setPen(QPen(QColor().black()));
-	p.drawRect(1, height()-25, width()-2, 20);
+	p.drawRect ( 1,1,borderless_width,66 );
+	p.drawText ( begintext,18, progresstext );
+	if(showProgress) {
+		p.setPen(QPen(QColor().black()));
+		p.drawRect(1, height()-25, width()-4, 20);
+		int percent = progress_step/(steps/100);
+		p.setBrush(QBrush(Qt::blue));
+		p.drawRect(2, height()-24, (borderless_width-4)*percent/100, 18);
 	
-	int percent = progress_step/(steps/100);
-	p.setBrush(QBrush(Qt::blue));
-	p.drawRect(2, height()-24, (width()-3)*percent/100, 18);
-
-//         std::cerr << progress_step << "/"<< steps <<  " p: " << percent << "%" << std::endl;
-    }
-    p.drawPixmap ( ((width()/4)-2)*1.5,25,* ( get_anim ( s ) ) );
-
+	//         std::cerr << progress_step << "/"<< steps <<  " p: " << percent << "%" << std::endl;
+	}
+	p.drawPixmap ( ((width()/4)-2)*1.5, 25, anim_list.at(s) );
+#if (QT_VERSION >= QT_VERSION_CHECK(4, 6, 0)) // needs Qt 4.6.0 or better
+    p.endNativePainting();
+#endif
 
     if ( ++s==5 ) s=0;
+
 }
 
 void PWw::mousePressEvent ( QMouseEvent *me ) {

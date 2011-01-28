@@ -44,6 +44,7 @@ QPixmap * get_t_find_icon ( void );
 QPixmap * get_t_about_icon ( void );
 QPixmap * get_t_comment_icon ( void );
 QPixmap * get_anim ( int i );
+QList<QPixmap> get_anim_list();
 QPixmap * get_t_add_export_icon ( void );
 QPixmap * get_t_remove_export_icon ( void );
 QPixmap * get_t_deletec_icon ( void );

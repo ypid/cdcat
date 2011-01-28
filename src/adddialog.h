@@ -14,6 +14,7 @@
 #include <qpixmap.h>
 #include <qdialog.h>
 #include <qdatetime.h>
+#include <QList>
 //Added by qt3to4:
 #include <Q3GridLayout>
 #include <Q3HBoxLayout>
@@ -127,8 +128,8 @@ public:
     void end ( void );
 
 protected:
-
     QTime t;
+    QList<QPixmap> anim_list;
     void paintEvent ( QPaintEvent *pe );
     void mouseMoveEvent ( QMouseEvent *me );
     void mousePressEvent ( QMouseEvent *me );

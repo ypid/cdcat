@@ -888,6 +888,7 @@ bool CdCatXmlHandler::characters(const QString & ch) {
 // 	if(*DEBUG_INFO_ENABLED)
 // 		cerr << "CdCatXmlHandler::characters: " << qPrintable(ch) << endl;
 	currentText+= ch;
+	progress ( pww, locator->lineNumber() );
 	return true;
 }
 
@@ -1226,6 +1227,8 @@ bool CdCatXmlHandler::endElement ( const QString & namespaceURI, const QString &
 //     if(*DEBUG_INFO_ENABLED)
 //    	cerr <<"Start_end:"<<qPrintable(el)<<endl;
 
+    progress ( pww, locator->lineNumber() );
+
     getCharDataFromXML ( r,currentText.toAscii().data(),currentText.length());
     currentText = "";
 
@@ -1339,9 +1342,6 @@ bool CdCatXmlHandler::endElement ( const QString & namespaceURI, const QString &
     }
 
     clearbuffer = 1;
-//     if(*DEBUG_INFO_ENABLED)
-//     	cerr <<"line number:"<<locator->lineNumber()<<endl;
-    progress ( pww, locator->lineNumber() );
 
 //     if(*DEBUG_INFO_ENABLED)
 //     	cerr <<"end_end:"<<qPrintable(el)<<endl;
