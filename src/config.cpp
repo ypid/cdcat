@@ -91,6 +91,7 @@ CdCatConfig::CdCatConfig ( void ) {
     readcontent = false;
     readcfiles = "*.nfo;*.diz";
     readclimit = 32*1024;
+    lastMediaType = CD;
     saveAlwaysCatalogInUtf8 = true;
     showProgressedFileInStatus = true;
 
@@ -572,6 +573,10 @@ int CdCatConfig::readConfig ( void ) {
                     continue;
                 }
 
+                else if ( var=="lastMediaType" ) {
+                        lastMediaType=val.toInt();
+                    continue;
+                }
 
 
                 fprintf ( stderr,"Unknown key founded: %s\n", ( const char * ) var );
@@ -797,6 +802,7 @@ int CdCatConfig::writeConfig ( void ) {
 
 
         str << "last_dir="+lastDir << endl;
+        str << "lastMediaType="+lastMediaType << endl;
 
         f.close();
         return 0;

@@ -85,6 +85,7 @@ public:
     int  mainP1;
     int  mainP2;
     int  mainP3;
+    int lastMediaType;
 
     bool find_cs;
     bool find_em;

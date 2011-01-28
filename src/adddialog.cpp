@@ -159,12 +159,11 @@ addDialog::addDialog ( GuiSlave *c, QWidget* parent, const char* name, bool moda
     languageChange();
     resize ( QSize ( 454, 350 ).expandedTo ( minimumSizeHint() ) );
 
-    connect ( buttonOK,SIGNAL ( clicked() ),this,SLOT ( bOk() ) );
-    connect ( buttonCancel,SIGNAL ( clicked() ),this,SLOT ( bCan() ) );
-
-    connect ( buttonPli,SIGNAL ( clicked() ),this,SLOT ( sread() ) );
-
-    connect ( dirView,SIGNAL ( folderSelected ( const QString & ) ),this,SLOT ( setMediaName ( const QString & ) ) );
+    connect ( buttonOK, SIGNAL ( clicked() ), this, SLOT ( bOk() ) );
+    connect ( buttonCancel, SIGNAL ( clicked() ), this, SLOT ( bCan() ) );
+    connect ( buttonPli, SIGNAL ( clicked() ), this, SLOT ( sread() ) );
+    connect ( dirView, SIGNAL ( folderSelected ( const QString & ) ), this, SLOT ( setMediaName ( const QString & ) ) );
+    connect ( cbType, SIGNAL ( activated(int)), this, SLOT ( cbTypeToggeled(int ) ) );
 
 #ifndef _WIN32
     connect ( cbAutoDetectAtMount, SIGNAL ( clicked() ), this, SLOT ( autoDetectAtMountToggled()) );
@@ -176,7 +175,9 @@ addDialog::addDialog ( GuiSlave *c, QWidget* parent, const char* name, bool moda
     volumename = 1; //so, the next line will set up the name
     setMediaName ( " " );
 
-
+    type = caller->mainw->cconfig->lastMediaType-1;
+    cbType->setCurrentIndex(caller->mainw->cconfig->lastMediaType-1);
+   
     if ( cbType->currentItem() +1 == CD || cbType->currentItem() +1 == DVD ) {
         dirView->setDir ( ( ( CdCatMainWidget * ) parent )->cconfig->cdrompath );
         dirView->sDir= ( ( CdCatMainWidget * ) parent )->cconfig->cdrompath;
@@ -242,7 +243,6 @@ int addDialog::setMediaName ( const QString & ds ) {
 #endif
 
     QApplication::setOverrideCursor ( Qt::waitCursor );
-
 
 #ifndef _WIN32
     if ( ( cbType->currentItem() +1 == CD ) && ( confdir  == selected )) {
@@ -341,6 +341,14 @@ void addDialog::autoDetectAtMountToggled() {
 	else
 		leName->setEnabled(true);
 #endif
+}
+
+void addDialog::cbTypeToggeled(int type) {
+    if(caller->mainw->cconfig->lastMediaType != cbType->currentItem() +1) {
+	std::cerr << "mediatype changed from " << caller->mainw->cconfig->lastMediaType << " to " << cbType->currentItem() +1 << std::endl;
+	caller->mainw->cconfig->lastMediaType = cbType->currentItem() +1;
+	caller->mainw->cconfig->writeConfig();
+    }
 }
 
 

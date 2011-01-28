@@ -90,6 +90,7 @@ protected slots:
     int sread();
     int setMediaName ( const QString & ds );
     void autoDetectAtMountToggled();
+    void cbTypeToggeled(int type);
 
 private:
     QPixmap image0;
