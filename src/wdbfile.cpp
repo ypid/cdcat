@@ -754,12 +754,13 @@ int FileReader::readFrom ( Node *source ) {
 		mysource.setData(converter->toUnicode (QString(dataBuffer)));
 	}
 	
-	pww->showProgress = false;
+	
 	int done=0;
 	
 	if ( ! xmlReader.parse(mysource) ) {
             errormsg = QString ( "Parse error\n" );
 	}
+	pww->showProgress = false;
 	
 	delete handler;
 	if (*DEBUG_INFO_ENABLED)
