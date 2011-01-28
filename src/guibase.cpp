@@ -1092,8 +1092,10 @@ int GuiSlave::addEvent ( void ) {
     mainw->db->storedFiles = mainw->cconfig->readcfiles;
     if(*DEBUG_INFO_ENABLED)
 	cerr<<"ADDEVENT-1"<<endl;
-    PWw *pww = new PWw ( mainw,mainw->app );
+    PWw *pww = new PWw ( mainw,mainw->app, false, 0, tr("Scanning directory tree, please wait..."));
     mainw->db->pww = pww;
+
+    d->type = mainw->cconfig->lastMediaType;
 
 #ifndef _WIN32
         if ( ( d->type == CD || d->type == DVD )  &&  mainw->cconfig->mounteject &&

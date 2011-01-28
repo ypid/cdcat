@@ -36,12 +36,12 @@
 <context>
     <name>CdCatConfig</name>
     <message>
-        <location filename="../config.cpp" line="169"/>
+        <location filename="../config.cpp" line="170"/>
         <source>Error during autoload...</source>
         <translation>Terjadi kesalahan saat memuat otomatis...</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="171"/>
+        <location filename="../config.cpp" line="172"/>
         <source>I can&apos;t open the autoload catalog.
 Check the file, or change the autoload option in the config dialog!
 </source>
@@ -54,7 +54,7 @@ Periksa file, atau ubahlah opsi muat otomatis pada dialog konfigurasi!</translat
         <translation type="obsolete">Ok</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="171"/>
+        <location filename="../config.cpp" line="172"/>
         <source>I can&apos;t open the autoload catalog according the first command line parameter.
 Check the file!
 </source>
@@ -69,22 +69,22 @@ It is necessary couse I&apos;d like to save the config file into your home direc
 Variabel tersebut penting karena file konfigurasi disimpan pada direktori rumah Anda.</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="805"/>
+        <location filename="../config.cpp" line="811"/>
         <source>I can&apos;t create or rewrite the ./cdcat.cfg file </source>
         <translation>Gagal membuat atau menulis ulang file ./cdcat.cfg</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="807"/>
+        <location filename="../config.cpp" line="813"/>
         <source>I can&apos;t create or rewrite the $(HOME)/.cdcatconfig file </source>
         <translation>Gagal membuat atau menulis ulang file $(HOME)/.cdcatconfig</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="807"/>
+        <location filename="../config.cpp" line="813"/>
         <source>Error while saving config file...</source>
         <translation>Terjadi kesalahan saat menulis konfigurasi...</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="598"/>
+        <location filename="../config.cpp" line="603"/>
         <source>I can&apos;t get the $HOME environment variable.
 It is necessary because I&apos;d like to save the config file into your home directory.</source>
         <translation type="unfinished"></translation>
@@ -540,32 +540,32 @@ It is necessary because I&apos;d like to save the config file into your home dir
 <context>
     <name>ConfigDialog</name>
     <message>
-        <location filename="../config.cpp" line="1097"/>
+        <location filename="../config.cpp" line="1108"/>
         <source>Configure  CdCat...</source>
         <translation>Konfigurasikan CdCat...</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1098"/>
+        <location filename="../config.cpp" line="1109"/>
         <source>Autoload DataBase on startup</source>
         <translation>Muat otomatis database saat startup</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1100"/>
+        <location filename="../config.cpp" line="1111"/>
         <source>Save the XML-db.file nicer format(needs more space)</source>
         <translation>Simpan file XML-db dalam format yang lebih rapi (membutuhkan ruang lebih besar)</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1101"/>
+        <location filename="../config.cpp" line="1112"/>
         <source>Cancel</source>
         <translation>Batal</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1102"/>
+        <location filename="../config.cpp" line="1113"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1105"/>
+        <location filename="../config.cpp" line="1116"/>
         <source>Application font size.(must restart cdcat!) </source>
         <translation>Ukuran font.(harus merestart cdcat!)</translation>
     </message>
@@ -575,37 +575,37 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Database CdCat(*.hcf)</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1107"/>
+        <location filename="../config.cpp" line="1118"/>
         <source>Path to cdrom device</source>
         <translation>Path menuju divais cdrom</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1110"/>
+        <location filename="../config.cpp" line="1121"/>
         <source>Scanning: mount cdrom at start / eject when finish</source>
         <translation>Scanning: mount cdrom saat mulai / eject saat selesai</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1104"/>
+        <location filename="../config.cpp" line="1115"/>
         <source>Use own font size</source>
         <translation>Gunakan ukuran font sendiri</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1106"/>
+        <location filename="../config.cpp" line="1117"/>
         <source>Number of history entries</source>
         <translation>Jumlah histori yang ditampilkan</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1135"/>
+        <location filename="../config.cpp" line="1146"/>
         <source>Choose path to cdrom!</source>
         <translation>Pilih path menuju cdrom!</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1118"/>
+        <location filename="../config.cpp" line="1129"/>
         <source>The language of CdCat interface</source>
         <translation>Bahasa untuk antarmuka CdCat</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1128"/>
+        <location filename="../config.cpp" line="1139"/>
         <source>Choose a file to load automatically!</source>
         <translation>Pilih sebuah file yang akan dimuat secara otomatis!</translation>
     </message>
@@ -615,32 +615,32 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Simpan database secara otomatis setiap kali melakukan scan (untuk keamanan)</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1103"/>
+        <location filename="../config.cpp" line="1114"/>
         <source>Select additional items to read</source>
         <translation>Pilih item tambahan yang akan dibaca</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1099"/>
+        <location filename="../config.cpp" line="1110"/>
         <source>Automatically save the database after every scan (for safety sake)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1121"/>
+        <location filename="../config.cpp" line="1132"/>
         <source>Display debug info on console</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1128"/>
+        <location filename="../config.cpp" line="1139"/>
         <source>CdCat databases (*.hcf )</source>
         <translation type="unfinished">Database CdCat (*.hcf )</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1122"/>
+        <location filename="../config.cpp" line="1133"/>
         <source>Save catalogs always as UTF8</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1123"/>
+        <location filename="../config.cpp" line="1134"/>
         <source>Show progressed file at scanning in status label</source>
         <translation type="unfinished"></translation>
     </message>
@@ -849,7 +849,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Katalog CD Hyper</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1405"/>
+        <location filename="../guibase.cpp" line="1406"/>
         <source>CdCat databases (*.hcf )</source>
         <translation>Database CdCat (*.hcf )</translation>
     </message>
@@ -859,7 +859,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Buka file...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1652"/>
+        <location filename="../guibase.cpp" line="1653"/>
         <source>Error while opening...</source>
         <translation>Terjadi kesalahan saat membuka...</translation>
     </message>
@@ -889,17 +889,17 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Apakah Anda ingin menyimpan perubahannya?</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1714"/>
+        <location filename="../guibase.cpp" line="1715"/>
         <source>Yes</source>
         <translation>Ya</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1714"/>
+        <location filename="../guibase.cpp" line="1715"/>
         <source>No</source>
         <translation>Tidak</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1469"/>
+        <location filename="../guibase.cpp" line="1470"/>
         <source>Error:</source>
         <translation>Kesalahan:</translation>
     </message>
@@ -911,27 +911,27 @@ It is necessary because I&apos;d like to save the config file into your home dir
 %1</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1712"/>
+        <location filename="../guibase.cpp" line="1713"/>
         <source>Confirmation</source>
         <translation>Konfirmasi</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1196"/>
+        <location filename="../guibase.cpp" line="1197"/>
         <source>Warning...</source>
         <translation>Peringatan...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1309"/>
+        <location filename="../guibase.cpp" line="1310"/>
         <source>You can refresh ONLY a MEDIA node!</source>
         <translation>Anda hanya dapat memuat ulang node MEDIA!</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1405"/>
+        <location filename="../guibase.cpp" line="1406"/>
         <source>Insert a database file...</source>
         <translation>Masukkan sebuah file database...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1475"/>
+        <location filename="../guibase.cpp" line="1476"/>
         <source>The size of &quot;%1&quot; : 
  %2 
  %3 file /%4 directory</source>
@@ -940,32 +940,32 @@ It is necessary because I&apos;d like to save the config file into your home dir
 %3 file /%4 direktori</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1115"/>
+        <location filename="../guibase.cpp" line="1116"/>
         <source>Cannot mount CD</source>
         <translation>Tidak dapat me-mount CD</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1254"/>
+        <location filename="../guibase.cpp" line="1255"/>
         <source>Cannot eject CD!</source>
         <translation>Tidak dapat meng-eject CD!</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1115"/>
+        <location filename="../guibase.cpp" line="1116"/>
         <source>I can&apos;t find the &quot;mount&quot; program</source>
         <translation>Tidak dapat menemukan program &quot;mount&quot;</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1271"/>
+        <location filename="../guibase.cpp" line="1272"/>
         <source>Cannot mount CD!</source>
         <translation>Tidak dapat me-mount CD!</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1227"/>
+        <location filename="../guibase.cpp" line="1228"/>
         <source>Cannot eject CD</source>
         <translation>Tidak dapat meng-eject CD</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1227"/>
+        <location filename="../guibase.cpp" line="1228"/>
         <source>I can&apos;t find the &quot;eject&quot; program</source>
         <translation>Tidak dapat menemukan program &quot;eject&quot;</translation>
     </message>
@@ -995,7 +995,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Masukkan katalog...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1313"/>
+        <location filename="../guibase.cpp" line="1314"/>
         <source>Rescan %1</source>
         <translation>Scan ulang %1</translation>
     </message>
@@ -1005,7 +1005,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Ubah nomor media...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1454"/>
+        <location filename="../guibase.cpp" line="1455"/>
         <source>It is NOT a media node!</source>
         <translation>Bukan sebuah node media!</translation>
     </message>
@@ -1030,24 +1030,24 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Tampilkan/Hapus Isian...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1469"/>
+        <location filename="../guibase.cpp" line="1470"/>
         <source>There is no selected item in the middle list box!</source>
         <translation>Tidak ada item yang dipilih di kotak bagian tengah!</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1196"/>
+        <location filename="../guibase.cpp" line="1197"/>
         <source>An error occured while scanning,
 the DataBase may be incomplete</source>
         <translation>Terjadi kesalahan saat scanning,
 database mungkin tidak lengkap</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1305"/>
+        <location filename="../guibase.cpp" line="1306"/>
         <source>There is no selected Media in the middle list box!</source>
         <translation>Tidak ada media yang dipilih di kotak bagian tengah!</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1325"/>
+        <location filename="../guibase.cpp" line="1326"/>
         <source>An error occured while scanning, the rescan operation was cancelled: 
 %1</source>
         <translation>Terjadi kesalahan saat scanning, operasi scan ulang dibatalkan:
@@ -1059,7 +1059,7 @@ database mungkin tidak lengkap</translation>
         <translation>Meminjamkan media ini kepada...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1713"/>
+        <location filename="../guibase.cpp" line="1714"/>
         <source>Do you want to clear the borrowing mark from media &quot;%1&quot;?
 (Say yes if you got it back.)</source>
         <translation>Apakah Anda ingin menghapus tanda peminjaman dari media &quot;%1&quot;?
@@ -1086,7 +1086,7 @@ database mungkin tidak lengkap</translation>
         <translation>Tambahkan link ke sebuah katalog CdCat...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1631"/>
+        <location filename="../guibase.cpp" line="1632"/>
         <source>The link is empty.</source>
         <translation>Link kosong.</translation>
     </message>
@@ -1129,18 +1129,23 @@ Homepage: %3</translation>
         <translation type="obsolete">Hasilnya:</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1314"/>
+        <location filename="../guibase.cpp" line="1315"/>
         <source>Select directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1480"/>
+        <location filename="../guibase.cpp" line="1481"/>
         <source>The result:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1476"/>
+        <location filename="../guibase.cpp" line="1477"/>
         <source>MiB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../guibase.cpp" line="1097"/>
+        <source>Scanning directory tree, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1859,82 +1864,82 @@ menjadi
         <translation>Disk Baru %1</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="209"/>
+        <location filename="../adddialog.cpp" line="210"/>
         <source>Add Media to the Database</source>
         <translation>Tambahkan Media ke dalam Database</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="210"/>
+        <location filename="../adddialog.cpp" line="211"/>
         <source>Choose a directory to scan:</source>
         <translation>Pilih direktori yang akan discan:</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="211"/>
+        <location filename="../adddialog.cpp" line="212"/>
         <source>Media Name:</source>
         <translation>Nama Media:</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="212"/>
+        <location filename="../adddialog.cpp" line="213"/>
         <source>Serial number of Media:</source>
         <translation>Nomor seri Media:</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="213"/>
+        <location filename="../adddialog.cpp" line="214"/>
         <source>Owner:</source>
         <translation>Pemilik:</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="214"/>
+        <location filename="../adddialog.cpp" line="215"/>
         <source>Type:</source>
         <translation>Tipe:</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="215"/>
+        <location filename="../adddialog.cpp" line="216"/>
         <source>Comment:</source>
         <translation>Komentar:</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="549"/>
+        <location filename="../adddialog.cpp" line="557"/>
         <source>Cancel</source>
         <translation>Batal</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="217"/>
+        <location filename="../adddialog.cpp" line="218"/>
         <source>OK / Scan</source>
         <translation>OK / Scan</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="223"/>
+        <location filename="../adddialog.cpp" line="224"/>
         <source>CD</source>
         <translation>CD</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="224"/>
+        <location filename="../adddialog.cpp" line="225"/>
         <source>DVD</source>
         <translation>DVD</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="225"/>
+        <location filename="../adddialog.cpp" line="226"/>
         <source>HardDisc</source>
         <translation>Hardisk</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="226"/>
+        <location filename="../adddialog.cpp" line="227"/>
         <source>Floppy</source>
         <translation>Disket</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="227"/>
+        <location filename="../adddialog.cpp" line="228"/>
         <source>NetworkPlace</source>
         <translation>NetworkPlace</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="228"/>
+        <location filename="../adddialog.cpp" line="229"/>
         <source>FlashDrive</source>
         <translation>FlashDrive</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="229"/>
+        <location filename="../adddialog.cpp" line="230"/>
         <source>OtherDevice</source>
         <translation>Divais lain</translation>
     </message>
@@ -1949,7 +1954,7 @@ menjadi
         <translation>Anda harus mengisi field &quot;Nama&quot;!</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="550"/>
+        <location filename="../adddialog.cpp" line="558"/>
         <source>Ok</source>
         <translation type="unfinished">Ok</translation>
     </message>
@@ -1959,7 +1964,7 @@ menjadi
         <translation>Nama media harus unik! Silakan ubah!</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="218"/>
+        <location filename="../adddialog.cpp" line="219"/>
         <source>Select readable items</source>
         <translation>Pilih item yang bisa dibaca</translation>
     </message>
@@ -1979,32 +1984,32 @@ menjadi
         <translation>Nama media tidak boleh berawalan karakter &quot;@&quot;!</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="220"/>
+        <location filename="../adddialog.cpp" line="221"/>
         <source>detect CDCROM/DVD media name after mount</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="367"/>
+        <location filename="../adddialog.cpp" line="375"/>
         <source>Please Wait...</source>
         <translation type="unfinished">Silakan Tunggu...</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="546"/>
+        <location filename="../adddialog.cpp" line="554"/>
         <source>Add a &quot;Catalog Link&quot; to the database</source>
         <translation type="unfinished">Tambahkan &quot;Link Katalog&quot; ke dalam database</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="547"/>
+        <location filename="../adddialog.cpp" line="555"/>
         <source>Location of the .hcf file:</source>
         <translation type="unfinished">Lokasi file .hcf:</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="567"/>
+        <location filename="../adddialog.cpp" line="575"/>
         <source>Open a file...</source>
         <translation type="unfinished">Buka file...</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="567"/>
+        <location filename="../adddialog.cpp" line="575"/>
         <source>CdCat databases (*.hcf )</source>
         <translation type="unfinished">Database CdCat (*.hcf )</translation>
     </message>

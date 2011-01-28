@@ -3,6 +3,7 @@
 	- remember last media type in adddialog
 	- ok/cancel button moved to buttom in config dialog
 	- busydialog auto resize to optimal size made
+	- displaying wait text at scanning added
 
 27. Jan 2011 Christoph Thielecke <crissi99@gmx.de>
 	- progressbar at busydialog on loading/parsing file added

@@ -853,6 +853,10 @@ Homepage: %3</translation>
       <source>MiB</source>
       <translation>MiB</translation>
     </message>
+    <message>
+      <source>Scanning directory tree, please wait...</source>
+      <translation>Verzeichnisbaum wird durchsucht, bitte warten...</translation>
+    </message>
   </context>
   <context>
     <name>HDirectoryView</name>
