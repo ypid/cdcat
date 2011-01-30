@@ -82,10 +82,17 @@ public:
     int windowSize_width;
     QString cdrompath;
     QString lastDir;
+    QString lastSearchPattern;
     int  mainP1;
     int  mainP2;
     int  mainP3;
     int lastMediaType;
+
+    int find_size_unit_min_val;
+    int find_size_unit_max_val;
+
+    int find_size_min_val;
+    int find_size_max_val;
 
     bool find_cs;
     bool find_em;
@@ -97,6 +104,10 @@ public:
     bool find_mar;
     bool find_mti;
     bool find_mal;
+    bool find_date_start;
+    bool find_date_end;
+    bool find_size_min;
+    bool find_size_max;
     int  findX;
     int  findY;
     int  findWidth;

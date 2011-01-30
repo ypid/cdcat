@@ -25,6 +25,7 @@
 #include <qimage.h>
 #include <qpixmap.h>
 #include <qmessagebox.h>
+#include <QSpinBox>
 #include <qtextcodec.h>
 //Added by qt3to4:
 #include <Q3HBoxLayout>
@@ -87,6 +88,9 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool modal, 
     layout15 = new Q3GridLayout ( 0, 1, 1, 0, 6, "layout15" );
     layout30 = new Q3HBoxLayout ( 0, 0, 6, "layout30" );
     layout16 = new Q3GridLayout ( 0, 1, 1, 0, 6, "layout16" );
+//     layout17 = new Q3GridLayout ( 0, 1, 1, 0, 6, "layout17" );
+    layout_size_min = new Q3HBoxLayout ( 0, 0, 2, "layout_size_min" );
+    layout_size_max = new Q3HBoxLayout ( 0, 0, 2, "layout_size_max" );
 
     leText = new QLineEdit ( this, "leText" );
     
@@ -107,11 +111,33 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool modal, 
     cbTcomm = new QCheckBox ( this, "cbTcomm" );
     cbDateStart = new QCheckBox ( this, "cbDateStart" );
     cbDateEnd = new QCheckBox ( this, "cbDateEnd" );
+    cbSizeMin = new QCheckBox (this, "cbSizeMin" );
+    cbSizeMax = new QCheckBox (this, "cbSizeMax" );
 
     cbOwner = new QComboBox ( FALSE, this, "cbOwner" );
     cbOwner->setMinimumSize ( QSize ( 0, 0 ) );
 
     cbSin = new QComboBox ( FALSE, this, "cbSin" );
+
+    cbSizeUnitMin = new QComboBox (false, this, "cbSizeUnitMin");
+    cbSizeUnitMin->addItem(tr("Byte"));
+    cbSizeUnitMin->addItem(tr("KiB"));
+    cbSizeUnitMin->addItem(tr("MiB"));
+    cbSizeUnitMin->addItem(tr("GiB"));
+
+    cbSizeUnitMax = new QComboBox (false, this, "cbSizeUnitMax");
+    cbSizeUnitMax->addItem(tr("Byte"));
+    cbSizeUnitMax->addItem(tr("KiB"));
+    cbSizeUnitMax->addItem(tr("MiB"));
+    cbSizeUnitMax->addItem(tr("GiB"));
+
+    spSizeMin = new QSpinBox( this, "spSizeMin");
+    spSizeMin->setMinimum(1);
+    spSizeMin->setMaximum(10000000);
+
+    spSizeMax = new QSpinBox( this, "spSizeMax");
+    spSizeMax->setMinimum(1);
+    spSizeMax->setMaximum(10000000);
 
     buttonOk = new QPushButton ( this, "buttonOk" );
     buttonOk->setAutoDefault ( TRUE );
@@ -136,6 +162,7 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool modal, 
     textLabel2 = new QLabel ( this, "textLabel2" );
     textLabel5 = new QLabel ( this, "textLabel5" );
     textLabel6 = new QLabel ( this, "textLabel6" );
+    textLabel7 = new QLabel ( this, "textLabel7" );
 
     /* saved ops: */
 
@@ -149,7 +176,11 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool modal, 
     cbFilename -> setChecked ( mainw->cconfig->find_fi );
     cbDirname  -> setChecked ( mainw->cconfig->find_di );
     cbContent  -> setChecked ( mainw->cconfig->find_ct );
-//     cbDate  -> setChecked ( mainw->cconfig->find_date );
+    cbDateStart  -> setChecked ( mainw->cconfig->find_date_start );
+    cbDateEnd  -> setChecked ( mainw->cconfig->find_date_end );
+    cbSizeMin -> setChecked( mainw->cconfig->find_size_min );
+    cbSizeMax -> setChecked( mainw->cconfig->find_size_max );
+    
 
     /* layouts:   */
     layout36->addWidget ( cbCasesens, 1, 0 );
@@ -163,10 +194,12 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool modal, 
     layout36->addWidget ( cbAlbum , 4, 1 );
     layout36->addWidget ( cbTcomm , 5, 1 );
     layout36->addMultiCellWidget ( leText, 0, 0, 0, 1 );
-    layout36->addWidget ( cbDateStart , 6, 0 );
-    layout36->addWidget ( cbDateEnd , 7, 0 );
-    layout36->addWidget ( deDateStart, 6, 1 );
-    layout36->addWidget ( deDateEnd, 7, 1 );
+    layout37->addWidget ( cbDateStart , 6, 0 );
+    layout37->addWidget ( cbDateEnd , 7, 0 );
+    layout37->addWidget ( deDateStart, 6, 1 );
+    layout37->addWidget ( deDateEnd, 7, 1 );
+    layout37->addWidget ( cbSizeMin, 8, 0 );
+    layout37->addWidget ( cbSizeMax, 9, 0 );
 
 
     layout37->addWidget ( cbOwner, 3, 1 );
@@ -175,6 +208,17 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool modal, 
     layout37->addWidget ( textLabel1, 2, 0 );
     layout37->addWidget ( textLabel2, 3, 0 );
     layout37->addMultiCell ( spacer_3, 1, 1, 0, 1 );
+
+    layout_size_min->addWidget ( spSizeMin );
+    layout_size_min->addWidget ( cbSizeUnitMin );
+    cbSizeUnitMin->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+    layout37->addItem(layout_size_min, 8, 1);
+
+    layout_size_max->addWidget ( spSizeMax );
+    layout_size_max->addWidget ( cbSizeUnitMax );
+    cbSizeUnitMin->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+    layout37->addItem(layout_size_max, 9, 1);
+
 
     layout39->addMultiCellLayout ( layout36, 0, 1, 1, 1 );
     layout39->addItem ( spacer_2, 1, 0 );
@@ -221,9 +265,33 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool modal, 
     connect ( cbDateEnd, SIGNAL ( stateChanged(int)),this,SLOT ( dateEndChanged(int)));
     //connect ( deDateStart, SIGNAL ( clicked()),this,SLOT ( dateStartDoubleClicked()));
     //connect ( deDateEnd, SIGNAL ( ),this,SLOT ( dateEndDoubleClicked()));
+    connect ( cbSizeMin, SIGNAL ( clicked()),this,SLOT ( sizeMinClicked()));
+    connect ( cbSizeMax, SIGNAL ( clicked()),this,SLOT ( sizeMaxClicked()));
+
 
     deDateStart->setEnabled(false);
     deDateEnd->setEnabled(false);
+    cbSizeUnitMin->setEnabled(false);
+    spSizeMin->setEnabled(false);
+
+    cbSizeUnitMax->setEnabled(false);
+    spSizeMax->setEnabled(false);
+
+    cbSizeMin->setChecked(mainw->cconfig->find_size_min);
+    cbSizeMax->setChecked(mainw->cconfig->find_size_max);
+    spSizeMin->setValue(mainw->cconfig->find_size_min_val);
+    spSizeMax->setValue(mainw->cconfig->find_size_max_val);
+
+    spSizeMin->setEnabled(mainw->cconfig->find_size_min);
+    spSizeMax->setEnabled(mainw->cconfig->find_size_max);
+
+    cbSizeUnitMin->setEnabled(mainw->cconfig->find_size_min);
+    cbSizeUnitMax->setEnabled(mainw->cconfig->find_size_max);
+
+    cbSizeUnitMin->setCurrentIndex(mainw->cconfig->find_size_unit_min_val);
+    cbSizeUnitMax->setCurrentIndex(mainw->cconfig->find_size_unit_max_val);
+
+    leText->setText(mainw->cconfig->lastSearchPattern);
 
     setTabOrder ( leText,buttonOk );
     leText->setFocus();
@@ -256,6 +324,8 @@ void findDialog::languageChange() {
     cbContent->setText ( tr ( "Content" ) );
     cbDateStart->setText ( tr ( "Date start" ) );
     cbDateEnd->setText ( tr ( "Date end" ) );
+    cbSizeMin->setText( tr("Min size") );
+    cbSizeMax->setText( tr("Max size") );
     buttonOk->setText ( tr ( "&OK" ) );
 #ifndef _WIN32
     buttonOk->setAccel ( QKeySequence ( QString::null ) );
@@ -282,10 +352,19 @@ int findDialog::saveState ( void ) {
     mainw->cconfig->find_mti   = cbTitle->isChecked();
     mainw->cconfig->find_mco   = cbTcomm->isChecked();
     mainw->cconfig->find_mal   = cbAlbum->isChecked();
+    mainw->cconfig->find_date_start   = cbDateStart->isChecked();
+    mainw->cconfig->find_date_end   = cbDateEnd->isChecked();
+    mainw->cconfig->find_size_min   = cbSizeMin->isChecked();
+    mainw->cconfig->find_size_max   = cbSizeMax->isChecked();
+    mainw->cconfig->find_size_min_val = spSizeMin->value();
+    mainw->cconfig->find_size_max_val = spSizeMax->value();
+    mainw->cconfig->find_size_unit_min_val= cbSizeUnitMin->currentIndex();
+    mainw->cconfig->find_size_unit_max_val = cbSizeUnitMax->currentIndex();
     mainw->cconfig->findX      = x();
     mainw->cconfig->findY      = y();
     mainw->cconfig->findWidth  = width();
     mainw->cconfig->findHeight = height();
+    mainw->cconfig->lastSearchPattern = leText->text();
     mainw->cconfig->writeConfig();
     return 0;
 }
@@ -387,7 +466,7 @@ int findDialog::seeke ( void ) {
     if ( mainw == NULL && mainw->db == NULL )
         return 0;
 
-    if ( ( leText->text() ).isEmpty() && !cbDateStart->isChecked() && !cbDateEnd->isChecked() )
+    if ( ( leText->text() ).isEmpty() && !cbDateStart->isChecked() && !cbDateEnd->isChecked() && !cbSizeMin->isChecked() && !cbSizeMax->isChecked() )
         return 0;
 
     se = new seekEngine ( this );
@@ -419,6 +498,27 @@ void findDialog::dateStartDoubleClicked() {
 void findDialog::dateEndDoubleClicked() {
 }
 
+void findDialog::sizeMinClicked() {
+	if(cbSizeMin->isChecked()) {
+		cbSizeUnitMin->setEnabled(true);
+		spSizeMin->setEnabled(true);
+	}
+	else {
+		cbSizeUnitMin->setEnabled(false);
+		spSizeMin->setEnabled(false);
+	}
+}
+void findDialog::sizeMaxClicked() {
+	if(cbSizeMax->isChecked()) {
+		cbSizeUnitMax->setEnabled(true);
+		spSizeMax->setEnabled(true);
+	}
+	else {
+		cbSizeUnitMax->setEnabled(false);
+		spSizeMax->setEnabled(false);
+	}
+}
+
 /***************************************************************************
 
   Seek engine Class
@@ -441,9 +541,9 @@ int seekEngine::start_seek ( void ) {
     DEBUG_INFO_ENABLED = init_debug_info();
     //get the pattern
     if ( fd->cbEasy->isChecked() )
-	strcpy ( patt, ( const char * ) ( ( QTextCodec::codecForLocale() )->fromUnicode ( "*"+fd->leText->text()+"*" ) ) );
+	strncpy ( patt, ( const char * ) ( ( QTextCodec::codecForLocale() )->fromUnicode ( "*"+fd->leText->text()+"*" ) ), 2047 );
     else
-        strcpy ( patt, ( const char * ) ( ( QTextCodec::codecForLocale() )->fromUnicode ( fd->leText->text() ) ) );
+        strncpy ( patt, ( const char * ) ( ( QTextCodec::codecForLocale() )->fromUnicode ( fd->leText->text() ) ), 2047 );
 
     //recode the pattern /easy/  put ^$ and ? -> .  * -> .*
     if ( fd->cbEasy->isChecked() )
@@ -494,6 +594,32 @@ int seekEngine::start_seek ( void ) {
     dateEndChecked  = fd->cbDateEnd ->isChecked();
     dateStart = fd->deDateStart->dateTime();
     dateEnd = fd->deDateEnd->dateTime();
+    sizeMinChecked = fd->cbSizeMin->isChecked();
+    sizeMaxChecked = fd->cbSizeMax->isChecked();
+
+    if (sizeMinChecked) {
+	if(fd->cbSizeUnitMin->currentIndex() == 0)
+		size_min = fd->spSizeMin->value(); // Byte
+	else if(fd->cbSizeUnitMin->currentIndex() == 1)
+		size_min = fd->spSizeMin->value() * 1024; // KByte
+	else if(fd->cbSizeUnitMin->currentIndex() == 2)
+		size_min = fd->spSizeMin->value() * 1024 * 1024; // MByte
+	else if(fd->cbSizeUnitMin->currentIndex() == 3)
+		size_min = fd->spSizeMin->value() * 1024 * 1024 * 1024; // GByte
+// 	std::cerr << "minsize checked, type "<< fd->cbSizeUnitMin->currentIndex() <<", min size " << size_min << endl;
+    }
+    
+    if (sizeMaxChecked) {
+	if(fd->cbSizeUnitMax->currentIndex() == 0)
+		size_max = fd->spSizeMax->value(); // Byte
+	else if(fd->cbSizeUnitMax->currentIndex() == 1)
+		size_max = fd->spSizeMax->value() * 1024; // KByte
+	else if(fd->cbSizeUnitMax->currentIndex() == 2)
+		size_max = fd->spSizeMax->value() * 1024 * 1024; // MByte
+	else if(fd->cbSizeUnitMax->currentIndex() == 3)
+		size_max = fd->spSizeMax->value() * 1024 * 1024 * 1024; // GByte
+// 	std::cerr << "maxsize checked, type "<< fd->cbSizeUnitMax->currentIndex() <<", max size " << size_max << endl;
+    }
 
     allmedia = false;
     allowner = false;
@@ -520,51 +646,48 @@ int seekEngine::start_seek ( void ) {
 int seekEngine::analyzeNode ( Node *n,Node *pa ) {
 
     if ( n == NULL ) return 0;
+    bool isOk=false;
     switch ( n->type ) {
     case HC_CATALOG:
         analyzeNode ( n->child );
         return 0;
-
     case HC_MEDIA:
         progress ( pww );
 
         //It is necessary to analyze this media node? /Owner/Media/
         if ( ( allmedia || ( media == n->getNameOf() ) ) &&
                 ( allowner || ( owner == ( ( DBMedia * ) ( n->data ) )->owner ) ) ) {
-            if ( dirname )
-                if ( matchIt ( n->getNameOf() ) ) {
-                    putNodeToList ( n );
-                    analyzeNode ( n->child );
-                    analyzeNode ( n->next );
-                    return 0;
-                }
+            if ( dirname ) {
+		if ( !matchIt ( n->getNameOf() ) ) {
+			isOk = false;
+		}
+		if ( dateStartChecked && !dateEndChecked) {
+			if (  (( DBMedia * )(n->data  ))->modification >= dateStart  ) {
+				isOk = true;
+			}
+		}
+		else if ( !dateStartChecked && dateEndChecked) {
+			if (  (( DBMedia * )(n->data  ))->modification <= dateEnd ) {
+				isOk = true;
+			}
+		}
+		else if ( dateStartChecked && dateEndChecked) {
+			if (  (( DBMedia * )(n->data  ))->modification >= dateStart && (( DBDirectory * )(n->data  ))->modification <= dateEnd ) {
+				isOk = true;
+			}
+		}
+
+		if (isOk) {
+			putNodeToList ( n );
+			analyzeNode ( n->child );
+			analyzeNode ( n->next );
+			return 0;
+		}
+	    }
+
             if ( comment )
                 if ( matchIt ( ( ( DBMedia * ) ( n->data ) )->comment ) )
                     putNodeToList ( n );
-
-        if ( dateStartChecked && !dateEndChecked)
-            if (  (( DBMedia * )(n->data  ))->modification >= dateStart  ) {
-                putNodeToList ( n );
-                analyzeNode ( n->next );
-                return 0;
-
-            }
-
-        if ( !dateStartChecked && dateEndChecked)
-            if (  (( DBMedia * )(n->data  ))->modification <= dateEnd ) {
-                putNodeToList ( n );
-                analyzeNode ( n->next );
-                return 0;
-
-            }
-
-        if ( dateStartChecked && dateEndChecked)
-            if (  (( DBMedia * )(n->data  ))->modification >= dateStart && (( DBMedia * )(n->data  ))->modification <= dateEnd ) {
-                putNodeToList ( n );
-                analyzeNode ( n->next );
-                return 0;
-
-            }
 
             analyzeNode ( n->child );
         }
@@ -577,88 +700,169 @@ int seekEngine::analyzeNode ( Node *n,Node *pa ) {
 
     case HC_DIRECTORY:
         progress ( pww );
+        isOk = true;
+        if ( dirname ) {
+            if ( !matchIt ( n->getNameOf() ) ) {
+		isOk = false;
+	    }
+	    if ( dateStartChecked && !dateEndChecked) {
+		if (  (( DBDirectory * )(n->data  ))->modification < dateStart  ) {
+				isOk = false;
+		}
+	    }
+	    else if ( !dateStartChecked && dateEndChecked) {
+		if (  (( DBDirectory * )(n->data  ))->modification > dateEnd ) {
+			isOk = false;
+		}
+	    }
+	    else if ( dateStartChecked && dateEndChecked) {
+		if (  (( DBDirectory * )(n->data  ))->modification > dateStart && (( DBDirectory * )(n->data  ))->modification > dateEnd ) {
+			isOk = false;
+		}
+	    }
 
-        if ( dirname )
-            if ( matchIt ( n->getNameOf() ) ) {
-                putNodeToList ( n );
-                analyzeNode ( n->child );
-                analyzeNode ( n->next );
-                return 0;
-            }
+	   if (isOk) {
+		putNodeToList ( n );
+		analyzeNode ( n->child );
+		analyzeNode ( n->next );
+		return 0;
+	   }
+	}
 
-        if ( comment )
-            if ( matchIt ( ( ( DBDirectory * ) ( n->data ) )->comment ) )
-                putNodeToList ( n );
 
-        if ( dateStartChecked && !dateEndChecked)
-            if (  (( DBDirectory * )(n->data  ))->modification >= dateStart  ) {
-                putNodeToList ( n );
-                analyzeNode ( n->next );
-                return 0;
-
-            }
-
-        if ( !dateStartChecked && dateEndChecked)
-            if (  (( DBDirectory * )(n->data  ))->modification <= dateEnd ) {
-                putNodeToList ( n );
-                analyzeNode ( n->next );
-                return 0;
-
-            }
-
-        if ( dateStartChecked && dateEndChecked)
-            if (  (( DBDirectory * )(n->data  ))->modification >= dateStart && (( DBDirectory * )(n->data  ))->modification <= dateEnd ) {
-                putNodeToList ( n );
-                analyzeNode ( n->next );
-                return 0;
-
-            }
-
+        if ( comment ) {
+		if ( matchIt ( ( ( DBDirectory * ) ( n->data ) )->comment ) ) {
+			putNodeToList ( n );
+		}
+        }
+        
         analyzeNode ( n->child );
         analyzeNode ( n->next );
         return 0;
 
     case HC_FILE:
-        if ( filename )
-            if ( matchIt ( n->getNameOf() ) ) {
-                putNodeToList ( n );
-                analyzeNode ( n->next );
-                return 0;
-            }
-        if ( comment )
-            if ( matchIt ( ( ( DBFile * ) ( n->data ) )->comment ) ) {
-                putNodeToList ( n );
-                analyzeNode ( n->next );
-                return 0;
-
-            }
-
-        if ( dateStartChecked && !dateEndChecked)
-            if (  (( DBFile * )(n->data  ))->modification >= dateStart  ) {
-                putNodeToList ( n );
-                analyzeNode ( n->next );
-                return 0;
-
-            }
-
-        if ( !dateStartChecked && dateEndChecked)
-            if (  (( DBFile * )(n->data  ))->modification <= dateEnd ) {
-                putNodeToList ( n );
-                analyzeNode ( n->next );
-                return 0;
-
-            }
-
-        if ( dateStartChecked && dateEndChecked)
-            if (  (( DBFile * )(n->data  ))->modification >= dateStart && (( DBFile * )(n->data  ))->modification <= dateEnd ) {
-                putNodeToList ( n );
-                analyzeNode ( n->next );
-                return 0;
-
-            }
-
-
-
+        isOk = true;
+        if ( filename ) {
+            if ( !matchIt ( n->getNameOf() ) ) {
+			isOk = false;
+	     }
+	}
+	if ( isOk && dateStartChecked && !dateEndChecked) {
+		if (  (( DBFile * )(n->data  ))->modification < dateStart  ) {
+			isOk = false;
+		}
+	}
+	else if (isOk &&  !dateStartChecked && dateEndChecked) {
+		if (  (( DBFile * )(n->data  ))->modification > dateEnd ) {
+			isOk = false;
+		}
+	}
+	else if ( isOk &&  dateStartChecked && dateEndChecked) {
+		if (  (( DBFile * )(n->data  ))->modification < dateStart || (( DBFile * )(n->data  ))->modification > dateEnd ) {
+			isOk = false;
+		}
+	}
+	
+	if ( isOk && sizeMinChecked && !sizeMaxChecked) {
+		float real_size = 0.0;
+		float real_size_min = 0.0;
+		switch ( ( ( DBFile * ) ( n->data ) )->sizeType ) {
+			case 0: 
+				real_size = ( ( ( DBFile * ) ( n->data ) )->size ) / ( 1024.0*1024.0 );
+				real_size_min = size_min;
+				break; //byte
+			case 1:
+				real_size = ( ( ( DBFile * ) ( n->data ) )->size ) /1024.0;
+				real_size_min = size_min / 1024.0;
+				break; //Kb
+			case 2:
+				real_size = ( ( ( DBFile * ) ( n->data ) )->size );
+				real_size_min = size_min / 1024.0 / 1024.0;
+				break; //Mb
+			case 3:
+				real_size = ( ( ( DBFile * ) ( n->data ) )->size ) *1024.0;
+				real_size_min = size_min / 1024.0 / 1024.0/1024.0;
+				break; //Gb
+		}
+// 		std::cerr << "minsize checked, min size " << real_size_min << " ~ " << real_size<< endl;
+		if (  real_size < real_size_min ) {
+			isOk = false;
+		}
+	}
+	if ( isOk && !sizeMinChecked && sizeMaxChecked) {
+		float real_size = 0.0;
+		float real_size_max = 0.0;
+		switch ( ( ( DBFile * ) ( n->data ) )->sizeType ) {
+			case 0: 
+				real_size = ( ( ( DBFile * ) ( n->data ) )->size ) / ( 1024.0*1024.0 );
+				real_size_max = size_max;
+				break; //byte
+			case 1:
+				real_size = ( ( ( DBFile * ) ( n->data ) )->size ) /1024.0;
+				real_size_max = size_max / 1024.0;
+				break; //Kb
+			case 2:
+				real_size = ( ( ( DBFile * ) ( n->data ) )->size );
+				real_size_max = size_max / 1024.0 / 1024.0;
+				break; //Mb
+			case 3:
+				real_size = ( ( ( DBFile * ) ( n->data ) )->size ) *1024.0;
+				real_size_max = size_max / 1024.0 / 1024.0/1024.0;
+				break; //Gb
+		}
+// 		std::cerr << "size type: "<<  ( ( DBFile * ) ( n->data ) )->sizeType <<", maxsize checked, max size " << real_size_max << " ~ " << real_size << endl;
+		if ( real_size  > real_size_max ) {
+			isOk = false;
+		}
+	}
+	if ( isOk && sizeMinChecked && sizeMaxChecked) {
+		float real_size = 0.0;
+		float real_size_min = 0.0;
+		float real_size_max = 0.0;
+		switch ( ( ( DBFile * ) ( n->data ) )->sizeType ) {
+			case 0: 
+				real_size = ( ( ( DBFile * ) ( n->data ) )->size ) / ( 1024.0*1024.0 );
+				real_size_min = size_min;
+				real_size_max = size_max;
+				break; //byte
+			case 1:
+				real_size = ( ( ( DBFile * ) ( n->data ) )->size ) /1024.0;
+				real_size_min = size_min / 1024.0;
+				real_size_max = size_max / 1024.0;
+				break; //Kb
+			case 2:
+				real_size = ( ( ( DBFile * ) ( n->data ) )->size );
+				real_size_min = size_min / 1024.0 / 1024.0;
+				real_size_max = size_max / 1024.0 / 1024.0;
+				break; //Mb
+			case 3:
+				real_size = ( ( ( DBFile * ) ( n->data ) )->size ) *1024.0;
+				real_size_min = size_min / 1024.0 / 1024.0/1024.0;
+				real_size_max = size_max / 1024.0 / 1024.0/1024.0;
+				break; //Gb
+		}
+// 		std::cerr << "min & maxsize checked, min size " << real_size_min << "/max size " << real_size_max << " ~ " << real_size << endl;
+		if ( real_size < real_size_min || real_size > real_size_max ) {
+			isOk = false;
+		}
+	}
+	if(isOk){
+		putNodeToList ( n );
+		analyzeNode ( n->next );
+		return 0;
+	}
+	
+        if ( comment ) {
+            if ( !matchIt ( ( ( DBFile * ) ( n->data ) )->comment ) ) {
+			isOk = false;
+	    }
+	    if (isOk) {
+		putNodeToList ( n );
+		analyzeNode ( n->next );
+		return 0;
+	    }
+	  }
+	
         analyzeNode ( ( ( DBFile * ) ( n->data ) )->prop,n );
         analyzeNode ( n->next );
         return 0;
@@ -701,7 +905,7 @@ int seekEngine::analyzeNode ( Node *n,Node *pa ) {
 }
 
 int seekEngine::matchIt ( QString txt ) {
-    const char *encoded;
+//     const char *encoded;
     int  match;
     if ( txt.isEmpty() ) return 0;
 

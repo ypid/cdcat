@@ -424,6 +424,22 @@ int CdCatConfig::readConfig ( void ) {
                     continue;
                 }
 
+                else if ( var=="find_checkbox_size_min" ) {
+                    if ( val=="true" )
+                        find_size_min=true;
+                    else
+                        find_size_min=false;
+                    continue;
+                }
+
+                else if ( var=="find_checkbox_size_max" ) {
+                    if ( val=="true" )
+                        find_size_max=true;
+                    else
+                        find_size_max=false;
+                    continue;
+                }
+
                 else if ( var=="findPos_x" ) {
                     findX =val.toInt();
                     continue;
@@ -436,6 +452,7 @@ int CdCatConfig::readConfig ( void ) {
                     findWidth =val.toInt();
                     continue;
                 }
+
                 else if ( var=="findSize_height" ) {
                     findHeight =val.toInt();
                     continue;
@@ -490,6 +507,41 @@ int CdCatConfig::readConfig ( void ) {
                     continue;
                 }
 
+                else if ( var=="find_size_min_val" ) {
+                    find_size_min_val =val.toInt();
+                    continue;
+                }
+
+                else if ( var=="find_size_min" ) {
+                    if ( val=="true" )
+                        find_size_min=true;
+                    else
+                        find_size_min=false;
+                    continue;
+                }
+
+                else if ( var=="find_size_max" ) {
+                    if ( val=="true" )
+                        find_size_max=true;
+                    else
+                        find_size_max=false;
+                    continue;
+                }
+
+                else if ( var=="find_size_max_val" ) {
+                    find_size_max_val =val.toInt();
+                    continue;
+                }
+
+                else if ( var=="find_size_unit_min_val" ) {
+                    find_size_unit_min_val =val.toInt();
+                    continue;
+                }
+
+                else if ( var=="find_size_unit_max_val" ) {
+                    find_size_unit_max_val =val.toInt();
+                    continue;
+                }
 
                 if ( var=="comment_bg_color" ) {
                     int r=0,g=0,b=0;
@@ -578,8 +630,13 @@ int CdCatConfig::readConfig ( void ) {
                     continue;
                 }
 
+                else if ( var=="lastSearchPattern" ) {
+                        lastSearchPattern=val;
+                    continue;
+                }
 
-                fprintf ( stderr,"Unknown key founded: %s\n", ( const char * ) var );
+
+                fprintf ( stderr,"Unknown key found: %s\n", ( const char * ) var );
                 error = 1;
 
             } // no comment
@@ -742,6 +799,32 @@ int CdCatConfig::writeConfig ( void ) {
         else
             str << "find_checkbox_mp3comment=false" << endl;
 
+        if ( find_date_start )
+            str << "find_checkbox_date_start=true" << endl;
+        else
+            str << "find_checkbox_date_start=false" << endl;
+
+        if ( find_date_end )
+            str << "find_checkbox_date_end=true" << endl;
+        else
+            str << "find_checkbox_date_end=false" << endl;
+
+        if ( find_size_min )
+            str << "find_size_min=true" << endl;
+        else
+            str << "find_size_min=false" << endl;
+
+        if ( find_size_max )
+            str << "find_size_max=true" << endl;
+        else
+            str << "find_size_max=false" << endl;
+
+        str << "find_size_min_val=" << find_size_min_val << endl;
+        str << "find_size_max_val=" << find_size_max_val << endl;
+        str << "find_size_unit_min_val=" << find_size_unit_min_val << endl;
+        str << "find_size_unit_max_val=" << find_size_unit_max_val << endl;
+
+
         str << "findPos_x=" << findX << endl;
         str << "findPos_y=" << findY << endl;
         str << "findSize_width=" << findWidth << endl;
@@ -803,6 +886,7 @@ int CdCatConfig::writeConfig ( void ) {
 
         str << "last_dir="+lastDir << endl;
         str << "lastMediaType="+QString().setNum(lastMediaType) << endl;
+        str << "lastSearchPattern="+lastSearchPattern << endl;
 
         f.close();
         return 0;

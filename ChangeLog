@@ -1,3 +1,7 @@
+29. Jan 2011 Christoph Thielecke <crissi99@gmx.de>
+	- remember last search pattern added
+	- searching min size/max size added 
+
 28. Jan 2011 Christoph Thielecke <crissi99@gmx.de>
 	- option for displaying progressed file at scanning directory tree added
 	- remember last media type in adddialog

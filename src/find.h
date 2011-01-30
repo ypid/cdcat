@@ -36,9 +36,11 @@ class Q3ListView;
 class Q3ListViewItem;
 class Q3HBoxLayout;
 class Q3VBoxLayout;
+class QSpinBox;
 class QPushButton;
 class DateTimeEdit;
 class CdCatMainWidget;
+class QComboBox;
 class findDialog;
 class Node;
 class PWw;
@@ -84,12 +86,17 @@ private:
 
     bool dateStartChecked;
     bool dateEndChecked;
+    bool sizeMinChecked;
+    bool sizeMaxChecked;
 
     QString  media;
     QString  owner;
 
     QDateTime dateStart;
     QDateTime dateEnd;
+
+    int size_min;
+    int size_max;
 };
 
 /***********************************************************************/
@@ -118,9 +125,15 @@ public:
     QLabel* textLabel5;
     QLabel* textLabel6;
     QLabel* textLabel7;
+    QLabel* textLabel8;
     Q3Frame* line2;
     Q3ListView* resultsl;
     QLineEdit* leText;
+    QSpinBox* spSizeMin;
+    QSpinBox* spSizeMax;
+    QComboBox *cbSizeUnitMin;
+    QComboBox *cbSizeUnitMax;
+
     QDateTimeEdit* deDateStart;
     QDateTimeEdit* deDateEnd;
     QCheckBox* cbComment;
@@ -135,6 +148,8 @@ public:
     QCheckBox* cbContent;
     QCheckBox* cbDateStart;
     QCheckBox* cbDateEnd;
+    QCheckBox* cbSizeMin;
+    QCheckBox* cbSizeMax;
 
 protected:
     int fillCBox ( void );
@@ -150,6 +165,8 @@ protected:
     Q3GridLayout* layout15;
     Q3HBoxLayout* layout30;
     Q3GridLayout* layout16;
+    Q3HBoxLayout* layout_size_min;
+    Q3HBoxLayout* layout_size_max;
 
 protected slots:
     virtual void languageChange();
@@ -162,6 +179,9 @@ protected slots:
     void dateEndChanged(int);
     void dateStartDoubleClicked();
     void dateEndDoubleClicked();
+    void sizeMinClicked();
+    void sizeMaxClicked();
+
 };
 
 #endif // FINDDIALOG_H
