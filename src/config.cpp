@@ -502,8 +502,35 @@ int CdCatConfig::readConfig ( void ) {
                         readcfiles=val;
                     continue;
                 }
+
                 else if ( var=="read_content_limit" ) {
                     readclimit =val.toInt();
+                    continue;
+                }
+
+                else if ( var=="find_date_start" ) {
+                    if ( val=="true" )
+                        find_date_start=true;
+                    else
+                        find_date_start=false;
+                    continue;
+                }
+
+                else if ( var=="find_date_end" ) {
+                    if ( val=="true" )
+                        find_date_end=true;
+                    else
+                        find_date_end=false;
+                    continue;
+                }
+
+                else if ( var=="find_date_start_val" ) {
+                    find_date_start_val = QDateTime().fromString(val);
+                    continue;
+                }
+
+                else if ( var=="find_date_end_val" ) {
+                    find_date_end_val =QDateTime().fromString(val);
                     continue;
                 }
 
@@ -808,6 +835,9 @@ int CdCatConfig::writeConfig ( void ) {
             str << "find_checkbox_date_end=true" << endl;
         else
             str << "find_checkbox_date_end=false" << endl;
+
+        str << "find_date_start_val=" << find_date_start_val.toString() << endl;
+        str << "find_date_end_val=" << find_date_end_val.toString() << endl;
 
         if ( find_size_min )
             str << "find_size_min=true" << endl;

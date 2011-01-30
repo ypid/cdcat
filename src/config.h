@@ -21,6 +21,7 @@
 #include <Q3Frame>
 #include <QLabel>
 #include <Q3VBoxLayout>
+#include <QDateTime>
 
 class Q3VBoxLayout;
 class Q3HBoxLayout;
@@ -112,6 +113,9 @@ public:
     int  findY;
     int  findWidth;
     int  findHeight;
+
+    QDateTime find_date_start_val;
+    QDateTime find_date_end_val;
 
     QColor *comm_bg,*comm_stext,*comm_vtext,*comm_fr;
     QFont *defaultfont;

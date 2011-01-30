@@ -277,6 +277,12 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool modal, 
     cbSizeUnitMax->setEnabled(false);
     spSizeMax->setEnabled(false);
 
+    deDateStart->setDateTime(mainw->cconfig->find_date_start_val);
+    deDateEnd->setDateTime(mainw->cconfig->find_date_end_val);
+
+    deDateStart->setDisplayFormat("dd.MM.yyyy hh:mm");
+    deDateEnd->setDisplayFormat("dd.MM.yyyy hh:mm");
+
     cbSizeMin->setChecked(mainw->cconfig->find_size_min);
     cbSizeMax->setChecked(mainw->cconfig->find_size_max);
     spSizeMin->setValue(mainw->cconfig->find_size_min_val);
@@ -292,6 +298,9 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool modal, 
     cbSizeUnitMax->setCurrentIndex(mainw->cconfig->find_size_unit_max_val);
 
     leText->setText(mainw->cconfig->lastSearchPattern);
+
+    dateStartChanged(0);
+    dateEndChanged(0);
 
     setTabOrder ( leText,buttonOk );
     leText->setFocus();
@@ -354,6 +363,8 @@ int findDialog::saveState ( void ) {
     mainw->cconfig->find_mal   = cbAlbum->isChecked();
     mainw->cconfig->find_date_start   = cbDateStart->isChecked();
     mainw->cconfig->find_date_end   = cbDateEnd->isChecked();
+    mainw->cconfig->find_date_start_val   = deDateStart->dateTime();
+    mainw->cconfig->find_date_end_val   = deDateEnd->dateTime();
     mainw->cconfig->find_size_min   = cbSizeMin->isChecked();
     mainw->cconfig->find_size_max   = cbSizeMax->isChecked();
     mainw->cconfig->find_size_min_val = spSizeMin->value();
