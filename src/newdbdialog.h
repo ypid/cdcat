@@ -35,7 +35,7 @@ class newdbdialog : public QDialog {
 
 public:
     int OK;
-    QString nameD,ownerD,commD;
+    QString nameD,ownerD,commD, categoryD;
 
     newdbdialog ( QWidget* parent = 0, const char* name = 0, bool modal = FALSE, Qt::WFlags fl = 0 );
     ~newdbdialog();
@@ -43,12 +43,15 @@ public:
     QLabel* textLabel1;
     QLabel* textLabel2;
     QLabel* textLabel3;
+    QLabel* textLabelCategory;
     QLineEdit* leName;
     QLineEdit* leOwner;
+    QLineEdit* leCategory;
     QPushButton* buttonOK;
     QPushButton* buttonCancel;
 
     Q3MultiLineEdit *teComm;
+
 
 
 protected:

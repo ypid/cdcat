@@ -36,7 +36,7 @@ class Q3MultiLineEdit;
 class QEvent;
 class CdCatConfig;
 
-int editNodeComment ( Node *node,QWidget *parent );
+int editNodeComment ( Node *node,QWidget *parent, bool isCommentEdit=true );
 
 class HQToolButton : public QToolButton {
 public:
@@ -51,10 +51,12 @@ class CommentWidget : public QWidget {
 
 public:
 
-    CommentWidget ( CdCatConfig * cc,QApplication *appl,QWidget *parent=0,const char *name=0,Qt::WFlags fl=0 );
+    CommentWidget ( CdCatConfig * cc,QApplication *appl,QWidget *parent=0,const char *name=0, Qt::WFlags fl=0 );
 
     CdCatConfig * cconfig;
     HQToolButton* ButtonEdit;
+    HQToolButton* ButtonCategory;
+    HQToolButton* ButtonCategoryEdit;
     HQToolButton* ButtonContent;
     void showNode ( Node *node,int mod );
 
@@ -80,6 +82,8 @@ private:
 public slots:
     int editC ( void );
     int showC ( void );
+    int editCategory ( void );
+    int showCategory ( void );
 };
 
 //-------------------------------------------------------------------------------------
@@ -87,7 +91,7 @@ class commentEdit : public QDialog {
     Q_OBJECT
 
 public:
-    commentEdit ( QString cc,QWidget* parent = 0, const char* name = 0, bool modal = FALSE, Qt::WFlags fl = 0 );
+    commentEdit ( QString cc,QWidget* parent = 0, const char* name = 0, bool modal = FALSE, bool isCommentEdit=true, Qt::WFlags fl = 0 );
     ~commentEdit();
 
     Q3MultiLineEdit* teComm;
@@ -106,6 +110,7 @@ protected:
 public:
     QString newc;
     int OK;
+    bool isCommentEdit;
 
 protected slots:
     virtual void languageChange();

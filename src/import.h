@@ -85,7 +85,7 @@ public:
      * @param new_medianame Name of new media
      */
 
-    int addNewMedia ( QString new_medianame, QList < lineObject > *medialines );
+    int addNewMedia ( QString new_medianame, QDateTime media_modification, QString media_comment, QString media_category, QList < lineObject > *medialines );
 
 protected:
     GuiSlave * guislave;

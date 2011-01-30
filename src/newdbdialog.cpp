@@ -48,8 +48,11 @@ newdbdialog::newdbdialog ( QWidget* parent, const char* name, bool modal, Qt::WF
     NewDBDialogBaseLayout = new Q3GridLayout ( this, 1, 1, 11, 6, "NewDBDialogBaseLayout" );
 
     leOwner = new QLineEdit ( this, "leOwner" );
-
     NewDBDialogBaseLayout->addWidget ( leOwner, 1, 1 );
+
+    leCategory = new QLineEdit ( this, "leCategory" );
+    NewDBDialogBaseLayout->addWidget ( leCategory, 2, 1 );
+
     QSpacerItem* spacer = new QSpacerItem ( 20, 132, QSizePolicy::Minimum, QSizePolicy::Expanding );
     NewDBDialogBaseLayout->addItem ( spacer, 3, 0 );
     QSpacerItem* spacer_2 = new QSpacerItem ( 241, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
@@ -57,7 +60,7 @@ newdbdialog::newdbdialog ( QWidget* parent, const char* name, bool modal, Qt::WF
 
     teComm = new Q3MultiLineEdit ( this, "teComm" );
 
-    NewDBDialogBaseLayout->addMultiCellWidget ( teComm, 2, 4, 1, 1 );
+    NewDBDialogBaseLayout->addMultiCellWidget ( teComm, 3, 3, 1, 1 );
 
     textLabel2 = new QLabel ( this, "textLabel2" );
 
@@ -69,7 +72,12 @@ newdbdialog::newdbdialog ( QWidget* parent, const char* name, bool modal, Qt::WF
 
     textLabel3 = new QLabel ( this, "textLabel3" );
 
-    NewDBDialogBaseLayout->addWidget ( textLabel3, 2, 0 );
+    NewDBDialogBaseLayout->addWidget ( textLabel3, 3, 0 );
+
+
+    textLabelCategory = new QLabel ( this, "textLabelCategory" );
+
+    NewDBDialogBaseLayout->addWidget ( textLabelCategory, 2, 0 );
 
     layout12 = new Q3HBoxLayout ( 0, 0, 6, "layout12" );
     QSpacerItem* spacer_3 = new QSpacerItem ( 140, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
@@ -88,7 +96,7 @@ newdbdialog::newdbdialog ( QWidget* parent, const char* name, bool modal, Qt::WF
     QSpacerItem* spacer_4 = new QSpacerItem ( 170, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
     layout12->addItem ( spacer_4 );
 
-    NewDBDialogBaseLayout->addMultiCellLayout ( layout12, 5, 5, 0, 1 );
+    NewDBDialogBaseLayout->addMultiCellLayout ( layout12, 6, 6, 0, 1 );
 
     textLabel1 = new QLabel ( this, "textLabel1" );
 
@@ -117,6 +125,7 @@ void newdbdialog::languageChange() {
     textLabel1->setText ( tr ( "DataBase Name:" ) );
     textLabel2->setText ( tr ( "DataBase Owner:" ) );
     textLabel3->setText ( tr ( "Comment:" ) );
+    textLabelCategory->setText ( tr ( "Category:" ) );
     leName->setText ( tr ( "Catalog" ) );
     leOwner->setText ( tr ( "hcat-user" ) );
     buttonOK->setText ( tr ( "OK" ) );
@@ -130,6 +139,7 @@ int newdbdialog::ok ( void ) {
     nameD  = leName->text();
     ownerD = leOwner->text();
     commD  = teComm->text();
+    categoryD  = leCategory->text();
     close();
     return 0;
 }

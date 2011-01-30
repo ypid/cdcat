@@ -62,7 +62,7 @@ void  HQToolButton::leaveEvent ( QEvent *e ) {
     QApplication::setOverrideCursor ( Qt::PointingHandCursor );
 }
 
-CommentWidget::CommentWidget ( CdCatConfig * cc,QApplication *appl,QWidget *parent,const char *name,Qt::WFlags fl )
+CommentWidget::CommentWidget ( CdCatConfig * cc,QApplication *appl,QWidget *parent,const char *name, Qt::WFlags fl)
         : QWidget ( parent,name,fl ) {
     if ( !name )
         setName ( "CommentWidget" );
@@ -85,8 +85,22 @@ CommentWidget::CommentWidget ( CdCatConfig * cc,QApplication *appl,QWidget *pare
     ButtonEdit->setGeometry ( 20,height()-45,30,30 );
     QToolTip::add ( ButtonEdit   , tr ( "Edit and refresh the actual comment page." ) );
 
+    ButtonCategory = new HQToolButton ( this );
+    ButtonCategory->setPixmap ( *get_t_showc_icon() );
+    ButtonCategory->setGeometry ( 120,height()-45,30,30 );
+    QToolTip::add ( ButtonCategory   , tr ( "Show the actual category page." ) );
+
+    ButtonCategoryEdit = new HQToolButton ( this );
+    ButtonCategoryEdit->setPixmap ( *get_t_comment_icon() );
+    ButtonCategoryEdit->setGeometry ( 85,height()-45,30,30 );
+    QToolTip::add ( ButtonCategoryEdit   , tr ( "Edit and refresh the actual category page." ) );
+
     connect ( ButtonEdit,SIGNAL ( clicked() ),this,SLOT ( editC() ) );
+    connect ( ButtonCategory,SIGNAL ( clicked() ),this,SLOT ( showCategory()) );
+    connect ( ButtonCategoryEdit,SIGNAL ( clicked() ),this,SLOT ( editCategory()) );
     connect ( ButtonContent,SIGNAL ( clicked() ),this,SLOT ( showC() ) );
+
+
 }
 
 void  CommentWidget::enterEvent ( QEvent *e ) {
@@ -360,6 +374,60 @@ void  CommentWidget::paintEvent ( QPaintEvent *pe ) {
 		p.drawText ( mx+20,my+w, ( *it ) );
 		w+=pixelsHigh;
 	    }
+	}
+        w+=pixelsHigh+2;
+        p.setPen ( *cconfig->comm_fr );
+        p.drawLine ( 12,my+w-pixelsHigh,width()-12,my+w-pixelsHigh );
+        p.setPen ( *cconfig->comm_stext );
+        w++;
+        p.drawText ( mx+15,my+w,tr ( "Category:" ) );
+        w+=pixelsHigh;
+        switch ( act->type ) {
+        case HC_CATALOG  :
+            text= ( ( DBCatalog   * ) ( act->data ) )->category;
+            break;
+        case HC_DIRECTORY:
+            text= ( ( DBDirectory * ) ( act->data ) )->category;
+            break;
+        case HC_FILE     :
+            text= ( ( DBFile      * ) ( act->data ) )->category;
+            break;
+        case HC_MEDIA    :
+            text= ( ( DBMedia     * ) ( act->data ) )->category;
+            break;
+        case HC_CATLNK   :
+            text= ( ( DBCatLnk    * ) ( act->data ) )->category;
+            break;
+        }
+        p.setPen ( *cconfig->comm_vtext );
+
+        textList = QStringList::split ( QRegExp ( "#|\n|\r\n" ),text,TRUE );
+        for ( QStringList::Iterator it=textList.begin(); it != textList.end();++it ) {
+	   int max_category_len = 20;
+	    int stringlen = (*it).size();
+            if(stringlen > max_category_len) {
+// 		cerr << "oversized category line (" << stringlen <<"): " << qPrintable(*it) << endl;
+		int curlen=0;
+		QStringList textList2;
+		for (int curidx=0;curidx < stringlen;curidx++) {
+			if(curlen == max_category_len) {
+				textList2.append((*it).mid(curidx-max_category_len, curidx));
+// 				cerr << "added sub category line (" << (*it).mid(curidx-max_category_len, curidx).length() <<"): " << qPrintable((*it).mid(curidx-max_category_len, curidx)) << endl;
+				curlen =0;
+			}
+			curlen++;
+		}
+		for ( QStringList::Iterator it2=textList2.begin(); it2 != textList2.end();++it2 ) {
+			p.drawText ( mx+20,my+w, ( *it2 ) );
+			w+=pixelsHigh;
+		}
+	    }
+	    else {
+// 		cerr << "undersized category line (" << stringlen <<"): " << qPrintable(*it) << endl;
+		p.drawText ( mx+20,my+w, ( *it ) );
+		w+=pixelsHigh;
+	    }
+
         }
 
 
@@ -404,6 +472,8 @@ void  CommentWidget::paintEvent ( QPaintEvent *pe ) {
 void  CommentWidget::resizeEvent ( QResizeEvent *re ) {
     ButtonEdit   ->setGeometry ( 20, ( ( re->size() ).height() )-45,30,30 );
     ButtonContent->setGeometry ( 55, ( ( re->size() ).height() )-45,30,30 );
+    ButtonCategoryEdit->setGeometry ( 85, ( ( re->size() ).height() )-45,30,30 );
+    ButtonCategory->setGeometry ( 120, ( ( re->size() ).height() )-45,30,30 );
 }
 
 void CommentWidget::showNode ( Node *node,int mod ) {
@@ -420,7 +490,24 @@ int CommentWidget::editC ( void ) {
 }
 
 int CommentWidget::showC ( void ) {
-    ShowContent *sc = new ShowContent ( act,this,"showcw",true );
+    ShowContent *sc = new ShowContent ( act, false, this,"showcw",true );
+    sc->exec();
+    emit touchdb();
+    repaint();
+    delete sc;
+    return 0;
+}
+
+
+int CommentWidget::editCategory ( void ) {
+    editNodeComment ( act,this, false );
+    emit touchdb();
+    repaint();
+    return 0;
+}
+
+int CommentWidget::showCategory ( void ) {
+    ShowContent *sc = new ShowContent ( act, true,this,"showcw",true );
     sc->exec();
     emit touchdb();
     repaint();
@@ -430,11 +517,12 @@ int CommentWidget::showC ( void ) {
 
 /****************************************************************************************/
 
-commentEdit::commentEdit ( QString cc, QWidget* parent, const char* name, bool modal, Qt::WFlags fl )
+commentEdit::commentEdit ( QString cc, QWidget* parent, const char* name, bool modal, bool isCommentEdit, Qt::WFlags fl)
         : QDialog ( parent, name, modal, fl )
 
 {
     OK=0;
+    this->isCommentEdit = isCommentEdit;
     if ( !name )
         setName ( "commentEdit" );
     setIcon ( *get_t_comment_icon() );
@@ -489,7 +577,10 @@ commentEdit::~commentEdit() {
  *  language.
  */
 void commentEdit::languageChange() {
-    setCaption ( tr ( "Edit Comment" ) );
+    if(isCommentEdit)
+	setCaption ( tr ( "Edit comment" ) );
+    else
+	setCaption ( tr ( "Edit category" ) );
     buttonCancel->setText ( tr ( "Cancel" ) );
     buttonOk->setText ( tr ( "OK" ) );
 }
@@ -507,63 +598,112 @@ int commentEdit::pushCancel ( void ) {
     return 0;
 }
 
-int editNodeComment ( Node *node,QWidget *parent ) {
+int editNodeComment ( Node *node,QWidget *parent, bool isCommentEdit ) {
     commentEdit *ce;
-    QString o;
+    QString o, n;
 
     if ( node == NULL ) return 0;
 
-    switch ( node->type ) {
-    case HC_CATALOG  :
-        o = ( ( DBCatalog   * ) ( node->data ) )->comment;
-        break;
-    case HC_DIRECTORY:
-        o = ( ( DBDirectory * ) ( node->data ) )->comment;
-        break;
-    case HC_FILE     :
-        o = ( ( DBFile      * ) ( node->data ) )->comment;
-        break;
-    case HC_MEDIA    :
-        o = ( ( DBMedia     * ) ( node->data ) )->comment;
-        break;
-    case HC_CATLNK   :
-        o = ( ( DBCatLnk    * ) ( node->data ) )->comment;
-        break;
+    if(isCommentEdit) {
+	switch ( node->type ) {
+	case HC_CATALOG  :
+		o = ( ( DBCatalog   * ) ( node->data ) )->comment;
+		break;
+	case HC_DIRECTORY:
+		o = ( ( DBDirectory * ) ( node->data ) )->comment;
+		break;
+	case HC_FILE     :
+		o = ( ( DBFile      * ) ( node->data ) )->comment;
+		break;
+	case HC_MEDIA    :
+		o = ( ( DBMedia     * ) ( node->data ) )->comment;
+		break;
+	case HC_CATLNK   :
+		o = ( ( DBCatLnk    * ) ( node->data ) )->comment;
+		break;
+	}
     }
-
-    ce = new commentEdit ( o,parent,"commentEdit",true );
+    else {
+	switch ( node->type ) {
+	case HC_CATALOG  :
+		o = ( ( DBCatalog   * ) ( node->data ) )->category;
+		break;
+	case HC_DIRECTORY:
+		o = ( ( DBDirectory * ) ( node->data ) )->category;
+		break;
+	case HC_FILE     :
+		o = ( ( DBFile      * ) ( node->data ) )->category;
+		break;
+	case HC_MEDIA    :
+		o = ( ( DBMedia     * ) ( node->data ) )->category;
+		break;
+	case HC_CATLNK   :
+		o = ( ( DBCatLnk    * ) ( node->data ) )->category;
+		break;
+	}
+    }
+    ce = new commentEdit ( o,parent,"commentEdit",true, isCommentEdit );
 
     ce->exec();
 
     if ( ce->OK == 0 ) return 0;
-    switch ( node->type ) {
-    case HC_CATALOG  :
-        ( ( DBCatalog * ) ( node->data ) )->comment   =
-            ( ce->newc ).replace ( QRegExp ( "\n" ),"#" );
-        break;
+    if(isCommentEdit) {
+	switch ( node->type ) {
+	case HC_CATALOG  :
+		( ( DBCatalog * ) ( node->data ) )->comment   =
+		( ce->newc ).replace ( QRegExp ( "\n" ),"#" );
+		break;
 
-    case HC_DIRECTORY:
-        ( ( DBDirectory * ) ( node->data ) )->comment =
-            ( ce->newc ).replace ( QRegExp ( "\n" ),"#" );
-        break;
+	case HC_DIRECTORY:
+		( ( DBDirectory * ) ( node->data ) )->comment =
+		( ce->newc ).replace ( QRegExp ( "\n" ),"#" );
+		break;
 
-    case HC_FILE     :
-        ( ( DBFile * ) ( node->data ) )->comment      =
-            ( ce->newc ).replace ( QRegExp ( "\n" ),"#" );
-        break;
+	case HC_FILE     :
+		( ( DBFile * ) ( node->data ) )->comment      =
+		( ce->newc ).replace ( QRegExp ( "\n" ),"#" );
+		break;
 
-    case HC_MEDIA    :
-        ( ( DBMedia * ) ( node->data ) )->comment     =
-            ( ce->newc ).replace ( QRegExp ( "\n" ),"#" );
-        break;
+	case HC_MEDIA    :
+		( ( DBMedia * ) ( node->data ) )->comment     =
+		( ce->newc ).replace ( QRegExp ( "\n" ),"#" );
+		break;
 
-    case HC_CATLNK   :
-        ( ( DBCatLnk * ) ( node->data ) )->comment    =
-            ( ce->newc ).replace ( QRegExp ( "\n" ),"#" );
-        break;
+	case HC_CATLNK   :
+		( ( DBCatLnk * ) ( node->data ) )->comment    =
+		( ce->newc ).replace ( QRegExp ( "\n" ),"#" );
+		break;
+	}
+    }
+    else {
+	switch ( node->type ) {
+	case HC_CATALOG  :
+		( ( DBCatalog * ) ( node->data ) )->category   =
+		( ce->newc ).replace ( QRegExp ( "\n" ),"#" );
+		break;
+
+	case HC_DIRECTORY:
+		( ( DBDirectory * ) ( node->data ) )->category =
+		( ce->newc ).replace ( QRegExp ( "\n" ),"#" );
+		break;
+
+	case HC_FILE     :
+		( ( DBFile * ) ( node->data ) )->category      =
+		( ce->newc ).replace ( QRegExp ( "\n" ),"#" );
+		break;
+
+	case HC_MEDIA    :
+		( ( DBMedia * ) ( node->data ) )->category     =
+		( ce->newc ).replace ( QRegExp ( "\n" ),"#" );
+		break;
+
+	case HC_CATLNK   :
+		( ( DBCatLnk * ) ( node->data ) )->category    =
+		( ce->newc ).replace ( QRegExp ( "\n" ),"#" );
+		break;
+	}
     }
     node->touchDB();
     return 0;
 }
-
 

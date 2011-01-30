@@ -83,6 +83,7 @@ void GuiSlave::checkversion ( QWidget *p,DataBase *db ) {
     if ( fv == "1.3" ) return;
     if ( fv == "1.4" ) return;
     if ( fv == "2.0" ) return;
+    if ( fv == "2.1" ) return;
 
     QMessageBox::warning ( p,tr ( "Warning..." ),
                            tr (
@@ -848,6 +849,7 @@ int GuiSlave::newEvent ( void ) {
         mainw->db->setDBName ( d->nameD );
         mainw->db->setDBOwner ( d->ownerD );
         mainw->db->setComment ( d->commD );
+        mainw->db->setCategory ( d->categoryD );
         panelsON();
     }
     return 0;
@@ -1178,7 +1180,7 @@ int GuiSlave::addEvent ( void ) {
 	}
         
 	i=  mainw->db->addMedia ( d->dDir,d->dName,d->serial,d->type,
-                                  ( d->dOwner.isEmpty() ? QString ( "" ) : d->dOwner ) );
+                                  ( d->dOwner.isEmpty() ? QString ( "" ) : d->dOwner ), ( d->dCategory.isEmpty() ? QString ( "" ) : d->dCategory ) );
 	
 	if(mainw->cconfig->showProgressedFileInStatus)
 		disconnect (mainw->db, SIGNAL(pathScanned(QString)), mainw, SLOT(pathScanned(QString)));
@@ -1340,6 +1342,8 @@ int GuiSlave::rescanEvent ( void ) {
         ( ( DBMedia * ) ( d->data ) )->name = ( ( DBMedia * ) ( standON->data ) )->name;
 
         ( ( DBMedia * ) ( d->data ) )->comment = ( ( DBMedia * ) ( standON->data ) )->comment;
+
+        ( ( DBMedia * ) ( d->data ) )->category = ( ( DBMedia * ) ( standON->data ) )->category;
 
         ( ( DBMedia * ) ( d->data ) )->owner = ( ( DBMedia * ) ( standON->data ) )->owner;
 
@@ -1596,16 +1600,27 @@ int GuiSlave::editComment ( void ) {
     return 0;
 }
 
+int GuiSlave::editCategory ( void ) {
+    if ( mainw->db == NULL ) return 0;
+    if ( standON == NULL )   return 0;
+
+    editNodeComment ( standON,mainw, false );
+    cHcaption();
+    mainw->commentWidget->repaint();
+    return 0;
+}
+
 int GuiSlave::showContent ( void ) {
     if ( mainw->db == NULL ) return 0;
     if ( haveContent ( standON ) ) {
-        ShowContent *sc = new ShowContent ( standON,mainw,"showcw",true );
+        ShowContent *sc = new ShowContent ( standON, false, mainw,"showcw");
         sc->exec();
         delete sc;
     }
     cHcaption();
     return 0;
 }
+
 
 int GuiSlave::addlnkEvent ( void ) {
     if ( mainw->db == NULL ) return 0;

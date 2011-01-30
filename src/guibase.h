@@ -92,6 +92,7 @@ public slots:
     int closeBranch ( void );
     int editComment ( void );
     int showContent ( void );
+    int editCategory ( void );
     int colorEvent ( void );
     int followLnk ( void );
     int addlnkEvent ( void );

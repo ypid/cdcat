@@ -121,6 +121,15 @@ addDialog::addDialog ( GuiSlave *c, QWidget* parent, const char* name, bool moda
     layout4->addWidget ( leOwner );
     layout7->addLayout ( layout4 );
 
+    layout11 = new Q3HBoxLayout ( 0, 0, 6, "layout11" );
+
+    textLabelCategory = new QLabel ( this, "textLabelCategory" );
+    layout11->addWidget ( textLabelCategory );
+
+    leCategory = new QLineEdit ( this, "leCategory" );
+    layout11->addWidget ( leCategory );
+    layout7->addLayout ( layout11 );
+
     layout5 = new Q3GridLayout ( 0, 1, 1, 0, 6, "layout5" );
 
     textLabel3 = new QLabel ( this, "textLabel3" );
@@ -212,6 +221,7 @@ void addDialog::languageChange() {
     textLabel1->setText ( tr ( "Media Name:" ) );
     textLabel2->setText ( tr ( "Serial number of Media:" ) );
     textLabel5->setText ( tr ( "Owner:" ) );
+    textLabelCategory->setText ( tr ( "Category:" ) );
     textLabel4->setText ( tr ( "Type:" ) );
     textLabel3->setText ( tr ( "Comment:" ) );
     buttonCancel->setText ( tr ( "Cancel" ) );
@@ -319,6 +329,7 @@ int addDialog::bOk ( void ) {
     dName  = leName->text();
     dOwner = leOwner->text();
     dComm  = teComm->text();
+    dCategory = leCategory->text();
     dDir   = dirView->sDir;
 	
 	

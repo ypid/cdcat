@@ -53,6 +53,7 @@ private:
     char **spgtable;
     inline char * spg ( int spn );
     void commentWriter ( QString& c );
+    void categoryWriter ( QString& c );
 
     int  writeHeader ( void );
     int  writeCatalog ( Node *source );

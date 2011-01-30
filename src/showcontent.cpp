@@ -34,10 +34,11 @@
  *  The dialog will by default be modeless, unless you set 'modal' to
  *  TRUE to construct a modal dialog.
  */
-ShowContent::ShowContent ( Node *node,QWidget* parent, const char* name, bool modal, Qt::WFlags fl )
+ShowContent::ShowContent ( Node *node,bool isCategory, QWidget* parent, const char* name, bool modal, Qt::WFlags fl )
         : QDialog ( parent, name, modal, fl ) {
     mynode = NULL;
     parentnode = node;
+    this->isCategory = isCategory;
 
     if ( !name )
         setName ( "ShowContent" );
@@ -75,26 +76,58 @@ ShowContent::ShowContent ( Node *node,QWidget* parent, const char* name, bool mo
 
     textBrowser = new QTextBrowser ( this, "textBrowser" );
 
-    if ( node != NULL && node->type == HC_FILE ) {
-        setCaption ( tr ( "Content of %1" ).arg ( node->getNameOf() ) );
-        mynode = ( ( DBFile * ) ( node->data ) )->prop;
-        while ( mynode != NULL ) {
-            if ( mynode->type == HC_CONTENT )
-                break;
-            mynode = mynode->next;
-        }
+    if(isCategory) {
+	if ( node != NULL ) {
+		setCaption ( tr ( "Category of %1" ).arg ( node->getNameOf() ) );
+		
+		QString o;
+		switch ( node->type ) {
+		case HC_CATALOG  :
+			o = ( ( DBCatalog   * ) ( node->data ) )->category;
+			break;
+		case HC_DIRECTORY:
+			o = ( ( DBDirectory * ) ( node->data ) )->category;
+			break;
+		case HC_FILE     :
+			o = ( ( DBFile      * ) ( node->data ) )->category;
+			break;
+		case HC_MEDIA    :
+			o = ( ( DBMedia     * ) ( node->data ) )->category;
+			break;
+		case HC_CATLNK   :
+			o = ( ( DBCatLnk    * ) ( node->data ) )->category;
+			break;
+		}
+		textBrowser->setPlainText ( o);
+	}
     }
-    if ( mynode != NULL ) {
-        textBrowser->setPlainText ( QString ( ( const char * ) ( ( DBContent * ) ( mynode->data ) )->bytes ) );
-        sizel->setText ( tr ( "%1 kByte" ).arg ( ( ( DBContent * ) ( mynode->data ) )->storedSize / 1024.0 ) );
+    else {
+	if ( node != NULL && node->type == HC_FILE ) {
+		setCaption ( tr ( "Content of %1" ).arg ( node->getNameOf() ) );
+		mynode = ( ( DBFile * ) ( node->data ) )->prop;
+		while ( mynode != NULL ) {
+		if ( mynode->type == HC_CONTENT )
+			break;
+		mynode = mynode->next;
+		}
+	}
+	if ( mynode != NULL ) {
+		textBrowser->setPlainText ( QString ( ( const char * ) ( ( DBContent * ) ( mynode->data ) )->bytes ) );
+		sizel->setText ( tr ( "%1 kByte" ).arg ( ( ( DBContent * ) ( mynode->data ) )->storedSize / 1024.0 ) );
+	}
     }
-
     ShowContentLayout->addWidget ( textBrowser, 1, 0 );
     languageChange();
     resize ( QSize ( 413, 296 ).expandedTo ( minimumSizeHint() ) );
     connect ( closeButton,SIGNAL ( clicked() ),this,SLOT ( close() ) );
-    connect ( deleteButton,SIGNAL ( clicked() ),this,SLOT ( deletenode() ) );
-    connect ( saveButton,SIGNAL ( clicked() ),this,SLOT ( savenode() ) );
+    if(isCategory) {
+	deleteButton->hide();
+	saveButton->hide();
+    }
+    else {
+	connect ( deleteButton,SIGNAL ( clicked() ),this,SLOT ( deletenode() ) );
+	connect ( saveButton,SIGNAL ( clicked() ),this,SLOT ( savenode() ) );
+    }
 }
 
 /*
@@ -109,7 +142,10 @@ ShowContent::~ShowContent() {
  *  language.
  */
 void ShowContent::languageChange() {
-
+    if(isCategory)
+	setCaption(tr("Set category"));
+    else
+	setCaption(tr("Set content"));
     closeButton->setText ( tr ( "Close" ) );
     deleteButton->setText ( QString::null );
 }
@@ -118,62 +154,72 @@ int ShowContent::savenode ( void ) {
     FILE *f;
     QString fname,errormsg;
 
-    if ( parentnode != NULL && parentnode->type == HC_FILE ) {
-        mynode = ( ( DBFile * ) ( parentnode->data ) )->prop;
-        while ( mynode != NULL ) {
-            if ( mynode->type == HC_CONTENT )
-                break;
-            mynode = mynode->next;
-        }
-    } else return 0;
-    if ( mynode == NULL ) return 0;
-
-    fname = QFileDialog::getSaveFileName(0, tr ( "Select a filename below" ), parentnode->getNameOf(), tr ( "CdCat databases (*.hcf )" ));
-    if ( !fname.isEmpty() ) {
-        f = fopen ( QFile::encodeName ( fname ),"w" );
-        if ( f == NULL ) {
-            errormsg = tr ( "I can't rewrite the file: %1" ).arg ( fname );
-            QMessageBox::warning ( this,tr ( "Error while saving..." ),errormsg );
-            return 0;
-        }
-        fseek ( f,0,SEEK_SET );
-        fwrite ( ( ( DBContent * ) ( mynode->data ) )->bytes,sizeof ( char ),
-                 ( ( DBContent * ) ( mynode->data ) )->storedSize,f );
-        fclose ( f );
+    if(isCategory) {
+       return 0;
     }
-    return 0;
+    else {
+	if ( parentnode != NULL && parentnode->type == HC_FILE ) {
+		mynode = ( ( DBFile * ) ( parentnode->data ) )->prop;
+		while ( mynode != NULL ) {
+		if ( mynode->type == HC_CONTENT )
+			break;
+		mynode = mynode->next;
+		}
+	} else return 0;
+	if ( mynode == NULL ) return 0;
+
+	fname = QFileDialog::getSaveFileName(0, tr ( "Select a filename below" ), parentnode->getNameOf(), tr ( "CdCat databases (*.hcf )" ));
+	if ( !fname.isEmpty() ) {
+		f = fopen ( QFile::encodeName ( fname ),"w" );
+		if ( f == NULL ) {
+		errormsg = tr ( "I can't rewrite the file: %1" ).arg ( fname );
+		QMessageBox::warning ( this,tr ( "Error while saving..." ),errormsg );
+		return 0;
+		}
+		fseek ( f,0,SEEK_SET );
+		fwrite ( ( ( DBContent * ) ( mynode->data ) )->bytes,sizeof ( char ),
+			( ( DBContent * ) ( mynode->data ) )->storedSize,f );
+		fclose ( f );
+	}
+	return 0;
+    }
 }
 
 int ShowContent::deletenode ( void ) {
     Node *tmp = NULL,*willdelete = NULL;
 
-    if ( QMessageBox::warning ( this,tr ( "Confirmation" ),
-                                //tr("Are you sure want to delete this file's content from the database?"),
-                                tr ( "Sure to delete this file's content from the database?" ),
-                                tr ( "Yes" ),tr ( "No" ) ) == 0 ) {
-        if ( parentnode == NULL || parentnode->type != HC_FILE ) return 0;
-        if ( ( tmp = ( ( DBFile * ) ( parentnode->data ) )->prop ) != NULL ) {
-            if ( tmp->type == HC_CONTENT ) { //was the first child
-                ( ( DBFile * ) ( parentnode->data ) )->prop = tmp->next;
-                tmp->next = NULL;
-                delete tmp;
-            } else {
-                while ( tmp->next != NULL ) {
-                    if ( tmp->next->type == HC_CONTENT ) {
-                        willdelete = tmp->next;
-                        tmp->next = willdelete->next;
-                        willdelete->next = NULL;
-                        delete willdelete;
-                    }
-                    tmp = tmp->next;
-                }
-            }
-        }
-
-        textBrowser->setText ( "" );
-        parentnode->touchDB();
+    if(isCategory) {
+       return 0;
     }
-    return 0;
+    else {
+	if ( QMessageBox::warning ( this,tr ( "Confirmation" ),
+					//tr("Are you sure want to delete this file's content from the database?"),
+					tr ( "Sure to delete this file's content from the database?" ),
+					tr ( "Yes" ),tr ( "No" ) ) == 0 ) {
+		if ( parentnode == NULL || parentnode->type != HC_FILE ) return 0;
+		if ( ( tmp = ( ( DBFile * ) ( parentnode->data ) )->prop ) != NULL ) {
+		if ( tmp->type == HC_CONTENT ) { //was the first child
+			( ( DBFile * ) ( parentnode->data ) )->prop = tmp->next;
+			tmp->next = NULL;
+			delete tmp;
+		} else {
+			while ( tmp->next != NULL ) {
+			if ( tmp->next->type == HC_CONTENT ) {
+				willdelete = tmp->next;
+				tmp->next = willdelete->next;
+				willdelete->next = NULL;
+				delete willdelete;
+			}
+			tmp = tmp->next;
+			}
+		}
+		}
+
+		textBrowser->setText ( "" );
+		parentnode->touchDB();
+	}
+	return 0;
+    }
 }
 
 

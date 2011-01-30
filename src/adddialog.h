@@ -58,11 +58,13 @@ public:
     QLabel* textLabel5;
     QLabel* textLabel4;
     QLabel* textLabel3;
+    QLabel* textLabelCategory;
     QPushButton* buttonCancel;
     QPushButton* buttonOK;
     QPushButton* buttonPli;
     Q3MultiLineEdit *teComm;
     QLineEdit* leOwner;
+    QLineEdit* leCategory;
     QComboBox* cbType;
     QSpinBox* sbNumber;
     QLineEdit* leName;
@@ -74,6 +76,8 @@ public:
 protected:
     Q3GridLayout* addDialogLayout;
     Q3VBoxLayout* layout10;
+    Q3HBoxLayout* layout11;
+    Q3VBoxLayout* layout12;
     Q3HBoxLayout* layout9;
     Q3VBoxLayout* layout8;
     Q3VBoxLayout* layout7;
@@ -105,7 +109,7 @@ public:
     int OK;
     int type;
     int serial;
-    QString dComm,dName,dOwner,dDir;
+    QString dComm,dName,dOwner,dDir, dCategory;
 
 };
 

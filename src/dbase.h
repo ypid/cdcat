@@ -106,6 +106,7 @@ public:
     QString name;
     QString owner;
     QString comment;
+    QString category;
 
     int  writed;
     //Writed to the disc  1=yes 0=no
@@ -125,9 +126,8 @@ public:
     DBCatalog ( void );
     ~DBCatalog ( void );
 
-    DBCatalog ( QString n,QString o,QString c );
-    DBCatalog ( QString n,QString o,QString c,QDateTime mod );
-    // n:name , o:owner , c:comment, mod:modification
+    DBCatalog ( QString n,QString o,QString c,QDateTime mod=QDateTime::currentDateTime(), QString pcategory="" );
+    // n:name , o:owner , c:comment, mod:modification, pcategory:category
 };
 
 class DBMedia { //type is 2
@@ -146,13 +146,13 @@ public:
 
     QDateTime modification;
     QString   comment;
+    QString category;
 
     //Is the media borrowed? NULL=>No ; String=>Yes , contains: for who?
     QString   borrowing;
 
-    DBMedia ( QString n,int nu,QString o,int t,QString c );
-    DBMedia ( QString n,int nu,QString o,int t,QString c,QDateTime mod );
-    // n:name , nu:number o:owner , t:type , c:comment, mod:modification
+    DBMedia ( QString n,int nu,QString o,int t,QString c,QDateTime mod=QDateTime::currentDateTime(), QString pcategory="" );
+    // n:name , nu:number o:owner , t:type , c:comment, mod:modification, pcategory:category
     DBMedia ( void );
     ~DBMedia ( void );
 };
@@ -162,10 +162,11 @@ public:
     QString   name;
     QDateTime modification;
     QString   comment;
+    QString category;
 
     DBDirectory ( void );
-    DBDirectory ( QString n,QDateTime mod,QString c );
-    // n:name , mod:modification , c:comment
+    DBDirectory ( QString n,QDateTime mod,QString c, QString pcategory="" );
+    // n:name , mod:modification , c:comment, pcategory:category
 
     ~DBDirectory ( void );
 };
@@ -175,6 +176,7 @@ public:
     QString   name;
     QDateTime modification;
     QString  comment;
+    QString category;
     float size;
     //filesize
 
@@ -185,8 +187,8 @@ public:
     //the root pointer of other Nodes. can be mp3tag of etc...
 
     DBFile ( void );
-    DBFile ( QString n,QDateTime mod,QString c,float s,int st );
-    // n:name , mod:modification , c:comment , s:size , st:sizeType
+    DBFile ( QString n,QDateTime mod,QString c,float s,int st, QString pcategory="" );
+    // n:name , mod:modification , c:comment , s:size , st:sizeType, pcategory:category
 
     ~DBFile ( void );
 };
@@ -224,10 +226,11 @@ public:
     QString name;
     char    *location;
     QString comment;
+    QString category;
 
 
     DBCatLnk ( void );
-    DBCatLnk ( QString pname,char *plocation,QString pcomment );
+    DBCatLnk ( QString pname,char *plocation,QString pcomment, QString pcategory="" );
 
     ~DBCatLnk ( void );
 };
@@ -273,11 +276,13 @@ public:
     void  setDBName ( QString n );
     void  setDBOwner ( QString o );
     void  setComment ( QString c );
+    void  setCategory ( QString category );
     void  setNice ( bool nic );
 
     QString& getDBName ( void );
     QString& getDBOwner ( void );
     QString& getComment ( void );
+    QString& getCategory ( void );
     Node *getRootNode ( void )
     { return root; }
 
@@ -295,7 +300,7 @@ public:
     //insert a new catalog from filename into the existing catalog.
 
     int   addMedia ( QString what,QString name,int number,int type );
-    int   addMedia ( QString what,QString name,int number,int type,QString owner );
+    int   addMedia ( QString what,QString name,int number,int type,QString owner, QString Category="" );
     //Scan a new media from the disk specified in "what" with name "name" and "number" ...
     //and immediately added to the database!
 
@@ -321,6 +326,8 @@ private:
     int   scanFileProp ( QFileInfo *fi,DBFile *fc );
 
     bool showProgressedFileInStatus;
+
+    QString pcategory;
     
 
 public:
@@ -360,16 +367,16 @@ public:
     */
 
     Node * getMediaNode ( QString name );
-    Node * putMediaNode ( QString name,int number,QString owner,int type,QString comment, QDateTime modification );
+    Node * putMediaNode ( QString name,int number,QString owner,int type,QString comment, QDateTime modification, QString category="" );
     Node * getMediaNode ( int id );
 
     //step only one directory with one call!
     //the meddir can be media or directoy depend it's will be the first directory or not.
     Node * getDirectoryNode ( Node *meddir,QString name );
-    Node * putDirectoryNode ( Node *meddir,QString name,QDateTime modification,QString comment );
+    Node * putDirectoryNode ( Node *meddir,QString name,QDateTime modification,QString comment, QString category="" );
 
     Node * getFileNode ( Node *directory,QString name );
-    Node * putFileNode ( Node *directory,QString name,QDateTime modification,QString comment,int sizeType,float size );
+    Node * putFileNode ( Node *directory,QString name,QDateTime modification,QString comment,int sizeType,float size, QString category="" );
 
     Node * putTagInfo ( Node *file,QString artist,QString title,QString comment,QString album,QString year );
 

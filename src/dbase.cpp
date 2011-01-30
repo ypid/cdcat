@@ -170,22 +170,11 @@ QString Node::getNameOf ( void ) {
     return QString ( "" );
 }
 
-
-
-DBCatalog::DBCatalog ( QString n,QString o,QString c ) {
+DBCatalog::DBCatalog ( QString n,QString o,QString c,QDateTime mod, QString pcategory ) {
     name    = n;
     owner   = o;
     comment = c;
-    writed  = 1;
-    strcpy ( filename,"" );
-    fileversion = "";
-    modification = QDateTime::currentDateTime();
-}
-
-DBCatalog::DBCatalog ( QString n,QString o,QString c,QDateTime mod ) {
-    name    = n;
-    owner   = o;
-    comment = c;
+    category = pcategory;
     writed  = 1;
     strcpy ( filename,"" );
     fileversion = "";
@@ -205,23 +194,14 @@ DBCatalog::DBCatalog ( void ) {
 DBCatalog::~DBCatalog ( void ) {
 }
 
-DBMedia::DBMedia ( QString n,int nu,QString o,int t,QString c ) {
-    name   = n;
-    number = nu;
-    owner  = o;
-    type   = t;
-    modification = QDateTime::currentDateTime();
-    comment = c;
-    borrowing = "";
-}
-
-DBMedia::DBMedia ( QString n,int nu,QString o,int t,QString c,QDateTime mod ) {
+DBMedia::DBMedia ( QString n,int nu,QString o,int t,QString c,QDateTime mod, QString pcategory ) {
     name    = n;
     number  = nu;
     owner   = o;
     type    = t;
     modification = mod;
     comment = c;
+    category = pcategory;
     borrowing = "";
 }
 
@@ -239,10 +219,11 @@ DBMedia::~DBMedia ( void ) {
 }
 
 
-DBDirectory::DBDirectory ( QString n,QDateTime mod,QString c ) {
+DBDirectory::DBDirectory ( QString n,QDateTime mod,QString c, QString pcategory ) {
     name         = n;
     modification = mod;
     comment      = c;
+    category = pcategory;
 }
 
 DBDirectory::DBDirectory ( void ) {
@@ -256,10 +237,11 @@ DBDirectory::~DBDirectory ( void ) {
 
 
 
-DBFile::DBFile ( QString n,QDateTime mod,QString c,float s,int st ) {
+DBFile::DBFile ( QString n,QDateTime mod,QString c,float s,int st, QString pcategory ) {
     name    = n;
     modification= mod;
     comment = c;
+    category = pcategory;
     size    = s;
     sizeType= st;
     prop    = NULL;
@@ -316,10 +298,11 @@ DBContent:: ~DBContent ( void ) {
     storedSize = 0;
 }
 
-DBCatLnk::DBCatLnk ( QString pname,char *plocation,QString pcomment ) {
+DBCatLnk::DBCatLnk ( QString pname,char *plocation, QString pcomment, QString pcategory ) {
     name      = pname;
     location  = mstr ( plocation );
     comment   = pcomment;
+    category = pcategory;
 }
 
 DBCatLnk::DBCatLnk ( void ) {
@@ -361,6 +344,10 @@ void DataBase::setComment ( QString c ) {
     ( ( DBCatalog * ) ( root->data ) )->comment = c;
 }
 
+void DataBase::setCategory ( QString c ) {
+    ( ( DBCatalog * ) ( root->data ) )->category = c;
+}
+
 QString& DataBase::getDBName ( void ) {
     return ( ( DBCatalog * ) ( root->data ) )->name;
 }
@@ -373,15 +360,21 @@ QString& DataBase::getComment ( void ) {
     return ( ( DBCatalog * ) ( root->data ) )->comment;
 }
 
+QString& DataBase::getCategory ( void ) {
+    return ( ( DBCatalog * ) ( root->data ) )->category;
+}
+
+
 /***************************************************************************/
 char *pattern;
 int DataBase::addMedia ( QString what,QString name,int number,int type ) {
     return addMedia ( what,name,number,type,"" );
 }
 
-int DataBase::addMedia ( QString what,QString name,int number,int type,QString owner ) {
+int DataBase::addMedia ( QString what,QString name,int number,int type,QString owner, QString pcategory ) {
     int returnv=0;
     Node *tt=root->child;
+    this->pcategory = pcategory;
 
     progress ( pww );
     ( ( DBCatalog * ) ( root->data ) )->touch();
@@ -400,8 +393,7 @@ int DataBase::addMedia ( QString what,QString name,int number,int type,QString o
                new DBMedia ( name,
                              number,
                              owner.isEmpty() ? ( ( DBCatalog * ) ( root->data ) )->owner : owner,
-                             type,
-                             QString ( "" ) );
+                             type, pcategory );
     progress ( pww );
 
     /* make the regex pattern for storecontent */
@@ -713,7 +705,7 @@ int DataBase::scanFsToNode ( QString what,Node *to ) {
                 comm =(char*) NULL;
             }
             tt->data= ( void * ) new DBFile ( fileInfo->fileName(),fileInfo->lastModified(),
-                                              comm,s,st );
+                                              comm,s,st, this->pcategory );
             scanFileProp ( fileInfo, ( DBFile * ) tt->data );
         } else if ( fileInfo->isDir() ) { /* DIRECTORY */
         
@@ -728,11 +720,11 @@ int DataBase::scanFsToNode ( QString what,Node *to ) {
                 tt->data= ( void * ) new DBDirectory (
                           fileInfo->fileName(), fileInfo->lastModified(),
                           tr ( "Symbolic link to directory:#" )
-                               + dir->relativeFilePath(fileInfo->symLinkTarget()) );
+                               + dir->relativeFilePath(fileInfo->symLinkTarget()), this->pcategory );
                 continue; /* Do not recurse into symbolically linked directories */
             } else {
                 tt->data= ( void * ) new DBDirectory (
-                          fileInfo->fileName(), fileInfo->lastModified(), (char*) NULL);
+                          fileInfo->fileName(), fileInfo->lastModified(), (char*) NULL, this->pcategory);
             }
 
             /* Start recursion: */
@@ -754,7 +746,7 @@ int DataBase::scanFsToNode ( QString what,Node *to ) {
             comm = tr ( "DEAD Symbolic link to:#" )
                         + dir->relativeFilePath(fileInfo->symLinkTarget());
             tt->data=( void * ) new DBFile ( fileInfo->fileName(),QDateTime(),
-                                          comm,0,BYTE );
+                                          comm,0,BYTE, this->pcategory );
         } else { /* SYSTEM FILE (e.g. FIFO, socket or device file) */
         
             if (*DEBUG_INFO_ENABLED)
@@ -764,7 +756,7 @@ int DataBase::scanFsToNode ( QString what,Node *to ) {
 
             comm = tr( "System file (e.g. FIFO, socket or device file)" );
             tt->data=( void * ) new DBFile ( fileInfo->fileName(),fileInfo->lastModified(),
-                                          comm,0,BYTE );
+                                          comm,0,BYTE, this->pcategory );
         }
     }/*end of for,..next directory entry*/
     return ret;
@@ -853,8 +845,8 @@ int DataBase::scanFileProp ( QFileInfo *fi,DBFile *fc ) {
             pcc2.setPattern(QString( pattern));
             //pcc2.setCaseSensitivity(Qt::CaseInsensitive);
             //pcc   = pcre_compile ( pattern,0,&error,&erroroffset,NULL );
-	    if(*DEBUG_INFO_ENABLED)
-		cerr << "pcc2 pattern: " << pattern << ", match: " << pcc2.exactMatch(QString(( const char * ) QFile::encodeName ( fi->fileName()))) << endl;
+// 	    if(*DEBUG_INFO_ENABLED)
+// 		cerr << "pcc2 pattern: " << pattern << ", match: " << pcc2.exactMatch(QString(( const char * ) QFile::encodeName ( fi->fileName()))) << endl;
 	    //if(*DEBUG_INFO_ENABLED)
 // 		cerr << "pcre_exec match: " << pcre_exec ( pcc,NULL, ( const char * ) QFile::encodeName ( fi->fileName() )
 //                                   ,strlen ( ( const char * ) QFile::encodeName ( fi->fileName() ) )
@@ -1217,11 +1209,11 @@ Node * DataBase::getMediaNode ( QString name ) {
     return NULL;
 }
 
-Node * DataBase::putMediaNode ( QString name,int number,QString owner,int type,QString comment, QDateTime modification ) {
+Node * DataBase::putMediaNode ( QString name,int number,QString owner,int type,QString comment, QDateTime modification, QString category ) {
     Node *t=NULL,*n=NULL;
 
     n = new Node ( HC_MEDIA,root );
-    n->data = ( void * ) new DBMedia ( name,number,owner,type,comment, modification );
+    n->data = ( void * ) new DBMedia ( name,number,owner,type,comment, modification, category );
 
     if ( root->child == NULL )
         root->child = n;
@@ -1262,11 +1254,11 @@ Node * DataBase::getDirectoryNode ( Node *meddir,QString name ) {
     return NULL;
 }
 
-Node * DataBase::putDirectoryNode ( Node *meddir,QString name,QDateTime modification,QString comment ) {
+Node * DataBase::putDirectoryNode ( Node *meddir,QString name,QDateTime modification,QString comment, QString category ) {
     Node *t=NULL,*n=NULL;
 
     n = new Node ( HC_DIRECTORY,meddir );
-    n->data = ( void * ) new DBDirectory ( name,modification,comment );
+    n->data = ( void * ) new DBDirectory ( name,modification,comment, category );
 
     if ( meddir->child == NULL )
         meddir->child = n;
@@ -1295,12 +1287,12 @@ Node * DataBase::getFileNode ( Node *directory,QString name ) {
 
 }
 
-Node * DataBase::putFileNode ( Node *directory,QString name,QDateTime modification,QString comment,int sizeType,float size ) {
+Node * DataBase::putFileNode ( Node *directory,QString name,QDateTime modification,QString comment,int sizeType,float size, QString category ) {
     Node *t=NULL,*n=NULL;
 
     n = new Node ( HC_FILE,directory );
     n->data = ( void * )
-              new DBFile ( name,modification,comment,size,sizeType );
+              new DBFile ( name,modification,comment,size,sizeType, category );
 
     if ( directory->child == NULL )
         directory->child = n;

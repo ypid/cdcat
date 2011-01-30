@@ -52,6 +52,8 @@ lineObject::lineObject ( const lineObject& newobj ) {
     filename = newobj.filename;
     size = newobj.size;
     datetime = newobj.datetime;
+    comment = newobj.comment;
+    category = newobj.category;
 }
 
 lineObject& lineObject::operator= ( const lineObject& newobj ) {
@@ -60,6 +62,8 @@ lineObject& lineObject::operator= ( const lineObject& newobj ) {
     filename = newobj.filename;
     size = newobj.size;
     datetime = newobj.datetime;
+    comment = newobj.comment;
+    category = newobj.category;
     return *this;
 }
 
@@ -154,6 +158,9 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
                 
                 QTextStream t ( &f );	             // use a text stream
                 QString medianame = "";
+                QString comment = "";
+                QString category = "";
+                QDateTime datetime;
 
                 medialines = new QList < lineObject > ();
                 //medialines->setAutoDelete( TRUE );	// the list owns the objects
@@ -165,12 +172,11 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
                     QString dirpath;
                     float size;
                     //QDate date;
-                    QDateTime datetime;
+                    
                     QString new_medianame;
                     QString datetimestring;
                     QString pathsep = "/";
-                    QString comment = "";
-                    QString category = "";
+
 
 
                     line = t.readLine();	// line of text excluding '\n'
@@ -537,7 +543,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 
                         if ( medianame != new_medianame ) {
                             //        QMessageBox::warning (0, "info", medianame);
-                            addNewMedia ( medianame, medialines );
+                            addNewMedia ( medianame, datetime, comment, category, medialines );
                                 medialines->clear();
                                 medianame = new_medianame;
                                 addNewItem ( new_medianame, dirpath, filename, size, datetime, comment, category );
@@ -557,7 +563,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
                 delete progress;
                 f.close();
                 if ( !medialines->isEmpty() ) {
-                    addNewMedia ( medianame, medialines );
+                    addNewMedia ( medianame, datetime, comment, category, medialines );
                     medialines->clear();
                 }
 
@@ -622,7 +628,7 @@ int importGtktalogCsv::addNewItem ( QString medianame, QString path,
 
 }
 
-int importGtktalogCsv::addNewMedia ( QString new_medianame, QList < lineObject > *medialines ) {
+int importGtktalogCsv::addNewMedia ( QString new_medianame, QDateTime media_modification, QString media_comment, QString media_category, QList < lineObject > *medialines ) {
     DEBUG_INFO_ENABLED = init_debug_info();
     //if(*DEBUG_INFO_ENABLED)
     //	cerr << "importGtktalogCsv::addNewMedia media: " <<  qPrintable(new_medianame) << endl;
@@ -636,7 +642,7 @@ int importGtktalogCsv::addNewMedia ( QString new_medianame, QList < lineObject >
     Node *env, *curr;
     curr = db->getMediaNode ( new_medianame );
     if ( curr == NULL )
-        curr = db->putMediaNode ( new_medianame , mediacount, tr ( "importuser" ), CD, "", QDateTime().currentDateTime() );
+        curr = db->putMediaNode ( new_medianame , mediacount, tr ( "importuser" ), CD, media_comment, media_modification, media_category );
 
     QString msg;
     lineObject obj("", "", "", 0.0, QDateTime(), "", "");
@@ -663,7 +669,7 @@ int importGtktalogCsv::addNewMedia ( QString new_medianame, QList < lineObject >
 
                 curr = db->getDirectoryNode ( env, dir );
                 if ( curr == NULL ) {
-                    curr = db->putDirectoryNode ( env,  dir , obj.getDateTime() , obj.getComment() );
+                    curr = db->putDirectoryNode ( env,  dir , obj.getDateTime() , obj.getComment(), obj.getCategory() );
                     dircount++;
 
                 }
@@ -700,7 +706,7 @@ int importGtktalogCsv::addNewMedia ( QString new_medianame, QList < lineObject >
         env = curr;
         curr = db->getFileNode ( env, QString ( obj.getFileName() ) );
         if ( curr == NULL )
-            curr = db->putFileNode ( env,  obj.getFileName() , obj.getDateTime() , obj.getComment(), st, s );
+            curr = db->putFileNode ( env,  obj.getFileName() , obj.getDateTime() , obj.getComment(), st, s, obj.getCategory() );
 
         curr = db->getMediaNode ( new_medianame );
 
