@@ -752,8 +752,6 @@ int importGtktalogCsv::addNewMedia ( QString new_medianame, QDateTime media_modi
  */
 
 
-importGtktalogXml* class_link;
-
 QString tmpdirname;
 bool importGtktalogXml::startDocument() {
     //cout << "startDocument: " << endl;
@@ -761,166 +759,169 @@ bool importGtktalogXml::startDocument() {
 }
 
 bool importGtktalogXml::startElement( const QString&, const QString&,
-                                      const QString & name2,
+                                      const QString & tag,
                                       const QXmlAttributes& ) {
     QString line = "";
-    last_tag = name2;
+    last_tag = tag;
+    
+    DEBUG_INFO_ENABLED = init_debug_info();
+    //if(*DEBUG_INFO_ENABLED)
+    
+    tag_content="";
+    
     return TRUE;
 }
 
 bool importGtktalogXml::endElement( const QString&, const QString & tag, const QString& ) {
-    //cout << "endElement: "  << "tag: " << tag << endl;
-    QString name2 = tag;
+    DEBUG_INFO_ENABLED = init_debug_info();
+    if(*DEBUG_INFO_ENABLED)
+        cout << "importGtktalogXml::endElement: "  << "tag: " << qPrintable(tag) << endl;
     QString line = "";
+    last_tag = tag;
+    
+    if(tag_content.length() > 1) {
+        if(tag_content.at(0)=='\n')
+                if(tag_content.at(1)=='\n')
+                        tag_content = tag_content.mid(2,tag_content.length()-1);
+                else
+                        tag_content = tag_content.mid(1,tag_content.length()-1);
+            
+    }
 
-    class_link->last_tag = name2;
-
-    if (name2 == "information") {
+    if(*DEBUG_INFO_ENABLED)
+        cout << "importGtktalogXml::endElement: "  << "tag content: \"" << qPrintable(tag_content) << "\"" << endl;
+    
+    if ( tag == "information" ) {
         // found information
+        information = tag_content;
+        comment = tag_content;
     }
-    if ( name2 == "name" ) {
-        line += "catalogName: " + class_link->catalogName + "\n";
+    else if ( tag == "name" ) {
+        catalogName = tag_content.replace('\n',"");
+        line += "catalogName: " + catalogName + "\n";
     }
-    if ( name2 == "report" ) {
-        class_link->guislave->mainw->db->setName ( class_link->catalogName );
+    
+    else if ( tag == "disc_name" ) {
+        // found disc name
+        new_medianame = tag_content.replace('\n',"");
     }
-    if ( name2 == "directory" ) {
-        //	std::cout << "directory tag ended. " << std::endl;
+    
+    else if ( tag == "directory_name" ) {
+        // found directory 
+        directory = tag_content.replace('\n',"");
+        if (!directory.isEmpty() && directory.at(0) == '/')
+           directory = directory.mid(1, directory.length()-1 );
+        if (directory.length() > 1 && directory.at(directory.length()-1) == '/')
+           directory = directory.mid(0, directory.length()-2 );
+    }
+    
+    else if ( tag == "file_name" ) {
+        // found file name
+        filename = tag_content.replace('\n',"");
+    }
+    else if ( tag == "file_size" ) {
+        // found file size
+        size = tag_content.toInt();
+    }
+    
+    else if ( tag == "file_date" ) {
+        // found file size
+        datetimestring = tag_content.stripWhiteSpace();
+
+        int dayindex = datetimestring.find ( "/" );
+        int monthindex = datetimestring.find ( "/", dayindex + 1 );
+        int yearindex = datetimestring.find ( " ", monthindex + 1 );
+        int hourindex = datetimestring.find ( ":", yearindex + 1 );
+        int minuteindex = datetimestring.find ( ":", hourindex + 1 );
+
+        int day = ( datetimestring.mid ( 0, dayindex ) ).toInt();
+        QString day_ = ( datetimestring.mid ( 0, dayindex ) );
+        int month = ( datetimestring.mid ( dayindex + 1, monthindex - dayindex - 1 ) ).toInt();
+        int year = ( datetimestring.mid ( monthindex + 1, hourindex - monthindex - 4 ) ).toInt();
+
+        int hour = ( datetimestring.mid ( yearindex + 1, minuteindex - hourindex - 1 ) ).toInt();
+        int minute = ( datetimestring.mid ( hourindex + 1, minuteindex - 1 - hourindex ) ).toInt();
+
+        int second = ( datetimestring.mid ( minuteindex + 1, datetimestring.length() - 1 ) ).toInt();
+        QDate date ( year, month, day );
+        QTime time ( hour, minute, second );
+
+        datetime = QDateTime ( date, time );
+
+    }
+    
+    else if ( tag == "file_category" ) {
+        // found category
+        category = tag_content;
+    }
+    
+    else if ( tag == "description" ) {
+        // found description
+        description = tag_content;
+//         comment = tag_content;
+    }
+    
+    else if ( tag == "report" ) {
+        guislave->mainw->db->setName ( catalogName );
+    }
+    else if ( tag == "directory" ) {
+        // found directory entry: for each file there is one
+        // just the start of each file
+//         if(*DEBUG_INFO_ENABLED)
+//                 std::cout << "directory tag ended. " << std::endl;
         line += "new_medianame: " + new_medianame + "\n";
         line += "directory: " + directory + "\n";
         line += "filename: " + filename + "\n";
-        line += "Full path: " + path + "\n";
+        line += "Full path: " + directory+"/"+filename + "\n";
         line += "size: " + QString().setNum( size ) + "\n";
         line += "datetimestring: " + datetimestring + "\n";
-        line += "category: " + categorie + "\n";
+        line += "category: " + category + "\n";
         line += "description: " + description + "\n";
         line += "information: " + information + "\n";
 
-        //		cerr << line << endl << endl << endl;
+        if(*DEBUG_INFO_ENABLED)
+                cerr << "line: " << qPrintable(line)<< endl;
 
-
-        line += "new_medianame: " + class_link->new_medianame + "\n";
-        line += "directory: " + class_link->directory + "\n";
-        line += "filename: " + class_link->filename + "\n";
-        line += "Full path: " + class_link->path + "\n";
-        line += "size: " + QString().setNum ( class_link->size ) + "\n";
-        line += "datetimestring: " + class_link->datetimestring + "\n";
-        line += "category: " + class_link->categorie + "\n";
-        line += "description: " + class_link->description + "\n";
-        line += "information: " + class_link->information + "\n";
 
         //cerr << line << endl << endl << endl;
 
-        if ( class_link->medianame == "" )
-            class_link->medianame = class_link->new_medianame;
+        if ( medianame == ""  )
+                medianame = new_medianame;
 
-        if ( class_link->medianame != class_link->new_medianame ) {
-            //        QMessageBox::warning (0, "info", class_link->medianame);
-            class_link->addNewMedia ( class_link->medianame, class_link->medialines );
-            class_link->medialines->clear();
-            class_link->medianame = class_link->new_medianame;
-            class_link->addNewItem ( class_link->new_medianame, class_link->directory, class_link->filename, class_link->size, class_link->datetime );
-        } else {
-            //        QMessageBox::warning (0, "info", "new item");
-            class_link->addNewItem ( class_link->medianame, class_link->directory, class_link->filename, class_link->size, class_link->datetime );
+        if ( medianame != new_medianame ) {
+                //        QMessageBox::warning (0, "info", medianame);
+                addNewMedia ( medianame, datetime, comment, category, medialines );
+                medialines->clear();
+                medianame = new_medianame;
+                addNewItem ( new_medianame, directory, filename, size, datetime, comment, category );
+
+
+        }
+        else {
+                //        QMessageBox::warning (0, "info", "new item");
+                addNewItem ( new_medianame, directory, filename, size, datetime, comment, category );
         }
 
-        class_link->new_medianame = "";
-        class_link->directory = "";
-        class_link->filename = "";
-        class_link->size = 0;
-        class_link->categorie = "";
-        class_link->description = "";
-        class_link->information = "";
-        class_link->datetimestring = "";
+        new_medianame = "";
+        directory = "";
+        filename = "";
+        size = 0;
+        category = "";
+        description = "";
+        information = "";
+        datetimestring = "";
         tmpdirname = "";
 
-        class_link->linecount++;
-        class_link->progress->setValue ( class_link->linecount );
+        linecount++;
+        progress->setValue ( linecount );
     }
-
+    
     return TRUE;
 }
 
 bool importGtktalogXml::characters ( const QString & ch ) {
 
-    QString name2 = ch;
-
-    if ( class_link->last_tag == "name" ) {
-        // found catalog name
-        class_link->catalogName += name2;
-    }
-
-
-    if ( class_link->last_tag == "directory" ) {
-        // found directory entry: for each file there is one
-        // just the start of each file
-    }
-
-    if ( class_link->last_tag == "disc_name" ) {
-        // found disc name
-        class_link->new_medianame += name2;
-    }
-
-    if ( class_link->last_tag == "directory_name" ) {
-        // found directory name
-        tmpdirname += name2;
-        class_link->directory = tmpdirname.mid ( 1, tmpdirname.length() - 2 );
-    }
-
-    if ( class_link->last_tag == "file_name" ) {
-        // found file name
-        class_link->filename += name2;
-    }
-
-    if ( class_link->last_tag == "file_size" ) {
-        // found file size
-        class_link->size = name2.toInt();
-    }
-
-    if ( class_link->last_tag == "file_date" ) {
-        // found file size
-        class_link->datetimestring = name2.stripWhiteSpace();
-
-        int dayindex = class_link->datetimestring.find ( "/" );
-        int monthindex = class_link->datetimestring.find ( "/", dayindex + 1 );
-        int yearindex = class_link->datetimestring.find ( " ", monthindex + 1 );
-        int hourindex = class_link->datetimestring.find ( ":", yearindex + 1 );
-        int minuteindex = class_link->datetimestring.find ( ":", hourindex + 1 );
-
-        int day = ( class_link->datetimestring.mid ( 0, dayindex ) ).toInt();
-        QString day_ = ( class_link->datetimestring.mid ( 0, dayindex ) );
-        int month = ( class_link->datetimestring.mid ( dayindex + 1, monthindex - dayindex - 1 ) ).toInt();
-        int year = ( class_link->datetimestring.mid ( monthindex + 1, hourindex - monthindex - 4 ) ).toInt();
-
-        int hour = ( class_link->datetimestring.mid ( yearindex + 1, minuteindex - hourindex - 1 ) ).toInt();
-        int minute = ( class_link->datetimestring.mid ( hourindex + 1, minuteindex - 1 - hourindex ) ).toInt();
-
-        int second = ( class_link->datetimestring.mid ( minuteindex + 1, class_link->datetimestring.length() - 1 ) ).toInt();
-        QDate date ( year, month, day );
-        QTime time ( hour, minute, second );
-
-        class_link->datetime = QDateTime ( date, time );
-
-    }
-
-
-    if ( class_link->last_tag == "file_category" ) {
-        // found category
-        class_link->categorie = name2;
-    }
-
-    if ( class_link->last_tag == "description" ) {
-        // found description
-        class_link->description = name2;
-    }
-
-
-    if ( class_link->last_tag == "information" ) {
-        // found information
-        class_link->information = name2;
-    }
-
+    tag_content += ch;
     return TRUE;
 }
 
@@ -967,7 +968,7 @@ importGtktalogXml::importGtktalogXml ( GuiSlave * parent, QString filename, bool
             f.close();
         }
 
-        new QProgressDialog( tr ( "Importing XML..." ), tr("Cancel"), 1, lines);
+        progress = new QProgressDialog( tr ( "Importing XML..." ), tr("Cancel"), 1, lines);
         progress->setCancelButton ( 0 );
         
         medialines = new QList < lineObject > ();
@@ -979,8 +980,6 @@ importGtktalogXml::importGtktalogXml ( GuiSlave * parent, QString filename, bool
         new_medianame = "";
         datetimestring = "";
 
-        // now we need a link to itself :(
-        class_link = this;
         QXmlInputSource source( f );
         QXmlSimpleReader reader;
         reader.setContentHandler( this );
@@ -993,7 +992,7 @@ importGtktalogXml::importGtktalogXml ( GuiSlave * parent, QString filename, bool
     if ( import_ok ) {
 
         if ( !medialines->isEmpty() ) {
-            addNewMedia ( medianame, medialines );
+            addNewMedia ( medianame, QDateTime().currentDateTime(), "", "", medialines );
             medialines->clear();
         }
 
@@ -1036,16 +1035,22 @@ importGtktalogXml::~importGtktalogXml() {
     delete ( progress );
 }
 
-int importGtktalogXml::addNewItem ( QString medianame, QString path, QString filename, float size, QDateTime datetime ) {
-    medialines->append ( lineObject ( medianame, path, filename, size, datetime, "", "" ) );
-
-    // QMessageBox::critical( 0, "item", "new item!");
+int importGtktalogXml::addNewItem ( QString medianame, QString path, QString filename, float size, QDateTime datetime, QString comment, QString category ) {
+    DEBUG_INFO_ENABLED = init_debug_info();
+    lineObject l ( medianame, path, filename, size, datetime, comment, category );
+    if (*DEBUG_INFO_ENABLED)
+        cerr << "importGtktalogXml::addNewItem: medianame: " <<
+             qPrintable(medianame) << ", path: " << qPrintable(path) << ", filename: " <<
+             qPrintable(filename) << ", size: " << size << ", date: " <<
+             qPrintable(datetime.toString())  << ", comment: " << qPrintable(comment) << ", category: " << qPrintable(category )<< endl;
+    medialines->append ( l );
     return 0;
 
 }
 
-int importGtktalogXml::addNewMedia ( QString new_medianame, QList < lineObject > *medialines ) {
-    // QMessageBox::critical(0, "media", new_medianame);
+int importGtktalogXml::addNewMedia ( QString new_medianame, QDateTime media_modification, QString media_comment, QString media_category, QList < lineObject > *medialines ) {
+    if(*DEBUG_INFO_ENABLED)
+     cerr << "importGtktalogXml::addNewMedia media: " <<  qPrintable(new_medianame) << endl;
 
     if ( guislave->mainw->db == NULL )
         guislave->newEvent();
@@ -1056,23 +1061,23 @@ int importGtktalogXml::addNewMedia ( QString new_medianame, QList < lineObject >
     Node *env, *curr;
     curr = db->getMediaNode ( new_medianame );
     if ( curr == NULL )
-        curr = db->putMediaNode ( new_medianame , mediacount, tr ( "importuser" ), CD, "",  class_link->datetime );
+        curr = db->putMediaNode ( new_medianame , mediacount, tr ( "importuser" ), CD, media_comment, datetime, media_category );
 
     QString msg;
-    lineObject *obj;
+    lineObject obj("", "", "", 0.0, QDateTime(), "", "");
 
     for ( int i = 0; i < medialines->size(); ++i ) {
-        *obj = medialines->at ( i );
+        obj = medialines->at(i);
         env = curr;
 
-        QString path = obj->getPath();
+        QString path = obj.getPath();
 
-        //        QMessageBox::warning(0, "path", obj->getPath());
+        //        QMessageBox::warning(0, "path", obj.getPath());
         int startindex = 0;
         int dirindex = 0;
 
 
-        if ( !obj->getPath().isEmpty() ) {
+        if ( !obj.getPath().isEmpty() ) {
             path += "/";
             dirindex = path.find ( "/" );
             while ( dirindex != -1 ) {
@@ -1082,7 +1087,7 @@ int importGtktalogXml::addNewMedia ( QString new_medianame, QList < lineObject >
 
                 curr = db->getDirectoryNode ( env, dir );
                 if ( curr == NULL ) {
-                    curr = db->putDirectoryNode ( env, dir ,  obj->getDateTime() , "" );
+                    curr = db->putDirectoryNode ( env, dir ,  obj.getDateTime() , obj.getComment(), obj.getCategory() );
                     dircount++;
 
                 }
@@ -1096,7 +1101,7 @@ int importGtktalogXml::addNewMedia ( QString new_medianame, QList < lineObject >
         }
         dirindex = -1;
 
-        uint size = ( uint ) obj->getSize();
+        uint size = ( uint ) obj.getSize();
         float s;
         int st;
 
@@ -1117,15 +1122,15 @@ int importGtktalogXml::addNewMedia ( QString new_medianame, QList < lineObject >
         }
 
         env = curr;
-        curr = db->getFileNode ( env,  obj->getFileName() );
+        curr = db->getFileNode ( env,  obj.getFileName() );
         if ( curr == NULL )
-            curr = db->putFileNode ( env, obj->getFileName() , obj->getDateTime() , "" , st, s );
+            curr = db->putFileNode ( env, obj.getFileName() , obj.getDateTime() , obj.getComment() , st, s, obj.getCategory() );
 
         curr = db->getMediaNode ( new_medianame );
 
         filecount++;
     } // over all items in list
-
+    
     mediacount++;
     refreshcount++;
     if ( refreshcount == 10 ) {
@@ -1133,6 +1138,7 @@ int importGtktalogXml::addNewMedia ( QString new_medianame, QList < lineObject >
         refreshcount = 0;
     }
 
+    
     return 0;
 }
 

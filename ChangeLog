@@ -1,6 +1,9 @@
 30. Jan 2011 Christoph Thielecke <crissi99@gmx.de>
 	- remember start/end date in find dialog
 	- double deletion fixed
+	- support for category (catalog, media, files/dirs) added
+	- comment at csv import fixed
+	- gtktalog xml import fixed
 
 29. Jan 2011 Christoph Thielecke <crissi99@gmx.de>
 	- remember last search pattern added

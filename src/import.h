@@ -113,17 +113,13 @@ Q_OBJECT public:
      * Example: folder1/subfolder/subsubfolder/file @param size Size of
      * file @param datetime Date + time of file
      */
-    int addNewItem ( QString medianame, QString path, QString filename,
-                     float size, QDateTime datetime );
+    int addNewItem ( QString medianame, QString path,
+                                    QString filename, float size, QDateTime datetime, QString comment, QString category );
 
     /*
      * @param new_medianame Name of new media
      */
-#if QT_VERSION >= 0x030100 // Qt 3.1.0 or better
-    int addNewMedia ( QString new_medianame, QList < lineObject > *medialines );
-#else
-    int addNewMedia ( QString new_medianame, QList < lineObject > *medialines );
-#endif
+    int addNewMedia ( QString new_medianame, QDateTime media_modification, QString media_comment, QString media_category, QList < lineObject > *medialines );
 
     int lines;
     int linecount;
@@ -141,13 +137,14 @@ Q_OBJECT public:
     QString datetimestring;
     QString line;
     QString catalogName;
-    QString categorie;
+    QString category;
     QString description;
+    QString comment;
     QString information;
     QDateTime datetime;
     QString directory;
     QString last_tag;
-		QString tag_content;
+    QString tag_content;
     GuiSlave * guislave;
     QList < lineObject > *medialines;
     QProgressDialog *progress;
