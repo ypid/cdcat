@@ -861,7 +861,6 @@ QString FileReader::getCatName ( void ) {
 	if (*DEBUG_INFO_ENABLED)
 		std::cerr <<"parsing done" <<endl;
 
-	delete handler;
 	if ( done || catname != "" ) {
 		return catname;
 	}
