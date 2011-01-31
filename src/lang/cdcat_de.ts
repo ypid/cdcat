@@ -1082,6 +1082,14 @@ wird zu
       <source>Select this for importing a text import (csv) generated from VisualCD.</source>
       <translation>Wählen Sie dies, um einen Textimport (CSV), welcher von VisualCD generiert wurde, durchzuführen</translation>
     </message>
+    <message>
+      <source>&amp;VVV (csv)</source>
+      <translation>&amp;VVV (CSV)</translation>
+    </message>
+    <message>
+      <source>Select this for importing a text import (csv) generated from VVV.</source>
+      <translation>Wählen Sie dies, um einen Textimport (CSV), welcher von VVV (Virtual Volumes View) generiert wurde, durchzuführen</translation>
+    </message>
   </context>
   <context>
     <name>InfoDialog</name>

@@ -1619,17 +1619,17 @@ Honlap: %3</translation>
 <context>
     <name>ImportDialog</name>
     <message>
-        <location filename="../importdialog.cpp" line="76"/>
+        <location filename="../importdialog.cpp" line="77"/>
         <source>Correct bad style from gtktalog export</source>
         <translation>Rossz stílusú gtktalog export korrekciója</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="63"/>
+        <location filename="../importdialog.cpp" line="64"/>
         <source>Create new Database</source>
         <translation>Új adatbázisba</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="155"/>
+        <location filename="../importdialog.cpp" line="157"/>
         <source>Import CSV file</source>
         <translation>CSV fájl importálása</translation>
     </message>
@@ -1661,17 +1661,17 @@ Honlap: %3</translation>
         <translation type="obsolete">Szeparátor az adatsorban</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="164"/>
+        <location filename="../importdialog.cpp" line="166"/>
         <source>Cancel</source>
         <translation>Mégsem</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="165"/>
+        <location filename="../importdialog.cpp" line="167"/>
         <source>Import</source>
         <translation>Import</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="166"/>
+        <location filename="../importdialog.cpp" line="168"/>
         <source>...</source>
         <translation>...</translation>
     </message>
@@ -1681,7 +1681,7 @@ Honlap: %3</translation>
         <translation type="obsolete">Fájlkeresőablak megnyitása tallózáshoz.</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="200"/>
+        <location filename="../importdialog.cpp" line="206"/>
         <source>Open file dialog</source>
         <translation>Fájl megnyitása</translation>
     </message>
@@ -1697,7 +1697,7 @@ konvertálja
 &lt;média&gt;/&lt;könyvtár&gt;/&lt;könyvtár&gt; </translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="204"/>
+        <location filename="../importdialog.cpp" line="210"/>
         <source>Corrects bad output style (gtktalog)</source>
         <translation>Javítja a rossz kimeneti formátumot (gtktalog)</translation>
     </message>
@@ -1707,12 +1707,12 @@ konvertálja
         <translation type="obsolete">&lt;strong&gt;Figyelem! Olvasd el a README_CSV_IMPORT fájlt mielőtt importálsz&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="218"/>
+        <location filename="../importdialog.cpp" line="224"/>
         <source>Error:</source>
         <translation>Hiba:</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="213"/>
+        <location filename="../importdialog.cpp" line="219"/>
         <source>You must be fill the &quot;Filename&quot; field!</source>
         <translation>A &quot;fájlnév&quot; mező kitöltése kötelező!</translation>
     </message>
@@ -1727,7 +1727,7 @@ konvertálja
         <translation type="obsolete">A &quot;szeparátor&quot; mező kitöltése kötelező!</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="254"/>
+        <location filename="../importdialog.cpp" line="262"/>
         <source>csv files(*.csv)</source>
         <translation>csv fájlok (*.csv)</translation>
     </message>
@@ -1737,12 +1737,12 @@ konvertálja
         <translation type="obsolete">fájl megnyitása tallózó panel</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="269"/>
+        <location filename="../importdialog.cpp" line="277"/>
         <source>Choose a file for import</source>
         <translation>Válaszd ki az importálandó fájlt</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="168"/>
+        <location filename="../importdialog.cpp" line="170"/>
         <source>Type</source>
         <translation>Típus</translation>
     </message>
@@ -1762,22 +1762,22 @@ konvertálja
         <translation type="obsolete">&amp;XML (gtktalog)</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="177"/>
+        <location filename="../importdialog.cpp" line="180"/>
         <source>Select the type of import here</source>
         <translation>Válaszd ki az importálás típusát</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="198"/>
+        <location filename="../importdialog.cpp" line="204"/>
         <source>Open the file dialog for selecting file to import.</source>
         <translation>Tallózás az importálandó fájl kiválasztásához.</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="205"/>
+        <location filename="../importdialog.cpp" line="211"/>
         <source>&lt;strong&gt;Please read the README_IMPORT before you import!&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;Kérlek importálás előtt olvasd el a README_IMPORT fált!&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="258"/>
+        <location filename="../importdialog.cpp" line="266"/>
         <source>xml files(*.xml)</source>
         <translation>xml fájlok(*.xml)</translation>
     </message>
@@ -1797,7 +1797,7 @@ konvertálja
         <translation type="obsolete">Válaszd ki ezt text/csv importálásakor</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="192"/>
+        <location filename="../importdialog.cpp" line="198"/>
         <source>Select this for importing a xml report generated from gtktalog</source>
         <translation type="unfinished">Válaszd ki ezt ha gtktalog xml fájlt importálsz</translation>
     </message>
@@ -1818,7 +1818,7 @@ konvertálja
 &lt;média&gt;/&lt;könyvtár&gt;/&lt;könyvtár&gt; </translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="156"/>
+        <location filename="../importdialog.cpp" line="158"/>
         <source>File:</source>
         <translation>Fájl:</translation>
     </message>
@@ -1874,29 +1874,29 @@ konvertálja
         <translation type="obsolete">A &quot;szeparátor&quot; mező kitöltése kötelező!</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="159"/>
+        <location filename="../importdialog.cpp" line="161"/>
         <source>Separator:</source>
         <translation>Szeparátor:</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="161"/>
+        <location filename="../importdialog.cpp" line="163"/>
         <source>This is the separator in dataline
 &lt;path&gt;SEPARATOR&lt;size&gt;SEPARATOR&lt;date&gt;&lt;space&gt;&lt;time&gt;</source>
         <translation>Ez a szeparátor az adatelemek között 
 &lt;path&gt;SEPARATOR&lt;size&gt;SEPARATOR&lt;date&gt;&lt;space&gt;&lt;time&gt;</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="163"/>
+        <location filename="../importdialog.cpp" line="165"/>
         <source>Separator in data line</source>
         <translation>Szeparátor az adatmezők között</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="173"/>
+        <location filename="../importdialog.cpp" line="176"/>
         <source>Gtktalog &amp;XML</source>
         <translation>Gtktalog &amp;XML</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="174"/>
+        <location filename="../importdialog.cpp" line="177"/>
         <source>&amp;WhereIsIt XML (classic)</source>
         <translation>&amp;WhereIsIt XML (hagyományos)</translation>
     </message>
@@ -1911,7 +1911,7 @@ konvertálja
         <translation type="obsolete">Válaszd ki ezt ha gtktalog xml fájlt importálsz</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="202"/>
+        <location filename="../importdialog.cpp" line="208"/>
         <source>Corrects bad output style from gtktalog.
 &lt;media&gt;SEPARATOR/&lt;dir&gt;/SEPARATOR/&lt;dir&gt;
  will be to
@@ -1922,58 +1922,68 @@ konvertálja
 &lt;media&gt;/&lt;dir&gt;/&lt;dir&gt;</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="218"/>
+        <location filename="../importdialog.cpp" line="224"/>
         <source>You must be fill the &quot;Separator&quot; field!</source>
         <translation>Ki kell töltened a &quot;Szeparátor&quot; mezőt!</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="260"/>
+        <location filename="../importdialog.cpp" line="268"/>
         <source>all files(*.*)</source>
         <translation>minden fájl(*.*)</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="169"/>
+        <location filename="../importdialog.cpp" line="171"/>
         <source>&amp;Gtktalog (csv)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="180"/>
+        <location filename="../importdialog.cpp" line="183"/>
         <source>Select this for importing a text import (csv) generated from Gtktalog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="170"/>
+        <location filename="../importdialog.cpp" line="172"/>
         <source>&amp;Kat-CeDe (csv)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="183"/>
+        <location filename="../importdialog.cpp" line="186"/>
         <source>Select this for importing a text import (csv) generated from Kat-CeDe.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="195"/>
+        <location filename="../importdialog.cpp" line="201"/>
         <source>Select this for importing a xml report generated from WhereIsIt?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="171"/>
+        <location filename="../importdialog.cpp" line="173"/>
         <source>&amp;Disclib (csv)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="186"/>
+        <location filename="../importdialog.cpp" line="189"/>
         <source>Select this for importing a text import (csv) generated from Disclib.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="172"/>
+        <location filename="../importdialog.cpp" line="174"/>
         <source>&amp;VisualCD (csv)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="189"/>
+        <location filename="../importdialog.cpp" line="192"/>
         <source>Select this for importing a text import (csv) generated from VisualCD.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../importdialog.cpp" line="175"/>
+        <source>&amp;VVV (csv)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../importdialog.cpp" line="195"/>
+        <source>Select this for importing a text import (csv) generated from VVV.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2277,7 +2287,7 @@ Létreh. dátuma</translation>
         <translation>Minták</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1541"/>
+        <location filename="../import.cpp" line="1660"/>
         <source>importuser</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3802,84 +3812,84 @@ E-mail: hyperr@freemail.hu
         <translation>CSV Importálása...</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="712"/>
+        <location filename="../import.cpp" line="831"/>
         <source>Import was successful.</source>
         <translation>Az importálás sikeresen befelyeződött.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="715"/>
+        <location filename="../import.cpp" line="834"/>
         <source>1 media</source>
         <translation>1 média</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="717"/>
+        <location filename="../import.cpp" line="836"/>
         <source>media</source>
         <translation>média</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="720"/>
+        <location filename="../import.cpp" line="839"/>
         <source>1 directory:,
 </source>
         <translation>1 könyvtár;,
 </translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="722"/>
+        <location filename="../import.cpp" line="841"/>
         <source>directories</source>
         <translation>könyvtár</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="725"/>
+        <location filename="../import.cpp" line="844"/>
         <source>1 File</source>
         <translation>1 Fájl</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="727"/>
+        <location filename="../import.cpp" line="846"/>
         <source>files</source>
         <translation>fájl</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="729"/>
+        <location filename="../import.cpp" line="848"/>
         <source>are imported.</source>
         <translation>importálva.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="731"/>
+        <location filename="../import.cpp" line="850"/>
         <source>Import successful</source>
         <translation>Az importálás sikeresen befelyeződött</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="736"/>
+        <location filename="../import.cpp" line="855"/>
         <source>file read error</source>
         <translation>fájl olvasási hiba</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="736"/>
+        <location filename="../import.cpp" line="855"/>
         <source>Could not read file</source>
         <translation>Nem tudtam olvasni a fájlt</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="739"/>
+        <location filename="../import.cpp" line="858"/>
         <source>Fatal error</source>
         <translation>Végzetes hiba</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="739"/>
+        <location filename="../import.cpp" line="858"/>
         <source>Fatal error occured.</source>
         <translation>Végzetes hiba történt.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="742"/>
+        <location filename="../import.cpp" line="861"/>
         <source>file open error</source>
         <translation>fájl megnyitási hiba</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="742"/>
+        <location filename="../import.cpp" line="861"/>
         <source>Could not open file</source>
         <translation>Nem tudtam megnyitni a fájlt</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="781"/>
+        <location filename="../import.cpp" line="900"/>
         <source>importuser</source>
         <translation>import-flh</translation>
     </message>
@@ -3897,74 +3907,74 @@ E-mail: hyperr@freemail.hu
 <context>
     <name>importGtktalogXml</name>
     <message>
-        <location filename="../import.cpp" line="1107"/>
+        <location filename="../import.cpp" line="1226"/>
         <source>Importing XML...</source>
         <translation>XML Importálás...</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1141"/>
+        <location filename="../import.cpp" line="1260"/>
         <source>XML import was successful.</source>
         <translation>Az XML importálás sikeres volt.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1144"/>
+        <location filename="../import.cpp" line="1263"/>
         <source>1 media</source>
         <translation>1 média</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1146"/>
+        <location filename="../import.cpp" line="1265"/>
         <source>media</source>
         <translation>média</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1149"/>
+        <location filename="../import.cpp" line="1268"/>
         <source>1 directory:,
 </source>
         <translation>1 könyvtár;,
 </translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1151"/>
+        <location filename="../import.cpp" line="1270"/>
         <source>directories</source>
         <translation>könyvtár</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1154"/>
+        <location filename="../import.cpp" line="1273"/>
         <source>1 File</source>
         <translation>1 Fájl</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1156"/>
+        <location filename="../import.cpp" line="1275"/>
         <source>files</source>
         <translation>fájl</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1158"/>
+        <location filename="../import.cpp" line="1277"/>
         <source>are imported.</source>
         <translation>importálva.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1160"/>
+        <location filename="../import.cpp" line="1279"/>
         <source>Import successful</source>
         <translation>Az importálás sikeresen befelyeződött</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1164"/>
+        <location filename="../import.cpp" line="1283"/>
         <source>parse error</source>
         <translation>parsolási hiba</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1164"/>
+        <location filename="../import.cpp" line="1283"/>
         <source>error during parsing</source>
         <translation>hiba a feldolgozás alatt</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1200"/>
+        <location filename="../import.cpp" line="1319"/>
         <source>importuser</source>
         <translation>import-felhasználó</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1107"/>
+        <location filename="../import.cpp" line="1226"/>
         <source>Cancel</source>
         <translation type="unfinished">Mégsem</translation>
     </message>
@@ -3972,69 +3982,69 @@ E-mail: hyperr@freemail.hu
 <context>
     <name>importWhereIsItXml</name>
     <message>
-        <location filename="../import.cpp" line="1758"/>
+        <location filename="../import.cpp" line="1877"/>
         <source>Importing XML...</source>
         <translation>XML Importálás...</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1794"/>
+        <location filename="../import.cpp" line="1913"/>
         <source>Importing XML from WhereIsIt was successful.</source>
         <translation>A WhereIsIt-es XML importálása sikeresen megtörtént.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1797"/>
+        <location filename="../import.cpp" line="1916"/>
         <source>1 media</source>
         <translation>1 média</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1799"/>
+        <location filename="../import.cpp" line="1918"/>
         <source>media</source>
         <translation>média</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1802"/>
+        <location filename="../import.cpp" line="1921"/>
         <source>1 directory:,
 </source>
         <translation>1 könyvtár;,
 </translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1804"/>
+        <location filename="../import.cpp" line="1923"/>
         <source>directories</source>
         <translation>könyvtár</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1807"/>
+        <location filename="../import.cpp" line="1926"/>
         <source>1 File</source>
         <translation>1 Fájl</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1809"/>
+        <location filename="../import.cpp" line="1928"/>
         <source>files</source>
         <translation>fájl</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1811"/>
+        <location filename="../import.cpp" line="1930"/>
         <source>are imported.</source>
         <translation>importálva.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1813"/>
+        <location filename="../import.cpp" line="1932"/>
         <source>Import successful</source>
         <translation>Az importálás sikeresen befelyeződött</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1817"/>
+        <location filename="../import.cpp" line="1936"/>
         <source>parse error</source>
         <translation>parsolási hiba</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1817"/>
+        <location filename="../import.cpp" line="1936"/>
         <source>error during parsing</source>
         <translation>hiba a feldolgozás alatt</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1758"/>
+        <location filename="../import.cpp" line="1877"/>
         <source>Cancel</source>
         <translation type="unfinished">Mégsem</translation>
     </message>

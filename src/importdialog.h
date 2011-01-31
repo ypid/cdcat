@@ -54,6 +54,7 @@ public:
     QRadioButton *importTypeCsvKatCeDe;
     QRadioButton *importTypeCsvDisclib;
     QRadioButton *importTypeCsvVisualcd;
+    QRadioButton *importTypeCsvVvv;
     QRadioButton *importTypeGtktalogXml;
     QRadioButton *importTypeWhereisitXml;
     Q3ButtonGroup *importButtonBox;

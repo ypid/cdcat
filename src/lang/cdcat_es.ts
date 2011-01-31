@@ -1450,17 +1450,17 @@ Página web: %3</translation>
 <context>
     <name>ImportDialog</name>
     <message>
-        <location filename="../importdialog.cpp" line="76"/>
+        <location filename="../importdialog.cpp" line="77"/>
         <source>Correct bad style from gtktalog export</source>
         <translation>Corregir el mal estilo de la exportación de gtktalog</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="63"/>
+        <location filename="../importdialog.cpp" line="64"/>
         <source>Create new Database</source>
         <translation>Crear una nueva base de datos</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="155"/>
+        <location filename="../importdialog.cpp" line="157"/>
         <source>Import CSV file</source>
         <translation>Importar desde un archivo csv</translation>
     </message>
@@ -1487,17 +1487,17 @@ Página web: %3</translation>
         <translation type="obsolete">Separador en la líneas de datos</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="164"/>
+        <location filename="../importdialog.cpp" line="166"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="165"/>
+        <location filename="../importdialog.cpp" line="167"/>
         <source>Import</source>
         <translation>Importar</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="166"/>
+        <location filename="../importdialog.cpp" line="168"/>
         <source>...</source>
         <translation>...</translation>
     </message>
@@ -1507,7 +1507,7 @@ Página web: %3</translation>
         <translation type="obsolete">Abrir el diálogo de archivo para selecionar el archivo a importar.</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="200"/>
+        <location filename="../importdialog.cpp" line="206"/>
         <source>Open file dialog</source>
         <translation>Abrir el diálogo de archivo</translation>
     </message>
@@ -1523,7 +1523,7 @@ Página web: %3</translation>
 &lt;media&gt;/&lt;dir&gt;/&lt;dir&gt;</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="204"/>
+        <location filename="../importdialog.cpp" line="210"/>
         <source>Corrects bad output style (gtktalog)</source>
         <translation>Corregir el mal estilo de la exportación de gtkatalog</translation>
     </message>
@@ -1533,12 +1533,12 @@ Página web: %3</translation>
         <translation type="obsolete">&lt;strong&gt;Atención! Por favor, lea README_CSV_IMPORT antes de importar!&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="218"/>
+        <location filename="../importdialog.cpp" line="224"/>
         <source>Error:</source>
         <translation>Error:</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="213"/>
+        <location filename="../importdialog.cpp" line="219"/>
         <source>You must be fill the &quot;Filename&quot; field!</source>
         <translation>¡Debe rellenar el campo &quot;Nombre del archivo&quot;!</translation>
     </message>
@@ -1553,7 +1553,7 @@ Página web: %3</translation>
         <translation type="obsolete">¡Debe rellenar el campo &quot;Separador&quot;!</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="254"/>
+        <location filename="../importdialog.cpp" line="262"/>
         <source>csv files(*.csv)</source>
         <translation>Archivos csv (*.csv)</translation>
     </message>
@@ -1563,17 +1563,17 @@ Página web: %3</translation>
         <translation type="obsolete">abrir el diálogo de archivo</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="269"/>
+        <location filename="../importdialog.cpp" line="277"/>
         <source>Choose a file for import</source>
         <translation>Elegir el archivo a importar</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="168"/>
+        <location filename="../importdialog.cpp" line="170"/>
         <source>Type</source>
         <translation>Tipo</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="177"/>
+        <location filename="../importdialog.cpp" line="180"/>
         <source>Select the type of import here</source>
         <translation>Selecciona el tipo de importación</translation>
     </message>
@@ -1588,17 +1588,17 @@ Página web: %3</translation>
         <translation type="obsolete">Seleccionar aquí para importar un informe xml creado con gtktalog</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="198"/>
+        <location filename="../importdialog.cpp" line="204"/>
         <source>Open the file dialog for selecting file to import.</source>
         <translation>Abrir el diálogo de selección de archivo a importar.</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="258"/>
+        <location filename="../importdialog.cpp" line="266"/>
         <source>xml files(*.xml)</source>
         <translation>xml files(*.xml)</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="205"/>
+        <location filename="../importdialog.cpp" line="211"/>
         <source>&lt;strong&gt;Please read the README_IMPORT before you import!&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;¡Por favor lee el README_IMPORT antes de importar!&lt;/strong&gt;</translation>
     </message>
@@ -1633,7 +1633,7 @@ Página web: %3</translation>
         <translation type="obsolete">Seleccionar aquí para importar un texto (csv)</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="192"/>
+        <location filename="../importdialog.cpp" line="198"/>
         <source>Select this for importing a xml report generated from gtktalog</source>
         <translation type="unfinished">Seleccionar aquí para importar un informe xml creado con gtktalog</translation>
     </message>
@@ -1654,7 +1654,7 @@ Página web: %3</translation>
 &lt;media&gt;/&lt;dir&gt;/&lt;dir&gt;</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="156"/>
+        <location filename="../importdialog.cpp" line="158"/>
         <source>File:</source>
         <translation>Archivo:</translation>
     </message>
@@ -1710,34 +1710,34 @@ Página web: %3</translation>
         <translation type="obsolete">¡Debe rellenar el campo &quot;Separador&quot;!</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="159"/>
+        <location filename="../importdialog.cpp" line="161"/>
         <source>Separator:</source>
         <translation>Separador:</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="161"/>
+        <location filename="../importdialog.cpp" line="163"/>
         <source>This is the separator in dataline
 &lt;path&gt;SEPARATOR&lt;size&gt;SEPARATOR&lt;date&gt;&lt;space&gt;&lt;time&gt;</source>
         <translation>Éste es el separador de la línea de datos
 &lt;path&gt;SEPARADOR&lt;size&gt;SEPARADOR&lt;date&gt;&lt;space&gt;&lt;time&gt;</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="163"/>
+        <location filename="../importdialog.cpp" line="165"/>
         <source>Separator in data line</source>
         <translation>Separador en línea de datos</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="173"/>
+        <location filename="../importdialog.cpp" line="176"/>
         <source>Gtktalog &amp;XML</source>
         <translation>Gtktalog &amp;XML</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="174"/>
+        <location filename="../importdialog.cpp" line="177"/>
         <source>&amp;WhereIsIt XML (classic)</source>
         <translation>&amp;WhereIsIt XML (classic)</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="202"/>
+        <location filename="../importdialog.cpp" line="208"/>
         <source>Corrects bad output style from gtktalog.
 &lt;media&gt;SEPARATOR/&lt;dir&gt;/SEPARATOR/&lt;dir&gt;
  will be to
@@ -1748,58 +1748,68 @@ debe ser
 &lt;media&gt;/&lt;dir&gt;/&lt;dir&gt;</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="218"/>
+        <location filename="../importdialog.cpp" line="224"/>
         <source>You must be fill the &quot;Separator&quot; field!</source>
         <translation>¡Debe rellenar el campo &quot;Separador&quot;!</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="260"/>
+        <location filename="../importdialog.cpp" line="268"/>
         <source>all files(*.*)</source>
         <translation>Todos los archivos(*.*)</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="169"/>
+        <location filename="../importdialog.cpp" line="171"/>
         <source>&amp;Gtktalog (csv)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="180"/>
+        <location filename="../importdialog.cpp" line="183"/>
         <source>Select this for importing a text import (csv) generated from Gtktalog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="170"/>
+        <location filename="../importdialog.cpp" line="172"/>
         <source>&amp;Kat-CeDe (csv)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="183"/>
+        <location filename="../importdialog.cpp" line="186"/>
         <source>Select this for importing a text import (csv) generated from Kat-CeDe.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="195"/>
+        <location filename="../importdialog.cpp" line="201"/>
         <source>Select this for importing a xml report generated from WhereIsIt?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="171"/>
+        <location filename="../importdialog.cpp" line="173"/>
         <source>&amp;Disclib (csv)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="186"/>
+        <location filename="../importdialog.cpp" line="189"/>
         <source>Select this for importing a text import (csv) generated from Disclib.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="172"/>
+        <location filename="../importdialog.cpp" line="174"/>
         <source>&amp;VisualCD (csv)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="189"/>
+        <location filename="../importdialog.cpp" line="192"/>
         <source>Select this for importing a text import (csv) generated from VisualCD.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../importdialog.cpp" line="175"/>
+        <source>&amp;VVV (csv)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../importdialog.cpp" line="195"/>
+        <source>Select this for importing a text import (csv) generated from VVV.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2084,7 +2094,7 @@ debe ser
         <translation>Muestras/s</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1541"/>
+        <location filename="../import.cpp" line="1660"/>
         <source>importuser</source>
         <translation type="unfinished">importar usuario</translation>
     </message>
@@ -3477,84 +3487,84 @@ E-Mail: hyperr@freemail.hu
         <translation>Importar CSV...</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="712"/>
+        <location filename="../import.cpp" line="831"/>
         <source>Import was successful.</source>
         <translation>La importación concluyó con éxito.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="715"/>
+        <location filename="../import.cpp" line="834"/>
         <source>1 media</source>
         <translation>1 medio</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="717"/>
+        <location filename="../import.cpp" line="836"/>
         <source>media</source>
         <translation>medio</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="720"/>
+        <location filename="../import.cpp" line="839"/>
         <source>1 directory:,
 </source>
         <translation>1 directorio:,
 </translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="722"/>
+        <location filename="../import.cpp" line="841"/>
         <source>directories</source>
         <translation>directorios</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="725"/>
+        <location filename="../import.cpp" line="844"/>
         <source>1 File</source>
         <translation>1 Archivo</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="727"/>
+        <location filename="../import.cpp" line="846"/>
         <source>files</source>
         <translation>archivos</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="729"/>
+        <location filename="../import.cpp" line="848"/>
         <source>are imported.</source>
         <translation>son importados.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="731"/>
+        <location filename="../import.cpp" line="850"/>
         <source>Import successful</source>
         <translation>La importación concluyó con éxito</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="736"/>
+        <location filename="../import.cpp" line="855"/>
         <source>file read error</source>
         <translation>Error de lectura de archivo</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="736"/>
+        <location filename="../import.cpp" line="855"/>
         <source>Could not read file</source>
         <translation>No se pudo leer el archivo</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="739"/>
+        <location filename="../import.cpp" line="858"/>
         <source>Fatal error</source>
         <translation>Error fatal</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="739"/>
+        <location filename="../import.cpp" line="858"/>
         <source>Fatal error occured.</source>
         <translation>Ocurrió un error fatal.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="742"/>
+        <location filename="../import.cpp" line="861"/>
         <source>file open error</source>
         <translation>Error de apertura del archivo</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="742"/>
+        <location filename="../import.cpp" line="861"/>
         <source>Could not open file</source>
         <translation>No se pudo abrir el archivo</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="781"/>
+        <location filename="../import.cpp" line="900"/>
         <source>importuser</source>
         <translation>importar usuario</translation>
     </message>
@@ -3572,74 +3582,74 @@ E-Mail: hyperr@freemail.hu
 <context>
     <name>importGtktalogXml</name>
     <message>
-        <location filename="../import.cpp" line="1107"/>
+        <location filename="../import.cpp" line="1226"/>
         <source>Importing XML...</source>
         <translation>Importando XML...</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1141"/>
+        <location filename="../import.cpp" line="1260"/>
         <source>XML import was successful.</source>
         <translation>Importación XML concluyó con éxito.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1144"/>
+        <location filename="../import.cpp" line="1263"/>
         <source>1 media</source>
         <translation>1 medio</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1146"/>
+        <location filename="../import.cpp" line="1265"/>
         <source>media</source>
         <translation>medio</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1149"/>
+        <location filename="../import.cpp" line="1268"/>
         <source>1 directory:,
 </source>
         <translation>1 directory:,
 </translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1151"/>
+        <location filename="../import.cpp" line="1270"/>
         <source>directories</source>
         <translation>directorios</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1154"/>
+        <location filename="../import.cpp" line="1273"/>
         <source>1 File</source>
         <translation>1 Archivo</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1156"/>
+        <location filename="../import.cpp" line="1275"/>
         <source>files</source>
         <translation>archivos</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1158"/>
+        <location filename="../import.cpp" line="1277"/>
         <source>are imported.</source>
         <translation>son importados.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1160"/>
+        <location filename="../import.cpp" line="1279"/>
         <source>Import successful</source>
         <translation>La importación concluyó con éxito</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1164"/>
+        <location filename="../import.cpp" line="1283"/>
         <source>parse error</source>
         <translation>error de análisis</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1164"/>
+        <location filename="../import.cpp" line="1283"/>
         <source>error during parsing</source>
         <translation>error durante el análisis</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1200"/>
+        <location filename="../import.cpp" line="1319"/>
         <source>importuser</source>
         <translation>importar usuario</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1107"/>
+        <location filename="../import.cpp" line="1226"/>
         <source>Cancel</source>
         <translation type="unfinished">Cancelar</translation>
     </message>
@@ -3647,69 +3657,69 @@ E-Mail: hyperr@freemail.hu
 <context>
     <name>importWhereIsItXml</name>
     <message>
-        <location filename="../import.cpp" line="1758"/>
+        <location filename="../import.cpp" line="1877"/>
         <source>Importing XML...</source>
         <translation>Importando XML...</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1794"/>
+        <location filename="../import.cpp" line="1913"/>
         <source>Importing XML from WhereIsIt was successful.</source>
         <translation>La importación XML WhereIsIt concluyó con éxito.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1797"/>
+        <location filename="../import.cpp" line="1916"/>
         <source>1 media</source>
         <translation>1 medio</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1799"/>
+        <location filename="../import.cpp" line="1918"/>
         <source>media</source>
         <translation>medio</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1802"/>
+        <location filename="../import.cpp" line="1921"/>
         <source>1 directory:,
 </source>
         <translation>1 directorio:,
 </translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1804"/>
+        <location filename="../import.cpp" line="1923"/>
         <source>directories</source>
         <translation>directorios</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1807"/>
+        <location filename="../import.cpp" line="1926"/>
         <source>1 File</source>
         <translation>1 Archivo</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1809"/>
+        <location filename="../import.cpp" line="1928"/>
         <source>files</source>
         <translation>archivos</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1811"/>
+        <location filename="../import.cpp" line="1930"/>
         <source>are imported.</source>
         <translation>son importados.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1813"/>
+        <location filename="../import.cpp" line="1932"/>
         <source>Import successful</source>
         <translation>La importación concluyó con éxito</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1817"/>
+        <location filename="../import.cpp" line="1936"/>
         <source>parse error</source>
         <translation>error de análisis</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1817"/>
+        <location filename="../import.cpp" line="1936"/>
         <source>error during parsing</source>
         <translation>error durante el análisis</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1758"/>
+        <location filename="../import.cpp" line="1877"/>
         <source>Cancel</source>
         <translation type="unfinished">Cancelar</translation>
     </message>
