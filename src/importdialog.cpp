@@ -100,7 +100,7 @@ ImportDialog::ImportDialog ( QWidget* parent, const char* name, bool modal, Qt::
     //	ImportDialogLayout->addLayout( layout4, 0, 0 );
 
     languageChange();
-    resize ( QSize ( 450, 350 ).expandedTo ( minimumSizeHint() ) );
+    resize ( QSize ( 500, 350 ).expandedTo ( minimumSizeHint() ) );
 
     setMinimumSize ( minimumSizeHint() );
 
