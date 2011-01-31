@@ -1,3 +1,7 @@
+31. Jan 2011 Christoph Thielecke <crissi99@gmx.de>
+	- csv import added (VisualCD)
+	- file filter at import dialog fixed
+
 30. Jan 2011 Christoph Thielecke <crissi99@gmx.de>
 	- remember start/end date in find dialog
 	- double deletion fixed

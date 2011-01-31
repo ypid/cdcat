@@ -53,6 +53,7 @@ ImportDialog::ImportDialog ( QWidget* parent, const char* name, bool modal, Qt::
     importTypeCsvGtktalog = new QRadioButton ( "&Gtktalog CSV",importButtonBox, "importTypeCsvGtktalog" );
     importTypeCsvKatCeDe = new QRadioButton ( "&Kat-DeCe CSV",importButtonBox, "importTypeCsvKatCeDe" );
     importTypeCsvDisclib = new QRadioButton ( "&Disclib CSV",importButtonBox, "importTypeCsvDisclib" );
+    importTypeCsvVisualcd = new QRadioButton ( "&VisualCD CSV",importButtonBox, "importTypeCsvVisualcd" );
     importTypeGtktalogXml = new QRadioButton ( "Gtktalog &XML",importButtonBox ,"importTypeGtktalogXml" );
     importTypeWhereisitXml = new QRadioButton ( "&WhereIsIt XML (classic)", importButtonBox, "importTypeWhereisitXml" );
 
@@ -114,6 +115,7 @@ ImportDialog::ImportDialog ( QWidget* parent, const char* name, bool modal, Qt::
     connect ( importTypeCsvGtktalog, SIGNAL ( clicked() ), this, SLOT ( typeChanged() ) );
     connect ( importTypeCsvKatCeDe, SIGNAL ( clicked() ), this, SLOT ( typeChanged() ) );
     connect ( importTypeCsvDisclib, SIGNAL ( clicked() ), this, SLOT ( typeChanged() ) );
+    connect ( importTypeCsvVisualcd, SIGNAL ( clicked() ), this, SLOT ( typeChanged() ) );
     connect ( importTypeGtktalogXml, SIGNAL ( clicked() ), this, SLOT ( typeChanged() ) );
     connect ( importTypeWhereisitXml, SIGNAL ( clicked() ), this, SLOT ( typeChanged() ) );
     separator_lab->setEnabled ( false );
@@ -167,6 +169,7 @@ void ImportDialog::languageChange() {
     importTypeCsvGtktalog->setText ( tr ( "&Gtktalog (csv)" ) );
     importTypeCsvKatCeDe->setText ( tr ( "&Kat-CeDe (csv)" ) );
     importTypeCsvDisclib->setText ( tr ( "&Disclib (csv)" ) );
+    importTypeCsvVisualcd->setText ( tr ( "&VisualCD (csv)" ) );
     importTypeGtktalogXml->setText ( tr ( "Gtktalog &XML" ) );
     importTypeWhereisitXml->setText ( tr ( "&WhereIsIt XML (classic)" ) );
 
@@ -181,6 +184,9 @@ void ImportDialog::languageChange() {
 
     QToolTip::add
     ( importTypeCsvDisclib , tr ( "Select this for importing a text import (csv) generated from Disclib." ) );
+
+    QToolTip::add
+    ( importTypeCsvVisualcd , tr ( "Select this for importing a text import (csv) generated from VisualCD." ) );
 
     QToolTip::add
     ( importTypeGtktalogXml , tr ( "Select this for importing a xml report generated from gtktalog" ) );
@@ -222,6 +228,8 @@ int ImportDialog::bOk ( void ) {
         type = 3;
     if ( importTypeCsvDisclib->isChecked() )
         type = 4;
+    if ( importTypeCsvVisualcd->isChecked() )
+        type = 5;
     if ( importTypeGtktalogXml->isChecked() )
         type = 1;
     if ( importTypeWhereisitXml->isChecked() )
@@ -240,13 +248,13 @@ int ImportDialog::bCan ( void ) {
 }
 
 void ImportDialog::getFileName() {
-    QString filetypes;
+    QString filetypes="";
 
-    if ( importTypeCsvGtktalog->isChecked() || importTypeCsvKatCeDe->isChecked() || importTypeCsvDisclib->isChecked())
+    if ( importTypeCsvGtktalog->isChecked() || importTypeCsvKatCeDe->isChecked() || importTypeCsvDisclib->isChecked() || importTypeCsvVisualcd->isChecked())
         filetypes = QString ( tr ( "csv files(*.csv)" ) );
-    if ( importTypeGtktalogXml->isChecked() )
+    else if ( importTypeGtktalogXml->isChecked() )
         filetypes = QString ( tr ( "xml files(*.xml)" ) );
-    if ( importTypeWhereisitXml->isChecked() )
+    else if ( importTypeWhereisitXml->isChecked() )
         filetypes = QString ( tr ( "xml files(*.xml)" ) );
     else
         filetypes = QString ( tr ( "all files(*.*)" ) );
@@ -258,7 +266,7 @@ void ImportDialog::getFileName() {
 	homedir = getenv("USER_PROFILE");
 #endif
 
-    filename_lineedit->setText (QFileDialog::getOpenFileName(0, tr ( "Choose a file for import" ), homedir, filetypes ));
+    filename_lineedit->setText (QFileDialog::getOpenFileName(this, tr ( "Choose a file for import" ), homedir, filetypes ));
     filename= filename_lineedit->text();
 }
 
@@ -285,6 +293,11 @@ void ImportDialog::typeChanged() {
         correctbadstyle->setEnabled ( false );
         separator_lab->setEnabled ( false );
         separator_lineedit->setEnabled ( false );
+    }
+    if (importTypeCsvVisualcd->isChecked()) {
+	correctbadstyle->setEnabled ( false );
+	correctbadstyle->setChecked ( false );
+	separator_lineedit->setText(";");
     }
 
 }

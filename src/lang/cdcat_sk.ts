@@ -292,7 +292,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location filename="../mainwidget.cpp" line="208"/>
         <source>Export database</source>
-        <translation>Exportovať databázu</translation>
+        <translation type="obsolete">Exportovať databázu</translation>
     </message>
     <message>
         <location filename="../mainwidget.cpp" line="212"/>
@@ -365,13 +365,18 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="207"/>
-        <source>Import database (Gtktalog/Kat-CeDe/Disclib/WhereIsIt?)</source>
+        <location filename="../mainwidget.cpp" line="374"/>
+        <source>Scanning:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="374"/>
-        <source>Scanning:</source>
+        <location filename="../mainwidget.cpp" line="207"/>
+        <source>Import database (CSV/XML)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwidget.cpp" line="208"/>
+        <source>Export database (CSV, HTML)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1298,7 +1303,7 @@ Domovská stránka: %3</translation>
 <context>
     <name>ImportDialog</name>
     <message>
-        <location filename="../importdialog.cpp" line="62"/>
+        <location filename="../importdialog.cpp" line="63"/>
         <source>Create new Database</source>
         <translation>Vytvoriť novú databázu</translation>
     </message>
@@ -1319,27 +1324,27 @@ Domovská stránka: %3</translation>
         <translation type="obsolete">Oddeľovač v riadku</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="162"/>
+        <location filename="../importdialog.cpp" line="164"/>
         <source>Cancel</source>
         <translation>Zrušiť</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="163"/>
+        <location filename="../importdialog.cpp" line="165"/>
         <source>Import</source>
         <translation>Import</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="194"/>
+        <location filename="../importdialog.cpp" line="200"/>
         <source>Open file dialog</source>
         <translation>Dialóg &quot;Otvoriť súbor&quot;</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="198"/>
+        <location filename="../importdialog.cpp" line="204"/>
         <source>Corrects bad output style (gtktalog)</source>
         <translation>Opraviť zlý výstup (GtKatalog)</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="212"/>
+        <location filename="../importdialog.cpp" line="218"/>
         <source>Error:</source>
         <translation>Chyba:</translation>
     </message>
@@ -1349,7 +1354,7 @@ Domovská stránka: %3</translation>
         <translation type="obsolete">OK</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="246"/>
+        <location filename="../importdialog.cpp" line="254"/>
         <source>csv files(*.csv)</source>
         <translation>CSV súbory(*.csv)</translation>
     </message>
@@ -1359,12 +1364,12 @@ Domovská stránka: %3</translation>
         <translation type="obsolete">dialóg &quot;Otvoriť súbor&quot;</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="261"/>
+        <location filename="../importdialog.cpp" line="269"/>
         <source>Choose a file for import</source>
         <translation>Vyberte súbor pre import</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="166"/>
+        <location filename="../importdialog.cpp" line="168"/>
         <source>Type</source>
         <translation>Typ</translation>
     </message>
@@ -1374,12 +1379,12 @@ Domovská stránka: %3</translation>
         <translation type="obsolete">&amp;XML (gtktalog)</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="199"/>
+        <location filename="../importdialog.cpp" line="205"/>
         <source>&lt;strong&gt;Please read the README_IMPORT before you import!&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;Pred importovaním databázy si prečítajte súbor README_IMPORT!&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="250"/>
+        <location filename="../importdialog.cpp" line="258"/>
         <source>xml files(*.xml)</source>
         <translation>XML súbory(*.xml)</translation>
     </message>
@@ -1394,12 +1399,12 @@ Domovská stránka: %3</translation>
         <translation type="obsolete">Vyberte typ importu</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="153"/>
+        <location filename="../importdialog.cpp" line="155"/>
         <source>Import CSV file</source>
         <translation>Importovať CSV súbor</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="154"/>
+        <location filename="../importdialog.cpp" line="156"/>
         <source>File:</source>
         <translation>Súbor:</translation>
     </message>
@@ -1442,29 +1447,29 @@ Domovská stránka: %3</translation>
         <translation type="obsolete">Nebol zadaný separátor !</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="75"/>
+        <location filename="../importdialog.cpp" line="76"/>
         <source>Correct bad style from gtktalog export</source>
         <translation>Opraviť zlý výstup exportu gtkatalog</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="157"/>
+        <location filename="../importdialog.cpp" line="159"/>
         <source>Separator:</source>
         <translation>Oddeľovač:</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="159"/>
+        <location filename="../importdialog.cpp" line="161"/>
         <source>This is the separator in dataline
 &lt;path&gt;SEPARATOR&lt;size&gt;SEPARATOR&lt;date&gt;&lt;space&gt;&lt;time&gt;</source>
         <translation>Toto je separátor v riadku
 &lt;cesta&gt;SEPARÁTOR&lt;veľkosť&gt;SEPARÁTOR&lt;dátum&gt;&lt;medzera&gt;&lt;čas&gt;</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="161"/>
+        <location filename="../importdialog.cpp" line="163"/>
         <source>Separator in data line</source>
         <translation>Separátor v riadku</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="164"/>
+        <location filename="../importdialog.cpp" line="166"/>
         <source>...</source>
         <translation>...</translation>
     </message>
@@ -1474,17 +1479,17 @@ Domovská stránka: %3</translation>
         <translation type="obsolete">&amp;Text (csv)</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="170"/>
+        <location filename="../importdialog.cpp" line="173"/>
         <source>Gtktalog &amp;XML</source>
         <translation>Gtktalog &amp;XML</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="171"/>
+        <location filename="../importdialog.cpp" line="174"/>
         <source>&amp;WhereIsIt XML (classic)</source>
         <translation>&amp;WhereIsIt XML (classic)</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="174"/>
+        <location filename="../importdialog.cpp" line="177"/>
         <source>Select the type of import here</source>
         <translation>Zadajte typ importu</translation>
     </message>
@@ -1499,12 +1504,12 @@ Domovská stránka: %3</translation>
         <translation type="obsolete">Import XML súborov generovaných gtkatalógom</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="192"/>
+        <location filename="../importdialog.cpp" line="198"/>
         <source>Open the file dialog for selecting file to import.</source>
         <translation>Vyber súbor pre import.</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="196"/>
+        <location filename="../importdialog.cpp" line="202"/>
         <source>Corrects bad output style from gtktalog.
 &lt;media&gt;SEPARATOR/&lt;dir&gt;/SEPARATOR/&lt;dir&gt;
  will be to
@@ -1515,58 +1520,68 @@ na
 &lt;médium&gt;/&lt;adresár&gt;/&lt;adresár&gt;</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="207"/>
+        <location filename="../importdialog.cpp" line="213"/>
         <source>You must be fill the &quot;Filename&quot; field!</source>
         <translation>Nebolo zadané meno súboru !</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="212"/>
+        <location filename="../importdialog.cpp" line="218"/>
         <source>You must be fill the &quot;Separator&quot; field!</source>
         <translation>Nebolo zadaný separátor!</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="252"/>
+        <location filename="../importdialog.cpp" line="260"/>
         <source>all files(*.*)</source>
         <translation>všetky súbory (*.*)</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="167"/>
+        <location filename="../importdialog.cpp" line="169"/>
         <source>&amp;Gtktalog (csv)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="177"/>
+        <location filename="../importdialog.cpp" line="180"/>
         <source>Select this for importing a text import (csv) generated from Gtktalog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="168"/>
+        <location filename="../importdialog.cpp" line="170"/>
         <source>&amp;Kat-CeDe (csv)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="180"/>
+        <location filename="../importdialog.cpp" line="183"/>
         <source>Select this for importing a text import (csv) generated from Kat-CeDe.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="186"/>
+        <location filename="../importdialog.cpp" line="192"/>
         <source>Select this for importing a xml report generated from gtktalog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="189"/>
+        <location filename="../importdialog.cpp" line="195"/>
         <source>Select this for importing a xml report generated from WhereIsIt?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="169"/>
+        <location filename="../importdialog.cpp" line="171"/>
         <source>&amp;Disclib (csv)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="183"/>
+        <location filename="../importdialog.cpp" line="186"/>
         <source>Select this for importing a text import (csv) generated from Disclib.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../importdialog.cpp" line="172"/>
+        <source>&amp;VisualCD (csv)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../importdialog.cpp" line="189"/>
+        <source>Select this for importing a text import (csv) generated from VisualCD.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1848,7 +1863,7 @@ na
         <translation>Vzorky</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1399"/>
+        <location filename="../import.cpp" line="1541"/>
         <source>importuser</source>
         <translation type="unfinished">vlastník importu</translation>
     </message>
@@ -2991,83 +3006,83 @@ nájdete na domovskej stránke programu CdCat:&lt;br&gt;&lt;tt&gt;http://cdcat.s
         <translation>Importovanie CSV...</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="576"/>
+        <location filename="../import.cpp" line="712"/>
         <source>Import was successful.</source>
         <translation>Import prebehol úspešne.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="579"/>
+        <location filename="../import.cpp" line="715"/>
         <source>1 media</source>
         <translation>1 médium</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="581"/>
+        <location filename="../import.cpp" line="717"/>
         <source>media</source>
         <translation>médium</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="584"/>
+        <location filename="../import.cpp" line="720"/>
         <source>1 directory:,
 </source>
         <translation>1 adresár</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="586"/>
+        <location filename="../import.cpp" line="722"/>
         <source>directories</source>
         <translation>adresáre</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="589"/>
+        <location filename="../import.cpp" line="725"/>
         <source>1 File</source>
         <translation>1 Súbor</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="591"/>
+        <location filename="../import.cpp" line="727"/>
         <source>files</source>
         <translation>súbory</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="593"/>
+        <location filename="../import.cpp" line="729"/>
         <source>are imported.</source>
         <translation>sú importované.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="595"/>
+        <location filename="../import.cpp" line="731"/>
         <source>Import successful</source>
         <translation>Import úspešný</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="600"/>
+        <location filename="../import.cpp" line="736"/>
         <source>file read error</source>
         <translation>chyba pri čítaní súboru</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="600"/>
+        <location filename="../import.cpp" line="736"/>
         <source>Could not read file</source>
         <translation>Nemožno čítať súbor</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="603"/>
+        <location filename="../import.cpp" line="739"/>
         <source>Fatal error</source>
         <translation>Fatálna chyba</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="603"/>
+        <location filename="../import.cpp" line="739"/>
         <source>Fatal error occured.</source>
         <translation>Vyskytla sa fatálna chyba.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="606"/>
+        <location filename="../import.cpp" line="742"/>
         <source>file open error</source>
         <translation>chyba pri čítaní súboru</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="606"/>
+        <location filename="../import.cpp" line="742"/>
         <source>Could not open file</source>
         <translation>Nemožno otvoriť súbor</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="645"/>
+        <location filename="../import.cpp" line="781"/>
         <source>importuser</source>
         <translation>vlastník importu</translation>
     </message>
@@ -3080,73 +3095,73 @@ nájdete na domovskej stránke programu CdCat:&lt;br&gt;&lt;tt&gt;http://cdcat.s
 <context>
     <name>importGtktalogXml</name>
     <message>
-        <location filename="../import.cpp" line="970"/>
+        <location filename="../import.cpp" line="1107"/>
         <source>Importing XML...</source>
         <translation>Importovanie XML...</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1006"/>
+        <location filename="../import.cpp" line="1141"/>
         <source>XML import was successful.</source>
         <translation>XML import prebehol úspešne.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1009"/>
+        <location filename="../import.cpp" line="1144"/>
         <source>1 media</source>
         <translation>1 médium</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1011"/>
+        <location filename="../import.cpp" line="1146"/>
         <source>media</source>
         <translation>médium</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1014"/>
+        <location filename="../import.cpp" line="1149"/>
         <source>1 directory:,
 </source>
         <translation>1 adresár</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1016"/>
+        <location filename="../import.cpp" line="1151"/>
         <source>directories</source>
         <translation>adresáre</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1019"/>
+        <location filename="../import.cpp" line="1154"/>
         <source>1 File</source>
         <translation>1 Súbor</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1021"/>
+        <location filename="../import.cpp" line="1156"/>
         <source>files</source>
         <translation>súbory</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1023"/>
+        <location filename="../import.cpp" line="1158"/>
         <source>are imported.</source>
         <translation>sú importované.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1025"/>
+        <location filename="../import.cpp" line="1160"/>
         <source>Import successful</source>
         <translation>Import úspešný</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1029"/>
+        <location filename="../import.cpp" line="1164"/>
         <source>parse error</source>
         <translation>chyba v syntaxy</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1029"/>
+        <location filename="../import.cpp" line="1164"/>
         <source>error during parsing</source>
         <translation>chyba pri čítaní syntaxe</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1059"/>
+        <location filename="../import.cpp" line="1200"/>
         <source>importuser</source>
         <translation>vlastník importu</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="970"/>
+        <location filename="../import.cpp" line="1107"/>
         <source>Cancel</source>
         <translation type="unfinished">Zrušiť</translation>
     </message>
@@ -3154,68 +3169,68 @@ nájdete na domovskej stránke programu CdCat:&lt;br&gt;&lt;tt&gt;http://cdcat.s
 <context>
     <name>importWhereIsItXml</name>
     <message>
-        <location filename="../import.cpp" line="1616"/>
+        <location filename="../import.cpp" line="1758"/>
         <source>Importing XML...</source>
         <translation>Importovanie XML...</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1652"/>
+        <location filename="../import.cpp" line="1794"/>
         <source>Importing XML from WhereIsIt was successful.</source>
         <translation>Importovanie XML z WhereIsIt bolo úspešné.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1655"/>
+        <location filename="../import.cpp" line="1797"/>
         <source>1 media</source>
         <translation>1 médium</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1657"/>
+        <location filename="../import.cpp" line="1799"/>
         <source>media</source>
         <translation>médium</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1660"/>
+        <location filename="../import.cpp" line="1802"/>
         <source>1 directory:,
 </source>
         <translation>1 adresár</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1662"/>
+        <location filename="../import.cpp" line="1804"/>
         <source>directories</source>
         <translation>adresáre</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1665"/>
+        <location filename="../import.cpp" line="1807"/>
         <source>1 File</source>
         <translation>1 Súbor</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1667"/>
+        <location filename="../import.cpp" line="1809"/>
         <source>files</source>
         <translation>súbory</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1669"/>
+        <location filename="../import.cpp" line="1811"/>
         <source>are imported.</source>
         <translation>sú importované.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1671"/>
+        <location filename="../import.cpp" line="1813"/>
         <source>Import successful</source>
         <translation>Import úspešný</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1675"/>
+        <location filename="../import.cpp" line="1817"/>
         <source>parse error</source>
         <translation>chyba v syntaxy</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1675"/>
+        <location filename="../import.cpp" line="1817"/>
         <source>error during parsing</source>
         <translation>chyba pri čítaní syntaxe</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1616"/>
+        <location filename="../import.cpp" line="1758"/>
         <source>Cancel</source>
         <translation type="unfinished">Zrušiť</translation>
     </message>

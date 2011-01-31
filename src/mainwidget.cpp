@@ -204,8 +204,8 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp,QApplication *appp,QWidget* 
     helpMenu->insertItem ( *get_t_about_icon(),tr ( "About" ),guis,SLOT ( aboutEvent() ) );
     helpMenu->insertItem ( QPixmap ( QLatin1String ( ":/trolltech/qmessagebox/images/qtlogo-64.png" ) ), tr ( "About Qt" ),guis,SLOT ( aboutQtEvent() ) );
 
-    inoutMenu->insertItem ( *get_m_import_icon(),tr ( "Import database (Gtktalog/Kat-CeDe/Disclib/WhereIsIt?)" ) ,guis,SLOT ( importEvent() ) );
-    inoutMenu->insertItem ( *get_m_export_icon(),tr ( "Export database" ) ,guis,SLOT ( exportEvent() ) );
+    inoutMenu->insertItem ( *get_m_import_icon(),tr ( "Import database (CSV/XML)" ) ,guis,SLOT ( importEvent() ) );
+    inoutMenu->insertItem ( *get_m_export_icon(),tr ( "Export database (CSV, HTML)" ) ,guis,SLOT ( exportEvent() ) );
 
     mainMenu->insertItem ( tr ( "Catalog" ),fileMenu );
     mainMenu->insertItem ( tr ( "Edit" ),editMenu );
