@@ -1090,6 +1090,14 @@ wird zu
       <source>Select this for importing a text import (csv) generated from VVV.</source>
       <translation>Wählen Sie dies, um einen Textimport (CSV), welcher von VVV (Virtual Volumes View) generiert wurde, durchzuführen</translation>
     </message>
+    <message>
+      <source>&amp;Advanced File Organizer (csv)</source>
+      <translation>&amp;Advanced File Organizer (CSV)</translation>
+    </message>
+    <message>
+      <source>Select this for importing a text import (csv) generated from Advanced File Organizer.</source>
+      <translation>Wählen Sie dies, um einen Textimport (CSV), welcher von Advanced File Organizer generiert wurde, durchzuführen</translation>
+    </message>
   </context>
   <context>
     <name>InfoDialog</name>
