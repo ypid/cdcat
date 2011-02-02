@@ -876,6 +876,7 @@ int GuiSlave::openEvent ( void ) {
     PWw *pww = new PWw ( mainw,mainw->app );
     mainw->db->pww = pww;
     progress ( pww );
+    QApplication::setOverrideCursor ( Qt::waitCursor );
 
     if ( ( ret_val=mainw->db->openDB ( fnc ) ) != 0 ) { // An error occured
         QMessageBox::warning ( mainw,tr ( "Error while opening..." ),
@@ -942,6 +943,7 @@ int GuiSlave::openEvent ( void ) {
     if ( mainw->db != NULL )
         mainw->db->pww = NULL;
     delete pww;
+    QApplication::restoreOverrideCursor();
     return 0;
 }
 
@@ -951,7 +953,7 @@ int GuiSlave::saveEvent ( void ) {
     PWw *pww = new PWw ( mainw,mainw->app );
     mainw->db->pww = pww;
     progress ( pww );
-
+    QApplication::setOverrideCursor ( Qt::waitCursor );
     mainw->db->setNice ( mainw->cconfig->nice );
     if(mainw->cconfig->saveAlwaysCatalogInUtf8)
 	mainw->db->XML_ENCODING = "UTF-8";
@@ -972,7 +974,7 @@ int GuiSlave::saveEvent ( void ) {
     pww->end();
     mainw->db->pww = NULL;
     delete pww;
-
+    QApplication::restoreOverrideCursor();
     return 0;
 }
 
@@ -985,11 +987,11 @@ int GuiSlave::saveasEvent ( void ) {
     fn = QFileDialog::getSaveFileName(0, tr ( "Save to file..." ), mainw->cconfig->lastDir, tr ( "CdCat databases (*.hcf )" ));
     if ( fn.isEmpty() )  return 0;
 
-
+    
     PWw *pww = new PWw ( mainw,mainw->app );
     mainw->db->pww = pww;
     progress ( pww );
-
+    QApplication::setOverrideCursor ( Qt::waitCursor );
 
     strcpy ( fnc, ( const char * ) QFile::encodeName ( fn ) );
 
@@ -1016,6 +1018,7 @@ int GuiSlave::saveasEvent ( void ) {
     pww->end();
     mainw->db->pww = NULL;
     delete pww;
+    QApplication::restoreOverrideCursor();
     return retv;
 }
 
