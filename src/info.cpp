@@ -85,8 +85,19 @@ QString DEBUG_INFO=tr(" (with debug)")+"<br>\n";
 #else
 QString DEBUG_INFO="";
 #endif
-    infotext+=QString ( VERSION ) +" (Qt "+QString ( QT_VERSION_STR ) +")"+DEBUG_INFO;
+#ifdef IS_RELEASE
+    infotext+=QString ( VERSION );
+#else
+    infotext+=QString ( VERSION );
+#endif
     infotext+="</h2>\n";
+
+#ifdef IS_RELEASE
+    infotext+= QString("<b>(Release")+", Qt "+QString ( QT_VERSION_STR ) +")"+QString(DEBUG_INFO)+"</b>";
+#else
+    infotext+="<b>("+tr("Development version build at")+" "+__DATE__+" "+__TIME__+", Qt "+QString ( QT_VERSION_STR ) +")"+DEBUG_INFO+"</b>";
+#endif
+    infotext+="<br>\n";
     infotext+=tr ( "Author:" );
     infotext+="<br><font size=\"+2\"><b>Christoph Thielecke (crissi99@gmx.de)</b><br></font><br>\n";
     infotext+=tr ( "Copyright (C) 2003 Peter Deak (GPL)" );

@@ -1165,6 +1165,10 @@ wird zu
       <source> (with debug)</source>
       <translation> (mit Debug)</translation>
     </message>
+    <message>
+      <source>Development version build at</source>
+      <translation>Entwicklungsversion erstellt am</translation>
+    </message>
   </context>
   <context>
     <name>QObject</name>

@@ -1733,42 +1733,42 @@ zostanie zmieniony na
 <context>
     <name>InfoDialog</name>
     <message>
-        <location filename="../info.cpp" line="101"/>
+        <location filename="../info.cpp" line="112"/>
         <source>German translation &amp; additional programming</source>
         <translation>Tłumaczenie niemieckie oraz dodakowe programowanie</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="115"/>
+        <location filename="../info.cpp" line="126"/>
         <source>Spanish translation</source>
         <translation>Hiszpańskie tłumaczenie</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="121"/>
+        <location filename="../info.cpp" line="132"/>
         <source>Czech translation</source>
         <translation>Czeskie tłumaczenie</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="433"/>
+        <location filename="../info.cpp" line="444"/>
         <source>About cdcat</source>
         <translation>O CDCat</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="434"/>
+        <location filename="../info.cpp" line="445"/>
         <source>close</source>
         <translation>zamknij</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="436"/>
+        <location filename="../info.cpp" line="447"/>
         <source>About Cdcat</source>
         <translation>O CDCat</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="438"/>
+        <location filename="../info.cpp" line="449"/>
         <source>License</source>
         <translation>Licencja</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="440"/>
+        <location filename="../info.cpp" line="451"/>
         <source>Thanks</source>
         <translation>Podziękowania</translation>
     </message>
@@ -1783,12 +1783,12 @@ zostanie zmieniony na
         <translation>Wersja:</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="90"/>
+        <location filename="../info.cpp" line="101"/>
         <source>Author:</source>
         <translation>Autor:</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="92"/>
+        <location filename="../info.cpp" line="103"/>
         <source>Copyright (C) 2003 Peter Deak (GPL)</source>
         <translation></translation>
     </message>
@@ -1798,23 +1798,28 @@ zostanie zmieniony na
         <translation type="obsolete">Polskie Tłumaczenie</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="109"/>
+        <location filename="../info.cpp" line="120"/>
         <source>AVI reader plugin &amp; Polish translation</source>
         <translation>Wtyczka do odczytywania plikow AVI &amp; Polskie Tlumaczenie</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="94"/>
+        <location filename="../info.cpp" line="105"/>
         <source>Copyright (C) 2010 Christoph Thielecke (GPL)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="103"/>
+        <location filename="../info.cpp" line="114"/>
         <source>Ported to Qt4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../info.cpp" line="84"/>
         <source> (with debug)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../info.cpp" line="98"/>
+        <source>Development version build at</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
