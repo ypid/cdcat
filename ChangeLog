@@ -3,6 +3,7 @@
 	- development/release information in info dialog
 	- unit translation fixes
 	- use better description on search button at find dialog
+	- initial defaults for search options (start date, end date, min size, max size) set to disabled
 
 01. Feb 2011 Christoph Thielecke <crissi99@gmx.de>
 	- csv import added (Advanced File Organizer)

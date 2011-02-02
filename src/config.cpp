@@ -107,10 +107,14 @@ CdCatConfig::CdCatConfig ( void ) {
     find_mar   = true;
     find_mti   = true;
     find_mal   = true;
+    find_size_min = false;
+    find_size_max = false;
+    find_date_start = false;
+    find_date_end = false;
     findX      = 10;
     findY      = 10;
-    findWidth  = 515;
-    findHeight = 365;
+    findWidth  = 600;
+    findHeight = 500;
 
     mainP1     = 200;
     mainP2     = 270;
