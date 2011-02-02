@@ -9,6 +9,9 @@
 	- set cursor to busy cursor at save, saveas, open and add actions
 	- process events if nessary at open catalog
 	- workaround for displaying rubberband again
+	- show edit category menu entry in context menu
+	- display node path in comment/category edit
+	- show category button hidden 
 
 01. Feb 2011 Christoph Thielecke <crissi99@gmx.de>
 	- csv import added (Advanced File Organizer)

@@ -30,6 +30,7 @@
 #include <QMouseEvent>
 #include <QEvent>
 #include <Q3VBoxLayout>
+#include <QLocale>
 
 #include "dbase.h"
 #include "cdcat.h"
@@ -85,10 +86,10 @@ CommentWidget::CommentWidget ( CdCatConfig * cc,QApplication *appl,QWidget *pare
     ButtonEdit->setGeometry ( 20,height()-45,30,30 );
     QToolTip::add ( ButtonEdit   , tr ( "Edit and refresh the actual comment page." ) );
 
-    ButtonCategory = new HQToolButton ( this );
-    ButtonCategory->setPixmap ( *get_t_showc_icon() );
-    ButtonCategory->setGeometry ( 120,height()-45,30,30 );
-    QToolTip::add ( ButtonCategory   , tr ( "Show the actual category page." ) );
+//     ButtonCategory = new HQToolButton ( this );
+//     ButtonCategory->setPixmap ( *get_t_showc_icon() );
+//     ButtonCategory->setGeometry ( 120,height()-45,30,30 );
+//     QToolTip::add ( ButtonCategory   , tr ( "Show the actual category page." ) );
 
     ButtonCategoryEdit = new HQToolButton ( this );
     ButtonCategoryEdit->setPixmap ( *get_t_comment_icon() );
@@ -96,7 +97,7 @@ CommentWidget::CommentWidget ( CdCatConfig * cc,QApplication *appl,QWidget *pare
     QToolTip::add ( ButtonCategoryEdit   , tr ( "Edit and refresh the actual category page." ) );
 
     connect ( ButtonEdit,SIGNAL ( clicked() ),this,SLOT ( editC() ) );
-    connect ( ButtonCategory,SIGNAL ( clicked() ),this,SLOT ( showCategory()) );
+//     connect ( ButtonCategory,SIGNAL ( clicked() ),this,SLOT ( showCategory()) );
     connect ( ButtonCategoryEdit,SIGNAL ( clicked() ),this,SLOT ( editCategory()) );
     connect ( ButtonContent,SIGNAL ( clicked() ),this,SLOT ( showC() ) );
 
@@ -472,7 +473,7 @@ void  CommentWidget::resizeEvent ( QResizeEvent *re ) {
     ButtonEdit   ->setGeometry ( 20, ( ( re->size() ).height() )-45,30,30 );
     ButtonContent->setGeometry ( 55, ( ( re->size() ).height() )-45,30,30 );
     ButtonCategoryEdit->setGeometry ( 85, ( ( re->size() ).height() )-45,30,30 );
-    ButtonCategory->setGeometry ( 120, ( ( re->size() ).height() )-45,30,30 );
+//     ButtonCategory->setGeometry ( 120, ( ( re->size() ).height() )-45,30,30 );
 }
 
 void CommentWidget::showNode ( Node *node,int mod ) {
@@ -577,9 +578,9 @@ commentEdit::~commentEdit() {
  */
 void commentEdit::languageChange() {
     if(isCommentEdit)
-	setCaption ( tr ( "Edit comment" ) );
+	setCaption ( tr ( "Edit comment of" ) );
     else
-	setCaption ( tr ( "Edit category" ) );
+	setCaption ( tr ( "Edit category of" ) );
     buttonCancel->setText ( tr ( "Cancel" ) );
     buttonOk->setText ( tr ( "OK" ) );
 }
@@ -599,26 +600,32 @@ int commentEdit::pushCancel ( void ) {
 
 int editNodeComment ( Node *node,QWidget *parent, bool isCommentEdit ) {
     commentEdit *ce;
-    QString o, n;
+    QString o, n, newCaption;
 
     if ( node == NULL ) return 0;
 
+    ce = new commentEdit ( o,parent,"commentEdit",true, isCommentEdit );
     if(isCommentEdit) {
 	switch ( node->type ) {
 	case HC_CATALOG  :
 		o = ( ( DBCatalog   * ) ( node->data ) )->comment;
+		newCaption =  ce->caption()+" "+node->getFullPath();
 		break;
 	case HC_DIRECTORY:
 		o = ( ( DBDirectory * ) ( node->data ) )->comment;
+		newCaption =  ce->caption()+" "+node->getFullPath();
 		break;
 	case HC_FILE     :
 		o = ( ( DBFile      * ) ( node->data ) )->comment;
+		newCaption =  ce->caption()+" "+node->getFullPath();
 		break;
 	case HC_MEDIA    :
 		o = ( ( DBMedia     * ) ( node->data ) )->comment;
+		newCaption =  ce->caption()+" "+node->getFullPath();
 		break;
 	case HC_CATLNK   :
 		o = ( ( DBCatLnk    * ) ( node->data ) )->comment;
+		newCaption =  ce->caption()+" "+node->getFullPath();
 		break;
 	}
     }
@@ -626,23 +633,28 @@ int editNodeComment ( Node *node,QWidget *parent, bool isCommentEdit ) {
 	switch ( node->type ) {
 	case HC_CATALOG  :
 		o = ( ( DBCatalog   * ) ( node->data ) )->category;
+		newCaption =  ce->caption()+" "+node->getFullPath();
 		break;
 	case HC_DIRECTORY:
 		o = ( ( DBDirectory * ) ( node->data ) )->category;
+		newCaption =  ce->caption()+" "+node->getFullPath();
 		break;
 	case HC_FILE     :
 		o = ( ( DBFile      * ) ( node->data ) )->category;
+		newCaption =  ce->caption()+" "+node->getFullPath();
 		break;
 	case HC_MEDIA    :
 		o = ( ( DBMedia     * ) ( node->data ) )->category;
+		newCaption =  ce->caption()+" "+node->getFullPath();
 		break;
 	case HC_CATLNK   :
 		o = ( ( DBCatLnk    * ) ( node->data ) )->category;
+		newCaption =  ce->caption()+" "+node->getFullPath();
 		break;
 	}
     }
-    ce = new commentEdit ( o,parent,"commentEdit",true, isCommentEdit );
-
+    
+    ce->setCaption(newCaption);
     ce->exec();
 
     if ( ce->OK == 0 ) return 0;

@@ -570,6 +570,7 @@ void GuiSlave::showListviewContextMenu ( Q3ListViewItem *, const QPoint &p, int 
 
     if ( standON != NULL ) {
         mPopup->insertItem ( *get_t_comment_icon(),tr ( "View/Edit Comment..." ),this,SLOT ( editComment() ) );
+        mPopup->insertItem ( *get_t_comment_icon(),tr ( "View/Edit Category..." ),this,SLOT ( editCategory() ) );
         mPopup->insertSeparator();
         mPopup->insertItem ( tr ( "Node size" ),this,SLOT ( sizeEvent() ) );
         mPopup->insertSeparator();
@@ -619,6 +620,7 @@ void GuiSlave::showTreeContextMenu ( Q3ListViewItem *, const QPoint &p2, int ) {
     mPopup->setCheckable ( true );
     if ( on != NULL ) {
         mPopup->insertItem ( *get_t_comment_icon(),tr ( "View/Edit Comment..." ),this,SLOT ( editComment() ) );
+        mPopup->insertItem ( *get_t_comment_icon(),tr ( "View/Edit Category..." ),this,SLOT ( editCategory() ) );
         mPopup->insertSeparator();
         mPopup->insertItem ( tr ( "Node size" ),this,SLOT ( sizeEvent() ) );
         mPopup->insertSeparator();

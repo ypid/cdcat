@@ -4,7 +4,7 @@
     <name></name>
     <message>
       <source>Not available</source>
-      <translation type="unfinished" >Nicht verfügbar</translation>
+      <translation>Nicht verfügbar</translation>
     </message>
     <message>
       <source>Byte</source>
@@ -407,10 +407,6 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     <message>
       <source>At media (number/name):</source>
       <translation>Auf Medium (Nummer/Name):</translation>
-    </message>
-    <message>
-      <source>Show the actual category page.</source>
-      <translation>Kategorie anzeigen</translation>
     </message>
     <message>
       <source>Edit and refresh the actual category page.</source>
@@ -874,6 +870,10 @@ Homepage: %3</translation>
     <message>
       <source>Scanning directory tree, please wait...</source>
       <translation>Verzeichnisbaum wird durchsucht, bitte warten...</translation>
+    </message>
+    <message>
+      <source>View/Edit Category...</source>
+      <translation>Kategorie anzeigen/bearbeiten...</translation>
     </message>
   </context>
   <context>
@@ -1692,12 +1692,12 @@ wird zu
       <translation>OK</translation>
     </message>
     <message>
-      <source>Edit comment</source>
-      <translation>Kommentar bearbeiten</translation>
+      <source>Edit comment of</source>
+      <translation>Kommentar bearbeiten von</translation>
     </message>
     <message>
-      <source>Edit category</source>
-      <translation>Kategorie bearbeiten</translation>
+      <source>Edit category of</source>
+      <translation>Kategorie bearbeiten von</translation>
     </message>
   </context>
   <context>
