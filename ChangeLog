@@ -5,6 +5,7 @@
 	- use better description on search button at find dialog
 	- initial defaults for search options (start date, end date, min size, max size) set to disabled
 	- initial defaults for search options (min size type, max size type) set to MiB
+	- initial defaults for search options (min size, max size) set to 1, 10
 
 01. Feb 2011 Christoph Thielecke <crissi99@gmx.de>
 	- csv import added (Advanced File Organizer)
