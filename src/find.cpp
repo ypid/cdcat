@@ -950,9 +950,8 @@ void seekEngine::putNodeToList ( Node *n ) {
     case HC_DIRECTORY: type = tr ( "dir" );
         mod  = ( ( DBDirectory * ) ( n->data ) )->modification;
         break;
-    case HC_FILE:      type = tr ( "file" ) + QString().sprintf ( "/ %.1f%s",
-                                  ( ( DBFile * ) ( n->data ) )->size,
-                                  getSType ( ( ( DBFile * ) ( n->data ) )->sizeType, true ) );
+    case HC_FILE:      type = tr ( "file" ) + QString().sprintf ( "/ %.1f",
+                                  ( ( DBFile * ) ( n->data ) )->size)+ " "+getSType ( ( ( DBFile * ) ( n->data ) )->sizeType, true );
         mod  = ( ( DBFile * ) ( n->data ) )->modification;
         break;
     default:           type = tr ( "error" );

@@ -353,9 +353,8 @@ int GuiSlave::updateListFromNode ( Node *pdir ) {
         // 2.(size) Column name:
 
         if ( tmp->type == HC_FILE )
-            qstr1.sprintf ( "%.2f %s",
-                            ( ( DBFile * ) ( tmp->data ) )->size,
-                            getSType ( ( ( DBFile * ) ( tmp->data ) )->sizeType, true ) );
+            qstr1.sprintf ( "%.2f",
+                            ( ( DBFile * ) ( tmp->data ) )->size)+" "+getSType ( ( ( DBFile * ) ( tmp->data ) )->sizeType, true );
         else if ( tmp->type == HC_MEDIA )
             qstr1.setNum ( ( ( DBMedia * ) ( tmp->data ) )->number );
         else

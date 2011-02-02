@@ -97,24 +97,29 @@ int   getSizetFS ( const char *str ) {
     return -1;
 }
 
-const char *getSType ( int t, bool localized ) {
+QString getSType ( int t, bool localized ) {
 	if(localized) {
 		switch ( t ) {
-			case BYTE : return " "+QObject().tr("Byte");
-			case KBYTE: return " "+QObject().tr("Kib");
-			case MBYTE: return " "+QObject().tr("Mib");
-			case GBYTE: return " "+QObject().tr("Gib");
+			case BYTE :
+				return QString(" "+QObject().tr("Byte"));
+			case KBYTE:
+				return QString(" "+QObject().tr("Kib"));
+			case MBYTE:
+				return QString(" "+QObject().tr("Mib"));
+			case GBYTE:
+				return QString(" "+QObject().tr("Gib"));
+// 				
 		}
     }
     else {
 	switch ( t ) {
-		case BYTE : return " byte";
-		case KBYTE: return " Kb";
-		case MBYTE: return " Mb";
-		case GBYTE: return " Gb";
+		case BYTE : return QString (" byte");
+		case KBYTE: return QString (" Kb");
+		case MBYTE: return QString (" Mb");
+		case GBYTE: return QString (" Gb");
 	}
     }
-    return NULL;
+    return QString("");
 }
 
 /*****************************************************************************
@@ -355,7 +360,7 @@ int  FileWriter::writeFile ( Node *source ) {
     gzprintf ( f,"%s<file name=\"%s\" size=\"%.2f%s\" time=\"%s\">\n",
                spg ( level ),c1,
                ( ( DBFile * ) ( source->data ) )->size,
-               getSType ( ( ( ( DBFile * ) ( source->data ) )->sizeType ) ),c2 );
+               getSType ( ( ( ( DBFile * ) ( source->data ) )->sizeType ) ).toLocal8Bit().constData(),c2 );
 
     commentWriter ( ( ( DBFile * ) ( source->data ) )->comment );
     categoryWriter ( ( ( DBFile * ) ( source->data ) )->category );
@@ -887,6 +892,7 @@ QString FileReader::getCatName ( void ) {
 	if ( done || catname != "" ) {
 		return catname;
 	}
+	return "";
 }
 
 CdCatXmlHandler::CdCatXmlHandler(FileReader *r, bool onlyCatalog) {

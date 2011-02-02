@@ -25,7 +25,7 @@ class Q3CString;
 class QTextCodec;
 class QDateTime;
 
-const char *getSType ( int t, bool localized=false );
+QString getSType ( int t, bool localized=false );
 const char *getMType ( int t );
 float       getSizeFS ( const char *str );
 int         getSizetFS ( const char *str );
