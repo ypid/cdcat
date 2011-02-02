@@ -111,6 +111,8 @@ CdCatConfig::CdCatConfig ( void ) {
     find_size_max = false;
     find_date_start = false;
     find_date_end = false;
+    find_size_unit_min_val = 2;
+    find_size_unit_max_val = 2;
     findX      = 10;
     findY      = 10;
     findWidth  = 600;
