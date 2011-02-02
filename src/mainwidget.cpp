@@ -268,9 +268,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp,QApplication *appp,QWidget* 
     splitMain->setSizes ( splitterSizesList );
     splitMain->setResizeMode ( DirView, QSplitter::Stretch );
     splitMain->setResizeMode ( listView, QSplitter::Stretch );
-#ifdef _WIN32
-	splitMain->setStyle(new QPlastiqueStyle());
-#endif
+    splitMain->setStyle(new QPlastiqueStyle());
 
     connect ( DirView ,SIGNAL ( folderSelected ( const QString& ) ),guis,SLOT ( listUpdate ( const QString& ) ) );
     connect ( DirView ,SIGNAL ( hitkey ( QKeyEvent * ) ),guis,SLOT ( hotKeys ( QKeyEvent * ) ) );
