@@ -381,7 +381,7 @@ PWw::PWw ( QWidget *parent,QApplication *qapp, bool showProgress, long long int 
     if(!progresstext.isEmpty())
 	this->progresstext = progresstext;
     else
-	this->progresstext = tr ( "Please Wait..." );  
+	this->progresstext = DataBase::tr ( "Please Wait..." );  
  
 
     baseheight=50;

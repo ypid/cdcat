@@ -743,7 +743,7 @@ int FileReader::readFrom ( Node *source ) {
 
 	pww->showProgress = true;
 	pww->steps = allocated_buffer_len;
-	pww->setProgressText(QObject().tr("Reading file, please wait..."));
+	pww->setProgressText(DataBase::tr("Reading file, please wait..."));
 	while (len != allocated_buffer_len  ) {
 		readcount = gzread(f, tmpbuffer, 2048);
 		len += readcount;
@@ -765,7 +765,7 @@ int FileReader::readFrom ( Node *source ) {
 	
 	CdCatXmlHandler *handler = new CdCatXmlHandler(this);
 	pww->steps = linecount;
-	pww->setProgressText(QObject().tr("Parsing file, please wait..."));
+	
 	handler->setPww(pww);
 	xmlReader.setContentHandler(handler);
 	xmlReader.setErrorHandler(handler);
@@ -777,12 +777,13 @@ int FileReader::readFrom ( Node *source ) {
 		mysource.setData(QString(dataBuffer));
 	}
 	else {
+		pww->setProgressText(DataBase::tr("Converting to unicode, please wait..."));
 		if (*DEBUG_INFO_ENABLED)
 			std::cerr <<"set data source to utf8  converted text..." <<endl;
 		mysource.setData(converter->toUnicode (QString(dataBuffer)));
 	}
 	
-	
+	pww->setProgressText(DataBase::tr("Parsing file, please wait..."));
 	int done=0;
 	
 	if ( ! xmlReader.parse(mysource) ) {
@@ -867,13 +868,13 @@ QString FileReader::getCatName ( void ) {
 		mysource.setData(QString(dataBuffer));
 	}
 	else {
-		pww->setProgressText(QObject().tr("Converting to unicode, please wait..."));
+		pww->setProgressText(DataBase::tr("Converting to unicode, please wait..."));
 		if (*DEBUG_INFO_ENABLED)
 			std::cerr <<"set data source to utf8  converted text..." <<endl;
 		mysource.setData(converter->toUnicode (QString(dataBuffer)));
 	}
 
-	pww->setProgressText(QObject().tr("Parsing file, please wait..."));
+	pww->setProgressText(DataBase::tr("Parsing file, please wait..."));
 
 	if (*DEBUG_INFO_ENABLED)
 		std::cerr <<"starting parsing" <<endl;

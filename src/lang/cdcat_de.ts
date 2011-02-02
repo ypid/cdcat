@@ -558,16 +558,6 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
       <source>Not enough memory to open the file: %1</source>
       <translation>Nicht genug Hauptspeicher um Datei %1 zu öffnen</translation>
     </message>
-  </context>
-  <context>
-    <name>DirectoryView</name>
-    <message>
-      <source>Name</source>
-      <translation>Name</translation>
-    </message>
-  </context>
-  <context>
-    <name>FileReader</name>
     <message>
       <source>Reading file, please wait...</source>
       <translation>Datei wird gelesen, bitte warten...</translation>
@@ -579,6 +569,17 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     <message>
       <source>Converting to unicode, please wait...</source>
       <translation>Umwandlung zu Unicode, bitte warten...</translation>
+    </message>
+    <message>
+      <source>Please Wait...</source>
+      <translation>Bitte warten...</translation>
+    </message>
+  </context>
+  <context>
+    <name>DirectoryView</name>
+    <message>
+      <source>Name</source>
+      <translation>Name</translation>
     </message>
   </context>
   <context>
@@ -1545,10 +1546,6 @@ wird zu
     <message>
       <source>detect CDCROM/DVD media name after mount</source>
       <translation>CDCROM/DVD-Medienname nach dem Mounten erkennen</translation>
-    </message>
-    <message>
-      <source>Please Wait...</source>
-      <translation>Bitte warten...</translation>
     </message>
     <message>
       <source>Add a &quot;Catalog Link&quot; to the database</source>

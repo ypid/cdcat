@@ -775,6 +775,26 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <source>Not enough memory to open the file: %1</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../wdbfile.cpp" line="746"/>
+        <source>Reading file, please wait...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../wdbfile.cpp" line="877"/>
+        <source>Parsing file, please wait...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../wdbfile.cpp" line="871"/>
+        <source>Converting to unicode, please wait...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../adddialog.cpp" line="384"/>
+        <source>Please Wait...</source>
+        <translation type="unfinished">Aguarde...</translation>
+    </message>
 </context>
 <context>
     <name>DirectoryView</name>
@@ -782,24 +802,6 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <location filename="../dirview.cpp" line="163"/>
         <source>Name</source>
         <translation>Nome</translation>
-    </message>
-</context>
-<context>
-    <name>FileReader</name>
-    <message>
-        <location filename="../wdbfile.cpp" line="746"/>
-        <source>Reading file, please wait...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../wdbfile.cpp" line="876"/>
-        <source>Parsing file, please wait...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../wdbfile.cpp" line="870"/>
-        <source>Converting to unicode, please wait...</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2066,7 +2068,7 @@ será
     <message>
         <location filename="../adddialog.cpp" line="384"/>
         <source>Please Wait...</source>
-        <translation type="unfinished">Aguarde...</translation>
+        <translation type="obsolete">Aguarde...</translation>
     </message>
     <message>
         <location filename="../adddialog.cpp" line="598"/>

@@ -11,7 +11,7 @@
 	- workaround for displaying rubberband again
 	- show edit category menu entry in context menu
 	- display node path in comment/category edit
-	- show category button hidden 
+	- show category button hidden
 
 01. Feb 2011 Christoph Thielecke <crissi99@gmx.de>
 	- csv import added (Advanced File Organizer)
