@@ -98,7 +98,7 @@ CdCatConfig::CdCatConfig ( void ) {
     readavii   = true;
 
     find_cs    = false;
-    find_em    = false;
+    find_em    = true;
     find_di    = true;
     find_fi    = true;
     find_co    = true;

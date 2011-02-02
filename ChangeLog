@@ -13,6 +13,7 @@
 	- display node path in comment/category edit
 	- show category button hidden
 	- to_dcutf8 now uses QString
+	- use simple search by default
 
 01. Feb 2011 Christoph Thielecke <crissi99@gmx.de>
 	- csv import added (Advanced File Organizer)
