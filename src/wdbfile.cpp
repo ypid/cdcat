@@ -185,7 +185,7 @@ char * FileWriter::to_dcutf8 ( QDateTime d ) {
 		return strdup ( converter->fromUnicode ( o ) );
 	}
 	else {
-		return (char *)o.toUtf8().constData();
+		return strdup(o.toUtf8().constData());
 	}
 }
 
