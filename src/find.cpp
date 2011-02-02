@@ -335,7 +335,7 @@ void findDialog::languageChange() {
     cbDateEnd->setText ( tr ( "Date end" ) );
     cbSizeMin->setText( tr("Min size") );
     cbSizeMax->setText( tr("Max size") );
-    buttonOk->setText ( tr ( "&OK" ) );
+    buttonOk->setText ( tr ( "&Start search" ) );
 #ifndef _WIN32
     buttonOk->setAccel ( QKeySequence ( QString::null ) );
 #endif

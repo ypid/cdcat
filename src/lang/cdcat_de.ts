@@ -1,6 +1,29 @@
 <!DOCTYPE TS>
 <TS>
   <context>
+    <name></name>
+    <message>
+      <source>Not available</source>
+      <translation type="unfinished" >Nicht verfügbar</translation>
+    </message>
+    <message>
+      <source>Byte</source>
+      <translation>Byte</translation>
+    </message>
+    <message>
+      <source>Kib</source>
+      <translation>KiB</translation>
+    </message>
+    <message>
+      <source>Mib</source>
+      <translation>MiB</translation>
+    </message>
+    <message>
+      <source>Gib</source>
+      <translation>GiB</translation>
+    </message>
+  </context>
+  <context>
     <name>CdCatConfig</name>
     <message>
       <source>Error during autoload...</source>
@@ -516,10 +539,6 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
       <translation>Datei kann nicht gelesen werden: %1</translation>
     </message>
     <message>
-      <source>Not available</source>
-      <translation>Nicht verfügbar</translation>
-    </message>
-    <message>
       <source>Ignore</source>
       <translation>Ignorieren</translation>
     </message>
@@ -543,22 +562,16 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
       <source>Not enough memory to open the file: %1</source>
       <translation>Nicht genug Hauptspeicher um Datei %1 zu öffnen</translation>
     </message>
+  </context>
+  <context>
+    <name>DirectoryView</name>
     <message>
-      <source>Byte</source>
-      <translation>Byte</translation>
+      <source>Name</source>
+      <translation>Name</translation>
     </message>
-    <message>
-      <source>Kib</source>
-      <translation>KiB</translation>
-    </message>
-    <message>
-      <source>Mib</source>
-      <translation>MiB</translation>
-    </message>
-    <message>
-      <source>Gib</source>
-      <translation>GiB</translation>
-    </message>
+  </context>
+  <context>
+    <name>FileReader</name>
     <message>
       <source>Reading file, please wait...</source>
       <translation>Datei wird gelesen, bitte warten...</translation>
@@ -570,13 +583,6 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     <message>
       <source>Converting to unicode, please wait...</source>
       <translation>Umwandlung zu Unicode, bitte warten...</translation>
-    </message>
-  </context>
-  <context>
-    <name>DirectoryView</name>
-    <message>
-      <source>Name</source>
-      <translation>Name</translation>
     </message>
   </context>
   <context>
@@ -1988,10 +1994,6 @@ wird zu
       <translation>Alle Medien</translation>
     </message>
     <message>
-      <source>&amp;OK</source>
-      <translation>&amp;OK</translation>
-    </message>
-    <message>
       <source>&amp;Cancel</source>
       <translation>&amp;Abbrechen</translation>
     </message>
@@ -2038,6 +2040,10 @@ wird zu
     <message>
       <source>Max size</source>
       <translation>Maximale Größe</translation>
+    </message>
+    <message>
+      <source>&amp;Start search</source>
+      <translation>&amp;Suche starten</translation>
     </message>
   </context>
   <context>

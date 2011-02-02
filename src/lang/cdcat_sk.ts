@@ -1,6 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1">
 <context>
+    <name></name>
+    <message>
+        <location filename="../dbase.cpp" line="45"/>
+        <source>Not available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../wdbfile.cpp" line="104"/>
+        <source>Byte</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../wdbfile.cpp" line="106"/>
+        <source>Kib</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../wdbfile.cpp" line="108"/>
+        <source>Mib</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../wdbfile.cpp" line="110"/>
+        <source>Gib</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>AddLnk</name>
     <message>
         <location filename="../adddialog.cpp" line="458"/>
@@ -494,12 +522,12 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Posledná zmena:</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="279"/>
+        <location filename="../commwidget.cpp" line="278"/>
         <source>Owner:</source>
         <translation>Vlastník:</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="285"/>
+        <location filename="../commwidget.cpp" line="284"/>
         <source>Unknown</source>
         <translation>Neznámy</translation>
     </message>
@@ -509,17 +537,17 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Médium (číslo/názov):</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="307"/>
+        <location filename="../commwidget.cpp" line="306"/>
         <source>Mp3-Tag:</source>
         <translation>MP3-Tag:</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="309"/>
+        <location filename="../commwidget.cpp" line="308"/>
         <source>(Art/Tit/Alb/Year/Comm)</source>
         <translation>(Autor/Názov/Album/Rok/Kom)</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="330"/>
+        <location filename="../commwidget.cpp" line="329"/>
         <source>Comment:</source>
         <translation>Komentár:</translation>
     </message>
@@ -539,7 +567,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Typ:</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="449"/>
+        <location filename="../commwidget.cpp" line="448"/>
         <source>There is no selected element.</source>
         <translation>Nie je vybraná žiadna položka.</translation>
     </message>
@@ -549,12 +577,12 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Linka ku katalógu CdCat</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="242"/>
+        <location filename="../commwidget.cpp" line="241"/>
         <source>Location:</source>
         <translation>Umiestnenie:</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="254"/>
+        <location filename="../commwidget.cpp" line="253"/>
         <source>Last modification:</source>
         <translation>Posledná zmena:</translation>
     </message>
@@ -574,7 +602,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="383"/>
+        <location filename="../commwidget.cpp" line="382"/>
         <source>Category:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -755,11 +783,6 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="45"/>
-        <source>Not available</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../dbase.cpp" line="650"/>
         <source>Ignore</source>
         <translation type="unfinished"></translation>
@@ -789,41 +812,6 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <source>Not enough memory to open the file: %1</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <location filename="../wdbfile.cpp" line="103"/>
-        <source>Byte</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../wdbfile.cpp" line="104"/>
-        <source>Kib</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../wdbfile.cpp" line="105"/>
-        <source>Mib</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../wdbfile.cpp" line="106"/>
-        <source>Gib</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../wdbfile.cpp" line="741"/>
-        <source>Reading file, please wait...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../wdbfile.cpp" line="871"/>
-        <source>Parsing file, please wait...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../wdbfile.cpp" line="865"/>
-        <source>Converting to unicode, please wait...</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>DirectoryView</name>
@@ -831,6 +819,24 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <location filename="../dirview.cpp" line="163"/>
         <source>Name</source>
         <translation>Názov</translation>
+    </message>
+</context>
+<context>
+    <name>FileReader</name>
+    <message>
+        <location filename="../wdbfile.cpp" line="746"/>
+        <source>Reading file, please wait...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../wdbfile.cpp" line="876"/>
+        <source>Parsing file, please wait...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../wdbfile.cpp" line="870"/>
+        <source>Converting to unicode, please wait...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -846,82 +852,82 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Žiadna vybraná položka.</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="380"/>
+        <location filename="../guibase.cpp" line="379"/>
         <source>Directory</source>
         <translation>Adresár</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="367"/>
+        <location filename="../guibase.cpp" line="366"/>
         <source>Catalog</source>
         <translation>Katalóg</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="370"/>
+        <location filename="../guibase.cpp" line="369"/>
         <source>Unknown(DB)</source>
         <translation>Neznáma (DB)</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="371"/>
+        <location filename="../guibase.cpp" line="370"/>
         <source>CD</source>
         <translation>CD</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="372"/>
+        <location filename="../guibase.cpp" line="371"/>
         <source>DVD</source>
         <translation>DVD</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="373"/>
+        <location filename="../guibase.cpp" line="372"/>
         <source>HardDisc</source>
         <translation>HardDisk</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="374"/>
+        <location filename="../guibase.cpp" line="373"/>
         <source>Floppy</source>
         <translation>Disketa</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="375"/>
+        <location filename="../guibase.cpp" line="374"/>
         <source>NetworkDrv</source>
         <translation>Sieťový disk</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="376"/>
+        <location filename="../guibase.cpp" line="375"/>
         <source>FlashDrv</source>
         <translation>FlashDisk</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="377"/>
+        <location filename="../guibase.cpp" line="376"/>
         <source>OtherDevice</source>
         <translation>Ostatné</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="381"/>
+        <location filename="../guibase.cpp" line="380"/>
         <source>File</source>
         <translation>Súbor</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="538"/>
+        <location filename="../guibase.cpp" line="537"/>
         <source>Hyper&apos;s CD Catalogizer (modified)</source>
         <translation>Hyperov CD katalogizér (upravený)</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="543"/>
+        <location filename="../guibase.cpp" line="542"/>
         <source>Hyper&apos;s CD Catalogizer</source>
         <translation>Hyperov CD katalogizér</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1411"/>
+        <location filename="../guibase.cpp" line="1410"/>
         <source>CdCat databases (*.hcf )</source>
         <translation>CdCat databázy (*.hcf)</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="864"/>
+        <location filename="../guibase.cpp" line="863"/>
         <source>Open a file...</source>
         <translation>Otvoriť súbor...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1669"/>
+        <location filename="../guibase.cpp" line="1668"/>
         <source>Error while opening...</source>
         <translation>Chyba pri otváraní...</translation>
     </message>
@@ -931,64 +937,64 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">OK</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="986"/>
+        <location filename="../guibase.cpp" line="985"/>
         <source>Save to file...</source>
         <translation>Uložiť do súboru...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1007"/>
+        <location filename="../guibase.cpp" line="1006"/>
         <source>Error while saving...</source>
         <translation>Chyba pri ukladaní...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1028"/>
+        <location filename="../guibase.cpp" line="1027"/>
         <source>Closing previous database...</source>
         <translation>Zaváram predchádzajúcu databázu...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1028"/>
+        <location filename="../guibase.cpp" line="1027"/>
         <source>Do you want to save the changes?</source>
         <translation>Chcete uložiť zmeny?</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1731"/>
+        <location filename="../guibase.cpp" line="1730"/>
         <source>Yes</source>
         <translation>Áno</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1731"/>
+        <location filename="../guibase.cpp" line="1730"/>
         <source>No</source>
         <translation>Nie</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1475"/>
+        <location filename="../guibase.cpp" line="1474"/>
         <source>Error:</source>
         <translation>Chyba:</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1061"/>
+        <location filename="../guibase.cpp" line="1060"/>
         <source>Do you really want to delete this?: 
 %1</source>
         <translation>Naozaj zmazať nasledovnú položku?: 
 %1</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1729"/>
+        <location filename="../guibase.cpp" line="1728"/>
         <source>Confirmation</source>
         <translation>Potvrdenie</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1200"/>
+        <location filename="../guibase.cpp" line="1199"/>
         <source>Warning...</source>
         <translation>Varovanie...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1313"/>
+        <location filename="../guibase.cpp" line="1312"/>
         <source>You can refresh ONLY a MEDIA node!</source>
         <translation>Aktualizovať je možné iba položku MÉDIA!</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1411"/>
+        <location filename="../guibase.cpp" line="1410"/>
         <source>Insert a database file...</source>
         <translation>Vložiť databázový súbor...</translation>
     </message>
@@ -998,7 +1004,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Výsledky:</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1481"/>
+        <location filename="../guibase.cpp" line="1480"/>
         <source>The size of &quot;%1&quot; : 
  %2 
  %3 file /%4 directory</source>
@@ -1007,133 +1013,133 @@ It is necessary because I&apos;d like to save the config file into your home dir
 %3 súbor(ov) /%4 adresár(ov)</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1119"/>
+        <location filename="../guibase.cpp" line="1118"/>
         <source>Cannot mount CD</source>
         <translation>Nemožno pripojiť CD</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1258"/>
+        <location filename="../guibase.cpp" line="1257"/>
         <source>Cannot eject CD!</source>
         <translation>Nemožno vysunúť CD!</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1119"/>
+        <location filename="../guibase.cpp" line="1118"/>
         <source>I can&apos;t find the &quot;mount&quot; program</source>
         <translation>Nemožno nájsť program &quot;mount&quot;</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1275"/>
+        <location filename="../guibase.cpp" line="1274"/>
         <source>Cannot mount CD!</source>
         <translation>Nemožno pripojiť CD!</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1231"/>
+        <location filename="../guibase.cpp" line="1230"/>
         <source>Cannot eject CD</source>
         <translation>Nemožno vysunúť CD</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1231"/>
+        <location filename="../guibase.cpp" line="1230"/>
         <source>I can&apos;t find the &quot;eject&quot; program</source>
         <translation>Nemožno nájsť program &quot;eject&quot;</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="629"/>
+        <location filename="../guibase.cpp" line="628"/>
         <source>Rename node...</source>
         <translation>Premenovať položku...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="630"/>
+        <location filename="../guibase.cpp" line="629"/>
         <source>Delete node</source>
         <translation>Zmazať položku</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="639"/>
+        <location filename="../guibase.cpp" line="638"/>
         <source>Rescan media...</source>
         <translation>Aktualizovať médium...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="644"/>
+        <location filename="../guibase.cpp" line="643"/>
         <source>Add media...</source>
         <translation>Pridať médium...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="646"/>
+        <location filename="../guibase.cpp" line="645"/>
         <source>Insert Catalog...</source>
         <translation>Vložiť katalóg...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1317"/>
+        <location filename="../guibase.cpp" line="1316"/>
         <source>Rescan %1</source>
         <translation>Aktualizovať %1</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="640"/>
+        <location filename="../guibase.cpp" line="639"/>
         <source>Re-Number media...</source>
         <translation>Zmeň číslo média...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1460"/>
+        <location filename="../guibase.cpp" line="1459"/>
         <source>It is NOT a media node!</source>
         <translation>Toto nie je uzol média!</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="624"/>
+        <location filename="../guibase.cpp" line="623"/>
         <source>Node size</source>
         <translation>Veľkosť položky</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="622"/>
+        <location filename="../guibase.cpp" line="621"/>
         <source>View/Edit Comment...</source>
         <translation>Zobraziť/Editovať komentár...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="649"/>
+        <location filename="../guibase.cpp" line="648"/>
         <source>Close all branch</source>
         <translation>Zatvoriť všetky vetvy</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="579"/>
+        <location filename="../guibase.cpp" line="578"/>
         <source>Show/Remove Content...</source>
         <translation>Zobraziť/Odstrániť obsah...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1475"/>
+        <location filename="../guibase.cpp" line="1474"/>
         <source>There is no selected item in the middle list box!</source>
         <translation>V strednom paneli nie je vybraná žiadna položka!</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1200"/>
+        <location filename="../guibase.cpp" line="1199"/>
         <source>An error occured while scanning,
 the DataBase may be incomplete</source>
         <translation>Nastala chyba pri skenovaní,
 databáza pravdepodobne nebude kompletná</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1309"/>
+        <location filename="../guibase.cpp" line="1308"/>
         <source>There is no selected Media in the middle list box!</source>
         <translation>V strednom paneli nie je vybrané žiadne médium!</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1329"/>
+        <location filename="../guibase.cpp" line="1328"/>
         <source>An error occured while scanning, the rescan operation was cancelled: 
 %1</source>
         <translation>Nastala chyba pri skenovaní, aktualizácia bola zrušená:
 %1</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="635"/>
+        <location filename="../guibase.cpp" line="634"/>
         <source>Borrow this media to...</source>
         <translation>Zapožičať médium...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1730"/>
+        <location filename="../guibase.cpp" line="1729"/>
         <source>Do you want to clear the borrowing mark from media &quot;%1&quot;?
 (Say yes if you got it back.)</source>
         <translation>Naozaj zmazať informácie o zapožičaní média:
 &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="637"/>
+        <location filename="../guibase.cpp" line="636"/>
         <source>I got it back! (clear borrowing mark)</source>
         <translation>Mám ho späť! (zmazať informácie o zapožičaní)</translation>
     </message>
@@ -1161,22 +1167,22 @@ Domovská stránka: %3</translation>
         <translation>Veľkosť</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="382"/>
+        <location filename="../guibase.cpp" line="381"/>
         <source>Catalog Link</source>
         <translation>Linka ku katalógu</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="582"/>
+        <location filename="../guibase.cpp" line="581"/>
         <source>Follow the link (Open it) !</source>
         <translation>Otvor súbor na ktorý ukazuje linka!</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="645"/>
+        <location filename="../guibase.cpp" line="644"/>
         <source>Add a link to a CdCAt Catalog...</source>
         <translation>Pridaj linku ku katalógu CdCat...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1648"/>
+        <location filename="../guibase.cpp" line="1647"/>
         <source>The link is empty.</source>
         <translation>Linka neobsahuje žiadnu informáciu.</translation>
     </message>
@@ -1209,22 +1215,22 @@ Domovská stránka: %3</translation>
         <translation type="obsolete">Výsledok:</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1318"/>
+        <location filename="../guibase.cpp" line="1317"/>
         <source>Select directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1486"/>
+        <location filename="../guibase.cpp" line="1485"/>
         <source>The result:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1482"/>
+        <location filename="../guibase.cpp" line="1481"/>
         <source>MiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1097"/>
+        <location filename="../guibase.cpp" line="1096"/>
         <source>Scanning directory tree, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1285,17 +1291,17 @@ Domovská stránka: %3</translation>
 <context>
     <name>HQListView</name>
     <message>
-        <location filename="../guibase.cpp" line="736"/>
+        <location filename="../guibase.cpp" line="735"/>
         <source>Name</source>
         <translation>Názov</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="737"/>
+        <location filename="../guibase.cpp" line="736"/>
         <source>Size</source>
         <translation>Veľkosť</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="738"/>
+        <location filename="../guibase.cpp" line="737"/>
         <source>Type</source>
         <translation>Typ</translation>
     </message>
@@ -1608,42 +1614,42 @@ na
 <context>
     <name>InfoDialog</name>
     <message>
-        <location filename="../info.cpp" line="112"/>
+        <location filename="../info.cpp" line="113"/>
         <source>German translation &amp; additional programming</source>
         <translation>Nemecký preklad &amp; programovanie</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="126"/>
+        <location filename="../info.cpp" line="127"/>
         <source>Spanish translation</source>
         <translation>Španielský preklad</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="132"/>
+        <location filename="../info.cpp" line="133"/>
         <source>Czech translation</source>
         <translation>Český preklad</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="444"/>
+        <location filename="../info.cpp" line="445"/>
         <source>About cdcat</source>
         <translation>O programe</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="445"/>
+        <location filename="../info.cpp" line="446"/>
         <source>close</source>
         <translation>zatvoriť</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="447"/>
+        <location filename="../info.cpp" line="448"/>
         <source>About Cdcat</source>
         <translation>O programe</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="449"/>
+        <location filename="../info.cpp" line="450"/>
         <source>License</source>
         <translation>Licencia</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="451"/>
+        <location filename="../info.cpp" line="452"/>
         <source>Thanks</source>
         <translation>Poďakovanie</translation>
     </message>
@@ -1658,12 +1664,12 @@ na
         <translation>Verzia:</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="101"/>
+        <location filename="../info.cpp" line="102"/>
         <source>Author:</source>
         <translation>Autor:</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="103"/>
+        <location filename="../info.cpp" line="104"/>
         <source>Copyright (C) 2003 Peter Deak (GPL)</source>
         <translation>Copyright (C) 2003 Peter Deak (GPL)</translation>
     </message>
@@ -1673,17 +1679,17 @@ na
         <translation type="obsolete">Poľský preklad</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="120"/>
+        <location filename="../info.cpp" line="121"/>
         <source>AVI reader plugin &amp; Polish translation</source>
         <translation>AVI plugin &amp; Poľský preklad</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="105"/>
+        <location filename="../info.cpp" line="106"/>
         <source>Copyright (C) 2010 Christoph Thielecke (GPL)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="114"/>
+        <location filename="../info.cpp" line="115"/>
         <source>Ported to Qt4</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2388,22 +2394,22 @@ na
         <translation type="obsolete">Editovať komentár</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="584"/>
+        <location filename="../commwidget.cpp" line="583"/>
         <source>Cancel</source>
         <translation>Zrušiť</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="585"/>
+        <location filename="../commwidget.cpp" line="584"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="581"/>
+        <location filename="../commwidget.cpp" line="580"/>
         <source>Edit comment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="583"/>
+        <location filename="../commwidget.cpp" line="582"/>
         <source>Edit category</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2796,7 +2802,7 @@ na
     <message>
         <location filename="../find.cpp" line="338"/>
         <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
+        <translation type="obsolete">&amp;OK</translation>
     </message>
     <message>
         <location filename="../find.cpp" line="342"/>
@@ -2856,6 +2862,11 @@ na
     <message>
         <location filename="../find.cpp" line="337"/>
         <source>Max size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="338"/>
+        <source>&amp;Start search</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3506,7 +3517,7 @@ nájdete na domovskej stránke programu CdCat:&lt;br&gt;&lt;tt&gt;http://cdcat.s
         <translation>súbor</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="958"/>
+        <location filename="../find.cpp" line="957"/>
         <source>error</source>
         <translation>chyba</translation>
     </message>
