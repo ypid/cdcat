@@ -98,6 +98,7 @@ QString DEBUG_INFO="";
     infotext+="<b>("+tr("Development version build at")+" "+__DATE__+" "+__TIME__+", Qt "+QString ( QT_VERSION_STR ) +")"+DEBUG_INFO+"</b>";
 #endif
     infotext+="<br>\n";
+    infotext+="<br>\n";
     infotext+=tr ( "Author:" );
     infotext+="<br><font size=\"+2\"><b>Christoph Thielecke (crissi99@gmx.de)</b><br></font><br>\n";
     infotext+=tr ( "Copyright (C) 2003 Peter Deak (GPL)" );
