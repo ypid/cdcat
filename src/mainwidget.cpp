@@ -39,9 +39,7 @@
 
 #include <iostream>
 
-#ifdef _WIN32
 #include <QPlastiqueStyle>
-#endif
 
 #include "commwidget.h"
 #include "hdirview.h"
