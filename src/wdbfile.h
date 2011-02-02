@@ -35,7 +35,7 @@ int         getTypeFS ( const char *str );
 class FileWriter {
 private:
     inline char * to_cutf8 ( QString   s );
-    inline char * to_dcutf8 ( QDateTime d );
+    QString to_dcutf8 ( QDateTime d );
 
     QTextCodec *converter;
     gzFile f;
