@@ -374,7 +374,7 @@ PWw::PWw ( QWidget *parent,QApplication *qapp, bool showProgress, long long int 
                                                                   ) {
     int i;
     QFont ownf;
-    refreshTime = 50;
+    refreshTime = 250;
     appl=qapp;
     this->showProgress = showProgress;
     this->steps = steps;
@@ -482,6 +482,11 @@ void PWw::setProgressText ( QString progresstext ){
 void PWw::step ( long long int progress_step ) {
     QTime tt;
     tt=QTime::currentTime();
+
+    if ( appl != NULL )
+	if (appl->hasPendingEvents())
+		appl->processEvents();
+
     if ( t.msecsTo ( tt ) < refreshTime ) return;
     t = tt;
 
@@ -492,8 +497,7 @@ void PWw::step ( long long int progress_step ) {
         show();
     repaint();
 
-    if ( appl != NULL )
-        appl->processEvents();
+
 }
 
 void PWw::paintEvent ( QPaintEvent *e ) {

@@ -7,6 +7,7 @@
 	- initial defaults for search options (min size type, max size type) set to MiB
 	- initial defaults for search options (min size, max size) set to 1, 10
 	- set cursor to busy cursor at save, saveas and open actions
+	- process events if nessary at open catalog
 
 01. Feb 2011 Christoph Thielecke <crissi99@gmx.de>
 	- csv import added (Advanced File Organizer)
