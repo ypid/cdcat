@@ -1098,7 +1098,7 @@ int GuiSlave::addEvent ( void ) {
 	cerr<<"ADDEVENT-1"<<endl;
     PWw *pww = new PWw ( mainw,mainw->app, false, 0, tr("Scanning directory tree, please wait..."));
     mainw->db->pww = pww;
-
+    QApplication::setOverrideCursor ( Qt::waitCursor );
     d->type = mainw->cconfig->lastMediaType;
 
 #ifndef _WIN32
@@ -1290,6 +1290,7 @@ int GuiSlave::addEvent ( void ) {
     delete pww;
     if(*DEBUG_INFO_ENABLED)
 	cerr<<"ADDEVENT-8"<<endl;
+    QApplication::restoreOverrideCursor();
     return 0;
 }
 
