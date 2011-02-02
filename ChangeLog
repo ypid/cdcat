@@ -1,6 +1,7 @@
 02. Feb 2011 Christoph Thielecke <crissi99@gmx.de>
 	- qmake project file order changed (workaround for qmake bug)
 	- development/release information in info dialog
+	- unit translation fixes
 
 01. Feb 2011 Christoph Thielecke <crissi99@gmx.de>
 	- csv import added (Advanced File Organizer)
