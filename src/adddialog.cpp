@@ -388,7 +388,7 @@ PWw::PWw ( QWidget *parent,QApplication *qapp, bool showProgress, long long int 
 
     baseheight=50;
     if(showProgress)
-	baseheight+=30;
+	baseheight+=40;
 
    if (showCancel)
 	baseheight+=50;
@@ -470,7 +470,7 @@ void PWw::setProgressText ( QString progresstext ){
     fontheight = fm->height();
     baseheight=30;
     if(showProgress)
-	baseheight+=30;
+	baseheight+=40;
 
     mywidth = (fm->width ( progresstext ))+10;
     myheight = fm->height()+baseheight;
@@ -535,7 +535,7 @@ void PWw::paintEvent ( QPaintEvent *e ) {
 	
 	QPixmap pm = anim_list.at(s);
 	p.drawPixmap ( (mywidth/2)-(pm.width()/2), 25, pm );
-	int buttom_offset=fontheight+pm.height()+5;
+	int buttom_offset=fontheight+pm.height()+15;
 
 	if(showProgress) {
 		p.setPen(QPen(QColor().black()));
@@ -547,9 +547,9 @@ void PWw::paintEvent ( QPaintEvent *e ) {
 	//         std::cerr << progress_step << "/"<< steps <<  " p: " << percent << "%" << std::endl;
 	}
 	if(showCancel) {
-		buttom_offset += 35;
+		buttom_offset += 30;
 		p.setBrush(QBrush(Qt::NoBrush));
-		p.drawText (begincanceltext, buttom_offset-5, DataBase::tr("Cancel") );
+		p.drawText (begincanceltext, buttom_offset, DataBase::tr("Cancel") );
 	}
 
 
