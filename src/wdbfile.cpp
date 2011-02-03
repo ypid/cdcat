@@ -102,13 +102,13 @@ QString getSType ( int t, bool localized ) {
 	if(localized) {
 		switch ( t ) {
 			case BYTE :
-				return QObject().tr("Byte");
+				return QString(" ")+QString("Byte");
 			case KBYTE:
-				return QObject().tr("Kib");
+				return QString(" ")+QString("KiB");
 			case MBYTE:
-				return QObject().tr("Mib");
+				return QString(" ")+QString("MiB");
 			case GBYTE:
-				return QObject().tr("Gib");
+				return QString(" ")+QString("GiB");
 // 			
 		}
     }
