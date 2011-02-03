@@ -210,6 +210,9 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp,QApplication *appp,QWidget* 
     mainMenu->insertItem ( tr ( "Import/Export" ),inoutMenu );
     mainMenu->insertItem ( tr ( "Others" ),othersMenu );
     mainMenu->insertItem ( tr ( "Help" ),helpMenu );
+#ifdef Q_WS_MAC
+	mainMenu->hide();
+#endif
 
     languageChange();
 

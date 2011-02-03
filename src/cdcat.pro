@@ -71,6 +71,15 @@ SOURCES	    =   adddialog.cpp \
 #                unix:system(lrelease cdcat.pro)
 
 #            win32:system(lrelease cdcat.pro)
+
+PRECOMPILED_HEADER = cdcat_pch.h
+
+precompile_header:!isEmpty(PRECOMPILED_HEADER) {
+   DEFINES += USING_PCH
+   CONFIG += precompile_header
+ }
+
+
 CONFIG		+= qt xml release
 MOC_DIR         = moc_files/
 OBJECTS_DIR     = obj_files/ 
