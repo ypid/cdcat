@@ -477,7 +477,7 @@ void PWw::setProgressText ( QString progresstext ){
 
 
     if(showCancel) {
-        myheight += fontheight+2;
+        myheight += fontheight+10;
 	begincanceltext = mywidth/2- fm->width ( tr("Cancel") )/2;
 // 	std::cerr << "setCancel!" << std::endl;
     }
