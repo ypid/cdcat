@@ -5,3 +5,4 @@
 - userdefined pattern template for medianame (e.g. pc[%d])
 - select several files/directories in order to calculate their total size
 - When you want to rescan a CD, a file selection window appears, which is disturbing ; why not a drive selection window, just like when you add a new device (unix) ???
+- export categories too
