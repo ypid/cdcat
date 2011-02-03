@@ -55,7 +55,8 @@ ImportDialog::ImportDialog ( QWidget* parent, const char* name, bool modal, Qt::
     importTypeCsvDisclib = new QRadioButton ( "&Disclib CSV",importButtonBox, "importTypeCsvDisclib" );
     importTypeCsvVisualcd = new QRadioButton ( "&VisualCD CSV",importButtonBox, "importTypeCsvVisualcd" );
     importTypeCsvVvv = new QRadioButton ( "&VVV CSV",importButtonBox, "importTypeCsvVvv" );
-    importTypeCsvAdvancedFileOrganizer = new QRadioButton ( "&VVV CSV",importButtonBox, "importTypeCsvAdvancedFileOrganizer" );
+    importTypeCsvAdvancedFileOrganizer = new QRadioButton ( "&Advanced file organizer CSV",importButtonBox, "importTypeCsvAdvancedFileOrganizer" );
+    importTypeCsvFileArchivist = new QRadioButton ( "&File Archivist",importButtonBox, "importTypeCsvFileArchivist" );
     importTypeGtktalogXml = new QRadioButton ( "Gtktalog &XML",importButtonBox ,"importTypeGtktalogXml" );
     importTypeWhereisitXml = new QRadioButton ( "&WhereIsIt XML (classic)", importButtonBox, "importTypeWhereisitXml" );
 
@@ -120,6 +121,7 @@ ImportDialog::ImportDialog ( QWidget* parent, const char* name, bool modal, Qt::
     connect ( importTypeCsvVisualcd, SIGNAL ( clicked() ), this, SLOT ( typeChanged() ) );
     connect ( importTypeCsvVvv, SIGNAL ( clicked() ), this, SLOT ( typeChanged() ) );
     connect ( importTypeCsvAdvancedFileOrganizer, SIGNAL ( clicked() ), this, SLOT ( typeChanged() ) );
+    connect ( importTypeCsvFileArchivist, SIGNAL ( clicked() ), this, SLOT ( typeChanged() ) );
     connect ( importTypeGtktalogXml, SIGNAL ( clicked() ), this, SLOT ( typeChanged() ) );
     connect ( importTypeWhereisitXml, SIGNAL ( clicked() ), this, SLOT ( typeChanged() ) );
     separator_lab->setEnabled ( false );
@@ -176,6 +178,7 @@ void ImportDialog::languageChange() {
     importTypeCsvVisualcd->setText ( tr ( "&VisualCD (csv)" ) );
     importTypeCsvVvv->setText ( tr ( "&VVV (csv)" ) );
     importTypeCsvAdvancedFileOrganizer->setText ( tr ( "&Advanced File Organizer (csv)" ) );
+    importTypeCsvFileArchivist->setText ( tr ( "&File Archivist" ) );
     importTypeGtktalogXml->setText ( tr ( "Gtktalog &XML" ) );
     importTypeWhereisitXml->setText ( tr ( "&WhereIsIt XML (classic)" ) );
 
@@ -199,6 +202,9 @@ void ImportDialog::languageChange() {
 
     QToolTip::add
     ( importTypeCsvAdvancedFileOrganizer , tr ( "Select this for importing a text import (csv) generated from Advanced File Organizer." ) );
+
+    QToolTip::add
+    ( importTypeCsvFileArchivist, tr ( "Select this for importing a File Archivist catalog." ) );
 
     QToolTip::add
     ( importTypeGtktalogXml , tr ( "Select this for importing a xml report generated from gtktalog" ) );
@@ -246,6 +252,8 @@ int ImportDialog::bOk ( void ) {
         type = 6;
     else if ( importTypeCsvAdvancedFileOrganizer->isChecked() )
         type = 7;
+    else if ( importTypeCsvFileArchivist->isChecked() )
+        type = 8;
     else if ( importTypeGtktalogXml->isChecked() )
         type = 1;
     else if ( importTypeWhereisitXml->isChecked() )
@@ -273,6 +281,8 @@ void ImportDialog::getFileName() {
         filetypes = QString ( tr ( "xml files(*.xml)" ) );
     else if ( importTypeWhereisitXml->isChecked() )
         filetypes = QString ( tr ( "xml files(*.xml)" ) );
+    else if ( importTypeCsvFileArchivist->isChecked() )
+        filetypes = QString ( tr ( "File Archivist files(*.arch)" ) );
     else
         filetypes = QString ( tr ( "all files(*.*)" ) );
 
@@ -307,6 +317,9 @@ void ImportDialog::typeChanged() {
 	}
         else if (importTypeCsvAdvancedFileOrganizer->isChecked()) {
 		separator_lineedit->setText(",");
+	}
+        else if (importTypeCsvFileArchivist->isChecked()) {
+		separator_lineedit->setText("|");
 	}
 
     } else {

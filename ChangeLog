@@ -4,6 +4,7 @@
 	- possibility for cancel openening catalog added
 	- made extra colum for size at result listview at search dialog
 	- sizes of busy dialog adjusted
+	- file archivist catalog import added (thanks to martin brunner)
 
 02. Feb 2011 Christoph Thielecke <crissi99@gmx.de>
 	- qmake project file order changed (workaround for qmake bug)
