@@ -886,6 +886,7 @@ int GuiSlave::openEvent ( void ) {
         mainw->db = NULL;
         standON = NodePwd = NULL;
         panelsOFF();
+	QApplication::restoreOverrideCursor();
     }
 
     checkversion ( mainw,mainw->db );
