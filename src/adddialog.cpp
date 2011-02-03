@@ -566,7 +566,7 @@ void PWw::mousePressEvent ( QMouseEvent *me ) {
     lasty = me->y();
     if(showCancel) {
 	int buttom_offset = myheight-15;
-	if (lastx > 0 && lastx < mywidth && lasty > buttom_offset and lasty < buttom_offset+16) {
+	if (lastx > 0 && lastx < mywidth && lasty > buttom_offset && lasty < buttom_offset+16) {
 		std::cerr << "cancel clicked!" << std::endl;
 		emit cancelReceivedByUser(true);
 	}
