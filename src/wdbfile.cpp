@@ -102,14 +102,14 @@ QString getSType ( int t, bool localized ) {
 	if(localized) {
 		switch ( t ) {
 			case BYTE :
-				return QString(" "+QObject().tr("Byte"));
+				return QObject().tr("Byte");
 			case KBYTE:
-				return QString(" "+QObject().tr("Kib"));
+				return QObject().tr("Kib");
 			case MBYTE:
-				return QString(" "+QObject().tr("Mib"));
+				return QObject().tr("Mib");
 			case GBYTE:
-				return QString(" "+QObject().tr("Gib"));
-// 				
+				return QObject().tr("Gib");
+// 			
 		}
     }
     else {
@@ -1150,6 +1150,8 @@ Please change it with an older version or rewrite it in the xml file!" );
             FREA->error = 1;
             return false;
         }
+
+// 	std::cerr << "file size: " << tf1 << " " << ti1 << std::endl;
 
         tt->data = ( void * ) new DBFile ( ts1,td1,"",tf1,ti1 );
 
