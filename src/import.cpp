@@ -1044,7 +1044,142 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 //                                         QMessageBox::warning(0, "line", msg);
                                 }
                         }
+                        else if (csvtype == "advanceddiskcatalog") {
+                                /*
+                                 * format:
+                                 * "Disk", "Name", "Path", "Full path", "Size", "Date", "Time", "Category", "Level", "Comments", "Files inside", "Type"
+                                 * 
+                                 * sample line:
+                                 * "biexpp1210", "GDIPLUS.MAN", "\I386\ASMS\1000\MSFT\WINDOWS\GDIPLUS", "D:\I386\ASMS\1000\MSFT\WINDOWS\GDIPLUS\GDIPLUS.MAN", "391 bytes", "14.04.2008", "12:00:00", "None", 7, "", 0, "File"
+                                 */
+                                if (linecount < 1) {
+                                        linecount++;
+                                        continue;
+                                }
+                                // FIXME
+                                separator=", ";
+                                QStringList csvList = line.split(separator);
+//                                 if (csvList.count() < 10) {
+//                                      if(*DEBUG_INFO_ENABLED)
+//                                         cerr << "importGtktalogCsv invalid line (at least 10 fields): " << qPrintable(line) << endl;
+//                                      continue;
+//                                 }
+                                if(*DEBUG_INFO_ENABLED) {
+                                 cerr << "line: " << qPrintable(line) << endl;
+                                  for (int i = 0; i < csvList.size(); ++i)
+                                        cout << "csvList[" << i << "]: " << csvList.at(i).toLocal8Bit().constData() << endl;
+                                }
+                                if (QString(csvList.at(11)).replace("\"", "") == "Folder")
+                                        continue;
+                                filename = QString(csvList.at(1)).replace("\"", "");
+                                QString sizestring = QString(csvList.at(4)).replace("\"", "");
+//                                 if(*DEBUG_INFO_ENABLED)
+//                                      cerr << "importGtktalogCsv sizestring raw: " <<qPrintable( sizestring) << endl;
+                                QString sizestring1 = sizestring.split(" ").at(0);
+                                QString sizestring2 = sizestring.split(" ").at(1);
+//                                    if(*DEBUG_INFO_ENABLED)
+//                                     cerr << "importGtktalogCsv sizestring raw2: " <<qPrintable( sizestring) << endl;
+                                
+                                //QString(csvList.at(3)).stripWhiteSpace();
+//                                 if (sizestring1.contains(','))
+                                        size = QString(sizestring1.replace(",", "")).toFloat()/100; // Byte
+//                                 else
+                                        size = QString(sizestring1/*.replace(",", "")*/).toFloat(); // Byte
+                                
+                                if (sizestring2 == "KB")
+                                        size = size * 1024;
+                                else if (sizestring2 == "MB")
+                                        size = size * 1024*1024;
+                                else if (sizestring2 == "GB")
+                                        size = size * 1024*1024*1024;
+//                                 if(*DEBUG_INFO_ENABLED)
+//                                      cerr << "importGtktalogCsv size: " << size << endl;
+                                
+                                
+                                QString datestring = QString(csvList.at(5)).replace("\"", "");
+                                QString timestring = QString(csvList.at(6)).replace("\"", "");
+//                                 if (*DEBUG_INFO_ENABLED)
+//                                 cerr << "importGtktalogCsv datetimestring: " << qPrintable(datetimestring) << endl;
 
+                                datetimestring = datestring+ " "+timestring;
+                                // date in format: day.month.year hour:minute:second
+                                QString datesep = ".";
+                                int dayindex = datetimestring.find ( datesep );
+                                int monthindex = datetimestring.find ( datesep, dayindex + 1 );
+                                int yearindex = datetimestring.find ( " ", monthindex + 1 );
+                                int hourindex = datetimestring.find ( ":", yearindex + 1 );
+                                int minuteindex = datetimestring.find ( ":", hourindex + 1 );
+
+                                int day = ( datetimestring.mid ( 0, dayindex ) ).toInt();
+                                QString day_ = ( datetimestring.mid ( 0, dayindex ) );
+                                int month = ( datetimestring.mid ( dayindex + 1, monthindex - dayindex - 1 ) ).toInt();
+                                int year = ( datetimestring.mid ( monthindex + 1, hourindex - monthindex - 4 ) ).toInt();
+                                //bool validDate = date.setYMD( year, month, day );
+
+                                int hour = ( datetimestring.mid ( yearindex + 1, minuteindex - hourindex - 1 ) ).toInt();
+                                int minute = ( datetimestring.mid ( hourindex + 1, minuteindex - 1 - hourindex ) ).toInt();
+
+                                int second = ( datetimestring.mid ( minuteindex + 1, datetimestring.length() - 1 ) ).toInt();
+                                QDate date ( year, month, day );
+                                QTime time ( hour, minute, second );
+
+                                datetime = QDateTime ( date, time );
+                                
+                                new_medianame = QString(csvList.at(0)).replace("\"","");
+//                                 if(*DEBUG_INFO_ENABLED)
+//                                      cerr << "importGtktalogCsv new_medianame: " << qPrintable(new_medianame) << endl;
+                                
+                                dirpath = QString(csvList.at(2)).replace("\"","");
+//                                 dirpath = dirpath.mid(0, dirpath.length()-1 );
+                                if (pathsep == "\\")
+                                        dirpath = dirpath.replace("\\", "/");
+//                                 if (!dirpath.isEmpty() && dirpath.at(0) != '/')
+//                                         dirpath = "/"+dirpath;
+                                    if (!dirpath.isEmpty() && dirpath.at(0) == '/')
+                                        dirpath = dirpath.mid(1, dirpath.length()-1 );
+                                
+                                path = dirpath+"/"+filename;
+//                                 if(*DEBUG_INFO_ENABLED)
+//                                      cerr << "importGtktalogCsv path: " << qPrintable(path) << endl;
+                                
+                                fullpath = path;
+
+//                                 if(*DEBUG_INFO_ENABLED)
+//                                      cerr << "importGtktalogCsv fullpath: " << qPrintable(fullpath) << endl;
+                                
+                                category = QString( csvList.at(7)).replace("\"","");
+                                comment = QString( csvList.at(9)).replace("\"","");
+
+                                if (*DEBUG_INFO_ENABLED)
+                                //if (!validDate)
+                                {
+                                        QString msg;
+//                                         msg += "line: " + line + "\n";
+                                        msg += "path: " + path + "\n";
+                                        msg += "fullpath: " + fullpath + "\n";
+                                        msg += "size: " + QString().setNum(size) + "\n";
+                                        msg += "sizestring: " + sizestring + "\n";
+                                        msg += "month: " + QString().setNum(month) + "\n";
+                                        msg += "hour: " + QString().setNum(hour) + "\n";
+                                        msg += "minute: " + QString().setNum(minute) + "\n";
+                                        msg += "year: " + QString().setNum(year) + "\n";
+                                        msg += "day: " + QString().setNum(day) + "\n";
+                                        msg += "datetimestring: " + datetimestring + "\n";
+//                                         msg += "monthstring: " + monthstring + "\n";
+//                                         msg += "hourstring: " + hourstring + "\n";
+//                                         msg += "daystring: " + daystring + "\n";
+                                        msg += "new_medianame: " + new_medianame + "\n";
+                                        msg += "directory path: "+dirpath+"\n";
+                                        msg +="file name: "+filename+"\n";
+                                        msg += "comment: " + comment + "\n";
+                                        msg += "category: " + category + "\n";
+                                        
+                                        cerr << "msg: " << qPrintable(msg) << endl;
+
+//                                         QMessageBox::warning(0, "line", msg);
+                                }
+
+                        }
 
 
                         if ( medianame == ""  )
@@ -2254,6 +2389,8 @@ import::import ( GuiSlave * parent ) {
             importGtktalogCsv import ( parent, separator, filename, createdatabase, false, "afo" );
         else if ( type == 8 )
             importGtktalogCsv import ( parent, separator, filename, createdatabase, false, "filearchivist" );
+        else if ( type == 9 )
+            importGtktalogCsv import ( parent, separator, filename, createdatabase, false, "advanceddiskcatalog" );
         else {
             //		cerr << "wrong type!!!" << endl;
         }
