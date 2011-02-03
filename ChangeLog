@@ -1,3 +1,8 @@
+03. Feb 2011 Christoph Thielecke <crissi99@gmx.de>
+	- reading utfs encoding fixed
+	- possibility for cancel searching added
+	- possibility for cancel openening catalog added
+
 02. Feb 2011 Christoph Thielecke <crissi99@gmx.de>
 	- qmake project file order changed (workaround for qmake bug)
 	- development/release information in info dialog

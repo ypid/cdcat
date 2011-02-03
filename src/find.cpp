@@ -519,6 +519,7 @@ void findDialog::sizeMinClicked() {
 		spSizeMin->setEnabled(false);
 	}
 }
+
 void findDialog::sizeMaxClicked() {
 	if(cbSizeMax->isChecked()) {
 		cbSizeUnitMax->setEnabled(true);
@@ -548,7 +549,6 @@ seekEngine::~seekEngine ( void ) {
 }
 /***************************************************************************/
 int seekEngine::start_seek ( void ) {
-
     DEBUG_INFO_ENABLED = init_debug_info();
     //get the pattern
     if ( fd->cbEasy->isChecked() )
@@ -588,7 +588,11 @@ int seekEngine::start_seek ( void ) {
 
     pww=new PWw ( fd );
     pww->refreshTime=200;
+    pww->setCancel(true);
+    pww->setProgressText(tr("Searching, please wait..."));
+    QObject::connect (pww, SIGNAL(cancelReceivedByUser(bool)), pww, SLOT(doCancelReceived(bool)));
     progress ( pww );
+    QApplication::setOverrideCursor ( Qt::waitCursor );
 
     fd->resultsl->clear();
     founded = 0;
@@ -643,24 +647,32 @@ int seekEngine::start_seek ( void ) {
 
     progress ( pww );
     /*seek...*/
-    analyzeNode ( fd->mainw->db->getRootNode() );
+    analyzeNode ( pww, fd->mainw->db->getRootNode() );
+    if(pww->doCancel) {
+	QMessageBox::warning ( 0,tr ( "Search cancelled" ), tr ( "You have cancelled searching." ));
+    }
 
     if ( founded == 0 )
         fd->resultsl->insertItem ( new Q3ListViewItem ( fd->resultsl,tr ( "There is no matching." ) ) );
 
+    QObject::disconnect (pww, SIGNAL(cancelReceivedByUser(bool)), pww, SLOT(doCancelReceived(bool)));
     progress ( pww );
     pww->end();
+
     delete pww;
+    QApplication::restoreOverrideCursor();
     return 0;
 }
 /***************************************************************************/
-int seekEngine::analyzeNode ( Node *n,Node *pa ) {
+int seekEngine::analyzeNode (PWw *pww,  Node *n,Node *pa ) {
 
-    if ( n == NULL ) return 0;
+    progress(pww);
+    if ( n == NULL || pww->doCancel ) return 0;
+
     bool isOk=false;
     switch ( n->type ) {
     case HC_CATALOG:
-        analyzeNode ( n->child );
+        analyzeNode ( pww, n->child );
         return 0;
     case HC_MEDIA:
         progress ( pww );
@@ -690,8 +702,8 @@ int seekEngine::analyzeNode ( Node *n,Node *pa ) {
 
 		if (isOk) {
 			putNodeToList ( n );
-			analyzeNode ( n->child );
-			analyzeNode ( n->next );
+			analyzeNode ( pww, n->child );
+			analyzeNode ( pww, n->next );
 			return 0;
 		}
 	    }
@@ -699,14 +711,14 @@ int seekEngine::analyzeNode ( Node *n,Node *pa ) {
             if ( comment )
                 if ( matchIt ( ( ( DBMedia * ) ( n->data ) )->comment ) )
                     putNodeToList ( n );
-
-            analyzeNode ( n->child );
+            
+            analyzeNode ( pww, n->child );
         }
-        analyzeNode ( n->next );
+        analyzeNode ( pww, n->next );
         return 0;
 
     case HC_CATLNK:
-        analyzeNode ( n->next );
+        analyzeNode ( pww, n->next );
         return 0;
 
     case HC_DIRECTORY:
@@ -734,8 +746,8 @@ int seekEngine::analyzeNode ( Node *n,Node *pa ) {
 
 	   if (isOk) {
 		putNodeToList ( n );
-		analyzeNode ( n->child );
-		analyzeNode ( n->next );
+		analyzeNode ( pww, n->child );
+		analyzeNode ( pww, n->next );
 		return 0;
 	   }
 	}
@@ -747,8 +759,9 @@ int seekEngine::analyzeNode ( Node *n,Node *pa ) {
 		}
         }
         
-        analyzeNode ( n->child );
-        analyzeNode ( n->next );
+        analyzeNode ( pww, n->child );
+	progress(pww);
+        analyzeNode ( pww, n->next );
         return 0;
 
     case HC_FILE:
@@ -859,7 +872,7 @@ int seekEngine::analyzeNode ( Node *n,Node *pa ) {
 	}
 	if(isOk){
 		putNodeToList ( n );
-		analyzeNode ( n->next );
+		analyzeNode ( pww, n->next );
 		return 0;
 	}
 	
@@ -869,13 +882,13 @@ int seekEngine::analyzeNode ( Node *n,Node *pa ) {
 	    }
 	    if (isOk) {
 		putNodeToList ( n );
-		analyzeNode ( n->next );
+		analyzeNode (pww,  n->next );
 		return 0;
 	    }
 	  }
 	
-        analyzeNode ( ( ( DBFile * ) ( n->data ) )->prop,n );
-        analyzeNode ( n->next );
+        analyzeNode ( pww, ( ( DBFile * ) ( n->data ) )->prop,n );
+        analyzeNode (pww,  n->next );
         return 0;
 
     case HC_MP3TAG:
@@ -900,7 +913,7 @@ int seekEngine::analyzeNode ( Node *n,Node *pa ) {
                 return 0;
             }
 
-        analyzeNode ( n->next,pa );
+        analyzeNode ( pww, n->next,pa );
         return 0;
     case HC_CONTENT:
         if ( content )
@@ -908,7 +921,7 @@ int seekEngine::analyzeNode ( Node *n,Node *pa ) {
                 putNodeToList ( pa );
                 return 0;
             }
-        analyzeNode ( n->next,pa );
+        analyzeNode (pww,  n->next,pa );
         return 0;
 
     }
@@ -958,8 +971,10 @@ void seekEngine::putNodeToList ( Node *n ) {
         break;
     }
     tmp=n;
-    while ( tmp->type != HC_MEDIA )
+    while ( tmp->type != HC_MEDIA ){
         tmp=tmp->parent;
+        progress(pww);
+    }
 
     media = tmp->getNameOf() + "/" + QString().setNum ( ( ( DBMedia * ) ( tmp->data ) )->number );
 

@@ -574,6 +574,18 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
       <source>Please Wait...</source>
       <translation>Bitte warten...</translation>
     </message>
+    <message>
+      <source>Cancel</source>
+      <translation>Abbrechen</translation>
+    </message>
+    <message>
+      <source>Parse error</source>
+      <translation>Parserfehler</translation>
+    </message>
+    <message>
+      <source>You have cancelled catalog reading.</source>
+      <translation>Sie haben das Lesen das Katalogs abgebrochen.</translation>
+    </message>
   </context>
   <context>
     <name>DirectoryView</name>
@@ -2443,6 +2455,18 @@ E-mail: hyperr@freemail.hu
     <message>
       <source>media</source>
       <translation>Medien</translation>
+    </message>
+    <message>
+      <source>Searching, please wait...</source>
+      <translation>Es wird gesucht, bitte warten...</translation>
+    </message>
+    <message>
+      <source>Search cancelled</source>
+      <translation>Suche abgebrochen</translation>
+    </message>
+    <message>
+      <source>You have cancelled searching.</source>
+      <translation>Sie haben die Suche abgebrochen.</translation>
     </message>
   </context>
 </TS>

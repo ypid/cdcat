@@ -908,7 +908,7 @@ int GuiSlave::openEvent ( void ) {
 
         if(*DEBUG_INFO_ENABLED)
 		cerr<<"0-1"<<endl;
-        if ( mainw->cconfig->hlist.isEmpty() ) cerr <<"emptlyysdsaféashfk"<<endl;
+//         if ( mainw->cconfig->hlist.isEmpty() ) cerr <<"emptlyysdsaféashfk"<<endl;
         if(*DEBUG_INFO_ENABLED)
 		cerr<<"0-2"<<endl;
         mainw->cconfig->hlist.grep ( "AAAA" );

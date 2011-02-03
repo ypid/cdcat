@@ -115,25 +115,32 @@ public:
 
 
 class PWw : public QWidget {
-    Q_OBJECT
+Q_OBJECT
 public:
     int lastx,lasty;
     int s;
     int refreshTime;
     QApplication *appl;
-    PWw ( QWidget *parent,QApplication *qapp = NULL, bool showProgress=false, long long int steps=0, QString progresstext="" );
+    PWw ( QWidget *parent,QApplication *qapp = NULL, bool showProgress=false, long long int steps=0, QString progresstext="", bool showCancel=false );
     int begintext;
+    int begincanceltext;
     int myheight;
     int mywidth;
     int baseheight;
+    int fontheight;
     bool showProgress;
+    bool doCancel;
     long long int steps;
     long long int progress_step;
     QString progresstext;
 
     void setProgressText ( QString progresstext );
+    void setCancel(bool showCancel);
     void step ( long long int progress_step=0 );
     void end ( void );
+
+signals:
+	void cancelReceivedByUser(bool state);
 
 protected:
     QTime t;
@@ -141,6 +148,14 @@ protected:
     void paintEvent ( QPaintEvent *pe );
     void mouseMoveEvent ( QMouseEvent *me );
     void mousePressEvent ( QMouseEvent *me );
+
+private:
+    bool showCancel;
+
+
+
+public slots:
+	void doCancelReceived(bool);
 };
 
 void progress ( PWw *p, long long int progress_step=0 );

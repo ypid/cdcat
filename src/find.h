@@ -61,7 +61,7 @@ private:
 
     findDialog *fd;
 
-    int  analyzeNode ( Node *n,Node *pa=NULL );
+    int  analyzeNode ( PWw *pww, Node *n,Node *pa=NULL );
     void putNodeToList ( Node *n );
     int  matchIt ( QString txt );
 

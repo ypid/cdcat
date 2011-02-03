@@ -34,8 +34,8 @@ int         getTypeFS ( const char *str );
 
 class FileWriter {
 private:
-    inline char * to_cutf8 ( QString   s );
-    QString to_dcutf8 ( QDateTime d );
+    inline QString to_cutf8 ( QString   s );
+    inline QString to_dcutf8 ( QDateTime d );
 
     QTextCodec *converter;
     gzFile f;
@@ -69,8 +69,8 @@ private:
 
 class FileReader {
 public:
-    QString get_cutf8 ( char *s );
-    QDateTime get_dcutf8 ( char *s );
+    QString get_cutf8 ( QString s );
+    QDateTime get_dcutf8 ( QString s );
     QString XML_ENCODING;
 private:
     gzFile f;
@@ -86,14 +86,13 @@ public:
     int  insert;
     int linecount;
     long long int allocated_buffer_len;
+    
 
     Node *sp;
     char *dataBuffer;
     
 
     int      readFrom ( Node *source );
-//     float    getFloat ( const char **from,char *what,char *err );
-//     char *   getStr ( const char **from,char *what,char *err );
     QString getStr2(const QXmlAttributes &atts,char *what,char *err );
     float getFloat2 (const QXmlAttributes &atts,char *what,char *err );
     int      isthere ( const char **from,char *what );
@@ -101,6 +100,9 @@ public:
     QXmlSimpleReader xmlReader;
 
     QString getCatName ( void );
+
+
+
 };
 
 class CdCatXmlHandler : public QXmlDefaultHandler {

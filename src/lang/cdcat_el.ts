@@ -8,22 +8,22 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../wdbfile.cpp" line="104"/>
+        <location filename="../wdbfile.cpp" line="105"/>
         <source>Byte</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../wdbfile.cpp" line="106"/>
+        <location filename="../wdbfile.cpp" line="107"/>
         <source>Kib</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../wdbfile.cpp" line="108"/>
+        <location filename="../wdbfile.cpp" line="109"/>
         <source>Mib</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../wdbfile.cpp" line="110"/>
+        <location filename="../wdbfile.cpp" line="111"/>
         <source>Gib</source>
         <translation type="unfinished"></translation>
     </message>
@@ -825,24 +825,39 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../wdbfile.cpp" line="746"/>
+        <location filename="../wdbfile.cpp" line="713"/>
         <source>Reading file, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../wdbfile.cpp" line="877"/>
+        <location filename="../wdbfile.cpp" line="854"/>
         <source>Parsing file, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../wdbfile.cpp" line="871"/>
+        <location filename="../wdbfile.cpp" line="848"/>
         <source>Converting to unicode, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="384"/>
+        <location filename="../adddialog.cpp" line="386"/>
         <source>Please Wait...</source>
         <translation type="unfinished">Παρακαλώ περιμένετε...</translation>
+    </message>
+    <message>
+        <location filename="../adddialog.cpp" line="553"/>
+        <source>Cancel</source>
+        <translation type="unfinished">Ακύρωση</translation>
+    </message>
+    <message>
+        <location filename="../wdbfile.cpp" line="760"/>
+        <source>Parse error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../wdbfile.cpp" line="765"/>
+        <source>You have cancelled catalog reading.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2071,7 +2086,7 @@ will be to
         <translation>Σχόλιο:</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="601"/>
+        <location filename="../adddialog.cpp" line="646"/>
         <source>Cancel</source>
         <translation>Ακύρωση</translation>
     </message>
@@ -2126,7 +2141,7 @@ will be to
         <translation>Πρέπει να συμπληρωθεί το πεδίο &quot;Όνομα&quot;!</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="602"/>
+        <location filename="../adddialog.cpp" line="647"/>
         <source>Ok</source>
         <translation type="unfinished">Ok</translation>
     </message>
@@ -2176,22 +2191,22 @@ will be to
         <translation type="obsolete">Παρακαλώ περιμένετε...</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="598"/>
+        <location filename="../adddialog.cpp" line="643"/>
         <source>Add a &quot;Catalog Link&quot; to the database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="599"/>
+        <location filename="../adddialog.cpp" line="644"/>
         <source>Location of the .hcf file:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="619"/>
+        <location filename="../adddialog.cpp" line="664"/>
         <source>Open a file...</source>
         <translation type="unfinished">Άνοιγμα αρχείου...</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="619"/>
+        <location filename="../adddialog.cpp" line="664"/>
         <source>CdCat databases (*.hcf )</source>
         <translation type="unfinished">Βάσεις CdCat (*.hcf)</translation>
     </message>
@@ -3410,7 +3425,7 @@ E-mail: hyperr@freemail.hu
 <context>
     <name>seekEngine</name>
     <message>
-        <location filename="../find.cpp" line="577"/>
+        <location filename="../find.cpp" line="579"/>
         <source>Error in the pattern:</source>
         <translation>Σφάλμα στη φράση αναζήτησης:</translation>
     </message>
@@ -3420,29 +3435,44 @@ E-mail: hyperr@freemail.hu
         <translation type="obsolete">Ok</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="649"/>
+        <location filename="../find.cpp" line="658"/>
         <source>There is no matching.</source>
         <translation>Δεν υπάρχει ταυτοποιήση.</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="950"/>
+        <location filename="../find.cpp" line="964"/>
         <source>dir</source>
         <translation>dir</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="953"/>
+        <location filename="../find.cpp" line="967"/>
         <source>file</source>
         <translation>αρχείο</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="957"/>
+        <location filename="../find.cpp" line="971"/>
         <source>error</source>
         <translation>σφάλμα</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="946"/>
+        <location filename="../find.cpp" line="960"/>
         <source>media</source>
         <translation type="unfinished">μέσα</translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="594"/>
+        <source>Searching, please wait...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="654"/>
+        <source>Search cancelled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="654"/>
+        <source>You have cancelled searching.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

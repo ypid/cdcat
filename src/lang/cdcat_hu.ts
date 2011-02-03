@@ -8,22 +8,22 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../wdbfile.cpp" line="104"/>
+        <location filename="../wdbfile.cpp" line="105"/>
         <source>Byte</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../wdbfile.cpp" line="106"/>
+        <location filename="../wdbfile.cpp" line="107"/>
         <source>Kib</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../wdbfile.cpp" line="108"/>
+        <location filename="../wdbfile.cpp" line="109"/>
         <source>Mib</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../wdbfile.cpp" line="110"/>
+        <location filename="../wdbfile.cpp" line="111"/>
         <source>Gib</source>
         <translation type="unfinished"></translation>
     </message>
@@ -966,24 +966,39 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../wdbfile.cpp" line="746"/>
+        <location filename="../wdbfile.cpp" line="713"/>
         <source>Reading file, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../wdbfile.cpp" line="877"/>
+        <location filename="../wdbfile.cpp" line="854"/>
         <source>Parsing file, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../wdbfile.cpp" line="871"/>
+        <location filename="../wdbfile.cpp" line="848"/>
         <source>Converting to unicode, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="384"/>
+        <location filename="../adddialog.cpp" line="386"/>
         <source>Please Wait...</source>
         <translation type="unfinished">Dolgozom...</translation>
+    </message>
+    <message>
+        <location filename="../adddialog.cpp" line="553"/>
+        <source>Cancel</source>
+        <translation type="unfinished">Mégsem</translation>
+    </message>
+    <message>
+        <location filename="../wdbfile.cpp" line="760"/>
+        <source>Parse error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../wdbfile.cpp" line="765"/>
+        <source>You have cancelled catalog reading.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2546,7 +2561,7 @@ Létreh. dátuma</translation>
         <translation>Megjegyzés:</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="601"/>
+        <location filename="../adddialog.cpp" line="646"/>
         <source>Cancel</source>
         <translation>Mégsem</translation>
     </message>
@@ -2616,7 +2631,7 @@ Létreh. dátuma</translation>
         <translation type="obsolete">Nem válsztottál ki könyvtárat! Ez a lényeg :), válassz ki egyet!</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="602"/>
+        <location filename="../adddialog.cpp" line="647"/>
         <source>Ok</source>
         <translation type="unfinished">Ok</translation>
     </message>
@@ -2666,22 +2681,22 @@ Létreh. dátuma</translation>
         <translation type="obsolete">Dolgozom...</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="598"/>
+        <location filename="../adddialog.cpp" line="643"/>
         <source>Add a &quot;Catalog Link&quot; to the database</source>
         <translation type="unfinished">&quot;Cdcat katalógus hivatkozás&quot; hozzáadása az adatbázishoz</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="599"/>
+        <location filename="../adddialog.cpp" line="644"/>
         <source>Location of the .hcf file:</source>
         <translation type="unfinished">A .hcf fájl helye:</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="619"/>
+        <location filename="../adddialog.cpp" line="664"/>
         <source>Open a file...</source>
         <translation type="unfinished">Fájl megnyitása...</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="619"/>
+        <location filename="../adddialog.cpp" line="664"/>
         <source>CdCat databases (*.hcf )</source>
         <translation type="unfinished">CdCat adatbázis (*.hcf)</translation>
     </message>
@@ -4309,7 +4324,7 @@ E-mail: hyperr@freemail.hu
 <context>
     <name>seekEngine</name>
     <message>
-        <location filename="../find.cpp" line="577"/>
+        <location filename="../find.cpp" line="579"/>
         <source>Error in the pattern:</source>
         <translation>Hiba az illesztömintában:</translation>
     </message>
@@ -4324,22 +4339,22 @@ E-mail: hyperr@freemail.hu
         <translation type="obsolete">Minden média</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="950"/>
+        <location filename="../find.cpp" line="964"/>
         <source>dir</source>
         <translation>könyvt</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="953"/>
+        <location filename="../find.cpp" line="967"/>
         <source>file</source>
         <translation>fájl</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="957"/>
+        <location filename="../find.cpp" line="971"/>
         <source>error</source>
         <translation>hiba</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="649"/>
+        <location filename="../find.cpp" line="658"/>
         <source>There is no matching.</source>
         <translation>Nincs illeszkedés.</translation>
     </message>
@@ -4349,9 +4364,24 @@ E-mail: hyperr@freemail.hu
         <translation type="obsolete">Ok</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="946"/>
+        <location filename="../find.cpp" line="960"/>
         <source>media</source>
         <translation>média</translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="594"/>
+        <source>Searching, please wait...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="654"/>
+        <source>Search cancelled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="654"/>
+        <source>You have cancelled searching.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

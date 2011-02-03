@@ -365,7 +365,7 @@ void addDialog::cbTypeToggeled(int type) {
 
 /**************************************************************************/
 
-PWw::PWw ( QWidget *parent,QApplication *qapp, bool showProgress, long long int steps, QString progresstext ) : QWidget ( parent,"PleaseWaitBox",
+PWw::PWw ( QWidget *parent,QApplication *qapp, bool showProgress, long long int steps, QString progresstext, bool showCancel ) : QWidget ( parent,"PleaseWaitBox",
 #ifdef QT_NO_COMPAT
                 Qt::WType_Dialog | Qt::WStyle_Customize | Qt::WStyle_NoBorder | Qt::WShowModal
 #else
@@ -377,6 +377,8 @@ PWw::PWw ( QWidget *parent,QApplication *qapp, bool showProgress, long long int 
     refreshTime = 250;
     appl=qapp;
     this->showProgress = showProgress;
+    this->showCancel = showCancel;
+    doCancel=false;
     this->steps = steps;
     if(!progresstext.isEmpty())
 	this->progresstext = progresstext;
@@ -388,6 +390,8 @@ PWw::PWw ( QWidget *parent,QApplication *qapp, bool showProgress, long long int 
     if(showProgress)
 	baseheight+=30;
 
+   if (showCancel)
+	baseheight+=50;
 
     mywidth=160;
     myheight = baseheight;
@@ -408,6 +412,12 @@ PWw::PWw ( QWidget *parent,QApplication *qapp, bool showProgress, long long int 
     fm = new QFontMetrics ( ownf );
     mywidth = (fm->width ( this->progresstext ))+10;
     myheight = fm->height()+baseheight;
+    fontheight = fm->height();
+
+    if(showCancel) {
+        myheight += fm->height()+10;
+	begincanceltext = mywidth/2- fm->width ( tr("Cancel") )/2;
+    }
 
 //     std::cerr << "mywidth: " << mywidth << std::endl;
     
@@ -457,13 +467,21 @@ void PWw::setProgressText ( QString progresstext ){
 
     ownf.setPointSize ( i );
     fm = new QFontMetrics ( ownf );
-
-    baseheight=50;
+    fontheight = fm->height();
+    baseheight=30;
     if(showProgress)
 	baseheight+=30;
 
     mywidth = (fm->width ( progresstext ))+10;
     myheight = fm->height()+baseheight;
+
+
+    if(showCancel) {
+        myheight += fontheight+2;
+	begincanceltext = mywidth/2- fm->width ( tr("Cancel") )/2;
+// 	std::cerr << "setCancel!" << std::endl;
+    }
+
     begintext = 5;
 
     if ( fm != NULL ) delete fm;
@@ -476,7 +494,12 @@ void PWw::setProgressText ( QString progresstext ){
         setGeometry ( x(), y(), mywidth, myheight );
 	show();
     }
+}
 
+void PWw::setCancel(bool showCancel)
+{
+    this->showCancel = showCancel;
+    setProgressText(this->progresstext);
 }
 
 void PWw::step ( long long int progress_step ) {
@@ -507,19 +530,29 @@ void PWw::paintEvent ( QPaintEvent *e ) {
 #if (QT_VERSION >= QT_VERSION_CHECK(4, 6, 0)) // needs Qt 4.6.0 or better
     p.beginNativePainting();
 #endif
-	p.drawRect ( 1,1, borderless_width,66 );
+	p.drawRect ( 1,1, borderless_width, myheight-2 );
 	p.drawText ( begintext,18, progresstext );
+	
+	QPixmap pm = anim_list.at(s);
+	p.drawPixmap ( (mywidth/2)-(pm.width()/2), 25, pm );
+	int buttom_offset=fontheight+pm.height()+5;
+
 	if(showProgress) {
 		p.setPen(QPen(QColor().black()));
-		p.drawRect(1, myheight-25, mywidth-4, 20);
+		p.drawRect(1, buttom_offset-1, mywidth-4, 15);
 		int percent = progress_step/(steps/100);
 		p.setBrush(QBrush(Qt::blue));
-		p.drawRect(2, myheight-24, (borderless_width-4)*percent/100, 18);
+		p.drawRect(2, buttom_offset, (borderless_width-4)*percent/100, 14);
 	
 	//         std::cerr << progress_step << "/"<< steps <<  " p: " << percent << "%" << std::endl;
 	}
-	QPixmap pm = anim_list.at(s);
-	p.drawPixmap ( (mywidth/2)-(pm.width()/2), 25, pm );
+	if(showCancel) {
+		buttom_offset += 35;
+		p.setBrush(QBrush(Qt::NoBrush));
+		p.drawText (begincanceltext, buttom_offset-5, DataBase::tr("Cancel") );
+	}
+
+
 #if (QT_VERSION >= QT_VERSION_CHECK(4, 6, 0)) // needs Qt 4.6.0 or better
     p.endNativePainting();
 #endif
@@ -531,10 +564,21 @@ void PWw::paintEvent ( QPaintEvent *e ) {
 void PWw::mousePressEvent ( QMouseEvent *me ) {
     lastx = me->x();
     lasty = me->y();
+    if(showCancel) {
+	int buttom_offset = myheight-15;
+	if (lastx > 0 && lastx < mywidth && lasty > buttom_offset and lasty < buttom_offset+16) {
+		std::cerr << "cancel clicked!" << std::endl;
+		emit cancelReceivedByUser(true);
+	}
+    }
 }
 
 void PWw::mouseMoveEvent ( QMouseEvent *me ) {
     move ( me->globalX()-lastx,me->globalY()-lasty );
+}
+
+void PWw::doCancelReceived(bool){
+	doCancel = true;
 }
 
 void progress ( PWw *p, long long int progress_step ) {
