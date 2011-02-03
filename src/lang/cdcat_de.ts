@@ -2054,6 +2054,10 @@ wird zu
       <source>&amp;Start search</source>
       <translation>&amp;Suche starten</translation>
     </message>
+    <message>
+      <source>Size</source>
+      <translation>Grösse</translation>
+    </message>
   </context>
   <context>
     <name>helpDialog</name>

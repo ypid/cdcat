@@ -151,9 +151,13 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool modal, 
     resultsl = new Q3ListView ( this, "resultsl" );
     resultsl->addColumn ( tr ( "Name" ) );
     resultsl->addColumn ( tr ( "Type" ) );
+    resultsl->addColumn ( tr ( "Size" ) );
     resultsl->addColumn ( tr ( "Media" ) );
     resultsl->addColumn ( tr ( "Path" ) );
     resultsl->addColumn ( tr ( "Modification" ) );
+
+    resultsl->setColumnAlignment(2, Qt::AlignRight );
+    resultsl->setColumnWidthMode(0, Q3ListView::Maximum);
 
     buttonClose = new QPushButton ( this, "buttonClose" );
 
@@ -319,9 +323,10 @@ void findDialog::languageChange() {
     textLabel2->setText ( tr ( "Owner:" ) );
     resultsl->header()->setLabel ( 0, tr ( "Name" ) );
     resultsl->header()->setLabel ( 1, tr ( "Type" ) );
-    resultsl->header()->setLabel ( 2, tr ( "Media" ) );
-    resultsl->header()->setLabel ( 3, tr ( "Path" ) );
-    resultsl->header()->setLabel ( 4, tr ( "Modification" ) );
+    resultsl->header()->setLabel ( 2, tr ( "Size" ) );
+    resultsl->header()->setLabel ( 3, tr ( "Media" ) );
+    resultsl->header()->setLabel ( 4, tr ( "Path" ) );
+    resultsl->header()->setLabel ( 5, tr ( "Modification" ) );
     textLabel3->setText ( tr ( "Find:" ) );
     cbFilename->setText ( tr ( "File name" ) );
     cbAlbum->setText ( tr ( "mp3-tag Album" ) );
@@ -950,21 +955,25 @@ void seekEngine::putNodeToList ( Node *n ) {
 
     Node *tmp;
     QString   type;
+    QString   size_str;
     QString   media;
     QDateTime mod;
 
     if ( n == NULL ) return;
 
     switch ( n->type ) {
-    case HC_MEDIA:     type = tr ( "media" );
+    case HC_MEDIA:
+	type = tr ( "media" );
         mod  = ( ( DBMedia * ) ( n->data ) )->modification;
         break;
 
-    case HC_DIRECTORY: type = tr ( "dir" );
+    case HC_DIRECTORY:
+	type = tr ( "dir" );
         mod  = ( ( DBDirectory * ) ( n->data ) )->modification;
         break;
-    case HC_FILE:      type = tr ( "file" ) + QString().sprintf ( "/ %.1f",
-                                  ( ( DBFile * ) ( n->data ) )->size)+ " "+getSType ( ( ( DBFile * ) ( n->data ) )->sizeType, true );
+    case HC_FILE:
+	type = tr ( "file" );
+	size_str = QString().sprintf ( "%.1f",( ( DBFile * ) ( n->data ) )->size)+ " "+getSType ( ( ( DBFile * ) ( n->data ) )->sizeType, true );
         mod  = ( ( DBFile * ) ( n->data ) )->modification;
         break;
     default:           type = tr ( "error" );
@@ -983,6 +992,7 @@ void seekEngine::putNodeToList ( Node *n ) {
     fd->resultsl->insertItem ( new Q3ListViewItem ( fd->resultsl,
                                n->getNameOf(),
                                type,
+                               size_str,
                                media,
                                n->getFullPath(),
                                date_to_str ( mod )

@@ -879,7 +879,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished">Prosze czekać...</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="553"/>
+        <location filename="../adddialog.cpp" line="552"/>
         <source>Cancel</source>
         <translation type="unfinished">Anuluj</translation>
     </message>
@@ -2261,7 +2261,7 @@ zostanie zmieniony na
         <translation>Komentarz:</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="646"/>
+        <location filename="../adddialog.cpp" line="645"/>
         <source>Cancel</source>
         <translation>Anuluj</translation>
     </message>
@@ -2316,7 +2316,7 @@ zostanie zmieniony na
         <translation>Musisz uzupełnić pole &quot;nazwa&quot;!</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="647"/>
+        <location filename="../adddialog.cpp" line="646"/>
         <source>Ok</source>
         <translation type="unfinished">Ok</translation>
     </message>
@@ -2366,22 +2366,22 @@ zostanie zmieniony na
         <translation type="obsolete">Prosze czekać...</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="643"/>
+        <location filename="../adddialog.cpp" line="642"/>
         <source>Add a &quot;Catalog Link&quot; to the database</source>
         <translation type="unfinished">Dodaj &quot;Łącze do katalogu&quot; do bazy danych</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="644"/>
+        <location filename="../adddialog.cpp" line="643"/>
         <source>Location of the .hcf file:</source>
         <translation type="unfinished">Polozenie pliku .hcf:</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="664"/>
+        <location filename="../adddialog.cpp" line="663"/>
         <source>Open a file...</source>
         <translation type="unfinished">Otworz plik...</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="664"/>
+        <location filename="../adddialog.cpp" line="663"/>
         <source>CdCat databases (*.hcf )</source>
         <translation type="unfinished">Bazy danych CdCat&apos;a (*.hcf)</translation>
     </message>
@@ -2856,62 +2856,62 @@ zostanie zmieniony na
 <context>
     <name>findDialog</name>
     <message>
-        <location filename="../find.cpp" line="320"/>
+        <location filename="../find.cpp" line="321"/>
         <source>Name</source>
         <translation>Nazwa</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="321"/>
+        <location filename="../find.cpp" line="322"/>
         <source>Type</source>
         <translation>Typ</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="322"/>
+        <location filename="../find.cpp" line="324"/>
         <source>Media</source>
         <translation>Nośnik</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="323"/>
+        <location filename="../find.cpp" line="325"/>
         <source>Path</source>
         <translation>Ścieżka</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="324"/>
+        <location filename="../find.cpp" line="326"/>
         <source>Modification</source>
         <translation>Data zmiany</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="317"/>
+        <location filename="../find.cpp" line="318"/>
         <source>Search in the database...</source>
         <translation>Szukaj w bazie danych...</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="347"/>
+        <location filename="../find.cpp" line="349"/>
         <source>Close / Go to selected</source>
         <translation>Zamknij / Przejdź do wybranego</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="325"/>
+        <location filename="../find.cpp" line="327"/>
         <source>Find:</source>
         <translation>Znajdź:</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="318"/>
+        <location filename="../find.cpp" line="319"/>
         <source>Seek in:</source>
         <translation>Szukaj w:</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="319"/>
+        <location filename="../find.cpp" line="320"/>
         <source>Owner:</source>
         <translation>Właściciel:</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="332"/>
+        <location filename="../find.cpp" line="334"/>
         <source>Comment</source>
         <translation>Komentarz</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="326"/>
+        <location filename="../find.cpp" line="328"/>
         <source>File name</source>
         <translation>Nazwa pliku</translation>
     </message>
@@ -2921,42 +2921,42 @@ zostanie zmieniony na
         <translation type="obsolete">Nazwa katalogu</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="329"/>
+        <location filename="../find.cpp" line="331"/>
         <source>mp3-tag Comment</source>
         <translation>mp3-tag Komentarz</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="327"/>
+        <location filename="../find.cpp" line="329"/>
         <source>mp3-tag Album</source>
         <translation>mp3-tag Album</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="331"/>
+        <location filename="../find.cpp" line="333"/>
         <source>mp3-tag Title</source>
         <translation>mp3-tag Tytuł</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="328"/>
+        <location filename="../find.cpp" line="330"/>
         <source>mp3-tag Artist</source>
         <translation>mp3-tag Artysta</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="348"/>
+        <location filename="../find.cpp" line="350"/>
         <source>Case sensitive</source>
         <translation>Czuły na wielkość liter</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="349"/>
+        <location filename="../find.cpp" line="351"/>
         <source>Use easy matching instead regex</source>
         <translation>Użyj łatwego szukania zamiast regex&apos;ów</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="390"/>
+        <location filename="../find.cpp" line="392"/>
         <source>All/Everybody</source>
         <translation>Każdy/Wszyscy</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="394"/>
+        <location filename="../find.cpp" line="396"/>
         <source>All media</source>
         <translation>Wszystkie nośniki</translation>
     </message>
@@ -2966,32 +2966,32 @@ zostanie zmieniony na
         <translation type="obsolete">&amp;OK</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="342"/>
+        <location filename="../find.cpp" line="344"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Cancel</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="346"/>
+        <location filename="../find.cpp" line="348"/>
         <source>Results</source>
         <translation>Wyniki</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="333"/>
+        <location filename="../find.cpp" line="335"/>
         <source>Content</source>
         <translation>Zawartość</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="330"/>
+        <location filename="../find.cpp" line="332"/>
         <source>Media / Directory name</source>
         <translation>Nośnik / Nazwa katalogu</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="334"/>
+        <location filename="../find.cpp" line="336"/>
         <source>Date start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="335"/>
+        <location filename="../find.cpp" line="337"/>
         <source>Date end</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3016,19 +3016,24 @@ zostanie zmieniony na
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="336"/>
+        <location filename="../find.cpp" line="338"/>
         <source>Min size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="337"/>
+        <location filename="../find.cpp" line="339"/>
         <source>Max size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="338"/>
+        <location filename="../find.cpp" line="340"/>
         <source>&amp;Start search</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="323"/>
+        <source>Size</source>
+        <translation type="unfinished">Rozmiar</translation>
     </message>
 </context>
 <context>
@@ -3760,22 +3765,22 @@ E-Mail: hyperr@freemail.hu
         <translation>Nic nie znaleziono.</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="964"/>
+        <location filename="../find.cpp" line="968"/>
         <source>dir</source>
         <translation>katalog</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="967"/>
+        <location filename="../find.cpp" line="972"/>
         <source>file</source>
         <translation>plik</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="971"/>
+        <location filename="../find.cpp" line="976"/>
         <source>error</source>
         <translation>błąd</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="960"/>
+        <location filename="../find.cpp" line="963"/>
         <source>media</source>
         <translation>Nośnik</translation>
     </message>

@@ -888,7 +888,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished">Prosím čekejte...</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="553"/>
+        <location filename="../adddialog.cpp" line="552"/>
         <source>Cancel</source>
         <translation type="unfinished">Zrušit</translation>
     </message>
@@ -2331,7 +2331,7 @@ bude změněno na
         <translation>Komentář:</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="646"/>
+        <location filename="../adddialog.cpp" line="645"/>
         <source>Cancel</source>
         <translation>Zrušit</translation>
     </message>
@@ -2386,7 +2386,7 @@ bude změněno na
         <translation>Musíte vyplnit políčko &quot;Název&quot;!</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="647"/>
+        <location filename="../adddialog.cpp" line="646"/>
         <source>Ok</source>
         <translation type="unfinished">OK</translation>
     </message>
@@ -2446,22 +2446,22 @@ bude změněno na
         <translation type="obsolete">Prosím čekejte...</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="643"/>
+        <location filename="../adddialog.cpp" line="642"/>
         <source>Add a &quot;Catalog Link&quot; to the database</source>
         <translation type="unfinished">Přidat &quot;odkaz na katalog&quot; do databáze</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="644"/>
+        <location filename="../adddialog.cpp" line="643"/>
         <source>Location of the .hcf file:</source>
         <translation type="unfinished">Cesta k .hcf souboru:</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="664"/>
+        <location filename="../adddialog.cpp" line="663"/>
         <source>Open a file...</source>
         <translation type="unfinished">Otevřít soubor...</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="664"/>
+        <location filename="../adddialog.cpp" line="663"/>
         <source>CdCat databases (*.hcf )</source>
         <translation type="unfinished">CdCat databáze (*.hcf)</translation>
     </message>
@@ -2946,37 +2946,37 @@ bude změněno na
 <context>
     <name>findDialog</name>
     <message>
-        <location filename="../find.cpp" line="320"/>
+        <location filename="../find.cpp" line="321"/>
         <source>Name</source>
         <translation>Název</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="321"/>
+        <location filename="../find.cpp" line="322"/>
         <source>Type</source>
         <translation>Typ</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="322"/>
+        <location filename="../find.cpp" line="324"/>
         <source>Media</source>
         <translation>Média</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="323"/>
+        <location filename="../find.cpp" line="325"/>
         <source>Path</source>
         <translation>Cesta</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="324"/>
+        <location filename="../find.cpp" line="326"/>
         <source>Modification</source>
         <translation>Změna</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="317"/>
+        <location filename="../find.cpp" line="318"/>
         <source>Search in the database...</source>
         <translation>Hledat v databázi...</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="347"/>
+        <location filename="../find.cpp" line="349"/>
         <source>Close / Go to selected</source>
         <translation>Zavřít / Jít na vybrané</translation>
     </message>
@@ -2991,17 +2991,17 @@ bude změněno na
         <translation type="obsolete">OK</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="325"/>
+        <location filename="../find.cpp" line="327"/>
         <source>Find:</source>
         <translation>Hledat:</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="318"/>
+        <location filename="../find.cpp" line="319"/>
         <source>Seek in:</source>
         <translation>Hledat v:</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="319"/>
+        <location filename="../find.cpp" line="320"/>
         <source>Owner:</source>
         <translation>Vlastníci:</translation>
     </message>
@@ -3011,12 +3011,12 @@ bude změněno na
         <translation type="obsolete">Výsledky</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="332"/>
+        <location filename="../find.cpp" line="334"/>
         <source>Comment</source>
         <translation>Komentář</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="326"/>
+        <location filename="../find.cpp" line="328"/>
         <source>File name</source>
         <translation>Název souboru</translation>
     </message>
@@ -3026,42 +3026,42 @@ bude změněno na
         <translation type="obsolete">Název adresáře</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="329"/>
+        <location filename="../find.cpp" line="331"/>
         <source>mp3-tag Comment</source>
         <translation>MP3-Tag Komentář</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="327"/>
+        <location filename="../find.cpp" line="329"/>
         <source>mp3-tag Album</source>
         <translation>MP3-Tag Album</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="331"/>
+        <location filename="../find.cpp" line="333"/>
         <source>mp3-tag Title</source>
         <translation>MP3-Tag Název</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="328"/>
+        <location filename="../find.cpp" line="330"/>
         <source>mp3-tag Artist</source>
         <translation>MP3-Tag Interpret</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="348"/>
+        <location filename="../find.cpp" line="350"/>
         <source>Case sensitive</source>
         <translation>Rozlišovat velikost písmen</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="349"/>
+        <location filename="../find.cpp" line="351"/>
         <source>Use easy matching instead regex</source>
         <translation>Použít jednoduché porovnání</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="390"/>
+        <location filename="../find.cpp" line="392"/>
         <source>All/Everybody</source>
         <translation>Všichni</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="394"/>
+        <location filename="../find.cpp" line="396"/>
         <source>All media</source>
         <translation>Všechna média</translation>
     </message>
@@ -3071,32 +3071,32 @@ bude změněno na
         <translation type="obsolete">&amp;OK</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="342"/>
+        <location filename="../find.cpp" line="344"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Zrušit</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="346"/>
+        <location filename="../find.cpp" line="348"/>
         <source>Results</source>
         <translation>Výsledky</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="333"/>
+        <location filename="../find.cpp" line="335"/>
         <source>Content</source>
         <translation>Obsah</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="330"/>
+        <location filename="../find.cpp" line="332"/>
         <source>Media / Directory name</source>
         <translation>Média / Název adresáře</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="334"/>
+        <location filename="../find.cpp" line="336"/>
         <source>Date start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="335"/>
+        <location filename="../find.cpp" line="337"/>
         <source>Date end</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3121,19 +3121,24 @@ bude změněno na
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="336"/>
+        <location filename="../find.cpp" line="338"/>
         <source>Min size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="337"/>
+        <location filename="../find.cpp" line="339"/>
         <source>Max size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="338"/>
+        <location filename="../find.cpp" line="340"/>
         <source>&amp;Start search</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="323"/>
+        <source>Size</source>
+        <translation type="unfinished">Velikost</translation>
     </message>
 </context>
 <context>
@@ -4040,22 +4045,22 @@ Název nového média nemůže začínat znakem &quot;@&quot;!</translation>
         <translation>Nebylo nic nalezeno.</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="964"/>
+        <location filename="../find.cpp" line="968"/>
         <source>dir</source>
         <translation>adresář</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="967"/>
+        <location filename="../find.cpp" line="972"/>
         <source>file</source>
         <translation>soubor</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="971"/>
+        <location filename="../find.cpp" line="976"/>
         <source>error</source>
         <translation>chyba</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="960"/>
+        <location filename="../find.cpp" line="963"/>
         <source>media</source>
         <translation>médium</translation>
     </message>
