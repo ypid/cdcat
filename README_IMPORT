@@ -138,3 +138,42 @@ File - Export - Database
 	Comments: [As is...]
 	Comments field size: 4096
 	[ ] Skip items with empty Comments
+
+
+WhereIsIt (CSV)
+=============
+Application - Report generator - Report generator wizard
+
+Step1 (Select report type):
+	 (*) prefinied reports
+		"All files in catalog matching certain file mask"
+
+Step2: (Enter File mask):
+	Mask: *.*
+
+Step3: (Select range):
+	Check all
+
+Step 4 (Export settings):
+	Report title: change to what you want
+	Report destination: (*) Export: [CSV text file]
+	Export settings:
+		Seperator: ;
+	Report Layout options:
+		(*) Print data on list 'as is', no sorting
+	Report columns
+		[x] File, Folder or Disk
+		[x] Ext
+		[x] Item Size
+		[x] Item Date
+		[x] Location
+		[x] Media Type
+		[x] Folder
+		[x] Category
+		[x] Description
+		[x] Disk #
+		[x] Item Time
+		[x] CRC
+		[x] Tag
+		[x] Disk Location
+

@@ -6,22 +6,6 @@
       <source>Not available</source>
       <translation>Nicht verfügbar</translation>
     </message>
-    <message>
-      <source>Byte</source>
-      <translation>Byte</translation>
-    </message>
-    <message>
-      <source>Kib</source>
-      <translation>KiB</translation>
-    </message>
-    <message>
-      <source>Mib</source>
-      <translation>MiB</translation>
-    </message>
-    <message>
-      <source>Gib</source>
-      <translation>GiB</translation>
-    </message>
   </context>
   <context>
     <name>CdCatConfig</name>
@@ -1136,6 +1120,14 @@ wird zu
     <message>
       <source>Select this for importing a text import (csv) generated from Advanced Disk Catalog.</source>
       <translation>Wählen Sie dies, um einen Textimport (CSV), welcher von Advanced Disk Catalog generiert wurde, durchzuführen</translation>
+    </message>
+    <message>
+      <source>W&amp;hereIsIt (csv)</source>
+      <translation>W&amp;hereIsIt (CSV)</translation>
+    </message>
+    <message>
+      <source>Select this for importing a text import (csv) generated from WhereIsIt.</source>
+      <translation>Wählen Sie dies, um einen Textimport (CSV), welcher von WhereIsIt? generiert wurde, durchzuführen</translation>
     </message>
   </context>
   <context>

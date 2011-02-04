@@ -58,6 +58,7 @@ ImportDialog::ImportDialog ( QWidget* parent, const char* name, bool modal, Qt::
     importTypeCsvAdvancedFileOrganizer = new QRadioButton ( "&Advanced file organizer CSV",importButtonBox, "importTypeCsvAdvancedFileOrganizer" );
     importTypeCsvFileArchivist = new QRadioButton ( "&File Archivist",importButtonBox, "importTypeCsvFileArchivist" );
     importTypeCsvAdvancedDiskCatalog = new QRadioButton ( "&Advanced Disk Catalog CSV",importButtonBox, "importTypeCsvAdvancedDiskCatalog" );    
+    importTypeCsvWhereisit = new QRadioButton ( "&Advanced Disk Catalog CSV",importButtonBox, "importTypeCsvWhereisit" );
     importTypeGtktalogXml = new QRadioButton ( "Gtktalog &XML",importButtonBox ,"importTypeGtktalogXml" );
     importTypeWhereisitXml = new QRadioButton ( "&WhereIsIt XML (classic)", importButtonBox, "importTypeWhereisitXml" );
 
@@ -124,6 +125,7 @@ ImportDialog::ImportDialog ( QWidget* parent, const char* name, bool modal, Qt::
     connect ( importTypeCsvAdvancedFileOrganizer, SIGNAL ( clicked() ), this, SLOT ( typeChanged() ) );
     connect ( importTypeCsvFileArchivist, SIGNAL ( clicked() ), this, SLOT ( typeChanged() ) );
     connect ( importTypeCsvAdvancedDiskCatalog, SIGNAL ( clicked() ), this, SLOT ( typeChanged() ) );
+    connect ( importTypeCsvWhereisit, SIGNAL ( clicked() ), this, SLOT ( typeChanged() ) );
     connect ( importTypeGtktalogXml, SIGNAL ( clicked() ), this, SLOT ( typeChanged() ) );
     connect ( importTypeWhereisitXml, SIGNAL ( clicked() ), this, SLOT ( typeChanged() ) );
     separator_lab->setEnabled ( false );
@@ -182,6 +184,7 @@ void ImportDialog::languageChange() {
     importTypeCsvAdvancedFileOrganizer->setText ( tr ( "&Advanced File Organizer (csv)" ) );
     importTypeCsvFileArchivist->setText ( tr ( "&File Archivist" ) );
     importTypeCsvAdvancedDiskCatalog->setText ( tr ( "&Advanced Disk Catalog (csv)" ) );
+    importTypeCsvWhereisit->setText ( tr ( "W&hereIsIt (csv)" ) );
     importTypeGtktalogXml->setText ( tr ( "Gtktalog &XML" ) );
     importTypeWhereisitXml->setText ( tr ( "&WhereIsIt XML (classic)" ) );
 
@@ -211,6 +214,9 @@ void ImportDialog::languageChange() {
 
     QToolTip::add
     ( importTypeCsvAdvancedDiskCatalog, tr ( "Select this for importing a text import (csv) generated from Advanced Disk Catalog." ) );
+
+    QToolTip::add
+    ( importTypeCsvWhereisit, tr ( "Select this for importing a text import (csv) generated from WhereIsIt." ) );
 
     QToolTip::add
     ( importTypeGtktalogXml , tr ( "Select this for importing a xml report generated from gtktalog" ) );
@@ -262,8 +268,12 @@ int ImportDialog::bOk ( void ) {
         type = 8;
     else if ( importTypeCsvAdvancedDiskCatalog->isChecked() )
         type = 9;
+    else if ( importTypeCsvWhereisit->isChecked() )
+        type = 10;
     else if ( importTypeGtktalogXml->isChecked() )
         type = 1;
+    else if ( importTypeWhereisitXml->isChecked() )
+        type = 2;
     else if ( importTypeWhereisitXml->isChecked() )
         type = 2;
 
@@ -284,7 +294,7 @@ void ImportDialog::getFileName() {
 
     if ( importTypeCsvGtktalog->isChecked() || importTypeCsvKatCeDe->isChecked() || importTypeCsvDisclib->isChecked() 
       || importTypeCsvVisualcd->isChecked() ||  importTypeCsvVvv->isChecked()  ||  importTypeCsvAdvancedFileOrganizer->isChecked()
-      || importTypeCsvAdvancedDiskCatalog->isChecked())
+      || importTypeCsvAdvancedDiskCatalog->isChecked() || importTypeCsvWhereisit->isChecked())
         filetypes = QString ( tr ( "csv files(*.csv)" ) );
     else if ( importTypeGtktalogXml->isChecked() )
         filetypes = QString ( tr ( "xml files(*.xml)" ) );
@@ -318,7 +328,11 @@ void ImportDialog::typeChanged() {
 		separator_lab->setEnabled ( false );
 		separator_lineedit->setEnabled ( false );
         }
-        if (importTypeCsvGtktalog->isChecked()) {
+	if (importTypeCsvWhereisit->isChecked()) {
+		separator_lab->setEnabled ( true );
+		separator_lineedit->setEnabled ( true );
+	}
+        if (importTypeCsvGtktalog->isChecked() || importTypeCsvWhereisit->isChecked()) {
 		separator_lineedit->setText(";");
 	}
         else if (importTypeCsvDisclib->isChecked()) {
