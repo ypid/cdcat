@@ -230,7 +230,8 @@ void  CommentWidget::paintEvent ( QPaintEvent *pe ) {
             p.setPen ( *cconfig->comm_stext );
             p.drawText ( mx+15,my+w,tr ( "Size:" ) );
             w+=pixelsHigh;
-            text.sprintf ( " %.2f ", ( ( DBFile * ) ( act->data ) )->size)+" "+getSType ( ( ( DBFile * ) ( act->data ) )->sizeType, true );
+            text.sprintf ( " %.2f ", ( ( DBFile * ) ( act->data ) )->size);
+            text+=QString(getSType ( ( ( DBFile * ) ( act->data ) )->sizeType, true ));
             p.setPen ( *cconfig->comm_vtext );
             p.drawText ( mx+15,my+w,text );
             w+=pixelsHigh+ispace;

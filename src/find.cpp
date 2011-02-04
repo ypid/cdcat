@@ -973,7 +973,8 @@ void seekEngine::putNodeToList ( Node *n ) {
         break;
     case HC_FILE:
 	type = tr ( "file" );
-	size_str = QString().sprintf ( "%.1f",( ( DBFile * ) ( n->data ) )->size)+ " "+getSType ( ( ( DBFile * ) ( n->data ) )->sizeType, true );
+	size_str = QString().sprintf ( "%.1f",( ( DBFile * ) ( n->data ) )->size);
+	size_str += QString(getSType ( ( ( DBFile * ) ( n->data ) )->sizeType, true ));
         mod  = ( ( DBFile * ) ( n->data ) )->modification;
         break;
     default:           type = tr ( "error" );
