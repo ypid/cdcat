@@ -417,45 +417,26 @@ int findDialog::fillCBox ( void ) {
     return 0;
 }
 /***************************************************************************/
-// int findDialog::select(Q3ListViewItem *i)
-//  {
-//   if(i == NULL)
-//      return 0;
-//
-//  // !!! I deleted the code which remove the two // from the beginning of i->text(3)
-//  // It should be unnecessary since cdcat unidece support becouse the getNodeFromFullName
-//  // is work different way.
-//   mainw->guis->updateListFromNode(
-//          (mainw->guis->getNodeFromFullName(mainw->db->getRootNode(),i->text(3))));
-//
-//   for(Q3ListViewItemIterator it=mainw->listView->firstChild();it.current();it++)
-//    {
-//      if(strcmp((it.current())->text(0),i->text(0)) ==0)
-//         mainw->listView->setCurrentItem(it.current());
-//    }
-//   mainw->listView->curr_vis();
-//   mainw->listView->repaint();
-//   return 0;
-//  }
 
 int findDialog::select ( Q3ListViewItem *i ) {
     if ( i == NULL )
         return 0;
 
-    char loc[1024];
-
     if ( i->text ( 3 ).isEmpty() ) //Not a real result ("There is no matching" label)
         return 0;
 
-    strcpy ( loc,i->text ( 3 ) );
+   QString nodepath = i->text ( 4 ).mid(2,i->text ( 4 ).length()-1);
+//    std::cerr << "select: nodepath " << qPrintable(nodepath) << std::endl; 
+
     mainw->guis->updateListFromNode (
-        ( mainw->guis->getNodeFromFullName ( mainw->db->getRootNode(),QString ( loc+2 ) ) ) );
+        ( mainw->guis->getNodeFromFullName (mainw->db->getRootNode(), nodepath ) ) );
     for ( Q3ListViewItemIterator it=mainw->listView->firstChild();it.current();it++ ) {
-        if ( strcmp ( ( it.current() )->text ( 0 ),i->text ( 0 ) ) ==0 )
+        if ( ( it.current() )->text ( 0 ) == i->text ( 0 )) {
             mainw->listView->setCurrentItem ( it.current() );
+            mainw->listView->curr_vis();
+            mainw->listView->repaint();
+	}
     }
-    mainw->listView->curr_vis();
-    mainw->listView->repaint();
     return 0;
 }
 /***************************************************************************/
