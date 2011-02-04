@@ -122,3 +122,30 @@ Options:
 	[x] Export as line
 	[ ] Folder only
 	[x] Display all properties
+
+
+Advanced Disk Catalog
+==================
+File - Export - Database
+	Target [CSV file (for MS Excel)]
+	Volume [All disks]
+	Category [All categories]
+	Objects [Files and folders]
+	Export fields
+		[x] Volume
+		[x] File/folder name
+		[x] Rel. path
+		[x] Full path
+		[x] File/folder size
+		[x] file/folder data
+		[x] file/folder time
+		[x] Category
+		[x] Level
+		[x] Comments
+		[x] Files inside
+		[x] File type
+	File name: export.csv
+	Comments: [As is...]
+	Comments field size: 4096
+	[ ] Skip items with empty Comments
+
