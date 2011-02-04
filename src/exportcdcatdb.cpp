@@ -1003,6 +1003,7 @@ void exportCdcatDB::exportTypeToggled() {
         checkExportBorrow->setEnabled ( false );
 	checkAllMedia->setEnabled(false);
 	listSelectedMedia->setEnabled(false);
+	listAllMedia->setEnabled(false);
 
         if ( p != NULL )
             fileName->setText (mainw->cconfig->lastDir +"/"+ ( ( DBCatalog * ) ( ( p->getRootNode() )->data ) )->name+".xml" );
