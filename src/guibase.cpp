@@ -1540,6 +1540,7 @@ int GuiSlave::helpEvent ( void ) {
 }
 
 int GuiSlave::exportEvent ( void ) {
+    if ( mainw->db == NULL ) return 0;
     exportCdcatDB i ( mainw );
     i.exec();
     return 0;

@@ -2,6 +2,8 @@
 	- advanced disk catalog import info added
 	- csv import added (WhereIsIt, see README_IMPORT for details)
 	- jump to selected item in find dialog fixed
+	- dont open export dialog if no catalog is open
+	- xml export added
 
 03. Feb 2011 Christoph Thielecke <crissi99@gmx.de>
 	- reading utfs encoding fixed

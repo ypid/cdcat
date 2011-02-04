@@ -91,6 +91,7 @@ public:
     Q3ButtonGroup* buttonGroupFields;
     QRadioButton* radioHtml;
     QRadioButton* radioCsv;
+    QRadioButton* radioXml;
     QLabel* seperatorLabel;
     QLabel* textLabel3;
     QLabel* spinColsLabel;

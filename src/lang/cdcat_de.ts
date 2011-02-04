@@ -248,8 +248,8 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
       <translation>Datenbank importieren (CSV/XML)</translation>
     </message>
     <message>
-      <source>Export database (CSV, HTML)</source>
-      <translation>Datenbank exportieren (CSV, HTML)</translation>
+      <source>Export database (CSV/HTML/XML)</source>
+      <translation>Datenbank exportieren (CSV/HTML/XML)</translation>
     </message>
   </context>
   <context>
@@ -1740,10 +1740,6 @@ wird zu
       <translation>&amp;Abbrechen</translation>
     </message>
     <message>
-      <source>Error during write config...</source>
-      <translation>Fehler beim Schreiben der Konfiguration...</translation>
-    </message>
-    <message>
       <source>Availiable media</source>
       <translation>Verfügbare Medien</translation>
     </message>
@@ -1930,6 +1926,18 @@ wird zu
     <message>
       <source>field list</source>
       <translation>Feldliste</translation>
+    </message>
+    <message>
+      <source>export as XML</source>
+      <translation>Als XML exportieren</translation>
+    </message>
+    <message>
+      <source>Exporting, please wait...</source>
+      <translation>Es wird exportiert, bitte warten...</translation>
+    </message>
+    <message>
+      <source>Error during write export...</source>
+      <translation>Fehler beim exportieren...</translation>
     </message>
   </context>
   <context>
