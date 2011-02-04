@@ -354,7 +354,7 @@ int GuiSlave::updateListFromNode ( Node *pdir ) {
 
         if ( tmp->type == HC_FILE ) {
 	    QString filetype = " "+tr(getSType ( ( ( DBFile * ) ( tmp->data ) )->sizeType, true ));
-		cerr << "file type " << qPrintable(filetype) << endl;
+// 		cerr << "file type " << qPrintable(filetype) << endl;
 	    if (filetype == " " || filetype.isEmpty())
 		filetype = " "+getSType ( ( ( DBFile * ) ( tmp->data ) )->sizeType, false );
             qstr1.sprintf ( "%.2f", ( ( DBFile * ) ( tmp->data ) )->size);
