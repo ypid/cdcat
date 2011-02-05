@@ -1,3 +1,6 @@
+05. Feb 2011 Christoph Thielecke <crissi99@gmx.de>
+	- crash caused divide by zero fixed
+
 04. Feb 2011 Christoph Thielecke <crissi99@gmx.de>
 	- advanced disk catalog import info added
 	- csv import added (WhereIsIt, see README_IMPORT for details)

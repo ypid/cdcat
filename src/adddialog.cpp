@@ -540,7 +540,11 @@ void PWw::paintEvent ( QPaintEvent *e ) {
 	if(showProgress) {
 		p.setPen(QPen(QColor().black()));
 		p.drawRect(1, buttom_offset-1, mywidth-4, 15);
-		int percent = progress_step/(steps/100);
+		int percent = 0;
+		int steps_hundered = (steps/100);
+// 		std::cerr << progress_step << "/"<< steps <<  " steps/100: " << (steps/100) << std::endl;
+		if (steps_hundered != 0)
+			percent = progress_step/(steps/100);
 		p.setBrush(QBrush(Qt::blue));
 		p.drawRect(2, buttom_offset, (borderless_width-4)*percent/100, 14);
 	
