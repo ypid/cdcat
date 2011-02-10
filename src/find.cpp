@@ -52,6 +52,9 @@
 #include "cdcat.h"
 #include "icons.h"
 
+#include <string.h>
+#include <malloc.h>
+#include "dmetaph.h"
 #include <iostream>
 using namespace std;
 
@@ -64,6 +67,7 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool modal, 
     setIcon ( *get_t_find_icon() );
 
     mainw = parent;
+    use_unsharpsearch = false;
 
     setSizeGripEnabled ( TRUE );
     FindDialogBaseLayout = new Q3GridLayout ( this, 1, 1, 11, 6, "FindDialogBaseLayout" );
@@ -113,6 +117,7 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool modal, 
     cbDateEnd = new QCheckBox ( this, "cbDateEnd" );
     cbSizeMin = new QCheckBox (this, "cbSizeMin" );
     cbSizeMax = new QCheckBox (this, "cbSizeMax" );
+    cbUnsharpSearch = new QCheckBox (this, "cbUnsharpSearch" );
 
     cbOwner = new QComboBox ( FALSE, this, "cbOwner" );
     cbOwner->setMinimumSize ( QSize ( 0, 0 ) );
@@ -204,6 +209,7 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool modal, 
     layout37->addWidget ( deDateEnd, 7, 1 );
     layout37->addWidget ( cbSizeMin, 8, 0 );
     layout37->addWidget ( cbSizeMax, 9, 0 );
+    layout37->addWidget ( cbUnsharpSearch, 10, 0 );
 
 
     layout37->addWidget ( cbOwner, 3, 1 );
@@ -301,6 +307,8 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool modal, 
     cbSizeUnitMin->setCurrentIndex(mainw->cconfig->find_size_unit_min_val);
     cbSizeUnitMax->setCurrentIndex(mainw->cconfig->find_size_unit_max_val);
 
+    cbUnsharpSearch->setChecked(mainw->cconfig->find_unsharp_search);
+
     leText->setText(mainw->cconfig->lastSearchPattern);
 
     dateStartChanged(0);
@@ -340,6 +348,7 @@ void findDialog::languageChange() {
     cbDateEnd->setText ( tr ( "Date end" ) );
     cbSizeMin->setText( tr("Min size") );
     cbSizeMax->setText( tr("Max size") );
+    cbUnsharpSearch->setText( tr("Unsharp search (slow)") );
     buttonOk->setText ( tr ( "&Start search" ) );
 #ifndef _WIN32
     buttonOk->setAccel ( QKeySequence ( QString::null ) );
@@ -376,6 +385,7 @@ int findDialog::saveState ( void ) {
     mainw->cconfig->find_size_max_val = spSizeMax->value();
     mainw->cconfig->find_size_unit_min_val= cbSizeUnitMin->currentIndex();
     mainw->cconfig->find_size_unit_max_val = cbSizeUnitMax->currentIndex();
+    mainw->cconfig->find_unsharp_search = cbUnsharpSearch->isChecked();
     mainw->cconfig->findX      = x();
     mainw->cconfig->findY      = y();
     mainw->cconfig->findWidth  = width();
@@ -571,6 +581,7 @@ int seekEngine::start_seek ( void ) {
 //         QMessageBox::warning ( fd,tr ( "Error in the pattern:" ),error );
 //         return 1;
 //     }
+    fd->use_unsharpsearch = fd->cbUnsharpSearch->isChecked();
 
     pww=new PWw ( fd );
     pww->refreshTime=200;
@@ -915,21 +926,57 @@ int seekEngine::analyzeNode (PWw *pww,  Node *n,Node *pa ) {
 }
 
 int seekEngine::matchIt ( QString txt ) {
-//     const char *encoded;
-    int  match;
-    if ( txt.isEmpty() ) return 0;
+	//const char *encoded;
+	int  match;
+	if ( txt.isEmpty() )
+		return 0;
+	if(!fd->use_unsharpsearch) {
+		//encoded = ( const char * ) ( ( QTextCodec::codecForLocale() )->fromUnicode ( txt ) );
+		//match   = pcre_exec ( re,hints,encoded,strlen ( encoded ),0,0,offsets,99 );
+		//match = re->exactMatch (QString( encoded));
+		match = re->exactMatch (QString( txt));
+		//cerr << "matchit: " << qPrintable(txt) << " <==> " << qPrintable(re->pattern()) <<" result: " << match << endl;
+		
+		if ( match == 1 )
+			return 1;
+	}
+	else {
+		if (fd->cbCasesens->isChecked()) {
+			if (matchUnsharp(fd->leText->text().toLocal8Bit().data(), txt.toLocal8Bit().data()))
+				return 1;
+		}
+		else {
+			if (matchUnsharp(fd->leText->text().toLower().toLocal8Bit().data(), txt.toLower().toLocal8Bit().data()))
+				return 1;
+		}
+	}
+	return 0;
+}
 
-    
-
-//     encoded = ( const char * ) ( ( QTextCodec::codecForLocale() )->fromUnicode ( txt ) );
-    //match   = pcre_exec ( re,hints,encoded,strlen ( encoded ),0,0,offsets,99 );
-//     match = re->exactMatch (QString( encoded));
-    match = re->exactMatch (QString( txt));
-//     cerr << "matchit: " << qPrintable(txt) << " <==> " << qPrintable(re->pattern()) <<" result: " << match << endl;
-
-    if ( match == 1 )
-        return 1;
-    return 0;
+bool seekEngine::matchUnsharp(char* matchpattern, char* str){
+	DEBUG_INFO_ENABLED = init_debug_info();
+	if(matchpattern == NULL || str == NULL)
+		return false;
+	
+	int match = -1;
+	int matchpattern_len=strlen(matchpattern);
+	MString m_matchpattern (matchpattern, matchpattern_len);
+	QString res_matchpattern_str1, res_matchpattern_str2;
+	m_matchpattern.DoubleMetaphone (res_matchpattern_str1, res_matchpattern_str2);
+	
+	MString m_str (str, matchpattern_len);
+	QString res_str_str1, res_str_str2;
+	m_str.DoubleMetaphone (res_str_str1, res_str_str2);
+	
+	match = res_str_str1.indexOf (res_matchpattern_str1);
+	
+	if (*DEBUG_INFO_ENABLED)
+		cerr << "matchUnsharp: " << matchpattern << " (" << qPrintable(res_matchpattern_str1) << ") <=> " << str << " (" << qPrintable(res_str_str1) << ")  ===> " << match << endl;
+	
+	if(match > -1)
+		return true;
+	else
+		return false;
 }
 
 void seekEngine::putNodeToList ( Node *n ) {
@@ -983,5 +1030,4 @@ void seekEngine::putNodeToList ( Node *n ) {
     founded++;
 }
 
-/***************************************************************************/
 

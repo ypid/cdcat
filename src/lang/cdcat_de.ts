@@ -2078,6 +2078,10 @@ wird zu
       <source>Size</source>
       <translation>Grösse</translation>
     </message>
+    <message>
+      <source>Unsharp search (slow)</source>
+      <translation>Unscharfe Suche (langsam)</translation>
+    </message>
   </context>
   <context>
     <name>helpDialog</name>

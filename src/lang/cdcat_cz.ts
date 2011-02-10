@@ -44,12 +44,12 @@
 <context>
     <name>CdCatConfig</name>
     <message>
-        <location filename="../config.cpp" line="178"/>
+        <location filename="../config.cpp" line="179"/>
         <source>Error during autoload...</source>
         <translation>Chyba při automatickém načítání...</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="180"/>
+        <location filename="../config.cpp" line="181"/>
         <source>I can&apos;t open the autoload catalog.
 Check the file, or change the autoload option in the config dialog!
 </source>
@@ -84,7 +84,7 @@ Tu je nutné znát, protože do Vašeho  domovského adresáře se ukládá konf
         <translation type="obsolete">Nemohu vytvořit nebo přepsat $(HOME)/.cdcatconfig</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="180"/>
+        <location filename="../config.cpp" line="181"/>
         <source>I can&apos;t open the autoload catalog according the first command line parameter.
 Check the file!
 </source>
@@ -99,22 +99,22 @@ It is necessary couse I&apos;d like to save the config file into your home direc
 Tu je nutné znát, protože do Vašeho  domovského adresáře se ukládá konfigurace.</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="933"/>
+        <location filename="../config.cpp" line="944"/>
         <source>I can&apos;t create or rewrite the ./cdcat.cfg file </source>
         <translation>Nemohu vytvořit nebo přepsat ./cdcat.cfg</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="935"/>
+        <location filename="../config.cpp" line="946"/>
         <source>I can&apos;t create or rewrite the $(HOME)/.cdcatconfig file </source>
         <translation>Nemohu vytvořit nebo přepsat $(HOME)/.cdcatconfig</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="935"/>
+        <location filename="../config.cpp" line="946"/>
         <source>Error while saving config file...</source>
         <translation>Chyba při ukládání konfigurace...</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="695"/>
+        <location filename="../config.cpp" line="703"/>
         <source>I can&apos;t get the $HOME environment variable.
 It is necessary because I&apos;d like to save the config file into your home directory.</source>
         <translation type="unfinished"></translation>
@@ -640,32 +640,32 @@ It is necessary because I&apos;d like to save the config file into your home dir
 <context>
     <name>ConfigDialog</name>
     <message>
-        <location filename="../config.cpp" line="1230"/>
+        <location filename="../config.cpp" line="1241"/>
         <source>Configure  CdCat...</source>
         <translation>Konfigurovat CdCat...</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1231"/>
+        <location filename="../config.cpp" line="1242"/>
         <source>Autoload DataBase on startup</source>
         <translation>Automaticky načíst databázi při startu</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1233"/>
+        <location filename="../config.cpp" line="1244"/>
         <source>Save the XML-db.file nicer format(needs more space)</source>
         <translation>Uložit ve formátu XML-db, Hezčí formát, potřebuje více místa</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1234"/>
+        <location filename="../config.cpp" line="1245"/>
         <source>Cancel</source>
         <translation>Zrušit</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1235"/>
+        <location filename="../config.cpp" line="1246"/>
         <source>Ok</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1238"/>
+        <location filename="../config.cpp" line="1249"/>
         <source>Application font size.(must restart cdcat!) </source>
         <translation>Velikost fontu aplikace. (Projeví se až po restartu)</translation>
     </message>
@@ -680,32 +680,32 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Zvolte soubor pro automatické načtení!</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1240"/>
+        <location filename="../config.cpp" line="1251"/>
         <source>Path to cdrom device</source>
         <translation>Cesta k CD mechanice</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1243"/>
+        <location filename="../config.cpp" line="1254"/>
         <source>Scanning: mount cdrom at start / eject when finish</source>
         <translation>Prohledávání: připojit CD-ROM mechaniku při zahájení / vysunout CD po dokončení</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1237"/>
+        <location filename="../config.cpp" line="1248"/>
         <source>Use own font size</source>
         <translation>Použít vlastní velikost fontu</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1239"/>
+        <location filename="../config.cpp" line="1250"/>
         <source>Number of history entries</source>
         <translation>Počet položek historie</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1268"/>
+        <location filename="../config.cpp" line="1279"/>
         <source>Choose path to cdrom!</source>
         <translation>Vyberte cestu k mechanice CD!</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1251"/>
+        <location filename="../config.cpp" line="1262"/>
         <source>The language of CdCat interface</source>
         <translation>Jazyk programu CdCat</translation>
     </message>
@@ -715,7 +715,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Vyberte položky ke čtení</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1261"/>
+        <location filename="../config.cpp" line="1272"/>
         <source>Choose a file to load automatically!</source>
         <translation>Zvolte soubor pro automatické načtení!</translation>
     </message>
@@ -725,32 +725,32 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Automaticky ukládat databázi po každém načtení média</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1236"/>
+        <location filename="../config.cpp" line="1247"/>
         <source>Select additional items to read</source>
         <translation>Vyberte položky ke čtení</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1232"/>
+        <location filename="../config.cpp" line="1243"/>
         <source>Automatically save the database after every scan (for safety sake)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1254"/>
+        <location filename="../config.cpp" line="1265"/>
         <source>Display debug info on console</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1261"/>
+        <location filename="../config.cpp" line="1272"/>
         <source>CdCat databases (*.hcf )</source>
         <translation type="unfinished">CdCat databáze (*.hcf)</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1255"/>
+        <location filename="../config.cpp" line="1266"/>
         <source>Save catalogs always as UTF8</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1256"/>
+        <location filename="../config.cpp" line="1267"/>
         <source>Show progressed file at scanning in status label</source>
         <translation type="unfinished"></translation>
     </message>
@@ -868,7 +868,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished">Prosím čekejte...</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="552"/>
+        <location filename="../adddialog.cpp" line="556"/>
         <source>Cancel</source>
         <translation type="unfinished">Zrušit</translation>
     </message>
@@ -1019,7 +1019,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Otevřít soubor...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1680"/>
+        <location filename="../guibase.cpp" line="1681"/>
         <source>Error while opening...</source>
         <translation>Chyba ppři otevírání...</translation>
     </message>
@@ -1049,12 +1049,12 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Chcete uložit změny?</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1742"/>
+        <location filename="../guibase.cpp" line="1743"/>
         <source>Yes</source>
         <translation>Ano</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1742"/>
+        <location filename="../guibase.cpp" line="1743"/>
         <source>No</source>
         <translation>Ne</translation>
     </message>
@@ -1076,7 +1076,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
 %1</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1740"/>
+        <location filename="../guibase.cpp" line="1741"/>
         <source>Confirmation</source>
         <translation>Potvrzení</translation>
     </message>
@@ -1269,7 +1269,7 @@ databáze nebude pravděpodobně kompletní</translation>
         <translation>Zapůjčit médium...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1741"/>
+        <location filename="../guibase.cpp" line="1742"/>
         <source>Do you want to clear the borrowing mark from media &quot;%1&quot;?
 (Say yes if you got it back.)</source>
         <translation>Chcete smazat informace o zapůjčení u média &quot;%1&quot;?
@@ -1309,7 +1309,7 @@ Domovská stránka: %3</translation>
         <translation>Přidat odkaz na CdCat katalog...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1659"/>
+        <location filename="../guibase.cpp" line="1660"/>
         <source>The link is empty.</source>
         <translation>Odkaz je prázdný.</translation>
     </message>
@@ -2346,7 +2346,7 @@ bude změněno na
         <translation>Komentář:</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="645"/>
+        <location filename="../adddialog.cpp" line="649"/>
         <source>Cancel</source>
         <translation>Zrušit</translation>
     </message>
@@ -2401,7 +2401,7 @@ bude změněno na
         <translation>Musíte vyplnit políčko &quot;Název&quot;!</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="646"/>
+        <location filename="../adddialog.cpp" line="650"/>
         <source>Ok</source>
         <translation type="unfinished">OK</translation>
     </message>
@@ -2461,22 +2461,22 @@ bude změněno na
         <translation type="obsolete">Prosím čekejte...</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="642"/>
+        <location filename="../adddialog.cpp" line="646"/>
         <source>Add a &quot;Catalog Link&quot; to the database</source>
         <translation type="unfinished">Přidat &quot;odkaz na katalog&quot; do databáze</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="643"/>
+        <location filename="../adddialog.cpp" line="647"/>
         <source>Location of the .hcf file:</source>
         <translation type="unfinished">Cesta k .hcf souboru:</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="663"/>
+        <location filename="../adddialog.cpp" line="667"/>
         <source>Open a file...</source>
         <translation type="unfinished">Otevřít soubor...</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="663"/>
+        <location filename="../adddialog.cpp" line="667"/>
         <source>CdCat databases (*.hcf )</source>
         <translation type="unfinished">CdCat databáze (*.hcf)</translation>
     </message>
@@ -2748,7 +2748,7 @@ bude změněno na
         <translation type="obsolete">OK</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="639"/>
+        <location filename="../exportcdcatdb.cpp" line="638"/>
         <source>All files (*.*)</source>
         <translation>Všechny soubory (*.*)</translation>
     </message>
@@ -2758,7 +2758,7 @@ bude změněno na
         <translation type="obsolete">výběr souboru</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="639"/>
+        <location filename="../exportcdcatdb.cpp" line="638"/>
         <source>Choose a file!</source>
         <translation>Vyberte soubor!</translation>
     </message>
@@ -2813,7 +2813,7 @@ bude změněno na
         <translation>Datum</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="562"/>
+        <location filename="../exportcdcatdb.cpp" line="561"/>
         <source>I can&apos;t create or rewrite the file</source>
         <translation>Nemohu vytvořit nebo přepsat soubor</translation>
     </message>
@@ -2928,22 +2928,22 @@ bude změněno na
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="877"/>
+        <location filename="../exportcdcatdb.cpp" line="876"/>
         <source>Artist:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="878"/>
+        <location filename="../exportcdcatdb.cpp" line="877"/>
         <source>Title:</source>
         <translation type="unfinished">Název:</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="879"/>
+        <location filename="../exportcdcatdb.cpp" line="878"/>
         <source>Album:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="880"/>
+        <location filename="../exportcdcatdb.cpp" line="879"/>
         <source>Year:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2963,12 +2963,12 @@ bude změněno na
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="514"/>
+        <location filename="../exportcdcatdb.cpp" line="513"/>
         <source>Exporting, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="562"/>
+        <location filename="../exportcdcatdb.cpp" line="561"/>
         <source>Error during write export...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2976,37 +2976,37 @@ bude změněno na
 <context>
     <name>findDialog</name>
     <message>
-        <location filename="../find.cpp" line="324"/>
+        <location filename="../find.cpp" line="332"/>
         <source>Name</source>
         <translation>Název</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="325"/>
+        <location filename="../find.cpp" line="333"/>
         <source>Type</source>
         <translation>Typ</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="327"/>
+        <location filename="../find.cpp" line="335"/>
         <source>Media</source>
         <translation>Média</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="328"/>
+        <location filename="../find.cpp" line="336"/>
         <source>Path</source>
         <translation>Cesta</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="329"/>
+        <location filename="../find.cpp" line="337"/>
         <source>Modification</source>
         <translation>Změna</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="321"/>
+        <location filename="../find.cpp" line="329"/>
         <source>Search in the database...</source>
         <translation>Hledat v databázi...</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="352"/>
+        <location filename="../find.cpp" line="361"/>
         <source>Close / Go to selected</source>
         <translation>Zavřít / Jít na vybrané</translation>
     </message>
@@ -3021,17 +3021,17 @@ bude změněno na
         <translation type="obsolete">OK</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="330"/>
+        <location filename="../find.cpp" line="338"/>
         <source>Find:</source>
         <translation>Hledat:</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="322"/>
+        <location filename="../find.cpp" line="330"/>
         <source>Seek in:</source>
         <translation>Hledat v:</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="323"/>
+        <location filename="../find.cpp" line="331"/>
         <source>Owner:</source>
         <translation>Vlastníci:</translation>
     </message>
@@ -3041,12 +3041,12 @@ bude změněno na
         <translation type="obsolete">Výsledky</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="337"/>
+        <location filename="../find.cpp" line="345"/>
         <source>Comment</source>
         <translation>Komentář</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="331"/>
+        <location filename="../find.cpp" line="339"/>
         <source>File name</source>
         <translation>Název souboru</translation>
     </message>
@@ -3056,42 +3056,42 @@ bude změněno na
         <translation type="obsolete">Název adresáře</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="334"/>
+        <location filename="../find.cpp" line="342"/>
         <source>mp3-tag Comment</source>
         <translation>MP3-Tag Komentář</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="332"/>
+        <location filename="../find.cpp" line="340"/>
         <source>mp3-tag Album</source>
         <translation>MP3-Tag Album</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="336"/>
+        <location filename="../find.cpp" line="344"/>
         <source>mp3-tag Title</source>
         <translation>MP3-Tag Název</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="333"/>
+        <location filename="../find.cpp" line="341"/>
         <source>mp3-tag Artist</source>
         <translation>MP3-Tag Interpret</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="353"/>
+        <location filename="../find.cpp" line="362"/>
         <source>Case sensitive</source>
         <translation>Rozlišovat velikost písmen</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="354"/>
+        <location filename="../find.cpp" line="363"/>
         <source>Use easy matching instead regex</source>
         <translation>Použít jednoduché porovnání</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="395"/>
+        <location filename="../find.cpp" line="405"/>
         <source>All/Everybody</source>
         <translation>Všichni</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="399"/>
+        <location filename="../find.cpp" line="409"/>
         <source>All media</source>
         <translation>Všechna média</translation>
     </message>
@@ -3101,74 +3101,79 @@ bude změněno na
         <translation type="obsolete">&amp;OK</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="347"/>
+        <location filename="../find.cpp" line="356"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Zrušit</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="351"/>
+        <location filename="../find.cpp" line="360"/>
         <source>Results</source>
         <translation>Výsledky</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="338"/>
+        <location filename="../find.cpp" line="346"/>
         <source>Content</source>
         <translation>Obsah</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="335"/>
+        <location filename="../find.cpp" line="343"/>
         <source>Media / Directory name</source>
         <translation>Média / Název adresáře</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="339"/>
+        <location filename="../find.cpp" line="347"/>
         <source>Date start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="340"/>
+        <location filename="../find.cpp" line="348"/>
         <source>Date end</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="129"/>
+        <location filename="../find.cpp" line="134"/>
         <source>Byte</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="130"/>
+        <location filename="../find.cpp" line="135"/>
         <source>KiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="131"/>
+        <location filename="../find.cpp" line="136"/>
         <source>MiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="132"/>
+        <location filename="../find.cpp" line="137"/>
         <source>GiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="341"/>
+        <location filename="../find.cpp" line="349"/>
         <source>Min size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="342"/>
+        <location filename="../find.cpp" line="350"/>
         <source>Max size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="343"/>
+        <location filename="../find.cpp" line="352"/>
         <source>&amp;Start search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="326"/>
+        <location filename="../find.cpp" line="334"/>
         <source>Size</source>
         <translation type="unfinished">Velikost</translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="351"/>
+        <source>Unsharp search (slow)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4050,7 +4055,7 @@ Název nového média nemůže začínat znakem &quot;@&quot;!</translation>
 <context>
     <name>seekEngine</name>
     <message>
-        <location filename="../find.cpp" line="563"/>
+        <location filename="../find.cpp" line="573"/>
         <source>Error in the pattern:</source>
         <translation>Chyba ve vzoru:</translation>
     </message>
@@ -4070,42 +4075,42 @@ Název nového média nemůže začínat znakem &quot;@&quot;!</translation>
         <translation type="obsolete">Všechna média</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="642"/>
+        <location filename="../find.cpp" line="652"/>
         <source>There is no matching.</source>
         <translation>Nebylo nic nalezeno.</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="952"/>
+        <location filename="../find.cpp" line="998"/>
         <source>dir</source>
         <translation>adresář</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="956"/>
+        <location filename="../find.cpp" line="1002"/>
         <source>file</source>
         <translation>soubor</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="961"/>
+        <location filename="../find.cpp" line="1007"/>
         <source>error</source>
         <translation>chyba</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="947"/>
+        <location filename="../find.cpp" line="993"/>
         <source>media</source>
         <translation>médium</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="578"/>
+        <location filename="../find.cpp" line="588"/>
         <source>Searching, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="638"/>
+        <location filename="../find.cpp" line="648"/>
         <source>Search cancelled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="638"/>
+        <location filename="../find.cpp" line="648"/>
         <source>You have cancelled searching.</source>
         <translation type="unfinished"></translation>
     </message>

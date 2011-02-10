@@ -34,12 +34,12 @@
 <context>
     <name>CdCatConfig</name>
     <message>
-        <location filename="../config.cpp" line="178"/>
+        <location filename="../config.cpp" line="179"/>
         <source>Error during autoload...</source>
         <translation>Σφάλμα κατά την φόρτωση...</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="180"/>
+        <location filename="../config.cpp" line="181"/>
         <source>I can&apos;t open the autoload catalog.
 Check the file, or change the autoload option in the config dialog!
 </source>
@@ -74,29 +74,29 @@ It is necessary couse I&apos;d like to save the config file into your home direc
         <translation type="obsolete">Αδυναμία στη δημιουργία ή στην επανεγγραφή του $(HOME)/.cdcatconfig</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="180"/>
+        <location filename="../config.cpp" line="181"/>
         <source>I can&apos;t open the autoload catalog according the first command line parameter.
 Check the file!
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="933"/>
+        <location filename="../config.cpp" line="944"/>
         <source>I can&apos;t create or rewrite the ./cdcat.cfg file </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="935"/>
+        <location filename="../config.cpp" line="946"/>
         <source>I can&apos;t create or rewrite the $(HOME)/.cdcatconfig file </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="935"/>
+        <location filename="../config.cpp" line="946"/>
         <source>Error while saving config file...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="695"/>
+        <location filename="../config.cpp" line="703"/>
         <source>I can&apos;t get the $HOME environment variable.
 It is necessary because I&apos;d like to save the config file into your home directory.</source>
         <translation type="unfinished"></translation>
@@ -602,32 +602,32 @@ It is necessary because I&apos;d like to save the config file into your home dir
 <context>
     <name>ConfigDialog</name>
     <message>
-        <location filename="../config.cpp" line="1230"/>
+        <location filename="../config.cpp" line="1241"/>
         <source>Configure  CdCat...</source>
         <translation>Ρύθμιση CdCat...</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1231"/>
+        <location filename="../config.cpp" line="1242"/>
         <source>Autoload DataBase on startup</source>
         <translation>Φόρτωση βάσης κατά την εκκίνηση</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1233"/>
+        <location filename="../config.cpp" line="1244"/>
         <source>Save the XML-db.file nicer format(needs more space)</source>
         <translation>Αποθήκευση σε μορφή XML-db(απαιτήται περισσότερος χώρος)</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1234"/>
+        <location filename="../config.cpp" line="1245"/>
         <source>Cancel</source>
         <translation>Ακύρωση</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1235"/>
+        <location filename="../config.cpp" line="1246"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1238"/>
+        <location filename="../config.cpp" line="1249"/>
         <source>Application font size.(must restart cdcat!) </source>
         <translation>Μέγεθος γραμματοσειράς εφαρμογής.(απαραίτητη η επανεκκίνηση του cdcat!)</translation>
     </message>
@@ -642,32 +642,32 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Επιλέξτε αρχείο για αυτόματη φόρτωση!</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1240"/>
+        <location filename="../config.cpp" line="1251"/>
         <source>Path to cdrom device</source>
         <translation>Τοποθεσία συσκεύης cdrom</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1243"/>
+        <location filename="../config.cpp" line="1254"/>
         <source>Scanning: mount cdrom at start / eject when finish</source>
         <translation>Ανίχνευση: mount cdrom κατά την εκκίνηση / eject στο τέλος</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1237"/>
+        <location filename="../config.cpp" line="1248"/>
         <source>Use own font size</source>
         <translation>Χρήση προσωπικού μεγέθους γραμματοσειράς</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1239"/>
+        <location filename="../config.cpp" line="1250"/>
         <source>Number of history entries</source>
         <translation>Αριθμός εισαγωγών ιστορικού</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1268"/>
+        <location filename="../config.cpp" line="1279"/>
         <source>Choose path to cdrom!</source>
         <translation>Επιλέξτε τοποθέσια του cdrom!</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1251"/>
+        <location filename="../config.cpp" line="1262"/>
         <source>The language of CdCat interface</source>
         <translation>Γλώσσα του interface του CdCat</translation>
     </message>
@@ -677,37 +677,37 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Επιλογή αναγνώσιμων αντικειμένων</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1261"/>
+        <location filename="../config.cpp" line="1272"/>
         <source>Choose a file to load automatically!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1236"/>
+        <location filename="../config.cpp" line="1247"/>
         <source>Select additional items to read</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1232"/>
+        <location filename="../config.cpp" line="1243"/>
         <source>Automatically save the database after every scan (for safety sake)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1254"/>
+        <location filename="../config.cpp" line="1265"/>
         <source>Display debug info on console</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1261"/>
+        <location filename="../config.cpp" line="1272"/>
         <source>CdCat databases (*.hcf )</source>
         <translation type="unfinished">Βάσεις CdCat (*.hcf)</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1255"/>
+        <location filename="../config.cpp" line="1266"/>
         <source>Save catalogs always as UTF8</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1256"/>
+        <location filename="../config.cpp" line="1267"/>
         <source>Show progressed file at scanning in status label</source>
         <translation type="unfinished"></translation>
     </message>
@@ -825,7 +825,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished">Παρακαλώ περιμένετε...</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="552"/>
+        <location filename="../adddialog.cpp" line="556"/>
         <source>Cancel</source>
         <translation type="unfinished">Ακύρωση</translation>
     </message>
@@ -936,7 +936,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Άνοιγμα αρχείου...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1680"/>
+        <location filename="../guibase.cpp" line="1681"/>
         <source>Error while opening...</source>
         <translation>Σφάλμα κατά το άνοιγμα...</translation>
     </message>
@@ -966,12 +966,12 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Θέλετε να αποθηκεύσετε τις αλλαγές?</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1742"/>
+        <location filename="../guibase.cpp" line="1743"/>
         <source>Yes</source>
         <translation>Ναι</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1742"/>
+        <location filename="../guibase.cpp" line="1743"/>
         <source>No</source>
         <translation>Όχι</translation>
     </message>
@@ -993,7 +993,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
 %1</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1740"/>
+        <location filename="../guibase.cpp" line="1741"/>
         <source>Confirmation</source>
         <translation>Επιβεβαίωση</translation>
     </message>
@@ -1193,12 +1193,12 @@ the DataBase may be incomplete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1659"/>
+        <location filename="../guibase.cpp" line="1660"/>
         <source>The link is empty.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1741"/>
+        <location filename="../guibase.cpp" line="1742"/>
         <source>Do you want to clear the borrowing mark from media &quot;%1&quot;?
 (Say yes if you got it back.)</source>
         <translation type="unfinished"></translation>
@@ -2101,7 +2101,7 @@ will be to
         <translation>Σχόλιο:</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="645"/>
+        <location filename="../adddialog.cpp" line="649"/>
         <source>Cancel</source>
         <translation>Ακύρωση</translation>
     </message>
@@ -2156,7 +2156,7 @@ will be to
         <translation>Πρέπει να συμπληρωθεί το πεδίο &quot;Όνομα&quot;!</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="646"/>
+        <location filename="../adddialog.cpp" line="650"/>
         <source>Ok</source>
         <translation type="unfinished">Ok</translation>
     </message>
@@ -2206,22 +2206,22 @@ will be to
         <translation type="obsolete">Παρακαλώ περιμένετε...</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="642"/>
+        <location filename="../adddialog.cpp" line="646"/>
         <source>Add a &quot;Catalog Link&quot; to the database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="643"/>
+        <location filename="../adddialog.cpp" line="647"/>
         <source>Location of the .hcf file:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="663"/>
+        <location filename="../adddialog.cpp" line="667"/>
         <source>Open a file...</source>
         <translation type="unfinished">Άνοιγμα αρχείου...</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="663"/>
+        <location filename="../adddialog.cpp" line="667"/>
         <source>CdCat databases (*.hcf )</source>
         <translation type="unfinished">Βάσεις CdCat (*.hcf)</translation>
     </message>
@@ -2473,7 +2473,7 @@ will be to
         <translation type="obsolete">Ok</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="639"/>
+        <location filename="../exportcdcatdb.cpp" line="638"/>
         <source>All files (*.*)</source>
         <translation>Όλα τα αρχεία  (*.*)</translation>
     </message>
@@ -2483,7 +2483,7 @@ will be to
         <translation type="obsolete">επιλογέας αρχείου</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="639"/>
+        <location filename="../exportcdcatdb.cpp" line="638"/>
         <source>Choose a file!</source>
         <translation>Επιλέξτε ένα αρχείο!</translation>
     </message>
@@ -2533,7 +2533,7 @@ will be to
         <translation>Ημερομηνία</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="562"/>
+        <location filename="../exportcdcatdb.cpp" line="561"/>
         <source>I can&apos;t create or rewrite the file</source>
         <translation>Αδυναμία δημιουργίασς ή επανεγγραφής αρχείου</translation>
     </message>
@@ -2643,22 +2643,22 @@ will be to
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="877"/>
+        <location filename="../exportcdcatdb.cpp" line="876"/>
         <source>Artist:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="878"/>
+        <location filename="../exportcdcatdb.cpp" line="877"/>
         <source>Title:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="879"/>
+        <location filename="../exportcdcatdb.cpp" line="878"/>
         <source>Album:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="880"/>
+        <location filename="../exportcdcatdb.cpp" line="879"/>
         <source>Year:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2678,12 +2678,12 @@ will be to
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="514"/>
+        <location filename="../exportcdcatdb.cpp" line="513"/>
         <source>Exporting, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="562"/>
+        <location filename="../exportcdcatdb.cpp" line="561"/>
         <source>Error during write export...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2691,62 +2691,62 @@ will be to
 <context>
     <name>findDialog</name>
     <message>
-        <location filename="../find.cpp" line="324"/>
+        <location filename="../find.cpp" line="332"/>
         <source>Name</source>
         <translation>Όνομα</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="325"/>
+        <location filename="../find.cpp" line="333"/>
         <source>Type</source>
         <translation>Τύπος</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="327"/>
+        <location filename="../find.cpp" line="335"/>
         <source>Media</source>
         <translation>Μέσο</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="328"/>
+        <location filename="../find.cpp" line="336"/>
         <source>Path</source>
         <translation>Τοποθεσία</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="329"/>
+        <location filename="../find.cpp" line="337"/>
         <source>Modification</source>
         <translation>Τροποποιήση</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="321"/>
+        <location filename="../find.cpp" line="329"/>
         <source>Search in the database...</source>
         <translation>Αναζήτηση στη βάση...</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="352"/>
+        <location filename="../find.cpp" line="361"/>
         <source>Close / Go to selected</source>
         <translation>Κλείσιμο / Μετάβαση στα επιλεγμένα</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="330"/>
+        <location filename="../find.cpp" line="338"/>
         <source>Find:</source>
         <translation>Αναζήτηση:</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="322"/>
+        <location filename="../find.cpp" line="330"/>
         <source>Seek in:</source>
         <translation>Αναζήτηση σε:</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="323"/>
+        <location filename="../find.cpp" line="331"/>
         <source>Owner:</source>
         <translation>Ιδιοκτήτης:</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="337"/>
+        <location filename="../find.cpp" line="345"/>
         <source>Comment</source>
         <translation>Σχόλιο</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="331"/>
+        <location filename="../find.cpp" line="339"/>
         <source>File name</source>
         <translation>Όνομα αρχείου</translation>
     </message>
@@ -2756,42 +2756,42 @@ will be to
         <translation type="obsolete">Όνομα καταλόγου</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="334"/>
+        <location filename="../find.cpp" line="342"/>
         <source>mp3-tag Comment</source>
         <translation>Σχόλιο ετικέτας mp3</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="332"/>
+        <location filename="../find.cpp" line="340"/>
         <source>mp3-tag Album</source>
         <translation>Album ετικέτας mp3</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="336"/>
+        <location filename="../find.cpp" line="344"/>
         <source>mp3-tag Title</source>
         <translation>Τίτλος ετικέτας mp3</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="333"/>
+        <location filename="../find.cpp" line="341"/>
         <source>mp3-tag Artist</source>
         <translation>Καλλιτέχνης ετικέτας mp3</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="353"/>
+        <location filename="../find.cpp" line="362"/>
         <source>Case sensitive</source>
         <translation>Διάκριση πεζών-κεφαλαίων</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="354"/>
+        <location filename="../find.cpp" line="363"/>
         <source>Use easy matching instead regex</source>
         <translation>Use easy matching instead regex</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="395"/>
+        <location filename="../find.cpp" line="405"/>
         <source>All/Everybody</source>
         <translation>Όλοι</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="399"/>
+        <location filename="../find.cpp" line="409"/>
         <source>All media</source>
         <translation>Όλα τα μέσα</translation>
     </message>
@@ -2801,74 +2801,79 @@ will be to
         <translation type="obsolete">&amp;Ok</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="347"/>
+        <location filename="../find.cpp" line="356"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Ακύρωση</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="351"/>
+        <location filename="../find.cpp" line="360"/>
         <source>Results</source>
         <translation>Αποτελέσματα</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="338"/>
+        <location filename="../find.cpp" line="346"/>
         <source>Content</source>
         <translation>Περιεχόμενο</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="335"/>
+        <location filename="../find.cpp" line="343"/>
         <source>Media / Directory name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="339"/>
+        <location filename="../find.cpp" line="347"/>
         <source>Date start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="340"/>
+        <location filename="../find.cpp" line="348"/>
         <source>Date end</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="129"/>
+        <location filename="../find.cpp" line="134"/>
         <source>Byte</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="130"/>
+        <location filename="../find.cpp" line="135"/>
         <source>KiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="131"/>
+        <location filename="../find.cpp" line="136"/>
         <source>MiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="132"/>
+        <location filename="../find.cpp" line="137"/>
         <source>GiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="341"/>
+        <location filename="../find.cpp" line="349"/>
         <source>Min size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="342"/>
+        <location filename="../find.cpp" line="350"/>
         <source>Max size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="343"/>
+        <location filename="../find.cpp" line="352"/>
         <source>&amp;Start search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="326"/>
+        <location filename="../find.cpp" line="334"/>
         <source>Size</source>
         <translation type="unfinished">Μέγεθος</translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="351"/>
+        <source>Unsharp search (slow)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3460,7 +3465,7 @@ E-mail: hyperr@freemail.hu
 <context>
     <name>seekEngine</name>
     <message>
-        <location filename="../find.cpp" line="563"/>
+        <location filename="../find.cpp" line="573"/>
         <source>Error in the pattern:</source>
         <translation>Σφάλμα στη φράση αναζήτησης:</translation>
     </message>
@@ -3470,42 +3475,42 @@ E-mail: hyperr@freemail.hu
         <translation type="obsolete">Ok</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="642"/>
+        <location filename="../find.cpp" line="652"/>
         <source>There is no matching.</source>
         <translation>Δεν υπάρχει ταυτοποιήση.</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="952"/>
+        <location filename="../find.cpp" line="998"/>
         <source>dir</source>
         <translation>dir</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="956"/>
+        <location filename="../find.cpp" line="1002"/>
         <source>file</source>
         <translation>αρχείο</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="961"/>
+        <location filename="../find.cpp" line="1007"/>
         <source>error</source>
         <translation>σφάλμα</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="947"/>
+        <location filename="../find.cpp" line="993"/>
         <source>media</source>
         <translation type="unfinished">μέσα</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="578"/>
+        <location filename="../find.cpp" line="588"/>
         <source>Searching, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="638"/>
+        <location filename="../find.cpp" line="648"/>
         <source>Search cancelled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="638"/>
+        <location filename="../find.cpp" line="648"/>
         <source>You have cancelled searching.</source>
         <translation type="unfinished"></translation>
     </message>

@@ -111,6 +111,7 @@ CdCatConfig::CdCatConfig ( void ) {
     find_size_max = false;
     find_date_start = false;
     find_date_end = false;
+    find_unsharp_search = false;
     find_size_unit_min_val = 2;
     find_size_unit_max_val = 2;
     find_size_min_val = 1;
@@ -669,6 +670,13 @@ int CdCatConfig::readConfig ( void ) {
                         lastSearchPattern=val;
                     continue;
                 }
+                else if ( var=="find_unsharp_search" ) {
+                    if ( val=="true" )
+                        find_unsharp_search=true;
+                    else
+                        find_unsharp_search=false;
+                    continue;
+                }
 
 
                 fprintf ( stderr,"Unknown key found: %s\n", ( const char * ) var );
@@ -920,8 +928,11 @@ int CdCatConfig::writeConfig ( void ) {
         else
             str << "showProgressedFileInStatus=false" <<endl;
 
-
-
+        if ( find_unsharp_search )
+            str << "find_unsharp_search=true" <<endl;
+        else
+            str << "find_unsharp_search=false" <<endl;
+        
         str << "last_dir="+lastDir << endl;
         str << "lastMediaType="+QString().setNum(lastMediaType) << endl;
         str << "lastSearchPattern="+lastSearchPattern << endl;

@@ -109,6 +109,7 @@ public:
     bool find_date_end;
     bool find_size_min;
     bool find_size_max;
+    bool find_unsharp_search;
     int  findX;
     int  findY;
     int  findWidth;

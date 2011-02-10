@@ -64,6 +64,7 @@ private:
     int  analyzeNode ( PWw *pww, Node *n,Node *pa=NULL );
     void putNodeToList ( Node *n );
     int  matchIt ( QString txt );
+    bool matchUnsharp(char *a, char *b);
 
 public:
     seekEngine ( findDialog *fdp );
@@ -150,6 +151,9 @@ public:
     QCheckBox* cbDateEnd;
     QCheckBox* cbSizeMin;
     QCheckBox* cbSizeMax;
+    QCheckBox* cbUnsharpSearch;
+
+    bool use_unsharpsearch; // if unsharp match should be used
 
 protected:
     int fillCBox ( void );

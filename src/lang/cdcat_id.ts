@@ -44,12 +44,12 @@
 <context>
     <name>CdCatConfig</name>
     <message>
-        <location filename="../config.cpp" line="178"/>
+        <location filename="../config.cpp" line="179"/>
         <source>Error during autoload...</source>
         <translation>Terjadi kesalahan saat memuat otomatis...</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="180"/>
+        <location filename="../config.cpp" line="181"/>
         <source>I can&apos;t open the autoload catalog.
 Check the file, or change the autoload option in the config dialog!
 </source>
@@ -62,7 +62,7 @@ Periksa file, atau ubahlah opsi muat otomatis pada dialog konfigurasi!</translat
         <translation type="obsolete">Ok</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="180"/>
+        <location filename="../config.cpp" line="181"/>
         <source>I can&apos;t open the autoload catalog according the first command line parameter.
 Check the file!
 </source>
@@ -77,22 +77,22 @@ It is necessary couse I&apos;d like to save the config file into your home direc
 Variabel tersebut penting karena file konfigurasi disimpan pada direktori rumah Anda.</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="933"/>
+        <location filename="../config.cpp" line="944"/>
         <source>I can&apos;t create or rewrite the ./cdcat.cfg file </source>
         <translation>Gagal membuat atau menulis ulang file ./cdcat.cfg</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="935"/>
+        <location filename="../config.cpp" line="946"/>
         <source>I can&apos;t create or rewrite the $(HOME)/.cdcatconfig file </source>
         <translation>Gagal membuat atau menulis ulang file $(HOME)/.cdcatconfig</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="935"/>
+        <location filename="../config.cpp" line="946"/>
         <source>Error while saving config file...</source>
         <translation>Terjadi kesalahan saat menulis konfigurasi...</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="695"/>
+        <location filename="../config.cpp" line="703"/>
         <source>I can&apos;t get the $HOME environment variable.
 It is necessary because I&apos;d like to save the config file into your home directory.</source>
         <translation type="unfinished"></translation>
@@ -563,32 +563,32 @@ It is necessary because I&apos;d like to save the config file into your home dir
 <context>
     <name>ConfigDialog</name>
     <message>
-        <location filename="../config.cpp" line="1230"/>
+        <location filename="../config.cpp" line="1241"/>
         <source>Configure  CdCat...</source>
         <translation>Konfigurasikan CdCat...</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1231"/>
+        <location filename="../config.cpp" line="1242"/>
         <source>Autoload DataBase on startup</source>
         <translation>Muat otomatis database saat startup</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1233"/>
+        <location filename="../config.cpp" line="1244"/>
         <source>Save the XML-db.file nicer format(needs more space)</source>
         <translation>Simpan file XML-db dalam format yang lebih rapi (membutuhkan ruang lebih besar)</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1234"/>
+        <location filename="../config.cpp" line="1245"/>
         <source>Cancel</source>
         <translation>Batal</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1235"/>
+        <location filename="../config.cpp" line="1246"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1238"/>
+        <location filename="../config.cpp" line="1249"/>
         <source>Application font size.(must restart cdcat!) </source>
         <translation>Ukuran font.(harus merestart cdcat!)</translation>
     </message>
@@ -598,37 +598,37 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Database CdCat(*.hcf)</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1240"/>
+        <location filename="../config.cpp" line="1251"/>
         <source>Path to cdrom device</source>
         <translation>Path menuju divais cdrom</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1243"/>
+        <location filename="../config.cpp" line="1254"/>
         <source>Scanning: mount cdrom at start / eject when finish</source>
         <translation>Scanning: mount cdrom saat mulai / eject saat selesai</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1237"/>
+        <location filename="../config.cpp" line="1248"/>
         <source>Use own font size</source>
         <translation>Gunakan ukuran font sendiri</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1239"/>
+        <location filename="../config.cpp" line="1250"/>
         <source>Number of history entries</source>
         <translation>Jumlah histori yang ditampilkan</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1268"/>
+        <location filename="../config.cpp" line="1279"/>
         <source>Choose path to cdrom!</source>
         <translation>Pilih path menuju cdrom!</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1251"/>
+        <location filename="../config.cpp" line="1262"/>
         <source>The language of CdCat interface</source>
         <translation>Bahasa untuk antarmuka CdCat</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1261"/>
+        <location filename="../config.cpp" line="1272"/>
         <source>Choose a file to load automatically!</source>
         <translation>Pilih sebuah file yang akan dimuat secara otomatis!</translation>
     </message>
@@ -638,32 +638,32 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Simpan database secara otomatis setiap kali melakukan scan (untuk keamanan)</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1236"/>
+        <location filename="../config.cpp" line="1247"/>
         <source>Select additional items to read</source>
         <translation>Pilih item tambahan yang akan dibaca</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1232"/>
+        <location filename="../config.cpp" line="1243"/>
         <source>Automatically save the database after every scan (for safety sake)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1254"/>
+        <location filename="../config.cpp" line="1265"/>
         <source>Display debug info on console</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1261"/>
+        <location filename="../config.cpp" line="1272"/>
         <source>CdCat databases (*.hcf )</source>
         <translation type="unfinished">Database CdCat (*.hcf )</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1255"/>
+        <location filename="../config.cpp" line="1266"/>
         <source>Save catalogs always as UTF8</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1256"/>
+        <location filename="../config.cpp" line="1267"/>
         <source>Show progressed file at scanning in status label</source>
         <translation type="unfinished"></translation>
     </message>
@@ -776,7 +776,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished">Silakan Tunggu...</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="552"/>
+        <location filename="../adddialog.cpp" line="556"/>
         <source>Cancel</source>
         <translation type="unfinished">Batal</translation>
     </message>
@@ -877,7 +877,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Buka file...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1680"/>
+        <location filename="../guibase.cpp" line="1681"/>
         <source>Error while opening...</source>
         <translation>Terjadi kesalahan saat membuka...</translation>
     </message>
@@ -907,12 +907,12 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Apakah Anda ingin menyimpan perubahannya?</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1742"/>
+        <location filename="../guibase.cpp" line="1743"/>
         <source>Yes</source>
         <translation>Ya</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1742"/>
+        <location filename="../guibase.cpp" line="1743"/>
         <source>No</source>
         <translation>Tidak</translation>
     </message>
@@ -929,7 +929,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
 %1</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1740"/>
+        <location filename="../guibase.cpp" line="1741"/>
         <source>Confirmation</source>
         <translation>Konfirmasi</translation>
     </message>
@@ -1077,7 +1077,7 @@ database mungkin tidak lengkap</translation>
         <translation>Meminjamkan media ini kepada...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1741"/>
+        <location filename="../guibase.cpp" line="1742"/>
         <source>Do you want to clear the borrowing mark from media &quot;%1&quot;?
 (Say yes if you got it back.)</source>
         <translation>Apakah Anda ingin menghapus tanda peminjaman dari media &quot;%1&quot;?
@@ -1104,7 +1104,7 @@ database mungkin tidak lengkap</translation>
         <translation>Tambahkan link ke sebuah katalog CdCat...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1659"/>
+        <location filename="../guibase.cpp" line="1660"/>
         <source>The link is empty.</source>
         <translation>Link kosong.</translation>
     </message>
@@ -2007,7 +2007,7 @@ menjadi
         <translation>Komentar:</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="645"/>
+        <location filename="../adddialog.cpp" line="649"/>
         <source>Cancel</source>
         <translation>Batal</translation>
     </message>
@@ -2062,7 +2062,7 @@ menjadi
         <translation>Anda harus mengisi field &quot;Nama&quot;!</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="646"/>
+        <location filename="../adddialog.cpp" line="650"/>
         <source>Ok</source>
         <translation type="unfinished">Ok</translation>
     </message>
@@ -2102,22 +2102,22 @@ menjadi
         <translation type="obsolete">Silakan Tunggu...</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="642"/>
+        <location filename="../adddialog.cpp" line="646"/>
         <source>Add a &quot;Catalog Link&quot; to the database</source>
         <translation type="unfinished">Tambahkan &quot;Link Katalog&quot; ke dalam database</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="643"/>
+        <location filename="../adddialog.cpp" line="647"/>
         <source>Location of the .hcf file:</source>
         <translation type="unfinished">Lokasi file .hcf:</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="663"/>
+        <location filename="../adddialog.cpp" line="667"/>
         <source>Open a file...</source>
         <translation type="unfinished">Buka file...</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="663"/>
+        <location filename="../adddialog.cpp" line="667"/>
         <source>CdCat databases (*.hcf )</source>
         <translation type="unfinished">Database CdCat (*.hcf )</translation>
     </message>
@@ -2359,7 +2359,7 @@ menjadi
         <translation type="obsolete">Ok</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="639"/>
+        <location filename="../exportcdcatdb.cpp" line="638"/>
         <source>All files (*.*)</source>
         <translation>Semua file(*.*)</translation>
     </message>
@@ -2369,7 +2369,7 @@ menjadi
         <translation type="obsolete">Pemilih file</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="639"/>
+        <location filename="../exportcdcatdb.cpp" line="638"/>
         <source>Choose a file!</source>
         <translation>Pilih file!</translation>
     </message>
@@ -2419,7 +2419,7 @@ menjadi
         <translation>Tanggal</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="562"/>
+        <location filename="../exportcdcatdb.cpp" line="561"/>
         <source>I can&apos;t create or rewrite the file</source>
         <translation>Gagal membuat atau menulis ulang file</translation>
     </message>
@@ -2534,22 +2534,22 @@ menjadi
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="877"/>
+        <location filename="../exportcdcatdb.cpp" line="876"/>
         <source>Artist:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="878"/>
+        <location filename="../exportcdcatdb.cpp" line="877"/>
         <source>Title:</source>
         <translation type="unfinished">Judul:</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="879"/>
+        <location filename="../exportcdcatdb.cpp" line="878"/>
         <source>Album:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="880"/>
+        <location filename="../exportcdcatdb.cpp" line="879"/>
         <source>Year:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2569,12 +2569,12 @@ menjadi
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="514"/>
+        <location filename="../exportcdcatdb.cpp" line="513"/>
         <source>Exporting, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="562"/>
+        <location filename="../exportcdcatdb.cpp" line="561"/>
         <source>Error during write export...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2582,102 +2582,102 @@ menjadi
 <context>
     <name>findDialog</name>
     <message>
-        <location filename="../find.cpp" line="324"/>
+        <location filename="../find.cpp" line="332"/>
         <source>Name</source>
         <translation>Nama</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="325"/>
+        <location filename="../find.cpp" line="333"/>
         <source>Type</source>
         <translation>Tipe</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="327"/>
+        <location filename="../find.cpp" line="335"/>
         <source>Media</source>
         <translation>Media</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="328"/>
+        <location filename="../find.cpp" line="336"/>
         <source>Path</source>
         <translation>Path</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="329"/>
+        <location filename="../find.cpp" line="337"/>
         <source>Modification</source>
         <translation>Modifikasi</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="321"/>
+        <location filename="../find.cpp" line="329"/>
         <source>Search in the database...</source>
         <translation>Temukan dalam database...</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="352"/>
+        <location filename="../find.cpp" line="361"/>
         <source>Close / Go to selected</source>
         <translation>Tutup / Menuju item yang dipilih</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="330"/>
+        <location filename="../find.cpp" line="338"/>
         <source>Find:</source>
         <translation>Temukan:</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="322"/>
+        <location filename="../find.cpp" line="330"/>
         <source>Seek in:</source>
         <translation>Cari dalam:</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="323"/>
+        <location filename="../find.cpp" line="331"/>
         <source>Owner:</source>
         <translation>Pemilik:</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="337"/>
+        <location filename="../find.cpp" line="345"/>
         <source>Comment</source>
         <translation>Komentar</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="331"/>
+        <location filename="../find.cpp" line="339"/>
         <source>File name</source>
         <translation>Nama file</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="334"/>
+        <location filename="../find.cpp" line="342"/>
         <source>mp3-tag Comment</source>
         <translation>Komentar tag mp3</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="332"/>
+        <location filename="../find.cpp" line="340"/>
         <source>mp3-tag Album</source>
         <translation>Album tag mp3</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="336"/>
+        <location filename="../find.cpp" line="344"/>
         <source>mp3-tag Title</source>
         <translation>Judul tag mp3</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="333"/>
+        <location filename="../find.cpp" line="341"/>
         <source>mp3-tag Artist</source>
         <translation>Artis tag mp3</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="353"/>
+        <location filename="../find.cpp" line="362"/>
         <source>Case sensitive</source>
         <translation>Bedakan huruf besar dan kecil</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="354"/>
+        <location filename="../find.cpp" line="363"/>
         <source>Use easy matching instead regex</source>
         <translation>Gunakan metode easy matching, bukan regex</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="395"/>
+        <location filename="../find.cpp" line="405"/>
         <source>All/Everybody</source>
         <translation>Semua</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="399"/>
+        <location filename="../find.cpp" line="409"/>
         <source>All media</source>
         <translation>Semua media</translation>
     </message>
@@ -2687,74 +2687,79 @@ menjadi
         <translation type="obsolete">&amp;OK</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="347"/>
+        <location filename="../find.cpp" line="356"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Batal</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="351"/>
+        <location filename="../find.cpp" line="360"/>
         <source>Results</source>
         <translation>Hasil</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="338"/>
+        <location filename="../find.cpp" line="346"/>
         <source>Content</source>
         <translation>Isi</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="335"/>
+        <location filename="../find.cpp" line="343"/>
         <source>Media / Directory name</source>
         <translation>Media / Nama direktori</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="339"/>
+        <location filename="../find.cpp" line="347"/>
         <source>Date start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="340"/>
+        <location filename="../find.cpp" line="348"/>
         <source>Date end</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="129"/>
+        <location filename="../find.cpp" line="134"/>
         <source>Byte</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="130"/>
+        <location filename="../find.cpp" line="135"/>
         <source>KiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="131"/>
+        <location filename="../find.cpp" line="136"/>
         <source>MiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="132"/>
+        <location filename="../find.cpp" line="137"/>
         <source>GiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="341"/>
+        <location filename="../find.cpp" line="349"/>
         <source>Min size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="342"/>
+        <location filename="../find.cpp" line="350"/>
         <source>Max size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="343"/>
+        <location filename="../find.cpp" line="352"/>
         <source>&amp;Start search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="326"/>
+        <location filename="../find.cpp" line="334"/>
         <source>Size</source>
         <translation type="unfinished">Ukuran</translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="351"/>
+        <source>Unsharp search (slow)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3191,7 +3196,7 @@ E-mail: hyperr@freemail.hu
 <context>
     <name>seekEngine</name>
     <message>
-        <location filename="../find.cpp" line="563"/>
+        <location filename="../find.cpp" line="573"/>
         <source>Error in the pattern:</source>
         <translation>Terjadi kesalahan pada urutan:</translation>
     </message>
@@ -3201,42 +3206,42 @@ E-mail: hyperr@freemail.hu
         <translation type="obsolete">Ok</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="642"/>
+        <location filename="../find.cpp" line="652"/>
         <source>There is no matching.</source>
         <translation>Tidak ada hasil yang sesuai.</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="952"/>
+        <location filename="../find.cpp" line="998"/>
         <source>dir</source>
         <translation>dir</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="956"/>
+        <location filename="../find.cpp" line="1002"/>
         <source>file</source>
         <translation>file</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="961"/>
+        <location filename="../find.cpp" line="1007"/>
         <source>error</source>
         <translation>kesalahan</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="947"/>
+        <location filename="../find.cpp" line="993"/>
         <source>media</source>
         <translation>media</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="578"/>
+        <location filename="../find.cpp" line="588"/>
         <source>Searching, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="638"/>
+        <location filename="../find.cpp" line="648"/>
         <source>Search cancelled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="638"/>
+        <location filename="../find.cpp" line="648"/>
         <source>You have cancelled searching.</source>
         <translation type="unfinished"></translation>
     </message>

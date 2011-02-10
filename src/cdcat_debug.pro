@@ -44,7 +44,8 @@ HEADERS		=   adddialog.h\
 		    borrow.h \
 		    tparser.h \
 		    colorsettings.h \
-		    misc.h 
+		    misc.h \
+		    dmetaph.h
 SOURCES		=   adddialog.cpp \
 		    cdcat.cpp \
 		    commwidget.cpp \
@@ -68,7 +69,8 @@ SOURCES		=   adddialog.cpp \
 		    colorsettings.cpp \
 		    borrow.cpp \
 		    tparser.cpp \		    
-		    misc.cpp 
+		    misc.cpp \
+		    dmetaph.cpp
 
 #            unix:system(lrelease cdcat.pro)
 

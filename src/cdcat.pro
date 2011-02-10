@@ -1,14 +1,14 @@
 VERSION         =   1.1
 TRANSLATIONS    = lang/cdcat_hu.ts \
-                  lang/cdcat_de.ts \
+		      lang/cdcat_de.ts \
 		      lang/cdcat_es.ts \
-		      lang/cdcat_cz.ts \		  
-		      lang/cdcat_pl.ts \		  		  
-	            lang/cdcat_sk.ts \		  		  		  
-	  	      lang/cdcat_el.ts \		  		  
-	  	      lang/cdcat_id.ts \		  		  
-	  	      lang/cdcat_pt.ts \		  		  		  
-                  lang/start/cdcat_nolang.ts
+		      lang/cdcat_cz.ts \
+		      lang/cdcat_pl.ts \
+		      lang/cdcat_sk.ts \
+	  	      lang/cdcat_el.ts \
+	  	      lang/cdcat_id.ts \
+	  	      lang/cdcat_pt.ts \
+		      lang/start/cdcat_nolang.ts
 
 translations.files += lang/cdcat_de.qm \
                       lang/cdcat_es.qm \
@@ -17,7 +17,7 @@ translations.files += lang/cdcat_de.qm \
 		          lang/cdcat_el.qm \
 		          lang/cdcat_sk.qm \
 	  	          lang/cdcat_pt.qm \
-	  	          lang/cdcat_id.qm \		      		  		  		      
+	  	          lang/cdcat_id.qm \
 		          lang/cdcat_hu.qm
 HEADERS	    =   adddialog.h\
 		        cdcat.h \
@@ -42,7 +42,8 @@ HEADERS	    =   adddialog.h\
 		        borrow.h \
 		        tparser.h \
 		        colorsettings.h \
-		        misc.h 
+		        misc.h \
+		        dmetaph.h
 SOURCES	    =   adddialog.cpp \
 		        cdcat.cpp \
 		        commwidget.cpp \
@@ -59,18 +60,15 @@ SOURCES	    =   adddialog.cpp \
 		        mp3tag.cpp \
 		        newdbdialog.cpp \
 		        wdbfile.cpp \
-		        info.cpp \		    
-		        exportcdcatdb.cpp \		  
+		        info.cpp \
+		        exportcdcatdb.cpp \
 		        showcontent.cpp \  
 		        selreadable.cpp \
 		        colorsettings.cpp \
 		        borrow.cpp \
-		        tparser.cpp \		    
-		        misc.cpp 
-
-#                unix:system(lrelease cdcat.pro)
-
-#            win32:system(lrelease cdcat.pro)
+		        tparser.cpp \
+		        misc.cpp \
+                        dmetaph.cpp
 
 PRECOMPILED_HEADER = cdcat_pch.h
 
