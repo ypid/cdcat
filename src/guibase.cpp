@@ -933,7 +933,7 @@ int GuiSlave::openEvent ( void ) {
 //         if ( mainw->cconfig->hlist.isEmpty() ) cerr <<"emptlyysdsaféashfk"<<endl;
         if(*DEBUG_INFO_ENABLED)
 		cerr<<"0-2"<<endl;
-        mainw->cconfig->hlist.grep ( "AAAA" );
+        //mainw->cconfig->hlist.grep ( "AAAA" );
         if(*DEBUG_INFO_ENABLED)
 		cerr<<"0-3"<<endl;
 
@@ -1033,6 +1033,11 @@ int GuiSlave::saveasEvent ( void ) {
         retv=2;
         //The file cannot be writed
         //(It is the only reason the saveAsSB return nonzero)
+    }
+    else {
+	// add history item
+	mainw->cconfig->hlist.append ( QString ( fnc ) );
+	mainw->historyMenu->addAction ( *get_t_open_icon(),fnc );
     }
     panelsOFF();
     progress ( pww );
@@ -1214,7 +1219,7 @@ int GuiSlave::addEvent ( void ) {
         if ( mainw->cconfig->autosave ) {
             int retv=0;
             if ( ( retv=mainw->db->saveDB() ) != 0 ) {
-                if ( retv==1 ) //The databas had no name. need a save as...
+                if ( retv==1 ) //The database had no name. need a save as...
                     retv=saveasEvent();
             }
         }
