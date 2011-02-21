@@ -23,8 +23,13 @@ class CdCatMainWidget;
 class QKeyEvent;
 class QLineEdit;
 class QWidget;
+class QComboBox;
+class QLabel;
+class QPushButton;
+class Q3VBoxLayout;
 class QPainter;
 class DataBase;
+class HQListViewItem;
 
 
 class GuiSlave : public QObject {
@@ -77,6 +82,7 @@ public slots:
     int helpEvent ( void );
     int insertcEvent ( void );
     int renameEvent ( void );
+    int typeChangeEvent( void );
     int sizeEvent ( void );
     int importEvent ( void );
     int exportEvent ( void );
@@ -100,6 +106,9 @@ public slots:
     int posEvent ( void );
 
     int openHistoryElementEvent ( int id );
+
+private:
+	HQListViewItem *context_item;
 
 };
 
@@ -154,6 +163,30 @@ protected:
 private:
     int maxp,minp;
 };
+
+class CatalogTypeEditDialog : public QDialog {
+	Q_OBJECT
+
+public:
+	CatalogTypeEditDialog (CdCatMainWidget *parent, Node *n);
+	QLabel *TextLabel;
+	QComboBox *cbType;
+	QPushButton *buttonOK;
+	QPushButton *buttonCancel;
+	Q3VBoxLayout* layout1;
+	bool changeOk;
+
+public slots:
+	void languageChange();
+	void okExit();
+	void cancel();
+	void cbTypeToggeled(int index);
+
+private:
+	Node *n;
+};
+
+
 
 #endif
 

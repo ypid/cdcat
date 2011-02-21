@@ -184,6 +184,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp,QApplication *appp,QWidget* 
     editMenu->insertSeparator();
     editMenu->insertItem ( tr ( "Rename node..." ),guis,SLOT ( renameEvent() ),Qt::CTRL+Qt::Key_E );
     editMenu->insertItem ( tr ( "Re-Number media node..." ),guis,SLOT ( renumberEvent() ) );
+    //editMenu->insertItem ( *get_t_add_icon() ,tr ( "Change media type..." ),guis,SLOT (typeChangeEvent() ) );
     editMenu->insertItem ( *get_t_delete_icon() ,tr ( "Delete node" ),guis,SLOT ( deleteEvent() ) );
     editMenu->insertSeparator();
     editMenu->insertItem ( tr ( "Sort media by number" ),guis,SLOT ( sortNuEvent() ) );

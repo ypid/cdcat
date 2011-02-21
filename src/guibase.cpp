@@ -26,7 +26,11 @@
 #include <Q3HBoxLayout>
 #include <QKeyEvent>
 #include <Q3PopupMenu>
-#include <Q3VBoxLayout>
+#include <Q3HBoxLayout>
+
+#include <QComboBox>
+#include <QLabel>
+#include <QPushButton>
 
 #ifndef _WIN32
 
@@ -292,6 +296,11 @@ int GuiSlave::listUpdate ( const QString& newloc ) {
     if ( pdir ) {
         if(*DEBUG_INFO_ENABLED)
 		cerr<<"F-listUpdate: pdir: " << qPrintable ( pdir->getNameOf() ) <<endl;
+	
+	//standON = pdir;
+	
+	if(*DEBUG_INFO_ENABLED)
+		cerr << "====> we are now on " << qPrintable(pdir->getNameOf()) << endl;
     }
     else {
         if(*DEBUG_INFO_ENABLED)
@@ -460,12 +469,14 @@ int GuiSlave::standOn ( Q3ListViewItem *on ) {
     if(*DEBUG_INFO_ENABLED)
 	cerr<<"1"<<endl;
     mainw->listView->setSelected ( on,true );
+    
     if ( on->text ( 0 ) == ".." ) {
         mainw->commentWidget->showNode ( NodePwd,1 );
         updateStatusl ( NodePwd->parent );
         standON = NULL;
         return 0;
     }
+    
     if (*DEBUG_INFO_ENABLED)
 	cerr<<"2"<<endl;
 
@@ -478,6 +489,7 @@ int GuiSlave::standOn ( Q3ListViewItem *on ) {
     if(*DEBUG_INFO_ENABLED)
 	cerr<<"3"<<endl;
     standON = tmp;
+
     if(*DEBUG_INFO_ENABLED)
 	cerr<<"4"<<endl;
     mainw->commentWidget->showNode ( tmp,0 );
@@ -486,6 +498,7 @@ int GuiSlave::standOn ( Q3ListViewItem *on ) {
     updateStatusl ( tmp );
     if(*DEBUG_INFO_ENABLED)
 	cerr<<"6"<<endl;
+    
     return 0;
 }
 
@@ -611,7 +624,7 @@ void GuiSlave::showListviewContextMenu ( Q3ListViewItem *, const QPoint &p, int 
     mPopup = NULL;
 }
 
-void GuiSlave::showTreeContextMenu ( Q3ListViewItem *, const QPoint &p2, int ) {
+void GuiSlave::showTreeContextMenu ( Q3ListViewItem *item, const QPoint &p2, int ) {
     Node *on,*save;
     if ( mainw->db == NULL ) on = NULL;
     else {
@@ -645,6 +658,8 @@ void GuiSlave::showTreeContextMenu ( Q3ListViewItem *, const QPoint &p2, int ) {
             mPopup->insertItem ( *get_t_rescan_icon() ,tr ( "Rescan media..." ),this,SLOT ( rescanEvent() ) );
             mPopup->insertItem ( tr ( "Re-Number media..." ),this,SLOT ( renumberEvent() ) );
             mPopup->insertSeparator();
+            context_item = (HQListViewItem *)item;
+            mPopup->insertItem ( *get_t_add_icon() ,tr ( "Change media type..." ),this,SLOT (typeChangeEvent() ) );
         }
     }
     mPopup->insertItem ( *get_t_add_icon() ,tr ( "Add media..." ),this,SLOT ( addEvent() ) );
@@ -661,6 +676,7 @@ void GuiSlave::showTreeContextMenu ( Q3ListViewItem *, const QPoint &p2, int ) {
     standON = save;
     delete mPopup;
     mPopup = NULL;
+    context_item = NULL;
 }
 
 
@@ -1410,7 +1426,6 @@ int GuiSlave::aboutQtEvent ( void ) {
     return 0;
 }
 
-
 int GuiSlave::insertcEvent ( void ) {
     char fnc[256];
     QString fn;
@@ -1457,6 +1472,78 @@ int GuiSlave::renameEvent ( void ) {
     updateListFromNode();
     delete rd;
     return 0;
+}
+
+int GuiSlave::typeChangeEvent ( ) {
+	DEBUG_INFO_ENABLED = init_debug_info();
+	if ( mainw->db == NULL )
+		return 0;
+	
+	if ( standON == NULL ) {
+		//QMessageBox::warning ( mainw,tr ( "Error:" ),tr ( "There is no selected item in the middle list box!" ) );
+		return 0;
+	}
+	
+	if ( context_item == NULL)
+		return 0;
+	
+	if(*DEBUG_INFO_ENABLED)
+		std::cerr << "standON: " <<qPrintable( standON->getFullPath()) << ", nodetype: " << standON->type << std::endl;
+	if(standON->type  != HC_MEDIA )
+		return 0;
+	
+	if(*DEBUG_INFO_ENABLED)
+		std::cerr << "mediatype: " << ( ( DBMedia * ) ( standON->data ) )->type << std::endl;
+	CatalogTypeEditDialog te ( mainw, standON);
+	te.exec();
+	if ( te.changeOk ) {
+		// ok
+		
+		// 1- name
+		context_item->setText(0, standON->getNameOf());
+		
+		// 2.(size) Column name:
+		context_item->setText(0, QString().setNum ( ( ( DBMedia * ) ( standON->data ) )->number ));
+	
+	// 3. Column name:
+		switch ( ( ( DBMedia * ) ( standON->data ) )->type ) {
+			case UNKNOWN :
+				context_item->setText(1, tr ( "Unknown(DB)" ));
+				context_item->setPixmap (0,*get_m_unknown_icon() );
+				break;
+			case CD:
+				context_item->setText(1, tr ( "CD" ));
+				context_item->setPixmap (0,*get_m_cd_icon() );
+				break;
+			case DVD:
+				context_item->setText(1, tr ( "DVD" ));
+				context_item->setPixmap ( 0, *get_m_dvd_icon() );
+				break;
+			case HARDDISC:
+				context_item->setText(1, tr ( "HardDisc" ));
+				context_item->setPixmap ( 0,*get_m_hdd_icon() );
+				break;
+			case FLOPPY:
+				context_item->setText(1, tr ( "Floppy" ));
+				context_item->setPixmap (0,*get_m_floppy_icon() );
+				break;
+			case NETPLACE:
+				context_item->setText(1, tr ( "NetworkDrv" ));
+				context_item->setPixmap ( 0,*get_m_net_icon() );
+				break;
+			case FLASHDRV:
+				context_item->setText(1, tr ( "FlashDrv" ));
+				context_item->setPixmap ( 0,*get_m_flash_icon() );
+				break;
+			case OTHERD:
+				context_item->setText(1, tr ( "OtherDevice" ));
+				context_item->setPixmap ( 0,*get_m_other_icon() );
+				break;
+		}
+		saveEvent();
+	}
+	
+	return 0;
 }
 
 int GuiSlave::renumberEvent ( void ) {
@@ -1556,7 +1643,7 @@ int GuiSlave::openHistoryElementEvent ( int id ) {
     QString fn=mainw->historyMenu->text ( id );
 
     strcpy ( fnc, ( const char * ) QFile::encodeName ( fn ) );
-    while ( closeEvent() != 0 );
+    while ( closeEvent() != 0 ) { };
     panelsOFF();
 
     if ( mainw->db == NULL )
@@ -1847,5 +1934,71 @@ int GuiSlave::colorEvent ( void ) {
     mainw->commentWidget->repaint();
     return 0;
 }
+
+CatalogTypeEditDialog::CatalogTypeEditDialog (CdCatMainWidget *parent, Node *n) : QDialog ( parent)  {
+	this->n = n;
+	changeOk = false;
+	
+	setSizeGripEnabled ( TRUE );
+	layout1 = new Q3VBoxLayout ( this, 0, 6, "layout1" );
+	TextLabel = new QLabel ( this, "textLabel6" );
+	layout1->addWidget ( TextLabel );
+	cbType = new QComboBox ( FALSE, this, "cbType" );
+	layout1->addWidget ( cbType );
+	
+	buttonOK = new QPushButton ( this, "buttonOk" );
+	buttonOK->setMinimumWidth ( 100 );
+	layout1->addWidget ( buttonOK );
+
+	buttonCancel = new QPushButton ( this, "buttonCancel" );
+	buttonCancel->setMinimumWidth ( 100 );
+	layout1->addWidget ( buttonCancel );
+	
+	connect ( buttonOK, SIGNAL ( clicked() ), this, SLOT ( okExit() ) );
+	connect ( buttonCancel, SIGNAL ( clicked() ), this, SLOT ( cancel()) );
+	connect ( cbType, SIGNAL ( activated(int)), this, SLOT ( cbTypeToggeled(int ) ) );
+	languageChange();
+	resize ( QSize ( 200, 250 ).expandedTo ( minimumSizeHint() ) );
+}
+
+void CatalogTypeEditDialog::languageChange() {
+	setCaption ( tr ( "Change media type" ) );
+	TextLabel->setText(tr("Change type of media")+" "+this->n->getFullPath());
+	cbType->clear();
+	cbType->insertItem ( *get_m_cd_icon(), tr ( "CD" ) );
+	cbType->insertItem ( *get_m_dvd_icon(), tr ( "DVD" ) );
+	cbType->insertItem ( *get_m_hdd_icon(), tr ( "HardDisc" ) );
+	cbType->insertItem ( *get_m_floppy_icon(), tr ( "Floppy" ) );
+	cbType->insertItem ( *get_m_net_icon(), tr ( "NetworkPlace" ) );
+	cbType->insertItem ( *get_m_flash_icon(), tr ( "FlashDrive" ) );
+	cbType->insertItem ( *get_m_other_icon(), tr ( "OtherDevice" ) );
+	//cbType->setCurrentText(tr( "CD" )); // default
+	cbType->setCurrentIndex(( ( DBMedia * ) ( n->data ) )->type-1);
+	buttonCancel->setText(tr("Cancel"));
+	buttonOK->setText(tr("OK"));
+}
+
+void CatalogTypeEditDialog::okExit() {
+	DEBUG_INFO_ENABLED = init_debug_info();
+	changeOk = true;
+	if(*DEBUG_INFO_ENABLED)
+		std::cerr << "mediatype changed from " << ( ( DBMedia * ) ( n->data ) )->type-1 << " to " << cbType->currentIndex() +1 << std::endl;
+	( ( DBMedia * ) ( n->data ) )->type = cbType->currentIndex()+1;
+	if(*DEBUG_INFO_ENABLED)
+		std::cerr << "mediatype new: " << ( ( DBMedia * ) ( n->data ) )->type-1 << std::endl;
+	close();
+}
+
+void CatalogTypeEditDialog::cancel() {
+	close();
+}
+
+void CatalogTypeEditDialog::cbTypeToggeled(int index) {
+	DEBUG_INFO_ENABLED = init_debug_info();
+	if(*DEBUG_INFO_ENABLED)
+		std::cerr << "mediatype changed to " << cbType->currentItem() +1 << std::endl;
+}
+
+
 
 
