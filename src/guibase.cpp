@@ -1196,7 +1196,7 @@ int GuiSlave::addEvent ( void ) {
 #endif
 
 #ifndef _WIN32
-    if ( ((d->type == CD || d->type == DVD ) && mainw->cconfig->mounteject && mount_successful )  || ( d->type != CD && d->type != DVD )) {
+    if ( ((d->type == CD || d->type == DVD ) && ((mainw->cconfig->mounteject && mount_successful) || (!mainw->cconfig->mounteject )))  || ( d->type != CD && d->type != DVD )) {
 #endif
 
     if(*DEBUG_INFO_ENABLED)
