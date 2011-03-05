@@ -1,3 +1,7 @@
+05. Mar 2011 Christoph Thielecke <crissi99@gmx.de>
+	- restore normal cursor on save new created catalog fixed
+	- empty media name if auto mount is disabled fixed
+
 23. Feb 2011 Christoph Thielecke <crissi99@gmx.de>
 	- scan cdrom path if not automount fixed
 

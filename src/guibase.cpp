@@ -988,6 +988,7 @@ int GuiSlave::saveEvent ( void ) {
         delete pww;
 
         saveasEvent();
+	QApplication::restoreOverrideCursor();
         return 0;
     }
 
@@ -1192,6 +1193,12 @@ int GuiSlave::addEvent ( void ) {
 	else {
 		if(*DEBUG_INFO_ENABLED)
 			cerr<<"mount not needed"<<endl;
+		QString new_medianame = getCDName ( mainw->cconfig->cdrompath );
+		if(! new_medianame.isEmpty() ) {
+			if(*DEBUG_INFO_ENABLED)
+				cerr<<"new_medianame: "  << qPrintable(new_medianame) <<endl;
+			d->dName = new_medianame;
+		}
 	}
 #endif
 
