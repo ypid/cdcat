@@ -1,3 +1,6 @@
+06. Mar 2011 Christoph Thielecke <crissi99@gmx.de>
+	- import report generated advanced disk dialog fixed if file type was not given
+
 05. Mar 2011 Christoph Thielecke <crissi99@gmx.de>
 	- restore normal cursor on save new created catalog fixed
 	- empty media name if auto mount is disabled fixed

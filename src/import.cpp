@@ -1048,6 +1048,8 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
                                 /*
                                  * format:
                                  * "Disk", "Name", "Path", "Full path", "Size", "Date", "Time", "Category", "Level", "Comments", "Files inside", "Type"
+                                 * or
+                                 * "Disk", "Name", "Path", "Full path", "Size", "Date", "Time", "Category", "Level", "Comments", "Files inside"
                                  * 
                                  * sample line:
                                  * "biexpp1210", "GDIPLUS.MAN", "\I386\ASMS\1000\MSFT\WINDOWS\GDIPLUS", "D:\I386\ASMS\1000\MSFT\WINDOWS\GDIPLUS\GDIPLUS.MAN", "391 bytes", "14.04.2008", "12:00:00", "None", 7, "", 0, "File"
@@ -1069,8 +1071,12 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
                                   for (int i = 0; i < csvList.size(); ++i)
                                         cout << "csvList[" << i << "]: " << csvList.at(i).toLocal8Bit().constData() << endl;
                                 }
-                                if (QString(csvList.at(11)).replace("\"", "") == "Folder")
-                                        continue;
+                                if (csvList.size() == 12 )
+                                        if (QString(csvList.at(11)).replace("\"", "") == "Folder")
+                                                continue;
+                                if (csvList.size() == 11 )
+                                        if (QString(csvList.at(5)).replace("\"", "") == "Folder" && QString(csvList.at(6)).replace("\"", "") == "Folder")
+                                                continue;
                                 filename = QString(csvList.at(1)).replace("\"", "");
                                 QString sizestring = QString(csvList.at(4)).replace("\"", "");
 //                                 if(*DEBUG_INFO_ENABLED)
