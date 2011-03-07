@@ -946,7 +946,7 @@ bool CdCatXmlHandler::startElement ( const QString & namespaceURI, const QString
 		return false;
     }
 
-    if ( el == "datafile"  ) {
+    else if ( el == "datafile"  ) {
         Node *tmp=FREA->sp;
         if ( FREA->insert )
 		return false;
@@ -960,7 +960,7 @@ bool CdCatXmlHandler::startElement ( const QString & namespaceURI, const QString
 		return false;
     }
 
-    if ( el == "media" ) {
+    else if ( el == "media" ) {
         Node *tt = FREA->sp->child;
 
         if ( tt == NULL ) FREA->sp->child = tt = new Node ( HC_MEDIA,FREA->sp );
@@ -1077,7 +1077,7 @@ Please change it with an older version or rewrite it in the xml file!" );
         FREA->sp = tt;
     }
 
-    if ( el == "directory" ) {
+    else if ( el == "directory" ) {
         Node *tt = FREA->sp->child;
 
         if ( tt == NULL ) FREA->sp->child = tt = new Node ( HC_DIRECTORY,FREA->sp );
@@ -1098,7 +1098,7 @@ Please change it with an older version or rewrite it in the xml file!" );
         FREA->sp = tt;
     }
 
-    if ( el == "file" ) {
+    else if ( el == "file" ) {
 
         Node *tt = FREA->sp->child;
 
@@ -1159,7 +1159,8 @@ Please change it with an older version or rewrite it in the xml file!" );
         FREA->sp = tt;
 
     }
-    if (  el =="mp3tag" ) {
+    
+    else if (  el =="mp3tag" ) {
         Node *tt = ( ( DBFile * ) ( FREA->sp->data ) )->prop;
         if ( tt == NULL ) ( ( DBFile * ) ( FREA->sp->data ) )->prop = tt = new Node ( HC_MP3TAG,FREA->sp );
         else {
@@ -1185,7 +1186,7 @@ Please change it with an older version or rewrite it in the xml file!" );
         /*I don't make this node to the actual node because this won't be parent.*/
     }
 
-    if ( el == "catlnk" ) {
+    else if ( el == "catlnk" ) {
         char *readed_loc;
         Node *tt = FREA->sp->child;
 
@@ -1209,19 +1210,19 @@ Please change it with an older version or rewrite it in the xml file!" );
         FREA->sp = tt;
     }
 
-    if ( el == "content"  ) {
+    else if ( el == "content"  ) {
         /*nothing*/
     }
 
-    if (  el == "comment"  ) {
+    else if (  el == "comment"  ) {
         /*nothing*/
     }
 
-    if (  el == "category"  ) {
+    else if (  el == "category"  ) {
         /*nothing*/
     }
 
-    if (  el == "borrow" ) {
+    else if (  el == "borrow" ) {
         /*nothing*/
     }
 
