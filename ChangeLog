@@ -1,8 +1,8 @@
 08. Mar 2011 Christoph Thielecke <crissi99@gmx.de>
-	version changed to 1.2
+	- version changed to 1.2
 
 07. Mar 2011 Christoph Thielecke <crissi99@gmx.de>
-	speedup parsing a little bit
+	- speedup parsing a little bit
 
 06. Mar 2011 Christoph Thielecke <crissi99@gmx.de>
 	- import report generated advanced disk dialog fixed if file type was not given
