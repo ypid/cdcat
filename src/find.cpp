@@ -53,7 +53,6 @@
 #include "icons.h"
 
 #include <string.h>
-#include <malloc.h>
 #include "dmetaph.h"
 #include <iostream>
 using namespace std;
