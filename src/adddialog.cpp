@@ -356,7 +356,7 @@ void addDialog::autoDetectAtMountToggled() {
 
 void addDialog::cbTypeToggeled(int type) {
     if(caller->mainw->cconfig->lastMediaType != cbType->currentItem() +1) {
-	std::cerr << "mediatype changed from " << caller->mainw->cconfig->lastMediaType << " to " << cbType->currentItem() +1 << std::endl;
+// 	std::cerr << "mediatype changed from " << caller->mainw->cconfig->lastMediaType << " to " << cbType->currentItem() +1 << std::endl;
 	caller->mainw->cconfig->lastMediaType = cbType->currentItem() +1;
 	caller->mainw->cconfig->writeConfig();
     }
@@ -571,7 +571,7 @@ void PWw::mousePressEvent ( QMouseEvent *me ) {
     if(showCancel) {
 	int buttom_offset = myheight-15;
 	if (lastx > 0 && lastx < mywidth && lasty > buttom_offset && lasty < buttom_offset+16) {
-		std::cerr << "cancel clicked!" << std::endl;
+// 		std::cerr << "cancel clicked!" << std::endl;
 		emit cancelReceivedByUser(true);
 	}
     }
