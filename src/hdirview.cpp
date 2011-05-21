@@ -232,7 +232,7 @@ HDirectoryView::HDirectoryView ( DataBase** dbp, QWidget *parent, const char *na
     connect ( autoopen_timer, SIGNAL ( timeout() ),
               this, SLOT ( openFolder() ) );
 
-    setSorting ( -1 );
+    //setSorting ( -1 );
     start();
 
     addColumn ( tr ( "Directory Tree" ) );

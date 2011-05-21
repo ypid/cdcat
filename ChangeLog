@@ -5,6 +5,7 @@
 	- parsing xml content fixed (fixes: 3302226)
 	- comment linebreak length increased to 80
 	- category linebreak length increased to 80
+	- allow to change sorting dir tree to descending/ascending (fixes request 3190058)
 
 08. Mar 2011 Christoph Thielecke <crissi99@gmx.de>
 	- version changed to 1.2
