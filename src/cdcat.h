@@ -17,7 +17,7 @@
 
 // CdCat version text:
 
-#define VERSION  "UNICODE 1.2 (beta5)"
+#define VERSION  "UNICODE 1.3"
 
 
 // Datafile version:
