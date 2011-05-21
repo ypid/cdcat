@@ -92,6 +92,7 @@ addDialog::addDialog ( GuiSlave *c, QWidget* parent, const char* name, bool moda
 #endif
 
     leName = new QLineEdit ( this, "leName" );
+    textLabel1->setBuddy(leName);
     layout7->addWidget ( leName );
 
     layout2 = new Q3HBoxLayout ( 0, 0, 6, "layout2" );
@@ -101,11 +102,13 @@ addDialog::addDialog ( GuiSlave *c, QWidget* parent, const char* name, bool moda
 
     sbNumber = new QSpinBox ( 0,50000,1, this, "sbNumber" );
     layout2->addWidget ( sbNumber );
+    textLabel2->setBuddy(sbNumber);
     layout7->addLayout ( layout2 );
 
     layout3 = new Q3HBoxLayout ( 0, 0, 6, "layout3" );
 
     textLabel4 = new QLabel ( this, "textLabel4" );
+    textLabel4->setBuddy(textLabel4);
     layout3->addWidget ( textLabel4 );
 
     cbType = new QComboBox ( FALSE, this, "cbType" );
@@ -119,6 +122,7 @@ addDialog::addDialog ( GuiSlave *c, QWidget* parent, const char* name, bool moda
 
     leOwner = new QLineEdit ( this, "leOwner" );
     layout4->addWidget ( leOwner );
+    textLabel5->setBuddy(leOwner);
     layout7->addLayout ( layout4 );
 
     layout11 = new Q3HBoxLayout ( 0, 0, 6, "layout11" );
@@ -128,11 +132,13 @@ addDialog::addDialog ( GuiSlave *c, QWidget* parent, const char* name, bool moda
 
     leCategory = new QLineEdit ( this, "leCategory" );
     layout11->addWidget ( leCategory );
+    textLabelCategory->setBuddy(leCategory);
     layout7->addLayout ( layout11 );
 
     layout5 = new Q3GridLayout ( 0, 1, 1, 0, 6, "layout5" );
 
     textLabel3 = new QLabel ( this, "textLabel3" );
+    textLabel3->setBuddy(textLabel3);
 
     layout5->addWidget ( textLabel3, 0, 0 );
 
@@ -218,17 +224,17 @@ addDialog::~addDialog() {
 void addDialog::languageChange() {
     setCaption ( tr ( "Add Media to the Database" ) );
     textLabel6->setText ( tr ( "Choose a directory to scan:" ) );
-    textLabel1->setText ( tr ( "Media Name:" ) );
-    textLabel2->setText ( tr ( "Serial number of Media:" ) );
-    textLabel5->setText ( tr ( "Owner:" ) );
-    textLabelCategory->setText ( tr ( "Category:" ) );
-    textLabel4->setText ( tr ( "Type:" ) );
-    textLabel3->setText ( tr ( "Comment:" ) );
-    buttonCancel->setText ( tr ( "Cancel" ) );
-    buttonOK->setText ( tr ( "OK / Scan" ) );
-    buttonPli->setText ( tr ( "Select readable items" ) );
+    textLabel1->setText ( tr ( "Media &Name:" ) );
+    textLabel2->setText ( tr ( "S&erial number of Media:" ) );
+    textLabel5->setText ( tr ( "&Owner:" ) );
+    textLabelCategory->setText ( tr ( "C&ategory:" ) );
+    textLabel4->setText ( tr ( "&Type:" ) );
+    textLabel3->setText ( tr ( "Co&mment:" ) );
+    buttonCancel->setText ( tr ( "&Cancel" ) );
+    buttonOK->setText ( tr ( "&Scan" ) );
+    buttonPli->setText ( tr ( "Select &readable items" ) );
 #ifndef _WIN32
-    cbAutoDetectAtMount->setText( tr("detect CDCROM/DVD media name after mount"));
+    cbAutoDetectAtMount->setText( tr("detect CDROM/DVD med&ia name after mount"));
 #endif
     cbType->clear();
     cbType->insertItem ( *get_m_cd_icon(), tr ( "CD" ) );
