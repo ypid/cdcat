@@ -1,3 +1,4 @@
+
 /****************************************************************************
                             Hyper's CD Catalog
 	A multiplatform qt and xml based catalog program
@@ -677,26 +678,23 @@ int exportCdcatDB::writeCatalog ( Node *source ) {
 }
 
 int exportCdcatDB::writeMedia ( Node *source ) {
-
-    bool inList = false;
-    medianame = ( ( DBMedia * ) ( source->data ) ) ->name;
-    medianumber = ( ( DBMedia * ) ( source->data ) ) ->number;
-    mediaborrow = ( ( DBMedia * ) ( source->data ) ) ->borrowing;
-    if(mediaborrow.isEmpty())
-	mediaborrow = "-";
-
-    if ( checkAllMedia->isChecked() )
-        inList = true;
-    else
-        // need to check if in listSelectedMedia
-        for ( uint i = 0; i < listSelectedMedia->count();i++ )
-            if ( listSelectedMedia->text ( i ) == medianame ) {
-                inList = true;
-                break;
-            }
-
-
-    if ( checkOnlyMediaName->isChecked() ) {
+	bool inList = false;
+	medianame = ( ( DBMedia * ) ( source->data ) ) ->name;
+	medianumber = ( ( DBMedia * ) ( source->data ) ) ->number;
+	mediaborrow = ( ( DBMedia * ) ( source->data ) ) ->borrowing;
+	if(mediaborrow.isEmpty())
+		mediaborrow = "-";
+	
+	if ( checkAllMedia->isChecked() )
+		inList = true;
+	else
+		// need to check if in listSelectedMedia
+		for ( uint i = 0; i < listSelectedMedia->count();i++ )
+		if ( listSelectedMedia->text ( i ) == medianame ) {
+			inList = true;
+			break;
+		}
+	
         if ( inList ) {
 		if ( radioHtml->isChecked() ) {
 			outstring += "<tr><td class=\"m\">" + medianame + "</td></tr>";
@@ -716,17 +714,16 @@ int exportCdcatDB::writeMedia ( Node *source ) {
 			outstring += separator;
 			outstring += "\n";
 		}
+		
+		if ( ! checkOnlyMediaName->isChecked() ) {
+			if ( source->child != NULL )
+				writeDown ( source->child );
+		}
 	}
-    } else
-        if ( inList )
-            if ( source->child != NULL )
-                writeDown ( source->child );
-
-
-    if ( source->next != NULL )
-        writeDown ( source->next );
-
-    return 0;
+	if ( source->next != NULL )
+		writeDown ( source->next );
+	
+	return 0;
 }
 
 int exportCdcatDB::writeDirectory ( Node *source ) {

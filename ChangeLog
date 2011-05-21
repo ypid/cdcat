@@ -1,6 +1,7 @@
 21. May 2011 Christoph Thielecke <crissi99@gmx.de>
 	- patch for keyboard accel on adddialog added (thanks to lis6502@gmail.com and tadzikes@gmail.com)
 	- allow to export only media name on csv export
+	- export media name at csv export too (fixes: 3302225)
 
 08. Mar 2011 Christoph Thielecke <crissi99@gmx.de>
 	- version changed to 1.2
