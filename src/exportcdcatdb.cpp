@@ -705,7 +705,7 @@ int exportCdcatDB::writeMedia ( Node *source ) {
 // 			 "# Medienname;Pfad;Grösse;Datum;Kommentar;"
 			outstring += medianame;
 			outstring += separator;
-			outstring += "";
+			outstring += "/";
 			outstring += separator;
 			double tsize = 0;
 			outstring += QString().setNum ( ( long int ) tsize );
