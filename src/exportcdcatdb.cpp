@@ -696,9 +696,27 @@ int exportCdcatDB::writeMedia ( Node *source ) {
             }
 
 
-    if ( radioHtml->isChecked() && checkOnlyMediaName->isChecked() ) {
-        if ( inList )
-            outstring += "<tr><td class=\"m\">" + medianame + "</td></tr>";
+    if ( checkOnlyMediaName->isChecked() ) {
+        if ( inList ) {
+		if ( radioHtml->isChecked() ) {
+			outstring += "<tr><td class=\"m\">" + medianame + "</td></tr>";
+		}
+		else if ( radioCsv->isChecked() ) {
+// 			 "# Medienname;Pfad;Grösse;Datum;Kommentar;"
+			outstring += medianame;
+			outstring += separator;
+			outstring += "";
+			outstring += separator;
+			double tsize = 0;
+			outstring += QString().setNum ( ( long int ) tsize );
+			outstring += separator;
+			outstring += date_to_str (( ( DBMedia * ) ( source->data ) )->modification);;
+			outstring += separator;
+			outstring += medianame;
+			outstring += separator;
+			outstring += "\n";
+		}
+	}
     } else
         if ( inList )
             if ( source->child != NULL )
@@ -971,7 +989,7 @@ void exportCdcatDB::exportTypeToggled() {
     if ( radioCsv->isChecked() ) {
         seperatorLabel->setEnabled ( true );
         separatorInput->setEnabled ( true );
-        checkOnlyMediaName->setEnabled ( false );
+//         checkOnlyMediaName->setEnabled ( false );
 //         checkExportTitle->setEnabled ( false );
 //         checkExportTableHeader->setEnabled ( false );
 //         checkExportMediaName->setEnabled ( false );
