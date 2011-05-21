@@ -6,6 +6,7 @@
 	- comment linebreak length increased to 80
 	- category linebreak length increased to 80
 	- allow to change sorting dir tree to descending/ascending (fixes request 3190058)
+	- parsing size from xml fixed
 
 08. Mar 2011 Christoph Thielecke <crissi99@gmx.de>
 	- version changed to 1.2

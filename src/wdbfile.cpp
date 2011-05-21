@@ -73,7 +73,11 @@ float getSizeFS ( const char *str ) {
 
     strcpy ( s,"" );
     if ( str == NULL ) return -1;
-    if ( sscanf ( str,"%f %s",&r,s ) != 2 )
+    QString unit;
+    QStringList l = QString ( str ).simplified().split ( ' ' );
+    unit = l.at ( 1 );
+    r = l.at ( 0 ).toFloat();
+    if ( l.length() != 2 )
         return -1;
     return r;
 }
