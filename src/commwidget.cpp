@@ -348,10 +348,9 @@ void  CommentWidget::paintEvent ( QPaintEvent *pe ) {
             break;
         }
         p.setPen ( *cconfig->comm_vtext );
-
         textList = QStringList::split ( QRegExp ( "#|\n|\r\n" ),text,TRUE );
         for ( QStringList::Iterator it=textList.begin(); it != textList.end();++it ) {
-	   int max_comment_len = 20;
+	   int max_comment_len =80;
 	    int stringlen = (*it).size();
             if(stringlen > max_comment_len) {
 // 		cerr << "oversized comment line (" << stringlen <<"): " << qPrintable(*it) << endl;
@@ -401,10 +400,9 @@ void  CommentWidget::paintEvent ( QPaintEvent *pe ) {
             break;
         }
         p.setPen ( *cconfig->comm_vtext );
-
         textList = QStringList::split ( QRegExp ( "#|\n|\r\n" ),text,TRUE );
         for ( QStringList::Iterator it=textList.begin(); it != textList.end();++it ) {
-	   int max_category_len = 20;
+	   int max_category_len = 80;
 	    int stringlen = (*it).size();
             if(stringlen > max_category_len) {
 // 		cerr << "oversized category line (" << stringlen <<"): " << qPrintable(*it) << endl;

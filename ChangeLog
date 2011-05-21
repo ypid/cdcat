@@ -3,6 +3,8 @@
 	- allow to export only media name on csv export
 	- export media name at csv export too (fixes: 3302225)
 	- parsing xml content fixed (fixes: 3302226)
+	- comment linebreak length increased to 80
+	- category linebreak length increased to 80
 
 08. Mar 2011 Christoph Thielecke <crissi99@gmx.de>
 	- version changed to 1.2
