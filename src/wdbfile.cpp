@@ -1245,7 +1245,7 @@ bool CdCatXmlHandler::endElement ( const QString & namespaceURI, const QString &
     progress ( pww, locator->lineNumber() );
 
 //     getCharDataFromXML ( r,currentText.toLocal8Bit().data(),currentText.length());
-    currentText = "";
+    
 
     if ( FREA->error || FREA->pww->doCancel )
 	return false;
@@ -1322,7 +1322,7 @@ bool CdCatXmlHandler::endElement ( const QString & namespaceURI, const QString &
 
     else if ( el == "comment" ) {
         switch ( FREA->sp->type ) {
-        case HC_CATALOG  :
+	case HC_CATALOG  :
 
 //             ( ( DBCatalog    * ) ( FREA->sp->data ) ) -> comment = FREA->get_cutf8 ( currentText );
             ( ( DBCatalog    * ) ( FREA->sp->data ) ) -> comment = currentText ;
@@ -1403,6 +1403,7 @@ bool CdCatXmlHandler::endElement ( const QString & namespaceURI, const QString &
     }
 
     clearbuffer = 1;
+    currentText = "";
 
 //     if(*DEBUG_INFO_ENABLED)
 //     	cerr <<"end_end:"<<qPrintable(el)<<endl;
