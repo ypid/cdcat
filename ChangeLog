@@ -2,6 +2,7 @@
 	- export all requested fields if export only media fixed
 	- export media name if export only media fixed
 	- export category on csv and html added
+	- edit node comment/category fixed
 
 21. May 2011 Christoph Thielecke <crissi99@gmx.de>
 	- patch for keyboard accel on adddialog added (thanks to lis6502@gmail.com and tadzikes@gmail.com)

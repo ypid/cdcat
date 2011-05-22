@@ -654,6 +654,7 @@ int editNodeComment ( Node *node,QWidget *parent, bool isCommentEdit ) {
     }
     
     ce->setCaption(newCaption);
+    ce->teComm->setText(o);
     ce->exec();
 
     if ( ce->OK == 0 ) return 0;
