@@ -1,7 +1,7 @@
 <!DOCTYPE TS>
 <TS>
   <context>
-    <name>@default</name>
+    <name></name>
     <message>
       <source>Not available</source>
       <translation>Nicht verfügbar</translation>
@@ -1887,10 +1887,6 @@ wird zu
       <translation>Was soll exportiert werden</translation>
     </message>
     <message>
-      <source>Only media name</source>
-      <translation>Nur Medienname</translation>
-    </message>
-    <message>
       <source>Media name</source>
       <translation>Medienname</translation>
     </message>
@@ -1993,6 +1989,14 @@ wird zu
     <message>
       <source>Error during write export...</source>
       <translation>Fehler beim exportieren...</translation>
+    </message>
+    <message>
+      <source>Category</source>
+      <translation>Kategorie</translation>
+    </message>
+    <message>
+      <source>Only media</source>
+      <translation>Nur Medium</translation>
     </message>
   </context>
   <context>

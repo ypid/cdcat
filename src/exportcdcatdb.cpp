@@ -130,7 +130,7 @@ exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget* parent, const ch
     layout26->addWidget ( radioXml );
 
 
-    checkOnlyMediaName = new QCheckBox ( buttonGroup1, "checkOnlyMediaName" );
+    checkOnlyMedia = new QCheckBox ( buttonGroup1, "checkOnlyMedia" );
 
     seperatorLabel->setAlignment ( Qt::AlignRight );
 
@@ -165,6 +165,9 @@ exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget* parent, const ch
 
     checkExportComment = new QCheckBox ( buttonGroupFields,"checkExportComment" );
     buttonGroupFields->insert ( checkExportComment );
+
+    checkExportCategory = new QCheckBox ( buttonGroupFields,"checkExportCategory" );
+    buttonGroupFields->insert ( checkExportCategory );
 
     checkExportMp3Tag = new QCheckBox ( buttonGroupFields,"checkExportMp3Tag" );
     buttonGroupFields->insert ( checkExportMp3Tag );
@@ -217,7 +220,7 @@ exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget* parent, const ch
     connect ( radioHtml, SIGNAL ( clicked() ), this, SLOT ( exportTypeToggled() ) );
     connect ( radioXml, SIGNAL ( clicked() ), this, SLOT ( exportTypeToggled() ) );
 
-    connect ( checkOnlyMediaName, SIGNAL ( clicked() ), this, SLOT ( checkOnlyMediaNameToggled() ) );
+    connect ( checkOnlyMedia, SIGNAL ( clicked() ), this, SLOT ( checkOnlyMediaToggled() ) );
 
     connect ( checkExportTitle, SIGNAL ( clicked() ), this, SLOT ( checkExportToggled() ) );
     connect ( checkExportTableHeader, SIGNAL ( clicked() ), this, SLOT ( checkExportToggled() ) );
@@ -226,6 +229,7 @@ exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget* parent, const ch
     connect ( checkExportSize, SIGNAL ( clicked() ), this, SLOT ( checkExportToggled() ) );
     connect ( checkExportDate, SIGNAL ( clicked() ), this, SLOT ( checkExportToggled() ) );
     connect ( checkExportComment, SIGNAL ( clicked() ), this, SLOT ( checkExportToggled() ) );
+    connect ( checkExportCategory, SIGNAL ( clicked() ), this, SLOT ( checkExportToggled() ) );
 
     separatorInput->setText ( ";" );
     separatorInput->setEnabled ( false );
@@ -235,7 +239,7 @@ exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget* parent, const ch
     if ( p != NULL )
         fileName->setText ( mainw->cconfig->lastDir +"/"+ ( ( DBCatalog * ) ( ( p->getRootNode() )->data ) )->name+".html" );
 
-    checkOnlyMediaName->setChecked ( false );
+    checkOnlyMedia->setChecked ( false );
 
     checkExportTableHeader->setChecked ( true );
     checkExportTitle->setChecked ( true );
@@ -244,6 +248,7 @@ exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget* parent, const ch
     checkExportSize->setChecked ( true );
     checkExportDate->setChecked ( true );
     checkExportComment->setChecked ( true );
+    checkExportCategory->setChecked ( true );
 
     outstring = "";
     medianame = "";
@@ -279,7 +284,7 @@ void exportCdcatDB::languageChange() {
     QToolTip::add
     ( listSelectedMedia, tr ( "Media to export" ) );
     checkAllMedia->setText ( tr ( "All media" ) );
-    checkOnlyMediaName->setText ( tr ( "Only media name" ) );
+    checkOnlyMedia->setText ( tr ( "Only media" ) );
     //spinColsLabel->setText( tr( "columns:" ) );
     buttonGroup1->setTitle ( tr ( "Type" ) );
     radioHtml->setText ( tr ( "export as HTML" ) );
@@ -297,6 +302,7 @@ void exportCdcatDB::languageChange() {
     checkExportSize->setText ( tr ( "Size" ) );
     checkExportDate->setText ( tr ( "Date" ) );
     checkExportComment->setText ( tr ( "Comment" ) );
+    checkExportCategory->setText ( tr ( "Category" ) );
     checkExportMp3Tag->setText( tr( "export mp3 tag" ) );
     checkExportBorrow->setText( tr( "export borrow information" ) );
     checkExportTitle->setText ( tr ( "HTML headline" ) );
@@ -417,29 +423,30 @@ void exportCdcatDB::ok() {
 		outstring += "<p>" + tr ( "Generated at:" ) + " " + QDateTime().currentDateTime().toString() + "</p>\n";
 		outstring += "<table border=\"1\">";
 		if ( checkExportTableHeader->isChecked() ) {
-		if ( !checkOnlyMediaName->isChecked() ) {
-			outstring += "<tr>";
-			if ( checkExportMediaName->isChecked() )
-			outstring += "<th>" + tr ( "Media" ) + "</th>";
-			if ( checkExportMediaNumber->isChecked() )
-			outstring += "<th>" + tr ( "#" ) + "</th>";
-			if ( checkExportPath->isChecked() )
-			outstring += "<th>" + tr ( "File" ) + "</th>";
-			if ( checkExportSize->isChecked() )
-			outstring += "<th>" + tr ( "Size" ) + "</th>";
-			if ( checkExportDate->isChecked() )
-			outstring += "<th>" + tr ( "Date" ) + "</th>";
-			if ( checkExportComment->isChecked() )
-			outstring += "<th>" + tr ( "Comment" ) + "</th>";
-			if ( checkExportMp3Tag->isChecked() )
-			outstring += "<th>" + tr ( "MP3 tag" ) + "</th>";
-			if ( checkExportBorrow->isChecked() )
-			outstring += "<th>" + tr ( "Borrow" ) + "</th>";
-
-			outstring += "</tr>\n";
-		} else {
-			outstring += "<tr><td><strong>" + tr ( "Media" ) + "</strong></td></tr>\n";
-		}
+			if ( !checkOnlyMedia->isChecked() ) {
+				outstring += "<tr>";
+				if ( checkExportMediaName->isChecked() )
+					outstring += "<th>" + tr ( "Media" ) + "</th>";
+				if ( checkExportMediaNumber->isChecked() )
+					outstring += "<th>" + tr ( "#" ) + "</th>";
+				if ( checkExportPath->isChecked() )
+					outstring += "<th>" + tr ( "File" ) + "</th>";
+				if ( checkExportSize->isChecked() )
+					outstring += "<th>" + tr ( "Size" ) + "</th>";
+				if ( checkExportDate->isChecked() )
+					outstring += "<th>" + tr ( "Date" ) + "</th>";
+				if ( checkExportComment->isChecked() )
+					outstring += "<th>" + tr ( "Comment" ) + "</th>";
+				if ( checkExportMp3Tag->isChecked() )
+					outstring += "<th>" + tr ( "MP3 tag" ) + "</th>";
+				if ( checkExportBorrow->isChecked() )
+					outstring += "<th>" + tr ( "Borrow" ) + "</th>";
+				if ( checkExportCategory->isChecked() )
+					outstring += "<th>" + tr ( "Category" ) + "</th>";
+				outstring += "</tr>\n";
+			} else {
+				outstring += "<tr><td><strong>" + tr ( "Media" ) + "</strong></td></tr>\n";
+			}
 		}
 
 	}
@@ -485,6 +492,10 @@ void exportCdcatDB::ok() {
 			}
 			if ( checkExportBorrow->isChecked() ) {
 				outstring += tr("Borrow");
+				outstring += separator;
+			}
+			if ( checkExportCategory->isChecked() ) {
+				outstring += tr("Category");
 				outstring += separator;
 			}
 			
@@ -689,33 +700,96 @@ int exportCdcatDB::writeMedia ( Node *source ) {
 		inList = true;
 	else
 		// need to check if in listSelectedMedia
-		for ( uint i = 0; i < listSelectedMedia->count();i++ )
-		if ( listSelectedMedia->text ( i ) == medianame ) {
-			inList = true;
-			break;
+		for ( uint i = 0; i < listSelectedMedia->count();i++ ) {
+			if ( listSelectedMedia->text ( i ) == medianame ) {
+				inList = true;
+				break;
+			}
 		}
 	
         if ( inList ) {
 		if ( radioHtml->isChecked() ) {
-			outstring += "<tr><td class=\"m\">" + medianame + "</td></tr>";
+			outstring += "<tr>";
+			outstring += "<td class=\"m\">" + medianame + "</td>";
+			outstring += "<td class=\"m\">/</td>";
+			double tsize = 0;
+			outstring += "<td class=\"m\">" + QString().setNum ( ( long int ) tsize ) + "</td>";
+			outstring += "<td class=\"m\">" + date_to_str (( ( DBMedia * ) ( source->data ) )->modification) + "</td>";
+			outstring += "</tr>";
+
+			outstring += "<tr>";
+			if ( checkExportMediaName->isChecked() ) {
+				outstring += "<td>" + medianame + "</td>";
+			}
+			if ( checkExportMediaNumber->isChecked() ) {
+				outstring += "<td>" + QString().setNum( (( DBMedia * ) ( source->data ) )->number) + "</td>";
+			}
+			if ( checkExportPath->isChecked() ) {
+				outstring += "<td>/</td>";
+			}
+			if ( checkExportSize->isChecked() ) {
+				double tsize = 0;
+				outstring += "<td>" + QString().setNum ( ( long int ) tsize ) + "</td>";
+			}
+			if ( checkExportDate->isChecked() ) {
+				outstring += "<td>" + date_to_str (( ( DBMedia * ) ( source->data ) )->modification) + "</td>";
+			}
+			if ( checkExportComment->isChecked() ) {
+				outstring += "<td>" + ( ( DBMedia * ) ( source->data ) )->comment + "</td>";
+			}
+			if ( checkExportMp3Tag->isChecked() ) {
+				outstring += "<td></td>";
+			}
+			if ( checkExportBorrow->isChecked() ) {
+				outstring += "<td>" + ( ( DBMedia * ) ( source->data ) )->borrowing + "</td>";
+			}
+			if ( checkExportCategory->isChecked() ) {
+				outstring += "<td>" + ( ( DBMedia * ) ( source->data ) )->category + "</td>";
+			}
+			outstring += "</tr>\n";
 		}
 		else if ( radioCsv->isChecked() ) {
-// 			 "# Medienname;Pfad;Grösse;Datum;Kommentar;"
-			outstring += medianame;
-			outstring += separator;
-			outstring += "/";
-			outstring += separator;
-			double tsize = 0;
-			outstring += QString().setNum ( ( long int ) tsize );
-			outstring += separator;
-			outstring += date_to_str (( ( DBMedia * ) ( source->data ) )->modification);;
-			outstring += separator;
-			outstring += medianame;
-			outstring += separator;
+			if ( checkExportMediaName->isChecked() ) {
+				outstring += medianame;
+				outstring += separator;
+			}
+			if ( checkExportMediaNumber->isChecked() ) {
+				outstring += QString().setNum( (( DBMedia * ) ( source->data ) )->number);
+				outstring += separator;
+			}
+			if ( checkExportPath->isChecked() ) {
+				outstring += "/";
+				outstring += separator;
+			}
+			if ( checkExportSize->isChecked() ) {
+				double tsize = 0;
+				outstring += QString().setNum ( ( long int ) tsize );
+				outstring += separator;
+			}
+			if ( checkExportDate->isChecked() ) {
+				outstring += date_to_str (( ( DBMedia * ) ( source->data ) )->modification);
+				outstring += separator;
+			}
+			if ( checkExportComment->isChecked() ) {
+				outstring += ( ( DBMedia * ) ( source->data ) )->comment;
+				outstring += separator;
+			}
+			if ( checkExportMp3Tag->isChecked() ) {
+				outstring += "";
+				outstring += separator;
+			}
+			if ( checkExportBorrow->isChecked() ) {
+				outstring += ( ( DBMedia * ) ( source->data ) )->borrowing;
+				outstring += separator;
+			}
+			if ( checkExportCategory->isChecked() ) {
+				outstring += ( ( DBMedia * ) ( source->data ) )->category;
+				outstring += separator;
+			}
 			outstring += "\n";
 		}
 		
-		if ( ! checkOnlyMediaName->isChecked() ) {
+		if ( ! checkOnlyMedia->isChecked() ) {
 			if ( source->child != NULL )
 				writeDown ( source->child );
 		}
@@ -742,7 +816,7 @@ int exportCdcatDB::writeFile ( Node *source ) {
     //==== CSV ===========
     if ( radioCsv->isChecked() ) {
 	if(checkExportMediaName->isChecked()) {
-		outstring += medianame + getFilePath ( source );
+		outstring += medianame;
 		outstring += separator;
 	}
 
@@ -815,94 +889,107 @@ int exportCdcatDB::writeFile ( Node *source ) {
             outstring += mediaborrow;
 		outstring += separator;
 	}
+        if ( checkExportCategory->isChecked() ) {
+            if ( ! ( ( ( DBFile* ) ( source->data ) )->category.isEmpty() ) )
+                outstring += QString(( ( DBFile * ) ( source->data ) )->category).replace("\n", "\\\n");
+		outstring += separator;
+        }
 
         outstring += "\n";
     }
 
     //==== HTML ===========
-    if ( radioHtml->isChecked() ) {
-        outstring += "<tr>";
+	if ( radioHtml->isChecked() ) {
+		outstring += "<tr>";
 
-        //======== items ==========
-        if ( checkExportMediaName->isChecked() )
-            outstring += "<td class=\"m\">" + medianame + "</td>";
+		//======== items ==========
+		if ( checkExportMediaName->isChecked() )
+		outstring += "<td class=\"m\">" + medianame + "</td>";
 
-        if ( checkExportMediaNumber->isChecked() )
-            outstring += "<td class=\"m\"  align=\"right\">" + QString().setNum(medianumber)+ "</td>";
+		if ( checkExportMediaNumber->isChecked() )
+		outstring += "<td class=\"m\"  align=\"right\">" + QString().setNum(medianumber)+ "</td>";
 
-        if ( checkExportPath->isChecked() )
-            outstring += "<td class=\"f\">" + getFilePath ( source ) + "</td>";
+		if ( checkExportPath->isChecked() )
+		outstring += "<td class=\"f\">" + getFilePath ( source ) + "</td>";
 
-        if ( checkExportSize->isChecked() ) {
-            outstring += "<td align=\"right\">";
-            outstring += QString().setNum ( ( ( DBFile * ) ( source->data ) ) ->size );
-            outstring +=" ";
-            outstring += QString ( getSType ( ( ( ( DBFile * ) ( source->data ) ) ->sizeType), true ) );
-            outstring += "</td>";
-        }
-
-        if ( checkExportDate->isChecked() ) {
-            outstring += "<td class=\"d\">";
-            outstring += date_to_str ( ( ( DBFile * ) ( source->data ) ) ->modification );
-            outstring += "</td>";
-        }
-
-        if ( checkExportComment->isChecked() ) {
-
-            outstring += "<td class=\"c\">";
-            if ( ! ( ( ( DBFile* ) ( source->data ) )->comment.isEmpty() ) )
-                outstring += ( ( DBFile * ) ( source->data ) )->comment
-                             .replace ( QRegExp ( "#" ),"<br/>\n" );
-            else
-                outstring += "";
-            outstring += "</td>";
-        }
-
-	 if ( checkExportMp3Tag->isChecked() ) {
-		QString Mp3Artist="";
-		QString Mp3Title="";
-		QString Mp3Album="";
-		QString Mp3Year="";
-		bool hasMp3Tag=false;
-		Node *tmp=NULL;
-		tmp= ( ( DBFile * ) ( source->data ) )->prop;
-		while ( tmp != NULL ) {
-			/*mp3tag*/
-			if ( tmp->type == HC_MP3TAG ) {
-	// 			cerr << "export: artist: mp3tag found (1)" << endl;
-				Mp3Artist = ( ( DBMp3Tag * ) ( tmp->data ) )->artist;
-				Mp3Title = ( ( DBMp3Tag * ) ( tmp->data ) )->title;
-				Mp3Album = ( ( DBMp3Tag * ) ( tmp->data ) )->album;
-				Mp3Year = ( ( DBMp3Tag * ) ( tmp->data ) )->year;
-				hasMp3Tag = true;
-				break;
-			}
-			tmp = tmp->next;
+		if ( checkExportSize->isChecked() ) {
+		outstring += "<td align=\"right\">";
+		outstring += QString().setNum ( ( ( DBFile * ) ( source->data ) ) ->size );
+		outstring +=" ";
+		outstring += QString ( getSType ( ( ( ( DBFile * ) ( source->data ) ) ->sizeType), true ) );
+		outstring += "</td>";
 		}
 
-// 		cerr << "export: artist: " << qPrintable(Mp3Artist) <<  endl;
-// 		cerr << "export: title: " << qPrintable(Mp3Title) <<  endl;
-// 		cerr << "export: album: " << qPrintable(Mp3Album) <<  endl;
-// 		cerr << "export: year: " << qPrintable(Mp3Year) << endl;
+		if ( checkExportDate->isChecked() ) {
+		outstring += "<td class=\"d\">";
+		outstring += date_to_str ( ( ( DBFile * ) ( source->data ) ) ->modification );
+		outstring += "</td>";
+		}
 
-            outstring += "<td class=\"m\">\n"; 
-            if(hasMp3Tag) {
-		outstring += "<table>\n";
-		outstring += "<tr><td>"+tr("Artist:")+"</td><td>"+QString(Mp3Artist)+"</td></tr>\n";
-		outstring += "<tr><td>"+tr("Title:")+"</td><td>"+QString(Mp3Title)+"</td></tr>\n";
-		outstring += "<tr><td>"+tr("Album:")+"</td><td>"+QString(Mp3Album)+"</td></tr>\n";
-		outstring += "<tr><td>"+tr("Year:")+"</td><td>"+QString(Mp3Year)+"</td></tr>\n";
-		outstring += "</table>\n";
-            }
-            outstring += "</td>\n";
-        }
-        if ( checkExportBorrow->isChecked() )
-            outstring += "<td class=\"m\">" + mediaborrow + "</td>";
+		if ( checkExportComment->isChecked() ) {
 
-        outstring += "</tr>";
-    }
+		outstring += "<td class=\"c\">";
+		if ( ! ( ( ( DBFile* ) ( source->data ) )->comment.isEmpty() ) )
+			outstring += ( ( DBFile * ) ( source->data ) )->comment
+				.replace ( QRegExp ( "#" ),"<br/>\n" );
+		else
+			outstring += "";
+		outstring += "</td>";
+		}
 
+		if ( checkExportMp3Tag->isChecked() ) {
+			QString Mp3Artist="";
+			QString Mp3Title="";
+			QString Mp3Album="";
+			QString Mp3Year="";
+			bool hasMp3Tag=false;
+			Node *tmp=NULL;
+			tmp= ( ( DBFile * ) ( source->data ) )->prop;
+			while ( tmp != NULL ) {
+				/*mp3tag*/
+				if ( tmp->type == HC_MP3TAG ) {
+		// 			cerr << "export: artist: mp3tag found (1)" << endl;
+					Mp3Artist = ( ( DBMp3Tag * ) ( tmp->data ) )->artist;
+					Mp3Title = ( ( DBMp3Tag * ) ( tmp->data ) )->title;
+					Mp3Album = ( ( DBMp3Tag * ) ( tmp->data ) )->album;
+					Mp3Year = ( ( DBMp3Tag * ) ( tmp->data ) )->year;
+					hasMp3Tag = true;
+					break;
+				}
+				tmp = tmp->next;
+			}
 
+	// 		cerr << "export: artist: " << qPrintable(Mp3Artist) <<  endl;
+	// 		cerr << "export: title: " << qPrintable(Mp3Title) <<  endl;
+	// 		cerr << "export: album: " << qPrintable(Mp3Album) <<  endl;
+	// 		cerr << "export: year: " << qPrintable(Mp3Year) << endl;
+
+		outstring += "<td class=\"m\">\n"; 
+		if(hasMp3Tag) {
+			outstring += "<table>\n";
+			outstring += "<tr><td>"+tr("Artist:")+"</td><td>"+QString(Mp3Artist)+"</td></tr>\n";
+			outstring += "<tr><td>"+tr("Title:")+"</td><td>"+QString(Mp3Title)+"</td></tr>\n";
+			outstring += "<tr><td>"+tr("Album:")+"</td><td>"+QString(Mp3Album)+"</td></tr>\n";
+			outstring += "<tr><td>"+tr("Year:")+"</td><td>"+QString(Mp3Year)+"</td></tr>\n";
+			outstring += "</table>\n";
+		}
+		outstring += "</td>\n";
+		}
+		if ( checkExportBorrow->isChecked() )
+		outstring += "<td class=\"m\">" + mediaborrow + "</td>";
+		if ( checkExportCategory->isChecked() ) {
+
+		outstring += "<td class=\"c\">";
+		if ( ! ( ( ( DBFile* ) ( source->data ) )->comment.isEmpty() ) )
+			outstring += ( ( DBFile * ) ( source->data ) )->category
+				.replace ( QRegExp ( "#" ),"<br/>\n" );
+		else
+			outstring += "";
+		outstring += "</td>";
+		}
+
+		outstring += "</tr>";
+	}
     if ( source->child != NULL )
         writeDown ( source->child );
 
@@ -964,7 +1051,7 @@ void exportCdcatDB::exportTypeToggled() {
         seperatorLabel->setEnabled ( false );
         separatorInput->setEnabled ( false );
 
-        checkOnlyMediaName->setEnabled ( true );
+        checkOnlyMedia->setEnabled ( true );
 
         checkExportTitle->setEnabled ( true );;
         checkExportTableHeader->setEnabled ( true );;
@@ -976,7 +1063,8 @@ void exportCdcatDB::exportTypeToggled() {
         checkExportComment->setEnabled ( true );
         checkExportMp3Tag->setEnabled ( true );
         checkExportBorrow->setEnabled ( true );
-        checkOnlyMediaNameToggled();
+        checkExportCategory->setEnabled ( true );
+        checkOnlyMediaToggled();
 
         if ( p != NULL )
             fileName->setText ( mainw->cconfig->lastDir +"/"+ ( ( DBCatalog * ) ( ( p->getRootNode() )->data ) )->name+".html" );
@@ -986,7 +1074,7 @@ void exportCdcatDB::exportTypeToggled() {
     if ( radioCsv->isChecked() ) {
         seperatorLabel->setEnabled ( true );
         separatorInput->setEnabled ( true );
-//         checkOnlyMediaName->setEnabled ( false );
+//         checkOnlyMedia->setEnabled ( false );
 //         checkExportTitle->setEnabled ( false );
 //         checkExportTableHeader->setEnabled ( false );
 //         checkExportMediaName->setEnabled ( false );
@@ -1005,7 +1093,7 @@ void exportCdcatDB::exportTypeToggled() {
     if ( radioXml->isChecked() ) {
         seperatorLabel->setEnabled ( false );
         separatorInput->setEnabled ( false );
-        checkOnlyMediaName->setEnabled ( false );
+        checkOnlyMedia->setEnabled ( false );
         checkExportTitle->setEnabled ( false );
         checkExportTableHeader->setEnabled ( false );
         checkExportMediaName->setEnabled ( false );
@@ -1016,6 +1104,7 @@ void exportCdcatDB::exportTypeToggled() {
         checkExportComment->setEnabled ( false );
         checkExportMp3Tag->setEnabled ( false );
         checkExportBorrow->setEnabled ( false );
+        checkExportCategory->setEnabled ( false );
 	checkAllMedia->setEnabled(false);
 	listSelectedMedia->setEnabled(false);
 	listAllMedia->setEnabled(false);
@@ -1026,8 +1115,8 @@ void exportCdcatDB::exportTypeToggled() {
     }
 }
 
-void exportCdcatDB::checkOnlyMediaNameToggled() {
-    if ( checkOnlyMediaName->isChecked() && radioHtml->isChecked() ) {
+void exportCdcatDB::checkOnlyMediaToggled() {
+    if ( checkOnlyMedia->isChecked() && radioHtml->isChecked() ) {
 
         checkExportMediaName->setEnabled ( false );
         checkExportPath->setEnabled ( false );

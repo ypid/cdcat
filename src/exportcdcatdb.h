@@ -74,7 +74,7 @@ public:
     QLabel* textLabel2_2;
     Q3ListBox* listSelectedMedia;
     QCheckBox* checkAllMedia;
-    QCheckBox* checkOnlyMediaName;
+    QCheckBox* checkOnlyMedia;
     QCheckBox* checkExportMediaName;
     QCheckBox* checkExportMediaNumber;
     QCheckBox* checkExportPath;
@@ -82,8 +82,10 @@ public:
     QCheckBox* checkExportSize;
     QCheckBox* checkExportDate;
     QCheckBox* checkExportComment;
+    QCheckBox* checkExportCategory;
     QCheckBox* checkExportMp3Tag;
     QCheckBox* checkExportBorrow;
+
 
     QCheckBox* checkExportTitle;
     QCheckBox* checkExportTableHeader;
@@ -143,7 +145,7 @@ protected slots:
     void removeMedia();
     void listAllMediaToggled();
     void exportTypeToggled();
-    void checkOnlyMediaNameToggled();
+    void checkOnlyMediaToggled();
     void browseFile();
     void addMedia();
 public slots:
