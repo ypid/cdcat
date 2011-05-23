@@ -1,4 +1,7 @@
 22. May 2011 Christoph Thielecke <crissi99@gmx.de>
+	- strip trailing lineend and spaces from comment at loading catalog
+
+22. May 2011 Christoph Thielecke <crissi99@gmx.de>
 	- export all requested fields if export only media fixed
 	- export media name if export only media fixed
 	- export category on csv and html added

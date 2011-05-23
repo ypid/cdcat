@@ -1325,9 +1325,10 @@ bool CdCatXmlHandler::endElement ( const QString & namespaceURI, const QString &
     }
 
     else if ( el == "comment" ) {
+	while (currentText.length() > 0 && (currentText.at(0) == '\n' || currentText.at(0) == ' '))
+		currentText = currentText.right(currentText.length()-1);
         switch ( FREA->sp->type ) {
 	case HC_CATALOG  :
-
 //             ( ( DBCatalog    * ) ( FREA->sp->data ) ) -> comment = FREA->get_cutf8 ( currentText );
             ( ( DBCatalog    * ) ( FREA->sp->data ) ) -> comment = currentText ;
             break;
