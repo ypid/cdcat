@@ -1,5 +1,6 @@
 22. May 2011 Christoph Thielecke <crissi99@gmx.de>
 	- strip trailing lineend and spaces from comment at loading catalog
+	- dont replace lineend with '#' on edit comment
 
 22. May 2011 Christoph Thielecke <crissi99@gmx.de>
 	- export all requested fields if export only media fixed

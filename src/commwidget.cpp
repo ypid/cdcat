@@ -656,61 +656,50 @@ int editNodeComment ( Node *node,QWidget *parent, bool isCommentEdit ) {
     ce->setCaption(newCaption);
     ce->teComm->setText(o);
     ce->exec();
-
     if ( ce->OK == 0 ) return 0;
     if(isCommentEdit) {
 	switch ( node->type ) {
 	case HC_CATALOG  :
-		( ( DBCatalog * ) ( node->data ) )->comment   =
-		( ce->newc ).replace ( QRegExp ( "\n" ),"#" );
+		( ( DBCatalog * ) ( node->data ) )->comment = ( ce->newc );
 		break;
 
 	case HC_DIRECTORY:
-		( ( DBDirectory * ) ( node->data ) )->comment =
-		( ce->newc ).replace ( QRegExp ( "\n" ),"#" );
+		( ( DBDirectory * ) ( node->data ) )->comment = ( ce->newc );
 		break;
 
 	case HC_FILE     :
-		( ( DBFile * ) ( node->data ) )->comment      =
-		( ce->newc ).replace ( QRegExp ( "\n" ),"#" );
+		( ( DBFile * ) ( node->data ) )->comment = ( ce->newc );
 		break;
 
 	case HC_MEDIA    :
-		( ( DBMedia * ) ( node->data ) )->comment     =
-		( ce->newc ).replace ( QRegExp ( "\n" ),"#" );
+		( ( DBMedia * ) ( node->data ) )->comment = ( ce->newc );
 		break;
 
 	case HC_CATLNK   :
-		( ( DBCatLnk * ) ( node->data ) )->comment    =
-		( ce->newc ).replace ( QRegExp ( "\n" ),"#" );
+		( ( DBCatLnk * ) ( node->data ) )->comment  = ( ce->newc );
 		break;
 	}
     }
     else {
 	switch ( node->type ) {
 	case HC_CATALOG  :
-		( ( DBCatalog * ) ( node->data ) )->category   =
-		( ce->newc ).replace ( QRegExp ( "\n" ),"#" );
+		( ( DBCatalog * ) ( node->data ) )->category   = ( ce->newc );
 		break;
 
 	case HC_DIRECTORY:
-		( ( DBDirectory * ) ( node->data ) )->category =
-		( ce->newc ).replace ( QRegExp ( "\n" ),"#" );
+		( ( DBDirectory * ) ( node->data ) )->category = ( ce->newc );
 		break;
 
 	case HC_FILE     :
-		( ( DBFile * ) ( node->data ) )->category      =
-		( ce->newc ).replace ( QRegExp ( "\n" ),"#" );
+		( ( DBFile * ) ( node->data ) )->category = ( ce->newc );
 		break;
 
 	case HC_MEDIA    :
-		( ( DBMedia * ) ( node->data ) )->category     =
-		( ce->newc ).replace ( QRegExp ( "\n" ),"#" );
+		( ( DBMedia * ) ( node->data ) )->category = ( ce->newc );
 		break;
 
 	case HC_CATLNK   :
-		( ( DBCatLnk * ) ( node->data ) )->category    =
-		( ce->newc ).replace ( QRegExp ( "\n" ),"#" );
+		( ( DBCatLnk * ) ( node->data ) )->category = ( ce->newc );
 		break;
 	}
     }
