@@ -1951,16 +1951,19 @@ bool importWhereIsItXml::startDocument() {
 bool importWhereIsItXml::startElement( const QString&, const QString&,
                                        const QString & name2,
                                        const QXmlAttributes & atts ) {
-    cout << "startElement: " << qPrintable(name2) << endl;
+    DEBUG_INFO_ENABLED = init_debug_info();
+    if(*DEBUG_INFO_ENABLED)
+        cout << "startElement: " << qPrintable(name2) << endl;
     currentText = "";
 
     if (atts.length() > 0) {
-        cout << "atts: ";
-        for (int i=0;i<atts.length();i++) {
-            cout << "atts[" << i << "]: "  << qPrintable(atts.qName(i)) << "=" << qPrintable(atts.value(i)) << endl;
-
+        if(*DEBUG_INFO_ENABLED) {
+            cout << "atts: ";
+            for (int i=0;i<atts.length();i++) {
+                cout << "atts[" << i << "]: "  << qPrintable(atts.qName(i)) << "=" << qPrintable(atts.value(i)) << endl;
+            }
+            cout  << endl;
         }
-        cout  << endl;
     }
 
     QString line = "";
@@ -1969,13 +1972,16 @@ bool importWhereIsItXml::startElement( const QString&, const QString&,
 
     if ( name2 == "REPORT" ) {
         catalogName = atts.value( "Title").stripWhiteSpace();
-        line += "catalogName: \"" + catalogName + "\"\n";
-        guislave->mainw->db->setName ( catalogName );
-        std::cout << qPrintable(line) << endl;
+        if(*DEBUG_INFO_ENABLED) {
+                line += "catalogName: \"" + catalogName + "\"\n";
+                guislave->mainw->db->setName ( catalogName );
+                std::cout << qPrintable(line) << endl;
+        }
     }
 
     if ( name2 == "ITEM" ) {
-        std::cout << "Itemtype: " << qPrintable ( atts.value("ItemType") ) << endl;
+        if(*DEBUG_INFO_ENABLED)
+                std::cout << "Itemtype: " << qPrintable ( atts.value("ItemType") ) << endl;
 
         if ( atts.value("ItemType") == "Disk" )
             last_type = "media";
@@ -1993,9 +1999,12 @@ bool importWhereIsItXml::startElement( const QString&, const QString&,
 }
 
 bool importWhereIsItXml::endElement( const QString&, const QString & tag, const QString& ) {
-    cout << "endElement: "  << "tag: " << qPrintable(tag) << endl;
+    DEBUG_INFO_ENABLED = init_debug_info();
+    if(*DEBUG_INFO_ENABLED)
+        cout << "endElement: "  << "tag: " << qPrintable(tag) << endl;
 
-    cout << "cdata: " << qPrintable(currentText) << endl;
+    if(*DEBUG_INFO_ENABLED)
+        cout << "cdata: " << qPrintable(currentText) << endl;
 
     if ( last_tag == "ITEM" ) {
         // found ITEM entry: for each file there is one
@@ -2075,7 +2084,17 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
     }
 
     if ( last_tag == "DISK_TYPE" ) {
-        if ( last_type == "media" ) {}
+        if ( last_type == "media" ) {
+                class_link_whereisit->last_media_type = 1;
+                if (currentText == "CD-R"  || currentText == "CD-ROM" || currentText == "CD+RW" )
+                        class_link_whereisit->last_media_type = 1;
+                else if (currentText == "DVD-R" || currentText == "DVD-ROM" || currentText == "DVD+R" || currentText == "DVD+R DL" || currentText == "DVD-R")
+                        class_link_whereisit->last_media_type = 2;
+                //else if (currentText == "BD-R" || currentText == "BD-RE" || currentText == "BD-ROM" || currentText == "DVD+R DL" || currentText == "DVD-R")
+                //              class_link_whereisit->last_media_type = 2;
+                else if (currentText == "ISO Image")
+                              class_link_whereisit->last_media_type = 1;
+        }
     }
 
     if ( last_tag == "PATH" ) {
@@ -2174,7 +2193,8 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
 
     if ( name2 == "ITEM" ) {
         if ( last_type == "media" ) {
-            std::cout << "add media: " << qPrintable(new_medianame) << endl;
+            if (*DEBUG_INFO_ENABLED)
+                std::cout << "add media: " << qPrintable(new_medianame) << endl;
             //        QMessageBox::warning (0, "info", medianame);
             medianame = new_medianame;
             //QDateTime datetime = datetime;
@@ -2188,8 +2208,7 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
             Node *env, *curr;
 
             env = db->getRootNode();
-            curr = db->putMediaNode ( new_medianame ,
-                                      number, QObject::tr ( "importuser" ) , CD, comment, datetime );
+            curr = db->putMediaNode ( new_medianame, number, QObject::tr ( "importuser" ), class_link_whereisit->last_media_type, comment, datetime );
 
             mediacount++;
             linecount++;
@@ -2337,6 +2356,7 @@ importWhereIsItXml::importWhereIsItXml ( GuiSlave * parent, QString filename, bo
     bool import_ok = true;
     last_tag = "";
     last_type = "empty";
+    last_media_type = 0;
     if ( !filename.isEmpty() ) {
 
         if ( parent->mainw->db == NULL )

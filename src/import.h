@@ -179,16 +179,16 @@ public:
     int filecount;
     int dircount;
     int refreshcount;
-		int tagcount;
+    int tagcount;
+    int number;
+    int filenumber;
+    int last_media_type;
+    float size;
     QString fullpath;
     QString path;
     QString filename;
-    float size;
-    QDate date;
     QString new_medianame;
     QString medianame;
-    int number;
-    int filenumber;
     QString datetimestring;
     QString line;
     QString folder;
@@ -201,12 +201,13 @@ public:
     QString directory;
     QString comment;
     QString last_tag;
-		//tag_type last_type;
-		QString last_type;
+    QString last_type;
     GuiSlave * guislave;
     QProgressDialog *progress;
     Node *last_upper_container_node;
     DataBase *db;
+    QDate date;
+		//tag_type last_type;
 protected:
 
 
