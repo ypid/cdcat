@@ -2126,6 +2126,15 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
             file = currentText.replace("\n", "");
         }
     }
+   
+       if ( last_tag == "EXT" ) {
+        if ( last_type == "file" ) {
+            //std::cout << "getCdata_whereisit_parse(): EXT: \"" << currentText.replace("\n", "") << "\"" << endl;
+//            std::cout << "getCdata_whereisit_parse(): EXT\""<< currentText.replace("\n", "") << "\", " << "cut: " << file.rightRef(currentText.replace("\n", "").length()+2)<< endl;
+            if (file.rightRef(currentText.replace("\n", "").length()+1) !=  QString("."+currentText.replace("\n", "")))
+                file += QString("."+currentText.replace("\n", ""));
+        }
+    }
 
     if ( last_tag == "TIME" ) {
         // found file time
