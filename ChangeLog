@@ -1,3 +1,9 @@
+18. Jun 2011 Christoph Thielecke <crissi99@gmx.de>
+	- handle different date formats on whereisit xml import
+	- import files/folder too if media number mismatch but media name match
+	- display some debug output on whereisit xml import only if debug output is enabled
+	- whereisit xml import speedup
+
 16. Jun 2011 Christoph Thielecke <crissi99@gmx.de>
 	- import media type (dvd) on whereisit xml import fixed
 	- add file extension in whereisit xml import if nessary

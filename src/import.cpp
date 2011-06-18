@@ -151,12 +151,12 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
                         cerr << "importGtktalogCsv:: " << lines << " lines found." << endl;    
             }
 
-            if ( f.open ( QIODevice::ReadOnly ) ) {	     // file opened successfully
+            if ( f.open ( QIODevice::ReadOnly ) ) {      // file opened successfully
 
                 QProgressDialog *progress = new QProgressDialog( tr ( "Importing CSV..." ), tr("Cancel"), 1, lines);
                 progress->setCancelButton ( 0 );
                 
-                QTextStream t ( &f );	             // use a text stream
+                QTextStream t ( &f );              // use a text stream
                 QString medianame = "";
                 QString comment = "";
                 QString category = "";
@@ -164,7 +164,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
                 QString import_filename = filename;
 
                 medialines = new QList < lineObject > ();
-                //medialines->setAutoDelete( TRUE );	// the list owns the objects
+                //medialines->setAutoDelete( TRUE );  // the list owns the objects
 
                 while ( !t.atEnd() ) {
                     QString line;
@@ -180,7 +180,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 
 
 
-                    line = t.readLine();	// line of text excluding '\n'
+                    line = t.readLine();  // line of text excluding '\n'
 //                     if(*DEBUG_INFO_ENABLED) {
 //                                  cerr << "line raw: " << qPrintable(line) << endl;
 //                     }
@@ -221,23 +221,23 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
                                 if (fullpath.at(0) != '/')
                                         fullpath = "/"+fullpath;
                                 //if(*DEBUG_INFO_ENABLED)
-                                //	cerr << "importGtktalogCsv fullpath: " << qPrintable(fullpath) << endl;
+                                //  cerr << "importGtktalogCsv fullpath: " << qPrintable(fullpath) << endl;
                                 new_medianame = ( line.left ( mediaindex ) );
                                 //if(*DEBUG_INFO_ENABLED)
-                                //	cerr << "importGtktalogCsv new_medianame: " << qPrintable(new_medianame) << endl;
+                                //  cerr << "importGtktalogCsv new_medianame: " << qPrintable(new_medianame) << endl;
 
                                 path = fullpath.mid(mediaindex + 1, medianame.length()+1);
                                 //if(*DEBUG_INFO_ENABLED)
-                                //	cerr << "importGtktalogCsv path: " << qPrintable(path) << endl;
+                                //  cerr << "importGtktalogCsv path: " << qPrintable(path) << endl;
 
                                 int sizeindex = line.find ( separator, pathindex + 1 );
                                 QString sizestring = line.mid ( pathindex + 1, sizeindex - pathindex - 1 ).stripWhiteSpace();
                                 //if(*DEBUG_INFO_ENABLED)
-                                //	cerr << "importGtktalogCsv sizestring: " << qPrintable(sizestring) << endl;
+                                //  cerr << "importGtktalogCsv sizestring: " << qPrintable(sizestring) << endl;
                                 size = ( ( line.mid ( pathindex + 1, sizeindex - pathindex - 1 ) ).stripWhiteSpace() ).toFloat();
 
                                 //if(*DEBUG_INFO_ENABLED)
-                                //	cerr << "importGtktalogCsv size: " << size << endl;
+                                //  cerr << "importGtktalogCsv size: " << size << endl;
 
                                 datetimestring = ( line.mid ( sizeindex + 1, line.length() ) ).stripWhiteSpace();
                                 if (*DEBUG_INFO_ENABLED)
@@ -272,7 +272,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 
                                 int fileindex = fullpath.lastIndexOf ( '/' );
                                 //if(*DEBUG_INFO_ENABLED)
-                                //	cerr << "importGtktalogCsv fileindex: " << fileindex << endl;
+                                //  cerr << "importGtktalogCsv fileindex: " << fileindex << endl;
 
                                 QString dirpath = "";
                                 if ( fileindex != 0 )
@@ -1341,7 +1341,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
                                 addNewItem ( new_medianame, dirpath, filename, size, datetime, comment, category );
                             }
 
-                    }			// valid line
+                    }     // valid line
                     linecount++;
                     progress->setValue ( linecount );
                     if(parent->mainw->app->hasPendingEvents())
@@ -1418,7 +1418,7 @@ int importGtktalogCsv::addNewItem ( QString medianame, QString path,
 int importGtktalogCsv::addNewMedia ( QString new_medianame, QDateTime media_modification, QString media_comment, QString media_category, QList < lineObject > *medialines ) {
     DEBUG_INFO_ENABLED = init_debug_info();
     //if(*DEBUG_INFO_ENABLED)
-    //	cerr << "importGtktalogCsv::addNewMedia media: " <<  qPrintable(new_medianame) << endl;
+    //  cerr << "importGtktalogCsv::addNewMedia media: " <<  qPrintable(new_medianame) << endl;
 
     if ( guislave->mainw->db == NULL )
         guislave->newEvent();
@@ -1435,7 +1435,7 @@ int importGtktalogCsv::addNewMedia ( QString new_medianame, QDateTime media_modi
     lineObject obj("", "", "", 0.0, QDateTime(), "", "");
     for ( int i = 0; i < medialines->size(); i++ ) {
         //if(*DEBUG_INFO_ENABLED)
-        //	cerr << "importGtktalogCsv::addNewMedia medialine: " << i << endl;
+        //  cerr << "importGtktalogCsv::addNewMedia medialine: " << i << endl;
         obj = medialines->at ( i );
         env = curr;
 
@@ -1517,24 +1517,24 @@ int importGtktalogCsv::addNewMedia ( QString new_medianame, QDateTime media_modi
 
 
  <directory>
-	<disc_name><![CDATA[_disc_]]></disc_name>
-	<directory_name><![CDATA[/_dir_/]]></directory_name>
-	<file_name><![CDATA[_filename_]]></file_name>
-	<file_size><![CDATA[_size_]]></file_size>
-	<file_date><![CDATA[_date_]]></file_date>
-	<category><![CDATA[_category_]]></category>
-	<description><![CDATA[_descripion_]]></description>
-	<information><![CDATA[_information_]]></information>
+  <disc_name><![CDATA[_disc_]]></disc_name>
+  <directory_name><![CDATA[/_dir_/]]></directory_name>
+  <file_name><![CDATA[_filename_]]></file_name>
+  <file_size><![CDATA[_size_]]></file_size>
+  <file_date><![CDATA[_date_]]></file_date>
+  <category><![CDATA[_category_]]></category>
+  <description><![CDATA[_descripion_]]></description>
+  <information><![CDATA[_information_]]></information>
 </directory>
 
  dummy values are:
- _disc_ 					==> disc name
- _dir_						==> directory
- _filename_			==> filename
- _size_					==> size
- _category_			==> category
- _descripion_		==> description
- _information_		==> information
+ _disc_           ==> disc name
+ _dir_            ==> directory
+ _filename_     ==> filename
+ _size_         ==> size
+ _category_     ==> category
+ _descripion_   ==> description
+ _information_    ==> information
 
  */
 
@@ -1742,7 +1742,7 @@ importGtktalogXml::importGtktalogXml ( GuiSlave * parent, QString filename, bool
         guislave->panelsOFF();
 
         QFile f ( filename );
-        QTextStream t ( &f );	// use a text stream
+        QTextStream t ( &f ); // use a text stream
 
         if ( f.open ( QIODevice::ReadOnly ) ) {
             QString tmp = "";
@@ -2011,37 +2011,52 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
         // just the start of each file
     }
 
-    if ( last_tag == "DISK_NUM" ) {
+    else if ( last_tag == "DISK_NUM" ) {
         number = currentText.toInt();
-        //		std::cout << "number: " << QString().setNum( number ) << endl;
+        //    std::cout << "number: " << QString().setNum( number ) << endl;
 
     }
 
-    if ( last_tag == "SIZE" ) {
+    else if ( last_tag == "SIZE" ) {
         if ( last_type == "file" ) {
             currentText = currentText.remove( ' ' );
             currentText.replace ( QRegExp ( " " ),"" );
-            //				std::cout << "cleaned: " << currentText << endl;
+            //        std::cout << "cleaned: " << currentText << endl;
             size = currentText.toInt();
         }
     }
 
-    if ( last_tag == "DATE" ) {
+    else if ( last_tag == "DATE" ) {
 
         currentText.stripWhiteSpace();
 
-        int dayindex = currentText.find( "-",0 );
-        int monthindex = currentText.find( "-", dayindex - 1 );
-        int yearindex = currentText.find("-", monthindex+1);
-//             std::cout << "date: " << qPrintable(currentText) << endl;
-
-//             std::cout << "daystr: " << qPrintable(currentText.mid ( 0, dayindex ))  << ", dayindex: " << dayindex << endl;
-        int day = ( currentText.mid ( 0, dayindex ) ).toInt();
-//             		std::cout << "day: " << day << endl;
-
-        QString month_str = currentText.mid ( monthindex+1, yearindex-monthindex-dayindex-3 ) ;
-//             	std::cout << "month_str: " << qPrintable( month_str) << endl;
+        int index0 = currentText.find( "-",0 );
+        int index1 = currentText.find( "-", index0 - 1 );
+        int index2 = currentText.find("-", index1+1);
+        int day=1;
         int month=1;
+        int year=2010;
+        QString month_str="";
+        if (index0 == 2) {
+               // DD-MM-YYYY
+               //std::cout << "date: " << qPrintable(currentText) << endl;
+               day = ( currentText.mid ( 0, index0 ) ).toInt();
+               //std::cout << "day: " << day << endl;
+               month_str = currentText.mid ( index1+1, index2-index1-index0-3 ) ;
+               //std::cout << "month_str: " << qPrintable( month_str) << endl;
+               year = currentText.mid( index2+1).toInt();
+        }
+        if (index0 == 4) {
+                // YYYY-MM-DD
+                //std::cout << "date: " << qPrintable(currentText) << endl;
+               year = ( currentText.mid ( 0, index0 ) ).toInt();
+               //std::cout << "day: " << day << endl;
+               month_str = currentText.mid ( index1+1, index2-index1-index0-3 ) ;
+               //std::cout << "month_str: " << qPrintable( month_str) << endl;
+               day = currentText.mid( index2+1).toInt();           
+        }
+        
+        month=1;
         if ( month_str == "JAN" )
             month = 1;
         else if ( month_str == "FEB" )
@@ -2067,11 +2082,8 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
         else if ( month_str == "DEC" || month_str == "DEZ" )
             month = 12;
 
-        //			std::cout << "month: " << month << endl;
+        //                      std::cout << "month: " << month << endl;
 
-        int year = currentText.mid( yearindex+1).toInt();
-
-//             std::cout << "year : " << qPrintable( currentText.mid( yearindex+1)) << endl;
         QDate date ( year, month, day );
         if ( !date.isValid() )
             date = QDate::currentDate ();
@@ -2079,11 +2091,11 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
         datetime.setDate ( date );
     }
 
-    if ( last_tag == "DISK_NAME" ) {
+    else if ( last_tag == "DISK_NAME" ) {
         if ( last_type == "media" ) {}
     }
 
-    if ( last_tag == "DISK_TYPE" ) {
+    else if ( last_tag == "DISK_TYPE" ) {
         if ( last_type == "media" ) {
                 class_link_whereisit->last_media_type = 1;
                 if (currentText == "CD-R"  || currentText == "CD-ROM" || currentText == "CD+RW" )
@@ -2097,27 +2109,27 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
         }
     }
 
-    if ( last_tag == "PATH" ) {
+    else if ( last_tag == "PATH" ) {
         if ( last_type == "folder" ) {
-//                 			std::cout << "getCdata_whereisit_parse(): PATH: \"" << qPrintable(currentText.replace("\n", "")) << "\"" << endl;
+//                      std::cout << "getCdata_whereisit_parse(): PATH: \"" << qPrintable(currentText.replace("\n", "")) << "\"" << endl;
             path = currentText.replace("\n", "");
         }
 
         if ( last_type == "file" ) {
-//                 			std::cout << "getCdata_whereisit_parse(): PATH: \"" << qPrintable(currentText.replace("\n", "")) << "\"" << endl;
+//                      std::cout << "getCdata_whereisit_parse(): PATH: \"" << qPrintable(currentText.replace("\n", "")) << "\"" << endl;
             path = currentText.replace("\n", "");
         }
 
     }
 
-    if ( last_tag == "NAME" ) {
+    else if ( last_tag == "NAME" ) {
         if ( last_type == "media" ) {
             //std::cout << "getCdata_whereisit_parse(): NAME: \"" << currentText.replace("\n", "") << "\"" << endl;
             new_medianame = currentText.replace("\n", "");
         }
 
         if ( last_type == "folder" ) {
-            //			std::cout << "getCdata_whereisit_parse(): DATA: \"" << currentText.replace("\n", "") << "\"" << endl;
+            //      std::cout << "getCdata_whereisit_parse(): DATA: \"" << currentText.replace("\n", "") << "\"" << endl;
             folder = currentText.replace("\n", "");
         }
 
@@ -2127,7 +2139,7 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
         }
     }
    
-       if ( last_tag == "EXT" ) {
+    else if ( last_tag == "EXT" ) {
         if ( last_type == "file" ) {
             //std::cout << "getCdata_whereisit_parse(): EXT: \"" << currentText.replace("\n", "") << "\"" << endl;
 //            std::cout << "getCdata_whereisit_parse(): EXT\""<< currentText.replace("\n", "") << "\", " << "cut: " << file.rightRef(currentText.replace("\n", "").length()+2)<< endl;
@@ -2136,7 +2148,7 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
         }
     }
 
-    if ( last_tag == "TIME" ) {
+    else if ( last_tag == "TIME" ) {
         // found file time
 
         datetimestring = currentText.stripWhiteSpace();
@@ -2155,7 +2167,7 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
 
     }
 
-    if ( last_tag == "DESC" ) {
+    else if ( last_tag == "DESC" ) {
         // tmp
         currentText.truncate ( 254 );
 
@@ -2171,16 +2183,8 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
             comment = currentText;
         }
     }
-
-
-
-
-    QString name2 = tag;
-
-    last_tag = "";
-    QString line = "";
-
-    if ( name2 == "DATA" ) {
+    
+    if ( tag == "DATA" ) {
         if ( last_type == "media" ) {
             QString line = "\"" + new_medianame + "\"\n";
             if (*DEBUG_INFO_ENABLED)
@@ -2200,7 +2204,7 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
         }
     }
 
-    if ( name2 == "ITEM" ) {
+    else if ( tag == "ITEM" ) {
         if ( last_type == "media" ) {
             if (*DEBUG_INFO_ENABLED)
                 std::cout << "add media: " << qPrintable(new_medianame) << endl;
@@ -2223,32 +2227,38 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
             linecount++;
             //last_upper_container_node = db->getRootNode();
             last_type = "empty";
-            //			guislave->mainw->app->processEvents();
+            //      guislave->mainw->app->processEvents();
         } // media
 
         if ( last_type == "folder" ) {
 
             if ( db != NULL ) {
-                std::cout << "add folder: " << qPrintable(folder) << endl;
+                if (*DEBUG_INFO_ENABLED)
+                        std::cout << "add folder: " << qPrintable(folder) << endl;
                 Node * env2, *curr2, *curr3;
                 env2 = db->getMediaNode ( number ) ;
+								
+								if (env2 == NULL) {
+								    // try name now....
+								    env2 = db->getMediaNode ( new_medianame ) ;
+								}
 
 
                 if ( env2 != NULL ) {
                     curr3 = env2;
                     if ( path.length() > 1 ) {
-                        //				std::cout << "path: \"" << path << "\"" << endl;
+                        //        std::cout << "path: \"" << path << "\"" << endl;
 
                         QString tmp_path = path;
                         QString tmp_path2 = "";
-                        /*							int index = 1;
-                        							int index2 = 1;*/
+                        /*              int index = 1;
+                                      int index2 = 1;*/
                         QStringList fields = QStringList::split ( '\\', tmp_path );
 
                         for ( QStringList::Iterator point = fields.begin(); point != fields.end(); ++point ) {
                             tmp_path2 = *point;
 
-                            //				std::cout << "subpath: \"" << tmp_path2 << "\"" << endl;
+                            //        std::cout << "subpath: \"" << tmp_path2 << "\"" << endl;
 
                             if ( tmp_path2 != "" ) {
                                 curr2 = curr3;
@@ -2271,13 +2281,14 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
             dircount++;
             linecount++;
             last_type = "empty";
-            //			guislave->mainw->app->processEvents();
+            //      guislave->mainw->app->processEvents();
         } // folder
 
         if ( last_type == "file" ) {
 
             if ( db != NULL ) {
-                std::cout << "add file: " << qPrintable(file) << endl;
+                if (*DEBUG_INFO_ENABLED)
+                        std::cout << "add file: " << qPrintable(file) << endl;
                 Node * env2, *curr2, *curr3;
                 float s;
                 int st;
@@ -2299,23 +2310,26 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
                 }
 
                 env2 = db->getMediaNode ( number ) ;
-
+								if (env2 == NULL) {
+								    // try name now....
+								    env2 = db->getMediaNode ( new_medianame ) ;
+								}
 
                 if ( env2 != NULL ) {
                     curr3 = env2;
                     if ( path.length() > 1 ) {
-                        //				std::cout << "path: \"" << path << "\"" << endl;
+                        //        std::cout << "path: \"" << path << "\"" << endl;
 
                         QString tmp_path = path;
                         QString tmp_path2 = "";
-                        /*							int index = 1;
-                        							int index2 = 1;*/
+                        /*              int index = 1;
+                                      int index2 = 1;*/
                         QStringList fields = QStringList::split ( '\\', tmp_path );
 
                         for ( QStringList::Iterator point = fields.begin(); point != fields.end(); ++point ) {
                             tmp_path2 = *point;
 
-                            //				std::cout << "subpath: \"" << tmp_path2 << "\"" << endl;
+                            //        std::cout << "subpath: \"" << tmp_path2 << "\"" << endl;
 
                             if ( tmp_path2 != "" ) {
                                 curr2 = curr3;
@@ -2329,7 +2343,8 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
 
                     }
 
-                    std::cout << "file: \"" << qPrintable(file) << "\"" << endl;
+                    if (*DEBUG_INFO_ENABLED)
+                        std::cout << "file: \"" << qPrintable(file) << "\"" << endl;
 
                     curr3 = db->putFileNode ( curr3 ,  file ,  datetime , comment , st, s );
                     comment="";
@@ -2348,6 +2363,7 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
         } // file
 
     } // ITEM
+    //last_tag = tag;
     currentText = "";
     return TRUE;
 }
@@ -2392,7 +2408,7 @@ importWhereIsItXml::importWhereIsItXml ( GuiSlave * parent, QString filename, bo
         guislave->panelsOFF();
 
         QFile f ( filename );
-        QTextStream t ( &f );	// use a text stream
+        QTextStream t ( &f ); // use a text stream
 
         int all_lines = 0;
 
@@ -2402,12 +2418,12 @@ importWhereIsItXml::importWhereIsItXml ( GuiSlave * parent, QString filename, bo
         if ( ( filehdl = fopen ( filename, "r" ) ) == NULL )
             std::cerr << "Can't open " << qPrintable ( filename ) << endl;
         else {
-            //			file_raise( f, FALSE );
-            //			statfile( f );
+            //      file_raise( f, FALSE );
+            //      statfile( f );
             while ( ( c = getc ( filehdl ) ) != EOF ) {
                 if ( c == '\n' )
                     all_lines++;
-                //			guislave->mainw->app->processEvents();
+                //      guislave->mainw->app->processEvents();
             }
 
             fclose ( filehdl );
@@ -2418,17 +2434,17 @@ importWhereIsItXml::importWhereIsItXml ( GuiSlave * parent, QString filename, bo
 
 
         /*
-        		if ( f.open( IO_ReadOnly ) ) {
-        			QString tmp = "";
-        			while ( !t.eof() ) {
-        				tmp = t.readLine();
-        				if ( tmp.contains( "<ROW " ) )
-        					all_lines++;
-        				guislave->mainw->app->processEvents();
-        			}
-        			f.close();
-        		}
-        		*/
+            if ( f.open( IO_ReadOnly ) ) {
+              QString tmp = "";
+              while ( !t.eof() ) {
+                tmp = t.readLine();
+                if ( tmp.contains( "<ROW " ) )
+                  all_lines++;
+                guislave->mainw->app->processEvents();
+              }
+              f.close();
+            }
+            */
 
         lines = all_lines;
 
@@ -2438,7 +2454,7 @@ importWhereIsItXml::importWhereIsItXml ( GuiSlave * parent, QString filename, bo
         progress = new QProgressDialog( tr ( "Importing XML..." ), tr("Cancel"), 1, lines);
         progress->setCancelButton ( 0 );
 
-        //	guislave->mainw->status->setText(tr("Importing xml..."));
+        //  guislave->mainw->status->setText(tr("Importing xml..."));
 
         line = "";
         fullpath = "";
@@ -2463,7 +2479,7 @@ importWhereIsItXml::importWhereIsItXml ( GuiSlave * parent, QString filename, bo
     } else {
         import_ok = false;
     }
-    //	guislave->mainw->status->setText(tr("Finished."));
+    //  guislave->mainw->status->setText(tr("Finished."));
     if ( import_ok ) {
 
         ( guislave->mainw->db->getRootNode() ) ->touchDB();
@@ -2566,8 +2582,8 @@ import::import ( GuiSlave * parent ) {
         else if ( type == 10 )
             importGtktalogCsv import ( parent, separator, filename, createdatabase, false, "whereisit" );
         else {
-            //		cerr << "wrong type!!!" << endl;
+            //    cerr << "wrong type!!!" << endl;
         }
     }
 }
-// kate: indent-mode cstyle; space-indent on; indent-width 0; 
+// kate: indent-mode cstyle; replace-tabs off; tab-width 2;   ;
