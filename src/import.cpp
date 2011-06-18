@@ -2006,18 +2006,14 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
     if(*DEBUG_INFO_ENABLED)
         cout << "cdata: " << qPrintable(currentText) << endl;
 
-    if ( last_tag == "ITEM" ) {
-        // found ITEM entry: for each file there is one
-        // just the start of each file
-    }
 
-    else if ( last_tag == "DISK_NUM" ) {
+    if ( tag == "DISK_NUM" ) {
         number = currentText.toInt();
         //    std::cout << "number: " << QString().setNum( number ) << endl;
 
     }
 
-    else if ( last_tag == "SIZE" ) {
+    else if ( tag == "SIZE" ) {
         if ( last_type == "file" ) {
             currentText = currentText.remove( ' ' );
             currentText.replace ( QRegExp ( " " ),"" );
@@ -2026,7 +2022,7 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
         }
     }
 
-    else if ( last_tag == "DATE" ) {
+    else if ( tag == "DATE" ) {
 
         currentText.stripWhiteSpace();
 
@@ -2091,11 +2087,11 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
         datetime.setDate ( date );
     }
 
-    else if ( last_tag == "DISK_NAME" ) {
+    else if ( tag == "DISK_NAME" ) {
         if ( last_type == "media" ) {}
     }
 
-    else if ( last_tag == "DISK_TYPE" ) {
+    else if ( tag == "DISK_TYPE" ) {
         if ( last_type == "media" ) {
                 class_link_whereisit->last_media_type = 1;
                 if (currentText == "CD-R"  || currentText == "CD-ROM" || currentText == "CD+RW" )
@@ -2109,7 +2105,7 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
         }
     }
 
-    else if ( last_tag == "PATH" ) {
+    else if ( tag == "PATH" ) {
         if ( last_type == "folder" ) {
 //                      std::cout << "getCdata_whereisit_parse(): PATH: \"" << qPrintable(currentText.replace("\n", "")) << "\"" << endl;
             path = currentText.replace("\n", "");
@@ -2122,7 +2118,7 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
 
     }
 
-    else if ( last_tag == "NAME" ) {
+    else if ( tag == "NAME" ) {
         if ( last_type == "media" ) {
             //std::cout << "getCdata_whereisit_parse(): NAME: \"" << currentText.replace("\n", "") << "\"" << endl;
             new_medianame = currentText.replace("\n", "");
@@ -2139,7 +2135,7 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
         }
     }
    
-    else if ( last_tag == "EXT" ) {
+    else if ( tag == "EXT" ) {
         if ( last_type == "file" ) {
             //std::cout << "getCdata_whereisit_parse(): EXT: \"" << currentText.replace("\n", "") << "\"" << endl;
 //            std::cout << "getCdata_whereisit_parse(): EXT\""<< currentText.replace("\n", "") << "\", " << "cut: " << file.rightRef(currentText.replace("\n", "").length()+2)<< endl;
@@ -2148,7 +2144,7 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
         }
     }
 
-    else if ( last_tag == "TIME" ) {
+    else if ( tag == "TIME" ) {
         // found file time
 
         datetimestring = currentText.stripWhiteSpace();
@@ -2167,44 +2163,50 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
 
     }
 
-    else if ( last_tag == "DESC" ) {
+    else if ( tag == "DESC" || tag == "DESCRIPTION" ) {
         // tmp
         currentText.truncate ( 254 );
 
         if ( last_type == "media" ) {
             comment = currentText;
+            if (*DEBUG_INFO_ENABLED)
+                std::cout << "media comment found: " << qPrintable(currentText) << endl;
         }
 
         if ( last_type == "folder" ) {
             comment = currentText;
+            if (*DEBUG_INFO_ENABLED)
+                std::cout << "folder comment found: " << qPrintable(currentText) << endl;
         }
 
         if ( last_type == "file" ) {
             comment = currentText;
+            if (*DEBUG_INFO_ENABLED)
+                std::cout << "file comment found: " << qPrintable(currentText) << endl;
         }
     }
     
-    if ( tag == "DATA" ) {
-        if ( last_type == "media" ) {
-            QString line = "\"" + new_medianame + "\"\n";
-            if (*DEBUG_INFO_ENABLED)
-                std::cout << "media name found: " << qPrintable(line) << endl;
-        }
+//     if ( tag == "DATA" ) {
+//         if ( last_type == "media" ) {
+//             QString line = "\"" + new_medianame + "\"\n";
+//             if (*DEBUG_INFO_ENABLED)
+//                 std::cout << "media name found: " << qPrintable(line) << endl;
+//         }
+// 
+//         if ( last_type == "folder" ) {
+//             QString line = "\"" + folder + "\"\n";
+//             if (*DEBUG_INFO_ENABLED)
+//                 std::cout << "folder name found: " << qPrintable(line) << endl;
+//         }
+// 
+//         if ( last_type == "file" ) {
+//             QString line = "\"" + file + "\"\n";
+//             if (*DEBUG_INFO_ENABLED)
+//                 std::cout << "file name found: " << qPrintable(line) << endl;
+//         }
+//     }
 
-        if ( last_type == "folder" ) {
-            QString line = "\"" + folder + "\"\n";
-            if (*DEBUG_INFO_ENABLED)
-                std::cout << "folder name found: " << qPrintable(line) << endl;
-        }
-
-        if ( last_type == "file" ) {
-            QString line = "\"" + file + "\"\n";
-            if (*DEBUG_INFO_ENABLED)
-                std::cout << "file name found: " << qPrintable(line) << endl;
-        }
-    }
-
-    else if ( tag == "ITEM" ) {
+    if ( tag == "ITEM" ) {
         if ( last_type == "media" ) {
             if (*DEBUG_INFO_ENABLED)
                 std::cout << "add media: " << qPrintable(new_medianame) << endl;
@@ -2231,14 +2233,12 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
         } // media
 
         if ( last_type == "folder" ) {
-
             if ( db != NULL ) {
-                if (*DEBUG_INFO_ENABLED)
-                        std::cout << "add folder: " << qPrintable(folder) << endl;
+
                 Node * env2, *curr2, *curr3;
                 env2 = db->getMediaNode ( number ) ;
 								
-								if (env2 == NULL) {
+								if (env2 == NULL && !new_medianame.isEmpty()) {
 								    // try name now....
 								    env2 = db->getMediaNode ( new_medianame ) ;
 								}
@@ -2264,15 +2264,16 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
                                 curr2 = curr3;
                                 curr3 = db->getDirectoryNode ( curr3, tmp_path2 );
 
-                                if ( curr3 == NULL )
+                                if ( curr3 == NULL ) {
+																	  if (*DEBUG_INFO_ENABLED)
+																				std::cout << "add folder: " << qPrintable(tmp_path2) << "/" << qPrintable(folder) /*<< ", comment: " << qPrintable(comment)*/ << endl;
                                     curr3 = db->putDirectoryNode ( curr2, tmp_path2 , datetime , comment );
-                                comment="";
+																}
                             }
                         }
 
                     }
                     curr3 = db->putDirectoryNode ( curr3 , folder , datetime , comment );
-                    comment="";
 
 
                 }
@@ -2287,8 +2288,6 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
         if ( last_type == "file" ) {
 
             if ( db != NULL ) {
-                if (*DEBUG_INFO_ENABLED)
-                        std::cout << "add file: " << qPrintable(file) << endl;
                 Node * env2, *curr2, *curr3;
                 float s;
                 int st;
@@ -2310,7 +2309,7 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
                 }
 
                 env2 = db->getMediaNode ( number ) ;
-								if (env2 == NULL) {
+								if (env2 == NULL && !new_medianame.isEmpty()) {
 								    // try name now....
 								    env2 = db->getMediaNode ( new_medianame ) ;
 								}
@@ -2335,9 +2334,11 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
                                 curr2 = curr3;
                                 curr3 = db->getDirectoryNode ( curr3,  tmp_path2 );
 
-                                if ( curr3 == NULL )
+                                if ( curr3 == NULL ) {
+																				 if (*DEBUG_INFO_ENABLED)
+																				std::cout << "add file: " << qPrintable(tmp_path2) << "/" << qPrintable(file) << /*", comment: " << qPrintable(comment) <<*/ endl;
                                     curr3 = db->putDirectoryNode ( curr2, tmp_path2 , datetime , comment );
-                                comment="";
+																}
                             }
                         }
 
@@ -2347,7 +2348,6 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
                         std::cout << "file: \"" << qPrintable(file) << "\"" << endl;
 
                     curr3 = db->putFileNode ( curr3 ,  file ,  datetime , comment , st, s );
-                    comment="";
 
 
                 }
@@ -2361,9 +2361,8 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
 
 
         } // file
-
+				comment="";
     } // ITEM
-    //last_tag = tag;
     currentText = "";
     return TRUE;
 }
@@ -2586,4 +2585,4 @@ import::import ( GuiSlave * parent ) {
         }
     }
 }
-// kate: indent-mode cstyle; replace-tabs off; tab-width 2;   ;
+// kate: indent-mode cstyle; replace-tabs off; tab-width 2;    ;
