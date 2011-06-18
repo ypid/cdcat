@@ -19,6 +19,7 @@ Copyright : (C) 2003 Christoph Thielecke
 #include <qprogressdialog.h>
 
 #include <QtXml/QXmlDefaultHandler>
+#include <QtXml/QXmlLocator>
 
 #include <string.h>
 #include <stdio.h>
@@ -153,6 +154,8 @@ Q_OBJECT public:
 	bool endElement( const QString&, const QString&, const QString& );
 	bool characters ( const QString & ch ) ;
 	bool fatalError(const QXmlParseException &exception);
+	void setDocumentLocator ( QXmlLocator * locator );
+	QXmlLocator *locator;
 	QXmlAttributes attr;
 
 	protected:
@@ -171,7 +174,6 @@ public:
     importWhereIsItXml ( GuiSlave * parent, QString filename, bool createdatabase );
     ~importWhereIsItXml();
 
-    void setProgress();
 
 //	int lines;
     int linecount;
@@ -216,7 +218,8 @@ protected:
 		bool endElement( const QString&, const QString&, const QString& );
 		bool characters ( const QString & ch ) ;
 		bool fatalError(const QXmlParseException &exception);
-
+		void setDocumentLocator ( QXmlLocator * locator );
+		QXmlLocator *locator;
 		QXmlAttributes attr;
 	
 	protected:

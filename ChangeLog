@@ -4,6 +4,7 @@
 	- display some debug output on whereisit xml import only if debug output is enabled
 	- whereisit xml import speedup
 	- comments in new style  now handled by whereisit xml import
+	- progressdialog at xml import added (whereisit, gtktalog)
 
 16. Jun 2011 Christoph Thielecke <crissi99@gmx.de>
 	- import media type (dvd) on whereisit xml import fixed

@@ -1707,10 +1707,18 @@ bool importGtktalogXml::endElement( const QString&, const QString & tag, const Q
 }
 
 bool importGtktalogXml::characters ( const QString & ch ) {
-
     tag_content += ch;
+		progress->setValue (locator->lineNumber() );
+		if (guislave->mainw->app->hasPendingEvents())
+			guislave->mainw->app->processEvents();
     return TRUE;
 }
+
+void importGtktalogXml::setDocumentLocator ( QXmlLocator * locator ) {
+	this->locator = locator;
+	QXmlDefaultHandler::setDocumentLocator(locator);
+}
+
 
 importGtktalogXml::importGtktalogXml ( GuiSlave * parent, QString filename, bool createdatabase ) {
     this->guislave = parent;
@@ -2356,7 +2364,6 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
             filecount++;
             linecount++;
             last_type = "empty";
-            setProgress();
 
 
 
@@ -2372,8 +2379,17 @@ bool importWhereIsItXml::characters ( const QString & ch ) {
 
     QString name2 = ch;
     currentText+= ch;
+		progress->setValue (locator->lineNumber() );
+		if (guislave->mainw->app->hasPendingEvents())
+						guislave->mainw->app->processEvents();
     return true;
 }
+
+void importWhereIsItXml::setDocumentLocator ( QXmlLocator * locator ) {
+	this->locator = locator;
+	QXmlDefaultHandler::setDocumentLocator(locator);
+}
+
 
 importWhereIsItXml::importWhereIsItXml ( GuiSlave * parent, QString filename, bool createdatabase ) {
     this->guislave = parent;
@@ -2474,7 +2490,6 @@ importWhereIsItXml::importWhereIsItXml ( GuiSlave * parent, QString filename, bo
         reader.setContentHandler( this );
         reader.setErrorHandler(this);
         reader.parse( source );
-        progress->hide();
     } else {
         import_ok = false;
     }
@@ -2516,13 +2531,6 @@ importWhereIsItXml::importWhereIsItXml ( GuiSlave * parent, QString filename, bo
 
 importWhereIsItXml::~importWhereIsItXml() {
     delete ( progress );
-}
-
-void importWhereIsItXml::setProgress() {
-    //std::cout << "setProgress(): " << linecount << "\n";
-//     int line = XML_GetCurrentLineNumber ( parser );
-//     progress->setProgress ( line );
-    guislave->mainw->app->processEvents();
 }
 
 bool importWhereIsItXml::fatalError(const QXmlParseException &exception)
