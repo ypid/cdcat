@@ -168,12 +168,27 @@ DirectoryView::DirectoryView ( QWidget *parent, const char *name )
 //    ++i; //Skip reading floppy drive on startup.
 //#endif
 
+
     for ( int ri = 0; ri < roots->size(); ++ri ) {
         QFileInfo *fi = new QFileInfo ( roots->at ( ri ) );
         Directory * root = new Directory ( this, fi->filePath() );
         if ( roots->count() >= 1 )
             root->setOpen ( TRUE );
     }
+#ifdef Q_WS_MAC
+    //Directory * volume_dir = new Directory ( this, "/Volumes" );
+    QDir *volumedir = new QDir("/Volumes");
+    QFileInfoList *volumes = new QFileInfoList( volumedir->entryInfoList());
+    for ( int ri = 0; ri < volumes->size(); ++ri ) {
+        QFileInfo *fi = new QFileInfo ( volumes->at ( ri ) );
+        if(fi->fileName() == QString(".") || fi->fileName() == QString(".."))
+		continue;
+        Directory * root = new Directory ( this, fi->filePath() );
+        if ( volumes->count() >= 1 )
+            root->setOpen ( TRUE );
+    }
+setDir("Volumes");
+#endif
 
     setAllColumnsShowFocus ( TRUE );
     repaint();
