@@ -815,12 +815,12 @@ QString FileReader::getCatName ( void ) {
 	
 	/* now read the buffer */
 	len = 0;
-	int readcount = 0;
+	int readcount = -1;
 	char tmpbuffer[1024];
 	
 	if (*DEBUG_INFO_ENABLED)
 		std::cerr <<"start reading file..." <<endl;
-	while (len != 20  ) {
+	while (readcount == -1 || readcount > 0 ) {
 		progress ( pww );
 		readcount = gzread(f, tmpbuffer, 1024);
 		len += readcount;
@@ -832,9 +832,10 @@ QString FileReader::getCatName ( void ) {
 	if (*DEBUG_INFO_ENABLED)
 		std::cerr << "read done: " << len << " of " << allocated_buffer_len << " bytes" << endl;
 	
-
+	sp = NULL;
 	
 	CdCatXmlHandler *handler = new CdCatXmlHandler(this, true); // only catalog name
+	
 	handler->setPww(pww);
 	pww->showProgress = true;
 	pww->steps = linecount;
@@ -849,7 +850,7 @@ QString FileReader::getCatName ( void ) {
 		mysource.setData(QString(dataBuffer));
 	}
 	else {
-		pww->setProgressText(DataBase::tr("Converting to unicode, please wait..."));
+		//pww->setProgressText(DataBase::tr("Converting to unicode, please wait..."));
 		if (*DEBUG_INFO_ENABLED)
 			std::cerr <<"set data source to utf8  converted text..." <<endl;
 		mysource.setData(converter->toUnicode (QString(dataBuffer)));
@@ -879,6 +880,7 @@ QString FileReader::getCatName ( void ) {
 
 CdCatXmlHandler::CdCatXmlHandler(FileReader *r, bool onlyCatalog) {
 	this->r = r;
+	data = r;
 	this->onlyCatalog=onlyCatalog;
 }
 
@@ -909,7 +911,7 @@ bool CdCatXmlHandler::startElement ( const QString & namespaceURI, const QString
     float tf1;
     int   ti1;
 
-    void *data = r;
+    
 
     if ( FREA->error || FREA->pww->doCancel )
 	return false;
@@ -953,6 +955,9 @@ bool CdCatXmlHandler::startElement ( const QString & namespaceURI, const QString
     else if ( el == "datafile"  ) {
         Node *tmp=FREA->sp;
         if ( FREA->insert )
+		return false;
+
+	if (FREA->sp == NULL)
 		return false;
 
         while ( tmp->type != HC_CATALOG ) tmp=tmp->parent;
@@ -1264,16 +1269,22 @@ bool CdCatXmlHandler::endElement ( const QString & namespaceURI, const QString &
     }
 
     else if ( el == "media") {
+	if (FREA->sp == NULL)
+		return false;
         /*Restore the parent node tho the actual node:*/
         FREA->sp = FREA->sp->parent;
     }
 
     else if ( el == "directory" ) {
+	if (FREA->sp == NULL)
+		return false;
         /*Restore the parent node tho the actual node:*/
         FREA->sp = FREA->sp->parent;
     }
 
     else if ( el == "file" ) {
+	if (FREA->sp == NULL)
+		return false;
         /*Restore the parent node tho the actual node:*/
         FREA->sp = FREA->sp->parent;
     }
@@ -1294,6 +1305,8 @@ bool CdCatXmlHandler::endElement ( const QString & namespaceURI, const QString &
 
     else if ( el == "catlnk" ) {
         /*Restore the parent node tho the actual node:*/
+	if (FREA->sp == NULL)
+		return false;
         FREA->sp = FREA->sp->parent;
     }
 
@@ -1327,6 +1340,8 @@ bool CdCatXmlHandler::endElement ( const QString & namespaceURI, const QString &
     else if ( el == "comment" ) {
 	while (currentText.length() > 0 && currentText.at(0) == '\n')
 		currentText = currentText.right(currentText.length()-1);
+	if (FREA->sp == NULL)
+		return false;
         switch ( FREA->sp->type ) {
 	case HC_CATALOG  :
 //             ( ( DBCatalog    * ) ( FREA->sp->data ) ) -> comment = FREA->get_cutf8 ( currentText );
@@ -1357,6 +1372,8 @@ bool CdCatXmlHandler::endElement ( const QString & namespaceURI, const QString &
     }
 
     else if ( el == "category" ) {
+	if (FREA->sp == NULL)
+		return false;
         switch ( FREA->sp->type ) {
         case HC_CATALOG  :
 
@@ -1389,6 +1406,8 @@ bool CdCatXmlHandler::endElement ( const QString & namespaceURI, const QString &
     }
 
     else if ( el == "borrow" ) {
+	if (FREA->sp == NULL)
+		return false;
         switch ( FREA->sp->type ) {
         case HC_CATALOG  :
         case HC_DIRECTORY:

@@ -919,9 +919,9 @@ void DataBase::addLnk ( const char *loc ) {
     QString catname;
     gzFile f=NULL;
     FileReader *fw = NULL;
+    DEBUG_INFO_ENABLED = init_debug_info();
 
-    Node *tmp=root->child,
-              *n = new Node ( HC_CATLNK,root );
+    Node *tmp=root->child, *n = new Node ( HC_CATLNK,root );
 
     /* Reading database name from the pointed file */
     f = gzopen ( loc,"rb" );
@@ -959,6 +959,7 @@ void DataBase::addLnk ( const char *loc ) {
     /* end memtest */
 
     fw = new FileReader ( f, allocated_buffer, filesize );
+    fw->pww = pww;
     catname=fw->getCatName();
     if ( catname.isEmpty() ) {
         QMessageBox::warning ( NULL,tr ( "Error" ),tr ( "Error while parsing file: %1" ).arg ( loc ) );

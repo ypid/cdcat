@@ -122,6 +122,7 @@ class CdCatXmlHandler : public QXmlDefaultHandler {
 		QXmlLocator *locator;
 		long long int lines;
 		PWw *pww;
+		void *data;
 };
 
 
