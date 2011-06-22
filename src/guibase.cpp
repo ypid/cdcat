@@ -1739,10 +1739,13 @@ int GuiSlave::addlnkEvent ( void ) {
     AddLnk *al = new AddLnk ( this, mainw );
     al->exec();
     if ( al->ok ) {
+	PWw *pww = new PWw ( mainw,mainw->app );
+	mainw->db->pww = pww;
         panelsOFF();
         mainw->db->addLnk ( ( const char * ) QFile::encodeName ( al->fname->text() ) );
         panelsON();
     }
+    mainw->db->pww->hide();
     delete al;
     cHcaption();
     return 0;
