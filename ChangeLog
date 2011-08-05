@@ -1,3 +1,12 @@
+05. Aug 2011 Christoph Thielecke <crissi99@gmx.de>
+	- translations from old qt3 version readded: fr, it, sr (unmaintained)
+
+04. Aug 2011 Christoph Thielecke <crissi99@gmx.de>
+	- comment widget now expands if the text inside is larger than viewport 
+	- archive scanning added (needs libtar, libbzip2, lib7zip)
+	- recent catalog menu reversed (last used now on top)
+	- config dialog size optimizions
+
 22. Jun 2011 Christoph Thielecke <crissi99@gmx.de>
 	- crash at adding cdcat link fixed
 

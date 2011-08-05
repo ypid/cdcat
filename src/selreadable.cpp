@@ -144,7 +144,7 @@ SelReadable::SelReadable ( CdCatConfig *confp,QWidget* parent, const char* name,
     schanged ( 0 );
 }
 
-int SelReadable::schanged ( int state ) {
+int SelReadable::schanged ( int ) {
     if ( cbCont->isChecked() ) {
         lineFiles->setEnabled ( true );
         maxSpinBox->setEnabled ( true );

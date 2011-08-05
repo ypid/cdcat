@@ -360,7 +360,7 @@ void addDialog::autoDetectAtMountToggled() {
 #endif
 }
 
-void addDialog::cbTypeToggeled(int type) {
+void addDialog::cbTypeToggeled(int) {
     if(caller->mainw->cconfig->lastMediaType != cbType->currentItem() +1) {
 // 	std::cerr << "mediatype changed from " << caller->mainw->cconfig->lastMediaType << " to " << cbType->currentItem() +1 << std::endl;
 	caller->mainw->cconfig->lastMediaType = cbType->currentItem() +1;
@@ -529,7 +529,7 @@ void PWw::step ( long long int progress_step ) {
 
 }
 
-void PWw::paintEvent ( QPaintEvent *e ) {
+void PWw::paintEvent ( QPaintEvent * ) {
     QPainter p ( this );
     p.setClipping ( FALSE );
     int borderless_width = mywidth-4;

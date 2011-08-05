@@ -862,12 +862,14 @@ void HQListView::keyPressEvent ( QKeyEvent *ke ) {
 int GuiSlave::newEvent ( void ) {
     newdbdialog *d = new newdbdialog ( mainw,"new_db_dialog",true );
 
-    while ( closeEvent() != 0 );
+    while ( closeEvent() != 0 ) { };
     d->exec();
     if ( d->OK == 1 ) {
         panelsOFF();
-        if ( mainw->db == NULL )
+        if ( mainw->db == NULL ) {
             mainw->db = new DataBase();
+            mainw->db->setDoArchiveScan(mainw->cconfig->doScanArchive);
+        }
         mainw->db->setDBName ( d->nameD );
         mainw->db->setDBOwner ( d->ownerD );
         mainw->db->setComment ( d->commD );
@@ -890,11 +892,13 @@ int GuiSlave::openEvent ( void ) {
     mainw->cconfig->lastDir = QFileInfo( fn ).absoluteDir().absolutePath();
 
     strcpy ( fnc, ( const char * ) ( QFile::encodeName ( fn ) ) );
-    while ( closeEvent() !=0 );
+    while ( closeEvent() !=0 ) { };
     panelsOFF();
 
-    if ( mainw->db == NULL )
+    if ( mainw->db == NULL ) {
         mainw->db = new DataBase();
+        mainw->db->setDoArchiveScan(mainw->cconfig->doScanArchive);
+    }
 
     PWw *pww = new PWw ( mainw,mainw->app );
     mainw->db->pww = pww;
@@ -942,19 +946,20 @@ int GuiSlave::openEvent ( void ) {
                 mainw->cconfig->hlist.grep ( "^"+QString ( fn ) +"$" ).isEmpty() ) {
             if(*DEBUG_INFO_ENABLED)
 		cerr<<"1"<<endl;
-            mainw->cconfig->hlist.append ( QString ( fn ) );
+            mainw->cconfig->hlist.insert ( 0, QString ( fn ) );
             if(*DEBUG_INFO_ENABLED)
 		cerr<<"2"<<endl;
-            mainw->historyMenu->addAction ( *get_t_open_icon(),fn );
+            QAction *newaction = new QAction (*get_t_open_icon(), fn, 0);
+            mainw->historyMenu->insertAction (mainw->historyMenu->actions().at(0), newaction );
             if(*DEBUG_INFO_ENABLED)
 		cerr<<"3"<<endl;
             if ( ( int ) mainw->cconfig->hlist.count() > ( int ) mainw->cconfig->historysize ) {
                 if(*DEBUG_INFO_ENABLED)
 			cerr<<"4"<<endl;
-                ( mainw->cconfig->hlist ).remove ( mainw->cconfig->hlist.begin() );
+                ( mainw->cconfig->hlist ).remove ( mainw->cconfig->hlist.end()-1 );
                 if(*DEBUG_INFO_ENABLED)
 			cerr<<"5"<<endl;
-                mainw->historyMenu->removeItemAt ( 0 );
+                mainw->historyMenu->removeItemAt ( mainw->historyMenu->actions().size()-1 );
             }
         }
     }
@@ -1037,8 +1042,9 @@ int GuiSlave::saveasEvent ( void ) {
     }
     else {
 	// add history item
-	mainw->cconfig->hlist.append ( QString ( fnc ) );
-	mainw->historyMenu->addAction ( *get_t_open_icon(),fnc );
+	mainw->cconfig->hlist.insert ( 0, QString ( fnc ) );
+	QAction *newaction = new QAction (*get_t_open_icon(), fn, 0);
+        mainw->historyMenu->insertAction (mainw->historyMenu->actions().at(0), newaction );
     }
     panelsOFF();
     progress ( pww );
@@ -1249,7 +1255,7 @@ int GuiSlave::addEvent ( void ) {
     if(*DEBUG_INFO_ENABLED)
 	cerr<<"ADDEVENT-4"<<endl;
 #ifndef _WIN32
-    if ( mainw->cconfig->mounteject )
+    if ( mainw->cconfig->mounteject ) {
         if ( ( d->type == CD || d->type == DVD ) &&
                 d->dDir == mainw->cconfig->cdrompath ) {
             int pid;
@@ -1298,6 +1304,7 @@ int GuiSlave::addEvent ( void ) {
             delete []env;
             delete []arg;
         }
+    }
     else {
     if(*DEBUG_INFO_ENABLED)
 	cerr<<"umount not needed"<<endl;
@@ -1769,11 +1776,13 @@ int GuiSlave::followLnk ( void ) {
 
 
         strcpy ( fnc, ( const char * ) ( ( DBCatLnk * ) ( standON->data ) )->location );
-        while ( closeEvent() !=0 );
+        while ( closeEvent() !=0 ) { };
         panelsOFF();
 
-        if ( mainw->db == NULL )
+        if ( mainw->db == NULL ) {
             mainw->db = new DataBase();
+            mainw->db->setDoArchiveScan(mainw->cconfig->doScanArchive);
+        }
 
         PWw *pww = new PWw ( mainw,mainw->app );
         mainw->db->pww = pww;
@@ -2008,7 +2017,7 @@ void CatalogTypeEditDialog::cancel() {
 	close();
 }
 
-void CatalogTypeEditDialog::cbTypeToggeled(int index) {
+void CatalogTypeEditDialog::cbTypeToggeled(int) {
 	DEBUG_INFO_ENABLED = init_debug_info();
 	if(*DEBUG_INFO_ENABLED)
 		std::cerr << "mediatype changed to " << cbType->currentItem() +1 << std::endl;

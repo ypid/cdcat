@@ -1,0 +1,671 @@
+diff -burN libtar-1.2.11.orig/compat/strmode.c libtar-1.2.11/compat/strmode.c
+--- libtar-1.2.11.orig/compat/strmode.c	2000-10-27 22:52:05 +0000
++++ libtar-1.2.11/compat/strmode.c	2011-08-04 09:34:04 +0000
+@@ -58,12 +58,16 @@
+ 	case S_IFREG:			/* regular */
+ 		*p++ = '-';
+ 		break;
++#ifdef S_IFLNK
+ 	case S_IFLNK:			/* symbolic link */
+ 		*p++ = 'l';
+ 		break;
++#endif
++#ifdef S_IFSOCK
+ 	case S_IFSOCK:			/* socket */
+ 		*p++ = 's';
+ 		break;
++#endif
+ #ifdef S_IFIFO
+ 	case S_IFIFO:			/* fifo */
+ 		*p++ = 'p';
+@@ -87,29 +91,40 @@
+ 		*p++ = 'w';
+ 	else
+ 		*p++ = '-';
++#ifdef S_ISUID
+ 	switch (mode & (S_IXUSR | S_ISUID)) {
++#else
++	switch (mode & (S_IXUSR)) {
++#endif
+ 	case 0:
+ 		*p++ = '-';
+ 		break;
+ 	case S_IXUSR:
+ 		*p++ = 'x';
+ 		break;
++#ifdef S_ISUID
+ 	case S_ISUID:
+ 		*p++ = 'S';
+ 		break;
+ 	case S_IXUSR | S_ISUID:
+ 		*p++ = 's';
+ 		break;
++#endif
+ 	}
+ 	/* group */
++#ifdef S_IRGRP
+ 	if (mode & S_IRGRP)
+ 		*p++ = 'r';
+ 	else
++#endif
+ 		*p++ = '-';
++#ifdef S_IWGRP
+ 	if (mode & S_IWGRP)
+ 		*p++ = 'w';
+ 	else
++#endif
+ 		*p++ = '-';
++#if defined(S_IXGRP) && defined(S_ISGID)
+ 	switch (mode & (S_IXGRP | S_ISGID)) {
+ 	case 0:
+ 		*p++ = '-';
+@@ -124,6 +139,10 @@
+ 		*p++ = 's';
+ 		break;
+ 	}
++#else
++	*p++ = '-';
++#endif
++#ifndef WIN32
+ 	/* other */
+ 	if (mode & S_IROTH)
+ 		*p++ = 'r';
+@@ -147,6 +166,11 @@
+ 		*p++ = 't';
+ 		break;
+ 	}
++#else
++	*p++ = '-';
++	*p++ = '-';
++	*p++ = '-';
++#endif
+ 	*p++ = ' ';		/* will be a '+' if ACL's implemented */
+ 	*p = '\0';
+ }
+diff -burN libtar-1.2.11.orig/lib/append.c libtar-1.2.11/lib/append.c
+--- libtar-1.2.11.orig/lib/append.c	2003-01-07 01:40:59 +0000
++++ libtar-1.2.11/lib/append.c	2011-08-04 09:34:40 +0000
+@@ -69,7 +69,11 @@
+ 	       (savename ? savename : "[NULL]"));
+ #endif
+ 
++#ifdef WIN32
++	if (stat(realname, &s) != 0)
++#else
+ 	if (lstat(realname, &s) != 0)
++#endif
+ 	{
+ #ifdef DEBUG
+ 		perror("lstat()");
+@@ -143,7 +147,11 @@
+ 	/* check if it's a symlink */
+ 	if (TH_ISSYM(t))
+ 	{
++#ifdef WIN32
++		i = -1;
++#else
+ 		i = readlink(realname, path, sizeof(path));
++#endif
+ 		if (i == -1)
+ 			return -1;
+ 		if (i >= MAXPATHLEN)
+diff -burN libtar-1.2.11.orig/lib/decode.c libtar-1.2.11/lib/decode.c
+--- libtar-1.2.11.orig/lib/decode.c	2003-01-07 01:40:59 +0000
++++ libtar-1.2.11/lib/decode.c	2011-08-04 13:23:06 +0000
+@@ -14,8 +14,10 @@
+ 
+ #include <stdio.h>
+ #include <sys/param.h>
++#ifndef WIN32
+ #include <pwd.h>
+ #include <grp.h>
++#endif
+ 
+ #ifdef STDC_HEADERS
+ # include <string.h>
+@@ -26,7 +28,7 @@
+ char *
+ th_get_pathname(TAR *t)
+ {
+-	char filename[MAXPATHLEN];
++	static char filename[MAXPATHLEN];
+ 
+ 	if (t->th_buf.gnu_longname)
+ 		return t->th_buf.gnu_longname;
+@@ -35,11 +37,11 @@
+ 	{
+ 		snprintf(filename, sizeof(filename), "%.155s/%.100s",
+ 			 t->th_buf.prefix, t->th_buf.name);
+-		return strdup(filename);
++		return filename;
+ 	}
+ 
+ 	snprintf(filename, sizeof(filename), "%.100s", t->th_buf.name);
+-	return strdup(filename);
++	return filename;
+ }
+ 
+ 
+@@ -47,6 +49,7 @@
+ th_get_uid(TAR *t)
+ {
+ 	int uid;
++#ifndef WIN32
+ 	struct passwd *pw;
+ 
+ 	pw = getpwnam(t->th_buf.uname);
+@@ -54,6 +57,7 @@
+ 		return pw->pw_uid;
+ 
+ 	/* if the password entry doesn't exist */
++#endif
+ 	sscanf(t->th_buf.uid, "%o", &uid);
+ 	return uid;
+ }
+@@ -63,6 +67,7 @@
+ th_get_gid(TAR *t)
+ {
+ 	int gid;
++#ifndef WIN32
+ 	struct group *gr;
+ 
+ 	gr = getgrnam(t->th_buf.gname);
+@@ -70,6 +75,7 @@
+ 		return gr->gr_gid;
+ 
+ 	/* if the group entry doesn't exist */
++#endif
+ 	sscanf(t->th_buf.gid, "%o", &gid);
+ 	return gid;
+ }
+@@ -85,9 +91,11 @@
+ 	{
+ 		switch (t->th_buf.typeflag)
+ 		{
++#ifndef WIN32
+ 		case SYMTYPE:
+ 			mode |= S_IFLNK;
+ 			break;
++#endif
+ 		case CHRTYPE:
+ 			mode |= S_IFCHR;
+ 			break;
+diff -burN libtar-1.2.11.orig/lib/encode.c libtar-1.2.11/lib/encode.c
+--- libtar-1.2.11.orig/lib/encode.c	2003-01-07 01:40:59 +0000
++++ libtar-1.2.11/lib/encode.c	2011-08-04 12:10:57 +0000
+@@ -13,8 +13,10 @@
+ #include <internal.h>
+ 
+ #include <stdio.h>
++#ifndef WIN32
+ #include <pwd.h>
+ #include <grp.h>
++#endif
+ #include <sys/types.h>
+ 
+ #ifdef STDC_HEADERS
+@@ -49,8 +51,10 @@
+ void
+ th_set_type(TAR *t, mode_t mode)
+ {
++#ifdef S_ISLNK
+ 	if (S_ISLNK(mode))
+ 		t->th_buf.typeflag = SYMTYPE;
++#endif
+ 	if (S_ISREG(mode))
+ 		t->th_buf.typeflag = REGTYPE;
+ 	if (S_ISDIR(mode))
+@@ -59,7 +63,12 @@
+ 		t->th_buf.typeflag = CHRTYPE;
+ 	if (S_ISBLK(mode))
+ 		t->th_buf.typeflag = BLKTYPE;
+-	if (S_ISFIFO(mode) || S_ISSOCK(mode))
++	if (S_ISFIFO(mode)
++#ifdef S_ISSOCK
++		 || S_ISSOCK(mode))
++#else
++		)
++#endif
+ 		t->th_buf.typeflag = FIFOTYPE;
+ }
+ 
+@@ -146,6 +155,12 @@
+ 	printf("th_set_device(): major = %d, minor = %d\n",
+ 	       major(device), minor(device));
+ #endif
++#ifndef major
++# define major(dev) ((int)(((dev) >> 8) & 0xff))
++#endif
++#ifndef minor
++# define minor(dev) ((int)((dev) & 0xff))
++#endif
+ 	int_to_oct(major(device), t->th_buf.devmajor, 8);
+ 	int_to_oct(minor(device), t->th_buf.devminor, 8);
+ }
+@@ -155,12 +170,13 @@
+ void
+ th_set_user(TAR *t, uid_t uid)
+ {
++#ifndef WIN32
+ 	struct passwd *pw;
+ 
+ 	pw = getpwuid(uid);
+ 	if (pw != NULL)
+ 		strlcpy(t->th_buf.uname, pw->pw_name, sizeof(t->th_buf.uname));
+-
++#endif
+ 	int_to_oct(uid, t->th_buf.uid, 8);
+ }
+ 
+@@ -169,12 +185,13 @@
+ void
+ th_set_group(TAR *t, gid_t gid)
+ {
++#ifndef WIN32
+ 	struct group *gr;
+ 
+ 	gr = getgrgid(gid);
+ 	if (gr != NULL)
+ 		strlcpy(t->th_buf.gname, gr->gr_name, sizeof(t->th_buf.gname));
+-
++#endif
+ 	int_to_oct(gid, t->th_buf.gid, 8);
+ }
+ 
+@@ -183,11 +200,13 @@
+ void
+ th_set_mode(TAR *t, mode_t fmode)
+ {
++#ifndef WIN32
+ 	if (S_ISSOCK(fmode))
+ 	{
+ 		fmode &= ~S_IFSOCK;
+ 		fmode |= S_IFIFO;
+ 	}
++#endif
+ 	int_to_oct(fmode, (t)->th_buf.mode, 8);
+ }
+ 
+diff -burN libtar-1.2.11.orig/lib/extract.c libtar-1.2.11/lib/extract.c
+--- libtar-1.2.11.orig/lib/extract.c	2003-03-02 23:58:07 +0000
++++ libtar-1.2.11/lib/extract.c	2011-08-04 13:23:06 +0000
+@@ -28,14 +28,6 @@
+ #endif
+ 
+ 
+-struct linkname
+-{
+-	char ln_save[MAXPATHLEN];
+-	char ln_real[MAXPATHLEN];
+-};
+-typedef struct linkname linkname_t;
+-
+-
+ static int
+ tar_set_file_perms(TAR *t, char *realname)
+ {
+@@ -52,6 +44,7 @@
+ 	ut.modtime = ut.actime = th_get_mtime(t);
+ 
+ 	/* change owner/group */
++#ifndef WIN32
+ 	if (geteuid() == 0)
+ #ifdef HAVE_LCHOWN
+ 		if (lchown(filename, uid, gid) == -1)
+@@ -79,7 +72,7 @@
+ #endif
+ 		return -1;
+ 	}
+-
++#endif /* WIN32 */
+ 	/* change permissions */
+ 	if (!TH_ISSYM(t) && chmod(filename, mode) == -1)
+ 	{
+@@ -98,13 +91,19 @@
+ tar_extract_file(TAR *t, char *realname)
+ {
+ 	int i;
+-	linkname_t *lnp;
++	char *lnp;
++	int pathname_len;
++	int realname_len;
+ 
+ 	if (t->options & TAR_NOOVERWRITE)
+ 	{
+ 		struct stat s;
+ 
++#ifdef WIN32
++		if (stat(realname, &s) == 0 || errno != ENOENT)
++#else
+ 		if (lstat(realname, &s) == 0 || errno != ENOENT)
++#endif
+ 		{
+ 			errno = EEXIST;
+ 			return -1;
+@@ -137,11 +136,13 @@
+ 	if (i != 0)
+ 		return i;
+ 
+-	lnp = (linkname_t *)calloc(1, sizeof(linkname_t));
++	pathname_len = strlen(th_get_pathname(t)) + 1;
++	realname_len = strlen(realname) + 1;
++	lnp = (char *)calloc(1, pathname_len + realname_len);
+ 	if (lnp == NULL)
+ 		return -1;
+-	strlcpy(lnp->ln_save, th_get_pathname(t), sizeof(lnp->ln_save));
+-	strlcpy(lnp->ln_real, realname, sizeof(lnp->ln_real));
++	strcpy(&lnp[0], th_get_pathname(t));
++	strcpy(&lnp[pathname_len], realname);
+ #ifdef DEBUG
+ 	printf("tar_extract_file(): calling libtar_hash_add(): key=\"%s\", "
+ 	       "value=\"%s\"\n", th_get_pathname(t), realname);
+@@ -288,7 +289,7 @@
+ {
+ 	char *filename;
+ 	char *linktgt = NULL;
+-	linkname_t *lnp;
++	char *lnp;
+ 	libtar_hashptr_t hp;
+ 
+ 	if (!TH_ISLNK(t))
+@@ -304,8 +305,8 @@
+ 	if (libtar_hash_getkey(t->h, &hp, th_get_linkname(t),
+ 			       (libtar_matchfunc_t)libtar_str_match) != 0)
+ 	{
+-		lnp = (linkname_t *)libtar_hashptr_data(&hp);
+-		linktgt = lnp->ln_real;
++		lnp = (char *)libtar_hashptr_data(&hp);
++		linktgt = &lnp[strlen(lnp) + 1];
+ 	}
+ 	else
+ 		linktgt = th_get_linkname(t);
+@@ -313,7 +314,9 @@
+ #ifdef DEBUG
+ 	printf("  ==> extracting: %s (link to %s)\n", filename, linktgt);
+ #endif
++#ifndef WIN32
+ 	if (link(linktgt, filename) == -1)
++#endif
+ 	{
+ #ifdef DEBUG
+ 		perror("link()");
+@@ -348,7 +351,9 @@
+ 	printf("  ==> extracting: %s (symlink to %s)\n",
+ 	       filename, th_get_linkname(t));
+ #endif
++#ifndef WIN32
+ 	if (symlink(th_get_linkname(t), filename) == -1)
++#endif
+ 	{
+ #ifdef DEBUG
+ 		perror("symlink()");
+@@ -386,8 +391,10 @@
+ 	printf("  ==> extracting: %s (character device %ld,%ld)\n",
+ 	       filename, devmaj, devmin);
+ #endif
++#ifndef WIN32
+ 	if (mknod(filename, mode | S_IFCHR,
+ 		  compat_makedev(devmaj, devmin)) == -1)
++#endif
+ 	{
+ #ifdef DEBUG
+ 		perror("mknod()");
+@@ -425,8 +432,10 @@
+ 	printf("  ==> extracting: %s (block device %ld,%ld)\n",
+ 	       filename, devmaj, devmin);
+ #endif
++#ifndef WIN32
+ 	if (mknod(filename, mode | S_IFBLK,
+ 		  compat_makedev(devmaj, devmin)) == -1)
++#endif
+ 	{
+ #ifdef DEBUG
+ 		perror("mknod()");
+@@ -461,7 +470,11 @@
+ 	printf("  ==> extracting: %s (mode %04o, directory)\n", filename,
+ 	       mode);
+ #endif
++#ifdef WIN32
++	if (mkdir(filename) == -1)
++#else
+ 	if (mkdir(filename, mode) == -1)
++#endif
+ 	{
+ 		if (errno == EEXIST)
+ 		{
+@@ -515,7 +528,9 @@
+ #ifdef DEBUG
+ 	printf("  ==> extracting: %s (fifo)\n", filename);
+ #endif
++#ifndef WIN32
+ 	if (mkfifo(filename, mode) == -1)
++#endif
+ 	{
+ #ifdef DEBUG
+ 		perror("mkfifo()");
+diff -burN libtar-1.2.11.orig/lib/libtar.h libtar-1.2.11/lib/libtar.h
+--- libtar-1.2.11.orig/lib/libtar.h	2003-01-07 01:40:59 +0000
++++ libtar-1.2.11/lib/libtar.h	2011-08-04 13:23:06 +0000
+@@ -15,7 +15,12 @@
+ 
+ #include <sys/types.h>
+ #include <sys/stat.h>
++#ifdef WIN32
++/* use shipped tar.h */
++#include "tar.h"
++#else
+ #include <tar.h>
++#endif
+ 
+ #include <libtar_listhash.h>
+ 
+@@ -63,9 +68,9 @@
+ /***** handle.c ************************************************************/
+ 
+ typedef int (*openfunc_t)(const char *, int, ...);
+-typedef int (*closefunc_t)(int);
+-typedef ssize_t (*readfunc_t)(int, void *, size_t);
+-typedef ssize_t (*writefunc_t)(int, const void *, size_t);
++typedef int (*closefunc_t)(long);
++typedef ssize_t (*readfunc_t)(long, void *, size_t);
++typedef ssize_t (*writefunc_t)(long, const void *, size_t);
+ 
+ typedef struct
+ {
+@@ -163,8 +168,12 @@
+ 			 || (S_ISREG((mode_t)oct_to_int((t)->th_buf.mode)) \
+ 			     && (t)->th_buf.typeflag != LNKTYPE))
+ #define TH_ISLNK(t)	((t)->th_buf.typeflag == LNKTYPE)
++#ifdef S_ISLNK
+ #define TH_ISSYM(t)	((t)->th_buf.typeflag == SYMTYPE \
+ 			 || S_ISLNK((mode_t)oct_to_int((t)->th_buf.mode)))
++#else
++#define TH_ISSYM(t)     ((t)->th_buf.typeflag == SYMTYPE)
++#endif
+ #define TH_ISCHR(t)	((t)->th_buf.typeflag == CHRTYPE \
+ 			 || S_ISCHR((mode_t)oct_to_int((t)->th_buf.mode)))
+ #define TH_ISBLK(t)	((t)->th_buf.typeflag == BLKTYPE \
+diff -burN libtar-1.2.11.orig/lib/output.c libtar-1.2.11/lib/output.c
+--- libtar-1.2.11.orig/lib/output.c	2003-01-07 01:41:00 +0000
++++ libtar-1.2.11/lib/output.c	2011-08-04 09:35:16 +0000
+@@ -13,8 +13,10 @@
+ #include <internal.h>
+ 
+ #include <stdio.h>
++#ifndef WIN32
+ #include <pwd.h>
+ #include <grp.h>
++#endif
+ #include <time.h>
+ #include <limits.h>
+ #include <sys/param.h>
+@@ -63,8 +65,10 @@
+ th_print_long_ls(TAR *t)
+ {
+ 	char modestring[12];
++#ifndef WIN32
+ 	struct passwd *pw;
+ 	struct group *gr;
++#endif
+ 	uid_t uid;
+ 	gid_t gid;
+ 	char username[_POSIX_LOGIN_NAME_MAX];
+@@ -82,18 +86,21 @@
+ #endif
+ 
+ 	uid = th_get_uid(t);
++#ifndef WIN32
+ 	pw = getpwuid(uid);
+-	if (pw == NULL)
+-		snprintf(username, sizeof(username), "%d", uid);
+-	else
++	if (pw != NULL)
+ 		strlcpy(username, pw->pw_name, sizeof(username));
+-
++	else
++#endif
++		snprintf(username, sizeof(username), "%d", uid);
+ 	gid = th_get_gid(t);
++#ifndef WIN32
+ 	gr = getgrgid(gid);
+-	if (gr == NULL)
+-		snprintf(groupname, sizeof(groupname), "%d", gid);
+-	else
++	if (gr != NULL)
+ 		strlcpy(groupname, gr->gr_name, sizeof(groupname));
++	else
++#endif
++		snprintf(groupname, sizeof(groupname), "%d", gid);
+ 
+ 	strmode(th_get_mode(t), modestring);
+ 	printf("%.10s %-8.8s %-8.8s ", modestring, username, groupname);
+diff -burN libtar-1.2.11.orig/lib/tar.h libtar-1.2.11/lib/tar.h
+--- libtar-1.2.11.orig/lib/tar.h	1970-01-01 00:00:00 +0000
++++ libtar-1.2.11/lib/tar.h	2004-02-12 14:58:53 +0000
+@@ -0,0 +1,108 @@
++/* Extended tar format from POSIX.1.
++   Copyright (C) 1992, 1996 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++   Written by David J. MacKenzie.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, write to the Free
++   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
++   02111-1307 USA.  */
++
++#ifndef	_TAR_H
++#define	_TAR_H	1
++
++/* A tar archive consists of 512-byte blocks.
++   Each file in the archive has a header block followed by 0+ data blocks.
++   Two blocks of NUL bytes indicate the end of the archive.  */
++
++/* The fields of header blocks:
++   All strings are stored as ISO 646 (approximately ASCII) strings.
++
++   Fields are numeric unless otherwise noted below; numbers are ISO 646
++   representations of octal numbers, with leading zeros as needed.
++
++   linkname is only valid when typeflag==LNKTYPE.  It doesn't use prefix;
++   files that are links to pathnames >100 chars long can not be stored
++   in a tar archive.
++
++   If typeflag=={LNKTYPE,SYMTYPE,DIRTYPE} then size must be 0.
++
++   devmajor and devminor are only valid for typeflag=={BLKTYPE,CHRTYPE}.
++
++   chksum contains the sum of all 512 bytes in the header block,
++   treating each byte as an 8-bit unsigned value and treating the
++   8 bytes of chksum as blank characters.
++
++   uname and gname are used in preference to uid and gid, if those
++   names exist locally.
++
++   Field Name	Byte Offset	Length in Bytes	Field Type
++   name		0		100		NUL-terminated if NUL fits
++   mode		100		8
++   uid		108		8
++   gid		116		8
++   size		124		12
++   mtime	136		12
++   chksum	148		8
++   typeflag	156		1		see below
++   linkname	157		100		NUL-terminated if NUL fits
++   magic	257		6		must be TMAGIC (NUL term.)
++   version	263		2		must be TVERSION
++   uname	265		32		NUL-terminated
++   gname	297		32		NUL-terminated
++   devmajor	329		8
++   devminor	337		8
++   prefix	345		155		NUL-terminated if NUL fits
++
++   If the first character of prefix is '\0', the file name is name;
++   otherwise, it is prefix/name.  Files whose pathnames don't fit in that
++   length can not be stored in a tar archive.  */
++
++/* The bits in mode: */
++#define TSUID	04000
++#define TSGID	02000
++#define TSVTX	01000
++#define TUREAD	00400
++#define TUWRITE	00200
++#define TUEXEC	00100
++#define TGREAD	00040
++#define TGWRITE	00020
++#define TGEXEC	00010
++#define TOREAD	00004
++#define TOWRITE	00002
++#define TOEXEC	00001
++
++/* The values for typeflag:
++   Values 'A'-'Z' are reserved for custom implementations.
++   All other values are reserved for future POSIX.1 revisions.  */
++
++#define REGTYPE		'0'	/* Regular file (preferred code).  */
++#define AREGTYPE	'\0'	/* Regular file (alternate code).  */
++#define LNKTYPE		'1'	/* Hard link.  */
++#define SYMTYPE		'2'	/* Symbolic link (hard if not supported).  */
++#define CHRTYPE		'3'	/* Character special.  */
++#define BLKTYPE		'4'	/* Block special.  */
++#define DIRTYPE		'5'	/* Directory.  */
++#define FIFOTYPE	'6'	/* Named pipe.  */
++#define CONTTYPE	'7'	/* Contiguous file */
++ /* (regular file if not supported).  */
++
++/* Contents of magic field and its length.  */
++#define TMAGIC	"ustar"
++#define TMAGLEN	6
++
++/* Contents of the version field and its length.  */
++#define TVERSION	"00"
++#define TVERSLEN	2
++
++#endif /* tar.h */
+diff -burN libtar-1.2.11.orig/lib/wrapper.c libtar-1.2.11/lib/wrapper.c
+--- libtar-1.2.11.orig/lib/wrapper.c	2003-01-07 01:41:00 +0000
++++ libtar-1.2.11/lib/wrapper.c	2011-08-04 09:35:25 +0000
+@@ -128,9 +128,13 @@
+ 			snprintf(savepath, MAXPATHLEN, "%s/%s", savedir,
+ 				 dent->d_name);
+ 
++#ifndef WIN32
+ 		if (lstat(realpath, &s) != 0)
+ 			return -1;
+-
++#else
++		if (stat(realpath, &s) != 0)
++			return -1;
++#endif
+ 		if (S_ISDIR(s.st_mode))
+ 		{
+ 			if (tar_append_tree(t, realpath,

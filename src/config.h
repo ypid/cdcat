@@ -37,6 +37,7 @@ class QSpinBox;
 class Q3Frame;
 class QFont;
 class QComboBox;
+class QGroupBox;
 class QColor;
 
 class CdCatConfig : public QObject {
@@ -58,21 +59,24 @@ public:
     QString startfn;
 
     //Configureable items:
-    int     fsize;
-    int     historysize;
-    bool    autoload;
+    int fsize;
+    int historysize;
+    bool autoload;
     QString autoloadfn;
-    bool    nice;
-    bool    autosave;
-    bool    ownfont;
-    bool    readtag;
-    bool    v1_over_v2;
-    bool    readinfo;
-    bool    readavii;
-    bool    readcontent;
-    bool    debug_info_enabled;
-    bool    saveAlwaysCatalogInUtf8;
-    bool    showProgressedFileInStatus;
+    bool nice;
+    bool autosave;
+    bool ownfont;
+    bool readtag;
+    bool v1_over_v2;
+    bool readinfo;
+    bool readavii;
+    bool readcontent;
+    bool debug_info_enabled;
+    bool saveAlwaysCatalogInUtf8;
+    bool showProgressedFileInStatus;
+    bool doScanArchive;
+    //bool doScanArchiveTar;
+    //bool doScanArchiveLib7zip;
     QString readcfiles;
     unsigned long readclimit;
 
@@ -110,6 +114,14 @@ public:
     bool find_size_min;
     bool find_size_max;
     bool find_unsharp_search;
+    bool find_in_archive;
+    bool show_archive_file_perms;
+    bool show_archive_file_user;
+    bool show_archive_file_group;
+    bool show_archive_file_size;
+    bool show_archive_file_date;
+    bool show_archive_file_comment;
+
     int  findX;
     int  findY;
     int  findWidth;
@@ -168,6 +180,7 @@ public:
     Q3Frame* line4;
     Q3Frame* line5;
     Q3Frame* line6;
+    Q3Frame* line61;
     Q3Frame* line7;
     Q3Frame* line8;
     QPushButton* riButton;
@@ -176,6 +189,13 @@ public:
     QCheckBox* cbAutoload;
     QCheckBox* cbAutosave;
     QCheckBox* cbOwnFont;
+    QCheckBox* cpScanArchive;
+    QCheckBox* cpShowArchiveFilePerms;
+    QCheckBox* cpShowArchiveFileUser;
+    QCheckBox* cpShowArchiveFileGroup;
+    QCheckBox* cpShowArchiveFileSize;
+    QCheckBox* cpShowArchiveFileDate;
+    QCheckBox* cpShowArchiveFileComment;
 
 
 protected:
@@ -186,8 +206,13 @@ protected:
     Q3HBoxLayout* layout4;
     Q3HBoxLayout* layout5;
     Q3HBoxLayout* layout6;
+    Q3HBoxLayout* layout62;
     Q3HBoxLayout* layout7;
     Q3HBoxLayout* layout8;
+    Q3HBoxLayout* layoutShowArchiveFileOptions;
+    Q3GridLayout* layoutShowArchiveFileOptionsGroup;
+    Q3HBoxLayout* layoutSave;
+    Q3HBoxLayout* layoutStatus;
 
 
 #ifndef _WIN32
@@ -206,8 +231,13 @@ protected:
     QLabel     * langLabel;
 #endif
 
-    QPushButton* searchButton2; // maybe problem for moc
+   QLabel *labArchiveExtensions;
 
+   QGroupBox *groupBoxShowArchiveFileOpts;
+
+
+   QPushButton* searchButton2; // maybe problem for moc
+   QString SupportedExtensions;
 public slots:
     virtual void okExit();
     virtual void ffdbutton();

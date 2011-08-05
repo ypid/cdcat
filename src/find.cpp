@@ -94,6 +94,7 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool modal, 
 //     layout17 = new Q3GridLayout ( 0, 1, 1, 0, 6, "layout17" );
     layout_size_min = new Q3HBoxLayout ( 0, 0, 2, "layout_size_min" );
     layout_size_max = new Q3HBoxLayout ( 0, 0, 2, "layout_size_max" );
+    layout_find_in_archive = new Q3HBoxLayout ( 0, 0, 2, "layout_find_in_archive" );
 
     leText = new QLineEdit ( this, "leText" );
     
@@ -117,6 +118,7 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool modal, 
     cbSizeMin = new QCheckBox (this, "cbSizeMin" );
     cbSizeMax = new QCheckBox (this, "cbSizeMax" );
     cbUnsharpSearch = new QCheckBox (this, "cbUnsharpSearch" );
+    cbFindInArchive = new QCheckBox (this, "cbFindInArchive" );
 
     cbOwner = new QComboBox ( FALSE, this, "cbOwner" );
     cbOwner->setMinimumSize ( QSize ( 0, 0 ) );
@@ -159,6 +161,7 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool modal, 
     resultsl->addColumn ( tr ( "Media" ) );
     resultsl->addColumn ( tr ( "Path" ) );
     resultsl->addColumn ( tr ( "Modification" ) );
+    resultsl->addColumn ( tr ( "Comment" ) );
 
     resultsl->setColumnAlignment(2, Qt::AlignRight );
     resultsl->setColumnWidthMode(0, Q3ListView::Maximum);
@@ -171,6 +174,7 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool modal, 
     textLabel5 = new QLabel ( this, "textLabel5" );
     textLabel6 = new QLabel ( this, "textLabel6" );
     textLabel7 = new QLabel ( this, "textLabel7" );
+    textLabelFindInArchive = new QLabel ( this, "textLabelFindInArchive" );
 
     /* saved ops: */
 
@@ -188,6 +192,8 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool modal, 
     cbDateEnd  -> setChecked ( mainw->cconfig->find_date_end );
     cbSizeMin -> setChecked( mainw->cconfig->find_size_min );
     cbSizeMax -> setChecked( mainw->cconfig->find_size_max );
+    cbUnsharpSearch -> setChecked( mainw->cconfig->find_unsharp_search);
+    cbFindInArchive -> setChecked( mainw->cconfig->find_in_archive);
     
 
     /* layouts:   */
@@ -228,6 +234,10 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool modal, 
     cbSizeUnitMin->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
     layout37->addItem(layout_size_max, 9, 1);
 
+    layout_find_in_archive->addWidget ( cbFindInArchive );
+    layout_find_in_archive->addWidget ( textLabelFindInArchive );
+    cbFindInArchive->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+    layout37->addItem(layout_find_in_archive, 10, 1);
 
     layout39->addMultiCellLayout ( layout36, 0, 1, 1, 1 );
     layout39->addItem ( spacer_2, 1, 0 );
@@ -306,7 +316,6 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool modal, 
     cbSizeUnitMin->setCurrentIndex(mainw->cconfig->find_size_unit_min_val);
     cbSizeUnitMax->setCurrentIndex(mainw->cconfig->find_size_unit_max_val);
 
-    cbUnsharpSearch->setChecked(mainw->cconfig->find_unsharp_search);
 
     leText->setText(mainw->cconfig->lastSearchPattern);
 
@@ -334,6 +343,7 @@ void findDialog::languageChange() {
     resultsl->header()->setLabel ( 3, tr ( "Media" ) );
     resultsl->header()->setLabel ( 4, tr ( "Path" ) );
     resultsl->header()->setLabel ( 5, tr ( "Modification" ) );
+    resultsl->header()->setLabel ( 6, tr ( "Comment" ) );
     textLabel3->setText ( tr ( "Find:" ) );
     cbFilename->setText ( tr ( "File name" ) );
     cbAlbum->setText ( tr ( "mp3-tag Album" ) );
@@ -348,6 +358,7 @@ void findDialog::languageChange() {
     cbSizeMin->setText( tr("Min size") );
     cbSizeMax->setText( tr("Max size") );
     cbUnsharpSearch->setText( tr("Unsharp search (slow)") );
+    cbFindInArchive->setText( tr("Find in archives too"));
     buttonOk->setText ( tr ( "&Start search" ) );
 #ifndef _WIN32
     buttonOk->setAccel ( QKeySequence ( QString::null ) );
@@ -385,6 +396,7 @@ int findDialog::saveState ( void ) {
     mainw->cconfig->find_size_unit_min_val= cbSizeUnitMin->currentIndex();
     mainw->cconfig->find_size_unit_max_val = cbSizeUnitMax->currentIndex();
     mainw->cconfig->find_unsharp_search = cbUnsharpSearch->isChecked();
+    mainw->cconfig->find_in_archive = cbFindInArchive->isChecked();
     mainw->cconfig->findX      = x();
     mainw->cconfig->findY      = y();
     mainw->cconfig->findWidth  = width();
@@ -607,6 +619,7 @@ int seekEngine::start_seek ( void ) {
     dateEnd = fd->deDateEnd->dateTime();
     sizeMinChecked = fd->cbSizeMin->isChecked();
     sizeMaxChecked = fd->cbSizeMax->isChecked();
+    findInArchivesChecked = fd->cbFindInArchive->isChecked();
 
     if (sizeMinChecked) {
 	if(fd->cbSizeUnitMin->currentIndex() == 0)
@@ -661,11 +674,13 @@ int seekEngine::start_seek ( void ) {
 }
 /***************************************************************************/
 int seekEngine::analyzeNode (PWw *pww,  Node *n,Node *pa ) {
+    DEBUG_INFO_ENABLED = init_debug_info();
 
     progress(pww);
     if ( n == NULL || pww->doCancel ) return 0;
 
     bool isOk=false;
+    QString filecomment;
     switch ( n->type ) {
     case HC_CATALOG:
         analyzeNode ( pww, n->child );
@@ -762,6 +777,7 @@ int seekEngine::analyzeNode (PWw *pww,  Node *n,Node *pa ) {
 
     case HC_FILE:
         isOk = true;
+	filecomment = "";
         if ( filename ) {
             if ( !matchIt ( n->getNameOf() ) ) {
 			isOk = false;
@@ -866,8 +882,67 @@ int seekEngine::analyzeNode (PWw *pww,  Node *n,Node *pa ) {
 			isOk = false;
 		}
 	}
+	if ( findInArchivesChecked ) {
+		// FIXME maybe a flag 'is_archive' should be added
+		bool archiveMatches = false;
+		filecomment = "";
+		QList<ArchiveFile> ArchiveFileList = (( DBFile * )(n->data  ))->archivecontent;
+		for ( int i=0;i<ArchiveFileList.size();i++ ) {
+			ArchiveFile af = ArchiveFileList.at(i);
+			QString filepath = af.path.section('/', -1, -1);
+			if (*DEBUG_INFO_ENABLED)
+				std::cout << "testing file inside archive: " << qPrintable(filepath) << std::endl;
+			
+			for ( int i=0;i<ArchiveFileList.size();i++ ) {
+				ArchiveFile af = ArchiveFileList.at(i);
+				QString filepath = af.path.section('/', -1, -1);
+				if (*DEBUG_INFO_ENABLED)
+					std::cout << "testing file inside archive: " << qPrintable(filepath) << std::endl;
+				
+				if ( filename ) {
+					if ( matchIt ( filepath ) ) {
+						archiveMatches = true;
+						filecomment = tr("File in archive: ")+af.path;
+						//break;
+					}
+				}
+				else if ( dateStartChecked && !dateEndChecked) {
+					if (  af.date > dateStart  ) {
+						archiveMatches = true;
+						filecomment = tr("File in archive: ")+af.path;
+						//break;
+					}
+					else {
+						archiveMatches = false;
+					}
+				}
+				else if (!dateStartChecked && dateEndChecked) {
+					if (  af.date < dateEnd ) {
+						archiveMatches = true;
+						filecomment = tr("File in archive: ")+af.path;
+						//break;
+					}
+					else {
+						archiveMatches = false;
+					}
+				}
+				else if (dateStartChecked && dateEndChecked) {
+					if (  af.date > dateStart || af.date < dateEnd ) {
+						archiveMatches = true;
+						filecomment = tr("File in archive: ")+af.path;
+						//break;
+					}
+					else {
+						archiveMatches = false;
+					}
+				}
+			}
+			if (archiveMatches)
+				isOk = true;
+		}
+	}
 	if(isOk){
-		putNodeToList ( n );
+		putNodeToList ( n, filecomment );
 		analyzeNode ( pww, n->next );
 		return 0;
 	}
@@ -881,7 +956,7 @@ int seekEngine::analyzeNode (PWw *pww,  Node *n,Node *pa ) {
 		analyzeNode (pww,  n->next );
 		return 0;
 	    }
-	  }
+	}
 	
         analyzeNode ( pww, ( ( DBFile * ) ( n->data ) )->prop,n );
         analyzeNode (pww,  n->next );
@@ -978,7 +1053,7 @@ bool seekEngine::matchUnsharp(char* matchpattern, char* str){
 		return false;
 }
 
-void seekEngine::putNodeToList ( Node *n ) {
+void seekEngine::putNodeToList ( Node *n, QString comment ) {
 
     Node *tmp;
     QString   type;
@@ -1023,7 +1098,8 @@ void seekEngine::putNodeToList ( Node *n ) {
                                size_str,
                                media,
                                n->getFullPath(),
-                               date_to_str ( mod )
+                               date_to_str ( mod ),
+			       comment
                                                   ) );
     progress ( pww );
     founded++;

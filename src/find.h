@@ -62,7 +62,7 @@ private:
     findDialog *fd;
 
     int  analyzeNode ( PWw *pww, Node *n,Node *pa=NULL );
-    void putNodeToList ( Node *n );
+    void putNodeToList ( Node *n, QString comment="" );
     int  matchIt ( QString txt );
     bool matchUnsharp(char *a, char *b);
 
@@ -89,6 +89,7 @@ private:
     bool dateEndChecked;
     bool sizeMinChecked;
     bool sizeMaxChecked;
+    bool findInArchivesChecked;
 
     QString  media;
     QString  owner;
@@ -127,6 +128,7 @@ public:
     QLabel* textLabel6;
     QLabel* textLabel7;
     QLabel* textLabel8;
+    QLabel* textLabelFindInArchive;
     Q3Frame* line2;
     Q3ListView* resultsl;
     QLineEdit* leText;
@@ -152,6 +154,7 @@ public:
     QCheckBox* cbSizeMin;
     QCheckBox* cbSizeMax;
     QCheckBox* cbUnsharpSearch;
+    QCheckBox* cbFindInArchive;
 
     bool use_unsharpsearch; // if unsharp match should be used
 
@@ -171,6 +174,7 @@ protected:
     Q3GridLayout* layout16;
     Q3HBoxLayout* layout_size_min;
     Q3HBoxLayout* layout_size_max;
+    Q3HBoxLayout* layout_find_in_archive;
 
 protected slots:
     virtual void languageChange();

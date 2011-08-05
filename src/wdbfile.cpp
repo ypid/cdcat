@@ -77,7 +77,7 @@ float getSizeFS ( const char *str ) {
     QStringList l = QString ( str ).simplified().split ( ' ' );
     unit = l.at ( 1 );
     r = l.at ( 0 ).toFloat();
-    if ( l.length() != 2 )
+    if ( l.size() != 2 )
         return -1;
     return r;
 }
@@ -225,6 +225,25 @@ void FileWriter::categoryWriter ( QString& c ) {
     level--;
 }
 
+void FileWriter::archivecontentWriter ( QList<ArchiveFile>& archivecontent ) {
+    
+    if ( archivecontent.size() == 0 )
+        return;
+    level++;
+    gzprintf ( f,"%s<archivecontent>",spg ( level ) );
+    QString c;
+    for (int i=0;i<archivecontent.size();i++) {
+	ArchiveFile af = archivecontent.at(i);
+	c += QString("\n")+af.toDbString();
+    }
+    QString c1=to_cutf8 ( c );
+    gzwrite ( f,c1.toLocal8Bit().data(), strlen(c1.toLocal8Bit().data())  );
+    gzprintf ( f,"</archivecontent>\n" );
+
+    level--;
+}
+
+
 int  FileWriter::writeDown ( Node *source ) {
     int i=0;
     switch ( source->type ) {
@@ -346,6 +365,7 @@ int  FileWriter::writeFile ( Node *source ) {
 
     commentWriter ( ( ( DBFile * ) ( source->data ) )->comment );
     categoryWriter ( ( ( DBFile * ) ( source->data ) )->category );
+    archivecontentWriter ( ( ( DBFile * ) ( source->data ) )->archivecontent );
     level++;
     if ( source->child != NULL )
         writeDown ( source->child );
@@ -1231,6 +1251,10 @@ Please change it with an older version or rewrite it in the xml file!" );
         /*nothing*/
     }
 
+    else if (  el == "archivecontent"  ) {
+        /*nothing*/
+    }
+
     else if (  el == "borrow" ) {
         /*nothing*/
     }
@@ -1403,6 +1427,32 @@ bool CdCatXmlHandler::endElement ( const QString & namespaceURI, const QString &
             break;
 
         }
+    }
+
+    else if ( el == "archivecontent" ) {
+	if (FREA->sp == NULL)
+		return false;
+        switch ( FREA->sp->type ) {
+        case HC_FILE:
+		if (!currentText.isEmpty()) {
+// 			std::cout << "currentText: " << qPrintable(currentText) << std::endl;
+			QList<ArchiveFile> ArchiveFileList;
+			ArchiveFileList.clear();
+			QStringList textList = QStringList::split ( '\n', currentText);
+			for (int i=0;i<textList.size();i++) {
+				if (!textList.at(i).isEmpty() && textList.at(i).trimmed().size() > 4) {
+// 					std::cout << "line: \"" << qPrintable(textList.at(i)) << "\""<< std::endl;
+					ArchiveFile af;
+					af.setDbString(textList.at(i));
+					ArchiveFileList.append(af);
+				}
+			}
+			( ( DBFile      * ) ( FREA->sp->data ) ) -> archivecontent = ArchiveFileList;
+		}
+            break;
+	 default:
+		;
+	}
     }
 
     else if ( el == "borrow" ) {

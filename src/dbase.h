@@ -13,7 +13,23 @@
 
 #include <qobject.h>
 #include <qstring.h>
+#include <qstringlist.h>
 #include <qdatetime.h>
+#include <QLocale>
+
+
+
+#ifdef _WIN32
+typedef int uid_t;
+typedef int gid_t;
+#endif
+
+#ifndef _WIN32
+#include <pwd.h>
+#include <grp.h>
+#endif
+
+#include <libtar.h>
 
 // values for class Node::type
 #define HC_UNINITIALIZED 0
@@ -50,13 +66,39 @@
 
 #define MAX_STORED_SIZE (128*1024)
 
+
+
 class QFileInfo;
 class PWw;
 
 void caseSensConversion ( char *p );
 void easyFormConversion ( char *p );
 
+
+
 QString date_to_str ( QDateTime dt );
+
+class ArchiveFile : public QObject {
+	public:
+		ArchiveFile(QString fileattr="rw- rw- rw-", QString user=tr("unknown"), QString group=tr("unknown"), long long int size=0, QDateTime date=QDateTime().currentDateTime(), QString path="/", QString filetype=tr(""));
+		ArchiveFile ( const ArchiveFile& );
+		ArchiveFile operator = ( const ArchiveFile&);
+		QString toPrettyString(bool showAttr=true, bool showUser=true, bool showGroup=true, bool showSize=true, bool showDate=true, bool showFileType=true);
+		QString toDbString();
+		void setDbString(QString DbString);
+		
+		QString fileattr;
+		QString user;
+		QString group;
+		long long int size;
+		QDateTime date;
+		QString path;
+		QString filetype;
+	
+	private:
+		QChar div;
+};
+
 
 class Node {
 public:
@@ -177,6 +219,7 @@ public:
     QDateTime modification;
     QString  comment;
     QString category;
+    QList<ArchiveFile> archivecontent;
     float size;
     //filesize
 
@@ -187,7 +230,7 @@ public:
     //the root pointer of other Nodes. can be mp3tag of etc...
 
     DBFile ( void );
-    DBFile ( QString n,QDateTime mod,QString c,float s,int st, QString pcategory="" );
+    DBFile ( QString n,QDateTime mod,QString c,float s,int st, QString pcategory="", QList<ArchiveFile> parchivecontent = QList<ArchiveFile>() );
     // n:name , mod:modification , c:comment , s:size , st:sizeType, pcategory:category
 
     ~DBFile ( void );
@@ -325,8 +368,19 @@ private:
     int   scanFsToNode ( QString what,Node *to );
     int   scanFileProp ( QFileInfo *fi,DBFile *fc );
 
-    bool showProgressedFileInStatus;
 
+    bool showProgressedFileInStatus;
+    bool doScanArchive;
+    bool doScanArchiveTar;
+    bool doScanArchiveLib7zip;
+    QStringList Lib7zipTypes;
+
+    void strmode(mode_t mode, char *p);
+
+    enum ArchiveType { Archive_tar = 0, Archive_bzip2 =  1, Archive_targz = 2, Archive_tarbz2 = 3, Archive_zip = 4, Archive_sevenzip = 5, Archive_rar = 6, Archive_lib7zip = 7 };
+
+    
+    QList<ArchiveFile> scanArchive(QString path, ArchiveType type);
     QString pcategory;
     
 
@@ -376,16 +430,22 @@ public:
     Node * putDirectoryNode ( Node *meddir,QString name,QDateTime modification,QString comment, QString category="" );
 
     Node * getFileNode ( Node *directory,QString name );
-    Node * putFileNode ( Node *directory,QString name,QDateTime modification,QString comment,int sizeType,float size, QString category="" );
+    Node * putFileNode ( Node *directory,QString name,QDateTime modification,QString comment,int sizeType,float size, QString category="", QList<ArchiveFile> archivecontent=QList<ArchiveFile>() );
 
     Node * putTagInfo ( Node *file,QString artist,QString title,QString comment,QString album,QString year );
 
     void setShowProgressedFileInStatus(bool showProgressedFileInStatus);
+    void setDoArchiveScan(bool doScanArchive) { this->doScanArchive = doScanArchive; };
+    void setDoArchiveScanTar(bool doScanArchiveTar) { this->doScanArchiveTar = doScanArchiveTar; };
+    void setDoScanArchiveLib7zip(bool doScanArchiveLib7zip) { this->doScanArchiveLib7zip = doScanArchiveLib7zip; };
 
     signals:
 	void pathScanned(QString path);
 
+
 };
+
+
 
 
 //char *getTime        (QDateTimeTime dt); ???

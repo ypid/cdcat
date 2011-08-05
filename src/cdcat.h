@@ -17,12 +17,12 @@
 
 // CdCat version text:
 
-#define VERSION  "UNICODE 1.3"
+#define VERSION  "UNICODE 1.4"
 
 
 // Datafile version:
 // The known versions listed in guibase.cpp - checkversion !
-#define DVERS    "2.0"
+#define DVERS    "2.1"
 
 // CdCat homepage location:
 #define HOMEPAGE "<a href=\"http://cdcat.sf.net\">http://cdcat.sf.net</a>"

@@ -18,6 +18,10 @@
 #include <string.h>
 #include <ctype.h>
 
+#ifdef WIN32
+#include <windows.h>
+#endif
+
 #include <zlib.h>
 // #include <pcre.h>
 #include <QRegExp>
@@ -32,7 +36,142 @@
 #include "tparser.h"
 
 #include <iostream>
-using namespace std;
+#include <string>
+// tar archive scanning
+
+#include <zlib.h>
+#include <stdlib.h>
+#include <errno.h>
+#include <fcntl.h>
+#include <time.h>
+
+#include <bzlib.h>
+
+#ifndef _WIN32
+#include <pwd.h>
+#include <grp.h>
+#endif
+
+// lib7zip archive scanning
+#include <stdlib.h>
+#include <stdio.h>
+#include <errno.h>
+#include <fcntl.h>
+#include <time.h>
+
+#include <string>
+#include <sys/types.h>
+#include <sys/stat.h>
+
+#include <QString>
+#include <QStringList>
+#include <QDateTime>
+#include <QObject>
+#include <QFile>
+
+#include <lib7zip.h>
+
+
+class TestInStream : public C7ZipInStream {
+private:
+	FILE * m_pFile;
+	std::string m_strFileName;
+	wstring m_strFileExt;
+	int m_nFileSize;
+public:
+	TestInStream(std::string fileName, std::wstring ext) :
+		m_strFileName(fileName),
+		m_strFileExt(ext)
+	{
+		
+		printf("fileName.c_str(): %s\n", fileName.c_str());
+		m_pFile = fopen(fileName.c_str(), "rb");
+		if (m_pFile) {
+			fseek(m_pFile, 0, SEEK_END);
+			m_nFileSize = ftell(m_pFile);
+			fseek(m_pFile, 0, SEEK_SET);
+
+			int pos = m_strFileName.find_last_of(".");
+
+			if (pos != m_strFileName.npos) {
+#ifdef _WIN32
+				std::string tmp = m_strFileName.substr(pos + 1);
+				int nLen = MultiByteToWideChar(CP_ACP, 0, tmp.c_str(), -1, NULL, NULL);
+				LPWSTR lpszW = new WCHAR[nLen];
+				MultiByteToWideChar(CP_ACP, 0, 
+									tmp.c_str(), -1, lpszW, nLen);
+				m_strFileExt = lpszW;
+				// free the string
+				delete[] lpszW;
+#else
+				
+#endif
+			}
+			printf("Ext:%ls\n", m_strFileExt.c_str());
+		}
+		else {
+			printf("fileName.c_str(): %s cant open\n", fileName.c_str());
+		}
+	}
+
+	virtual ~TestInStream()
+	{
+		if (m_pFile)
+			fclose(m_pFile);
+	}
+
+public:
+	virtual wstring GetExt() const
+	{
+		printf("GetExt:%ls\n", m_strFileExt.c_str());
+		return m_strFileExt;
+	}
+	
+	virtual int Read(void *data, unsigned int size, unsigned int *processedSize)
+	{
+		if (!m_pFile)
+			return 1;
+
+		int count = fread(data, 1, size, m_pFile);
+		//printf("Read:%d %d\n", size, count);
+		
+		if (count >= 0) {
+			if (processedSize != NULL)
+				*processedSize = count;
+			
+			return 0;
+		}
+		
+		return 1;
+	}
+
+	virtual int Seek(__int64 offset, unsigned int seekOrigin, unsigned __int64 *newPosition)
+	{
+		if (!m_pFile)
+			return 1;
+
+		int result = fseek(m_pFile, (long)offset, seekOrigin);
+
+		if (!result) {
+			if (newPosition)
+				*newPosition = ftell(m_pFile);
+
+			return 0;
+		}
+		
+		return result;
+	}
+
+	virtual int GetSize(unsigned __int64 * size)
+	{
+		if (size)
+			*size = m_nFileSize;
+		return 0;
+	}
+};
+
+// FIXME: currently disabled because lib7zip has problems with std namespace :(
+// using namespace std;
 
 
 QString date_to_str ( QDateTime dt ) {
@@ -237,11 +376,12 @@ DBDirectory::~DBDirectory ( void ) {
 
 
 
-DBFile::DBFile ( QString n,QDateTime mod,QString c,float s,int st, QString pcategory ) {
+DBFile::DBFile ( QString n,QDateTime mod,QString c,float s,int st, QString pcategory, QList<ArchiveFile> parchivecontent ) {
     name    = n;
     modification= mod;
     comment = c;
     category = pcategory;
+    archivecontent = parchivecontent;
     size    = s;
     sizeType= st;
     prop    = NULL;
@@ -250,6 +390,8 @@ DBFile::DBFile ( QString n,QDateTime mod,QString c,float s,int st, QString pcate
 DBFile::DBFile ( void ) {
     name    = "";
     modification = QDateTime();
+    category = "";
+    archivecontent = QList<ArchiveFile>();
     comment = "";
     size    = 0;
     sizeType= 0;
@@ -325,6 +467,29 @@ DataBase::DataBase ( void ) {
     root            = new Node ( HC_CATALOG,NULL );
     root->data      = ( void * ) new DBCatalog();
     XML_ENCODING ="UTF-8";
+    Lib7zipTypes.clear();
+    Lib7zipTypes.append("zip");
+    Lib7zipTypes.append("7z");
+
+	C7ZipLibrary lib;
+	C7ZipArchive * pArchive = NULL;
+	WStringArray exts;
+	
+	if (!lib.Initialize()) {
+		fprintf(stderr, "lib7zip initialize failed, lib7zip scanning disabled\n");
+		doScanArchiveLib7zip = false;
+	}
+	
+	if (!lib.GetSupportedExts(exts)) {
+		fprintf(stderr, "lib7zip get supported exts failed, lib7zip scanning disabled\n");
+		doScanArchiveLib7zip = false;
+	}
+	else {
+		for(WStringArray::const_iterator extIt = exts.begin(); extIt != exts.end(); extIt++)
+			Lib7zipTypes.append(QString().fromWCharArray((*extIt).c_str()));
+		std::cerr << "lib7zip supported extensions: " << qPrintable(Lib7zipTypes.join(" ")) << std::endl;
+	}
+
 }
 
 DataBase::~DataBase ( void ) {
@@ -483,13 +648,13 @@ int   DataBase::insertDB ( char *filename ) {
     while (readcount != 0 ) {
         filesize += readcount;
         //if(*DEBUG_INFO_ENABLED)
-	//  cerr << "readcount: " << readcount << endl;
+	//  cerr << "readcount: " << readcount << std::endl;
        readcount = gzread(f, testbuffer, 1024);
        progress ( pww );
     }
     gzrewind(f);
     if(*DEBUG_INFO_ENABLED)
-	cerr << "detected uncompressed size: " << filesize << endl;
+	std::cerr << "detected uncompressed size: " << filesize << std::endl;
 
     char *allocated_buffer = NULL;
     allocated_buffer = (char *)calloc(filesize, sizeof(QChar));
@@ -515,7 +680,7 @@ int   DataBase::insertDB ( char *filename ) {
         progress ( pww );
         errormsg = fw->errormsg;
         if(*DEBUG_INFO_ENABLED)
-		cerr <<"error:"<< qPrintable(fw->errormsg) <<endl;
+		std::cerr <<"error:"<< qPrintable(fw->errormsg) << std::endl;
         delete fw;
         gzclose ( f );
         free(allocated_buffer);
@@ -554,13 +719,13 @@ int   DataBase::openDB ( char *filename ) {
     while (readcount != 0 ) {
         filesize += readcount;
         //if(*DEBUG_INFO_ENABLED)
-	//  cerr << "readcount: " << readcount << endl;
+	//  cerr << "readcount: " << readcount << std::endl;
        readcount = gzread(f, testbuffer, 1024);
        progress ( pww );
     }
     gzrewind(f);
     if(*DEBUG_INFO_ENABLED)
-	cerr << "detected uncompressed size: " << filesize << endl;
+	std::cerr << "detected uncompressed size: " << filesize << std::endl;
 
     char *allocated_buffer = NULL;
     allocated_buffer = (char *)calloc(filesize, sizeof(QChar));
@@ -627,11 +792,12 @@ void DBCatalog::touch ( void ) {
 int DataBase::scanFsToNode ( QString what,Node *to ) {
     DEBUG_INFO_ENABLED = init_debug_info();
     if (*DEBUG_INFO_ENABLED)
-	std::cerr <<"Loading node:"<< qPrintable ( what ) <<endl;
+	std::cerr <<"Loading node:"<< qPrintable ( what ) <<std::endl;
 
     
     int ret;
     QString comm=NULL;
+    QList<ArchiveFile> archivecontent=QList<ArchiveFile>();
     QDir *dir=NULL;
     QFileInfoList *dirlist = NULL;
 
@@ -659,7 +825,7 @@ int DataBase::scanFsToNode ( QString what,Node *to ) {
         }
 
         if (*DEBUG_INFO_ENABLED)
-		std::cerr << "processing in dir " << qPrintable ( what ) << " node: " << qPrintable ( fileInfo->filePath() ) << endl;
+		std::cerr << "processing in dir " << qPrintable ( what ) << " node: " << qPrintable ( fileInfo->filePath() ) << std::endl;
 	
 	if (showProgressedFileInStatus)
 		emit pathScanned(fileInfo->filePath());
@@ -676,7 +842,7 @@ int DataBase::scanFsToNode ( QString what,Node *to ) {
         /*Fill the data field */
         if ( fileInfo->isFile() ) { /* FILE */
             if (*DEBUG_INFO_ENABLED)
-		std::cerr << "adding file: " << qPrintable ( fileInfo->fileName() ) << endl;
+		std::cerr << "adding file: " << qPrintable ( fileInfo->fileName() ) << std::endl;
             
             uint size = fileInfo->size();
             float s;
@@ -703,14 +869,44 @@ int DataBase::scanFsToNode ( QString what,Node *to ) {
                             + dir->relativeFilePath(fileInfo->symLinkTarget());
             } else {
                 comm =(char*) NULL;
+		doScanArchive = true;
+		doScanArchiveTar = true;
+		doScanArchiveLib7zip = true;
+		if(doScanArchive) {
+			QString extension = fileInfo->fileName().lower().section('.', -1, -1);
+			if (doScanArchiveTar) {
+				if (extension == "tar") {
+					if (*DEBUG_INFO_ENABLED)
+						std::cerr << "tarfile found: " << qPrintable ( what+fileInfo->fileName() ) << std::endl;
+					archivecontent = scanArchive(what+fileInfo->fileName(), Archive_tar);
+				}
+				else if (fileInfo->fileName().lower().section('.', -2, -1) == "tar.gz") {
+					if (*DEBUG_INFO_ENABLED)
+						std::cerr << "targz found: " << qPrintable ( what+fileInfo->fileName() ) << std::endl;
+					archivecontent = scanArchive(what+fileInfo->fileName(), Archive_targz);
+				}
+				else if (fileInfo->fileName().lower().section('.', -2, -1) == "tar.bz2") {
+					if (*DEBUG_INFO_ENABLED)
+						std::cerr << "tarbz2 found: " << qPrintable ( what+fileInfo->fileName() ) << std::endl;
+					archivecontent = scanArchive(what+fileInfo->fileName(), Archive_tarbz2);
+				}
+			}
+			if(doScanArchiveLib7zip)  {
+				if ( Lib7zipTypes.contains(extension)  && !(fileInfo->fileName().lower().section('.', -1, -1) == "tar"||  fileInfo->fileName().lower().section('.', -2, -1) == "tar.gz" || fileInfo->fileName().lower().section('.', -2, -1) == "tar.bz2" )) {
+					if (*DEBUG_INFO_ENABLED)
+						std::cerr << "lib7zip found: " << qPrintable ( what+fileInfo->fileName() ) << std::endl;
+					archivecontent = scanArchive(what+fileInfo->fileName(), Archive_lib7zip);
+				}
+			}
+
+		}
             }
-            tt->data= ( void * ) new DBFile ( fileInfo->fileName(),fileInfo->lastModified(),
-                                              comm,s,st, this->pcategory );
+            tt->data= ( void * ) new DBFile ( fileInfo->fileName(),fileInfo->lastModified(), comm,s,st, this->pcategory, archivecontent );
             scanFileProp ( fileInfo, ( DBFile * ) tt->data );
         } else if ( fileInfo->isDir() ) { /* DIRECTORY */
         
             if (*DEBUG_INFO_ENABLED)
-		std::cerr << "adding dir: " << qPrintable ( fileInfo->fileName() ) << endl;
+		std::cerr << "adding dir: " << qPrintable ( fileInfo->fileName() ) << std::endl;
             
             progress ( pww );
 
@@ -739,7 +935,7 @@ int DataBase::scanFsToNode ( QString what,Node *to ) {
         } else if ( fileInfo->isSymLink() ) { /* DEAD SYMBOLIC LINK */
 
             if (*DEBUG_INFO_ENABLED)
-		std::cerr << "adding dead symlink: " << qPrintable ( fileInfo->fileName() ) << endl;
+		std::cerr << "adding dead symlink: " << qPrintable ( fileInfo->fileName() ) << std::endl;
             
             progress ( pww );
 
@@ -750,7 +946,7 @@ int DataBase::scanFsToNode ( QString what,Node *to ) {
         } else { /* SYSTEM FILE (e.g. FIFO, socket or device file) */
         
             if (*DEBUG_INFO_ENABLED)
-            std::cerr << "adding system file: " << qPrintable ( fileInfo->fileName() ) << endl;
+            std::cerr << "adding system file: " << qPrintable ( fileInfo->fileName() ) << std::endl;
             
             progress ( pww );
 
@@ -846,11 +1042,11 @@ int DataBase::scanFileProp ( QFileInfo *fi,DBFile *fc ) {
             //pcc2.setCaseSensitivity(Qt::CaseInsensitive);
             //pcc   = pcre_compile ( pattern,0,&error,&erroroffset,NULL );
 // 	    if(*DEBUG_INFO_ENABLED)
-// 		cerr << "pcc2 pattern: " << pattern << ", match: " << pcc2.exactMatch(QString(( const char * ) QFile::encodeName ( fi->fileName()))) << endl;
+// 		cerr << "pcc2 pattern: " << pattern << ", match: " << pcc2.exactMatch(QString(( const char * ) QFile::encodeName ( fi->fileName()))) << std::endl;
 	    //if(*DEBUG_INFO_ENABLED)
 // 		cerr << "pcre_exec match: " << pcre_exec ( pcc,NULL, ( const char * ) QFile::encodeName ( fi->fileName() )
 //                                   ,strlen ( ( const char * ) QFile::encodeName ( fi->fileName() ) )
-//                                   ,0,0,ovector,30 )  << endl;
+//                                   ,0,0,ovector,30 )  << std::endl;
 //             if ( 1 == pcre_exec ( pcc,NULL, ( const char * ) QFile::encodeName ( fi->fileName() )
 //                                   ,strlen ( ( const char * ) QFile::encodeName ( fi->fileName() ) )
 //                                   ,0,0,ovector,30 ) ) {
@@ -915,6 +1111,526 @@ int DataBase::scanFileProp ( QFileInfo *fi,DBFile *fc ) {
     return 0;
 }
 
+#ifdef _WIN32
+/* WIN32 fake posix */
+int fchmod(int fd, int mode) {
+	// dummy
+	return 0;
+}
+
+struct passwd {
+	char *pw_name;
+	char *pw_passwd;
+	uid_t pw_uid;
+	gid_t pw_gid;
+	time_t pw_change;
+	char *pw_class;
+	char *pw_gecos;
+	char *pw_dir;
+	char *pw_shell;
+	time_t pw_expire;
+};
+
+struct group {
+	char *gr_name;
+	char *gr_passwd;
+	gid_t gr_gid;
+	char **gr_mem;
+};
+
+struct passwd *getpwuid(uid_t) {
+	// dummy
+	return 0;
+}
+
+struct group *getgrgid(gid_t) {
+	// dummy
+	return 0;
+}
+
+#endif
+
+
+int gzopen_frontend(char *pathname, int oflags, int mode) {
+		char gzoflags[3];
+		gzFile gzf;
+		int fd;
+		switch (oflags & O_ACCMODE) {
+		case O_WRONLY:
+			strncpy(gzoflags, "wb", 2);
+			break;
+		case O_RDONLY:
+			strncpy(gzoflags, "rb", 2);
+			break;
+		default:
+		case O_RDWR:
+			errno = EINVAL;
+			return -1;
+	}
+
+	fd = open(pathname, oflags, mode);
+	if (fd == -1)
+		return -1;
+
+	if ((oflags & O_CREAT) && fchmod(fd, mode))
+		return -1;
+
+	gzf = gzdopen(fd, gzoflags);
+	if (!gzf) {
+		errno = ENOMEM;
+		return -1;
+	}
+	return (int)(long)gzf;
+}
+
+int bz2open_frontend(char *pathname, int oflags, int mode) {
+		BZFILE *bz2f;
+		char bzoflags[3];
+		int fd;
+		int bzerror;
+		int verbose = 0;
+		switch (oflags & O_ACCMODE) {
+		case O_WRONLY:
+			break;
+		case O_RDONLY:
+			break;
+		default:
+		case O_RDWR:
+			errno = EINVAL;
+			return -1;
+	}
+
+	fd = open(pathname, oflags, mode);
+	if (fd == -1)
+		return -1;
+	
+	if ((oflags & O_CREAT) && fchmod(fd, mode))
+		return -1;
+
+	bz2f = BZ2_bzdopen( fd, bzoflags);
+	if (!bz2f) {
+		errno = ENOMEM;
+		return -1;
+	}
+// 	if (*DEBUG_INFO_ENABLED)
+// 		std::cerr << "bz2open_frontend ret: " << (int)(long)bz2f << std::endl;
+	return (int)(long)bz2f;
+}
+
+
+tartype_t gztype = { (openfunc_t) gzopen_frontend, (closefunc_t) gzclose, (readfunc_t) gzread, (writefunc_t) gzwrite};
+tartype_t bztype = { (openfunc_t) bz2open_frontend, (closefunc_t) BZ2_bzclose, (readfunc_t) BZ2_bzread, (writefunc_t) BZ2_bzwrite};
+
+
+char * format_time(time_t cal_time) {
+	struct tm *time_struct;
+	static char string[30];
+	/* Put the calendar time into a structure if type 'tm' */
+	time_struct=localtime(&cal_time);
+	
+	/* Build a formatted date from the structure.*/
+	strftime(string, sizeof string, "%h %e %H:%M\n", time_struct);
+	
+	/* Return the date/time */
+	return(string);
+}
+
+
+const wchar_t * index_names[] = {
+	L"kpidPackSize", //(Packed Size)
+	L"kpidAttrib", //(Attributes)
+	L"kpidCTime", //(Created)
+	L"kpidATime", //(Accessed)
+	L"kpidMTime", //(Modified)
+	L"kpidSolid", //(Solid)
+	L"kpidEncrypted", //(Encrypted)
+	L"kpidUser", //(User)
+	L"kpidGroup", //(Group)
+	L"kpidComment", //(Comment)
+	L"kpidPhySize", //(Physical Size)
+	L"kpidHeadersSize", //(Headers Size)
+	L"kpidChecksum", //(Checksum)
+	L"kpidCharacts", //(Characteristics)
+	L"kpidCreatorApp", //(Creator Application)
+	L"kpidTotalSize", //(Total Size)
+	L"kpidFreeSpace", //(Free Space)
+	L"kpidClusterSize", //(Cluster Size)
+	L"kpidVolumeName", //(Label)
+	L"kpidPath", //(FullPath)
+	L"kpidIsDir", //(IsDir)
+};
+
+/* is strmode from libtar/compat/strmode.c */
+// modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
+void DataBase::strmode(mode_t mode, char* p) {
+	/* print type */
+	switch (mode & S_IFMT) {
+	case S_IFDIR:                   /* directory */
+		*p++ = 'd';
+		break;
+	case S_IFCHR:                   /* character special */
+		*p++ = 'c';
+		break;
+#ifndef _WIN32 // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
+	case S_IFBLK:                   /* block special */
+		*p++ = 'b';
+		break;
+#endif
+	case S_IFREG:                   /* regular */
+		*p++ = '-';
+		break;
+#ifndef _WIN32 // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
+	case S_IFLNK:                   /* symbolic link */
+		*p++ = 'l';
+		break;
+#endif
+#ifndef _WIN32 // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
+	case S_IFSOCK:                  /* socket */
+		*p++ = 's';
+		break;
+#endif
+#ifdef S_IFIFO
+	case S_IFIFO:                   /* fifo */
+		*p++ = 'p';
+		break;
+#endif
+#ifdef S_IFWHT
+	case S_IFWHT:                   /* whiteout */
+		*p++ = 'w';
+		break;
+#endif
+	default:                        /* unknown */
+		*p++ = '?';
+		break;
+	}
+	/* usr */
+#ifndef _WIN32 // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
+	if (mode & S_IRUSR)
+		*p++ = 'r';
+	else
+		*p++ = '-';
+#else
+	*p++ = '-';
+#endif
+#ifndef _WIN32 // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
+	if (mode & S_IWUSR)
+		*p++ = 'w';
+	else
+		*p++ = '-';
+#else
+	*p++ = '-';
+#endif
+#ifndef _WIN32 // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
+	switch (mode & (S_IXUSR | S_ISUID)) {
+	case 0:
+		*p++ = '-';
+		break;
+	case S_IXUSR:
+		*p++ = 'x';
+		break;
+	case S_ISUID:
+		*p++ = 'S';
+		break;
+	case S_IXUSR | S_ISUID:
+		*p++ = 's';
+		break;
+	}
+#else
+	*p++ = '-';
+#endif
+        /* group */
+#ifndef _WIN32 // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
+	if (mode & S_IRGRP)
+		*p++ = 'r';
+	else
+		*p++ = '-';
+#else
+	*p++ = '-';
+#endif
+#ifndef _WIN32 // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
+	if (mode & S_IWGRP)
+		*p++ = 'w';
+	else
+		*p++ = '-';
+#else
+	*p++ = '-';
+#endif
+#ifndef _WIN32 // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
+	switch (mode & (S_IXGRP | S_ISGID)) {
+	case 0:
+		*p++ = '-';
+		break;
+	case S_IXGRP:
+		*p++ = 'x';
+		break;
+	case S_ISGID:
+		*p++ = 'S';
+		break;
+	case S_IXGRP | S_ISGID:
+		*p++ = 's';
+		break;
+	}
+#else
+	*p++ = '-';
+#endif
+        /* other */
+#ifndef _WIN32 // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
+	if (mode & S_IROTH)
+		*p++ = 'r';
+	else
+		*p++ = '-';
+#else
+	*p++ = '-';
+#endif
+#ifndef _WIN32 // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
+	if (mode & S_IWOTH)
+		*p++ = 'w';
+	else
+		*p++ = '-';
+#else
+	*p++ = '-';
+#endif
+#ifndef _WIN32 // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
+	switch (mode & (S_IXOTH | S_ISVTX)) {
+	case 0:
+		*p++ = '-';
+		break;
+	case S_IXOTH:
+		*p++ = 'x';
+		break;
+	case S_ISVTX:
+		*p++ = 'T';
+		break;
+	case S_IXOTH | S_ISVTX:
+		*p++ = 't';
+		break;
+	}
+#else
+	*p++ = '-';
+#endif
+	*p++ = ' ';             /* will be a '+' if ACL's implemented */
+	*p = '\0';
+}
+
+QList<ArchiveFile> DataBase::scanArchive(QString path, ArchiveType type) {
+	QList<ArchiveFile> filelist;
+	filelist.clear();
+	
+	if (type == Archive_tar || type == Archive_targz  || type == Archive_tarbz2) {
+		int use_zlib = 0;
+		int use_bzip2 = 0;
+		int verbose = 0;
+		int use_gnu = 0;
+		if (type == Archive_targz) {
+			use_zlib = 1;
+		}
+		if (*DEBUG_INFO_ENABLED)
+			std::cerr << "scanning archive " << qPrintable(path)<< ",  type: " << type << std::endl;
+		
+		int i=0;
+		TAR *t;
+		int tar_open_ret;
+		if (type == Archive_tar)
+			tar_open_ret = tar_open(&t, path.toLocal8Bit().data(), (NULL), O_RDONLY, 0, (verbose ? TAR_VERBOSE : 0) | (use_gnu ? TAR_GNU : 0));
+		if (type == Archive_targz)
+			tar_open_ret = tar_open(&t, path.toLocal8Bit().data(), (&gztype), O_RDONLY, 0, (verbose ? TAR_VERBOSE : 0) | (use_gnu ? TAR_GNU : 0));
+		if (type == Archive_tarbz2)
+			tar_open_ret = tar_open(&t, path.toLocal8Bit().data(), (&bztype), O_RDONLY, 0, (verbose ? TAR_VERBOSE : 0) | (use_gnu ? TAR_GNU : 0));
+		if (*DEBUG_INFO_ENABLED)
+			fprintf(stderr, "tar_open() tar_open_ret: %d\n", tar_open_ret);
+		
+		if ( tar_open_ret == -1) {
+			if (*DEBUG_INFO_ENABLED)
+				std::cerr << "scanning archive " << qPrintable ( path ) << " failed" << std::endl;
+			return filelist;
+		}
+		else {
+			while ((i = th_read(t)) == 0) {
+				// -rw-r--r-- crissi   crissi       29656 Mar 17  8:33 2009 home/crissi/Desktop/file.gif
+				ArchiveFile af;
+				if (*DEBUG_INFO_ENABLED) {
+					if (type == Archive_targz)
+						std::cerr << "file inside tar.gz: " << t->th_buf.name << std::endl;
+					else if (type == Archive_tarbz2)
+						std::cerr << "file inside tar.bz2: " << t->th_buf.name << std::endl;
+					else if (type == Archive_tar)
+						std::cerr << "file inside tar: " << t->th_buf.name << std::endl;
+				}
+				char modestring[20];
+				struct passwd *pw;
+				struct group *gr;
+				uid_t uid;
+				gid_t gid;
+				QString username;
+				QString groupname;
+				time_t mtime;
+				struct tm *mtm;
+				
+#ifdef HAVE_STRFTIME
+				char timebuf[18];
+#else
+				const char *months[] = {
+					"Jan", "Feb", "Mar", "Apr", "May", "Jun",
+					"Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+				};
+#endif
+				
+				uid = th_get_uid(t);
+				pw = getpwuid(uid);
+				if (pw == NULL)
+					username.setNum(uid);
+				else
+					username = QString(pw->pw_name);
+				
+				gid = th_get_gid(t);
+				gr = getgrgid(gid);
+				if (gr == NULL)
+					groupname.setNum(gid);
+				else
+					groupname = QString(gr->gr_name);
+				mode_t m1 = th_get_mode(t);
+				strmode(m1, modestring);
+// 				af.fileattr.sprintf("%.10s %-8.8s %-8.8s ", modestring, username.toLocal8Bit().constData(), groupname.toLocal8Bit().constData());
+				af.fileattr = modestring;
+				if(af.fileattr.size() == 9)
+					af.fileattr = " "+af.fileattr;
+				if (TH_ISCHR(t) || TH_ISBLK(t)) {
+					af.filetype = tr("device ");
+					af.filetype += QString().sprintf("%3d, %3d ", th_get_devmajor(t), th_get_devminor(t));
+				}
+				af.size = (long)th_get_size(t);
+				
+				mtime = th_get_mtime(t);
+				mtm = localtime(&mtime);
+				
+				af.date.setTime_t(mtime);
+				af.path = QString().sprintf("%s", th_get_pathname(t));
+				
+#ifndef _WIN32
+				if (TH_ISSYM(t) || TH_ISLNK(t)) {
+					if (TH_ISSYM(t))
+						af.filetype = QString().sprintf(" -> ");
+					else
+						af.filetype =  tr(" link to ");
+					if ((t->options & TAR_GNU) && t->th_buf.gnu_longlink != NULL)
+						af.filetype += QString().sprintf( "%s", t->th_buf.gnu_longlink);
+					else
+						af.filetype += QString().sprintf("%.100s", t->th_buf.linkname);
+				}
+#endif
+				
+				filelist.append(af);
+				progress ( pww );
+				
+				if (TH_ISREG(t) && tar_skip_regfile(t) == 0) {
+					//fprintf(stderr, "tar_skip_regfile(): %s\n", strerror(errno));
+				}
+			}
+			if (*DEBUG_INFO_ENABLED)
+				std::cerr << "reading " << qPrintable(path) << " done." << std::endl;
+		}
+	}
+	
+	if (type == Archive_lib7zip) {
+		C7ZipLibrary lib;
+		C7ZipArchive * pArchive = NULL;
+		WStringArray exts;
+		char file_attr[100];
+		
+		if (!lib.Initialize()) {
+			//fprintf(stderr, "lib7zip initialize failed, lib7zip scanning disabled\n");
+			doScanArchiveLib7zip = false;
+		}
+		
+		if (!lib.GetSupportedExts(exts)) {
+			//fprintf(stderr, "lib7zip get supported exts failed, lib7zip scanning disabled\n");
+			doScanArchiveLib7zip = false;
+		}
+		else {
+			for(WStringArray::const_iterator extIt = exts.begin(); extIt != exts.end(); extIt++)
+				Lib7zipTypes.append(QString().fromWCharArray((*extIt).c_str()));
+			//std::cerr << "lib7zip supported extensions: " << qPrintable(Lib7zipTypes.join(" ")) << std::endl;
+		}
+	
+		TestInStream stream(path.toLocal8Bit().data(), path.lower().section('.', -1).toStdWString());
+		if (lib.OpenArchive(&stream, &pArchive)) {
+			unsigned int numItems = 0;
+			pArchive->GetItemCount(&numItems);
+			printf(""); // important!!!
+			//printf("items found: %d\n", numItems);
+			
+			for(unsigned int i = 0;i < numItems;i++) {
+				C7ZipArchiveItem * pArchiveItem = NULL;
+				
+				if (pArchive->GetItemInfo(i, &pArchiveItem)) {
+	// 				printf("%d,%ls,%d\n", pArchiveItem->GetArchiveIndex(),
+	// 						pArchiveItem->GetFullPath().c_str(),
+	// 						pArchiveItem->IsDir());
+					
+					ArchiveFile af;
+					QString filetype;
+					bool result = false;
+					unsigned __int64 attr = 0;
+					result = pArchiveItem->GetUInt64Property(lib7zip::kpidAttrib, attr);
+					register mode_t mode  =  (attr >> 16);
+					strmode(mode, file_attr);
+					
+					//printf("file_attr: %s\n", file_attr);
+					
+					wstring user = L"";
+					result = pArchiveItem->GetStringProperty(lib7zip::kpidUser, user);
+					QString user2 = QString::fromWCharArray(user.c_str());
+					if (user2.isEmpty())
+						user2 = "unknown";
+					
+					wstring group = L"";
+					result = pArchiveItem->GetStringProperty(lib7zip::kpidGroup, user);
+					QString group2 = QString::fromWCharArray(group.c_str());
+					if (group2.isEmpty())
+						group2 = "unknown";
+					
+					unsigned __int64 size = 0;
+					result = pArchiveItem->GetUInt64Property(lib7zip::kpidSize, size);
+					size = pArchiveItem->GetSize();
+					
+					unsigned __int64 compressed_size=0;
+					result = pArchiveItem->GetUInt64Property(lib7zip::kpidPackSize, compressed_size);
+					
+					unsigned __int64 mtime = 0;
+					result = pArchiveItem->GetFileTimeProperty(lib7zip::kpidMTime, mtime);
+					//printf("%ld\n", mtime);
+					QDateTime mtime2;
+					mtime2.setTime_t(0);
+					unsigned long int offset = -116444736;
+					mtime2 = mtime2.addSecs((mtime / 10000000)+(offset*100)); // microsoft time stamp: diff from 1. Jan 1601, 100 ns (steps)
+	// 				mtime2 = mtime2.addSecs(-11644473600);
+					
+					QString path = QString::fromWCharArray(pArchiveItem->GetFullPath().c_str());
+					if (*DEBUG_INFO_ENABLED)
+						std::cerr << "file inside archive: " << qPrintable(path) << std::endl;
+					
+					// -rw-r--r-- crissi   crissi       29656 Mar 17  8:33 2009 home/crissi/Desktop/file.gif
+					//QString line = QString().sprintf("%s %s %s    %ld %s %s", file_attr, user2.toLocal8Bit().data(), group2.toLocal8Bit().data(), size, mtime2.toString("MMM d h:s yyyy").toLocal8Bit().data(), path.toLocal8Bit().data() );
+					af.fileattr = file_attr;
+					if(af.fileattr.size() == 9)
+						af.fileattr = " "+af.fileattr;
+					af.user = user2;
+					af.group = group2;
+					af.size = size;
+					af.date = mtime2;
+					af.path = path;
+					af.filetype = filetype;
+					filelist.append(af);
+					progress ( pww );
+				}
+			}
+		}
+		if (*DEBUG_INFO_ENABLED)
+			std::cerr << "reading " << qPrintable(path) << " done." << std::endl;
+	}
+	return filelist;
+}
+
 void DataBase::addLnk ( const char *loc ) {
     QString catname;
     gzFile f=NULL;
@@ -938,13 +1654,13 @@ void DataBase::addLnk ( const char *loc ) {
     while (readcount != 0 ) {
         filesize += readcount;
         //if(*DEBUG_INFO_ENABLED)
-	//  cerr << "readcount: " << readcount << endl;
+	//  cerr << "readcount: " << readcount << std::endl;
        readcount = gzread(f, testbuffer, 1024);
        progress ( pww );
     }
     gzrewind(f);
     if(*DEBUG_INFO_ENABLED)
-	cerr << "detected uncompressed size: " << filesize << endl;
+	std::cerr << "detected uncompressed size: " << filesize << std::endl;
 
     char *allocated_buffer = NULL;
     allocated_buffer = (char *)calloc(filesize, sizeof(QChar));
@@ -1137,8 +1853,7 @@ void DataBase::sortM ( int mode ) {
     root->touchDB();
 }
 
-void DataBase::setShowProgressedFileInStatus(bool showProgressedFileInStatus)
-{
+void DataBase::setShowProgressedFileInStatus(bool showProgressedFileInStatus) {
 	this->showProgressedFileInStatus = showProgressedFileInStatus;
 }
 
@@ -1288,12 +2003,12 @@ Node * DataBase::getFileNode ( Node *directory,QString name ) {
 
 }
 
-Node * DataBase::putFileNode ( Node *directory,QString name,QDateTime modification,QString comment,int sizeType,float size, QString category ) {
+Node * DataBase::putFileNode ( Node *directory,QString name,QDateTime modification,QString comment,int sizeType,float size, QString category, QList<ArchiveFile> archivecontent ) {
     Node *t=NULL,*n=NULL;
 
     n = new Node ( HC_FILE,directory );
     n->data = ( void * )
-              new DBFile ( name,modification,comment,size,sizeType, category );
+              new DBFile ( name,modification,comment,size,sizeType, category, archivecontent );
 
     if ( directory->child == NULL )
         directory->child = n;
@@ -1323,5 +2038,87 @@ Node * DataBase::putTagInfo ( Node *file,QString artist,QString title,QString co
     return n;
 }
 
+/* Archive file class (file inside archive */
+ArchiveFile::ArchiveFile(QString fileattr, QString user, QString group, long long int size, QDateTime date, QString path, QString filetype) {
+	this->fileattr = fileattr;
+	this->user = user;
+	this->group = group;
+	this->size = size;
+	this->date = date;
+	this->path = path;
+	this->filetype = filetype;
+	this->div = '?';
+}
 
+ArchiveFile::ArchiveFile ( const ArchiveFile& af ) : QObject() {
+	this->fileattr = af.fileattr;
+	this->user = af.user;
+	this->group = af.group;
+	this->size = af.size;
+	this->date = af.date;
+	this->path = af.path;
+	this->filetype = af.filetype;
+	this->div = af.div;
+}
+
+ArchiveFile ArchiveFile::operator = ( const ArchiveFile& af ) {
+	this->fileattr = af.fileattr;
+	this->user = af.user;
+	this->group = af.group;
+	this->size = af.size;
+	this->date = af.date;
+	this->path = af.path;
+	this->filetype = af.filetype;
+	this->div = af.div;
+	return *this;
+}
+
+void ArchiveFile::setDbString(QString DbString) {
+	// from db
+	
+	QStringList fileentry = DbString.split(this->div);
+// 	std::cout << "DbString: " << qPrintable(DbString) << "count of " << qPrintable(QString(this->div)) << ": " << DbString.count(this->div) << std::endl;
+// 	std::cout << "FileEntry (size: " << fileentry.size() << "): " << qPrintable(fileentry.join(" ")) << std::endl;
+	if (fileentry.size() == 8) {
+		this->fileattr = fileentry.at(0);
+		this->user = fileentry.at(1);
+		this->group = fileentry.at(2);
+		this->size = fileentry.at(3).toLongLong();
+		this->date = QDateTime().fromString(fileentry.at(4), "MMM d h:s yyyy");
+		this->path = fileentry.at(5);
+		this->filetype = fileentry.at(6);
+// 		std::cout << "FileEntry: " << qPrintable(toPrettyString()) << std::endl;
+	}
+}
+
+QString ArchiveFile::toPrettyString(bool showAttr, bool showUser, bool showGroup, bool showSize, bool showDate, bool showFileType) {
+	QString ret;
+	
+	if(showAttr)
+		ret += QString(fileattr+" ");
+	if(showUser)
+		ret += QString(user+" ");
+	if(showGroup)
+		ret += QString(group+" ");
+	if(showSize)
+		ret += QString(QString().setNum(size)+ " ");
+	if(showDate)
+		ret += QString(date.toString("MMM d h:s yyyy")+" ");
+	ret += QString(path+"\t");
+	if(showFileType)
+		ret += QString(filetype);
+	return ret;
+}
+
+QString ArchiveFile::toDbString() {
+	QString ret = "";
+	ret += QString(fileattr+this->div);
+	ret += QString(user+this->div);
+	ret += QString(group+this->div);
+	ret += QString(QString().setNum(size)+ this->div);
+	ret += QString(date.toString("MMM d h:s yyyy")+ this->div);
+	ret += QString(path+this->div);
+	ret += QString(filetype+this->div);
+	return ret;
+}
 

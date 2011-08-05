@@ -28,6 +28,7 @@
 #include <q3frame.h>
 #include <qtextstream.h>
 #include <qcombobox.h>
+#include <qgroupbox.h>
 //Added by qt3to4:
 #include <Q3HBoxLayout>
 #include <Q3GridLayout>
@@ -47,6 +48,8 @@
 #include "adddialog.h"
 #include "mainwidget.h"
 #include "selreadable.h"
+
+#include <lib7zip.h>
 
 #ifdef _WIN32
 #define CONFIGFILE "cdcat.cfg"
@@ -94,6 +97,7 @@ CdCatConfig::CdCatConfig ( void ) {
     lastMediaType = CD;
     saveAlwaysCatalogInUtf8 = true;
     showProgressedFileInStatus = true;
+    doScanArchive = true;
 
     readavii   = true;
 
@@ -112,6 +116,13 @@ CdCatConfig::CdCatConfig ( void ) {
     find_date_start = false;
     find_date_end = false;
     find_unsharp_search = false;
+    find_in_archive = false;
+    show_archive_file_perms = true;
+    show_archive_file_user = true;
+    show_archive_file_group = true;
+    show_archive_file_size = true;
+    show_archive_file_date = true;
+    show_archive_file_comment = true;
     find_size_unit_min_val = 2;
     find_size_unit_max_val = 2;
     find_size_min_val = 1;
@@ -182,8 +193,10 @@ int CdCatConfig::startProgram ( DataBase **dbp,QWidget *mw ) {
         }
         progress ( pww );
         pww->end();
-        if ( ( *dbp ) != NULL )
+        if ( ( *dbp ) != NULL ) {
             ( *dbp )->pww = NULL;
+            ( *dbp )->setDoArchiveScan(doScanArchive);
+        }
         delete pww;
     }
     return 0;
@@ -677,7 +690,62 @@ int CdCatConfig::readConfig ( void ) {
                         find_unsharp_search=false;
                     continue;
                 }
-
+                else if ( var=="do_scan_archive" ) {
+                    if ( val=="true" )
+                        doScanArchive=true;
+                    else
+                        doScanArchive=false;
+                    continue;
+                }
+                else if ( var=="find_in_archive" ) {
+                    if ( val=="true" )
+                        find_in_archive=true;
+                    else
+                        find_in_archive=false;
+                    continue;
+                }
+                else if ( var=="show_archive_file_perms" ) {
+                    if ( val=="true" )
+                        show_archive_file_perms=true;
+                    else
+                        show_archive_file_perms=false;
+                    continue;
+                }
+                else if ( var=="show_archive_file_user" ) {
+                    if ( val=="true" )
+                        show_archive_file_user=true;
+                    else
+                        show_archive_file_user=false;
+                    continue;
+                }
+                else if ( var=="show_archive_file_group" ) {
+                    if ( val=="true" )
+                        show_archive_file_group=true;
+                    else
+                        show_archive_file_group=false;
+                    continue;
+                }
+                else if ( var=="show_archive_file_size" ) {
+                    if ( val=="true" )
+                        show_archive_file_size=true;
+                    else
+                        show_archive_file_size=false;
+                    continue;
+                }
+                else if ( var=="show_archive_file_date" ) {
+                    if ( val=="true" )
+                        show_archive_file_date=true;
+                    else
+                        show_archive_file_date=false;
+                    continue;
+                }
+                else if ( var=="show_archive_file_comment" ) {
+                    if ( val=="true" )
+                        show_archive_file_comment=true;
+                    else
+                        show_archive_file_comment=false;
+                    continue;
+                }
 
                 fprintf ( stderr,"Unknown key found: %s\n", ( const char * ) var );
                 error = 1;
@@ -937,6 +1005,41 @@ int CdCatConfig::writeConfig ( void ) {
         str << "lastMediaType="+QString().setNum(lastMediaType) << endl;
         str << "lastSearchPattern="+lastSearchPattern << endl;
 
+        if ( doScanArchive )
+            str << "do_scan_archive=true" << endl;
+        else
+            str << "do_scan_archive=false" << endl;
+
+        if ( find_in_archive )
+            str << "find_in_archive=true" << endl;
+        else
+            str << "find_in_archive=false" << endl;
+
+        if ( show_archive_file_perms )
+            str << "show_archive_file_perms=true" << endl;
+        else
+            str << "show_archive_file_perms=false" << endl;
+        if ( show_archive_file_user )
+            str << "show_archive_file_user=true" << endl;
+        else
+            str << "show_archive_file_user=false" << endl;
+        if ( show_archive_file_group )
+            str << "show_archive_file_group=true" << endl;
+        else
+            str << "show_archive_file_group=false" << endl;
+        if ( show_archive_file_size )
+            str << "show_archive_file_size=true" << endl;
+        else
+            str << "show_archive_file_size=false" << endl;
+        if ( show_archive_file_date )
+            str << "show_archive_file_date=true" << endl;
+        else
+            str << "show_archive_file_date=false" << endl;
+        if ( show_archive_file_comment )
+            str << "show_archive_file_comment=true" << endl;
+        else
+            str << "show_archive_file_comment=false" << endl;
+
         f.close();
         return 0;
     } else {
@@ -959,7 +1062,7 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
     p = parent;
 
     setSizeGripEnabled ( TRUE );
-    ConfigDialogBaseLayout = new Q3GridLayout ( this, 1, 1, 18, 6, "ConfigDialogBaseLayout" );
+    ConfigDialogBaseLayout = new Q3GridLayout ( this, 1, 1, 25, 6, "ConfigDialogBaseLayout" );
 
     layout1 = new Q3HBoxLayout ( 0, 0, 6, "layout1" );
     cbAutoload = new QCheckBox ( this, "cbAutoload" );
@@ -1010,8 +1113,12 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
     line8->setFrameShape ( Q3Frame::HLine );
     ConfigDialogBaseLayout->addWidget ( line8, 7, 0 );
 
+    layoutSave = new Q3HBoxLayout(0, 0, 2, "layoutSave");
     cbNice = new QCheckBox ( this, "cbNice" );
-    ConfigDialogBaseLayout->addWidget ( cbNice, 8, 0 );
+    cbSaveCatalogAlwaysInUtf8 = new QCheckBox ( this, "cbSaveCatalogAlwaysInUtf8" );
+    layoutSave->addWidget ( cbNice );
+    layoutSave->addWidget ( cbSaveCatalogAlwaysInUtf8 );
+    ConfigDialogBaseLayout->addLayout(layoutSave, 8, 0);
 
     line3 = new Q3Frame ( this, "line3" );
     line3->setFrameShape ( Q3Frame::HLine );
@@ -1132,27 +1239,62 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
     ConfigDialogBaseLayout->addWidget ( line6, 16, 0 );
 
 
+    cpScanArchive = new QCheckBox( this,"cpScanArchive" );
+//     cpScanArchive->setMaximumWidth ( 80 );
+    ConfigDialogBaseLayout->addWidget( cpScanArchive, 17, 0 );
+    
+    layout62 = new Q3HBoxLayout ( 0, 0, 6, "layout62" );
+    labArchiveExtensions = new QLabel(this, "labArchiveExtensions");
+    layout62->addWidget ( labArchiveExtensions );
+    ConfigDialogBaseLayout->addLayout ( layout62, 18, 0 );
+
+    layoutShowArchiveFileOptions = new Q3HBoxLayout ( 0, 0, 6, "layoutShowArchiveFileOptions");
+    groupBoxShowArchiveFileOpts = new QGroupBox(this, "groupBoxShowArchiveFileOpts");
+    layoutShowArchiveFileOptions->addWidget(groupBoxShowArchiveFileOpts);
+    layoutShowArchiveFileOptionsGroup = new Q3GridLayout( this, 1, 1, 5, 5, "layoutShowArchiveFileOptionsGroup" );
+    groupBoxShowArchiveFileOpts->setLayout(layoutShowArchiveFileOptionsGroup);
+    cpShowArchiveFilePerms = new QCheckBox (this, "cpShowArchiveFilePerms");
+    cpShowArchiveFileUser = new QCheckBox (this, "cpShowArchiveFileUser");
+    cpShowArchiveFileGroup = new QCheckBox (this, "cpShowArchiveFileGroup");
+    cpShowArchiveFileSize = new QCheckBox (this, "cpShowArchiveFileSize");
+    cpShowArchiveFileDate = new QCheckBox (this, "cpShowArchiveFileDate");
+    cpShowArchiveFileComment = new QCheckBox (this, "cpShowArchiveFileComment");
+    layoutShowArchiveFileOptionsGroup->addWidget(cpShowArchiveFilePerms, 0, 0);
+    layoutShowArchiveFileOptionsGroup->addWidget(cpShowArchiveFileUser, 0, 1);
+    layoutShowArchiveFileOptionsGroup->addWidget(cpShowArchiveFileGroup, 0, 2);
+    layoutShowArchiveFileOptionsGroup->addWidget(cpShowArchiveFileSize, 1, 0);
+    layoutShowArchiveFileOptionsGroup->addWidget(cpShowArchiveFileDate, 1, 1);
+    layoutShowArchiveFileOptionsGroup->addWidget(cpShowArchiveFileComment, 1, 2);
+
+    ConfigDialogBaseLayout->addLayout ( layoutShowArchiveFileOptions, 19, 0 );
+
+    line6 = new Q3Frame ( this, "line6" );
+    line6->setFrameShape ( Q3Frame::HLine );
+    line6->setFrameShadow ( Q3Frame::Sunken );
+    line6->setFrameShape ( Q3Frame::HLine );
+    ConfigDialogBaseLayout->addWidget ( line6, 20, 0 );
+
+
     riButton = new QPushButton ( this,"ributton" );
-    ConfigDialogBaseLayout->addWidget ( riButton, 17, 0 );
+    ConfigDialogBaseLayout->addWidget ( riButton, 21, 0 );
 
     line7 = new Q3Frame ( this, "line7" );
     line7->setFrameShape ( Q3Frame::HLine );
     line7->setFrameShadow ( Q3Frame::Sunken );
     line7->setFrameShape ( Q3Frame::HLine );
-    ConfigDialogBaseLayout->addWidget ( line7, 18, 0 );
+    ConfigDialogBaseLayout->addWidget ( line7, 22, 0 );
 
     layout7 = new Q3HBoxLayout ( 0, 0, 6, "layout7" );
     QSpacerItem* spacer = new QSpacerItem ( 110, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
     layout7->addItem ( spacer );
 
+    layoutStatus = new Q3HBoxLayout(0, 0, 2, "layoutStatus");
     cbEnableDebugInfo = new QCheckBox ( this, "cbEnableDebugInfo" );
-    ConfigDialogBaseLayout->addWidget ( cbEnableDebugInfo, 19, 0 );
-
-    cbSaveCatalogAlwaysInUtf8 = new QCheckBox ( this, "cbSaveCatalogAlwaysInUtf8" );
-    ConfigDialogBaseLayout->addWidget ( cbSaveCatalogAlwaysInUtf8, 20, 0 );
-
     cbShowProgressedFileInStatus = new QCheckBox ( this, "cbShowProgressedFileInStatus" );
-    ConfigDialogBaseLayout->addWidget ( cbShowProgressedFileInStatus, 21, 0 );
+    layoutStatus->addWidget(cbEnableDebugInfo);
+    layoutStatus->addWidget(cbShowProgressedFileInStatus);
+    ConfigDialogBaseLayout->addLayout ( layoutStatus, 23, 0 );
+
 
     okButton = new QPushButton ( this, "okButton" );
     okButton->setMinimumSize ( QSize ( 100, 0 ) );
@@ -1167,7 +1309,7 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
     QSpacerItem* spacer_2 = new QSpacerItem ( 130, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
     layout7->addItem ( spacer_2 );
 
-    ConfigDialogBaseLayout->addLayout ( layout7, 22, 0 );
+    ConfigDialogBaseLayout->addLayout ( layout7, 24, 0 );
 
 
 
@@ -1204,6 +1346,13 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
         filename->setText ( p->cconfig->autoloadfn );
     spinFontSize->setValue ( p->cconfig->fsize );
     spinHistorySize->setValue ( p->cconfig->historysize );
+    cpScanArchive->setChecked ( p->cconfig->doScanArchive );
+    cpShowArchiveFilePerms->setChecked ( p->cconfig->show_archive_file_perms );
+    cpShowArchiveFileUser->setChecked ( p->cconfig->show_archive_file_user );
+    cpShowArchiveFileGroup->setChecked ( p->cconfig->show_archive_file_group );
+    cpShowArchiveFileSize->setChecked ( p->cconfig->show_archive_file_size );
+    cpShowArchiveFileDate->setChecked ( p->cconfig->show_archive_file_date );
+    cpShowArchiveFileComment->setChecked ( p->cconfig->show_archive_file_comment );
 
     cdrompath_lineedit->setText ( p->cconfig->cdrompath );
 #ifndef _WIN32
@@ -1227,6 +1376,44 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
     cbEnableDebugInfo->setChecked(p->cconfig->debug_info_enabled);
     cbSaveCatalogAlwaysInUtf8->setChecked(p->cconfig->saveAlwaysCatalogInUtf8);
     cbShowProgressedFileInStatus->setChecked(p->cconfig->showProgressedFileInStatus);
+
+    if(p->cconfig->doScanArchive) {
+	C7ZipLibrary lib;
+	WStringArray exts;
+	SupportedExtensions = "";
+	QStringList SupportedExtensionsList;
+	// libtar
+	
+	SupportedExtensionsList.append("tar");
+	SupportedExtensionsList.append("tar.gz");
+	SupportedExtensionsList.append("tar.bz2");
+	
+	// lib7zip
+	if (lib.Initialize()) {
+		if (lib.GetSupportedExts(exts)) {
+			for(WStringArray::const_iterator extIt = exts.begin(); extIt != exts.end(); extIt++) {
+				SupportedExtensionsList.append(QString().fromWCharArray((*extIt).c_str()));
+			}
+		}
+	}
+	SupportedExtensionsList.sort();
+	int linelen=0;
+	for(int i=0;i< SupportedExtensionsList.size();i++) {
+		if (linelen > 120) {
+			linelen = 0;
+			SupportedExtensions += "\n\t";
+			SupportedExtensions += SupportedExtensionsList.at(i);
+		linelen+= SupportedExtensionsList.at(i).size();
+		} else {
+			if (linelen != 0)
+				SupportedExtensions += " ";
+			SupportedExtensions += SupportedExtensionsList.at(i);
+			linelen+= SupportedExtensionsList.at(i).size()+2;
+		}
+	}
+	labArchiveExtensions->setText ( tr ( "Supported extensions:" )+ "\n\t"+ SupportedExtensions);
+    }
+
 }
 
 /*
@@ -1248,6 +1435,15 @@ void ConfigDialog::languageChange() {
     cbOwnFont->setText ( tr ( "Use own font size" ) );
     lab->setText ( tr ( "Application font size.(must restart cdcat!) " ) );
     labHistorySize->setText ( tr ( "Number of history entries" ) );
+    groupBoxShowArchiveFileOpts->setTitle( tr("Archive file display options"));
+    cpScanArchive->setText ( tr ( "Scan for archive file list" ) );
+    labArchiveExtensions->setText ( tr ( "Supported extensions:" )+ " "+ SupportedExtensions);
+    cpShowArchiveFilePerms->setText ( tr ( "Show permission" ) );
+    cpShowArchiveFileUser->setText ( tr ( "Show user" ) );
+    cpShowArchiveFileGroup->setText ( tr ( "Show group" ) );
+    cpShowArchiveFileSize->setText ( tr ( "Show size" ) );
+    cpShowArchiveFileDate->setText ( tr ( "Show date" ) );
+    cpShowArchiveFileComment->setText ( tr ( "Show optional comment" ) );
     cdrom_lab->setText ( tr ( "Path to cdrom device" ) );
 
 #ifndef _WIN32
@@ -1348,6 +1544,14 @@ void ConfigDialog::okExit() {
     *DEBUG_INFO_ENABLED = cbEnableDebugInfo->isChecked();
     p->cconfig->saveAlwaysCatalogInUtf8 = cbSaveCatalogAlwaysInUtf8->isChecked();
     p->cconfig->showProgressedFileInStatus = cbShowProgressedFileInStatus->isChecked();
+    p->cconfig->doScanArchive  = cpScanArchive->isChecked();
+    p->cconfig->show_archive_file_perms  = cpShowArchiveFilePerms->isChecked();
+    p->cconfig->show_archive_file_user  = cpShowArchiveFileUser->isChecked();
+    p->cconfig->show_archive_file_group  = cpShowArchiveFileGroup->isChecked();
+    p->cconfig->show_archive_file_size  = cpShowArchiveFileSize->isChecked();
+    p->cconfig->show_archive_file_date  = cpShowArchiveFileDate->isChecked();
+    p->cconfig->show_archive_file_comment  = cpShowArchiveFileComment->isChecked();
+
     p->cconfig->writeConfig();
 
     QFont *font=new QFont();

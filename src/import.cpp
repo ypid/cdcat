@@ -2300,15 +2300,15 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
                 float s;
                 int st;
 
-                if ( size > ( uint ) ( 1024 * 1024 * 1024 * 2 ) ) {
+                if ( size > ( float ) ( 1024 * 1024 * 1024 * 2 ) ) {
                     s = ( double ) size / ( double ) ( 1024 * 1024 * 1024 );
                     st = GBYTE;
                 }
-                if ( size > ( uint ) ( 1024 * 1024 ) ) {
+                if ( size > ( float ) ( 1024 * 1024 ) ) {
                     s = ( double ) size / ( double ) ( 1024 * 1024 );
                     st = MBYTE;
                 }
-                if ( size > ( uint ) 1024 ) {
+                if ( size > ( float ) 1024 ) {
                     s = ( double ) size / ( double ) 1024;
                     st = KBYTE;
                 } else {

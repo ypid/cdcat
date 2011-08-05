@@ -18,6 +18,8 @@
 #include <QtXml/QXmlDefaultHandler>
 #include <QtXml/QXmlLocator>
 
+#include "dbase.h"
+
 class Node;
 class PWw;
 class QString;
@@ -54,6 +56,7 @@ private:
     inline char * spg ( int spn );
     void commentWriter ( QString& c );
     void categoryWriter ( QString& c );
+    void archivecontentWriter ( QList<ArchiveFile>& archivecontent );
 
     int  writeHeader ( void );
     int  writeCatalog ( Node *source );

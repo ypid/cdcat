@@ -102,6 +102,8 @@ CommentWidget::CommentWidget ( CdCatConfig * cc,QApplication *appl,QWidget *pare
     connect ( ButtonContent,SIGNAL ( clicked() ),this,SLOT ( showC() ) );
 
 
+    setMinimumSize(QSize(200, 400));
+    
 }
 
 void  CommentWidget::enterEvent ( QEvent *e ) {
@@ -141,6 +143,7 @@ void  CommentWidget::paintEvent ( QPaintEvent *pe ) {
     QDateTime mod;
     QPainter p ( this );
     int w=25;
+    int fontwidth=width()+200;
     Node *tmp;
     QFontMetrics fm ( app->font() );
     int pixelsHigh = fm.height();
@@ -389,13 +392,13 @@ void  CommentWidget::paintEvent ( QPaintEvent *pe ) {
         case HC_DIRECTORY:
             text= ( ( DBDirectory * ) ( act->data ) )->category;
             break;
-        case HC_FILE     :
+        case HC_FILE:
             text= ( ( DBFile      * ) ( act->data ) )->category;
             break;
-        case HC_MEDIA    :
+        case HC_MEDIA:
             text= ( ( DBMedia     * ) ( act->data ) )->category;
             break;
-        case HC_CATLNK   :
+        case HC_CATLNK:
             text= ( ( DBCatLnk    * ) ( act->data ) )->category;
             break;
         }
@@ -428,7 +431,59 @@ void  CommentWidget::paintEvent ( QPaintEvent *pe ) {
 	    }
 
         }
-
+	QFont oldFont = p.font();
+        switch ( act->type ) {
+		case HC_FILE:
+			QList<ArchiveFile> ArchiveFileList = ( ( DBFile      * ) ( act->data ) )->archivecontent;
+			if (ArchiveFileList.size() > 0) {
+				w+=pixelsHigh+ispace;
+				p.setFont(QFont("Fixed", font().pointSize()-1));
+				p.drawLine ( 12,my+w-pixelsHigh,width()-12,my+w-pixelsHigh );
+				p.setPen ( *cconfig->comm_stext );
+				w++;
+				p.drawText ( mx+15,my+w,tr ( "Archive contents:" ) );
+				w+=pixelsHigh;
+				
+				p.setPen ( *cconfig->comm_vtext );
+				for ( int i=0;i<ArchiveFileList.size();i++ ) {
+					ArchiveFile af = ArchiveFileList.at(i);
+					QString prettyArchiveFileLine = af.toPrettyString(cconfig->show_archive_file_perms, cconfig->show_archive_file_user, cconfig->show_archive_file_group, cconfig->show_archive_file_size, cconfig->show_archive_file_date, cconfig->show_archive_file_comment);
+					int max_archivecontent_len =200;
+					int stringlen = (prettyArchiveFileLine).size();
+					if(stringlen > max_archivecontent_len) {
+				// 		cerr << "oversized archivecontent line (" << stringlen <<"): " << qPrintable(*it) << endl;
+						int curlen=0;
+						QStringList textList2;
+						for (int curidx=0;curidx < stringlen;curidx++) {
+							if(curlen == max_archivecontent_len) {
+								textList2.append(prettyArchiveFileLine.mid(curidx-max_archivecontent_len, curidx));
+				// 				cerr << "added sub archivecontent line (" << prettyArchiveFileLine.mid(curidx-max_archivecontent_len, curidx).length() <<"): " << qPrintable(prettyArchiveFileLine.mid(curidx-max_archivecontent_len, curidx)) << endl;
+								curlen =0;
+							}
+							curlen++;
+						}
+						for ( QStringList::Iterator it2=textList2.begin(); it2 != textList2.end();++it2 ) {
+							p.drawText ( mx+20,my+w, ( *it2 ) );
+							if (p.fontMetrics().boundingRect(*it2).width() > fontwidth)
+								fontwidth = p.fontMetrics().boundingRect(*it2).width()+mx+20;
+							w+=pixelsHigh;
+						}
+					}
+					else {
+				// 		cerr << "undersized archivecontent line (" << stringlen <<"): " << qPrintable(prettyArchiveFileLine) << endl;
+						p.drawText ( mx+20,my+w, prettyArchiveFileLine );
+						if (p.fontMetrics().boundingRect(prettyArchiveFileLine).width() > fontwidth)
+							fontwidth = p.fontMetrics().boundingRect(prettyArchiveFileLine).width()+mx+20;
+						w+=pixelsHigh;
+					}
+				}
+			}
+			break;
+// 		default:
+// 			;
+        }
+	w+=50;
+	p.setFont(oldFont);
 
         /*Content button stuff*/
         if ( act->type == HC_FILE && ( ( DBFile * ) ( act->data ) )->prop != NULL ) {
@@ -458,6 +513,10 @@ void  CommentWidget::paintEvent ( QPaintEvent *pe ) {
         ButtonContent->setEnabled ( true );
         //connect
     }
+
+    if(w > height())
+	resize(fontwidth, w);
+
     ButtonContent->show();
     ButtonEdit->show();
 #if (QT_VERSION >= QT_VERSION_CHECK(4, 6, 0)) // needs Qt 4.6.0 or better
@@ -478,7 +537,8 @@ void  CommentWidget::resizeEvent ( QResizeEvent *re ) {
 void CommentWidget::showNode ( Node *node,int mod ) {
     act  = node;
     mode = mod;
-	 repaint();
+//     erase();
+    repaint();
 }
 
 int CommentWidget::editC ( void ) {

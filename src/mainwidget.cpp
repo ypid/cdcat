@@ -48,6 +48,8 @@
 #include "config.h"
 #include "icons.h"
 
+#include <QScrollArea>
+
 /*
  *  Constructs a CdCatMainWidget as a child of 'parent', with the
  *  name 'name' and widget flags set to 'f'.
@@ -142,7 +144,13 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp,QApplication *appp,QWidget* 
     listView->clear();
 
 
-    commentWidget = new CommentWidget ( cconfig,app,splitMain,"CommentWiget" );
+    commentWidget = new CommentWidget ( cconfig,app,0,"CommentWiget" );
+
+    QScrollArea *scrollArea = new QScrollArea(splitMain);
+    scrollArea->setBackgroundRole(QPalette::Dark);
+    scrollArea->setWidget(commentWidget);
+//     commentWidget->resize(scrollArea->size() );
+
 
     guis=new GuiSlave ( this );
 
@@ -167,9 +175,9 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp,QApplication *appp,QWidget* 
     fileMenu->insertItem ( *get_t_open_icon(),tr ( "Recent files..." ),historyMenu );
     connect ( historyMenu, SIGNAL ( activated ( int ) ), guis, SLOT ( openHistoryElementEvent ( int ) ) );
 
-    for ( QStringList::Iterator it = cconfig->hlist.begin(); it != cconfig->hlist.end(); ++it ) {
-        if ( !QString ( *it ).isEmpty() ) {
-            historyMenu->addAction ( *get_t_open_icon(),QString ( *it ) );
+    for ( int i= cconfig->hlist.size()-1; i > -1; i--) {
+        if ( !cconfig->hlist.at(i).isEmpty() ) {
+            historyMenu->addAction ( *get_t_open_icon(), cconfig->hlist.at(i) );
         }
     }
     fileMenu->insertItem ( *get_t_close_icon() ,tr ( "Close" ),guis,SLOT ( closeEvent() ),Qt::CTRL+Qt::Key_W );
@@ -301,6 +309,12 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp,QApplication *appp,QWidget* 
     connect ( commentWidget ,SIGNAL ( touchdb() ),guis,SLOT ( cHcaption() ) );
 
     listView ->setFocus();
+
+    commentWidget->resize(QSize(cconfig->mainP3 - 20, height() - 120 ) );
+
+    std::cout << "splitmain sizes: " << std::endl;
+    for (int i=0; i < splitMain->sizes().size(); i++)
+		std::cout << splitMain->sizes().at(i) << std::endl;
 
     if ( cconfig->autoload )
         guis->checkversion ( this,db );
