@@ -51,6 +51,7 @@ private:
     char *Artist;
     char *Title;
     char *Comment;
+    char *Track;
 
     char *techinfo;
 

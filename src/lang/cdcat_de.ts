@@ -3,7 +3,7 @@
 <context>
     <name></name>
     <message>
-        <location filename="../dbase.cpp" line="187"/>
+        <location filename="../dbase.cpp" line="184"/>
         <source>Not available</source>
         <translation>Nicht verfügbar</translation>
     </message>
@@ -11,7 +11,7 @@
 <context>
     <name>ArchiveFile</name>
     <message>
-        <location filename="../dbase.h" line="86"/>
+        <location filename="../dbase.h" line="83"/>
         <source>unknown</source>
         <translation>unbekannt</translation>
     </message>
@@ -19,57 +19,57 @@
 <context>
     <name>CatalogTypeEditDialog</name>
     <message>
-        <location filename="../guibase.cpp" line="1988"/>
+        <location filename="../guibase.cpp" line="1989"/>
         <source>Change media type</source>
         <translation>Medientyp ändern</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1989"/>
+        <location filename="../guibase.cpp" line="1990"/>
         <source>Change type of media</source>
         <translation>Typ des Mediums ändern</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1991"/>
+        <location filename="../guibase.cpp" line="1992"/>
         <source>CD</source>
         <translation>CD</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1992"/>
+        <location filename="../guibase.cpp" line="1993"/>
         <source>DVD</source>
         <translation>DVD</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1993"/>
+        <location filename="../guibase.cpp" line="1994"/>
         <source>HardDisc</source>
         <translation>Festplatte</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1994"/>
+        <location filename="../guibase.cpp" line="1995"/>
         <source>Floppy</source>
         <translation>Diskette</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1995"/>
+        <location filename="../guibase.cpp" line="1996"/>
         <source>NetworkPlace</source>
         <translation>Netzwerkgerät</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1996"/>
+        <location filename="../guibase.cpp" line="1997"/>
         <source>FlashDrive</source>
         <translation>Flashspeicher</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1997"/>
+        <location filename="../guibase.cpp" line="1998"/>
         <source>OtherDevice</source>
         <translation>Anderes Gerät</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2000"/>
+        <location filename="../guibase.cpp" line="2001"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2001"/>
+        <location filename="../guibase.cpp" line="2002"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -126,47 +126,47 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
 <context>
     <name>CdCatMainWidget</name>
     <message>
-        <location filename="../mainwidget.cpp" line="337"/>
+        <location filename="../mainwidget.cpp" line="336"/>
         <source>Hyper&apos;s CD Catalogizer</source>
         <translation>Hypers CD-Katalogisierer</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="339"/>
+        <location filename="../mainwidget.cpp" line="338"/>
         <source>Open a catalog from a file.</source>
         <translation>Einen Katalog von Datei öffnen</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="345"/>
+        <location filename="../mainwidget.cpp" line="344"/>
         <source>Close the actual catalog.</source>
         <translation>Aktuellen Katalog schliessen</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="348"/>
+        <location filename="../mainwidget.cpp" line="347"/>
         <source>Add a new media to the catalog.</source>
         <translation>Neues Medium zu Katalog hinzufügen</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="354"/>
+        <location filename="../mainwidget.cpp" line="353"/>
         <source>Configuration of the program.</source>
         <translation>Konfiguration des Programms</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="356"/>
+        <location filename="../mainwidget.cpp" line="355"/>
         <source>Help</source>
         <translation>Hilfe</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="358"/>
+        <location filename="../mainwidget.cpp" line="357"/>
         <source>Create a new, empty catalog and close the previous.</source>
         <translation>Neuen, leeren Katalog erstellen und den vorherigen schliessen</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="361"/>
+        <location filename="../mainwidget.cpp" line="360"/>
         <source>Search an element.</source>
         <translation>Element suchen</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="363"/>
+        <location filename="../mainwidget.cpp" line="362"/>
         <source>About</source>
         <translation>Über</translation>
     </message>
@@ -186,147 +186,147 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
         <translation>Grösse</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="170"/>
+        <location filename="../mainwidget.cpp" line="169"/>
         <source>New...</source>
         <translation>Neu...</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="171"/>
+        <location filename="../mainwidget.cpp" line="170"/>
         <source>Open...</source>
         <translation>Öffnen...</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="172"/>
+        <location filename="../mainwidget.cpp" line="171"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="173"/>
+        <location filename="../mainwidget.cpp" line="172"/>
         <source>Save As...</source>
         <translation>Speichern als...</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="184"/>
+        <location filename="../mainwidget.cpp" line="183"/>
         <source>Close</source>
         <translation>Schliessen</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="186"/>
+        <location filename="../mainwidget.cpp" line="185"/>
         <source>Quit</source>
         <translation>Beenden</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="188"/>
+        <location filename="../mainwidget.cpp" line="187"/>
         <source>Add media...</source>
         <translation>Medium hinzufügen...</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="190"/>
+        <location filename="../mainwidget.cpp" line="189"/>
         <source>Rescan media...</source>
         <translation>Medium aktualisieren...</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="192"/>
+        <location filename="../mainwidget.cpp" line="191"/>
         <source>Insert Catalog...</source>
         <translation>Katalog einfügen...</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="194"/>
+        <location filename="../mainwidget.cpp" line="193"/>
         <source>Rename node...</source>
         <translation>Knoten umbenennen...</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="197"/>
+        <location filename="../mainwidget.cpp" line="196"/>
         <source>Delete node</source>
         <translation>Knoten löschen</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="204"/>
+        <location filename="../mainwidget.cpp" line="203"/>
         <source>Seek in database...</source>
         <translation>In Datenbank suchen...</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="207"/>
+        <location filename="../mainwidget.cpp" line="206"/>
         <source>Node size</source>
         <translation>Knotengrösse</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="208"/>
+        <location filename="../mainwidget.cpp" line="207"/>
         <source>Configuration...</source>
         <translation>Konfiguration...</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="218"/>
+        <location filename="../mainwidget.cpp" line="217"/>
         <source>Catalog</source>
         <translation>Katalog</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="219"/>
+        <location filename="../mainwidget.cpp" line="218"/>
         <source>Edit</source>
         <translation>Bearbeiten</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="221"/>
+        <location filename="../mainwidget.cpp" line="220"/>
         <source>Others</source>
         <translation>Andere</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="360"/>
+        <location filename="../mainwidget.cpp" line="359"/>
         <source>Search an element in the database(catalog).You can search filenames, directory names, name parts or mp3 tags etc...</source>
         <translation>Element in Datenbank (Katalog) suchen. Es kann nach Dateinamen, Verzeichnisnamen, Namensteilen oder MP3-Tags gesucht werden...</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="199"/>
+        <location filename="../mainwidget.cpp" line="198"/>
         <source>Sort media by number</source>
         <translation>Medium nach Nummer sortieren</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="200"/>
+        <location filename="../mainwidget.cpp" line="199"/>
         <source>Sort media by name</source>
         <translation>Medium nach Name sortieren</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="201"/>
+        <location filename="../mainwidget.cpp" line="200"/>
         <source>Sort media by type</source>
         <translation>Medium nach Typ sortieren</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="202"/>
+        <location filename="../mainwidget.cpp" line="201"/>
         <source>Sort media by time</source>
         <translation>Medium nach Zeit sortieren</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="176"/>
+        <location filename="../mainwidget.cpp" line="175"/>
         <source>Recent files...</source>
         <translation>Zuletzt benutze Dateien...</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="220"/>
+        <location filename="../mainwidget.cpp" line="219"/>
         <source>Import/Export</source>
         <translation>Import/Export</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="195"/>
+        <location filename="../mainwidget.cpp" line="194"/>
         <source>Re-Number media node...</source>
         <translation>Medienknoten umnummerieren...</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="206"/>
+        <location filename="../mainwidget.cpp" line="205"/>
         <source>Borrowing info...</source>
         <translation>Ausleihinformation...</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="341"/>
+        <location filename="../mainwidget.cpp" line="340"/>
         <source>Save all modifications to the disc.</source>
         <translation>Alle Änderungen auf Festplatte speichern.</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="343"/>
+        <location filename="../mainwidget.cpp" line="342"/>
         <source>Save the catalog to a new file.</source>
         <translation>Katalog in eine neue Datei speichern.</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="209"/>
+        <location filename="../mainwidget.cpp" line="208"/>
         <source>Set Colors...</source>
         <translation>Farben setzen...</translation>
     </message>
@@ -336,42 +336,42 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
         <translation>Kein Element ausgewählt</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="350"/>
+        <location filename="../mainwidget.cpp" line="349"/>
         <source>Rescan the selected media.</source>
         <translation>Ausgewähltes Medium neu einlesen</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="205"/>
+        <location filename="../mainwidget.cpp" line="204"/>
         <source>Seek in the panel</source>
         <translation>In Bedienfeld suchen</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="365"/>
+        <location filename="../mainwidget.cpp" line="364"/>
         <source>About Qt</source>
         <translation>Über Qt</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="189"/>
+        <location filename="../mainwidget.cpp" line="188"/>
         <source>Add a link to a CdCat Catalog...</source>
         <translation>Verweis auf CdCat-Datenbank hinzufügen...</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="352"/>
+        <location filename="../mainwidget.cpp" line="351"/>
         <source>Delete selected node.</source>
         <translation>Ausgewählten Knoten löschen</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="389"/>
+        <location filename="../mainwidget.cpp" line="388"/>
         <source>Scanning:</source>
         <translation>Durchsuche:</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="215"/>
+        <location filename="../mainwidget.cpp" line="214"/>
         <source>Import database (CSV/XML)</source>
         <translation>Datenbank importieren (CSV/XML)</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="216"/>
+        <location filename="../mainwidget.cpp" line="215"/>
         <source>Export database (CSV/HTML/XML)</source>
         <translation>Datenbank exportieren (CSV/HTML/XML)</translation>
     </message>
@@ -500,11 +500,6 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
         <translation>MP3-Tag:</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="313"/>
-        <source>(Art/Tit/Alb/Year/Comm)</source>
-        <translation>(Künstler/Titel/Album/Jahr/Kommentar)</translation>
-    </message>
-    <message>
         <location filename="../commwidget.cpp" line="334"/>
         <source>Comment:</source>
         <translation>Kommentar:</translation>
@@ -563,6 +558,31 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
         <location filename="../commwidget.cpp" line="444"/>
         <source>Archive contents:</source>
         <translation>Archivinhalt:</translation>
+    </message>
+    <message>
+        <location filename="../commwidget.cpp" line="316"/>
+        <source>Artist:</source>
+        <translation>Künstler:</translation>
+    </message>
+    <message>
+        <location filename="../commwidget.cpp" line="318"/>
+        <source>Title:</source>
+        <translation>Titel:</translation>
+    </message>
+    <message>
+        <location filename="../commwidget.cpp" line="318"/>
+        <source>track:</source>
+        <translation>Spur:</translation>
+    </message>
+    <message>
+        <location filename="../commwidget.cpp" line="320"/>
+        <source>Album:</source>
+        <translation>Album:</translation>
+    </message>
+    <message>
+        <location filename="../commwidget.cpp" line="322"/>
+        <source>Year:</source>
+        <translation>Jahr:</translation>
     </message>
 </context>
 <context>
@@ -711,77 +731,77 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
 <context>
     <name>DataBase</name>
     <message>
-        <location filename="../dbase.cpp" line="1692"/>
+        <location filename="../dbase.cpp" line="1682"/>
         <source>Error</source>
         <translation>Fehler</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="819"/>
+        <location filename="../dbase.cpp" line="817"/>
         <source>Cancel scanning</source>
         <translation>Durchsuchen abbrechen</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="587"/>
+        <location filename="../dbase.cpp" line="585"/>
         <source>I can&apos;t rewrite the file: %1</source>
         <translation>Datei kann nicht überschrieben werden: %1</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="612"/>
+        <location filename="../dbase.cpp" line="610"/>
         <source>I can&apos;t create the file: %1</source>
         <translation>Datei kann nicht erstellt werden: %1</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1656"/>
+        <location filename="../dbase.cpp" line="1646"/>
         <source>I can&apos;t open the file: %1</source>
         <translation>Datei kann nicht geöffnet werden: %1</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="815"/>
+        <location filename="../dbase.cpp" line="813"/>
         <source>Cannot read directory: %1</source>
         <translation>Verzeichnis kann nicht gelesen werden: %1</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1692"/>
+        <location filename="../dbase.cpp" line="1682"/>
         <source>Error while parsing file: %1</source>
         <translation>Fehler beim Parsen der Datei: %1</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="636"/>
+        <location filename="../dbase.cpp" line="634"/>
         <source>No database opened!</source>
         <translation>Keine Datenbank geöffnet!</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="817"/>
+        <location filename="../dbase.cpp" line="815"/>
         <source>Cannot read file: %1</source>
         <translation>Datei kann nicht gelesen werden: %1</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="819"/>
+        <location filename="../dbase.cpp" line="817"/>
         <source>Ignore</source>
         <translation>Ignorieren</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="872"/>
+        <location filename="../dbase.cpp" line="870"/>
         <source>Symbolic link to file:#</source>
         <translation>Symbolischer Verweis auf Datei:#</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="924"/>
+        <location filename="../dbase.cpp" line="920"/>
         <source>Symbolic link to directory:#</source>
         <translation>Symbolischer Verweis auf Verzeichnis:#</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="948"/>
+        <location filename="../dbase.cpp" line="944"/>
         <source>DEAD Symbolic link to:#</source>
         <translation>TOTER symbolischer Verweis auf:#</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="958"/>
+        <location filename="../dbase.cpp" line="954"/>
         <source>System file (e.g. FIFO, socket or device file)</source>
         <translation>Systemdatei (z.B. FIFO, Socket oder Gerätedatei)</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1680"/>
+        <location filename="../dbase.cpp" line="1670"/>
         <source>Not enough memory to open the file: %1</source>
         <translation>Nicht genug Hauptspeicher um Datei %1 zu öffnen</translation>
     </message>
@@ -821,12 +841,12 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
         <translation>Sie haben das Lesen das Katalogs abgebrochen.</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1506"/>
+        <location filename="../dbase.cpp" line="1499"/>
         <source>device </source>
         <translation>Gerät</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1522"/>
+        <location filename="../dbase.cpp" line="1515"/>
         <source> link to </source>
         <translation> Verweis nach</translation>
     </message>
@@ -852,42 +872,42 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
         <translation>Katalog</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1529"/>
+        <location filename="../guibase.cpp" line="1530"/>
         <source>Unknown(DB)</source>
         <translation>Unbekannt(DB)</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1533"/>
+        <location filename="../guibase.cpp" line="1534"/>
         <source>CD</source>
         <translation>CD</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1537"/>
+        <location filename="../guibase.cpp" line="1538"/>
         <source>DVD</source>
         <translation>DVD</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1541"/>
+        <location filename="../guibase.cpp" line="1542"/>
         <source>HardDisc</source>
         <translation>Festplatte</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1545"/>
+        <location filename="../guibase.cpp" line="1546"/>
         <source>Floppy</source>
         <translation>Diskette</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1549"/>
+        <location filename="../guibase.cpp" line="1550"/>
         <source>NetworkDrv</source>
         <translation>Netzwerkgerät</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1553"/>
+        <location filename="../guibase.cpp" line="1554"/>
         <source>FlashDrv</source>
         <translation>Flashspeicher</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1557"/>
+        <location filename="../guibase.cpp" line="1558"/>
         <source>OtherDevice</source>
         <translation>Anderes Gerät</translation>
     </message>
@@ -907,12 +927,12 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
         <translation>Hyper´s CD-Katalogisierer</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1455"/>
+        <location filename="../guibase.cpp" line="1456"/>
         <source>CdCat databases (*.hcf )</source>
         <translation>CdCat-Datenbanken (*.hcf)</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1791"/>
+        <location filename="../guibase.cpp" line="1792"/>
         <source>Error while opening...</source>
         <translation>Fehler beim Öffnen...</translation>
     </message>
@@ -932,12 +952,12 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
         <translation>Sollen die Änderungen gespeichert werden?</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1591"/>
+        <location filename="../guibase.cpp" line="1592"/>
         <source>Error:</source>
         <translation>Fehler:</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1851"/>
+        <location filename="../guibase.cpp" line="1852"/>
         <source>Confirmation</source>
         <translation>Bestätigung</translation>
     </message>
@@ -947,17 +967,17 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
         <translation>Warnung...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1358"/>
+        <location filename="../guibase.cpp" line="1359"/>
         <source>You can refresh ONLY a MEDIA node!</source>
         <translation>Es kann nur ein Mediumknoten aktualisiert werden!</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1853"/>
+        <location filename="../guibase.cpp" line="1854"/>
         <source>Yes</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1853"/>
+        <location filename="../guibase.cpp" line="1854"/>
         <source>No</source>
         <translation>Nein</translation>
     </message>
@@ -972,7 +992,7 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
         <translation>In Datei speichern...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1455"/>
+        <location filename="../guibase.cpp" line="1456"/>
         <source>Insert a database file...</source>
         <translation>Datenbankdatei einfügen...</translation>
     </message>
@@ -984,7 +1004,7 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
 %1</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1597"/>
+        <location filename="../guibase.cpp" line="1598"/>
         <source>The size of &quot;%1&quot; : 
  %2 
  %3 file /%4 directory</source>
@@ -1008,7 +1028,7 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
         <translation>Programm \&quot;mount\&quot; kann nicht gefunden werden</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1319"/>
+        <location filename="../guibase.cpp" line="1320"/>
         <source>Cannot mount CD!</source>
         <translation>CD kann nicht gemountet werden!</translation>
     </message>
@@ -1048,7 +1068,7 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
         <translation>Katalog einfügen...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1362"/>
+        <location filename="../guibase.cpp" line="1363"/>
         <source>Rescan %1</source>
         <translation>Aktualisieren %1</translation>
     </message>
@@ -1058,7 +1078,7 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
         <translation>Medium umnummerieren...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1576"/>
+        <location filename="../guibase.cpp" line="1577"/>
         <source>It is NOT a media node!</source>
         <translation>Es ist kein Medienknoten!</translation>
     </message>
@@ -1083,7 +1103,7 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
         <translation>Inhalt anzeigen/löschen...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1591"/>
+        <location filename="../guibase.cpp" line="1592"/>
         <source>There is no selected item in the middle list box!</source>
         <translation>Es ist kein Element im mittleren Ansichtsfenster ausgewählt!</translation>
     </message>
@@ -1095,12 +1115,12 @@ the DataBase may be incomplete</source>
 Datenbank kann unvollständig sein</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1354"/>
+        <location filename="../guibase.cpp" line="1355"/>
         <source>There is no selected Media in the middle list box!</source>
         <translation>Es ist kein Medium in der mittleren Auswahlbox ausgewählt!</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1374"/>
+        <location filename="../guibase.cpp" line="1375"/>
         <source>An error occured while scanning, the rescan operation was cancelled: 
 %1</source>
         <translation>Es trat ein Fehler während des Durchsuchens auf, Aktualisierenoperation abgebrochen:
@@ -1112,7 +1132,7 @@ Datenbank kann unvollständig sein</translation>
         <translation>Medium ausleihen an...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1852"/>
+        <location filename="../guibase.cpp" line="1853"/>
         <source>Do you want to clear the borrowing mark from media &quot;%1&quot;?
 (Say yes if you got it back.)</source>
         <translation>Soll die Ausleihmarke von Medium &quot;%1&quot; gelöscht werden?
@@ -1139,7 +1159,7 @@ Datenbank kann unvollständig sein</translation>
         <translation>Verknüpfung zu einem CdCat-Katalog hinzufügen</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1768"/>
+        <location filename="../guibase.cpp" line="1769"/>
         <source>The link is empty.</source>
         <translation>Die Verknüpfung ist leer.</translation>
     </message>
@@ -1177,17 +1197,17 @@ Homepage: %3</translation>
         <translation>Kein Element ausgewählt.</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1363"/>
+        <location filename="../guibase.cpp" line="1364"/>
         <source>Select directory</source>
         <translation>Verzeichnis auswählen</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1602"/>
+        <location filename="../guibase.cpp" line="1603"/>
         <source>The result:</source>
         <translation>Das Ergebnis:</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1598"/>
+        <location filename="../guibase.cpp" line="1599"/>
         <source>MiB</source>
         <translation>MiB</translation>
     </message>
@@ -1795,6 +1815,29 @@ wird zu
         <source>More Data:
 </source>
         <translation>Mehr Daten:</translation>
+    </message>
+</context>
+<context>
+    <name>ReadMp3Tag</name>
+    <message>
+        <location filename="" line="0"/>
+        <source>Mono</source>
+        <translation type="obsolete">Mono</translation>
+    </message>
+    <message>
+        <location filename="" line="0"/>
+        <source>Simple stereo</source>
+        <translation type="obsolete">Einfaches Stereo</translation>
+    </message>
+    <message>
+        <location filename="" line="0"/>
+        <source>Joint stereo</source>
+        <translation type="obsolete">Zusammengeführtes Stereo</translation>
+    </message>
+    <message>
+        <location filename="" line="0"/>
+        <source>Dual channel</source>
+        <translation type="obsolete">2-Kanal</translation>
     </message>
 </context>
 <context>

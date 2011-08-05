@@ -408,15 +408,16 @@ DBMp3Tag::DBMp3Tag ( void ) {
     comment = "";
     album   = "";
     year    = "";
+    tnumber = 0;
 }
 
-DBMp3Tag::DBMp3Tag ( QString a,QString t,QString c,QString al,QString y ) {
+DBMp3Tag::DBMp3Tag ( QString a,QString t,QString c,QString al,QString y, int tnum ) {
     artist  = a;
     title   = t;
     comment = c;
     album   = al;
     year    = y;
-
+    tnumber = tnum;
 }
 
 DBMp3Tag::~DBMp3Tag ( void ) {
@@ -967,8 +968,7 @@ int DataBase::scanFileProp ( QFileInfo *fi,DBFile *fc ) {
     if ( storeMp3tags || storeMp3techinfo )
         if ( ( fi->extension ( FALSE ) ).lower() ==  "mp3" ||
                 ( fi->extension ( FALSE ) ).lower() ==  "mp2" ) {
-            ReadMp3Tag *reader =
-                new ReadMp3Tag ( ( const char * ) QFile::encodeName ( fi->absFilePath() ),v1_over_v2 );
+            ReadMp3Tag *reader = new ReadMp3Tag ( ( const char * ) QFile::encodeName ( fi->absFilePath() ),v1_over_v2 );
             if ( storeMp3tags )
                 if ( reader->readed() && reader->exist() ) {
                     Node *tt = fc->prop;
@@ -983,7 +983,8 @@ int DataBase::scanFileProp ( QFileInfo *fi,DBFile *fc ) {
                                                          QString::fromLocal8Bit ( reader->title() )  ,
                                                          QString::fromLocal8Bit ( reader->comment() ),
                                                          QString::fromLocal8Bit ( reader->album() )  ,
-                                                         QString::fromLocal8Bit ( reader->year() ) );
+                                                         QString::fromLocal8Bit ( reader->year() ),
+                                                         reader->tnum());
 
                 }//storetag-if
 
@@ -2021,12 +2022,12 @@ Node * DataBase::putFileNode ( Node *directory,QString name,QDateTime modificati
 }
 
 
-Node * DataBase::putTagInfo ( Node *file,QString artist,QString title,QString comment,QString album,QString year ) {
+Node * DataBase::putTagInfo ( Node *file, QString artist, QString title, QString comment, QString album, QString year, int tnumber ) {
     Node *t=NULL,*n=NULL;
 
     n = new Node ( HC_MP3TAG,NULL );
     n->data = ( void * )
-              new DBMp3Tag ( artist,title,comment,album,year );
+              new DBMp3Tag ( artist, title, comment, album, year, tnumber );
 
     if ( ( ( DBFile * ) ( file->data ) )->prop == NULL )
         ( ( DBFile * ) ( file->data ) )->prop = n;

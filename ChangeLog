@@ -1,5 +1,6 @@
 05. Aug 2011 Christoph Thielecke <crissi99@gmx.de>
 	- translations from old qt3 version readded: fr, it, sr (unmaintained)
+	- track number in mp3tag is now supported
 
 04. Aug 2011 Christoph Thielecke <crissi99@gmx.de>
 	- comment widget now expands if the text inside is larger than viewport 

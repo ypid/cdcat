@@ -295,6 +295,14 @@ int ReadMp3Tag::ReadTAGv2 ( void ) {
                 Comment[framelen-5] = '\0';
             }
         }
+        if ( !strncmp ( id,markers[TRACK],4 ) ) {
+            if ( framelen>5 ) {
+                FREE_AND_ALLOC ( Track,framelen );
+                memcpy ( Track,tag+pos+1,framelen-1 );
+                Track[framelen-1] = '\0';
+		tnumber = atoi(Track);
+            }
+        }
         pos += framelen;
     } //end frame cycle
     delete [] tag;

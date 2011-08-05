@@ -243,10 +243,11 @@ public:
     QString comment;
     QString album;
     QString year;
+    int tnumber;
 
     DBMp3Tag ( void );
-    DBMp3Tag ( QString a,QString t,QString c,QString al,QString y );
-    //a:artist , t:title , c:commnet , al:album , y:year
+    DBMp3Tag ( QString a,QString t,QString c,QString al,QString y, int tnum );
+    //a:artist , t:title , c:commnet , al:album , y:year, tnum:tnumber
 
     ~DBMp3Tag ( void );
 };
@@ -432,7 +433,7 @@ public:
     Node * getFileNode ( Node *directory,QString name );
     Node * putFileNode ( Node *directory,QString name,QDateTime modification,QString comment,int sizeType,float size, QString category="", QList<ArchiveFile> archivecontent=QList<ArchiveFile>() );
 
-    Node * putTagInfo ( Node *file,QString artist,QString title,QString comment,QString album,QString year );
+    Node * putTagInfo ( Node *file,QString artist,QString title,QString comment,QString album,QString year, int tnumber );
 
     void setShowProgressedFileInStatus(bool showProgressedFileInStatus);
     void setDoArchiveScan(bool doScanArchive) { this->doScanArchive = doScanArchive; };

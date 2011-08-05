@@ -55,11 +55,11 @@ HQToolButton::HQToolButton ( QWidget *parent )
     setText ( QString::null );
 }
 
-void  HQToolButton::enterEvent ( QEvent *e ) {
+void  HQToolButton::enterEvent ( QEvent * ) {
     QApplication::setOverrideCursor ( Qt::arrowCursor );
 }
 
-void  HQToolButton::leaveEvent ( QEvent *e ) {
+void  HQToolButton::leaveEvent ( QEvent * ) {
     QApplication::setOverrideCursor ( Qt::PointingHandCursor );
 }
 
@@ -106,11 +106,11 @@ CommentWidget::CommentWidget ( CdCatConfig * cc,QApplication *appl,QWidget *pare
     
 }
 
-void  CommentWidget::enterEvent ( QEvent *e ) {
+void  CommentWidget::enterEvent ( QEvent * ) {
     QApplication::setOverrideCursor ( Qt::PointingHandCursor );
 }
 
-void  CommentWidget::leaveEvent ( QEvent *e ) {
+void  CommentWidget::leaveEvent ( QEvent * ) {
     QApplication::setOverrideCursor ( Qt::arrowCursor );
 }
 
@@ -130,13 +130,13 @@ void  CommentWidget::mousePressEvent ( QMouseEvent *me ) {
     repaint();
 }
 
-void  CommentWidget::mouseReleaseEvent ( QMouseEvent *me ) {
+void  CommentWidget::mouseReleaseEvent ( QMouseEvent * ) {
     ox = mx = 0;
     oy = my = 0;
     repaint();
 }
 
-void  CommentWidget::paintEvent ( QPaintEvent *pe ) {
+void  CommentWidget::paintEvent ( QPaintEvent * ) {
 //cerr <<"paintEvent"<<endl;
     QStringList textList;
     QString text;
@@ -310,18 +310,18 @@ void  CommentWidget::paintEvent ( QPaintEvent *pe ) {
                     p.setPen ( *cconfig->comm_stext );
                     p.drawText ( mx+12,my+w,tr ( "Mp3-Tag:" ) );
                     w+=pixelsHigh;
-                    p.drawText ( mx+12,my+w,tr ( "(Art/Tit/Alb/Year/Comm)" ) );
-                    w+=pixelsHigh+2;
+//                     p.drawText ( mx+12,my+w,tr ( "(Art/Tit/Alb/Year/Comm)" ) );
+//                     w+=pixelsHigh+2;
                     p.setPen ( *cconfig->comm_vtext );
-                    p.drawText ( mx+20,my+w, ( ( DBMp3Tag * ) ( tmp->data ) )->artist );
+                    p.drawText ( mx+20,my+w, tr("Artist:")+" "+( ( DBMp3Tag * ) ( tmp->data ) )->artist );
                     w+=pixelsHigh;
-                    p.drawText ( mx+20,my+w, ( ( DBMp3Tag * ) ( tmp->data ) )->title );
+                    p.drawText ( mx+20,my+w, tr("Title:")+" "+( ( DBMp3Tag * ) ( tmp->data ) )->title+ " ("+tr("track:")+" "+QString().setNum((( DBMp3Tag * ) ( tmp->data ) )->tnumber)+")");
                     w+=pixelsHigh;
-                    p.drawText ( mx+20,my+w, ( ( DBMp3Tag * ) ( tmp->data ) )->album );
+                    p.drawText ( mx+20,my+w, tr("Album:")+" "+( ( DBMp3Tag * ) ( tmp->data ) )->album );
                     w+=pixelsHigh;
-                    p.drawText ( mx+20,my+w, ( ( DBMp3Tag * ) ( tmp->data ) )->year );
+                    p.drawText ( mx+20,my+w, tr("Year:")+" "+( ( DBMp3Tag * ) ( tmp->data ) )->year );
                     w+=pixelsHigh;
-                    p.drawText ( mx+20,my+w, ( ( DBMp3Tag * ) ( tmp->data ) )->comment );
+                    p.drawText ( mx+20,my+w, tr("Comment:")+" "+( ( DBMp3Tag * ) ( tmp->data ) )->comment );
                     w+=pixelsHigh+2;
                 }
                 tmp = tmp->next;

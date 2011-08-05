@@ -380,14 +380,16 @@ int  FileWriter::writeFile ( Node *source ) {
 
 int  FileWriter::writeMp3Tag ( Node *source ) {
     QString  c1, c2, c3, c4, c5;
+    int tnum;
 
 
     c1=to_cutf8 ( ( ( DBMp3Tag * ) ( source->data ) )->artist );
     c2=to_cutf8 ( ( ( DBMp3Tag * ) ( source->data ) )->title );
     c3=to_cutf8 ( ( ( DBMp3Tag * ) ( source->data ) )->album );
     c4=to_cutf8 ( ( ( DBMp3Tag * ) ( source->data ) )->year );
-    gzprintf ( f,"%s<mp3tag artist=\"%s\" title=\"%s\" album=\"%s\"  year=\"%s\">",
-               spg ( level ),c1.toLocal8Bit().data(),c2.toLocal8Bit().data(),c3.toLocal8Bit().data(),c4.toLocal8Bit().data() );
+    tnum=( ( DBMp3Tag * ) ( source->data ) )->tnumber;
+    gzprintf ( f,"%s<mp3tag artist=\"%s\" title=\"%s\" album=\"%s\" year=\"%s\" tnum=\"%d\">",
+               spg ( level ),c1.toLocal8Bit().data(),c2.toLocal8Bit().data(),c3.toLocal8Bit().data(),c4.toLocal8Bit().data(), tnum );
 
     c5=to_cutf8 ( ( ( DBMp3Tag * ) ( source->data ) )->comment );
     gzprintf ( f,"%s",c5.toLocal8Bit().data() );
@@ -1208,8 +1210,12 @@ Please change it with an older version or rewrite it in the xml file!" );
         ts4 = FREA->getStr2 ( attr,"year"   ,"Error while parsing \"mp3tag\" node" );
         if ( FREA->error )
 		return false;
+	ti1 =0;
+        ti1 = FREA->getFloat2 ( attr,"tnum"   ,"Error while parsing \"mp3tag\" node" );
+	// this is NO error
+	FREA->error = 0;
 
-        tmp_tagp = new DBMp3Tag ( ts1,ts2,"no comment",ts3,ts4 );
+        tmp_tagp = new DBMp3Tag ( ts1,ts2,"no comment", ts3 , ts4, ti1 );
 
         tt->data = ( void * ) tmp_tagp;
         /*I don't make this node to the actual node because this won't be parent.*/
