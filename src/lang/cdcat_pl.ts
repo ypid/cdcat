@@ -48,6 +48,11 @@
         <source>unknown</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../dbase.h" line="83"/>
+        <source></source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CatalogTypeEditDialog</name>
@@ -110,12 +115,12 @@
 <context>
     <name>CdCatConfig</name>
     <message>
-        <location filename="../config.cpp" line="190"/>
+        <location filename="../config.cpp" line="188"/>
         <source>Error during autoload...</source>
         <translation>Błąd podczas automatycznego ładowania...</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="192"/>
+        <location filename="../config.cpp" line="190"/>
         <source>I can&apos;t open the autoload catalog.
 Check the file, or change the autoload option in the config dialog!
 </source>
@@ -151,7 +156,7 @@ Jest potrzebna, gdyż chciałem zapisać ustawienia do twojego katalogu domowego
         <translation type="obsolete">Nie mogę utworzyć albo nadpisać $(HOME)/.cdcatconfig</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="192"/>
+        <location filename="../config.cpp" line="190"/>
         <source>I can&apos;t open the autoload catalog according the first command line parameter.
 Check the file!
 </source>
@@ -166,22 +171,22 @@ It is necessary couse I&apos;d like to save the config file into your home direc
 Jest potrzebna, gdyż chciałem zapisać ustawienia do twojego katalogu domowego.</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1047"/>
+        <location filename="../config.cpp" line="1045"/>
         <source>I can&apos;t create or rewrite the ./cdcat.cfg file </source>
         <translation>Nie mogę utworzyć albo nadpisać pliku ./cdcat.cfg</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1049"/>
+        <location filename="../config.cpp" line="1047"/>
         <source>I can&apos;t create or rewrite the $(HOME)/.cdcatconfig file </source>
         <translation>Nie mogę utworzyć albo nadpisać $(HOME)/.cdcatconfig</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1049"/>
+        <location filename="../config.cpp" line="1047"/>
         <source>Error while saving config file...</source>
         <translation>Błąd podczas zapisywania pliku konfiguracyjnego...</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="771"/>
+        <location filename="../config.cpp" line="769"/>
         <source>I can&apos;t get the $HOME environment variable.
 It is necessary because I&apos;d like to save the config file into your home directory.</source>
         <translation type="unfinished"></translation>
@@ -727,32 +732,32 @@ It is necessary because I&apos;d like to save the config file into your home dir
 <context>
     <name>ConfigDialog</name>
     <message>
-        <location filename="../config.cpp" line="1428"/>
+        <location filename="../config.cpp" line="1346"/>
         <source>Configure  CdCat...</source>
         <translation>Konfiguruj CdCat...</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1429"/>
+        <location filename="../config.cpp" line="1347"/>
         <source>Autoload DataBase on startup</source>
         <translation>Automatyczne ładowanie Bazy danych na starcie</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1431"/>
+        <location filename="../config.cpp" line="1349"/>
         <source>Save the XML-db.file nicer format(needs more space)</source>
         <translation>Zapisz do przejzystrzego formatu XML-db. (wymaga więcej mijesca)</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1432"/>
+        <location filename="../config.cpp" line="1350"/>
         <source>Cancel</source>
         <translation>Anuluj</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1433"/>
+        <location filename="../config.cpp" line="1351"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1436"/>
+        <location filename="../config.cpp" line="1354"/>
         <source>Application font size.(must restart cdcat!) </source>
         <translation>Wielkość czcionki w programie.(wymaga ponownego uruchomienia programu po zmianie!)</translation>
     </message>
@@ -767,32 +772,32 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Wybierz plik do automatycznego ładowania!</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1447"/>
+        <location filename="../config.cpp" line="1356"/>
         <source>Path to cdrom device</source>
         <translation>Ścieżka do napędu CD-ROM</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1450"/>
+        <location filename="../config.cpp" line="1359"/>
         <source>Scanning: mount cdrom at start / eject when finish</source>
         <translation>Skanowanie: montuj CD-rom przed skanowaniem / wysuń po zakończeniu</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1435"/>
+        <location filename="../config.cpp" line="1353"/>
         <source>Use own font size</source>
         <translation>Użyj własnego rozmiaru czcionki</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1437"/>
+        <location filename="../config.cpp" line="1355"/>
         <source>Number of history entries</source>
         <translation>Liczba wpisów w historii</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1475"/>
+        <location filename="../config.cpp" line="1384"/>
         <source>Choose path to cdrom!</source>
         <translation>Wybierz ścieżke do CD-ROMu!</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1458"/>
+        <location filename="../config.cpp" line="1367"/>
         <source>The language of CdCat interface</source>
         <translation>Język interface&apos;u CdCat&apos;a</translation>
     </message>
@@ -802,7 +807,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Wybierz odczywywane pliki</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1468"/>
+        <location filename="../config.cpp" line="1377"/>
         <source>Choose a file to load automatically!</source>
         <translation>Wybierz plik do automatycznego ładowania!</translation>
     </message>
@@ -812,78 +817,33 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Automatycznie zapisz baze danych po każdym skanowaniu (na wszelki wypadek)</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1434"/>
+        <location filename="../config.cpp" line="1352"/>
         <source>Select additional items to read</source>
         <translation>Wybierz odczywywane pliki</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1430"/>
+        <location filename="../config.cpp" line="1348"/>
         <source>Automatically save the database after every scan (for safety sake)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1461"/>
+        <location filename="../config.cpp" line="1370"/>
         <source>Display debug info on console</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1468"/>
+        <location filename="../config.cpp" line="1377"/>
         <source>CdCat databases (*.hcf )</source>
         <translation type="unfinished">Bazy danych CdCat&apos;a (*.hcf)</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1462"/>
+        <location filename="../config.cpp" line="1371"/>
         <source>Save catalogs always as UTF8</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1463"/>
+        <location filename="../config.cpp" line="1372"/>
         <source>Show progressed file at scanning in status label</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../config.cpp" line="1439"/>
-        <source>Scan for archive file list</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../config.cpp" line="1438"/>
-        <source>Archive file display options</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../config.cpp" line="1441"/>
-        <source>Show permission</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../config.cpp" line="1442"/>
-        <source>Show user</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../config.cpp" line="1443"/>
-        <source>Show group</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../config.cpp" line="1444"/>
-        <source>Show size</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../config.cpp" line="1445"/>
-        <source>Show date</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../config.cpp" line="1446"/>
-        <source>Show optional comment</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../config.cpp" line="1440"/>
-        <source>Supported extensions:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -980,17 +940,17 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../wdbfile.cpp" line="737"/>
+        <location filename="../wdbfile.cpp" line="739"/>
         <source>Reading file, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../wdbfile.cpp" line="879"/>
+        <location filename="../wdbfile.cpp" line="881"/>
         <source>Parsing file, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../wdbfile.cpp" line="771"/>
+        <location filename="../wdbfile.cpp" line="773"/>
         <source>Converting to unicode, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1005,12 +965,12 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished">Anuluj</translation>
     </message>
     <message>
-        <location filename="../wdbfile.cpp" line="784"/>
+        <location filename="../wdbfile.cpp" line="786"/>
         <source>Parse error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../wdbfile.cpp" line="789"/>
+        <location filename="../wdbfile.cpp" line="791"/>
         <source>You have cancelled catalog reading.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2224,57 +2184,54 @@ zostanie zmieniony na
     </message>
 </context>
 <context>
-    <name>ReadMp3Tag</name>
-</context>
-<context>
     <name>SelReadable</name>
     <message>
-        <location filename="../selreadable.cpp" line="195"/>
+        <location filename="../selreadable.cpp" line="285"/>
         <source>Select readable items</source>
         <translation>Wybierz odczywywane pliki</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="196"/>
+        <location filename="../selreadable.cpp" line="295"/>
         <source>Read mp3 tags</source>
         <translation>Czytaj tagi mp3</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="204"/>
+        <location filename="../selreadable.cpp" line="303"/>
         <source>Store content of some files</source>
         <translation>Zapisz zawartość niektórych plików</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="206"/>
+        <location filename="../selreadable.cpp" line="305"/>
         <source>; separated list of readable file patterns</source>
         <translation>lista plików podzelona separatorami &quot;;&quot; </translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="207"/>
+        <location filename="../selreadable.cpp" line="306"/>
         <source>content size limit in kByte</source>
         <translation>Maksymalny rozmiar plików któych zawartość jest zapisywana</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="208"/>
+        <location filename="../selreadable.cpp" line="307"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="209"/>
+        <location filename="../selreadable.cpp" line="308"/>
         <source>Cancel</source>
         <translation>Anuluj</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="198"/>
+        <location filename="../selreadable.cpp" line="297"/>
         <source>Default tag</source>
         <translation>Domyślny tag</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="200"/>
+        <location filename="../selreadable.cpp" line="299"/>
         <source>version</source>
         <translation>wersja</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="202"/>
+        <location filename="../selreadable.cpp" line="301"/>
         <source>Read mp3 technical info as comment (bitrate,freq,length...)</source>
         <translation>Odczytaj dane techniczne o mp3 jako komentarz (bitare,częstotliwość,czas...)</translation>
     </message>
@@ -2284,8 +2241,53 @@ zostanie zmieniony na
         <translation type="obsolete">Odczytaj informacje o pliku AVI jako komentarz (Kodek,długość,...)</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="203"/>
+        <location filename="../selreadable.cpp" line="302"/>
         <source>Read avi technical info as comment (codecs,length,...)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../selreadable.cpp" line="288"/>
+        <source>Supported extensions:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../selreadable.cpp" line="286"/>
+        <source>Archive file display options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../selreadable.cpp" line="287"/>
+        <source>Scan for archive file list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../selreadable.cpp" line="289"/>
+        <source>Show permission</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../selreadable.cpp" line="290"/>
+        <source>Show user</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../selreadable.cpp" line="291"/>
+        <source>Show group</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../selreadable.cpp" line="292"/>
+        <source>Show size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../selreadable.cpp" line="293"/>
+        <source>Show date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../selreadable.cpp" line="294"/>
+        <source>Show optional comment</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -189,13 +189,6 @@ public:
     QCheckBox* cbAutoload;
     QCheckBox* cbAutosave;
     QCheckBox* cbOwnFont;
-    QCheckBox* cpScanArchive;
-    QCheckBox* cpShowArchiveFilePerms;
-    QCheckBox* cpShowArchiveFileUser;
-    QCheckBox* cpShowArchiveFileGroup;
-    QCheckBox* cpShowArchiveFileSize;
-    QCheckBox* cpShowArchiveFileDate;
-    QCheckBox* cpShowArchiveFileComment;
 
 
 protected:
@@ -206,11 +199,8 @@ protected:
     Q3HBoxLayout* layout4;
     Q3HBoxLayout* layout5;
     Q3HBoxLayout* layout6;
-    Q3HBoxLayout* layout62;
     Q3HBoxLayout* layout7;
     Q3HBoxLayout* layout8;
-    Q3HBoxLayout* layoutShowArchiveFileOptions;
-    Q3GridLayout* layoutShowArchiveFileOptionsGroup;
     Q3HBoxLayout* layoutSave;
     Q3HBoxLayout* layoutStatus;
 
@@ -231,13 +221,8 @@ protected:
     QLabel     * langLabel;
 #endif
 
-   QLabel *labArchiveExtensions;
-
-   QGroupBox *groupBoxShowArchiveFileOpts;
-
-
    QPushButton* searchButton2; // maybe problem for moc
-   QString SupportedExtensions;
+
 public slots:
     virtual void okExit();
     virtual void ffdbutton();

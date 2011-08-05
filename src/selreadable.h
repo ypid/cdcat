@@ -18,6 +18,7 @@
 #include <Q3GridLayout>
 #include <Q3HBoxLayout>
 #include <QLabel>
+#include <QGroupBox>
 
 class Q3VBoxLayout;
 class Q3HBoxLayout;
@@ -31,8 +32,10 @@ class QSpinBox;
 class CdCatConfig;
 class Q3ButtonGroup;
 class QRadioButton;
+class QGroupBox;
 
-class SelReadable : public QDialog {
+class SelReadable : public QDialog
+{
     Q_OBJECT
 
 public:
@@ -51,10 +54,21 @@ public:
     QSpinBox* maxSpinBox;
     QLabel* textLabel2;
     Q3Frame* line2;
+    Q3Frame* line6;
     QPushButton* buttonOK;
     QPushButton* buttonCancel;
     Q3ButtonGroup* tagselector;
     QRadioButton *rad_v1,*rad_v2;
+    QLabel *labArchiveExtensions;
+    QGroupBox *groupBoxShowArchiveFileOpts;
+    QCheckBox* cpScanArchive;
+    QCheckBox* cpShowArchiveFilePerms;
+    QCheckBox* cpShowArchiveFileUser;
+    QCheckBox* cpShowArchiveFileGroup;
+    QCheckBox* cpShowArchiveFileSize;
+    QCheckBox* cpShowArchiveFileDate;
+    QCheckBox* cpShowArchiveFileComment;
+
 
 
 public slots:
@@ -70,9 +84,15 @@ protected:
     Q3HBoxLayout* layout10;
     Q3HBoxLayout* layout3;
     Q3HBoxLayout* layout1;
+    Q3HBoxLayout* layout62;
+    Q3HBoxLayout* layoutShowArchiveFileOptions;
+    Q3GridLayout* layoutShowArchiveFileOptionsGroup;
+
+    QString SupportedExtensions;
 
 protected slots:
     virtual void languageChange();
 };
 
 #endif // SELREADABLE_H
+// kate: indent-mode cstyle; space-indent on; indent-width 4; 

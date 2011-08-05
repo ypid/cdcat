@@ -24,9 +24,11 @@
 #include <Q3HBoxLayout>
 #include <Q3VBoxLayout>
 
+#include <lib7zip.h>
+
 #include "config.h"
-#include "dbase.h"
 #include "icons.h"
+#include "dbase.h"
 
 SelReadable::SelReadable ( CdCatConfig *confp,QWidget* parent, const char* name, bool modal, Qt::WFlags fl )
         : QDialog ( parent, name, modal, fl )
@@ -40,6 +42,45 @@ SelReadable::SelReadable ( CdCatConfig *confp,QWidget* parent, const char* name,
     SelReadableLayout = new Q3VBoxLayout ( this, 11, 6, "SelReadableLayout" );
 
     setSizeGripEnabled ( TRUE );
+
+
+
+
+    cpScanArchive = new QCheckBox( this,"cpScanArchive" );
+//     cpScanArchive->setMaximumWidth ( 80 );
+    SelReadableLayout->addWidget( cpScanArchive);
+    
+    layout62 = new Q3HBoxLayout ( 0, 0, 6, "layout62" );
+    labArchiveExtensions = new QLabel(this, "labArchiveExtensions");
+    layout62->addWidget ( labArchiveExtensions );
+    SelReadableLayout->addLayout ( layout62 );
+
+    layoutShowArchiveFileOptions = new Q3HBoxLayout ( 0, 0, 6, "layoutShowArchiveFileOptions");
+    layoutShowArchiveFileOptions->addSpacing ( 25 );
+    groupBoxShowArchiveFileOpts = new QGroupBox(this, "groupBoxShowArchiveFileOpts");
+    layoutShowArchiveFileOptions->addWidget(groupBoxShowArchiveFileOpts);
+    layoutShowArchiveFileOptionsGroup = new Q3GridLayout( this, 1, 1, 5, 5, "layoutShowArchiveFileOptionsGroup" );
+    groupBoxShowArchiveFileOpts->setLayout(layoutShowArchiveFileOptionsGroup);
+    cpShowArchiveFilePerms = new QCheckBox (this, "cpShowArchiveFilePerms");
+    cpShowArchiveFileUser = new QCheckBox (this, "cpShowArchiveFileUser");
+    cpShowArchiveFileGroup = new QCheckBox (this, "cpShowArchiveFileGroup");
+    cpShowArchiveFileSize = new QCheckBox (this, "cpShowArchiveFileSize");
+    cpShowArchiveFileDate = new QCheckBox (this, "cpShowArchiveFileDate");
+    cpShowArchiveFileComment = new QCheckBox (this, "cpShowArchiveFileComment");
+    layoutShowArchiveFileOptionsGroup->addWidget(cpShowArchiveFilePerms, 0, 0);
+    layoutShowArchiveFileOptionsGroup->addWidget(cpShowArchiveFileUser, 0, 1);
+    layoutShowArchiveFileOptionsGroup->addWidget(cpShowArchiveFileGroup, 0, 2);
+    layoutShowArchiveFileOptionsGroup->addWidget(cpShowArchiveFileSize, 1, 0);
+    layoutShowArchiveFileOptionsGroup->addWidget(cpShowArchiveFileDate, 1, 1);
+    layoutShowArchiveFileOptionsGroup->addWidget(cpShowArchiveFileComment, 1, 2);
+
+    SelReadableLayout->addLayout ( layoutShowArchiveFileOptions );
+
+    line6 = new Q3Frame ( this, "line1" );
+    line6->setFrameShape ( Q3Frame::HLine );
+    line6->setFrameShadow ( Q3Frame::Sunken );
+    line6->setFrameShape ( Q3Frame::HLine );
+    SelReadableLayout->addWidget ( line6 );
 
     cbTag = new QCheckBox ( this, "cbTag" );
     SelReadableLayout->addWidget ( cbTag );
@@ -78,8 +119,9 @@ SelReadable::SelReadable ( CdCatConfig *confp,QWidget* parent, const char* name,
     SelReadableLayout->addWidget ( cbCont );
 
     layout12 = new Q3HBoxLayout ( 0, 0, 6, "layout12" );
-    QSpacerItem* spacer = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
-    layout12->addItem ( spacer );
+    layout12->addSpacing ( 25 );
+//     QSpacerItem* spacer = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
+//     layout12->addItem ( spacer );
 
     layout11 = new Q3VBoxLayout ( 0, 0, 6, "layout11" );
 
@@ -132,6 +174,13 @@ SelReadable::SelReadable ( CdCatConfig *confp,QWidget* parent, const char* name,
     connect ( buttonOK,SIGNAL ( clicked() ),this,SLOT ( sok() ) );
     connect ( buttonCancel,SIGNAL ( clicked() ),this,SLOT ( scan() ) );
 
+    cpScanArchive->setChecked ( conf->doScanArchive );
+    cpShowArchiveFilePerms->setChecked ( conf->show_archive_file_perms );
+    cpShowArchiveFileUser->setChecked ( conf->show_archive_file_user );
+    cpShowArchiveFileGroup->setChecked ( conf->show_archive_file_group );
+    cpShowArchiveFileSize->setChecked ( conf->show_archive_file_size );
+    cpShowArchiveFileDate->setChecked ( conf->show_archive_file_date );
+    cpShowArchiveFileComment->setChecked ( conf->show_archive_file_comment );
     cbTag->setChecked ( conf->readtag );
     cbCont->setChecked ( conf->readcontent );
     lineFiles->setText ( conf->readcfiles );
@@ -140,6 +189,43 @@ SelReadable::SelReadable ( CdCatConfig *confp,QWidget* parent, const char* name,
     cbaInfo->setChecked ( conf->readavii );
     rad_v1->setChecked ( conf->v1_over_v2 );
     rad_v2->setChecked ( !conf->v1_over_v2 );
+
+    if(conf->doScanArchive) {
+	C7ZipLibrary lib;
+	WStringArray exts;
+	SupportedExtensions = "";
+	QStringList SupportedExtensionsList;
+	// libtar
+	
+	SupportedExtensionsList.append("tar");
+	SupportedExtensionsList.append("tar.gz");
+	SupportedExtensionsList.append("tar.bz2");
+	
+	// lib7zip
+	if (lib.Initialize()) {
+		if (lib.GetSupportedExts(exts)) {
+			for(WStringArray::const_iterator extIt = exts.begin(); extIt != exts.end(); extIt++) {
+				SupportedExtensionsList.append(QString().fromWCharArray((*extIt).c_str()));
+			}
+		}
+	}
+	SupportedExtensionsList.sort();
+	int linelen=0;
+	for(int i=0;i< SupportedExtensionsList.size();i++) {
+		if (linelen > 120) {
+			linelen = 0;
+			SupportedExtensions += "\n\t";
+			SupportedExtensions += SupportedExtensionsList.at(i);
+		linelen+= SupportedExtensionsList.at(i).size();
+		} else {
+			if (linelen != 0)
+				SupportedExtensions += " ";
+			SupportedExtensions += SupportedExtensionsList.at(i);
+			linelen+= SupportedExtensionsList.at(i).size()+2;
+		}
+	}
+	labArchiveExtensions->setText ( tr ( "Supported extensions:" )+ "\n\t"+ SupportedExtensions);
+    }
 
     schanged ( 0 );
 }
@@ -162,7 +248,13 @@ int SelReadable::schanged ( int ) {
 }
 
 int SelReadable::sok ( void ) {
-
+    conf->doScanArchive  = cpScanArchive->isChecked();
+    conf->show_archive_file_perms  = cpShowArchiveFilePerms->isChecked();
+    conf->show_archive_file_user  = cpShowArchiveFileUser->isChecked();
+    conf->show_archive_file_group  = cpShowArchiveFileGroup->isChecked();
+    conf->show_archive_file_size  = cpShowArchiveFileSize->isChecked();
+    conf->show_archive_file_date  = cpShowArchiveFileDate->isChecked();
+    conf->show_archive_file_comment  = cpShowArchiveFileComment->isChecked();
     conf->readcontent = cbCont->isChecked();
     conf->readcfiles  = lineFiles->text();
     conf->readclimit  = maxSpinBox->value() *1024;
@@ -193,6 +285,15 @@ SelReadable::~SelReadable() {
  */
 void SelReadable::languageChange() {
     setCaption ( tr ( "Select readable items" ) );
+    groupBoxShowArchiveFileOpts->setTitle( tr("Archive file display options"));
+    cpScanArchive->setText ( tr ( "Scan for archive file list" ) );
+    labArchiveExtensions->setText ( tr ( "Supported extensions:" )+ " "+ SupportedExtensions);
+    cpShowArchiveFilePerms->setText ( tr ( "Show permission" ) );
+    cpShowArchiveFileUser->setText ( tr ( "Show user" ) );
+    cpShowArchiveFileGroup->setText ( tr ( "Show group" ) );
+    cpShowArchiveFileSize->setText ( tr ( "Show size" ) );
+    cpShowArchiveFileDate->setText ( tr ( "Show date" ) );
+    cpShowArchiveFileComment->setText ( tr ( "Show optional comment" ) );
     cbTag->setText ( tr ( "Read mp3 tags" ) );
 
     tagselector->setTitle ( tr ( "Default tag" ) );
