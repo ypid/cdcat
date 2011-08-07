@@ -13,10 +13,6 @@
       <source>unknown</source>
       <translation>unbekannt</translation>
     </message>
-    <message>
-      <source></source>
-      <translation type="unfinished" />
-    </message>
   </context>
   <context>
     <name>CatalogTypeEditDialog</name>
@@ -1517,11 +1513,23 @@ wird zu
     </message>
     <message>
       <source>Show date</source>
-      <translation type="unfinished" >Datum anzeigen</translation>
+      <translation>Datum anzeigen</translation>
     </message>
     <message>
       <source>Show optional comment</source>
-      <translation type="unfinished" >Optionalen Kommentar anzeigen</translation>
+      <translation>Optionalen Kommentar anzeigen</translation>
+    </message>
+    <message>
+      <source>7zip library not found</source>
+      <translation>7zip-Bibliothek nicht gefunden</translation>
+    </message>
+    <message>
+      <source>7zip library found</source>
+      <translation>7zip-Bibliothek gefunden</translation>
+    </message>
+    <message>
+      <source>Supported extensions</source>
+      <translation>Unterstützte Erweiterungen</translation>
     </message>
   </context>
   <context>

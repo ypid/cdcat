@@ -15,66 +15,61 @@
         <source>unknown</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <location filename="../../dbase.h" line="83"/>
-        <source></source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>CatalogTypeEditDialog</name>
     <message>
-        <location filename="../../guibase.cpp" line="1989"/>
+        <location filename="../../guibase.cpp" line="1997"/>
         <source>Change media type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1990"/>
+        <location filename="../../guibase.cpp" line="1998"/>
         <source>Change type of media</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1992"/>
+        <location filename="../../guibase.cpp" line="2000"/>
         <source>CD</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1993"/>
+        <location filename="../../guibase.cpp" line="2001"/>
         <source>DVD</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1994"/>
+        <location filename="../../guibase.cpp" line="2002"/>
         <source>HardDisc</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1995"/>
+        <location filename="../../guibase.cpp" line="2003"/>
         <source>Floppy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1996"/>
+        <location filename="../../guibase.cpp" line="2004"/>
         <source>NetworkPlace</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1997"/>
+        <location filename="../../guibase.cpp" line="2005"/>
         <source>FlashDrive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1998"/>
+        <location filename="../../guibase.cpp" line="2006"/>
         <source>OtherDevice</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="2001"/>
+        <location filename="../../guibase.cpp" line="2009"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="2002"/>
+        <location filename="../../guibase.cpp" line="2010"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
@@ -816,313 +811,313 @@ It is necessary because I&apos;d like to save the config file into your home dir
 <context>
     <name>GuiSlave</name>
     <message>
-        <location filename="../../guibase.cpp" line="393"/>
+        <location filename="../../guibase.cpp" line="395"/>
         <source>Directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="380"/>
+        <location filename="../../guibase.cpp" line="382"/>
         <source>Catalog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1530"/>
+        <location filename="../../guibase.cpp" line="1532"/>
         <source>Unknown(DB)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1534"/>
+        <location filename="../../guibase.cpp" line="1536"/>
         <source>CD</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1538"/>
+        <location filename="../../guibase.cpp" line="1540"/>
         <source>DVD</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1542"/>
+        <location filename="../../guibase.cpp" line="1544"/>
         <source>HardDisc</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1546"/>
+        <location filename="../../guibase.cpp" line="1548"/>
         <source>Floppy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1550"/>
+        <location filename="../../guibase.cpp" line="1552"/>
         <source>NetworkDrv</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1554"/>
+        <location filename="../../guibase.cpp" line="1556"/>
         <source>FlashDrv</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1558"/>
+        <location filename="../../guibase.cpp" line="1560"/>
         <source>OtherDevice</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="394"/>
+        <location filename="../../guibase.cpp" line="396"/>
         <source>File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="555"/>
+        <location filename="../../guibase.cpp" line="557"/>
         <source>Hyper&apos;s CD Catalogizer (modified)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="560"/>
+        <location filename="../../guibase.cpp" line="562"/>
         <source>Hyper&apos;s CD Catalogizer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1456"/>
+        <location filename="../../guibase.cpp" line="1458"/>
         <source>CdCat databases (*.hcf )</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="888"/>
+        <location filename="../../guibase.cpp" line="890"/>
         <source>Open a file...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1792"/>
+        <location filename="../../guibase.cpp" line="1800"/>
         <source>Error while opening...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1017"/>
+        <location filename="../../guibase.cpp" line="1019"/>
         <source>Save to file...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1038"/>
+        <location filename="../../guibase.cpp" line="1040"/>
         <source>Error while saving...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1066"/>
+        <location filename="../../guibase.cpp" line="1068"/>
         <source>Closing previous database...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1066"/>
+        <location filename="../../guibase.cpp" line="1068"/>
         <source>Do you want to save the changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1854"/>
+        <location filename="../../guibase.cpp" line="1862"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1854"/>
+        <location filename="../../guibase.cpp" line="1862"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1592"/>
+        <location filename="../../guibase.cpp" line="1594"/>
         <source>Error:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1099"/>
+        <location filename="../../guibase.cpp" line="1101"/>
         <source>Do you really want to delete this?: 
 %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1852"/>
+        <location filename="../../guibase.cpp" line="1860"/>
         <source>Confirmation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1244"/>
+        <location filename="../../guibase.cpp" line="1246"/>
         <source>Warning...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1359"/>
+        <location filename="../../guibase.cpp" line="1361"/>
         <source>You can refresh ONLY a MEDIA node!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1456"/>
+        <location filename="../../guibase.cpp" line="1458"/>
         <source>Insert a database file...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1598"/>
+        <location filename="../../guibase.cpp" line="1600"/>
         <source>The size of &quot;%1&quot; : 
  %2 
  %3 file /%4 directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1157"/>
+        <location filename="../../guibase.cpp" line="1159"/>
         <source>Cannot mount CD</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1302"/>
+        <location filename="../../guibase.cpp" line="1304"/>
         <source>Cannot eject CD!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1157"/>
+        <location filename="../../guibase.cpp" line="1159"/>
         <source>I can&apos;t find the &quot;mount&quot; program</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1320"/>
+        <location filename="../../guibase.cpp" line="1322"/>
         <source>Cannot mount CD!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1275"/>
+        <location filename="../../guibase.cpp" line="1277"/>
         <source>Cannot eject CD</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1275"/>
+        <location filename="../../guibase.cpp" line="1277"/>
         <source>I can&apos;t find the &quot;eject&quot; program</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="648"/>
+        <location filename="../../guibase.cpp" line="650"/>
         <source>Rename node...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="649"/>
+        <location filename="../../guibase.cpp" line="651"/>
         <source>Delete node</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="658"/>
+        <location filename="../../guibase.cpp" line="660"/>
         <source>Rescan media...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="665"/>
+        <location filename="../../guibase.cpp" line="667"/>
         <source>Add media...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="667"/>
+        <location filename="../../guibase.cpp" line="669"/>
         <source>Insert Catalog...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1363"/>
+        <location filename="../../guibase.cpp" line="1365"/>
         <source>Rescan %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="659"/>
+        <location filename="../../guibase.cpp" line="661"/>
         <source>Re-Number media...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1577"/>
+        <location filename="../../guibase.cpp" line="1579"/>
         <source>It is NOT a media node!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="643"/>
+        <location filename="../../guibase.cpp" line="645"/>
         <source>Node size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="640"/>
+        <location filename="../../guibase.cpp" line="642"/>
         <source>View/Edit Comment...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="670"/>
+        <location filename="../../guibase.cpp" line="672"/>
         <source>Close all branch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="597"/>
+        <location filename="../../guibase.cpp" line="599"/>
         <source>Show/Remove Content...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1592"/>
+        <location filename="../../guibase.cpp" line="1594"/>
         <source>There is no selected item in the middle list box!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1244"/>
+        <location filename="../../guibase.cpp" line="1246"/>
         <source>An error occured while scanning,
 the DataBase may be incomplete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1355"/>
+        <location filename="../../guibase.cpp" line="1357"/>
         <source>There is no selected Media in the middle list box!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1375"/>
+        <location filename="../../guibase.cpp" line="1377"/>
         <source>An error occured while scanning, the rescan operation was cancelled: 
 %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="654"/>
+        <location filename="../../guibase.cpp" line="656"/>
         <source>Borrow this media to...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1853"/>
+        <location filename="../../guibase.cpp" line="1861"/>
         <source>Do you want to clear the borrowing mark from media &quot;%1&quot;?
 (Say yes if you got it back.)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="656"/>
+        <location filename="../../guibase.cpp" line="658"/>
         <source>I got it back! (clear borrowing mark)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="395"/>
+        <location filename="../../guibase.cpp" line="397"/>
         <source>Catalog Link</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="600"/>
+        <location filename="../../guibase.cpp" line="602"/>
         <source>Follow the link (Open it) !</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="666"/>
+        <location filename="../../guibase.cpp" line="668"/>
         <source>Add a link to a CdCAt Catalog...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1769"/>
+        <location filename="../../guibase.cpp" line="1777"/>
         <source>The link is empty.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="341"/>
+        <location filename="../../guibase.cpp" line="343"/>
         <source>Number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="343"/>
+        <location filename="../../guibase.cpp" line="345"/>
         <source>Size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="97"/>
+        <location filename="../../guibase.cpp" line="99"/>
         <source>The database file has newer version than this version of cdcat can work with:
 I understand maximum %1 datafile version but readed %2
 
@@ -1131,42 +1126,42 @@ Homepage: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="121"/>
+        <location filename="../../guibase.cpp" line="123"/>
         <source>No database opened.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="123"/>
+        <location filename="../../guibase.cpp" line="125"/>
         <source>No item selected.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1364"/>
+        <location filename="../../guibase.cpp" line="1366"/>
         <source>Select directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1603"/>
+        <location filename="../../guibase.cpp" line="1605"/>
         <source>The result:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1599"/>
+        <location filename="../../guibase.cpp" line="1601"/>
         <source>MiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="1135"/>
+        <location filename="../../guibase.cpp" line="1137"/>
         <source>Scanning directory tree, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="641"/>
+        <location filename="../../guibase.cpp" line="643"/>
         <source>View/Edit Category...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="662"/>
+        <location filename="../../guibase.cpp" line="664"/>
         <source>Change media type...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1227,17 +1222,17 @@ Homepage: %3</source>
 <context>
     <name>HQListView</name>
     <message>
-        <location filename="../../guibase.cpp" line="758"/>
+        <location filename="../../guibase.cpp" line="760"/>
         <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="759"/>
+        <location filename="../../guibase.cpp" line="761"/>
         <source>Size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../guibase.cpp" line="760"/>
+        <location filename="../../guibase.cpp" line="762"/>
         <source>Type</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1757,103 +1752,118 @@ Homepage: %3</source>
 <context>
     <name>SelReadable</name>
     <message>
-        <location filename="../../selreadable.cpp" line="285"/>
+        <location filename="../../selreadable.cpp" line="293"/>
         <source>Select readable items</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../selreadable.cpp" line="295"/>
+        <location filename="../../selreadable.cpp" line="303"/>
         <source>Read mp3 tags</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../selreadable.cpp" line="303"/>
+        <location filename="../../selreadable.cpp" line="311"/>
         <source>Store content of some files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../selreadable.cpp" line="307"/>
+        <location filename="../../selreadable.cpp" line="315"/>
         <source>Ok</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../selreadable.cpp" line="308"/>
+        <location filename="../../selreadable.cpp" line="316"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../selreadable.cpp" line="306"/>
+        <location filename="../../selreadable.cpp" line="314"/>
         <source>content size limit in kByte</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../selreadable.cpp" line="305"/>
+        <location filename="../../selreadable.cpp" line="313"/>
         <source>; separated list of readable file patterns</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../selreadable.cpp" line="297"/>
+        <location filename="../../selreadable.cpp" line="305"/>
         <source>Default tag</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../selreadable.cpp" line="299"/>
+        <location filename="../../selreadable.cpp" line="307"/>
         <source>version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../selreadable.cpp" line="301"/>
+        <location filename="../../selreadable.cpp" line="309"/>
         <source>Read mp3 technical info as comment (bitrate,freq,length...)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../selreadable.cpp" line="302"/>
+        <location filename="../../selreadable.cpp" line="310"/>
         <source>Read avi technical info as comment (codecs,length,...)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../selreadable.cpp" line="288"/>
+        <location filename="../../selreadable.cpp" line="296"/>
         <source>Supported extensions:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../selreadable.cpp" line="286"/>
+        <location filename="../../selreadable.cpp" line="294"/>
         <source>Archive file display options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../selreadable.cpp" line="287"/>
+        <location filename="../../selreadable.cpp" line="295"/>
         <source>Scan for archive file list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../selreadable.cpp" line="289"/>
+        <location filename="../../selreadable.cpp" line="297"/>
         <source>Show permission</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../selreadable.cpp" line="290"/>
+        <location filename="../../selreadable.cpp" line="298"/>
         <source>Show user</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../selreadable.cpp" line="291"/>
+        <location filename="../../selreadable.cpp" line="299"/>
         <source>Show group</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../selreadable.cpp" line="292"/>
+        <location filename="../../selreadable.cpp" line="300"/>
         <source>Show size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../selreadable.cpp" line="293"/>
+        <location filename="../../selreadable.cpp" line="301"/>
         <source>Show date</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../selreadable.cpp" line="294"/>
+        <location filename="../../selreadable.cpp" line="302"/>
         <source>Show optional comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../selreadable.cpp" line="230"/>
+        <source>7zip library not found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../selreadable.cpp" line="232"/>
+        <source>7zip library found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../selreadable.cpp" line="233"/>
+        <source>Supported extensions</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

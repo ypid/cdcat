@@ -1,3 +1,6 @@
+07. Aug 2011 Christoph Thielecke <crissi99@gmx.de>
+	- display 7zip lib found state in selreadable dialog
+
 05. Aug 2011 Christoph Thielecke <crissi99@gmx.de>
 	- translations from old qt3 version readded: fr, it, sr (unmaintained)
 	- track number in mp3tag is now supported

@@ -202,8 +202,11 @@ SelReadable::SelReadable ( CdCatConfig *confp,QWidget* parent, const char* name,
 	SupportedExtensionsList.append("tar.bz2");
 	
 	// lib7zip
+	bool sevenzip_libfound = false;
 	if (lib.Initialize()) {
+		
 		if (lib.GetSupportedExts(exts)) {
+			sevenzip_libfound = true;
 			for(WStringArray::const_iterator extIt = exts.begin(); extIt != exts.end(); extIt++) {
 				SupportedExtensionsList.append(QString().fromWCharArray((*extIt).c_str()));
 			}
@@ -224,7 +227,10 @@ SelReadable::SelReadable ( CdCatConfig *confp,QWidget* parent, const char* name,
 			linelen+= SupportedExtensionsList.at(i).size()+2;
 		}
 	}
-	labArchiveExtensions->setText ( tr ( "Supported extensions:" )+ "\n\t"+ SupportedExtensions);
+	QString sevenzip_libfound_text = "<font color=\"red\">"+tr("7zip library not found")+"</font>";
+	if(sevenzip_libfound)
+		sevenzip_libfound_text = "<font color=\"green\">"+tr("7zip library found")+"</font>";
+	labArchiveExtensions->setText ( tr ( "Supported extensions" )+" ("+sevenzip_libfound_text+")"+":<br />&nbsp;&nbsp;"+ SupportedExtensions);
     }
 
     schanged ( 0 );
