@@ -63,6 +63,8 @@
 
 #include "misc.h"
 
+#include "cdcatmediainfo.h"
+
 
 
 #include <iostream>
@@ -709,7 +711,7 @@ HQListViewItem::HQListViewItem ( Q3ListView *parent,Q3ListViewItem *after,QStrin
 }
 
 QString HQListViewItem::key ( int column,bool ascending ) const {
-    double value = 0;
+    float value = 0;
     int    mod   = ascending ? etype : 5 - etype ;
 
     switch ( column ) {
@@ -721,12 +723,13 @@ QString HQListViewItem::key ( int column,bool ascending ) const {
         if ( etype == 2 && !text ( 1 ).isEmpty() ) {
             value = getSizeFS ( text ( 1 ) );
             switch ( getSizetFS ( text ( 1 ) ) ) {
-            case KBYTE: value *= ( 1024.0 );               break;
-            case MBYTE: value *= ( 1024.0*1024.0 );        break;
-            case GBYTE: value *= ( 1024.0*1024.0*1024.0 ); break;
+            case UNIT_KBYTE: value *= SIZE_ONE_KBYTE;               break;
+            case UNIT_MBYTE: value *= SIZE_ONE_MBYTE;        break;
+            case UNIT_GBYTE: value *= SIZE_ONE_GBYTE; break;
+            case UNIT_TBYTE: value *= SIZE_ONE_TBYTE; break;
             default: break;
             }
-            return ( ( QString().setNum ( ( long int ) value ) )
+            return ( ( QString().setNum ( ( float ) value ) )
                      .rightJustify ( 10,'0' ) )
                    .prepend ( '1'+mod );
         }
@@ -1042,8 +1045,8 @@ int GuiSlave::saveasEvent ( void ) {
     }
     else {
 	// add history item
-	mainw->cconfig->hlist.insert ( 0, QString ( fnc ) );
-	QAction *newaction = new QAction (*get_t_open_icon(), fn, 0);
+	mainw->cconfig->hlist.insert ( 0, fnc );
+	QAction *newaction = new QAction (*get_t_open_icon(), fnc, 0);
         mainw->historyMenu->insertAction (mainw->historyMenu->actions().at(0), newaction );
     }
     panelsOFF();
@@ -1125,6 +1128,7 @@ int GuiSlave::addEvent ( void ) {
     mainw->db->v1_over_v2       = mainw->cconfig->v1_over_v2;
     mainw->db->storeMp3techinfo = mainw->cconfig->readinfo;
     mainw->db->storeAvitechinfo = mainw->cconfig->readavii;
+    mainw->db->storeFileInfo = mainw->cconfig->usefileinfo;
 
 
     mainw->db->storeContent = mainw->cconfig->readcontent;
@@ -1642,6 +1646,9 @@ int GuiSlave::helpEvent ( void ) {
 	 ui_dh->setupUi((QDialog *)(&dh));
 	 dh.exec();
 	 delete ui_dh;
+
+// 	getCDSerial("/dev/sr0");
+
     return 0;
 }
 

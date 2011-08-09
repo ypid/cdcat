@@ -29,6 +29,7 @@
 #include "config.h"
 #include "icons.h"
 #include "dbase.h"
+#include "cdcatmediainfo.h"
 
 SelReadable::SelReadable ( CdCatConfig *confp,QWidget* parent, const char* name, bool modal, Qt::WFlags fl )
         : QDialog ( parent, name, modal, fl )
@@ -118,6 +119,12 @@ SelReadable::SelReadable ( CdCatConfig *confp,QWidget* parent, const char* name,
     cbCont = new QCheckBox ( this, "cbCont" );
     SelReadableLayout->addWidget ( cbCont );
 
+    cbFileInfo = new QCheckBox ( this, "cbFileInfo" );
+    SelReadableLayout->addWidget ( cbFileInfo );
+    labFileInfoExtensions = new QLabel(this, "labFileInfoExtensions");
+    SelReadableLayout->addWidget ( labFileInfoExtensions );
+
+
     layout12 = new Q3HBoxLayout ( 0, 0, 6, "layout12" );
     layout12->addSpacing ( 25 );
 //     QSpacerItem* spacer = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
@@ -183,6 +190,7 @@ SelReadable::SelReadable ( CdCatConfig *confp,QWidget* parent, const char* name,
     cpShowArchiveFileComment->setChecked ( conf->show_archive_file_comment );
     cbTag->setChecked ( conf->readtag );
     cbCont->setChecked ( conf->readcontent );
+    cbFileInfo->setChecked ( conf->usefileinfo );
     lineFiles->setText ( conf->readcfiles );
     maxSpinBox->setValue ( ( int ) ( conf->readclimit / 1024 ) );
     cbInfo->setChecked ( conf->readinfo );
@@ -217,7 +225,7 @@ SelReadable::SelReadable ( CdCatConfig *confp,QWidget* parent, const char* name,
 	for(int i=0;i< SupportedExtensionsList.size();i++) {
 		if (linelen > 120) {
 			linelen = 0;
-			SupportedExtensions += "\n\t";
+			SupportedExtensions += "<br />&nbsp;&nbsp;";
 			SupportedExtensions += SupportedExtensionsList.at(i);
 		linelen+= SupportedExtensionsList.at(i).size();
 		} else {
@@ -232,6 +240,33 @@ SelReadable::SelReadable ( CdCatConfig *confp,QWidget* parent, const char* name,
 		sevenzip_libfound_text = "<font color=\"green\">"+tr("7zip library found")+"</font>";
 	labArchiveExtensions->setText ( tr ( "Supported extensions" )+" ("+sevenzip_libfound_text+")"+":<br />&nbsp;&nbsp;"+ SupportedExtensions);
     }
+
+    // FIXME: get from fileinfo
+    CdcatMediaInfo me;
+    
+    bool fileinfo_libfound= me.getMediaInfoLibFound();
+    QStringList SupportedFileInfoExtensionsList = me.getSupportedExtensions();
+
+    SupportedFileInfoExtensionsList.sort();
+    QString SupportedFileInfoExtensions="";
+    int linelen=0;
+	for(int i=0;i< SupportedFileInfoExtensionsList.size();i++) {
+		if (linelen > 120) {
+			linelen = 0;
+			SupportedFileInfoExtensions += "<br />&nbsp;&nbsp;";
+			SupportedFileInfoExtensions += SupportedFileInfoExtensionsList.at(i);
+		linelen+= SupportedFileInfoExtensionsList.at(i).size();
+		} else {
+			if (linelen != 0)
+				SupportedFileInfoExtensions += " ";
+			SupportedFileInfoExtensions += SupportedFileInfoExtensionsList.at(i);
+			linelen+= SupportedFileInfoExtensionsList.at(i).size()+2;
+		}
+	}
+    QString fileinfo_libfound_text = "<font color=\"red\">"+tr("fileinfo library not found")+"</font>";
+    if(fileinfo_libfound)
+	fileinfo_libfound_text = "<font color=\"green\">"+tr("fileinfo library found")+": "+me.getMediaInfoVersion()+"</font>";
+    labFileInfoExtensions->setText ( tr ( "Supported extensions" )+" ("+fileinfo_libfound_text+")"+":<br />&nbsp;&nbsp;"+ SupportedFileInfoExtensions);
 
     schanged ( 0 );
 }
@@ -262,6 +297,7 @@ int SelReadable::sok ( void ) {
     conf->show_archive_file_date  = cpShowArchiveFileDate->isChecked();
     conf->show_archive_file_comment  = cpShowArchiveFileComment->isChecked();
     conf->readcontent = cbCont->isChecked();
+    conf->usefileinfo = cbFileInfo->isChecked();
     conf->readcfiles  = lineFiles->text();
     conf->readclimit  = maxSpinBox->value() *1024;
     conf->readinfo    = cbInfo->isChecked();
@@ -309,6 +345,7 @@ void SelReadable::languageChange() {
     cbInfo->setText ( tr ( "Read mp3 technical info as comment (bitrate,freq,length...)" ) );
     cbaInfo->setText ( tr ( "Read avi technical info as comment (codecs,length,...)" ) );
     cbCont->setText ( tr ( "Store content of some files" ) );
+    cbFileInfo->setText ( tr ( "Read some technical info using fileinfo" ) );
     lineFiles->setText ( "*.nfo;*.dzi" );
     textLabel1->setText ( tr ( "; separated list of readable file patterns" ) );
     textLabel2->setText ( tr ( "content size limit in kByte" ) );

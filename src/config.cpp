@@ -517,6 +517,13 @@ int CdCatConfig::readConfig ( void ) {
                         readcontent=false;
                     continue;
                 }
+                else if ( var=="use_fileinfo" ) {
+                    if ( val=="true" )
+                        usefileinfo=true;
+                    else
+                        usefileinfo=false;
+                    continue;
+                }
                 else if ( var=="read_content_files" ) {
                     if ( !val.isEmpty() )
                         readcfiles=val;
@@ -966,6 +973,12 @@ int CdCatConfig::writeConfig ( void ) {
             str << "read_content=true" <<endl;
         else
             str << "read_content=false" <<endl;
+
+        if ( usefileinfo )
+            str << "use_fileinfo=true" <<endl;
+        else
+            str << "use_fileinfo=false" <<endl;
+
         str << "read_content_files=" << readcfiles << endl;
         str << "read_content_limit=" << readclimit << endl;
 

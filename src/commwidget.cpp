@@ -331,8 +331,6 @@ void  CommentWidget::paintEvent ( QPaintEvent * ) {
         p.drawLine ( 12,my+w-pixelsHigh,width()-12,my+w-pixelsHigh );
         p.setPen ( *cconfig->comm_stext );
         w++;
-        p.drawText ( mx+15,my+w,tr ( "Comment:" ) );
-        w+=pixelsHigh;
         switch ( act->type ) {
         case HC_CATALOG  :
             text= ( ( DBCatalog   * ) ( act->data ) )->comment;
@@ -350,41 +348,44 @@ void  CommentWidget::paintEvent ( QPaintEvent * ) {
             text= ( ( DBCatLnk    * ) ( act->data ) )->comment;
             break;
         }
-        p.setPen ( *cconfig->comm_vtext );
-        textList = QStringList::split ( QRegExp ( "#|\n|\r\n" ),text,TRUE );
-        for ( QStringList::Iterator it=textList.begin(); it != textList.end();++it ) {
-	   int max_comment_len =80;
-	    int stringlen = (*it).size();
-            if(stringlen > max_comment_len) {
-// 		cerr << "oversized comment line (" << stringlen <<"): " << qPrintable(*it) << endl;
-		int curlen=0;
-		QStringList textList2;
-		for (int curidx=0;curidx < stringlen;curidx++) {
-			if(curlen == max_comment_len) {
-				textList2.append((*it).mid(curidx-max_comment_len, curidx));
-// 				cerr << "added sub comment line (" << (*it).mid(curidx-max_comment_len, curidx).length() <<"): " << qPrintable((*it).mid(curidx-max_comment_len, curidx)) << endl;
-				curlen =0;
-			}
-			curlen++;
-		}
-		for ( QStringList::Iterator it2=textList2.begin(); it2 != textList2.end();++it2 ) {
-			p.drawText ( mx+20,my+w, ( *it2 ) );
-			w+=pixelsHigh;
-		}
-	    }
-	    else {
-// 		cerr << "undersized comment line (" << stringlen <<"): " << qPrintable(*it) << endl;
-		p.drawText ( mx+20,my+w, ( *it ) );
+	if (!text.isEmpty()) {
+		p.drawText ( mx+15,my+w,tr ( "Comment:" ) );
 		w+=pixelsHigh;
-	    }
+		p.setPen ( *cconfig->comm_vtext );
+		textList = QStringList::split ( QRegExp ( "#|\n|\r\n" ),text,TRUE );
+		for ( QStringList::Iterator it=textList.begin(); it != textList.end();++it ) {
+			int max_comment_len =80;
+			int stringlen = (*it).size();
+			if(stringlen > max_comment_len) {
+		// 		cerr << "oversized comment line (" << stringlen <<"): " << qPrintable(*it) << endl;
+				int curlen=0;
+				QStringList textList2;
+				for (int curidx=0;curidx < stringlen;curidx++) {
+					if(curlen == max_comment_len) {
+						textList2.append((*it).mid(curidx-max_comment_len, curidx));
+		// 				cerr << "added sub comment line (" << (*it).mid(curidx-max_comment_len, curidx).length() <<"): " << qPrintable((*it).mid(curidx-max_comment_len, curidx)) << endl;
+						curlen =0;
+					}
+					curlen++;
+				}
+				for ( QStringList::Iterator it2=textList2.begin(); it2 != textList2.end();++it2 ) {
+					p.drawText ( mx+20,my+w, ( *it2 ) );
+					w+=pixelsHigh;
+				}
+			}
+			else {
+		// 		cerr << "undersized comment line (" << stringlen <<"): " << qPrintable(*it) << endl;
+				p.drawText ( mx+20,my+w, ( *it ) );
+				w+=pixelsHigh;
+			}
+		}
+		w++;
+		p.setPen ( *cconfig->comm_fr );
+		p.drawLine ( 12,my+w-pixelsHigh,width()-12,my+w-pixelsHigh );
+		p.setPen ( *cconfig->comm_stext );
+		
 	}
         w+=pixelsHigh+2;
-        p.setPen ( *cconfig->comm_fr );
-        p.drawLine ( 12,my+w-pixelsHigh,width()-12,my+w-pixelsHigh );
-        p.setPen ( *cconfig->comm_stext );
-        w++;
-        p.drawText ( mx+15,my+w,tr ( "Category:" ) );
-        w+=pixelsHigh;
         switch ( act->type ) {
         case HC_CATALOG  :
             text= ( ( DBCatalog   * ) ( act->data ) )->category;
@@ -402,35 +403,48 @@ void  CommentWidget::paintEvent ( QPaintEvent * ) {
             text= ( ( DBCatLnk    * ) ( act->data ) )->category;
             break;
         }
-        p.setPen ( *cconfig->comm_vtext );
-        textList = QStringList::split ( QRegExp ( "#|\n|\r\n" ),text,TRUE );
-        for ( QStringList::Iterator it=textList.begin(); it != textList.end();++it ) {
-	   int max_category_len = 80;
-	    int stringlen = (*it).size();
-            if(stringlen > max_category_len) {
-// 		cerr << "oversized category line (" << stringlen <<"): " << qPrintable(*it) << endl;
-		int curlen=0;
-		QStringList textList2;
-		for (int curidx=0;curidx < stringlen;curidx++) {
-			if(curlen == max_category_len) {
-				textList2.append((*it).mid(curidx-max_category_len, curidx));
-// 				cerr << "added sub category line (" << (*it).mid(curidx-max_category_len, curidx).length() <<"): " << qPrintable((*it).mid(curidx-max_category_len, curidx)) << endl;
-				curlen =0;
-			}
-			curlen++;
-		}
-		for ( QStringList::Iterator it2=textList2.begin(); it2 != textList2.end();++it2 ) {
-			p.drawText ( mx+20,my+w, ( *it2 ) );
-			w+=pixelsHigh;
-		}
-	    }
-	    else {
-// 		cerr << "undersized category line (" << stringlen <<"): " << qPrintable(*it) << endl;
-		p.drawText ( mx+20,my+w, ( *it ) );
-		w+=pixelsHigh;
-	    }
 
-        }
+	if (! text.isEmpty()) {
+		p.setPen ( *cconfig->comm_stext );
+		w++;
+		p.drawText ( mx+15,my+w,tr ( "Category:" ) );
+		w+=pixelsHigh;
+		p.setPen ( *cconfig->comm_vtext );
+		textList = QStringList::split ( QRegExp ( "#|\n|\r\n" ),text,TRUE );
+		for ( QStringList::Iterator it=textList.begin(); it != textList.end();++it ) {
+			int max_category_len = 80;
+			int stringlen = (*it).size();
+			if(stringlen > max_category_len) {
+		// 		cerr << "oversized category line (" << stringlen <<"): " << qPrintable(*it) << endl;
+				int curlen=0;
+				QStringList textList2;
+				for (int curidx=0;curidx < stringlen;curidx++) {
+					if(curlen == max_category_len) {
+						textList2.append((*it).mid(curidx-max_category_len, curidx));
+		// 				cerr << "added sub category line (" << (*it).mid(curidx-max_category_len, curidx).length() <<"): " << qPrintable((*it).mid(curidx-max_category_len, curidx)) << endl;
+						curlen =0;
+					}
+					curlen++;
+				}
+				for ( QStringList::Iterator it2=textList2.begin(); it2 != textList2.end();++it2 ) {
+					p.drawText ( mx+20,my+w, ( *it2 ) );
+					w+=pixelsHigh;
+				}
+			}
+			else {
+		// 		cerr << "undersized category line (" << stringlen <<"): " << qPrintable(*it) << endl;
+				p.drawText ( mx+20,my+w, ( *it ) );
+				w+=pixelsHigh;
+			}
+		
+		}
+		w++;
+		p.setPen ( *cconfig->comm_fr );
+		p.drawLine ( 12,my+w-pixelsHigh,width()-12,my+w-pixelsHigh );
+		p.setPen ( *cconfig->comm_stext );
+		w++;
+		
+	}
 	QFont oldFont = p.font();
         switch ( act->type ) {
 		case HC_FILE:
@@ -463,27 +477,79 @@ void  CommentWidget::paintEvent ( QPaintEvent * ) {
 							curlen++;
 						}
 						for ( QStringList::Iterator it2=textList2.begin(); it2 != textList2.end();++it2 ) {
+							w+=pixelsHigh;
 							p.drawText ( mx+20,my+w, ( *it2 ) );
 							if (p.fontMetrics().boundingRect(*it2).width() > fontwidth)
 								fontwidth = p.fontMetrics().boundingRect(*it2).width()+mx+20;
-							w+=pixelsHigh;
 						}
 					}
 					else {
 				// 		cerr << "undersized archivecontent line (" << stringlen <<"): " << qPrintable(prettyArchiveFileLine) << endl;
+						w+=pixelsHigh;
 						p.drawText ( mx+20,my+w, prettyArchiveFileLine );
 						if (p.fontMetrics().boundingRect(prettyArchiveFileLine).width() > fontwidth)
 							fontwidth = p.fontMetrics().boundingRect(prettyArchiveFileLine).width()+mx+20;
-						w+=pixelsHigh;
 					}
 				}
+				w++;
+				p.setPen ( *cconfig->comm_fr );
+				p.drawLine ( 12,my+w-pixelsHigh,width()-12,my+w-pixelsHigh );
+				p.setPen ( *cconfig->comm_stext );
+				
 			}
 			break;
 // 		default:
 // 			;
         }
-	w+=50;
 	p.setFont(oldFont);
+	
+        switch ( act->type ) {
+		case HC_FILE :
+			QString info = ( ( DBFile      * ) ( act->data ) )->fileinfo;
+			if (!info.isEmpty()) {
+// 				w+=pixelsHigh;
+				p.setPen ( *cconfig->comm_stext );
+				p.drawText ( mx+15,my+w,tr ( "File info:" ) );
+				w+=pixelsHigh;
+				p.setPen ( *cconfig->comm_vtext );
+				textList = QStringList::split ( QRegExp ( "#|\n|\r\n" ),info,TRUE );
+				for ( QStringList::Iterator it=textList.begin(); it != textList.end();++it ) {
+				int max_fileinfo_len = 80;
+				int stringlen = (*it).size();
+				if(stringlen > max_fileinfo_len) {
+			// 		cerr << "oversized fileinfo line (" << stringlen <<"): " << qPrintable(*it) << endl;
+					int curlen=0;
+					QStringList textList2;
+					for (int curidx=0;curidx < stringlen;curidx++) {
+						if(curlen == max_fileinfo_len) {
+							textList2.append((*it).mid(curidx-max_fileinfo_len, curidx));
+			// 				cerr << "added sub fileinfo line (" << (*it).mid(curidx-max_fileinfo_len, curidx).length() <<"): " << qPrintable((*it).mid(curidx-max_fileinfo_len, curidx)) << endl;
+							curlen =0;
+						}
+						curlen++;
+					}
+					for ( QStringList::Iterator it2=textList2.begin(); it2 != textList2.end();++it2 ) {
+						p.drawText ( mx+20,my+w, ( *it2 ) );
+						w+=pixelsHigh;
+					}
+				}
+				else {
+			// 		cerr << "undersized fileinfo line (" << stringlen <<"): " << qPrintable(*it) << endl;
+					p.drawText ( mx+20,my+w, ( *it ) );
+					w+=pixelsHigh;
+					
+				}
+			}
+			p.setPen ( *cconfig->comm_fr );
+			p.drawLine ( 12,my+w-pixelsHigh,width()-12,my+w-pixelsHigh );
+			p.setPen ( *cconfig->comm_stext );
+			w++;
+		}
+		break;
+		
+	}
+
+	
 
         /*Content button stuff*/
         if ( act->type == HC_FILE && ( ( DBFile * ) ( act->data ) )->prop != NULL ) {

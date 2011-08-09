@@ -171,7 +171,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
                     QString fullpath;
                     QString path;
                     QString dirpath;
-                    float size;
+                    float size=0;
                     //QDate date;
                     
                     QString new_medianame;
@@ -1470,25 +1470,26 @@ int importGtktalogCsv::addNewMedia ( QString new_medianame, QDateTime media_modi
         }
         dirindex = -1;
 
-        uint size = ( uint ) obj.getSize();
+        float size = obj.getSize();
         float s;
         int st;
 
-        if ( size > ( uint ) ( 1024 * 1024 * 1024 * 2 ) ) {          // 2 << 30 or 2^31
-            s = ( double ) size / ( double ) ( 1024 * 1024 * 1024 );
-            st = GBYTE;
-        }
-        if ( size > ( uint ) ( 1024 * 1024 ) ) {
-            s = ( double ) size / ( double ) ( 1024 * 1024 );
-            st = MBYTE;
-        }
-        if ( size > ( uint ) 1024 ) {
-            s = ( double ) size / ( double ) 1024;
-            st = KBYTE;
-        } else {
-            s = size;
-            st = BYTE;
-        }
+            if ( size > SIZE_ONE_TBYTE ) {
+                s  = size / SIZE_ONE_TBYTE;
+                st = UNIT_TBYTE;
+            }  else if ( size > SIZE_ONE_GBYTE ) {
+                s  = size / SIZE_ONE_GBYTE;
+                st = UNIT_GBYTE;
+            } else if ( size > SIZE_ONE_MBYTE ) {
+                s  = size / SIZE_ONE_MBYTE;
+                st = UNIT_MBYTE;
+            } else if ( size > SIZE_ONE_KBYTE ) {
+                s  = size / SIZE_ONE_KBYTE;
+                st = UNIT_KBYTE;
+            } else {
+                s  = size;
+                st = UNIT_BYTE;
+            }
 
         env = curr;
         curr = db->getFileNode ( env, QString ( obj.getFileName() ) );
@@ -1900,21 +1901,22 @@ int importGtktalogXml::addNewMedia ( QString new_medianame, QDateTime media_modi
         float s;
         int st;
 
-        if ( size > ( uint ) ( 1024 * 1024 * 1024 * 2 ) ) {
-            s = ( double ) size / ( double ) ( 1024 * 1024 * 1024 );
-            st = GBYTE;
-        }
-        if ( size > ( uint ) ( 1024 * 1024 ) ) {
-            s = ( double ) size / ( double ) ( 1024 * 1024 );
-            st = MBYTE;
-        }
-        if ( size > ( uint ) 1024 ) {
-            s = ( double ) size / ( double ) 1024;
-            st = KBYTE;
-        } else {
-            s = size;
-            st = BYTE;
-        }
+            if ( size > SIZE_ONE_TBYTE ) {
+                s  = size / SIZE_ONE_TBYTE;
+                st = UNIT_TBYTE;
+            }  else if ( size > SIZE_ONE_GBYTE ) {
+                s  = size / SIZE_ONE_GBYTE;
+                st = UNIT_GBYTE;
+            } else if ( size > SIZE_ONE_MBYTE ) {
+                s  = size / SIZE_ONE_MBYTE;
+                st = UNIT_MBYTE;
+            } else if ( size > SIZE_ONE_KBYTE ) {
+                s  = size / SIZE_ONE_KBYTE;
+                st = UNIT_KBYTE;
+            } else {
+                s  = size;
+                st = UNIT_BYTE;
+            }
 
         env = curr;
         curr = db->getFileNode ( env,  obj.getFileName() );
@@ -2299,22 +2301,22 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
                 Node * env2, *curr2, *curr3;
                 float s;
                 int st;
-
-                if ( size > ( float ) ( 1024 * 1024 * 1024 * 2 ) ) {
-                    s = ( double ) size / ( double ) ( 1024 * 1024 * 1024 );
-                    st = GBYTE;
-                }
-                if ( size > ( float ) ( 1024 * 1024 ) ) {
-                    s = ( double ) size / ( double ) ( 1024 * 1024 );
-                    st = MBYTE;
-                }
-                if ( size > ( float ) 1024 ) {
-                    s = ( double ) size / ( double ) 1024;
-                    st = KBYTE;
-                } else {
-                    s = size;
-                    st = BYTE;
-                }
+            if ( size > SIZE_ONE_TBYTE ) {
+                s  = size / SIZE_ONE_TBYTE;
+                st = UNIT_TBYTE;
+            }  else if ( size > SIZE_ONE_GBYTE ) {
+                s  = size / SIZE_ONE_GBYTE;
+                st = UNIT_GBYTE;
+            } else if ( size > SIZE_ONE_MBYTE ) {
+                s  = size / SIZE_ONE_MBYTE;
+                st = UNIT_MBYTE;
+            } else if ( size > SIZE_ONE_KBYTE ) {
+                s  = size / SIZE_ONE_KBYTE;
+                st = UNIT_KBYTE;
+            } else {
+                s  = size;
+                st = UNIT_BYTE;
+            }
 
                 env2 = db->getMediaNode ( number ) ;
 								if (env2 == NULL && !new_medianame.isEmpty()) {

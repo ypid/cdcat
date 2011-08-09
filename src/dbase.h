@@ -30,6 +30,7 @@ typedef int gid_t;
 #endif
 
 #include <libtar.h>
+#include "cdcatmediainfo.h"
 
 // values for class Node::type
 #define HC_UNINITIALIZED 0
@@ -53,10 +54,17 @@ typedef int gid_t;
 #define OTHERD           7
 
 //values for class DBFile::sizeType
-#define BYTE             0
-#define KBYTE            1
-#define MBYTE            2
-#define GBYTE            3
+#define UNIT_BYTE             0
+#define UNIT_KBYTE            1
+#define UNIT_MBYTE            2
+#define UNIT_GBYTE            3
+#define UNIT_TBYTE            4
+
+#define SIZE_ONE_BYTE 1
+#define SIZE_ONE_KBYTE 1024
+#define SIZE_ONE_MBYTE 1048576
+#define SIZE_ONE_GBYTE 1073741824
+#define SIZE_ONE_TBYTE 1099511627776
 
 //values for class DataBase::sortM( value )
 #define NAME             1
@@ -65,8 +73,6 @@ typedef int gid_t;
 #define TIME             3
 
 #define MAX_STORED_SIZE (128*1024)
-
-
 
 class QFileInfo;
 class PWw;
@@ -219,6 +225,7 @@ public:
     QDateTime modification;
     QString  comment;
     QString category;
+    QString fileinfo;
     QList<ArchiveFile> archivecontent;
     float size;
     //filesize
@@ -230,8 +237,8 @@ public:
     //the root pointer of other Nodes. can be mp3tag of etc...
 
     DBFile ( void );
-    DBFile ( QString n,QDateTime mod,QString c,float s,int st, QString pcategory="", QList<ArchiveFile> parchivecontent = QList<ArchiveFile>() );
-    // n:name , mod:modification , c:comment , s:size , st:sizeType, pcategory:category
+    DBFile ( QString n,QDateTime mod,QString c,double s,int st, QString pcategory="", QList<ArchiveFile> parchivecontent = QList<ArchiveFile>(), QString fileinfo="" );
+    // n:name , mod:modification , c:comment , s:size , st:sizeType, pcategory:category, fileinfo:fileinfo
 
     ~DBFile ( void );
 };
@@ -306,6 +313,9 @@ public:
 
     bool storeAvitechinfo;
     // store avi technical informations: time,bitrate,...
+
+   bool storeFileInfo;
+   // store informations got from fileinfo
 
     //The database will store some file's contetn if ..
     bool storeContent;
@@ -384,6 +394,7 @@ private:
     QList<ArchiveFile> scanArchive(QString path, ArchiveType type);
     QString pcategory;
     
+    CdcatMediaInfo me;
 
 public:
 
@@ -431,7 +442,7 @@ public:
     Node * putDirectoryNode ( Node *meddir,QString name,QDateTime modification,QString comment, QString category="" );
 
     Node * getFileNode ( Node *directory,QString name );
-    Node * putFileNode ( Node *directory,QString name,QDateTime modification,QString comment,int sizeType,float size, QString category="", QList<ArchiveFile> archivecontent=QList<ArchiveFile>() );
+    Node * putFileNode ( Node *directory,QString name,QDateTime modification,QString comment,int sizeType,float size, QString category="", QList<ArchiveFile> archivecontent=QList<ArchiveFile>(), QString fileinfo="" );
 
     Node * putTagInfo ( Node *file,QString artist,QString title,QString comment,QString album,QString year, int tnumber );
 

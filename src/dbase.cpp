@@ -72,6 +72,7 @@
 #include <lib7zip.h>
 
 
+
 class TestInStream : public C7ZipInStream {
 private:
 	FILE * m_pFile;
@@ -90,9 +91,9 @@ public:
 			fseek(m_pFile, 0, SEEK_END);
 			m_nFileSize = ftell(m_pFile);
 			fseek(m_pFile, 0, SEEK_SET);
-
-			int pos = m_strFileName.find_last_of(".");
-
+			
+			unsigned int pos = m_strFileName.find_last_of(".");
+			
 			if (pos != m_strFileName.npos) {
 #ifdef _WIN32
 				std::string tmp = m_strFileName.substr(pos + 1);
@@ -376,12 +377,13 @@ DBDirectory::~DBDirectory ( void ) {
 
 
 
-DBFile::DBFile ( QString n,QDateTime mod,QString c,float s,int st, QString pcategory, QList<ArchiveFile> parchivecontent ) {
+DBFile::DBFile ( QString n,QDateTime mod,QString c, double s,int st, QString pcategory, QList<ArchiveFile> parchivecontent, QString fileinfo ) {
     name    = n;
     modification= mod;
     comment = c;
     category = pcategory;
     archivecontent = parchivecontent;
+    fileinfo = fileinfo;
     size    = s;
     sizeType= st;
     prop    = NULL;
@@ -393,6 +395,7 @@ DBFile::DBFile ( void ) {
     category = "";
     archivecontent = QList<ArchiveFile>();
     comment = "";
+    fileinfo = "";
     size    = 0;
     sizeType= 0;
     prop    = NULL;
@@ -473,7 +476,6 @@ DataBase::DataBase ( void ) {
     Lib7zipTypes.append("7z");
 
 	C7ZipLibrary lib;
-	C7ZipArchive * pArchive = NULL;
 	WStringArray exts;
 	
 	if (!lib.Initialize()) {
@@ -490,7 +492,6 @@ DataBase::DataBase ( void ) {
 			Lib7zipTypes.append(QString().fromWCharArray((*extIt).c_str()));
 		std::cerr << "lib7zip supported extensions: " << qPrintable(Lib7zipTypes.join(" ")) << std::endl;
 	}
-
 }
 
 DataBase::~DataBase ( void ) {
@@ -845,23 +846,31 @@ int DataBase::scanFsToNode ( QString what,Node *to ) {
             if (*DEBUG_INFO_ENABLED)
 		std::cerr << "adding file: " << qPrintable ( fileInfo->fileName() ) << std::endl;
             
-            uint size = fileInfo->size();
-            float s;
+            float size = fileInfo->size();
+
+            if (*DEBUG_INFO_ENABLED)
+		std::cerr << "adding file size: " << fileInfo->size() << std::endl;
+            double s;
             int   st;
 
-            if ( size > ( uint ) ( 1024*1024*1024*2 ) ) {
-                s  = ( double ) size / ( double ) ( 1024*1024*1024 );
-                st = GBYTE;
-            } else if ( size > ( uint ) ( 1024*1024 ) ) {
-                s  = ( double ) size / ( double ) ( 1024*1024 );
-                st = MBYTE;
-            } else if ( size > ( uint ) 1024 ) {
-                s  = ( double ) size / ( double ) 1024;
-                st = KBYTE;
+            if ( size > SIZE_ONE_TBYTE ) {
+                s  = size / SIZE_ONE_TBYTE;
+                st = UNIT_TBYTE;
+            }  else if ( size > SIZE_ONE_GBYTE ) {
+                s  = size / SIZE_ONE_GBYTE;
+                st = UNIT_GBYTE;
+            } else if ( size > SIZE_ONE_MBYTE ) {
+                s  = size / SIZE_ONE_MBYTE;
+                st = UNIT_MBYTE;
+            } else if ( size > SIZE_ONE_KBYTE ) {
+                s  = size / SIZE_ONE_KBYTE;
+                st = UNIT_KBYTE;
             } else {
                 s  = size;
-                st = BYTE;
+                st = UNIT_BYTE;
             }
+//             if (*DEBUG_INFO_ENABLED)
+// 		std::cerr << "adding file size 2: " << qPrintable(QString().setNum(s)) << qPrintable(getSType(st)) << std::endl;
 
             progress ( pww );
 
@@ -943,7 +952,7 @@ int DataBase::scanFsToNode ( QString what,Node *to ) {
             comm = tr ( "DEAD Symbolic link to:#" )
                         + dir->relativeFilePath(fileInfo->symLinkTarget());
             tt->data=( void * ) new DBFile ( fileInfo->fileName(),QDateTime(),
-                                          comm,0,BYTE, this->pcategory );
+                                          comm,0,UNIT_BYTE, this->pcategory );
         } else { /* SYSTEM FILE (e.g. FIFO, socket or device file) */
         
             if (*DEBUG_INFO_ENABLED)
@@ -953,7 +962,7 @@ int DataBase::scanFsToNode ( QString what,Node *to ) {
 
             comm = tr( "System file (e.g. FIFO, socket or device file)" );
             tt->data=( void * ) new DBFile ( fileInfo->fileName(),fileInfo->lastModified(),
-                                          comm,0,BYTE, this->pcategory );
+                                          comm,0,UNIT_BYTE, this->pcategory );
         }
     }/*end of for,..next directory entry*/
     return ret;
@@ -998,6 +1007,13 @@ int DataBase::scanFileProp ( QFileInfo *fi,DBFile *fc ) {
                     free ( info );
                 }
             }//storeinfo-if
+
+	   /* using filoinfo */
+	   if ( storeFileInfo && me.getMediaInfoLibFound() ) {
+		QString info = CdcatMediaInfo(fi->absoluteFilePath()).getInfo();
+		if(!info.isEmpty())
+			fc->fileinfo = info;
+           }
 
             if ( reader != NULL ) {
                 delete reader;
@@ -2004,12 +2020,12 @@ Node * DataBase::getFileNode ( Node *directory,QString name ) {
 
 }
 
-Node * DataBase::putFileNode ( Node *directory,QString name,QDateTime modification,QString comment,int sizeType,float size, QString category, QList<ArchiveFile> archivecontent ) {
+Node * DataBase::putFileNode ( Node *directory,QString name,QDateTime modification,QString comment,int sizeType,float size, QString category, QList<ArchiveFile> archivecontent, QString fileinfo ) {
     Node *t=NULL,*n=NULL;
 
     n = new Node ( HC_FILE,directory );
     n->data = ( void * )
-              new DBFile ( name,modification,comment,size,sizeType, category, archivecontent );
+              new DBFile ( name,modification,comment,size,sizeType, category, archivecontent, fileinfo );
 
     if ( directory->child == NULL )
         directory->child = n;

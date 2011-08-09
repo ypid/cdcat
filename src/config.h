@@ -71,6 +71,7 @@ public:
     bool readinfo;
     bool readavii;
     bool readcontent;
+    bool usefileinfo;
     bool debug_info_enabled;
     bool saveAlwaysCatalogInUtf8;
     bool showProgressedFileInStatus;

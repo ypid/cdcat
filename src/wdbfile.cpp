@@ -84,44 +84,48 @@ float getSizeFS ( const char *str ) {
 
 int   getSizetFS ( const char *str ) {
 //   int scancount = 0;
-    float  r;
+    double  r;
 
     if ( str == NULL ) return -1;
 //     cerr << "str: \"" << str << "\"" << endl;
     QString unit;
     QStringList l = QString ( str ).simplified().split ( ' ' );
     unit = l.at ( 1 );
-    r = l.at ( 0 ).toFloat();
+    r = l.at ( 0 ).toDouble();
     //cerr << "l: " << qPrintable(l.join(",")) << endl;
     //cerr << "unit: " << qPrintable(unit) << endl;
 
-    if ( unit == "byte" ) return BYTE;
-    if ( unit == "Kb" ) return KBYTE;
-    if ( unit == "Mb" ) return MBYTE;
-    if ( unit == "Gb" ) return GBYTE;
+    if ( unit == "byte" ) return UNIT_BYTE;
+    if ( unit == "Kb" ) return UNIT_KBYTE;
+    if ( unit == "Mb" ) return UNIT_MBYTE;
+    if ( unit == "Gb" ) return UNIT_GBYTE;
+    if ( unit == "Tb" ) return UNIT_TBYTE;
     return -1;
 }
 
 QString getSType ( int t, bool localized ) {
 	if(localized) {
 		switch ( t ) {
-			case BYTE :
+			case UNIT_BYTE :
 				return QString(" ")+QString("Byte");
-			case KBYTE:
+			case UNIT_KBYTE:
 				return QString(" ")+QString("KiB");
-			case MBYTE:
+			case UNIT_MBYTE:
 				return QString(" ")+QString("MiB");
-			case GBYTE:
+			case UNIT_GBYTE:
 				return QString(" ")+QString("GiB");
+			case UNIT_TBYTE:
+				return QString(" ")+QString("TiB");
 // 			
 		}
     }
     else {
 	switch ( t ) {
-		case BYTE : return QString (" byte");
-		case KBYTE: return QString (" Kb");
-		case MBYTE: return QString (" Mb");
-		case GBYTE: return QString (" Gb");
+		case UNIT_BYTE : return QString (" byte");
+		case UNIT_KBYTE: return QString (" Kb");
+		case UNIT_MBYTE: return QString (" Mb");
+		case UNIT_GBYTE: return QString (" Gb");
+		case UNIT_TBYTE: return QString (" Tb");
 	}
     }
     return QString("");
@@ -243,6 +247,20 @@ void FileWriter::archivecontentWriter ( QList<ArchiveFile>& archivecontent ) {
     level--;
 }
 
+void FileWriter::fileinfoWriter ( QString& c ) {
+    QString c1;
+    if ( c.isEmpty() )
+        return;
+
+    c1=to_cutf8 ( c );
+
+    level++;
+    gzprintf ( f,"%s<fileinfo>",spg ( level ) );
+    gzprintf ( f,"%s",c1.toLocal8Bit().data() );
+    gzprintf ( f,"%s</fileinfo>\n",spg ( level ) );
+
+    level--;
+}
 
 int  FileWriter::writeDown ( Node *source ) {
     int i=0;
@@ -366,6 +384,7 @@ int  FileWriter::writeFile ( Node *source ) {
     commentWriter ( ( ( DBFile * ) ( source->data ) )->comment );
     categoryWriter ( ( ( DBFile * ) ( source->data ) )->category );
     archivecontentWriter ( ( ( DBFile * ) ( source->data ) )->archivecontent );
+    fileinfoWriter ( ( ( DBFile * ) ( source->data ) )->fileinfo );
     level++;
     if ( source->child != NULL )
         writeDown ( source->child );
@@ -1265,6 +1284,10 @@ Please change it with an older version or rewrite it in the xml file!" );
         /*nothing*/
     }
 
+    else if (  el == "fileinfo"  ) {
+        /*nothing*/
+    }
+
 
 
 //         if(*DEBUG_INFO_ENABLED)    
@@ -1458,6 +1481,22 @@ bool CdCatXmlHandler::endElement ( const QString & namespaceURI, const QString &
             break;
 	 default:
 		;
+	}
+    }
+
+    else if ( el == "fileinfo" ) {
+	while (currentText.length() > 0 && currentText.at(0) == '\n')
+		currentText = currentText.right(currentText.length()-1);
+	if (FREA->sp == NULL)
+		return false;
+        switch ( FREA->sp->type ) {
+		case HC_FILE     :
+	//             ( ( DBFile      * ) ( FREA->sp->data ) ) -> fileinfo = FREA->get_cutf8 ( currentText );
+			( ( DBFile      * ) ( FREA->sp->data ) ) -> fileinfo = currentText ;
+			break;
+		default:
+			;
+			break;
 	}
     }
 

@@ -38,6 +38,7 @@ HEADERS		=   adddialog.h\
 		    hdirview.h \
 		    mainwidget.h \
 		    mp3tag.h \
+		    cdcatmediainfo.h \
 		    newdbdialog.h \
 		    import.h \
 		    importdialog.h \
@@ -66,6 +67,7 @@ SOURCES		=   adddialog.cpp \
 		    importdialog.cpp \
 		    mainwidget.cpp \
 		    mp3tag.cpp \
+		    cdcatmediainfo.cpp \
 		    newdbdialog.cpp \
 		    wdbfile.cpp \
 		    info.cpp \		    
@@ -93,8 +95,11 @@ CONFIG		+= qt debug
 MOC_DIR         = moc_files/
 OBJECTS_DIR     = obj_files/ 
 win32 {
-	LIBS       += c:/zlib/lib/libz.a c:/libs/lib7zip.a c:/libs/bzip2.dll c:/libs/libtar.a -loleaut32 -luuid
-	INCLUDEPATH   += c:/Expat/Source/lib c:/zlib/include c:/pcre/include C:/includes
+	LIBS       += c:/zlib/lib/libz.a c:/libs/lib7zip.a c:/libs/bzip2.dll c:/libs/libtar.a  -loleaut32 -luuid
+	INCLUDEPATH   += c:/Expat/Source/lib c:/zlib/include c:/pcre/include C:/includes c:/mediainfo
+	
+	# enable if cdcat should made console output
+	CONFIG += console
 	distfiles.files += ../README_CSV_IMPORT ../Authors ../README ../ChangeLog ../COPYING ../TRANSLATORS_README ../cdcat.ico ../cdcat.png
 	target.path += c:/program files/cdcat
 	translations.path += c:/program files/cdcat
@@ -103,7 +108,7 @@ win32 {
 	LIBS       += -lz -ldl /usr/lib/libtar.a /usr/lib/libbz2.a /usr/lib/lib7zip.a
 } else {
 	# unix
-	LIBS       += -lz -ltar -lbz2 -ldl /usr/local/lib/lib7zip.a
+	LIBS       += -lz -ltar -lbz2 -ldl /usr/local/lib/lib7zip.a 
 	distfiles.files +=   ../README_CSV_IMPORT ../Authors ../README ../ChangeLog ../COPYING ../TRANSLATORS_README ../cdcat.png 
 	distfiles.path =     /usr/local/share/cdcat
 	target.path +=       /usr/local/bin

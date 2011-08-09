@@ -57,6 +57,7 @@ private:
     void commentWriter ( QString& c );
     void categoryWriter ( QString& c );
     void archivecontentWriter ( QList<ArchiveFile>& archivecontent );
+    void fileinfoWriter ( QString& c );
 
     int  writeHeader ( void );
     int  writeCatalog ( Node *source );
