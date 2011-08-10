@@ -912,6 +912,7 @@ int DataBase::scanFsToNode ( QString what,Node *to ) {
 		}
             }
             tt->data= ( void * ) new DBFile ( fileInfo->fileName(),fileInfo->lastModified(), comm,s,st, this->pcategory, archivecontent );
+	    archivecontent.clear();
             scanFileProp ( fileInfo, ( DBFile * ) tt->data );
         } else if ( fileInfo->isDir() ) { /* DIRECTORY */
         
