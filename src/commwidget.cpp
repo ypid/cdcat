@@ -147,6 +147,7 @@ void  CommentWidget::paintEvent ( QPaintEvent * ) {
     Node *tmp;
     QFontMetrics fm ( app->font() );
     int pixelsHigh = fm.height();
+    int valueoffset = 0; // text: value
     int ispace=1;
     bool need_showc_button=false;
 
@@ -170,17 +171,17 @@ void  CommentWidget::paintEvent ( QPaintEvent * ) {
         /*name*/
         p.setPen ( *cconfig->comm_stext );
         p.drawText ( mx+15,my+w,tr ( "Name:" ) );
-        w+=pixelsHigh;
+	valueoffset =  fm.boundingRect ( tr("Name:" )).size().width();
         text=act->getNameOf();
         text.prepend ( " " );
         p.setPen ( *cconfig->comm_vtext );
-        p.drawText ( mx+15,my+w,text );
+        p.drawText ( mx+15+valueoffset, my+w,text );
         w+=pixelsHigh+ispace;
 
             /*media*/
             p.setPen ( *cconfig->comm_stext );
-            p.drawText ( mx+15,my+w,tr ( "At media (number/name):" ) );
-            w+=pixelsHigh;
+            p.drawText ( mx+15, my+w, tr ( "At media (number/name):" ) );
+            valueoffset =  fm.boundingRect ( tr ( "At media (number/name):" )).size().width();
             tmp=act;
             while ( tmp !=NULL && tmp->type != HC_MEDIA && tmp->type != HC_CATALOG )
                 tmp=tmp->parent;
@@ -194,17 +195,16 @@ void  CommentWidget::paintEvent ( QPaintEvent * ) {
                 if ( ! ( ( ( DBMedia * ) ( tmp->data ) )->borrowing.isEmpty() ) ) {
                     p.setPen ( QPen ( QColor ( Qt::red ),2 ) );
                     p.drawLine ( width()-24,14,width()-14,24 );
-                    p.drawLine ( width()-14,14,width()-24,24 );
                 }
             }
             p.setPen ( QPen ( *cconfig->comm_vtext,1 ) );
-            p.drawText ( mx+15,my+w,text );
+            p.drawText ( mx+15+valueoffset, my+w, text );
             w+=pixelsHigh+ispace;
 
         /*type*/
         p.setPen ( *cconfig->comm_stext );
         p.drawText ( mx+15,my+w,tr ( "Type:" ) );
-        w+=pixelsHigh;
+	valueoffset =  fm.boundingRect ( tr ( "Type:" )).size().width();
         switch ( act->type ) {
         case HC_CATALOG  :
             text=tr ( " CdCat Catalog root" );
@@ -223,7 +223,7 @@ void  CommentWidget::paintEvent ( QPaintEvent * ) {
             break;
         }
         p.setPen ( *cconfig->comm_vtext );
-        p.drawText ( mx+15,my+w,text );
+        p.drawText ( mx+15+valueoffset, my+w, text );
         w+=pixelsHigh+ispace;
 
 
@@ -231,12 +231,12 @@ void  CommentWidget::paintEvent ( QPaintEvent * ) {
         /*if file->size*/
         if ( act->type == HC_FILE ) {
             p.setPen ( *cconfig->comm_stext );
-            p.drawText ( mx+15,my+w,tr ( "Size:" ) );
-            w+=pixelsHigh;
+            p.drawText ( mx+15, my+w, tr ( "Size:" ) );
+            valueoffset =  fm.boundingRect ( tr ( "Size:" )).size().width();
             text.sprintf ( " %.2f ", ( ( DBFile * ) ( act->data ) )->size);
             text+=QString(getSType ( ( ( DBFile * ) ( act->data ) )->sizeType, true ));
             p.setPen ( *cconfig->comm_vtext );
-            p.drawText ( mx+15,my+w,text );
+            p.drawText ( mx+15+valueoffset, my+w, text );
             w+=pixelsHigh+ispace;
         }
 
@@ -244,10 +244,10 @@ void  CommentWidget::paintEvent ( QPaintEvent * ) {
         if ( act->type == HC_CATLNK ) {
             p.setPen ( *cconfig->comm_stext );
             p.drawText ( mx+15,my+w,tr ( "Location:" ) );
-            w+=pixelsHigh;
+            valueoffset =  fm.boundingRect ( tr ( "Location:" )).size().width();
             p.setPen ( *cconfig->comm_vtext );
             text.sprintf ( " %s", ( ( DBCatLnk * ) ( act->data ) )->location );
-            p.drawText ( mx+15,my+w,text );
+            p.drawText ( mx+15+valueoffset, my+w, text );
             w+=pixelsHigh+ispace;
         }
 
@@ -256,7 +256,7 @@ void  CommentWidget::paintEvent ( QPaintEvent * ) {
 
             p.setPen ( *cconfig->comm_stext );
             p.drawText ( mx+15,my+w,tr ( "Last modification:" ) );
-            w+=pixelsHigh;
+            valueoffset =  fm.boundingRect ( tr ( "Last modification:" )).size().width();
             switch ( act->type ) {
             case HC_CATALOG  :
                 mod = ( ( DBCatalog   * ) ( act->data ) )->modification;
@@ -276,12 +276,12 @@ void  CommentWidget::paintEvent ( QPaintEvent * ) {
             text = date_to_str ( mod );
 
             p.setPen ( *cconfig->comm_vtext );
-            p.drawText ( mx+15,my+w,text );
+            p.drawText ( mx+15+valueoffset, my+w, text );
             w+=pixelsHigh+ispace;
             /*owner*/
             p.setPen ( *cconfig->comm_stext );
             p.drawText ( mx+15,my+w,tr ( "Owner:" ) );
-            w+=pixelsHigh;
+            valueoffset =  fm.boundingRect ( tr ( "Owner:" )).size().width();
             tmp=act;
             while ( tmp !=NULL && tmp->type != HC_MEDIA && tmp->type != HC_CATALOG )
                 tmp=tmp->parent;
@@ -293,7 +293,7 @@ void  CommentWidget::paintEvent ( QPaintEvent * ) {
                 text+= ( ( DBMedia * ) ( tmp->data ) )->owner;
 
             p.setPen ( *cconfig->comm_vtext );
-            p.drawText ( mx+15,my+w,text );
+            p.drawText ( mx+15+valueoffset, my+w, text );
             w+=pixelsHigh+ispace;
 
 
@@ -327,10 +327,7 @@ void  CommentWidget::paintEvent ( QPaintEvent * ) {
                 tmp = tmp->next;
             }
         }
-        p.setPen ( *cconfig->comm_fr );
-        p.drawLine ( 12,my+w-pixelsHigh,width()-12,my+w-pixelsHigh );
-        p.setPen ( *cconfig->comm_stext );
-        w++;
+
         switch ( act->type ) {
         case HC_CATALOG  :
             text= ( ( DBCatalog   * ) ( act->data ) )->comment;
@@ -349,6 +346,11 @@ void  CommentWidget::paintEvent ( QPaintEvent * ) {
             break;
         }
 	if (!text.isEmpty()) {
+		w++;
+		p.setPen ( *cconfig->comm_fr );
+		p.drawLine ( 12,my+w-pixelsHigh,width()-12,my+w-pixelsHigh );
+		p.setPen ( *cconfig->comm_stext );
+		w++;
 		p.drawText ( mx+15,my+w,tr ( "Comment:" ) );
 		w+=pixelsHigh;
 		p.setPen ( *cconfig->comm_vtext );
@@ -385,7 +387,7 @@ void  CommentWidget::paintEvent ( QPaintEvent * ) {
 		p.setPen ( *cconfig->comm_stext );
 		
 	}
-        w+=pixelsHigh+2;
+        
         switch ( act->type ) {
         case HC_CATALOG  :
             text= ( ( DBCatalog   * ) ( act->data ) )->category;
@@ -405,10 +407,12 @@ void  CommentWidget::paintEvent ( QPaintEvent * ) {
         }
 
 	if (! text.isEmpty()) {
+		w+=pixelsHigh+2;
 		p.setPen ( *cconfig->comm_stext );
 		w++;
 		p.drawText ( mx+15,my+w,tr ( "Category:" ) );
-		w+=pixelsHigh;
+// 		w+=pixelsHigh;
+		w++;
 		p.setPen ( *cconfig->comm_vtext );
 		textList = QStringList::split ( QRegExp ( "#|\n|\r\n" ),text,TRUE );
 		for ( QStringList::Iterator it=textList.begin(); it != textList.end();++it ) {
@@ -452,11 +456,13 @@ void  CommentWidget::paintEvent ( QPaintEvent * ) {
 			if (ArchiveFileList.size() > 0) {
 				w+=pixelsHigh+ispace;
 				p.setFont(QFont("Fixed", font().pointSize()-1));
+				p.setPen ( *cconfig->comm_fr );
 				p.drawLine ( 12,my+w-pixelsHigh,width()-12,my+w-pixelsHigh );
 				p.setPen ( *cconfig->comm_stext );
 				w++;
 				p.drawText ( mx+15,my+w,tr ( "Archive contents:" ) );
-				w+=pixelsHigh;
+// 				w+=pixelsHigh;
+				w++;
 				
 				p.setPen ( *cconfig->comm_vtext );
 				for ( int i=0;i<ArchiveFileList.size();i++ ) {
@@ -493,8 +499,10 @@ void  CommentWidget::paintEvent ( QPaintEvent * ) {
 				}
 				w++;
 				p.setPen ( *cconfig->comm_fr );
-				p.drawLine ( 12,my+w-pixelsHigh,width()-12,my+w-pixelsHigh );
+				p.drawLine ( 12,my+w,width()-12, my+w );
 				p.setPen ( *cconfig->comm_stext );
+				w++;
+				w++;
 				
 			}
 			break;
@@ -541,15 +549,17 @@ void  CommentWidget::paintEvent ( QPaintEvent * ) {
 				}
 			}
 			p.setPen ( *cconfig->comm_fr );
-			p.drawLine ( 12,my+w-pixelsHigh,width()-12,my+w-pixelsHigh );
+			p.drawLine ( 12,my+w,width()-12, my+w );
 			p.setPen ( *cconfig->comm_stext );
 			w++;
 		}
 		break;
 		
 	}
-
 	
+	w+=pixelsHigh;
+	w+=pixelsHigh;
+	w+=pixelsHigh;
 
         /*Content button stuff*/
         if ( act->type == HC_FILE && ( ( DBFile * ) ( act->data ) )->prop != NULL ) {

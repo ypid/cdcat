@@ -1,3 +1,7 @@
+10. Aug 2011 Christoph Thielecke <crissi99@gmx.de>
+	- reset archivecontent after adding archive file to db
+	- comment widget optimizions
+
 09. Aug 2011 Christoph Thielecke <crissi99@gmx.de>
 	- mediainfo for getting additional info about file types added
 	- tbyte unit type added
