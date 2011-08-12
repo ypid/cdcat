@@ -726,7 +726,7 @@ QString HQListViewItem::key ( int column,bool ascending ) const {
             case UNIT_KBYTE: value *= SIZE_ONE_KBYTE;               break;
             case UNIT_MBYTE: value *= SIZE_ONE_MBYTE;        break;
             case UNIT_GBYTE: value *= SIZE_ONE_GBYTE; break;
-            case UNIT_TBYTE: value *= SIZE_ONE_TBYTE; break;
+            case UNIT_TBYTE: value *= SIZE_ONE_GBYTE *1024; break;
             default: break;
             }
             return ( ( QString().setNum ( ( float ) value ) )

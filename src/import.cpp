@@ -1474,8 +1474,8 @@ int importGtktalogCsv::addNewMedia ( QString new_medianame, QDateTime media_modi
         float s;
         int st;
 
-            if ( size > SIZE_ONE_TBYTE ) {
-                s  = size / SIZE_ONE_TBYTE;
+            if ( size > SIZE_ONE_GBYTE * 1024 ) {
+                s  = size / SIZE_ONE_GBYTE / 1024;
                 st = UNIT_TBYTE;
             }  else if ( size > SIZE_ONE_GBYTE ) {
                 s  = size / SIZE_ONE_GBYTE;
@@ -1901,8 +1901,8 @@ int importGtktalogXml::addNewMedia ( QString new_medianame, QDateTime media_modi
         float s;
         int st;
 
-            if ( size > SIZE_ONE_TBYTE ) {
-                s  = size / SIZE_ONE_TBYTE;
+            if ( size > SIZE_ONE_GBYTE * 1024 ) {
+                s  = size / SIZE_ONE_GBYTE / 1024;
                 st = UNIT_TBYTE;
             }  else if ( size > SIZE_ONE_GBYTE ) {
                 s  = size / SIZE_ONE_GBYTE;
@@ -2299,10 +2299,10 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
 
             if ( db != NULL ) {
                 Node * env2, *curr2, *curr3;
-                float s;
+                long s;
                 int st;
-            if ( size > SIZE_ONE_TBYTE ) {
-                s  = size / SIZE_ONE_TBYTE;
+            if ( size > SIZE_ONE_GBYTE * 1024 ) {
+                s  = size / SIZE_ONE_GBYTE / 1024;
                 st = UNIT_TBYTE;
             }  else if ( size > SIZE_ONE_GBYTE ) {
                 s  = size / SIZE_ONE_GBYTE;
