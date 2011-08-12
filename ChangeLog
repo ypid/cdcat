@@ -1,5 +1,6 @@
 11. Aug 2011 Christoph Thielecke <crissi99@gmx.de>
 	- version changed to 1.5
+	- compile info updated (mediainfo)
 
 10. Aug 2011 Christoph Thielecke <crissi99@gmx.de>
 	- reset archivecontent after adding archive file to db

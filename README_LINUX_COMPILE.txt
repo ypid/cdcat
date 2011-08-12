@@ -17,6 +17,11 @@ lib7zip (>= 1.4.1): http://code.google.com/p/lib7zip/downloads/detail?name=lib7z
 		4. ./configure
 		5. make 7z
 
+
+mediainfo: http://mediainfo.sourceforge.net/
+	- for compiling only MediaInfoDLL is required (MediaInfoDLL/MediaInfoDLL.h), it can be downloaded here: http://mediainfo.svn.sourceforge.net/viewvc/mediainfo/MediaInfoLib/trunk/Source/MediaInfoDLL/MediaInfoDLL.h?revision=3213
+	- for usage and/or compiling install mediainfo (http://mediainfo.sourceforge.net/Download)
+
 cdcat compile:
 	library path could be /usr/lib, include path could be /usr/include
 	- add libtar_listhash.h to include path

@@ -36,6 +36,10 @@ zlib: http://zlib.net/zlib-1.2.5.tar.gz
 
 Qt4: http://qt.nokia.com/downloads/windows-cpp
 
+mediainfo: http://mediainfo.sourceforge.net/
+	- for compiling only MediaInfoDLL is required (MediaInfoDLL/MediaInfoDLL.h), it can be downloaded here: http://mediainfo.svn.sourceforge.net/viewvc/mediainfo/MediaInfoLib/trunk/Source/MediaInfoDLL/MediaInfoDLL.h?revision=3213
+	- for usage and/or compiling install mediainfo (http://mediainfo.sourceforge.net/Download)
+
 cdcat compile:
 	- add libtar.h to include path
 	- add bzlib.h to include path
