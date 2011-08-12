@@ -12,7 +12,7 @@
 	- adding history entry name at saveas event fixed 
 
 07. Aug 2011 Christoph Thielecke <crissi99@gmx.de>
-	- display 7zip lib found state in selreadable dialog
+	- display 7zip lib found state in selreadable dialog added
 
 05. Aug 2011 Christoph Thielecke <crissi99@gmx.de>
 	- translations from old qt3 version readded: fr, it, sr (unmaintained)
