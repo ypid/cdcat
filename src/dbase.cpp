@@ -846,7 +846,7 @@ int DataBase::scanFsToNode ( QString what,Node *to ) {
             if (*DEBUG_INFO_ENABLED)
 		std::cerr << "adding file: " << qPrintable ( fileInfo->fileName() ) << std::endl;
             
-            float size = fileInfo->size();
+            long size = fileInfo->size();
 
             if (*DEBUG_INFO_ENABLED)
 		std::cerr << "adding file size: " << fileInfo->size() << std::endl;
