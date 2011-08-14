@@ -119,12 +119,6 @@ SelReadable::SelReadable ( CdCatConfig *confp,QWidget* parent, const char* name,
     cbCont = new QCheckBox ( this, "cbCont" );
     SelReadableLayout->addWidget ( cbCont );
 
-    cbFileInfo = new QCheckBox ( this, "cbFileInfo" );
-    SelReadableLayout->addWidget ( cbFileInfo );
-    labFileInfoExtensions = new QLabel(this, "labFileInfoExtensions");
-    SelReadableLayout->addWidget ( labFileInfoExtensions );
-
-
     layout12 = new Q3HBoxLayout ( 0, 0, 6, "layout12" );
     layout12->addSpacing ( 25 );
 //     QSpacerItem* spacer = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
@@ -152,6 +146,11 @@ SelReadable::SelReadable ( CdCatConfig *confp,QWidget* parent, const char* name,
     layout11->addLayout ( layout10 );
     layout12->addLayout ( layout11 );
     SelReadableLayout->addLayout ( layout12 );
+
+    cbFileInfo = new QCheckBox ( this, "cbFileInfo" );
+    SelReadableLayout->addWidget ( cbFileInfo );
+    labFileInfoExtensions = new QLabel(this, "labFileInfoExtensions");
+    SelReadableLayout->addWidget ( labFileInfoExtensions );
 
     line2 = new Q3Frame ( this, "line2" );
     line2->setFrameShape ( Q3Frame::HLine );
