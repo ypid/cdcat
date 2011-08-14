@@ -15,7 +15,8 @@ lib7zip (>= 1.4.1): http://code.google.com/p/lib7zip/downloads/detail?name=lib7z
 		2. set P7ZIP_SOURCE_DIR=<full path to p7zip_9.20.1 dir>
 		3. cd lib7zip-1.4.1
 		4. ./configure
-		5. make 7z
+		5. make
+		6. copy lib7zip-1.4.1/Lib7Zip/lib7zip.a to /usr/local/lib
 
 
 mediainfo: http://mediainfo.sourceforge.net/
