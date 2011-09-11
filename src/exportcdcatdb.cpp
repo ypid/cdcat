@@ -1,4 +1,5 @@
 
+
 /****************************************************************************
                             Hyper's CD Catalog
 	A multiplatform qt and xml based catalog program
@@ -838,6 +839,7 @@ int exportCdcatDB::writeFile ( Node *source ) {
 			case 1:  tsize *= 1024;            break;
 			case 2:  tsize *= 1024*1024;       break;
 			case 3:  tsize *= 1024*1024*1024;  break;
+			case 4:  tsize *= (1024 * 1024)*(1024*1024);  break;
 		}
 		outstring += QString().setNum ( ( long int ) tsize );
 		outstring += separator;
