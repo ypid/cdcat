@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1">
+<!DOCTYPE TS><TS version="1.1" language="fr_FR">
 <context>
     <name></name>
     <message>
         <location filename="../dbase.cpp" line="185"/>
         <source>Not available</source>
-        <translation type="unfinished"></translation>
+        <translation>Indisponible</translation>
     </message>
 </context>
 <context>
     <name>AddLnk</name>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../dbase.cpp" line="0"/>
         <source>Add a &quot;Catalog Link&quot; to the database</source>
         <translation type="obsolete">Ajouter un &quot;Lien Catalogue&quot; à la base de données</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../dbase.cpp" line="0"/>
         <source>Location of the .hcf file:</source>
         <translation type="obsolete">Emplacement du fichier .hcf :</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../dbase.cpp" line="0"/>
         <source>Cancel</source>
         <translation type="obsolete">Annuler</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../dbase.cpp" line="0"/>
         <source>Ok</source>
         <translation type="obsolete">OK</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../dbase.cpp" line="0"/>
         <source>CdCat databases (*.hcf )</source>
         <translation type="obsolete">Bases de données CdCat (*.hcf)</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../dbase.cpp" line="0"/>
         <source>Open a file...</source>
         <translation type="obsolete">Ouvrir un fichier...</translation>
     </message>
@@ -44,9 +44,9 @@
 <context>
     <name>ArchiveFile</name>
     <message>
-        <location filename="../dbase.h" line="82"/>
+        <location filename="../dbase.h" line="89"/>
         <source>unknown</source>
-        <translation type="unfinished">Inconnu</translation>
+        <translation>Inconnu</translation>
     </message>
 </context>
 <context>
@@ -54,57 +54,57 @@
     <message>
         <location filename="../guibase.cpp" line="1996"/>
         <source>Change media type</source>
-        <translation type="unfinished"></translation>
+        <translation>Changer le type de media</translation>
     </message>
     <message>
         <location filename="../guibase.cpp" line="1997"/>
         <source>Change type of media</source>
-        <translation type="unfinished"></translation>
+        <translation>Changer le type de media</translation>
     </message>
     <message>
         <location filename="../guibase.cpp" line="1999"/>
         <source>CD</source>
-        <translation type="unfinished">CD</translation>
+        <translation>CD</translation>
     </message>
     <message>
         <location filename="../guibase.cpp" line="2000"/>
         <source>DVD</source>
-        <translation type="unfinished">DVD</translation>
+        <translation>DVD</translation>
     </message>
     <message>
         <location filename="../guibase.cpp" line="2001"/>
         <source>HardDisc</source>
-        <translation type="unfinished">Disque Dur</translation>
+        <translation>Disque dur</translation>
     </message>
     <message>
         <location filename="../guibase.cpp" line="2002"/>
         <source>Floppy</source>
-        <translation type="unfinished">Disquette</translation>
+        <translation>Disquette</translation>
     </message>
     <message>
         <location filename="../guibase.cpp" line="2003"/>
         <source>NetworkPlace</source>
-        <translation type="unfinished">Emplacement réseau</translation>
+        <translation>Emplacement réseau</translation>
     </message>
     <message>
         <location filename="../guibase.cpp" line="2004"/>
         <source>FlashDrive</source>
-        <translation type="unfinished">Disque Flash</translation>
+        <translation>Mémoire flash</translation>
     </message>
     <message>
         <location filename="../guibase.cpp" line="2005"/>
         <source>OtherDevice</source>
-        <translation type="unfinished">Autre périphérique</translation>
+        <translation>Autre périphérique</translation>
     </message>
     <message>
         <location filename="../guibase.cpp" line="2008"/>
         <source>Cancel</source>
-        <translation type="unfinished">Annuler</translation>
+        <translation>Annuler</translation>
     </message>
     <message>
         <location filename="../guibase.cpp" line="2009"/>
         <source>OK</source>
-        <translation type="unfinished">OK</translation>
+        <translation>OK</translation>
     </message>
 </context>
 <context>
@@ -123,7 +123,7 @@ Check the file, or change the autoload option in the config dialog!
 Vérifiez le fichier ou changez l&apos;option de chargement automatique dans la boite de dialogue de Configuration!</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../config.cpp" line="0"/>
         <source>Ok</source>
         <translation type="obsolete">OK</translation>
     </message>
@@ -136,7 +136,7 @@ Check the file!
 Vérifiez le fichier !</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../config.cpp" line="0"/>
         <source>I can&apos;t get the $HOME environment variable.
 It is necessary couse I&apos;d like to save the config file into your home directory.</source>
         <translation type="obsolete">Impossible de trouver la variable d&apos;environnement $HOME. Elle est nécessaire afin que je puisse sauvegarder le fichier de configuration dans votre répertoire personnel.</translation>
@@ -160,7 +160,7 @@ It is necessary couse I&apos;d like to save the config file into your home direc
         <location filename="../config.cpp" line="776"/>
         <source>I can&apos;t get the $HOME environment variable.
 It is necessary because I&apos;d like to save the config file into your home directory.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de trouver la variable d&apos;environnement $HOME. Elle est nécessaire afin que je puisse sauvegarder le fichier de configuration dans votre répertoire personnel.</translation>
     </message>
 </context>
 <context>
@@ -316,7 +316,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Ajouter un nouveau media à ce Catalogue.</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../mainwidget.cpp" line="0"/>
         <source>Delete the selected media from the catalog.</source>
         <translation type="obsolete">Supprimer le media associé à ce Catalogue.</translation>
     </message>
@@ -346,7 +346,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Fichiers récents...</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../mainwidget.cpp" line="0"/>
         <source>Export database</source>
         <translation type="obsolete">Exporter la base</translation>
     </message>
@@ -361,7 +361,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Re-numéroter le noeud...</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../mainwidget.cpp" line="0"/>
         <source>Import database (csv/gtktalog)</source>
         <translation type="obsolete">Importer une base (csv/gtktalog)</translation>
     </message>
@@ -381,7 +381,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Sauvegarder le Catalogue dans un nouveau fichier.</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../mainwidget.cpp" line="0"/>
         <source>Add a link to a CdCAt Catalog...</source>
         <translation type="obsolete">Ajouter un lien à un Catalogue CdCat...</translation>
     </message>
@@ -408,32 +408,32 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location filename="../mainwidget.cpp" line="188"/>
         <source>Add a link to a CdCat Catalog...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter un lien à un Catalogue CdCat...</translation>
     </message>
     <message>
         <location filename="../mainwidget.cpp" line="364"/>
         <source>About Qt</source>
-        <translation type="unfinished"></translation>
+        <translation>A propos de QT</translation>
     </message>
     <message>
         <location filename="../mainwidget.cpp" line="214"/>
         <source>Import database (CSV/XML)</source>
-        <translation type="unfinished"></translation>
+        <translation>Importer une base (CSV/XML)</translation>
     </message>
     <message>
         <location filename="../mainwidget.cpp" line="215"/>
         <source>Export database (CSV/HTML/XML)</source>
-        <translation type="unfinished"></translation>
+        <translation>Exporter la base (CSV/HTML/XML)</translation>
     </message>
     <message>
         <location filename="../mainwidget.cpp" line="351"/>
         <source>Delete selected node.</source>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer le noeud sélectionné.</translation>
     </message>
     <message>
         <location filename="../mainwidget.cpp" line="388"/>
         <source>Scanning:</source>
-        <translation type="unfinished"></translation>
+        <translation>Scan en cours :</translation>
     </message>
 </context>
 <context>
@@ -515,7 +515,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Editer et actualiser le commentaire.</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="166"/>
+        <location filename="../commwidget.cpp" line="167"/>
         <source>Upper container! (..)</source>
         <translation>Conteneur supérieur! (..)</translation>
     </message>
@@ -540,12 +540,12 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Media</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="234"/>
+        <location filename="../commwidget.cpp" line="235"/>
         <source>Size:</source>
         <translation>Taille :</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="283"/>
+        <location filename="../commwidget.cpp" line="284"/>
         <source>Owner:</source>
         <translation>Propriétaire :</translation>
     </message>
@@ -555,7 +555,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Inconnu</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../commwidget.cpp" line="0"/>
         <source>Media (number/name):</source>
         <translation type="obsolete">Media (Numéro/Nom) :</translation>
     </message>
@@ -570,9 +570,9 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">(Artiste/Titre/Album/Année/Commentaire)</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="334"/>
+        <location filename="../commwidget.cpp" line="354"/>
         <source>Comment:</source>
-        <translation>Commentaire :</translation>
+        <translation>Commentaires :</translation>
     </message>
     <message>
         <location filename="../commwidget.cpp" line="82"/>
@@ -580,17 +580,17 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Affiche le contenu du fichier.</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="172"/>
+        <location filename="../commwidget.cpp" line="174"/>
         <source>Name:</source>
         <translation>Nom :</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="206"/>
+        <location filename="../commwidget.cpp" line="207"/>
         <source>Type:</source>
         <translation>Type :</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="549"/>
+        <location filename="../commwidget.cpp" line="579"/>
         <source>There is no selected element.</source>
         <translation>Aucun élément sélectionné.</translation>
     </message>
@@ -600,39 +600,39 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Lier à un Catalogue CdCat</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="246"/>
+        <location filename="../commwidget.cpp" line="247"/>
         <source>Location:</source>
         <translation>Emplacement :</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="258"/>
+        <location filename="../commwidget.cpp" line="259"/>
         <source>Last modification:</source>
         <translation>Dernière modification :</translation>
     </message>
     <message>
         <location filename="../commwidget.cpp" line="97"/>
         <source>Edit and refresh the actual category page.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="182"/>
+        <location filename="../commwidget.cpp" line="184"/>
         <source>At media (number/name):</source>
-        <translation type="unfinished"></translation>
+        <translation>Media (numéro/nom) :</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="386"/>
+        <location filename="../commwidget.cpp" line="413"/>
         <source>Category:</source>
-        <translation type="unfinished"></translation>
+        <translation>Catégorie :</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="444"/>
+        <location filename="../commwidget.cpp" line="463"/>
         <source>Archive contents:</source>
-        <translation type="unfinished"></translation>
+        <translation>Contenu de l&apos;archive :</translation>
     </message>
     <message>
         <location filename="../commwidget.cpp" line="316"/>
         <source>Artist:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Interprète:</translation>
     </message>
     <message>
         <location filename="../commwidget.cpp" line="318"/>
@@ -647,15 +647,15 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location filename="../commwidget.cpp" line="320"/>
         <source>Album:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Album :</translation>
     </message>
     <message>
         <location filename="../commwidget.cpp" line="322"/>
         <source>Year:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Année :</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="496"/>
+        <location filename="../commwidget.cpp" line="520"/>
         <source>File info:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -693,7 +693,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Taille de la police utilisée dans l&apos;application (nécessite un redémarrage)</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../config.cpp" line="0"/>
         <source>CdCat Databases (*.hcf)</source>
         <translation type="obsolete">Bases de données CdCat (*.hcf)</translation>
     </message>
@@ -733,7 +733,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Choisir un fichier à charger automatiquement !</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../config.cpp" line="0"/>
         <source>Automatically save the database after every scan (for dafety sake)</source>
         <translation type="obsolete">Sauvegarder automatiquement la base de données après chaque scan</translation>
     </message>
@@ -743,162 +743,207 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Choisir des éléments supplémentaires à lire</translation>
     </message>
     <message>
+        <location filename="../config.cpp" line="1440"/>
+        <source>Supported extensions:</source>
+        <translation type="obsolete">Extensions supportées :</translation>
+    </message>
+    <message>
         <location filename="../config.cpp" line="1361"/>
         <source>Automatically save the database after every scan (for safety sake)</source>
-        <translation type="unfinished"></translation>
+        <translation>Sauvegarder automatiquement la base de données après chaque scan (par sécurité)</translation>
+    </message>
+    <message>
+        <location filename="../config.cpp" line="1438"/>
+        <source>Archive file display options</source>
+        <translation type="obsolete">Archiver les options d&apos;affichage</translation>
+    </message>
+    <message>
+        <location filename="../config.cpp" line="1439"/>
+        <source>Scan for archive file list</source>
+        <translation type="obsolete">Scanner pour une liste de fichiers d&apos;archive</translation>
+    </message>
+    <message>
+        <location filename="../config.cpp" line="1441"/>
+        <source>Show permission</source>
+        <translation type="obsolete">Montrer les permissions</translation>
+    </message>
+    <message>
+        <location filename="../config.cpp" line="1442"/>
+        <source>Show user</source>
+        <translation type="obsolete">Montrer l&apos;utillisateur</translation>
+    </message>
+    <message>
+        <location filename="../config.cpp" line="1443"/>
+        <source>Show group</source>
+        <translation type="obsolete">Montrer le groupe</translation>
+    </message>
+    <message>
+        <location filename="../config.cpp" line="1444"/>
+        <source>Show size</source>
+        <translation type="obsolete">Montrer la taille</translation>
+    </message>
+    <message>
+        <location filename="../config.cpp" line="1445"/>
+        <source>Show date</source>
+        <translation type="obsolete">Montrer la date</translation>
+    </message>
+    <message>
+        <location filename="../config.cpp" line="1446"/>
+        <source>Show optional comment</source>
+        <translation type="obsolete">Montrer les commentaires optionnels</translation>
     </message>
     <message>
         <location filename="../config.cpp" line="1383"/>
         <source>Display debug info on console</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher les informations de déboguage</translation>
     </message>
     <message>
         <location filename="../config.cpp" line="1384"/>
         <source>Save catalogs always as UTF8</source>
-        <translation type="unfinished"></translation>
+        <translation>Sauvegarder toujours les Catalogues en UTF8</translation>
     </message>
     <message>
         <location filename="../config.cpp" line="1385"/>
         <source>Show progressed file at scanning in status label</source>
-        <translation type="unfinished"></translation>
+        <translation>Montrer le fichier en cours de scan dans la barre d&apos;état</translation>
     </message>
     <message>
         <location filename="../config.cpp" line="1390"/>
         <source>CdCat databases (*.hcf )</source>
-        <translation type="unfinished">Bases de données CdCat (*.hcf)</translation>
+        <translation>Bases de données CdCat (*.hcf)</translation>
     </message>
 </context>
 <context>
     <name>DataBase</name>
     <message>
-        <location filename="../dbase.cpp" line="588"/>
+        <location filename="../dbase.cpp" line="586"/>
         <source>I can&apos;t rewrite the file: %1</source>
         <translation>Impossible d&apos;écraser le fichier : %1</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="613"/>
+        <location filename="../dbase.cpp" line="611"/>
         <source>I can&apos;t create the file: %1</source>
         <translation>Impossible de créer le fichier : %1</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1659"/>
+        <location filename="../dbase.cpp" line="1663"/>
         <source>I can&apos;t open the file: %1</source>
         <translation>Impossible d&apos;ouvrir le fichier : %1</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="816"/>
+        <location filename="../dbase.cpp" line="814"/>
         <source>Cannot read directory: %1</source>
         <translation>Impossible de lire le répertoire : %1</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1695"/>
+        <location filename="../dbase.cpp" line="1699"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../dbase.cpp" line="0"/>
         <source>Ignore directory</source>
         <translation type="obsolete">Ignorer le répertoire</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="820"/>
+        <location filename="../dbase.cpp" line="818"/>
         <source>Cancel scanning</source>
         <translation>Annuler lescan</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../dbase.cpp" line="0"/>
         <source>Symbolic link#Points to:</source>
         <translation type="obsolete">Lien symbolique#Pointe vers :</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1695"/>
+        <location filename="../dbase.cpp" line="1699"/>
         <source>Error while parsing file: %1</source>
         <translation>Erreur lors de l&apos;analyse du fichier : %1</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="637"/>
+        <location filename="../dbase.cpp" line="635"/>
         <source>No database opened!</source>
         <translation>Aucune base de données ouverte !</translation>
     </message>
     <message>
         <location filename="../adddialog.cpp" line="392"/>
         <source>Please Wait...</source>
-        <translation type="unfinished">Merci de patienter...</translation>
+        <translation>Merci de patienter...</translation>
     </message>
     <message>
         <location filename="../adddialog.cpp" line="562"/>
         <source>Cancel</source>
-        <translation type="unfinished">Annuler</translation>
+        <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1683"/>
+        <location filename="../dbase.cpp" line="1687"/>
         <source>Not enough memory to open the file: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Mémoire insuffisante pour ouvrir le fichier : %1</translation>
+    </message>
+    <message>
+        <location filename="../dbase.cpp" line="816"/>
+        <source>Cannot read file: %1</source>
+        <translation>Impossible de lire le fichier : %1</translation>
     </message>
     <message>
         <location filename="../dbase.cpp" line="818"/>
-        <source>Cannot read file: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbase.cpp" line="820"/>
         <source>Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignorer</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="876"/>
+        <location filename="../dbase.cpp" line="879"/>
         <source>Symbolic link to file:#</source>
-        <translation type="unfinished"></translation>
+        <translation>Lien symbolique au fichier : #</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="926"/>
+        <location filename="../dbase.cpp" line="930"/>
         <source>Symbolic link to directory:#</source>
-        <translation type="unfinished"></translation>
+        <translation>Lien symbolique au répertoire : #</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="950"/>
+        <location filename="../dbase.cpp" line="954"/>
         <source>DEAD Symbolic link to:#</source>
-        <translation type="unfinished"></translation>
+        <translation>Lien symbolique ROMPU vers : #</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="960"/>
+        <location filename="../dbase.cpp" line="964"/>
         <source>System file (e.g. FIFO, socket or device file)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichier système (e.g. FIFO, socket ou fichier matériel)</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1512"/>
+        <location filename="../dbase.cpp" line="1516"/>
         <source>device </source>
-        <translation type="unfinished"></translation>
+        <translation>matériel</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1528"/>
+        <location filename="../dbase.cpp" line="1532"/>
         <source> link to </source>
-        <translation type="unfinished"></translation>
+        <translation>Lien vers </translation>
     </message>
     <message>
         <location filename="../wdbfile.cpp" line="758"/>
         <source>Reading file, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Lecture du fichier, merci de patentier...</translation>
     </message>
     <message>
         <location filename="../wdbfile.cpp" line="792"/>
         <source>Converting to unicode, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Conversion vers unicode, merci de patienter...</translation>
     </message>
     <message>
         <location filename="../wdbfile.cpp" line="900"/>
         <source>Parsing file, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Analyse du fichier, merci de patienter...</translation>
     </message>
     <message>
         <location filename="../wdbfile.cpp" line="805"/>
         <source>Parse error</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur d&apos;analyse</translation>
     </message>
     <message>
         <location filename="../wdbfile.cpp" line="810"/>
         <source>You have cancelled catalog reading.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vous avez annulé la lecture du catalogue.</translation>
     </message>
 </context>
 <context>
@@ -992,7 +1037,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Erreur lors de l&apos;ouverture...</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../guibase.cpp" line="0"/>
         <source>Ok</source>
         <translation type="obsolete">OK</translation>
     </message>
@@ -1170,7 +1215,7 @@ the DataBase may be incomplete</source>
     <message>
         <location filename="../guibase.cpp" line="1359"/>
         <source>There is no selected Media in the middle list box!</source>
-        <translation>Aucun media sélectionné dans laliste déroulante du milieu !</translation>
+        <translation>Aucun media sélectionné dans la liste déroulante du milieu !</translation>
     </message>
     <message>
         <location filename="../guibase.cpp" line="1379"/>
@@ -1189,7 +1234,7 @@ the DataBase may be incomplete</source>
         <source>Do you want to clear the borrowing mark from media &quot;%1&quot;?
 (Say yes if you got it back.)</source>
         <translation>Supprimer l&apos;indicateur d&apos;emprunt du media &quot;%1&quot; ?
-(Oui si vous l&apos;avez à nouveau)</translation>
+(Oui si vous l&apos;avez récupéré)</translation>
     </message>
     <message>
         <location filename="../guibase.cpp" line="658"/>
@@ -1250,39 +1295,39 @@ Page d&apos;accueil : %3</translation>
         <translation>Aucun élément sélectionné.</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../guibase.cpp" line="0"/>
         <source>The resoult:</source>
         <translation type="obsolete">Le résultat :</translation>
     </message>
     <message>
         <location filename="../guibase.cpp" line="643"/>
         <source>View/Edit Category...</source>
-        <translation type="unfinished"></translation>
+        <translation>Voir/Editer la catégorie...</translation>
     </message>
     <message>
         <location filename="../guibase.cpp" line="664"/>
         <source>Change media type...</source>
-        <translation type="unfinished"></translation>
+        <translation>Changer le type de media...</translation>
     </message>
     <message>
         <location filename="../guibase.cpp" line="1139"/>
         <source>Scanning directory tree, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Scan de la structure de répertoire, patientez...</translation>
     </message>
     <message>
         <location filename="../guibase.cpp" line="1368"/>
         <source>Select directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionnez un répertoire</translation>
     </message>
     <message>
         <location filename="../guibase.cpp" line="1603"/>
         <source>MiB</source>
-        <translation type="unfinished"></translation>
+        <translation>MiB</translation>
     </message>
     <message>
         <location filename="../guibase.cpp" line="1607"/>
         <source>The result:</source>
-        <translation type="unfinished"></translation>
+        <translation>Le résultat :</translation>
     </message>
 </context>
 <context>
@@ -1389,7 +1434,7 @@ Page d&apos;accueil : %3</translation>
         <translation>Erreur :</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../importdialog.cpp" line="0"/>
         <source>Ok</source>
         <translation type="obsolete">OK</translation>
     </message>
@@ -1399,7 +1444,7 @@ Page d&apos;accueil : %3</translation>
         <translation>fichiers csv (*.csv)</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../importdialog.cpp" line="0"/>
         <source>open file dialog</source>
         <translation type="obsolete">Ouvrir la boite de dialogue d&apos;ouverture de fichier</translation>
     </message>
@@ -1461,7 +1506,7 @@ Page d&apos;accueil : %3</translation>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../importdialog.cpp" line="0"/>
         <source>&amp;Text (csv)</source>
         <translation type="obsolete">&amp;Texte (csv)</translation>
     </message>
@@ -1481,13 +1526,13 @@ Page d&apos;accueil : %3</translation>
         <translation>Sélectionner ici le type d&apos;importation</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../importdialog.cpp" line="0"/>
         <source>Select this for importing a text import (csv)</source>
         <translation type="obsolete">
 Sélectionner ceci pour importer un fichier texte (csv)</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../importdialog.cpp" line="0"/>
         <source>Select this for importing a xml report generated frm gtktalog</source>
         <translation type="obsolete">Sélectionner ceci pour importer un fichier XML généré par gtktalog</translation>
     </message>
@@ -1525,107 +1570,107 @@ deviendra
     <message>
         <location filename="../importdialog.cpp" line="179"/>
         <source>&amp;Gtktalog (csv)</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Gtktalog (csv)</translation>
     </message>
     <message>
         <location filename="../importdialog.cpp" line="180"/>
         <source>&amp;Kat-CeDe (csv)</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Kat-CeDe (csv)</translation>
     </message>
     <message>
         <location filename="../importdialog.cpp" line="181"/>
         <source>&amp;Disclib (csv)</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Disclib (csv)</translation>
     </message>
     <message>
         <location filename="../importdialog.cpp" line="182"/>
         <source>&amp;VisualCD (csv)</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;VisualCD (csv)</translation>
     </message>
     <message>
         <location filename="../importdialog.cpp" line="183"/>
         <source>&amp;VVV (csv)</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;VVV (csv)</translation>
     </message>
     <message>
         <location filename="../importdialog.cpp" line="184"/>
         <source>&amp;Advanced File Organizer (csv)</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Advanced File Organizer (csv)</translation>
     </message>
     <message>
         <location filename="../importdialog.cpp" line="185"/>
         <source>&amp;File Archivist</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;File Archivist</translation>
     </message>
     <message>
         <location filename="../importdialog.cpp" line="186"/>
         <source>&amp;Advanced Disk Catalog (csv)</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Advanced Disk Catalog (csv)</translation>
     </message>
     <message>
         <location filename="../importdialog.cpp" line="187"/>
         <source>W&amp;hereIsIt (csv)</source>
-        <translation type="unfinished"></translation>
+        <translation>W&amp;hereIsIt (csv)</translation>
     </message>
     <message>
         <location filename="../importdialog.cpp" line="195"/>
         <source>Select this for importing a text import (csv) generated from Gtktalog</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner ceci pour importer un fichier texte (csv) généré par Gtktalog</translation>
     </message>
     <message>
         <location filename="../importdialog.cpp" line="198"/>
         <source>Select this for importing a text import (csv) generated from Kat-CeDe.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner ceci pour importer un fichier texte (csv) généré par Kat-CeDe.</translation>
     </message>
     <message>
         <location filename="../importdialog.cpp" line="201"/>
         <source>Select this for importing a text import (csv) generated from Disclib.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner ceci pour importer un fichier texte (csv) généré par Disclib.</translation>
     </message>
     <message>
         <location filename="../importdialog.cpp" line="204"/>
         <source>Select this for importing a text import (csv) generated from VisualCD.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner ceci pour importer un fichier texte (csv) généré par VisualCD.</translation>
     </message>
     <message>
         <location filename="../importdialog.cpp" line="207"/>
         <source>Select this for importing a text import (csv) generated from VVV.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner ceci pour importer un fichier texte (csv) généré par VVV.</translation>
     </message>
     <message>
         <location filename="../importdialog.cpp" line="210"/>
         <source>Select this for importing a text import (csv) generated from Advanced File Organizer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner ceci pour importer un fichier texte (csv) généré par Advanced File Organizer.</translation>
     </message>
     <message>
         <location filename="../importdialog.cpp" line="213"/>
         <source>Select this for importing a File Archivist catalog.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner ceci pour importer un catalogue File Archivist.</translation>
     </message>
     <message>
         <location filename="../importdialog.cpp" line="216"/>
         <source>Select this for importing a text import (csv) generated from Advanced Disk Catalog.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner ceci pour importer un fichier texte (csv) généré par Advanced Disk Catalog.</translation>
     </message>
     <message>
         <location filename="../importdialog.cpp" line="219"/>
         <source>Select this for importing a text import (csv) generated from WhereIsIt.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner ceci pour importer un fichier texte (csv) généré par WhereIsIt.</translation>
     </message>
     <message>
         <location filename="../importdialog.cpp" line="222"/>
         <source>Select this for importing a xml report generated from gtktalog</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner ceci pour importer un fichier texte (csv) généré par Gtktalog</translation>
     </message>
     <message>
         <location filename="../importdialog.cpp" line="225"/>
         <source>Select this for importing a xml report generated from WhereIsIt?</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner ceci pour importer un fichier xml généré par WhereIsIt?</translation>
     </message>
     <message>
         <location filename="../importdialog.cpp" line="304"/>
         <source>File Archivist files(*.arch)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichier File Archivist (*.arch)</translation>
     </message>
 </context>
 <context>
@@ -1698,28 +1743,28 @@ deviendra
     <message>
         <location filename="../info.cpp" line="84"/>
         <source> (with debug)</source>
-        <translation type="unfinished"></translation>
+        <translation> (avec déboguage)</translation>
     </message>
     <message>
         <location filename="../info.cpp" line="98"/>
         <source>Development version build at</source>
-        <translation type="unfinished"></translation>
+        <translation>Version de dévelopement produite à</translation>
     </message>
     <message>
         <location filename="../info.cpp" line="106"/>
         <source>Copyright (C) 2010 Christoph Thielecke (GPL)</source>
-        <translation type="unfinished"></translation>
+        <translation>Copyright (C) 2011 Christoph Thielecke (GPL)</translation>
     </message>
     <message>
         <location filename="../info.cpp" line="115"/>
         <source>Ported to Qt4</source>
-        <translation type="unfinished"></translation>
+        <translation>porté vers Qt4</translation>
     </message>
 </context>
 <context>
     <name>PWw</name>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../info.cpp" line="0"/>
         <source>Please Wait...</source>
         <translation type="obsolete">Merci de patienter...</translation>
     </message>
@@ -1803,12 +1848,12 @@ deviendra
         <translation>Résolution</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../tparser.cpp" line="0"/>
         <source>Audio:</source>
         <translation type="obsolete">Audio :</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../tparser.cpp" line="0"/>
         <source>More Data:</source>
         <translation type="obsolete">Autres données :</translation>
     </message>
@@ -1901,157 +1946,157 @@ deviendra
         <translation>Echantillon(s)</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2242"/>
+        <location filename="../import.cpp" line="2236"/>
         <source>importuser</source>
-        <translation type="unfinished"></translation>
+        <translation>Propriétaire</translation>
     </message>
     <message>
         <location filename="../tparser.cpp" line="577"/>
         <source>Audio:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Audio :</translation>
     </message>
     <message>
         <location filename="../tparser.cpp" line="584"/>
         <source>More Data:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Autres données :</translation>
     </message>
 </context>
 <context>
     <name>SelReadable</name>
     <message>
-        <location filename="../selreadable.cpp" line="329"/>
+        <location filename="../selreadable.cpp" line="328"/>
         <source>Select readable items</source>
         <translation>Choisir des éléments lisibles</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="339"/>
+        <location filename="../selreadable.cpp" line="338"/>
         <source>Read mp3 tags</source>
         <translation>Lire les tag mp3</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="347"/>
+        <location filename="../selreadable.cpp" line="346"/>
         <source>Store content of some files</source>
         <translation>Sauvegarder le contenu de certains fichiers</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="352"/>
+        <location filename="../selreadable.cpp" line="351"/>
         <source>Ok</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="353"/>
+        <location filename="../selreadable.cpp" line="352"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="351"/>
+        <location filename="../selreadable.cpp" line="350"/>
         <source>content size limit in kByte</source>
         <translation>Taille maxi du contenu en kOctets</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="350"/>
+        <location filename="../selreadable.cpp" line="349"/>
         <source>; separated list of readable file patterns</source>
         <translation>Liste des motifs de fichiers lisibles séparés par des ;</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="341"/>
+        <location filename="../selreadable.cpp" line="340"/>
         <source>Default tag</source>
         <translation>Tag par défaut</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="343"/>
+        <location filename="../selreadable.cpp" line="342"/>
         <source>version</source>
         <translation>Version</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="345"/>
+        <location filename="../selreadable.cpp" line="344"/>
         <source>Read mp3 technical info as comment (bitrate,freq,length...)</source>
         <translation>Lire les infos techniques mp3 comme un commentaire (bitrate, fréquence, taille...)</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../selreadable.cpp" line="0"/>
         <source>Read avi technical info as comment (codecs,lenhth,...)</source>
         <translation type="obsolete">Lire les infos techniques avi comme un commentaire (codec, taille...)</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="346"/>
+        <location filename="../selreadable.cpp" line="345"/>
         <source>Read avi technical info as comment (codecs,length,...)</source>
-        <translation type="unfinished"></translation>
+        <translation>Lire les infos techniques avi comme un commentaire (codec, taille, ...)</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="332"/>
-        <source>Supported extensions:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../selreadable.cpp" line="330"/>
-        <source>Archive file display options</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../selreadable.cpp" line="331"/>
-        <source>Scan for archive file list</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../selreadable.cpp" line="333"/>
-        <source>Show permission</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../selreadable.cpp" line="334"/>
-        <source>Show user</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../selreadable.cpp" line="335"/>
-        <source>Show group</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../selreadable.cpp" line="336"/>
-        <source>Show size</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../selreadable.cpp" line="337"/>
-        <source>Show date</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../selreadable.cpp" line="338"/>
-        <source>Show optional comment</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../selreadable.cpp" line="238"/>
+        <location filename="../selreadable.cpp" line="237"/>
         <source>7zip library not found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="240"/>
+        <location filename="../selreadable.cpp" line="239"/>
         <source>7zip library found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="269"/>
+        <location filename="../selreadable.cpp" line="268"/>
         <source>Supported extensions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="266"/>
+        <location filename="../selreadable.cpp" line="265"/>
         <source>fileinfo library not found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="268"/>
+        <location filename="../selreadable.cpp" line="267"/>
         <source>fileinfo library found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="348"/>
+        <location filename="../selreadable.cpp" line="329"/>
+        <source>Archive file display options</source>
+        <translation type="unfinished">Archiver les options d&apos;affichage</translation>
+    </message>
+    <message>
+        <location filename="../selreadable.cpp" line="330"/>
+        <source>Scan for archive file list</source>
+        <translation type="unfinished">Scanner pour une liste de fichiers d&apos;archive</translation>
+    </message>
+    <message>
+        <location filename="../selreadable.cpp" line="331"/>
+        <source>Supported extensions:</source>
+        <translation type="unfinished">Extensions supportées :</translation>
+    </message>
+    <message>
+        <location filename="../selreadable.cpp" line="332"/>
+        <source>Show permission</source>
+        <translation type="unfinished">Montrer les permissions</translation>
+    </message>
+    <message>
+        <location filename="../selreadable.cpp" line="333"/>
+        <source>Show user</source>
+        <translation type="unfinished">Montrer l&apos;utillisateur</translation>
+    </message>
+    <message>
+        <location filename="../selreadable.cpp" line="334"/>
+        <source>Show group</source>
+        <translation type="unfinished">Montrer le groupe</translation>
+    </message>
+    <message>
+        <location filename="../selreadable.cpp" line="335"/>
+        <source>Show size</source>
+        <translation type="unfinished">Montrer la taille</translation>
+    </message>
+    <message>
+        <location filename="../selreadable.cpp" line="336"/>
+        <source>Show date</source>
+        <translation type="unfinished">Montrer la date</translation>
+    </message>
+    <message>
+        <location filename="../selreadable.cpp" line="337"/>
+        <source>Show optional comment</source>
+        <translation type="unfinished">Montrer les commentaires optionnels</translation>
+    </message>
+    <message>
+        <location filename="../selreadable.cpp" line="347"/>
         <source>Read some technical info using fileinfo</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2099,7 +2144,7 @@ deviendra
         <translation>Sauvegarder ce contenu dans un nouveau fichier</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../showcontent.cpp" line="0"/>
         <source>Save content...</source>
         <translation type="obsolete">Sauvegarder le contenu...</translation>
     </message>
@@ -2119,7 +2164,7 @@ deviendra
         <translation>Erreu durantla sauvegarde...</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../showcontent.cpp" line="0"/>
         <source>Ok</source>
         <translation type="obsolete">OK</translation>
     </message>
@@ -2131,22 +2176,22 @@ deviendra
     <message>
         <location filename="../showcontent.cpp" line="81"/>
         <source>Category of %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Catégorie de %1</translation>
     </message>
     <message>
         <location filename="../showcontent.cpp" line="146"/>
         <source>Set category</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir la catégorie</translation>
     </message>
     <message>
         <location filename="../showcontent.cpp" line="148"/>
         <source>Set content</source>
-        <translation type="unfinished"></translation>
+        <translation>Insérer le contenu</translation>
     </message>
     <message>
         <location filename="../showcontent.cpp" line="171"/>
         <source>CdCat databases (*.hcf )</source>
-        <translation type="unfinished">Bases de données CdCat (*.hcf)</translation>
+        <translation>Bases de données CdCat (*.hcf)</translation>
     </message>
 </context>
 <context>
@@ -2172,27 +2217,27 @@ deviendra
         <translation>Choisir un répertoire à scanner :</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../adddialog.cpp" line="0"/>
         <source>Media Name:</source>
         <translation type="obsolete">Nomdu média :</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../adddialog.cpp" line="0"/>
         <source>Serial number of Media:</source>
         <translation type="obsolete">Numéro de séria du média :</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../adddialog.cpp" line="0"/>
         <source>Owner:</source>
         <translation type="obsolete">Propriétaire :</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../adddialog.cpp" line="0"/>
         <source>Type:</source>
         <translation type="obsolete">Type :</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../adddialog.cpp" line="0"/>
         <source>Comment:</source>
         <translation type="obsolete">Commentaire :</translation>
     </message>
@@ -2202,7 +2247,7 @@ deviendra
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../adddialog.cpp" line="0"/>
         <source>OK / Scan</source>
         <translation type="obsolete">OK / Scanner</translation>
     </message>
@@ -2262,7 +2307,7 @@ deviendra
         <translation>Le nom du média doit être unique ! Merci de le modifier !</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../adddialog.cpp" line="0"/>
         <source>Select readable items</source>
         <translation type="obsolete">Choisir des éléments lisibles</translation>
     </message>
@@ -2284,72 +2329,72 @@ deviendra
     <message>
         <location filename="../adddialog.cpp" line="227"/>
         <source>Media &amp;Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nom du media :</translation>
     </message>
     <message>
         <location filename="../adddialog.cpp" line="228"/>
         <source>S&amp;erial number of Media:</source>
-        <translation type="unfinished"></translation>
+        <translation>Numéro de s&amp;érie du média :</translation>
     </message>
     <message>
         <location filename="../adddialog.cpp" line="229"/>
         <source>&amp;Owner:</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Propriétaire :</translation>
     </message>
     <message>
         <location filename="../adddialog.cpp" line="230"/>
         <source>C&amp;ategory:</source>
-        <translation type="unfinished"></translation>
+        <translation>C&amp;atégorie :</translation>
     </message>
     <message>
         <location filename="../adddialog.cpp" line="231"/>
         <source>&amp;Type:</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Type :</translation>
     </message>
     <message>
         <location filename="../adddialog.cpp" line="232"/>
         <source>Co&amp;mment:</source>
-        <translation type="unfinished"></translation>
+        <translation>Co&amp;mmentaire :</translation>
     </message>
     <message>
         <location filename="../adddialog.cpp" line="233"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Annuler</translation>
+        <translation>&amp;Annuler</translation>
     </message>
     <message>
         <location filename="../adddialog.cpp" line="234"/>
         <source>&amp;Scan</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Scanner</translation>
     </message>
     <message>
         <location filename="../adddialog.cpp" line="235"/>
         <source>Select &amp;readable items</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir des éléments &amp;lisibles</translation>
     </message>
     <message>
         <location filename="../adddialog.cpp" line="237"/>
         <source>detect CDROM/DVD med&amp;ia name after mount</source>
-        <translation type="unfinished"></translation>
+        <translation>Détecter le nom des med&amp;ias CD/DVD après insertion</translation>
     </message>
     <message>
         <location filename="../adddialog.cpp" line="652"/>
         <source>Add a &quot;Catalog Link&quot; to the database</source>
-        <translation type="unfinished">Ajouter un &quot;Lien Catalogue&quot; à la base de données</translation>
+        <translation>Ajouter un &quot;Lien Catalogue&quot; à la base de données</translation>
     </message>
     <message>
         <location filename="../adddialog.cpp" line="653"/>
         <source>Location of the .hcf file:</source>
-        <translation type="unfinished">Emplacement du fichier .hcf :</translation>
+        <translation>Emplacement du fichier .hcf :</translation>
     </message>
     <message>
         <location filename="../adddialog.cpp" line="673"/>
         <source>Open a file...</source>
-        <translation type="unfinished">Ouvrir un fichier...</translation>
+        <translation>Ouvrir un fichier...</translation>
     </message>
     <message>
         <location filename="../adddialog.cpp" line="673"/>
         <source>CdCat databases (*.hcf )</source>
-        <translation type="unfinished">Bases de données CdCat (*.hcf)</translation>
+        <translation>Bases de données CdCat (*.hcf)</translation>
     </message>
 </context>
 <context>
@@ -2486,29 +2531,29 @@ deviendra
 <context>
     <name>commentEdit</name>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../borrow.cpp" line="0"/>
         <source>Edit Comment</source>
         <translation type="obsolete">Editer le commentaire</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="689"/>
+        <location filename="../commwidget.cpp" line="719"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="690"/>
+        <location filename="../commwidget.cpp" line="720"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="686"/>
+        <location filename="../commwidget.cpp" line="716"/>
         <source>Edit comment of</source>
-        <translation type="unfinished"></translation>
+        <translation>Editer le commentaire de</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="688"/>
+        <location filename="../commwidget.cpp" line="718"/>
         <source>Edit category of</source>
-        <translation type="unfinished"></translation>
+        <translation>Editer la catégorie de</translation>
     </message>
 </context>
 <context>
@@ -2574,12 +2619,12 @@ deviendra
         <translation>renseigner le séparateur !</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../exportcdcatdb.cpp" line="0"/>
         <source>Error during write config...</source>
         <translation type="obsolete">Erreur en écrivant la configuration...</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../exportcdcatdb.cpp" line="0"/>
         <source>Ok</source>
         <translation type="obsolete">OK</translation>
     </message>
@@ -2589,7 +2634,7 @@ deviendra
         <translation>Tous les fichiers (*.*)</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../exportcdcatdb.cpp" line="0"/>
         <source>file chooser</source>
         <translation type="obsolete">Sélecteur de fichier</translation>
     </message>
@@ -2664,7 +2709,7 @@ deviendra
         <translation>Quoi exporter</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../exportcdcatdb.cpp" line="0"/>
         <source>Only media name</source>
         <translation type="obsolete">Nom du média uniquement</translation>
     </message>
@@ -2689,7 +2734,7 @@ deviendra
         <translation>Entête HTML</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../exportcdcatdb.cpp" line="0"/>
         <source>table header</source>
         <translation type="obsolete">Entête de tableau</translation>
     </message>
@@ -2721,97 +2766,97 @@ deviendra
     <message>
         <location filename="../exportcdcatdb.cpp" line="287"/>
         <source>Only media</source>
-        <translation type="unfinished"></translation>
+        <translation>Uniquement les medias</translation>
     </message>
     <message>
         <location filename="../exportcdcatdb.cpp" line="292"/>
         <source>export as XML</source>
-        <translation type="unfinished"></translation>
+        <translation>Exporter en XML</translation>
     </message>
     <message>
         <location filename="../exportcdcatdb.cpp" line="465"/>
         <source>Media number</source>
-        <translation type="unfinished"></translation>
+        <translation>Numéro du media</translation>
     </message>
     <message>
         <location filename="../exportcdcatdb.cpp" line="498"/>
         <source>Category</source>
-        <translation type="unfinished"></translation>
+        <translation>Catégorie</translation>
     </message>
     <message>
         <location filename="../exportcdcatdb.cpp" line="306"/>
         <source>export mp3 tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Exporter les tags mp3</translation>
     </message>
     <message>
         <location filename="../exportcdcatdb.cpp" line="307"/>
         <source>export borrow information</source>
-        <translation type="unfinished"></translation>
+        <translation>exporter les informations de prêt</translation>
     </message>
     <message>
         <location filename="../exportcdcatdb.cpp" line="309"/>
         <source>table header/comment line</source>
-        <translation type="unfinished"></translation>
+        <translation>En-tête de tableau/ligne de commentaire</translation>
     </message>
     <message>
         <location filename="../exportcdcatdb.cpp" line="455"/>
         <source>Export from cdcat, catalog:</source>
-        <translation type="unfinished"></translation>
+        <translation>Exporter de CdCat, catalogue :</translation>
     </message>
     <message>
         <location filename="../exportcdcatdb.cpp" line="456"/>
         <source>Generated at:</source>
-        <translation type="unfinished"></translation>
+        <translation>Créé à :</translation>
     </message>
     <message>
         <location filename="../exportcdcatdb.cpp" line="431"/>
         <source>#</source>
-        <translation type="unfinished"></translation>
+        <translation>#</translation>
     </message>
     <message>
         <location filename="../exportcdcatdb.cpp" line="490"/>
         <source>MP3 tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Tag MP3</translation>
     </message>
     <message>
         <location filename="../exportcdcatdb.cpp" line="494"/>
         <source>Borrow</source>
-        <translation type="unfinished"></translation>
+        <translation>Prêt</translation>
     </message>
     <message>
         <location filename="../exportcdcatdb.cpp" line="457"/>
         <source>field list</source>
-        <translation type="unfinished"></translation>
+        <translation>liste de champs</translation>
     </message>
     <message>
         <location filename="../exportcdcatdb.cpp" line="525"/>
         <source>Exporting, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportation, merci de patienter...</translation>
     </message>
     <message>
         <location filename="../exportcdcatdb.cpp" line="573"/>
         <source>Error during write export...</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur durant l&apos;écriture de l&apos;exportation...</translation>
     </message>
     <message>
         <location filename="../exportcdcatdb.cpp" line="970"/>
         <source>Artist:</source>
-        <translation type="unfinished"></translation>
+        <translation>Interprète:</translation>
     </message>
     <message>
         <location filename="../exportcdcatdb.cpp" line="971"/>
         <source>Title:</source>
-        <translation type="unfinished">Titre :</translation>
+        <translation>Titre :</translation>
     </message>
     <message>
         <location filename="../exportcdcatdb.cpp" line="972"/>
         <source>Album:</source>
-        <translation type="unfinished"></translation>
+        <translation>Album :</translation>
     </message>
     <message>
         <location filename="../exportcdcatdb.cpp" line="973"/>
         <source>Year:</source>
-        <translation type="unfinished"></translation>
+        <translation>Année :</translation>
     </message>
 </context>
 <context>
@@ -2917,7 +2962,7 @@ deviendra
         <translation>Tous les médias</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../find.cpp" line="0"/>
         <source>&amp;OK</source>
         <translation type="obsolete">&amp;OK</translation>
     </message>
@@ -2944,62 +2989,62 @@ deviendra
     <message>
         <location filename="../find.cpp" line="135"/>
         <source>Byte</source>
-        <translation type="unfinished"></translation>
+        <translation>Byte</translation>
     </message>
     <message>
         <location filename="../find.cpp" line="136"/>
         <source>KiB</source>
-        <translation type="unfinished"></translation>
+        <translation>KiB</translation>
     </message>
     <message>
         <location filename="../find.cpp" line="137"/>
         <source>MiB</source>
-        <translation type="unfinished"></translation>
+        <translation>MiB</translation>
     </message>
     <message>
         <location filename="../find.cpp" line="138"/>
         <source>GiB</source>
-        <translation type="unfinished"></translation>
+        <translation>GiB</translation>
     </message>
     <message>
         <location filename="../find.cpp" line="342"/>
         <source>Size</source>
-        <translation type="unfinished">Taille</translation>
+        <translation>TailleTaille</translation>
     </message>
     <message>
         <location filename="../find.cpp" line="356"/>
         <source>Date start</source>
-        <translation type="unfinished"></translation>
+        <translation>Date de début</translation>
     </message>
     <message>
         <location filename="../find.cpp" line="357"/>
         <source>Date end</source>
-        <translation type="unfinished"></translation>
+        <translation>Date de fin</translation>
     </message>
     <message>
         <location filename="../find.cpp" line="358"/>
         <source>Min size</source>
-        <translation type="unfinished"></translation>
+        <translation>Taille minimale</translation>
     </message>
     <message>
         <location filename="../find.cpp" line="359"/>
         <source>Max size</source>
-        <translation type="unfinished"></translation>
+        <translation>Taille maximale</translation>
     </message>
     <message>
         <location filename="../find.cpp" line="360"/>
         <source>Unsharp search (slow)</source>
-        <translation type="unfinished"></translation>
+        <translation>Recherche sans indexation (lent)</translation>
     </message>
     <message>
         <location filename="../find.cpp" line="361"/>
         <source>Find in archives too</source>
-        <translation type="unfinished"></translation>
+        <translation>Chercher dans les archives également</translation>
     </message>
     <message>
         <location filename="../find.cpp" line="362"/>
         <source>&amp;Start search</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Lancer la recherche</translation>
     </message>
 </context>
 <context>
@@ -3099,7 +3144,7 @@ E-mail: hyperr@freemail.hu
         <location filename="../import.cpp" line="1371"/>
         <source>1 directory:,
 </source>
-        <translation>1 répertoire :
+        <translation>1 répertoire :,
 </translation>
     </message>
     <message>
@@ -3170,152 +3215,152 @@ E-mail: hyperr@freemail.hu
     <message>
         <location filename="../import.cpp" line="156"/>
         <source>Cancel</source>
-        <translation type="unfinished">Annuler</translation>
+        <translation>Annuler</translation>
     </message>
 </context>
 <context>
     <name>importGtktalogXml</name>
     <message>
-        <location filename="../import.cpp" line="1770"/>
+        <location filename="../import.cpp" line="1767"/>
         <source>Importing XML...</source>
         <translation>En cours d&apos;import XML...</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1804"/>
+        <location filename="../import.cpp" line="1801"/>
         <source>XML import was successful.</source>
         <translation>Importation XML réussie.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1807"/>
+        <location filename="../import.cpp" line="1804"/>
         <source>1 media</source>
         <translation>1 media</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1809"/>
+        <location filename="../import.cpp" line="1806"/>
         <source>media</source>
-        <translation>Media</translation>
+        <translation>media</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1812"/>
+        <location filename="../import.cpp" line="1809"/>
         <source>1 directory:,
 </source>
-        <translation>1 répertoire :
+        <translation>1 répertoire :,
 </translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1814"/>
+        <location filename="../import.cpp" line="1811"/>
         <source>directories</source>
-        <translation>Répertoires</translation>
+        <translation>répertoires</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1817"/>
+        <location filename="../import.cpp" line="1814"/>
         <source>1 File</source>
         <translation>1 Fichier</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1819"/>
+        <location filename="../import.cpp" line="1816"/>
         <source>files</source>
-        <translation>Fichiers</translation>
+        <translation>fichiers</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1821"/>
+        <location filename="../import.cpp" line="1818"/>
         <source>are imported.</source>
         <translation>ont été importées.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1823"/>
+        <location filename="../import.cpp" line="1820"/>
         <source>Import successful</source>
         <translation>Importation réussie</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1827"/>
+        <location filename="../import.cpp" line="1824"/>
         <source>parse error</source>
         <translation>Erreur d&apos;analyse</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1827"/>
+        <location filename="../import.cpp" line="1824"/>
         <source>error during parsing</source>
         <translation>Erreur pendant l&apos;analyse</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1863"/>
+        <location filename="../import.cpp" line="1860"/>
         <source>importuser</source>
-        <translation>En cours d&apos;import XML...</translation>
+        <translation>Propriétaire</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1770"/>
+        <location filename="../import.cpp" line="1767"/>
         <source>Cancel</source>
-        <translation type="unfinished">Annuler</translation>
+        <translation>Annuler</translation>
     </message>
 </context>
 <context>
     <name>importWhereIsItXml</name>
     <message>
-        <location filename="../import.cpp" line="2480"/>
+        <location filename="../import.cpp" line="2471"/>
         <source>Importing XML...</source>
         <translation>En cours d&apos;import XML...</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2515"/>
+        <location filename="../import.cpp" line="2506"/>
         <source>Importing XML from WhereIsIt was successful.</source>
         <translation>Importation XML de WhereIsIt réussie.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2518"/>
+        <location filename="../import.cpp" line="2509"/>
         <source>1 media</source>
         <translation>1 media</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2520"/>
+        <location filename="../import.cpp" line="2511"/>
         <source>media</source>
         <translation>Media</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2523"/>
+        <location filename="../import.cpp" line="2514"/>
         <source>1 directory:,
 </source>
-        <translation>1 répertoire :
+        <translation>1 répertoire :,
 </translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2525"/>
+        <location filename="../import.cpp" line="2516"/>
         <source>directories</source>
         <translation>Répertoires</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2528"/>
+        <location filename="../import.cpp" line="2519"/>
         <source>1 File</source>
         <translation>1 Fichier</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2530"/>
+        <location filename="../import.cpp" line="2521"/>
         <source>files</source>
         <translation>Fichiers</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2532"/>
+        <location filename="../import.cpp" line="2523"/>
         <source>are imported.</source>
         <translation>ont été importées.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2534"/>
+        <location filename="../import.cpp" line="2525"/>
         <source>Import successful</source>
         <translation>Importation réussie</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2538"/>
+        <location filename="../import.cpp" line="2529"/>
         <source>parse error</source>
         <translation>Erreur d&apos;analyse</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2538"/>
+        <location filename="../import.cpp" line="2529"/>
         <source>error during parsing</source>
         <translation>Erreur pendant l&apos;analyse</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2480"/>
+        <location filename="../import.cpp" line="2471"/>
         <source>Cancel</source>
-        <translation type="unfinished">Annuler</translation>
+        <translation>Annuler</translation>
     </message>
 </context>
 <context>
@@ -3363,12 +3408,12 @@ E-mail: hyperr@freemail.hu
     <message>
         <location filename="../newdbdialog.cpp" line="133"/>
         <source> </source>
-        <translation type="unfinished"></translation>
+        <translation>.</translation>
     </message>
     <message>
         <location filename="../newdbdialog.cpp" line="128"/>
         <source>Category:</source>
-        <translation type="unfinished"></translation>
+        <translation>Catégorie :</translation>
     </message>
 </context>
 <context>
@@ -3399,7 +3444,7 @@ E-mail: hyperr@freemail.hu
         <translation>Erreur :</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../newdbdialog.cpp" line="0"/>
         <source>Ok</source>
         <translation type="obsolete">OK</translation>
     </message>
@@ -3427,7 +3472,7 @@ E-mail: hyperr@freemail.hu
         <translation>L&apos;élément n&apos;est pas un média !</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../newdbdialog.cpp" line="0"/>
         <source>Ok</source>
         <translation type="obsolete">OK</translation>
     </message>
@@ -3470,7 +3515,7 @@ E-mail: hyperr@freemail.hu
         <translation>Erreur dans le motif :</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../find.cpp" line="0"/>
         <source>Ok</source>
         <translation type="obsolete">OK</translation>
     </message>
@@ -3502,22 +3547,22 @@ E-mail: hyperr@freemail.hu
     <message>
         <location filename="../find.cpp" line="600"/>
         <source>Searching, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Recherche en cours, merci de patienter...</translation>
     </message>
     <message>
         <location filename="../find.cpp" line="661"/>
         <source>Search cancelled</source>
-        <translation type="unfinished"></translation>
+        <translation>Recherche annulée</translation>
     </message>
     <message>
         <location filename="../find.cpp" line="661"/>
         <source>You have cancelled searching.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vous avez annulé la recherche.</translation>
     </message>
     <message>
         <location filename="../find.cpp" line="932"/>
         <source>File in archive: </source>
-        <translation type="unfinished"></translation>
+        <translation>Fichier dans l&apos;archive :</translation>
     </message>
 </context>
 </TS>
