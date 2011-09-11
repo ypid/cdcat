@@ -34,17 +34,23 @@ using namespace std;
 #include "config.h"
 
 lineObject::lineObject ( QString medianame, QString path, QString filename,
-                         float size, QDateTime datetime, QString comment, QString category ) {
+                         float size, QDateTime datetime, QString comment, QString information, QString category, QList<ArchiveFile> archivecontent, bool is_archive ) {
     this->medianame = medianame;
     this->path = path;
     this->filename = filename;
     this->size = size;
     this->datetime = datetime;
     this->comment = comment;
+		this->information = information;
     this->category = category;
+		for ( int i=0;i<archivecontent.size();i++ ) {
+				this->archivecontent.append(archivecontent.at(i));
+		}
+		this->is_archive = is_archive;
 }
 
-lineObject::~lineObject() {}
+lineObject::~lineObject() {
+}
 
 lineObject::lineObject ( const lineObject& newobj ) {
     medianame = newobj.medianame;
@@ -54,6 +60,10 @@ lineObject::lineObject ( const lineObject& newobj ) {
     datetime = newobj.datetime;
     comment = newobj.comment;
     category = newobj.category;
+		for ( int i=0;i<newobj.archivecontent.size();i++ ) {
+				archivecontent.append(newobj.archivecontent.at(i));
+		}
+		is_archive = newobj.is_archive;
 }
 
 lineObject& lineObject::operator= ( const lineObject& newobj ) {
@@ -64,6 +74,11 @@ lineObject& lineObject::operator= ( const lineObject& newobj ) {
     datetime = newobj.datetime;
     comment = newobj.comment;
     category = newobj.category;
+		archivecontent.clear();
+		for ( int i=0;i<newobj.archivecontent.size();i++ ) {
+				archivecontent.append(newobj.archivecontent.at(i));
+		}
+		is_archive = newobj.is_archive;
     return *this;
 }
 
@@ -83,6 +98,10 @@ float lineObject::getSize() {
     return size;
 }
 
+QList<ArchiveFile> lineObject::getArchiveFileContent() {
+			return archivecontent;
+}
+
 QDateTime lineObject::getDateTime() {
     return datetime;
 }
@@ -91,10 +110,26 @@ QString lineObject::getComment() {
     return comment;
 }
 
+QString lineObject::getInformation() {
+    return information;
+}
+
+
 QString lineObject::getCategory() {
     return category;
 }
 
+bool lineObject::isArchive() {
+	return is_archive;
+}
+
+void lineObject::setArchiveFileContent(QList< ArchiveFile > archivecontent) {
+	this->archivecontent = archivecontent;
+}
+
+void lineObject::appendArchiveFileContent(ArchiveFile af) {
+				archivecontent.append(af);
+}
 
 /*
  * import a file with following format:
@@ -1402,13 +1437,13 @@ importGtktalogCsv::~importGtktalogCsv() {}
 int importGtktalogCsv::addNewItem ( QString medianame, QString path,
                                     QString filename, float size, QDateTime datetime, QString comment, QString category ) {
     DEBUG_INFO_ENABLED = init_debug_info();
-    lineObject l ( medianame, path, filename, size, datetime, comment, category );
+    lineObject l ( medianame, path, filename, size, datetime, comment, "", category );
     if (*DEBUG_INFO_ENABLED)
         cerr << "importGtktalogCsv::addNewItem: medianame: " <<
              qPrintable(medianame) << ", path: " << qPrintable(path) << ", filename: " <<
              qPrintable(filename) << ", size: " << size << ", date: " <<
              qPrintable(datetime.toString())  << ", comment: " << qPrintable(comment) << ", category: " << qPrintable(category )<< endl;
-    medialines->append ( l );
+		medialines->append ( l );
 
     // QMessageBox::critical( 0, "item", "new item!");
     return 0;
@@ -1432,7 +1467,7 @@ int importGtktalogCsv::addNewMedia ( QString new_medianame, QDateTime media_modi
         curr = db->putMediaNode ( new_medianame , mediacount, tr ( "importuser" ), CD, media_comment, media_modification, media_category );
 
     QString msg;
-    lineObject obj("", "", "", 0.0, QDateTime(), "", "");
+    lineObject obj("", "", "", 0.0, QDateTime(), "", "", "");
     for ( int i = 0; i < medialines->size(); i++ ) {
         //if(*DEBUG_INFO_ENABLED)
         //  cerr << "importGtktalogCsv::addNewMedia medialine: " << i << endl;
@@ -1583,6 +1618,8 @@ bool importGtktalogXml::endElement( const QString&, const QString & tag, const Q
         // found information
         information = tag_content;
         comment = tag_content;
+				if (information.contains("archive data"))
+					is_archive = true;
     }
     else if ( tag == "name" ) {
         catalogName = tag_content.replace('\n',"");
@@ -1596,20 +1633,58 @@ bool importGtktalogXml::endElement( const QString&, const QString & tag, const Q
     
     else if ( tag == "directory_name" ) {
         // found directory 
-        directory = tag_content.replace('\n',"");
-        if (!directory.isEmpty() && directory.at(0) == '/')
-           directory = directory.mid(1, directory.length()-1 );
-        if (directory.length() > 1 && directory.at(directory.length()-1) == '/')
-           directory = directory.mid(0, directory.length()-2 );
-    }
+        directory = tag_content.replace("\n","");
+        if (!directory.isEmpty() && directory.size() > 1) {
+								if (directory.at(0) == '/') {
+								directory = directory.right(directory.size()-1 );
+// 								if(*DEBUG_INFO_ENABLED)
+// 												std::cout << "directory name (after remove start /): " <<  qPrintable(directory) << std::endl; 
+								}
+								if (directory.at(directory.size()-1) == '/') {
+								directory = directory.left(directory.size()-1 );
+// 								if(*DEBUG_INFO_ENABLED)
+// 												std::cout << "directory name (after remove end /): " <<  qPrintable(directory) << std::endl;
+								}
+				}
+				else {
+								if (directory.at(0) == '/') {
+												directory="";
+								}
+				}
+		}
     
     else if ( tag == "file_name" ) {
         // found file name
-        filename = tag_content.replace('\n',"");
+        is_directory = false;
+        filename = tag_content.replace("\n","");
+				if (!filename.isEmpty() && filename.size() > 1) {
+								if (filename.at(0) == '/') {
+												filename = filename.right(filename.size()-1 );
+								if(*DEBUG_INFO_ENABLED)
+												std::cout << "filename name (after remove start /): " <<  qPrintable(filename) << std::endl; 
+								}
+								if (filename.at(filename.size()-1) == '/') {
+												//filename = filename.left(filename.size()-1 );
+												//if(*DEBUG_INFO_ENABLED)
+												//				std::cout << "filename name (after remove end /): " <<  qPrintable(filename) << std::endl;
+												is_directory = true;
+								}
+				}
+// 				else {
+// 								if (filename.at(0) == '/') {
+// 												filename="";
+// 								}
+// 				}
+				 if(*DEBUG_INFO_ENABLED)
+                std::cout << "file name: " <<  qPrintable(filename) << std::endl;
     }
     else if ( tag == "file_size" ) {
         // found file size
-        size = tag_content.toInt();
+        size = tag_content.toLong();
+				if (size == -1)
+								size = 0;
+// 				 if(*DEBUG_INFO_ENABLED)
+//                 std::cout << "file size (tag_content): " <<  qPrintable(tag_content) << ", calculated: " << size << std::endl;
     }
     
     else if ( tag == "file_date" ) {
@@ -1661,44 +1736,49 @@ bool importGtktalogXml::endElement( const QString&, const QString & tag, const Q
         line += "directory: " + directory + "\n";
         line += "filename: " + filename + "\n";
         line += "Full path: " + directory+"/"+filename + "\n";
-        line += "size: " + QString().setNum( size ) + "\n";
+        line += "is_directory: " + QString().setNum(is_directory) + "\n";
+				line += "size: " + QString().setNum( size ) + "\n";
         line += "datetimestring: " + datetimestring + "\n";
         line += "category: " + category + "\n";
         line += "description: " + description + "\n";
         line += "information: " + information + "\n";
+				
 
         if(*DEBUG_INFO_ENABLED)
                 cerr << "line: " << qPrintable(line)<< endl;
 
+				if(!is_directory) {
+								//cerr << line << endl << endl << endl;
+								
+								if ( medianame == ""  )
+												medianame = new_medianame;
 
-        //cerr << line << endl << endl << endl;
-
-        if ( medianame == ""  )
-                medianame = new_medianame;
-
-        if ( medianame != new_medianame ) {
-                //        QMessageBox::warning (0, "info", medianame);
-                addNewMedia ( medianame, datetime, comment, category, medialines );
-                medialines->clear();
-                medianame = new_medianame;
-                addNewItem ( new_medianame, directory, filename, size, datetime, comment, category );
+								if ( medianame != new_medianame ) {
+												//        QMessageBox::warning (0, "info", medianame);
+												addNewMedia ( medianame, datetime, comment, category, medialines );
+												medialines->clear();
+												medianame = new_medianame;
+												addNewItem ( new_medianame, directory, filename, size, datetime, comment, information, category, QList<ArchiveFile>(), is_archive );
 
 
-        }
-        else {
-                //        QMessageBox::warning (0, "info", "new item");
-                addNewItem ( new_medianame, directory, filename, size, datetime, comment, category );
-        }
+								}
+								else {
+												//        QMessageBox::warning (0, "info", "new item");
+												addNewItem ( new_medianame, directory, filename, size, datetime, comment, information, category, QList<ArchiveFile>(), is_archive );
+								}
+				}
 
         new_medianame = "";
         directory = "";
         filename = "";
-        size = 0;
+        size = -1;
         category = "";
         description = "";
         information = "";
         datetimestring = "";
         tmpdirname = "";
+				is_directory = false;
+				is_archive = false;
 
         linecount++;
         progress->setValue ( linecount );
@@ -1775,6 +1855,8 @@ importGtktalogXml::importGtktalogXml ( GuiSlave * parent, QString filename, bool
         size = 0.0;
         new_medianame = "";
         datetimestring = "";
+				is_directory = false;
+				is_archive = false;
 
         QXmlInputSource source( f );
         QXmlSimpleReader reader;
@@ -1831,15 +1913,92 @@ importGtktalogXml::~importGtktalogXml() {
     delete ( progress );
 }
 
-int importGtktalogXml::addNewItem ( QString medianame, QString path, QString filename, float size, QDateTime datetime, QString comment, QString category ) {
+int importGtktalogXml::addNewItem ( QString medianame, QString path, QString filename, long size, QDateTime datetime, QString comment, QString information,  QString category, QList<ArchiveFile> archivecontent, bool is_archive ) {
     DEBUG_INFO_ENABLED = init_debug_info();
-    lineObject l ( medianame, path, filename, size, datetime, comment, category );
+    lineObject l ( medianame, path, filename, size, datetime, comment, information, category, archivecontent, is_archive );
     if (*DEBUG_INFO_ENABLED)
         cerr << "importGtktalogXml::addNewItem: medianame: " <<
              qPrintable(medianame) << ", path: " << qPrintable(path) << ", filename: " <<
              qPrintable(filename) << ", size: " << size << ", date: " <<
-             qPrintable(datetime.toString())  << ", comment: " << qPrintable(comment) << ", category: " << qPrintable(category )<< endl;
-    medialines->append ( l );
+             qPrintable(datetime.toString())  << ", comment: " << qPrintable(comment) << ", category: " << qPrintable(category )<< ", is_archive: " << is_archive << endl;
+						 
+		// look for archive content
+		/* example:
+
+	<directory_name><![CDATA[/My Documents/Stock info/a1.zip/]]></directory_name>
+	<file_name><![CDATA[ABCG.PRN]]></file_name>
+	<directory_name><![CDATA[/My Documents/Stock info/a1.zip/]]></directory_name>
+	<file_name><![CDATA[ABG.PRN]]></file_name>
+
+	ABCG.PRN and ABG.PRN are contents of a1.zip
+	
+		 */
+		QString fullpath = path+"/"+filename;
+		
+		bool found = false;
+		for ( int i = 0; i < medialines->size(); i++ ) {
+				lineObject currObj = medialines->at(i);
+				QString currFullpath = currObj.getPath()+"/"+currObj.getFileName();
+// 				 if (*DEBUG_INFO_ENABLED)
+// 										cerr << "compare: " << qPrintable(currObj.getPath()) << " <=> " << qPrintable(path) << endl;
+				if( currFullpath == path && currObj.isArchive()) {
+							  if (*DEBUG_INFO_ENABLED)
+										cerr << "archive file " << qPrintable( fullpath) << " for archive " << qPrintable(currFullpath) << " found" << endl;
+							// its archivecontent
+							ArchiveFile af;
+							af.fileattr = "rwxrwxrwx";
+							af.user = "importuser";
+							af.group = "importgroup";
+							af.size = size;
+							af.date = datetime;
+							af.path = filename;
+							
+							
+// 							if (*DEBUG_INFO_ENABLED)
+// 																cerr << "\nold archive content " << qPrintable( fullpath) << " of archive " << qPrintable(currFullpath) << ":\n" << endl;
+// 							for ( int j=0;j< medialines->at(i).archivecontent.size();j++ ) {
+// 											ArchiveFile af2 = medialines->at(i).archivecontent.at(j);
+// 												QString prettyArchiveFileLine = af2.toPrettyString(true, true, true, true, true, true);
+// 												 if (*DEBUG_INFO_ENABLED)
+// 																cerr << qPrintable(prettyArchiveFileLine) << endl;
+// 							}
+							
+							QList<ArchiveFile> archivecontent2;
+							for ( int j=0;j< medialines->at(i).archivecontent.size();j++ ) {
+								archivecontent2.append(medialines->at(i).archivecontent.at(j));
+								}
+							archivecontent2.append(af);
+							currObj.archivecontent.append(af);
+							medialines->removeAt(i);
+							medialines->insert(i, currObj);
+							
+// 							if (*DEBUG_INFO_ENABLED)
+// 																cerr << "\ncurr archive content " << qPrintable( fullpath) << " of archive " << qPrintable(currFullpath) << ":\n" << endl;
+// 							for ( int j=0;j< currObj.archivecontent.size();j++ ) {
+// 											ArchiveFile af2 =  currObj.archivecontent.at(j);
+// 												QString prettyArchiveFileLine = af2.toPrettyString(true, true, true, true, true, true);
+// 												 if (*DEBUG_INFO_ENABLED)
+// 																cerr << qPrintable(prettyArchiveFileLine) << "\n" << endl;
+// 							}
+							if (*DEBUG_INFO_ENABLED)
+																cerr << "\n----\n" << endl;
+							if (*DEBUG_INFO_ENABLED)
+																cerr << "\nnew archive content " << qPrintable( fullpath) << " of archive " << qPrintable(currFullpath) << ":\n" << endl;
+							for ( int j=0;j< medialines->last().archivecontent.size();j++ ) {
+											ArchiveFile af2 =  medialines->last().archivecontent.at(j);
+												QString prettyArchiveFileLine = af2.toPrettyString(true, true, true, true, true, true);
+												 if (*DEBUG_INFO_ENABLED)
+																cerr << qPrintable(prettyArchiveFileLine) << endl;
+							}
+							if (*DEBUG_INFO_ENABLED)
+																cerr << "\n----\n" << endl;
+							found = true;
+							break;
+				}
+				
+		}
+		if(!found)
+			 medialines->append ( l );
     return 0;
 
 }
@@ -1860,7 +2019,7 @@ int importGtktalogXml::addNewMedia ( QString new_medianame, QDateTime media_modi
         curr = db->putMediaNode ( new_medianame , mediacount, tr ( "importuser" ), CD, media_comment, datetime, media_category );
 
     QString msg;
-    lineObject obj("", "", "", 0.0, QDateTime(), "", "");
+    lineObject obj("", "", "", 0.0, QDateTime(), "", "", "");
 
     for ( int i = 0; i < medialines->size(); ++i ) {
         obj = medialines->at(i);
@@ -1897,12 +2056,12 @@ int importGtktalogXml::addNewMedia ( QString new_medianame, QDateTime media_modi
         }
         dirindex = -1;
 
-        uint size = ( uint ) obj.getSize();
+        float size = obj.getSize();
         float s;
         int st;
 
-            if ( size > SIZE_ONE_GBYTE * 1024 ) {
-                s  = size / SIZE_ONE_GBYTE / 1024;
+            if ( size > SIZE_ONE_GBYTE * 1024.0 ) {
+                s  = size / SIZE_ONE_GBYTE / 1024.0;
                 st = UNIT_TBYTE;
             }  else if ( size > SIZE_ONE_GBYTE ) {
                 s  = size / SIZE_ONE_GBYTE;
@@ -1920,8 +2079,10 @@ int importGtktalogXml::addNewMedia ( QString new_medianame, QDateTime media_modi
 
         env = curr;
         curr = db->getFileNode ( env,  obj.getFileName() );
-        if ( curr == NULL )
-            curr = db->putFileNode ( env, obj.getFileName() , obj.getDateTime() , obj.getComment() , st, s, obj.getCategory() );
+        if ( curr == NULL ) {
+            curr = db->putFileNode ( env, obj.getFileName() , obj.getDateTime() , obj.getComment() , st, s, obj.getCategory(), obj.archivecontent, obj.getInformation() );
+						
+				}
 
         curr = db->getMediaNode ( new_medianame );
 

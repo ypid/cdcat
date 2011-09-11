@@ -44,7 +44,7 @@ public:
      * file @param date Date of file @param time Mod time of file
      */
     lineObject ( QString medianame, QString path, QString filename,
-                 float size, QDateTime datetime, QString comment, QString category );
+                 float size, QDateTime datetime, QString comment, QString information, QString category, QList<ArchiveFile> archivecontent = QList<ArchiveFile>(), bool is_archive=false  );
     ~lineObject();
     lineObject ( const lineObject& );
     lineObject& operator= ( const lineObject& );
@@ -55,7 +55,12 @@ public:
     float getSize();
     QDateTime getDateTime();
     QString getComment();
+    QString getInformation();
     QString getCategory();
+    QList<ArchiveFile> getArchiveFileContent();
+    bool isArchive();
+    void setArchiveFileContent(QList<ArchiveFile> archivecontent);
+    void appendArchiveFileContent(ArchiveFile af);
 
 protected:
     QString medianame;
@@ -63,8 +68,13 @@ protected:
     QString filename;
     QDateTime datetime;
     QString comment;
+    QString information;
     QString category;
+    
     float size;
+    bool is_archive;
+public:
+	QList<ArchiveFile> archivecontent;
 };
 
 
@@ -115,7 +125,7 @@ Q_OBJECT public:
      * file @param datetime Date + time of file
      */
     int addNewItem ( QString medianame, QString path,
-                                    QString filename, float size, QDateTime datetime, QString comment, QString category );
+                                    QString filename, long size, QDateTime datetime, QString comment, QString information, QString category,  QList<ArchiveFile> archivecontent = QList<ArchiveFile>(), bool is_archive=false );
 
     /*
      * @param new_medianame Name of new media
@@ -157,6 +167,8 @@ Q_OBJECT public:
 	void setDocumentLocator ( QXmlLocator * locator );
 	QXmlLocator *locator;
 	QXmlAttributes attr;
+	bool is_directory;
+	bool is_archive;
 
 	protected:
 protected:
