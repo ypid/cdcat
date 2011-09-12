@@ -1737,6 +1737,7 @@ bool importGtktalogXml::endElement( const QString&, const QString & tag, const Q
         line += "filename: " + filename + "\n";
         line += "Full path: " + directory+"/"+filename + "\n";
         line += "is_directory: " + QString().setNum(is_directory) + "\n";
+				line += "is_archive: " + QString().setNum(is_archive) + "\n";
 				line += "size: " + QString().setNum( size ) + "\n";
         line += "datetimestring: " + datetimestring + "\n";
         line += "category: " + category + "\n";
@@ -1939,9 +1940,10 @@ int importGtktalogXml::addNewItem ( QString medianame, QString path, QString fil
 		for ( int i = 0; i < medialines->size(); i++ ) {
 				lineObject currObj = medialines->at(i);
 				QString currFullpath = currObj.getPath()+"/"+currObj.getFileName();
+				QString subpath = fullpath.left(currFullpath.length());
 // 				 if (*DEBUG_INFO_ENABLED)
-// 										cerr << "compare: " << qPrintable(currObj.getPath()) << " <=> " << qPrintable(path) << endl;
-				if( currFullpath == path && currObj.isArchive()) {
+// 										cerr << "compare: " << "currFullpath: " << qPrintable(currFullpath) << " subpath: " << qPrintable(subpath) << " <=> fullpath: " << qPrintable(fullpath) << endl;
+				if( subpath == currFullpath && currObj.isArchive()) {
 							  if (*DEBUG_INFO_ENABLED)
 										cerr << "archive file " << qPrintable( fullpath) << " for archive " << qPrintable(currFullpath) << " found" << endl;
 							// its archivecontent
