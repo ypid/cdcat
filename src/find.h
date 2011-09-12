@@ -116,6 +116,8 @@ public:
     Q3VBoxLayout *v1;
     CdCatMainWidget *mainw;
     QPushButton* buttonClose;
+    QPushButton* buttonExportResult;
+    QPushButton* buttonPrintResult;
     Q3Frame* line1;
     QComboBox* cbOwner;
     QComboBox* cbSin;
@@ -161,6 +163,7 @@ public:
 protected:
     int fillCBox ( void );
     void closeEvent ( QCloseEvent *ce );
+    void exportResult(bool isPrint);
 
     Q3GridLayout* FindDialogBaseLayout;
     Q3VBoxLayout* layout40;
@@ -189,6 +192,8 @@ protected slots:
     void dateEndDoubleClicked();
     void sizeMinClicked();
     void sizeMaxClicked();
+    void printResultClicked();
+    void exportResultClicked();
 
 };
 

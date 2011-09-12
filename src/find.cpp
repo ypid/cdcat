@@ -37,6 +37,11 @@
 #include <QDate>
 #include <QCalendarWidget>
 #include <QMouseEvent>
+#include <QPrintDialog>
+#include <QPrinter>
+#include <QPainter>
+#include <QTextDocument>
+#include <QTextCodec>
 
 // #include <pcre.h>
 #include <QRegExp>
@@ -55,6 +60,7 @@
 #include <string.h>
 #include "dmetaph.h"
 #include <iostream>
+#include <QFileDialog>
 using namespace std;
 
 findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool modal, Qt::WFlags fl )
@@ -81,6 +87,8 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool modal, 
     QSpacerItem* spacer_8 = new QSpacerItem ( 190, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
     QSpacerItem* spacer_9 = new QSpacerItem ( 190, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
     QSpacerItem* spacer_10 = new QSpacerItem ( 200, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
+    QSpacerItem* spacer_11 = new QSpacerItem ( 200, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
+    QSpacerItem* spacer_12 = new QSpacerItem ( 200, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 
     layout40 = new Q3VBoxLayout ( 0, 0, 6, "layout40" );
     layout39 = new Q3GridLayout ( 0, 1, 1, 0, 6, "layout39" );
@@ -167,6 +175,8 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool modal, 
     resultsl->setColumnWidthMode(0, Q3ListView::Maximum);
 
     buttonClose = new QPushButton ( this, "buttonClose" );
+    buttonPrintResult = new QPushButton ( this, "buttonPrintResult" );
+    buttonExportResult = new QPushButton ( this, "buttonExportResult" );
 
     textLabel3 = new QLabel ( this, "textLabel3" );
     textLabel1 = new QLabel ( this, "textLabel1" );
@@ -257,7 +267,11 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool modal, 
 
     layout16->addItem ( spacer_9, 0, 2 );
     layout16->addWidget ( buttonClose, 0, 1 );
+    layout16->addWidget ( buttonPrintResult, 0,  3);
+    layout16->addWidget ( buttonExportResult, 0, 4 );
     layout16->addItem ( spacer_10, 0, 0 );
+    layout16->addItem ( spacer_11, 0, 2 );
+    layout16->addItem ( spacer_12, 0, 5 );
 
     layout31->addLayout ( layout17 );
     layout31->addLayout ( layout30 );
@@ -278,6 +292,8 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool modal, 
     connect ( buttonCancel,SIGNAL ( clicked() ),this,SLOT ( cancele() ) );
     connect ( buttonOk,SIGNAL ( clicked() ),this,SLOT ( seeke() ) );
     connect ( buttonClose,SIGNAL ( clicked() ),this,SLOT ( closee() ) );
+    connect ( buttonPrintResult,SIGNAL ( clicked() ),this,SLOT ( printResultClicked() ) );
+    connect ( buttonExportResult,SIGNAL ( clicked() ),this,SLOT ( exportResultClicked() ) );
     connect ( resultsl,SIGNAL ( currentChanged ( Q3ListViewItem * ) ),this,SLOT ( select ( Q3ListViewItem * ) ) );
     connect ( resultsl,SIGNAL ( clicked ( Q3ListViewItem * ) ),this,SLOT ( select ( Q3ListViewItem * ) ) );
     connect ( cbDateStart, SIGNAL ( stateChanged(int)),this,SLOT ( dateStartChanged(int)));
@@ -322,7 +338,9 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool modal, 
     dateStartChanged(0);
     dateEndChanged(0);
 
-    setTabOrder ( leText,buttonOk );
+    setTabOrder ( leText, buttonOk );
+    buttonPrintResult->setEnabled(false);
+    buttonExportResult->setEnabled(false);
     leText->setFocus();
 }
 
@@ -369,6 +387,8 @@ void findDialog::languageChange() {
 #endif
     textLabel5->setText ( tr ( "Results" ) );
     buttonClose->setText ( tr ( "Close / Go to selected" ) );
+    buttonPrintResult->setText ( tr ( "Print result..." ) );
+    buttonExportResult->setText ( tr ( "Export result to HTML..." ) );
     cbCasesens->setText ( tr ( "Case sensitive" ) );
     cbEasy->setText ( tr ( "Use easy matching instead regex" ) );
     resultsl->clear();
@@ -490,6 +510,10 @@ int findDialog::seeke ( void ) {
     se = new seekEngine ( this );
     se->start_seek();
     delete se;
+    if(resultsl->childCount() > 0) {
+      buttonPrintResult->setEnabled(true);
+      buttonExportResult->setEnabled(true);
+    }
     return 0;
 }
 
@@ -537,6 +561,184 @@ void findDialog::sizeMaxClicked() {
 		spSizeMax->setEnabled(false);
 	}
 }
+
+void findDialog::exportResult(bool isPrint) {
+	DEBUG_INFO_ENABLED = init_debug_info();
+	/* get info from results listview
+		TODO rework as model/view and implement as print view
+	*/
+
+	QPrinter printer;
+	QString output_filename="cdcat_result.html";
+	if (isPrint) {
+		QPrintDialog *dialog = new QPrintDialog(&printer, this);
+		dialog->setWindowTitle(tr("Print cdcat result"));
+		if (dialog->exec() != QDialog::Accepted)
+			return;
+	}
+	else {
+		output_filename = QFileDialog::getSaveFileName(0, tr("Result file name"), "cdcat_result.html", "*.html");
+		if (output_filename.isEmpty()) {
+			QMessageBox::critical ( 0, tr ( "Filename missing" ), tr ( "Please enter a filename!" ) );
+			return;
+		}
+	}
+	QTextDocument mydoc;
+	QTextCodec::setCodecForCStrings( QTextCodec::codecForName( "UTF-8" ) ); 
+	QTextCodec::setCodecForLocale( QTextCodec::codecForName("UTF-8") ); 
+	QTextCodec::setCodecForTr( QTextCodec::codecForName("UTF-8") );
+	QString result_str;
+	if(*DEBUG_INFO_ENABLED)
+		cerr << "result (childCount: " << resultsl->childCount() << "): " << endl;
+	result_str += "<html>\n";
+	result_str += "<head>\n";
+	result_str += "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>\n";
+	result_str += "<title>"+tr("Cdcat search result")+"</title>\n";
+	result_str += "</head>\n";
+	result_str += "<body>\n";
+	result_str += "<h1>"+tr("Cdcat search result")+"</h1>\n";
+	result_str += tr("catalog")+": "+mainw->db->getRootNode()->getNameOf() +", "+tr("created at:")+" "+QDateTime::currentDateTime().toLocalTime().toString()+"\n";
+	
+	// TODO: include search options in result
+	result_str += "<table border=\"1\" title=\""+tr("used search options")+"\">\n";
+	result_str += "<tr>";
+
+	result_str += "<td>";
+	result_str +=  tr ( "search pattern:" )+ " "+ leText->text();
+	result_str += "</td>";
+
+	result_str += "<td>";
+	result_str +=  tr ( "Use easy matching instead regex" )+ ": ";
+	if (cbEasy->isChecked())
+		result_str += tr("on");
+	else
+		result_str += tr("off");
+	result_str += "</td>";
+
+	result_str += "<td>";
+	result_str +=  tr ( "Case sensitive" )+ ": ";
+	if (cbCasesens->isChecked())
+		result_str += tr("on");
+	else
+		result_str += tr("off");
+	result_str += "</td>";
+	result_str += "</tr>";
+	
+	result_str += "<tr>";
+	result_str += "<td>";
+	result_str += tr("Search in") + ": ";
+	
+	if(cbDirname->isChecked())
+		result_str += " "+tr ( "Media / Directory name" );
+	if(cbFilename->isChecked())
+		result_str += " "+tr ( "File name" );
+	if(cbComment->isChecked())
+		result_str += " "+tr ( "Comment" );
+	if(cbContent->isChecked())
+		result_str += " "+tr ( "Content" );
+	if(cbArtist->isChecked())
+		result_str += " "+tr ( "mp3-tag Artist" );
+	if(cbTitle->isChecked())
+		result_str += " "+ tr ( "mp3-tag Title" );
+	if(cbAlbum->isChecked())
+		result_str += " "+tr ( "mp3-tag Album" );
+	if(cbTcomm->isChecked())
+		result_str += " "+tr ( "mp3-tag Comment" ) ;
+
+	if (cbFindInArchive->isChecked())
+		result_str += " "+tr("archives");
+	result_str += "</td>";
+
+	result_str += "<td>";
+	result_str +=  tr("Unsharp search (slow)")+ ": ";
+	if (cbUnsharpSearch->isChecked())
+		result_str += tr("on");
+	else
+		result_str += tr("off");
+	result_str += "</td>";
+
+	if (cbDateStart->isChecked() || cbDateEnd->isChecked() || cbSizeMin->isChecked() || cbSizeMax->isChecked()) {
+		result_str += "<tr>";
+		result_str += "<td>";
+		result_str += tr("other options") + ":";
+		if (cbDateStart->isChecked()) {
+			result_str += " "+tr ( "Date start" )+ ": "+deDateStart->dateTime().toString();
+		}
+		
+		if (cbDateEnd->isChecked()) {
+			result_str += " "+tr ( "Date end" )+ ": "+deDateEnd->dateTime().toString();
+		}
+
+		if (cbSizeMin->isChecked()) {
+			result_str +=  " "+tr("Min size")+ ": "+QString().setNum(spSizeMin->value())+cbSizeUnitMin->currentText() ;
+		}
+
+		if (cbSizeMax->isChecked()) {
+			result_str += " "+tr("Max size")+ ": "+QString().setNum(spSizeMax->value())+cbSizeUnitMax->currentText() ;
+		}
+		result_str += "</td>";
+		result_str += "</tr>\n";
+	}
+	
+	result_str += "</table>\n";
+	
+	result_str += "<table border=\"1\">\n";
+	result_str += "<tr><th>#</th><th>"+tr("Name")+"</th><th>"+tr ( "Type" )+"</th><th>"+tr ( "Size" )+"</th><th>"+tr ( "Media" )+"</th><th>"+tr ( "Path" )+"</th><th>"+ tr ( "Modification" )+"</th><th>"+tr ( "Comment" )+"</th></tr>\n";
+	Q3ListViewItem *lastChild = resultsl->firstChild();
+	int i=0;
+        while ( lastChild ) {
+		/*
+			listView data:
+			0: name
+			1: type,
+			2: size_str,
+			3: media,
+			4: fullPath
+			5: date,
+			6: comment (e.g. file inside archive
+		*/
+		if(*DEBUG_INFO_ENABLED)
+			cerr << "result[" << i << "]: " << qPrintable(lastChild->text(0)) << endl;
+		
+		result_str += "<tr><td align=\"right\" style=\"font-size:-2;\">"+QString().setNum(i+1)+"</td><td style=\"font-size:-2;\">"+lastChild->text(0)+"</td><td style=\"font-size:-2;\">"+lastChild->text(1)+"</td><td style=\"font-size:-2;\">"+lastChild->text(2)+"</td><td style=\"font-size:-2;\">"+lastChild->text(3)+"</td><td style=\"font-size:-2;\">"+lastChild->text(4)+"</td><td style=\"font-size:-2;\">"+lastChild->text(5)+"</td><td style=\"font-size:-2;\">"+lastChild->text(6)+"</td></tr>\n";
+		lastChild = lastChild->nextSibling();
+		i++;
+	}
+	result_str += "</table>\n";
+	result_str += "</body>\n";
+	result_str += "</html>\n";
+//          double xscale = printer.pageRect().width()/double(myWidget->width());
+//          double yscale = printer.pageRect().height()/double(myWidget->height());
+//          double scale = qMin(xscale, yscale);
+//          painter.translate(printer.paperRect().x() + printer.pageRect().width()/2,
+//                             printer.paperRect().y() + printer.pageRect().height()/2);
+//          painter.scale(scale, scale);
+//          painter.translate(-width()/2, -height()/2);
+
+       
+	mydoc.setHtml(result_str);
+	if(isPrint)
+		mydoc.print(&printer);
+	else {
+		QFile outfile(output_filename);
+		if (outfile.open(QIODevice::WriteOnly)) {
+			outfile.write(result_str.toLocal8Bit());
+			outfile.close();
+		}
+		else {
+			QMessageBox::critical ( 0, tr ( "File cant open: " )+output_filename, tr ( "Cant open file" ) );
+		}
+	}
+}
+
+void findDialog::printResultClicked() {
+	exportResult(true);
+}
+void findDialog::exportResultClicked() {
+	exportResult(false);
+}
+
+
 
 /***************************************************************************
 

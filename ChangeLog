@@ -1,6 +1,8 @@
 12. Sep 2011 Christoph Thielecke <crissi99@gmx.de>
 	- path name for archive file at gtktalog xml import fixed
 	- import archive files with subfolders at gtktalog xml import fixed
+	- print search result added
+	- export search result as html added
 
 11. Sep 2011 Christoph Thielecke <crissi99@gmx.de>
 	- gtktalog xml import fixed

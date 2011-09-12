@@ -48,11 +48,6 @@
         <source>unknown</source>
         <translation type="unfinished">Nepoznato</translation>
     </message>
-    <message>
-        <location filename="../dbase.h" line="89"/>
-        <source></source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>CatalogTypeEditDialog</name>
@@ -1910,7 +1905,7 @@ Homepage: %3</translation>
         <translation>Sample/s</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2236"/>
+        <location filename="../import.cpp" line="2399"/>
         <source>importuser</source>
         <translation type="unfinished">uvezi korisnika</translation>
     </message>
@@ -2523,62 +2518,62 @@ Homepage: %3</translation>
 <context>
     <name>exportCdcatDB</name>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="274"/>
+        <location filename="../exportcdcatdb.cpp" line="275"/>
         <source>Availiable media</source>
         <translation>Prisutni mediji</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="285"/>
+        <location filename="../exportcdcatdb.cpp" line="286"/>
         <source>Media to export</source>
         <translation>Medij za izvoz</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="286"/>
+        <location filename="../exportcdcatdb.cpp" line="287"/>
         <source>All media</source>
         <translation>Svi mediji</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="294"/>
+        <location filename="../exportcdcatdb.cpp" line="295"/>
         <source>separator:</source>
         <translation>Separator:</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="295"/>
+        <location filename="../exportcdcatdb.cpp" line="296"/>
         <source>File to export:</source>
         <translation>Fajl za izvoz:</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="296"/>
+        <location filename="../exportcdcatdb.cpp" line="297"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="297"/>
+        <location filename="../exportcdcatdb.cpp" line="298"/>
         <source>&amp;OK</source>
         <translation>&amp;U redu</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="316"/>
+        <location filename="../exportcdcatdb.cpp" line="317"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Otkaži</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="367"/>
+        <location filename="../exportcdcatdb.cpp" line="368"/>
         <source>Filename missing</source>
         <translation>Nedostaje ime fajla</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="367"/>
+        <location filename="../exportcdcatdb.cpp" line="368"/>
         <source>Please enter a filename!</source>
         <translation>Unesite ime fajla!</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="369"/>
+        <location filename="../exportcdcatdb.cpp" line="370"/>
         <source>Separator missing</source>
         <translation>Nedostaje separator</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="369"/>
+        <location filename="../exportcdcatdb.cpp" line="370"/>
         <source>Please enter a separator!</source>
         <translation>Unesite separator!</translation>
     </message>
@@ -2593,7 +2588,7 @@ Homepage: %3</translation>
         <translation type="obsolete">U redu</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="650"/>
+        <location filename="../exportcdcatdb.cpp" line="651"/>
         <source>All files (*.*)</source>
         <translation>Svi fajlovi(*.*)</translation>
     </message>
@@ -2603,72 +2598,72 @@ Homepage: %3</translation>
         <translation type="obsolete">izbor fajla</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="650"/>
+        <location filename="../exportcdcatdb.cpp" line="651"/>
         <source>Choose a file!</source>
         <translation>Izaberi fajl!</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="282"/>
+        <location filename="../exportcdcatdb.cpp" line="283"/>
         <source>Add media</source>
         <translation>Dodaj medij</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="279"/>
+        <location filename="../exportcdcatdb.cpp" line="280"/>
         <source>Remove media</source>
         <translation>Ukloni medij</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="289"/>
+        <location filename="../exportcdcatdb.cpp" line="290"/>
         <source>Type</source>
         <translation>Tip</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="290"/>
+        <location filename="../exportcdcatdb.cpp" line="291"/>
         <source>export as HTML</source>
         <translation>Izvezi kao HTML</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="291"/>
+        <location filename="../exportcdcatdb.cpp" line="292"/>
         <source>export as CSV</source>
         <translation>Izvezi kao CSV</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="448"/>
+        <location filename="../exportcdcatdb.cpp" line="449"/>
         <source>Media</source>
         <translation>Medij</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="433"/>
+        <location filename="../exportcdcatdb.cpp" line="434"/>
         <source>File</source>
         <translation>Fajl</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="475"/>
+        <location filename="../exportcdcatdb.cpp" line="476"/>
         <source>Size</source>
         <translation>Veličina</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="480"/>
+        <location filename="../exportcdcatdb.cpp" line="481"/>
         <source>Date</source>
         <translation>Datum</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="573"/>
+        <location filename="../exportcdcatdb.cpp" line="574"/>
         <source>I can&apos;t create or rewrite the file</source>
         <translation>Ne mogu da kreiram ili upišem fajl</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="407"/>
+        <location filename="../exportcdcatdb.cpp" line="408"/>
         <source>Export from cdcat:</source>
         <translation>Izvoz iz cdcata:</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="59"/>
+        <location filename="../exportcdcatdb.cpp" line="60"/>
         <source>Export database...</source>
         <translation>Izvezi bazu...</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="142"/>
+        <location filename="../exportcdcatdb.cpp" line="143"/>
         <source>What to export</source>
         <translation>Šta da izvezem</translation>
     </message>
@@ -2678,22 +2673,22 @@ Homepage: %3</translation>
         <translation type="obsolete">Samo naziv medija</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="460"/>
+        <location filename="../exportcdcatdb.cpp" line="461"/>
         <source>Media name</source>
         <translation>Naziv medija</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="470"/>
+        <location filename="../exportcdcatdb.cpp" line="471"/>
         <source>Path</source>
         <translation>Putanja</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="485"/>
+        <location filename="../exportcdcatdb.cpp" line="486"/>
         <source>Comment</source>
         <translation>Komentar</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="308"/>
+        <location filename="../exportcdcatdb.cpp" line="309"/>
         <source>HTML headline</source>
         <translation>HTML naslov</translation>
     </message>
@@ -2703,122 +2698,122 @@ Homepage: %3</translation>
         <translation type="obsolete">header tabele</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="513"/>
+        <location filename="../exportcdcatdb.cpp" line="514"/>
         <source>Overwrite?</source>
         <translation>Upisati preko?</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="514"/>
+        <location filename="../exportcdcatdb.cpp" line="515"/>
         <source>Do you want overwrite this file?</source>
         <translation>Da li želite da upišete preko ovog fajla?</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="519"/>
+        <location filename="../exportcdcatdb.cpp" line="520"/>
         <source>Yes</source>
         <translation>Da</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="520"/>
+        <location filename="../exportcdcatdb.cpp" line="521"/>
         <source>Discard</source>
         <translation>Zaboravi</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="338"/>
+        <location filename="../exportcdcatdb.cpp" line="339"/>
         <source>Export CdCat database: </source>
         <translation>Izvezi CdCat bazu: </translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="287"/>
+        <location filename="../exportcdcatdb.cpp" line="288"/>
         <source>Only media</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="292"/>
+        <location filename="../exportcdcatdb.cpp" line="293"/>
         <source>export as XML</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="465"/>
+        <location filename="../exportcdcatdb.cpp" line="466"/>
         <source>Media number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="498"/>
+        <location filename="../exportcdcatdb.cpp" line="499"/>
         <source>Category</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="306"/>
+        <location filename="../exportcdcatdb.cpp" line="307"/>
         <source>export mp3 tag</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="307"/>
+        <location filename="../exportcdcatdb.cpp" line="308"/>
         <source>export borrow information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="309"/>
+        <location filename="../exportcdcatdb.cpp" line="310"/>
         <source>table header/comment line</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="455"/>
+        <location filename="../exportcdcatdb.cpp" line="456"/>
         <source>Export from cdcat, catalog:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="456"/>
+        <location filename="../exportcdcatdb.cpp" line="457"/>
         <source>Generated at:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="431"/>
+        <location filename="../exportcdcatdb.cpp" line="432"/>
         <source>#</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="490"/>
+        <location filename="../exportcdcatdb.cpp" line="491"/>
         <source>MP3 tag</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="494"/>
+        <location filename="../exportcdcatdb.cpp" line="495"/>
         <source>Borrow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="457"/>
+        <location filename="../exportcdcatdb.cpp" line="458"/>
         <source>field list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="525"/>
+        <location filename="../exportcdcatdb.cpp" line="526"/>
         <source>Exporting, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="573"/>
+        <location filename="../exportcdcatdb.cpp" line="574"/>
         <source>Error during write export...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="970"/>
+        <location filename="../exportcdcatdb.cpp" line="972"/>
         <source>Artist:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="971"/>
+        <location filename="../exportcdcatdb.cpp" line="973"/>
         <source>Title:</source>
         <translation type="unfinished">Naziv:</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="972"/>
+        <location filename="../exportcdcatdb.cpp" line="974"/>
         <source>Album:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="973"/>
+        <location filename="../exportcdcatdb.cpp" line="975"/>
         <source>Year:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2826,102 +2821,102 @@ Homepage: %3</translation>
 <context>
     <name>findDialog</name>
     <message>
-        <location filename="../find.cpp" line="340"/>
+        <location filename="../find.cpp" line="686"/>
         <source>Name</source>
         <translation>Ime</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="341"/>
+        <location filename="../find.cpp" line="686"/>
         <source>Type</source>
         <translation>Tip</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="343"/>
+        <location filename="../find.cpp" line="686"/>
         <source>Media</source>
         <translation>Medij</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="344"/>
+        <location filename="../find.cpp" line="686"/>
         <source>Path</source>
         <translation>Putanja</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="345"/>
+        <location filename="../find.cpp" line="686"/>
         <source>Modification</source>
         <translation>Promena</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="337"/>
+        <location filename="../find.cpp" line="355"/>
         <source>Search in the database...</source>
         <translation>Traži u bazi...</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="371"/>
+        <location filename="../find.cpp" line="389"/>
         <source>Close / Go to selected</source>
         <translation>Zatvori / Idi na izabran</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="347"/>
+        <location filename="../find.cpp" line="365"/>
         <source>Find:</source>
         <translation>Traži:</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="338"/>
+        <location filename="../find.cpp" line="356"/>
         <source>Seek in:</source>
         <translation>Traži u:</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="339"/>
+        <location filename="../find.cpp" line="357"/>
         <source>Owner:</source>
         <translation>Vlasnik:</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="354"/>
+        <location filename="../find.cpp" line="686"/>
         <source>Comment</source>
         <translation>Komentar</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="348"/>
+        <location filename="../find.cpp" line="634"/>
         <source>File name</source>
         <translation>Ime fajla</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="351"/>
+        <location filename="../find.cpp" line="646"/>
         <source>mp3-tag Comment</source>
         <translation>Komentar it mpr taga</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="349"/>
+        <location filename="../find.cpp" line="644"/>
         <source>mp3-tag Album</source>
         <translation>Album iz mp3 taga</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="353"/>
+        <location filename="../find.cpp" line="642"/>
         <source>mp3-tag Title</source>
         <translation>Naslov iz mp3 taga</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="350"/>
+        <location filename="../find.cpp" line="640"/>
         <source>mp3-tag Artist</source>
         <translation>Izvođač iz mp3 taga</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="372"/>
+        <location filename="../find.cpp" line="619"/>
         <source>Case sensitive</source>
         <translation>Razlikujem velika i mala slova</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="373"/>
+        <location filename="../find.cpp" line="611"/>
         <source>Use easy matching instead regex</source>
         <translation>Koristi približno poklapanje umesto regex</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="416"/>
+        <location filename="../find.cpp" line="436"/>
         <source>All/Everybody</source>
         <translation>Sve/Svi</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="420"/>
+        <location filename="../find.cpp" line="440"/>
         <source>All media</source>
         <translation>Svi mediji</translation>
     </message>
@@ -2931,83 +2926,173 @@ Homepage: %3</translation>
         <translation type="obsolete">&amp;U redu</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="366"/>
+        <location filename="../find.cpp" line="384"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Otkaži</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="370"/>
+        <location filename="../find.cpp" line="388"/>
         <source>Results</source>
         <translation>Rezultati</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="355"/>
+        <location filename="../find.cpp" line="638"/>
         <source>Content</source>
         <translation>Sadržaj</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="352"/>
+        <location filename="../find.cpp" line="632"/>
         <source>Media / Directory name</source>
         <translation>Naziv medija/direktorijuma</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="135"/>
+        <location filename="../find.cpp" line="143"/>
         <source>Byte</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="136"/>
+        <location filename="../find.cpp" line="144"/>
         <source>KiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="137"/>
+        <location filename="../find.cpp" line="145"/>
         <source>MiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="138"/>
+        <location filename="../find.cpp" line="146"/>
         <source>GiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="342"/>
+        <location filename="../find.cpp" line="686"/>
         <source>Size</source>
         <translation type="unfinished">Veličina</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="356"/>
+        <location filename="../find.cpp" line="665"/>
         <source>Date start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="357"/>
+        <location filename="../find.cpp" line="669"/>
         <source>Date end</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="358"/>
+        <location filename="../find.cpp" line="673"/>
         <source>Min size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="359"/>
+        <location filename="../find.cpp" line="677"/>
         <source>Max size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="360"/>
+        <location filename="../find.cpp" line="653"/>
         <source>Unsharp search (slow)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="361"/>
+        <location filename="../find.cpp" line="379"/>
         <source>Find in archives too</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="362"/>
+        <location filename="../find.cpp" line="380"/>
         <source>&amp;Start search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="390"/>
+        <source>Print result...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="391"/>
+        <source>Export result to HTML...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="575"/>
+        <source>Print cdcat result</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="580"/>
+        <source>Result file name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="582"/>
+        <source>Filename missing</source>
+        <translation type="unfinished">Nedostaje ime fajla</translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="582"/>
+        <source>Please enter a filename!</source>
+        <translation type="unfinished">Unesite ime fajla!</translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="599"/>
+        <source>Cdcat search result</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="600"/>
+        <source>catalog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="600"/>
+        <source>created at:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="603"/>
+        <source>used search options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="607"/>
+        <source>search pattern:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="655"/>
+        <source>on</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="657"/>
+        <source>off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="629"/>
+        <source>Search in</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="649"/>
+        <source>archives</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="663"/>
+        <source>other options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="729"/>
+        <source>File cant open: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="729"/>
+        <source>Cant open file</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3090,94 +3175,94 @@ E-mail: hyperr@freemail.hu
 <context>
     <name>importGtktalogCsv</name>
     <message>
-        <location filename="../import.cpp" line="1363"/>
+        <location filename="../import.cpp" line="1398"/>
         <source>Import was successful.</source>
         <translation>Uvoz je bio uspešan.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1366"/>
+        <location filename="../import.cpp" line="1401"/>
         <source>1 media</source>
         <translation>1 medij</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1368"/>
+        <location filename="../import.cpp" line="1403"/>
         <source>media</source>
         <translation>medij</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1371"/>
+        <location filename="../import.cpp" line="1406"/>
         <source>1 directory:,
 </source>
         <translation>1 direktorijum:,
 </translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1373"/>
+        <location filename="../import.cpp" line="1408"/>
         <source>directories</source>
         <translation>direktorijumi</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1376"/>
+        <location filename="../import.cpp" line="1411"/>
         <source>1 File</source>
         <translation>1 Fajl</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1378"/>
+        <location filename="../import.cpp" line="1413"/>
         <source>files</source>
         <translation>fajlovi</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1380"/>
+        <location filename="../import.cpp" line="1415"/>
         <source>are imported.</source>
         <translation>su uvezeni.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1382"/>
+        <location filename="../import.cpp" line="1417"/>
         <source>Import successful</source>
         <translation>Uvoz uspešan</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1387"/>
+        <location filename="../import.cpp" line="1422"/>
         <source>file read error</source>
         <translation>greška pri čitanju fajla</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1387"/>
+        <location filename="../import.cpp" line="1422"/>
         <source>Could not read file</source>
         <translation>Ne mogu da čitam fajl</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1390"/>
+        <location filename="../import.cpp" line="1425"/>
         <source>Fatal error</source>
         <translation>Fatalna greška</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1390"/>
+        <location filename="../import.cpp" line="1425"/>
         <source>Fatal error occured.</source>
         <translation>Desila se fatalna greška.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1393"/>
+        <location filename="../import.cpp" line="1428"/>
         <source>file open error</source>
         <translation>greška pri otvaranju fajla</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1393"/>
+        <location filename="../import.cpp" line="1428"/>
         <source>Could not open file</source>
         <translation>Ne mogu da otvorim fajl</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1432"/>
+        <location filename="../import.cpp" line="1467"/>
         <source>importuser</source>
         <translation>uvezi korisnika</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="156"/>
+        <location filename="../import.cpp" line="191"/>
         <source>Importing CSV...</source>
         <translation>Uvozim CSV...</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="156"/>
+        <location filename="../import.cpp" line="191"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3185,74 +3270,74 @@ E-mail: hyperr@freemail.hu
 <context>
     <name>importGtktalogXml</name>
     <message>
-        <location filename="../import.cpp" line="1767"/>
+        <location filename="../import.cpp" line="1848"/>
         <source>Importing XML...</source>
         <translation>Uvoz XML...</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1801"/>
+        <location filename="../import.cpp" line="1884"/>
         <source>XML import was successful.</source>
         <translation>XML uvoz je bio uspešan.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1804"/>
+        <location filename="../import.cpp" line="1887"/>
         <source>1 media</source>
         <translation>1 medij</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1806"/>
+        <location filename="../import.cpp" line="1889"/>
         <source>media</source>
         <translation>Medij</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1809"/>
+        <location filename="../import.cpp" line="1892"/>
         <source>1 directory:,
 </source>
         <translation>1 direktorijum:,
 </translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1811"/>
+        <location filename="../import.cpp" line="1894"/>
         <source>directories</source>
         <translation>direktorijumi</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1814"/>
+        <location filename="../import.cpp" line="1897"/>
         <source>1 File</source>
         <translation>1 Fajl</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1816"/>
+        <location filename="../import.cpp" line="1899"/>
         <source>files</source>
         <translation>fajlovi</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1818"/>
+        <location filename="../import.cpp" line="1901"/>
         <source>are imported.</source>
         <translation>su uvezeni.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1820"/>
+        <location filename="../import.cpp" line="1903"/>
         <source>Import successful</source>
         <translation>Uvoz uspešan</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1824"/>
+        <location filename="../import.cpp" line="1907"/>
         <source>parse error</source>
         <translation>greška pri obradi</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1824"/>
+        <location filename="../import.cpp" line="1907"/>
         <source>error during parsing</source>
         <translation>greška pri obradi</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1860"/>
+        <location filename="../import.cpp" line="2021"/>
         <source>importuser</source>
         <translation>uvezi korisnika</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1767"/>
+        <location filename="../import.cpp" line="1848"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3260,69 +3345,69 @@ E-mail: hyperr@freemail.hu
 <context>
     <name>importWhereIsItXml</name>
     <message>
-        <location filename="../import.cpp" line="2471"/>
+        <location filename="../import.cpp" line="2634"/>
         <source>Importing XML...</source>
         <translation>Uvoz XML...</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2506"/>
+        <location filename="../import.cpp" line="2669"/>
         <source>Importing XML from WhereIsIt was successful.</source>
         <translation>XML uvoz je bio uspešan.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2509"/>
+        <location filename="../import.cpp" line="2672"/>
         <source>1 media</source>
         <translation>1 medij</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2511"/>
+        <location filename="../import.cpp" line="2674"/>
         <source>media</source>
         <translation>Medij</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2514"/>
+        <location filename="../import.cpp" line="2677"/>
         <source>1 directory:,
 </source>
         <translation>1 direktorijum:,
 </translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2516"/>
+        <location filename="../import.cpp" line="2679"/>
         <source>directories</source>
         <translation>direktorijumi</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2519"/>
+        <location filename="../import.cpp" line="2682"/>
         <source>1 File</source>
         <translation>1 Fajl</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2521"/>
+        <location filename="../import.cpp" line="2684"/>
         <source>files</source>
         <translation>fajlovi</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2523"/>
+        <location filename="../import.cpp" line="2686"/>
         <source>are imported.</source>
         <translation>su uvezeni.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2525"/>
+        <location filename="../import.cpp" line="2688"/>
         <source>Import successful</source>
         <translation>Uvoz uspešan</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2529"/>
+        <location filename="../import.cpp" line="2692"/>
         <source>parse error</source>
         <translation>greška pri obradi</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2529"/>
+        <location filename="../import.cpp" line="2692"/>
         <source>error during parsing</source>
         <translation>greška pri obradi</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2471"/>
+        <location filename="../import.cpp" line="2634"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3474,7 +3559,7 @@ E-mail: hyperr@freemail.hu
 <context>
     <name>seekEngine</name>
     <message>
-        <location filename="../find.cpp" line="584"/>
+        <location filename="../find.cpp" line="786"/>
         <source>Error in the pattern:</source>
         <translation>Greška u pretraživanju:</translation>
     </message>
@@ -3484,47 +3569,47 @@ E-mail: hyperr@freemail.hu
         <translation type="obsolete">U redu</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="665"/>
+        <location filename="../find.cpp" line="867"/>
         <source>There is no matching.</source>
         <translation>Nema poklapanja.</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1073"/>
+        <location filename="../find.cpp" line="1275"/>
         <source>dir</source>
         <translation>direktorijum</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1077"/>
+        <location filename="../find.cpp" line="1279"/>
         <source>file</source>
         <translation>fajl</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1082"/>
+        <location filename="../find.cpp" line="1284"/>
         <source>error</source>
         <translation>greška</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1068"/>
+        <location filename="../find.cpp" line="1270"/>
         <source>media</source>
         <translation>medij</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="600"/>
+        <location filename="../find.cpp" line="802"/>
         <source>Searching, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="661"/>
+        <location filename="../find.cpp" line="863"/>
         <source>Search cancelled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="661"/>
+        <location filename="../find.cpp" line="863"/>
         <source>You have cancelled searching.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="932"/>
+        <location filename="../find.cpp" line="1134"/>
         <source>File in archive: </source>
         <translation type="unfinished"></translation>
     </message>
