@@ -1,3 +1,6 @@
+12. Sep 2011 Christoph Thielecke <crissi99@gmx.de>
+	- path name for archive file at gtktalog xml import fixed
+
 11. Sep 2011 Christoph Thielecke <crissi99@gmx.de>
 	- gtktalog xml import fixed
 	- archivecontent is now imported at gtktalog xml import

@@ -1951,7 +1951,7 @@ int importGtktalogXml::addNewItem ( QString medianame, QString path, QString fil
 							af.group = "importgroup";
 							af.size = size;
 							af.date = datetime;
-							af.path = filename;
+							af.path = fullpath.right(fullpath.size()-currFullpath.size()-1);
 							
 							
 // 							if (*DEBUG_INFO_ENABLED)
