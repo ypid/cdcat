@@ -13,10 +13,6 @@
       <source>unknown</source>
       <translation>unbekannt</translation>
     </message>
-    <message>
-      <source></source>
-      <translation type="unfinished" />
-    </message>
   </context>
   <context>
     <name>CatalogTypeEditDialog</name>
@@ -965,6 +961,18 @@ Homepage: %3</translation>
     <message>
       <source>Change media type...</source>
       <translation>Medientyp ändern...</translation>
+    </message>
+    <message>
+      <source>Enter media name...</source>
+      <translation>Medienname eingeben...</translation>
+    </message>
+    <message>
+      <source>Media name:</source>
+      <translation>Medienname:</translation>
+    </message>
+    <message>
+      <source>Media</source>
+      <translation>Medium</translation>
     </message>
   </context>
   <context>
