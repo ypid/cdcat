@@ -187,8 +187,8 @@ addDialog::addDialog ( GuiSlave *c, QWidget* parent, const char* name, bool moda
     for ( i=1;!caller->isIdentical ( i );i++ ) { };
     sbNumber->setValue ( i );
 
-    volumename = 1; //so, the next line will set up the name
-    setMediaName ( " " );
+    //volumename = 1; //so, the next line will set up the name
+    //setMediaName ( " " );
 
     type = caller->mainw->cconfig->lastMediaType;
     cbType->setCurrentIndex(caller->mainw->cconfig->lastMediaType-1);
@@ -196,7 +196,7 @@ addDialog::addDialog ( GuiSlave *c, QWidget* parent, const char* name, bool moda
     if ( cbType->currentItem() +1 == CD || cbType->currentItem() +1 == DVD ) {
         dirView->setDir ( ( ( CdCatMainWidget * ) parent )->cconfig->cdrompath );
         dirView->sDir= ( ( CdCatMainWidget * ) parent )->cconfig->cdrompath;
-        setMediaName ( ( ( CdCatMainWidget * ) parent )->cconfig->cdrompath );
+    //    setMediaName ( ( ( CdCatMainWidget * ) parent )->cconfig->cdrompath );
     }
     buttonOK->setFocus();
 }
@@ -305,7 +305,7 @@ int addDialog::setMediaName ( const QString & ds ) {
 }
 
 int addDialog::bOk ( void ) {
-    if ( ( leName->text() ).isEmpty() ) {
+    if ( ( leName->text() ).isEmpty() && !(cbType->currentItem() +1 == CD || cbType->currentItem() +1 == DVD) ) {
         QMessageBox::warning ( ( QWidget * ) this,tr ( "Error:" ),tr ( "You must be fill the \"Name\" field!" ) );
         return 0;
     }

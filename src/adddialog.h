@@ -92,9 +92,11 @@ protected slots:
     int bOk();
     int bCan();
     int sread();
-    int setMediaName ( const QString & ds );
     void autoDetectAtMountToggled();
     void cbTypeToggeled(int type);
+
+public slots:
+	int setMediaName ( const QString & ds );
 
 private:
     QPixmap image0;

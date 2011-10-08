@@ -27,7 +27,7 @@
 #include <QKeyEvent>
 #include <Q3PopupMenu>
 #include <Q3HBoxLayout>
-
+#include <QInputDialog>
 #include <QComboBox>
 #include <QLabel>
 #include <QPushButton>
@@ -1211,6 +1211,25 @@ int GuiSlave::addEvent ( void ) {
 		}
 	}
 #endif
+
+	if ( d->type == CD || d->type == DVD ) {
+		d->setMediaName ( mainw->cconfig->cdrompath );
+		if (d->leName->text().isEmpty()) {
+			bool ok;
+			QString text = QInputDialog::getText(0, tr("Enter media name..."),
+                            tr("Media name:"), QLineEdit::Normal,
+                                          tr("Media"), &ok);
+			if (!ok || text.isEmpty()) {
+				d->leName->setText(text);
+			}
+			else {
+				return 1;
+			}
+        
+		}
+		d->dName  = d->leName->text();
+		
+	}
 
 #ifndef _WIN32
     if ( ((d->type == CD || d->type == DVD ) && ((mainw->cconfig->mounteject && mount_successful) || (!mainw->cconfig->mounteject )))  || ( d->type != CD && d->type != DVD )) {
