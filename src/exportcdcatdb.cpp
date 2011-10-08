@@ -1033,7 +1033,6 @@ void exportCdcatDB::checkExportToggled() {
 
 }
 
-
 void exportCdcatDB::listAllMediaToggled() {
     if ( checkAllMedia->isChecked() ) {
         listAllMedia->setEnabled ( false );
@@ -1052,11 +1051,9 @@ void exportCdcatDB::exportTypeToggled() {
     if ( radioHtml->isChecked() ) {
         seperatorLabel->setEnabled ( false );
         separatorInput->setEnabled ( false );
-
         checkOnlyMedia->setEnabled ( true );
-
-        checkExportTitle->setEnabled ( true );;
-        checkExportTableHeader->setEnabled ( true );;
+        checkExportTitle->setEnabled ( true );
+        checkExportTableHeader->setEnabled ( true );
         checkExportMediaName->setEnabled ( true );
         checkExportMediaNumber->setEnabled ( true );
         checkExportPath->setEnabled ( true );
@@ -1066,7 +1063,10 @@ void exportCdcatDB::exportTypeToggled() {
         checkExportMp3Tag->setEnabled ( true );
         checkExportBorrow->setEnabled ( true );
         checkExportCategory->setEnabled ( true );
-        checkOnlyMediaToggled();
+	checkAllMedia->setEnabled(true);
+	listSelectedMedia->setEnabled(true);
+	listAllMedia->setEnabled(true);
+	checkOnlyMediaToggled();
 
         if ( p != NULL )
             fileName->setText ( mainw->cconfig->lastDir +"/"+ ( ( DBCatalog * ) ( ( p->getRootNode() )->data ) )->name+".html" );
@@ -1076,17 +1076,21 @@ void exportCdcatDB::exportTypeToggled() {
     if ( radioCsv->isChecked() ) {
         seperatorLabel->setEnabled ( true );
         separatorInput->setEnabled ( true );
-//         checkOnlyMedia->setEnabled ( false );
-//         checkExportTitle->setEnabled ( false );
-//         checkExportTableHeader->setEnabled ( false );
-//         checkExportMediaName->setEnabled ( false );
-// 	checkExportMediaNumber->setEnabled ( false );
-//         checkExportPath->setEnabled ( false );
-//         checkExportDate->setEnabled ( false );
-//         checkExportSize->setEnabled ( false );
-//         checkExportComment->setEnabled ( false );
-//         checkExportMp3Tag->setEnabled ( false );
-//         checkExportBorrow->setEnabled ( false );
+        checkOnlyMedia->setEnabled ( true );
+        checkExportTitle->setEnabled ( true );
+        checkExportTableHeader->setEnabled ( true );
+        checkExportMediaName->setEnabled ( true );
+	checkExportMediaNumber->setEnabled ( true );
+        checkExportPath->setEnabled ( true );
+        checkExportDate->setEnabled ( true );
+        checkExportSize->setEnabled ( true );
+        checkExportComment->setEnabled ( true );
+        checkExportMp3Tag->setEnabled ( true );
+        checkExportBorrow->setEnabled ( true );
+        checkExportCategory->setEnabled ( true );
+	checkAllMedia->setEnabled(true);
+	listSelectedMedia->setEnabled(true);
+	listAllMedia->setEnabled(true);
 
         if ( p != NULL )
             fileName->setText (mainw->cconfig->lastDir +"/"+ ( ( DBCatalog * ) ( ( p->getRootNode() )->data ) )->name+".csv" );
