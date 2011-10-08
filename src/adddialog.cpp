@@ -182,6 +182,7 @@ addDialog::addDialog ( GuiSlave *c, QWidget* parent, const char* name, bool moda
 
 #ifndef _WIN32
     connect ( cbAutoDetectAtMount, SIGNAL ( clicked() ), this, SLOT ( autoDetectAtMountToggled()) );
+    cbAutoDetectAtMount->setChecked(true);
 #endif
 
     for ( i=1;!caller->isIdentical ( i );i++ ) { };

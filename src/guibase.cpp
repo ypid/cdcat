@@ -1213,17 +1213,24 @@ int GuiSlave::addEvent ( void ) {
 #endif
 
 	if ( d->type == CD || d->type == DVD ) {
+		if(*DEBUG_INFO_ENABLED)
+			cerr<< "media name for cd (1): " << qPrintable(d->leName->text()) <<endl;
 		d->setMediaName ( mainw->cconfig->cdrompath );
+		if(*DEBUG_INFO_ENABLED)
+			cerr<< "media name for cd (2): " << qPrintable(d->leName->text()) <<endl;
 		if (d->leName->text().isEmpty()) {
 			bool ok;
 			QString text = QInputDialog::getText(0, tr("Enter media name..."),
                             tr("Media name:"), QLineEdit::Normal,
                                           tr("Media"), &ok);
-			if (!ok || text.isEmpty()) {
+			if (ok && !text.isEmpty()) {
 				d->leName->setText(text);
+				d->dName  = text;
 			}
 			else {
-				return 1;
+				d->OK = 0;
+				if(*DEBUG_INFO_ENABLED)
+					cerr<<"media name for cd empty"<<endl;
 			}
         
 		}
