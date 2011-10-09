@@ -293,7 +293,10 @@ int addDialog::setMediaName ( const QString & ds ) {
 #endif
 				volumename = 1;
 			}
-			if ( volumename == 1 ) {
+			else {
+				volumename = 0;
+			}
+			if ( volumename == 0 ) {
 				volumename = 0;
 				tm =tr ( "New Disk %1" ).arg ( sbNumber->value() );
 				leName->setText ( tm );
