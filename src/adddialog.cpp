@@ -263,12 +263,13 @@ int addDialog::setMediaName ( const QString & ds ) {
 	
 	if ( cbType->currentItem() +1 == CD  || cbType->currentItem() +1 == DVD)  {
 		std::cerr << "setMediaName: mediatype is cd/dvd"<< std::endl;
-#ifndef _WIN32
+		
 		if ( confdir  == selected ) {
 			tm = getCDName ( caller->mainw->cconfig->cdrompath );
 		}
 		if ( confdir  == selected && ! ( tm.isEmpty() )) {
-#endif
+			
+
 #ifdef _WIN32
 			if ( ( cbType->currentItem() +1 == CD &&  cbType->currentItem() +1 == DVD) && ( confdir  == selected )) {
 				if (!caller->mainw->cconfig->cdrompath.replace("/", "\\" ).isEmpty()) {
@@ -304,7 +305,7 @@ int addDialog::setMediaName ( const QString & ds ) {
 #ifndef _WIN32
 		tm = dirView->sDir.split('/').at(dirView->sDir.split('/').size()-2);
 #else
-		tm = dirView->sDir.split('/').at(dirView->sDir.split('\\').end()-2);
+		tm = dirView->sDir.split('/').at(dirView->sDir.split('\\').size()-2);
 #endif
 		leName->setText ( tm );
 	}
