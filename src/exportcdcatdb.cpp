@@ -1048,6 +1048,9 @@ void exportCdcatDB::listAllMediaToggled() {
 }
 
 void exportCdcatDB::exportTypeToggled() {
+    QString lastDir =  mainw->cconfig->lastDir;
+    if (lastDir.isEmpty())
+	lastDir = ".";
     if ( radioHtml->isChecked() ) {
         seperatorLabel->setEnabled ( false );
         separatorInput->setEnabled ( false );
@@ -1069,7 +1072,7 @@ void exportCdcatDB::exportTypeToggled() {
 	checkOnlyMediaToggled();
 
         if ( p != NULL )
-            fileName->setText ( mainw->cconfig->lastDir +"/"+ ( ( DBCatalog * ) ( ( p->getRootNode() )->data ) )->name+".html" );
+            fileName->setText ( lastDir+"/"+ ( ( DBCatalog * ) ( ( p->getRootNode() )->data ) )->name+".html" );
 
     }
 
@@ -1093,7 +1096,7 @@ void exportCdcatDB::exportTypeToggled() {
 	listAllMedia->setEnabled(true);
 
         if ( p != NULL )
-            fileName->setText (mainw->cconfig->lastDir +"/"+ ( ( DBCatalog * ) ( ( p->getRootNode() )->data ) )->name+".csv" );
+            fileName->setText (lastDir +"/"+ ( ( DBCatalog * ) ( ( p->getRootNode() )->data ) )->name+".csv" );
 
     }
     if ( radioXml->isChecked() ) {
@@ -1116,7 +1119,7 @@ void exportCdcatDB::exportTypeToggled() {
 	listAllMedia->setEnabled(false);
 
         if ( p != NULL )
-            fileName->setText (mainw->cconfig->lastDir +"/"+ ( ( DBCatalog * ) ( ( p->getRootNode() )->data ) )->name+".xml" );
+            fileName->setText (lastDir +"/"+ ( ( DBCatalog * ) ( ( p->getRootNode() )->data ) )->name+".xml" );
 
     }
 }
