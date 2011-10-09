@@ -1203,15 +1203,14 @@ int GuiSlave::addEvent ( void ) {
 	else {
 		if(*DEBUG_INFO_ENABLED)
 			cerr<<"mount not needed"<<endl;
-		QString new_medianame = getCDName ( mainw->cconfig->cdrompath );
-		if(! new_medianame.isEmpty() ) {
-			if(*DEBUG_INFO_ENABLED)
-				cerr<<"new_medianame: "  << qPrintable(new_medianame) <<endl;
-			d->dName = new_medianame;
-		}
 	}
 #endif
-
+	
+#ifndef _WIN32
+    if ( ((d->type == CD || d->type == DVD ) && ((mainw->cconfig->mounteject && mount_successful) || (!mainw->cconfig->mounteject )))  || ( d->type != CD && d->type != DVD )) {
+#endif
+// 	if(*DEBUG_INFO_ENABLED)
+// 		cerr<< "media type: " << d->type <<endl;
 	if ( d->type == CD || d->type == DVD ) {
 		if(*DEBUG_INFO_ENABLED)
 			cerr<< "media name for cd (1): " << qPrintable(d->leName->text()) <<endl;
@@ -1235,12 +1234,7 @@ int GuiSlave::addEvent ( void ) {
         
 		}
 		d->dName  = d->leName->text();
-		
 	}
-
-#ifndef _WIN32
-    if ( ((d->type == CD || d->type == DVD ) && ((mainw->cconfig->mounteject && mount_successful) || (!mainw->cconfig->mounteject )))  || ( d->type != CD && d->type != DVD )) {
-#endif
 
     if(*DEBUG_INFO_ENABLED)
 	cerr<<"ADDEVENT-2"<<endl;

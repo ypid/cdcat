@@ -249,60 +249,67 @@ void addDialog::languageChange() {
 }
 
 int addDialog::setMediaName ( const QString & ds ) {
-    QString tm;
-
+	QString tm;
+	//std::cerr << "mediatype " << cbType->currentItem() +1 << std::endl;
+	
 #ifdef _WIN32
-    QDir confdir ( ( caller->mainw->cconfig->cdrompath ).lower() );
-    QDir selected ( ds.lower() );
+	QDir confdir ( ( caller->mainw->cconfig->cdrompath ).lower() );
+	QDir selected ( ds.lower() );
 #else
-    QDir confdir ( caller->mainw->cconfig->cdrompath );
-    QDir selected ( ds );
+	QDir confdir ( caller->mainw->cconfig->cdrompath );
+	QDir selected ( ds );
 #endif
-
-    QApplication::setOverrideCursor ( Qt::waitCursor );
-
+	QApplication::setOverrideCursor ( Qt::waitCursor );
+	
+	if ( cbType->currentItem() +1 == CD  || cbType->currentItem() +1 == DVD)  {
+		std::cerr << "setMediaName: mediatype is cd/dvd"<< std::endl;
 #ifndef _WIN32
-    if ( ( cbType->currentItem() +1 == CD ) && ( confdir  == selected )) {
-      tm = getCDName ( caller->mainw->cconfig->cdrompath );
-    }
-    if ( ( cbType->currentItem() +1 == CD ) &&
-            ( confdir  == selected )         &&
-            ! ( tm.isEmpty() )) {
+		if ( confdir  == selected ) {
+			tm = getCDName ( caller->mainw->cconfig->cdrompath );
+		}
+		if ( confdir  == selected && ! ( tm.isEmpty() )) {
 #endif
 #ifdef _WIN32
-    if ( ( cbType->currentItem() +1 == CD ) && ( confdir  == selected )) {
-			if (!caller->mainw->cconfig->cdrompath.replace("/", "\\" ).isEmpty()) {
-				tm = getCDName ( caller->mainw->cconfig->cdrompath.replace("/", "\\" ));
+			if ( ( cbType->currentItem() +1 == CD &&  cbType->currentItem() +1 == DVD) && ( confdir  == selected )) {
+				if (!caller->mainw->cconfig->cdrompath.replace("/", "\\" ).isEmpty()) {
+					tm = getCDName ( caller->mainw->cconfig->cdrompath.replace("/", "\\" ));
+				}
 			}
-	}
-	else {
+			else {
 				//QMessageBox::warning ( ( QWidget * ) this,tr ( "Warning:" ),tr ( "Trying selected drive name" ) );
 				tm = getCDName (dirView->sDir.replace("/", "\\" ));
-	}
-	
-			
-	if (!tm.isEmpty()) {
+			}
 #endif
-
-        leName->setText ( tm );
-
+			if (!tm.isEmpty()) {
+				leName->setText ( tm );
 #ifndef _WIN32
-        // also set the media type to DVD if needed
-        if ( diskIsDVD ( caller->mainw->cconfig->cdrompath ) )
-            cbType->setCurrentItem ( DVD - 1 );
-        else
-            cbType->setCurrentItem ( CD - 1 );
+		
+				// also set the media type to DVD if needed
+				if ( diskIsDVD ( caller->mainw->cconfig->cdrompath ) )
+					cbType->setCurrentItem ( DVD - 1 );
+				else
+					cbType->setCurrentItem ( CD - 1 );
 #endif
-        volumename = 1;
-    } else {
-        if ( volumename == 1 ) {
-            volumename = 0;
-            tm =tr ( "New Disk %1" ).arg ( sbNumber->value() );
-            leName->setText ( tm );
-        }
-    }
-    QApplication::restoreOverrideCursor();
-    return 0;
+				volumename = 1;
+			}
+			if ( volumename == 1 ) {
+				volumename = 0;
+				tm =tr ( "New Disk %1" ).arg ( sbNumber->value() );
+				leName->setText ( tm );
+			}
+		}
+	}
+	else {
+		std::cerr << "setMediaName: mediatype is not cd/dvd"<< std::endl;
+#ifndef _WIN32
+		tm = dirView->sDir.split('/').at(dirView->sDir.split('/').size()-2);
+#else
+		tm = dirView->sDir.split('/').at(dirView->sDir.split('\\').end()-2);
+#endif
+		leName->setText ( tm );
+	}
+	QApplication::restoreOverrideCursor();
+	return 0;
 }
 
 int addDialog::bOk ( void ) {
