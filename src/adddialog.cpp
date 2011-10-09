@@ -262,7 +262,7 @@ int addDialog::setMediaName ( const QString & ds ) {
 	QApplication::setOverrideCursor ( Qt::waitCursor );
 	
 	if ( cbType->currentItem() +1 == CD  || cbType->currentItem() +1 == DVD)  {
-		std::cerr << "setMediaName: mediatype is cd/dvd"<< std::endl;
+		//std::cerr << "setMediaName: mediatype is cd/dvd"<< std::endl;
 		
 		if ( confdir  == selected ) {
 			tm = getCDName ( caller->mainw->cconfig->cdrompath );
@@ -304,11 +304,11 @@ int addDialog::setMediaName ( const QString & ds ) {
 		}
 	}
 	else {
-		std::cerr << "setMediaName: mediatype is not cd/dvd"<< std::endl;
+		//std::cerr << "setMediaName: mediatype is not cd/dvd"<< std::endl;
 #ifndef _WIN32
 		tm = dirView->sDir.split('/').at(dirView->sDir.split('/').size()-2);
 #else
-		tm = dirView->sDir.split('/').at(dirView->sDir.split('\\').size()-2);
+		tm = dirView->sDir.split('/').at(dirView->sDir.split('/').size()-2);
 #endif
 		leName->setText ( tm );
 	}
