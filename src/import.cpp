@@ -1506,25 +1506,36 @@ int importGtktalogCsv::addNewMedia ( QString new_medianame, QDateTime media_modi
         dirindex = -1;
 
         float size = obj.getSize();
-        float s;
-        int st;
+			float s = size;
+			int   st = UNIT_BYTE;
+// 			if ( *DEBUG_INFO_ENABLED )
+// 				std::cerr << "adding file size: " << s << std::endl;
 
-            if ( size > SIZE_ONE_GBYTE * 1024 ) {
-                s  = size / SIZE_ONE_GBYTE / 1024;
-                st = UNIT_TBYTE;
-            }  else if ( size > SIZE_ONE_GBYTE ) {
-                s  = size / SIZE_ONE_GBYTE;
-                st = UNIT_GBYTE;
-            } else if ( size > SIZE_ONE_MBYTE ) {
-                s  = size / SIZE_ONE_MBYTE;
-                st = UNIT_MBYTE;
-            } else if ( size > SIZE_ONE_KBYTE ) {
-                s  = size / SIZE_ONE_KBYTE;
-                st = UNIT_KBYTE;
-            } else {
-                s  = size;
-                st = UNIT_BYTE;
-            }
+			if ( size >= SIZE_ONE_TBYTE ) {
+				s  = size / SIZE_ONE_TBYTE;
+				st = UNIT_TBYTE;
+			} else {
+				    if ( size >= SIZE_ONE_GBYTE && size < SIZE_ONE_TBYTE ) {
+								s  = size / SIZE_ONE_GBYTE;
+								st = UNIT_GBYTE;
+				    }
+				    else {
+						  if ( size >= SIZE_ONE_MBYTE && size < SIZE_ONE_GBYTE ) {
+								s  = size / SIZE_ONE_MBYTE;
+								st = UNIT_MBYTE;
+						  }
+						  else {
+								if ( size >= SIZE_ONE_KBYTE && size < SIZE_ONE_MBYTE ) {
+									   s  = size / SIZE_ONE_KBYTE;
+									   st = UNIT_KBYTE;
+								}
+								else {
+									   s = size;
+									   st = UNIT_BYTE;
+								}
+						  }
+				    }
+			}
 
         env = curr;
         curr = db->getFileNode ( env, QString ( obj.getFileName() ) );
@@ -2059,25 +2070,36 @@ int importGtktalogXml::addNewMedia ( QString new_medianame, QDateTime media_modi
         dirindex = -1;
 
         float size = obj.getSize();
-        float s;
-        int st;
+			float s = size;
+			int   st = UNIT_BYTE;
+// 			if ( *DEBUG_INFO_ENABLED )
+// 				std::cerr << "adding file size: " << s << std::endl;
 
-            if ( size > SIZE_ONE_GBYTE * 1024.0 ) {
-                s  = size / SIZE_ONE_GBYTE / 1024.0;
-                st = UNIT_TBYTE;
-            }  else if ( size > SIZE_ONE_GBYTE ) {
-                s  = size / SIZE_ONE_GBYTE;
-                st = UNIT_GBYTE;
-            } else if ( size > SIZE_ONE_MBYTE ) {
-                s  = size / SIZE_ONE_MBYTE;
-                st = UNIT_MBYTE;
-            } else if ( size > SIZE_ONE_KBYTE ) {
-                s  = size / SIZE_ONE_KBYTE;
-                st = UNIT_KBYTE;
-            } else {
-                s  = size;
-                st = UNIT_BYTE;
-            }
+			if ( size >= SIZE_ONE_TBYTE ) {
+				s  = size / SIZE_ONE_TBYTE;
+				st = UNIT_TBYTE;
+			} else {
+				    if ( size >= SIZE_ONE_GBYTE && size < SIZE_ONE_TBYTE ) {
+								s  = size / SIZE_ONE_GBYTE;
+								st = UNIT_GBYTE;
+				    }
+				    else {
+						  if ( size >= SIZE_ONE_MBYTE && size < SIZE_ONE_GBYTE ) {
+								s  = size / SIZE_ONE_MBYTE;
+								st = UNIT_MBYTE;
+						  }
+						  else {
+								if ( size >= SIZE_ONE_KBYTE && size < SIZE_ONE_MBYTE ) {
+									   s  = size / SIZE_ONE_KBYTE;
+									   st = UNIT_KBYTE;
+								}
+								else {
+									   s = size;
+									   st = UNIT_BYTE;
+								}
+						  }
+				    }
+			}
 
         env = curr;
         curr = db->getFileNode ( env,  obj.getFileName() );
@@ -2462,24 +2484,36 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
 
             if ( db != NULL ) {
                 Node * env2, *curr2, *curr3;
-                long s;
-                int st;
-            if ( size > SIZE_ONE_GBYTE * 1024 ) {
-                s  = size / SIZE_ONE_GBYTE / 1024;
-                st = UNIT_TBYTE;
-            }  else if ( size > SIZE_ONE_GBYTE ) {
-                s  = size / SIZE_ONE_GBYTE;
-                st = UNIT_GBYTE;
-            } else if ( size > SIZE_ONE_MBYTE ) {
-                s  = size / SIZE_ONE_MBYTE;
-                st = UNIT_MBYTE;
-            } else if ( size > SIZE_ONE_KBYTE ) {
-                s  = size / SIZE_ONE_KBYTE;
-                st = UNIT_KBYTE;
-            } else {
-                s  = size;
-                st = UNIT_BYTE;
-            }
+				float s = size;
+				int   st = UNIT_BYTE;
+				// 			if ( *DEBUG_INFO_ENABLED )
+				// 				std::cerr << "adding file size: " << s << std::endl;
+
+				if ( size >= SIZE_ONE_TBYTE ) {
+								s  = size / SIZE_ONE_TBYTE;
+								st = UNIT_TBYTE;
+				} else {
+								if ( size >= SIZE_ONE_GBYTE && size < SIZE_ONE_TBYTE ) {
+												s  = size / SIZE_ONE_GBYTE;
+												st = UNIT_GBYTE;
+								}
+								else {
+								if ( size >= SIZE_ONE_MBYTE && size < SIZE_ONE_GBYTE ) {
+												s  = size / SIZE_ONE_MBYTE;
+												st = UNIT_MBYTE;
+								}
+								else {
+												if ( size >= SIZE_ONE_KBYTE && size < SIZE_ONE_MBYTE ) {
+												s  = size / SIZE_ONE_KBYTE;
+												st = UNIT_KBYTE;
+												}
+												else {
+												s = size;
+												st = UNIT_BYTE;
+												}
+								}
+								}
+				}
 
                 env2 = db->getMediaNode ( number ) ;
 								if (env2 == NULL && !new_medianame.isEmpty()) {
