@@ -60,11 +60,11 @@ typedef int gid_t;
 #define UNIT_GBYTE            3
 #define UNIT_TBYTE            4
 
-#define SIZE_ONE_BYTE 1
-#define SIZE_ONE_KBYTE 1024
-#define SIZE_ONE_MBYTE 1048576
-#define SIZE_ONE_GBYTE 1073741824
-#define SIZE_ONE_TBYTE 1099511627776
+#define SIZE_ONE_BYTE float(1)
+#define SIZE_ONE_KBYTE float(1024)
+#define SIZE_ONE_MBYTE float(1048576)
+#define SIZE_ONE_GBYTE float(1073741824)
+#define SIZE_ONE_TBYTE float(1099511627776)
 
 //values for class DataBase::sortM( value )
 #define NAME             1

@@ -1,5 +1,6 @@
 09. Oct 2011 Christoph Thielecke <crissi99@gmx.de>
 	- setting medianame from foldername if not cd/dvd at adding media fixed
+	- size handling at scanning fixed
 
 08. Oct 2011 Christoph Thielecke <crissi99@gmx.de>
 	- reenabling some export options after switching back from xml to csv or html fixed
