@@ -164,16 +164,20 @@ DirectoryView::DirectoryView ( QWidget *parent, const char *name )
     setTreeStepSize ( 10 );
 
     QFileInfoList *roots=new QFileInfoList ( QDir::drives() );
-//#ifdef _WIN32
-//    ++i; //Skip reading floppy drive on startup.
-//#endif
-
-
+	
     for ( int ri = 0; ri < roots->size(); ++ri ) {
         QFileInfo *fi = new QFileInfo ( roots->at ( ri ) );
+		//std::cerr << "DirView::DirView() root found: " << qPrintable(fi->filePath()) << std::endl;
+		
         Directory * root = new Directory ( this, fi->filePath() );
-        if ( roots->count() >= 1 )
+#ifdef _WIN32
+		//Skip reading floppy drives on startup.
+		if (roots->count() >= 1 && fi->filePath() != QString("A:/") && fi->filePath() != QString("B:/")) {
+#else
+        if ( roots->count() >= 1 ) {
+#endif
             root->setOpen ( TRUE );
+		}
     }
 #ifdef Q_WS_MAC
     //Directory * volume_dir = new Directory ( this, "/Volumes" );
