@@ -237,8 +237,12 @@ exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget* parent, const ch
     seperatorLabel->setEnabled ( false );
     radioHtml->setChecked ( true );
 
-    if ( p != NULL )
-        fileName->setText ( mainw->cconfig->lastDir +"/"+ ( ( DBCatalog * ) ( ( p->getRootNode() )->data ) )->name+".html" );
+    if ( p != NULL ) {
+	QString lastDir =  mainw->cconfig->lastDir;
+	if (lastDir.isEmpty())
+		lastDir = ".";
+        fileName->setText ( lastDir +"/"+ ( ( DBCatalog * ) ( ( p->getRootNode() )->data ) )->name+".html" );
+	}
 
     checkOnlyMedia->setChecked ( false );
 
