@@ -1,3 +1,6 @@
+20. Nov 2011 Christoph Thielecke <crissi99@gmx.de>
+	- filecount at advanced disk catalog csv import fixed
+
 09. Oct 2011 Christoph Thielecke <crissi99@gmx.de>
 	- setting medianame from foldername if not cd/dvd at adding media fixed
 	- size handling at scanning fixed

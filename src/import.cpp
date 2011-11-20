@@ -1094,6 +1094,11 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
                                         linecount++;
                                         continue;
                                 }
+                                
+                                // skip comment line
+                                if (line == "\"Disk\", \"Name\", \"Path\", \"Full path\", \"Size\", \"Date\", \"Time\", \"Category\", \"Level\", \"Comments\", \"Files inside\"" || line == "\"Disk\", \"Name\", \"Path\", \"Full path\", \"Size\", \"Date\", \"Time\", \"Category\", \"Level\", \"Comments\", \"Files inside\", \"Type\"") {
+																				continue;
+																}
 
                                 //manually split line from csv file (because there may be commas in the file name)
                                 QStringList csvList;
@@ -1104,8 +1109,9 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
                                 QChar comma = ',';
                                 QChar quote = '"';
                                 for (int i = 0; i<linelen; i++) {
+																		
                                     ch = line.at(i);
-                                    if (ch == comma) {
+                                    if (ch == comma || i == linelen-1) {
                                         if (in_string) {
                                             buffer += ch;
                                         }
@@ -1130,13 +1136,13 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
                                     }
                                 }   
 
-//                                if(*DEBUG_INFO_ENABLED) {
-//                                 cerr << "line (fields " << csvList.size() << "): " << qPrintable(line) << endl;
-//                                  for (int i = 0; i < csvList.size(); ++i)
-//                                        cout << "csvList[" << i << "]: " << csvList.at(i).toLocal8Bit().constData() << endl;
-//                                }
+                               if(*DEBUG_INFO_ENABLED) {
+                                cerr << "line (fields " << csvList.size() << "): " << qPrintable(line) << endl;
+                                 for (int i = 0; i < csvList.size(); ++i)
+                                       cout << "csvList[" << i << "]: " << csvList.at(i).toLocal8Bit().constData() << endl;
+                               }
                                
-                               if (csvList.count() < 11 ) {
+                               if (csvList.count() != 11  && csvList.count() != 12 ) {
                                      if(*DEBUG_INFO_ENABLED)
                                         cerr << "importGtktalogCsv invalid line (only " << csvList.count() << ") at least 11 or 12 fields): " << qPrintable(line) << endl;
                                      continue;
