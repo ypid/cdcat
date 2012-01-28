@@ -31,6 +31,7 @@
 #include <QEvent>
 #include <Q3VBoxLayout>
 #include <QLocale>
+#include <QScrollArea>
 
 #include "dbase.h"
 #include "cdcat.h"
@@ -104,6 +105,10 @@ CommentWidget::CommentWidget ( CdCatConfig * cc,QApplication *appl,QWidget *pare
 
     setMinimumSize(QSize(200, 400));
     
+}
+
+void CommentWidget::setScrollArea(QScrollArea *sa) {
+	this->sa = sa;
 }
 
 void  CommentWidget::enterEvent ( QEvent * ) {
@@ -608,6 +613,7 @@ void  CommentWidget::resizeEvent ( QResizeEvent *re ) {
     ButtonContent->setGeometry ( 55, ( ( re->size() ).height() )-45,30,30 );
     ButtonCategoryEdit->setGeometry ( 85, ( ( re->size() ).height() )-45,30,30 );
 //     ButtonCategory->setGeometry ( 120, ( ( re->size() ).height() )-45,30,30 );
+	resize(QSize(sa->viewport()->size()));
 }
 
 void CommentWidget::showNode ( Node *node,int mod ) {

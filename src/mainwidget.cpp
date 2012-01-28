@@ -144,13 +144,14 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp,QApplication *appp,QWidget* 
     listView->clear();
 
 
-    commentWidget = new CommentWidget ( cconfig,app,0,"CommentWiget" );
+    commentWidget = new CommentWidget ( cconfig,app ,0,"CommentWiget" );
 
     QScrollArea *scrollArea = new QScrollArea(splitMain);
     scrollArea->setBackgroundRole(QPalette::Dark);
     scrollArea->setWidget(commentWidget);
 //     commentWidget->resize(scrollArea->size() );
 
+   commentWidget->setScrollArea(scrollArea);
 
     guis=new GuiSlave ( this );
 
@@ -266,6 +267,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp,QApplication *appp,QWidget* 
     lToolbar->insertWidget ( 27,ButtonAboutQt,1 );
     lToolbar->insertSpacing ( 28,4 );
 
+    
     resize ( ( cconfig->windowSize ).expandedTo ( minimumSizeHint() ) );
 
     move ( cconfig->windowPos );
@@ -308,10 +310,13 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp,QApplication *appp,QWidget* 
 
     connect ( commentWidget ,SIGNAL ( touchdb() ),guis,SLOT ( cHcaption() ) );
 
+    show();
+
     listView ->setFocus();
 
-    commentWidget->resize(QSize(cconfig->mainP3 - 20, height() - 120 ) );
-
+    //scrollArea->resize(QSize(splitMain->handle(2)->width(), scrollArea->height()));
+    commentWidget->resize(QSize(scrollArea->viewport()->width(), height() - 120 ) );
+    
     std::cout << "splitmain sizes: " << std::endl;
     for (int i=0; i < splitMain->sizes().size(); i++)
 		std::cout << splitMain->sizes().at(i) << std::endl;

@@ -35,6 +35,7 @@ class QPushButton;
 class Q3MultiLineEdit;
 class QEvent;
 class CdCatConfig;
+class QScrollArea;
 
 int editNodeComment ( Node *node,QWidget *parent, bool isCommentEdit=true );
 
@@ -51,14 +52,16 @@ class CommentWidget : public QWidget {
 
 public:
 
-    CommentWidget ( CdCatConfig * cc,QApplication *appl,QWidget *parent=0,const char *name=0, Qt::WFlags fl=0 );
+    CommentWidget ( CdCatConfig * cc,QApplication *appl, QWidget *parent=0,const char *name=0, Qt::WFlags fl=0 );
 
     CdCatConfig * cconfig;
     HQToolButton* ButtonEdit;
     HQToolButton* ButtonCategory;
     HQToolButton* ButtonCategoryEdit;
     HQToolButton* ButtonContent;
+    QScrollArea *sa;
     void showNode ( Node *node,int mod );
+    void setScrollArea(QScrollArea *sa);
 
 
     Node *act;
