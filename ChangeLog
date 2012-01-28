@@ -1,5 +1,15 @@
 28. Jan 2012 Christoph Thielecke <crissi99@gmx.de>
 	- content at comment widget display fix
+	- made lib7zip optional (thanks to eduard bloch)
+	- use pkgconfig info for mediainfo (thanks to eduard bloch)
+	- define for mediainfo unicode added (thanks to eduard bloch)
+	- security hardening flags added (thanks to eduard bloch)
+	- flag for mediainfo static renamed from MEDIAINFO_LIBARY to MEDIAINFO_STATIC
+	- string fixes (thanks to eduard bloch)
+	- numeric overflow fixes (thanks to eduard bloch)
+	- various typos fixed (thanks to eduard bloch)
+	- various crash fixes at mp3tag (thanks to eduard bloch)
+	- various bad memory usage fixes mp3tag (thanks to eduard bloch)
 
 20. Nov 2011 Christoph Thielecke <crissi99@gmx.de>
 	- filecount at advanced disk catalog csv import fixed

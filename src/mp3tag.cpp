@@ -26,7 +26,7 @@ using namespace std;
 #define COMM   5
 #define YEAR   8
 
-#define FREE_AND_ALLOC(a,b) { if(a != NULL) { delete [] a; a=NULL; } a = new char[b]; strcpy(a,""); }
+#define FREE_AND_ALLOC(a,b) { if(a) { delete [] a; a=NULL; } a = new char[b]; if(b) *a=0; }
 
 #define MAX    9
 
@@ -43,6 +43,7 @@ ReadMp3Tag::ReadMp3Tag ( void ) {
     Artist   = NULL;
     Title    = NULL;
     Comment  = NULL;
+    Track = NULL;
 
     bTAGreaded = false;
     techinfo   = NULL;
@@ -57,10 +58,12 @@ ReadMp3Tag::ReadMp3Tag ( const char *fn,bool v1_over_v2p ) {
     Artist   = NULL;
     Title    = NULL;
     Comment  = NULL;
-    v1_over_v2 = v1_over_v2p;
+    Track = NULL;
     bTAGreaded = false;
     techinfo   = NULL;
+    v1_over_v2 = false;
 
+    v1_over_v2 = v1_over_v2p;
     Work ( fn );
 }
 
@@ -74,11 +77,10 @@ ReadMp3Tag::~ReadMp3Tag ( void ) {
 }
 
 char *mmstr ( const char *imp ) {
-    char *x;
     if ( imp == NULL ) return NULL;
-    x = new char[strlen ( imp ) +1];
-    strcpy ( x,imp );
-    return x;
+    size_t len=strlen(imp);
+    char *x = new char[len+1];
+    return (char*) memcpy(x, imp, len+1);
 }
 
 char *ReadMp3Tag::year ( void ) const {
@@ -154,40 +156,37 @@ int ReadMp3Tag::Work ( const char *filename ) {
 *  Read ID3 tag version 1
 **********************************************************************/
 int ReadMp3Tag::ReadTAGv1 ( void ) {
-    char TAG[4];
+    char TAG[4] = {0};
 
     //         X AL AR TI TAG
     fseek ( mp3,-128,SEEK_END );
-    strcpy ( TAG,"" );
+    
     fread ( TAG,sizeof ( char ),3,mp3 );
     if ( strncmp ( TAG,"TAG",3 ) )
         return 0; //Id3 tag not exists
-    else {
+    FREE_AND_ALLOC ( Title  ,31 );
+    FREE_AND_ALLOC ( Artist ,31 );
+    FREE_AND_ALLOC ( Album  ,31 );
+    FREE_AND_ALLOC ( Year   ,5 );
+    FREE_AND_ALLOC ( Comment,31 );
 
-        FREE_AND_ALLOC ( Title  ,31 );
-        FREE_AND_ALLOC ( Artist ,31 );
-        FREE_AND_ALLOC ( Album  ,31 );
-        FREE_AND_ALLOC ( Year   ,5 );
-        FREE_AND_ALLOC ( Comment,31 );
+    fread ( Title ,sizeof ( char ),30,mp3 );  Title  [30]='\0';
+    fread ( Artist,sizeof ( char ),30,mp3 );  Artist [30]='\0';
+    fread ( Album ,sizeof ( char ),30,mp3 );  Album  [30]='\0';
+    fread ( Year ,sizeof ( char ),4,mp3 );    Year   [4 ]='\0';
+    fread ( Comment,sizeof ( char ),30,mp3 ); Comment[30]='\0';
 
-        fread ( Title ,sizeof ( char ),30,mp3 );  Title  [30]='\0';
-        fread ( Artist,sizeof ( char ),30,mp3 );  Artist [30]='\0';
-        fread ( Album ,sizeof ( char ),30,mp3 );  Album  [30]='\0';
-        fread ( Year ,sizeof ( char ),4,mp3 );    Year   [4 ]='\0';
-        fread ( Comment,sizeof ( char ),30,mp3 ); Comment[30]='\0';
-
-        tnumber = 0;
-        if ( Comment[28] == 0 ) {
-            tnumber = Comment[29];
-            Comment[28] = '\0';
-        }
-
-        strbcut ( Artist );
-        strbcut ( Title );
-        strbcut ( Year );
-        strbcut ( Album );
-        strbcut ( Comment );
+    tnumber = 0;
+    if ( Comment[28] == 0 ) {
+       tnumber = Comment[29];
+       Comment[28] = '\0';
     }
+
+    strbcut ( Artist );
+    strbcut ( Title );
+    strbcut ( Year );
+    strbcut ( Album );
+    strbcut ( Comment );
     return 1;
 }
 
