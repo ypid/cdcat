@@ -30,8 +30,14 @@
 using namespace MediaInfoNameSpace;
 using namespace std;
 
+static QStringList MediaInfoSupportedFileExtensions;
+static bool mediaInfoLibInitDone = false;
+static bool mediaInfoLibFound = false;
+static MediaInfoNameSpace::MediaInfo *MediaInfoHandler=0;
+
+
 /* convienent funcs for MediaInfo */
-#ifdef _WIN32
+#if defined(_WIN32) || defined(MEDIAINFO_UNICODE)
 QString fromMediaInfoStrtoQString(String str) {
 	return QString::fromStdWString(str);
 }
@@ -41,12 +47,12 @@ QString fromMediaInfoStrtoQString(String str) {
 }
 #endif
 
-#ifdef _WIN32
-String toMediaInfoString(QString str) {
+#if defined(_WIN32) || defined(MEDIAINFO_UNICODE)
+inline MediaInfoNameSpace::String toMediaInfoString(const QString &str) {
 	return str.toStdWString();
 }
 #else
-String toMediaInfoString(QString str) {
+inline MediaInfoNameSpace::String toMediaInfoString(const QString &str) {
 	return str.toStdString();
 }
 #endif
@@ -83,7 +89,7 @@ bool CdcatMediaInfo::readCdcatMediaInfo(){
 			cout << "readCdcatMediaInfo() no filename set" << endl;
 		return false;
 	}
-	String MediaInfoStr(toMediaInfoString(filename));
+	MediaInfoNameSpace::String MediaInfoStr(toMediaInfoString(filename));
 	MediaInfoHandler->Open(MediaInfoStr);
 // 	MediaInfoHandler->Option("Language", "German;German" );
 // 	if(*DEBUG_INFO_ENABLED)
@@ -141,7 +147,12 @@ CdcatMediaInfo::~CdcatMediaInfo ( void ) {
 
 bool CdcatMediaInfo::initMediaInfoLib() {
 	DEBUG_INFO_ENABLED = init_debug_info();
-	
+#ifdef MEDIAINFO_STATIC
+	MediaInfoHandler = new MediaInfo();
+	if(*DEBUG_INFO_ENABLED) {
+		cout << "initMediaInfoLib(): mediainfo lib version: " << fromMediaInfoStrtoQString(MediaInfoHandler->Option(toMediaInfoString(QString("Info_Version")))).split(" - ").at(1).toStdString()  << endl;
+	}
+#else
 	int success = MediaInfoDLL_Load();
 	if (MediaInfoDLL_IsLoaded()) {
 		mediaInfoLibFound = true;
@@ -156,6 +167,7 @@ bool CdcatMediaInfo::initMediaInfoLib() {
 		if(*DEBUG_INFO_ENABLED)
 			cout << "initMediaInfoLib(): loading mediainfo lib " << MEDIAINFODLL_NAME << " failed" << endl;
 	}
+#endif // MEDIAINFO_STATIC
 	mediaInfoLibInitDone = true;
 	return mediaInfoLibFound;
 }

@@ -24,7 +24,9 @@
 #include <Q3HBoxLayout>
 #include <Q3VBoxLayout>
 
+#ifdef USE_LIB7ZIP
 #include <lib7zip.h>
+#endif
 
 #include "config.h"
 #include "icons.h"
@@ -197,6 +199,8 @@ SelReadable::SelReadable ( CdCatConfig *confp,QWidget* parent, const char* name,
     rad_v1->setChecked ( conf->v1_over_v2 );
     rad_v2->setChecked ( !conf->v1_over_v2 );
 
+
+#ifdef USE_LIB7ZIP
     if(conf->doScanArchive) {
 	C7ZipLibrary lib;
 	WStringArray exts;
@@ -239,6 +243,7 @@ SelReadable::SelReadable ( CdCatConfig *confp,QWidget* parent, const char* name,
 		sevenzip_libfound_text = "<font color=\"green\">"+tr("7zip library found")+"</font>";
 	labArchiveExtensions->setText ( tr ( "Supported extensions" )+" ("+sevenzip_libfound_text+")"+":<br />&nbsp;&nbsp;"+ SupportedExtensions);
     }
+#endif
 
     // FIXME: get from fileinfo
     CdcatMediaInfo me;
@@ -262,9 +267,9 @@ SelReadable::SelReadable ( CdCatConfig *confp,QWidget* parent, const char* name,
 			linelen+= SupportedFileInfoExtensionsList.at(i).size()+2;
 		}
 	}
-    QString fileinfo_libfound_text = "<font color=\"red\">"+tr("fileinfo library not found")+"</font>";
+    QString fileinfo_libfound_text = "<font color=\"red\">"+tr("mediainfo library not found")+"</font>";
     if(fileinfo_libfound)
-	fileinfo_libfound_text = "<font color=\"green\">"+tr("fileinfo library found")+": "+me.getMediaInfoVersion()+"</font>";
+	fileinfo_libfound_text = "<font color=\"green\">"+tr("mediainfo library found")+": "+me.getMediaInfoVersion()+"</font>";
     labFileInfoExtensions->setText ( tr ( "Supported extensions" )+" ("+fileinfo_libfound_text+")"+":<br />&nbsp;&nbsp;"+ SupportedFileInfoExtensions);
 
     schanged ( 0 );

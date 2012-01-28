@@ -12,17 +12,29 @@
 #define CDCAT_MEDIAINFO_H
 
 
+#ifdef MEDIAINFO_UNICODE
+// workaround for mediainfo char width confusion
+#ifndef UNICODE
+#define UNICODE
+#define UNSETUNICODE
+#endif
+#endif
 
-//#define MEDIAINFO_LIBRARY
 
-#ifdef MEDIAINFO_LIBRARY
+//#define MEDIAINFO_STATIC
+
+#ifdef MEDIAINFO_STATIC
     #include "MediaInfo/MediaInfo.h" //Staticly-loaded library (.lib or .a or .so)
-    #define MediaInfoNameSpace MediaInfoLib;
-#else //MEDIAINFO_LIBRARY
+    #define MediaInfoNameSpace MediaInfoLib
+#else //MEDIAINFO_STATIC
     #include "MediaInfoDLL/MediaInfoDLL.h" //Dynamicly-loaded library (.dll or .so)
-    #define MediaInfoNameSpace MediaInfoDLL;
-#endif //MEDIAINFO_LIBRARY
+    #define MediaInfoNameSpace MediaInfoDLL
+#endif //MEDIAINFO_STATIC
 
+#ifdef UNSETUNICODE // from the mediainfo unicode workaround
+#undef UNICODE
+#undef UNSETUNICODE
+#endif
 
 #ifdef __MINGW32__
     #ifdef _UNICODE
@@ -39,12 +51,6 @@
 #include <QStringList>
 #include <iostream>
 #include <iomanip>
-
-static QStringList MediaInfoSupportedFileExtensions;
-static bool mediaInfoLibInitDone = false;
-static bool mediaInfoLibFound = false;
-static MediaInfoDLL::MediaInfo *MediaInfoHandler;
-
 
 class CdcatMediaInfo : public QObject {
 public:

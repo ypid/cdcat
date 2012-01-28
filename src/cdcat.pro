@@ -1,4 +1,4 @@
-VERSION         =   1.4
+VERSION         =   1.5
 TRANSLATIONS	= lang/cdcat_hu.ts \
                   lang/cdcat_de.ts \
 		  lang/cdcat_es.ts \
@@ -103,11 +103,43 @@ win32 {
 	LIBS       += -lz -ldl /usr/lib/libtar.a /usr/lib/libbz2.a /usr/lib/lib7zip.a
 } else {
 	# unix
-	LIBS       += -lz -ltar -lbz2 -ldl -lmediainfo /usr/local/lib/lib7zip.a
+	# use lib7zip?
+	# DEFINES+=USE_LIB7ZIP
+	# LIBS+=/usr/local/lib/lib7zip.a
+	
+		# use lib7zip?
+	# DEFINES+=USE_LIB7ZIP
+	# LIBS+=/usr/local/lib/lib7zip.a
+	
+	# use libmediainfo as static library?
+	# DEFINES += MEDIAINFO_STATIC
+	
+	# libmediainfo ships API info via pkgconfig so use it!
+	CONFIG += link_pkgconfig
+	PKGCONFIG += libmediainfo
+	# temporary kluge until it's decided how to get char type from libmediainfo,
+	# maybe also via pkgconfig (Debian Bug #656929, could remove the extra 
+	# hack in cdcatmediainfo.h when it's ready)
+	DEFINES += MEDIAINFO_UNICODE
+	
+	LIBS       += -lz -ltar -lbz2 -ldl
+	# libmediainfo ships API info via pkgconfig so use it!
+	CONFIG += link_pkgconfig
+	PKGCONFIG += libmediainfo
+	# temporary kluge until it's decided how to get char type from libmediainfo,
+	# maybe also via pkgconfig (Debian Bug #656929, could remove the extra 
+	# hack in cdcatmediainfo.h when it's ready)
+	DEFINES += MEDIAINFO_UNICODE
+	
+	LIBS       += -lz -ltar -lbz2 -ldl
 	distfiles.files +=   ../README_CSV_IMPORT ../Authors ../README ../ChangeLog ../COPYING ../TRANSLATORS_README ../cdcat.png 
 	distfiles.path =     /usr/local/share/cdcat
 	target.path +=       /usr/local/bin
 	translations.path += /usr/local/share/cdcat/translations
+
+   # security hardening flags
+   DEFINES += _FORTIFY_SOURCE=2
+   QMAKE_CXXFLAGS += -std=c++0x -g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Wformat-security -Werror=format-security 
 }
 
 FORMS      	    = help.ui

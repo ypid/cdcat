@@ -69,10 +69,12 @@
 #include <QObject>
 #include <QFile>
 
+#ifdef USE_LIB7ZIP
 #include <lib7zip.h>
+#endif
 
 
-
+#ifdef USE_LIB7ZIP
 class TestInStream : public C7ZipInStream {
 	private:
 		FILE * m_pFile;
@@ -164,6 +166,7 @@ class TestInStream : public C7ZipInStream {
 			return 0;
 		}
 };
+#endif
 
 // FIXME: currently disabled because lib7zip has problems with std namespace :(
 // using namespace std;
@@ -503,6 +506,7 @@ DataBase::DataBase ( void ) {
 	Lib7zipTypes.append ( "zip" );
 	Lib7zipTypes.append ( "7z" );
 
+#ifdef USE_LIB7ZIP
 	C7ZipLibrary lib;
 	WStringArray exts;
 
@@ -520,6 +524,7 @@ DataBase::DataBase ( void ) {
 			Lib7zipTypes.append ( QString().fromWCharArray ( ( *extIt ).c_str() ) );
 		std::cerr << "lib7zip supported extensions: " << qPrintable ( Lib7zipTypes.join ( " " ) ) << std::endl;
 	}
+#endif
 }
 
 DataBase::~DataBase ( void ) {
@@ -602,7 +607,6 @@ int DataBase::addMedia ( QString what, QString name, int number, int type, QStri
 }
 /***************************************************************************/
 int   DataBase::saveDB ( void ) {
-	int i;
 	gzFile f = NULL;
 	FileWriter *fw = NULL;
 
@@ -621,7 +625,7 @@ int   DataBase::saveDB ( void ) {
 	fw = new FileWriter ( f, nicef, this->XML_ENCODING );
 	fw->pww = pww;
 	progress ( pww );
-	i = fw->writeDown ( root );
+	int i = fw->writeDown ( root );
 	( ( DBCatalog * ) ( root->data ) )->writed = 1;
 	progress ( pww );
 	gzclose ( f );
@@ -883,21 +887,21 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 // 			if ( *DEBUG_INFO_ENABLED )
 // 				std::cerr << "adding file size: " << s << std::endl;
 
-			if ( size >= SIZE_ONE_GBYTE*1024 ) {
-				s  = size / SIZE_ONE_GBYTE *1024;
+			if ( size > (float)SIZE_ONE_TBYTE ) {
+				s  = size / SIZE_ONE_TBYTE;
 				st = UNIT_TBYTE;
 			} else {
-				    if ( size >= SIZE_ONE_GBYTE && size < SIZE_ONE_GBYTE * 1024 ) {
+				    if ( size >= (float)SIZE_ONE_GBYTE && size < (float)SIZE_ONE_TBYTE ) {
 								s  = size / SIZE_ONE_GBYTE;
 								st = UNIT_GBYTE;
 				    }
 				    else {
-						  if ( size >= SIZE_ONE_MBYTE && size < SIZE_ONE_GBYTE ) {
+						  if ( size >= (float)SIZE_ONE_MBYTE && size < (float)SIZE_ONE_GBYTE ) {
 								s  = size / SIZE_ONE_MBYTE;
 								st = UNIT_MBYTE;
 						  }
 						  else {
-								if ( size >= SIZE_ONE_KBYTE && size < SIZE_ONE_MBYTE ) {
+								if ( size >= (float)SIZE_ONE_KBYTE && size < (float)SIZE_ONE_MBYTE ) {
 									   s  = size / SIZE_ONE_KBYTE;
 									   st = UNIT_KBYTE;
 								}
@@ -1051,12 +1055,12 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 
 			// Put some technical info to comment
 			if ( storeMp3techinfo ) {
-				char *info = reader->gettechinfo();
-				if ( info != NULL ) {
+				const char *info = reader->gettechinfo();
+				if ( info ) {
 					if ( ! fc->comment.isEmpty() )
 						fc->comment.append ( "#" );
 					fc->comment.append ( info );
-					free ( info );
+					delete [] info;
 				}
 			}//storeinfo-if
 
@@ -1141,7 +1145,7 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 			if ( f == NULL ) {
 				errormsg = QString ( "I couldn't open the \"%1\" file. (content read 1)\n" )
 				           .arg ( fi->absFilePath() );
-				fprintf ( stderr, ( const char * ) errormsg );
+				fprintf ( stderr, "%s", ( const char * ) errormsg );
 				success = false;
 			}
 
@@ -1154,7 +1158,7 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 				           .arg ( fi->absFilePath() )
 				           .arg ( rsize )
 				           .arg ( rrsize );
-				fprintf ( stderr, ( const char * ) errormsg );
+				fprintf ( stderr, "%s", ( const char * ) errormsg );
 				success = false;
 			}
 
@@ -1603,7 +1607,7 @@ QList<ArchiveFile> DataBase::scanArchive ( QString path, ArchiveType type ) {
 				std::cerr << "reading " << qPrintable ( path ) << " done." << std::endl;
 		}
 	}
-
+#ifdef USE_LIB7ZIP
 	if ( type == Archive_lib7zip ) {
 		C7ZipLibrary lib;
 		C7ZipArchive * pArchive = NULL;
@@ -1701,6 +1705,7 @@ QList<ArchiveFile> DataBase::scanArchive ( QString path, ArchiveType type ) {
 		if ( *DEBUG_INFO_ENABLED )
 			std::cerr << "reading " << qPrintable ( path ) << " done." << std::endl;
 	}
+#endif
 	return filelist;
 }
 
