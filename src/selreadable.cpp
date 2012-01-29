@@ -244,11 +244,11 @@ SelReadable::SelReadable ( CdCatConfig *confp,QWidget* parent, const char* name,
 	sevenzip_libfound_text = "<font color=\"red\">"+tr("lib7zip library not found")+"</font>";
 	if(sevenzip_libfound)
 		sevenzip_libfound_text = "<font color=\"green\">"+tr("lib7zip library found")+"</font>";
-	labArchiveExtensions->setText ( tr ( "Supported extensions" )+" ("+sevenzip_libfound_text+")"+":<br />&nbsp;&nbsp;"+ SupportedExtensions);
+	
 #else
 	sevenzip_libfound_text = "<font color=\"red\">"+tr("lib7zip library not supported")+"</font>";
-	labArchiveExtensions->setText ( tr ( "Supported extensions" )+" "+":<br />&nbsp;&nbsp;"+ SupportedExtensions);
 #endif
+	labArchiveExtensions->setText ( tr ( "Supported extensions" )+" ("+sevenzip_libfound_text+")"+":<br />&nbsp;&nbsp;"+ SupportedExtensions);
     }
 
 
