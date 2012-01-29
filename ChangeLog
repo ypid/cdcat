@@ -9,6 +9,7 @@
 	- display header line for archive contents in commwidget
 	- display lib7zip state more informative
 	- comment resize fix
+	- compile fix for broken osx
 
 28. Jan 2012 Christoph Thielecke <crissi99@gmx.de>
 	- content at comment widget display fix

@@ -887,11 +887,11 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 // 			if ( *DEBUG_INFO_ENABLED )
 // 				std::cerr << "adding file size: " << s << std::endl;
 
-			if ( size > (float)SIZE_ONE_TBYTE ) {
-				s  = size / SIZE_ONE_TBYTE;
+			if ( size > (float)SIZE_ONE_GBYTE*1024.0 ) {
+				s  = size / SIZE_ONE_GBYTE*1024.0;
 				st = UNIT_TBYTE;
 			} else {
-				    if ( size >= (float)SIZE_ONE_GBYTE && size < (float)SIZE_ONE_TBYTE ) {
+				    if ( size >= (float)SIZE_ONE_GBYTE && size < (float)SIZE_ONE_GBYTE*1024.0 ) {
 								s  = size / SIZE_ONE_GBYTE;
 								st = UNIT_GBYTE;
 				    }
