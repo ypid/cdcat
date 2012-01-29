@@ -17,7 +17,7 @@ libzip2: http://bzip.org/1.0.6/bzip2-1.0.6.tar.gz
 		5. make
 
 
-p7zip source: http://dfn.dl.sourceforge.net/project/p7zip/p7zip/9.20.1/p7zip_9.20.1_src_all.tar.bz2
+p7zip source (optional): http://dfn.dl.sourceforge.net/project/p7zip/p7zip/9.20.1/p7zip_9.20.1_src_all.tar.bz2
 	- compile:
 		1. unpack p7zip source
 		2. copy makefile.macosx_32bits / makefile.macosx_64bits to makefile.machine
@@ -25,7 +25,7 @@ p7zip source: http://dfn.dl.sourceforge.net/project/p7zip/p7zip/9.20.1/p7zip_9.2
 		4. make
 
 
-lib7zip (>= 1.4.1): http://code.google.com/p/lib7zip/downloads/detail?name=lib7zip-1.4.1.tar.gz&can=3&q=
+lib7zip (>= 1.4.1, optional): http://code.google.com/p/lib7zip/downloads/detail?name=lib7zip-1.4.1.tar.gz&can=3&q=
 	- compile:
 		1. unpack 7zip source 
 		2. set P7ZIP_SOURCE_DIR=<full path to p7zip_9.20.1 dir>
@@ -56,6 +56,10 @@ cdcat compile:
 	- add bzip2.a to library path
 	- add libtar.a to library path
 	- add libz.a to library path
+	- edit cdcat.pro (for disable lib7zip, e.g.)
+	- qmake -r -spec macx-g++ cdcat.pro
+	- make
+	- lrelease cdcat.pro
 
 cdcat run:
 	- runtime: 7z.so in library path

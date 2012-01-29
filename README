@@ -11,14 +11,11 @@ to a limit size if you want. (for example: *.nfo)
 
 Prerequisites:
 ~~~~~~~~~~~~~~~
-- Trolltech Qt  graphic library (ver >= 2.3.0)
-       / http://www.trolltech.com /
-- expat XML parsing library (ver >= 1.95.2)
-      / http://expat.sourceforge.net /
-- pcre Perl compatible regular expression library (ver >= 3.9)
-     / ftp://ftp.csx.cam.uk/pub/software/programming/pcre/ /
-- zlib data compression library (ver >= 1.1.4)
-    / http://www.zlib.org /
+- Nokia Qt graphic library (ver >= 4.x) / http://www.nokia.com
+- zlib data compression library (ver >= 1.1.4) / http://www.zlib.org
+- mediainfo / http://mediainfo.sourceforge.net
+- libtar
+
 
 You can find this as packages in all distributions,
 but if you want to compile the cdcat you will have to install the
@@ -64,8 +61,8 @@ Author:
 ~~~~~~~
 see ./AUTHORS
 
-The main program was written by  Peter Deak  (hungary)
-E-mail: hyperr at freemail dot hu
+The main program was written by Peter Deak (hungary) but the active Maintainer is Christoph Thielecke.
+E-mail: crissi99 at gmx dot de
 
 Bug reports and questions:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~

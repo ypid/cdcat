@@ -13,12 +13,12 @@ libtar: ftp://ftp.feep.net/pub/software/libtar/libtar-1.2.11.tar.gz
 
 libzip2: http://downloads.sourceforge.net/project/gnuwin32/bzip2/1.0.5/bzip2-1.0.5-bin.zip
 
-7zip source: http://sourceforge.net/projects/sevenzip/files/7-Zip/9.22/7z922.tar.bz2/download
+7zip (optional) source: http://sourceforge.net/projects/sevenzip/files/7-Zip/9.22/7z922.tar.bz2/download
 	- only needed for compilung lib7zip
 
 7zip bin: http://sourceforge.net/projects/sevenzip/files/7-Zip/9.22/7z922.exe/download
 
-lib7zip (>= 1.4.1): http://code.google.com/p/lib7zip/downloads/detail?name=lib7zip-1.4.1.tar.gz&can=3&q=
+lib7zip (>= 1.4.1, optional): http://code.google.com/p/lib7zip/downloads/detail?name=lib7zip-1.4.1.tar.gz&can=3&q=
 	- compile:
 		1. unpack 7zip source 
 		2. set P7ZIP_SOURCE_DIR=<full path to 7z922 dir>
@@ -47,6 +47,10 @@ cdcat compile:
 	- add bzip2.dll to library path
 	- add libtar.a to library path
 	- add libz.a to library path
+	- edit cdcat.pro (for disable lib7zip, e.g.)
+	- qmake cdcat.pro
+	- make
+	- lrelease cdcat.pro
 
 cdcat run:
 	- runtime: bzip2.dll, 7z.dll
