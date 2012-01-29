@@ -485,7 +485,7 @@ void  CommentWidget::paintEvent ( QPaintEvent * ) {
 					archive_header += tr("Changed")+"\t\t";
 				
 				if(cconfig->show_archive_file_comment)
-					archive_header += tr("Comment")+"\t";
+					archive_header += tr("Name")+"\t";
 				
 				p.drawText (mx+15,my+w, archive_header );
 				
