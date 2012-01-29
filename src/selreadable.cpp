@@ -239,12 +239,14 @@ SelReadable::SelReadable ( CdCatConfig *confp,QWidget* parent, const char* name,
 			linelen+= SupportedExtensionsList.at(i).size()+2;
 		}
 	}
+	QString sevenzip_libfound_text="";
 #ifdef USE_LIB7ZIP
-	QString sevenzip_libfound_text = "<font color=\"red\">"+tr("7zip library not found")+"</font>";
+	sevenzip_libfound_text = "<font color=\"red\">"+tr("lib7zip library not found")+"</font>";
 	if(sevenzip_libfound)
-		sevenzip_libfound_text = "<font color=\"green\">"+tr("7zip library found")+"</font>";
+		sevenzip_libfound_text = "<font color=\"green\">"+tr("lib7zip library found")+"</font>";
 	labArchiveExtensions->setText ( tr ( "Supported extensions" )+" ("+sevenzip_libfound_text+")"+":<br />&nbsp;&nbsp;"+ SupportedExtensions);
 #else
+	sevenzip_libfound_text = "<font color=\"red\">"+tr("lib7zip library not supported")+"</font>";
 	labArchiveExtensions->setText ( tr ( "Supported extensions" )+" "+":<br />&nbsp;&nbsp;"+ SupportedExtensions);
 #endif
     }

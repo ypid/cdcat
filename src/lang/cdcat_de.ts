@@ -509,6 +509,30 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
       <source>File info:</source>
       <translation>Dateinformation:</translation>
     </message>
+    <message>
+      <source>Rights</source>
+      <translation>Rechte</translation>
+    </message>
+    <message>
+      <source>Owner</source>
+      <translation>Eigentümer</translation>
+    </message>
+    <message>
+      <source>Group</source>
+      <translation>Gruppe</translation>
+    </message>
+    <message>
+      <source>Size</source>
+      <translation>Grösse</translation>
+    </message>
+    <message>
+      <source>Changed</source>
+      <translation>Änderung</translation>
+    </message>
+    <message>
+      <source>Comment</source>
+      <translation>Kommentar</translation>
+    </message>
   </context>
   <context>
     <name>ConfigDialog</name>
@@ -1574,14 +1598,6 @@ wird zu
       <translation>Optionalen Kommentar anzeigen</translation>
     </message>
     <message>
-      <source>7zip library not found</source>
-      <translation>7zip-Bibliothek nicht gefunden</translation>
-    </message>
-    <message>
-      <source>7zip library found</source>
-      <translation>7zip-Bibliothek gefunden</translation>
-    </message>
-    <message>
       <source>Supported extensions</source>
       <translation>Unterstützte Erweiterungen</translation>
     </message>
@@ -1596,6 +1612,18 @@ wird zu
     <message>
       <source>Read some technical info using mediainfo</source>
       <translation>Einige technische Informationen mit mediainfo lesen</translation>
+    </message>
+    <message>
+      <source>lib7zip library not found</source>
+      <translation>lib7zip-Bibliothek nicht gefunden</translation>
+    </message>
+    <message>
+      <source>lib7zip library found</source>
+      <translation>lib7zip-Bibliothek gefunden</translation>
+    </message>
+    <message>
+      <source>lib7zip library not supported</source>
+      <translation>lib7zip-Bibliothek nicht unterstützt</translation>
     </message>
   </context>
   <context>
