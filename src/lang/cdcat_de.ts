@@ -8,10 +8,41 @@
     </message>
   </context>
   <context>
+    <name>AddLnk</name>
+    <message>
+      <source>Add a &quot;Catalog Link&quot; to the database</source>
+      <translation>Eine &quot;Katalogverknüpfung&quot; zur Datenbank hinzufügen</translation>
+    </message>
+    <message>
+      <source>Location of the .hcf file:</source>
+      <translation>Ort der .hcf-Datei:</translation>
+    </message>
+    <message>
+      <source>Cancel</source>
+      <translation>Abbrechen</translation>
+    </message>
+    <message>
+      <source>Ok</source>
+      <translation>OK</translation>
+    </message>
+    <message>
+      <source>Open a file...</source>
+      <translation>Datei öffnen...</translation>
+    </message>
+    <message>
+      <source>CdCat databases (*.hcf )</source>
+      <translation>CdCat-Datenbanken (*.hcf)</translation>
+    </message>
+  </context>
+  <context>
     <name>ArchiveFile</name>
     <message>
       <source>unknown</source>
       <translation>unbekannt</translation>
+    </message>
+    <message>
+      <source></source>
+      <translation type="unfinished" />
     </message>
   </context>
   <context>
@@ -1304,6 +1335,13 @@ wird zu
     </message>
   </context>
   <context>
+    <name>PWw</name>
+    <message>
+      <source>Cancel</source>
+      <translation>Abbrechen</translation>
+    </message>
+  </context>
+  <context>
     <name>QObject</name>
     <message>
       <source>Directory</source>
@@ -1548,16 +1586,16 @@ wird zu
       <translation>Unterstützte Erweiterungen</translation>
     </message>
     <message>
-      <source>fileinfo library not found</source>
-      <translation>fileinfo-Bibliothek nicht gefunden</translation>
+      <source>mediainfo library not found</source>
+      <translation>mediainfo-Bibliothek nicht gefunden</translation>
     </message>
     <message>
-      <source>fileinfo library found</source>
-      <translation>fileinfo-Bibliothek gefunden</translation>
+      <source>mediainfo library found</source>
+      <translation>mediainfo-Bibliothek gefunden</translation>
     </message>
     <message>
-      <source>Read some technical info using fileinfo</source>
-      <translation>Einige technische Informationen mit fileinfo lesen</translation>
+      <source>Read some technical info using mediainfo</source>
+      <translation>Einige technische Informationen mit mediainfo lesen</translation>
     </message>
   </context>
   <context>
@@ -1642,10 +1680,6 @@ wird zu
       <translation>Verzeichnis zum Durchsuchen auswählen:</translation>
     </message>
     <message>
-      <source>Cancel</source>
-      <translation>Abbrechen</translation>
-    </message>
-    <message>
       <source>CD</source>
       <translation>CD</translation>
     </message>
@@ -1700,26 +1734,6 @@ wird zu
     <message>
       <source>The media name can't begin with the &quot;@&quot; character!</source>
       <translation>Der Medienname kann nicht mit dem \&quot;@\&quot;-Zeichen beginnen!</translation>
-    </message>
-    <message>
-      <source>Add a &quot;Catalog Link&quot; to the database</source>
-      <translation>Eine &quot;Katalogverknüpfung&quot; zur Datenbank erstellen</translation>
-    </message>
-    <message>
-      <source>Location of the .hcf file:</source>
-      <translation>Ort der .hcf-Datei:</translation>
-    </message>
-    <message>
-      <source>Ok</source>
-      <translation>Ok</translation>
-    </message>
-    <message>
-      <source>Open a file...</source>
-      <translation>Datei öffnen...</translation>
-    </message>
-    <message>
-      <source>CdCat databases (*.hcf )</source>
-      <translation>CdCat-Datenbanken (*.hcf)</translation>
     </message>
     <message>
       <source>Media &amp;Name:</source>
