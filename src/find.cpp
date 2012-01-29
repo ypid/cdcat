@@ -855,6 +855,8 @@ int seekEngine::start_seek ( void ) {
 		size_min = fd->spSizeMin->value() * 1024 * 1024; // MByte
 	else if(fd->cbSizeUnitMin->currentIndex() == 3)
 		size_min = fd->spSizeMin->value() * 1024 * 1024 * 1024; // GByte
+	else if(fd->cbSizeUnitMin->currentIndex() == 4)
+		size_min = fd->spSizeMin->value() * 1024 * 1024 * 1024 *1024; // TByte
 // 	std::cerr << "minsize checked, type "<< fd->cbSizeUnitMin->currentIndex() <<", min size " << size_min << endl;
     }
     
@@ -867,6 +869,8 @@ int seekEngine::start_seek ( void ) {
 		size_max = fd->spSizeMax->value() * 1024 * 1024; // MByte
 	else if(fd->cbSizeUnitMax->currentIndex() == 3)
 		size_max = fd->spSizeMax->value() * 1024 * 1024 * 1024; // GByte
+	else if(fd->cbSizeUnitMax->currentIndex() == 4)
+		size_max = fd->spSizeMax->value() * 1024 * 1024 * 1024 * 1024; // TByte
 // 	std::cerr << "maxsize checked, type "<< fd->cbSizeUnitMax->currentIndex() <<", max size " << size_max << endl;
     }
 
@@ -1044,6 +1048,10 @@ int seekEngine::analyzeNode (PWw *pww,  Node *n,Node *pa ) {
 				real_size = ( ( ( DBFile * ) ( n->data ) )->size ) *1024.0;
 				real_size_min = size_min / 1024.0 / 1024.0/1024.0;
 				break; //Gb
+			case 4:
+				real_size = ( ( ( DBFile * ) ( n->data ) )->size ) *1024.0*1024.0;
+				real_size_min = size_min / 1024.0 / 1024.0/1024.0/1024.0;
+				break; //Tb
 		}
 // 		std::cerr << "minsize checked, min size " << real_size_min << " ~ " << real_size<< endl;
 		if (  real_size < real_size_min ) {
@@ -1070,6 +1078,10 @@ int seekEngine::analyzeNode (PWw *pww,  Node *n,Node *pa ) {
 				real_size = ( ( ( DBFile * ) ( n->data ) )->size ) *1024.0;
 				real_size_max = size_max / 1024.0 / 1024.0/1024.0;
 				break; //Gb
+			case 4:
+				real_size = ( ( ( DBFile * ) ( n->data ) )->size ) *1024.0*1024.0;
+				real_size_max = size_max / 1024.0 / 1024.0/1024.0/1024.0;
+				break; //Tb
 		}
 // 		std::cerr << "size type: "<<  ( ( DBFile * ) ( n->data ) )->sizeType <<", maxsize checked, max size " << real_size_max << " ~ " << real_size << endl;
 		if ( real_size  > real_size_max ) {
@@ -1101,6 +1113,11 @@ int seekEngine::analyzeNode (PWw *pww,  Node *n,Node *pa ) {
 				real_size_min = size_min / 1024.0 / 1024.0/1024.0;
 				real_size_max = size_max / 1024.0 / 1024.0/1024.0;
 				break; //Gb
+			case 4:
+				real_size = ( ( ( DBFile * ) ( n->data ) )->size ) *1024.0*1024.0;
+				real_size_min = size_min / 1024.0 / 1024.0/1024.0/1024.0;
+				real_size_max = size_max / 1024.0 / 1024.0/1024.0/1024.0;
+				break; //Tb
 		}
 // 		std::cerr << "min & maxsize checked, min size " << real_size_min << "/max size " << real_size_max << " ~ " << real_size << endl;
 		if ( real_size < real_size_min || real_size > real_size_max ) {

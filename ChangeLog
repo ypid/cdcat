@@ -2,6 +2,7 @@
 	- wrong disable of fileinfo if readmp3 info is disabled fixed
 	- comment missing from results page when searching fixed (#3480282)
 	- displaying multiline comments correctly in search result list
+	- tb size unit display at search dialog added
 
 28. Jan 2012 Christoph Thielecke <crissi99@gmx.de>
 	- content at comment widget display fix

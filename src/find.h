@@ -97,8 +97,8 @@ private:
     QDateTime dateStart;
     QDateTime dateEnd;
 
-    int size_min;
-    int size_max;
+    float size_min;
+    float size_max;
 };
 
 /***********************************************************************/
