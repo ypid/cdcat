@@ -48,6 +48,11 @@
         <source>unknown</source>
         <translation type="unfinished">Sconosciuto</translation>
     </message>
+    <message>
+        <location filename="../dbase.h" line="89"/>
+        <source></source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CatalogTypeEditDialog</name>
