@@ -1027,8 +1027,7 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 	DEBUG_INFO_ENABLED = init_debug_info();
 	/***MP3 tag scanning */
-
-	if ( storeMp3tags || storeMp3techinfo )
+	if ( storeMp3tags || storeMp3techinfo ) {
 		if ( ( fi->extension ( FALSE ) ).lower() ==  "mp3" ||
 		          ( fi->extension ( FALSE ) ).lower() ==  "mp2" ) {
 			ReadMp3Tag *reader = new ReadMp3Tag ( ( const char * ) QFile::encodeName ( fi->absFilePath() ), v1_over_v2 );
@@ -1050,9 +1049,8 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 					                                     QString::fromLocal8Bit ( reader->album() )  ,
 					                                     QString::fromLocal8Bit ( reader->year() ),
 					                                     reader->tnum() );
-
+				
 				}//storetag-if
-
 			// Put some technical info to comment
 			if ( storeMp3techinfo ) {
 				const char *info = reader->gettechinfo();
@@ -1063,29 +1061,28 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 					delete [] info;
 				}
 			}//storeinfo-if
-
-			/* using filoinfo */
-			if ( storeFileInfo && me.getMediaInfoLibFound() ) {
-				QString info = CdcatMediaInfo ( fi->absoluteFilePath() ).getInfo();
-				if ( !info.isEmpty() )
-					fc->fileinfo = info;
-			}
-
 			if ( reader != NULL ) {
-				delete reader;
-				reader = NULL;
+			    delete reader;
+			    reader = NULL;
 			}
-		}
-
+	   }
+	} 
+	
+	/* using fileinfo */
+	if ( storeFileInfo && me.getMediaInfoLibFound() ) {
+	   QString info = CdcatMediaInfo ( fi->absoluteFilePath() ).getInfo();
+	   if ( !info.isEmpty() )
+		    fc->fileinfo = info;
+	}
 	/***Experimental AVI Header Scanning  */
-	if ( storeAvitechinfo )
-		if ( ( fi->extension ( FALSE ) ).lower() == "avi" ) {
+	if ( storeAvitechinfo ) {
+		if ( ( fi->extension ( FALSE ) ).lower() == "avi") {
 			FILE* filePTR;
 			filePTR = fopen ( ( const char * ) QFile::encodeName ( fi->absFilePath() ), "r" );
 			if ( filePTR != NULL ) {
 				QString got = parseAviHeader ( filePTR ).replace ( QRegExp ( "\n" ), "#" );
 				fclose ( filePTR );
-
+				
 				//store it as comment
 				if ( !got.isEmpty() ) {
 					if ( !fc->comment.isEmpty() )
@@ -1094,7 +1091,8 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 				}
 			}
 		}
-
+	}
+	
 	/***File content scanning */
 	if ( storeContent ) {
 //         pcre       *pcc = NULL;
@@ -1128,14 +1126,14 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 				break;
 			}
 		}
-
+		
 		if ( match ) { // the file need to be read
 			FILE *f;
 			bool success = true;
 			unsigned long rsize = 0, rrsize;
 			unsigned char *rdata = 0;
 			Node *tt = fc->prop;
-
+			
 			if ( storeLimit > MAX_STORED_SIZE )
 				storeLimit = MAX_STORED_SIZE;
 			//read the file
@@ -1148,7 +1146,7 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 				fprintf ( stderr, "%s", ( const char * ) errormsg );
 				success = false;
 			}
-
+			
 			rdata = new unsigned char[rsize + 1];
 			fseek ( f, 0, SEEK_SET );
 			rrsize = fread ( rdata, sizeof ( unsigned char ), rsize, f );
@@ -1161,10 +1159,10 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 				fprintf ( stderr, "%s", ( const char * ) errormsg );
 				success = false;
 			}
-
+			
 			fclose ( f );
 			rdata[rsize] = '\0';
-
+			
 			//make the node in the db
 			if ( success ) {
 				if ( tt == NULL )
@@ -1180,9 +1178,8 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 			}
 		}//end of if(match)
 	}//end of if(storeContent)
-
+	
 	/***Other properties: */
-
 	return 0;
 }
 

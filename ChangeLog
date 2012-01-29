@@ -1,3 +1,6 @@
+29. Jan 2012 Christoph Thielecke <crissi99@gmx.de>
+	- wrong disable of fileinfo if readmp3 info is disabled fixed
+
 28. Jan 2012 Christoph Thielecke <crissi99@gmx.de>
 	- content at comment widget display fix
 	- made lib7zip optional (thanks to eduard bloch)
