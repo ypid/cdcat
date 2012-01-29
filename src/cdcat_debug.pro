@@ -95,6 +95,9 @@ CONFIG		+= qt debug
 MOC_DIR         = moc_files/
 OBJECTS_DIR     = obj_files/ 
 win32 {
+	########## lib7zip
+	# use lib7zip?
+	DEFINES+=USE_LIB7ZIP
 	LIBS       += c:/zlib/lib/libz.a c:/libs/lib7zip.a c:/libs/bzip2.dll c:/libs/libtar.a  -loleaut32 -luuid
 	INCLUDEPATH   += c:/Expat/Source/lib c:/zlib/include c:/pcre/include C:/includes c:/mediainfo
 	
@@ -105,6 +108,9 @@ win32 {
 	translations.path += c:/program files/cdcat
 	distfiles.path +=c:/program files/cdcat
 } else:mac {
+	########## lib7zip
+	# use lib7zip?
+	DEFINES+=USE_LIB7ZIP
 	LIBS       += -lz -ldl /usr/lib/libtar.a /usr/lib/libbz2.a /usr/lib/lib7zip.a
 } else {
 	# unix
