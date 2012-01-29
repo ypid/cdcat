@@ -199,11 +199,11 @@ SelReadable::SelReadable ( CdCatConfig *confp,QWidget* parent, const char* name,
     rad_v1->setChecked ( conf->v1_over_v2 );
     rad_v2->setChecked ( !conf->v1_over_v2 );
 
-
-#ifdef USE_LIB7ZIP
     if(conf->doScanArchive) {
+#ifdef USE_LIB7ZIP
 	C7ZipLibrary lib;
 	WStringArray exts;
+#endif
 	SupportedExtensions = "";
 	QStringList SupportedExtensionsList;
 	// libtar
@@ -211,7 +211,7 @@ SelReadable::SelReadable ( CdCatConfig *confp,QWidget* parent, const char* name,
 	SupportedExtensionsList.append("tar");
 	SupportedExtensionsList.append("tar.gz");
 	SupportedExtensionsList.append("tar.bz2");
-	
+#ifdef USE_LIB7ZIP
 	// lib7zip
 	bool sevenzip_libfound = false;
 	if (lib.Initialize()) {
@@ -223,6 +223,7 @@ SelReadable::SelReadable ( CdCatConfig *confp,QWidget* parent, const char* name,
 			}
 		}
 	}
+#endif
 	SupportedExtensionsList.sort();
 	int linelen=0;
 	for(int i=0;i< SupportedExtensionsList.size();i++) {
@@ -238,12 +239,16 @@ SelReadable::SelReadable ( CdCatConfig *confp,QWidget* parent, const char* name,
 			linelen+= SupportedExtensionsList.at(i).size()+2;
 		}
 	}
+#ifdef USE_LIB7ZIP
 	QString sevenzip_libfound_text = "<font color=\"red\">"+tr("7zip library not found")+"</font>";
 	if(sevenzip_libfound)
 		sevenzip_libfound_text = "<font color=\"green\">"+tr("7zip library found")+"</font>";
 	labArchiveExtensions->setText ( tr ( "Supported extensions" )+" ("+sevenzip_libfound_text+")"+":<br />&nbsp;&nbsp;"+ SupportedExtensions);
-    }
+#else
+	labArchiveExtensions->setText ( tr ( "Supported extensions" )+" "+":<br />&nbsp;&nbsp;"+ SupportedExtensions);
 #endif
+    }
+
 
     // FIXME: get from fileinfo
     CdcatMediaInfo me;
@@ -349,7 +354,7 @@ void SelReadable::languageChange() {
     cbInfo->setText ( tr ( "Read mp3 technical info as comment (bitrate,freq,length...)" ) );
     cbaInfo->setText ( tr ( "Read avi technical info as comment (codecs,length,...)" ) );
     cbCont->setText ( tr ( "Store content of some files" ) );
-    cbFileInfo->setText ( tr ( "Read some technical info using fileinfo" ) );
+    cbFileInfo->setText ( tr ( "Read some technical info using mediainfo" ) );
     lineFiles->setText ( "*.nfo;*.dzi" );
     textLabel1->setText ( tr ( "; separated list of readable file patterns" ) );
     textLabel2->setText ( tr ( "content size limit in kByte" ) );

@@ -108,12 +108,27 @@ win32 {
 	LIBS       += -lz -ldl /usr/lib/libtar.a /usr/lib/libbz2.a /usr/lib/lib7zip.a
 } else {
 	# unix
+	
+	
+	########## lib7zip
 	# use lib7zip?
 	# DEFINES+=USE_LIB7ZIP
+
+	# STATIC
 	# LIBS+=/usr/local/lib/lib7zip.a
 	
+	# DYNAMIC
+	#LIBS+= -llib7zip
+	######### end lib7zip
+	
+	######### mediainfo
 	# use libmediainfo as static library?
-	# DEFINES += MEDIAINFO_STATIC
+	# STATIC
+	#DEFINES += MEDIAINFO_STATIC
+	#LIBS+=/usr/local/lib/libmediainfo.a
+	
+	# DYNAMIC. no pkgconfig
+	LIBS+= -lmediainfo
 	
 	# libmediainfo ships API info via pkgconfig so use it!
 	CONFIG += link_pkgconfig
@@ -122,6 +137,7 @@ win32 {
 	# maybe also via pkgconfig (Debian Bug #656929, could remove the extra 
 	# hack in cdcatmediainfo.h when it's ready)
 	DEFINES += MEDIAINFO_UNICODE
+	######### end mediainfo
 	
 	LIBS       += -lz -ltar -lbz2 -ldl
 	distfiles.files +=   ../README_CSV_IMPORT ../Authors ../README ../ChangeLog ../COPYING ../TRANSLATORS_README ../cdcat.png 
