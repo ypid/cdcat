@@ -1,3 +1,4 @@
+
 /****************************************************************************
                              Hyper's CD Catalog
 		A multiplatform qt and xml based catalog program
@@ -567,7 +568,7 @@ void findDialog::exportResult(bool isPrint) {
 	/* get info from results listview
 		TODO rework as model/view and implement as print view
 	*/
-
+	
 	QPrinter printer;
 	QString output_filename="cdcat_result.html";
 	if (isPrint) {
@@ -683,7 +684,15 @@ void findDialog::exportResult(bool isPrint) {
 	result_str += "</table>\n";
 	
 	result_str += "<table border=\"1\">\n";
-	result_str += "<tr><th>#</th><th>"+tr("Name")+"</th><th>"+tr ( "Type" )+"</th><th>"+tr ( "Size" )+"</th><th>"+tr ( "Media" )+"</th><th>"+tr ( "Path" )+"</th><th>"+ tr ( "Modification" )+"</th><th>"+tr ( "Comment" )+"</th></tr>\n";
+	result_str += "<tr>";
+	result_str += "<th>#</th><th>"+tr("Name")+"</th>";
+	result_str += "<th>"+tr ( "Type" )+"</th>";
+	result_str += "<th>"+tr ( "Size" )+"</th>";
+	result_str += "<th>"+tr ( "Media" )+"</th>";
+	result_str += "<th>"+tr ( "Path" )+"</th>";
+	result_str += "<th>"+ tr ( "Modification" )+"</th>";
+	result_str += "<th>"+tr ( "Comment" )+"</th>";
+	result_str += "</tr>\n";
 	Q3ListViewItem *lastChild = resultsl->firstChild();
 	int i=0;
         while ( lastChild ) {
@@ -695,12 +704,26 @@ void findDialog::exportResult(bool isPrint) {
 			3: media,
 			4: fullPath
 			5: date,
-			6: comment (e.g. file inside archive
+			6: comment (e.g. file inside archive)
 		*/
-		if(*DEBUG_INFO_ENABLED)
-			cerr << "result[" << i << "]: " << qPrintable(lastChild->text(0)) << endl;
+		if(*DEBUG_INFO_ENABLED) {
+			for (int j=0;j<=6;j++)
+				cerr << "result[" << i << "][" << j << "]: " << qPrintable(lastChild->text(j)) << endl;
+		}
 		
-		result_str += "<tr><td align=\"right\" style=\"font-size:-2;\">"+QString().setNum(i+1)+"</td><td style=\"font-size:-2;\">"+lastChild->text(0)+"</td><td style=\"font-size:-2;\">"+lastChild->text(1)+"</td><td style=\"font-size:-2;\">"+lastChild->text(2)+"</td><td style=\"font-size:-2;\">"+lastChild->text(3)+"</td><td style=\"font-size:-2;\">"+lastChild->text(4)+"</td><td style=\"font-size:-2;\">"+lastChild->text(5)+"</td><td style=\"font-size:-2;\">"+lastChild->text(6)+"</td></tr>\n";
+		result_str += "<tr>";
+		result_str += "<td align=\"right\" style=\"font-size:-2;\">"+QString().setNum(i+1)+"</td>";
+		result_str += "<td style=\"font-size:-2;\">"+lastChild->text(0)+"</td>";
+		result_str += "<td style=\"font-size:-2;\">"+lastChild->text(1)+"</td>";
+		result_str += "<td style=\"font-size:-2;\">"+lastChild->text(2)+"</td>";
+		result_str += "<td style=\"font-size:-2;\">"+lastChild->text(3)+"</td>";
+		result_str += "<td style=\"font-size:-2;\">"+lastChild->text(4)+"</td>";
+		result_str += "<td style=\"font-size:-2;\">"+lastChild->text(5)+"</td>";
+		result_str += "<td style=\"font-size:-2;\">"+lastChild->text(6).replace("\n","<br>")+"</td>";
+		result_str += "</tr>\n";
+		if(*DEBUG_INFO_ENABLED) {
+			cerr << "result_str: " << qPrintable(result_str) << endl;
+		}
 		lastChild = lastChild->nextSibling();
 		i++;
 	}
@@ -722,7 +745,7 @@ void findDialog::exportResult(bool isPrint) {
 	else {
 		QFile outfile(output_filename);
 		if (outfile.open(QIODevice::WriteOnly)) {
-			outfile.write(result_str.toLocal8Bit());
+			outfile.write(result_str.toUtf8());
 			outfile.close();
 		}
 		else {
@@ -1257,32 +1280,35 @@ bool seekEngine::matchUnsharp(char* matchpattern, char* str){
 
 void seekEngine::putNodeToList ( Node *n, QString comment ) {
 
-    Node *tmp;
+    Node *tmp = NULL;
     QString   type;
-    QString   size_str;
-    QString   media;
+    QString   size_str="";
+    QString   media="";
     QDateTime mod;
 
     if ( n == NULL ) return;
 
     switch ( n->type ) {
-    case HC_MEDIA:
-	type = tr ( "media" );
-        mod  = ( ( DBMedia * ) ( n->data ) )->modification;
-        break;
-
-    case HC_DIRECTORY:
-	type = tr ( "dir" );
-        mod  = ( ( DBDirectory * ) ( n->data ) )->modification;
-        break;
-    case HC_FILE:
-	type = tr ( "file" );
-	size_str = QString().sprintf ( "%.1f",( ( DBFile * ) ( n->data ) )->size);
-	size_str += QString(getSType ( ( ( DBFile * ) ( n->data ) )->sizeType, true ));
-        mod  = ( ( DBFile * ) ( n->data ) )->modification;
-        break;
-    default:           type = tr ( "error" );
-        break;
+	case HC_MEDIA:
+		type = tr ( "media" );
+		mod  = ( ( DBMedia * ) ( n->data ) )->modification;
+		comment  = ( ( DBMedia * ) ( n->data ) )->comment;
+		break;
+	case HC_DIRECTORY:
+		type = tr ( "dir" );
+		mod  = ( ( DBDirectory * ) ( n->data ) )->modification;
+		comment  = ( ( DBDirectory * ) ( n->data ) )->comment;
+		break;
+	case HC_FILE:
+		type = tr ( "file" );
+		size_str = QString().sprintf ( "%.1f",( ( DBFile * ) ( n->data ) )->size);
+		size_str += QString(getSType ( ( ( DBFile * ) ( n->data ) )->sizeType, true ));
+		mod  = ( ( DBFile * ) ( n->data ) )->modification;
+		comment  = ( ( DBFile * ) ( n->data ) )->comment;
+		break;
+	default:
+		type = tr ( "error" );
+		break;
     }
     tmp=n;
     while ( tmp->type != HC_MEDIA ){
@@ -1292,17 +1318,17 @@ void seekEngine::putNodeToList ( Node *n, QString comment ) {
 
     media = tmp->getNameOf() + "/" + QString().setNum ( ( ( DBMedia * ) ( tmp->data ) )->number );
 
-
-
-    fd->resultsl->insertItem ( new Q3ListViewItem ( fd->resultsl,
+    Q3ListViewItem *newitem = new Q3ListViewItem ( fd->resultsl,
                                n->getNameOf(),
                                type,
                                size_str,
                                media,
                                n->getFullPath(),
                                date_to_str ( mod ),
-			       comment
-                                                  ) );
+                               comment
+                                                  );
+    newitem->setMultiLinesEnabled ( true);
+    fd->resultsl->insertItem ( newitem );
     progress ( pww );
     founded++;
 }
