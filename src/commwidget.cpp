@@ -530,6 +530,8 @@ void  CommentWidget::paintEvent ( QPaintEvent * ) {
 				w++;
 				
 			}
+			w+=pixelsHigh;
+			w+=pixelsHigh;
 			break;
 // 		default:
 // 			;
@@ -633,7 +635,7 @@ void  CommentWidget::resizeEvent ( QResizeEvent *re ) {
     ButtonContent->setGeometry ( 55, ( ( re->size() ).height() )-45,30,30 );
     ButtonCategoryEdit->setGeometry ( 85, ( ( re->size() ).height() )-45,30,30 );
 //     ButtonCategory->setGeometry ( 120, ( ( re->size() ).height() )-45,30,30 );
-	resize(QSize(sa->viewport()->size()));
+    //resize(QSize(sa->viewport()->size().width()-45, sa->viewport()->size().height()-45));
 }
 
 void CommentWidget::showNode ( Node *node,int mod ) {
