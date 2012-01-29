@@ -2207,15 +2207,15 @@ QString ArchiveFile::toPrettyString ( bool showAttr, bool showUser, bool showGro
 	QString ret;
 
 	if ( showAttr )
-		ret += QString ( fileattr + " " );
+		ret += QString ( fileattr + "\t" );
 	if ( showUser )
-		ret += QString ( user + " " );
+		ret += QString ( user + "\t" );
 	if ( showGroup )
-		ret += QString ( group + " " );
+		ret += QString ( group + "\t" );
 	if ( showSize )
-		ret += QString ( QString().setNum ( size ) + " " );
+		ret += QString ( QString().setNum ( size ) + "\t" );
 	if ( showDate )
-		ret += QString ( date.toString ( "MMM d h:s yyyy" ) + " " );
+		ret += QString ( date.toString ( "MMM d h:s yyyy" ) + "\t" );
 	ret += QString ( path + "\t" );
 	if ( showFileType )
 		ret += QString ( filetype );

@@ -6,6 +6,7 @@
 	- mediainfo/lib7zip build fixes
 	- typo fixed
 	- display supported archive extensions if lib7zip is disabled fixed
+	- display header line for archive contents in commwidget
 
 28. Jan 2012 Christoph Thielecke <crissi99@gmx.de>
 	- content at comment widget display fix
