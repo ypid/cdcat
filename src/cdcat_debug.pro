@@ -1,4 +1,4 @@
-VERSION         =   1.5
+VERSION         =   1.6
 FORMS      	= help.ui
 TARGET          = cdcat
 TRANSLATIONS	= lang/cdcat_hu.ts \
@@ -118,10 +118,10 @@ win32 {
 	
 	########## lib7zip
 	# use lib7zip?
-	# DEFINES+=USE_LIB7ZIP
+	DEFINES+=USE_LIB7ZIP
 
 	# STATIC
-	# LIBS+=/usr/local/lib/lib7zip.a
+	LIBS+=/usr/local/lib/lib7zip.a
 	
 	# DYNAMIC
 	#LIBS+= -llib7zip

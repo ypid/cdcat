@@ -12,6 +12,7 @@
 	- compile fix for broken osx
 	- wrong characters reset fixed
 	- typo on archive header line at commwidget fixed
+	- version increased to 1.6
 
 28. Jan 2012 Christoph Thielecke <crissi99@gmx.de>
 	- content at comment widget display fix

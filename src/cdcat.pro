@@ -1,4 +1,4 @@
-VERSION         =   1.5
+VERSION         =   1.6
 TRANSLATIONS	= lang/cdcat_hu.ts \
                   lang/cdcat_de.ts \
 		  lang/cdcat_es.ts \
@@ -112,10 +112,10 @@ win32 {
 	
 	########## lib7zip
 	# use lib7zip?
-	#DEFINES+=USE_LIB7ZIP
+	DEFINES+=USE_LIB7ZIP
 	
 	# STATIC
-	#LIBS+=/usr/local/lib/lib7zip.a
+	LIBS+=/usr/local/lib/lib7zip.a
 	
 	# DYNAMIC
 	#LIBS+= -llib7zip
@@ -128,7 +128,7 @@ win32 {
 	#LIBS+=/usr/local/lib/libmediainfo.a
 	
 	# DYNAMIC. no pkgconfig
-	# LIBS+= -lmediainfo
+	LIBS+= -lmediainfo
 	
 	# libmediainfo ships API info via pkgconfig so use it!
 	CONFIG += link_pkgconfig
