@@ -952,7 +952,7 @@ bool CdCatXmlHandler::startElement ( const QString & namespaceURI, const QString
     float tf1;
     int   ti1;
 
-    
+    currentText = "";
 
     if ( FREA->error || FREA->pww->doCancel )
 	return false;
