@@ -466,8 +466,28 @@ void  CommentWidget::paintEvent ( QPaintEvent * ) {
 				p.setPen ( *cconfig->comm_stext );
 				w++;
 				p.drawText ( mx+15,my+w,tr ( "Archive contents:" ) );
-// 				w+=pixelsHigh;
-				w++;
+ 				w+=pixelsHigh;
+				//w++;
+				QString archive_header;
+				if (cconfig->show_archive_file_perms)
+					archive_header += tr("Rights")+"\t";
+				
+				if(cconfig->show_archive_file_user)
+					archive_header += tr("Owner")+"\t";
+				
+				if(cconfig->show_archive_file_group)
+					archive_header += tr("Group")+"\t";
+				
+				if(cconfig->show_archive_file_size)
+					archive_header += tr("Size")+"\t";
+				
+				if(cconfig->show_archive_file_date)
+					archive_header += tr("Changed")+"\t\t";
+				
+				if(cconfig->show_archive_file_comment)
+					archive_header += tr("Comment")+"\t";
+				
+				p.drawText (mx+15,my+w, archive_header );
 				
 				p.setPen ( *cconfig->comm_vtext );
 				for ( int i=0;i<ArchiveFileList.size();i++ ) {
@@ -489,7 +509,7 @@ void  CommentWidget::paintEvent ( QPaintEvent * ) {
 						}
 						for ( QStringList::Iterator it2=textList2.begin(); it2 != textList2.end();++it2 ) {
 							w+=pixelsHigh;
-							p.drawText ( mx+20,my+w, ( *it2 ) );
+							p.drawText ( mx+15,my+w, ( *it2 ) );
 							if (p.fontMetrics().boundingRect(*it2).width() > fontwidth)
 								fontwidth = p.fontMetrics().boundingRect(*it2).width()+mx+20;
 						}
@@ -497,7 +517,7 @@ void  CommentWidget::paintEvent ( QPaintEvent * ) {
 					else {
 				// 		cerr << "undersized archivecontent line (" << stringlen <<"): " << qPrintable(prettyArchiveFileLine) << endl;
 						w+=pixelsHigh;
-						p.drawText ( mx+20,my+w, prettyArchiveFileLine );
+						p.drawText ( mx+15,my+w, prettyArchiveFileLine );
 						if (p.fontMetrics().boundingRect(prettyArchiveFileLine).width() > fontwidth)
 							fontwidth = p.fontMetrics().boundingRect(prettyArchiveFileLine).width()+mx+20;
 					}
