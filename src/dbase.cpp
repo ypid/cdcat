@@ -85,8 +85,10 @@ class TestInStream : public C7ZipInStream {
 		TestInStream ( std::string fileName, std::wstring ext ) :
 			m_strFileName ( fileName ),
 			m_strFileExt ( ext ) {
-
-			printf ( "fileName.c_str(): %s\n", fileName.c_str() );
+			DEBUG_INFO_ENABLED = init_debug_info();
+			
+			if ( *DEBUG_INFO_ENABLED )
+			 printf ( "fileName.c_str(): %s\n", fileName.c_str() );
 			m_pFile = fopen ( fileName.c_str(), "rb" );
 			if ( m_pFile ) {
 				fseek ( m_pFile, 0, SEEK_END );
@@ -109,7 +111,8 @@ class TestInStream : public C7ZipInStream {
 
 #endif
 				}
-				printf ( "Ext:%ls\n", m_strFileExt.c_str() );
+				if ( *DEBUG_INFO_ENABLED )
+				    printf ( "Ext:%ls\n", m_strFileExt.c_str() );
 			}
 			else {
 				printf ( "fileName.c_str(): %s cant open\n", fileName.c_str() );
@@ -123,7 +126,10 @@ class TestInStream : public C7ZipInStream {
 
 	public:
 		virtual wstring GetExt() const {
-			printf ( "GetExt:%ls\n", m_strFileExt.c_str() );
+			DEBUG_INFO_ENABLED = init_debug_info();
+			
+			if ( *DEBUG_INFO_ENABLED )
+				    printf ( "GetExt:%ls\n", m_strFileExt.c_str() );
 			return m_strFileExt;
 		}
 
@@ -829,8 +835,7 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 	DEBUG_INFO_ENABLED = init_debug_info();
 	if ( *DEBUG_INFO_ENABLED )
 		std::cerr << "Loading node:" << qPrintable ( what ) << std::endl;
-
-
+	
 	int ret;
 	QString comm = NULL;
 	QList<ArchiveFile> archivecontent = QList<ArchiveFile>();
@@ -932,20 +937,20 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 					if ( doScanArchiveTar ) {
 						if ( extension == "tar" ) {
 							if ( *DEBUG_INFO_ENABLED )
-								std::cerr << "tarfile found: " << qPrintable ( what + fileInfo->fileName() ) << std::endl;
-							archivecontent = scanArchive ( what + fileInfo->fileName(), Archive_tar );
+								std::cerr << "tarfile found: " << qPrintable ( what + "/" + "/" + fileInfo->fileName() ) << std::endl;
+							archivecontent = scanArchive ( what + "/" + fileInfo->fileName(), Archive_tar );
 						}
 						else
 							if ( fileInfo->fileName().lower().section ( '.', -2, -1 ) == "tar.gz" ) {
 								if ( *DEBUG_INFO_ENABLED )
-									std::cerr << "targz found: " << qPrintable ( what + fileInfo->fileName() ) << std::endl;
-								archivecontent = scanArchive ( what + fileInfo->fileName(), Archive_targz );
+									std::cerr << "targz found: " << qPrintable ( what + "/" + fileInfo->fileName() ) << std::endl;
+								archivecontent = scanArchive ( what + "/" + fileInfo->fileName(), Archive_targz );
 							}
 							else
 								if ( fileInfo->fileName().lower().section ( '.', -2, -1 ) == "tar.bz2" ) {
 									if ( *DEBUG_INFO_ENABLED )
-										std::cerr << "tarbz2 found: " << qPrintable ( what + fileInfo->fileName() ) << std::endl;
-									archivecontent = scanArchive ( what + fileInfo->fileName(), Archive_tarbz2 );
+										std::cerr << "tarbz2 found: " << qPrintable ( what + "/" + fileInfo->fileName() ) << std::endl;
+									archivecontent = scanArchive ( what + "/" + fileInfo->fileName(), Archive_tarbz2 );
 								}
 					}
 					if ( doScanArchiveLib7zip )  {

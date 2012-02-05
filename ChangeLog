@@ -1,3 +1,6 @@
+03. Feb 2012 Christoph Thielecke <crissi99@gmx.de>
+	- scanning archve files on subfolder fixed (#3484430)
+
 29. Jan 2012 Christoph Thielecke <crissi99@gmx.de>
 	- wrong disable of fileinfo if readmp3 info is disabled fixed
 	- comment missing from results page when searching fixed (#3480282)
