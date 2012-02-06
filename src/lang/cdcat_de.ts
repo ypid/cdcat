@@ -40,10 +40,6 @@
       <source>unknown</source>
       <translation>unbekannt</translation>
     </message>
-    <message>
-      <source></source>
-      <translation type="unfinished" />
-    </message>
   </context>
   <context>
     <name>CatalogTypeEditDialog</name>
@@ -1032,6 +1028,10 @@ Homepage: %3</translation>
     <message>
       <source>Media</source>
       <translation>Medium</translation>
+    </message>
+    <message>
+      <source>search for duplicates...</source>
+      <translation>nach Duplikaten suchen...</translation>
     </message>
   </context>
   <context>
@@ -2376,6 +2376,57 @@ wird zu
     </message>
   </context>
   <context>
+    <name>findDuplicatesDialog</name>
+    <message>
+      <source>Name</source>
+      <translation>Name</translation>
+    </message>
+    <message>
+      <source>Type</source>
+      <translation>Typ</translation>
+    </message>
+    <message>
+      <source>Size</source>
+      <translation>Grösse</translation>
+    </message>
+    <message>
+      <source>Media</source>
+      <translation>Medium</translation>
+    </message>
+    <message>
+      <source>Path</source>
+      <translation>Pfad</translation>
+    </message>
+    <message>
+      <source>Modification</source>
+      <translation>Änderung</translation>
+    </message>
+    <message>
+      <source>Comment</source>
+      <translation>Kommentar</translation>
+    </message>
+    <message>
+      <source>Search for duplicates in the database...</source>
+      <translation>Nach Duplikaten in der Datenbank suchen...</translation>
+    </message>
+    <message>
+      <source>&amp;Start search</source>
+      <translation>&amp;Suche starten</translation>
+    </message>
+    <message>
+      <source>&amp;Cancel</source>
+      <translation>&amp;Abbrechen</translation>
+    </message>
+    <message>
+      <source>Duplicates for:</source>
+      <translation>Duplikate für:</translation>
+    </message>
+    <message>
+      <source>Close</source>
+      <translation>Schliessen</translation>
+    </message>
+  </context>
+  <context>
     <name>helpDialog</name>
     <message>
       <source>help</source>
@@ -2522,6 +2573,10 @@ E-mail: hyperr@freemail.hu
       <source>Cancel</source>
       <translation>Abbrechen</translation>
     </message>
+    <message>
+      <source>tag: </source>
+      <translation>Tag: </translation>
+    </message>
   </context>
   <context>
     <name>importGtktalogXml</name>
@@ -2639,6 +2694,10 @@ E-mail: hyperr@freemail.hu
     <message>
       <source>Cancel</source>
       <translation>Abbrechen</translation>
+    </message>
+    <message>
+      <source>tag:</source>
+      <translation>Tag:</translation>
     </message>
   </context>
   <context>

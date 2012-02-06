@@ -103,6 +103,8 @@ public slots:
     int followLnk ( void );
     int addlnkEvent ( void );
 
+    int searchDuplicatesEvent( void );
+
     int posEvent ( void );
 
     int openHistoryElementEvent ( int id );

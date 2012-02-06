@@ -48,61 +48,66 @@
         <source>unknown</source>
         <translation type="unfinished">Nepoznato</translation>
     </message>
+    <message>
+        <location filename="../dbase.h" line="89"/>
+        <source></source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CatalogTypeEditDialog</name>
     <message>
-        <location filename="../guibase.cpp" line="2019"/>
+        <location filename="../guibase.cpp" line="2036"/>
         <source>Change media type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2020"/>
+        <location filename="../guibase.cpp" line="2037"/>
         <source>Change type of media</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2022"/>
+        <location filename="../guibase.cpp" line="2039"/>
         <source>CD</source>
         <translation type="unfinished">CD</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2023"/>
+        <location filename="../guibase.cpp" line="2040"/>
         <source>DVD</source>
         <translation type="unfinished">DVD</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2024"/>
+        <location filename="../guibase.cpp" line="2041"/>
         <source>HardDisc</source>
         <translation type="unfinished">HardDisk</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2025"/>
+        <location filename="../guibase.cpp" line="2042"/>
         <source>Floppy</source>
         <translation type="unfinished">Flopi</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2026"/>
+        <location filename="../guibase.cpp" line="2043"/>
         <source>NetworkPlace</source>
         <translation type="unfinished">Mrežni disk</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2027"/>
+        <location filename="../guibase.cpp" line="2044"/>
         <source>FlashDrive</source>
         <translation type="unfinished">Fleš disk</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2028"/>
+        <location filename="../guibase.cpp" line="2045"/>
         <source>OtherDevice</source>
         <translation type="unfinished">Ostali uređaji</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2031"/>
+        <location filename="../guibase.cpp" line="2048"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2032"/>
+        <location filename="../guibase.cpp" line="2049"/>
         <source>OK</source>
         <translation type="unfinished">U redu</translation>
     </message>
@@ -593,7 +598,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Tip:</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="623"/>
+        <location filename="../commwidget.cpp" line="627"/>
         <source>There is no selected element.</source>
         <translation>Ne postoji izabrani element.</translation>
     </message>
@@ -623,12 +628,12 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="426"/>
+        <location filename="../commwidget.cpp" line="430"/>
         <source>Category:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="476"/>
+        <location filename="../commwidget.cpp" line="480"/>
         <source>Archive contents:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -658,42 +663,42 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="563"/>
+        <location filename="../commwidget.cpp" line="567"/>
         <source>File info:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="487"/>
+        <location filename="../commwidget.cpp" line="491"/>
         <source>Rights</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="492"/>
+        <location filename="../commwidget.cpp" line="496"/>
         <source>Owner</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="497"/>
+        <location filename="../commwidget.cpp" line="501"/>
         <source>Group</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="502"/>
+        <location filename="../commwidget.cpp" line="506"/>
         <source>Size</source>
         <translation type="unfinished">Veličina</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="507"/>
+        <location filename="../commwidget.cpp" line="511"/>
         <source>Changed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="517"/>
+        <location filename="../commwidget.cpp" line="521"/>
         <source>Comment</source>
         <translation type="unfinished">Komentar</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="512"/>
+        <location filename="../commwidget.cpp" line="516"/>
         <source>Path</source>
         <translation type="unfinished">Putanja</translation>
     </message>
@@ -960,42 +965,42 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Katalog</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1557"/>
+        <location filename="../guibase.cpp" line="1561"/>
         <source>Unknown(DB)</source>
         <translation>Nepoznato(DB)</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1561"/>
+        <location filename="../guibase.cpp" line="1565"/>
         <source>CD</source>
         <translation>CD</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1565"/>
+        <location filename="../guibase.cpp" line="1569"/>
         <source>DVD</source>
         <translation>DVD</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1569"/>
+        <location filename="../guibase.cpp" line="1573"/>
         <source>HardDisc</source>
         <translation>HardDisk</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1573"/>
+        <location filename="../guibase.cpp" line="1577"/>
         <source>Floppy</source>
         <translation>Flopi</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1577"/>
+        <location filename="../guibase.cpp" line="1581"/>
         <source>NetworkDrv</source>
         <translation>Mrežni disk</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1581"/>
+        <location filename="../guibase.cpp" line="1585"/>
         <source>FlashDrv</source>
         <translation>Fleš disk</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1585"/>
+        <location filename="../guibase.cpp" line="1589"/>
         <source>OtherDevice</source>
         <translation>Ostali uređaji</translation>
     </message>
@@ -1015,17 +1020,17 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Hyper&apos;s CD Catalogizer</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1483"/>
+        <location filename="../guibase.cpp" line="1487"/>
         <source>CdCat databases (*.hcf )</source>
         <translation>CdCat baze (*.hcf)</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="894"/>
+        <location filename="../guibase.cpp" line="898"/>
         <source>Open a file...</source>
         <translation>Otvori fajl...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1822"/>
+        <location filename="../guibase.cpp" line="1825"/>
         <source>Error while opening...</source>
         <translation>Greška prilikom otvaranja...</translation>
     </message>
@@ -1035,69 +1040,69 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">U redu</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1023"/>
+        <location filename="../guibase.cpp" line="1027"/>
         <source>Save to file...</source>
         <translation>Sačuvaj u fajl...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1044"/>
+        <location filename="../guibase.cpp" line="1048"/>
         <source>Error while saving...</source>
         <translation>Greška prilikom sačuvavanja...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1072"/>
+        <location filename="../guibase.cpp" line="1076"/>
         <source>Closing previous database...</source>
         <translation>Zatvaram predhodnu bazu...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1072"/>
+        <location filename="../guibase.cpp" line="1076"/>
         <source>Do you want to save the changes?</source>
         <translation>Da li želiš da sačuvaš promene?</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1884"/>
+        <location filename="../guibase.cpp" line="1887"/>
         <source>Yes</source>
         <translation>Da</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1884"/>
+        <location filename="../guibase.cpp" line="1887"/>
         <source>No</source>
         <translation>Ne</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1619"/>
+        <location filename="../guibase.cpp" line="1901"/>
         <source>Error:</source>
         <translation>Greška:</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1105"/>
+        <location filename="../guibase.cpp" line="1109"/>
         <source>Do you really want to delete this?: 
 %1</source>
         <translation>Da li zaista želiš da obrišep ovo?:
 %1</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1882"/>
+        <location filename="../guibase.cpp" line="1885"/>
         <source>Confirmation</source>
         <translation>Potvrda</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1271"/>
+        <location filename="../guibase.cpp" line="1275"/>
         <source>Warning...</source>
         <translation>Upozorenje...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1386"/>
+        <location filename="../guibase.cpp" line="1390"/>
         <source>You can refresh ONLY a MEDIA node!</source>
         <translation>Možeš da osvežiš SAMO MEDIA čvor!</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1483"/>
+        <location filename="../guibase.cpp" line="1487"/>
         <source>Insert a database file...</source>
         <translation>Ubaci fajl baze...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1625"/>
+        <location filename="../guibase.cpp" line="1629"/>
         <source>The size of &quot;%1&quot; : 
  %2 
  %3 file /%4 directory</source>
@@ -1106,87 +1111,87 @@ It is necessary because I&apos;d like to save the config file into your home dir
  %3 fajl /%4 direktorijum</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1164"/>
+        <location filename="../guibase.cpp" line="1168"/>
         <source>Cannot mount CD</source>
         <translation>Ne mogu da montiram CD</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1329"/>
+        <location filename="../guibase.cpp" line="1333"/>
         <source>Cannot eject CD!</source>
         <translation>Ne mogu da izbacim CD!</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1164"/>
+        <location filename="../guibase.cpp" line="1168"/>
         <source>I can&apos;t find the &quot;mount&quot; program</source>
         <translation>Ne mogu da nađem program &quot;mount&quot;</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1347"/>
+        <location filename="../guibase.cpp" line="1351"/>
         <source>Cannot mount CD!</source>
         <translation>Ne mogu da montiram CD!</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1302"/>
+        <location filename="../guibase.cpp" line="1306"/>
         <source>Cannot eject CD</source>
         <translation>Ne mogu da izbacim CD</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1302"/>
+        <location filename="../guibase.cpp" line="1306"/>
         <source>I can&apos;t find the &quot;eject&quot; program</source>
         <translation>Ne mogu da nađem program &quot;eject&quot;</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="653"/>
+        <location filename="../guibase.cpp" line="657"/>
         <source>Rename node...</source>
         <translation>Promeni naziv čvora...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="654"/>
+        <location filename="../guibase.cpp" line="658"/>
         <source>Delete node</source>
         <translation>Obriši čvor</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="663"/>
+        <location filename="../guibase.cpp" line="667"/>
         <source>Rescan media...</source>
         <translation>Ponovo skeniraj  medij...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="670"/>
+        <location filename="../guibase.cpp" line="674"/>
         <source>Add media...</source>
         <translation>Dodaj medij...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="672"/>
+        <location filename="../guibase.cpp" line="676"/>
         <source>Insert Catalog...</source>
         <translation>Ubaci katalog...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1390"/>
+        <location filename="../guibase.cpp" line="1394"/>
         <source>Rescan %1</source>
         <translation>Ponovo skeniraj  %1</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="664"/>
+        <location filename="../guibase.cpp" line="668"/>
         <source>Re-Number media...</source>
         <translation>Promeni broj medija...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1604"/>
+        <location filename="../guibase.cpp" line="1608"/>
         <source>It is NOT a media node!</source>
         <translation>To nije media čvor!</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="648"/>
+        <location filename="../guibase.cpp" line="652"/>
         <source>Node size</source>
         <translation>Veličina čvora</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="645"/>
+        <location filename="../guibase.cpp" line="649"/>
         <source>View/Edit Comment...</source>
         <translation>Pogledaj/Izmeni komentar...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="675"/>
+        <location filename="../guibase.cpp" line="679"/>
         <source>Close all branch</source>
         <translation>Zatvori sve grane</translation>
     </message>
@@ -1196,43 +1201,43 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Prokaži/Izbaci sadržaj...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1619"/>
+        <location filename="../guibase.cpp" line="1901"/>
         <source>There is no selected item in the middle list box!</source>
         <translation>Ne postoji izabrana stavka u srednjem spisku!</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1271"/>
+        <location filename="../guibase.cpp" line="1275"/>
         <source>An error occured while scanning,
 the DataBase may be incomplete</source>
         <translation>Prilikom skeniranja je došlo do greške,
 moguće da je baza nepotpuna</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1382"/>
+        <location filename="../guibase.cpp" line="1386"/>
         <source>There is no selected Media in the middle list box!</source>
         <translation>Ne postoji izabrani medij u srednjem spisku!</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1402"/>
+        <location filename="../guibase.cpp" line="1406"/>
         <source>An error occured while scanning, the rescan operation was cancelled: 
 %1</source>
         <translation>Prilikom skeniranja je došlo do greške, opcija ponovnog skeniranje je poništena:
 %1</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="659"/>
+        <location filename="../guibase.cpp" line="663"/>
         <source>Borrow this media to...</source>
         <translation>Pozajmi medij...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1883"/>
+        <location filename="../guibase.cpp" line="1886"/>
         <source>Do you want to clear the borrowing mark from media &quot;%1&quot;?
 (Say yes if you got it back.)</source>
         <translation>Da li želiš da poništiš oznaku pozajmljen za medij &quot;%1&quot;?
 (Kaži Da ako ti je medij vraćen.)</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="661"/>
+        <location filename="../guibase.cpp" line="665"/>
         <source>I got it back! (clear borrowing mark)</source>
         <translation>Vraćen mi je! (oriši oznaku pozajmljen)</translation>
     </message>
@@ -1247,12 +1252,12 @@ moguće da je baza nepotpuna</translation>
         <translation>Prati link (Otvori ga) !</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="671"/>
+        <location filename="../guibase.cpp" line="675"/>
         <source>Add a link to a CdCAt Catalog...</source>
         <translation>Dodaj link CdCat Katalogu...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1799"/>
+        <location filename="../guibase.cpp" line="1802"/>
         <source>The link is empty.</source>
         <translation>Ovaj link je prazan.</translation>
     </message>
@@ -1295,49 +1300,54 @@ Homepage: %3</translation>
         <translation type="obsolete">Rezultat:</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="646"/>
+        <location filename="../guibase.cpp" line="650"/>
         <source>View/Edit Category...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="667"/>
+        <location filename="../guibase.cpp" line="671"/>
         <source>Change media type...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1142"/>
+        <location filename="../guibase.cpp" line="1146"/>
         <source>Scanning directory tree, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1391"/>
+        <location filename="../guibase.cpp" line="1395"/>
         <source>Select directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1626"/>
+        <location filename="../guibase.cpp" line="1630"/>
         <source>MiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1630"/>
+        <location filename="../guibase.cpp" line="1634"/>
         <source>The result:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1225"/>
+        <location filename="../guibase.cpp" line="1229"/>
         <source>Enter media name...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1226"/>
+        <location filename="../guibase.cpp" line="1230"/>
         <source>Media name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1227"/>
+        <location filename="../guibase.cpp" line="1231"/>
         <source>Media</source>
         <translation type="unfinished">Medij</translation>
+    </message>
+    <message>
+        <location filename="../guibase.cpp" line="624"/>
+        <source>search for duplicates...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1396,17 +1406,17 @@ Homepage: %3</translation>
 <context>
     <name>HQListView</name>
     <message>
-        <location filename="../guibase.cpp" line="764"/>
+        <location filename="../guibase.cpp" line="768"/>
         <source>Name</source>
         <translation>Ime</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="765"/>
+        <location filename="../guibase.cpp" line="769"/>
         <source>Size</source>
         <translation>Veličina</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="766"/>
+        <location filename="../guibase.cpp" line="770"/>
         <source>Type</source>
         <translation>Tip</translation>
     </message>
@@ -1459,7 +1469,7 @@ Homepage: %3</translation>
         <translation type="obsolete">Dijalog za Otvaranje fajla</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="315"/>
+        <location filename="../importdialog.cpp" line="318"/>
         <source>Choose a file for import</source>
         <translation>Izaberi fajl za uvoz</translation>
     </message>
@@ -1960,7 +1970,7 @@ Homepage: %3</translation>
         <translation>Sample/s</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2427"/>
+        <location filename="../import.cpp" line="2492"/>
         <source>importuser</source>
         <translation type="unfinished">uvezi korisnika</translation>
     </message>
@@ -2550,22 +2560,22 @@ Homepage: %3</translation>
         <translation type="obsolete">Izmeni komentar</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="772"/>
+        <location filename="../commwidget.cpp" line="776"/>
         <source>Cancel</source>
         <translation>Otkaži</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="773"/>
+        <location filename="../commwidget.cpp" line="777"/>
         <source>OK</source>
         <translation>U redu</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="769"/>
+        <location filename="../commwidget.cpp" line="773"/>
         <source>Edit comment of</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="771"/>
+        <location filename="../commwidget.cpp" line="775"/>
         <source>Edit category of</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2573,62 +2583,62 @@ Homepage: %3</translation>
 <context>
     <name>exportCdcatDB</name>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="279"/>
+        <location filename="../exportcdcatdb.cpp" line="286"/>
         <source>Availiable media</source>
         <translation>Prisutni mediji</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="290"/>
+        <location filename="../exportcdcatdb.cpp" line="297"/>
         <source>Media to export</source>
         <translation>Medij za izvoz</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="291"/>
+        <location filename="../exportcdcatdb.cpp" line="298"/>
         <source>All media</source>
         <translation>Svi mediji</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="299"/>
+        <location filename="../exportcdcatdb.cpp" line="306"/>
         <source>separator:</source>
         <translation>Separator:</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="300"/>
+        <location filename="../exportcdcatdb.cpp" line="307"/>
         <source>File to export:</source>
         <translation>Fajl za izvoz:</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="301"/>
+        <location filename="../exportcdcatdb.cpp" line="308"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="302"/>
+        <location filename="../exportcdcatdb.cpp" line="309"/>
         <source>&amp;OK</source>
         <translation>&amp;U redu</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="321"/>
+        <location filename="../exportcdcatdb.cpp" line="328"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Otkaži</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="372"/>
+        <location filename="../exportcdcatdb.cpp" line="379"/>
         <source>Filename missing</source>
         <translation>Nedostaje ime fajla</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="372"/>
+        <location filename="../exportcdcatdb.cpp" line="379"/>
         <source>Please enter a filename!</source>
         <translation>Unesite ime fajla!</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="374"/>
+        <location filename="../exportcdcatdb.cpp" line="381"/>
         <source>Separator missing</source>
         <translation>Nedostaje separator</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="374"/>
+        <location filename="../exportcdcatdb.cpp" line="381"/>
         <source>Please enter a separator!</source>
         <translation>Unesite separator!</translation>
     </message>
@@ -2643,7 +2653,7 @@ Homepage: %3</translation>
         <translation type="obsolete">U redu</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="655"/>
+        <location filename="../exportcdcatdb.cpp" line="662"/>
         <source>All files (*.*)</source>
         <translation>Svi fajlovi(*.*)</translation>
     </message>
@@ -2653,62 +2663,62 @@ Homepage: %3</translation>
         <translation type="obsolete">izbor fajla</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="655"/>
+        <location filename="../exportcdcatdb.cpp" line="662"/>
         <source>Choose a file!</source>
         <translation>Izaberi fajl!</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="287"/>
+        <location filename="../exportcdcatdb.cpp" line="294"/>
         <source>Add media</source>
         <translation>Dodaj medij</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="284"/>
+        <location filename="../exportcdcatdb.cpp" line="291"/>
         <source>Remove media</source>
         <translation>Ukloni medij</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="294"/>
+        <location filename="../exportcdcatdb.cpp" line="301"/>
         <source>Type</source>
         <translation>Tip</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="295"/>
+        <location filename="../exportcdcatdb.cpp" line="302"/>
         <source>export as HTML</source>
         <translation>Izvezi kao HTML</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="296"/>
+        <location filename="../exportcdcatdb.cpp" line="303"/>
         <source>export as CSV</source>
         <translation>Izvezi kao CSV</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="453"/>
+        <location filename="../exportcdcatdb.cpp" line="460"/>
         <source>Media</source>
         <translation>Medij</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="438"/>
+        <location filename="../exportcdcatdb.cpp" line="445"/>
         <source>File</source>
         <translation>Fajl</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="480"/>
+        <location filename="../exportcdcatdb.cpp" line="487"/>
         <source>Size</source>
         <translation>Veličina</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="485"/>
+        <location filename="../exportcdcatdb.cpp" line="492"/>
         <source>Date</source>
         <translation>Datum</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="578"/>
+        <location filename="../exportcdcatdb.cpp" line="585"/>
         <source>I can&apos;t create or rewrite the file</source>
         <translation>Ne mogu da kreiram ili upišem fajl</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="412"/>
+        <location filename="../exportcdcatdb.cpp" line="419"/>
         <source>Export from cdcat:</source>
         <translation>Izvoz iz cdcata:</translation>
     </message>
@@ -2728,22 +2738,22 @@ Homepage: %3</translation>
         <translation type="obsolete">Samo naziv medija</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="465"/>
+        <location filename="../exportcdcatdb.cpp" line="472"/>
         <source>Media name</source>
         <translation>Naziv medija</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="475"/>
+        <location filename="../exportcdcatdb.cpp" line="482"/>
         <source>Path</source>
         <translation>Putanja</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="490"/>
+        <location filename="../exportcdcatdb.cpp" line="497"/>
         <source>Comment</source>
         <translation>Komentar</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="313"/>
+        <location filename="../exportcdcatdb.cpp" line="320"/>
         <source>HTML headline</source>
         <translation>HTML naslov</translation>
     </message>
@@ -2753,122 +2763,122 @@ Homepage: %3</translation>
         <translation type="obsolete">header tabele</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="518"/>
+        <location filename="../exportcdcatdb.cpp" line="525"/>
         <source>Overwrite?</source>
         <translation>Upisati preko?</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="519"/>
+        <location filename="../exportcdcatdb.cpp" line="526"/>
         <source>Do you want overwrite this file?</source>
         <translation>Da li želite da upišete preko ovog fajla?</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="524"/>
+        <location filename="../exportcdcatdb.cpp" line="531"/>
         <source>Yes</source>
         <translation>Da</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="525"/>
+        <location filename="../exportcdcatdb.cpp" line="532"/>
         <source>Discard</source>
         <translation>Zaboravi</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="343"/>
+        <location filename="../exportcdcatdb.cpp" line="350"/>
         <source>Export CdCat database: </source>
         <translation>Izvezi CdCat bazu: </translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="292"/>
+        <location filename="../exportcdcatdb.cpp" line="299"/>
         <source>Only media</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="297"/>
+        <location filename="../exportcdcatdb.cpp" line="304"/>
         <source>export as XML</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="470"/>
+        <location filename="../exportcdcatdb.cpp" line="477"/>
         <source>Media number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="503"/>
+        <location filename="../exportcdcatdb.cpp" line="510"/>
         <source>Category</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="311"/>
+        <location filename="../exportcdcatdb.cpp" line="318"/>
         <source>export mp3 tag</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="312"/>
+        <location filename="../exportcdcatdb.cpp" line="319"/>
         <source>export borrow information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="314"/>
+        <location filename="../exportcdcatdb.cpp" line="321"/>
         <source>table header/comment line</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="460"/>
+        <location filename="../exportcdcatdb.cpp" line="467"/>
         <source>Export from cdcat, catalog:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="461"/>
+        <location filename="../exportcdcatdb.cpp" line="468"/>
         <source>Generated at:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="436"/>
+        <location filename="../exportcdcatdb.cpp" line="443"/>
         <source>#</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="495"/>
+        <location filename="../exportcdcatdb.cpp" line="502"/>
         <source>MP3 tag</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="499"/>
+        <location filename="../exportcdcatdb.cpp" line="506"/>
         <source>Borrow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="462"/>
+        <location filename="../exportcdcatdb.cpp" line="469"/>
         <source>field list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="530"/>
+        <location filename="../exportcdcatdb.cpp" line="537"/>
         <source>Exporting, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="578"/>
+        <location filename="../exportcdcatdb.cpp" line="585"/>
         <source>Error during write export...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="976"/>
+        <location filename="../exportcdcatdb.cpp" line="983"/>
         <source>Artist:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="977"/>
+        <location filename="../exportcdcatdb.cpp" line="984"/>
         <source>Title:</source>
         <translation type="unfinished">Naziv:</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="978"/>
+        <location filename="../exportcdcatdb.cpp" line="985"/>
         <source>Album:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="979"/>
+        <location filename="../exportcdcatdb.cpp" line="986"/>
         <source>Year:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3152,6 +3162,69 @@ Homepage: %3</translation>
     </message>
 </context>
 <context>
+    <name>findDuplicatesDialog</name>
+    <message>
+        <location filename="../find.cpp" line="897"/>
+        <source>Name</source>
+        <translation type="unfinished">Ime</translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="898"/>
+        <source>Type</source>
+        <translation type="unfinished">Tip</translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="899"/>
+        <source>Size</source>
+        <translation type="unfinished">Veličina</translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="900"/>
+        <source>Media</source>
+        <translation type="unfinished">Medij</translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="901"/>
+        <source>Path</source>
+        <translation type="unfinished">Putanja</translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="902"/>
+        <source>Modification</source>
+        <translation type="unfinished">Promena</translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="903"/>
+        <source>Comment</source>
+        <translation type="unfinished">Komentar</translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="896"/>
+        <source>Search for duplicates in the database...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="905"/>
+        <source>&amp;Start search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="909"/>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished">&amp;Otkaži</translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="913"/>
+        <source>Duplicates for:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="914"/>
+        <source>Close</source>
+        <translation type="unfinished">Zatvori</translation>
+    </message>
+</context>
+<context>
     <name>helpDialog</name>
     <message>
         <location filename="../help.ui" line="14"/>
@@ -3230,84 +3303,84 @@ E-mail: hyperr@freemail.hu
 <context>
     <name>importGtktalogCsv</name>
     <message>
-        <location filename="../import.cpp" line="1404"/>
+        <location filename="../import.cpp" line="1422"/>
         <source>Import was successful.</source>
         <translation>Uvoz je bio uspešan.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1407"/>
+        <location filename="../import.cpp" line="1425"/>
         <source>1 media</source>
         <translation>1 medij</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1409"/>
+        <location filename="../import.cpp" line="1427"/>
         <source>media</source>
         <translation>medij</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1412"/>
+        <location filename="../import.cpp" line="1430"/>
         <source>1 directory:,
 </source>
         <translation>1 direktorijum:,
 </translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1414"/>
+        <location filename="../import.cpp" line="1432"/>
         <source>directories</source>
         <translation>direktorijumi</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1417"/>
+        <location filename="../import.cpp" line="1435"/>
         <source>1 File</source>
         <translation>1 Fajl</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1419"/>
+        <location filename="../import.cpp" line="1437"/>
         <source>files</source>
         <translation>fajlovi</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1421"/>
+        <location filename="../import.cpp" line="1439"/>
         <source>are imported.</source>
         <translation>su uvezeni.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1423"/>
+        <location filename="../import.cpp" line="1441"/>
         <source>Import successful</source>
         <translation>Uvoz uspešan</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1428"/>
+        <location filename="../import.cpp" line="1447"/>
         <source>file read error</source>
         <translation>greška pri čitanju fajla</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1428"/>
+        <location filename="../import.cpp" line="1447"/>
         <source>Could not read file</source>
         <translation>Ne mogu da čitam fajl</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1431"/>
+        <location filename="../import.cpp" line="1450"/>
         <source>Fatal error</source>
         <translation>Fatalna greška</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1431"/>
+        <location filename="../import.cpp" line="1450"/>
         <source>Fatal error occured.</source>
         <translation>Desila se fatalna greška.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1434"/>
+        <location filename="../import.cpp" line="1453"/>
         <source>file open error</source>
         <translation>greška pri otvaranju fajla</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1434"/>
+        <location filename="../import.cpp" line="1453"/>
         <source>Could not open file</source>
         <translation>Ne mogu da otvorim fajl</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1473"/>
+        <location filename="../import.cpp" line="1492"/>
         <source>importuser</source>
         <translation>uvezi korisnika</translation>
     </message>
@@ -3321,78 +3394,83 @@ E-mail: hyperr@freemail.hu
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../import.cpp" line="1351"/>
+        <source>tag: </source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>importGtktalogXml</name>
     <message>
-        <location filename="../import.cpp" line="1865"/>
+        <location filename="../import.cpp" line="1895"/>
         <source>Importing XML...</source>
         <translation>Uvoz XML...</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1901"/>
+        <location filename="../import.cpp" line="1932"/>
         <source>XML import was successful.</source>
         <translation>XML uvoz je bio uspešan.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1904"/>
+        <location filename="../import.cpp" line="1935"/>
         <source>1 media</source>
         <translation>1 medij</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1906"/>
+        <location filename="../import.cpp" line="1937"/>
         <source>media</source>
         <translation>Medij</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1909"/>
+        <location filename="../import.cpp" line="1940"/>
         <source>1 directory:,
 </source>
         <translation>1 direktorijum:,
 </translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1911"/>
+        <location filename="../import.cpp" line="1942"/>
         <source>directories</source>
         <translation>direktorijumi</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1914"/>
+        <location filename="../import.cpp" line="1945"/>
         <source>1 File</source>
         <translation>1 Fajl</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1916"/>
+        <location filename="../import.cpp" line="1947"/>
         <source>files</source>
         <translation>fajlovi</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1918"/>
+        <location filename="../import.cpp" line="1949"/>
         <source>are imported.</source>
         <translation>su uvezeni.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1920"/>
+        <location filename="../import.cpp" line="1951"/>
         <source>Import successful</source>
         <translation>Uvoz uspešan</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1924"/>
+        <location filename="../import.cpp" line="1956"/>
         <source>parse error</source>
         <translation>greška pri obradi</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1924"/>
+        <location filename="../import.cpp" line="1956"/>
         <source>error during parsing</source>
         <translation>greška pri obradi</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2038"/>
+        <location filename="../import.cpp" line="2070"/>
         <source>importuser</source>
         <translation>uvezi korisnika</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1865"/>
+        <location filename="../import.cpp" line="1895"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3400,70 +3478,75 @@ E-mail: hyperr@freemail.hu
 <context>
     <name>importWhereIsItXml</name>
     <message>
-        <location filename="../import.cpp" line="2674"/>
+        <location filename="../import.cpp" line="2740"/>
         <source>Importing XML...</source>
         <translation>Uvoz XML...</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2709"/>
+        <location filename="../import.cpp" line="2776"/>
         <source>Importing XML from WhereIsIt was successful.</source>
         <translation>XML uvoz je bio uspešan.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2712"/>
+        <location filename="../import.cpp" line="2779"/>
         <source>1 media</source>
         <translation>1 medij</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2714"/>
+        <location filename="../import.cpp" line="2781"/>
         <source>media</source>
         <translation>Medij</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2717"/>
+        <location filename="../import.cpp" line="2784"/>
         <source>1 directory:,
 </source>
         <translation>1 direktorijum:,
 </translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2719"/>
+        <location filename="../import.cpp" line="2786"/>
         <source>directories</source>
         <translation>direktorijumi</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2722"/>
+        <location filename="../import.cpp" line="2789"/>
         <source>1 File</source>
         <translation>1 Fajl</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2724"/>
+        <location filename="../import.cpp" line="2791"/>
         <source>files</source>
         <translation>fajlovi</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2726"/>
+        <location filename="../import.cpp" line="2793"/>
         <source>are imported.</source>
         <translation>su uvezeni.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2728"/>
+        <location filename="../import.cpp" line="2795"/>
         <source>Import successful</source>
         <translation>Uvoz uspešan</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2732"/>
+        <location filename="../import.cpp" line="2800"/>
         <source>parse error</source>
         <translation>greška pri obradi</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2732"/>
+        <location filename="../import.cpp" line="2800"/>
         <source>error during parsing</source>
         <translation>greška pri obradi</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2674"/>
+        <location filename="../import.cpp" line="2740"/>
         <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../import.cpp" line="2471"/>
+        <source>tag:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3614,7 +3697,7 @@ E-mail: hyperr@freemail.hu
 <context>
     <name>seekEngine</name>
     <message>
-        <location filename="../find.cpp" line="809"/>
+        <location filename="../find.cpp" line="1003"/>
         <source>Error in the pattern:</source>
         <translation>Greška u pretraživanju:</translation>
     </message>
@@ -3624,47 +3707,47 @@ E-mail: hyperr@freemail.hu
         <translation type="obsolete">U redu</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="894"/>
+        <location filename="../find.cpp" line="1087"/>
         <source>There is no matching.</source>
         <translation>Nema poklapanja.</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1315"/>
+        <location filename="../find.cpp" line="1554"/>
         <source>dir</source>
         <translation>direktorijum</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1320"/>
+        <location filename="../find.cpp" line="1559"/>
         <source>file</source>
         <translation>fajl</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1327"/>
+        <location filename="../find.cpp" line="1566"/>
         <source>error</source>
         <translation>greška</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1310"/>
+        <location filename="../find.cpp" line="1549"/>
         <source>media</source>
         <translation>medij</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="825"/>
+        <location filename="../find.cpp" line="1019"/>
         <source>Searching, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="890"/>
+        <location filename="../find.cpp" line="1084"/>
         <source>Search cancelled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="890"/>
+        <location filename="../find.cpp" line="1084"/>
         <source>You have cancelled searching.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1174"/>
+        <location filename="../find.cpp" line="1410"/>
         <source>File in archive: </source>
         <translation type="unfinished"></translation>
     </message>

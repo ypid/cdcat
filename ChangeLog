@@ -8,6 +8,7 @@
 	- csv import from whereisit within multiple disks fixed (thanks to blueday)
 	- set last used dir on import dialog
 	- set last used dir if last dir is not set to home dir at export dialog
+	- duplicate file search inside catalog added (use context menu entry on a file node)
 
 03. Feb 2012 Christoph Thielecke <crissi99@gmx.de>
 	- scanning archve files on subfolder fixed (#3484430)

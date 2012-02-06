@@ -762,6 +762,160 @@ void findDialog::exportResultClicked() {
 }
 
 
+findDuplicatesDialog::findDuplicatesDialog ( CdCatMainWidget* parent, const char* name, bool modal, Qt::WFlags fl )
+        : QDialog ( parent, name, modal, fl )
+
+{
+    if ( !name )
+        setName ( "findDuplicatesDialog" );
+    setIcon ( *get_t_find_icon() );
+
+    mainw = parent;
+    searchFilepath = "";
+    if (mainw->guis->standON != NULL)
+	searchFilepath = mainw->guis->standON->getFullPath();
+
+    setSizeGripEnabled ( TRUE );
+    FindDialogBaseLayout = new Q3GridLayout ( this, 1, 1, 11, 6, "FindDialogBaseLayout" );
+
+    QSpacerItem* spacer_4 = new QSpacerItem ( 200, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
+    QSpacerItem* spacer_5 = new QSpacerItem ( 36, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
+    QSpacerItem* spacer_6 = new QSpacerItem ( 190, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
+    QSpacerItem* spacer_7 = new QSpacerItem ( 200, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
+    QSpacerItem* spacer_8 = new QSpacerItem ( 190, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
+    QSpacerItem* spacer_9 = new QSpacerItem ( 190, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
+    QSpacerItem* spacer_10 = new QSpacerItem ( 200, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
+    QSpacerItem* spacer_11 = new QSpacerItem ( 200, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
+    QSpacerItem* spacer_12 = new QSpacerItem ( 200, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
+
+    layout40 = new Q3VBoxLayout ( 0, 0, 6, "layout40" );
+    layout39 = new Q3GridLayout ( 0, 1, 1, 0, 6, "layout39" );
+//     layout36 = new Q3GridLayout ( 0, 1, 1, 0, 6, "layout36" );
+//     layout37 = new Q3GridLayout ( 0, 1, 1, 0, 6, "layout37" );
+    layout31 = new Q3VBoxLayout ( 0, 0, 6, "layout31" );
+    layout17 = new Q3HBoxLayout ( 0, 0, 6, "layout17" );
+    layout15 = new Q3GridLayout ( 0, 1, 1, 0, 6, "layout15" );
+    layout30 = new Q3HBoxLayout ( 0, 0, 6, "layout30" );
+    layout16 = new Q3GridLayout ( 0, 1, 1, 0, 6, "layout16" );
+
+    buttonOk = new QPushButton ( this, "buttonOk" );
+    buttonOk->setAutoDefault ( TRUE );
+    buttonOk->setDefault ( TRUE );
+    buttonOk->setMinimumWidth ( 80 );
+
+    buttonCancel = new QPushButton ( this, "buttonCancel" );
+    buttonCancel->setAutoDefault ( TRUE );
+    buttonCancel->setMinimumWidth ( 80 );
+
+    textLabel5 = new QLabel ( this, "textLabel5" );
+
+    resultsl = new Q3ListView ( this, "resultsl" );
+    resultsl->addColumn ( tr ( "Name" ) );
+    resultsl->addColumn ( tr ( "Type" ) );
+    resultsl->addColumn ( tr ( "Size" ) );
+    resultsl->addColumn ( tr ( "Media" ) );
+    resultsl->addColumn ( tr ( "Path" ) );
+    resultsl->addColumn ( tr ( "Modification" ) );
+    resultsl->addColumn ( tr ( "Comment" ) );
+
+    resultsl->setColumnAlignment(2, Qt::AlignRight );
+    resultsl->setColumnWidthMode(0, Q3ListView::Maximum);
+
+    buttonClose = new QPushButton ( this, "buttonClose" );
+
+    layout30->addItem ( spacer_7 );
+    layout30->addWidget ( textLabel5 );
+    layout30->addItem ( spacer_8 );
+
+    layout15->addWidget ( buttonOk, 0, 0 );
+    layout15->addItem ( spacer_5, 0, 1 );
+    layout15->addWidget ( buttonCancel, 0, 2 );
+
+    layout16->addItem ( spacer_9, 0, 2 );
+    layout16->addWidget ( buttonClose, 0, 1 );
+    layout16->addItem ( spacer_10, 0, 0 );
+    layout16->addItem ( spacer_11, 0, 2 );
+    layout16->addItem ( spacer_12, 0, 5 );
+
+    layout17->addItem ( spacer_6 );
+    layout17->addLayout ( layout15 );
+    layout17->addItem ( spacer_4 );
+
+
+    layout31->addLayout ( layout17 );
+    layout31->addLayout ( layout30 );
+    layout31->addWidget ( resultsl );
+    layout31->addLayout ( layout16 );
+
+    layout40->addLayout ( layout39 );
+    layout40->addLayout ( layout31 );
+
+    FindDialogBaseLayout->addLayout ( layout40, 0, 0 );
+
+    resize ( QSize ( mainw->cconfig->findWidth,mainw->cconfig->findHeight ).expandedTo ( minimumSizeHint() ) );
+    move ( mainw->cconfig->findX,mainw->cconfig->findY );
+
+    languageChange();
+
+    connect ( buttonCancel,SIGNAL ( clicked() ),this,SLOT ( cancele() ) );
+    connect ( buttonOk,SIGNAL ( clicked() ),this,SLOT ( seeke() ) );
+    connect ( buttonClose,SIGNAL ( clicked() ),this,SLOT ( closee() ) );
+
+}
+
+findDuplicatesDialog::~findDuplicatesDialog() {
+
+
+}
+
+int findDuplicatesDialog::closee ( void ) {
+    close ();
+    return 0;
+}
+/***************************************************************************/
+int findDuplicatesDialog::cancele ( void ) {
+
+    close();
+    return 0;
+}
+
+int findDuplicatesDialog::seeke ( void ) {
+    seekEngine *se;
+
+    if ( mainw == NULL && mainw->db == NULL )
+        return 0;
+
+    
+    se = new seekEngine ( this );
+    se->start_seek();
+    delete se;
+    return 0;
+}
+
+void findDuplicatesDialog::languageChange() {
+    setCaption ( tr ( "Search for duplicates in the database..." ) );
+    resultsl->header()->setLabel ( 0, tr ( "Name" ) );
+    resultsl->header()->setLabel ( 1, tr ( "Type" ) );
+    resultsl->header()->setLabel ( 2, tr ( "Size" ) );
+    resultsl->header()->setLabel ( 3, tr ( "Media" ) );
+    resultsl->header()->setLabel ( 4, tr ( "Path" ) );
+    resultsl->header()->setLabel ( 5, tr ( "Modification" ) );
+    resultsl->header()->setLabel ( 6, tr ( "Comment" ) );
+
+    buttonOk->setText ( tr ( "&Start search" ) );
+#ifndef _WIN32
+    buttonOk->setAccel ( QKeySequence ( QString::null ) );
+#endif
+    buttonCancel->setText ( tr ( "&Cancel" ) );
+#ifndef _WIN32
+    buttonCancel->setAccel ( QKeySequence ( QString::null ) );
+#endif
+    textLabel5->setText ( tr ( "Duplicates for:" )+" "+searchFilepath );
+    buttonClose->setText ( tr ( "Close" ) );
+
+    resultsl->clear();
+}
+
 
 /***************************************************************************
 
@@ -773,7 +927,16 @@ seekEngine::seekEngine ( findDialog *fdp ) {
     fd   = fdp;
     patt = new char[2048];
     re = new QRegExp();
+    searchForDuplicates = false;
 }
+
+seekEngine::seekEngine ( findDuplicatesDialog *fdp ) {
+    this->fdp   = fdp;
+    patt = new char[2048];
+    re = new QRegExp();
+    searchForDuplicates = true;
+}
+
 /***************************************************************************/
 seekEngine::~seekEngine ( void ) {
     delete [] patt;
@@ -782,122 +945,153 @@ seekEngine::~seekEngine ( void ) {
 /***************************************************************************/
 int seekEngine::start_seek ( void ) {
     DEBUG_INFO_ENABLED = init_debug_info();
-    //get the pattern
-    if ( fd->cbEasy->isChecked() )
-	strncpy ( patt, ( const char * ) ( ( QTextCodec::codecForLocale() )->fromUnicode ( "*"+fd->leText->text()+"*" ) ), 2047 );
-    else
-        strncpy ( patt, ( const char * ) ( ( QTextCodec::codecForLocale() )->fromUnicode ( fd->leText->text() ) ), 2047 );
+    if (searchForDuplicates) {
 
-    //recode the pattern /easy/  put ^$ and ? -> .  * -> .*
-    if ( fd->cbEasy->isChecked() )
-        easyFormConversion ( patt );
+	pww=new PWw ( fdp );
+	pww->refreshTime=200;
+	pww->setCancel(true);
+	pww->setProgressText(tr("Searching, please wait..."));
+	QObject::connect (pww, SIGNAL(cancelReceivedByUser(bool)), pww, SLOT(doCancelReceived(bool)));
+	progress ( pww );
+	QApplication::setOverrideCursor ( Qt::waitCursor );
 
-    //recode the pattern /Case sens/ lok -> [l|L][o|O][k|K]
-    if ( !fd->cbCasesens->isChecked() )
-        caseSensConversion ( patt );
-    if(*DEBUG_INFO_ENABLED)
-	fprintf(stderr,"The complete pattern is \"%s\"\n",patt);
-//     re = pcre_compile ( patt,0,&error,&errptr,NULL );
-    re->setPattern(QString( patt));
-//     if ( !fd->cbEasy->isChecked() )
-// 	re->setPatternSyntax(QRegExp::Wildcard);
-//     else
-	re->setPatternSyntax(QRegExp::RegExp2);
+	fdp->resultsl->clear();
+	founded = 0;
 
-//     if ( re == NULL ) {
-       if(!re->isValid()) {
-        QMessageBox::warning ( fd,tr ( "Error in the pattern:" ),QString(patt) );
-        return 1;
+	progress ( pww );
+	/*seek...*/
+	analyzeNode ( pww, fdp->mainw->db->getRootNode() );
+	
+	if(pww->doCancel) {
+		QMessageBox::warning ( 0,tr ( "Search cancelled" ), tr ( "You have cancelled searching." ));
+	}
+	if ( founded == 0 )
+		fdp->resultsl->insertItem ( new Q3ListViewItem ( fdp->resultsl, tr ( "There is no matching." ) ) );
+
+	QObject::disconnect (pww, SIGNAL(cancelReceivedByUser(bool)), pww, SLOT(doCancelReceived(bool)));
+	progress ( pww );
+	pww->end();
+
+	delete pww;
+
     }
+    else {
+	//get the pattern
+	if ( fd->cbEasy->isChecked() )
+		strncpy ( patt, ( const char * ) ( ( QTextCodec::codecForLocale() )->fromUnicode ( "*"+fd->leText->text()+"*" ) ), 2047 );
+	else
+		strncpy ( patt, ( const char * ) ( ( QTextCodec::codecForLocale() )->fromUnicode ( fd->leText->text() ) ), 2047 );
 
-    //// this tries to opimize pattern
-//     hints = pcre_study ( re,0,&error );
+	//recode the pattern /easy/  put ^$ and ? -> .  * -> .*
+	if ( fd->cbEasy->isChecked() )
+		easyFormConversion ( patt );
 
-//     if ( error != NULL ) {
-//         QMessageBox::warning ( fd,tr ( "Error in the pattern:" ),error );
-//         return 1;
-//     }
-    fd->use_unsharpsearch = fd->cbUnsharpSearch->isChecked();
+	//recode the pattern /Case sens/ lok -> [l|L][o|O][k|K]
+	if ( !fd->cbCasesens->isChecked() )
+		caseSensConversion ( patt );
+	if(*DEBUG_INFO_ENABLED)
+		fprintf(stderr,"The complete pattern is \"%s\"\n",patt);
+	//     re = pcre_compile ( patt,0,&error,&errptr,NULL );
+	re->setPattern(QString( patt));
+	//     if ( !fd->cbEasy->isChecked() )
+	// 	re->setPatternSyntax(QRegExp::Wildcard);
+	//     else
+		re->setPatternSyntax(QRegExp::RegExp2);
 
-    pww=new PWw ( fd );
-    pww->refreshTime=200;
-    pww->setCancel(true);
-    pww->setProgressText(tr("Searching, please wait..."));
-    QObject::connect (pww, SIGNAL(cancelReceivedByUser(bool)), pww, SLOT(doCancelReceived(bool)));
-    progress ( pww );
-    QApplication::setOverrideCursor ( Qt::waitCursor );
+	//     if ( re == NULL ) {
+	if(!re->isValid()) {
+		QMessageBox::warning ( fd,tr ( "Error in the pattern:" ),QString(patt) );
+		return 1;
+	}
 
-    fd->resultsl->clear();
-    founded = 0;
+	//// this tries to opimize pattern
+	//     hints = pcre_study ( re,0,&error );
 
-    dirname  = fd->cbDirname ->isChecked();
-    filename = fd->cbFilename->isChecked();
-    comment  = fd->cbComment ->isChecked();
-    tartist  = fd->cbArtist  ->isChecked();
-    ttitle   = fd->cbTitle   ->isChecked();
-    tcomment = fd->cbTcomm   ->isChecked();
-    talbum   = fd->cbAlbum   ->isChecked();
-    content  = fd->cbContent ->isChecked();
-    dateStartChecked  = fd->cbDateStart ->isChecked();
-    dateEndChecked  = fd->cbDateEnd ->isChecked();
-    dateStart = fd->deDateStart->dateTime();
-    dateEnd = fd->deDateEnd->dateTime();
-    sizeMinChecked = fd->cbSizeMin->isChecked();
-    sizeMaxChecked = fd->cbSizeMax->isChecked();
-    findInArchivesChecked = fd->cbFindInArchive->isChecked();
+	//     if ( error != NULL ) {
+	//         QMessageBox::warning ( fd,tr ( "Error in the pattern:" ),error );
+	//         return 1;
+	//     }
+	fd->use_unsharpsearch = fd->cbUnsharpSearch->isChecked();
 
-    if (sizeMinChecked) {
-	if(fd->cbSizeUnitMin->currentIndex() == 0)
-		size_min = fd->spSizeMin->value(); // Byte
-	else if(fd->cbSizeUnitMin->currentIndex() == 1)
-		size_min = fd->spSizeMin->value() * 1024; // KByte
-	else if(fd->cbSizeUnitMin->currentIndex() == 2)
-		size_min = fd->spSizeMin->value() * 1024 * 1024; // MByte
-	else if(fd->cbSizeUnitMin->currentIndex() == 3)
-		size_min = fd->spSizeMin->value() * 1024 * 1024 * 1024; // GByte
-	else if(fd->cbSizeUnitMin->currentIndex() == 4)
-		size_min = fd->spSizeMin->value() * 1024 * 1024 * 1024 *1024; // TByte
-// 	std::cerr << "minsize checked, type "<< fd->cbSizeUnitMin->currentIndex() <<", min size " << size_min << endl;
+	pww=new PWw ( fd );
+	pww->refreshTime=200;
+	pww->setCancel(true);
+	pww->setProgressText(tr("Searching, please wait..."));
+	QObject::connect (pww, SIGNAL(cancelReceivedByUser(bool)), pww, SLOT(doCancelReceived(bool)));
+	progress ( pww );
+	QApplication::setOverrideCursor ( Qt::waitCursor );
+
+	fd->resultsl->clear();
+	founded = 0;
+
+	dirname  = fd->cbDirname ->isChecked();
+	filename = fd->cbFilename->isChecked();
+	comment  = fd->cbComment ->isChecked();
+	tartist  = fd->cbArtist  ->isChecked();
+	ttitle   = fd->cbTitle   ->isChecked();
+	tcomment = fd->cbTcomm   ->isChecked();
+	talbum   = fd->cbAlbum   ->isChecked();
+	content  = fd->cbContent ->isChecked();
+	dateStartChecked  = fd->cbDateStart ->isChecked();
+	dateEndChecked  = fd->cbDateEnd ->isChecked();
+	dateStart = fd->deDateStart->dateTime();
+	dateEnd = fd->deDateEnd->dateTime();
+	sizeMinChecked = fd->cbSizeMin->isChecked();
+	sizeMaxChecked = fd->cbSizeMax->isChecked();
+	findInArchivesChecked = fd->cbFindInArchive->isChecked();
+
+	if (sizeMinChecked) {
+		if(fd->cbSizeUnitMin->currentIndex() == 0)
+			size_min = fd->spSizeMin->value(); // Byte
+		else if(fd->cbSizeUnitMin->currentIndex() == 1)
+			size_min = fd->spSizeMin->value() * 1024; // KByte
+		else if(fd->cbSizeUnitMin->currentIndex() == 2)
+			size_min = fd->spSizeMin->value() * 1024 * 1024; // MByte
+		else if(fd->cbSizeUnitMin->currentIndex() == 3)
+			size_min = fd->spSizeMin->value() * 1024 * 1024 * 1024; // GByte
+		else if(fd->cbSizeUnitMin->currentIndex() == 4)
+			size_min = fd->spSizeMin->value() * 1024 * 1024 * 1024 *1024; // TByte
+	// 	std::cerr << "minsize checked, type "<< fd->cbSizeUnitMin->currentIndex() <<", min size " << size_min << endl;
+	}
+	
+	if (sizeMaxChecked) {
+		if(fd->cbSizeUnitMax->currentIndex() == 0)
+			size_max = fd->spSizeMax->value(); // Byte
+		else if(fd->cbSizeUnitMax->currentIndex() == 1)
+			size_max = fd->spSizeMax->value() * 1024; // KByte
+		else if(fd->cbSizeUnitMax->currentIndex() == 2)
+			size_max = fd->spSizeMax->value() * 1024 * 1024; // MByte
+		else if(fd->cbSizeUnitMax->currentIndex() == 3)
+			size_max = fd->spSizeMax->value() * 1024 * 1024 * 1024; // GByte
+		else if(fd->cbSizeUnitMax->currentIndex() == 4)
+			size_max = fd->spSizeMax->value() * 1024 * 1024 * 1024 * 1024; // TByte
+	// 	std::cerr << "maxsize checked, type "<< fd->cbSizeUnitMax->currentIndex() <<", max size " << size_max << endl;
+	}
+
+	allmedia = false;
+	allowner = false;
+
+	media=fd->cbSin->currentText();
+	owner=fd->cbOwner->currentText();
+
+	if ( 0 == fd->cbOwner->currentItem() )   allowner = true;
+	if ( 0 == fd->cbSin  ->currentItem() )   allmedia = true;
+
+	progress ( pww );
+	/*seek...*/
+	analyzeNode ( pww, fd->mainw->db->getRootNode() );
+	if(pww->doCancel) {
+		QMessageBox::warning ( 0,tr ( "Search cancelled" ), tr ( "You have cancelled searching." ));
+	}
+	if ( founded == 0 )
+		fd->resultsl->insertItem ( new Q3ListViewItem ( fd->resultsl,tr ( "There is no matching." ) ) );
+
+	QObject::disconnect (pww, SIGNAL(cancelReceivedByUser(bool)), pww, SLOT(doCancelReceived(bool)));
+	progress ( pww );
+	pww->end();
+
+	delete pww;
     }
-    
-    if (sizeMaxChecked) {
-	if(fd->cbSizeUnitMax->currentIndex() == 0)
-		size_max = fd->spSizeMax->value(); // Byte
-	else if(fd->cbSizeUnitMax->currentIndex() == 1)
-		size_max = fd->spSizeMax->value() * 1024; // KByte
-	else if(fd->cbSizeUnitMax->currentIndex() == 2)
-		size_max = fd->spSizeMax->value() * 1024 * 1024; // MByte
-	else if(fd->cbSizeUnitMax->currentIndex() == 3)
-		size_max = fd->spSizeMax->value() * 1024 * 1024 * 1024; // GByte
-	else if(fd->cbSizeUnitMax->currentIndex() == 4)
-		size_max = fd->spSizeMax->value() * 1024 * 1024 * 1024 * 1024; // TByte
-// 	std::cerr << "maxsize checked, type "<< fd->cbSizeUnitMax->currentIndex() <<", max size " << size_max << endl;
-    }
-
-    allmedia = false;
-    allowner = false;
-
-    media=fd->cbSin->currentText();
-    owner=fd->cbOwner->currentText();
-
-    if ( 0 == fd->cbOwner->currentItem() )   allowner = true;
-    if ( 0 == fd->cbSin  ->currentItem() )   allmedia = true;
-
-    progress ( pww );
-    /*seek...*/
-    analyzeNode ( pww, fd->mainw->db->getRootNode() );
-    if(pww->doCancel) {
-	QMessageBox::warning ( 0,tr ( "Search cancelled" ), tr ( "You have cancelled searching." ));
-    }
-
-    if ( founded == 0 )
-        fd->resultsl->insertItem ( new Q3ListViewItem ( fd->resultsl,tr ( "There is no matching." ) ) );
-
-    QObject::disconnect (pww, SIGNAL(cancelReceivedByUser(bool)), pww, SLOT(doCancelReceived(bool)));
-    progress ( pww );
-    pww->end();
-
-    delete pww;
     QApplication::restoreOverrideCursor();
     return 0;
 }
@@ -906,37 +1100,121 @@ int seekEngine::analyzeNode (PWw *pww,  Node *n,Node *pa ) {
     DEBUG_INFO_ENABLED = init_debug_info();
 
     progress(pww);
-    if ( n == NULL || pww->doCancel ) return 0;
+    if ( n == NULL || pww->doCancel  || fdp->mainw->guis->standON == NULL)
+	return 0;
+   
+    if (searchForDuplicates) {
+	switch ( n->type ) {
+		case HC_CATALOG:
+			analyzeNode ( pww, n->child );
+			return 0;
+		case HC_MEDIA:
+			progress ( pww );
+			analyzeNode ( pww, n->child );
+			analyzeNode ( pww, n->next );
+			return 0;
+		case HC_DIRECTORY:
+			progress ( pww );
+			analyzeNode ( pww, n->child );
+			analyzeNode ( pww, n->next );
+			return 0;
+		case HC_CATLNK:
+			analyzeNode ( pww, n->next );
+			return 0;
+		case HC_FILE:
+			if (*DEBUG_INFO_ENABLED)
+// 				std::cout << "testing file: " << qPrintable(n->getNameOf()) << " name: " << qPrintable(fdp->mainw->guis->standON->getNameOf()) << " <=> " << qPrintable(n->getNameOf()) << ". size: " <<  (( DBFile * ) ( fdp->mainw->guis->standON ))->size << " <=> " << ( ( DBFile * ) ( n->data ) )->size << ", size type: " <<  (( DBFile * ) ( fdp->mainw->guis->standON ) )->sizeType << " <=> " << ( ( DBFile * ) ( n->data ) )->sizeType  << std::endl;
+				std::cout << "testing file: " << qPrintable(n->getNameOf()) << " name: " << qPrintable(fdp->mainw->guis->standON->getNameOf()) << " <=> " << qPrintable(n->getNameOf()) << std::endl;
+			if ( fdp->mainw->guis->standON->getNameOf() ==  n->getNameOf()) {
+				if (*DEBUG_INFO_ENABLED) {
+					std::cout << "filename match!" << std::endl;
 
-    bool isOk=false;
-    QString filecomment;
-    switch ( n->type ) {
-    case HC_CATALOG:
-        analyzeNode ( pww, n->child );
-        return 0;
-    case HC_MEDIA:
-        progress ( pww );
+				std::cout << "size: " <<  fdp->mainw->guis->mainw->db->getSize ( fdp->mainw->guis->standON ) << " <=> " << ( ( DBFile * ) ( n->data ) )->size << std::endl;
+				}
+				if (fdp->mainw->guis->mainw->db->getSize ( fdp->mainw->guis->standON ) == ( ( DBFile * ) ( n->data ) )->size)  {
+					if (*DEBUG_INFO_ENABLED)
+						std::cout << "filesize match!" << std::endl;
+					putNodeToList ( n );
+				}
+			}
+			analyzeNode ( pww, n->next );
+			return 0;
+	}
+    }
+    else {
+	bool isOk=false;
+	QString filecomment;
+	switch ( n->type ) {
+	case HC_CATALOG:
+		analyzeNode ( pww, n->child );
+		return 0;
+	case HC_MEDIA:
+		progress ( pww );
 
-        //It is necessary to analyze this media node? /Owner/Media/
-        if ( ( allmedia || ( media == n->getNameOf() ) ) &&
-                ( allowner || ( owner == ( ( DBMedia * ) ( n->data ) )->owner ) ) ) {
-            if ( dirname ) {
+		//It is necessary to analyze this media node? /Owner/Media/
+		if ( ( allmedia || ( media == n->getNameOf() ) ) &&
+			( allowner || ( owner == ( ( DBMedia * ) ( n->data ) )->owner ) ) ) {
+		if ( dirname ) {
+			if ( !matchIt ( n->getNameOf() ) ) {
+				isOk = false;
+			}
+			if ( dateStartChecked && !dateEndChecked) {
+				if (  (( DBMedia * )(n->data  ))->modification >= dateStart  ) {
+					isOk = true;
+				}
+			}
+			else if ( !dateStartChecked && dateEndChecked) {
+				if (  (( DBMedia * )(n->data  ))->modification <= dateEnd ) {
+					isOk = true;
+				}
+			}
+			else if ( dateStartChecked && dateEndChecked) {
+				if (  (( DBMedia * )(n->data  ))->modification >= dateStart && (( DBDirectory * )(n->data  ))->modification <= dateEnd ) {
+					isOk = true;
+				}
+			}
+
+			if (isOk) {
+				putNodeToList ( n );
+				analyzeNode ( pww, n->child );
+				analyzeNode ( pww, n->next );
+				return 0;
+			}
+		}
+
+		if ( comment )
+			if ( matchIt ( ( ( DBMedia * ) ( n->data ) )->comment ) )
+			putNodeToList ( n );
+		
+		analyzeNode ( pww, n->child );
+		}
+		analyzeNode ( pww, n->next );
+		return 0;
+
+	case HC_CATLNK:
+		analyzeNode ( pww, n->next );
+		return 0;
+
+	case HC_DIRECTORY:
+		progress ( pww );
+		isOk = true;
+		if ( dirname ) {
 		if ( !matchIt ( n->getNameOf() ) ) {
 			isOk = false;
 		}
 		if ( dateStartChecked && !dateEndChecked) {
-			if (  (( DBMedia * )(n->data  ))->modification >= dateStart  ) {
-				isOk = true;
+			if (  (( DBDirectory * )(n->data  ))->modification < dateStart  ) {
+					isOk = false;
 			}
 		}
 		else if ( !dateStartChecked && dateEndChecked) {
-			if (  (( DBMedia * )(n->data  ))->modification <= dateEnd ) {
-				isOk = true;
+			if (  (( DBDirectory * )(n->data  ))->modification > dateEnd ) {
+				isOk = false;
 			}
 		}
 		else if ( dateStartChecked && dateEndChecked) {
-			if (  (( DBMedia * )(n->data  ))->modification >= dateStart && (( DBDirectory * )(n->data  ))->modification <= dateEnd ) {
-				isOk = true;
+			if (  (( DBDirectory * )(n->data  ))->modification > dateStart && (( DBDirectory * )(n->data  ))->modification > dateEnd ) {
+				isOk = false;
 			}
 		}
 
@@ -946,300 +1224,259 @@ int seekEngine::analyzeNode (PWw *pww,  Node *n,Node *pa ) {
 			analyzeNode ( pww, n->next );
 			return 0;
 		}
-	    }
-
-            if ( comment )
-                if ( matchIt ( ( ( DBMedia * ) ( n->data ) )->comment ) )
-                    putNodeToList ( n );
-            
-            analyzeNode ( pww, n->child );
-        }
-        analyzeNode ( pww, n->next );
-        return 0;
-
-    case HC_CATLNK:
-        analyzeNode ( pww, n->next );
-        return 0;
-
-    case HC_DIRECTORY:
-        progress ( pww );
-        isOk = true;
-        if ( dirname ) {
-            if ( !matchIt ( n->getNameOf() ) ) {
-		isOk = false;
-	    }
-	    if ( dateStartChecked && !dateEndChecked) {
-		if (  (( DBDirectory * )(n->data  ))->modification < dateStart  ) {
-				isOk = false;
 		}
-	    }
-	    else if ( !dateStartChecked && dateEndChecked) {
-		if (  (( DBDirectory * )(n->data  ))->modification > dateEnd ) {
-			isOk = false;
-		}
-	    }
-	    else if ( dateStartChecked && dateEndChecked) {
-		if (  (( DBDirectory * )(n->data  ))->modification > dateStart && (( DBDirectory * )(n->data  ))->modification > dateEnd ) {
-			isOk = false;
-		}
-	    }
 
-	   if (isOk) {
-		putNodeToList ( n );
+
+		if ( comment ) {
+			if ( matchIt ( ( ( DBDirectory * ) ( n->data ) )->comment ) ) {
+				putNodeToList ( n );
+			}
+		}
+		
 		analyzeNode ( pww, n->child );
+		progress(pww);
 		analyzeNode ( pww, n->next );
 		return 0;
-	   }
-	}
 
-
-        if ( comment ) {
-		if ( matchIt ( ( ( DBDirectory * ) ( n->data ) )->comment ) ) {
-			putNodeToList ( n );
-		}
-        }
-        
-        analyzeNode ( pww, n->child );
-	progress(pww);
-        analyzeNode ( pww, n->next );
-        return 0;
-
-    case HC_FILE:
-        isOk = true;
-	filecomment = "";
-        if ( filename ) {
-            if ( !matchIt ( n->getNameOf() ) ) {
-			isOk = false;
-	     }
-	}
-	if ( isOk && dateStartChecked && !dateEndChecked) {
-		if (  (( DBFile * )(n->data  ))->modification < dateStart  ) {
-			isOk = false;
-		}
-	}
-	else if (isOk &&  !dateStartChecked && dateEndChecked) {
-		if (  (( DBFile * )(n->data  ))->modification > dateEnd ) {
-			isOk = false;
-		}
-	}
-	else if ( isOk &&  dateStartChecked && dateEndChecked) {
-		if (  (( DBFile * )(n->data  ))->modification < dateStart || (( DBFile * )(n->data  ))->modification > dateEnd ) {
-			isOk = false;
-		}
-	}
-	
-	if ( isOk && sizeMinChecked && !sizeMaxChecked) {
-		float real_size = 0.0;
-		float real_size_min = 0.0;
-		switch ( ( ( DBFile * ) ( n->data ) )->sizeType ) {
-			case 0: 
-				real_size = ( ( ( DBFile * ) ( n->data ) )->size ) / ( 1024.0*1024.0 );
-				real_size_min = size_min;
-				break; //byte
-			case 1:
-				real_size = ( ( ( DBFile * ) ( n->data ) )->size ) /1024.0;
-				real_size_min = size_min / 1024.0;
-				break; //Kb
-			case 2:
-				real_size = ( ( ( DBFile * ) ( n->data ) )->size );
-				real_size_min = size_min / 1024.0 / 1024.0;
-				break; //Mb
-			case 3:
-				real_size = ( ( ( DBFile * ) ( n->data ) )->size ) *1024.0;
-				real_size_min = size_min / 1024.0 / 1024.0/1024.0;
-				break; //Gb
-			case 4:
-				real_size = ( ( ( DBFile * ) ( n->data ) )->size ) *1024.0*1024.0;
-				real_size_min = size_min / 1024.0 / 1024.0/1024.0/1024.0;
-				break; //Tb
-		}
-// 		std::cerr << "minsize checked, min size " << real_size_min << " ~ " << real_size<< endl;
-		if (  real_size < real_size_min ) {
-			isOk = false;
-		}
-	}
-	if ( isOk && !sizeMinChecked && sizeMaxChecked) {
-		float real_size = 0.0;
-		float real_size_max = 0.0;
-		switch ( ( ( DBFile * ) ( n->data ) )->sizeType ) {
-			case 0: 
-				real_size = ( ( ( DBFile * ) ( n->data ) )->size ) / ( 1024.0*1024.0 );
-				real_size_max = size_max;
-				break; //byte
-			case 1:
-				real_size = ( ( ( DBFile * ) ( n->data ) )->size ) /1024.0;
-				real_size_max = size_max / 1024.0;
-				break; //Kb
-			case 2:
-				real_size = ( ( ( DBFile * ) ( n->data ) )->size );
-				real_size_max = size_max / 1024.0 / 1024.0;
-				break; //Mb
-			case 3:
-				real_size = ( ( ( DBFile * ) ( n->data ) )->size ) *1024.0;
-				real_size_max = size_max / 1024.0 / 1024.0/1024.0;
-				break; //Gb
-			case 4:
-				real_size = ( ( ( DBFile * ) ( n->data ) )->size ) *1024.0*1024.0;
-				real_size_max = size_max / 1024.0 / 1024.0/1024.0/1024.0;
-				break; //Tb
-		}
-// 		std::cerr << "size type: "<<  ( ( DBFile * ) ( n->data ) )->sizeType <<", maxsize checked, max size " << real_size_max << " ~ " << real_size << endl;
-		if ( real_size  > real_size_max ) {
-			isOk = false;
-		}
-	}
-	if ( isOk && sizeMinChecked && sizeMaxChecked) {
-		float real_size = 0.0;
-		float real_size_min = 0.0;
-		float real_size_max = 0.0;
-		switch ( ( ( DBFile * ) ( n->data ) )->sizeType ) {
-			case 0: 
-				real_size = ( ( ( DBFile * ) ( n->data ) )->size ) / ( 1024.0*1024.0 );
-				real_size_min = size_min;
-				real_size_max = size_max;
-				break; //byte
-			case 1:
-				real_size = ( ( ( DBFile * ) ( n->data ) )->size ) /1024.0;
-				real_size_min = size_min / 1024.0;
-				real_size_max = size_max / 1024.0;
-				break; //Kb
-			case 2:
-				real_size = ( ( ( DBFile * ) ( n->data ) )->size );
-				real_size_min = size_min / 1024.0 / 1024.0;
-				real_size_max = size_max / 1024.0 / 1024.0;
-				break; //Mb
-			case 3:
-				real_size = ( ( ( DBFile * ) ( n->data ) )->size ) *1024.0;
-				real_size_min = size_min / 1024.0 / 1024.0/1024.0;
-				real_size_max = size_max / 1024.0 / 1024.0/1024.0;
-				break; //Gb
-			case 4:
-				real_size = ( ( ( DBFile * ) ( n->data ) )->size ) *1024.0*1024.0;
-				real_size_min = size_min / 1024.0 / 1024.0/1024.0/1024.0;
-				real_size_max = size_max / 1024.0 / 1024.0/1024.0/1024.0;
-				break; //Tb
-		}
-// 		std::cerr << "min & maxsize checked, min size " << real_size_min << "/max size " << real_size_max << " ~ " << real_size << endl;
-		if ( real_size < real_size_min || real_size > real_size_max ) {
-			isOk = false;
-		}
-	}
-	if ( findInArchivesChecked ) {
-		// FIXME maybe a flag 'is_archive' should be added
-		bool archiveMatches = false;
+	case HC_FILE:
+		isOk = true;
 		filecomment = "";
-		QList<ArchiveFile> ArchiveFileList = (( DBFile * )(n->data  ))->archivecontent;
-		for ( int i=0;i<ArchiveFileList.size();i++ ) {
-			ArchiveFile af = ArchiveFileList.at(i);
-			QString filepath = af.path.section('/', -1, -1);
-			if (*DEBUG_INFO_ENABLED)
-				std::cout << "testing file inside archive: " << qPrintable(filepath) << std::endl;
-			
+		if ( filename ) {
+		if ( !matchIt ( n->getNameOf() ) ) {
+				isOk = false;
+		}
+		}
+		if ( isOk && dateStartChecked && !dateEndChecked) {
+			if (  (( DBFile * )(n->data  ))->modification < dateStart  ) {
+				isOk = false;
+			}
+		}
+		else if (isOk &&  !dateStartChecked && dateEndChecked) {
+			if (  (( DBFile * )(n->data  ))->modification > dateEnd ) {
+				isOk = false;
+			}
+		}
+		else if ( isOk &&  dateStartChecked && dateEndChecked) {
+			if (  (( DBFile * )(n->data  ))->modification < dateStart || (( DBFile * )(n->data  ))->modification > dateEnd ) {
+				isOk = false;
+			}
+		}
+		
+		if ( isOk && sizeMinChecked && !sizeMaxChecked) {
+			float real_size = 0.0;
+			float real_size_min = 0.0;
+			switch ( ( ( DBFile * ) ( n->data ) )->sizeType ) {
+				case 0: 
+					real_size = ( ( ( DBFile * ) ( n->data ) )->size ) / ( 1024.0*1024.0 );
+					real_size_min = size_min;
+					break; //byte
+				case 1:
+					real_size = ( ( ( DBFile * ) ( n->data ) )->size ) /1024.0;
+					real_size_min = size_min / 1024.0;
+					break; //Kb
+				case 2:
+					real_size = ( ( ( DBFile * ) ( n->data ) )->size );
+					real_size_min = size_min / 1024.0 / 1024.0;
+					break; //Mb
+				case 3:
+					real_size = ( ( ( DBFile * ) ( n->data ) )->size ) *1024.0;
+					real_size_min = size_min / 1024.0 / 1024.0/1024.0;
+					break; //Gb
+				case 4:
+					real_size = ( ( ( DBFile * ) ( n->data ) )->size ) *1024.0*1024.0;
+					real_size_min = size_min / 1024.0 / 1024.0/1024.0/1024.0;
+					break; //Tb
+			}
+	// 		std::cerr << "minsize checked, min size " << real_size_min << " ~ " << real_size<< endl;
+			if (  real_size < real_size_min ) {
+				isOk = false;
+			}
+		}
+		if ( isOk && !sizeMinChecked && sizeMaxChecked) {
+			float real_size = 0.0;
+			float real_size_max = 0.0;
+			switch ( ( ( DBFile * ) ( n->data ) )->sizeType ) {
+				case 0: 
+					real_size = ( ( ( DBFile * ) ( n->data ) )->size ) / ( 1024.0*1024.0 );
+					real_size_max = size_max;
+					break; //byte
+				case 1:
+					real_size = ( ( ( DBFile * ) ( n->data ) )->size ) /1024.0;
+					real_size_max = size_max / 1024.0;
+					break; //Kb
+				case 2:
+					real_size = ( ( ( DBFile * ) ( n->data ) )->size );
+					real_size_max = size_max / 1024.0 / 1024.0;
+					break; //Mb
+				case 3:
+					real_size = ( ( ( DBFile * ) ( n->data ) )->size ) *1024.0;
+					real_size_max = size_max / 1024.0 / 1024.0/1024.0;
+					break; //Gb
+				case 4:
+					real_size = ( ( ( DBFile * ) ( n->data ) )->size ) *1024.0*1024.0;
+					real_size_max = size_max / 1024.0 / 1024.0/1024.0/1024.0;
+					break; //Tb
+			}
+	// 		std::cerr << "size type: "<<  ( ( DBFile * ) ( n->data ) )->sizeType <<", maxsize checked, max size " << real_size_max << " ~ " << real_size << endl;
+			if ( real_size  > real_size_max ) {
+				isOk = false;
+			}
+		}
+		if ( isOk && sizeMinChecked && sizeMaxChecked) {
+			float real_size = 0.0;
+			float real_size_min = 0.0;
+			float real_size_max = 0.0;
+			switch ( ( ( DBFile * ) ( n->data ) )->sizeType ) {
+				case 0: 
+					real_size = ( ( ( DBFile * ) ( n->data ) )->size ) / ( 1024.0*1024.0 );
+					real_size_min = size_min;
+					real_size_max = size_max;
+					break; //byte
+				case 1:
+					real_size = ( ( ( DBFile * ) ( n->data ) )->size ) /1024.0;
+					real_size_min = size_min / 1024.0;
+					real_size_max = size_max / 1024.0;
+					break; //Kb
+				case 2:
+					real_size = ( ( ( DBFile * ) ( n->data ) )->size );
+					real_size_min = size_min / 1024.0 / 1024.0;
+					real_size_max = size_max / 1024.0 / 1024.0;
+					break; //Mb
+				case 3:
+					real_size = ( ( ( DBFile * ) ( n->data ) )->size ) *1024.0;
+					real_size_min = size_min / 1024.0 / 1024.0/1024.0;
+					real_size_max = size_max / 1024.0 / 1024.0/1024.0;
+					break; //Gb
+				case 4:
+					real_size = ( ( ( DBFile * ) ( n->data ) )->size ) *1024.0*1024.0;
+					real_size_min = size_min / 1024.0 / 1024.0/1024.0/1024.0;
+					real_size_max = size_max / 1024.0 / 1024.0/1024.0/1024.0;
+					break; //Tb
+			}
+	// 		std::cerr << "min & maxsize checked, min size " << real_size_min << "/max size " << real_size_max << " ~ " << real_size << endl;
+			if ( real_size < real_size_min || real_size > real_size_max ) {
+				isOk = false;
+			}
+		}
+		if ( findInArchivesChecked ) {
+			// FIXME maybe a flag 'is_archive' should be added
+			bool archiveMatches = false;
+			filecomment = "";
+			QList<ArchiveFile> ArchiveFileList = (( DBFile * )(n->data  ))->archivecontent;
 			for ( int i=0;i<ArchiveFileList.size();i++ ) {
 				ArchiveFile af = ArchiveFileList.at(i);
 				QString filepath = af.path.section('/', -1, -1);
 				if (*DEBUG_INFO_ENABLED)
 					std::cout << "testing file inside archive: " << qPrintable(filepath) << std::endl;
 				
-				if ( filename ) {
-					if ( matchIt ( filepath ) ) {
-						archiveMatches = true;
-						filecomment = tr("File in archive: ")+af.path;
-						//break;
+				for ( int i=0;i<ArchiveFileList.size();i++ ) {
+					ArchiveFile af = ArchiveFileList.at(i);
+					QString filepath = af.path.section('/', -1, -1);
+					if (*DEBUG_INFO_ENABLED)
+						std::cout << "testing file inside archive: " << qPrintable(filepath) << std::endl;
+					
+					if ( filename ) {
+						if ( matchIt ( filepath ) ) {
+							archiveMatches = true;
+							filecomment = tr("File in archive: ")+af.path;
+							//break;
+						}
+					}
+					else if ( dateStartChecked && !dateEndChecked) {
+						if (  af.date > dateStart  ) {
+							archiveMatches = true;
+							filecomment = tr("File in archive: ")+af.path;
+							//break;
+						}
+						else {
+							archiveMatches = false;
+						}
+					}
+					else if (!dateStartChecked && dateEndChecked) {
+						if (  af.date < dateEnd ) {
+							archiveMatches = true;
+							filecomment = tr("File in archive: ")+af.path;
+							//break;
+						}
+						else {
+							archiveMatches = false;
+						}
+					}
+					else if (dateStartChecked && dateEndChecked) {
+						if (  af.date > dateStart || af.date < dateEnd ) {
+							archiveMatches = true;
+							filecomment = tr("File in archive: ")+af.path;
+							//break;
+						}
+						else {
+							archiveMatches = false;
+						}
 					}
 				}
-				else if ( dateStartChecked && !dateEndChecked) {
-					if (  af.date > dateStart  ) {
-						archiveMatches = true;
-						filecomment = tr("File in archive: ")+af.path;
-						//break;
-					}
-					else {
-						archiveMatches = false;
-					}
-				}
-				else if (!dateStartChecked && dateEndChecked) {
-					if (  af.date < dateEnd ) {
-						archiveMatches = true;
-						filecomment = tr("File in archive: ")+af.path;
-						//break;
-					}
-					else {
-						archiveMatches = false;
-					}
-				}
-				else if (dateStartChecked && dateEndChecked) {
-					if (  af.date > dateStart || af.date < dateEnd ) {
-						archiveMatches = true;
-						filecomment = tr("File in archive: ")+af.path;
-						//break;
-					}
-					else {
-						archiveMatches = false;
-					}
-				}
+				if (archiveMatches)
+					isOk = true;
 			}
-			if (archiveMatches)
-				isOk = true;
 		}
-	}
-	if(isOk){
-		putNodeToList ( n, filecomment );
-		analyzeNode ( pww, n->next );
-		return 0;
-	}
-	
-        if ( comment ) {
-            if ( !matchIt ( ( ( DBFile * ) ( n->data ) )->comment ) ) {
-			isOk = false;
-	    }
-	    if (isOk) {
-		putNodeToList ( n );
+		if(isOk){
+			putNodeToList ( n, filecomment );
+			analyzeNode ( pww, n->next );
+			return 0;
+		}
+		
+		if ( comment ) {
+		if ( !matchIt ( ( ( DBFile * ) ( n->data ) )->comment ) ) {
+				isOk = false;
+		}
+		if (isOk) {
+			putNodeToList ( n );
+			analyzeNode (pww,  n->next );
+			return 0;
+		}
+		}
+		
+		analyzeNode ( pww, ( ( DBFile * ) ( n->data ) )->prop,n );
 		analyzeNode (pww,  n->next );
 		return 0;
-	    }
+
+	case HC_MP3TAG:
+		if ( tartist )
+		if ( matchIt ( ( ( DBMp3Tag * ) ( n->data ) )->artist ) ) {
+			putNodeToList ( pa );
+			return 0;
+		}
+		if ( ttitle )
+		if ( matchIt ( ( ( DBMp3Tag * ) ( n->data ) )->title ) ) {
+			putNodeToList ( pa );
+			return 0;
+		}
+		if ( talbum )
+		if ( matchIt ( ( ( DBMp3Tag * ) ( n->data ) )->album ) ) {
+			putNodeToList ( pa );
+			return 0;
+		}
+		if ( tcomment )
+		if ( matchIt ( ( ( DBMp3Tag * ) ( n->data ) )->comment ) ) {
+			putNodeToList ( pa );
+			return 0;
+		}
+
+		analyzeNode ( pww, n->next,pa );
+		return 0;
+	case HC_CONTENT:
+		if ( content )
+		if ( matchIt ( QString::fromLocal8Bit ( ( const char * ) ( ( DBContent * ) ( n->data ) )->bytes ) ) ) {
+			putNodeToList ( pa );
+			return 0;
+		}
+		analyzeNode (pww,  n->next,pa );
+		return 0;
+
 	}
-	
-        analyzeNode ( pww, ( ( DBFile * ) ( n->data ) )->prop,n );
-        analyzeNode (pww,  n->next );
-        return 0;
-
-    case HC_MP3TAG:
-        if ( tartist )
-            if ( matchIt ( ( ( DBMp3Tag * ) ( n->data ) )->artist ) ) {
-                putNodeToList ( pa );
-                return 0;
-            }
-        if ( ttitle )
-            if ( matchIt ( ( ( DBMp3Tag * ) ( n->data ) )->title ) ) {
-                putNodeToList ( pa );
-                return 0;
-            }
-        if ( talbum )
-            if ( matchIt ( ( ( DBMp3Tag * ) ( n->data ) )->album ) ) {
-                putNodeToList ( pa );
-                return 0;
-            }
-        if ( tcomment )
-            if ( matchIt ( ( ( DBMp3Tag * ) ( n->data ) )->comment ) ) {
-                putNodeToList ( pa );
-                return 0;
-            }
-
-        analyzeNode ( pww, n->next,pa );
-        return 0;
-    case HC_CONTENT:
-        if ( content )
-            if ( matchIt ( QString::fromLocal8Bit ( ( const char * ) ( ( DBContent * ) ( n->data ) )->bytes ) ) ) {
-                putNodeToList ( pa );
-                return 0;
-            }
-        analyzeNode (pww,  n->next,pa );
-        return 0;
-
-    }
-    return -1;
+	return -1;
+	}
+	return -1;
 }
+
 
 int seekEngine::matchIt ( QString txt ) {
 	//const char *encoded;
@@ -1302,7 +1539,6 @@ void seekEngine::putNodeToList ( Node *n, QString comment ) {
     QString   size_str="";
     QString   media="";
     QDateTime mod;
-
     if ( n == NULL ) return;
 
     switch ( n->type ) {
@@ -1334,18 +1570,34 @@ void seekEngine::putNodeToList ( Node *n, QString comment ) {
     }
 
     media = tmp->getNameOf() + "/" + QString().setNum ( ( ( DBMedia * ) ( tmp->data ) )->number );
-
-    Q3ListViewItem *newitem = new Q3ListViewItem ( fd->resultsl,
-                               n->getNameOf(),
-                               type,
-                               size_str,
-                               media,
-                               n->getFullPath(),
-                               date_to_str ( mod ),
-                               comment
-                                                  );
+    Q3ListViewItem *newitem;
+    if(searchForDuplicates) {
+	newitem = new Q3ListViewItem ( fdp->resultsl,
+				n->getNameOf(),
+				type,
+				size_str,
+				media,
+				n->getFullPath(),
+				date_to_str ( mod ),
+				comment);
+    }
+    else {
+	newitem = new Q3ListViewItem ( fd->resultsl,
+				n->getNameOf(),
+				type,
+				size_str,
+				media,
+				n->getFullPath(),
+				date_to_str ( mod ),
+				comment);
+    }
     newitem->setMultiLinesEnabled ( true);
-    fd->resultsl->insertItem ( newitem );
+    if(searchForDuplicates) {
+	fdp->resultsl->insertItem ( newitem );
+    }
+    else {
+	fd->resultsl->insertItem ( newitem );
+    }
     progress ( pww );
     founded++;
 }

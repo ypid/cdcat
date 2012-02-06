@@ -42,6 +42,7 @@ class DateTimeEdit;
 class CdCatMainWidget;
 class QComboBox;
 class findDialog;
+class findDuplicatesDialog;
 class Node;
 class PWw;
 
@@ -60,6 +61,7 @@ private:
     int errptr;
 
     findDialog *fd;
+    findDuplicatesDialog *fdp;
 
     int  analyzeNode ( PWw *pww, Node *n,Node *pa=NULL );
     void putNodeToList ( Node *n, QString comment="" );
@@ -68,6 +70,7 @@ private:
 
 public:
     seekEngine ( findDialog *fdp );
+    seekEngine (  findDuplicatesDialog*fdp );
     ~seekEngine ( void );
 
     int start_seek ( void );
@@ -90,6 +93,8 @@ private:
     bool sizeMinChecked;
     bool sizeMaxChecked;
     bool findInArchivesChecked;
+
+    bool searchForDuplicates;
 
     QString  media;
     QString  owner;
@@ -194,6 +199,46 @@ protected slots:
     void sizeMaxClicked();
     void printResultClicked();
     void exportResultClicked();
+
+};
+
+/***********************************************************************/
+
+class findDuplicatesDialog : public QDialog {
+    Q_OBJECT
+
+public:
+    findDuplicatesDialog ( CdCatMainWidget* parent = 0, const char* name = 0, bool modal = FALSE, Qt::WFlags fl = 0 );
+    ~findDuplicatesDialog();
+
+    CdCatMainWidget *mainw;
+
+    QPushButton* buttonClose;
+    QPushButton* buttonCancel;
+    QPushButton* buttonOk;
+    Q3ListView* resultsl;
+
+protected:
+    Q3GridLayout* FindDialogBaseLayout;
+    Q3GridLayout* layout15;
+    Q3GridLayout* layout16;
+    Q3HBoxLayout* layout17;
+    Q3HBoxLayout* layout30;
+    Q3VBoxLayout* layout31;
+    Q3GridLayout* layout39;
+    Q3VBoxLayout* layout40;
+    QLabel* textLabel3;
+    QLabel* textLabel5;
+
+    QString searchFilepath;
+
+
+
+protected slots:
+    virtual void languageChange();
+    int closee ( void );
+    int cancele ( void );
+    int seeke ( void );
 
 };
 

@@ -619,6 +619,10 @@ void GuiSlave::showListviewContextMenu ( Q3ListViewItem *, const QPoint &p, int 
             mPopup->insertItem ( *get_t_rescan_icon() ,tr ( "Rescan media..." ),this,SLOT ( rescanEvent() ) );
             mPopup->insertItem ( tr ( "Re-Number media..." ),this,SLOT ( renumberEvent() ) );
         }
+	if ( standON->type == HC_FILE ) {
+		mPopup->insertSeparator();
+		mPopup->insertItem ( tr ( "search for duplicates..." ),this,SLOT ( searchDuplicatesEvent() ) );
+        }
     }
     mPopup->insertSeparator();
     mPopup->insertItem ( *get_t_add_icon() ,tr ( "Add media..." ),this,SLOT ( addEvent() ) );
@@ -1450,7 +1454,7 @@ int GuiSlave::rescanEvent ( void ) {
 int GuiSlave::findEvent ( void ) {
     if ( mainw->db == NULL ) return 0;
 
-    findDialog *d=new findDialog ( mainw,"adddialog",true );
+    findDialog *d=new findDialog ( mainw,"finddialog",true );
     d->exec();
     return 0;
 }
@@ -1769,7 +1773,6 @@ int GuiSlave::showContent ( void ) {
     return 0;
 }
 
-
 int GuiSlave::addlnkEvent ( void ) {
     if ( mainw->db == NULL ) return 0;
 
@@ -1889,6 +1892,20 @@ int GuiSlave::cborrowEvent ( void ) {
     standON->touchDB();
     mainw->commentWidget->updateContents();
     cHcaption();
+    return 0;
+}
+
+int GuiSlave::searchDuplicatesEvent ( void ) {
+    if ( mainw->db == NULL ) return 0;
+    if ( standON == NULL ) {
+        QMessageBox::warning ( mainw,tr ( "Error:" ),tr ( "There is no selected item in the middle list box!" ) );
+        return 0;
+    }
+    findDuplicatesDialog *finddupd = new findDuplicatesDialog ( mainw,"finddialog",true );
+    finddupd->exec();
+    cHcaption();
+    updateListFromNode();
+    delete finddupd;
     return 0;
 }
 
