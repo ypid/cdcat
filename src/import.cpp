@@ -1333,6 +1333,9 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
                                 
                                 category = QString( csvList.at(7));
                                 comment = QString( csvList.at(8));
+																QString tag = QString(csvList.at(12));
+																if (tag.size() > 0)
+																				comment+= tr("tag: ")+tag;
 
                                 if (*DEBUG_INFO_ENABLED)
                                 //if (!validDate)
@@ -1357,6 +1360,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
                                         msg +="file name: "+filename+"\n";
                                         msg += "comment: " + comment + "\n";
                                         msg += "category: " + category + "\n";
+																				msg += "tag: " + tag + "\n";
                                         
                                         cerr << "msg: " << qPrintable(msg) << endl;
 
@@ -2407,7 +2411,15 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
 //         }
 //     }
 
-    if ( tag == "ITEM" ) {
+    else if ( tag == "FLAG" ) {
+			  // this is tag
+            //std::cout << "getCdata_whereisit_parse(): FLAG: \"" << currentText.replace("\n", "") << "\"" << endl;
+//            std::cout << "getCdata_whereisit_parse(): FLAG\""<< currentText.replace("\n", "") << "\", " << "cut: " << file.rightRef(currentText.replace("\n", "").length()+2)<< endl;
+				if (currentText.size() > 0)
+					comment+= tr("tag:")+" "+currentText;
+    }
+
+    else if ( tag == "ITEM" ) {
         if ( last_type == "media" ) {
             if (*DEBUG_INFO_ENABLED)
                 std::cout << "add media: " << qPrintable(new_medianame) << endl;
