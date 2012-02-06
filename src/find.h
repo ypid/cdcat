@@ -236,6 +236,7 @@ protected:
 
 protected slots:
     virtual void languageChange();
+    int select ( Q3ListViewItem *i );
     int closee ( void );
     int cancele ( void );
     int seeke ( void );

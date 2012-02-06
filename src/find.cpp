@@ -857,6 +857,8 @@ findDuplicatesDialog::findDuplicatesDialog ( CdCatMainWidget* parent, const char
 
     languageChange();
 
+    connect ( resultsl,SIGNAL ( currentChanged ( Q3ListViewItem * ) ),this,SLOT ( select ( Q3ListViewItem * ) ) );
+    connect ( resultsl,SIGNAL ( clicked ( Q3ListViewItem * ) ),this,SLOT ( select ( Q3ListViewItem * ) ) );
     connect ( buttonCancel,SIGNAL ( clicked() ),this,SLOT ( cancele() ) );
     connect ( buttonOk,SIGNAL ( clicked() ),this,SLOT ( seeke() ) );
     connect ( buttonClose,SIGNAL ( clicked() ),this,SLOT ( closee() ) );
@@ -916,6 +918,27 @@ void findDuplicatesDialog::languageChange() {
     resultsl->clear();
 }
 
+int findDuplicatesDialog::select ( Q3ListViewItem *i ) {
+    if ( i == NULL )
+        return 0;
+
+    if ( i->text ( 3 ).isEmpty() ) //Not a real result ("There is no matching" label)
+        return 0;
+
+   QString nodepath = i->text ( 4 ).mid(2,i->text ( 4 ).length()-1);
+//    std::cerr << "select: nodepath " << qPrintable(nodepath) << std::endl; 
+
+    mainw->guis->updateListFromNode (
+        ( mainw->guis->getNodeFromFullName (mainw->db->getRootNode(), nodepath ) ) );
+    for ( Q3ListViewItemIterator it=mainw->listView->firstChild();it.current();it++ ) {
+        if ( ( it.current() )->text ( 0 ) == i->text ( 0 )) {
+            mainw->listView->setCurrentItem ( it.current() );
+            mainw->listView->curr_vis();
+            mainw->listView->repaint();
+	}
+    }
+    return 0;
+}
 
 /***************************************************************************
 
