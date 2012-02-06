@@ -665,7 +665,7 @@ int   DataBase::saveAsDB ( char *filename ) {
 	return 0;
 }
 /***************************************************************************/
-int   DataBase::insertDB ( char *filename ) {
+int   DataBase::insertDB ( char *filename, bool skipDuplicatesOnInsert  ) {
 	int i;
 	gzFile f = NULL;
 	FileReader *fw = NULL;
@@ -716,7 +716,7 @@ int   DataBase::insertDB ( char *filename ) {
 	fw->pww = pww;
 	progress ( pww );
 
-	i = fw->readFrom ( root );
+	i = fw->readFrom ( root, skipDuplicatesOnInsert );
 
 	if ( i == 1 ) {
 		progress ( pww );

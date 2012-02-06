@@ -1495,7 +1495,7 @@ int GuiSlave::insertcEvent ( void ) {
     mainw->db->pww = pww;
     progress ( pww );
 
-    if ( mainw->db->insertDB ( fnc ) != 0 ) { // An error occured
+    if ( mainw->db->insertDB ( fnc, false ) != 0 ) { // An error occured
         QMessageBox::warning ( mainw,tr ( "Error while opening..." ),
                                mainw->db->errormsg );
     }

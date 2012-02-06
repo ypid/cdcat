@@ -12,6 +12,8 @@
 	- jump to selected file in duplicate result list if user clicked on it added
 	- skip adding file which is looked up for duplicates in result list
 	- font size of archive contents at commwidget fixed
+	- insert catalog into existing catalog fixed
+	- insert catalog into existing catalog with duplicate check prepared for future
 
 03. Feb 2012 Christoph Thielecke <crissi99@gmx.de>
 	- scanning archve files on subfolder fixed (#3484430)

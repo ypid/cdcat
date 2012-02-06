@@ -350,7 +350,7 @@ public:
     int   openDB ( char *filename );
     //Open the catalog from a file
 
-    int   insertDB ( char *filename );
+    int   insertDB ( char *filename, bool skipDuplicatesOnInsert = false );
     //insert a new catalog from filename into the existing catalog.
 
     int   addMedia ( QString what,QString name,int number,int type );

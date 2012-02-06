@@ -718,12 +718,13 @@ void getCharDataFromXML ( void *data,const char *s,int len ) {
 }
 
 
-int FileReader::readFrom ( Node *source ) {
+int FileReader::readFrom ( Node *source, bool skipDuplicatesOnInsert ) {
 	DEBUG_INFO_ENABLED = init_debug_info();
 	char line[80]; // encoding detect
 	error = 0;
         int done=0;
-	sp    = source;
+	sp  = sb_backup  = source;
+	this->skipDuplicatesOnInsert = skipDuplicatesOnInsert;
 	
 	if(*DEBUG_INFO_ENABLED)
 		cerr <<"Start Cycle"<<endl;
@@ -966,8 +967,12 @@ bool CdCatXmlHandler::startElement ( const QString & namespaceURI, const QString
 
     clearbuffer = 1;
     if ( el == "catalog"  ) {
-        if ( FREA->insert )
-		return false;
+        if ( FREA->insert ) {
+// 		if(*DEBUG_INFO_ENABLED)
+// 			cerr <<"insert catalog not supported" <<endl;
+// 		return false;
+		return true;
+	}
 
 	if (onlyCatalog) {
 // 		catname = FREA->get_cutf8 ( FREA->getStr2 ( attr,"name","Error while parsing \"catalog\" node" ) );
@@ -980,6 +985,9 @@ bool CdCatXmlHandler::startElement ( const QString & namespaceURI, const QString
             FREA->getStr2 ( attr,"name","Error while parsing \"catalog\" node" );
         if ( FREA->error )
 		return false;
+
+	// crissi
+	catname = ( ( DBCatalog * ) ( ( FREA->sp )->data ) ) ->name;
 
         ( ( DBCatalog * ) ( ( FREA->sp )->data ) ) ->owner=
 //             FREA->get_cutf8 ( FREA->getStr2 ( attr,"owner","Error while parsing \"catalog\" node" ));
@@ -995,8 +1003,12 @@ bool CdCatXmlHandler::startElement ( const QString & namespaceURI, const QString
 
     else if ( el == "datafile"  ) {
         Node *tmp=FREA->sp;
-        if ( FREA->insert )
-		return false;
+        if ( FREA->insert )  {
+// 		if(*DEBUG_INFO_ENABLED)
+// 			cerr <<"insert catalog not supported" <<endl;
+// 		return false;
+		return true;
+	}
 
 	if (FREA->sp == NULL)
 		return false;
@@ -1065,8 +1077,20 @@ Please change it with an older version or rewrite it in the xml file!" );
                             i=1;
                 }
                 if ( i ) {
-                    ser++;
-                    newname.append ( "#" + QString().setNum ( ser ) );
+                    if(!FREA->skipDuplicatesOnInsert) {
+			 ser++;
+			// old behavior
+			newname.append ( "#" + QString().setNum ( ser ) );
+	            }
+		    else {
+			/* FIXME: crash... */
+			// dont change name
+			FREA->sp =  ch;
+			if(*DEBUG_INFO_ENABLED)    
+			cerr <<"end_start:"<<qPrintable(el)<<endl;
+			return true;
+
+                    }
                 }
             }
 
@@ -1150,7 +1174,7 @@ Please change it with an older version or rewrite it in the xml file!" );
 
     else if ( el == "file" ) {
 
-        Node *tt = FREA->sp->child;
+	Node *tt = FREA->sp->child;
 
         if ( tt == NULL ) FREA->sp->child = tt = new Node ( HC_FILE,FREA->sp );
         else {
@@ -1202,8 +1226,21 @@ Please change it with an older version or rewrite it in the xml file!" );
         }
 
 // 	std::cerr << "file size: " << tf1 << " " << ti1 << std::endl;
+	bool addFile = true;
+	if (FREA->insert && FREA->skipDuplicatesOnInsert) {
+		// search for file in catalog
+		if (*DEBUG_INFO_ENABLED)
+			std::cerr << "testing if file already in DB: " << qPrintable(tt->parent->getFullPath()+"/"+ts1) << std::endl;
 
-        tt->data = ( void * ) new DBFile ( ts1,td1,"",tf1,ti1 );
+		if (isFileInDB(FREA->sb_backup, tt->parent->getFullPath()+"/"+ts1, tf1)) {
+			if (*DEBUG_INFO_ENABLED)
+				std::cerr << "file already in DB (skip adding): " << qPrintable(tt->parent->getFullPath()+"/"+ts1) << std::endl;
+			addFile = false;
+		}
+	}
+	if(addFile) {
+		tt->data = ( void * ) new DBFile ( ts1,td1,"",tf1,ti1 );
+	}
 
         /*Make this node to the actual node:*/
         FREA->sp = tt;
@@ -1301,8 +1338,8 @@ bool CdCatXmlHandler::endElement ( const QString & namespaceURI, const QString &
 
    void *data = r;
    
-//     if(*DEBUG_INFO_ENABLED)
-//    	cerr <<"Start_end:"<<qPrintable(el)<<endl;
+    if(*DEBUG_INFO_ENABLED)
+   	cerr <<"Start_end:"<<qPrintable(el)<<endl;
 
     progress ( pww, locator->lineNumber() );
 
@@ -1541,4 +1578,55 @@ void CdCatXmlHandler::setDocumentLocator ( QXmlLocator * locator ) {
 	this->locator = locator;
 	QXmlDefaultHandler::setDocumentLocator(locator);
 }
+
+bool CdCatXmlHandler::isFileInDB(Node *root, QString Path, float size) {
+	testFileInDBPath = Path;
+	testFileInDBSize = size;
+	testFileInDBFound = false;
+	analyzeNodeIsFileinDB ( FREA->sb_backup );
+	return testFileInDBFound;
+}
+
+int  CdCatXmlHandler::analyzeNodeIsFileinDB ( Node *n, Node *pa ) {
+	DEBUG_INFO_ENABLED = init_debug_info();
+	if (testFileInDBFound)
+		return 0;
+	switch ( n->type ) {
+		case HC_CATALOG:
+			analyzeNodeIsFileinDB(n->child );
+			return 0;
+		case HC_MEDIA:
+			progress ( pww );
+			analyzeNodeIsFileinDB(n->child );
+			analyzeNodeIsFileinDB(n->next );
+			return 0;
+		case HC_DIRECTORY:
+			progress ( pww );
+			analyzeNodeIsFileinDB(n->child );
+			analyzeNodeIsFileinDB(n->next );
+			return 0;
+		case HC_CATLNK:
+			analyzeNodeIsFileinDB(n->next );
+			return 0;
+		case HC_FILE:
+			if (*DEBUG_INFO_ENABLED)
+// 				std::cout << "testing file: " << qPrintable(n->getNameOf()) << " name: " << qPrintable(fdp->mainw->guis->standON->getNameOf()) << " <=> " << qPrintable(n->getNameOf()) << ". size: " <<  (( DBFile * ) ( fdp->mainw->guis->standON ))->size << " <=> " << ( ( DBFile * ) ( n->data ) )->size << ", size type: " <<  (( DBFile * ) ( fdp->mainw->guis->standON ) )->sizeType << " <=> " << ( ( DBFile * ) ( n->data ) )->sizeType  << std::endl;
+				std::cout << "testing file: " << qPrintable(n->getNameOf()) << " path: " << qPrintable(testFileInDBPath) << " <=> " << qPrintable(n->getFullPath()) << std::endl;
+			if ( testFileInDBPath ==  n->getFullPath()) {
+				if (*DEBUG_INFO_ENABLED) {
+					std::cout << "filepath match!" << std::endl;
+					std::cout << "size: " <<  testFileInDBSize << " <=> " << ( ( DBFile * ) ( n->data ) )->size << std::endl;
+				}
+				if (testFileInDBSize == ( ( DBFile * ) ( n->data ) )->size)  {
+					if (*DEBUG_INFO_ENABLED)
+						std::cout << "filesize match!" << std::endl;
+					testFileInDBFound = true;
+					return 0;
+				}
+			}
+			analyzeNodeIsFileinDB(n->next );
+			return 0;
+	}
+}
+
 

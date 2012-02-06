@@ -93,10 +93,12 @@ public:
     
 
     Node *sp;
+    Node *sb_backup;
     char *dataBuffer;
     
+    bool skipDuplicatesOnInsert;
 
-    int      readFrom ( Node *source );
+    int      readFrom ( Node *source, bool skipDuplicatesOnInsert = false );
     QString getStr2(const QXmlAttributes &atts,char *what,char *err );
     float getFloat2 (const QXmlAttributes &atts,char *what,char *err );
     int      isthere ( const char **from,char *what );
@@ -119,6 +121,8 @@ class CdCatXmlHandler : public QXmlDefaultHandler {
 		bool fatalError(const QXmlParseException &exception);
 		void setDocumentLocator ( QXmlLocator * locator );
 		void setPww(PWw *pww);
+		bool isFileInDB(Node *root, QString Path, float size);
+		int  analyzeNodeIsFileinDB ( Node *n,Node *pa=NULL );
 	private:
 		FileReader *r;
 		QString currentText;
@@ -127,6 +131,9 @@ class CdCatXmlHandler : public QXmlDefaultHandler {
 		long long int lines;
 		PWw *pww;
 		void *data;
+		QString testFileInDBPath;
+		float testFileInDBSize;
+		bool testFileInDBFound;
 };
 
 
