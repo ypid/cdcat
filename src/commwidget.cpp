@@ -420,11 +420,15 @@ void CommentWidget::updateContents() {
         }
 
 	if (! text.isEmpty()) {
-		w+=pixelsHigh+2;
+		//w+=pixelsHigh+2;
+		p.setPen ( *cconfig->comm_stext );
+		w++;
+		p.setPen ( *cconfig->comm_fr );
+		p.drawLine ( 12,my+w-pixelsHigh,width()-12,my+w-pixelsHigh );
 		p.setPen ( *cconfig->comm_stext );
 		w++;
 		p.drawText ( mx+15,my+w,tr ( "Category:" ) );
-// 		w+=pixelsHigh;
+ 		w+=pixelsHigh;
 		w++;
 		p.setPen ( *cconfig->comm_vtext );
 		textList = QStringList::split ( QRegExp ( "#|\n|\r\n" ),text,TRUE );

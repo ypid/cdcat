@@ -3,6 +3,7 @@
 	- commwidget space issuses fixes
 	- repaint commwidget only if nessary
 	- qtlogo on tool button and menu entry fixed
+	- category display at commwidget fixed
 
 03. Feb 2012 Christoph Thielecke <crissi99@gmx.de>
 	- scanning archve files on subfolder fixed (#3484430)
