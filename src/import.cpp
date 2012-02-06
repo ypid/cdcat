@@ -2826,11 +2826,13 @@ import::import ( GuiSlave * parent ) {
 	QString filename;
 	int type = -1;
 	ImportDialog *d = new ImportDialog ( 0 );
+	d->setLastDir(parent->mainw->cconfig->lastDir);
 	d->exec();
 
 	if ( d->OK == 1 ) {
 		separator = d->separator;
 		filename = d->filename;
+		parent->mainw->cconfig->lastDir = d->getLastDir();
 		createdatabase = d->newdatabase;
 		correctbadstyle = d->correctbadstyle;
 		separator = d->separator;

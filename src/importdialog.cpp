@@ -305,14 +305,17 @@ void ImportDialog::getFileName() {
     else
         filetypes = QString ( tr ( "all files(*.*)" ) );
 
+    if (lastDir.isEmpty()) {
     QString homedir;
 #ifndef _WIN32
 	homedir = getenv("HOME");
 #else
 	homedir = getenv("USER_PROFILE");
 #endif
+        lastDir = homedir;
+    }
 
-    filename_lineedit->setText (QFileDialog::getOpenFileName(this, tr ( "Choose a file for import" ), homedir, filetypes ));
+    filename_lineedit->setText (QFileDialog::getOpenFileName(this, tr ( "Choose a file for import" ), lastDir, filetypes ));
     filename= filename_lineedit->text();
 }
 
@@ -360,3 +363,13 @@ void ImportDialog::typeChanged() {
     }
 
 }
+
+QString ImportDialog::getLastDir() {
+	return lastDir;
+}
+
+void ImportDialog::setLastDir(QString lastDir) {
+	this->lastDir = lastDir;
+}
+
+

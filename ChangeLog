@@ -6,6 +6,7 @@
 	- category display at commwidget fixed
 	- limited tag support at whereisit import (will be added to comment)
 	- csv import from whereisit within multiple disks fixed (thanks to blueday)
+	- set last used dir on import dialog
 
 03. Feb 2012 Christoph Thielecke <crissi99@gmx.de>
 	- scanning archve files on subfolder fixed (#3484430)

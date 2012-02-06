@@ -77,15 +77,17 @@ protected slots:
     void getFileName();
     void typeChanged();
 
-private:
 
+private:
+	QString lastDir;
 
 public:
     int OK;
     QString filename, separator;
     bool createdatabase;
     int type;
-
+    void setLastDir(QString lastDir);
+    QString getLastDir();
 };
 
 #endif // IMPORTDIALOG_H
