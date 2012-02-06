@@ -239,8 +239,15 @@ exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget* parent, const ch
 
     if ( p != NULL ) {
 	QString lastDir =  mainw->cconfig->lastDir;
-	if (lastDir.isEmpty())
-		lastDir = ".";
+	if (lastDir.isEmpty()) {
+	QString homedir;
+#ifndef _WIN32
+		homedir = getenv("HOME");
+#else
+		homedir = getenv("USER_PROFILE");
+#endif
+		lastDir = homedir;
+	}
         fileName->setText ( lastDir +"/"+ ( ( DBCatalog * ) ( ( p->getRootNode() )->data ) )->name+".html" );
 	}
 
