@@ -129,7 +129,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp,QApplication *appp,QWidget* 
 
     ButtonAboutQt = new QToolButton ( Toolbar, "ButtonAboutQt" );
     ButtonAboutQt->setMaximumSize ( 30,30 );
-    ButtonAboutQt->setPixmap ( QPixmap ( QLatin1String ( ":/trolltech/qmessagebox/images/qtlogo-64.png" ) ) );
+    ButtonAboutQt->setPixmap ( *(get_t_qtlogo_icon()) );
 
     statusl=new QLabel ( tr ( "No item selected" ),this,"statusl" );
     statusl->setMaximumHeight ( fontHeight+2 );
@@ -210,7 +210,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp,QApplication *appp,QWidget* 
 
     helpMenu->insertItem ( *get_t_help_icon(),tr ( "Help" ) ,guis,SLOT ( helpEvent() ),Qt::Key_F1 );
     helpMenu->insertItem ( *get_t_about_icon(),tr ( "About" ),guis,SLOT ( aboutEvent() ) );
-    helpMenu->insertItem ( QPixmap ( QLatin1String ( ":/trolltech/qmessagebox/images/qtlogo-64.png" ) ), tr ( "About Qt" ),guis,SLOT ( aboutQtEvent() ) );
+    helpMenu->insertItem ( *get_t_qtlogo_icon(), tr ( "About Qt" ),guis,SLOT ( aboutQtEvent() ) );
 
     inoutMenu->insertItem ( *get_m_import_icon(),tr ( "Import database (CSV/XML)" ) ,guis,SLOT ( importEvent() ) );
     inoutMenu->insertItem ( *get_m_export_icon(),tr ( "Export database (CSV/HTML/XML)" ) ,guis,SLOT ( exportEvent() ) );

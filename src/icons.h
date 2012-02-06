@@ -55,6 +55,7 @@ QPixmap * get_m_import_icon ( void );
 QPixmap * get_t_sborrow_icon ( void );
 QPixmap * get_t_cborrow_icon ( void );
 QPixmap * get_t_colorconfig_icon ( void );
+QPixmap * get_t_qtlogo_icon ( void );
 
 #endif
 
