@@ -10,6 +10,7 @@
 	- set last used dir if last dir is not set to home dir at export dialog
 	- duplicate file search inside catalog added (use context menu entry on a file node)
 	- jump to selected file in duplicate result list if user clicked on it added
+	- skip adding file which is looked up for duplicates in result list
 
 03. Feb 2012 Christoph Thielecke <crissi99@gmx.de>
 	- scanning archve files on subfolder fixed (#3484430)

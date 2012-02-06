@@ -1148,7 +1148,7 @@ int seekEngine::analyzeNode (PWw *pww,  Node *n,Node *pa ) {
 			if (*DEBUG_INFO_ENABLED)
 // 				std::cout << "testing file: " << qPrintable(n->getNameOf()) << " name: " << qPrintable(fdp->mainw->guis->standON->getNameOf()) << " <=> " << qPrintable(n->getNameOf()) << ". size: " <<  (( DBFile * ) ( fdp->mainw->guis->standON ))->size << " <=> " << ( ( DBFile * ) ( n->data ) )->size << ", size type: " <<  (( DBFile * ) ( fdp->mainw->guis->standON ) )->sizeType << " <=> " << ( ( DBFile * ) ( n->data ) )->sizeType  << std::endl;
 				std::cout << "testing file: " << qPrintable(n->getNameOf()) << " name: " << qPrintable(fdp->mainw->guis->standON->getNameOf()) << " <=> " << qPrintable(n->getNameOf()) << std::endl;
-			if ( fdp->mainw->guis->standON->getNameOf() ==  n->getNameOf()) {
+			if ( fdp->mainw->guis->standON->getNameOf() ==  n->getNameOf() && fdp->mainw->guis->standON->getFullPath() !=  n->getFullPath()) {
 				if (*DEBUG_INFO_ENABLED) {
 					std::cout << "filename match!" << std::endl;
 
