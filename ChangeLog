@@ -5,6 +5,7 @@
 	- qtlogo on tool button and menu entry fixed
 	- category display at commwidget fixed
 	- limited tag support at whereisit import (will be added to comment)
+	- csv import from whereisit within multiple disks fixed (thanks to blueday)
 
 03. Feb 2012 Christoph Thielecke <crissi99@gmx.de>
 	- scanning archve files on subfolder fixed (#3484430)
