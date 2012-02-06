@@ -89,7 +89,7 @@ class ArchiveFile : public QObject {
 		ArchiveFile(QString fileattr="rw- rw- rw-", QString user=tr("unknown"), QString group=tr("unknown"), long long int size=0, QDateTime date=QDateTime().currentDateTime(), QString path="/", QString filetype=tr(""));
 		ArchiveFile ( const ArchiveFile& );
 		ArchiveFile operator = ( const ArchiveFile&);
-		QString toPrettyString(bool showAttr=true, bool showUser=true, bool showGroup=true, bool showSize=true, bool showDate=true, bool showFileType=true);
+		QString toPrettyString(bool showAttr=true, bool showUser=true, bool showGroup=true, bool showSize=true, bool showDate=true, bool showFileType=true, bool doHtmlTableLine=false);
 		QString toDbString();
 		void setDbString(QString DbString);
 		

@@ -2208,22 +2208,124 @@ void ArchiveFile::setDbString ( QString DbString ) {
 	}
 }
 
-QString ArchiveFile::toPrettyString ( bool showAttr, bool showUser, bool showGroup, bool showSize, bool showDate, bool showFileType ) {
+QString ArchiveFile::toPrettyString ( bool showAttr, bool showUser, bool showGroup, bool showSize, bool showDate, bool showFileType, bool doHtmlTableLine ) {
 	QString ret;
-
-	if ( showAttr )
-		ret += QString ( fileattr + "\t" );
-	if ( showUser )
-		ret += QString ( user + "\t" );
-	if ( showGroup )
-		ret += QString ( group + "\t" );
-	if ( showSize )
-		ret += QString ( QString().setNum ( size ) + "\t" );
-	if ( showDate )
-		ret += QString ( date.toString ( "MMM d h:s yyyy" ) + "\t" );
-	ret += QString ( path + "\t" );
-	if ( showFileType )
-		ret += QString ( filetype );
+	if ( doHtmlTableLine) {
+	   ret += "<tr>";
+	   if ( showAttr ) {
+			 ret += "<td>";
+			 ret += QString ( fileattr + "\t" );
+			 ret += "</td>";
+	   }
+	   if ( showUser ) {
+			 ret += "<td>";
+			 ret += QString ( user + "\t" );
+			 ret += "</td>";
+	   }
+	   if ( showGroup ) {
+			 ret += "<td>";
+			 ret += QString ( group + "\t" );
+			 ret += "</td>";
+	   }
+	   if ( showSize ) {
+			 float s = size;
+			 int   st = UNIT_BYTE;
+			 if ( size > (float)SIZE_ONE_GBYTE*1024.0 ) {
+				    s  = size / SIZE_ONE_GBYTE*1024.0;
+				    st = UNIT_TBYTE;
+			 } else {
+				    if ( size >= (float)SIZE_ONE_GBYTE && size < (float)SIZE_ONE_GBYTE*1024.0 ) {
+								s  = size / SIZE_ONE_GBYTE;
+								st = UNIT_GBYTE;
+				    }
+				    else {
+						  if ( size >= (float)SIZE_ONE_MBYTE && size < (float)SIZE_ONE_GBYTE ) {
+								s  = size / SIZE_ONE_MBYTE;
+								st = UNIT_MBYTE;
+						  }
+						  else {
+								if ( size >= (float)SIZE_ONE_KBYTE && size < (float)SIZE_ONE_MBYTE ) {
+									   s  = size / SIZE_ONE_KBYTE;
+									   st = UNIT_KBYTE;
+								}
+								else {
+									   s = size;
+									   st = UNIT_BYTE;
+								}
+						  }
+				    }
+			 }
+			 QString ret_size_str;
+			 ret_size_str.sprintf ( " %.2f ", s);
+			 ret_size_str += getSType ( st, true );
+			 ret += "<td align=\"right\">";
+			 ret += ret_size_str;
+			 ret += "</td>";
+	   }
+	   if ( showDate ) {
+			 ret += "<td align=\"right\">";
+			 ret += QString ( date.toString ( "MMM d h:s yyyy" ) + "\t" );
+			 ret += "</td>";
+	   }
+	   
+	   ret += "<td>";
+	   ret += QString ( path + "\t" );
+	   ret += "</td>";
+	   
+	   if ( showFileType ) {
+			 ret += "<td>";
+			 ret += QString ( filetype );
+			 ret += "</td>";
+	   }
+	   ret += "</tr>";
+	}
+	else {
+	   if ( showAttr )
+			 ret += QString ( fileattr + "\t" );
+	   if ( showUser )
+			 ret += QString ( user + "\t" );
+	   if ( showGroup )
+			 ret += QString ( group + "\t" );
+	   if ( showSize ) {
+			 float s = size;
+			 int   st = UNIT_BYTE;
+			 if ( size > (float)SIZE_ONE_GBYTE*1024.0 ) {
+				    s  = size / SIZE_ONE_GBYTE*1024.0;
+				    st = UNIT_TBYTE;
+			 } else {
+				    if ( size >= (float)SIZE_ONE_GBYTE && size < (float)SIZE_ONE_GBYTE*1024.0 ) {
+								s  = size / SIZE_ONE_GBYTE;
+								st = UNIT_GBYTE;
+				    }
+				    else {
+						  if ( size >= (float)SIZE_ONE_MBYTE && size < (float)SIZE_ONE_GBYTE ) {
+								s  = size / SIZE_ONE_MBYTE;
+								st = UNIT_MBYTE;
+						  }
+						  else {
+								if ( size >= (float)SIZE_ONE_KBYTE && size < (float)SIZE_ONE_MBYTE ) {
+									   s  = size / SIZE_ONE_KBYTE;
+									   st = UNIT_KBYTE;
+								}
+								else {
+									   s = size;
+									   st = UNIT_BYTE;
+								}
+						  }
+				    }
+			 }
+			 QString ret_size_str;
+			 ret_size_str.sprintf ( " %.2f ", s);
+			 ret_size_str += getSType ( st, true );
+			 ret += ret_size_str;
+			 ret += "\t";
+	   }
+	   if ( showDate )
+			 ret += QString ( date.toString ( "MMM d h:s yyyy" ) + "\t" );
+	   ret += QString ( path + "\t" );
+	   if ( showFileType )
+			 ret += QString ( filetype );
+	}
 	return ret;
 }
 

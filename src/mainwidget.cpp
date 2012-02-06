@@ -316,10 +316,11 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp,QApplication *appp,QWidget* 
 
     //scrollArea->resize(QSize(splitMain->handle(2)->width(), scrollArea->height()));
     commentWidget->resize(QSize(scrollArea->viewport()->width(), height() - 120 ) );
+    commentWidget->updateContents();
     
-    std::cout << "splitmain sizes: " << std::endl;
-    for (int i=0; i < splitMain->sizes().size(); i++)
-		std::cout << splitMain->sizes().at(i) << std::endl;
+    //std::cout << "splitmain sizes: " << std::endl;
+    //for (int i=0; i < splitMain->sizes().size(); i++)
+	//	std::cout << splitMain->sizes().at(i) << std::endl;
 
     if ( cconfig->autoload )
         guis->checkversion ( this,db );

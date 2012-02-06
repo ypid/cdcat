@@ -104,6 +104,8 @@ CommentWidget::CommentWidget ( CdCatConfig * cc,QApplication *appl,QWidget *pare
 
 
     setMinimumSize(QSize(200, 400));
+   // contentsPixmap = QPixmap(width(), height());
+    updateContents();
     
 }
 
@@ -141,14 +143,18 @@ void  CommentWidget::mouseReleaseEvent ( QMouseEvent * ) {
     repaint();
 }
 
-void  CommentWidget::paintEvent ( QPaintEvent * ) {
-//cerr <<"paintEvent"<<endl;
+void CommentWidget::updateContents() {
+    QApplication::setOverrideCursor ( Qt::waitCursor );
+    //contentsPixmap = QPixmap(width(), height());
+    contentsPixmap.resize(width(), height());
+    contentsPixmap.fill();
+    QPainter p ( &contentsPixmap );
     QStringList textList;
     QString text;
     QDateTime mod;
-    QPainter p ( this );
+    
     int w=25;
-    int fontwidth=width()+200;
+    int fontwidth=width();//+200;
     Node *tmp;
     QFontMetrics fm ( app->font() );
     int pixelsHigh = fm.height();
@@ -157,6 +163,8 @@ void  CommentWidget::paintEvent ( QPaintEvent * ) {
     bool need_showc_button=false;
 
     pixelsHigh-=1; //I think it was too big...
+
+    p.setFont(QFont("Fixed", cconfig->fsize-1));
 
     p.setPen ( *cconfig->comm_fr );
     p.fillRect ( 10,10,width()-20,height()-20,*cconfig->comm_bg/*QColor(255,229,28)*/ );
@@ -468,60 +476,68 @@ void  CommentWidget::paintEvent ( QPaintEvent * ) {
 				p.drawText ( mx+15,my+w,tr ( "Archive contents:" ) );
  				w+=pixelsHigh;
 				//w++;
-				QString archive_header;
-				if (cconfig->show_archive_file_perms)
-					archive_header += tr("Rights")+"\t";
 				
-				if(cconfig->show_archive_file_user)
-					archive_header += tr("Owner")+"\t";
+				QTextDocument *doc = new QTextDocument(this);
+				doc->setUndoRedoEnabled(false);
+				QString html  = "";
+				html += "<table colspacing=\"5\" rowspacing=\"5\">";
+				html += "<tr>";
+				if ( cconfig->show_archive_file_perms ) {
+						html += "<th>";
+						html += tr("Rights");
+						html += "</th>";
+				}
+				if ( cconfig->show_archive_file_user ) {
+						html += "<th>";
+						html += tr("Owner");
+						html += "</th>";
+				}
+				if ( cconfig->show_archive_file_group ) {
+						html += "<th>";
+						html += tr("Group");
+						html += "</th>";
+				}
+				if ( cconfig->show_archive_file_size ) {
+						html += "<th>";
+						html += tr("Size");
+						html += "</th>";
+				}
+				if ( cconfig->show_archive_file_date ) {
+						html += "<th>";
+						html += tr("Changed");
+						html += "</th>";
+				}
 				
-				if(cconfig->show_archive_file_group)
-					archive_header += tr("Group")+"\t";
+				html += "<th>";
+				html += tr("Path");
+				html += "</th>";
 				
-				if(cconfig->show_archive_file_size)
-					archive_header += tr("Size")+"\t";
-				
-				if(cconfig->show_archive_file_date)
-					archive_header += tr("Changed")+"\t\t";
-				
-				if(cconfig->show_archive_file_comment)
-					archive_header += tr("Name")+"\t";
-				
-				p.drawText (mx+15,my+w, archive_header );
+				if ( cconfig->show_archive_file_comment ) {
+						html += "<th>";
+						html += tr("Comment");
+						html += "</th>";
+				}
+				html += "</tr>";
 				
 				p.setPen ( *cconfig->comm_vtext );
 				for ( int i=0;i<ArchiveFileList.size();i++ ) {
 					ArchiveFile af = ArchiveFileList.at(i);
-					QString prettyArchiveFileLine = af.toPrettyString(cconfig->show_archive_file_perms, cconfig->show_archive_file_user, cconfig->show_archive_file_group, cconfig->show_archive_file_size, cconfig->show_archive_file_date, cconfig->show_archive_file_comment);
-					int max_archivecontent_len =200;
-					int stringlen = (prettyArchiveFileLine).size();
-					if(stringlen > max_archivecontent_len) {
-				// 		cerr << "oversized archivecontent line (" << stringlen <<"): " << qPrintable(*it) << endl;
-						int curlen=0;
-						QStringList textList2;
-						for (int curidx=0;curidx < stringlen;curidx++) {
-							if(curlen == max_archivecontent_len) {
-								textList2.append(prettyArchiveFileLine.mid(curidx-max_archivecontent_len, curidx));
-				// 				cerr << "added sub archivecontent line (" << prettyArchiveFileLine.mid(curidx-max_archivecontent_len, curidx).length() <<"): " << qPrintable(prettyArchiveFileLine.mid(curidx-max_archivecontent_len, curidx)) << endl;
-								curlen =0;
-							}
-							curlen++;
-						}
-						for ( QStringList::Iterator it2=textList2.begin(); it2 != textList2.end();++it2 ) {
-							w+=pixelsHigh;
-							p.drawText ( mx+15,my+w, ( *it2 ) );
-							if (p.fontMetrics().boundingRect(*it2).width() > fontwidth)
-								fontwidth = p.fontMetrics().boundingRect(*it2).width()+mx+20;
-						}
-					}
-					else {
-				// 		cerr << "undersized archivecontent line (" << stringlen <<"): " << qPrintable(prettyArchiveFileLine) << endl;
-						w+=pixelsHigh;
-						p.drawText ( mx+15,my+w, prettyArchiveFileLine );
-						if (p.fontMetrics().boundingRect(prettyArchiveFileLine).width() > fontwidth)
-							fontwidth = p.fontMetrics().boundingRect(prettyArchiveFileLine).width()+mx+20;
-					}
+					html += af.toPrettyString(cconfig->show_archive_file_perms, cconfig->show_archive_file_user, cconfig->show_archive_file_group, cconfig->show_archive_file_size, cconfig->show_archive_file_date, cconfig->show_archive_file_comment, true);
 				}
+				
+				doc->setHtml(html);
+				//     doc->setTextWidth(width());
+				//doc->setUseDesignMetrics(true);
+				//     doc->setDefaultTextOption ( QTextOption (Qt::AlignHCenter )  ); 
+				//     doc->drawContents(&p, QRectF(QRect(mx+15+valueoffset, my+w ,doc->size().height() , width())));
+				
+				p.save();
+				p.translate( QPoint(mx+ 10, my+w) );
+				doc->drawContents(&p);
+				p.restore();
+				w+= doc->size().height()+15;
+				/* end archive file list */
+				
 				w++;
 				p.setPen ( *cconfig->comm_fr );
 				p.drawLine ( 12,my+w,width()-12, my+w );
@@ -600,8 +616,9 @@ void  CommentWidget::paintEvent ( QPaintEvent * ) {
         }
         /*others...*/
     } else {
-        ButtonEdit->setEnabled ( false );
+	ButtonEdit->setEnabled ( false );
         p.setPen ( *cconfig->comm_stext );
+        //p.setPen ( *cconfig->comm_stext );
         p.setPen ( *cconfig->comm_vtext );
         p.drawText ( mx+15,my+25,tr ( "There is no selected element." ) );
     }
@@ -622,12 +639,19 @@ void  CommentWidget::paintEvent ( QPaintEvent * ) {
 
     ButtonContent->show();
     ButtonEdit->show();
-#if (QT_VERSION >= QT_VERSION_CHECK(4, 6, 0)) // needs Qt 4.6.0 or better
-    p.beginNativePainting();
-#endif
+    QApplication::restoreOverrideCursor();
+}
 
+void CommentWidget::paintEvent ( QPaintEvent * ) {
+//cerr <<"paintEvent"<<endl;
+QPainter p ( this );
     //delete text;
 //cerr <<"paintEvent-end"<<endl;
+    p.drawPixmap(p.viewport(), contentsPixmap);
+#if (QT_VERSION >= QT_VERSION_CHECK(4, 6, 0)) // needs Qt 4.6.0 or better
+    p.beginNativePainting();
+    p.endNativePainting();
+#endif
 }
 
 void  CommentWidget::resizeEvent ( QResizeEvent *re ) {
@@ -636,6 +660,7 @@ void  CommentWidget::resizeEvent ( QResizeEvent *re ) {
     ButtonCategoryEdit->setGeometry ( 85, ( ( re->size() ).height() )-45,30,30 );
 //     ButtonCategory->setGeometry ( 120, ( ( re->size() ).height() )-45,30,30 );
     //resize(QSize(sa->viewport()->size().width()-45, sa->viewport()->size().height()-45));
+    updateContents();
 }
 
 void CommentWidget::showNode ( Node *node,int mod ) {

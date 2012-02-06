@@ -1,3 +1,8 @@
+04. Feb 2012 Christoph Thielecke <crissi99@gmx.de>
+	- display archive contents at commwidget in better formated way
+	- commwidget space issuses fixes
+	- repaint commwidget only if nessary
+
 03. Feb 2012 Christoph Thielecke <crissi99@gmx.de>
 	- scanning archve files on subfolder fixed (#3484430)
 

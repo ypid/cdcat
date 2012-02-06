@@ -62,7 +62,7 @@ public:
     QScrollArea *sa;
     void showNode ( Node *node,int mod );
     void setScrollArea(QScrollArea *sa);
-
+    void updateContents();
 
     Node *act;
     int  mode;
@@ -81,6 +81,7 @@ private:
     int mx,my,ox,oy;
     QPixmap image13;
     QApplication *app;
+    QPixmap contentsPixmap;
 
 public slots:
     int editC ( void );

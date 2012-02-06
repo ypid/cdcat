@@ -310,6 +310,7 @@ int GuiSlave::listUpdate ( const QString& newloc ) {
     }
     updateStatusl ( pdir );
     mainw->commentWidget->showNode ( pdir, 0 );
+    mainw->commentWidget->updateContents();
     standON = NULL;
     return updateListFromNode ( pdir );
 }
@@ -474,6 +475,7 @@ int GuiSlave::standOn ( Q3ListViewItem *on ) {
     
     if ( on->text ( 0 ) == ".." ) {
         mainw->commentWidget->showNode ( NodePwd,1 );
+	mainw->commentWidget->updateContents();
         updateStatusl ( NodePwd->parent );
         standON = NULL;
         return 0;
@@ -495,6 +497,7 @@ int GuiSlave::standOn ( Q3ListViewItem *on ) {
     if(*DEBUG_INFO_ENABLED)
 	cerr<<"4"<<endl;
     mainw->commentWidget->showNode ( tmp,0 );
+mainw->commentWidget->updateContents();
     if(*DEBUG_INFO_ENABLED)
 	cerr<<"5"<<endl;
     updateStatusl ( tmp );
@@ -1741,7 +1744,7 @@ int GuiSlave::editComment ( void ) {
 
     editNodeComment ( standON,mainw );
     cHcaption();
-    mainw->commentWidget->repaint();
+    mainw->commentWidget->updateContents();
     return 0;
 }
 
@@ -1751,7 +1754,7 @@ int GuiSlave::editCategory ( void ) {
 
     editNodeComment ( standON,mainw, false );
     cHcaption();
-    mainw->commentWidget->repaint();
+    mainw->commentWidget->updateContents();
     return 0;
 }
 
@@ -1846,7 +1849,7 @@ int GuiSlave::borrowingEvent ( void ) {
 
     d = new borrowingDialog ( mainw->db,mainw,"borrowingdialog",true );
     d->exec();
-    mainw->commentWidget->repaint();
+    mainw->commentWidget->updateContents();
     cHcaption();
     return 0;
 }
@@ -1866,7 +1869,7 @@ int GuiSlave::sborrowEvent ( void ) {
         ( ( DBMedia * ) ( standON->data ) )->borrowing = d->m;
         standON->touchDB();
     }
-    mainw->commentWidget->repaint();
+    mainw->commentWidget->updateContents();
     cHcaption();
     return 0;
 }
@@ -1884,7 +1887,7 @@ int GuiSlave::cborrowEvent ( void ) {
     if ( ! ( ( ( DBMedia * ) ( standON->data ) )->borrowing.isEmpty() ) )
         ( ( DBMedia * ) ( standON->data ) )->borrowing = "";
     standON->touchDB();
-    mainw->commentWidget->repaint();
+    mainw->commentWidget->updateContents();
     cHcaption();
     return 0;
 }
@@ -1982,7 +1985,7 @@ int GuiSlave::colorEvent ( void ) {
     d=new ColorSettings ( mainw->cconfig,mainw,"cs",true );
     d->exec();
     mainw->repaint();
-    mainw->commentWidget->repaint();
+    mainw->commentWidget->updateContents();
     return 0;
 }
 
