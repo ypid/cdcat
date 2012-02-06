@@ -523,6 +523,7 @@ void CommentWidget::updateContents() {
 						html += "</th>";
 				}
 				html += "</tr>";
+				html += "</table>";
 				
 				p.setPen ( *cconfig->comm_vtext );
 				for ( int i=0;i<ArchiveFileList.size();i++ ) {
