@@ -472,7 +472,7 @@ void CommentWidget::updateContents() {
 			QList<ArchiveFile> ArchiveFileList = ( ( DBFile      * ) ( act->data ) )->archivecontent;
 			if (ArchiveFileList.size() > 0) {
 				w+=pixelsHigh+ispace;
-				p.setFont(QFont("Fixed", font().pointSize()-1));
+				
 				p.setPen ( *cconfig->comm_fr );
 				p.drawLine ( 12,my+w-pixelsHigh,width()-12,my+w-pixelsHigh );
 				p.setPen ( *cconfig->comm_stext );
@@ -480,6 +480,7 @@ void CommentWidget::updateContents() {
 				p.drawText ( mx+15,my+w,tr ( "Archive contents:" ) );
  				w+=pixelsHigh;
 				//w++;
+				p.setFont(QFont("Fixed", font().pointSize()-1));
 				
 				QTextDocument *doc = new QTextDocument(this);
 				doc->setUndoRedoEnabled(false);
@@ -526,7 +527,7 @@ void CommentWidget::updateContents() {
 				p.setPen ( *cconfig->comm_vtext );
 				for ( int i=0;i<ArchiveFileList.size();i++ ) {
 					ArchiveFile af = ArchiveFileList.at(i);
-					html += af.toPrettyString(cconfig->show_archive_file_perms, cconfig->show_archive_file_user, cconfig->show_archive_file_group, cconfig->show_archive_file_size, cconfig->show_archive_file_date, cconfig->show_archive_file_comment, true);
+					html += af.toPrettyString(cconfig->show_archive_file_perms, cconfig->show_archive_file_user, cconfig->show_archive_file_group, cconfig->show_archive_file_size, cconfig->show_archive_file_date, cconfig->show_archive_file_comment, true, (font().pointSize()+1));
 				}
 				
 				doc->setHtml(html);

@@ -2208,22 +2208,22 @@ void ArchiveFile::setDbString ( QString DbString ) {
 	}
 }
 
-QString ArchiveFile::toPrettyString ( bool showAttr, bool showUser, bool showGroup, bool showSize, bool showDate, bool showFileType, bool doHtmlTableLine ) {
+QString ArchiveFile::toPrettyString ( bool showAttr, bool showUser, bool showGroup, bool showSize, bool showDate, bool showFileType, bool doHtmlTableLine, int fontsize ) {
 	QString ret;
 	if ( doHtmlTableLine) {
 	   ret += "<tr>";
 	   if ( showAttr ) {
-			 ret += "<td>";
+			 ret += "<td style=\"font-size:"+QString().setNum(fontsize)+"px;\">";
 			 ret += QString ( fileattr + "\t" );
 			 ret += "</td>";
 	   }
 	   if ( showUser ) {
-			 ret += "<td>";
+			 ret += "<td style=\"font-size:"+QString().setNum(fontsize)+"px;\">";
 			 ret += QString ( user + "\t" );
 			 ret += "</td>";
 	   }
 	   if ( showGroup ) {
-			 ret += "<td>";
+			 ret += "<td style=\"font-size:"+QString().setNum(fontsize)+"px;\">";
 			 ret += QString ( group + "\t" );
 			 ret += "</td>";
 	   }
@@ -2258,22 +2258,22 @@ QString ArchiveFile::toPrettyString ( bool showAttr, bool showUser, bool showGro
 			 QString ret_size_str;
 			 ret_size_str.sprintf ( " %.2f ", s);
 			 ret_size_str += getSType ( st, true );
-			 ret += "<td align=\"right\">";
+			 ret += "<td align=\"right\" style=\"font-size:"+QString().setNum(fontsize)+"px;\">";
 			 ret += ret_size_str;
 			 ret += "</td>";
 	   }
 	   if ( showDate ) {
-			 ret += "<td align=\"right\">";
+			 ret += "<td align=\"right\" style=\"font-size:"+QString().setNum(fontsize)+"px;\">";
 			 ret += QString ( date.toString ( "MMM d h:s yyyy" ) + "\t" );
 			 ret += "</td>";
 	   }
 	   
-	   ret += "<td>";
+	   ret += "<td style=\"font-size:"+QString().setNum(fontsize)+"px;\">";
 	   ret += QString ( path + "\t" );
 	   ret += "</td>";
 	   
 	   if ( showFileType ) {
-			 ret += "<td>";
+			 ret += "<td style=\"font-size:"+QString().setNum(fontsize)+"px;\">";
 			 ret += QString ( filetype );
 			 ret += "</td>";
 	   }
