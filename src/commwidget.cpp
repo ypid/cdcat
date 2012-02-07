@@ -478,7 +478,7 @@ void CommentWidget::updateContents() {
 				p.setPen ( *cconfig->comm_stext );
 				w++;
 				p.drawText ( mx+15,my+w,tr ( "Archive contents:" ) );
- 				w+=pixelsHigh;
+ 				//w+=pixelsHigh;
 				//w++;
 				p.setFont(QFont("Fixed", font().pointSize()-1));
 				
@@ -528,7 +528,7 @@ void CommentWidget::updateContents() {
 				p.setPen ( *cconfig->comm_vtext );
 				for ( int i=0;i<ArchiveFileList.size();i++ ) {
 					ArchiveFile af = ArchiveFileList.at(i);
-					html += af.toPrettyString(cconfig->show_archive_file_perms, cconfig->show_archive_file_user, cconfig->show_archive_file_group, cconfig->show_archive_file_size, cconfig->show_archive_file_date, cconfig->show_archive_file_comment, true, (font().pointSize()+1));
+					html += af.toPrettyString(cconfig->show_archive_file_perms, cconfig->show_archive_file_user, cconfig->show_archive_file_group, cconfig->show_archive_file_size, cconfig->show_archive_file_date, cconfig->show_archive_file_comment, true, (font().pointSize()-1));
 				}
 				
 				doc->setHtml(html);
@@ -541,10 +541,10 @@ void CommentWidget::updateContents() {
 				p.translate( QPoint(mx+ 10, my+w) );
 				doc->drawContents(&p);
 				p.restore();
-				w+= doc->size().height()+15;
+				w+= doc->size().height();
 				/* end archive file list */
 				
-				w++;
+				//w++;
 				p.setPen ( *cconfig->comm_fr );
 				p.drawLine ( 12,my+w,width()-12, my+w );
 				p.setPen ( *cconfig->comm_stext );

@@ -2213,17 +2213,17 @@ QString ArchiveFile::toPrettyString ( bool showAttr, bool showUser, bool showGro
 	if ( doHtmlTableLine) {
 	   ret += "<tr>";
 	   if ( showAttr ) {
-			 ret += "<td style=\"font-size:"+QString().setNum(fontsize)+"px;\">";
+			 ret += "<td style=\"font-size:"+QString().setNum(fontsize)+"pt;\">";
 			 ret += QString ( fileattr + "\t" );
 			 ret += "</td>";
 	   }
 	   if ( showUser ) {
-			 ret += "<td style=\"font-size:"+QString().setNum(fontsize)+"px;\">";
+			 ret += "<td style=\"font-size:"+QString().setNum(fontsize)+"pt;\">";
 			 ret += QString ( user + "\t" );
 			 ret += "</td>";
 	   }
 	   if ( showGroup ) {
-			 ret += "<td style=\"font-size:"+QString().setNum(fontsize)+"px;\">";
+			 ret += "<td style=\"font-size:"+QString().setNum(fontsize)+"pt;\">";
 			 ret += QString ( group + "\t" );
 			 ret += "</td>";
 	   }
@@ -2258,22 +2258,22 @@ QString ArchiveFile::toPrettyString ( bool showAttr, bool showUser, bool showGro
 			 QString ret_size_str;
 			 ret_size_str.sprintf ( " %.2f ", s);
 			 ret_size_str += getSType ( st, true );
-			 ret += "<td align=\"right\" style=\"font-size:"+QString().setNum(fontsize)+"px;\">";
+			 ret += "<td align=\"right\" style=\"font-size:"+QString().setNum(fontsize)+"pt;\">";
 			 ret += ret_size_str;
 			 ret += "</td>";
 	   }
 	   if ( showDate ) {
-			 ret += "<td align=\"right\" style=\"font-size:"+QString().setNum(fontsize)+"px;\">";
+			 ret += "<td align=\"right\" style=\"font-size:"+QString().setNum(fontsize)+"pt;\">";
 			 ret += QString ( date.toString ( "MMM d h:s yyyy" ) + "\t" );
 			 ret += "</td>";
 	   }
 	   
-	   ret += "<td style=\"font-size:"+QString().setNum(fontsize)+"px;\">";
+	   ret += "<td style=\"font-size:"+QString().setNum(fontsize)+"pt;\">";
 	   ret += QString ( path + "\t" );
 	   ret += "</td>";
 	   
 	   if ( showFileType ) {
-			 ret += "<td style=\"font-size:"+QString().setNum(fontsize)+"px;\">";
+			 ret += "<td style=\"font-size:"+QString().setNum(fontsize)+"pt;\">";
 			 ret += QString ( filetype );
 			 ret += "</td>";
 	   }
