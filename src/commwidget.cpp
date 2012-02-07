@@ -485,6 +485,12 @@ void CommentWidget::updateContents() {
 				QTextDocument *doc = new QTextDocument(this);
 				doc->setUndoRedoEnabled(false);
 				QString html  = "";
+				html += "<html>";
+				html += "<head>";
+				html += "<style type=\"text/css\">";
+				html += ".line{font-size:"+QString().setNum(font().pointSize()-1)+"pt;}";
+				html += "</style>";
+				html += "</head>";
 				html += "<table colspacing=\"5\" rowspacing=\"5\">";
 				html += "<tr>";
 				if ( cconfig->show_archive_file_perms ) {
@@ -524,6 +530,8 @@ void CommentWidget::updateContents() {
 				}
 				html += "</tr>";
 				html += "</table>";
+				html += "</body>";
+				html += "</html>";
 				
 				p.setPen ( *cconfig->comm_vtext );
 				for ( int i=0;i<ArchiveFileList.size();i++ ) {
