@@ -2211,9 +2211,9 @@ void ArchiveFile::setDbString ( QString DbString ) {
 QString ArchiveFile::toPrettyString ( bool showAttr, bool showUser, bool showGroup, bool showSize, bool showDate, bool showFileType, bool doHtmlTableLine, int fontsize ) {
 	QString ret;
 	if ( doHtmlTableLine) {
-	   ret += "<tr>";
+	   ret += "<tr class=\"tableline\">";
 	   if ( showAttr ) {
-			 ret += "<td style=\"font-size:"+QString().setNum(fontsize)+"pt;\">";
+			 ret += "<td>";
 			 ret += QString ( fileattr + "\t" );
 			 ret += "</td>";
 	   }

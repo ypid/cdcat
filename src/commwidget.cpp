@@ -488,9 +488,10 @@ void CommentWidget::updateContents() {
 				html += "<html>";
 				html += "<head>";
 				html += "<style type=\"text/css\">";
-				html += ".line{font-size:"+QString().setNum(font().pointSize()-1)+"pt;}";
+				html += ".tableline{font-size:"+QString().setNum(font().pointSize()-1)+"pt;}";
 				html += "</style>";
 				html += "</head>";
+				html += "<body>";
 				html += "<table colspacing=\"5\" rowspacing=\"5\">";
 				html += "<tr>";
 				if ( cconfig->show_archive_file_perms ) {
