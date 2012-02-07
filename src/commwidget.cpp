@@ -539,7 +539,7 @@ void CommentWidget::updateContents() {
 				
 				p.save();
 				p.translate( QPoint(mx+ 10, my+w) );
-				p.setFont(QFont("Fixed", font().pointSize()-1));
+				doc->setDefaultFont(QFont("Fixed", font().pointSize()-1));
 				doc->drawContents(&p);
 				p.restore();
 				w+= doc->size().height();
