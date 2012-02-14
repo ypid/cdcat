@@ -199,6 +199,10 @@ addDialog::addDialog ( GuiSlave *c, QWidget* parent, const char* name, bool moda
         dirView->sDir= ( ( CdCatMainWidget * ) parent )->cconfig->cdrompath;
     //    setMediaName ( ( ( CdCatMainWidget * ) parent )->cconfig->cdrompath );
     }
+    else {
+        dirView->setDir ( ( ( CdCatMainWidget * ) parent )->cconfig->lastDir );
+        dirView->sDir= ( ( CdCatMainWidget * ) parent )->cconfig->lastDir;
+    }
     buttonOK->setFocus();
 }
 
@@ -415,7 +419,6 @@ PWw::PWw ( QWidget *parent,QApplication *qapp, bool showProgress, long long int 
     myheight = baseheight;
 
     /* Calculate the necesary font size*/
-    QFontMetrics *fm=NULL;
     ownf = font();
     i=10;
 //     do {
@@ -427,14 +430,14 @@ PWw::PWw ( QWidget *parent,QApplication *qapp, bool showProgress, long long int 
 //     } while ( fm->width ( this->progresstext ) > ( width()-5 ) );
     
     ownf.setPointSize ( i );
-    fm = new QFontMetrics ( ownf );
-    mywidth = (fm->width ( this->progresstext ))+10;
-    myheight = fm->height()+baseheight;
-    fontheight = fm->height();
+     QFontMetrics fm( ownf );
+    mywidth = (fm.width ( this->progresstext ))+10;
+    myheight = fm.height()+baseheight;
+    fontheight = fm.height();
 
     if(showCancel) {
-        myheight += fm->height()+10;
-	begincanceltext = mywidth/2- fm->width ( tr("Cancel") )/2;
+        myheight += fm.height()+10;
+	begincanceltext = mywidth/2- fm.width ( tr("Cancel") )/2;
     }
 
 //     std::cerr << "mywidth: " << mywidth << std::endl;
@@ -449,7 +452,6 @@ PWw::PWw ( QWidget *parent,QApplication *qapp, bool showProgress, long long int 
 
    begintext = 5;
 
-    if ( fm != NULL ) delete fm;
     setFont ( ownf );
 
     
@@ -472,7 +474,6 @@ void PWw::setProgressText ( QString progresstext ){
 	this->progresstext = progresstext;
 
     /* Calculate the necesary font size*/
-    QFontMetrics *fm=NULL;
     ownf = font();
     i=10;
 //     do {
@@ -484,25 +485,24 @@ void PWw::setProgressText ( QString progresstext ){
 //     } while ( fm->width ( this->progresstext ) > ( width()-5 ) );
 
     ownf.setPointSize ( i );
-    fm = new QFontMetrics ( ownf );
-    fontheight = fm->height();
+    QFontMetrics fm( ownf );
+    fontheight = fm.height();
     baseheight=30;
     if(showProgress)
 	baseheight+=40;
 
-    mywidth = (fm->width ( progresstext ))+10;
-    myheight = fm->height()+baseheight;
+    mywidth = (fm.width ( progresstext ))+10;
+    myheight = fm.height()+baseheight;
 
 
     if(showCancel) {
         myheight += fontheight+10;
-	begincanceltext = mywidth/2- fm->width ( tr("Cancel") )/2;
+	begincanceltext = mywidth/2- fm.width ( tr("Cancel") )/2;
 // 	std::cerr << "setCancel!" << std::endl;
     }
 
     begintext = 5;
 
-    if ( fm != NULL ) delete fm;
     setFont ( ownf );
 
     if( width() != mywidth) {

@@ -1,5 +1,7 @@
 14. Feb 2012 Christoph Thielecke <crissi99@gmx.de>
 	- set default rights for archive file on import properly
+	- set last used dir on adddialog if type is not cd/dvd
+	- use implicit font metrics local member instead creating on heap at progressdialog
 
 12. Feb 2012 Christoph Thielecke <crissi99@gmx.de>
 	- version increased to 1.7
