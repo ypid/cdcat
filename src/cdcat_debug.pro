@@ -1,4 +1,4 @@
-VERSION         =   1.6
+VERSION         =   1.7
 FORMS      	= help.ui
 TARGET          = cdcat
 TRANSLATIONS	= lang/cdcat_hu.ts \
@@ -124,7 +124,7 @@ win32 {
 	LIBS+=/usr/local/lib/lib7zip.a
 	
 	# DYNAMIC
-	#LIBS+= -llib7zip
+	#LIBS+= -l7zip
 	######### end lib7zip
 	
 	######### mediainfo
