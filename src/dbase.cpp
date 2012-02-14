@@ -937,7 +937,7 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 					if ( doScanArchiveTar ) {
 						if ( extension == "tar" ) {
 							if ( *DEBUG_INFO_ENABLED )
-								std::cerr << "tarfile found: " << qPrintable ( what + "/" + "/" + fileInfo->fileName() ) << std::endl;
+								std::cerr << "tarfile found: " << qPrintable ( what + "/" + fileInfo->fileName() ) << std::endl;
 							archivecontent = scanArchive ( what + "/" + fileInfo->fileName(), Archive_tar );
 						}
 						else
@@ -956,8 +956,8 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 					if ( doScanArchiveLib7zip )  {
 						if ( Lib7zipTypes.contains ( extension )  && ! ( fileInfo->fileName().lower().section ( '.', -1, -1 ) == "tar" ||  fileInfo->fileName().lower().section ( '.', -2, -1 ) == "tar.gz" || fileInfo->fileName().lower().section ( '.', -2, -1 ) == "tar.bz2" ) ) {
 							if ( *DEBUG_INFO_ENABLED )
-								std::cerr << "lib7zip found: " << qPrintable ( what + fileInfo->fileName() ) << std::endl;
-							archivecontent = scanArchive ( what + fileInfo->fileName(), Archive_lib7zip );
+								std::cerr << "lib7zip found: " << qPrintable ( what + "/" + fileInfo->fileName() ) << std::endl;
+							archivecontent = scanArchive ( what + "/" + fileInfo->fileName(), Archive_lib7zip );
 						}
 					}
 
@@ -1570,7 +1570,7 @@ QList<ArchiveFile> DataBase::scanArchive ( QString path, ArchiveType type ) {
 				mode_t m1 = th_get_mode ( t );
 				strmode ( m1, modestring );
 // 				af.fileattr.sprintf("%.10s %-8.8s %-8.8s ", modestring, username.toLocal8Bit().constData(), groupname.toLocal8Bit().constData());
-				af.fileattr = modestring;
+				af.fileattr = QString(modestring);
 				if ( af.fileattr.size() == 9 )
 					af.fileattr = " " + af.fileattr;
 				if ( TH_ISCHR ( t ) || TH_ISBLK ( t ) ) {
@@ -1653,6 +1653,7 @@ QList<ArchiveFile> DataBase::scanArchive ( QString path, ArchiveType type ) {
 					result = pArchiveItem->GetUInt64Property ( lib7zip::kpidAttrib, attr );
 					register mode_t mode  = ( attr >> 16 );
 					strmode ( mode, file_attr );
+					
 
 					//printf("file_attr: %s\n", file_attr);
 
@@ -1690,7 +1691,7 @@ QList<ArchiveFile> DataBase::scanArchive ( QString path, ArchiveType type ) {
 
 					// -rw-r--r-- crissi   crissi       29656 Mar 17  8:33 2009 home/crissi/Desktop/file.gif
 					//QString line = QString().sprintf("%s %s %s    %ld %s %s", file_attr, user2.toLocal8Bit().data(), group2.toLocal8Bit().data(), size, mtime2.toString("MMM d h:s yyyy").toLocal8Bit().data(), path.toLocal8Bit().data() );
-					af.fileattr = file_attr;
+					af.fileattr = QString(file_attr);
 					if ( af.fileattr.size() == 9 )
 						af.fileattr = " " + af.fileattr;
 					af.user = user2;
@@ -2178,7 +2179,7 @@ ArchiveFile::ArchiveFile ( const ArchiveFile& af ) : QObject() {
 	this->div = af.div;
 }
 
-ArchiveFile ArchiveFile::operator = ( const ArchiveFile& af ) {
+ArchiveFile& ArchiveFile::operator = ( const ArchiveFile& af ) {
 	this->fileattr = af.fileattr;
 	this->user = af.user;
 	this->group = af.group;
