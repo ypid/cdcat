@@ -1997,7 +1997,7 @@ int importGtktalogXml::addNewItem ( QString medianame, QString path, QString fil
 				cerr << "archive file " << qPrintable ( fullpath ) << " for archive " << qPrintable ( currFullpath ) << " found" << endl;
 			// its archivecontent
 			ArchiveFile af;
-			af.fileattr = "rwx rwx rwx";
+			af.fileattr = "-rwx rwx rwx";
 			af.user = "importuser";
 			af.group = "importgroup";
 			af.size = size;

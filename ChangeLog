@@ -1,6 +1,7 @@
 15. Feb 2012 Christoph Thielecke <crissi99@gmx.de>
 	- archive line parsing fixed on lib7zip created archive contents
 	- obsolete tab in generated archive file content on commwidget removed
+	- set default rights for archive file properly
 
 14. Feb 2012 Christoph Thielecke <crissi99@gmx.de>
 	- set default rights for archive file on import properly
