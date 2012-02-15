@@ -1337,6 +1337,22 @@ const wchar_t * index_names[] = {
 	L"kpidIsDir", //(IsDir)
 };
 
+#define LIB7ZIP_FILE_ATTRIBUTE_READONLY             1
+#define LIB7ZIP_FILE_ATTRIBUTE_HIDDEN               2
+#define LIB7ZIP_FILE_ATTRIBUTE_SYSTEM               4
+#define LIB7ZIP_FILE_ATTRIBUTE_DIRECTORY           16
+#define LIB7ZIP_FILE_ATTRIBUTE_ARCHIVE             32
+#define LIB7ZIP_FILE_ATTRIBUTE_DEVICE              64
+#define LIB7ZIP_FILE_ATTRIBUTE_NORMAL             128
+#define LIB7ZIP_FILE_ATTRIBUTE_TEMPORARY          256
+#define LIB7ZIP_FILE_ATTRIBUTE_SPARSE_FILE        512
+#define LIB7ZIP_FILE_ATTRIBUTE_REPARSE_POINT     1024
+#define LIB7ZIP_FILE_ATTRIBUTE_COMPRESSED        2048
+#define LIB7ZIP_FILE_ATTRIBUTE_OFFLINE          0x1000
+#define LIB7ZIP_FILE_ATTRIBUTE_ENCRYPTED        0x4000
+#define LIB7ZIP_FILE_ATTRIBUTE_UNIX_EXTENSION   0x8000   /* trick for Unix */
+
+
 /* is strmode from libtar/compat/strmode.c */
 // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
 void DataBase::strmode ( mode_t mode, char* p ) {
@@ -1377,7 +1393,7 @@ void DataBase::strmode ( mode_t mode, char* p ) {
 		break;
 #endif
 	default:                        /* unknown */
-		*p++ = '?';
+		*p++ = ' ';
 		break;
 	}
 	/* usr */
@@ -1523,7 +1539,7 @@ QList<ArchiveFile> DataBase::scanArchive ( QString path, ArchiveType type ) {
 		}
 		else {
 			while ( ( i = th_read ( t ) ) == 0 ) {
-				// -rw-r--r-- crissi   crissi       29656 Mar 17  8:33 2009 home/crissi/Desktop/file.gif
+				//  -rw-r--r-- crissi   crissi       29656 Mar 17  8:33 2009 home/crissi/Desktop/file.gif
 				ArchiveFile af;
 				if ( *DEBUG_INFO_ENABLED ) {
 					if ( type == Archive_targz )
@@ -1615,12 +1631,13 @@ QList<ArchiveFile> DataBase::scanArchive ( QString path, ArchiveType type ) {
 		C7ZipArchive * pArchive = NULL;
 		WStringArray exts;
 		char file_attr[100];
-
+		file_attr[0] = '\0';
+		
 		if ( !lib.Initialize() ) {
 			//fprintf(stderr, "lib7zip initialize failed, lib7zip scanning disabled\n");
 			doScanArchiveLib7zip = false;
 		}
-
+		
 		if ( !lib.GetSupportedExts ( exts ) ) {
 			//fprintf(stderr, "lib7zip get supported exts failed, lib7zip scanning disabled\n");
 			doScanArchiveLib7zip = false;
@@ -1630,52 +1647,80 @@ QList<ArchiveFile> DataBase::scanArchive ( QString path, ArchiveType type ) {
 				Lib7zipTypes.append ( QString().fromWCharArray ( ( *extIt ).c_str() ) );
 			//std::cerr << "lib7zip supported extensions: " << qPrintable(Lib7zipTypes.join(" ")) << std::endl;
 		}
-
+		
 		TestInStream stream ( path.toLocal8Bit().data(), path.lower().section ( '.', -1 ).toStdWString() );
 		if ( lib.OpenArchive ( &stream, &pArchive ) ) {
 			unsigned int numItems = 0;
 			pArchive->GetItemCount ( &numItems );
 			printf ( "" ); // important!!!
 			//printf("items found: %d\n", numItems);
-
+			
 			for ( unsigned int i = 0; i < numItems; i++ ) {
 				C7ZipArchiveItem * pArchiveItem = NULL;
-
+				
 				if ( pArchive->GetItemInfo ( i, &pArchiveItem ) ) {
 					// 				printf("%d,%ls,%d\n", pArchiveItem->GetArchiveIndex(),
 					// 						pArchiveItem->GetFullPath().c_str(),
 					// 						pArchiveItem->IsDir());
-
+				    
 					ArchiveFile af;
 					QString filetype;
 					bool result = false;
 					unsigned __int64 attr = 0;
 					result = pArchiveItem->GetUInt64Property ( lib7zip::kpidAttrib, attr );
-					register mode_t mode  = ( attr >> 16 );
-					strmode ( mode, file_attr );
+					QString attr2="";
+					af.fileattr = "";
 					
-
-					//printf("file_attr: %s\n", file_attr);
-
+					if (pArchiveItem->IsDir())
+						  af.fileattr += "d";
+					else
+						  af.fileattr += "-";
+					if ((result & LIB7ZIP_FILE_ATTRIBUTE_READONLY) != 0) {
+						  // read
+						  attr2 += "r-x";
+					}
+					else {
+						   // read + write
+						   attr2 += "rwx";
+					}
+					if ((result & LIB7ZIP_FILE_ATTRIBUTE_HIDDEN) != 0) {
+						   // hidden
+					}
+					if ((result & LIB7ZIP_FILE_ATTRIBUTE_SYSTEM) != 0) {
+						  // system
+					}
+					if ((result & LIB7ZIP_FILE_ATTRIBUTE_ARCHIVE) != 0) {
+						  // archive   
+					}
+					
+					// fake group
+					af.fileattr += attr2;
+					af.fileattr += " ";
+					
+					// fake other
+					af.fileattr += attr2;
+					af.fileattr += " ";
+					
+					//std::cerr << "file: " << qPrintable(QString::fromWCharArray ( pArchiveItem->GetFullPath().c_str() )) << ", attr: " << qPrintable(af.fileattr) << std::endl;
 					wstring user = L"";
 					result = pArchiveItem->GetStringProperty ( lib7zip::kpidUser, user );
 					QString user2 = QString::fromWCharArray ( user.c_str() );
 					if ( user2.isEmpty() )
 						user2 = "unknown";
-
+				    
 					wstring group = L"";
 					result = pArchiveItem->GetStringProperty ( lib7zip::kpidGroup, user );
 					QString group2 = QString::fromWCharArray ( group.c_str() );
 					if ( group2.isEmpty() )
 						group2 = "unknown";
-
+					
 					unsigned __int64 size = 0;
 					result = pArchiveItem->GetUInt64Property ( lib7zip::kpidSize, size );
 					size = pArchiveItem->GetSize();
-
+					
 					unsigned __int64 compressed_size = 0;
 					result = pArchiveItem->GetUInt64Property ( lib7zip::kpidPackSize, compressed_size );
-
+					
 					unsigned __int64 mtime = 0;
 					result = pArchiveItem->GetFileTimeProperty ( lib7zip::kpidMTime, mtime );
 					//printf("%ld\n", mtime);
@@ -1684,16 +1729,17 @@ QList<ArchiveFile> DataBase::scanArchive ( QString path, ArchiveType type ) {
 					unsigned long int offset = -116444736;
 					mtime2 = mtime2.addSecs ( ( mtime / 10000000 ) + ( offset * 100 ) ); // microsoft time stamp: diff from 1. Jan 1601, 100 ns (steps)
 					// 				mtime2 = mtime2.addSecs(-11644473600);
-
+				    
 					QString path = QString::fromWCharArray ( pArchiveItem->GetFullPath().c_str() );
 					if ( *DEBUG_INFO_ENABLED )
 						std::cerr << "file inside archive: " << qPrintable ( path ) << std::endl;
-
-					// -rw-r--r-- crissi   crissi       29656 Mar 17  8:33 2009 home/crissi/Desktop/file.gif
+				    
+					//  -rw-r--r-- crissi   crissi       29656 Mar 17  8:33 2009 home/crissi/Desktop/file.gif
 					//QString line = QString().sprintf("%s %s %s    %ld %s %s", file_attr, user2.toLocal8Bit().data(), group2.toLocal8Bit().data(), size, mtime2.toString("MMM d h:s yyyy").toLocal8Bit().data(), path.toLocal8Bit().data() );
-					af.fileattr = QString(file_attr);
+					
 					if ( af.fileattr.size() == 9 )
 						af.fileattr = " " + af.fileattr;
+				    
 					af.user = user2;
 					af.group = group2;
 					af.size = size;
@@ -2193,10 +2239,17 @@ ArchiveFile& ArchiveFile::operator = ( const ArchiveFile& af ) {
 
 void ArchiveFile::setDbString ( QString DbString ) {
 	// from db
-
+	if(DbString.at(0) == this->div) {
+		DbString = DbString.right(DbString.size()-2);
+	   std::cout << "first char was sep, skipping, new DbString: " << DbString.toLocal8Bit().constData() << std::endl;
+	}
 	QStringList fileentry = DbString.split ( this->div );
 // 	std::cout << "DbString: " << qPrintable(DbString) << "count of " << qPrintable(QString(this->div)) << ": " << DbString.count(this->div) << std::endl;
 // 	std::cout << "FileEntry (size: " << fileentry.size() << "): " << qPrintable(fileentry.join(" ")) << std::endl;
+// 	for ( int i = 0; i < fileentry.size(); ++i )
+// 		std::cout << "fileentry[" << i << "]: " << fileentry.at ( i ).toLocal8Bit().constData() << std::endl;
+// 	
+	
 	if ( fileentry.size() == 8 ) {
 		this->fileattr = fileentry.at ( 0 );
 		this->user = fileentry.at ( 1 );
@@ -2205,7 +2258,7 @@ void ArchiveFile::setDbString ( QString DbString ) {
 		this->date = QDateTime().fromString ( fileentry.at ( 4 ), "MMM d h:s yyyy" );
 		this->path = fileentry.at ( 5 );
 		this->filetype = fileentry.at ( 6 );
-// 		std::cout << "FileEntry: " << qPrintable(toPrettyString()) << std::endl;
+// 		std::cout << "FileEntry(8): " << qPrintable(toPrettyString()) << std::endl;
 	}
 }
 
@@ -2265,12 +2318,12 @@ QString ArchiveFile::toPrettyString ( bool showAttr, bool showUser, bool showGro
 	   }
 	   if ( showDate ) {
 			 ret += "<td align=\"right\" style=\"font-size:"+QString().setNum(fontsize)+"pt;\">";
-			 ret += QString ( date.toString ( "MMM d h:s yyyy" ) + "\t" );
+			 ret += QString ( date.toString ( "MMM d h:s yyyy" ) );
 			 ret += "</td>";
 	   }
 	   
 	   ret += "<td style=\"font-size:"+QString().setNum(fontsize)+"pt;\">";
-	   ret += QString ( path + "\t" );
+	   ret += QString ( path );
 	   ret += "</td>";
 	   
 	   if ( showFileType ) {
