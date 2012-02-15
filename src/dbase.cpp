@@ -1677,11 +1677,17 @@ QList<ArchiveFile> DataBase::scanArchive ( QString path, ArchiveType type ) {
 						  af.fileattr += "-";
 					if ((result & LIB7ZIP_FILE_ATTRIBUTE_READONLY) != 0) {
 						  // read
-						  attr2 += "r-x";
+						  if(pArchiveItem->IsDir())
+								attr2 += "r-x";
+						  else
+								attr2 += "r--";
 					}
 					else {
 						   // read + write
-						   attr2 += "rwx";
+						  if(pArchiveItem->IsDir())
+								attr2 += "rwx";
+						  else
+								attr2 += "rw-";
 					}
 					if ((result & LIB7ZIP_FILE_ATTRIBUTE_HIDDEN) != 0) {
 						   // hidden
