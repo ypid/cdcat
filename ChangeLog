@@ -1,5 +1,5 @@
 15. Feb 2012 Christoph Thielecke <crissi99@gmx.de>
-	- archive line parsing fixed on lib7zip created archive contents
+	- archive line parsing fixed on lib7zip created archive contents (#3485434)
 	- obsolete tab in generated archive file content on commwidget removed
 	- set default rights for archive file properly
 	- exec attribute on files inside archives scanned from lib7zip removed
