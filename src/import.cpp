@@ -2751,14 +2751,15 @@ import::import ( GuiSlave * parent ) {
 	if ( d->OK == 1 ) {
 		separator = d->separator;
 		filename = d->filename;
-		parent->mainw->cconfig->lastDir = d->getLastDir();
+		if(!filename.isEmpty())
+			parent->mainw->cconfig->lastDir = QDir(d->filename).dirName();
 		createdatabase = d->newdatabase;
 		correctbadstyle = d->correctbadstyle;
 		separator = d->separator;
 		type = d->type;
-
+		
 		delete d;
-
+		
 		if ( type == 0 )
 			importGtktalogCsv import ( parent, separator, filename, createdatabase, correctbadstyle );
 		else
