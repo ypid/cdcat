@@ -145,9 +145,8 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 	this->createdatabase = createdatabase;
 	this->separator = separator;
 	DEBUG_INFO_ENABLED = init_debug_info();
-
+	
 	if ( !filename.isEmpty() ) {
-
 		if ( parent->mainw->db == NULL )
 			parent->newEvent();
 		else {
@@ -200,7 +199,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 
 				medialines = new QList < lineObject > ();
 				//medialines->setAutoDelete( TRUE );  // the list owns the objects
-
+				
 				while ( !t.atEnd() ) {
 					QString line;
 					QString fullpath;
@@ -212,15 +211,31 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 					QString new_medianame;
 					QString datetimestring;
 					QString pathsep = "/";
-
+					bool line_ok = false;
 
 
 					line = t.readLine();  // line of text excluding '\n'
+					
+					// check for multiple lines of a entry...
+					if ( csvtype == "whereisit" ) {
+						while (line.right(1) != separator && !t.atEnd()) {
+							   if ( *DEBUG_INFO_ENABLED )
+									   cerr << "importGtktalogCsv:: multi line entry found" << endl;
+							   line += '\n';
+							   line += t.readLine();  // line of text excluding '\n'
+						}
+					}
+					
+					
+					if ( !line.startsWith ( "#" ) && !line.isEmpty() ) {
+						line_ok = true;  
+					}
+					
 //                     if(*DEBUG_INFO_ENABLED) {
 //                                  cerr << "line raw: " << qPrintable(line) << endl;
 //                     }
 
-					if ( !line.startsWith ( "#" ) && !line.isEmpty() ) {
+					if ( line_ok ) {
 						if ( line.contains ( '\\' ) )
 							pathsep = "\\";
 						if ( correctbadstyle ) {
@@ -339,8 +354,8 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 							}
 
 						}
-						else
-							if ( csvtype == "kat-dece" ) {
+						
+						else if ( csvtype == "kat-dece" ) {
 								/*
 								 * format:
 								 * "Number";"Location";"CD name";"CD category";"Name";"Extension";"Length";"Date";"Path";"Comment"
@@ -453,8 +468,8 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 								}
 
 							}
-							else
-								if ( csvtype == "disclib" ) {
+							
+						else if ( csvtype == "disclib" ) {
 									/*
 									 * format:
 									 * name*"volume"*filepath*path*size*Volume serial*date*type*"category"*"comments"*"location"
@@ -580,8 +595,8 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 									}
 
 								}
-								else
-									if ( csvtype == "visualcd" ) {
+						
+						else if ( csvtype == "visualcd" ) {
 										/*
 										 * format:
 										 * name;path;size;date;comment;date picture;dimensions;duration;title;artist;album
@@ -710,8 +725,8 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 										}
 
 									}
-									else
-										if ( csvtype == "vvv" ) {
+						
+						else if ( csvtype == "vvv" ) {
 											/*
 											 * format:
 											 * "media","path","filename",size,"extension",date,"description"
@@ -829,8 +844,8 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 //                                         QMessageBox::warning(0, "line", msg);
 											}
 										}
-										else
-											if ( csvtype == "afo" ) {
+						
+						else if ( csvtype == "afo" ) {
 												/*
 												 * format:
 												 * "name","size","modified","location","category","description","type"
@@ -967,8 +982,8 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 //                                         QMessageBox::warning(0, "line", msg);
 												}
 											}
-											else
-												if ( csvtype == "filearchivist" ) {
+						
+						else if ( csvtype == "filearchivist" ) {
 													/*
 													 * format:
 													 * media|filename|path|date|open with
@@ -1085,8 +1100,8 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 //                                         QMessageBox::warning(0, "line", msg);
 													}
 												}
-												else
-													if ( csvtype == "advanceddiskcatalog" ) {
+						
+						else if ( csvtype == "advanceddiskcatalog" ) {
 														/*
 														 * format:
 														 * "Disk", "Name", "Path", "Full path", "Size", "Date", "Time", "Category", "Level", "Comments", "Files inside", "Type"
@@ -1249,8 +1264,8 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 														}
 
 													}
-													else
-														if ( csvtype == "whereisit" ) {
+						
+						else if ( csvtype == "whereisit" ) {
 															/*
 															 * format:
 															 * File, Folder or Disk;Ext;Item Size;Item Date;Location;Media Type;Folder;Category;Description;Disk #;Item Time;CRC;Tag;Disk Location;
@@ -1381,8 +1396,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 															}
 
 														}
-
-
+						
 						if ( medianame == "" )
 							medianame = new_medianame;
 
