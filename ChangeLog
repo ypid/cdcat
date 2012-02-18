@@ -1,5 +1,6 @@
 18. Feb 2012 Christoph Thielecke <crissi99@gmx.de>
 	- handle multiline entries on whereisit csv import correctly
+	- fix duplicate extension on whereisit cvs import (whereisit lite)
 
 15. Feb 2012 Christoph Thielecke <crissi99@gmx.de>
 	- archive line parsing fixed on lib7zip created archive contents (#3485434)

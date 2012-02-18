@@ -1215,7 +1215,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 															//	cerr << "importGtktalogCsv new_medianame: " << qPrintable(new_medianame) << endl;
 															
 															filename = QString ( csvList.at ( 0 ) );
-															if ( !QString ( csvList.at ( 1 ) ).isEmpty() )
+															if ( !QString ( csvList.at ( 1 ) ).isEmpty() && !QString ( csvList.at ( 0 ) ).endsWith("."+csvList.at ( 1 )) )
 																filename += "." + QString ( csvList.at ( 1 ) );
 															QString sizestring = QString ( csvList.at ( 2 ) );
 															//if(*DEBUG_INFO_ENABLED)
