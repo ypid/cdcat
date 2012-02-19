@@ -1454,7 +1454,7 @@ int GuiSlave::rescanEvent ( void ) {
 int GuiSlave::findEvent ( void ) {
     if ( mainw->db == NULL ) return 0;
 
-    findDialog *d=new findDialog ( mainw,"finddialog",true );
+    findDialog *d=new findDialog ( mainw,"finddialog", false, true );
     d->exec();
     return 0;
 }
@@ -1901,7 +1901,7 @@ int GuiSlave::searchDuplicatesEvent ( void ) {
         QMessageBox::warning ( mainw,tr ( "Error:" ),tr ( "There is no selected item in the middle list box!" ) );
         return 0;
     }
-    findDuplicatesDialog *finddupd = new findDuplicatesDialog ( mainw,"finddialog",true );
+    findDialog *finddupd = new findDialog ( mainw,"finddialog",true, true );
     finddupd->exec();
     cHcaption();
     updateListFromNode();
