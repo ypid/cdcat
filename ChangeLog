@@ -1,5 +1,6 @@
 18. Feb 2012 Christoph Thielecke <crissi99@gmx.de>
 	- crash at search fixed (#3489211)
+	- version increased to 1.8
 
 18. Feb 2012 Christoph Thielecke <crissi99@gmx.de>
 	- handle multiline entries on whereisit csv import correctly
