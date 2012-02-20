@@ -1,4 +1,7 @@
-18. Feb 2012 Christoph Thielecke <crissi99@gmx.de>
+20. Feb 2012 Christoph Thielecke <crissi99@gmx.de>
+	- search did not return any result if not catalog node is selected (#3489441)
+
+19. Feb 2012 Christoph Thielecke <crissi99@gmx.de>
 	- crash at search fixed (#3489211)
 	- version increased to 1.8
 

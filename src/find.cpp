@@ -1054,8 +1054,15 @@ int seekEngine::analyzeNode ( PWw *pww,  Node *n, Node *pa ) {
 	DEBUG_INFO_ENABLED = init_debug_info();
 	
 	progress ( pww );
-	if ( n == NULL || pww->doCancel  || fd->mainw->guis->standON == NULL )
+	if ( n == NULL || pww->doCancel)
 		return 0;
+	if ( searchForDuplicates ) {
+		if ( fd->mainw->guis->standON == NULL ) {
+			if ( *DEBUG_INFO_ENABLED )
+				std::cout << "standON is NULL! " << std::endl;
+		}
+		return 0;
+	}
 	
 	if ( searchForDuplicates ) {
 		switch ( n->type ) {
@@ -1082,7 +1089,6 @@ int seekEngine::analyzeNode ( PWw *pww,  Node *n, Node *pa ) {
 				if ( fd->mainw->guis->standON->getNameOf() ==  n->getNameOf() && fd->mainw->guis->standON->getFullPath() !=  n->getFullPath() ) {
 					if ( *DEBUG_INFO_ENABLED ) {
 						std::cout << "filename match!" << std::endl;
-
 						std::cout << "size: " <<  fd->mainw->guis->mainw->db->getSize ( fd->mainw->guis->standON ) << " <=> " << ( ( DBFile * ) ( n->data ) )->size << std::endl;
 					}
 					if ( fd->mainw->guis->mainw->db->getSize ( fd->mainw->guis->standON ) == ( ( DBFile * ) ( n->data ) )->size )  {
@@ -1502,6 +1508,8 @@ void seekEngine::putNodeToList ( Node *n, QString comment ) {
 	if ( n == NULL )
 		return;
 	
+	DEBUG_INFO_ENABLED = init_debug_info();
+	
 	switch ( n->type ) {
 		case HC_MEDIA:
 			type = tr ( "media" );
@@ -1525,6 +1533,8 @@ void seekEngine::putNodeToList ( Node *n, QString comment ) {
 			break;
 	}
 	tmp = n;
+	if ( *DEBUG_INFO_ENABLED )
+		std::cout << "putNodeToList: path: " << qPrintable(n->getFullPath()) << ",  type: " << qPrintable(type) << std::endl;
 	while ( tmp->type != HC_MEDIA ) {
 		tmp = tmp->parent;
 		progress ( pww );
