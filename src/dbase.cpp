@@ -86,9 +86,9 @@ class TestInStream : public C7ZipInStream {
 			m_strFileName ( fileName ),
 			m_strFileExt ( ext ) {
 			DEBUG_INFO_ENABLED = init_debug_info();
-			
+
 			if ( *DEBUG_INFO_ENABLED )
-			 printf ( "fileName.c_str(): %s\n", fileName.c_str() );
+				printf ( "fileName.c_str(): %s\n", fileName.c_str() );
 			m_pFile = fopen ( fileName.c_str(), "rb" );
 			if ( m_pFile ) {
 				fseek ( m_pFile, 0, SEEK_END );
@@ -112,7 +112,7 @@ class TestInStream : public C7ZipInStream {
 #endif
 				}
 				if ( *DEBUG_INFO_ENABLED )
-				    printf ( "Ext:%ls\n", m_strFileExt.c_str() );
+					printf ( "Ext:%ls\n", m_strFileExt.c_str() );
 			}
 			else {
 				printf ( "fileName.c_str(): %s cant open\n", fileName.c_str() );
@@ -127,9 +127,9 @@ class TestInStream : public C7ZipInStream {
 	public:
 		virtual wstring GetExt() const {
 			DEBUG_INFO_ENABLED = init_debug_info();
-			
+
 			if ( *DEBUG_INFO_ENABLED )
-				    printf ( "GetExt:%ls\n", m_strFileExt.c_str() );
+				printf ( "GetExt:%ls\n", m_strFileExt.c_str() );
 			return m_strFileExt;
 		}
 
@@ -197,7 +197,7 @@ void caseSensConversion ( char *p ) {
 
 	for ( s = 0, t = 0; s <= ss; s++, t++ ) {
 		if ( ( p[s] >= 'a' && p[s] <= 'z' ) ||
-		          ( p[s] >= 'A' && p[s] <= 'Z' ) ) {
+		                ( p[s] >= 'A' && p[s] <= 'Z' ) ) {
 			tmp[t++] = '[';
 			tmp[t++] = tolower ( p[s] );
 			tmp[t++] = '|';
@@ -228,8 +228,8 @@ void easyFormConversion ( char *p ) {
 			}
 			else
 				if ( ( p[s] >= 'a' && p[s] <= 'z' ) ||
-				          ( p[s] >= 'A' && p[s] <= 'Z' ) ||
-				          ( p[s] >= '0' && p[s] <= '9' ) ) {
+				                ( p[s] >= 'A' && p[s] <= 'Z' ) ||
+				                ( p[s] >= '0' && p[s] <= '9' ) ) {
 					tmp[t] = p[s];
 				}
 				else
@@ -273,29 +273,29 @@ Node::~Node ( void ) {
 		delete next;
 	if ( data  != NULL ) {
 		switch ( type ) {
-		case HC_UNINITIALIZED:
-			break;
-		case HC_CATALOG      :
-			delete ( ( DBCatalog   * ) data );
-			break;
-		case HC_MEDIA        :
-			delete ( ( DBMedia     * ) data );
-			break;
-		case HC_DIRECTORY    :
-			delete ( ( DBDirectory * ) data );
-			break;
-		case HC_FILE         :
-			delete ( ( DBFile      * ) data );
-			break;
-		case HC_MP3TAG       :
-			delete ( ( DBMp3Tag    * ) data );
-			break;
-		case HC_CONTENT      :
-			delete ( ( DBContent   * ) data );
-			break;
-		case HC_CATLNK       :
-			delete ( ( DBCatLnk    * ) data );
-			break;
+			case HC_UNINITIALIZED:
+				break;
+			case HC_CATALOG      :
+				delete ( ( DBCatalog   * ) data );
+				break;
+			case HC_MEDIA        :
+				delete ( ( DBMedia     * ) data );
+				break;
+			case HC_DIRECTORY    :
+				delete ( ( DBDirectory * ) data );
+				break;
+			case HC_FILE         :
+				delete ( ( DBFile      * ) data );
+				break;
+			case HC_MP3TAG       :
+				delete ( ( DBMp3Tag    * ) data );
+				break;
+			case HC_CONTENT      :
+				delete ( ( DBContent   * ) data );
+				break;
+			case HC_CATLNK       :
+				delete ( ( DBCatLnk    * ) data );
+				break;
 		}
 	}
 	child = next = NULL;
@@ -325,22 +325,22 @@ void Node::touchDB ( void ) {
 
 QString Node::getNameOf ( void ) {
 	switch ( type ) {
-	case HC_UNINITIALIZED:
-		return QString ( "" );
-	case HC_CATALOG      :
-		return ( ( DBCatalog   * ) data )->name;
-	case HC_MEDIA        :
-		return ( ( DBMedia     * ) data )->name;
-	case HC_DIRECTORY    :
-		return ( ( DBDirectory * ) data )->name;
-	case HC_FILE         :
-		return ( ( DBFile      * ) data )->name;
-	case HC_MP3TAG       :
-		return QString ( "" );
-	case HC_CONTENT      :
-		return QString ( "" );
-	case HC_CATLNK       :
-		return ( ( DBCatLnk    * ) data )->name;
+		case HC_UNINITIALIZED:
+			return QString ( "" );
+		case HC_CATALOG      :
+			return ( ( DBCatalog   * ) data )->name;
+		case HC_MEDIA        :
+			return ( ( DBMedia     * ) data )->name;
+		case HC_DIRECTORY    :
+			return ( ( DBDirectory * ) data )->name;
+		case HC_FILE         :
+			return ( ( DBFile      * ) data )->name;
+		case HC_MP3TAG       :
+			return QString ( "" );
+		case HC_CONTENT      :
+			return QString ( "" );
+		case HC_CATLNK       :
+			return ( ( DBCatLnk    * ) data )->name;
 	}
 	return QString ( "" );
 }
@@ -511,16 +511,21 @@ DataBase::DataBase ( void ) {
 	Lib7zipTypes.clear();
 	Lib7zipTypes.append ( "zip" );
 	Lib7zipTypes.append ( "7z" );
+	DEBUG_INFO_ENABLED = init_debug_info();
+
 
 #ifdef USE_LIB7ZIP
 	C7ZipLibrary lib;
 	WStringArray exts;
-
+	
 	if ( !lib.Initialize() ) {
 		fprintf ( stderr, "lib7zip initialize failed, lib7zip scanning disabled\n" );
 		doScanArchiveLib7zip = false;
 	}
-
+	else {
+		 if ( *DEBUG_INFO_ENABLED )
+			 fprintf ( stderr, "lib7zip initialize succeeded, lib7zip scanning enabled\n" );
+	}
 	if ( !lib.GetSupportedExts ( exts ) ) {
 		fprintf ( stderr, "lib7zip get supported exts failed, lib7zip scanning disabled\n" );
 		doScanArchiveLib7zip = false;
@@ -528,8 +533,12 @@ DataBase::DataBase ( void ) {
 	else {
 		for ( WStringArray::const_iterator extIt = exts.begin(); extIt != exts.end(); extIt++ )
 			Lib7zipTypes.append ( QString().fromWCharArray ( ( *extIt ).c_str() ) );
-		std::cerr << "lib7zip supported extensions: " << qPrintable ( Lib7zipTypes.join ( " " ) ) << std::endl;
+		if ( *DEBUG_INFO_ENABLED )
+			std::cerr << "lib7zip supported extensions: " << qPrintable ( Lib7zipTypes.join ( " " ) ) << std::endl;
 	}
+#else
+	   if ( *DEBUG_INFO_ENABLED )
+		std::cerr << "lib7zip library not supported" << std::end;
 #endif
 }
 
@@ -665,7 +674,7 @@ int   DataBase::saveAsDB ( char *filename ) {
 	return 0;
 }
 /***************************************************************************/
-int   DataBase::insertDB ( char *filename, bool skipDuplicatesOnInsert  ) {
+int   DataBase::insertDB ( char *filename, bool skipDuplicatesOnInsert ) {
 	int i;
 	gzFile f = NULL;
 	FileReader *fw = NULL;
@@ -835,7 +844,7 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 	DEBUG_INFO_ENABLED = init_debug_info();
 	if ( *DEBUG_INFO_ENABLED )
 		std::cerr << "Loading node:" << qPrintable ( what ) << std::endl;
-	
+
 	int ret;
 	QString comm = NULL;
 	QList<ArchiveFile> archivecontent = QList<ArchiveFile>();
@@ -885,44 +894,45 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 		if ( fileInfo->isFile() ) { /* FILE */
 			if ( *DEBUG_INFO_ENABLED )
 				std::cerr << "adding file: " << qPrintable ( fileInfo->fileName() ) << std::endl;
-			 
+
 			float size = fileInfo->size();
 			float s = size;
 			int   st = UNIT_BYTE;
 // 			if ( *DEBUG_INFO_ENABLED )
 // 				std::cerr << "adding file size: " << s << std::endl;
 
-			if ( size > (float)SIZE_ONE_GBYTE*1024.0 ) {
-				s  = size / SIZE_ONE_GBYTE*1024.0;
+			if ( size > ( float ) SIZE_ONE_GBYTE * 1024.0 ) {
+				s  = size / SIZE_ONE_GBYTE * 1024.0;
 				st = UNIT_TBYTE;
-			} else {
-				    if ( size >= (float)SIZE_ONE_GBYTE && size < (float)SIZE_ONE_GBYTE*1024.0 ) {
-								s  = size / SIZE_ONE_GBYTE;
-								st = UNIT_GBYTE;
-				    }
-				    else {
-						  if ( size >= (float)SIZE_ONE_MBYTE && size < (float)SIZE_ONE_GBYTE ) {
-								s  = size / SIZE_ONE_MBYTE;
-								st = UNIT_MBYTE;
-						  }
-						  else {
-								if ( size >= (float)SIZE_ONE_KBYTE && size < (float)SIZE_ONE_MBYTE ) {
-									   s  = size / SIZE_ONE_KBYTE;
-									   st = UNIT_KBYTE;
-								}
-								else {
-									   s = size;
-									   st = UNIT_BYTE;
-								}
-						  }
-				    }
 			}
-			
+			else {
+				if ( size >= ( float ) SIZE_ONE_GBYTE && size < ( float ) SIZE_ONE_GBYTE * 1024.0 ) {
+					s  = size / SIZE_ONE_GBYTE;
+					st = UNIT_GBYTE;
+				}
+				else {
+					if ( size >= ( float ) SIZE_ONE_MBYTE && size < ( float ) SIZE_ONE_GBYTE ) {
+						s  = size / SIZE_ONE_MBYTE;
+						st = UNIT_MBYTE;
+					}
+					else {
+						if ( size >= ( float ) SIZE_ONE_KBYTE && size < ( float ) SIZE_ONE_MBYTE ) {
+							s  = size / SIZE_ONE_KBYTE;
+							st = UNIT_KBYTE;
+						}
+						else {
+							s = size;
+							st = UNIT_BYTE;
+						}
+					}
+				}
+			}
+
 // 			if ( *DEBUG_INFO_ENABLED )
 // 				std::cerr << "adding file size 2: " << qPrintable ( QString().setNum ( s ) ) << qPrintable ( getSType ( st ) ) << std::endl;
-			
+
 			progress ( pww );
-			
+
 			if ( fileInfo->isSymLink() ) { /* SYMBOLIC LINK to a FILE */
 				comm = tr ( "Symbolic link to file:#" )
 				       + dir->relativeFilePath ( fileInfo->symLinkTarget() );
@@ -979,14 +989,14 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 					/* These links appear as empty directories in the GUI */
 					/* Change to DBFile for show them as files */
 					tt->data = ( void * ) new DBDirectory (
-					                fileInfo->fileName(), fileInfo->lastModified(),
-					                tr ( "Symbolic link to directory:#" )
-					                + dir->relativeFilePath ( fileInfo->symLinkTarget() ), this->pcategory );
+					                   fileInfo->fileName(), fileInfo->lastModified(),
+					                   tr ( "Symbolic link to directory:#" )
+					                   + dir->relativeFilePath ( fileInfo->symLinkTarget() ), this->pcategory );
 					continue; /* Do not recurse into symbolically linked directories */
 				}
 				else {
 					tt->data = ( void * ) new DBDirectory (
-					                fileInfo->fileName(), fileInfo->lastModified(), ( char* ) NULL, this->pcategory );
+					                   fileInfo->fileName(), fileInfo->lastModified(), ( char* ) NULL, this->pcategory );
 				}
 
 				/* Start recursion: */
@@ -1034,7 +1044,7 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 	/***MP3 tag scanning */
 	if ( storeMp3tags || storeMp3techinfo ) {
 		if ( ( fi->extension ( FALSE ) ).lower() ==  "mp3" ||
-		          ( fi->extension ( FALSE ) ).lower() ==  "mp2" ) {
+		                ( fi->extension ( FALSE ) ).lower() ==  "mp2" ) {
 			ReadMp3Tag *reader = new ReadMp3Tag ( ( const char * ) QFile::encodeName ( fi->absFilePath() ), v1_over_v2 );
 			if ( storeMp3tags )
 				if ( reader->readed() && reader->exist() ) {
@@ -1054,7 +1064,7 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 					                                     QString::fromLocal8Bit ( reader->album() )  ,
 					                                     QString::fromLocal8Bit ( reader->year() ),
 					                                     reader->tnum() );
-				
+
 				}//storetag-if
 			// Put some technical info to comment
 			if ( storeMp3techinfo ) {
@@ -1067,27 +1077,27 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 				}
 			}//storeinfo-if
 			if ( reader != NULL ) {
-			    delete reader;
-			    reader = NULL;
+				delete reader;
+				reader = NULL;
 			}
-	   }
-	} 
-	
+		}
+	}
+
 	/* using fileinfo */
 	if ( storeFileInfo && me.getMediaInfoLibFound() ) {
-	   QString info = CdcatMediaInfo ( fi->absoluteFilePath() ).getInfo();
-	   if ( !info.isEmpty() )
-		    fc->fileinfo = info;
+		QString info = CdcatMediaInfo ( fi->absoluteFilePath() ).getInfo();
+		if ( !info.isEmpty() )
+			fc->fileinfo = info;
 	}
 	/***Experimental AVI Header Scanning  */
 	if ( storeAvitechinfo ) {
-		if ( ( fi->extension ( FALSE ) ).lower() == "avi") {
+		if ( ( fi->extension ( FALSE ) ).lower() == "avi" ) {
 			FILE* filePTR;
 			filePTR = fopen ( ( const char * ) QFile::encodeName ( fi->absFilePath() ), "r" );
 			if ( filePTR != NULL ) {
 				QString got = parseAviHeader ( filePTR ).replace ( QRegExp ( "\n" ), "#" );
 				fclose ( filePTR );
-				
+
 				//store it as comment
 				if ( !got.isEmpty() ) {
 					if ( !fc->comment.isEmpty() )
@@ -1097,7 +1107,7 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 			}
 		}
 	}
-	
+
 	/***File content scanning */
 	if ( storeContent ) {
 //         pcre       *pcc = NULL;
@@ -1131,14 +1141,14 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 				break;
 			}
 		}
-		
+
 		if ( match ) { // the file need to be read
 			FILE *f;
 			bool success = true;
 			unsigned long rsize = 0, rrsize;
 			unsigned char *rdata = 0;
 			Node *tt = fc->prop;
-			
+
 			if ( storeLimit > MAX_STORED_SIZE )
 				storeLimit = MAX_STORED_SIZE;
 			//read the file
@@ -1151,7 +1161,7 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 				fprintf ( stderr, "%s", ( const char * ) errormsg );
 				success = false;
 			}
-			
+
 			rdata = new unsigned char[rsize + 1];
 			fseek ( f, 0, SEEK_SET );
 			rrsize = fread ( rdata, sizeof ( unsigned char ), rsize, f );
@@ -1164,10 +1174,10 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 				fprintf ( stderr, "%s", ( const char * ) errormsg );
 				success = false;
 			}
-			
+
 			fclose ( f );
 			rdata[rsize] = '\0';
-			
+
 			//make the node in the db
 			if ( success ) {
 				if ( tt == NULL )
@@ -1183,7 +1193,7 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 			}
 		}//end of if(match)
 	}//end of if(storeContent)
-	
+
 	/***Other properties: */
 	return 0;
 }
@@ -1233,16 +1243,16 @@ int gzopen_frontend ( char *pathname, int oflags, int mode ) {
 	gzFile gzf;
 	int fd;
 	switch ( oflags & O_ACCMODE ) {
-	case O_WRONLY:
-		strncpy ( gzoflags, "wb", 2 );
-		break;
-	case O_RDONLY:
-		strncpy ( gzoflags, "rb", 2 );
-		break;
-	default:
-	case O_RDWR:
-		errno = EINVAL;
-		return -1;
+		case O_WRONLY:
+			strncpy ( gzoflags, "wb", 2 );
+			break;
+		case O_RDONLY:
+			strncpy ( gzoflags, "rb", 2 );
+			break;
+		default:
+		case O_RDWR:
+			errno = EINVAL;
+			return -1;
 	}
 
 	fd = open ( pathname, oflags, mode );
@@ -1267,14 +1277,14 @@ int bz2open_frontend ( char *pathname, int oflags, int mode ) {
 	int bzerror;
 	int verbose = 0;
 	switch ( oflags & O_ACCMODE ) {
-	case O_WRONLY:
-		break;
-	case O_RDONLY:
-		break;
-	default:
-	case O_RDWR:
-		errno = EINVAL;
-		return -1;
+		case O_WRONLY:
+			break;
+		case O_RDONLY:
+			break;
+		default:
+		case O_RDWR:
+			errno = EINVAL;
+			return -1;
 	}
 
 	fd = open ( pathname, oflags, mode );
@@ -1358,43 +1368,43 @@ const wchar_t * index_names[] = {
 void DataBase::strmode ( mode_t mode, char* p ) {
 	/* print type */
 	switch ( mode & S_IFMT ) {
-	case S_IFDIR:                   /* directory */
-		*p++ = 'd';
-		break;
-	case S_IFCHR:                   /* character special */
-		*p++ = 'c';
-		break;
+		case S_IFDIR:                   /* directory */
+			*p++ = 'd';
+			break;
+		case S_IFCHR:                   /* character special */
+			*p++ = 'c';
+			break;
 #ifndef _WIN32 // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
-	case S_IFBLK:                   /* block special */
-		*p++ = 'b';
-		break;
+		case S_IFBLK:                   /* block special */
+			*p++ = 'b';
+			break;
 #endif
-	case S_IFREG:                   /* regular */
-		*p++ = '-';
-		break;
+		case S_IFREG:                   /* regular */
+			*p++ = '-';
+			break;
 #ifndef _WIN32 // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
-	case S_IFLNK:                   /* symbolic link */
-		*p++ = 'l';
-		break;
+		case S_IFLNK:                   /* symbolic link */
+			*p++ = 'l';
+			break;
 #endif
 #ifndef _WIN32 // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
-	case S_IFSOCK:                  /* socket */
-		*p++ = 's';
-		break;
+		case S_IFSOCK:                  /* socket */
+			*p++ = 's';
+			break;
 #endif
 #ifdef S_IFIFO
-	case S_IFIFO:                   /* fifo */
-		*p++ = 'p';
-		break;
+		case S_IFIFO:                   /* fifo */
+			*p++ = 'p';
+			break;
 #endif
 #ifdef S_IFWHT
-	case S_IFWHT:                   /* whiteout */
-		*p++ = 'w';
-		break;
+		case S_IFWHT:                   /* whiteout */
+			*p++ = 'w';
+			break;
 #endif
-	default:                        /* unknown */
-		*p++ = ' ';
-		break;
+		default:                        /* unknown */
+			*p++ = ' ';
+			break;
 	}
 	/* usr */
 #ifndef _WIN32 // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
@@ -1415,18 +1425,18 @@ void DataBase::strmode ( mode_t mode, char* p ) {
 #endif
 #ifndef _WIN32 // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
 	switch ( mode & ( S_IXUSR | S_ISUID ) ) {
-	case 0:
-		*p++ = '-';
-		break;
-	case S_IXUSR:
-		*p++ = 'x';
-		break;
-	case S_ISUID:
-		*p++ = 'S';
-		break;
-	case S_IXUSR | S_ISUID:
-		*p++ = 's';
-		break;
+		case 0:
+			*p++ = '-';
+			break;
+		case S_IXUSR:
+			*p++ = 'x';
+			break;
+		case S_ISUID:
+			*p++ = 'S';
+			break;
+		case S_IXUSR | S_ISUID:
+			*p++ = 's';
+			break;
 	}
 #else
 	*p++ = '-';
@@ -1450,18 +1460,18 @@ void DataBase::strmode ( mode_t mode, char* p ) {
 #endif
 #ifndef _WIN32 // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
 	switch ( mode & ( S_IXGRP | S_ISGID ) ) {
-	case 0:
-		*p++ = '-';
-		break;
-	case S_IXGRP:
-		*p++ = 'x';
-		break;
-	case S_ISGID:
-		*p++ = 'S';
-		break;
-	case S_IXGRP | S_ISGID:
-		*p++ = 's';
-		break;
+		case 0:
+			*p++ = '-';
+			break;
+		case S_IXGRP:
+			*p++ = 'x';
+			break;
+		case S_ISGID:
+			*p++ = 'S';
+			break;
+		case S_IXGRP | S_ISGID:
+			*p++ = 's';
+			break;
 	}
 #else
 	*p++ = '-';
@@ -1485,18 +1495,18 @@ void DataBase::strmode ( mode_t mode, char* p ) {
 #endif
 #ifndef _WIN32 // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
 	switch ( mode & ( S_IXOTH | S_ISVTX ) ) {
-	case 0:
-		*p++ = '-';
-		break;
-	case S_IXOTH:
-		*p++ = 'x';
-		break;
-	case S_ISVTX:
-		*p++ = 'T';
-		break;
-	case S_IXOTH | S_ISVTX:
-		*p++ = 't';
-		break;
+		case 0:
+			*p++ = '-';
+			break;
+		case S_IXOTH:
+			*p++ = 'x';
+			break;
+		case S_ISVTX:
+			*p++ = 'T';
+			break;
+		case S_IXOTH | S_ISVTX:
+			*p++ = 't';
+			break;
 	}
 #else
 	*p++ = '-';
@@ -1586,7 +1596,7 @@ QList<ArchiveFile> DataBase::scanArchive ( QString path, ArchiveType type ) {
 				mode_t m1 = th_get_mode ( t );
 				strmode ( m1, modestring );
 // 				af.fileattr.sprintf("%.10s %-8.8s %-8.8s ", modestring, username.toLocal8Bit().constData(), groupname.toLocal8Bit().constData());
-				af.fileattr = QString(modestring);
+				af.fileattr = QString ( modestring );
 				if ( af.fileattr.size() == 9 )
 					af.fileattr = " " + af.fileattr;
 				if ( TH_ISCHR ( t ) || TH_ISBLK ( t ) ) {
@@ -1632,12 +1642,12 @@ QList<ArchiveFile> DataBase::scanArchive ( QString path, ArchiveType type ) {
 		WStringArray exts;
 		char file_attr[100];
 		file_attr[0] = '\0';
-		
+
 		if ( !lib.Initialize() ) {
 			//fprintf(stderr, "lib7zip initialize failed, lib7zip scanning disabled\n");
 			doScanArchiveLib7zip = false;
 		}
-		
+
 		if ( !lib.GetSupportedExts ( exts ) ) {
 			//fprintf(stderr, "lib7zip get supported exts failed, lib7zip scanning disabled\n");
 			doScanArchiveLib7zip = false;
@@ -1647,86 +1657,86 @@ QList<ArchiveFile> DataBase::scanArchive ( QString path, ArchiveType type ) {
 				Lib7zipTypes.append ( QString().fromWCharArray ( ( *extIt ).c_str() ) );
 			//std::cerr << "lib7zip supported extensions: " << qPrintable(Lib7zipTypes.join(" ")) << std::endl;
 		}
-		
+
 		TestInStream stream ( path.toLocal8Bit().data(), path.lower().section ( '.', -1 ).toStdWString() );
 		if ( lib.OpenArchive ( &stream, &pArchive ) ) {
 			unsigned int numItems = 0;
 			pArchive->GetItemCount ( &numItems );
 			printf ( "" ); // important!!!
 			//printf("items found: %d\n", numItems);
-			
+
 			for ( unsigned int i = 0; i < numItems; i++ ) {
 				C7ZipArchiveItem * pArchiveItem = NULL;
-				
+
 				if ( pArchive->GetItemInfo ( i, &pArchiveItem ) ) {
 					// 				printf("%d,%ls,%d\n", pArchiveItem->GetArchiveIndex(),
 					// 						pArchiveItem->GetFullPath().c_str(),
 					// 						pArchiveItem->IsDir());
-				    
+
 					ArchiveFile af;
 					QString filetype;
 					bool result = false;
 					unsigned __int64 attr = 0;
 					result = pArchiveItem->GetUInt64Property ( lib7zip::kpidAttrib, attr );
-					QString attr2="";
+					QString attr2 = "";
 					af.fileattr = "";
-					
-					if (pArchiveItem->IsDir())
-						  af.fileattr += "d";
+
+					if ( pArchiveItem->IsDir() )
+						af.fileattr += "d";
 					else
-						  af.fileattr += "-";
-					if ((result & LIB7ZIP_FILE_ATTRIBUTE_READONLY) != 0) {
-						  // read
-						  if(pArchiveItem->IsDir())
-								attr2 += "r-x";
-						  else
-								attr2 += "r--";
+						af.fileattr += "-";
+					if ( ( result & LIB7ZIP_FILE_ATTRIBUTE_READONLY ) != 0 ) {
+						// read
+						if ( pArchiveItem->IsDir() )
+							attr2 += "r-x";
+						else
+							attr2 += "r--";
 					}
 					else {
-						   // read + write
-						  if(pArchiveItem->IsDir())
-								attr2 += "rwx";
-						  else
-								attr2 += "rw-";
+						// read + write
+						if ( pArchiveItem->IsDir() )
+							attr2 += "rwx";
+						else
+							attr2 += "rw-";
 					}
-					if ((result & LIB7ZIP_FILE_ATTRIBUTE_HIDDEN) != 0) {
-						   // hidden
+					if ( ( result & LIB7ZIP_FILE_ATTRIBUTE_HIDDEN ) != 0 ) {
+						// hidden
 					}
-					if ((result & LIB7ZIP_FILE_ATTRIBUTE_SYSTEM) != 0) {
-						  // system
+					if ( ( result & LIB7ZIP_FILE_ATTRIBUTE_SYSTEM ) != 0 ) {
+						// system
 					}
-					if ((result & LIB7ZIP_FILE_ATTRIBUTE_ARCHIVE) != 0) {
-						  // archive   
+					if ( ( result & LIB7ZIP_FILE_ATTRIBUTE_ARCHIVE ) != 0 ) {
+						// archive
 					}
-					
+
 					// fake group
 					af.fileattr += attr2;
 					af.fileattr += " ";
-					
+
 					// fake other
 					af.fileattr += attr2;
 					af.fileattr += " ";
-					
+
 					//std::cerr << "file: " << qPrintable(QString::fromWCharArray ( pArchiveItem->GetFullPath().c_str() )) << ", attr: " << qPrintable(af.fileattr) << std::endl;
 					wstring user = L"";
 					result = pArchiveItem->GetStringProperty ( lib7zip::kpidUser, user );
 					QString user2 = QString::fromWCharArray ( user.c_str() );
 					if ( user2.isEmpty() )
 						user2 = "unknown";
-				    
+
 					wstring group = L"";
 					result = pArchiveItem->GetStringProperty ( lib7zip::kpidGroup, user );
 					QString group2 = QString::fromWCharArray ( group.c_str() );
 					if ( group2.isEmpty() )
 						group2 = "unknown";
-					
+
 					unsigned __int64 size = 0;
 					result = pArchiveItem->GetUInt64Property ( lib7zip::kpidSize, size );
 					size = pArchiveItem->GetSize();
-					
+
 					unsigned __int64 compressed_size = 0;
 					result = pArchiveItem->GetUInt64Property ( lib7zip::kpidPackSize, compressed_size );
-					
+
 					unsigned __int64 mtime = 0;
 					result = pArchiveItem->GetFileTimeProperty ( lib7zip::kpidMTime, mtime );
 					//printf("%ld\n", mtime);
@@ -1735,17 +1745,17 @@ QList<ArchiveFile> DataBase::scanArchive ( QString path, ArchiveType type ) {
 					unsigned long int offset = -116444736;
 					mtime2 = mtime2.addSecs ( ( mtime / 10000000 ) + ( offset * 100 ) ); // microsoft time stamp: diff from 1. Jan 1601, 100 ns (steps)
 					// 				mtime2 = mtime2.addSecs(-11644473600);
-				    
+
 					QString path = QString::fromWCharArray ( pArchiveItem->GetFullPath().c_str() );
 					if ( *DEBUG_INFO_ENABLED )
 						std::cerr << "file inside archive: " << qPrintable ( path ) << std::endl;
-				    
+
 					//  -rw-r--r-- crissi   crissi       29656 Mar 17  8:33 2009 home/crissi/Desktop/file.gif
 					//QString line = QString().sprintf("%s %s %s    %ld %s %s", file_attr, user2.toLocal8Bit().data(), group2.toLocal8Bit().data(), size, mtime2.toString("MMM d h:s yyyy").toLocal8Bit().data(), path.toLocal8Bit().data() );
-					
+
 					if ( af.fileattr.size() == 9 )
 						af.fileattr = " " + af.fileattr;
-				    
+
 					af.user = user2;
 					af.group = group2;
 					af.size = size;
@@ -1864,18 +1874,18 @@ double DataBase::getSize ( Node *s, int level ) {
 	double v = 0.0;
 	if ( s->type == HC_FILE ) {
 		switch ( ( ( DBFile * ) ( s->data ) )->sizeType ) {
-		case 0:
-			v += ( ( ( DBFile * ) ( s->data ) )->size ) / ( 1024 * 1024 );
-			break; //byte
-		case 1:
-			v += ( ( ( DBFile * ) ( s->data ) )->size ) / 1024;
-			break; //Kb
-		case 2:
-			v += ( ( ( DBFile * ) ( s->data ) )->size );
-			break; //Mb
-		case 3:
-			v += ( ( ( DBFile * ) ( s->data ) )->size ) * 1024;
-			break; //Gb
+			case 0:
+				v += ( ( ( DBFile * ) ( s->data ) )->size ) / ( 1024 * 1024 );
+				break; //byte
+			case 1:
+				v += ( ( ( DBFile * ) ( s->data ) )->size ) / 1024;
+				break; //Kb
+			case 2:
+				v += ( ( ( DBFile * ) ( s->data ) )->size );
+				break; //Mb
+			case 3:
+				v += ( ( ( DBFile * ) ( s->data ) )->size ) * 1024;
+				break; //Gb
 		}
 	}
 	if ( s->child != NULL )
@@ -1963,30 +1973,30 @@ void DataBase::sortM ( int mode ) {
 					; /* nothing */
 				else {
 					switch ( mode ) {
-					case NUMBER:
-						if ( ( ( DBMedia * ) ( getMOnPos ( i )->data ) )->number <
-						          ( ( DBMedia * ) ( getMOnPos ( j )->data ) )->number )
-							continue;
-						break;
+						case NUMBER:
+							if ( ( ( DBMedia * ) ( getMOnPos ( i )->data ) )->number <
+							                ( ( DBMedia * ) ( getMOnPos ( j )->data ) )->number )
+								continue;
+							break;
 
-					case NAME:
-						if ( 0 < QString::localeAwareCompare (
-						               ( ( DBMedia * ) ( getMOnPos ( i )->data ) )->name ,
-						               ( ( DBMedia * ) ( getMOnPos ( j )->data ) )->name ) )
-							continue;
-						break;
+						case NAME:
+							if ( 0 < QString::localeAwareCompare (
+							                        ( ( DBMedia * ) ( getMOnPos ( i )->data ) )->name ,
+							                        ( ( DBMedia * ) ( getMOnPos ( j )->data ) )->name ) )
+								continue;
+							break;
 
-					case TYPE:
-						if ( ( ( DBMedia * ) ( getMOnPos ( i )->data ) )->type <=
-						          ( ( DBMedia * ) ( getMOnPos ( j )->data ) )->type )
-							continue;
-						break;
+						case TYPE:
+							if ( ( ( DBMedia * ) ( getMOnPos ( i )->data ) )->type <=
+							                ( ( DBMedia * ) ( getMOnPos ( j )->data ) )->type )
+								continue;
+							break;
 
-					case TIME:
-						if ( ( ( DBMedia * ) ( getMOnPos ( i )->data ) )->modification <
-						          ( ( DBMedia * ) ( getMOnPos ( j )->data ) )->modification )
-							continue;
-						break;
+						case TIME:
+							if ( ( ( DBMedia * ) ( getMOnPos ( i )->data ) )->modification <
+							                ( ( DBMedia * ) ( getMOnPos ( j )->data ) )->modification )
+								continue;
+							break;
 					}
 				}
 			//swap
@@ -2014,30 +2024,30 @@ void DataBase::setShowProgressedFileInStatus ( bool showProgressedFileInStatus )
 /*************************************************************************/
 const char *shortMonthName0 ( int i ) {
 	switch ( i ) {
-	case 1:
-		return "Jan";
-	case 2:
-		return "Feb";
-	case 3:
-		return "Mar";
-	case 4:
-		return "Apr";
-	case 5:
-		return "May";
-	case 6:
-		return "Jun";
-	case 7:
-		return "Jul";
-	case 8:
-		return "Aug";
-	case 9:
-		return "Sep";
-	case 10:
-		return "Oct";
-	case 11:
-		return "Nov";
-	case 12:
-		return "Dec";
+		case 1:
+			return "Jan";
+		case 2:
+			return "Feb";
+		case 3:
+			return "Mar";
+		case 4:
+			return "Apr";
+		case 5:
+			return "May";
+		case 6:
+			return "Jun";
+		case 7:
+			return "Jul";
+		case 8:
+			return "Aug";
+		case 9:
+			return "Sep";
+		case 10:
+			return "Oct";
+		case 11:
+			return "Nov";
+		case 12:
+			return "Dec";
 	}
 	return "Err";
 }
@@ -2245,17 +2255,17 @@ ArchiveFile& ArchiveFile::operator = ( const ArchiveFile& af ) {
 
 void ArchiveFile::setDbString ( QString DbString ) {
 	// from db
-	if(DbString.at(0) == this->div) {
-		DbString = DbString.right(DbString.size()-2);
-	   std::cout << "first char was sep, skipping, new DbString: " << DbString.toLocal8Bit().constData() << std::endl;
+	if ( DbString.at ( 0 ) == this->div ) {
+		DbString = DbString.right ( DbString.size() - 2 );
+		std::cout << "first char was sep, skipping, new DbString: " << DbString.toLocal8Bit().constData() << std::endl;
 	}
 	QStringList fileentry = DbString.split ( this->div );
 // 	std::cout << "DbString: " << qPrintable(DbString) << "count of " << qPrintable(QString(this->div)) << ": " << DbString.count(this->div) << std::endl;
 // 	std::cout << "FileEntry (size: " << fileentry.size() << "): " << qPrintable(fileentry.join(" ")) << std::endl;
 // 	for ( int i = 0; i < fileentry.size(); ++i )
 // 		std::cout << "fileentry[" << i << "]: " << fileentry.at ( i ).toLocal8Bit().constData() << std::endl;
-// 	
-	
+//
+
 	if ( fileentry.size() == 8 ) {
 		this->fileattr = fileentry.at ( 0 );
 		this->user = fileentry.at ( 1 );
@@ -2270,121 +2280,123 @@ void ArchiveFile::setDbString ( QString DbString ) {
 
 QString ArchiveFile::toPrettyString ( bool showAttr, bool showUser, bool showGroup, bool showSize, bool showDate, bool showFileType, bool doHtmlTableLine, int fontsize ) {
 	QString ret;
-	if ( doHtmlTableLine) {
-	   ret += "<tr class=\"tableline\">";
-	   if ( showAttr ) {
-			 ret += "<td>";
-			 ret += QString ( fileattr + "\t" );
-			 ret += "</td>";
-	   }
-	   if ( showUser ) {
-			 ret += "<td style=\"font-size:"+QString().setNum(fontsize)+"pt;\">";
-			 ret += QString ( user + "\t" );
-			 ret += "</td>";
-	   }
-	   if ( showGroup ) {
-			 ret += "<td style=\"font-size:"+QString().setNum(fontsize)+"pt;\">";
-			 ret += QString ( group + "\t" );
-			 ret += "</td>";
-	   }
-	   if ( showSize ) {
-			 float s = size;
-			 int   st = UNIT_BYTE;
-			 if ( size > (float)SIZE_ONE_GBYTE*1024.0 ) {
-				    s  = size / SIZE_ONE_GBYTE*1024.0;
-				    st = UNIT_TBYTE;
-			 } else {
-				    if ( size >= (float)SIZE_ONE_GBYTE && size < (float)SIZE_ONE_GBYTE*1024.0 ) {
-								s  = size / SIZE_ONE_GBYTE;
-								st = UNIT_GBYTE;
-				    }
-				    else {
-						  if ( size >= (float)SIZE_ONE_MBYTE && size < (float)SIZE_ONE_GBYTE ) {
-								s  = size / SIZE_ONE_MBYTE;
-								st = UNIT_MBYTE;
-						  }
-						  else {
-								if ( size >= (float)SIZE_ONE_KBYTE && size < (float)SIZE_ONE_MBYTE ) {
-									   s  = size / SIZE_ONE_KBYTE;
-									   st = UNIT_KBYTE;
-								}
-								else {
-									   s = size;
-									   st = UNIT_BYTE;
-								}
-						  }
-				    }
-			 }
-			 QString ret_size_str;
-			 ret_size_str.sprintf ( " %.2f ", s);
-			 ret_size_str += getSType ( st, true );
-			 ret += "<td align=\"right\" style=\"font-size:"+QString().setNum(fontsize)+"pt;\">";
-			 ret += ret_size_str;
-			 ret += "</td>";
-	   }
-	   if ( showDate ) {
-			 ret += "<td align=\"right\" style=\"font-size:"+QString().setNum(fontsize)+"pt;\">";
-			 ret += QString ( date.toString ( "MMM d h:s yyyy" ) );
-			 ret += "</td>";
-	   }
-	   
-	   ret += "<td style=\"font-size:"+QString().setNum(fontsize)+"pt;\">";
-	   ret += QString ( path );
-	   ret += "</td>";
-	   
-	   if ( showFileType ) {
-			 ret += "<td style=\"font-size:"+QString().setNum(fontsize)+"pt;\">";
-			 ret += QString ( filetype );
-			 ret += "</td>";
-	   }
-	   ret += "</tr>";
+	if ( doHtmlTableLine ) {
+		ret += "<tr class=\"tableline\">";
+		if ( showAttr ) {
+			ret += "<td>";
+			ret += QString ( fileattr + "\t" );
+			ret += "</td>";
+		}
+		if ( showUser ) {
+			ret += "<td style=\"font-size:" + QString().setNum ( fontsize ) + "pt;\">";
+			ret += QString ( user + "\t" );
+			ret += "</td>";
+		}
+		if ( showGroup ) {
+			ret += "<td style=\"font-size:" + QString().setNum ( fontsize ) + "pt;\">";
+			ret += QString ( group + "\t" );
+			ret += "</td>";
+		}
+		if ( showSize ) {
+			float s = size;
+			int   st = UNIT_BYTE;
+			if ( size > ( float ) SIZE_ONE_GBYTE * 1024.0 ) {
+				s  = size / SIZE_ONE_GBYTE * 1024.0;
+				st = UNIT_TBYTE;
+			}
+			else {
+				if ( size >= ( float ) SIZE_ONE_GBYTE && size < ( float ) SIZE_ONE_GBYTE * 1024.0 ) {
+					s  = size / SIZE_ONE_GBYTE;
+					st = UNIT_GBYTE;
+				}
+				else {
+					if ( size >= ( float ) SIZE_ONE_MBYTE && size < ( float ) SIZE_ONE_GBYTE ) {
+						s  = size / SIZE_ONE_MBYTE;
+						st = UNIT_MBYTE;
+					}
+					else {
+						if ( size >= ( float ) SIZE_ONE_KBYTE && size < ( float ) SIZE_ONE_MBYTE ) {
+							s  = size / SIZE_ONE_KBYTE;
+							st = UNIT_KBYTE;
+						}
+						else {
+							s = size;
+							st = UNIT_BYTE;
+						}
+					}
+				}
+			}
+			QString ret_size_str;
+			ret_size_str.sprintf ( " %.2f ", s );
+			ret_size_str += getSType ( st, true );
+			ret += "<td align=\"right\" style=\"font-size:" + QString().setNum ( fontsize ) + "pt;\">";
+			ret += ret_size_str;
+			ret += "</td>";
+		}
+		if ( showDate ) {
+			ret += "<td align=\"right\" style=\"font-size:" + QString().setNum ( fontsize ) + "pt;\">";
+			ret += QString ( date.toString ( "MMM d h:s yyyy" ) );
+			ret += "</td>";
+		}
+
+		ret += "<td style=\"font-size:" + QString().setNum ( fontsize ) + "pt;\">";
+		ret += QString ( path );
+		ret += "</td>";
+
+		if ( showFileType ) {
+			ret += "<td style=\"font-size:" + QString().setNum ( fontsize ) + "pt;\">";
+			ret += QString ( filetype );
+			ret += "</td>";
+		}
+		ret += "</tr>";
 	}
 	else {
-	   if ( showAttr )
-			 ret += QString ( fileattr + "\t" );
-	   if ( showUser )
-			 ret += QString ( user + "\t" );
-	   if ( showGroup )
-			 ret += QString ( group + "\t" );
-	   if ( showSize ) {
-			 float s = size;
-			 int   st = UNIT_BYTE;
-			 if ( size > (float)SIZE_ONE_GBYTE*1024.0 ) {
-				    s  = size / SIZE_ONE_GBYTE*1024.0;
-				    st = UNIT_TBYTE;
-			 } else {
-				    if ( size >= (float)SIZE_ONE_GBYTE && size < (float)SIZE_ONE_GBYTE*1024.0 ) {
-								s  = size / SIZE_ONE_GBYTE;
-								st = UNIT_GBYTE;
-				    }
-				    else {
-						  if ( size >= (float)SIZE_ONE_MBYTE && size < (float)SIZE_ONE_GBYTE ) {
-								s  = size / SIZE_ONE_MBYTE;
-								st = UNIT_MBYTE;
-						  }
-						  else {
-								if ( size >= (float)SIZE_ONE_KBYTE && size < (float)SIZE_ONE_MBYTE ) {
-									   s  = size / SIZE_ONE_KBYTE;
-									   st = UNIT_KBYTE;
-								}
-								else {
-									   s = size;
-									   st = UNIT_BYTE;
-								}
-						  }
-				    }
-			 }
-			 QString ret_size_str;
-			 ret_size_str.sprintf ( " %.2f ", s);
-			 ret_size_str += getSType ( st, true );
-			 ret += ret_size_str;
-			 ret += "\t";
-	   }
-	   if ( showDate )
-			 ret += QString ( date.toString ( "MMM d h:s yyyy" ) + "\t" );
-	   ret += QString ( path + "\t" );
-	   if ( showFileType )
-			 ret += QString ( filetype );
+		if ( showAttr )
+			ret += QString ( fileattr + "\t" );
+		if ( showUser )
+			ret += QString ( user + "\t" );
+		if ( showGroup )
+			ret += QString ( group + "\t" );
+		if ( showSize ) {
+			float s = size;
+			int   st = UNIT_BYTE;
+			if ( size > ( float ) SIZE_ONE_GBYTE * 1024.0 ) {
+				s  = size / SIZE_ONE_GBYTE * 1024.0;
+				st = UNIT_TBYTE;
+			}
+			else {
+				if ( size >= ( float ) SIZE_ONE_GBYTE && size < ( float ) SIZE_ONE_GBYTE * 1024.0 ) {
+					s  = size / SIZE_ONE_GBYTE;
+					st = UNIT_GBYTE;
+				}
+				else {
+					if ( size >= ( float ) SIZE_ONE_MBYTE && size < ( float ) SIZE_ONE_GBYTE ) {
+						s  = size / SIZE_ONE_MBYTE;
+						st = UNIT_MBYTE;
+					}
+					else {
+						if ( size >= ( float ) SIZE_ONE_KBYTE && size < ( float ) SIZE_ONE_MBYTE ) {
+							s  = size / SIZE_ONE_KBYTE;
+							st = UNIT_KBYTE;
+						}
+						else {
+							s = size;
+							st = UNIT_BYTE;
+						}
+					}
+				}
+			}
+			QString ret_size_str;
+			ret_size_str.sprintf ( " %.2f ", s );
+			ret_size_str += getSType ( st, true );
+			ret += ret_size_str;
+			ret += "\t";
+		}
+		if ( showDate )
+			ret += QString ( date.toString ( "MMM d h:s yyyy" ) + "\t" );
+		ret += QString ( path + "\t" );
+		if ( showFileType )
+			ret += QString ( filetype );
 	}
 	return ret;
 }
@@ -2402,4 +2414,4 @@ QString ArchiveFile::toDbString() {
 }
 
 
-// kate: indent-mode cstyle; replace-tabs off; tab-width 5; 
+// kate: indent-mode cstyle; replace-tabs off; tab-width 8; 
