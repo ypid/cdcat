@@ -74,32 +74,32 @@
 <context>
     <name>AddLnk</name>
     <message>
-        <location filename="../adddialog.cpp" line="664"/>
+        <location filename="../adddialog.cpp" line="674"/>
         <source>Add a &quot;Catalog Link&quot; to the database</source>
         <translation type="unfinished">&quot;Cdcat katalógus hivatkozás&quot; hozzáadása az adatbázishoz</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="665"/>
+        <location filename="../adddialog.cpp" line="675"/>
         <source>Location of the .hcf file:</source>
         <translation type="unfinished">A .hcf fájl helye:</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="667"/>
+        <location filename="../adddialog.cpp" line="677"/>
         <source>Cancel</source>
         <translation type="unfinished">Mégsem</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="668"/>
+        <location filename="../adddialog.cpp" line="678"/>
         <source>Ok</source>
         <translation type="unfinished">Ok</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="685"/>
+        <location filename="../adddialog.cpp" line="695"/>
         <source>CdCat databases (*.hcf )</source>
         <translation type="unfinished">CdCat adatbázis (*.hcf)</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="685"/>
+        <location filename="../adddialog.cpp" line="695"/>
         <source>Open a file...</source>
         <translation type="unfinished">Fájl megnyitása...</translation>
     </message>
@@ -111,61 +111,66 @@
         <source>unknown</source>
         <translation type="unfinished">ismeretlen</translation>
     </message>
+    <message>
+        <location filename="../dbase.h" line="272"/>
+        <source></source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CatalogTypeEditDialog</name>
     <message>
-        <location filename="../guibase.cpp" line="2038"/>
+        <location filename="../guibase.cpp" line="2040"/>
         <source>Change media type</source>
         <translation>Média típus váltás</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2039"/>
+        <location filename="../guibase.cpp" line="2041"/>
         <source>Change type of media</source>
         <translation>Média típusának megváltoztatása</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2041"/>
+        <location filename="../guibase.cpp" line="2043"/>
         <source>CD</source>
         <translation>CD</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2042"/>
+        <location filename="../guibase.cpp" line="2044"/>
         <source>DVD</source>
         <translation>DVD</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2043"/>
+        <location filename="../guibase.cpp" line="2045"/>
         <source>HardDisc</source>
         <translation>Merevlemez</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2044"/>
+        <location filename="../guibase.cpp" line="2046"/>
         <source>Floppy</source>
         <translation>Floppy</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2045"/>
+        <location filename="../guibase.cpp" line="2047"/>
         <source>NetworkPlace</source>
         <translation>HálózatiMegh</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2046"/>
+        <location filename="../guibase.cpp" line="2048"/>
         <source>FlashDrive</source>
         <translation>FlashMegh</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2047"/>
+        <location filename="../guibase.cpp" line="2049"/>
         <source>OtherDevice</source>
         <translation>EgyébEszköz</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2050"/>
+        <location filename="../guibase.cpp" line="2052"/>
         <source>Cancel</source>
         <translation>Mégsem</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2051"/>
+        <location filename="../guibase.cpp" line="2053"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -173,12 +178,12 @@
 <context>
     <name>CdCatConfig</name>
     <message>
-        <location filename="../config.cpp" line="189"/>
+        <location filename="../config.cpp" line="197"/>
         <source>Error during autoload...</source>
         <translation>Hiba az automatikus betöltés alatt...</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="191"/>
+        <location filename="../config.cpp" line="199"/>
         <source>I can&apos;t open the autoload catalog.
 Check the file, or change the autoload option in the config dialog!
 </source>
@@ -213,7 +218,7 @@ Ez szükséges lenne, mert a home-könyvtárba kerülne a beállításokat tarta
         <translation type="obsolete">Nem tudom létrehozni vagy módosítani:  ./cdcat.cfg </translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="191"/>
+        <location filename="../config.cpp" line="199"/>
         <source>I can&apos;t open the autoload catalog according the first command line parameter.
 Check the file!
 </source>
@@ -228,22 +233,22 @@ It is necessary couse I&apos;d like to save the config file into your home direc
 Ez szükséges lenne, mert a home-könyvtárba kerülne a beállításokat tartalmazó fájl.</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1082"/>
+        <location filename="../config.cpp" line="1157"/>
         <source>I can&apos;t create or rewrite the ./cdcat.cfg file </source>
         <translation>Nem tudom létrehozni vagy módosítani a következő fájlt:  ./cdcat.cfg </translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1084"/>
+        <location filename="../config.cpp" line="1159"/>
         <source>I can&apos;t create or rewrite the $(HOME)/.cdcatconfig file </source>
         <translation>Nem tudom létrehozni vagy írni a $(HOME)/.cdcatconfig fájlt</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1084"/>
+        <location filename="../config.cpp" line="1159"/>
         <source>Error while saving config file...</source>
         <translation>Hiba a configfájl mentése alatt...</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="791"/>
+        <location filename="../config.cpp" line="863"/>
         <source>I can&apos;t get the $HOME environment variable.
 It is necessary because I&apos;d like to save the config file into your home directory.</source>
         <translation>Nem tudom lekérdezni a $HOME környezeti változót. Ez szükséges lenne, mert a konfigurációs állományt erre a helyre szeretném menteni.</translation>
@@ -854,22 +859,22 @@ It is necessary because I&apos;d like to save the config file into your home dir
 <context>
     <name>ConfigDialog</name>
     <message>
-        <location filename="../config.cpp" line="1383"/>
+        <location filename="../config.cpp" line="1451"/>
         <source>Configure  CdCat...</source>
         <translation>CdCat beállításai...</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1384"/>
+        <location filename="../config.cpp" line="1452"/>
         <source>Autoload DataBase on startup</source>
         <translation>Adatbázis automatikus betöltése induláskor</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1387"/>
+        <location filename="../config.cpp" line="1455"/>
         <source>Cancel</source>
         <translation>Mégsem</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1388"/>
+        <location filename="../config.cpp" line="1456"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
@@ -884,17 +889,17 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Válaszd ki az induláskor betöltendö fájlt!</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1391"/>
+        <location filename="../config.cpp" line="1459"/>
         <source>Application font size.(must restart cdcat!) </source>
         <translation>A program által használt betüméret (újraindítástól!)</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1386"/>
+        <location filename="../config.cpp" line="1454"/>
         <source>Save the XML-db.file nicer format(needs more space)</source>
         <translation>Mentsen szebb XML formátumban(több helyet foglal)</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1393"/>
+        <location filename="../config.cpp" line="1461"/>
         <source>Path to cdrom device</source>
         <translation>CDROM eszköz elérési útja</translation>
     </message>
@@ -904,27 +909,27 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">CDROM becsatolás  kezéskor / Kidobás ha vége van !</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1396"/>
+        <location filename="../config.cpp" line="1464"/>
         <source>Scanning: mount cdrom at start / eject when finish</source>
         <translation>Felszkennelés: CD becsatolás kezdéskor / kidobás ha vége van</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1390"/>
+        <location filename="../config.cpp" line="1458"/>
         <source>Use own font size</source>
         <translation>Saját betűtípus használata</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1392"/>
+        <location filename="../config.cpp" line="1460"/>
         <source>Number of history entries</source>
         <translation>Legutóbb megnyitott fájlok darabszáma</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1421"/>
+        <location filename="../config.cpp" line="1489"/>
         <source>Choose path to cdrom!</source>
         <translation>Add meg a CDROM eszköz elérési útját!</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1404"/>
+        <location filename="../config.cpp" line="1472"/>
         <source>The language of CdCat interface</source>
         <translation>A CdCat által használt nyelv</translation>
     </message>
@@ -934,7 +939,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Felolvasandó elemek kiválasztása</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1414"/>
+        <location filename="../config.cpp" line="1482"/>
         <source>Choose a file to load automatically!</source>
         <translation>Válaszd ki az induláskor betöltendö fájlt!</translation>
     </message>
@@ -944,32 +949,32 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Automatikusan menti az adatbázist minden beolvasás után (a biztonság kedvéért) </translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1389"/>
+        <location filename="../config.cpp" line="1457"/>
         <source>Select additional items to read</source>
         <translation>Felolvasandó elemek kiválasztása</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1385"/>
+        <location filename="../config.cpp" line="1453"/>
         <source>Automatically save the database after every scan (for safety sake)</source>
         <translation>Automatikusan menti az adatbásist minden szkennelés után (biztonsági okokból)</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1407"/>
+        <location filename="../config.cpp" line="1475"/>
         <source>Display debug info on console</source>
         <translation>Hibakeresési információk megjelenítése a konzolon</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1414"/>
+        <location filename="../config.cpp" line="1482"/>
         <source>CdCat databases (*.hcf )</source>
         <translation>CdCdCat adatbázis (*.hcf)</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1408"/>
+        <location filename="../config.cpp" line="1476"/>
         <source>Save catalogs always as UTF8</source>
         <translation>A katalógusokat mindig UTF8 ban mentse</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1409"/>
+        <location filename="../config.cpp" line="1477"/>
         <source>Show progressed file at scanning in status label</source>
         <translation>Mutasd azépp olvasott fájlt a státuszsoron</translation>
     </message>
@@ -997,7 +1002,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Nem tudom olvasni a könyvtárat</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1900"/>
+        <location filename="../dbase.cpp" line="1896"/>
         <source>Error</source>
         <translation>Hiba</translation>
     </message>
@@ -1007,7 +1012,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Könyvtár kihagyása</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="890"/>
+        <location filename="../dbase.cpp" line="886"/>
         <source>Cancel scanning</source>
         <translation>Felolvasás megszakítása</translation>
     </message>
@@ -1027,22 +1032,22 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Szimbólikus Link#A következö helyre:</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="659"/>
+        <location filename="../dbase.cpp" line="655"/>
         <source>I can&apos;t rewrite the file: %1</source>
         <translation>Nem tudom újraírni a fájlt: %1</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="684"/>
+        <location filename="../dbase.cpp" line="680"/>
         <source>I can&apos;t create the file: %1</source>
         <translation>Nem tudom létrehozni a fájlt: %1</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1864"/>
+        <location filename="../dbase.cpp" line="1860"/>
         <source>I can&apos;t open the file: %1</source>
         <translation>Nem tudom megnyitni a fájlt: %1</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="886"/>
+        <location filename="../dbase.cpp" line="882"/>
         <source>Cannot read directory: %1</source>
         <translation>Nem tudom olvasni a könyvtárat: %1</translation>
     </message>
@@ -1052,47 +1057,47 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Szimbolikus link#Ide mutat:</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1900"/>
+        <location filename="../dbase.cpp" line="1896"/>
         <source>Error while parsing file: %1</source>
         <translation>Hiba a felolvasás közben, fájl: %1</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="708"/>
+        <location filename="../dbase.cpp" line="704"/>
         <source>No database opened!</source>
         <translation>Nincs megnyitott adatbázis!</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="888"/>
+        <location filename="../dbase.cpp" line="884"/>
         <source>Cannot read file: %1</source>
         <translation>Nem tudom felolvasni a fájlt: %1</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="890"/>
+        <location filename="../dbase.cpp" line="886"/>
         <source>Ignore</source>
         <translation>Kihagyás</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="962"/>
+        <location filename="../dbase.cpp" line="958"/>
         <source>Symbolic link to file:#</source>
         <translation>Azimbólikus link egy fájlra:#</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1017"/>
+        <location filename="../dbase.cpp" line="1013"/>
         <source>Symbolic link to directory:#</source>
         <translation>Szimbólikus link egy könyvtárra:#</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1041"/>
+        <location filename="../dbase.cpp" line="1037"/>
         <source>DEAD Symbolic link to:#</source>
         <translation>Halott szimbólikus link:#</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1051"/>
+        <location filename="../dbase.cpp" line="1047"/>
         <source>System file (e.g. FIFO, socket or device file)</source>
         <translation>Rendszerfájl (Pl: FIFO vagy socket)</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1888"/>
+        <location filename="../dbase.cpp" line="1884"/>
         <source>Not enough memory to open the file: %1</source>
         <translation>Nincs elég memória a fájl megnyitásához: %1</translation>
     </message>
@@ -1112,12 +1117,12 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Unikódra konvertálás, kérem várjon...</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="408"/>
+        <location filename="../adddialog.cpp" line="418"/>
         <source>Please Wait...</source>
         <translation>Kérem várjon...</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="574"/>
+        <location filename="../adddialog.cpp" line="584"/>
         <source>Cancel</source>
         <translation>Mégsem</translation>
     </message>
@@ -1132,12 +1137,12 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Leállítottad a katalógus felolvasását.</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1679"/>
+        <location filename="../dbase.cpp" line="1675"/>
         <source>device </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1695"/>
+        <location filename="../dbase.cpp" line="1691"/>
         <source> link to </source>
         <translation type="unfinished"></translation>
     </message>
@@ -1213,42 +1218,42 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Katalógus</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1564"/>
+        <location filename="../guibase.cpp" line="1566"/>
         <source>Unknown(DB)</source>
         <translation>Ismeretlen(DB)</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1568"/>
+        <location filename="../guibase.cpp" line="1570"/>
         <source>CD</source>
         <translation>CD</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1572"/>
+        <location filename="../guibase.cpp" line="1574"/>
         <source>DVD</source>
         <translation>DVD</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1576"/>
+        <location filename="../guibase.cpp" line="1578"/>
         <source>HardDisc</source>
         <translation>Merevlemez</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1580"/>
+        <location filename="../guibase.cpp" line="1582"/>
         <source>Floppy</source>
         <translation>Floppy</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1584"/>
+        <location filename="../guibase.cpp" line="1586"/>
         <source>NetworkDrv</source>
         <translation>HálózatiMegh</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1588"/>
+        <location filename="../guibase.cpp" line="1590"/>
         <source>FlashDrv</source>
         <translation>FlashMegh</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1592"/>
+        <location filename="../guibase.cpp" line="1594"/>
         <source>OtherDevice</source>
         <translation>EgyébEszköz</translation>
     </message>
@@ -1268,12 +1273,12 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Hyper CD Katalogizálója</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1490"/>
+        <location filename="../guibase.cpp" line="1492"/>
         <source>CdCat databases (*.hcf )</source>
         <translation>CdCat adatbázis (*.hcf)</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1827"/>
+        <location filename="../guibase.cpp" line="1829"/>
         <source>Error while opening...</source>
         <translation>Hiba megnyitás alatt...</translation>
     </message>
@@ -1293,7 +1298,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>El akarod menteni a változásokat?</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1903"/>
+        <location filename="../guibase.cpp" line="1905"/>
         <source>Error:</source>
         <translation>Hiba:</translation>
     </message>
@@ -1308,12 +1313,12 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Biztosan törölni akarod az alábbi elemet?</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1887"/>
+        <location filename="../guibase.cpp" line="1889"/>
         <source>Confirmation</source>
         <translation>Megerösítés</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1278"/>
+        <location filename="../guibase.cpp" line="1280"/>
         <source>Warning...</source>
         <translation>Vigyázat...</translation>
     </message>
@@ -1330,7 +1335,7 @@ az adatbázis lehet hogy nem teljes</translation>
         <translation type="obsolete">Nincs kiválasztott média a középsö lista részben!</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1393"/>
+        <location filename="../guibase.cpp" line="1395"/>
         <source>You can refresh ONLY a MEDIA node!</source>
         <translation>Csak MÉDIA típusú elemet tudsz újraolvastatni!</translation>
     </message>
@@ -1374,12 +1379,12 @@ Szerzö: Deák Péter (deakpe@delfin.klte.hu)</translation>
         <translation type="obsolete">Ok</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1889"/>
+        <location filename="../guibase.cpp" line="1891"/>
         <source>Yes</source>
         <translation>Igen</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1889"/>
+        <location filename="../guibase.cpp" line="1891"/>
         <source>No</source>
         <translation>Nem</translation>
     </message>
@@ -1403,7 +1408,7 @@ Verzio: 0.6 (beta)
 Szerzö: Deák Péter (deakpe@delfin.klte.hu)</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1490"/>
+        <location filename="../guibase.cpp" line="1492"/>
         <source>Insert a database file...</source>
         <translation>Adatbázisfájl beszúrása...</translation>
     </message>
@@ -1468,7 +1473,7 @@ Copyright (C) 2003 Deák Péter (GPL)</translation>
 %1</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1632"/>
+        <location filename="../guibase.cpp" line="1634"/>
         <source>The size of &quot;%1&quot; : 
  %2 
  %3 file /%4 directory</source>
@@ -1477,32 +1482,32 @@ Copyright (C) 2003 Deák Péter (GPL)</translation>
 %3 fájl / %4 könyvtár</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1171"/>
+        <location filename="../guibase.cpp" line="1173"/>
         <source>Cannot mount CD</source>
         <translation>Nem tudom becsatolni a CDROM ot</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1336"/>
+        <location filename="../guibase.cpp" line="1338"/>
         <source>Cannot eject CD!</source>
         <translation>Nem tudom lecsatolni, kiadni a CDROM tálcáját!</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1171"/>
+        <location filename="../guibase.cpp" line="1173"/>
         <source>I can&apos;t find the &quot;mount&quot; program</source>
         <translation>Nem találom a &quot;mount&quot; programot</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1354"/>
+        <location filename="../guibase.cpp" line="1356"/>
         <source>Cannot mount CD!</source>
         <translation>Nem tudom becsatolni a CD-t!</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1309"/>
+        <location filename="../guibase.cpp" line="1311"/>
         <source>Cannot eject CD</source>
         <translation>Nem tudom kidobatni a CD-t</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1309"/>
+        <location filename="../guibase.cpp" line="1311"/>
         <source>I can&apos;t find the &quot;eject&quot; program</source>
         <translation>Nem találom az &quot;eject&quot; programot</translation>
     </message>
@@ -1532,7 +1537,7 @@ Copyright (C) 2003 Deák Péter (GPL)</translation>
         <translation>Katalógus beillesztése...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1397"/>
+        <location filename="../guibase.cpp" line="1399"/>
         <source>Rescan %1</source>
         <translation>Rescan %1</translation>
     </message>
@@ -1542,7 +1547,7 @@ Copyright (C) 2003 Deák Péter (GPL)</translation>
         <translation>Média átsorszámozása...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1611"/>
+        <location filename="../guibase.cpp" line="1613"/>
         <source>It is NOT a media node!</source>
         <translation>Ez NEM egy média elem!</translation>
     </message>
@@ -1567,24 +1572,24 @@ Copyright (C) 2003 Deák Péter (GPL)</translation>
         <translation>Fájltartalmat megnéz/töröl...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1903"/>
+        <location filename="../guibase.cpp" line="1905"/>
         <source>There is no selected item in the middle list box!</source>
         <translation>Nincs kiválasztott elem a középsö lista részben!</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1278"/>
+        <location filename="../guibase.cpp" line="1280"/>
         <source>An error occured while scanning,
 the DataBase may be incomplete</source>
         <translation>Volt pár hiba felolvasás közben,
 az adatbázis lehet hogy nem teljes</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1389"/>
+        <location filename="../guibase.cpp" line="1391"/>
         <source>There is no selected Media in the middle list box!</source>
         <translation>Nincs kiválasztott média a középsö lista részben!</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1409"/>
+        <location filename="../guibase.cpp" line="1411"/>
         <source>An error occured while scanning, the rescan operation was cancelled: 
 %1</source>
         <translation>Hiba történt felolvasás közben, a müvelet meg lett szakítva:
@@ -1601,7 +1606,7 @@ az adatbázis lehet hogy nem teljes</translation>
         <translation type="obsolete">Visszakaptam! (kölcsönadás jelzésének törlése)</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1888"/>
+        <location filename="../guibase.cpp" line="1890"/>
         <source>Do you want to clear the borrowing mark from media &quot;%1&quot;?
 (Say yes if you got it back.)</source>
         <translation>Biztos hogy törölni akarod a kölcsönadás jelzését a &quot;%1&quot; médiáról?
@@ -1641,7 +1646,7 @@ Honlap: %3</translation>
         <translation>Cdcat Katalógus hivatkozás hozzáadása...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1804"/>
+        <location filename="../guibase.cpp" line="1806"/>
         <source>The link is empty.</source>
         <translation>A hivatkozás üres.</translation>
     </message>
@@ -1684,22 +1689,22 @@ Honlap: %3</translation>
         <translation type="obsolete">Az eredmény:</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1398"/>
+        <location filename="../guibase.cpp" line="1400"/>
         <source>Select directory</source>
         <translation>Könyvtár kiválasztása</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1637"/>
+        <location filename="../guibase.cpp" line="1639"/>
         <source>The result:</source>
         <translation>Az eredmény:</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1633"/>
+        <location filename="../guibase.cpp" line="1635"/>
         <source>MiB</source>
         <translation>MiB</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1149"/>
+        <location filename="../guibase.cpp" line="1151"/>
         <source>Scanning directory tree, please wait...</source>
         <translation>Könyvtárfa felolvasása, kérem várjon...</translation>
     </message>
@@ -1714,17 +1719,17 @@ Honlap: %3</translation>
         <translation>Média típus változtatás...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1232"/>
+        <location filename="../guibase.cpp" line="1234"/>
         <source>Enter media name...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1233"/>
+        <location filename="../guibase.cpp" line="1235"/>
         <source>Media name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1234"/>
+        <location filename="../guibase.cpp" line="1236"/>
         <source>Media</source>
         <translation type="unfinished">Média</translation>
     </message>
@@ -2340,7 +2345,7 @@ Copyright (C) 2003 Deák Péter (GPL)&lt;/p&gt;&lt;/font&gt;&lt;/p&gt;</translat
         <translation type="obsolete">Dolgozom...</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="500"/>
+        <location filename="../adddialog.cpp" line="510"/>
         <source>Cancel</source>
         <translation type="unfinished">Mégsem</translation>
     </message>
@@ -2551,17 +2556,17 @@ Létreh. dátuma</translation>
 <context>
     <name>SelReadable</name>
     <message>
-        <location filename="../selreadable.cpp" line="365"/>
+        <location filename="../selreadable.cpp" line="383"/>
         <source>Select readable items</source>
         <translation>Felolvasandó elemek kiválasztása</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="375"/>
+        <location filename="../selreadable.cpp" line="393"/>
         <source>Read mp3 tags</source>
         <translation>Mp3 tag-ek felolvasása</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="387"/>
+        <location filename="../selreadable.cpp" line="407"/>
         <source>Store content of some files</source>
         <translation>Néhány fájl tartalmának elmentése</translation>
     </message>
@@ -2576,37 +2581,37 @@ Létreh. dátuma</translation>
         <translation type="obsolete">tartalom maximális mérete byte-ban</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="392"/>
+        <location filename="../selreadable.cpp" line="412"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="393"/>
+        <location filename="../selreadable.cpp" line="413"/>
         <source>Cancel</source>
         <translation>Mégsem</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="391"/>
+        <location filename="../selreadable.cpp" line="411"/>
         <source>content size limit in kByte</source>
         <translation>A tartalom maximális mérete kByte-ban</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="390"/>
+        <location filename="../selreadable.cpp" line="410"/>
         <source>; separated list of readable file patterns</source>
         <translation>a felolvasandó fájlok mintái ; vel elválasztva</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="381"/>
+        <location filename="../selreadable.cpp" line="401"/>
         <source>Default tag</source>
         <translation>Alapértelmezett tag</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="383"/>
+        <location filename="../selreadable.cpp" line="403"/>
         <source>version</source>
         <translation>verzió</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="385"/>
+        <location filename="../selreadable.cpp" line="405"/>
         <source>Read mp3 technical info as comment (bitrate,freq,length...)</source>
         <translation>Az MP3 technikai információinak felolvasása megjegyzésként (bitráta, frekvencia,stb...)</translation>
     </message>
@@ -2616,98 +2621,108 @@ Létreh. dátuma</translation>
         <translation type="obsolete">Az AVI fájlok technikai információinak felolvasása (hossz, kodek, stb,...)</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="386"/>
+        <location filename="../selreadable.cpp" line="406"/>
         <source>Read avi technical info as comment (codecs,length,...)</source>
         <translation>Az AVI fájlok technikai információinak felolvasása (hossz, kodek, stb,...)</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="368"/>
+        <location filename="../selreadable.cpp" line="386"/>
         <source>Supported extensions:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="366"/>
+        <location filename="../selreadable.cpp" line="384"/>
         <source>Archive file display options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="367"/>
+        <location filename="../selreadable.cpp" line="385"/>
         <source>Scan for archive file list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="369"/>
+        <location filename="../selreadable.cpp" line="387"/>
         <source>Show permission</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="370"/>
+        <location filename="../selreadable.cpp" line="388"/>
         <source>Show user</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="371"/>
+        <location filename="../selreadable.cpp" line="389"/>
         <source>Show group</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="372"/>
+        <location filename="../selreadable.cpp" line="390"/>
         <source>Show size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="373"/>
+        <location filename="../selreadable.cpp" line="391"/>
         <source>Show date</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="374"/>
+        <location filename="../selreadable.cpp" line="392"/>
         <source>Show optional comment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="300"/>
+        <location filename="../selreadable.cpp" line="316"/>
         <source>Supported extensions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="297"/>
+        <location filename="../selreadable.cpp" line="313"/>
         <source>mediainfo library not found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="299"/>
+        <location filename="../selreadable.cpp" line="315"/>
         <source>mediainfo library found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="388"/>
+        <location filename="../selreadable.cpp" line="408"/>
         <source>Read some technical info using mediainfo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="263"/>
+        <location filename="../selreadable.cpp" line="279"/>
         <source>lib7zip library not found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="265"/>
+        <location filename="../selreadable.cpp" line="281"/>
         <source>lib7zip library found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="268"/>
+        <location filename="../selreadable.cpp" line="284"/>
         <source>lib7zip library not supported</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="376"/>
+        <location filename="../selreadable.cpp" line="394"/>
         <source>Read thumbnails from pictures</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="378"/>
+        <location filename="../selreadable.cpp" line="398"/>
         <source>Read EXIF data from pictures</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../selreadable.cpp" line="395"/>
+        <source>Thumbnail size:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../selreadable.cpp" line="396"/>
+        <source>x</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2822,12 +2837,12 @@ Létreh. dátuma</translation>
         <translation type="obsolete">Új lemez</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="230"/>
+        <location filename="../adddialog.cpp" line="233"/>
         <source>Add Media to the Database</source>
         <translation>Média hozzáadása a katalógushoz</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="231"/>
+        <location filename="../adddialog.cpp" line="234"/>
         <source>Choose a directory to scan:</source>
         <translation>Válassz egy könyvtárat felolvasásra:</translation>
     </message>
@@ -2867,47 +2882,47 @@ Létreh. dátuma</translation>
         <translation type="obsolete">OK / Felolvasás</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="245"/>
+        <location filename="../adddialog.cpp" line="248"/>
         <source>CD</source>
         <translation>CD</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="246"/>
+        <location filename="../adddialog.cpp" line="249"/>
         <source>DVD</source>
         <translation>DVD</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="247"/>
+        <location filename="../adddialog.cpp" line="250"/>
         <source>HardDisc</source>
         <translation>Merevlemez</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="248"/>
+        <location filename="../adddialog.cpp" line="251"/>
         <source>Floppy</source>
         <translation>Floppy</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="249"/>
+        <location filename="../adddialog.cpp" line="252"/>
         <source>NetworkPlace</source>
         <translation>HálózatiMegh</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="250"/>
+        <location filename="../adddialog.cpp" line="253"/>
         <source>FlashDrive</source>
         <translation>FlashMegh</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="251"/>
+        <location filename="../adddialog.cpp" line="254"/>
         <source>OtherDevice</source>
         <translation>EgyébEszköz</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="344"/>
+        <location filename="../adddialog.cpp" line="347"/>
         <source>Error:</source>
         <translation>Hiba:</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="325"/>
+        <location filename="../adddialog.cpp" line="328"/>
         <source>You must be fill the &quot;Name&quot; field!</source>
         <translation>Ki kell töltened a &quot;Név&quot; mezőt!</translation>
     </message>
@@ -2932,12 +2947,12 @@ Létreh. dátuma</translation>
         <translation type="obsolete">Ok</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="305"/>
+        <location filename="../adddialog.cpp" line="308"/>
         <source>New Disk %1</source>
         <translation>Uj lemez %1</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="335"/>
+        <location filename="../adddialog.cpp" line="338"/>
         <source>The Media Name must be unique! Please change it!</source>
         <translation>A Médianév-nek egyedinek kell lennie! Válassz másik nevet!</translation>
     </message>
@@ -2952,17 +2967,17 @@ Létreh. dátuma</translation>
         <translation type="obsolete">Felolvasandó elemek kiválasztása</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="339"/>
+        <location filename="../adddialog.cpp" line="342"/>
         <source>The Value of Serial Number must be unique! Please change it!</source>
         <translation>A Sorszám értékének egyedinek kell lennie! Légyszives válassz másikat!</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="344"/>
+        <location filename="../adddialog.cpp" line="347"/>
         <source>You haven&apos;t selected a directory! Please select one!</source>
         <translation>Nem választottál ki könyvtárat! Ez a lényeg :), válassz ki egyet!</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="330"/>
+        <location filename="../adddialog.cpp" line="333"/>
         <source>The media name can&apos;t begin with the &quot;@&quot; character!</source>
         <translation>Az új média neve nem kezdődhet a &apos;&apos;@&quot; karakterrel!</translation>
     </message>
@@ -3002,52 +3017,52 @@ Létreh. dátuma</translation>
         <translation type="obsolete">Kategória:</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="232"/>
+        <location filename="../adddialog.cpp" line="235"/>
         <source>Media &amp;Name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="233"/>
+        <location filename="../adddialog.cpp" line="236"/>
         <source>S&amp;erial number of Media:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="234"/>
+        <location filename="../adddialog.cpp" line="237"/>
         <source>&amp;Owner:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="235"/>
+        <location filename="../adddialog.cpp" line="238"/>
         <source>C&amp;ategory:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="236"/>
+        <location filename="../adddialog.cpp" line="239"/>
         <source>&amp;Type:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="237"/>
+        <location filename="../adddialog.cpp" line="240"/>
         <source>Co&amp;mment:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="238"/>
+        <location filename="../adddialog.cpp" line="241"/>
         <source>&amp;Cancel</source>
         <translation type="unfinished">&amp;Mégsem</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="239"/>
+        <location filename="../adddialog.cpp" line="242"/>
         <source>&amp;Scan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="240"/>
+        <location filename="../adddialog.cpp" line="243"/>
         <source>Select &amp;readable items</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="242"/>
+        <location filename="../adddialog.cpp" line="245"/>
         <source>detect CDROM/DVD med&amp;ia name after mount</source>
         <translation type="unfinished"></translation>
     </message>

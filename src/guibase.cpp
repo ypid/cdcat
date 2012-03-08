@@ -1142,6 +1142,8 @@ int GuiSlave::addEvent ( void ) {
     mainw->db->storeContent = mainw->cconfig->readcontent;
     mainw->db->storeExifData = mainw->cconfig->storeExifData;
     mainw->db->storeThumb = mainw->cconfig->storeThumb;
+    mainw->db->thumbWidth = mainw->cconfig->thumbWidth;
+    mainw->db->thumbHeight = mainw->cconfig->thumbHeight;
     mainw->db->storeLimit      = mainw->cconfig->readclimit;
     mainw->db->storedFiles = mainw->cconfig->readcfiles;
     if(*DEBUG_INFO_ENABLED)

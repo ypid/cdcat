@@ -41,205 +41,203 @@ class QGroupBox;
 class QColor;
 
 class CdCatConfig : public QObject {
-    Q_OBJECT
-public:
-    char errormsg[512];
+		Q_OBJECT
+	public:
+		char errormsg[512];
+		
+		CdCatConfig ( void );
+		~CdCatConfig ( void );
+		
+		int startProgram ( DataBase **dbp, QWidget *mw );
+		int writeConfig();
+		int readConfig ();
+		void setParameter ( char *par );
+	
+	public:
+		bool    startpar;
+		QString startfn;
+		
+		//Configureable items:
+		int fsize;
+		int historysize;
+		
+		bool autoload;
+		QString autoloadfn;
+		bool nice;
+		bool autosave;
+		bool ownfont;
+		bool readtag;
+		bool v1_over_v2;
+		bool readinfo;
+		bool readavii;
+		bool readcontent;
+		bool usefileinfo;
+		bool debug_info_enabled;
+		bool saveAlwaysCatalogInUtf8;
+		bool showProgressedFileInStatus;
+		bool doScanArchive;
+		//bool doScanArchiveTar;
+		//bool doScanArchiveLib7zip;
+		bool storeExifData;
+		bool storeThumb;
+		QString readcfiles;
+		unsigned long readclimit;
 
-    CdCatConfig ( void );
-    ~CdCatConfig ( void );
-
-    int startProgram ( DataBase **dbp,QWidget *mw );
-    int writeConfig();
-    int readConfig ();
-    void setParameter ( char *par );
-
-public:
-
-    bool    startpar;
-    QString startfn;
-
-    //Configureable items:
-    int fsize;
-    int historysize;
-    bool autoload;
-    QString autoloadfn;
-    bool nice;
-    bool autosave;
-    bool ownfont;
-    bool readtag;
-    bool v1_over_v2;
-    bool readinfo;
-    bool readavii;
-    bool readcontent;
-    bool usefileinfo;
-    bool debug_info_enabled;
-    bool saveAlwaysCatalogInUtf8;
-    bool showProgressedFileInStatus;
-    bool doScanArchive;
-    //bool doScanArchiveTar;
-    //bool doScanArchiveLib7zip;
-    bool storeExifData;
-    bool storeThumb;
-    QString readcfiles;
-    unsigned long readclimit;
-
-    QStringList hlist;
-    QSize   windowSize;
-    QPoint  windowPos;
-    int windowSize_height;
-    int windowSize_width;
-    QString cdrompath;
-    QString lastDir;
-    QString lastSearchPattern;
-    int  mainP1;
-    int  mainP2;
-    int  mainP3;
-    int lastMediaType;
-
-    int find_size_unit_min_val;
-    int find_size_unit_max_val;
-
-    int find_size_min_val;
-    int find_size_max_val;
-
-    bool find_cs;
-    bool find_em;
-    bool find_di;
-    bool find_fi;
-    bool find_co;
-    bool find_ct;
-    bool find_mco;
-    bool find_mar;
-    bool find_mti;
-    bool find_mal;
-    bool find_date_start;
-    bool find_date_end;
-    bool find_size_min;
-    bool find_size_max;
-    bool find_unsharp_search;
-    bool find_in_archive;
-    bool show_archive_file_perms;
-    bool show_archive_file_user;
-    bool show_archive_file_group;
-    bool show_archive_file_size;
-    bool show_archive_file_date;
-    bool show_archive_file_comment;
-
-    int  findX;
-    int  findY;
-    int  findWidth;
-    int  findHeight;
-    int  addX;
-    int  addY;
-    int  addWidth;
-    int  addHeight;
-
-    QDateTime find_date_start_val;
-    QDateTime find_date_end_val;
-
-    QColor *comm_bg,*comm_stext,*comm_vtext,*comm_fr;
-    QFont *defaultfont;
+		QStringList hlist;
+		QSize   windowSize;
+		QPoint  windowPos;
+		int windowSize_height;
+		int windowSize_width;
+		QString cdrompath;
+		QString lastDir;
+		QString lastSearchPattern;
+		int  mainP1;
+		int  mainP2;
+		int  mainP3;
+		int lastMediaType;
+		
+		int find_size_unit_min_val;
+		int find_size_unit_max_val;
+		
+		int find_size_min_val;
+		int find_size_max_val;
+		
+		int thumbWidth;
+		int thumbHeight;
+		
+		bool find_cs;
+		bool find_em;
+		bool find_di;
+		bool find_fi;
+		bool find_co;
+		bool find_ct;
+		bool find_mco;
+		bool find_mar;
+		bool find_mti;
+		bool find_mal;
+		bool find_date_start;
+		bool find_date_end;
+		bool find_size_min;
+		bool find_size_max;
+		bool find_unsharp_search;
+		bool find_in_archive;
+		bool show_archive_file_perms;
+		bool show_archive_file_user;
+		bool show_archive_file_group;
+		bool show_archive_file_size;
+		bool show_archive_file_date;
+		bool show_archive_file_comment;
+		
+		int  findX;
+		int  findY;
+		int  findWidth;
+		int  findHeight;
+		int  addX;
+		int  addY;
+		int  addWidth;
+		int  addHeight;
+		
+		QDateTime find_date_start_val;
+		QDateTime find_date_end_val;
+		
+		QColor *comm_bg, *comm_stext, *comm_vtext, *comm_fr;
+		QFont *defaultfont;
 #ifndef _WIN32
-    bool    mounteject;
+		bool    mounteject;
 #endif
-
+		
 #ifdef _WIN32
-    QString lang;
+		QString lang;
 #endif
 #ifdef Q_WS_MAC
-    QString lang;
+		QString lang;
 #endif
+		
+		bool linkf;
 
 
-
-    bool linkf;
-    
-
-    /*end configureable items*/
+		/*end configureable items*/
 
 };
 
 /*****************************************************************************/
 
 class ConfigDialog : public QDialog {
-    Q_OBJECT
+		Q_OBJECT
 
-public:
-    ConfigDialog ( CdCatMainWidget* parent = 0, const char* name = 0, bool modal = FALSE, Qt::WFlags fl = 0 );
-    ~ConfigDialog();
-
-    CdCatMainWidget *p;
-    QLineEdit* filename;
-    QPushButton* searchButton;
-    Q3Frame* line1;
-    QSpinBox *spinFontSize;
-    QSpinBox *spinHistorySize;
-    QLabel* lab;
-    QLabel *labHistorySize;
-    QCheckBox* cbNice;
-    QCheckBox* cbEnableDebugInfo;
-    QCheckBox* cbSaveCatalogAlwaysInUtf8;
-    QCheckBox* cbShowProgressedFileInStatus;
-    QLineEdit* cdrompath_lineedit;
-    QLabel* cdrom_lab;
-    Q3Frame* line2;
-    Q3Frame* line3;
-    Q3Frame* line4;
-    Q3Frame* line5;
-    Q3Frame* line6;
-    Q3Frame* line61;
-    Q3Frame* line7;
-    Q3Frame* line8;
-    QPushButton* riButton;
-    QPushButton* okButton;
-    QPushButton* cancelButton;
-    QCheckBox* cbAutoload;
-    QCheckBox* cbAutosave;
-    QCheckBox* cbOwnFont;
-
-
-protected:
-    Q3GridLayout* ConfigDialogBaseLayout;
-    Q3HBoxLayout* layout1;
-    Q3HBoxLayout* layout2;
-    Q3HBoxLayout* layout3;
-    Q3HBoxLayout* layout4;
-    Q3HBoxLayout* layout5;
-    Q3HBoxLayout* layout6;
-    Q3HBoxLayout* layout7;
-    Q3HBoxLayout* layout8;
-    Q3HBoxLayout* layoutSave;
-    Q3HBoxLayout* layoutStatus;
-
-
+	public:
+		ConfigDialog ( CdCatMainWidget* parent = 0, const char* name = 0, bool modal = FALSE, Qt::WFlags fl = 0 );
+		~ConfigDialog();
+		
+		CdCatMainWidget *p;
+		QLineEdit* filename;
+		QPushButton* searchButton;
+		Q3Frame* line1;
+		QSpinBox *spinFontSize;
+		QSpinBox *spinHistorySize;
+		QLabel* lab;
+		QLabel *labHistorySize;
+		QCheckBox* cbNice;
+		QCheckBox* cbEnableDebugInfo;
+		QCheckBox* cbSaveCatalogAlwaysInUtf8;
+		QCheckBox* cbShowProgressedFileInStatus;
+		QLineEdit* cdrompath_lineedit;
+		QLabel* cdrom_lab;
+		Q3Frame* line2;
+		Q3Frame* line3;
+		Q3Frame* line4;
+		Q3Frame* line5;
+		Q3Frame* line6;
+		Q3Frame* line61;
+		Q3Frame* line7;
+		Q3Frame* line8;
+		QPushButton* riButton;
+		QPushButton* okButton;
+		QPushButton* cancelButton;
+		QCheckBox* cbAutoload;
+		QCheckBox* cbAutosave;
+		QCheckBox* cbOwnFont;
+	
+	protected:
+		Q3GridLayout* ConfigDialogBaseLayout;
+		Q3HBoxLayout* layout1;
+		Q3HBoxLayout* layout2;
+		Q3HBoxLayout* layout3;
+		Q3HBoxLayout* layout4;
+		Q3HBoxLayout* layout5;
+		Q3HBoxLayout* layout6;
+		Q3HBoxLayout* layout7;
+		Q3HBoxLayout* layout8;
+		Q3HBoxLayout* layoutSave;
+		Q3HBoxLayout* layoutStatus;
+		
 #ifndef _WIN32
-    QCheckBox* cbMoEj;
+		QCheckBox* cbMoEj;
 #endif
-
+		
 #ifdef _WIN32
-    Q3HBoxLayout* layout9;
-    QComboBox  * cbLang;
-    QLabel     * langLabel;
+		Q3HBoxLayout* layout9;
+		QComboBox  * cbLang;
+		QLabel     * langLabel;
 #endif
-
+		
 #ifdef Q_WS_MAC
-    Q3HBoxLayout* layout9;
-    QComboBox  * cbLang;
-    QLabel     * langLabel;
+		Q3HBoxLayout* layout9;
+		QComboBox  * cbLang;
+		QLabel     * langLabel;
 #endif
-
-   QPushButton* searchButton2; // maybe problem for moc
-
-public slots:
-    virtual void okExit();
-    virtual void ffdbutton();
-    virtual void runri();
-
-
-protected slots:
-    virtual void languageChange();
-    void ownFontToggled();
-    virtual void cdrombutton();
+		
+		QPushButton* searchButton2; // maybe problem for moc
+	
+	public slots:
+		virtual void okExit();
+		virtual void ffdbutton();
+		virtual void runri();
+	
+	protected slots:
+		virtual void languageChange();
+		void ownFontToggled();
+		virtual void cdrombutton();
 };
 
 #endif // CONFIGDIALOG_H
@@ -249,3 +247,4 @@ protected slots:
 static bool *DEBUG_INFO_ENABLED;
 #endif
 
+// kate: indent-mode cstyle; replace-tabs off; tab-width 8; 

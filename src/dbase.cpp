@@ -1251,7 +1251,7 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 			QImage thumbImage(fi->absFilePath());
 			if (!thumbImage.isNull()) {
 				Node *tt = fc->prop;
-				thumbImage = thumbImage.scaledToWidth(150);
+				thumbImage = thumbImage.scaled(QSize(thumbWidth, thumbHeight), Qt::KeepAspectRatio);
 				if ( tt == NULL )
 					fc->prop = tt = new Node ( HC_THUMB, NULL );
 				else {

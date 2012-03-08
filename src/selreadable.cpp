@@ -157,11 +157,22 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	labThumb = new QLabel ( this, "labThumb" );
 	SelReadableLayout->addWidget ( labThumb );
 	
+	layoutThumbSize = new Q3HBoxLayout ( 0, 0, 6, "layoutThumbSize" );
+	thumbWidthSpinBox = new QSpinBox ( 20, 400, 150, this, "thumbWidthSpinBox" );
+	thumbHeightSpinBox = new QSpinBox ( 20, 400, 150, this, "thumbHeightSpinBox" );
+	labThumbSize = new QLabel ( this, "labThumbSize" );
+	labThumbXSize = new QLabel ( this, "labThumbXSize" );
+	layoutThumbSize->addWidget(labThumbSize);
+	layoutThumbSize->addWidget(thumbWidthSpinBox);
+	layoutThumbSize->addWidget(labThumbXSize);
+	layoutThumbSize->addWidget(thumbHeightSpinBox);
+	SelReadableLayout->addLayout ( layoutThumbSize );
+	
 #ifdef USE_LIBEXIF
 	cbExif = new QCheckBox ( this, "cbExif" );
 	SelReadableLayout->addWidget ( cbExif );
-	labExif = new QLabel ( this, "cbExif" );
-	SelReadableLayout->addWidget ( cbExif );
+	labExif = new QLabel ( this, "labExif" );
+	SelReadableLayout->addWidget ( labExif );
 #endif
 	
 	line2 = new Q3Frame ( this, "line2" );
@@ -206,6 +217,8 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	cbExif->setChecked ( conf->storeExifData );
 #endif
 	cbThumb->setChecked ( conf->storeThumb );
+	thumbWidthSpinBox->setValue(conf->thumbWidth);
+	thumbHeightSpinBox->setValue(conf->thumbHeight);
 	lineFiles->setText ( conf->readcfiles );
 	maxSpinBox->setValue ( ( int ) ( conf->readclimit / 1024 ) );
 	cbInfo->setChecked ( conf->readinfo );
@@ -334,6 +347,8 @@ int SelReadable::sok ( void ) {
 	conf->readcontent = cbCont->isChecked();
 	conf->usefileinfo = cbFileInfo->isChecked();
 	conf->storeThumb = cbThumb->isChecked();
+	conf->thumbWidth = thumbWidthSpinBox->value();
+	conf->thumbHeight = thumbHeightSpinBox->value();
 #ifdef USE_LIBEXIF
 	conf->storeExifData = cbExif->isChecked();
 #endif
@@ -377,6 +392,8 @@ void SelReadable::languageChange() {
 	cpShowArchiveFileComment->setText ( tr ( "Show optional comment" ) );
 	cbTag->setText ( tr ( "Read mp3 tags" ) );
 	cbThumb->setText( tr("Read thumbnails from pictures") );
+	labThumbSize->setText( tr("Thumbnail size:") );
+	labThumbXSize->setText ( tr("x") );
 #ifdef USE_LIBEXIF
 	cbExif->setText( tr("Read EXIF data from pictures") );
 #endif

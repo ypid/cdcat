@@ -51,6 +51,8 @@ public:
     QCheckBox* cbCont;
     QCheckBox* cbFileInfo;
     QCheckBox* cbThumb;
+    QSpinBox *thumbWidthSpinBox;
+    QSpinBox *thumbHeightSpinBox;
 #ifdef USE_LIBEXIF
     QCheckBox *cbExif;
 #endif
@@ -68,6 +70,8 @@ public:
     QLabel *labArchiveExtensions;
     QLabel *labFileInfoExtensions;
     QLabel *labThumb;
+    QLabel *labThumbSize;
+        QLabel *labThumbXSize;
 
 #ifdef USE_LIBEXIF
     QLabel *labExif;
@@ -95,6 +99,7 @@ protected:
     Q3VBoxLayout* layout11;
     Q3HBoxLayout* layout9;
     Q3HBoxLayout* layout10;
+    Q3HBoxLayout *layoutThumbSize;
     Q3HBoxLayout* layout3;
     Q3HBoxLayout* layout1;
     Q3HBoxLayout* layout62;

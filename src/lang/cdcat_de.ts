@@ -40,6 +40,10 @@
       <source>unknown</source>
       <translation>unbekannt</translation>
     </message>
+    <message>
+      <source></source>
+      <translation type="unfinished" />
+    </message>
   </context>
   <context>
     <name>CatalogTypeEditDialog</name>
@@ -1644,6 +1648,14 @@ wird zu
     <message>
       <source>Read EXIF data from pictures</source>
       <translation>EXIF-Daten von Bildern lesen</translation>
+    </message>
+    <message>
+      <source>Thumbnail size:</source>
+      <translation>Größe des Vorschaubildes:</translation>
+    </message>
+    <message>
+      <source>x</source>
+      <translation>x</translation>
     </message>
   </context>
   <context>

@@ -351,6 +351,9 @@ class DataBase : public QObject {
 		bool storeExifData;
 		bool storeThumb;
 		
+		int thumbWidth;
+		int thumbHeight;
+		
 		QString XML_ENCODING;
 		
 		void  setDBName ( QString n );
