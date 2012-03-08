@@ -65,6 +65,9 @@
 
 #include "cdcatmediainfo.h"
 
+#ifdef USE_LIBEXIF
+#include "cdcatexif.h"
+#endif
 
 
 #include <iostream>
@@ -1136,9 +1139,9 @@ int GuiSlave::addEvent ( void ) {
     mainw->db->storeMp3techinfo = mainw->cconfig->readinfo;
     mainw->db->storeAvitechinfo = mainw->cconfig->readavii;
     mainw->db->storeFileInfo = mainw->cconfig->usefileinfo;
-
-
     mainw->db->storeContent = mainw->cconfig->readcontent;
+    mainw->db->storeExifData = mainw->cconfig->storeExifData;
+    mainw->db->storeThumb = mainw->cconfig->storeThumb;
     mainw->db->storeLimit      = mainw->cconfig->readclimit;
     mainw->db->storedFiles = mainw->cconfig->readcfiles;
     if(*DEBUG_INFO_ENABLED)
@@ -1668,14 +1671,13 @@ int GuiSlave::sortTiEvent ( void ) {
 }
 
 int GuiSlave::helpEvent ( void ) {
-	 QDialog dh;
-     Ui_helpDialog *ui_dh=new  Ui_helpDialog();
-	 ui_dh->setupUi((QDialog *)(&dh));
-	 dh.exec();
-	 delete ui_dh;
-
+	QDialog dh;
+	Ui_helpDialog *ui_dh=new  Ui_helpDialog();
+	ui_dh->setupUi((QDialog *)(&dh));
+	dh.exec();
+	delete ui_dh;
+	
 // 	getCDSerial("/dev/sr0");
-
     return 0;
 }
 

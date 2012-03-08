@@ -16,6 +16,7 @@
 #include <qstringlist.h>
 #include <qdatetime.h>
 #include <QLocale>
+#include <QImage>
 
 
 
@@ -42,6 +43,8 @@ typedef int gid_t;
 #define HC_CONTENT       6
 #define HC_CATLNK        7
 #define HC_ARCHIV        8
+#define HC_EXIF        9
+#define HC_THUMB        10
 
 //values for class DBMedia::type
 #define UNKNOWN          0
@@ -76,6 +79,7 @@ typedef int gid_t;
 
 class QFileInfo;
 class PWw;
+class ArchiveFile;
 
 void caseSensConversion ( char *p );
 void easyFormConversion ( char *p );
@@ -84,65 +88,46 @@ void easyFormConversion ( char *p );
 
 QString date_to_str ( QDateTime dt );
 
-class ArchiveFile : public QObject {
-	public:
-		ArchiveFile(QString fileattr="-rw- rw- rw-", QString user=tr("unknown"), QString group=tr("unknown"), long long int size=0, QDateTime date=QDateTime().currentDateTime(), QString path="/", QString filetype=tr(""));
-		ArchiveFile ( const ArchiveFile& );
-		ArchiveFile& operator = ( const ArchiveFile&);
-		QString toPrettyString(bool showAttr=true, bool showUser=true, bool showGroup=true, bool showSize=true, bool showDate=true, bool showFileType=true, bool doHtmlTableLine=false, int fontsize=8);
-		QString toDbString();
-		void setDbString(QString DbString);
-		
-		QString fileattr;
-		QString user;
-		QString group;
-		long long int size;
-		QDateTime date;
-		QString path;
-		QString filetype;
-	
-	private:
-		QChar div;
-};
-
-
 class Node {
-public:
-    int type; /*
-   0 - uninitialized
-   1 - catalog
-   2 - media
-   3 - directory
-   4 - file
-   5 - mp3tag
-   6 - content
-   7 - catlnk
-   8 - archive.prop.
-  */
-
-    Node *next;   //neighbour node. (Same level)
-    Node *child;  //one level below
-    Node *parent; //the parent element (Upper level)
-
-    void *data; // see the DB* classes below
-
-    QString getNameOf ( void );
-    // return the name of the node,which can be media name, catalog name,
-    // file name, directory name
-
-    QString getFullPath ( void );
-    //return the full path of the node.
-
-    void touchDB ( void );
-    //tell to the database that you modified it, and save the modification time.
-
-    Node ( void );
-    // t:UNINITIALIZED , p:NULL
-
-    Node ( int t,Node *p );
-    // t:type , p:parent
-
-    ~Node ( void );
+	public:
+		/*
+			0 - uninitialized
+			1 - catalog
+			2 - media
+			3 - directory
+			4 - file
+			5 - mp3tag
+			6 - content
+			7 - catlnk
+			8 - archive.prop.
+			9 - exif
+			10 - thumbnail
+		*/
+		int type; 
+		
+		Node *next;   //neighbour node. (Same level)
+		Node *child;  //one level below
+		Node *parent; //the parent element (Upper level)
+		
+		void *data; // see the DB* classes below
+		
+		QString getNameOf ( void );
+		// return the name of the node,which can be media name, catalog name,
+		// file name, directory name
+		
+		QString getFullPath ( void );
+		//return the full path of the node.
+		
+		void touchDB ( void );
+		//tell to the database that you modified it, and save the modification time.
+		
+		Node ( void );
+		// t:UNINITIALIZED , p:NULL
+		
+		Node ( int t, Node *p );
+		// t:type , p:parent
+		
+		~Node ( void );
 };
 
 /*
@@ -150,311 +135,349 @@ public:
  */
 
 class DBCatalog { //type is 1
-public:
-    QString name;
-    QString owner;
-    QString comment;
-    QString category;
-
-    int  writed;
-    //Writed to the disc  1=yes 0=no
-
-    char filename[256];
-    //the file name of the database. (If you opened it or save it yet.)
-
-    QDateTime modification;
-
-    // If the database opened from an existing file it contains
-    // the version of the datafile.
-    QString fileversion;
-
-    void touch ( void );
-    //tell to the database that you modified it, and save the modification time.
-
-    DBCatalog ( void );
-    ~DBCatalog ( void );
-
-    DBCatalog ( QString n,QString o,QString c,QDateTime mod=QDateTime::currentDateTime(), QString pcategory="" );
-    // n:name , o:owner , c:comment, mod:modification, pcategory:category
+	public:
+		QString name;
+		QString owner;
+		QString comment;
+		QString category;
+		
+		int  writed;
+		//Writed to the disc  1=yes 0=no
+		
+		char filename[256];
+		//the file name of the database. (If you opened it or save it yet.)
+		
+		QDateTime modification;
+		
+		// If the database opened from an existing file it contains
+		// the version of the datafile.
+		QString fileversion;
+		
+		void touch ( void );
+		//tell to the database that you modified it, and save the modification time.
+		
+		DBCatalog ( void );
+		~DBCatalog ( void );
+		
+		DBCatalog ( QString n, QString o, QString c, QDateTime mod = QDateTime::currentDateTime(), QString pcategory = "" );
+		// n:name , o:owner , c:comment, mod:modification, pcategory:category
 };
 
 class DBMedia { //type is 2
-public:
-    QString name;
-    //the media name, must be unique
-
-    int  number;
-    //the unique serial name of the media
-
-    QString owner;
-    //if not defined is NULL
-
-    int  type;
-    // 0-unknown 1-CD 2-DVD 3-HardDisc 4-Floppy 5-NetworPlace 6-FlashDrive 7-OtherDevice
-
-    QDateTime modification;
-    QString   comment;
-    QString category;
-
-    //Is the media borrowed? NULL=>No ; String=>Yes , contains: for who?
-    QString   borrowing;
-
-    DBMedia ( QString n,int nu,QString o,int t,QString c,QDateTime mod=QDateTime::currentDateTime(), QString pcategory="" );
-    // n:name , nu:number o:owner , t:type , c:comment, mod:modification, pcategory:category
-    DBMedia ( void );
-    ~DBMedia ( void );
+	public:
+		QString name;
+		//the media name, must be unique
+		
+		int  number;
+		//the unique serial name of the media
+		
+		QString owner;
+		//if not defined is NULL
+		
+		int  type;
+		// 0-unknown 1-CD 2-DVD 3-HardDisc 4-Floppy 5-NetworPlace 6-FlashDrive 7-OtherDevice
+		
+		QDateTime modification;
+		QString   comment;
+		QString category;
+		
+		//Is the media borrowed? NULL=>No ; String=>Yes , contains: for who?
+		QString   borrowing;
+		
+		DBMedia ( QString n, int nu, QString o, int t, QString c, QDateTime mod = QDateTime::currentDateTime(), QString pcategory = "" );
+		// n:name , nu:number o:owner , t:type , c:comment, mod:modification, pcategory:category
+		DBMedia ( void );
+		~DBMedia ( void );
 };
 
 class DBDirectory { //type is 3
-public:
-    QString   name;
-    QDateTime modification;
-    QString   comment;
-    QString category;
-
-    DBDirectory ( void );
-    DBDirectory ( QString n,QDateTime mod,QString c, QString pcategory="" );
-    // n:name , mod:modification , c:comment, pcategory:category
-
-    ~DBDirectory ( void );
+	public:
+		QString   name;
+		QDateTime modification;
+		QString   comment;
+		QString category;
+		
+		DBDirectory ( void );
+		DBDirectory ( QString n, QDateTime mod, QString c, QString pcategory = "" );
+		// n:name , mod:modification , c:comment, pcategory:category
+		
+		~DBDirectory ( void );
 };
 
 class DBFile { //type is 4
-public:
-    QString   name;
-    QDateTime modification;
-    QString  comment;
-    QString category;
-    QString fileinfo;
-    QList<ArchiveFile> archivecontent;
-    float size;
-    //filesize
-
-    int   sizeType;
-    //Tell the meaning of size 0=byte 1=Kb 2=Mb 3=Gb
-
-    Node *prop;
-    //the root pointer of other Nodes. can be mp3tag of etc...
-
-    DBFile ( void );
-    DBFile ( QString n,QDateTime mod,QString c,double s,int st, QString pcategory="", QList<ArchiveFile> parchivecontent = QList<ArchiveFile>(), QString fileinfo="" );
-    // n:name , mod:modification , c:comment , s:size , st:sizeType, pcategory:category, fileinfo:fileinfo
-
-    ~DBFile ( void );
+	public:
+		QString   name;
+		QDateTime modification;
+		QString  comment;
+		QString category;
+		QString fileinfo;
+		QList<ArchiveFile> archivecontent;
+		float size;
+		//filesize
+		
+		int   sizeType;
+		//Tell the meaning of size 0=byte 1=Kb 2=Mb 3=Gb
+		
+		Node *prop;
+		//the root pointer of other Nodes. can be mp3tag of etc...
+		
+		DBFile ( void );
+		DBFile ( QString n, QDateTime mod, QString c, double s, int st, QString pcategory = "", QList<ArchiveFile> parchivecontent = QList<ArchiveFile>(), QString fileinfo = "" );
+		// n:name , mod:modification , c:comment , s:size , st:sizeType, pcategory:category, fileinfo:fileinfo
+		
+		~DBFile ( void );
 };
 
 class DBMp3Tag { //type is 5
-public:
-    QString artist;
-    QString title;
-    QString comment;
-    QString album;
-    QString year;
-    int tnumber;
+	public:
+		QString artist;
+		QString title;
+		QString comment;
+		QString album;
+		QString year;
+		int tnumber;
+		
+		DBMp3Tag ( void );
+		DBMp3Tag ( QString a, QString t, QString c, QString al, QString y, int tnum );
+		//a:artist , t:title , c:commnet , al:album , y:year, tnum:tnumber
 
-    DBMp3Tag ( void );
-    DBMp3Tag ( QString a,QString t,QString c,QString al,QString y, int tnum );
-    //a:artist , t:title , c:commnet , al:album , y:year, tnum:tnumber
-
-    ~DBMp3Tag ( void );
+		~DBMp3Tag ( void );
 };
 
 class DBContent { //type is 6
-public:
-
-    DBContent ( void );
-    DBContent ( unsigned char *pbytes,unsigned long pstoredSize );
-
-    ~DBContent ( void );
-
-    unsigned char *bytes;
-    unsigned long  storedSize;
+	public:
+		DBContent ( void );
+		DBContent ( unsigned char *pbytes, unsigned long pstoredSize );
+		~DBContent ( void );
+		
+		unsigned char *bytes;
+		unsigned long  storedSize;
 };
 
 
 class DBCatLnk { //type is 7
-public:
-    QString name;
-    char    *location;
-    QString comment;
-    QString category;
+	public:
+		QString name;
+		char    *location;
+		QString comment;
+		QString category;
+		
+		DBCatLnk ( void );
+		DBCatLnk ( QString pname, char *plocation, QString pcomment, QString pcategory = "" );
+		~DBCatLnk ( void );
+};
+
+class ArchiveFile : public QObject { //type is 8
+	public:
+		ArchiveFile ( QString fileattr = "-rw- rw- rw-", QString user = tr ( "unknown" ), QString group = tr ( "unknown" ), long long int size = 0, QDateTime date = QDateTime().currentDateTime(), QString path = "/", QString filetype = tr ( "" ) );
+		ArchiveFile ( const ArchiveFile& );
+		ArchiveFile& operator = ( const ArchiveFile& );
+		QString toPrettyString ( bool showAttr = true, bool showUser = true, bool showGroup = true, bool showSize = true, bool showDate = true, bool showFileType = true, bool doHtmlTableLine = false, int fontsize = 8 );
+		QString toDbString();
+		void setDbString ( QString DbString );
+
+		QString fileattr;
+		QString user;
+		QString group;
+		long long int size;
+		QDateTime date;
+		QString path;
+		QString filetype;
+
+	private:
+		QChar div;
+};
 
 
-    DBCatLnk ( void );
-    DBCatLnk ( QString pname,char *plocation,QString pcomment, QString pcategory="" );
+class DBExifData : public QObject { //type is 9
+	public:
+		DBExifData ( void );
+		DBExifData ( QStringList ExifDataList );
+		~DBExifData ( void );
+		
+		QStringList ExifDataList;
+};
 
-    ~DBCatLnk ( void );
+class DBThumb : public QObject { //type is 10
+	public:
+		DBThumb ( void );
+		DBThumb ( QImage ThumbImage );
+		~DBThumb ( void );
+		
+		QImage ThumbImage;
 };
 
 
 class DataBase : public QObject {
-    Q_OBJECT
+		Q_OBJECT
+	public:
+		DataBase ( void );
+		~DataBase ( void );
+		
+		QString errormsg;
+		//If some function return with fail code, the system will be able to determine the reason of
+		//fail from this message.
+		
+		bool nicef;
+		// saving option (niceFormat) pass to the FileWriter class
+		
+		bool storeMp3tags;
+		// strore the mp3 tags
+		
+		bool v1_over_v2;
+		// true is the version 1 tag the default
+		
+		bool storeMp3techinfo;
+		// store mp3 technical informations: time,bitrate,freq, stereo type
+		
+		bool storeAvitechinfo;
+		// store avi technical informations: time,bitrate,...
+		
+		bool storeFileInfo;
+		// store informations got from fileinfo
+		
+		//The database will store some file's contetn if ..
+		bool storeContent;
+		// the storing enabled...
+		QString storedFiles;
+		// ; separated wildcard plattern list of files
+		unsigned long storeLimit;
+		// up to this size limitation (bytes)
+		
+		bool showProgressedFileInStatus;
+		bool doScanArchive;
+		bool doScanArchiveTar;
+		bool doScanArchiveLib7zip;
+		bool storeExifData;
+		bool storeThumb;
+		
+		QString XML_ENCODING;
+		
+		void  setDBName ( QString n );
+		void  setDBOwner ( QString o );
+		void  setComment ( QString c );
+		void  setCategory ( QString category );
+		void  setNice ( bool nic );
+		
+		QString& getDBName ( void );
+		QString& getDBOwner ( void );
+		QString& getComment ( void );
+		QString& getCategory ( void );
+		Node *getRootNode ( void ) {
+			return root;
+		}
+		
+		int   saveDB ( void );
+		//save the full database to the file, if the file specified before:
+		// The file opened or saved before this function.
+		
+		int   saveAsDB ( char *filename );
+		//Save the full database to the specified file.
+		
+		int   openDB ( char *filename );
+		//Open the catalog from a file
+		
+		int   insertDB ( char *filename, bool skipDuplicatesOnInsert = false );
+		//insert a new catalog from filename into the existing catalog.
+		
+		int   addMedia ( QString what, QString name, int number, int type );
+		int   addMedia ( QString what, QString name, int number, int type, QString owner, QString Category = "" );
+		//Scan a new media from the disk specified in "what" with name "name" and "number" ...
+		//and immediately added to the database!
+		
+		void  deleteNode ( Node *d );
+		
+		void  sortM ( int mode );
+		//sort the media in the catalog
+		
+		void addLnk ( const char *loc );
+		
+		double getSize ( Node *s, int level = 0 );
+		unsigned long getCountFiles ( Node *s, int level = 0 );
+		unsigned long getCountDirs ( Node *s, int level = 0 );
+		
+		PWw *pww; //Pease Wait Window :-)
+	
+	private:
+		Node *root;
+		Node *getMOnPos ( int p );
+		
+		int   scanFsToNode ( QString what, Node *to );
+		int   scanFileProp ( QFileInfo *fi, DBFile *fc );
+		
+		QStringList Lib7zipTypes;
+		
+		void strmode ( mode_t mode, char *p );
+		
+		enum ArchiveType { Archive_tar = 0, Archive_bzip2 =  1, Archive_targz = 2, Archive_tarbz2 = 3, Archive_zip = 4, Archive_sevenzip = 5, Archive_rar = 6, Archive_lib7zip = 7 };
+		
+		QList<ArchiveFile> scanArchive ( QString path, ArchiveType type );
+		QString pcategory;
+		
+		CdcatMediaInfo me;
+	
+	public:
+		/*
+		 funtions /below/ for make import from another formats:
+		  The get..  function try to specify a node and return that node's pointer.
+		  If the return value is NULL the node is not exist in that environment
+		  (environment: catalog/needn't to specify of course/ in case getMedia..
+		                 media or directory in case getDir..
+		  	   media but rather directory in case getFile.. )
+		  so you have to use the put... functions to make the node.
 
-public:
+		  Always test the existion a node before you try to create it !!!
 
-    DataBase ( void );
-    ~DataBase ( void );
+		  example:
+		   you want to add "MY_CD/install/sources/cdcat.tar.bz2" where is MY_CD is the media name:
 
-    QString errormsg;
-    //If some function return with fail code, the system will be able to determine the reason of
-    //fail from this message.
+		    Node *env,*curr;
+		    curr = getMediaNode("MY_CD");
+		    if(curr == NULL) curr = putMediaNode("MY_CD", ... );
 
-    bool nicef;
-    // saving option (niceFormat) pass to the FileWriter class
+		    env = curr;
 
-    bool storeMp3tags;
-    // strore the mp3 tags
+		    curr = getDirectoryNode(env,"install");
+		    if(curr == NULL) curr = putDirectoryNode(env,"install", ... );
 
-    bool v1_over_v2;
-    // true is the version 1 tag the default
+		    env = curr; //we want to search/insert the "sources" directory in "install" directory.
 
-    bool storeMp3techinfo;
-    // store mp3 technical informations: time,bitrate,freq, stereo type
+		    curr = getDirectoryNode(env,"sources");
+		    if(curr == NULL) curr = putDirectoryNode(env,"sources", ... );
 
-    bool storeAvitechinfo;
-    // store avi technical informations: time,bitrate,...
+		    env = curr;
 
-   bool storeFileInfo;
-   // store informations got from fileinfo
-
-    //The database will store some file's contetn if ..
-    bool storeContent;
-    // the storing enabled...
-    QString storedFiles;
-    // ; separated wildcard plattern list of files
-    unsigned long storeLimit;
-    // up to this size limitation (bytes)
-
-    QString XML_ENCODING;
-
-    void  setDBName ( QString n );
-    void  setDBOwner ( QString o );
-    void  setComment ( QString c );
-    void  setCategory ( QString category );
-    void  setNice ( bool nic );
-
-    QString& getDBName ( void );
-    QString& getDBOwner ( void );
-    QString& getComment ( void );
-    QString& getCategory ( void );
-    Node *getRootNode ( void )
-    { return root; }
-
-    int   saveDB ( void );
-    //save the full database to the file, if the file specified before:
-    // The file opened or saved before this function.
-
-    int   saveAsDB ( char *filename);
-    //Save the full database to the specified file.
-
-    int   openDB ( char *filename );
-    //Open the catalog from a file
-
-    int   insertDB ( char *filename, bool skipDuplicatesOnInsert = false );
-    //insert a new catalog from filename into the existing catalog.
-
-    int   addMedia ( QString what,QString name,int number,int type );
-    int   addMedia ( QString what,QString name,int number,int type,QString owner, QString Category="" );
-    //Scan a new media from the disk specified in "what" with name "name" and "number" ...
-    //and immediately added to the database!
-
-    void  deleteNode ( Node *d );
-
-    void  sortM ( int mode );
-    //sort the media in the catalog
-
-    void addLnk ( const char *loc );
-
-    double        getSize ( Node *s,int level=0 );
-    unsigned long getCountFiles ( Node *s,int level=0 );
-    unsigned long getCountDirs ( Node *s,int level=0 );
-
-    PWw *pww; //Pease Wait Window :-)
-
-private:
-    Node *root;
-
-    Node *getMOnPos ( int p );
-
-    int   scanFsToNode ( QString what,Node *to );
-    int   scanFileProp ( QFileInfo *fi,DBFile *fc );
-
-
-    bool showProgressedFileInStatus;
-    bool doScanArchive;
-    bool doScanArchiveTar;
-    bool doScanArchiveLib7zip;
-    QStringList Lib7zipTypes;
-
-    void strmode(mode_t mode, char *p);
-
-    enum ArchiveType { Archive_tar = 0, Archive_bzip2 =  1, Archive_targz = 2, Archive_tarbz2 = 3, Archive_zip = 4, Archive_sevenzip = 5, Archive_rar = 6, Archive_lib7zip = 7 };
-
-    
-    QList<ArchiveFile> scanArchive(QString path, ArchiveType type);
-    QString pcategory;
-    
-    CdcatMediaInfo me;
-
-public:
-
-    /*
-     funtions /below/ for make import from another formats:
-      The get..  function try to specify a node and return that node's pointer.
-      If the return value is NULL the node is not exist in that environment
-      (environment: catalog/needn't to specify of course/ in case getMedia..
-                     media or directory in case getDir..
-      	   media but rather directory in case getFile.. )
-      so you have to use the put... functions to make the node.
-
-      Always test the existion a node before you try to create it !!!
-
-      example:
-       you want to add "MY_CD/install/sources/cdcat.tar.bz2" where is MY_CD is the media name:
-
-        Node *env,*curr;
-        curr = getMediaNode("MY_CD");
-        if(curr == NULL) curr = putMediaNode("MY_CD", ... );
-
-        env = curr;
-
-        curr = getDirectoryNode(env,"install");
-        if(curr == NULL) curr = putDirectoryNode(env,"install", ... );
-
-        env = curr; //we want to search/insert the "sources" directory in "install" directory.
-
-        curr = getDirectoryNode(env,"sources");
-        if(curr == NULL) curr = putDirectoryNode(env,"sources", ... );
-
-        env = curr;
-
-        curr = getFileNode(env,"cdcat.tar.bz2");
-        if(curr == NULL) curr = putFileNode(env,"cdcat.tar.bz2", ... );
-    */
-
-    Node * getMediaNode ( QString name );
-    Node * putMediaNode ( QString name,int number,QString owner,int type,QString comment, QDateTime modification, QString category="" );
-    Node * getMediaNode ( int id );
-
-    //step only one directory with one call!
-    //the meddir can be media or directoy depend it's will be the first directory or not.
-    Node * getDirectoryNode ( Node *meddir,QString name );
-    Node * putDirectoryNode ( Node *meddir,QString name,QDateTime modification,QString comment, QString category="" );
-
-    Node * getFileNode ( Node *directory,QString name );
-    Node * putFileNode ( Node *directory,QString name,QDateTime modification,QString comment,int sizeType,float size, QString category="", QList<ArchiveFile> archivecontent=QList<ArchiveFile>(), QString fileinfo="" );
-
-    Node * putTagInfo ( Node *file,QString artist,QString title,QString comment,QString album,QString year, int tnumber );
-
-    void setShowProgressedFileInStatus(bool showProgressedFileInStatus);
-    void setDoArchiveScan(bool doScanArchive) { this->doScanArchive = doScanArchive; };
-    void setDoArchiveScanTar(bool doScanArchiveTar) { this->doScanArchiveTar = doScanArchiveTar; };
-    void setDoScanArchiveLib7zip(bool doScanArchiveLib7zip) { this->doScanArchiveLib7zip = doScanArchiveLib7zip; };
-
-    signals:
-	void pathScanned(QString path);
-
-
+		    curr = getFileNode(env,"cdcat.tar.bz2");
+		    if(curr == NULL) curr = putFileNode(env,"cdcat.tar.bz2", ... );
+		*/
+		
+		Node * getMediaNode ( QString name );
+		Node * putMediaNode ( QString name, int number, QString owner, int type, QString comment, QDateTime modification, QString category = "" );
+		Node * getMediaNode ( int id );
+		
+		//step only one directory with one call!
+		//the meddir can be media or directoy depend it's will be the first directory or not.
+		Node * getDirectoryNode ( Node *meddir, QString name );
+		Node * putDirectoryNode ( Node *meddir, QString name, QDateTime modification, QString comment, QString category = "" );
+		
+		Node * getFileNode ( Node *directory, QString name );
+		Node * putFileNode ( Node *directory, QString name, QDateTime modification, QString comment, int sizeType, float size, QString category = "", QList<ArchiveFile> archivecontent = QList<ArchiveFile>(), QString fileinfo = "" );
+		
+		Node * putTagInfo ( Node *file, QString artist, QString title, QString comment, QString album, QString year, int tnumber );
+		
+		void setShowProgressedFileInStatus ( bool showProgressedFileInStatus );
+		void setDoArchiveScan ( bool doScanArchive ) {
+			this->doScanArchive = doScanArchive;
+		};
+		void setDoArchiveScanTar ( bool doScanArchiveTar ) {
+			this->doScanArchiveTar = doScanArchiveTar;
+		};
+		void setDoScanArchiveLib7zip ( bool doScanArchiveLib7zip ) {
+			this->doScanArchiveLib7zip = doScanArchiveLib7zip;
+		};
+	
+	signals:
+		void pathScanned ( QString path );
 };
 
 
@@ -466,3 +489,4 @@ public:
 
 
 
+// kate: indent-mode cstyle; replace-tabs off; tab-width 8; 

@@ -78,6 +78,8 @@ public:
     bool doScanArchive;
     //bool doScanArchiveTar;
     //bool doScanArchiveLib7zip;
+    bool storeExifData;
+    bool storeThumb;
     QString readcfiles;
     unsigned long readclimit;
 

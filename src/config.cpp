@@ -96,6 +96,7 @@ CdCatConfig::CdCatConfig ( void ) {
     saveAlwaysCatalogInUtf8 = true;
     showProgressedFileInStatus = true;
     doScanArchive = true;
+    storeThumb = true;
 
     readavii   = true;
 
@@ -751,6 +752,20 @@ int CdCatConfig::readConfig ( void ) {
                         show_archive_file_comment=false;
                     continue;
                 }
+                else if ( var=="store_thumb" ) {
+                    if ( val=="true" )
+                        storeThumb=true;
+                    else
+                        storeThumb=false;
+                    continue;
+                }
+                else if ( var=="store_exif_data" ) {
+                    if ( val=="true" )
+                        storeExifData = true;
+                    else
+                        storeExifData = false;
+                    continue;
+                }
 
                 fprintf ( stderr,"Unknown key found: %s\n", ( const char * ) var );
                 error = 1;
@@ -1050,6 +1065,15 @@ int CdCatConfig::writeConfig ( void ) {
             str << "show_archive_file_comment=true" << endl;
         else
             str << "show_archive_file_comment=false" << endl;
+        if ( storeThumb )
+            str << "store_thumb=true" << endl;
+        else
+            str << "store_thumb=false" << endl;
+        if ( storeExifData )
+            str << "store_exif_data=true" << endl;
+        else
+            str << "store_exif_data=false" << endl;
+
 
         f.close();
         return 0;

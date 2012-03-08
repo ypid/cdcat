@@ -19,6 +19,8 @@
 
 #include <QStringList>
 #include <QtDebug>
+#include <QBuffer>
+#include <QVariant>
 #include <QMessageBox>
 #include <qtextcodec.h>
 #include "wdbfile.h"
@@ -280,6 +282,10 @@ int  FileWriter::writeDown ( Node *source ) {
         break;
     case HC_CONTENT:       i=writeContent ( source );
         break;
+    case HC_EXIF:       i=writeExif ( source );
+        break;
+    case HC_THUMB:       i=writeThumb ( source );
+        break;
     case HC_CATLNK:        i=writeCatLnk ( source );
         break;
     }
@@ -429,6 +435,74 @@ int  FileWriter::writeContent ( Node *source ) {
         gzputc ( f,encodeHex[ c & 0x0F     ] );
     }
     gzprintf ( f,"%s</content>\n",spg ( level ) );
+    if ( source->next  != NULL ) writeDown ( source->next );
+    return 0;
+}
+
+int  FileWriter::writeExif ( Node *source ) {
+    unsigned long i;
+    gzprintf ( f,"%s<exif>",spg ( level ) );
+    QStringList ExifDataList =  ( ( DBExifData * ) ( source->data ) )->ExifDataList;
+    QString c;
+    for (int i=0;i<ExifDataList.size();i++) {
+	c += ExifDataList.at(i);
+	c += '\n';
+    }
+    QString c1=to_cutf8 ( c );
+    gzwrite ( f,c1.toLocal8Bit().data(), strlen(c1.toLocal8Bit().data())  );
+    gzprintf ( f,"%s</exif>\n",spg ( level ) );
+    if ( source->next  != NULL ) writeDown ( source->next );
+    return 0;
+}
+
+int  FileWriter::writeThumb ( Node *source ) {
+    unsigned long i=0;
+    unsigned long datasize=0;
+    unsigned char c;
+    gzprintf ( f,"%s<thumb>",spg ( level ) );
+    //std::cout << "save image size: " << ( ( DBThumb * ) ( source->data ) )->ThumbImage.width() << "x" << ( ( DBThumb * ) ( source->data ) )->ThumbImage.height() << std::endl;
+    QByteArray byteArray;
+     QBuffer buffer(&byteArray);
+     buffer.open(QIODevice::WriteOnly);
+     ( ( DBThumb * ) ( source->data ) )->ThumbImage.save(&buffer, "PNG");
+     
+     //std::cerr << "qbuffer size: " << buffer.size() << std::endl;
+     buffer.close();
+     //std::cerr << "byteArray size: " << byteArray.size() << std::endl;
+     
+ gzprintf ( f,"<![CDATA[" ); 
+    char *bits = byteArray.data();
+    datasize = byteArray.size();
+    for ( i=0;i< datasize;i++ ) {
+        c = bits[i];
+//         gzputc ( f,encodeHex[ ( c & 0xF0 ) >>4] );
+//         gzputc ( f,encodeHex[ c & 0x0F     ] );
+    }
+
+	QByteArray byteArray2 = byteArray.toHex();
+// 	datasize = strlen(imgdata);
+	gzwrite ( f,  byteArray2.constData(), byteArray2.size());
+	gzprintf ( f,"]]>" );
+	gzprintf ( f,"</thumb>\n" );
+
+
+// FILE *tempfile;
+// tempfile = fopen("/tmp/imagedata1.txt", "w");
+//     for ( i=0;i< datasize;i++ ) {
+//         c = bits[i];
+// 	fwrite(&encodeHex[ ( c & 0xF0 ) >>4], 1, 1, tempfile);
+// 	fwrite(&encodeHex[ c & 0x0F], 1, 1, tempfile );
+//     }
+// fclose(tempfile);
+// 
+// FILE *tempfile2;
+// tempfile2 = fopen("/tmp/imagedata1_raw.txt", "w");
+//     for ( i=0;i< datasize;i++ ) {
+//         c = bits[i];
+// 	fwrite(bits, 1, 1, tempfile2);
+//     }
+// fclose(tempfile2);
+
     if ( source->next  != NULL ) writeDown ( source->next );
     return 0;
 }
@@ -598,17 +672,21 @@ QDateTime FileReader::get_dcutf8 ( QString s ) {
 }
 
 
-unsigned char decodeHexa ( char a,char b ) //try to decode a hexadecimal byte to char very fast
-{                                      //possible values a,b: "0123456789ABCDEF"  !!!
-    unsigned char r=0;
-
-    if ( a>='A' ) r = ( ( a-'A' ) +10 );
-    else       r = ( a-'0' );
-    r <<= 4;
-    if ( b>='A' ) r += ( ( b-'A' ) +10 );
-    else       r += ( b-'0' );
-
-    return r;
+/* try to decode a hexadecimal byte to char very fast */
+unsigned char decodeHexa ( char a,char b )
+{
+	/* possible values a,b: "0123456789ABCDEF"  !!!*/
+	unsigned char r=0;
+	if ( a>='A' )
+		r = ( ( a-'A' ) +10 );
+	else
+		r = ( a-'0' );
+	r <<= 4;
+	if ( b>='A' )
+		r += ( ( b-'A' ) +10 );
+	else
+		r += ( b-'0' );
+	return r;
 }
 
 
@@ -1325,7 +1403,13 @@ Please change it with an older version or rewrite it in the xml file!" );
         /*nothing*/
     }
 
+    else if (  el =="exif" ) {
+       /*nothing*/
+    }
 
+    else if (  el =="thumb" ) {
+        /*nothing*/
+    }
 
 //         if(*DEBUG_INFO_ENABLED)    
 //        	cerr <<"end_start:"<<qPrintable(el)<<endl;
@@ -1414,16 +1498,18 @@ bool CdCatXmlHandler::endElement ( const QString & namespaceURI, const QString &
         }
         /*Fill data part:*/
 	
-//         bytes = new unsigned char[ ( rsize= ( strlen ( FREA->dataBuffer ) /2 ) ) + 1];
-//         for ( i=0;i<rsize;i++ )
-//             bytes[i] = decodeHexa ( FREA->dataBuffer[i*2],FREA->dataBuffer[i*2 + 1] );
-//         bytes[rsize] = '\0';
+        bytes = new unsigned char[ ( rsize= ( strlen ( FREA->dataBuffer ) /2 ) ) + 1];
+        for ( i=0;i<rsize;i++ )
+            bytes[i] = decodeHexa ( FREA->dataBuffer[i*2],FREA->dataBuffer[i*2 + 1] );
+        bytes[rsize] = '\0';
 
 	char *tempbuffer = currentText.toLocal8Bit().data();
         bytes = new unsigned char[ ( rsize= ( strlen ( tempbuffer ) /2 ) ) + 1];
         for ( i=0;i<rsize;i++ )
             bytes[i] = decodeHexa ( tempbuffer[i*2],tempbuffer[i*2 + 1] );
         bytes[rsize] = '\0';
+	//bytes = (unsigned char *)QByteArray::fromHex(currentText.toLocal8Bit()).constData();
+	//rsize = QByteArray::fromHex(currentText.toLocal8Bit()).size();
         tt->data = ( void * ) new DBContent ( bytes,rsize );
     }
 
@@ -1537,6 +1623,60 @@ bool CdCatXmlHandler::endElement ( const QString & namespaceURI, const QString &
 	}
     }
 
+    else if ( el == "exif" ) {
+	while (currentText.length() > 0 && currentText.at(0) == '\n')
+		currentText = currentText.right(currentText.length()-1);
+	if (FREA->sp == NULL)
+		return false;
+        switch ( FREA->sp->type ) {
+        case HC_FILE     :
+//             ( ( DBFile      * ) ( FREA->sp->data ) ) -> comment = FREA->get_cutf8 ( currentText );
+		Node *tt = ( ( DBFile * ) ( FREA->sp->data ) )->prop;
+		if ( tt == NULL ) ( ( DBFile * ) ( FREA->sp->data ) )->prop = tt = new Node ( HC_EXIF,FREA->sp );
+		else {
+			while ( tt->next != NULL ) tt = tt->next;
+			tt->next =  new Node ( HC_EXIF,FREA->sp );
+			tt=tt->next;
+		}
+		FREA->error = 0;
+		
+		DBExifData *tmp_exifdata = new DBExifData ( currentText.split('\n') );
+		tt->data = ( void * ) tmp_exifdata;
+            break;
+        }
+    }
+
+    else if ( el == "thumb" ) {
+// 	while (currentText.length() > 0 && currentText.at(0) == '\n')
+// 		currentText = currentText.right(currentText.length()-1);
+	if (FREA->sp == NULL)
+		return false;
+        switch ( FREA->sp->type ) {
+        case HC_FILE     :
+//             ( ( DBFile      * ) ( FREA->sp->data ) ) -> comment = FREA->get_cutf8 ( currentText );
+		unsigned char *bytes;
+		unsigned long rsize,i;
+
+		Node *tt = ( ( DBFile * ) ( FREA->sp->data ) )->prop;
+		if ( tt == NULL )
+		( ( DBFile * ) ( FREA->sp->data ) )->prop = tt = new Node ( HC_THUMB,FREA->sp );
+		else {
+			while ( tt->next != NULL ) tt = tt->next;
+			tt->next =  new Node ( HC_THUMB,FREA->sp );
+			tt=tt->next;
+		}
+		/*Fill data part:*/
+		QImage tmpThumbImage;
+		tmpThumbImage.loadFromData(QByteArray::fromHex(currentText.toLocal8Bit()), "PNG");
+		if(*DEBUG_INFO_ENABLED)
+			cout << "found thumb: (" << QByteArray::fromHex(currentText.toLocal8Bit()).size() << " bytes), size: " << tmpThumbImage.width() << "x" << tmpThumbImage.height() << std::endl;
+		tt->data = ( void * ) new DBThumb( tmpThumbImage);
+		free(bytes);
+		
+            break;
+        }
+    }
+
     else if ( el == "borrow" ) {
 	if (FREA->sp == NULL)
 		return false;
@@ -1627,6 +1767,7 @@ int  CdCatXmlHandler::analyzeNodeIsFileinDB ( Node *n, Node *pa ) {
 			analyzeNodeIsFileinDB(n->next );
 			return 0;
 	}
+	return 0;
 }
 
 

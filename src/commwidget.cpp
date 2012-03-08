@@ -336,6 +336,36 @@ void CommentWidget::updateContents() {
 					p.drawText ( mx+20,my+w, tr("Comment:")+" "+( ( DBMp3Tag * ) ( tmp->data ) )->comment );
 					w+=pixelsHigh+2;
 				}
+				/* exif data */
+				else if ( tmp->type == HC_EXIF ) {
+					p.setPen ( *cconfig->comm_fr );
+					p.drawLine ( 12,my+w-11,width()-12,my+w-11 );
+					p.setPen ( *cconfig->comm_stext );
+					p.drawText ( mx+12,my+w,tr ( "Exif data:" ) );
+					w+=pixelsHigh;
+					p.setPen ( *cconfig->comm_vtext );
+					QStringList ExifData = ( ( DBExifData  *) ( tmp->data ) )->ExifDataList;
+					std::cout << "exif data: " << qPrintable(ExifData.join ("#")) << std::endl;
+					for (int i = 0; i < ExifData.size(); ++i) {
+						p.drawText ( mx+20,my+w, ExifData.at(i) );
+						w+=pixelsHigh;
+					}
+					w+=pixelsHigh;
+					p.setPen ( *cconfig->comm_stext );
+				}
+				
+				/* thumbnail */
+				else if ( tmp->type == HC_THUMB ) {
+					p.setPen ( *cconfig->comm_fr );
+					p.drawLine ( 12,my+w-11,width()-12,my+w-11 );
+					p.setPen ( *cconfig->comm_stext );
+					p.drawText ( mx+12,my+w,tr ( "Thumbnail:" ) );
+					w+=pixelsHigh;
+					p.setPen ( *cconfig->comm_vtext );
+					p.drawImage (  mx+20,my+w, ((( DBThumb *) ( tmp->data ) )->ThumbImage ));
+					w+=(((( DBThumb *) ( tmp->data ) )->ThumbImage)).height()+10;
+					w+=pixelsHigh;
+				}
 				tmp = tmp->next;
 			}
 		}
@@ -468,6 +498,7 @@ void CommentWidget::updateContents() {
 		oldFont = p.font();
 		switch ( act->type ) {
 			case HC_FILE:
+				/* archive content */
 				QList<ArchiveFile> ArchiveFileList = ( ( DBFile      * ) ( act->data ) )->archivecontent;
 				if (ArchiveFileList.size() > 0) {
 					w+=pixelsHigh+ispace;
@@ -570,6 +601,7 @@ void CommentWidget::updateContents() {
 				}
 				w+=pixelsHigh;
 				w+=pixelsHigh;
+				
 				break;
 	// 		default:
 	// 			;

@@ -140,6 +140,12 @@ win32 {
 	######### end mediainfo
 	
 	
+	########## exif
+	# use exif?
+	DEFINES+=USE_LIBEXIF
+	LIBS+= -lexif
+	######### end exif
+	
 	LIBS       += -lz -ltar -lbz2 -ldl
 	# libmediainfo ships API info via pkgconfig so use it!
 	CONFIG += link_pkgconfig
@@ -154,10 +160,10 @@ win32 {
 	distfiles.path =     /usr/local/share/cdcat
 	target.path +=       /usr/local/bin
 	translations.path += /usr/local/share/cdcat/translations
-
-   # security hardening flags
-   DEFINES += _FORTIFY_SOURCE=2
-   QMAKE_CXXFLAGS += -std=c++0x -g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Wformat-security -Werror=format-security 
+	
+	# security hardening flags
+	DEFINES += _FORTIFY_SOURCE=2
+	QMAKE_CXXFLAGS += -std=c++0x -g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Wformat-security -Werror=format-security 
 }
 
 FORMS      	    = help.ui

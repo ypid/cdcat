@@ -39,6 +39,7 @@ HEADERS		=   adddialog.h\
 		    mainwidget.h \
 		    mp3tag.h \
 		    cdcatmediainfo.h \
+		    cdcatexif.h \
 		    newdbdialog.h \
 		    import.h \
 		    importdialog.h \
@@ -68,6 +69,7 @@ SOURCES		=   adddialog.cpp \
 		    mainwidget.cpp \
 		    mp3tag.cpp \
 		    cdcatmediainfo.cpp \
+		    cdcatexif.cpp \
 		    newdbdialog.cpp \
 		    wdbfile.cpp \
 		    info.cpp \		    
@@ -144,15 +146,24 @@ win32 {
 	# hack in cdcatmediainfo.h when it's ready)
 	DEFINES += MEDIAINFO_UNICODE
 	######### end mediainfo
+
+	
+	########## exif
+	# use exif?
+	DEFINES+=USE_LIBEXIF
+	LIBS+= -lexif
+	######### end exif
+	
 	
 	LIBS       += -lz -ltar -lbz2 -ldl
 	distfiles.files +=   ../README_CSV_IMPORT ../Authors ../README ../ChangeLog ../COPYING ../TRANSLATORS_README ../cdcat.png 
 	distfiles.path =     /usr/local/share/cdcat
 	target.path +=       /usr/local/bin
 	translations.path += /usr/local/share/cdcat/translations
-   # security hardening flags
-   DEFINES += _FORTIFY_SOURCE=2
-   QMAKE_CXXFLAGS += -std=c++0x -g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Wformat-security -Werror=format-security 
+	
+	# security hardening flags
+	DEFINES += _FORTIFY_SOURCE=2
+	QMAKE_CXXFLAGS += -std=c++0x -g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Wformat-security -Werror=format-security 
 }
 INSTALLS += target translations distfiles
 

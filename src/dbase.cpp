@@ -174,6 +174,10 @@ class TestInStream : public C7ZipInStream {
 };
 #endif
 
+#ifdef USE_LIBEXIF
+#include "cdcatexif.h"
+#endif
+
 // FIXME: currently disabled because lib7zip has problems with std namespace :(
 // using namespace std;
 
@@ -496,6 +500,21 @@ DBCatLnk::~DBCatLnk ( void ) {
 		delete[] location;
 }
 
+DBExifData::DBExifData(QStringList ExifDataList  ) {
+	this->ExifDataList = ExifDataList;
+}
+
+DBExifData::~DBExifData(void) {
+}
+
+DBThumb::DBThumb( QImage ThumbImage ) {
+	this->ThumbImage = ThumbImage;
+}
+
+DBThumb::~DBThumb(void ){
+
+}
+
 DataBase::DataBase ( void ) {
 	nicef           = true;
 	errormsg        = "";
@@ -504,6 +523,8 @@ DataBase::DataBase ( void ) {
 	storeContent    = true;
 	showProgressedFileInStatus = true;
 	storedFiles     = "*.nfo;*.diz;readme.txt";
+	storeThumb = true;
+	storeExifData = true;
 	storeLimit      = 32 * 1024;
 	root            = new Node ( HC_CATALOG, NULL );
 	root->data      = ( void * ) new DBCatalog();
@@ -545,7 +566,6 @@ DataBase::DataBase ( void ) {
 DataBase::~DataBase ( void ) {
 	delete root;
 }
-
 
 void DataBase::setDBName ( QString n ) {
 	( ( DBCatalog * ) ( root->data ) )->name = n;
@@ -844,42 +864,42 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 	DEBUG_INFO_ENABLED = init_debug_info();
 	if ( *DEBUG_INFO_ENABLED )
 		std::cerr << "Loading node:" << qPrintable ( what ) << std::endl;
-
+	
 	int ret;
 	QString comm = NULL;
 	QList<ArchiveFile> archivecontent = QList<ArchiveFile>();
 	QDir *dir = NULL;
 	QFileInfoList *dirlist = NULL;
-
+	
 	ret = 0;
 	dir = new QDir ( what );
 	if ( !dir->isReadable() ) {
 		if ( *DEBUG_INFO_ENABLED )
 			std::cerr << "dir " << qPrintable ( what ) << " is not readable";
-
+		
 		int i;
 		if ( QFileInfo ( what ).isDir() )
 			errormsg = tr ( "Cannot read directory: %1" ).arg ( what );
 		else
 			errormsg = tr ( "Cannot read file: %1" ).arg ( what ); /* socket files and dead symbolic links end here */
-
+		
 		i = 1 + ( QMessageBox::warning ( NULL, tr ( "Error" ), errormsg, tr ( "Ignore" ), tr ( "Cancel scanning" ) ) );
 		return i;
 	}
 	dirlist = new QFileInfoList ( dir->entryInfoList ( QString ( "*" ), QDir::All | QDir::Hidden | QDir::System ) );
-
+	
 	for ( int fi = 0; fi < dirlist->size(); ++fi ) {
 		QFileInfo *fileInfo = new QFileInfo ( dirlist->at ( fi ) );
 		if ( fileInfo->fileName() == "." || fileInfo->fileName() == ".." ) {
 			continue;
 		}
-
+		
 		if ( *DEBUG_INFO_ENABLED )
 			std::cerr << "processing in dir " << qPrintable ( what ) << " node: " << qPrintable ( fileInfo->filePath() ) << std::endl;
-
+		
 		if ( showProgressedFileInStatus )
 			emit pathScanned ( fileInfo->filePath() );
-
+		
 		/* Make a new node */
 		Node *tt = to->child;
 		if ( to->child == NULL )
@@ -894,13 +914,13 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 		if ( fileInfo->isFile() ) { /* FILE */
 			if ( *DEBUG_INFO_ENABLED )
 				std::cerr << "adding file: " << qPrintable ( fileInfo->fileName() ) << std::endl;
-
+			
 			float size = fileInfo->size();
 			float s = size;
 			int   st = UNIT_BYTE;
 // 			if ( *DEBUG_INFO_ENABLED )
 // 				std::cerr << "adding file size: " << s << std::endl;
-
+			
 			if ( size > ( float ) SIZE_ONE_GBYTE * 1024.0 ) {
 				s  = size / SIZE_ONE_GBYTE * 1024.0;
 				st = UNIT_TBYTE;
@@ -927,23 +947,23 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 					}
 				}
 			}
-
+			
 // 			if ( *DEBUG_INFO_ENABLED )
 // 				std::cerr << "adding file size 2: " << qPrintable ( QString().setNum ( s ) ) << qPrintable ( getSType ( st ) ) << std::endl;
-
+			
 			progress ( pww );
-
+			
 			if ( fileInfo->isSymLink() ) { /* SYMBOLIC LINK to a FILE */
 				comm = tr ( "Symbolic link to file:#" )
 				       + dir->relativeFilePath ( fileInfo->symLinkTarget() );
 			}
 			else {
 				comm = ( char* ) NULL;
+				QString extension = fileInfo->fileName().lower().section ( '.', -1, -1 );
 				doScanArchive = true;
 				doScanArchiveTar = true;
 				doScanArchiveLib7zip = true;
 				if ( doScanArchive ) {
-					QString extension = fileInfo->fileName().lower().section ( '.', -1, -1 );
 					if ( doScanArchiveTar ) {
 						if ( extension == "tar" ) {
 							if ( *DEBUG_INFO_ENABLED )
@@ -979,12 +999,11 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 		}
 		else
 			if ( fileInfo->isDir() ) { /* DIRECTORY */
-
 				if ( *DEBUG_INFO_ENABLED )
 					std::cerr << "adding dir: " << qPrintable ( fileInfo->fileName() ) << std::endl;
-
+				
 				progress ( pww );
-
+				
 				if ( fileInfo->isSymLink() ) { /* SYMBOLIC LINK to a DIRECTORY */
 					/* These links appear as empty directories in the GUI */
 					/* Change to DBFile for show them as files */
@@ -998,37 +1017,33 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 					tt->data = ( void * ) new DBDirectory (
 					                   fileInfo->fileName(), fileInfo->lastModified(), ( char* ) NULL, this->pcategory );
 				}
-
+				
 				/* Start recursion: */
-
 				QString thr ( what );
 				thr = thr.append ( "/" );
 				thr = thr.append ( fileInfo->fileName() );
 
 				if ( ( ret = scanFsToNode ( thr, tt ) ) == 2 )
 					return ret;
-
 			}
 			else
 				if ( fileInfo->isSymLink() ) { /* DEAD SYMBOLIC LINK */
-
 					if ( *DEBUG_INFO_ENABLED )
 						std::cerr << "adding dead symlink: " << qPrintable ( fileInfo->fileName() ) << std::endl;
-
+					
 					progress ( pww );
-
+					
 					comm = tr ( "DEAD Symbolic link to:#" )
 					       + dir->relativeFilePath ( fileInfo->symLinkTarget() );
 					tt->data = ( void * ) new DBFile ( fileInfo->fileName(), QDateTime(),
 					                                   comm, 0, UNIT_BYTE, this->pcategory );
 				}
 				else {   /* SYSTEM FILE (e.g. FIFO, socket or device file) */
-
 					if ( *DEBUG_INFO_ENABLED )
 						std::cerr << "adding system file: " << qPrintable ( fileInfo->fileName() ) << std::endl;
-
+					
 					progress ( pww );
-
+					
 					comm = tr ( "System file (e.g. FIFO, socket or device file)" );
 					tt->data = ( void * ) new DBFile ( fileInfo->fileName(), fileInfo->lastModified(),
 					                                   comm, 0, UNIT_BYTE, this->pcategory );
@@ -1097,7 +1112,7 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 			if ( filePTR != NULL ) {
 				QString got = parseAviHeader ( filePTR ).replace ( QRegExp ( "\n" ), "#" );
 				fclose ( filePTR );
-
+				
 				//store it as comment
 				if ( !got.isEmpty() ) {
 					if ( !fc->comment.isEmpty() )
@@ -1107,48 +1122,48 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 			}
 		}
 	}
-
+	
 	/***File content scanning */
 	if ( storeContent ) {
-//         pcre       *pcc = NULL;
-//         const char *error;
-//         int         erroroffset;
-//         int         ovector[30];
+	//         pcre       *pcc = NULL;
+	//         const char *error;
+	//         int         erroroffset;
+	//         int         ovector[30];
 		bool match = false;
-
+		
 		QStringList exts ( QStringList::split ( ";", storedFiles ) );
 		QStringList::Iterator it = exts.begin();
-
+		
 		for ( ; it != exts.end(); ++it ) { // stepping on the ; separated patterns
 			strcpy ( pattern, ( const char * ) ( *it ) );
 			easyFormConversion ( pattern );
 			caseSensConversion ( pattern );
 			QRegExp pcc2;
 			pcc2.setPattern ( QString ( pattern ) );
-			//pcc2.setCaseSensitivity(Qt::CaseInsensitive);
+			pcc2.setCaseSensitivity(Qt::CaseInsensitive);
 			//pcc   = pcre_compile ( pattern,0,&error,&erroroffset,NULL );
-// 	    if(*DEBUG_INFO_ENABLED)
-// 		cerr << "pcc2 pattern: " << pattern << ", match: " << pcc2.exactMatch(QString(( const char * ) QFile::encodeName ( fi->fileName()))) << std::endl;
 			//if(*DEBUG_INFO_ENABLED)
-// 		cerr << "pcre_exec match: " << pcre_exec ( pcc,NULL, ( const char * ) QFile::encodeName ( fi->fileName() )
-//                                   ,strlen ( ( const char * ) QFile::encodeName ( fi->fileName() ) )
-//                                   ,0,0,ovector,30 )  << std::endl;
-//             if ( 1 == pcre_exec ( pcc,NULL, ( const char * ) QFile::encodeName ( fi->fileName() )
-//                                   ,strlen ( ( const char * ) QFile::encodeName ( fi->fileName() ) )
-//                                   ,0,0,ovector,30 ) ) {
-			if ( int ( pcc2.indexIn ( QString ( ( const char * ) QFile::encodeName ( fi->fileName() ) ) ) ) == 1 ) {
+			//	std::cerr << "pcc2 pattern: " << pattern << ", match: " << pcc2.exactMatch(QString(( const char * ) QFile::encodeName ( fi->fileName()))) << std::endl;
+ 			//if(*DEBUG_INFO_ENABLED)
+			// 	std::cerr << "pcre_exec match: " << pcre_exec ( pcc,NULL, ( const char * ) QFile::encodeName ( fi->fileName() )
+			//                                   ,strlen ( ( const char * ) QFile::encodeName ( fi->fileName() ) )
+			//                                   ,0,0,ovector,30 )  << std::endl;
+			//             if ( 1 == pcre_exec ( pcc,NULL, ( const char * ) QFile::encodeName ( fi->fileName() )
+			//                                   ,strlen ( ( const char * ) QFile::encodeName ( fi->fileName() ) )
+			//                                   ,0,0,ovector,30 ) ) {
+			if ( pcc2.exactMatch(QString(( const char * ) QFile::encodeName ( fi->fileName()))) == 1 ) {
 				match = true;
 				break;
 			}
 		}
-
+		
 		if ( match ) { // the file need to be read
 			FILE *f;
 			bool success = true;
 			unsigned long rsize = 0, rrsize;
 			unsigned char *rdata = 0;
 			Node *tt = fc->prop;
-
+			
 			if ( storeLimit > MAX_STORED_SIZE )
 				storeLimit = MAX_STORED_SIZE;
 			//read the file
@@ -1161,7 +1176,7 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 				fprintf ( stderr, "%s", ( const char * ) errormsg );
 				success = false;
 			}
-
+			
 			rdata = new unsigned char[rsize + 1];
 			fseek ( f, 0, SEEK_SET );
 			rrsize = fread ( rdata, sizeof ( unsigned char ), rsize, f );
@@ -1174,10 +1189,10 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 				fprintf ( stderr, "%s", ( const char * ) errormsg );
 				success = false;
 			}
-
+			
 			fclose ( f );
 			rdata[rsize] = '\0';
-
+			
 			//make the node in the db
 			if ( success ) {
 				if ( tt == NULL )
@@ -1193,6 +1208,63 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 			}
 		}//end of if(match)
 	}//end of if(storeContent)
+	
+	QString extension = fi->fileName().lower().section ( '.', -1, -1 );
+#ifdef USE_LIBEXIF
+	if(getExifSupportedExtensions().contains(extension)) {
+		Node *tt = fc->prop;
+		CdcatExifData *ed = new CdcatExifData(fi->absFilePath());
+	 	if (storeExifData)
+		{
+			ed->readCdcatExifData();
+			QStringList ExifData = ed->getExifData();
+			if ( tt == NULL )
+				fc->prop = tt = new Node ( HC_EXIF, NULL );
+			else {
+				while ( tt->next != NULL )
+					tt = tt->next;
+				tt->next = new Node ( HC_EXIF, fc->prop );
+				tt = tt->next;
+			}
+			/*Fill the fields:*/
+			tt->data = ( void * ) new DBExifData ( ExifData );
+			
+		}
+		delete(ed);
+	}
+#endif
+	if(storeThumb) 
+	{
+		QStringList supportedImageExtensions;
+		supportedImageExtensions.append("png");
+		supportedImageExtensions.append("PNG");
+		supportedImageExtensions.append("gif");
+		supportedImageExtensions.append("GIF");
+		supportedImageExtensions.append("jpg");
+		supportedImageExtensions.append("JPG");
+		supportedImageExtensions.append("jpeg");
+		supportedImageExtensions.append("JPEG");
+		supportedImageExtensions.append("bmp");
+		supportedImageExtensions.append("BMP");
+		
+		if (supportedImageExtensions.contains(extension)) {
+			QImage thumbImage(fi->absFilePath());
+			if (!thumbImage.isNull()) {
+				Node *tt = fc->prop;
+				thumbImage = thumbImage.scaledToWidth(150);
+				if ( tt == NULL )
+					fc->prop = tt = new Node ( HC_THUMB, NULL );
+				else {
+					while ( tt->next != NULL )
+						tt = tt->next;
+					tt->next = new Node ( HC_THUMB, fc->prop );
+					tt = tt->next;
+				}
+				/*Fill the fields:*/
+				tt->data = ( void * ) new DBThumb ( thumbImage );
+			}
+		}
+	}
 
 	/***Other properties: */
 	return 0;
@@ -1664,7 +1736,7 @@ QList<ArchiveFile> DataBase::scanArchive ( QString path, ArchiveType type ) {
 			pArchive->GetItemCount ( &numItems );
 			printf ( "" ); // important!!!
 			//printf("items found: %d\n", numItems);
-
+			
 			for ( unsigned int i = 0; i < numItems; i++ ) {
 				C7ZipArchiveItem * pArchiveItem = NULL;
 

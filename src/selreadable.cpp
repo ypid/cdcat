@@ -151,7 +151,19 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	SelReadableLayout->addWidget ( cbFileInfo );
 	labFileInfoExtensions = new QLabel ( this, "labFileInfoExtensions" );
 	SelReadableLayout->addWidget ( labFileInfoExtensions );
-
+	
+	cbThumb = new QCheckBox ( this, "cbThumb" );
+	SelReadableLayout->addWidget ( cbThumb );
+	labThumb = new QLabel ( this, "labThumb" );
+	SelReadableLayout->addWidget ( labThumb );
+	
+#ifdef USE_LIBEXIF
+	cbExif = new QCheckBox ( this, "cbExif" );
+	SelReadableLayout->addWidget ( cbExif );
+	labExif = new QLabel ( this, "cbExif" );
+	SelReadableLayout->addWidget ( cbExif );
+#endif
+	
 	line2 = new Q3Frame ( this, "line2" );
 	line2->setFrameShape ( Q3Frame::HLine );
 	line2->setFrameShadow ( Q3Frame::Sunken );
@@ -190,6 +202,10 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	cbTag->setChecked ( conf->readtag );
 	cbCont->setChecked ( conf->readcontent );
 	cbFileInfo->setChecked ( conf->usefileinfo );
+#ifdef USE_LIBEXIF
+	cbExif->setChecked ( conf->storeExifData );
+#endif
+	cbThumb->setChecked ( conf->storeThumb );
 	lineFiles->setText ( conf->readcfiles );
 	maxSpinBox->setValue ( ( int ) ( conf->readclimit / 1024 ) );
 	cbInfo->setChecked ( conf->readinfo );
@@ -317,6 +333,10 @@ int SelReadable::sok ( void ) {
 	conf->show_archive_file_comment  = cpShowArchiveFileComment->isChecked();
 	conf->readcontent = cbCont->isChecked();
 	conf->usefileinfo = cbFileInfo->isChecked();
+	conf->storeThumb = cbThumb->isChecked();
+#ifdef USE_LIBEXIF
+	conf->storeExifData = cbExif->isChecked();
+#endif
 	conf->readcfiles  = lineFiles->text();
 	conf->readclimit  = maxSpinBox->value() * 1024;
 	conf->readinfo    = cbInfo->isChecked();
@@ -356,11 +376,15 @@ void SelReadable::languageChange() {
 	cpShowArchiveFileDate->setText ( tr ( "Show date" ) );
 	cpShowArchiveFileComment->setText ( tr ( "Show optional comment" ) );
 	cbTag->setText ( tr ( "Read mp3 tags" ) );
-
+	cbThumb->setText( tr("Read thumbnails from pictures") );
+#ifdef USE_LIBEXIF
+	cbExif->setText( tr("Read EXIF data from pictures") );
+#endif
+	
 	tagselector->setTitle ( tr ( "Default tag" ) );
 	rad_v1->setText ( tr ( "version" ) + " 1" );
 	rad_v2->setText ( tr ( "version" ) + " 2" );
-
+	
 	cbInfo->setText ( tr ( "Read mp3 technical info as comment (bitrate,freq,length...)" ) );
 	cbaInfo->setText ( tr ( "Read avi technical info as comment (codecs,length,...)" ) );
 	cbCont->setText ( tr ( "Store content of some files" ) );

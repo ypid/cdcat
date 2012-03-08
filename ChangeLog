@@ -1,3 +1,8 @@
+05. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
+	- matching filetypes for context fixed
+	- thumbnail storing added
+	- loading exif data added (optional)
+
 04. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
 	- display success/fail of loading lib7zip if debug info is enabled
 

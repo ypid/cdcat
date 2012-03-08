@@ -533,6 +533,14 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
       <source>Path</source>
       <translation>Pfad</translation>
     </message>
+    <message>
+      <source>Exif data:</source>
+      <translation>Exif-Daten:</translation>
+    </message>
+    <message>
+      <source>Thumbnail:</source>
+      <translation>Vorschaubild:</translation>
+    </message>
   </context>
   <context>
     <name>ConfigDialog</name>
@@ -1629,6 +1637,14 @@ wird zu
       <source>lib7zip library not supported</source>
       <translation>lib7zip-Bibliothek nicht unterstützt</translation>
     </message>
+    <message>
+      <source>Read thumbnails from pictures</source>
+      <translation>Vorschaubilder von Bildern laden</translation>
+    </message>
+    <message>
+      <source>Read EXIF data from pictures</source>
+      <translation>EXIF-Daten von Bildern lesen</translation>
+    </message>
   </context>
   <context>
     <name>ShowContent</name>
@@ -2374,48 +2390,9 @@ wird zu
       <source>Cant open file</source>
       <translation>Datei kann nicht geöffnet werden</translation>
     </message>
-  </context>
-  <context>
-    <name>findDuplicatesDialog</name>
-    <message>
-      <source>Name</source>
-      <translation>Name</translation>
-    </message>
-    <message>
-      <source>Type</source>
-      <translation>Typ</translation>
-    </message>
-    <message>
-      <source>Size</source>
-      <translation>Grösse</translation>
-    </message>
-    <message>
-      <source>Media</source>
-      <translation>Medium</translation>
-    </message>
-    <message>
-      <source>Path</source>
-      <translation>Pfad</translation>
-    </message>
-    <message>
-      <source>Modification</source>
-      <translation>Änderung</translation>
-    </message>
-    <message>
-      <source>Comment</source>
-      <translation>Kommentar</translation>
-    </message>
     <message>
       <source>Search for duplicates in the database...</source>
       <translation>Nach Duplikaten in der Datenbank suchen...</translation>
-    </message>
-    <message>
-      <source>&amp;Start search</source>
-      <translation>&amp;Suche starten</translation>
-    </message>
-    <message>
-      <source>&amp;Cancel</source>
-      <translation>&amp;Abbrechen</translation>
     </message>
     <message>
       <source>Duplicates for:</source>

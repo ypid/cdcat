@@ -50,6 +50,10 @@ public:
     Q3Frame* line1;
     QCheckBox* cbCont;
     QCheckBox* cbFileInfo;
+    QCheckBox* cbThumb;
+#ifdef USE_LIBEXIF
+    QCheckBox *cbExif;
+#endif
     QLineEdit* lineFiles;
     QLabel* textLabel1;
     QSpinBox* maxSpinBox;
@@ -63,6 +67,12 @@ public:
     QRadioButton *rad_v1,*rad_v2;
     QLabel *labArchiveExtensions;
     QLabel *labFileInfoExtensions;
+    QLabel *labThumb;
+
+#ifdef USE_LIBEXIF
+    QLabel *labExif;
+#endif
+    
     QGroupBox *groupBoxShowArchiveFileOpts;
     QCheckBox* cpScanArchive;
     QCheckBox* cpShowArchiveFilePerms;

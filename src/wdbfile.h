@@ -67,6 +67,8 @@ private:
     int  writeMp3Tag ( Node *source );
     int  writeContent ( Node *source );
     int  writeCatLnk ( Node *source );
+    int  writeExif ( Node *source );
+    int  writeThumb ( Node *source );
     QString XML_ENCODING;
 };
 
