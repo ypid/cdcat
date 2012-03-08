@@ -280,6 +280,22 @@ void DirectoryView::setDir ( const QString &s ) {
             if ( item->text ( 0 ) == *it2 ) {
                 item->setOpen ( TRUE );
                 ensureItemVisible(item);
+                Q3ListViewItem * item2 = item->itemAbove();
+                if(item2 != NULL) {
+			Q3ListViewItem *item3 = item2->itemAbove();
+			if(item3 != NULL) {
+				Q3ListViewItem *item4 = item2->itemAbove();
+				if(item4 != NULL) {
+					ensureItemVisible(item4);
+				}
+				else {
+					ensureItemVisible(item3);
+				}
+			}
+			else {
+				ensureItemVisible(item2);
+			}
+		}
                 break;
             }
             item = item->itemBelow();

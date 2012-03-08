@@ -5,6 +5,7 @@
 	- option for specify thumbnail file extensions added
 	- save last selected dir on adddialog fixed
 	- scroll to last folder in tree on adddialog init
+	- try to scroll 2 items of current folder up in tree on adddialog init for better view
 
 05. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
 	- matching filetypes for context fixed
