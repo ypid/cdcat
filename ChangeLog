@@ -3,6 +3,7 @@
 	- option for thumbnail size added
 	- save thumbnail size fixed
 	- option for specify thumbnail file extensions added
+	- save last selected dir on adddialog fixed
 
 05. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
 	- matching filetypes for context fixed

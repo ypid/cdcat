@@ -319,6 +319,8 @@ int addDialog::setMediaName ( const QString & ds ) {
 #endif
 		leName->setText ( tm );
 	}
+	//std::cerr << "setMediaName: sDir: " << qPrintable(dirView->sDir)<< std::endl;
+	caller->mainw->cconfig->lastDir = dirView->sDir;
 	QApplication::restoreOverrideCursor();
 	return 0;
 }
