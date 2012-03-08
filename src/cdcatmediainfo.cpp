@@ -6,7 +6,7 @@
  License   : GPL
  Copyright : (C) 2011 Christoph Thielecke
 
- Info: read exif data from pictures
+ Info: read mediainfo using libmediainfo
 ****************************************************************************/
 
 #include "config.h"
