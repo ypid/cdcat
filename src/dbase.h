@@ -355,6 +355,7 @@ class DataBase : public QObject {
 		int thumbHeight;
 		
 		QString XML_ENCODING;
+		QStringList ThumbExtsList;
 		
 		void  setDBName ( QString n );
 		void  setDBOwner ( QString o );

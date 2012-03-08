@@ -1,6 +1,8 @@
 07. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
 	- storing adddialog size and position added
 	- option for thumbnail size added
+	- save thumbnail size fixed
+	- option for specify thumbnail file extensions added
 
 05. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
 	- matching filetypes for context fixed

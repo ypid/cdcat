@@ -1142,6 +1142,7 @@ int GuiSlave::addEvent ( void ) {
     mainw->db->storeContent = mainw->cconfig->readcontent;
     mainw->db->storeExifData = mainw->cconfig->storeExifData;
     mainw->db->storeThumb = mainw->cconfig->storeThumb;
+    mainw->db->ThumbExtsList = mainw->cconfig->ThumbExtsList;
     mainw->db->thumbWidth = mainw->cconfig->thumbWidth;
     mainw->db->thumbHeight = mainw->cconfig->thumbHeight;
     mainw->db->storeLimit      = mainw->cconfig->readclimit;

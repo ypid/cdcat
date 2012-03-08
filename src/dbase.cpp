@@ -524,6 +524,12 @@ DataBase::DataBase ( void ) {
 	showProgressedFileInStatus = true;
 	storedFiles     = "*.nfo;*.diz;readme.txt";
 	storeThumb = true;
+	ThumbExtsList.clear();
+	ThumbExtsList.append("png");
+	ThumbExtsList.append("gif");
+	ThumbExtsList.append("jpg");
+	ThumbExtsList.append("jpeg");
+	ThumbExtsList.append("bmp");
 	storeExifData = true;
 	storeLimit      = 32 * 1024;
 	root            = new Node ( HC_CATALOG, NULL );
@@ -1235,19 +1241,7 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 #endif
 	if(storeThumb) 
 	{
-		QStringList supportedImageExtensions;
-		supportedImageExtensions.append("png");
-		supportedImageExtensions.append("PNG");
-		supportedImageExtensions.append("gif");
-		supportedImageExtensions.append("GIF");
-		supportedImageExtensions.append("jpg");
-		supportedImageExtensions.append("JPG");
-		supportedImageExtensions.append("jpeg");
-		supportedImageExtensions.append("JPEG");
-		supportedImageExtensions.append("bmp");
-		supportedImageExtensions.append("BMP");
-		
-		if (supportedImageExtensions.contains(extension)) {
+		if (ThumbExtsList.contains(extension)) {
 			QImage thumbImage(fi->absFilePath());
 			if (!thumbImage.isNull()) {
 				Node *tt = fc->prop;

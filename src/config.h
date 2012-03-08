@@ -84,6 +84,7 @@ class CdCatConfig : public QObject {
 		unsigned long readclimit;
 
 		QStringList hlist;
+		QStringList ThumbExtsList;
 		QSize   windowSize;
 		QPoint  windowPos;
 		int windowSize_height;

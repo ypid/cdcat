@@ -92,6 +92,12 @@ CdCatConfig::CdCatConfig ( void ) {
 	readinfo   = true;
 	readcontent = false;
 	readcfiles = "*.nfo;*.diz";
+	ThumbExtsList.clear();
+	ThumbExtsList.append("png");
+	ThumbExtsList.append("gif");
+	ThumbExtsList.append("jpg");
+	ThumbExtsList.append("jpeg");
+	ThumbExtsList.append("bmp");
 	readclimit = 32 * 1024;
 	lastMediaType = CD;
 	saveAlwaysCatalogInUtf8 = true;
@@ -263,411 +269,337 @@ int CdCatConfig::readConfig ( void ) {
 					fsize = val.toInt();
 					continue;
 				}
-				
-				else
-					if ( var == "history_size" ) {
-						historysize = val.toInt();
-						continue;
+				if ( var == "history_size" ) {
+					historysize = val.toInt();
+					continue;
+				}
+				if ( var == "history" ) {
+					QString history = val;
+					if ( !history.isEmpty() ) {
+						int idx = 0;
+						int idx2 = 0;
+						while ( idx2 > -1 ) {
+							idx2 = history.find ( ';', idx );
+							if ( ( int ) idx != ( int ) ( history.length() - 1 ) ) {
+								if ( ! ( history.mid ( idx, idx2 - idx ) ).isEmpty() )
+									hlist.append ( history.mid ( idx, idx2 - idx ) );
+							}
+							idx = idx2 + 1;
+						}
+						while ( ( int ) hlist.count() > ( int ) historysize )
+							hlist.remove ( hlist.begin() );
 					}
-
+					continue;
+				} // history
+					
+				if ( var == "autoload" ) {
+					if ( val == "true" )
+						autoload = true;
 					else
-						if ( var == "history" ) {
-							QString history = val;
-							if ( !history.isEmpty() ) {
-								int idx = 0;
-								int idx2 = 0;
-								while ( idx2 > -1 ) {
-									idx2 = history.find ( ';', idx );
-									if ( ( int ) idx != ( int ) ( history.length() - 1 ) ) {
-										if ( ! ( history.mid ( idx, idx2 - idx ) ).isEmpty() )
-											hlist.append ( history.mid ( idx, idx2 - idx ) );
-									}
-									idx = idx2 + 1;
-								}
-								while ( ( int ) hlist.count() > ( int ) historysize )
-									hlist.remove ( hlist.begin() );
-							}
-							continue;
-						} // history
-						
-						else
-							if ( var == "autoload" ) {
-								if ( val == "true" )
-									autoload = true;
-								else
-									autoload = false;
-								continue;
-							}
-							
-							else
-								if ( var == "autosave" ) {
-									if ( val == "true" )
-										autosave = true;
-									else
-										autosave = false;
-									continue;
-								}
-								else
-									if ( var == "ownfont" ) {
-										if ( val == "true" )
-											ownfont = true;
-										else
-											ownfont = false;
-										continue;
-									}
-									else
-										if ( var == "autoload_file" ) {
-											autoloadfn = val;
-											continue;
-										}
-										else
-											if ( var == "niceformat" ) {
-												if ( val == "true" )
-													nice = true;
-												else
-													nice = false;
-												continue;
-											}
-											else
-												if ( var == "cdrompath" ) {
-													if ( !val.isEmpty() )
-														cdrompath = val;
-													continue;
-												}
+						autoload = false;
+					continue;
+				}
+				
+				if ( var == "autosave" ) {
+					if ( val == "true" )
+						autosave = true;
+					else
+						autosave = false;
+					continue;
+				}
+				if ( var == "ownfont" ) {
+					if ( val == "true" )
+						ownfont = true;
+					else
+						ownfont = false;
+					continue;
+				}
+				if ( var == "autoload_file" ) {
+					autoloadfn = val;
+					continue;
+				}
+				if ( var == "niceformat" ) {
+					if ( val == "true" )
+						nice = true;
+					else
+						nice = false;
+					continue;
+				}
+				if ( var == "cdrompath" ) {
+					if ( !val.isEmpty() )
+						cdrompath = val;
+					continue;
+				}
 #ifndef _WIN32
-												else
-													if ( var == "mounteject" ) {
-														if ( val == "true" )
-															mounteject = true;
-														else
-															mounteject = false;
-														continue;
-													}
+				if ( var == "mounteject" ) {
+					if ( val == "true" )
+						mounteject = true;
+					else
+						mounteject = false;
+					continue;
+				}
 #endif
-													
+				
 #ifdef _WIN32
-													else
-														if ( var == "lang" ) {
-															lang = val;
-															continue;
-														}
+				if ( var == "lang" ) {
+					lang = val;
+					continue;
+				}
 #endif
 #ifdef Q_WS_MAC
-														else
-															if ( var == "lang" ) {
-																lang = val;
-																continue;
-															}
+				if ( var == "lang" ) {
+					lang = val;
+					continue;
+				}
 #endif
-															else
-																if ( var == "windowSize_height" ) {
-																	windowSize_height = val.toInt();
-																	continue;
-																}
-																else
-																	if ( var == "windowSize_width" ) {
-																		windowSize_width = val.toInt();
-																		continue;
-																	}
-																	else
-																		if ( var == "windowPos_x" ) {
-																			windowPos.setX ( val.toInt() );
-																			continue;
-																		}
-																		else
-																			if ( var == "windowPos_y" ) {
-																				windowPos.setY ( val.toInt() );
-																				continue;
-																			}
-																			else
-																				if ( var == "dirview_size" ) {
-																					mainP1 = val.toInt();
-																					continue;
-																				}
-																				else
-																					if ( var == "listview_size" ) {
-																						mainP2 = val.toInt();
-																						continue;
-																					}
-																					else
-																						if ( var == "commentview_size" ) {
-																							mainP3 = val.toInt();
-																							continue;
-																						}
-																						
-																						// Read the options of find dialog
-																						else
-																							if ( var == "find_checkbox_casesens" ) {
-																								if ( val == "true" )
-																									find_cs = true;
-																								else
-																									find_cs = false;
-																								continue;
-																							}
-																							else
-																								if ( var == "find_checkbox_easymatch" ) {
-																									if ( val == "true" )
-																										find_em = true;
-																									else
-																										find_em = false;
-																									continue;
-																								}
-																								else
-																									if ( var == "find_checkbox_directory" ) {
-																										if ( val == "true" )
-																											find_di = true;
-																										else
-																											find_di = false;
-																										continue;
-																									}
-																									else
-																										if ( var == "find_checkbox_file" ) {
-																											if ( val == "true" )
-																												find_fi = true;
-																											else
-																												find_fi = false;
-																											continue;
-																										}
-																										else
-																											if ( var == "find_checkbox_comment" ) {
-																												if ( val == "true" )
-																													find_co = true;
-																												else
-																													find_co = false;
-																												continue;
-																											}
-																											else
-																												if ( var == "find_checkbox_content" ) {
-																													if ( val == "true" )
-																														find_ct = true;
-																													else
-																														find_ct = false;
-																													continue;
-																												}
-																												else
-																													if ( var == "find_checkbox_mp3artist" ) {
-																														if ( val == "true" )
-																															find_mar = true;
-																														else
-																															find_mar = false;
-																														continue;
-																													}
-																													else
-																														if ( var == "find_checkbox_mp3title" ) {
-																															if ( val == "true" )
-																																find_mti = true;
-																															else
-																																find_mti = false;
-																															continue;
-																														}
-																														else
-																															if ( var == "find_checkbox_mp3album" ) {
-																																if ( val == "true" )
-																																	find_mal = true;
-																																else
-																																	find_mal = false;
-																																continue;
-																															}
-																															else
-																																if ( var == "find_checkbox_mp3comment" ) {
-																																	if ( val == "true" )
-																																		find_mco = true;
-																																	else
-																																		find_mco = false;
-																																	continue;
-																																}
-
-																																else
-																																	if ( var == "find_checkbox_size_min" ) {
-																																		if ( val == "true" )
-																																			find_size_min = true;
-																																		else
-																																			find_size_min = false;
-																																		continue;
-																																	}
-																																	else
-																																		if ( var == "find_checkbox_size_max" ) {
-																																			if ( val == "true" )
-																																				find_size_max = true;
-																																			else
-																																				find_size_max = false;
-																																			continue;
-																																		}
-
-																																		else
-																																			if ( var == "findPos_x" ) {
-																																				findX = val.toInt();
-																																				continue;
-																																			}
-																																			else
-																																				if ( var == "findPos_y" ) {
-																																					findY = val.toInt();
-																																					continue;
-																																				}
-																																				else
-																																					if ( var == "findSize_width" ) {
-																																						findWidth = val.toInt();
-																																						continue;
-																																					}
-																																					else
-																																						if ( var == "findSize_height" ) {
-																																							findHeight = val.toInt();
-																																							continue;
-																																						}
-
-																																						else
-																																							if ( var == "addPos_x" ) {
-																																								addX = val.toInt();
-																																								continue;
-																																							}
-																																							else
-																																								if ( var == "addPos_y" ) {
-																																									addY = val.toInt();
-																																									continue;
-																																								}
-																																								else
-																																									if ( var == "addSize_width" ) {
-																																										addWidth = val.toInt();
-																																										continue;
-																																									}
-
-																																									else
-																																										if ( var == "addSize_height" ) {
-																																											addHeight = val.toInt();
-																																											continue;
-																																										}
-
-																																										else
-																																											if ( var == "read_avi_techinfo" ) {
-																																												if ( val == "true" )
-																																													readavii = true;
-																																												else
-																																													readavii = false;
-																																												continue;
-																																											}
-
-																																											else
-																																												if ( var == "read_mp3tag" ) {
-																																													if ( val == "true" )
-																																														readtag = true;
-																																													else
-																																														readtag = false;
-																																													continue;
-																																												}
-
-																																												else
-																																													if ( var == "mp3tag_default_v1" ) {
-																																														if ( val == "true" )
-																																															v1_over_v2 = true;
-																																														else
-																																															v1_over_v2 = false;
-																																														continue;
-																																													}
-
-																																													else
-																																														if ( var == "read_mp3techinfo" ) {
-																																															if ( val == "true" )
-																																																readinfo = true;
-																																															else
-																																																readinfo = false;
-																																															continue;
-																																														}
-
-																																														else
-																																															if ( var == "read_content" ) {
-																																																if ( val == "true" )
-																																																	readcontent = true;
-																																																else
-																																																	readcontent = false;
-																																																continue;
-																																															}
-																																															else
-																																																if ( var == "use_fileinfo" ) {
-																																																	if ( val == "true" )
-																																																		usefileinfo = true;
-																																																	else
-																																																		usefileinfo = false;
-																																																	continue;
-																																																}
-																																																else
-																																																	if ( var == "read_content_files" ) {
-																																																		if ( !val.isEmpty() )
-																																																			readcfiles = val;
-																																																		continue;
-																																																	}
-																																																	else
-																																																		if ( var == "read_content_limit" ) {
-																																																			readclimit = val.toInt();
-																																																			continue;
-																																																		}
-
-																																																		else
-																																																			if ( var == "find_date_start" ) {
-																																																				if ( val == "true" )
-																																																					find_date_start = true;
-																																																				else
-																																																					find_date_start = false;
-																																																				continue;
-																																																			}
-																																																			else
-																																																				if ( var == "find_date_end" ) {
-																																																					if ( val == "true" )
-																																																						find_date_end = true;
-																																																					else
-																																																						find_date_end = false;
-																																																					continue;
-																																																				}
-
-																																																				else
-																																																					if ( var == "find_date_start_val" ) {
-																																																						find_date_start_val = QDateTime().fromString ( val );
-																																																						continue;
-																																																					}
-
-																																																					else
-																																																						if ( var == "find_date_end_val" ) {
-																																																							find_date_end_val = QDateTime().fromString ( val );
-																																																							continue;
-																																																						}
-
-																																																						else
-																																																							if ( var == "find_size_min_val" ) {
-																																																								find_size_min_val = val.toInt();
-																																																								continue;
-																																																							}
-
-																																																							else
-																																																								if ( var == "find_size_min" ) {
-																																																									if ( val == "true" )
-																																																										find_size_min = true;
-																																																									else
-																																																										find_size_min = false;
-																																																									continue;
-																																																								}
-																																																								else
-																																																									if ( var == "find_size_max" ) {
-																																																										if ( val == "true" )
-																																																											find_size_max = true;
-																																																										else
-																																																											find_size_max = false;
-																																																										continue;
-																																																									}
-
-																																																									else
-																																																										if ( var == "find_size_max_val" ) {
-																																																											find_size_max_val = val.toInt();
-																																																											continue;
-																																																										}																																							else
-																																																											if ( var == "find_size_unit_min_val" ) {
-																																																												find_size_unit_min_val = val.toInt();
-																																																												continue;
-																																																											}
-																																																											else
-																																																												if ( var == "find_size_unit_max_val" ) {
-																																																													find_size_unit_max_val = val.toInt();
-																																																													continue;
-																																																												}
-
+				if ( var == "windowSize_height" ) {
+					windowSize_height = val.toInt();
+					continue;
+				}
+				if ( var == "windowSize_width" ) {
+					windowSize_width = val.toInt();
+					continue;
+				}
+				if ( var == "windowPos_x" ) {
+					windowPos.setX ( val.toInt() );
+					continue;
+				}
+				if ( var == "windowPos_y" ) {
+					windowPos.setY ( val.toInt() );
+					continue;
+				}
+				if ( var == "dirview_size" ) {
+					mainP1 = val.toInt();
+					continue;
+				}
+				if ( var == "listview_size" ) {
+					mainP2 = val.toInt();
+					continue;
+				}
+				if ( var == "commentview_size" ) {
+					mainP3 = val.toInt();
+					continue;
+				}
+				
+				// Read the options of find dialog
+				if ( var == "find_checkbox_casesens" ) {
+					if ( val == "true" )
+						find_cs = true;
+					else
+						find_cs = false;
+					continue;
+				}
+				if ( var == "find_checkbox_easymatch" ) {
+					if ( val == "true" )
+						find_em = true;
+					else
+						find_em = false;
+					continue;
+				}
+				if ( var == "find_checkbox_directory" ) {
+					if ( val == "true" )
+						find_di = true;
+					else
+						find_di = false;
+					continue;
+				}
+				if ( var == "find_checkbox_file" ) {
+						if ( val == "true" )
+							find_fi = true;
+						else
+							find_fi = false;
+						continue;
+				}
+				if ( var == "find_checkbox_comment" ) {
+					if ( val == "true" )
+						find_co = true;
+					else
+						find_co = false;
+					continue;
+				}
+				if ( var == "find_checkbox_content" ) {
+					if ( val == "true" )
+						find_ct = true;
+					else
+						find_ct = false;
+					continue;
+				}
+				if ( var == "find_checkbox_mp3artist" ) {
+					if ( val == "true" )
+						find_mar = true;
+					else
+						find_mar = false;
+					continue;
+				}
+				if ( var == "find_checkbox_mp3title" ) {
+					if ( val == "true" )
+						find_mti = true;
+					else
+						find_mti = false;
+					continue;
+				}
+				if ( var == "find_checkbox_mp3album" ) {
+					if ( val == "true" )
+						find_mal = true;
+					else
+						find_mal = false;
+					continue;
+				}
+				if ( var == "find_checkbox_mp3comment" ) {
+					if ( val == "true" )
+					find_mco = true;
+					else
+					find_mco = false;
+					continue;
+				}
+				if ( var == "find_checkbox_size_min" ) {
+					if ( val == "true" )
+						find_size_min = true;
+					else
+						find_size_min = false;
+					continue;
+				}
+				if ( var == "find_checkbox_size_max" ) {
+					if ( val == "true" )
+						find_size_max = true;
+					else
+						find_size_max = false;
+					continue;
+				}
+				if ( var == "findPos_x" ) {
+					findX = val.toInt();
+					continue;
+				}
+				if ( var == "findPos_y" ) {
+					findY = val.toInt();
+					continue;
+				}
+				if ( var == "findSize_width" ) {
+					findWidth = val.toInt();
+					continue;
+				}
+				if ( var == "findSize_height" ) {
+					findHeight = val.toInt();
+					continue;
+				}
+				if ( var == "addPos_x" ) {
+					addX = val.toInt();
+					continue;
+				}
+				if ( var == "addPos_y" ) {
+					addY = val.toInt();
+					continue;
+				}
+				if ( var == "addSize_width" ) {
+					addWidth = val.toInt();
+					continue;
+				}
+				if ( var == "addSize_height" ) {
+					addHeight = val.toInt();
+					continue;
+				}
+				if ( var == "read_avi_techinfo" ) {
+					if ( val == "true" )
+						readavii = true;
+					else
+						readavii = false;
+						continue;
+					}
+				if ( var == "read_mp3tag" ) {
+					if ( val == "true" )
+						readtag = true;
+					else
+						readtag = false;
+					continue;
+				}
+				if ( var == "mp3tag_default_v1" ) {
+					if ( val == "true" )
+						v1_over_v2 = true;
+					else
+						v1_over_v2 = false;
+					continue;
+				}
+				if ( var == "read_mp3techinfo" ) {
+					if ( val == "true" )
+						readinfo = true;
+					else
+						readinfo = false;
+					continue;
+				}
+				if ( var == "read_content" ) {
+					if ( val == "true" )
+						readcontent = true;
+					else
+						readcontent = false;
+					continue;
+				}
+				if ( var == "use_fileinfo" ) {
+					if ( val == "true" )
+						usefileinfo = true;
+					else
+						usefileinfo = false;
+					continue;
+				}
+				if ( var == "read_content_files" ) {
+					if ( !val.isEmpty() )
+						readcfiles = val;
+						continue;
+				}
+				if ( var == "read_content_limit" ) {
+					readclimit = val.toInt();
+					continue;
+				}
+				if ( var == "find_date_start" ) {
+					if ( val == "true" )
+						find_date_start = true;
+					else
+						find_date_start = false;
+					continue;
+				}
+				if ( var == "find_date_end" ) {
+					if ( val == "true" )
+						find_date_end = true;
+					else
+						find_date_end = false;
+					continue;
+				}
+				if ( var == "find_date_start_val" ) {
+					find_date_start_val = QDateTime().fromString ( val );
+					continue;
+				}
+				if ( var == "find_date_end_val" ) {
+					find_date_end_val = QDateTime().fromString ( val );
+					continue;
+				}
+				if ( var == "find_size_min_val" ) {
+					find_size_min_val = val.toInt();
+					continue;
+				}
+				if ( var == "find_size_min" ) {
+					if ( val == "true" )
+						find_size_min = true;
+					else
+						find_size_min = false;
+					continue;
+				}
+				if ( var == "find_size_max" ) {
+					if ( val == "true" )
+						find_size_max = true;
+					else
+						find_size_max = false;
+					continue;
+				}
+				if ( var == "find_size_max_val" ) {
+					find_size_max_val = val.toInt();
+					continue;
+				}																																		if ( var == "find_size_unit_min_val" ) {
+					find_size_unit_min_val = val.toInt();
+					continue;
+				}
+				if ( var == "find_size_unit_max_val" ) {
+					find_size_unit_max_val = val.toInt();
+					continue;
+				}
 				if ( var == "comment_bg_color" ) {
 					int r = 0, g = 0, b = 0;
 					r = secv ( val, 0 );
@@ -676,171 +608,162 @@ int CdCatConfig::readConfig ( void ) {
 					comm_bg->setRgb ( r, g, b );
 					continue;
 				}
-				else
-					if ( var == "comment_fr_color" ) {
-						int r = 0, g = 0, b = 0;
-						r = secv ( val, 0 );
-						g = secv ( val, 1 );
-						b = secv ( val, 2 );
-						comm_fr->setRgb ( r, g, b );
-						continue;
-					}
+				if ( var == "comment_fr_color" ) {
+					int r = 0, g = 0, b = 0;
+					r = secv ( val, 0 );
+					g = secv ( val, 1 );
+					b = secv ( val, 2 );
+					comm_fr->setRgb ( r, g, b );
+					continue;
+				}
+				if ( var == "comment_ts_color" ) {
+					int r = 0, g = 0, b = 0;
+					r = secv ( val, 0 );
+					g = secv ( val, 1 );
+					b = secv ( val, 2 );
+					comm_stext->setRgb ( r, g, b );
+					continue;
+				}
+				if ( var == "comment_td_color" ) {
+					int r = 0, g = 0, b = 0;
+					r = secv ( val, 0 );
+					g = secv ( val, 1 );
+					b = secv ( val, 2 );
+					comm_vtext->setRgb ( r, g, b );
+					continue;
+				}
+				if ( var == "catalog_link_is_first" ) {
+					if ( val == "true" )
+						linkf = true;
 					else
-						if ( var == "comment_ts_color" ) {
-							int r = 0, g = 0, b = 0;
-							r = secv ( val, 0 );
-							g = secv ( val, 1 );
-							b = secv ( val, 2 );
-							comm_stext->setRgb ( r, g, b );
-							continue;
-						}
-						else
-							if ( var == "comment_td_color" ) {
-								int r = 0, g = 0, b = 0;
-								r = secv ( val, 0 );
-								g = secv ( val, 1 );
-								b = secv ( val, 2 );
-								comm_vtext->setRgb ( r, g, b );
-								continue;
-							}
-							else
-								if ( var == "catalog_link_is_first" ) {
-									if ( val == "true" )
-										linkf = true;
-									else
-										linkf = false;
-									continue;
-								}
-								else
-									if ( var == "debug_info_enabled" ) {
-										if ( val == "true" )
-											debug_info_enabled = true;
-										else
-											debug_info_enabled = false;
-										continue;
-									}
-									else
-										if ( var == "last_dir" ) {
-											if ( !val.isEmpty() )
-												lastDir = val;
-											continue;
-										}
-										else
-											if ( var == "saveAlwaysCatalogInUtf8" ) {
-												if ( val == "true" )
-													saveAlwaysCatalogInUtf8 = true;
-												else
-													saveAlwaysCatalogInUtf8 = false;
-												continue;
-											}
-											else
-												if ( var == "showProgressedFileInStatus" ) {
-													if ( val == "true" )
-														showProgressedFileInStatus = true;
-													else
-														showProgressedFileInStatus = false;
-													continue;
-												}
-												else
-													if ( var == "lastMediaType" ) {
-														lastMediaType = val.toInt();
-														continue;
-													}
-													else
-														if ( var == "lastSearchPattern" ) {
-															lastSearchPattern = val;
-															continue;
-														}
-														else
-															if ( var == "find_unsharp_search" ) {
-																if ( val == "true" )
-																	find_unsharp_search = true;
-																else
-																	find_unsharp_search = false;
-																continue;
-															}
-															else
-																if ( var == "do_scan_archive" ) {
-																	if ( val == "true" )
-																		doScanArchive = true;
-																	else
-																		doScanArchive = false;
-																	continue;
-																}
-																else
-																	if ( var == "find_in_archive" ) {
-																		if ( val == "true" )
-																			find_in_archive = true;
-																		else
-																			find_in_archive = false;
-																		continue;
-																	}
-																	else
-																		if ( var == "show_archive_file_perms" ) {
-																			if ( val == "true" )
-																				show_archive_file_perms = true;
-																			else
-																				show_archive_file_perms = false;
-																			continue;
-																		}
-																		else
-																			if ( var == "show_archive_file_user" ) {
-																				if ( val == "true" )
-																					show_archive_file_user = true;
-																				else
-																					show_archive_file_user = false;
-																				continue;
-																			}
-																			else
-																				if ( var == "show_archive_file_group" ) {
-																					if ( val == "true" )
-																						show_archive_file_group = true;
-																					else
-																						show_archive_file_group = false;
-																					continue;
-																				}
-																				else
-																					if ( var == "show_archive_file_size" ) {
-																						if ( val == "true" )
-																							show_archive_file_size = true;
-																						else
-																							show_archive_file_size = false;
-																						continue;
-																					}
-																					else
-																						if ( var == "show_archive_file_date" ) {
-																							if ( val == "true" )
-																								show_archive_file_date = true;
-																							else
-																								show_archive_file_date = false;
-																							continue;
-																						}
-																						else
-																							if ( var == "show_archive_file_comment" ) {
-																								if ( val == "true" )
-																									show_archive_file_comment = true;
-																								else
-																									show_archive_file_comment = false;
-																								continue;
-																							}
-																							else
-																								if ( var == "store_thumb" ) {
-																									if ( val == "true" )
-																										storeThumb = true;
-																									else
-																										storeThumb = false;
-																									continue;
-																								}
-																								else
-																									if ( var == "store_exif_data" ) {
-																										if ( val == "true" )
-																											storeExifData = true;
-																										else
-																											storeExifData = false;
-																										continue;
-																									}
-
-				fprintf ( stderr, "Unknown key found: %s\n", ( const char * ) var );
+						linkf = false;
+					continue;
+				}
+				if ( var == "debug_info_enabled" ) {
+					if ( val == "true" )
+						debug_info_enabled = true;
+					else
+						debug_info_enabled = false;
+					continue;
+				}
+				if ( var == "last_dir" ) {
+					if ( !val.isEmpty() )
+						lastDir = val;
+					continue;
+				}
+				if ( var == "saveAlwaysCatalogInUtf8" ) {
+					if ( val == "true" )
+						saveAlwaysCatalogInUtf8 = true;
+					else
+						saveAlwaysCatalogInUtf8 = false;
+					continue;
+				}
+				if ( var == "showProgressedFileInStatus" ) {
+					if ( val == "true" )
+						showProgressedFileInStatus = true;
+					else
+						showProgressedFileInStatus = false;
+					continue;
+				}
+				if ( var == "lastMediaType" ) {
+					lastMediaType = val.toInt();
+					continue;
+				}
+				if ( var == "lastSearchPattern" ) {
+					lastSearchPattern = val;
+					continue;
+				}
+				if ( var == "find_unsharp_search" ) {
+					if ( val == "true" )
+						find_unsharp_search = true;
+					else
+						find_unsharp_search = false;
+					continue;
+				}
+				if ( var == "do_scan_archive" ) {
+					if ( val == "true" )
+						doScanArchive = true;
+					else
+						doScanArchive = false;
+					continue;
+				}
+				if ( var == "find_in_archive" ) {
+					if ( val == "true" )
+						find_in_archive = true;
+					else
+						find_in_archive = false;
+					continue;
+				}
+				if ( var == "show_archive_file_perms" ) {
+					if ( val == "true" )
+						show_archive_file_perms = true;
+					else
+						show_archive_file_perms = false;
+					continue;
+				}
+				if ( var == "show_archive_file_user" ) {
+					if ( val == "true" )
+						show_archive_file_user = true;
+					else
+						show_archive_file_user = false;
+					continue;
+				}
+				if ( var == "show_archive_file_group" ) {
+					if ( val == "true" )
+						show_archive_file_group = true;
+					else
+						show_archive_file_group = false;
+					continue;
+				}
+				if ( var == "show_archive_file_size" ) {
+					if ( val == "true" )
+						show_archive_file_size = true;
+					else
+						show_archive_file_size = false;
+					continue;
+				}
+				if ( var == "show_archive_file_date" ) {
+					if ( val == "true" )
+						show_archive_file_date = true;
+					else
+						show_archive_file_date = false;
+					continue;
+				}
+				if ( var == "show_archive_file_comment" ) {
+					if ( val == "true" )
+						show_archive_file_comment = true;
+					else
+						show_archive_file_comment = false;
+					continue;
+				}
+				if ( var == "store_thumb" ) {
+					if ( val == "true" )
+						storeThumb = true;
+					else
+						storeThumb = false;
+					continue;
+				}
+				if ( var == "thumb_width" ) {
+					thumbWidth = val.toInt();
+					continue;
+				}
+				if ( var == "thumb_height" ) {
+					thumbHeight = val.toInt();
+					continue;
+				}
+				if ( var == "thumb_exts" ) {
+					ThumbExtsList= val.split(';');
+					continue;
+				}
+				if ( var == "store_exif_data" ) {
+					if ( val == "true" )
+						storeExifData = true;
+					else
+						storeExifData = false;
+					continue;
+				}
+				
+				std::cerr << "Unknown key found: " << qPrintable(var) << std::endl;
 				error = 1;
 			} // no comment
 		} // while lines
@@ -1144,6 +1067,12 @@ int CdCatConfig::writeConfig ( void ) {
 			str << "store_thumb=true" << endl;
 		else
 			str << "store_thumb=false" << endl;
+		
+		str << "thumb_width=" << thumbWidth << endl;
+		str << "thumb_height=" << thumbHeight << endl;
+		
+		str << "thumb_exts=" << ThumbExtsList.join(";") << endl;
+		
 		if ( storeExifData )
 			str << "store_exif_data=true" << endl;
 		else

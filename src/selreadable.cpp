@@ -157,7 +157,18 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	labThumb = new QLabel ( this, "labThumb" );
 	SelReadableLayout->addWidget ( labThumb );
 	
+	
+	layoutThumbExts = new Q3HBoxLayout ( 0, 0, 6, "layoutThumbExts" );
+	labThumbExts = new QLabel ( this, "labThumbExts" );
+	thumbLineExts = new QLineEdit ( this, "thumbLineExts" );
+	thumbLineExts->setMinimumWidth ( 150 );
+	layoutThumbExts->addSpacing ( 25 );
+	layoutThumbExts->addWidget ( thumbLineExts );
+	layoutThumbExts->addWidget ( labThumbExts );
+	SelReadableLayout->addLayout ( layoutThumbExts );
+	
 	layoutThumbSize = new Q3HBoxLayout ( 0, 0, 6, "layoutThumbSize" );
+	layoutThumbSize->addSpacing ( 25 );
 	thumbWidthSpinBox = new QSpinBox ( 20, 400, 150, this, "thumbWidthSpinBox" );
 	thumbHeightSpinBox = new QSpinBox ( 20, 400, 150, this, "thumbHeightSpinBox" );
 	labThumbSize = new QLabel ( this, "labThumbSize" );
@@ -200,6 +211,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 
 	connect ( cbTag, SIGNAL ( stateChanged ( int ) ), this, SLOT ( schanged ( int ) ) );
 	connect ( cbCont, SIGNAL ( stateChanged ( int ) ), this, SLOT ( schanged ( int ) ) );
+	connect ( cbThumb, SIGNAL ( stateChanged ( int ) ), this, SLOT ( schanged ( int ) ) );
 	connect ( buttonOK, SIGNAL ( clicked() ), this, SLOT ( sok() ) );
 	connect ( buttonCancel, SIGNAL ( clicked() ), this, SLOT ( scan() ) );
 
@@ -220,6 +232,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	thumbWidthSpinBox->setValue(conf->thumbWidth);
 	thumbHeightSpinBox->setValue(conf->thumbHeight);
 	lineFiles->setText ( conf->readcfiles );
+	thumbLineExts->setText( conf->ThumbExtsList.join(";"));
 	maxSpinBox->setValue ( ( int ) ( conf->readclimit / 1024 ) );
 	cbInfo->setChecked ( conf->readinfo );
 	cbaInfo->setChecked ( conf->readavii );
@@ -332,6 +345,23 @@ int SelReadable::schanged ( int ) {
 		tagselector->setEnabled ( true );
 	else
 		tagselector->setEnabled ( false );
+	
+	if ( cbThumb->isChecked() ) {
+		labThumbExts->setEnabled ( true );
+		labThumb->setEnabled ( true );
+		labThumbXSize->setEnabled ( true );
+		thumbLineExts->setEnabled ( true );
+		thumbWidthSpinBox->setEnabled ( true );
+		thumbHeightSpinBox->setEnabled ( true );
+	}
+	else {
+		labThumbExts->setEnabled ( false );
+		labThumb->setEnabled ( false );
+		labThumbXSize->setEnabled ( false );
+		thumbLineExts->setEnabled ( false );
+		thumbWidthSpinBox->setEnabled ( false );
+		thumbHeightSpinBox->setEnabled ( false );
+	}
 
 	return 0;
 }
@@ -353,6 +383,7 @@ int SelReadable::sok ( void ) {
 	conf->storeExifData = cbExif->isChecked();
 #endif
 	conf->readcfiles  = lineFiles->text();
+	conf->ThumbExtsList = thumbLineExts->text().split(";");
 	conf->readclimit  = maxSpinBox->value() * 1024;
 	conf->readinfo    = cbInfo->isChecked();
 	conf->readavii    = cbaInfo->isChecked();
@@ -406,8 +437,8 @@ void SelReadable::languageChange() {
 	cbaInfo->setText ( tr ( "Read avi technical info as comment (codecs,length,...)" ) );
 	cbCont->setText ( tr ( "Store content of some files" ) );
 	cbFileInfo->setText ( tr ( "Read some technical info using mediainfo" ) );
-	lineFiles->setText ( "*.nfo;*.dzi" );
 	textLabel1->setText ( tr ( "; separated list of readable file patterns" ) );
+	labThumbExts->setText ( tr ( "; separated list of image file extensions, e.g. png;jpg;gif" ) );
 	textLabel2->setText ( tr ( "content size limit in kByte" ) );
 	buttonOK->setText ( tr ( "Ok" ) );
 	buttonCancel->setText ( tr ( "Cancel" ) );

@@ -1657,6 +1657,10 @@ wird zu
       <source>x</source>
       <translation>x</translation>
     </message>
+    <message>
+      <source>; separated list of image file extensions, e.g. png;jpg;gif</source>
+      <translation>;getrennte Liste von Bilddateiendungen, z.B. png;jpg;gif</translation>
+    </message>
   </context>
   <context>
     <name>ShowContent</name>
