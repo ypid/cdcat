@@ -130,6 +130,10 @@ CdCatConfig::CdCatConfig ( void ) {
     findY      = 10;
     findWidth  = 600;
     findHeight = 500;
+    addX      = 50;
+    addY      = 10;
+    addWidth  = 600;
+    addHeight = 500;
 
     mainP1     = 200;
     mainP2     = 270;
@@ -476,6 +480,24 @@ int CdCatConfig::readConfig ( void ) {
 
                 else if ( var=="findSize_height" ) {
                     findHeight =val.toInt();
+                    continue;
+                }
+
+                else if ( var=="addPos_x" ) {
+                    addX =val.toInt();
+                    continue;
+                }
+                else if ( var=="addPos_y" ) {
+                    addY =val.toInt();
+                    continue;
+                }
+                else if ( var=="addSize_width" ) {
+                    addWidth =val.toInt();
+                    continue;
+                }
+
+                else if ( var=="addSize_height" ) {
+                    addHeight =val.toInt();
                     continue;
                 }
 
@@ -963,6 +985,11 @@ int CdCatConfig::writeConfig ( void ) {
         str << "findPos_y=" << findY << endl;
         str << "findSize_width=" << findWidth << endl;
         str << "findSize_height=" << findHeight << endl;
+
+        str << "addPos_x=" << addX << endl;
+        str << "addPos_y=" << addY << endl;
+        str << "addSize_width=" << addWidth << endl;
+        str << "addSize_height=" << addHeight << endl;
 
         if ( readavii )
             str << "read_avi_techinfo=true" <<endl;

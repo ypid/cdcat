@@ -204,6 +204,9 @@ addDialog::addDialog ( GuiSlave *c, QWidget* parent, const char* name, bool moda
         dirView->sDir= ( ( CdCatMainWidget * ) parent )->cconfig->lastDir;
     }
     buttonOK->setFocus();
+
+    resize ( QSize ( ( ( CdCatMainWidget * ) parent )->cconfig->addWidth, ( ( CdCatMainWidget * ) parent )->cconfig->addHeight ).expandedTo ( minimumSizeHint() ) );
+    move ( ( ( CdCatMainWidget * ) parent )->cconfig->addX, ( ( CdCatMainWidget * ) parent )->cconfig->addY );
 }
 
 int addDialog::sread() {
@@ -353,14 +356,21 @@ int addDialog::bOk ( void ) {
     dComm  = teComm->text();
     dCategory = leCategory->text();
     dDir   = dirView->sDir;
-	
-	
+    
+    caller->mainw->cconfig->addX      = x();
+    caller->mainw->cconfig->addY      = y();
+    caller->mainw->cconfig->addWidth  = width();
+    caller->mainw->cconfig->addHeight = height();
     close();
     return 0;
 }
 
 int addDialog::bCan ( void ) {
     OK = 0;
+    caller->mainw->cconfig->addX      = x();
+    caller->mainw->cconfig->addY      = y();
+    caller->mainw->cconfig->addWidth  = width();
+    caller->mainw->cconfig->addHeight = height();
     close();
     return 0;
 }

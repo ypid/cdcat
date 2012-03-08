@@ -129,6 +129,10 @@ public:
     int  findY;
     int  findWidth;
     int  findHeight;
+    int  addX;
+    int  addY;
+    int  addWidth;
+    int  addHeight;
 
     QDateTime find_date_start_val;
     QDateTime find_date_end_val;
