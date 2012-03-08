@@ -257,6 +257,8 @@ void DirectoryView::contentsMouseReleaseEvent ( QMouseEvent * ) {
 }
 
 void DirectoryView::setDir ( const QString &s ) {
+     if (s.right(s.size()-1) == "/")
+	s.leftRef( s.size()-1 );
     Q3ListViewItemIterator it ( this );
     ++it;
     for ( ; it.current(); ++it ) {
@@ -277,6 +279,7 @@ void DirectoryView::setDir ( const QString &s ) {
         while ( item ) {
             if ( item->text ( 0 ) == *it2 ) {
                 item->setOpen ( TRUE );
+                ensureItemVisible(item);
                 break;
             }
             item = item->itemBelow();

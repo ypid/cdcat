@@ -194,6 +194,12 @@ addDialog::addDialog ( GuiSlave *c, QWidget* parent, const char* name, bool moda
     type = caller->mainw->cconfig->lastMediaType;
     cbType->setCurrentIndex(caller->mainw->cconfig->lastMediaType-1);
    
+
+    buttonOK->setFocus();
+
+    resize ( QSize ( ( ( CdCatMainWidget * ) parent )->cconfig->addWidth, ( ( CdCatMainWidget * ) parent )->cconfig->addHeight ).expandedTo ( minimumSizeHint() ) );
+    move ( ( ( CdCatMainWidget * ) parent )->cconfig->addX, ( ( CdCatMainWidget * ) parent )->cconfig->addY );
+
     if ( cbType->currentItem() +1 == CD || cbType->currentItem() +1 == DVD ) {
         dirView->setDir ( ( ( CdCatMainWidget * ) parent )->cconfig->cdrompath );
         dirView->sDir= ( ( CdCatMainWidget * ) parent )->cconfig->cdrompath;
@@ -203,10 +209,6 @@ addDialog::addDialog ( GuiSlave *c, QWidget* parent, const char* name, bool moda
         dirView->setDir ( ( ( CdCatMainWidget * ) parent )->cconfig->lastDir );
         dirView->sDir= ( ( CdCatMainWidget * ) parent )->cconfig->lastDir;
     }
-    buttonOK->setFocus();
-
-    resize ( QSize ( ( ( CdCatMainWidget * ) parent )->cconfig->addWidth, ( ( CdCatMainWidget * ) parent )->cconfig->addHeight ).expandedTo ( minimumSizeHint() ) );
-    move ( ( ( CdCatMainWidget * ) parent )->cconfig->addX, ( ( CdCatMainWidget * ) parent )->cconfig->addY );
 }
 
 int addDialog::sread() {
