@@ -31,6 +31,7 @@
 #include <QComboBox>
 #include <QLabel>
 #include <QPushButton>
+#include <QMenuBar>
 #include <QTemporaryFile>
 #include <QProcess>
 
@@ -589,6 +590,17 @@ void GuiSlave::panelsON ( void ) {
     updateStatusl ( standON );
     standOn ( mainw->listView->currentItem() );
     cHcaption();
+}
+
+void GuiSlave::setGuiMenuAndToolBarEnabled(bool enable) {
+	if (enable) {
+		mainw->Toolbar->setEnabled(true);
+		mainw->mainMenu->setEnabled(true);
+	}
+	else {
+		mainw->Toolbar->setEnabled(false);
+		mainw->mainMenu->setEnabled(false);
+	}
 }
 
 
@@ -1466,11 +1478,12 @@ int GuiSlave::rescanEvent ( void ) {
 }
 
 int GuiSlave::findEvent ( void ) {
-    if ( mainw->db == NULL ) return 0;
-
-    findDialog *d=new findDialog ( mainw,"finddialog", false, true );
-    d->exec();
-    return 0;
+	if ( mainw->db == NULL ) return 0;
+	setGuiMenuAndToolBarEnabled(false);
+	findDialog *d=new findDialog ( mainw,"finddialog", false, false );
+	d->exec();
+	setGuiMenuAndToolBarEnabled();
+	return 0;
 }
 
 int GuiSlave::configEvent ( void ) {

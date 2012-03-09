@@ -157,7 +157,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp,QApplication *appp,QWidget* 
 
 
     /*Menubar*/
-    QMenuBar   *mainMenu = new QMenuBar ( this,"menu" );
+    mainMenu = new QMenuBar ( this,"menu" );
     mainMenu->setMaximumHeight ( fontHeight*2 );
     mainMenu->setMinimumHeight ( fontHeight*2 );
     Q3PopupMenu *fileMenu = new Q3PopupMenu();

@@ -75,7 +75,7 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		}
 	}
 	setIcon ( *get_t_find_icon() );
-	
+	setModal(modal);
 	mainw = parent;
 	use_unsharpsearch = false;
 	this->isFindDuplicates = isFindDuplicates;

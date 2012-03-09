@@ -51,6 +51,7 @@ public:
     bool haveContent ( Node *node );
     void updateStatusl ( Node *n );
     void checkversion ( QWidget *p,DataBase *db );
+    void setGuiMenuAndToolBarEnabled(bool enable=true);
 
 public slots:
 

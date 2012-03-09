@@ -54,6 +54,7 @@ public:
     DataBase      *db;
     CommentWidget * commentWidget;
     Q3Frame* Toolbar;
+    QMenuBar   *mainMenu;
     QToolButton* ButtonOpen;
     QToolButton* ButtonSave;
     QToolButton* ButtonSaveAs;
