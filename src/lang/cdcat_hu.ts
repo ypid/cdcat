@@ -74,32 +74,32 @@
 <context>
     <name>AddLnk</name>
     <message>
-        <location filename="../adddialog.cpp" line="678"/>
+        <location filename="../adddialog.cpp" line="712"/>
         <source>Add a &quot;Catalog Link&quot; to the database</source>
         <translation type="unfinished">&quot;Cdcat katalógus hivatkozás&quot; hozzáadása az adatbázishoz</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="679"/>
+        <location filename="../adddialog.cpp" line="713"/>
         <source>Location of the .hcf file:</source>
         <translation type="unfinished">A .hcf fájl helye:</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="681"/>
+        <location filename="../adddialog.cpp" line="715"/>
         <source>Cancel</source>
         <translation type="unfinished">Mégsem</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="682"/>
+        <location filename="../adddialog.cpp" line="716"/>
         <source>Ok</source>
         <translation type="unfinished">Ok</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="699"/>
+        <location filename="../adddialog.cpp" line="733"/>
         <source>CdCat databases (*.hcf )</source>
         <translation type="unfinished">CdCat adatbázis (*.hcf)</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="699"/>
+        <location filename="../adddialog.cpp" line="733"/>
         <source>Open a file...</source>
         <translation type="unfinished">Fájl megnyitása...</translation>
     </message>
@@ -1002,7 +1002,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Nem tudom olvasni a könyvtárat</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1890"/>
+        <location filename="../dbase.cpp" line="1889"/>
         <source>Error</source>
         <translation>Hiba</translation>
     </message>
@@ -1012,7 +1012,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Könyvtár kihagyása</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="892"/>
+        <location filename="../dbase.cpp" line="891"/>
         <source>Cancel scanning</source>
         <translation>Felolvasás megszakítása</translation>
     </message>
@@ -1042,12 +1042,12 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Nem tudom létrehozni a fájlt: %1</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1854"/>
+        <location filename="../dbase.cpp" line="1853"/>
         <source>I can&apos;t open the file: %1</source>
         <translation>Nem tudom megnyitni a fájlt: %1</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="888"/>
+        <location filename="../dbase.cpp" line="887"/>
         <source>Cannot read directory: %1</source>
         <translation>Nem tudom olvasni a könyvtárat: %1</translation>
     </message>
@@ -1057,7 +1057,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Szimbolikus link#Ide mutat:</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1890"/>
+        <location filename="../dbase.cpp" line="1889"/>
         <source>Error while parsing file: %1</source>
         <translation>Hiba a felolvasás közben, fájl: %1</translation>
     </message>
@@ -1067,82 +1067,82 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Nincs megnyitott adatbázis!</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="890"/>
+        <location filename="../dbase.cpp" line="889"/>
         <source>Cannot read file: %1</source>
         <translation>Nem tudom felolvasni a fájlt: %1</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="892"/>
+        <location filename="../dbase.cpp" line="891"/>
         <source>Ignore</source>
         <translation>Kihagyás</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="964"/>
+        <location filename="../dbase.cpp" line="963"/>
         <source>Symbolic link to file:#</source>
         <translation>Azimbólikus link egy fájlra:#</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1019"/>
+        <location filename="../dbase.cpp" line="1018"/>
         <source>Symbolic link to directory:#</source>
         <translation>Szimbólikus link egy könyvtárra:#</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1043"/>
+        <location filename="../dbase.cpp" line="1042"/>
         <source>DEAD Symbolic link to:#</source>
         <translation>Halott szimbólikus link:#</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1053"/>
+        <location filename="../dbase.cpp" line="1052"/>
         <source>System file (e.g. FIFO, socket or device file)</source>
         <translation>Rendszerfájl (Pl: FIFO vagy socket)</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1878"/>
+        <location filename="../dbase.cpp" line="1877"/>
         <source>Not enough memory to open the file: %1</source>
         <translation>Nincs elég memória a fájl megnyitásához: %1</translation>
     </message>
     <message>
-        <location filename="../wdbfile.cpp" line="837"/>
+        <location filename="../wdbfile.cpp" line="916"/>
         <source>Reading file, please wait...</source>
         <translation>Fájl felolvasása, kérem várjon...</translation>
     </message>
     <message>
-        <location filename="../wdbfile.cpp" line="979"/>
+        <location filename="../wdbfile.cpp" line="1069"/>
         <source>Parsing file, please wait...</source>
         <translation>Fájl beolvasása, kérem várjon...</translation>
     </message>
     <message>
-        <location filename="../wdbfile.cpp" line="871"/>
+        <location filename="../wdbfile.cpp" line="955"/>
         <source>Converting to unicode, please wait...</source>
         <translation>Unikódra konvertálás, kérem várjon...</translation>
     </message>
     <message>
         <location filename="../adddialog.cpp" line="422"/>
         <source>Please Wait...</source>
-        <translation>Kérem várjon...</translation>
+        <translation type="obsolete">Kérem várjon...</translation>
     </message>
     <message>
         <location filename="../adddialog.cpp" line="588"/>
         <source>Cancel</source>
-        <translation>Mégsem</translation>
+        <translation type="obsolete">Mégsem</translation>
     </message>
     <message>
-        <location filename="../wdbfile.cpp" line="884"/>
+        <location filename="../wdbfile.cpp" line="893"/>
         <source>Parse error</source>
-        <translation>Beolvasási hiba</translation>
+        <translation type="obsolete">Beolvasási hiba</translation>
     </message>
     <message>
-        <location filename="../wdbfile.cpp" line="889"/>
+        <location filename="../wdbfile.cpp" line="969"/>
         <source>You have cancelled catalog reading.</source>
         <translation>Leállítottad a katalógus felolvasását.</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1669"/>
+        <location filename="../dbase.cpp" line="1668"/>
         <source>device </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1685"/>
+        <location filename="../dbase.cpp" line="1684"/>
         <source> link to </source>
         <translation type="unfinished"></translation>
     </message>
@@ -2350,14 +2350,19 @@ Copyright (C) 2003 Deák Péter (GPL)&lt;/p&gt;&lt;/font&gt;&lt;/p&gt;</translat
 <context>
     <name>PWw</name>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../adddialog.cpp" line="429"/>
         <source>Please Wait...</source>
-        <translation type="obsolete">Dolgozom...</translation>
+        <translation type="unfinished">Dolgozom...</translation>
     </message>
     <message>
         <location filename="../adddialog.cpp" line="514"/>
         <source>Cancel</source>
-        <translation type="unfinished">Mégsem</translation>
+        <translation type="obsolete">Mégsem</translation>
+    </message>
+    <message>
+        <location filename="../adddialog.cpp" line="554"/>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished">&amp;Mégsem</translation>
     </message>
 </context>
 <context>
@@ -2882,12 +2887,12 @@ Létreh. dátuma</translation>
         <translation type="obsolete">Új lemez</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="235"/>
+        <location filename="../adddialog.cpp" line="237"/>
         <source>Add Media to the Database</source>
         <translation>Média hozzáadása a katalógushoz</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="236"/>
+        <location filename="../adddialog.cpp" line="238"/>
         <source>Choose a directory to scan:</source>
         <translation>Válassz egy könyvtárat felolvasásra:</translation>
     </message>
@@ -2927,47 +2932,47 @@ Létreh. dátuma</translation>
         <translation type="obsolete">OK / Felolvasás</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="250"/>
+        <location filename="../adddialog.cpp" line="252"/>
         <source>CD</source>
         <translation>CD</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="251"/>
+        <location filename="../adddialog.cpp" line="253"/>
         <source>DVD</source>
         <translation>DVD</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="252"/>
+        <location filename="../adddialog.cpp" line="254"/>
         <source>HardDisc</source>
         <translation>Merevlemez</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="253"/>
+        <location filename="../adddialog.cpp" line="255"/>
         <source>Floppy</source>
         <translation>Floppy</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="254"/>
+        <location filename="../adddialog.cpp" line="256"/>
         <source>NetworkPlace</source>
         <translation>HálózatiMegh</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="255"/>
+        <location filename="../adddialog.cpp" line="257"/>
         <source>FlashDrive</source>
         <translation>FlashMegh</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="256"/>
+        <location filename="../adddialog.cpp" line="258"/>
         <source>OtherDevice</source>
         <translation>EgyébEszköz</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="351"/>
+        <location filename="../adddialog.cpp" line="353"/>
         <source>Error:</source>
         <translation>Hiba:</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="332"/>
+        <location filename="../adddialog.cpp" line="334"/>
         <source>You must be fill the &quot;Name&quot; field!</source>
         <translation>Ki kell töltened a &quot;Név&quot; mezőt!</translation>
     </message>
@@ -2992,12 +2997,12 @@ Létreh. dátuma</translation>
         <translation type="obsolete">Ok</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="310"/>
+        <location filename="../adddialog.cpp" line="312"/>
         <source>New Disk %1</source>
         <translation>Uj lemez %1</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="342"/>
+        <location filename="../adddialog.cpp" line="344"/>
         <source>The Media Name must be unique! Please change it!</source>
         <translation>A Médianév-nek egyedinek kell lennie! Válassz másik nevet!</translation>
     </message>
@@ -3012,17 +3017,17 @@ Létreh. dátuma</translation>
         <translation type="obsolete">Felolvasandó elemek kiválasztása</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="346"/>
+        <location filename="../adddialog.cpp" line="348"/>
         <source>The Value of Serial Number must be unique! Please change it!</source>
         <translation>A Sorszám értékének egyedinek kell lennie! Légyszives válassz másikat!</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="351"/>
+        <location filename="../adddialog.cpp" line="353"/>
         <source>You haven&apos;t selected a directory! Please select one!</source>
         <translation>Nem választottál ki könyvtárat! Ez a lényeg :), válassz ki egyet!</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="337"/>
+        <location filename="../adddialog.cpp" line="339"/>
         <source>The media name can&apos;t begin with the &quot;@&quot; character!</source>
         <translation>Az új média neve nem kezdődhet a &apos;&apos;@&quot; karakterrel!</translation>
     </message>
@@ -3062,52 +3067,52 @@ Létreh. dátuma</translation>
         <translation type="obsolete">Kategória:</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="237"/>
+        <location filename="../adddialog.cpp" line="239"/>
         <source>Media &amp;Name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="238"/>
+        <location filename="../adddialog.cpp" line="240"/>
         <source>S&amp;erial number of Media:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="239"/>
+        <location filename="../adddialog.cpp" line="241"/>
         <source>&amp;Owner:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="240"/>
+        <location filename="../adddialog.cpp" line="242"/>
         <source>C&amp;ategory:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="241"/>
+        <location filename="../adddialog.cpp" line="243"/>
         <source>&amp;Type:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="242"/>
+        <location filename="../adddialog.cpp" line="244"/>
         <source>Co&amp;mment:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="243"/>
+        <location filename="../adddialog.cpp" line="245"/>
         <source>&amp;Cancel</source>
         <translation type="unfinished">&amp;Mégsem</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="244"/>
+        <location filename="../adddialog.cpp" line="246"/>
         <source>&amp;Scan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="245"/>
+        <location filename="../adddialog.cpp" line="247"/>
         <source>Select &amp;readable items</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="247"/>
+        <location filename="../adddialog.cpp" line="249"/>
         <source>detect CDROM/DVD med&amp;ia name after mount</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4943,7 +4948,7 @@ E-mail: hyperr@freemail.hu
 <context>
     <name>seekEngine</name>
     <message>
-        <location filename="../find.cpp" line="957"/>
+        <location filename="../find.cpp" line="959"/>
         <source>Error in the pattern:</source>
         <translation>Hiba az illesztömintában:</translation>
     </message>
@@ -4958,22 +4963,22 @@ E-mail: hyperr@freemail.hu
         <translation type="obsolete">Minden média</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1522"/>
+        <location filename="../find.cpp" line="1527"/>
         <source>dir</source>
         <translation>könyvt</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1527"/>
+        <location filename="../find.cpp" line="1532"/>
         <source>file</source>
         <translation>fájl</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1534"/>
+        <location filename="../find.cpp" line="1539"/>
         <source>error</source>
         <translation>hiba</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1043"/>
+        <location filename="../find.cpp" line="1045"/>
         <source>There is no matching.</source>
         <translation>Nincs illeszkedés.</translation>
     </message>
@@ -4983,7 +4988,7 @@ E-mail: hyperr@freemail.hu
         <translation type="obsolete">Ok</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1517"/>
+        <location filename="../find.cpp" line="1522"/>
         <source>media</source>
         <translation>média</translation>
     </message>
@@ -4993,27 +4998,27 @@ E-mail: hyperr@freemail.hu
         <translation>Keresés, kérem várjon...</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1039"/>
+        <location filename="../find.cpp" line="1041"/>
         <source>Search cancelled</source>
         <translation>Keresés törölve</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1039"/>
+        <location filename="../find.cpp" line="1041"/>
         <source>You have cancelled searching.</source>
         <translation>Leállítottad a keresést.</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1378"/>
+        <location filename="../find.cpp" line="1383"/>
         <source>File in archive: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1041"/>
+        <location filename="../find.cpp" line="1043"/>
         <source>Results:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1035"/>
+        <location filename="../find.cpp" line="1037"/>
         <source>searching is in progress</source>
         <translation type="unfinished"></translation>
     </message>

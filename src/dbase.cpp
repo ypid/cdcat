@@ -775,7 +775,7 @@ int   DataBase::insertDB ( char *filename, bool skipDuplicatesOnInsert ) {
 
 /***************************************************************************/
 int   DataBase::openDB ( char *filename ) {
-	int i;
+	int parsingSuccess;
 	gzFile f = NULL;
 	FileReader *fw = NULL;
 
@@ -831,16 +831,15 @@ int   DataBase::openDB ( char *filename ) {
 	root->data = ( void * ) new DBCatalog();
 
 	progress ( pww );
-	i = fw->readFrom ( root );
+	parsingSuccess = fw->readFrom ( root );
 	this->XML_ENCODING = fw->XML_ENCODING;
-
-
-	if ( i == 1 ) {
+	
+	if ( parsingSuccess == 1 || pww->doCancel ) {
 		progress ( pww );
 		errormsg = fw->errormsg;
 		if ( *DEBUG_INFO_ENABLED )
-			std::cerr << "error:" << qPrintable ( fw->errormsg ) << std::endl;
-
+			std::cerr << "filereader reported error:" << qPrintable ( fw->errormsg ) << std::endl;
+		
 		delete root;
 		root = NULL;
 		delete fw;

@@ -11,32 +11,32 @@
 <context>
     <name>AddLnk</name>
     <message>
-        <location filename="../adddialog.cpp" line="678"/>
+        <location filename="../adddialog.cpp" line="712"/>
         <source>Add a &quot;Catalog Link&quot; to the database</source>
         <translation type="unfinished">Pridať &quot;Katalógovú linku&quot; k databáze</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="679"/>
+        <location filename="../adddialog.cpp" line="713"/>
         <source>Location of the .hcf file:</source>
         <translation type="unfinished">Cesta k súboru .hcf:</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="681"/>
+        <location filename="../adddialog.cpp" line="715"/>
         <source>Cancel</source>
         <translation type="unfinished">Zrušiť</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="682"/>
+        <location filename="../adddialog.cpp" line="716"/>
         <source>Ok</source>
         <translation type="unfinished">OK</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="699"/>
+        <location filename="../adddialog.cpp" line="733"/>
         <source>CdCat databases (*.hcf )</source>
         <translation type="unfinished">CdCat databázy (*.hcf)</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="699"/>
+        <location filename="../adddialog.cpp" line="733"/>
         <source>Open a file...</source>
         <translation type="unfinished">Otvoriť súbor...</translation>
     </message>
@@ -864,17 +864,17 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Nie je otvorená žiadna databáza!</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1854"/>
+        <location filename="../dbase.cpp" line="1853"/>
         <source>I can&apos;t open the file: %1</source>
         <translation>Nemožno otvoriť súbor: %1</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="888"/>
+        <location filename="../dbase.cpp" line="887"/>
         <source>Cannot read directory: %1</source>
         <translation>Nemožno prečítať adresár: %1</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1890"/>
+        <location filename="../dbase.cpp" line="1889"/>
         <source>Error</source>
         <translation>Chyba</translation>
     </message>
@@ -884,7 +884,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Ignorovať adresár</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="892"/>
+        <location filename="../dbase.cpp" line="891"/>
         <source>Cancel scanning</source>
         <translation>Zrušiť prehľadávanie</translation>
     </message>
@@ -894,7 +894,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Symbolická linka#Ukazuje na:</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1890"/>
+        <location filename="../dbase.cpp" line="1889"/>
         <source>Error while parsing file: %1</source>
         <translation>Chyba pri čítaní informácií zo súboru: %1</translation>
     </message>
@@ -904,82 +904,77 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Nie je otvorená žiadna databáza!</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="890"/>
+        <location filename="../dbase.cpp" line="889"/>
         <source>Cannot read file: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="892"/>
+        <location filename="../dbase.cpp" line="891"/>
         <source>Ignore</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="964"/>
+        <location filename="../dbase.cpp" line="963"/>
         <source>Symbolic link to file:#</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1019"/>
+        <location filename="../dbase.cpp" line="1018"/>
         <source>Symbolic link to directory:#</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1043"/>
+        <location filename="../dbase.cpp" line="1042"/>
         <source>DEAD Symbolic link to:#</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1053"/>
+        <location filename="../dbase.cpp" line="1052"/>
         <source>System file (e.g. FIFO, socket or device file)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1878"/>
+        <location filename="../dbase.cpp" line="1877"/>
         <source>Not enough memory to open the file: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../wdbfile.cpp" line="837"/>
+        <location filename="../wdbfile.cpp" line="916"/>
         <source>Reading file, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../wdbfile.cpp" line="979"/>
+        <location filename="../wdbfile.cpp" line="1069"/>
         <source>Parsing file, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../wdbfile.cpp" line="871"/>
+        <location filename="../wdbfile.cpp" line="955"/>
         <source>Converting to unicode, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../adddialog.cpp" line="422"/>
         <source>Please Wait...</source>
-        <translation type="unfinished">Prosím čakajte...</translation>
+        <translation type="obsolete">Prosím čakajte...</translation>
     </message>
     <message>
         <location filename="../adddialog.cpp" line="588"/>
         <source>Cancel</source>
-        <translation type="unfinished">Zrušiť</translation>
+        <translation type="obsolete">Zrušiť</translation>
     </message>
     <message>
-        <location filename="../wdbfile.cpp" line="884"/>
-        <source>Parse error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../wdbfile.cpp" line="889"/>
+        <location filename="../wdbfile.cpp" line="969"/>
         <source>You have cancelled catalog reading.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1669"/>
+        <location filename="../dbase.cpp" line="1668"/>
         <source>device </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1685"/>
+        <location filename="../dbase.cpp" line="1684"/>
         <source> link to </source>
         <translation type="unfinished"></translation>
     </message>
@@ -1935,14 +1930,19 @@ na
 <context>
     <name>PWw</name>
     <message>
-        <location filename="" line="0"/>
+        <location filename="../adddialog.cpp" line="429"/>
         <source>Please Wait...</source>
-        <translation type="obsolete">Prosím čakajte...</translation>
+        <translation type="unfinished">Prosím čakajte...</translation>
     </message>
     <message>
         <location filename="../adddialog.cpp" line="514"/>
         <source>Cancel</source>
-        <translation type="unfinished">Zrušiť</translation>
+        <translation type="obsolete">Zrušiť</translation>
+    </message>
+    <message>
+        <location filename="../adddialog.cpp" line="554"/>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished">&amp;Zrušiť</translation>
     </message>
 </context>
 <context>
@@ -2448,17 +2448,17 @@ na
         <translation>Prechádzať adresáre</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="310"/>
+        <location filename="../adddialog.cpp" line="312"/>
         <source>New Disk %1</source>
         <translation>Nový Disk %1</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="235"/>
+        <location filename="../adddialog.cpp" line="237"/>
         <source>Add Media to the Database</source>
         <translation>Pridať médium do databázy</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="236"/>
+        <location filename="../adddialog.cpp" line="238"/>
         <source>Choose a directory to scan:</source>
         <translation>Vyberte adresár na skenovanie:</translation>
     </message>
@@ -2498,47 +2498,47 @@ na
         <translation type="obsolete">OK / Skenuj</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="250"/>
+        <location filename="../adddialog.cpp" line="252"/>
         <source>CD</source>
         <translation>CD</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="251"/>
+        <location filename="../adddialog.cpp" line="253"/>
         <source>DVD</source>
         <translation>DVD</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="252"/>
+        <location filename="../adddialog.cpp" line="254"/>
         <source>HardDisc</source>
         <translation>HardDisk</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="253"/>
+        <location filename="../adddialog.cpp" line="255"/>
         <source>Floppy</source>
         <translation>Disketa</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="254"/>
+        <location filename="../adddialog.cpp" line="256"/>
         <source>NetworkPlace</source>
         <translation>Sieťový disk</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="255"/>
+        <location filename="../adddialog.cpp" line="257"/>
         <source>FlashDrive</source>
         <translation>FlashDisk</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="256"/>
+        <location filename="../adddialog.cpp" line="258"/>
         <source>OtherDevice</source>
         <translation>Ostatné</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="351"/>
+        <location filename="../adddialog.cpp" line="353"/>
         <source>Error:</source>
         <translation>Chyba:</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="332"/>
+        <location filename="../adddialog.cpp" line="334"/>
         <source>You must be fill the &quot;Name&quot; field!</source>
         <translation>Nebolo zadané meno súboru !</translation>
     </message>
@@ -2548,7 +2548,7 @@ na
         <translation type="obsolete">OK</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="342"/>
+        <location filename="../adddialog.cpp" line="344"/>
         <source>The Media Name must be unique! Please change it!</source>
         <translation>Názov média musí byť jednoznačný! Zmeňte ho prosím!</translation>
     </message>
@@ -2558,17 +2558,17 @@ na
         <translation type="obsolete">Výber ďalších položiek pre čítanie</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="346"/>
+        <location filename="../adddialog.cpp" line="348"/>
         <source>The Value of Serial Number must be unique! Please change it!</source>
         <translation>Sériové číslo musí byť jednoznačné! Zmeňte ho, prosím!</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="351"/>
+        <location filename="../adddialog.cpp" line="353"/>
         <source>You haven&apos;t selected a directory! Please select one!</source>
         <translation>Nie je vybraný žiadny adresár!</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="337"/>
+        <location filename="../adddialog.cpp" line="339"/>
         <source>The media name can&apos;t begin with the &quot;@&quot; character!</source>
         <translation>Názov média nemôže začínať znakom &quot;@&quot; !</translation>
     </message>
@@ -2598,52 +2598,52 @@ na
         <translation type="obsolete">CdCat databázy (*.hcf)</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="237"/>
+        <location filename="../adddialog.cpp" line="239"/>
         <source>Media &amp;Name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="238"/>
+        <location filename="../adddialog.cpp" line="240"/>
         <source>S&amp;erial number of Media:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="239"/>
+        <location filename="../adddialog.cpp" line="241"/>
         <source>&amp;Owner:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="240"/>
+        <location filename="../adddialog.cpp" line="242"/>
         <source>C&amp;ategory:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="241"/>
+        <location filename="../adddialog.cpp" line="243"/>
         <source>&amp;Type:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="242"/>
+        <location filename="../adddialog.cpp" line="244"/>
         <source>Co&amp;mment:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="243"/>
+        <location filename="../adddialog.cpp" line="245"/>
         <source>&amp;Cancel</source>
         <translation type="unfinished">&amp;Zrušiť</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="244"/>
+        <location filename="../adddialog.cpp" line="246"/>
         <source>&amp;Scan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="245"/>
+        <location filename="../adddialog.cpp" line="247"/>
         <source>Select &amp;readable items</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="247"/>
+        <location filename="../adddialog.cpp" line="249"/>
         <source>detect CDROM/DVD med&amp;ia name after mount</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4108,7 +4108,7 @@ nájdete na domovskej stránke programu CdCat:&lt;br&gt;&lt;tt&gt;http://cdcat.s
 <context>
     <name>seekEngine</name>
     <message>
-        <location filename="../find.cpp" line="957"/>
+        <location filename="../find.cpp" line="959"/>
         <source>Error in the pattern:</source>
         <translation>Chyba vo vzorke:</translation>
     </message>
@@ -4118,27 +4118,27 @@ nájdete na domovskej stránke programu CdCat:&lt;br&gt;&lt;tt&gt;http://cdcat.s
         <translation type="obsolete">OK</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1043"/>
+        <location filename="../find.cpp" line="1045"/>
         <source>There is no matching.</source>
         <translation>Nič nenájdené.</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1522"/>
+        <location filename="../find.cpp" line="1527"/>
         <source>dir</source>
         <translation>adr</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1527"/>
+        <location filename="../find.cpp" line="1532"/>
         <source>file</source>
         <translation>súbor</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1534"/>
+        <location filename="../find.cpp" line="1539"/>
         <source>error</source>
         <translation>chyba</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1517"/>
+        <location filename="../find.cpp" line="1522"/>
         <source>media</source>
         <translation>médium</translation>
     </message>
@@ -4148,27 +4148,27 @@ nájdete na domovskej stránke programu CdCat:&lt;br&gt;&lt;tt&gt;http://cdcat.s
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1039"/>
+        <location filename="../find.cpp" line="1041"/>
         <source>Search cancelled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1039"/>
+        <location filename="../find.cpp" line="1041"/>
         <source>You have cancelled searching.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1378"/>
+        <location filename="../find.cpp" line="1383"/>
         <source>File in archive: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1041"/>
+        <location filename="../find.cpp" line="1043"/>
         <source>Results:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1035"/>
+        <location filename="../find.cpp" line="1037"/>
         <source>searching is in progress</source>
         <translation type="unfinished"></translation>
     </message>

@@ -88,7 +88,7 @@ public:
 
     PWw *pww;
     QString errormsg;
-    int  error;
+    int  error_found;
     int  insert;
     int linecount;
     long long int allocated_buffer_len;
@@ -99,6 +99,7 @@ public:
     char *dataBuffer;
     
     bool skipDuplicatesOnInsert;
+    bool parseresult;
 
     int      readFrom ( Node *source, bool skipDuplicatesOnInsert = false );
     QString getStr2(const QXmlAttributes &atts,char *what,char *err );

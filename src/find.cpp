@@ -919,10 +919,12 @@ seekEngine::~seekEngine ( void ) {
 /***************************************************************************/
 int seekEngine::start_seek ( void ) {
 	DEBUG_INFO_ENABLED = init_debug_info();
-	pww = new PWw ( fd );
-	pww->refreshTime = 200;
+	pww = new PWw ( fd, fd->mainw->app );
 	pww->setCancel ( true );
+	pww->refreshTime = 200;
 	pww->setProgressText ( tr ( "Searching, please wait..." ) );
+	
+	
 	QObject::connect ( pww, SIGNAL ( cancelReceivedByUser ( bool ) ), pww, SLOT ( doCancelReceived ( bool ) ) );
 	progress ( pww );
 	QApplication::setOverrideCursor ( Qt::waitCursor );

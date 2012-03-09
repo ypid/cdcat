@@ -700,18 +700,6 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
       <translation>Umwandlung zu Unicode, bitte warten...</translation>
     </message>
     <message>
-      <source>Please Wait...</source>
-      <translation>Bitte warten...</translation>
-    </message>
-    <message>
-      <source>Cancel</source>
-      <translation>Abbrechen</translation>
-    </message>
-    <message>
-      <source>Parse error</source>
-      <translation>Parserfehler</translation>
-    </message>
-    <message>
       <source>You have cancelled catalog reading.</source>
       <translation>Sie haben das Lesen das Katalogs abgebrochen.</translation>
     </message>
@@ -1381,8 +1369,12 @@ wird zu
   <context>
     <name>PWw</name>
     <message>
-      <source>Cancel</source>
-      <translation>Abbrechen</translation>
+      <source>Please Wait...</source>
+      <translation>Bitte warten...</translation>
+    </message>
+    <message>
+      <source>&amp;Cancel</source>
+      <translation>&amp;Abbrechen</translation>
     </message>
   </context>
   <context>

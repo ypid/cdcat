@@ -23,6 +23,7 @@
 #include <QMouseEvent>
 #include <QPaintEvent>
 #include <QCheckBox>
+#include <QPushButton>
 
 class Q3VBoxLayout;
 class Q3HBoxLayout;
@@ -124,6 +125,7 @@ public:
     int refreshTime;
     QApplication *appl;
     PWw ( QWidget *parent,QApplication *qapp = NULL, bool showProgress=false, long long int steps=0, QString progresstext="", bool showCancel=false );
+    ~PWw();
     int begintext;
     int begincanceltext;
     int myheight;
@@ -135,6 +137,7 @@ public:
     long long int steps;
     long long int progress_step;
     QString progresstext;
+    QPushButton *cancelButton;
 
     void setProgressText ( QString progresstext );
     void setCancel(bool showCancel);
@@ -152,12 +155,12 @@ protected:
     void mousePressEvent ( QMouseEvent *me );
 
 private:
-    bool showCancel;
-
+	bool showCancel;
 
 
 public slots:
 	void doCancelReceived(bool);
+    void SLO ( bool );
 };
 
 void progress ( PWw *p, long long int progress_step=0 );
