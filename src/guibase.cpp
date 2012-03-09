@@ -31,6 +31,8 @@
 #include <QComboBox>
 #include <QLabel>
 #include <QPushButton>
+#include <QTemporaryFile>
+#include <QProcess>
 
 #ifndef _WIN32
 
@@ -601,8 +603,14 @@ void GuiSlave::showListviewContextMenu ( Q3ListViewItem *, const QPoint &p, int 
         mPopup->insertItem ( tr ( "Node size" ),this,SLOT ( sizeEvent() ) );
         mPopup->insertSeparator();
 
-        if ( haveContent ( standON ) )
-            mPopup->insertItem ( *get_t_showc_icon(),tr ( "Show/Remove Content..." ),this,SLOT ( showContent() ) );
+        if ( haveContent ( standON ) ) {
+		if(mainw->cconfig->useExternalContentViewer && QFileInfo(mainw->cconfig->ExternalContentViewerPath).exists()) {
+			mPopup->insertItem ( *get_t_showc_icon(),tr ( "Show content..." ),this,SLOT ( showContent() ) );
+		}
+		else {
+			mPopup->insertItem ( *get_t_showc_icon(),tr ( "Show/Remove content..." ),this,SLOT ( showContent() ) );
+		}
+	}
 
         if ( standON->type == HC_CATLNK )
             mPopup->insertItem ( *get_p_icon(),tr ( "Follow the link (Open it) !" ),this,SLOT ( followLnk() ) );
@@ -1768,14 +1776,63 @@ int GuiSlave::editCategory ( void ) {
 }
 
 int GuiSlave::showContent ( void ) {
-    if ( mainw->db == NULL ) return 0;
-    if ( haveContent ( standON ) ) {
-        ShowContent *sc = new ShowContent ( standON, false, mainw,"showcw");
-        sc->exec();
-        delete sc;
-    }
-    cHcaption();
-    return 0;
+	if ( mainw->db == NULL )
+		return 0;
+	DEBUG_INFO_ENABLED = init_debug_info();
+	if ( haveContent ( standON ) ) {
+		if(mainw->cconfig->useExternalContentViewer && QFileInfo(mainw->cconfig->ExternalContentViewerPath).exists()) {
+			QTemporaryFile tmpContentTempFile;
+			tmpContentTempFile.setAutoRemove(false);
+			if (!tmpContentTempFile.open()) {
+				std::cerr << "Cant write temp file: " << qPrintable(tmpContentTempFile.fileName()) << std::endl;
+				return 1;
+			}
+			QString tmpFileName =  tmpContentTempFile.fileName();
+			if(*DEBUG_INFO_ENABLED)
+				std::cout << "GuiSlave::showContent tmpContentTempFile: " << qPrintable (tmpFileName ) << std::endl;
+			Node *mynode = NULL;
+			if ( standON != NULL && standON->type == HC_FILE ) {
+				mynode = ( ( DBFile * ) ( standON->data ) )->prop;
+				while ( mynode != NULL ) {
+					if ( mynode->type == HC_CONTENT )
+						break;
+					mynode = mynode->next;
+				}
+			}
+			if ( mynode != NULL ) {
+				tmpContentTempFile.write( QByteArray((const char*)( ( DBContent * ) ( mynode->data ) )->bytes ));
+				tmpContentTempFile.close();
+			}
+			else {
+				std::cerr << "Cant find node content: " << qPrintable(standON->getFullPath()) << std::endl;
+				return 1;
+			}
+			QProcess FileContentProcess;
+			
+			if(*DEBUG_INFO_ENABLED)
+				std::cout << "GuiSlave::showContent args: " << qPrintable ( mainw->cconfig->ExternalContentViewerPath) << " "<< qPrintable(tmpFileName ) << std::endl;
+			FileContentProcess.startDetached(mainw->cconfig->ExternalContentViewerPath+ " "+tmpFileName);
+			if (!FileContentProcess.waitForStarted())
+				return 1;
+			while(!FileContentProcess.waitForFinished() || FileContentProcess.state() == QProcess::Running) {
+				if(mainw->app->hasPendingEvents())
+					mainw->app->processEvents();
+				sleep(0.250);
+			}
+			QByteArray result = FileContentProcess.readAll();
+			//delete (( ( DBContent * ) ( mynode->data ) )->bytes);
+			//QByteArray filedata(QFile(tmpFileName).readAll());
+			//mynode->data = ( void * ) new DBContent ( (unsigned char*)filedata.constData(), filedata.length() );
+			tmpContentTempFile.remove();
+		}
+		else {
+			ShowContent *sc = new ShowContent ( standON, false, mainw,"showcw");
+			sc->exec();
+			delete sc;
+		}
+	}
+	cHcaption();
+	return 0;
 }
 
 int GuiSlave::addlnkEvent ( void ) {

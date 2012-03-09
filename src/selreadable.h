@@ -50,13 +50,15 @@ class SelReadable : public QDialog {
 		QCheckBox* cbCont;
 		QCheckBox* cbFileInfo;
 		QCheckBox* cbThumb;
+		QCheckBox* cbUseExternalContentViewer;
 		QSpinBox *thumbWidthSpinBox;
 		QSpinBox *thumbHeightSpinBox;
 #ifdef USE_LIBEXIF
 		QCheckBox *cbExif;
 #endif
-		QLineEdit* lineFiles;
-		QLineEdit* thumbLineExts;
+		QLineEdit *lineFiles;
+		QLineEdit *thumbLineExts;
+		QLineEdit *lineeditPathExternalContentViewer;
 		
 		QSpinBox* maxSpinBox;
 		QLabel* textLabel2;
@@ -65,6 +67,7 @@ class SelReadable : public QDialog {
 		Q3Frame* line7;
 		QPushButton* buttonOK;
 		QPushButton* buttonCancel;
+		QPushButton* buttonUseExternalContentViewer;
 		Q3ButtonGroup* tagselector;
 		QRadioButton *rad_v1, *rad_v2;
 		
@@ -75,11 +78,12 @@ class SelReadable : public QDialog {
 		QLabel *labThumbSize;
 		QLabel *labThumbXSize;
 		QLabel *labThumbExts;
+		QLabel *labelExternalContentViewer;
 
 #ifdef USE_LIBEXIF
 		QLabel *labExif;
 #endif
-
+		
 		QGroupBox *groupBoxShowArchiveFileOpts;
 		QCheckBox* cpScanArchive;
 		QCheckBox* cpShowArchiveFilePerms;
@@ -88,14 +92,14 @@ class SelReadable : public QDialog {
 		QCheckBox* cpShowArchiveFileSize;
 		QCheckBox* cpShowArchiveFileDate;
 		QCheckBox* cpShowArchiveFileComment;
-
-
-
+	
 	public slots:
 		int schanged ( int state );
 		int sok ( void );
 		int scan ( void );
-
+		int selectExternalContentViewer( void );
+		void selectExternalContentViewerString( const QString& );
+	
 	protected:
 		Q3VBoxLayout* SelReadableLayout;
 		Q3HBoxLayout* layout12;
@@ -108,6 +112,7 @@ class SelReadable : public QDialog {
 		Q3HBoxLayout* layout62;
 		Q3HBoxLayout* layoutShowArchiveFileOptions;
 		Q3HBoxLayout* layoutThumbExts;
+		Q3HBoxLayout* layoutExternalContentViewer;
 		Q3GridLayout* layoutShowArchiveFileOptionsGroup;
 
 		QString SupportedExtensions;

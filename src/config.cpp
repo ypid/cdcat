@@ -545,6 +545,18 @@ int CdCatConfig::readConfig ( void ) {
 						readcfiles = val;
 						continue;
 				}
+				if ( var == "use_ext_content_viewer" ) {
+					if ( val == "true" )
+						useExternalContentViewer = true;
+					else
+						useExternalContentViewer = false;
+					continue;
+				}
+				if ( var == "ext_content_viewer_path" ) {
+					if ( !val.isEmpty() )
+						ExternalContentViewerPath = val;
+					continue;
+				}
 				if ( var == "read_content_limit" ) {
 					readclimit = val.toInt();
 					continue;
@@ -986,6 +998,13 @@ int CdCatConfig::writeConfig ( void ) {
 			str << "read_content=true" << endl;
 		else
 			str << "read_content=false" << endl;
+		
+		if ( useExternalContentViewer )
+			str << "use_ext_content_viewer=true" << endl;
+		else
+			str << "use_ext_content_viewer=false" << endl;
+		
+		str << "ext_content_viewer_path=" << qPrintable( ExternalContentViewerPath ) << endl;
 		
 		if ( usefileinfo )
 			str << "use_fileinfo=true" << endl;

@@ -76,11 +76,14 @@ class CdCatConfig : public QObject {
 		bool saveAlwaysCatalogInUtf8;
 		bool showProgressedFileInStatus;
 		bool doScanArchive;
+		bool useExternalContentViewer;
+		
+		
 		//bool doScanArchiveTar;
 		//bool doScanArchiveLib7zip;
 		bool storeExifData;
 		bool storeThumb;
-		QString readcfiles;
+		
 		unsigned long readclimit;
 
 		QStringList hlist;
@@ -92,6 +95,8 @@ class CdCatConfig : public QObject {
 		QString cdrompath;
 		QString lastDir;
 		QString lastSearchPattern;
+		QString readcfiles;
+		QString ExternalContentViewerPath;
 		int  mainP1;
 		int  mainP2;
 		int  mainP3;

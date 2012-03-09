@@ -8,18 +8,20 @@
 ****************************************************************************/
 #include "selreadable.h"
 
-#include <qvariant.h>
-#include <qcheckbox.h>
+#include <QVariant>
+#include <QCheckBox>
 #include <q3frame.h>
-#include <qlabel.h>
-#include <qlineedit.h>
-#include <qpushbutton.h>
-#include <qspinbox.h>
+#include <QLabel>
+#include <QLineEdit>
+#include <QPushButton>
+#include <QSpinBox>
 #include <q3buttongroup.h>
-#include <qradiobutton.h>
-#include <qlayout.h>
-#include <qtooltip.h>
+#include <QRadioButton>
+#include <QLayout>
+#include <QToolTip>
 #include <q3whatsthis.h>
+#include <QFileDialog>
+#include <QFileInfo>
 //Added by qt3to4:
 #include <Q3HBoxLayout>
 #include <Q3VBoxLayout>
@@ -44,7 +46,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 		setName ( "SelReadable" );
 	setIcon ( *get_t_config_icon() );
 	
-	SelReadableLayout = new Q3VBoxLayout ( this, 11, 6, "SelReadableLayout" );
+	SelReadableLayout = new Q3VBoxLayout ( this, 15, 6, "SelReadableLayout" );
 	setSizeGripEnabled ( TRUE );
 	
 	cpScanArchive = new QCheckBox ( this, "cpScanArchive" );
@@ -146,19 +148,31 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	layout11->addLayout ( layout10 );
 	layout12->addLayout ( layout11 );
 	SelReadableLayout->addLayout ( layout12 );
-
+	
+	layoutExternalContentViewer = new Q3HBoxLayout ( 0, 0, 7, "layoutExternalContentViewer" );
+	cbUseExternalContentViewer = new QCheckBox ( this, "cbUseExternalContentViewer" );
+// 	labelExternalContentViewer = new QLabel ( this, "labelExternalContentViewer" );
+	lineeditPathExternalContentViewer = new QLineEdit ( this, "lineeditPathExternalContentViewer" );
+	buttonUseExternalContentViewer = new QPushButton ( this, "buttonUseExternalContentViewer" );
+	layoutExternalContentViewer->addSpacing ( 25 );
+	layoutExternalContentViewer->addWidget( cbUseExternalContentViewer );
+// 	layoutExternalContentViewer->addWidget( labelExternalContentViewer );
+	layoutExternalContentViewer->addWidget( lineeditPathExternalContentViewer );
+	layoutExternalContentViewer->addWidget( buttonUseExternalContentViewer );
+	SelReadableLayout->addLayout ( layoutExternalContentViewer );
+	
 	cbFileInfo = new QCheckBox ( this, "cbFileInfo" );
 	SelReadableLayout->addWidget ( cbFileInfo );
 	labFileInfoExtensions = new QLabel ( this, "labFileInfoExtensions" );
 	SelReadableLayout->addWidget ( labFileInfoExtensions );
 	
 	cbThumb = new QCheckBox ( this, "cbThumb" );
-	SelReadableLayout->addWidget ( cbThumb );
 	labThumb = new QLabel ( this, "labThumb" );
+	SelReadableLayout->addWidget ( cbThumb );
 	SelReadableLayout->addWidget ( labThumb );
 	
 	
-	layoutThumbExts = new Q3HBoxLayout ( 0, 0, 6, "layoutThumbExts" );
+	layoutThumbExts = new Q3HBoxLayout ( 0, 0, 7, "layoutThumbExts" );
 	labThumbExts = new QLabel ( this, "labThumbExts" );
 	thumbLineExts = new QLineEdit ( this, "thumbLineExts" );
 	thumbLineExts->setMinimumWidth ( 150 );
@@ -167,12 +181,13 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	layoutThumbExts->addWidget ( labThumbExts );
 	SelReadableLayout->addLayout ( layoutThumbExts );
 	
-	layoutThumbSize = new Q3HBoxLayout ( 0, 0, 6, "layoutThumbSize" );
+	layoutThumbSize = new Q3HBoxLayout ( 0, 0, 7, "layoutThumbSize" );
 	layoutThumbSize->addSpacing ( 25 );
 	thumbWidthSpinBox = new QSpinBox ( 20, 400, 150, this, "thumbWidthSpinBox" );
+	labThumbXSize = new QLabel ( this, "labThumbXSize" );
 	thumbHeightSpinBox = new QSpinBox ( 20, 400, 150, this, "thumbHeightSpinBox" );
 	labThumbSize = new QLabel ( this, "labThumbSize" );
-	labThumbXSize = new QLabel ( this, "labThumbXSize" );
+	
 	layoutThumbSize->addWidget(labThumbSize);
 	layoutThumbSize->addWidget(thumbWidthSpinBox);
 	layoutThumbSize->addWidget(labThumbXSize);
@@ -214,6 +229,9 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	connect ( cbThumb, SIGNAL ( stateChanged ( int ) ), this, SLOT ( schanged ( int ) ) );
 	connect ( buttonOK, SIGNAL ( clicked() ), this, SLOT ( sok() ) );
 	connect ( buttonCancel, SIGNAL ( clicked() ), this, SLOT ( scan() ) );
+	connect ( buttonUseExternalContentViewer, SIGNAL ( clicked() ), this, SLOT ( selectExternalContentViewer() ) );
+	connect ( lineeditPathExternalContentViewer, SIGNAL ( textEdited ( const QString & ) ), this, SLOT ( selectExternalContentViewerString( const QString & ) ) );
+	
 
 	cpScanArchive->setChecked ( conf->doScanArchive );
 	cpShowArchiveFilePerms->setChecked ( conf->show_archive_file_perms );
@@ -224,6 +242,16 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	cpShowArchiveFileComment->setChecked ( conf->show_archive_file_comment );
 	cbTag->setChecked ( conf->readtag );
 	cbCont->setChecked ( conf->readcontent );
+	cbUseExternalContentViewer->setChecked ( conf->useExternalContentViewer );
+	lineeditPathExternalContentViewer->setText( conf->ExternalContentViewerPath );
+	if(QFileInfo(conf->ExternalContentViewerPath).exists()) {
+		lineeditPathExternalContentViewer->setPaletteBackgroundColor(QColor("#99FF66"));
+		lineeditPathExternalContentViewer->setToolTip( tr("Path to external content viewer (found)"));
+	}
+	else {
+		lineeditPathExternalContentViewer->setPaletteBackgroundColor(QColor("#FF9999"));
+		lineeditPathExternalContentViewer->setToolTip( tr("Path to external content viewer (not found)"));
+	}
 	cbFileInfo->setChecked ( conf->usefileinfo );
 #ifdef USE_LIBEXIF
 	cbExif->setChecked ( conf->storeExifData );
@@ -274,7 +302,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 		SupportedExtensionsList.sort();
 		int linelen = 0;
 		for ( int i = 0; i < SupportedExtensionsList.size(); i++ ) {
-			if ( linelen > 120 ) {
+			if ( linelen > 200 ) {
 				linelen = 0;
 				SupportedExtensions += "<br />&nbsp;&nbsp;";
 				SupportedExtensions += SupportedExtensionsList.at ( i );
@@ -296,7 +324,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 #else
 		sevenzip_libfound_text = "<font color=\"red\">" + tr ( "lib7zip library not supported" ) + "</font>";
 #endif
-		labArchiveExtensions->setText ( tr ( "Supported extensions" ) + " (" + sevenzip_libfound_text + ")" + ":<br />&nbsp;&nbsp;" + SupportedExtensions );
+		labArchiveExtensions->setText ( tr ( "Supported extensions" ) + " (" + sevenzip_libfound_text + ")" + ":&nbsp;" + SupportedExtensions );
 	}
 
 
@@ -310,7 +338,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	QString SupportedFileInfoExtensions = "";
 	int linelen = 0;
 	for ( int i = 0; i < SupportedFileInfoExtensionsList.size(); i++ ) {
-		if ( linelen > 120 ) {
+		if ( linelen > 200 ) {
 			linelen = 0;
 			SupportedFileInfoExtensions += "<br />&nbsp;&nbsp;";
 			SupportedFileInfoExtensions += SupportedFileInfoExtensionsList.at ( i );
@@ -326,7 +354,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	QString fileinfo_libfound_text = "<font color=\"red\">" + tr ( "mediainfo library not found" ) + "</font>";
 	if ( fileinfo_libfound )
 		fileinfo_libfound_text = "<font color=\"green\">" + tr ( "mediainfo library found" ) + ": " + me.getMediaInfoVersion() + "</font>";
-	labFileInfoExtensions->setText ( tr ( "Supported extensions" ) + " (" + fileinfo_libfound_text + ")" + ":<br />&nbsp;&nbsp;" + SupportedFileInfoExtensions );
+	labFileInfoExtensions->setText ( tr ( "Supported extensions" ) + " (" + fileinfo_libfound_text + ")" + ":&nbsp;" + SupportedFileInfoExtensions );
 
 	schanged ( 0 );
 }
@@ -383,6 +411,8 @@ int SelReadable::sok ( void ) {
 	conf->storeExifData = cbExif->isChecked();
 #endif
 	conf->readcfiles  = lineFiles->text();
+	conf->useExternalContentViewer = cbUseExternalContentViewer->isChecked();
+	conf->ExternalContentViewerPath = lineeditPathExternalContentViewer->text();
 	conf->ThumbExtsList = thumbLineExts->text().split(";");
 	conf->readclimit  = maxSpinBox->value() * 1024;
 	conf->readinfo    = cbInfo->isChecked();
@@ -398,6 +428,32 @@ int SelReadable::scan ( void ) {
 	close();
 	return 0;
 }
+
+int SelReadable::selectExternalContentViewer(void ) {
+	// get file.name
+	QString s = QFileDialog::getOpenFileName( 0, tr ( "Choose path to external context viewer" ), conf->lastDir );
+	selectExternalContentViewerString(s);
+	if ( !s.isEmpty() )
+		return 0;
+	else
+		return 1;
+}
+
+void SelReadable::selectExternalContentViewerString(const QString &s ) {
+	if ( !s.isEmpty() ) {
+		lineeditPathExternalContentViewer->setText ( s );
+	}
+	if(QFileInfo(lineeditPathExternalContentViewer->text()).exists()) {
+			lineeditPathExternalContentViewer->setPaletteBackgroundColor(QColor("#99FF66"));
+			lineeditPathExternalContentViewer->setToolTip( tr("Path to external content viewer (found)"));
+			return;
+	}
+	
+	lineeditPathExternalContentViewer->setPaletteBackgroundColor(QColor("#FF9999"));
+	lineeditPathExternalContentViewer->setToolTip( tr("Path to external content viewer (not found)"));
+	return;
+}
+
 
 /*
  *  Destroys the object and frees any allocated resources
@@ -436,6 +492,9 @@ void SelReadable::languageChange() {
 	cbInfo->setText ( tr ( "Read mp3 technical info as comment (bitrate,freq,length...)" ) );
 	cbaInfo->setText ( tr ( "Read avi technical info as comment (codecs,length,...)" ) );
 	cbCont->setText ( tr ( "Store content of some files" ) );
+	cbUseExternalContentViewer->setText( tr("Use external viewer for displaying file content") );
+	buttonUseExternalContentViewer->setText( tr("...") );
+	buttonUseExternalContentViewer->setToolTip( tr("Select external viewer...") );
 	cbFileInfo->setText ( tr ( "Read some technical info using mediainfo" ) );
 	textLabel1->setText ( tr ( "; separated list of readable file patterns" ) );
 	labThumbExts->setText ( tr ( "; separated list of image file extensions, e.g. png;jpg;gif" ) );

@@ -924,10 +924,6 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
       <translation>Alle Zweige schliessen</translation>
     </message>
     <message>
-      <source>Show/Remove Content...</source>
-      <translation>Inhalt anzeigen/löschen...</translation>
-    </message>
-    <message>
       <source>There is no selected item in the middle list box!</source>
       <translation>Es ist kein Element im mittleren Ansichtsfenster ausgewählt!</translation>
     </message>
@@ -1044,6 +1040,14 @@ Homepage: %3</translation>
     <message>
       <source>search for duplicates...</source>
       <translation>nach Duplikaten suchen...</translation>
+    </message>
+    <message>
+      <source>Show content...</source>
+      <translation>Inhalt anzeigen...</translation>
+    </message>
+    <message>
+      <source>Show/Remove content...</source>
+      <translation>Inhalt anzeigen/löschen...</translation>
     </message>
   </context>
   <context>
@@ -1660,6 +1664,30 @@ wird zu
     <message>
       <source>; separated list of image file extensions, e.g. png;jpg;gif</source>
       <translation>;getrennte Liste von Bilddateiendungen, z.B. png;jpg;gif</translation>
+    </message>
+    <message>
+      <source>Path to external content viewer (found)</source>
+      <translation>Pfad zu externem Anzeiger (gefunden)</translation>
+    </message>
+    <message>
+      <source>Path to external content viewer (not found)</source>
+      <translation>Pfad zu externem Anzeiger (nicht gefunden)</translation>
+    </message>
+    <message>
+      <source>Choose path to external context viewer</source>
+      <translation>Pfad zu externem Anzeiger auswählen</translation>
+    </message>
+    <message>
+      <source>Use external viewer for displaying file content</source>
+      <translation>Externen Anzeiger zum Anzeigen von Dateiinhalten verwenden</translation>
+    </message>
+    <message>
+      <source>...</source>
+      <translation>...</translation>
+    </message>
+    <message>
+      <source>Select external viewer...</source>
+      <translation>Externen Anzeiger auswählen...</translation>
     </message>
   </context>
   <context>
