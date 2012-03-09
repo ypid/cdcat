@@ -1,5 +1,6 @@
 09. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
 	- option for display file content with external viewer added (#982070)
+	- display result progress/count on find dialog table label added (#3496359)
 
 07. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
 	- storing adddialog size and position added

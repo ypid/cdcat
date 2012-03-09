@@ -3245,7 +3245,7 @@ na
     <message>
         <location filename="../find.cpp" line="518"/>
         <source>Results</source>
-        <translation>Výsledky</translation>
+        <translation type="obsolete">Výsledky</translation>
     </message>
     <message>
         <location filename="../find.cpp" line="776"/>
@@ -3421,6 +3421,11 @@ na
         <location filename="../find.cpp" line="480"/>
         <source>Close</source>
         <translation type="unfinished">Zatvoriť</translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="518"/>
+        <source>Results: search not started</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4113,27 +4118,27 @@ nájdete na domovskej stránke programu CdCat:&lt;br&gt;&lt;tt&gt;http://cdcat.s
         <translation type="obsolete">OK</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1041"/>
+        <location filename="../find.cpp" line="1043"/>
         <source>There is no matching.</source>
         <translation>Nič nenájdené.</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1520"/>
+        <location filename="../find.cpp" line="1522"/>
         <source>dir</source>
         <translation>adr</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1525"/>
+        <location filename="../find.cpp" line="1527"/>
         <source>file</source>
         <translation>súbor</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1532"/>
+        <location filename="../find.cpp" line="1534"/>
         <source>error</source>
         <translation>chyba</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1515"/>
+        <location filename="../find.cpp" line="1517"/>
         <source>media</source>
         <translation>médium</translation>
     </message>
@@ -4143,18 +4148,28 @@ nájdete na domovskej stránke programu CdCat:&lt;br&gt;&lt;tt&gt;http://cdcat.s
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1038"/>
+        <location filename="../find.cpp" line="1039"/>
         <source>Search cancelled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1038"/>
+        <location filename="../find.cpp" line="1039"/>
         <source>You have cancelled searching.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1376"/>
+        <location filename="../find.cpp" line="1378"/>
         <source>File in archive: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="1041"/>
+        <source>Results:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="1035"/>
+        <source>searching is in progress</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

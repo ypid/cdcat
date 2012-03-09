@@ -2303,10 +2303,6 @@ wird zu
       <translation>&amp;Abbrechen</translation>
     </message>
     <message>
-      <source>Results</source>
-      <translation>Ergebnisse</translation>
-    </message>
-    <message>
       <source>Content</source>
       <translation>Inhalt</translation>
     </message>
@@ -2445,6 +2441,10 @@ wird zu
     <message>
       <source>Close</source>
       <translation>Schliessen</translation>
+    </message>
+    <message>
+      <source>Results: search not started</source>
+      <translation>Ergebnisse: Suche nicht gestartet</translation>
     </message>
   </context>
   <context>
@@ -2871,6 +2871,14 @@ E-mail: hyperr@freemail.hu
     <message>
       <source>File in archive: </source>
       <translation>Datei in Archiv:</translation>
+    </message>
+    <message>
+      <source>Results:</source>
+      <translation>Ergebnisse:</translation>
+    </message>
+    <message>
+      <source>searching is in progress</source>
+      <translation>Suche läuft</translation>
     </message>
   </context>
 </TS>

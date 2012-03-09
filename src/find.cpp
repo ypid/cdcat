@@ -515,7 +515,7 @@ void findDialog::languageChange() {
 	#ifndef _WIN32
 		buttonCancel->setAccel ( QKeySequence ( QString::null ) );
 	#endif
-		textLabel5->setText ( tr ( "Results" ) );
+		textLabel5->setText ( tr ( "Results: search not started" ) );
 		buttonClose->setText ( tr ( "Close / Go to selected" ) );
 		buttonPrintResult->setText ( tr ( "Print result..." ) );
 		buttonExportResult->setText ( tr ( "Export result to HTML..." ) );
@@ -1032,11 +1032,13 @@ int seekEngine::start_seek ( void ) {
 	}
 	
 	progress ( pww );
+	fd->textLabel5->setText ( tr ( "Results:" )+" "+tr("searching is in progress"));
 	/*seek...*/
 	analyzeNode ( pww, fd->mainw->db->getRootNode() );
 	if ( pww->doCancel ) {
 		QMessageBox::warning ( 0, tr ( "Search cancelled" ), tr ( "You have cancelled searching." ) );
 	}
+	fd->textLabel5->setText ( tr ( "Results:" )+" "+QString().setNum(founded));
 	if ( founded == 0 )
 		fd->resultsl->insertItem ( new Q3ListViewItem ( fd->resultsl, tr ( "There is no matching." ) ) );
 	
@@ -1052,6 +1054,9 @@ int seekEngine::start_seek ( void ) {
 /***************************************************************************/
 int seekEngine::analyzeNode ( PWw *pww,  Node *n, Node *pa ) {
 	DEBUG_INFO_ENABLED = init_debug_info();
+	
+	if (fd->mainw->app->hasPendingEvents())
+		fd->mainw->app->processEvents();
 	
 	progress ( pww );
 	if ( n == NULL || pww->doCancel)
@@ -1537,6 +1542,8 @@ void seekEngine::putNodeToList ( Node *n, QString comment ) {
 		std::cout << "putNodeToList: path: " << qPrintable(n->getFullPath()) << ",  type: " << qPrintable(type) << std::endl;
 	while ( tmp->type != HC_MEDIA ) {
 		tmp = tmp->parent;
+		if (fd->mainw->app->hasPendingEvents())
+				fd->mainw->app->processEvents();
 		progress ( pww );
 	}
 
