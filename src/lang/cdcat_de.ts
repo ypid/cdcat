@@ -40,10 +40,6 @@
       <source>unknown</source>
       <translation>unbekannt</translation>
     </message>
-    <message>
-      <source></source>
-      <translation type="unfinished" />
-    </message>
   </context>
   <context>
     <name>CatalogTypeEditDialog</name>
@@ -2437,6 +2433,10 @@ wird zu
     <message>
       <source>Results: search not started</source>
       <translation>Ergebnisse: Suche nicht gestartet</translation>
+    </message>
+    <message>
+      <source>Extension</source>
+      <translation>Erweiterung</translation>
     </message>
   </context>
   <context>

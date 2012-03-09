@@ -5,6 +5,8 @@
 	- cancel loading catalog fixed
 	- cancel searching fixed
 	- display more error messages on console
+	- extension column at finddialog added (#3496363)
+	- crash at closing file duplicates dialog fixed
 
 07. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
 	- storing adddialog size and position added

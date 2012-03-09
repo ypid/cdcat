@@ -177,6 +177,7 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		resultsl->addColumn ( tr ( "Path" ) );
 		resultsl->addColumn ( tr ( "Modification" ) );
 		resultsl->addColumn ( tr ( "Comment" ) );
+		resultsl->addColumn ( tr ( "Extension" ) );
 
 		resultsl->setColumnAlignment ( 2, Qt::AlignRight );
 		resultsl->setColumnWidthMode ( 0, Q3ListView::Maximum );
@@ -402,6 +403,7 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		resultsl->addColumn ( tr ( "Path" ) );
 		resultsl->addColumn ( tr ( "Modification" ) );
 		resultsl->addColumn ( tr ( "Comment" ) );
+		resultsl->addColumn ( tr ( "Extension" ) );
 		
 		resultsl->setColumnAlignment ( 2, Qt::AlignRight );
 		resultsl->setColumnWidthMode ( 0, Q3ListView::Maximum );
@@ -467,6 +469,7 @@ void findDialog::languageChange() {
 		resultsl->header()->setLabel ( 4, tr ( "Path" ) );
 		resultsl->header()->setLabel ( 5, tr ( "Modification" ) );
 		resultsl->header()->setLabel ( 6, tr ( "Comment" ) );
+		resultsl->header()->setLabel ( 7, tr ( "Extension" ) );
 
 		buttonOk->setText ( tr ( "&Start search" ) );
 	#ifndef _WIN32
@@ -492,6 +495,7 @@ void findDialog::languageChange() {
 		resultsl->header()->setLabel ( 4, tr ( "Path" ) );
 		resultsl->header()->setLabel ( 5, tr ( "Modification" ) );
 		resultsl->header()->setLabel ( 6, tr ( "Comment" ) );
+		resultsl->header()->setLabel ( 7, tr ( "Extension" ) );
 		textLabel3->setText ( tr ( "Find:" ) );
 		cbFilename->setText ( tr ( "File name" ) );
 		cbAlbum->setText ( tr ( "mp3-tag Album" ) );
@@ -528,33 +532,64 @@ void findDialog::languageChange() {
 }
 /***************************************************************************/
 int findDialog::saveState ( void ) {
-	mainw->cconfig->find_em    = cbEasy->isChecked();
-	mainw->cconfig->find_cs    = cbCasesens->isChecked();
-	mainw->cconfig->find_di    = cbDirname->isChecked();
-	mainw->cconfig->find_fi    = cbFilename->isChecked();
-	mainw->cconfig->find_co    = cbComment->isChecked();
-	mainw->cconfig->find_ct    = cbContent->isChecked();
-	mainw->cconfig->find_mar   = cbArtist->isChecked();
-	mainw->cconfig->find_mti   = cbTitle->isChecked();
-	mainw->cconfig->find_mco   = cbTcomm->isChecked();
-	mainw->cconfig->find_mal   = cbAlbum->isChecked();
-	mainw->cconfig->find_date_start   = cbDateStart->isChecked();
-	mainw->cconfig->find_date_end   = cbDateEnd->isChecked();
-	mainw->cconfig->find_date_start_val   = deDateStart->dateTime();
-	mainw->cconfig->find_date_end_val   = deDateEnd->dateTime();
-	mainw->cconfig->find_size_min   = cbSizeMin->isChecked();
-	mainw->cconfig->find_size_max   = cbSizeMax->isChecked();
-	mainw->cconfig->find_size_min_val = spSizeMin->value();
-	mainw->cconfig->find_size_max_val = spSizeMax->value();
-	mainw->cconfig->find_size_unit_min_val = cbSizeUnitMin->currentIndex();
-	mainw->cconfig->find_size_unit_max_val = cbSizeUnitMax->currentIndex();
-	mainw->cconfig->find_unsharp_search = cbUnsharpSearch->isChecked();
-	mainw->cconfig->find_in_archive = cbFindInArchive->isChecked();
-	mainw->cconfig->findX      = x();
-	mainw->cconfig->findY      = y();
-	mainw->cconfig->findWidth  = width();
-	mainw->cconfig->findHeight = height();
-	mainw->cconfig->lastSearchPattern = leText->text();
+	if(!isFindDuplicates) {
+		mainw->cconfig->find_em    = cbEasy->isChecked();
+		mainw->cconfig->find_cs    = cbCasesens->isChecked();
+		mainw->cconfig->find_di    = cbDirname->isChecked();
+		mainw->cconfig->find_fi    = cbFilename->isChecked();
+		mainw->cconfig->find_co    = cbComment->isChecked();
+		mainw->cconfig->find_ct    = cbContent->isChecked();
+		mainw->cconfig->find_mar   = cbArtist->isChecked();
+		mainw->cconfig->find_mti   = cbTitle->isChecked();
+		mainw->cconfig->find_mco   = cbTcomm->isChecked();
+		mainw->cconfig->find_mal   = cbAlbum->isChecked();
+		mainw->cconfig->find_date_start   = cbDateStart->isChecked();
+		mainw->cconfig->find_date_end   = cbDateEnd->isChecked();
+		mainw->cconfig->find_date_start_val   = deDateStart->dateTime();
+		mainw->cconfig->find_date_end_val   = deDateEnd->dateTime();
+		mainw->cconfig->find_size_min   = cbSizeMin->isChecked();
+		mainw->cconfig->find_size_max   = cbSizeMax->isChecked();
+		mainw->cconfig->find_size_min_val = spSizeMin->value();
+		mainw->cconfig->find_size_max_val = spSizeMax->value();
+		mainw->cconfig->find_size_unit_min_val = cbSizeUnitMin->currentIndex();
+		mainw->cconfig->find_size_unit_max_val = cbSizeUnitMax->currentIndex();
+		mainw->cconfig->find_unsharp_search = cbUnsharpSearch->isChecked();
+		mainw->cconfig->find_in_archive = cbFindInArchive->isChecked();
+		mainw->cconfig->findX      = x();
+		mainw->cconfig->findY      = y();
+		mainw->cconfig->findWidth  = width();
+		mainw->cconfig->findHeight = height();
+		mainw->cconfig->lastSearchPattern = leText->text();
+	}
+	else {
+		//mainw->cconfig->find_em    = cbEasy->isChecked();
+		//mainw->cconfig->find_cs    = cbCasesens->isChecked();
+		//mainw->cconfig->find_di    = cbDirname->isChecked();
+		//mainw->cconfig->find_fi    = cbFilename->isChecked();
+		//mainw->cconfig->find_co    = cbComment->isChecked();
+		//mainw->cconfig->find_ct    = cbContent->isChecked();
+		//mainw->cconfig->find_mar   = cbArtist->isChecked();
+		//mainw->cconfig->find_mti   = cbTitle->isChecked();
+		//mainw->cconfig->find_mco   = cbTcomm->isChecked();
+		//mainw->cconfig->find_mal   = cbAlbum->isChecked();
+		//mainw->cconfig->find_date_start   = cbDateStart->isChecked();
+		//mainw->cconfig->find_date_end   = cbDateEnd->isChecked();
+		//mainw->cconfig->find_date_start_val   = deDateStart->dateTime();
+		//mainw->cconfig->find_date_end_val   = deDateEnd->dateTime();
+		//mainw->cconfig->find_size_min   = cbSizeMin->isChecked();
+		//mainw->cconfig->find_size_max   = cbSizeMax->isChecked();
+		//mainw->cconfig->find_size_min_val = spSizeMin->value();
+		//mainw->cconfig->find_size_max_val = spSizeMax->value();
+		//mainw->cconfig->find_size_unit_min_val = cbSizeUnitMin->currentIndex();
+		//mainw->cconfig->find_size_unit_max_val = cbSizeUnitMax->currentIndex();
+		//mainw->cconfig->find_unsharp_search = cbUnsharpSearch->isChecked();
+		//mainw->cconfig->find_in_archive = cbFindInArchive->isChecked();
+		//mainw->cconfig->findX      = x();
+		//mainw->cconfig->findY      = y();
+		//mainw->cconfig->findWidth  = width();
+		//mainw->cconfig->findHeight = height();
+		//mainw->cconfig->lastSearchPattern = leText->text();
+	}
 	mainw->cconfig->writeConfig();
 	return 0;
 }
@@ -1511,6 +1546,7 @@ void seekEngine::putNodeToList ( Node *n, QString comment ) {
 	QString   type;
 	QString   size_str = "";
 	QString   media = "";
+	QString extension = "";
 	QDateTime mod;
 	if ( n == NULL )
 		return;
@@ -1534,6 +1570,9 @@ void seekEngine::putNodeToList ( Node *n, QString comment ) {
 			size_str += QString ( getSType ( ( ( DBFile * ) ( n->data ) )->sizeType, true ) );
 			mod  = ( ( DBFile * ) ( n->data ) )->modification;
 			comment  = ( ( DBFile * ) ( n->data ) )->comment;
+			if (n->getFullPath().contains('.')) {
+				extension = n->getFullPath().split(".").last();
+			}
 			break;
 		default:
 			type = tr ( "error" );
@@ -1551,7 +1590,7 @@ void seekEngine::putNodeToList ( Node *n, QString comment ) {
 
 	media = tmp->getNameOf() + "/" + QString().setNum ( ( ( DBMedia * ) ( tmp->data ) )->number );
 	Q3ListViewItem *newitem;
-	newitem = new Q3ListViewItem ( fd->resultsl, n->getNameOf(), type, size_str, media, n->getFullPath(), date_to_str ( mod ), comment );
+	newitem = new Q3ListViewItem ( fd->resultsl, n->getNameOf(), type, size_str, media, n->getFullPath(), date_to_str ( mod ), comment, extension );
 	
 	newitem->setMultiLinesEnabled ( true );
 	fd->resultsl->insertItem ( newitem );
