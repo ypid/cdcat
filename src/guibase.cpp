@@ -1651,10 +1651,45 @@ int GuiSlave::sizeEvent ( void ) {
         return 0;
     }
 
-    sprintf ( text,"%.2f",mainw->db->getSize ( standON ) );
+
+	double size = mainw->db->getSize ( standON );
+	double s = size;
+	int   st = UNIT_BYTE;
+	
+	
+	if ( size > ( double ) SIZE_ONE_GBYTE * 1024.0 ) {
+		s  = size / SIZE_ONE_GBYTE * 1024.0;
+		st = UNIT_TBYTE;
+	}
+	else {
+		if ( size >= ( double ) SIZE_ONE_GBYTE && size < ( double ) SIZE_ONE_GBYTE * 1024.0 ) {
+			s  = size / SIZE_ONE_GBYTE;
+			st = UNIT_GBYTE;
+		}
+		else {
+			if ( size >= ( double ) SIZE_ONE_MBYTE && size < ( double ) SIZE_ONE_GBYTE ) {
+				s  = size / SIZE_ONE_MBYTE;
+				st = UNIT_MBYTE;
+			}
+			else {
+				if ( size >= ( double ) SIZE_ONE_KBYTE && size < ( double ) SIZE_ONE_MBYTE ) {
+					s  = size / SIZE_ONE_KBYTE;
+					st = UNIT_KBYTE;
+				}
+				else {
+					s = size;
+					st = UNIT_BYTE;
+				}
+			}
+		}
+	}
+	if ( *DEBUG_INFO_ENABLED )
+		std::cerr << "node " << qPrintable(standON->getFullPath()) << ", size raw: " << size << ", size: " << s << ", size type: " << st <<  std::endl;
+    
+    sprintf ( text,"%.2f",s );
     qtext = tr ( "The size of \"%1\" : \n %2 \n %3 file /%4 directory" )
             .arg ( standON->getNameOf() )
-            .arg ( QString(text)+" "+ tr("MiB") )
+            .arg ( QString(text)+" "+ getSType(st, true) )
             .arg ( mainw->db->getCountFiles ( standON ) )
             .arg ( mainw->db->getCountDirs ( standON ) );
 

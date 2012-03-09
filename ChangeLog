@@ -8,6 +8,7 @@
 	- extension column at finddialog added (#3496363)
 	- crash at closing file duplicates dialog fixed
 	- disable menubar and toolbar if finddialog is open
+	- calculate size from nodes fixed
 
 07. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
 	- storing adddialog size and position added

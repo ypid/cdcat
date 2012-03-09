@@ -1939,18 +1939,21 @@ double DataBase::getSize ( Node *s, int level ) {
 	double v = 0.0;
 	if ( s->type == HC_FILE ) {
 		switch ( ( ( DBFile * ) ( s->data ) )->sizeType ) {
-			case 0:
-				v += ( ( ( DBFile * ) ( s->data ) )->size ) / ( 1024 * 1024 );
-				break; //byte
-			case 1:
-				v += ( ( ( DBFile * ) ( s->data ) )->size ) / 1024;
-				break; //Kb
-			case 2:
+			case UNIT_BYTE:
 				v += ( ( ( DBFile * ) ( s->data ) )->size );
+				break; //byte
+			case UNIT_KBYTE:
+				v += ( ( ( DBFile * ) ( s->data ) )->size ) * 1024.0;
+				break; //Kb
+			case UNIT_MBYTE:
+				v += ( ( ( DBFile * ) ( s->data ) )->size ) * 1024.0 * 1024.0;
 				break; //Mb
-			case 3:
-				v += ( ( ( DBFile * ) ( s->data ) )->size ) * 1024;
+			case UNIT_GBYTE:
+				v += ( ( ( DBFile * ) ( s->data ) )->size ) * 1024.0* 1024.0 * 1024.0;
 				break; //Gb
+			case UNIT_TBYTE:
+				v += ( ( ( DBFile * ) ( s->data ) )->size ) * 1024.0 *1024.0* 1024.0 * 1024.0;
+				break; //Tb
 		}
 	}
 	if ( s->child != NULL )
@@ -1958,6 +1961,7 @@ double DataBase::getSize ( Node *s, int level ) {
 	if ( level != 0 )
 		if ( s->next  != NULL )
 			v += getSize ( s->next, level + 1 );
+	
 	return v;
 }
 
