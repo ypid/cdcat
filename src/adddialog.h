@@ -160,7 +160,6 @@ private:
 
 public slots:
 	void doCancelReceived(bool);
-    void SLO ( bool );
 };
 
 void progress ( PWw *p, long long int progress_step=0 );
