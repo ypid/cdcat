@@ -1830,7 +1830,7 @@ int GuiSlave::showContent ( void ) {
 			while(!FileContentProcess.waitForFinished() || FileContentProcess.state() == QProcess::Running) {
 				if(mainw->app->hasPendingEvents())
 					mainw->app->processEvents();
-				sleep(0.250);
+				usleep(250);
 			}
 			QByteArray result = FileContentProcess.readAll();
 			//delete (( ( DBContent * ) ( mynode->data ) )->bytes);
