@@ -48,11 +48,6 @@
         <source>unknown</source>
         <translation type="unfinished">Sconosciuto</translation>
     </message>
-    <message>
-        <location filename="../dbase.h" line="272"/>
-        <source></source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>CatalogTypeEditDialog</name>
@@ -2008,42 +2003,42 @@ diventerà
 <context>
     <name>SelReadable</name>
     <message>
-        <location filename="../selreadable.cpp" line="538"/>
+        <location filename="../selreadable.cpp" line="533"/>
         <source>Select readable items</source>
         <translation>Seleziona elemento leggibile</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="548"/>
+        <location filename="../selreadable.cpp" line="543"/>
         <source>Read mp3 tags</source>
         <translation>Leggi i tag mp3</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="563"/>
+        <location filename="../selreadable.cpp" line="559"/>
         <source>Store content of some files</source>
         <translation>Salva il contenuto di alcuni files</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="576"/>
+        <location filename="../selreadable.cpp" line="572"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="577"/>
+        <location filename="../selreadable.cpp" line="573"/>
         <source>Cancel</source>
         <translation>Annulla</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="573"/>
+        <location filename="../selreadable.cpp" line="569"/>
         <source>content size limit in kByte</source>
         <translation>limite della dimensione del contenuto in kByte</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="569"/>
+        <location filename="../selreadable.cpp" line="565"/>
         <source>; separated list of readable file patterns</source>
         <translation>; regola per separare le liste dei files e renderla leggibile</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="559"/>
+        <location filename="../selreadable.cpp" line="554"/>
         <source>Default tag</source>
         <translation>Tag di default</translation>
     </message>
@@ -2053,7 +2048,7 @@ diventerà
         <translation>Versione</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="561"/>
+        <location filename="../selreadable.cpp" line="556"/>
         <source>Read mp3 technical info as comment (bitrate,freq,length...)</source>
         <translation>Leggi le info tecniche degli mp3 come commenti (bitrate,freq,lunghe...)</translation>
     </message>
@@ -2063,188 +2058,198 @@ diventerà
         <translation type="obsolete">Leggi le info tecniche degli avi come commenti (codec,lunghe...)</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="562"/>
+        <location filename="../selreadable.cpp" line="558"/>
         <source>Read avi technical info as comment (codecs,length,...)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="541"/>
+        <location filename="../selreadable.cpp" line="536"/>
         <source>Supported extensions:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="539"/>
+        <location filename="../selreadable.cpp" line="534"/>
         <source>Archive file display options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="540"/>
+        <location filename="../selreadable.cpp" line="535"/>
         <source>Scan for archive file list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="567"/>
+        <location filename="../selreadable.cpp" line="563"/>
         <source>Read some technical info using mediainfo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="550"/>
+        <location filename="../selreadable.cpp" line="545"/>
         <source>Read thumbnails from pictures</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="556"/>
+        <location filename="../selreadable.cpp" line="551"/>
         <source>Read EXIF data from pictures</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="554"/>
+        <location filename="../selreadable.cpp" line="549"/>
         <source>x</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="571"/>
+        <location filename="../selreadable.cpp" line="567"/>
         <source>; separated list of image file extensions, e.g. png;jpg;gif</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="516"/>
+        <location filename="../selreadable.cpp" line="511"/>
         <source>Path to external content viewer (found)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="521"/>
+        <location filename="../selreadable.cpp" line="516"/>
         <source>Path to external content viewer (not found)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="502"/>
+        <location filename="../selreadable.cpp" line="497"/>
         <source>Choose path to external context viewer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="565"/>
+        <location filename="../selreadable.cpp" line="561"/>
         <source>...</source>
         <translation type="unfinished">...</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="566"/>
+        <location filename="../selreadable.cpp" line="562"/>
         <source>Select external viewer...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="155"/>
+        <location filename="../selreadable.cpp" line="150"/>
         <source>KiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="348"/>
+        <location filename="../selreadable.cpp" line="343"/>
         <source>lib7zip found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="351"/>
+        <location filename="../selreadable.cpp" line="346"/>
         <source>lib7zip not supported</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="353"/>
+        <location filename="../selreadable.cpp" line="348"/>
         <source>Archive support:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="381"/>
+        <location filename="../selreadable.cpp" line="376"/>
         <source>mediainfo not found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="383"/>
+        <location filename="../selreadable.cpp" line="378"/>
         <source>mediainfo found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="384"/>
+        <location filename="../selreadable.cpp" line="379"/>
         <source>mediainfo status:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="542"/>
+        <location filename="../selreadable.cpp" line="537"/>
         <source>Permission</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="543"/>
+        <location filename="../selreadable.cpp" line="538"/>
         <source>User</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="544"/>
+        <location filename="../selreadable.cpp" line="539"/>
         <source>Group</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="545"/>
+        <location filename="../selreadable.cpp" line="540"/>
         <source>Size</source>
         <translation type="unfinished">Dimensione</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="546"/>
+        <location filename="../selreadable.cpp" line="541"/>
         <source>Date</source>
         <translation type="unfinished">Data</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="547"/>
+        <location filename="../selreadable.cpp" line="542"/>
         <source>Comment</source>
         <translation type="unfinished">Commento</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="549"/>
+        <location filename="../selreadable.cpp" line="544"/>
         <source>Read thumbnails</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="551"/>
+        <location filename="../selreadable.cpp" line="546"/>
         <source>Size:</source>
         <translation type="unfinished">Dimensioni:</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="552"/>
+        <location filename="../selreadable.cpp" line="547"/>
         <source>Thumbnail size (width) in pixels</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="553"/>
+        <location filename="../selreadable.cpp" line="548"/>
         <source>Thumbnail size (height) in pixels</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="564"/>
+        <location filename="../selreadable.cpp" line="560"/>
         <source>Use external file content viewer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="568"/>
+        <location filename="../selreadable.cpp" line="564"/>
         <source>file patterns:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="570"/>
+        <location filename="../selreadable.cpp" line="566"/>
         <source>File extensions:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="572"/>
+        <location filename="../selreadable.cpp" line="568"/>
         <source>max size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="574"/>
+        <location filename="../selreadable.cpp" line="570"/>
         <source>exclude files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="575"/>
+        <location filename="../selreadable.cpp" line="571"/>
         <source>; separated list of skip file patterns (regular expression)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../selreadable.cpp" line="555"/>
+        <source>Read mp3 info as comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../selreadable.cpp" line="557"/>
+        <source>Read avi info as comment</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

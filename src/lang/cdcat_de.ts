@@ -40,6 +40,10 @@
       <source>unknown</source>
       <translation>unbekannt</translation>
     </message>
+    <message>
+      <source></source>
+      <translation type="unfinished" />
+    </message>
   </context>
   <context>
     <name>CatalogTypeEditDialog</name>
@@ -1712,6 +1716,14 @@ wird zu
     <message>
       <source>; separated list of skip file patterns (regular expression)</source>
       <translation>;-getrennte Liste von Dateien zum Überspringen (regurärer Ausdruck)</translation>
+    </message>
+    <message>
+      <source>Read mp3 info as comment</source>
+      <translation>MP3-Info's als Kommentar lesen</translation>
+    </message>
+    <message>
+      <source>Read avi info as comment</source>
+      <translation>AVI-Info's als Kommentar lesen</translation>
     </message>
   </context>
   <context>

@@ -103,6 +103,7 @@ class SelReadable : public QDialog {
 	
 	protected:
 		Q3VBoxLayout* SelReadableLayout;
+		Q3HBoxLayout* layoutInfo;
 		Q3HBoxLayout* layout12;
 		Q3VBoxLayout* layout11;
 		Q3HBoxLayout* layout9;

@@ -109,17 +109,12 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	
 	SelReadableLayout->addLayout ( layout1 );
 	
+	layoutInfo = new Q3HBoxLayout ( 0, 0, 6, "layoutInfo" );
 	cbInfo = new QCheckBox ( this, "cbInfo" );
-	SelReadableLayout->addWidget ( cbInfo );
-
-	line0 = new Q3Frame ( this, "line0" );
-	line0->setFrameShape ( Q3Frame::HLine );
-	line0->setFrameShadow ( Q3Frame::Sunken );
-	line0->setFrameShape ( Q3Frame::HLine );
-	SelReadableLayout->addWidget ( line0 );
-
 	cbaInfo = new QCheckBox ( this, "cbaInfo" );
-	SelReadableLayout->addWidget ( cbaInfo );
+	layoutInfo->addWidget ( cbaInfo );
+	layoutInfo->addWidget ( cbInfo );
+	SelReadableLayout->addLayout ( layoutInfo );
 
 	line1 = new Q3Frame ( this, "line1" );
 	line1->setFrameShape ( Q3Frame::HLine );
@@ -557,9 +552,10 @@ void SelReadable::languageChange() {
 #endif
 	
 	labelDefaultMp3TagVersion->setText ( tr ( "Default tag" ) );
-	
-	cbInfo->setText ( tr ( "Read mp3 technical info as comment (bitrate,freq,length...)" ) );
-	cbaInfo->setText ( tr ( "Read avi technical info as comment (codecs,length,...)" ) );
+	cbInfo->setText ( tr ( "Read mp3 info as comment" ) );
+	cbInfo->setToolTip( tr ( "Read mp3 technical info as comment (bitrate,freq,length...)" ) );
+	cbaInfo->setText ( tr ( "Read avi info as comment" ) );
+	cbaInfo->setToolTip ( tr ( "Read avi technical info as comment (codecs,length,...)" ) );
 	cbCont->setText ( tr ( "Store content of some files" ) );
 	cbUseExternalContentViewer->setText( tr("Use external file content viewer") );
 	buttonUseExternalContentViewer->setText( tr("...") );
