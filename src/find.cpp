@@ -145,12 +145,14 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		cbSizeUnitMin->addItem ( tr ( "KiB" ) );
 		cbSizeUnitMin->addItem ( tr ( "MiB" ) );
 		cbSizeUnitMin->addItem ( tr ( "GiB" ) );
+		cbSizeUnitMin->addItem ( tr ( "TiB" ) );
 
 		cbSizeUnitMax = new QComboBox ( false, this, "cbSizeUnitMax" );
 		cbSizeUnitMax->addItem ( tr ( "Byte" ) );
 		cbSizeUnitMax->addItem ( tr ( "KiB" ) );
 		cbSizeUnitMax->addItem ( tr ( "MiB" ) );
 		cbSizeUnitMax->addItem ( tr ( "GiB" ) );
+		cbSizeUnitMax->addItem ( tr ( "TiB" ) );
 
 		spSizeMin = new QSpinBox ( this, "spSizeMin" );
 		spSizeMin->setMinimum ( 1 );
