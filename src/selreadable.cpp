@@ -217,6 +217,17 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	cbExif = new QCheckBox ( this, "cbExif" );
 	SelReadableLayout->addWidget ( cbExif );
 #endif
+	
+	layoutExcludeFiles = new Q3HBoxLayout ( 0, 0, 6, "layoutExcludeFiles" );
+	cbDoExcludeFiles = new QCheckBox ( this, "cbDoExcludeFiles" );
+	labelExcludeFiles = new QLabel ( this, "labelExcludeFiles" );
+	lineExcludeFiles = new QLineEdit (this, "lineExcludeFiles");
+	layoutExcludeFiles->addWidget ( cbDoExcludeFiles );
+	layoutExcludeFiles->addWidget (labelExcludeFiles);
+	layoutExcludeFiles->addWidget (lineExcludeFiles);
+	
+	SelReadableLayout->addLayout ( layoutExcludeFiles );
+	
 	layoutButtons = new Q3HBoxLayout ( 0, 0, 6, "layoutButtons" );
 	QSpacerItem* spacer_2 = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	layoutButtons->addItem ( spacer_2 );
@@ -239,6 +250,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	connect ( cbThumb, SIGNAL ( stateChanged ( int ) ), this, SLOT ( schanged ( int ) ) );
 	connect ( cpScanArchive, SIGNAL ( stateChanged ( int ) ), this, SLOT ( schanged(int)) );
 	connect ( cbUseExternalContentViewer, SIGNAL ( stateChanged ( int ) ), this, SLOT ( schanged(int)) );
+	connect ( cbDoExcludeFiles , SIGNAL ( stateChanged ( int ) ), this, SLOT ( schanged(int)) );
 	connect ( buttonOK, SIGNAL ( clicked() ), this, SLOT ( sok() ) );
 	connect ( buttonCancel, SIGNAL ( clicked() ), this, SLOT ( scan() ) );
 	connect ( buttonUseExternalContentViewer, SIGNAL ( clicked() ), this, SLOT ( selectExternalContentViewer() ) );
@@ -372,6 +384,9 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	labFileInfoExtensions->setText ( tr ( "mediainfo status:" )+ " "+fileinfo_libfound_text);
 	labFileInfoExtensionsStatusIcon->setToolTip(tr("Supported extensions:")+"&nbsp;" + SupportedFileInfoExtensions );
 	
+	cbDoExcludeFiles->setChecked(conf->doExcludeFiles);
+	lineExcludeFiles->setText(conf->ExcludeFileList.join(";"));
+	
 	schanged ( 0 );
 }
 
@@ -432,7 +447,12 @@ int SelReadable::schanged ( int ) {
 		labArchiveExtensions->setEnabled(false);
 		labArchiveExtensionsStatusIcon->setEnabled(false);
 	}
-
+	
+	if(cbDoExcludeFiles->isChecked())
+		lineExcludeFiles->setEnabled(true);
+	else
+		lineExcludeFiles->setEnabled(false);
+	
 	return 0;
 }
 
@@ -465,7 +485,9 @@ int SelReadable::sok ( void ) {
 		conf->v1_over_v2  = true;
 	else
 		conf->v1_over_v2  = false;
-
+	conf->doExcludeFiles  = cbDoExcludeFiles->isChecked();
+	conf->ExcludeFileList = lineExcludeFiles->text().split(";");
+	
 	close();
 	return 0;
 }
@@ -549,6 +571,8 @@ void SelReadable::languageChange() {
 	thumbLineExts->setToolTip ( tr ( "; separated list of image file extensions, e.g. png;jpg;gif" ) );
 	labelContentSize->setText ( tr ( "max size:" ) );
 	maxSpinBox->setToolTip( tr ( "content size limit in kByte" ) );
+	cbDoExcludeFiles->setText(tr("exclude files"));
+	lineExcludeFiles->setToolTip(tr("; separated list of skip file patterns (regular expression)"));
 	buttonOK->setText ( tr ( "Ok" ) );
 	buttonCancel->setText ( tr ( "Cancel" ) );
 }

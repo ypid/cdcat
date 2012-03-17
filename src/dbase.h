@@ -350,12 +350,16 @@ class DataBase : public QObject {
 		bool doScanArchiveLib7zip;
 		bool storeExifData;
 		bool storeThumb;
+		bool doExcludeFiles;
 		
 		int thumbWidth;
 		int thumbHeight;
 		
 		QString XML_ENCODING;
 		QStringList ThumbExtsList;
+		QStringList ExcludeFileList;
+		
+		QList<QRegExp> excludeFileRegExList;
 		
 		void  setDBName ( QString n );
 		void  setDBOwner ( QString o );

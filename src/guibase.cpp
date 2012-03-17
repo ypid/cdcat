@@ -901,12 +901,26 @@ int GuiSlave::newEvent ( void ) {
         panelsOFF();
         if ( mainw->db == NULL ) {
             mainw->db = new DataBase();
-            mainw->db->setDoArchiveScan(mainw->cconfig->doScanArchive);
         }
         mainw->db->setDBName ( d->nameD );
         mainw->db->setDBOwner ( d->ownerD );
         mainw->db->setComment ( d->commD );
         mainw->db->setCategory ( d->categoryD );
+	mainw->db->storeMp3tags     = mainw->cconfig->readtag;
+	mainw->db->v1_over_v2       = mainw->cconfig->v1_over_v2;
+	mainw->db->storeMp3techinfo = mainw->cconfig->readinfo;
+	mainw->db->storeAvitechinfo = mainw->cconfig->readavii;
+	mainw->db->storeFileInfo = mainw->cconfig->usefileinfo;
+	mainw->db->storeContent = mainw->cconfig->readcontent;
+	mainw->db->storeExifData = mainw->cconfig->storeExifData;
+	mainw->db->storeThumb = mainw->cconfig->storeThumb;
+	mainw->db->ThumbExtsList = mainw->cconfig->ThumbExtsList;
+	mainw->db->thumbWidth = mainw->cconfig->thumbWidth;
+	mainw->db->thumbHeight = mainw->cconfig->thumbHeight;
+	mainw->db->storeLimit      = mainw->cconfig->readclimit;
+	mainw->db->storedFiles = mainw->cconfig->readcfiles;
+        mainw->db->doExcludeFiles = mainw->cconfig->doExcludeFiles;
+	mainw->db->ExcludeFileList = mainw->cconfig->ExcludeFileList;
         panelsON();
     }
     return 0;
@@ -1167,6 +1181,9 @@ int GuiSlave::addEvent ( void ) {
     mainw->db->thumbHeight = mainw->cconfig->thumbHeight;
     mainw->db->storeLimit      = mainw->cconfig->readclimit;
     mainw->db->storedFiles = mainw->cconfig->readcfiles;
+    mainw->db->doExcludeFiles = mainw->cconfig->doExcludeFiles;
+    mainw->db->ExcludeFileList = mainw->cconfig->ExcludeFileList;
+
     if(*DEBUG_INFO_ENABLED)
 	cerr<<"ADDEVENT-1"<<endl;
     PWw *pww = new PWw ( mainw,mainw->app, false, 0, tr("Scanning directory tree, please wait..."));

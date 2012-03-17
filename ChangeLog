@@ -4,6 +4,8 @@
 	- tb size unit on find dialog added
 	- searching file size on finddialog fixed
 	- selreadable dialog reworked
+	- config dialog reworked
+	- exclude file support added (regex, filename)
 
 09. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
 	- option for display file content with external viewer added (#982070)

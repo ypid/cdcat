@@ -40,10 +40,6 @@
       <source>unknown</source>
       <translation>unbekannt</translation>
     </message>
-    <message>
-      <source></source>
-      <translation type="unfinished" />
-    </message>
   </context>
   <context>
     <name>CatalogTypeEditDialog</name>
@@ -623,6 +619,10 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     <message>
       <source>Show progressed file at scanning in status label</source>
       <translation>Zu verarbeitende Datei beim Durchsuchen in Statusleiste anzeigen</translation>
+    </message>
+    <message>
+      <source>font size</source>
+      <translation>Schriftgröße</translation>
     </message>
   </context>
   <context>
@@ -1704,6 +1704,14 @@ wird zu
     <message>
       <source>max size:</source>
       <translation>max. Größe:</translation>
+    </message>
+    <message>
+      <source>exclude files</source>
+      <translation>Dateien ausschließen</translation>
+    </message>
+    <message>
+      <source>; separated list of skip file patterns (regular expression)</source>
+      <translation>;-getrennte Liste von Dateien zum Überspringen (regurärer Ausdruck)</translation>
     </message>
   </context>
   <context>

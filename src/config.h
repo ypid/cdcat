@@ -76,6 +76,7 @@ class CdCatConfig : public QObject {
 		bool saveAlwaysCatalogInUtf8;
 		bool showProgressedFileInStatus;
 		bool doScanArchive;
+		bool doExcludeFiles;
 		bool useExternalContentViewer;
 		
 		
@@ -88,6 +89,7 @@ class CdCatConfig : public QObject {
 
 		QStringList hlist;
 		QStringList ThumbExtsList;
+		QStringList ExcludeFileList;
 		QSize   windowSize;
 		QPoint  windowPos;
 		int windowSize_height;

@@ -51,6 +51,7 @@ class SelReadable : public QDialog {
 		QCheckBox* cbFileInfo;
 		QCheckBox* cbThumb;
 		QCheckBox* cbUseExternalContentViewer;
+		QCheckBox* cbDoExcludeFiles;
 		QSpinBox *thumbWidthSpinBox;
 		QSpinBox *thumbHeightSpinBox;
 		QSpinBox* maxSpinBox;
@@ -60,6 +61,7 @@ class SelReadable : public QDialog {
 		QLineEdit *lineFiles;
 		QLineEdit *thumbLineExts;
 		QLineEdit *lineeditPathExternalContentViewer;
+		QLineEdit *lineExcludeFiles;
 		
 		Q3Frame* line6;
 		Q3Frame* line7;
@@ -81,6 +83,7 @@ class SelReadable : public QDialog {
 		QLabel *labThumbExts;
 		QLabel *labelExternalContentViewer;
 		QLabel *labelDefaultMp3TagVersion;
+		QLabel *labelExcludeFiles;
 		
 		QGroupBox *groupBoxShowArchiveFileOpts;
 		QCheckBox* cpScanArchive;
@@ -111,6 +114,7 @@ class SelReadable : public QDialog {
 		Q3HBoxLayout* layoutThumbExts;
 		Q3HBoxLayout* layoutExternalContentViewer;
 		Q3HBoxLayout* layoutFileInfo;
+		Q3HBoxLayout* layoutExcludeFiles;
 		Q3GridLayout* layoutShowArchiveFileOptionsGroup;
 
 		QString SupportedExtensions;

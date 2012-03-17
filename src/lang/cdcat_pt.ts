@@ -48,66 +48,61 @@
         <source>unknown</source>
         <translation type="unfinished">desconhecido</translation>
     </message>
-    <message>
-        <location filename="../dbase.h" line="272"/>
-        <source></source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>CatalogTypeEditDialog</name>
     <message>
-        <location filename="../guibase.cpp" line="2146"/>
+        <location filename="../guibase.cpp" line="2163"/>
         <source>Change media type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2147"/>
+        <location filename="../guibase.cpp" line="2164"/>
         <source>Change type of media</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2149"/>
+        <location filename="../guibase.cpp" line="2166"/>
         <source>CD</source>
         <translation type="unfinished">CD</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2150"/>
+        <location filename="../guibase.cpp" line="2167"/>
         <source>DVD</source>
         <translation type="unfinished">DVD</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2151"/>
+        <location filename="../guibase.cpp" line="2168"/>
         <source>HardDisc</source>
         <translation type="unfinished">Disco Duro</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2152"/>
+        <location filename="../guibase.cpp" line="2169"/>
         <source>Floppy</source>
         <translation type="unfinished">Disquete</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2153"/>
+        <location filename="../guibase.cpp" line="2170"/>
         <source>NetworkPlace</source>
         <translation type="unfinished">Rede</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2154"/>
+        <location filename="../guibase.cpp" line="2171"/>
         <source>FlashDrive</source>
         <translation type="unfinished">Disco Flash</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2155"/>
+        <location filename="../guibase.cpp" line="2172"/>
         <source>OtherDevice</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2158"/>
+        <location filename="../guibase.cpp" line="2175"/>
         <source>Cancel</source>
         <translation type="unfinished">Cancelar</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2159"/>
+        <location filename="../guibase.cpp" line="2176"/>
         <source>OK</source>
         <translation type="unfinished">OK</translation>
     </message>
@@ -115,12 +110,12 @@
 <context>
     <name>CdCatConfig</name>
     <message>
-        <location filename="../config.cpp" line="203"/>
+        <location filename="../config.cpp" line="204"/>
         <source>Error during autoload...</source>
         <translation>Erro durante o carregamento automático...</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="205"/>
+        <location filename="../config.cpp" line="206"/>
         <source>I can&apos;t open the autoload catalog.
 Check the file, or change the autoload option in the config dialog!
 </source>
@@ -133,7 +128,7 @@ Verifique o ficheiro, ou mude a opção de carregamento automático na janela de
         <translation type="obsolete">Ok</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="205"/>
+        <location filename="../config.cpp" line="206"/>
         <source>I can&apos;t open the autoload catalog according the first command line parameter.
 Check the file!
 </source>
@@ -148,22 +143,22 @@ It is necessary couse I&apos;d like to save the config file into your home direc
 Ele é necessária para guardar o ficheiro de configuração na sua directoria pessoal.</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1105"/>
+        <location filename="../config.cpp" line="1124"/>
         <source>I can&apos;t create or rewrite the ./cdcat.cfg file </source>
         <translation>Impossivél criar ou reescrever o ficheiro ./cdcat.cfg </translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1107"/>
+        <location filename="../config.cpp" line="1126"/>
         <source>I can&apos;t create or rewrite the $(HOME)/.cdcatconfig file </source>
         <translation>Impossível criar ou reescrever o ficheiro $HOME/.cdcat.config </translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1107"/>
+        <location filename="../config.cpp" line="1126"/>
         <source>Error while saving config file...</source>
         <translation>Erro ao guardar o ficheiro de configuração...</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="798"/>
+        <location filename="../config.cpp" line="811"/>
         <source>I can&apos;t get the $HOME environment variable.
 It is necessary because I&apos;d like to save the config file into your home directory.</source>
         <translation type="unfinished"></translation>
@@ -714,32 +709,32 @@ It is necessary because I&apos;d like to save the config file into your home dir
 <context>
     <name>ConfigDialog</name>
     <message>
-        <location filename="../config.cpp" line="1399"/>
+        <location filename="../config.cpp" line="1413"/>
         <source>Configure  CdCat...</source>
         <translation>Configurar  CdCat...</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1400"/>
+        <location filename="../config.cpp" line="1414"/>
         <source>Autoload DataBase on startup</source>
         <translation>Carregamento automático de base de dados no arranque</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1402"/>
+        <location filename="../config.cpp" line="1416"/>
         <source>Save the XML-db.file nicer format(needs more space)</source>
         <translation>Guardar em formato XML-db (ocupa mais espaço)</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1403"/>
+        <location filename="../config.cpp" line="1417"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1404"/>
+        <location filename="../config.cpp" line="1418"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1407"/>
+        <location filename="../config.cpp" line="1422"/>
         <source>Application font size.(must restart cdcat!) </source>
         <translation>Tamanho da fonte da aplicação. (Reiniciar cdcat!)</translation>
     </message>
@@ -749,37 +744,37 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Base de dados do CdCat (*.hcf)</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1409"/>
+        <location filename="../config.cpp" line="1424"/>
         <source>Path to cdrom device</source>
         <translation>Caminho para o cdrom</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1412"/>
+        <location filename="../config.cpp" line="1427"/>
         <source>Scanning: mount cdrom at start / eject when finish</source>
         <translation>Varrer: montar o cdrom no início / ejectar quando finalizado</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1406"/>
+        <location filename="../config.cpp" line="1420"/>
         <source>Use own font size</source>
         <translation>Usar tamanho de letra próprio</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1408"/>
+        <location filename="../config.cpp" line="1423"/>
         <source>Number of history entries</source>
         <translation>Número de entradas no histórico</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1437"/>
+        <location filename="../config.cpp" line="1452"/>
         <source>Choose path to cdrom!</source>
         <translation>Escolha o caminho para o cdrom!</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1420"/>
+        <location filename="../config.cpp" line="1435"/>
         <source>The language of CdCat interface</source>
         <translation>Linguagem de interface do CdCat</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1430"/>
+        <location filename="../config.cpp" line="1445"/>
         <source>Choose a file to load automatically!</source>
         <translation>Esolha um ficheiro para abertura atomática!</translation>
     </message>
@@ -789,60 +784,65 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Salvar automaticamente a base de dados depois de cada varredura (por razões de segurança)</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1405"/>
+        <location filename="../config.cpp" line="1419"/>
         <source>Select additional items to read</source>
         <translation>Selecionar items adicionais para ler</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1401"/>
+        <location filename="../config.cpp" line="1415"/>
         <source>Automatically save the database after every scan (for safety sake)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1423"/>
+        <location filename="../config.cpp" line="1438"/>
         <source>Display debug info on console</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1430"/>
+        <location filename="../config.cpp" line="1445"/>
         <source>CdCat databases (*.hcf )</source>
         <translation type="unfinished">Bases de dados do CdCat (*.hcf )</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1424"/>
+        <location filename="../config.cpp" line="1439"/>
         <source>Save catalogs always as UTF8</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1425"/>
+        <location filename="../config.cpp" line="1440"/>
         <source>Show progressed file at scanning in status label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../config.cpp" line="1421"/>
+        <source>font size</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>DataBase</name>
     <message>
-        <location filename="../dbase.cpp" line="661"/>
+        <location filename="../dbase.cpp" line="677"/>
         <source>I can&apos;t rewrite the file: %1</source>
         <translation>Impossível reescrever o ficheiro: %1</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="686"/>
+        <location filename="../dbase.cpp" line="702"/>
         <source>I can&apos;t create the file: %1</source>
         <translation>Impossível criar o ficheiro: %1</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1853"/>
+        <location filename="../dbase.cpp" line="1881"/>
         <source>I can&apos;t open the file: %1</source>
         <translation>Impossível abrir o ficheiro: %1</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="887"/>
+        <location filename="../dbase.cpp" line="903"/>
         <source>Cannot read directory: %1</source>
         <translation>Impossível ler a directoria: %1</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1889"/>
+        <location filename="../dbase.cpp" line="1917"/>
         <source>Error</source>
         <translation>Erro</translation>
     </message>
@@ -852,7 +852,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Ignorar directoria</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="891"/>
+        <location filename="../dbase.cpp" line="907"/>
         <source>Cancel scanning</source>
         <translation>Cancelar a varredura</translation>
     </message>
@@ -862,47 +862,47 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Ligação simbólica#aponta para:</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1889"/>
+        <location filename="../dbase.cpp" line="1917"/>
         <source>Error while parsing file: %1</source>
         <translation>Erro ao analisar o ficheiro: %1</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="710"/>
+        <location filename="../dbase.cpp" line="726"/>
         <source>No database opened!</source>
         <translation>Nenhuma base de dados aberta!</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="889"/>
+        <location filename="../dbase.cpp" line="905"/>
         <source>Cannot read file: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="891"/>
+        <location filename="../dbase.cpp" line="907"/>
         <source>Ignore</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="963"/>
+        <location filename="../dbase.cpp" line="991"/>
         <source>Symbolic link to file:#</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1018"/>
+        <location filename="../dbase.cpp" line="1046"/>
         <source>Symbolic link to directory:#</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1042"/>
+        <location filename="../dbase.cpp" line="1070"/>
         <source>DEAD Symbolic link to:#</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1052"/>
+        <location filename="../dbase.cpp" line="1080"/>
         <source>System file (e.g. FIFO, socket or device file)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1877"/>
+        <location filename="../dbase.cpp" line="1905"/>
         <source>Not enough memory to open the file: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -937,12 +937,12 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1668"/>
+        <location filename="../dbase.cpp" line="1696"/>
         <source>device </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1684"/>
+        <location filename="../dbase.cpp" line="1712"/>
         <source> link to </source>
         <translation type="unfinished"></translation>
     </message>
@@ -968,42 +968,42 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Catalogo</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1588"/>
+        <location filename="../guibase.cpp" line="1605"/>
         <source>Unknown(DB)</source>
         <translation>Desconhecido(BD)</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1592"/>
+        <location filename="../guibase.cpp" line="1609"/>
         <source>CD</source>
         <translation>CD</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1596"/>
+        <location filename="../guibase.cpp" line="1613"/>
         <source>DVD</source>
         <translation>DVD</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1600"/>
+        <location filename="../guibase.cpp" line="1617"/>
         <source>HardDisc</source>
         <translation>Disco Duro</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1604"/>
+        <location filename="../guibase.cpp" line="1621"/>
         <source>Floppy</source>
         <translation>Disquete</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1608"/>
+        <location filename="../guibase.cpp" line="1625"/>
         <source>NetworkDrv</source>
         <translation>Rede</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1612"/>
+        <location filename="../guibase.cpp" line="1629"/>
         <source>FlashDrv</source>
         <translation>Disco Flash</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1616"/>
+        <location filename="../guibase.cpp" line="1633"/>
         <source>OtherDevice</source>
         <translation>Outro</translation>
     </message>
@@ -1023,17 +1023,17 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Hyper&apos;s CD Catalogador</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1514"/>
+        <location filename="../guibase.cpp" line="1531"/>
         <source>CdCat databases (*.hcf )</source>
         <translation>Bases de dados do CdCat (*.hcf )</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="921"/>
+        <location filename="../guibase.cpp" line="935"/>
         <source>Open a file...</source>
         <translation>Abrir ficheiro...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1935"/>
+        <location filename="../guibase.cpp" line="1952"/>
         <source>Error while opening...</source>
         <translation>Erro ao abrir...</translation>
     </message>
@@ -1043,69 +1043,69 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Ok</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1050"/>
+        <location filename="../guibase.cpp" line="1064"/>
         <source>Save to file...</source>
         <translation>Guardar para ficheiro...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1071"/>
+        <location filename="../guibase.cpp" line="1085"/>
         <source>Error while saving...</source>
         <translation>Erro ao gravar...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1099"/>
+        <location filename="../guibase.cpp" line="1113"/>
         <source>Closing previous database...</source>
         <translation>Fechando base de dados anterior...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1099"/>
+        <location filename="../guibase.cpp" line="1113"/>
         <source>Do you want to save the changes?</source>
         <translation>Deseja salvar as alterações?</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1997"/>
+        <location filename="../guibase.cpp" line="2014"/>
         <source>Yes</source>
         <translation>Yes</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1997"/>
+        <location filename="../guibase.cpp" line="2014"/>
         <source>No</source>
         <translation>No</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2011"/>
+        <location filename="../guibase.cpp" line="2028"/>
         <source>Error:</source>
         <translation>Erro:</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1132"/>
+        <location filename="../guibase.cpp" line="1146"/>
         <source>Do you really want to delete this?: 
 %1</source>
         <translation>Deseja eleminar isto?:
 %1</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1995"/>
+        <location filename="../guibase.cpp" line="2012"/>
         <source>Confirmation</source>
         <translation>Confirmação</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1301"/>
+        <location filename="../guibase.cpp" line="1318"/>
         <source>Warning...</source>
         <translation>Aviso...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1416"/>
+        <location filename="../guibase.cpp" line="1433"/>
         <source>You can refresh ONLY a MEDIA node!</source>
         <translation>Só é possivel actualizar um nó do media!</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1514"/>
+        <location filename="../guibase.cpp" line="1531"/>
         <source>Insert a database file...</source>
         <translation>Inserir um ficheiro de base de dados...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1691"/>
+        <location filename="../guibase.cpp" line="1708"/>
         <source>The size of &quot;%1&quot; : 
  %2 
  %3 file /%4 directory</source>
@@ -1114,32 +1114,32 @@ It is necessary because I&apos;d like to save the config file into your home dir
 %3 file /%4 directoria</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1194"/>
+        <location filename="../guibase.cpp" line="1211"/>
         <source>Cannot mount CD</source>
         <translation>Impossível montar o CD</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1359"/>
+        <location filename="../guibase.cpp" line="1376"/>
         <source>Cannot eject CD!</source>
         <translation>Impossível ejectar o CD!</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1194"/>
+        <location filename="../guibase.cpp" line="1211"/>
         <source>I can&apos;t find the &quot;mount&quot; program</source>
         <translation>Não consigo encontrar o programa &quot;mount&quot;</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1377"/>
+        <location filename="../guibase.cpp" line="1394"/>
         <source>Cannot mount CD!</source>
         <translation>Impossível montar o CD!</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1332"/>
+        <location filename="../guibase.cpp" line="1349"/>
         <source>Cannot eject CD</source>
         <translation>Impossível ejectar o CD</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1332"/>
+        <location filename="../guibase.cpp" line="1349"/>
         <source>I can&apos;t find the &quot;eject&quot; program</source>
         <translation>Não consigo encontrar o programa &quot;eject&quot;</translation>
     </message>
@@ -1169,7 +1169,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Inserir Catálgo...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1420"/>
+        <location filename="../guibase.cpp" line="1437"/>
         <source>Rescan %1</source>
         <translation>Actualizar %1</translation>
     </message>
@@ -1179,7 +1179,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Re-numerar media...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1635"/>
+        <location filename="../guibase.cpp" line="1652"/>
         <source>It is NOT a media node!</source>
         <translation>Não é um nó mde media!</translation>
     </message>
@@ -1204,24 +1204,24 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Mostrar/Remover Conteúdo...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2011"/>
+        <location filename="../guibase.cpp" line="2028"/>
         <source>There is no selected item in the middle list box!</source>
         <translation>Não existe item selecionado na lista intermédia!</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1301"/>
+        <location filename="../guibase.cpp" line="1318"/>
         <source>An error occured while scanning,
 the DataBase may be incomplete</source>
         <translation>Ocurreu um erro durante o varrimento,
 a base de dados pode estar imcompleta</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1412"/>
+        <location filename="../guibase.cpp" line="1429"/>
         <source>There is no selected Media in the middle list box!</source>
         <translation>Não existe item selecionado na lista intermédia!</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1432"/>
+        <location filename="../guibase.cpp" line="1449"/>
         <source>An error occured while scanning, the rescan operation was cancelled: 
 %1</source>
         <translation>Ocorreu um erro durante a varrimento, a operação foi cancelada:
@@ -1233,7 +1233,7 @@ a base de dados pode estar imcompleta</translation>
         <translation>Emprestar este media a...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1996"/>
+        <location filename="../guibase.cpp" line="2013"/>
         <source>Do you want to clear the borrowing mark from media &quot;%1&quot;?
 (Say yes if you got it back.)</source>
         <translation>Pretende eliminar a marca de empréstimo do meida &quot;%1&quot;?
@@ -1260,7 +1260,7 @@ a base de dados pode estar imcompleta</translation>
         <translation>Adicionar uma ligação a catálogo CdCat...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1912"/>
+        <location filename="../guibase.cpp" line="1929"/>
         <source>The link is empty.</source>
         <translation>A ligação está vazia.</translation>
     </message>
@@ -1303,17 +1303,17 @@ Página: %3</translation>
         <translation type="obsolete">O resultado:</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1421"/>
+        <location filename="../guibase.cpp" line="1438"/>
         <source>Select directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1696"/>
+        <location filename="../guibase.cpp" line="1713"/>
         <source>The result:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1172"/>
+        <location filename="../guibase.cpp" line="1189"/>
         <source>Scanning directory tree, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1328,17 +1328,17 @@ Página: %3</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1255"/>
+        <location filename="../guibase.cpp" line="1272"/>
         <source>Enter media name...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1256"/>
+        <location filename="../guibase.cpp" line="1273"/>
         <source>Media name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1257"/>
+        <location filename="../guibase.cpp" line="1274"/>
         <source>Media</source>
         <translation type="unfinished">Media</translation>
     </message>
@@ -2001,42 +2001,42 @@ será
 <context>
     <name>SelReadable</name>
     <message>
-        <location filename="../selreadable.cpp" line="516"/>
+        <location filename="../selreadable.cpp" line="538"/>
         <source>Select readable items</source>
         <translation>Seleccionar items a ler</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="526"/>
+        <location filename="../selreadable.cpp" line="548"/>
         <source>Read mp3 tags</source>
         <translation>Ler as tags dos mp3</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="541"/>
+        <location filename="../selreadable.cpp" line="563"/>
         <source>Store content of some files</source>
         <translation>Guardar conteúdo de alguns ficheiros</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="552"/>
+        <location filename="../selreadable.cpp" line="576"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="553"/>
+        <location filename="../selreadable.cpp" line="577"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="551"/>
+        <location filename="../selreadable.cpp" line="573"/>
         <source>content size limit in kByte</source>
         <translation>tamanho do conteúdo em kBytes</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="547"/>
+        <location filename="../selreadable.cpp" line="569"/>
         <source>; separated list of readable file patterns</source>
         <translation>;lista separada dos padrões de ficheiros a ler</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="537"/>
+        <location filename="../selreadable.cpp" line="559"/>
         <source>Default tag</source>
         <translation>Tag por defeito</translation>
     </message>
@@ -2046,7 +2046,7 @@ será
         <translation>versão</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="539"/>
+        <location filename="../selreadable.cpp" line="561"/>
         <source>Read mp3 technical info as comment (bitrate,freq,length...)</source>
         <translation>Ler informação técnica do mp3 como comentário (bitrate, frequência,  duração...)</translation>
     </message>
@@ -2056,72 +2056,72 @@ será
         <translation type="obsolete">Ler informação técnica do avi como comentário (codecs, duração,...)</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="540"/>
+        <location filename="../selreadable.cpp" line="562"/>
         <source>Read avi technical info as comment (codecs,length,...)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="519"/>
+        <location filename="../selreadable.cpp" line="541"/>
         <source>Supported extensions:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="517"/>
+        <location filename="../selreadable.cpp" line="539"/>
         <source>Archive file display options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="518"/>
+        <location filename="../selreadable.cpp" line="540"/>
         <source>Scan for archive file list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="545"/>
+        <location filename="../selreadable.cpp" line="567"/>
         <source>Read some technical info using mediainfo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="528"/>
+        <location filename="../selreadable.cpp" line="550"/>
         <source>Read thumbnails from pictures</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="534"/>
+        <location filename="../selreadable.cpp" line="556"/>
         <source>Read EXIF data from pictures</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="532"/>
+        <location filename="../selreadable.cpp" line="554"/>
         <source>x</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="549"/>
+        <location filename="../selreadable.cpp" line="571"/>
         <source>; separated list of image file extensions, e.g. png;jpg;gif</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="494"/>
+        <location filename="../selreadable.cpp" line="516"/>
         <source>Path to external content viewer (found)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="499"/>
+        <location filename="../selreadable.cpp" line="521"/>
         <source>Path to external content viewer (not found)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="480"/>
+        <location filename="../selreadable.cpp" line="502"/>
         <source>Choose path to external context viewer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="543"/>
+        <location filename="../selreadable.cpp" line="565"/>
         <source>...</source>
         <translation type="unfinished">...</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="544"/>
+        <location filename="../selreadable.cpp" line="566"/>
         <source>Select external viewer...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2131,103 +2131,113 @@ será
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="336"/>
+        <location filename="../selreadable.cpp" line="348"/>
         <source>lib7zip found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="339"/>
+        <location filename="../selreadable.cpp" line="351"/>
         <source>lib7zip not supported</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="341"/>
+        <location filename="../selreadable.cpp" line="353"/>
         <source>Archive support:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="369"/>
+        <location filename="../selreadable.cpp" line="381"/>
         <source>mediainfo not found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="371"/>
+        <location filename="../selreadable.cpp" line="383"/>
         <source>mediainfo found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="372"/>
+        <location filename="../selreadable.cpp" line="384"/>
         <source>mediainfo status:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="520"/>
+        <location filename="../selreadable.cpp" line="542"/>
         <source>Permission</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="521"/>
+        <location filename="../selreadable.cpp" line="543"/>
         <source>User</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="522"/>
+        <location filename="../selreadable.cpp" line="544"/>
         <source>Group</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="523"/>
+        <location filename="../selreadable.cpp" line="545"/>
         <source>Size</source>
         <translation type="unfinished">Tamanho</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="524"/>
+        <location filename="../selreadable.cpp" line="546"/>
         <source>Date</source>
         <translation type="unfinished">Data</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="525"/>
+        <location filename="../selreadable.cpp" line="547"/>
         <source>Comment</source>
         <translation type="unfinished">Comentário</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="527"/>
+        <location filename="../selreadable.cpp" line="549"/>
         <source>Read thumbnails</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="529"/>
+        <location filename="../selreadable.cpp" line="551"/>
         <source>Size:</source>
         <translation type="unfinished">Tamanho:</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="530"/>
+        <location filename="../selreadable.cpp" line="552"/>
         <source>Thumbnail size (width) in pixels</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="531"/>
+        <location filename="../selreadable.cpp" line="553"/>
         <source>Thumbnail size (height) in pixels</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="542"/>
+        <location filename="../selreadable.cpp" line="564"/>
         <source>Use external file content viewer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="546"/>
+        <location filename="../selreadable.cpp" line="568"/>
         <source>file patterns:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="548"/>
+        <location filename="../selreadable.cpp" line="570"/>
         <source>File extensions:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="550"/>
+        <location filename="../selreadable.cpp" line="572"/>
         <source>max size:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../selreadable.cpp" line="574"/>
+        <source>exclude files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../selreadable.cpp" line="575"/>
+        <source>; separated list of skip file patterns (regular expression)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

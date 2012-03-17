@@ -103,6 +103,7 @@ CdCatConfig::CdCatConfig ( void ) {
 	saveAlwaysCatalogInUtf8 = true;
 	showProgressedFileInStatus = true;
 	doScanArchive = true;
+	doExcludeFiles = false;
 	storeThumb = true;
 	
 	readavii   = true;
@@ -774,6 +775,18 @@ int CdCatConfig::readConfig ( void ) {
 						storeExifData = false;
 					continue;
 				}
+				if ( var == "do_exclude_files" ) {
+					if ( val == "true" )
+						doExcludeFiles = true;
+					else
+						doExcludeFiles = false;
+					continue;
+				}
+				if ( var == "exclude_file_list" ) {
+					ExcludeFileList= val.split(';');
+					continue;
+				}
+				
 				
 				std::cerr << "Unknown key found: " << qPrintable(var) << std::endl;
 				error = 1;
@@ -1097,6 +1110,12 @@ int CdCatConfig::writeConfig ( void ) {
 		else
 			str << "store_exif_data=false" << endl;
 		
+		if (doExcludeFiles )
+			str << "do_exclude_files=true" << endl;
+		else
+			str << "do_exclude_files=false" << endl;
+		
+		str << "exclude_file_list=" << ExcludeFileList.join(";") << endl;
 		f.close();
 		return 0;
 	}
@@ -1124,17 +1143,16 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	
 	layout1 = new Q3HBoxLayout ( 0, 0, 6, "layout1" );
 	cbAutoload = new QCheckBox ( this, "cbAutoload" );
-	layout1->addWidget ( cbAutoload );
-	ConfigDialogBaseLayout->addLayout ( layout1, 0, 0 );
-	
-	layout2 = new Q3HBoxLayout ( 0, 0, 6, "layout2" );
 	filename = new QLineEdit ( this, "filename" );
-	layout2->addWidget ( filename );
 	searchButton = new QPushButton ( this, "searchButton" );
 	searchButton->setText ( "..." );
 	searchButton->setFlat ( FALSE );
-	layout2->addWidget ( searchButton );
-	ConfigDialogBaseLayout->addLayout ( layout2, 1, 0 );
+	
+	layout1->addWidget ( cbAutoload );
+	
+	layout1->addWidget ( filename );
+	layout1->addWidget ( searchButton );
+	ConfigDialogBaseLayout->addLayout ( layout1, 0, 0 );
 	
 	line1 = new Q3Frame ( this, "line1" );
 	line1->setFrameShape ( Q3Frame::HLine );
@@ -1142,16 +1160,18 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	line1->setFrameShape ( Q3Frame::HLine );
 	ConfigDialogBaseLayout->addWidget ( line1, 2, 0 );
 	
-	layout3 = new Q3HBoxLayout ( 0, 0, 5, "layout3" );
 	cbOwnFont = new QCheckBox ( "Use own font size", this, "ownfontcb" );
-	layout3->addWidget ( cbOwnFont, 0 );
-	ConfigDialogBaseLayout->addLayout ( layout3, 3, 0 );
+	
 	
 	layout4 = new Q3HBoxLayout ( 0, 0, 5, "layout4" );
 	spinFontSize = new QSpinBox ( this, "spinFontSize" );
 	spinFontSize->setMaximumWidth ( 80 );
-	layout4->addWidget ( spinFontSize );
+	QSpacerItem* fontspacer = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
+	
 	lab = new QLabel ( this, "lab" );
+	layout4->addWidget ( cbOwnFont, 0 );
+	layout1->addItem(fontspacer);
+	layout4->addWidget ( spinFontSize );
 	layout4->addWidget ( lab );
 	ConfigDialogBaseLayout->addLayout ( layout4, 4, 0 );
 	
@@ -1193,12 +1213,6 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	searchButton2->setFlat ( FALSE );
 	layout5->addWidget ( searchButton2 );
 	ConfigDialogBaseLayout->addLayout ( layout5, 10, 0 );
-	
-	line4 = new Q3Frame ( this, "line4" );
-	line4->setFrameShape ( Q3Frame::HLine );
-	line4->setFrameShadow ( Q3Frame::Sunken );
-	line4->setFrameShape ( Q3Frame::HLine );
-	ConfigDialogBaseLayout->addWidget ( line4, 11, 0 );
 	
 #ifndef _WIN32
 	cbMoEj = new QCheckBox ( this, "cbMoEj" );
@@ -1404,7 +1418,8 @@ void ConfigDialog::languageChange() {
 	okButton->setText ( tr ( "Ok" ) );
 	riButton->setText ( tr ( "Select additional items to read" ) );
 	cbOwnFont->setText ( tr ( "Use own font size" ) );
-	lab->setText ( tr ( "Application font size.(must restart cdcat!) " ) );
+	lab->setText ( tr ( "font size" ) );
+	cbOwnFont->setToolTip ( tr ( "Application font size.(must restart cdcat!) " ) );
 	labHistorySize->setText ( tr ( "Number of history entries" ) );
 	cdrom_lab->setText ( tr ( "Path to cdrom device" ) );
 	

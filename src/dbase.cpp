@@ -531,6 +531,8 @@ DataBase::DataBase ( void ) {
 	ThumbExtsList.append("jpeg");
 	ThumbExtsList.append("bmp");
 	storeExifData = true;
+	doExcludeFiles = false;
+	ExcludeFileList.clear();
 	storeLimit      = 32 * 1024;
 	root            = new Node ( HC_CATALOG, NULL );
 	root->data      = ( void * ) new DBCatalog();
@@ -642,6 +644,20 @@ int DataBase::addMedia ( QString what, QString name, int number, int type, QStri
 
 	progress ( pww );
 	pattern = new char[1024];
+	
+	if(doExcludeFiles && !ExcludeFileList.isEmpty() ) {
+		excludeFileRegExList.clear();
+		 for (int i = 0; i < ExcludeFileList.size(); ++i) {
+			QString patt = ExcludeFileList.at(i);
+			QRegExp re;
+			re.setPattern ( QString ( patt ) );
+			re.setPatternSyntax ( QRegExp::Wildcard );
+			if (re.isValid()) {
+				excludeFileRegExList.append(re);
+			}
+		}
+	}
+	
 	returnv = scanFsToNode ( what, tt );
 	delete [] pattern;
 	return returnv;
@@ -904,6 +920,18 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 		
 		if ( showProgressedFileInStatus )
 			emit pathScanned ( fileInfo->filePath() );
+		
+		if (doExcludeFiles) {
+			for (int i = 0; i < excludeFileRegExList.size(); i++) {
+				if ( *DEBUG_INFO_ENABLED )
+						std::cerr << "exclude files: checking regex \"" << qPrintable (excludeFileRegExList.at(i).pattern() ) << "\" against " << qPrintable ( fileInfo->fileName() )<< std::endl;
+				if(excludeFileRegExList.at(i).exactMatch(fileInfo->fileName())) {
+					if ( *DEBUG_INFO_ENABLED )
+						std::cerr << "exclude files: regex \"" << qPrintable (excludeFileRegExList.at(i).pattern() ) << "\" matched against " << qPrintable ( fileInfo->fileName() ) << ", skipping" << std::endl;
+					continue;
+				}
+			}
+		}
 		
 		/* Make a new node */
 		Node *tt = to->child;
