@@ -741,7 +741,7 @@ HQListViewItem::HQListViewItem ( Q3ListView *parent,Q3ListViewItem *after,QStrin
 }
 
 QString HQListViewItem::key ( int column,bool ascending ) const {
-    float value = 0;
+    double value = 0;
     int    mod   = ascending ? etype : 5 - etype ;
 
     switch ( column ) {
@@ -759,7 +759,7 @@ QString HQListViewItem::key ( int column,bool ascending ) const {
             case UNIT_TBYTE: value *= SIZE_ONE_GBYTE *1024; break;
             default: break;
             }
-            return ( ( QString().setNum ( ( float ) value ) )
+            return ( ( QString().setNum ( ( double ) value ) )
                      .rightJustify ( 10,'0' ) )
                    .prepend ( '1'+mod );
         }
@@ -1657,8 +1657,8 @@ int GuiSlave::sizeEvent ( void ) {
 	int   st = UNIT_BYTE;
 	
 	
-	if ( size > ( double ) SIZE_ONE_GBYTE * 1024.0 ) {
-		s  = size / SIZE_ONE_GBYTE * 1024.0;
+	if ( size >= ( double ) SIZE_ONE_GBYTE * 1024.0 ) {
+		s  = size / SIZE_ONE_GBYTE / 1024.0;
 		st = UNIT_TBYTE;
 	}
 	else {

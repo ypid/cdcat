@@ -920,28 +920,28 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 			if ( *DEBUG_INFO_ENABLED )
 				std::cerr << "adding file: " << qPrintable ( fileInfo->fileName() ) << std::endl;
 			
-			float size = fileInfo->size();
-			float s = size;
+			double size = fileInfo->size();
+			double s = size;
 			int   st = UNIT_BYTE;
 // 			if ( *DEBUG_INFO_ENABLED )
 // 				std::cerr << "adding file size: " << s << std::endl;
 			
-			if ( size > ( float ) SIZE_ONE_GBYTE * 1024.0 ) {
-				s  = size / SIZE_ONE_GBYTE * 1024.0;
+			if ( size >= ( double ) SIZE_ONE_GBYTE * 1024.0 ) {
+				s  = size / SIZE_ONE_GBYTE / 1024.0;
 				st = UNIT_TBYTE;
 			}
 			else {
-				if ( size >= ( float ) SIZE_ONE_GBYTE && size < ( float ) SIZE_ONE_GBYTE * 1024.0 ) {
+				if ( size >= ( double ) SIZE_ONE_GBYTE && size < ( double ) SIZE_ONE_GBYTE * 1024.0 ) {
 					s  = size / SIZE_ONE_GBYTE;
 					st = UNIT_GBYTE;
 				}
 				else {
-					if ( size >= ( float ) SIZE_ONE_MBYTE && size < ( float ) SIZE_ONE_GBYTE ) {
+					if ( size >= ( double ) SIZE_ONE_MBYTE && size < ( double ) SIZE_ONE_GBYTE ) {
 						s  = size / SIZE_ONE_MBYTE;
 						st = UNIT_MBYTE;
 					}
 					else {
-						if ( size >= ( float ) SIZE_ONE_KBYTE && size < ( float ) SIZE_ONE_MBYTE ) {
+						if ( size >= ( double ) SIZE_ONE_KBYTE && size < ( double ) SIZE_ONE_MBYTE ) {
 							s  = size / SIZE_ONE_KBYTE;
 							st = UNIT_KBYTE;
 						}
@@ -2250,7 +2250,7 @@ Node * DataBase::getFileNode ( Node *directory, QString name ) {
 
 }
 
-Node * DataBase::putFileNode ( Node *directory, QString name, QDateTime modification, QString comment, int sizeType, float size, QString category, QList<ArchiveFile> archivecontent, QString fileinfo ) {
+Node * DataBase::putFileNode ( Node *directory, QString name, QDateTime modification, QString comment, int sizeType, double size, QString category, QList<ArchiveFile> archivecontent, QString fileinfo ) {
 	Node *t = NULL, *n = NULL;
 
 	n = new Node ( HC_FILE, directory );
@@ -2367,24 +2367,24 @@ QString ArchiveFile::toPrettyString ( bool showAttr, bool showUser, bool showGro
 			ret += "</td>";
 		}
 		if ( showSize ) {
-			float s = size;
+			double s = size;
 			int   st = UNIT_BYTE;
-			if ( size > ( float ) SIZE_ONE_GBYTE * 1024.0 ) {
-				s  = size / SIZE_ONE_GBYTE * 1024.0;
+			if ( size >= ( double ) SIZE_ONE_GBYTE * 1024.0 ) {
+				s  = size / SIZE_ONE_GBYTE / 1024.0;
 				st = UNIT_TBYTE;
 			}
 			else {
-				if ( size >= ( float ) SIZE_ONE_GBYTE && size < ( float ) SIZE_ONE_GBYTE * 1024.0 ) {
+				if ( size >= ( double ) SIZE_ONE_GBYTE && size < ( double ) SIZE_ONE_GBYTE * 1024.0 ) {
 					s  = size / SIZE_ONE_GBYTE;
 					st = UNIT_GBYTE;
 				}
 				else {
-					if ( size >= ( float ) SIZE_ONE_MBYTE && size < ( float ) SIZE_ONE_GBYTE ) {
+					if ( size >= ( double ) SIZE_ONE_MBYTE && size < ( double ) SIZE_ONE_GBYTE ) {
 						s  = size / SIZE_ONE_MBYTE;
 						st = UNIT_MBYTE;
 					}
 					else {
-						if ( size >= ( float ) SIZE_ONE_KBYTE && size < ( float ) SIZE_ONE_MBYTE ) {
+						if ( size >= ( double ) SIZE_ONE_KBYTE && size < ( double ) SIZE_ONE_MBYTE ) {
 							s  = size / SIZE_ONE_KBYTE;
 							st = UNIT_KBYTE;
 						}
@@ -2427,24 +2427,24 @@ QString ArchiveFile::toPrettyString ( bool showAttr, bool showUser, bool showGro
 		if ( showGroup )
 			ret += QString ( group + "\t" );
 		if ( showSize ) {
-			float s = size;
+			double s = size;
 			int   st = UNIT_BYTE;
-			if ( size > ( float ) SIZE_ONE_GBYTE * 1024.0 ) {
-				s  = size / SIZE_ONE_GBYTE * 1024.0;
+			if ( size >= ( double ) SIZE_ONE_GBYTE * 1024.0 ) {
+				s  = size / SIZE_ONE_GBYTE / 1024.0;
 				st = UNIT_TBYTE;
 			}
 			else {
-				if ( size >= ( float ) SIZE_ONE_GBYTE && size < ( float ) SIZE_ONE_GBYTE * 1024.0 ) {
+				if ( size >= ( double ) SIZE_ONE_GBYTE && size < ( double ) SIZE_ONE_GBYTE * 1024.0 ) {
 					s  = size / SIZE_ONE_GBYTE;
 					st = UNIT_GBYTE;
 				}
 				else {
-					if ( size >= ( float ) SIZE_ONE_MBYTE && size < ( float ) SIZE_ONE_GBYTE ) {
+					if ( size >= ( double ) SIZE_ONE_MBYTE && size < ( double ) SIZE_ONE_GBYTE ) {
 						s  = size / SIZE_ONE_MBYTE;
 						st = UNIT_MBYTE;
 					}
 					else {
-						if ( size >= ( float ) SIZE_ONE_KBYTE && size < ( float ) SIZE_ONE_MBYTE ) {
+						if ( size >= ( double ) SIZE_ONE_KBYTE && size < ( double ) SIZE_ONE_MBYTE ) {
 							s  = size / SIZE_ONE_KBYTE;
 							st = UNIT_KBYTE;
 						}

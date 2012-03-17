@@ -34,7 +34,7 @@ using namespace std;
 #include "config.h"
 
 lineObject::lineObject ( QString medianame, QString path, QString filename,
-                         float size, QDateTime datetime, QString comment, QString information, QString category, QList<ArchiveFile> archivecontent, bool is_archive ) {
+                         double size, QDateTime datetime, QString comment, QString information, QString category, QList<ArchiveFile> archivecontent, bool is_archive ) {
 	this->medianame = medianame;
 	this->path = path;
 	this->filename = filename;
@@ -94,7 +94,7 @@ QString lineObject::getFileName() {
 	return filename;
 }
 
-float lineObject::getSize() {
+double lineObject::getSize() {
 	return size;
 }
 
@@ -202,7 +202,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 					QString fullpath;
 					QString path;
 					QString dirpath;
-					float size = 0;
+					double size = 0;
 					//QDate date;
 
 					QString new_medianame;
@@ -278,7 +278,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 							QString sizestring = line.mid ( pathindex + 1, sizeindex - pathindex - 1 ).stripWhiteSpace();
 							//if(*DEBUG_INFO_ENABLED)
 							//  cerr << "importGtktalogCsv sizestring: " << qPrintable(sizestring) << endl;
-							size = ( ( line.mid ( pathindex + 1, sizeindex - pathindex - 1 ) ).stripWhiteSpace() ).toFloat();
+							size = ( ( line.mid ( pathindex + 1, sizeindex - pathindex - 1 ) ).stripWhiteSpace() ).toDouble();
 
 							//if(*DEBUG_INFO_ENABLED)
 							//  cerr << "importGtktalogCsv size: " << size << endl;
@@ -369,8 +369,8 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 								}
 								filename = QString ( csvList.at ( 4 ) ).replace ( "\"", "" ) + QString ( csvList.at ( 5 ) ).replace ( "\"", "" );
 								QString sizestring = QString ( csvList.at ( 6 ) ).replace ( "\"", "" ).replace ( ",", "." ).replace ( ".", "" ).replace ( "#", "" ).stripWhiteSpace();
-								// size is float and its kib!
-								size = uint ( QString ( csvList.at ( 6 ) ).replace ( "\"", "" ).replace ( ",", "." ).replace ( ".", "" ).replace ( "#", "" ).stripWhiteSpace().toFloat() * 1024 );
+								// size is double and its kib!
+								size = uint ( QString ( csvList.at ( 6 ) ).replace ( "\"", "" ).replace ( ",", "." ).replace ( ".", "" ).replace ( "#", "" ).stripWhiteSpace().toDouble() * 1024 );
 								//if(*DEBUG_INFO_ENABLED)
 								//	cerr << "importGtktalogCsv size: " << size << endl;
 								datetimestring = QString ( csvList.at ( 7 ) ).replace ( "\"", "" );
@@ -1109,12 +1109,12 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 														//format of size string depends on ADC's Options/Preferences/Genral/Show sizes in KB
 														QString sizestring = QString ( csvList.at ( 4 ) );
 														if ( sizestring.right ( 1 ).at ( 0 ).isDigit() ) //1 234 567
-															size = sizestring.replace ( " ", "" ).toFloat();
+															size = sizestring.replace ( " ", "" ).toDouble();
 														else {  // 123.456 bytes/KB/MB/GB
 															QStringList sizestringlist = sizestring.split ( " " );
 															QString unit = sizestringlist.last();
 															sizestringlist.removeLast();
-															size = sizestringlist.join ( "" ).toFloat();
+															size = sizestringlist.join ( "" ).toDouble();
 															if ( unit == "KB" )
 																size = size * 1024;
 															else
@@ -1379,7 +1379,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 importGtktalogCsv::~importGtktalogCsv() {}
 
 int importGtktalogCsv::addNewItem ( QString medianame, QString path,
-                                    QString filename, float size, QDateTime datetime, QString comment, QString category ) {
+                                    QString filename, double size, QDateTime datetime, QString comment, QString category ) {
 	DEBUG_INFO_ENABLED = init_debug_info();
 	lineObject l ( medianame, path, filename, size, datetime, comment, "", category );
 	if ( *DEBUG_INFO_ENABLED )
@@ -1449,14 +1449,14 @@ int importGtktalogCsv::addNewMedia ( QString new_medianame, QDateTime media_modi
 		}
 		dirindex = -1;
 
-		float size = obj.getSize();
-		float s = size;
+		double size = obj.getSize();
+		double s = size;
 		int   st = UNIT_BYTE;
 // 			if ( *DEBUG_INFO_ENABLED )
 // 				std::cerr << "adding file size: " << s << std::endl;
 
 		if ( size >= SIZE_ONE_GBYTE * 1024 ) {
-			s  = size / SIZE_ONE_GBYTE * 1024;
+			s  = size / SIZE_ONE_GBYTE / 1024;
 			st = UNIT_TBYTE;
 		}
 		else {
@@ -2026,14 +2026,14 @@ int importGtktalogXml::addNewMedia ( QString new_medianame, QDateTime media_modi
 		}
 		dirindex = -1;
 
-		float size = obj.getSize();
-		float s = size;
+		double size = obj.getSize();
+		double s = size;
 		int   st = UNIT_BYTE;
 // 			if ( *DEBUG_INFO_ENABLED )
 // 				std::cerr << "adding file size: " << s << std::endl;
 
 		if ( size >= SIZE_ONE_GBYTE * 1024 ) {
-			s  = size / SIZE_ONE_GBYTE * 1024;
+			s  = size / SIZE_ONE_GBYTE / 1024;
 			st = UNIT_TBYTE;
 		}
 		else {
@@ -2474,13 +2474,13 @@ bool importWhereIsItXml::endElement ( const QString&, const QString & tag, const
 
 														if ( db != NULL ) {
 															Node * env2, *curr2, *curr3;
-															float s = size;
+															double s = size;
 															int   st = UNIT_BYTE;
 															// 			if ( *DEBUG_INFO_ENABLED )
 															// 				std::cerr << "adding file size: " << s << std::endl;
 
 															if ( size >= SIZE_ONE_GBYTE * 1024 ) {
-																s  = size / SIZE_ONE_GBYTE * 1024;
+																s  = size / SIZE_ONE_GBYTE / 1024;
 																st = UNIT_TBYTE;
 															}
 															else {

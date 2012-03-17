@@ -97,8 +97,8 @@ class seekEngine : public QObject {
 		QDateTime dateStart;
 		QDateTime dateEnd;
 		
-		float size_min;
-		float size_max;
+		double size_min;
+		double size_max;
 };
 
 /***********************************************************************/

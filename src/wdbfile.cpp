@@ -85,8 +85,8 @@ const char *getMType ( int t ) {
 	return NULL;
 }
 
-float getSizeFS ( const char *str ) {
-	float  r = 0;
+double getSizeFS ( const char *str ) {
+	double  r = 0;
 	char   s[10];
 
 	strcpy ( s, "" );
@@ -95,7 +95,7 @@ float getSizeFS ( const char *str ) {
 	QString unit;
 	QStringList l = QString ( str ).simplified().split ( ' ' );
 	unit = l.at ( 1 );
-	r = l.at ( 0 ).toFloat();
+	r = l.at ( 0 ).toDouble();
 	if ( l.size() != 2 )
 		return -1;
 	return r;
@@ -793,8 +793,8 @@ QString FileReader::getStr2 ( const QXmlAttributes &atts, char *what, char *err 
 	return NULL;
 }
 
-float FileReader::getFloat2 ( const QXmlAttributes &atts, char *what, char *err ) {
-	float r;
+double FileReader::getDouble2 ( const QXmlAttributes &atts, char *what, char *err ) {
+	double r;
 	int i;
 
 	if ( atts.length() == 0 ) {
@@ -808,7 +808,7 @@ float FileReader::getFloat2 ( const QXmlAttributes &atts, char *what, char *err 
 	for ( i = 0; i < atts.length(); i++ ) {
 		if ( QString ( what ) == atts.qName ( i ) )
 			attribute_found = true;
-		return atts.value ( QString ( what ) ).toFloat();
+		return atts.value ( QString ( what ) ).toDouble();
 	}
 	if ( !attribute_found ) {
 //             errormsg = QString ( "Line %1: %2,I can't find \"%3\" attribute" )
@@ -1126,7 +1126,7 @@ bool CdCatXmlHandler::startElement ( const QString & namespaceURI, const QString
 	DEBUG_INFO_ENABLED = init_debug_info();
 	QString ts1, ts2, ts3, ts4, ts5, ts6;
 	QDateTime td1;
-	float tf1;
+	double tf1;
 	int   ti1;
 	currentText = "";
 	
@@ -1241,7 +1241,7 @@ Please change it with an older version or rewrite it in the xml file!" );
 						return false;
 					}
 					
-					newnum = ( int ) FREA->getFloat2 ( attr, "number", "Error while parsing \"media\" node" );
+					newnum = ( int ) FREA->getDouble2 ( attr, "number", "Error while parsing \"media\" node" );
 					if ( FREA->error_found ) {
 						cerr << qPrintable(FREA->errormsg) << " el: "<<qPrintable(el)<<endl;
 						return false;
@@ -1319,7 +1319,7 @@ Please change it with an older version or rewrite it in the xml file!" );
 					ts1 = FREA->getStr2 ( attr, "name"  , "Error while parsing \"media\" node" );
 					//ts2 = FREA->get_cutf8 ( FREA->getStr2 ( attr,"owner" ,"Error while parsing \"media\" node" ) );
 					ts2 = FREA->getStr2 ( attr, "owner" , "Error while parsing \"media\" node" );
-					tf1 = FREA->getFloat2 ( attr, "number", "Error while parsing \"media\" node" );
+					tf1 = FREA->getDouble2 ( attr, "number", "Error while parsing \"media\" node" );
 					td1 = FREA->get_dcutf8 ( FREA->getStr2 ( attr, "time"  , "Error while parsing \"media\" node" ) );
 					if ( FREA->error_found ) {
 						cerr << qPrintable(FREA->errormsg) << " el: "<<qPrintable(el)<<endl;
@@ -1486,7 +1486,7 @@ Please change it with an older version or rewrite it in the xml file!" );
 								return false;
 							}
 							ti1 = 0;
-							ti1 = FREA->getFloat2 ( attr, "tnum"   , "Error while parsing \"mp3tag\" node" );
+							ti1 = FREA->getDouble2 ( attr, "tnum"   , "Error while parsing \"mp3tag\" node" );
 							// this is NO error
 							FREA->error_found = 0;
 							
@@ -1912,7 +1912,7 @@ void CdCatXmlHandler::setDocumentLocator ( QXmlLocator * locator ) {
 	QXmlDefaultHandler::setDocumentLocator ( locator );
 }
 
-bool CdCatXmlHandler::isFileInDB ( Node *root, QString Path, float size ) {
+bool CdCatXmlHandler::isFileInDB ( Node *root, QString Path, double size ) {
 	testFileInDBPath = Path;
 	testFileInDBSize = size;
 	testFileInDBFound = false;

@@ -1270,8 +1270,8 @@ int seekEngine::analyzeNode ( PWw *pww,  Node *n, Node *pa ) {
 						}
 				
 				if ( isOk && sizeMinChecked && !sizeMaxChecked ) {
-					float real_size = 0.0;
-					float real_size_min = 0.0;
+					double real_size = 0.0;
+					double real_size_min = 0.0;
 					switch ( ( ( DBFile * ) ( n->data ) )->sizeType ) {
 						case 0:
 							real_size = ( ( ( DBFile * ) ( n->data ) )->size ) / ( 1024.0 * 1024.0 );
@@ -1300,8 +1300,8 @@ int seekEngine::analyzeNode ( PWw *pww,  Node *n, Node *pa ) {
 					}
 				}
 				if ( isOk && !sizeMinChecked && sizeMaxChecked ) {
-					float real_size = 0.0;
-					float real_size_max = 0.0;
+					double real_size = 0.0;
+					double real_size_max = 0.0;
 					switch ( ( ( DBFile * ) ( n->data ) )->sizeType ) {
 						case 0:
 							real_size = ( ( ( DBFile * ) ( n->data ) )->size ) / ( 1024.0 * 1024.0 );
@@ -1330,9 +1330,9 @@ int seekEngine::analyzeNode ( PWw *pww,  Node *n, Node *pa ) {
 					}
 				}
 				if ( isOk && sizeMinChecked && sizeMaxChecked ) {
-					float real_size = 0.0;
-					float real_size_min = 0.0;
-					float real_size_max = 0.0;
+					double real_size = 0.0;
+					double real_size_min = 0.0;
+					double real_size_max = 0.0;
 					switch ( ( ( DBFile * ) ( n->data ) )->sizeType ) {
 						case 0:
 							real_size = ( ( ( DBFile * ) ( n->data ) )->size ) / ( 1024.0 * 1024.0 );

@@ -44,7 +44,7 @@ public:
      * file @param date Date of file @param time Mod time of file
      */
     lineObject ( QString medianame, QString path, QString filename,
-                 float size, QDateTime datetime, QString comment, QString information, QString category, QList<ArchiveFile> archivecontent = QList<ArchiveFile>(), bool is_archive=false  );
+                 double size, QDateTime datetime, QString comment, QString information, QString category, QList<ArchiveFile> archivecontent = QList<ArchiveFile>(), bool is_archive=false  );
     ~lineObject();
     lineObject ( const lineObject& );
     lineObject& operator= ( const lineObject& );
@@ -52,7 +52,7 @@ public:
     QString getMediaName();
     QString getPath();
     QString getFileName();
-    float getSize();
+    double getSize();
     QDateTime getDateTime();
     QString getComment();
     QString getInformation();
@@ -71,7 +71,7 @@ protected:
     QString information;
     QString category;
     
-    float size;
+    double size;
     bool is_archive;
 public:
 	QList<ArchiveFile> archivecontent;
@@ -90,7 +90,7 @@ public:
       * file @param datetime Date + time of file
       */
     int addNewItem ( QString medianame, QString path, QString filename,
-                     float size, QDateTime datetime, QString comment, QString category );
+                     double size, QDateTime datetime, QString comment, QString category );
 
     /*
      * @param new_medianame Name of new media
@@ -141,7 +141,7 @@ Q_OBJECT public:
     QString fullpath;
     QString path;
     QString filename;
-    float size;
+    double size;
     QDate date;
     QString new_medianame;
     QString medianame;
@@ -197,7 +197,7 @@ public:
     int number;
     int filenumber;
     int last_media_type;
-    float size;
+    double size;
     QString fullpath;
     QString path;
     QString filename;

@@ -63,11 +63,11 @@ typedef int gid_t;
 #define UNIT_GBYTE            3
 #define UNIT_TBYTE            4
 
-#define SIZE_ONE_BYTE float(1)
-#define SIZE_ONE_KBYTE float(1024)
-#define SIZE_ONE_MBYTE float(1048576)
-#define SIZE_ONE_GBYTE float(1073741824)
-#define SIZE_ONE_TBYTE float(1099511627776)
+#define SIZE_ONE_BYTE double(1)
+#define SIZE_ONE_KBYTE double(1024)
+#define SIZE_ONE_MBYTE double(SIZE_ONE_KBYTE*1024)
+#define SIZE_ONE_GBYTE double(SIZE_ONE_MBYTE*1024)
+#define SIZE_ONE_TBYTE double(SIZE_ONE_GBYTE*1024)
 
 //values for class DataBase::sortM( value )
 #define NAME             1
@@ -212,7 +212,7 @@ class DBFile { //type is 4
 		QString category;
 		QString fileinfo;
 		QList<ArchiveFile> archivecontent;
-		float size;
+		double size;
 		//filesize
 		
 		int   sizeType;
@@ -465,7 +465,7 @@ class DataBase : public QObject {
 		Node * putDirectoryNode ( Node *meddir, QString name, QDateTime modification, QString comment, QString category = "" );
 		
 		Node * getFileNode ( Node *directory, QString name );
-		Node * putFileNode ( Node *directory, QString name, QDateTime modification, QString comment, int sizeType, float size, QString category = "", QList<ArchiveFile> archivecontent = QList<ArchiveFile>(), QString fileinfo = "" );
+		Node * putFileNode ( Node *directory, QString name, QDateTime modification, QString comment, int sizeType, double size, QString category = "", QList<ArchiveFile> archivecontent = QList<ArchiveFile>(), QString fileinfo = "" );
 		
 		Node * putTagInfo ( Node *file, QString artist, QString title, QString comment, QString album, QString year, int tnumber );
 		

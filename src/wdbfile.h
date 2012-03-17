@@ -29,7 +29,7 @@ class QDateTime;
 
 QString getSType ( int t, bool localized=false );
 const char *getMType ( int t );
-float       getSizeFS ( const char *str );
+double       getSizeFS ( const char *str );
 int         getSizetFS ( const char *str );
 int         getTypeFS ( const char *str );
 
@@ -103,7 +103,7 @@ public:
 
     int      readFrom ( Node *source, bool skipDuplicatesOnInsert = false );
     QString getStr2(const QXmlAttributes &atts,char *what,char *err );
-    float getFloat2 (const QXmlAttributes &atts,char *what,char *err );
+    double getDouble2 (const QXmlAttributes &atts,char *what,char *err );
     int      isthere ( const char **from,char *what );
     FileReader ( gzFile ff, char *allocated_buffer, long long int allocated_buffer_len, int ins = 0 );
     QXmlSimpleReader xmlReader;
@@ -124,7 +124,7 @@ class CdCatXmlHandler : public QXmlDefaultHandler {
 		bool fatalError(const QXmlParseException &exception);
 		void setDocumentLocator ( QXmlLocator * locator );
 		void setPww(PWw *pww);
-		bool isFileInDB(Node *root, QString Path, float size);
+		bool isFileInDB(Node *root, QString Path, double size);
 		int  analyzeNodeIsFileinDB ( Node *n,Node *pa=NULL );
 	private:
 		FileReader *r;
@@ -135,7 +135,7 @@ class CdCatXmlHandler : public QXmlDefaultHandler {
 		PWw *pww;
 		void *data;
 		QString testFileInDBPath;
-		float testFileInDBSize;
+		double testFileInDBSize;
 		bool testFileInDBFound;
 };
 
