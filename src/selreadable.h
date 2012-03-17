@@ -30,7 +30,7 @@ class QLineEdit;
 class QPushButton;
 class QSpinBox;
 class CdCatConfig;
-class Q3ButtonGroup;
+class QComboBox;
 class QRadioButton;
 class QGroupBox;
 
@@ -53,6 +53,7 @@ class SelReadable : public QDialog {
 		QCheckBox* cbUseExternalContentViewer;
 		QSpinBox *thumbWidthSpinBox;
 		QSpinBox *thumbHeightSpinBox;
+		QSpinBox* maxSpinBox;
 #ifdef USE_LIBEXIF
 		QCheckBox *cbExif;
 #endif
@@ -60,29 +61,26 @@ class SelReadable : public QDialog {
 		QLineEdit *thumbLineExts;
 		QLineEdit *lineeditPathExternalContentViewer;
 		
-		QSpinBox* maxSpinBox;
-		QLabel* textLabel2;
-		Q3Frame* line2;
 		Q3Frame* line6;
 		Q3Frame* line7;
 		QPushButton* buttonOK;
 		QPushButton* buttonCancel;
 		QPushButton* buttonUseExternalContentViewer;
-		Q3ButtonGroup* tagselector;
-		QRadioButton *rad_v1, *rad_v2;
+		QComboBox *cbDefaultMp3TagVersion;
 		
-		QLabel* textLabel1;
+		QLabel* labelContentSize;
+		QLabel* labelContentSizeUnit;
+		QLabel* labelContent;
 		QLabel *labArchiveExtensions;
+		QLabel *labArchiveExtensionsStatusIcon;
 		QLabel *labFileInfoExtensions;
+		QLabel *labFileInfoExtensionsStatusIcon;
 		QLabel *labThumb;
 		QLabel *labThumbSize;
 		QLabel *labThumbXSize;
 		QLabel *labThumbExts;
 		QLabel *labelExternalContentViewer;
-
-#ifdef USE_LIBEXIF
-		QLabel *labExif;
-#endif
+		QLabel *labelDefaultMp3TagVersion;
 		
 		QGroupBox *groupBoxShowArchiveFileOpts;
 		QCheckBox* cpScanArchive;
@@ -105,14 +103,14 @@ class SelReadable : public QDialog {
 		Q3HBoxLayout* layout12;
 		Q3VBoxLayout* layout11;
 		Q3HBoxLayout* layout9;
-		Q3HBoxLayout* layout10;
-		Q3HBoxLayout *layoutThumbSize;
-		Q3HBoxLayout* layout3;
+		Q3HBoxLayout* layoutArchiveScan;
+		Q3HBoxLayout* layoutButtons;
 		Q3HBoxLayout* layout1;
 		Q3HBoxLayout* layout62;
 		Q3HBoxLayout* layoutShowArchiveFileOptions;
 		Q3HBoxLayout* layoutThumbExts;
 		Q3HBoxLayout* layoutExternalContentViewer;
+		Q3HBoxLayout* layoutFileInfo;
 		Q3GridLayout* layoutShowArchiveFileOptionsGroup;
 
 		QString SupportedExtensions;

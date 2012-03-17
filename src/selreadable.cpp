@@ -15,8 +15,7 @@
 #include <QLineEdit>
 #include <QPushButton>
 #include <QSpinBox>
-#include <q3buttongroup.h>
-#include <QRadioButton>
+#include <QComboBox>
 #include <QLayout>
 #include <QToolTip>
 #include <q3whatsthis.h>
@@ -49,14 +48,22 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	SelReadableLayout = new Q3VBoxLayout ( this, 15, 6, "SelReadableLayout" );
 	setSizeGripEnabled ( TRUE );
 	
+	layoutArchiveScan= new Q3HBoxLayout ( 0, 0, 6, "layoutArchiveScan" );
 	cpScanArchive = new QCheckBox ( this, "cpScanArchive" );
 //     cpScanArchive->setMaximumWidth ( 80 );
-	SelReadableLayout->addWidget ( cpScanArchive );
 	
-	layout62 = new Q3HBoxLayout ( 0, 0, 6, "layout62" );
+	QSpacerItem* archiveInfospacer1 = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	labArchiveExtensions = new QLabel ( this, "labArchiveExtensions" );
-	layout62->addWidget ( labArchiveExtensions );
-	SelReadableLayout->addLayout ( layout62 );
+	labArchiveExtensionsStatusIcon = new QLabel ( this, "labArchiveExtensionsStatusIcon" );
+	labArchiveExtensionsStatusIcon->setPixmap(*get_t_info_icon());
+	QSpacerItem* archiveInfospacer2 = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
+	layoutArchiveScan->addWidget ( cpScanArchive );
+	layoutArchiveScan->addItem ( archiveInfospacer1 );
+	layoutArchiveScan->addWidget ( labArchiveExtensions );
+	layoutArchiveScan->addWidget ( labArchiveExtensionsStatusIcon );
+	layoutArchiveScan->addItem ( archiveInfospacer2 );
+	
+	SelReadableLayout->addLayout(layoutArchiveScan);
 	
 	layoutShowArchiveFileOptions = new Q3HBoxLayout ( 0, 0, 6, "layoutShowArchiveFileOptions" );
 	layoutShowArchiveFileOptions->addSpacing ( 25 );
@@ -86,20 +93,22 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	SelReadableLayout->addWidget ( line6 );
 
 	cbTag = new QCheckBox ( this, "cbTag" );
-	SelReadableLayout->addWidget ( cbTag );
-
-	tagselector = new Q3ButtonGroup ( 2, Qt::Horizontal, this, "TagSelectorG" );
-	tagselector->setRadioButtonExclusive ( true );
-	rad_v1 = new QRadioButton ( tagselector );
-	rad_v2 = new QRadioButton ( tagselector );
-
+	cbDefaultMp3TagVersion = new QComboBox(this, "cbDefaultMp3TagVersion");
+	cbDefaultMp3TagVersion->addItem(tr ( "version" ) + " 1");
+	cbDefaultMp3TagVersion->addItem(tr ( "version" ) + " 2");
+	labelDefaultMp3TagVersion = new QLabel(this, "labelDefaultMp3TagVersion");
+	QSpacerItem* mp3tagspacer = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
+	
 	layout1 = new Q3HBoxLayout ( 0, 0, 6, "layout1" );
 	layout1->addSpacing ( 25 );
-	layout1->addWidget ( tagselector );
+	layout1->addWidget ( cbTag );
+	layout1->addItem(mp3tagspacer);
+	layout1->addWidget ( labelDefaultMp3TagVersion );
+	layout1->addWidget ( cbDefaultMp3TagVersion );
 	layout1->addSpacing ( 25 );
-
+	
 	SelReadableLayout->addLayout ( layout1 );
-
+	
 	cbInfo = new QCheckBox ( this, "cbInfo" );
 	SelReadableLayout->addWidget ( cbInfo );
 
@@ -127,25 +136,31 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 //     layout12->addItem ( spacer );
 
 	layout11 = new Q3VBoxLayout ( 0, 0, 6, "layout11" );
-
+	
 	layout9 = new Q3HBoxLayout ( 0, 0, 6, "layout9" );
-
+	
+	labelContent = new QLabel ( this, "labelContent" );
 	lineFiles = new QLineEdit ( this, "lineFiles" );
 	lineFiles->setMinimumWidth ( 150 );
+	
+	
+	QSpacerItem* contentspacer = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
+	layout9->addWidget ( labelContent );
 	layout9->addWidget ( lineFiles );
-
-	textLabel1 = new QLabel ( this, "textLabel1" );
-	layout9->addWidget ( textLabel1 );
-	layout11->addLayout ( layout9 );
-
-	layout10 = new Q3HBoxLayout ( 0, 0, 6, "layout10" );
-
+	layout9->addItem (contentspacer);
+	
 	maxSpinBox = new QSpinBox ( 1, MAX_STORED_SIZE / 1024, 1, this, "maxSpinBox" );
-	layout10->addWidget ( maxSpinBox );
-
-	textLabel2 = new QLabel ( this, "textLabel2" );
-	layout10->addWidget ( textLabel2 );
-	layout11->addLayout ( layout10 );
+	labelContentSize = new QLabel ( this, "labelContentSize" );
+	labelContentSizeUnit = new QLabel ( this, "labelContentSizeUnit" );
+	labelContentSizeUnit->setText(tr("KiB"));
+	QSpacerItem* contentSizeSpacer = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
+	
+	layout9->addItem(contentSizeSpacer);
+	layout9->addWidget ( labelContentSize );
+	layout9->addWidget ( maxSpinBox );
+	layout9->addWidget ( labelContentSizeUnit );
+	
+	layout11->addLayout ( layout9 );
 	layout12->addLayout ( layout11 );
 	SelReadableLayout->addLayout ( layout12 );
 	
@@ -163,76 +178,73 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	
 	cbFileInfo = new QCheckBox ( this, "cbFileInfo" );
 	SelReadableLayout->addWidget ( cbFileInfo );
+	
+	layoutFileInfo = new Q3HBoxLayout ( 0, 0, 6, "layoutFileInfo" );
 	labFileInfoExtensions = new QLabel ( this, "labFileInfoExtensions" );
-	SelReadableLayout->addWidget ( labFileInfoExtensions );
+	labFileInfoExtensionsStatusIcon = new QLabel ( this, "labFileInfoExtensionsStatusIcon" );
+	labFileInfoExtensionsStatusIcon->setPixmap(*get_t_info_icon());
+	QSpacerItem* fileInfospacer = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
+	layoutFileInfo->addSpacing ( 25 );
+	layoutFileInfo->addWidget ( labFileInfoExtensions );
+	layoutFileInfo->addWidget ( labFileInfoExtensionsStatusIcon );
+	layoutFileInfo->addItem ( fileInfospacer );
+	SelReadableLayout->addLayout ( layoutFileInfo );
 	
 	cbThumb = new QCheckBox ( this, "cbThumb" );
-	labThumb = new QLabel ( this, "labThumb" );
 	SelReadableLayout->addWidget ( cbThumb );
-	SelReadableLayout->addWidget ( labThumb );
 	
-	
-	layoutThumbExts = new Q3HBoxLayout ( 0, 0, 7, "layoutThumbExts" );
+	layoutThumbExts = new Q3HBoxLayout ( 0, 0, 6, "layoutThumbExts" );
 	labThumbExts = new QLabel ( this, "labThumbExts" );
 	thumbLineExts = new QLineEdit ( this, "thumbLineExts" );
 	thumbLineExts->setMinimumWidth ( 150 );
-	layoutThumbExts->addSpacing ( 25 );
-	layoutThumbExts->addWidget ( thumbLineExts );
-	layoutThumbExts->addWidget ( labThumbExts );
-	SelReadableLayout->addLayout ( layoutThumbExts );
-	
-	layoutThumbSize = new Q3HBoxLayout ( 0, 0, 7, "layoutThumbSize" );
-	layoutThumbSize->addSpacing ( 25 );
+	QSpacerItem* thumpspacer = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	thumbWidthSpinBox = new QSpinBox ( 20, 400, 150, this, "thumbWidthSpinBox" );
 	labThumbXSize = new QLabel ( this, "labThumbXSize" );
 	thumbHeightSpinBox = new QSpinBox ( 20, 400, 150, this, "thumbHeightSpinBox" );
 	labThumbSize = new QLabel ( this, "labThumbSize" );
 	
-	layoutThumbSize->addWidget(labThumbSize);
-	layoutThumbSize->addWidget(thumbWidthSpinBox);
-	layoutThumbSize->addWidget(labThumbXSize);
-	layoutThumbSize->addWidget(thumbHeightSpinBox);
-	SelReadableLayout->addLayout ( layoutThumbSize );
+	layoutThumbExts->addSpacing ( 25 );
+	layoutThumbExts->addWidget ( labThumbExts );
+	layoutThumbExts->addWidget ( thumbLineExts );
+	layoutThumbExts->addItem(thumpspacer);
+	layoutThumbExts->addWidget(labThumbSize);
+	layoutThumbExts->addWidget(thumbWidthSpinBox);
+	layoutThumbExts->addWidget(labThumbXSize);
+	layoutThumbExts->addWidget(thumbHeightSpinBox);
+	SelReadableLayout->addLayout ( layoutThumbExts );
 	
 #ifdef USE_LIBEXIF
 	cbExif = new QCheckBox ( this, "cbExif" );
 	SelReadableLayout->addWidget ( cbExif );
-	labExif = new QLabel ( this, "labExif" );
-	SelReadableLayout->addWidget ( labExif );
 #endif
-	
-	line2 = new Q3Frame ( this, "line2" );
-	line2->setFrameShape ( Q3Frame::HLine );
-	line2->setFrameShadow ( Q3Frame::Sunken );
-	line2->setFrameShape ( Q3Frame::HLine );
-	SelReadableLayout->addWidget ( line2 );
-
-	layout3 = new Q3HBoxLayout ( 0, 0, 6, "layout3" );
+	layoutButtons = new Q3HBoxLayout ( 0, 0, 6, "layoutButtons" );
 	QSpacerItem* spacer_2 = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
-	layout3->addItem ( spacer_2 );
-
+	layoutButtons->addItem ( spacer_2 );
+	
 	buttonOK = new QPushButton ( this, "buttonOK" );
 	buttonOK->setMinimumSize ( QSize ( 80, 0 ) );
-	layout3->addWidget ( buttonOK );
-
+	layoutButtons->addWidget ( buttonOK );
+	
 	buttonCancel = new QPushButton ( this, "buttonCancel" );
 	buttonCancel->setMinimumSize ( QSize ( 80, 0 ) );
-	layout3->addWidget ( buttonCancel );
+	layoutButtons->addWidget ( buttonCancel );
 	QSpacerItem* spacer_3 = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
-	layout3->addItem ( spacer_3 );
-	SelReadableLayout->addLayout ( layout3 );
+	layoutButtons->addItem ( spacer_3 );
+	SelReadableLayout->addLayout ( layoutButtons );
 	languageChange();
-	resize ( QSize ( 410, 216 ).expandedTo ( minimumSizeHint() ) );
-
+	resize ( QSize ( 350, 216 ).expandedTo ( minimumSizeHint() ) );
+	
 	connect ( cbTag, SIGNAL ( stateChanged ( int ) ), this, SLOT ( schanged ( int ) ) );
 	connect ( cbCont, SIGNAL ( stateChanged ( int ) ), this, SLOT ( schanged ( int ) ) );
 	connect ( cbThumb, SIGNAL ( stateChanged ( int ) ), this, SLOT ( schanged ( int ) ) );
+	connect ( cpScanArchive, SIGNAL ( stateChanged ( int ) ), this, SLOT ( schanged(int)) );
+	connect ( cbUseExternalContentViewer, SIGNAL ( stateChanged ( int ) ), this, SLOT ( schanged(int)) );
 	connect ( buttonOK, SIGNAL ( clicked() ), this, SLOT ( sok() ) );
 	connect ( buttonCancel, SIGNAL ( clicked() ), this, SLOT ( scan() ) );
 	connect ( buttonUseExternalContentViewer, SIGNAL ( clicked() ), this, SLOT ( selectExternalContentViewer() ) );
 	connect ( lineeditPathExternalContentViewer, SIGNAL ( textEdited ( const QString & ) ), this, SLOT ( selectExternalContentViewerString( const QString & ) ) );
 	
-
+	
 	cpScanArchive->setChecked ( conf->doScanArchive );
 	cpShowArchiveFilePerms->setChecked ( conf->show_archive_file_perms );
 	cpShowArchiveFileUser->setChecked ( conf->show_archive_file_user );
@@ -264,9 +276,11 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	maxSpinBox->setValue ( ( int ) ( conf->readclimit / 1024 ) );
 	cbInfo->setChecked ( conf->readinfo );
 	cbaInfo->setChecked ( conf->readavii );
-	rad_v1->setChecked ( conf->v1_over_v2 );
-	rad_v2->setChecked ( !conf->v1_over_v2 );
-
+	if (conf->v1_over_v2)
+		cbDefaultMp3TagVersion->setCurrentIndex(0);
+	else
+		cbDefaultMp3TagVersion->setCurrentIndex(1);
+	
 	if ( conf->doScanArchive ) {
 #ifdef USE_LIB7ZIP
 		C7ZipLibrary lib;
@@ -275,7 +289,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 		SupportedExtensions = "";
 		QStringList SupportedExtensionsList;
 		// libtar
-
+		
 		SupportedExtensionsList.append ( "tar" );
 		SupportedExtensionsList.append ( "tar.gz" );
 		SupportedExtensionsList.append ( "tar.bz2" );
@@ -317,23 +331,24 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 		}
 		QString sevenzip_libfound_text = "";
 #ifdef USE_LIB7ZIP
-		sevenzip_libfound_text = "<font color=\"red\">" + tr ( "lib7zip library not found" ) + "</font>";
+		sevenzip_libfound_text = "<font color=\"red\">" + tr ( "lib7zip found" ) + "</font>";
 		if ( sevenzip_libfound )
-			sevenzip_libfound_text = "<font color=\"green\">" + tr ( "lib7zip library found" ) + "</font>";
-
+			sevenzip_libfound_text = "<font color=\"green\">" + tr ( "lib7zip found" ) + "</font>";
+		
 #else
-		sevenzip_libfound_text = "<font color=\"red\">" + tr ( "lib7zip library not supported" ) + "</font>";
+		sevenzip_libfound_text = "<font color=\"red\">" + tr ( "lib7zip not supported" ) + "</font>";
 #endif
-		labArchiveExtensions->setText ( tr ( "Supported extensions" ) + " (" + sevenzip_libfound_text + ")" + ":&nbsp;" + SupportedExtensions );
+ 		labArchiveExtensions->setText(  tr ( "Archive support:" )+ " "+sevenzip_libfound_text );
+		labArchiveExtensionsStatusIcon->setToolTip ( tr ( "Supported extensions:" ) + "&nbsp;" + SupportedExtensions );
 	}
-
-
+	
+	
 	// FIXME: get from fileinfo
 	CdcatMediaInfo me;
-
+	
 	bool fileinfo_libfound = me.getMediaInfoLibFound();
 	QStringList SupportedFileInfoExtensionsList = me.getSupportedExtensions();
-
+	
 	SupportedFileInfoExtensionsList.sort();
 	QString SupportedFileInfoExtensions = "";
 	int linelen = 0;
@@ -351,32 +366,50 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 			linelen += SupportedFileInfoExtensionsList.at ( i ).size() + 2;
 		}
 	}
-	QString fileinfo_libfound_text = "<font color=\"red\">" + tr ( "mediainfo library not found" ) + "</font>";
+	QString fileinfo_libfound_text = "<font color=\"red\">" + tr ( "mediainfo not found" ) + "</font>";
 	if ( fileinfo_libfound )
-		fileinfo_libfound_text = "<font color=\"green\">" + tr ( "mediainfo library found" ) + ": " + me.getMediaInfoVersion() + "</font>";
-	labFileInfoExtensions->setText ( tr ( "Supported extensions" ) + " (" + fileinfo_libfound_text + ")" + ":&nbsp;" + SupportedFileInfoExtensions );
-
+		fileinfo_libfound_text = "<font color=\"green\">" + tr ( "mediainfo found" ) + ": " + me.getMediaInfoVersion() + "</font>";
+	labFileInfoExtensions->setText ( tr ( "mediainfo status:" )+ " "+fileinfo_libfound_text);
+	labFileInfoExtensionsStatusIcon->setToolTip(tr("Supported extensions:")+"&nbsp;" + SupportedFileInfoExtensions );
+	
 	schanged ( 0 );
 }
 
 int SelReadable::schanged ( int ) {
 	if ( cbCont->isChecked() ) {
 		lineFiles->setEnabled ( true );
+		labelContentSize->setEnabled ( true );
+		labelContentSizeUnit->setEnabled ( true );
 		maxSpinBox->setEnabled ( true );
+		labelContent->setEnabled ( true );
+		cbUseExternalContentViewer->setEnabled ( true );
+		if(cbUseExternalContentViewer->isChecked()) {
+			lineeditPathExternalContentViewer->setEnabled ( true );
+			buttonUseExternalContentViewer->setEnabled ( true );
+		}
+		else {
+			lineeditPathExternalContentViewer->setEnabled ( false );
+			buttonUseExternalContentViewer->setEnabled ( false );
+		}
 	}
 	else {
 		lineFiles->setEnabled ( false );
 		maxSpinBox->setEnabled ( false );
+		labelContent->setEnabled ( false );
+		labelContentSize->setEnabled ( false );
+		labelContentSizeUnit->setEnabled ( false );
+		cbUseExternalContentViewer->setEnabled ( false );
+		lineeditPathExternalContentViewer->setEnabled ( false );
+		buttonUseExternalContentViewer->setEnabled ( false );
 	}
 
 	if ( cbTag->isChecked() )
-		tagselector->setEnabled ( true );
+		cbDefaultMp3TagVersion->setEnabled ( true );
 	else
-		tagselector->setEnabled ( false );
+		cbDefaultMp3TagVersion->setEnabled ( false );
 	
 	if ( cbThumb->isChecked() ) {
 		labThumbExts->setEnabled ( true );
-		labThumb->setEnabled ( true );
 		labThumbXSize->setEnabled ( true );
 		thumbLineExts->setEnabled ( true );
 		thumbWidthSpinBox->setEnabled ( true );
@@ -384,15 +417,25 @@ int SelReadable::schanged ( int ) {
 	}
 	else {
 		labThumbExts->setEnabled ( false );
-		labThumb->setEnabled ( false );
 		labThumbXSize->setEnabled ( false );
 		thumbLineExts->setEnabled ( false );
 		thumbWidthSpinBox->setEnabled ( false );
 		thumbHeightSpinBox->setEnabled ( false );
 	}
+	if(cpScanArchive->isChecked()) {
+		groupBoxShowArchiveFileOpts->setEnabled(true);
+		labArchiveExtensions->setEnabled(true);
+		labArchiveExtensionsStatusIcon->setEnabled(true);
+	}
+	else {
+		groupBoxShowArchiveFileOpts->setEnabled(false);
+		labArchiveExtensions->setEnabled(false);
+		labArchiveExtensionsStatusIcon->setEnabled(false);
+	}
 
 	return 0;
 }
+
 
 int SelReadable::sok ( void ) {
 	conf->doScanArchive  = cpScanArchive->isChecked();
@@ -418,7 +461,10 @@ int SelReadable::sok ( void ) {
 	conf->readinfo    = cbInfo->isChecked();
 	conf->readavii    = cbaInfo->isChecked();
 	conf->readtag     = cbTag->isChecked();
-	conf->v1_over_v2  = rad_v1->isChecked();
+	if (cbDefaultMp3TagVersion->currentIndex() == 0)
+		conf->v1_over_v2  = true;
+	else
+		conf->v1_over_v2  = false;
 
 	close();
 	return 0;
@@ -471,34 +517,38 @@ void SelReadable::languageChange() {
 	groupBoxShowArchiveFileOpts->setTitle ( tr ( "Archive file display options" ) );
 	cpScanArchive->setText ( tr ( "Scan for archive file list" ) );
 	labArchiveExtensions->setText ( tr ( "Supported extensions:" ) + " " + SupportedExtensions );
-	cpShowArchiveFilePerms->setText ( tr ( "Show permission" ) );
-	cpShowArchiveFileUser->setText ( tr ( "Show user" ) );
-	cpShowArchiveFileGroup->setText ( tr ( "Show group" ) );
-	cpShowArchiveFileSize->setText ( tr ( "Show size" ) );
-	cpShowArchiveFileDate->setText ( tr ( "Show date" ) );
-	cpShowArchiveFileComment->setText ( tr ( "Show optional comment" ) );
+	cpShowArchiveFilePerms->setText ( tr ( "Permission" ) );
+	cpShowArchiveFileUser->setText ( tr ( "User" ) );
+	cpShowArchiveFileGroup->setText ( tr ( "Group" ) );
+	cpShowArchiveFileSize->setText ( tr ( "Size" ) );
+	cpShowArchiveFileDate->setText ( tr ( "Date" ) );
+	cpShowArchiveFileComment->setText ( tr ( "Comment" ) );
 	cbTag->setText ( tr ( "Read mp3 tags" ) );
-	cbThumb->setText( tr("Read thumbnails from pictures") );
-	labThumbSize->setText( tr("Thumbnail size:") );
+	cbThumb->setText( tr("Read thumbnails") );
+	cbThumb->setToolTip( tr("Read thumbnails from pictures") );
+	labThumbSize->setText( tr("Size:") );
+	thumbWidthSpinBox->setToolTip( tr("Thumbnail size (width) in pixels") );
+	thumbHeightSpinBox->setToolTip( tr("Thumbnail size (height) in pixels") );
 	labThumbXSize->setText ( tr("x") );
 #ifdef USE_LIBEXIF
 	cbExif->setText( tr("Read EXIF data from pictures") );
 #endif
 	
-	tagselector->setTitle ( tr ( "Default tag" ) );
-	rad_v1->setText ( tr ( "version" ) + " 1" );
-	rad_v2->setText ( tr ( "version" ) + " 2" );
+	labelDefaultMp3TagVersion->setText ( tr ( "Default tag" ) );
 	
 	cbInfo->setText ( tr ( "Read mp3 technical info as comment (bitrate,freq,length...)" ) );
 	cbaInfo->setText ( tr ( "Read avi technical info as comment (codecs,length,...)" ) );
 	cbCont->setText ( tr ( "Store content of some files" ) );
-	cbUseExternalContentViewer->setText( tr("Use external viewer for displaying file content") );
+	cbUseExternalContentViewer->setText( tr("Use external file content viewer") );
 	buttonUseExternalContentViewer->setText( tr("...") );
 	buttonUseExternalContentViewer->setToolTip( tr("Select external viewer...") );
 	cbFileInfo->setText ( tr ( "Read some technical info using mediainfo" ) );
-	textLabel1->setText ( tr ( "; separated list of readable file patterns" ) );
-	labThumbExts->setText ( tr ( "; separated list of image file extensions, e.g. png;jpg;gif" ) );
-	textLabel2->setText ( tr ( "content size limit in kByte" ) );
+	labelContent->setText ( tr ( "file patterns:" ) );
+	lineFiles->setToolTip ( tr ( "; separated list of readable file patterns" ) );
+	labThumbExts->setText ( tr ( "File extensions:" ) );
+	thumbLineExts->setToolTip ( tr ( "; separated list of image file extensions, e.g. png;jpg;gif" ) );
+	labelContentSize->setText ( tr ( "max size:" ) );
+	maxSpinBox->setToolTip( tr ( "content size limit in kByte" ) );
 	buttonOK->setText ( tr ( "Ok" ) );
 	buttonCancel->setText ( tr ( "Cancel" ) );
 }

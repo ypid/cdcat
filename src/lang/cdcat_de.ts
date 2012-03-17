@@ -40,6 +40,10 @@
       <source>unknown</source>
       <translation>unbekannt</translation>
     </message>
+    <message>
+      <source></source>
+      <translation type="unfinished" />
+    </message>
   </context>
   <context>
     <name>CatalogTypeEditDialog</name>
@@ -994,10 +998,6 @@ Homepage: %3</translation>
       <translation>Das Ergebnis:</translation>
     </message>
     <message>
-      <source>MiB</source>
-      <translation>MiB</translation>
-    </message>
-    <message>
       <source>Scanning directory tree, please wait...</source>
       <translation>Verzeichnisbaum wird durchsucht, bitte warten...</translation>
     </message>
@@ -1582,56 +1582,8 @@ wird zu
       <translation>Archive nach Dateiliste durchsuchen</translation>
     </message>
     <message>
-      <source>Show permission</source>
-      <translation>Rechte anzeigen</translation>
-    </message>
-    <message>
-      <source>Show user</source>
-      <translation>Benutzer anzeigen</translation>
-    </message>
-    <message>
-      <source>Show group</source>
-      <translation>Gruppe anzeigen</translation>
-    </message>
-    <message>
-      <source>Show size</source>
-      <translation>Größe anzeigen</translation>
-    </message>
-    <message>
-      <source>Show date</source>
-      <translation>Datum anzeigen</translation>
-    </message>
-    <message>
-      <source>Show optional comment</source>
-      <translation>Optionalen Kommentar anzeigen</translation>
-    </message>
-    <message>
-      <source>Supported extensions</source>
-      <translation>Unterstützte Erweiterungen</translation>
-    </message>
-    <message>
-      <source>mediainfo library not found</source>
-      <translation>mediainfo-Bibliothek nicht gefunden</translation>
-    </message>
-    <message>
-      <source>mediainfo library found</source>
-      <translation>mediainfo-Bibliothek gefunden</translation>
-    </message>
-    <message>
       <source>Read some technical info using mediainfo</source>
       <translation>Einige technische Informationen mit mediainfo lesen</translation>
-    </message>
-    <message>
-      <source>lib7zip library not found</source>
-      <translation>lib7zip-Bibliothek nicht gefunden</translation>
-    </message>
-    <message>
-      <source>lib7zip library found</source>
-      <translation>lib7zip-Bibliothek gefunden</translation>
-    </message>
-    <message>
-      <source>lib7zip library not supported</source>
-      <translation>lib7zip-Bibliothek nicht unterstützt</translation>
     </message>
     <message>
       <source>Read thumbnails from pictures</source>
@@ -1640,10 +1592,6 @@ wird zu
     <message>
       <source>Read EXIF data from pictures</source>
       <translation>EXIF-Daten von Bildern lesen</translation>
-    </message>
-    <message>
-      <source>Thumbnail size:</source>
-      <translation>Größe des Vorschaubildes:</translation>
     </message>
     <message>
       <source>x</source>
@@ -1666,16 +1614,96 @@ wird zu
       <translation>Pfad zu externem Anzeiger auswählen</translation>
     </message>
     <message>
-      <source>Use external viewer for displaying file content</source>
-      <translation>Externen Anzeiger zum Anzeigen von Dateiinhalten verwenden</translation>
-    </message>
-    <message>
       <source>...</source>
       <translation>...</translation>
     </message>
     <message>
       <source>Select external viewer...</source>
       <translation>Externen Anzeiger auswählen...</translation>
+    </message>
+    <message>
+      <source>KiB</source>
+      <translation>KiB</translation>
+    </message>
+    <message>
+      <source>lib7zip found</source>
+      <translation>lib7zip gefunden</translation>
+    </message>
+    <message>
+      <source>lib7zip not supported</source>
+      <translation>lib7zip nicht unterstützt</translation>
+    </message>
+    <message>
+      <source>Archive support:</source>
+      <translation>Archivunterstützung:</translation>
+    </message>
+    <message>
+      <source>mediainfo not found</source>
+      <translation>mediainfo nicht gefunden</translation>
+    </message>
+    <message>
+      <source>mediainfo found</source>
+      <translation>mediainfo gefunden</translation>
+    </message>
+    <message>
+      <source>mediainfo status:</source>
+      <translation>mediainfo-Status:</translation>
+    </message>
+    <message>
+      <source>Permission</source>
+      <translation>Berechtigung</translation>
+    </message>
+    <message>
+      <source>User</source>
+      <translation>Nutzer</translation>
+    </message>
+    <message>
+      <source>Group</source>
+      <translation>Gruppe</translation>
+    </message>
+    <message>
+      <source>Size</source>
+      <translation>Grösse</translation>
+    </message>
+    <message>
+      <source>Date</source>
+      <translation>Datum</translation>
+    </message>
+    <message>
+      <source>Comment</source>
+      <translation>Kommentar</translation>
+    </message>
+    <message>
+      <source>Read thumbnails</source>
+      <translation>Vorschaubilder lesen</translation>
+    </message>
+    <message>
+      <source>Size:</source>
+      <translation>Grösse:</translation>
+    </message>
+    <message>
+      <source>Thumbnail size (width) in pixels</source>
+      <translation>Vorschaubildgröße (Breite) in Pixel</translation>
+    </message>
+    <message>
+      <source>Thumbnail size (height) in pixels</source>
+      <translation>Vorschaubildgröße (Höhe) in Pixel</translation>
+    </message>
+    <message>
+      <source>Use external file content viewer</source>
+      <translation>Externen Inhaltsanzeiger verwenden</translation>
+    </message>
+    <message>
+      <source>file patterns:</source>
+      <translation>Dateimuster:</translation>
+    </message>
+    <message>
+      <source>File extensions:</source>
+      <translation>Dateiendungen:</translation>
+    </message>
+    <message>
+      <source>max size:</source>
+      <translation>max. Größe:</translation>
     </message>
   </context>
   <context>
@@ -2437,6 +2465,10 @@ wird zu
     <message>
       <source>Extension</source>
       <translation>Erweiterung</translation>
+    </message>
+    <message>
+      <source>TiB</source>
+      <translation>TiB</translation>
     </message>
   </context>
   <context>
