@@ -847,10 +847,10 @@ int exportCdcatDB::writeFile ( Node *source ) {
 		tsize = ( ( DBFile * ) ( source->data ) ) ->size;
 		switch ( ( ( DBFile * ) ( source->data ) ) ->sizeType ) {
 			case 0:                            break;
-			case 1:  tsize *= 1024;            break;
-			case 2:  tsize *= 1024*1024;       break;
-			case 3:  tsize *= 1024*1024*1024;  break;
-			case 4:  tsize *= (1024 * 1024)*(1024*1024);  break;
+			case 1:  tsize *= 1024.0;            break;
+			case 2:  tsize *= 1024.0*1024.0;       break;
+			case 3:  tsize *= 1024.0*1024.0*1024.0;  break;
+			case 4:  tsize *= (1024.0 * 1024.0)*(1024.0*1024.0);  break;
 		}
 		outstring += QString().setNum ( ( long int ) tsize );
 		outstring += separator;
