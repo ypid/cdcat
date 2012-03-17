@@ -162,6 +162,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp,QApplication *appp,QWidget* 
     mainMenu->setMinimumHeight ( fontHeight*2 );
     Q3PopupMenu *fileMenu = new Q3PopupMenu();
     Q3PopupMenu *editMenu = new Q3PopupMenu();
+    Q3PopupMenu *findMenu = new Q3PopupMenu();
     Q3PopupMenu *inoutMenu = new Q3PopupMenu();
     Q3PopupMenu *othersMenu = new Q3PopupMenu();
     Q3PopupMenu *helpMenu = new Q3PopupMenu();
@@ -201,8 +202,9 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp,QApplication *appp,QWidget* 
     editMenu->insertItem ( tr ( "Sort media by type" ),guis,SLOT ( sortTyEvent() ) );
     editMenu->insertItem ( tr ( "Sort media by time" ),guis,SLOT ( sortTiEvent() ) );
 
-    othersMenu->insertItem ( *get_t_find_icon(),tr ( "Seek in database..." ),guis,SLOT ( findEvent() ),Qt::CTRL+Qt::Key_F );
-    othersMenu->insertItem ( tr ( "Seek in the panel" ),guis,SLOT ( posEvent() ),Qt::ALT+Qt::Key_S );
+    findMenu->insertItem ( *get_t_find_icon(),tr ( "Seek in database..." ),guis,SLOT ( findEvent() ),Qt::CTRL+Qt::Key_F );
+    findMenu->insertItem ( tr ( "Seek in the panel" ),guis,SLOT ( posEvent() ),Qt::ALT+Qt::Key_S );
+    
     othersMenu->insertItem ( *get_m_borrow_icon(),tr ( "Borrowing info..." ),guis,SLOT ( borrowingEvent() ),Qt::CTRL+Qt::Key_B );
     othersMenu->insertItem ( tr ( "Node size" ),guis,SLOT ( sizeEvent() ),Qt::Key_Space );
     othersMenu->insertItem ( *get_t_config_icon() ,tr ( "Configuration..." ),guis,SLOT ( configEvent() ),Qt::CTRL+Qt::Key_G );
@@ -215,11 +217,12 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp,QApplication *appp,QWidget* 
     inoutMenu->insertItem ( *get_m_import_icon(),tr ( "Import database (CSV/XML)" ) ,guis,SLOT ( importEvent() ) );
     inoutMenu->insertItem ( *get_m_export_icon(),tr ( "Export database (CSV/HTML/XML)" ) ,guis,SLOT ( exportEvent() ) );
 
-    mainMenu->insertItem ( tr ( "Catalog" ),fileMenu );
-    mainMenu->insertItem ( tr ( "Edit" ),editMenu );
-    mainMenu->insertItem ( tr ( "Import/Export" ),inoutMenu );
-    mainMenu->insertItem ( tr ( "Others" ),othersMenu );
-    mainMenu->insertItem ( tr ( "Help" ),helpMenu );
+    mainMenu->insertItem ( tr ( "Catalog" ), fileMenu );
+    mainMenu->insertItem ( tr ( "Edit" ), editMenu );
+    mainMenu->insertItem ( tr ( "Search" ), findMenu );
+    mainMenu->insertItem ( tr ( "Import/Export" ), inoutMenu );
+    mainMenu->insertItem ( tr ( "Others" ), othersMenu );
+    mainMenu->insertItem ( tr ( "Help" ), helpMenu );
 #ifdef Q_WS_MAC
 	mainMenu->hide();
 #endif

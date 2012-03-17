@@ -336,6 +336,10 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
       <source>Export database (CSV/HTML/XML)</source>
       <translation>Datenbank exportieren (CSV/HTML/XML)</translation>
     </message>
+    <message>
+      <source>Search</source>
+      <translation>Suchen</translation>
+    </message>
   </context>
   <context>
     <name>ColorSchemePreview</name>
