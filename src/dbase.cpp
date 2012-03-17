@@ -2051,7 +2051,7 @@ void DataBase::sortM ( int mode ) {
 	int length;
 	int type;
 	int i, j;
-
+	
 	if ( root == NULL )
 		return;
 	length = 0;
@@ -2060,12 +2060,12 @@ void DataBase::sortM ( int mode ) {
 		length++;
 		step = step->next;
 	}
-
-	for ( i = 0; i < length; i++ )
+	
+	for ( i = 0; i < length; i++ ) {
 		for ( j = i; j < length; j++ ) {
 			if ( getMOnPos ( i )->type == HC_CATLNK )
 				continue;
-			else
+			else {
 				if ( getMOnPos ( j )->type == HC_CATLNK )
 					; /* nothing */
 				else {
@@ -2075,20 +2075,17 @@ void DataBase::sortM ( int mode ) {
 							                ( ( DBMedia * ) ( getMOnPos ( j )->data ) )->number )
 								continue;
 							break;
-
 						case NAME:
 							if ( 0 < QString::localeAwareCompare (
 							                        ( ( DBMedia * ) ( getMOnPos ( i )->data ) )->name ,
 							                        ( ( DBMedia * ) ( getMOnPos ( j )->data ) )->name ) )
 								continue;
 							break;
-
 						case TYPE:
 							if ( ( ( DBMedia * ) ( getMOnPos ( i )->data ) )->type <=
 							                ( ( DBMedia * ) ( getMOnPos ( j )->data ) )->type )
 								continue;
 							break;
-
 						case TIME:
 							if ( ( ( DBMedia * ) ( getMOnPos ( i )->data ) )->modification <
 							                ( ( DBMedia * ) ( getMOnPos ( j )->data ) )->modification )
@@ -2096,20 +2093,22 @@ void DataBase::sortM ( int mode ) {
 							break;
 					}
 				}
+			}
 			//swap
 			step = getMOnPos ( i )->child;
 			data = getMOnPos ( i )->data ;
 			type = getMOnPos ( i )->type;
-
+			
 			getMOnPos ( i )->child = getMOnPos ( j )->child;
 			getMOnPos ( i )->data  = getMOnPos ( j )->data;
 			getMOnPos ( i )->type  = getMOnPos ( j )->type;
-
+			
 			getMOnPos ( j )->child = step;
 			getMOnPos ( j )->data  = data;
 			getMOnPos ( j )->type  = type;
-
+			
 		}
+	}
 	root->touchDB();
 }
 
