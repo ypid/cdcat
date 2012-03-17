@@ -64,10 +64,10 @@ typedef int gid_t;
 #define UNIT_TBYTE            4
 
 #define SIZE_ONE_BYTE double(1)
-#define SIZE_ONE_KBYTE double(1024)
-#define SIZE_ONE_MBYTE double(SIZE_ONE_KBYTE*1024)
-#define SIZE_ONE_GBYTE double(SIZE_ONE_MBYTE*1024)
-#define SIZE_ONE_TBYTE double(SIZE_ONE_GBYTE*1024)
+#define SIZE_ONE_KBYTE double(1024.0)
+#define SIZE_ONE_MBYTE double(SIZE_ONE_KBYTE*1024.0)
+#define SIZE_ONE_GBYTE double(SIZE_ONE_MBYTE*1024.0)
+#define SIZE_ONE_TBYTE double(SIZE_ONE_GBYTE*1024.0)
 
 //values for class DataBase::sortM( value )
 #define NAME             1
