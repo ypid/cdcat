@@ -10,6 +10,7 @@
 	- applying missing db settings on rescan event added
 	- applying missing db settings on open hitstory event added
 	- find entries to new find menu entry moved
+	- use qstring instead of char string for compare at pos() on pos dialog
 
 09. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
 	- option for display file content with external viewer added (#982070)

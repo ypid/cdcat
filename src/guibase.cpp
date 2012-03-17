@@ -2294,19 +2294,13 @@ QPosDialog::QPosDialog ( CdCatMainWidget *parent )
 }
 
 int QPosDialog::pos ( const QString & str ) {
-	int len;
-	char pattit[256];
 	DEBUG_INFO_ENABLED = init_debug_info();
 	if ( *DEBUG_INFO_ENABLED )
 		cerr << "QPosDialog::pos() str: " << qPrintable ( str ) << endl;
-
-	strcpy ( pattit, ( const char * ) str );
-	len = strlen ( pattit );
-
 	Q3ListViewItemIterator it ( p->listView );
-
+	
 	for ( ; ( it.current() ) != NULL; it++ ) {
-		if ( 0 == strncmp ( ( const char * ) ( ( it.current() )->text ( 0 ) ), pattit, len ) ) {
+		if ( ( ( it.current() )->text ( 0 ) ) == str ) {
 			p->listView->setCurrentItem ( it.current() );
 			p->listView->curr_vis();
 			p->guis->standOn ( it.current() );
