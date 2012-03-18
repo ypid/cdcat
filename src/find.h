@@ -18,7 +18,7 @@
 #include <Q3HBoxLayout>
 #include <Q3VBoxLayout>
 #include <QLabel>
-#include <Q3Frame>
+#include <QFrame>
 #include <QCloseEvent>
 // #include <pcre.h>
 #include <QRegExp>
@@ -29,7 +29,7 @@ class Q3HBoxLayout;
 class Q3GridLayout;
 class QCheckBox;
 class QComboBox;
-class Q3Frame;
+class QFrame;
 class QLabel;
 class QLineEdit;
 class Q3ListView;
@@ -111,14 +111,14 @@ class findDialog : public QDialog {
 		~findDialog();
 		
 		
-		Q3Frame *input;
+		QFrame *input;
 		Q3HBoxLayout *h1, *h2, *h3, *h4;
 		Q3VBoxLayout *v1;
 		CdCatMainWidget *mainw;
 		QPushButton* buttonClose;
 		QPushButton* buttonExportResult;
 		QPushButton* buttonPrintResult;
-		Q3Frame* line1;
+		QFrame* line1;
 		QComboBox* cbOwner;
 		QComboBox* cbSin;
 		QPushButton* buttonCancel;
@@ -131,7 +131,7 @@ class findDialog : public QDialog {
 		QLabel* textLabel7;
 		QLabel* textLabel8;
 		QLabel* textLabelFindInArchive;
-		Q3Frame* line2;
+		QFrame* line2;
 		Q3ListView* resultsl;
 		QLineEdit* leText;
 		QSpinBox* spSizeMin;

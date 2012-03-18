@@ -13,7 +13,7 @@
 #include <qvariant.h>
 #include <qcheckbox.h>
 #include <qcombobox.h>
-#include <q3frame.h>
+#include <QFrame>
 #include <q3header.h>
 #include <qlayout.h>
 #include <qlabel.h>

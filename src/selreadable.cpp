@@ -10,7 +10,7 @@
 
 #include <QVariant>
 #include <QCheckBox>
-#include <q3frame.h>
+#include <QFrame>
 #include <QLabel>
 #include <QLineEdit>
 #include <QPushButton>
@@ -86,10 +86,10 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	
 	SelReadableLayout->addLayout ( layoutShowArchiveFileOptions );
 	
-	line6 = new Q3Frame ( this, "line1" );
-	line6->setFrameShape ( Q3Frame::HLine );
-	line6->setFrameShadow ( Q3Frame::Sunken );
-	line6->setFrameShape ( Q3Frame::HLine );
+	line6 = new QFrame ( this, "line1" );
+	line6->setFrameShape ( QFrame::HLine );
+	line6->setFrameShadow ( QFrame::Sunken );
+	line6->setFrameShape ( QFrame::HLine );
 	SelReadableLayout->addWidget ( line6 );
 
 	cbTag = new QCheckBox ( this, "cbTag" );
@@ -116,10 +116,10 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	layoutInfo->addWidget ( cbInfo );
 	SelReadableLayout->addLayout ( layoutInfo );
 
-	line1 = new Q3Frame ( this, "line1" );
-	line1->setFrameShape ( Q3Frame::HLine );
-	line1->setFrameShadow ( Q3Frame::Sunken );
-	line1->setFrameShape ( Q3Frame::HLine );
+	line1 = new QFrame ( this, "line1" );
+	line1->setFrameShape ( QFrame::HLine );
+	line1->setFrameShadow ( QFrame::Sunken );
+	line1->setFrameShape ( QFrame::HLine );
 	SelReadableLayout->addWidget ( line1 );
 
 	cbCont = new QCheckBox ( this, "cbCont" );

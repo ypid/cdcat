@@ -1,3 +1,4 @@
+
 /****************************************************************************
 ** Form interface generated from reading ui file 'colorsettings.ui'
 **
@@ -13,7 +14,7 @@
 #include <qvariant.h>
 #include <qpixmap.h>
 #include <qdialog.h>
-#include <q3frame.h>
+#include <QFrame>
 //Added by qt3to4:
 #include <Q3GridLayout>
 #include <Q3HBoxLayout>
@@ -34,7 +35,7 @@ class QPushButton;
 class QSpinBox;
 class QPaintEvent;
 
-class ColorPreview : public Q3Frame {
+class ColorPreview : public QFrame {
     Q_OBJECT
 
 public:
@@ -47,7 +48,7 @@ protected:
 
 };
 
-class ColorSchemePreview : public Q3Frame {
+class ColorSchemePreview : public QFrame {
     Q_OBJECT
 
 public:

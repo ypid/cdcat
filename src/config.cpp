@@ -25,7 +25,7 @@
 #include <qfile.h>
 #include <qfont.h>
 #include <qcolor.h>
-#include <q3frame.h>
+#include <QFrame>
 #include <qtextstream.h>
 #include <qcombobox.h>
 #include <qgroupbox.h>
@@ -1154,10 +1154,10 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	layout1->addWidget ( searchButton );
 	ConfigDialogBaseLayout->addLayout ( layout1, 0, 0 );
 	
-	line1 = new Q3Frame ( this, "line1" );
-	line1->setFrameShape ( Q3Frame::HLine );
-	line1->setFrameShadow ( Q3Frame::Sunken );
-	line1->setFrameShape ( Q3Frame::HLine );
+	line1 = new QFrame ( this, "line1" );
+	line1->setFrameShape ( QFrame::HLine );
+	line1->setFrameShadow ( QFrame::Sunken );
+	line1->setFrameShape ( QFrame::HLine );
 	ConfigDialogBaseLayout->addWidget ( line1, 2, 0 );
 	
 	cbOwnFont = new QCheckBox ( "Use own font size", this, "ownfontcb" );
@@ -1175,19 +1175,19 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	layout4->addWidget ( lab );
 	ConfigDialogBaseLayout->addLayout ( layout4, 4, 0 );
 	
-	line2 = new Q3Frame ( this, "line2" );
-	line2->setFrameShape ( Q3Frame::HLine );
-	line2->setFrameShadow ( Q3Frame::Sunken );
-	line2->setFrameShape ( Q3Frame::HLine );
+	line2 = new QFrame ( this, "line2" );
+	line2->setFrameShape ( QFrame::HLine );
+	line2->setFrameShadow ( QFrame::Sunken );
+	line2->setFrameShape ( QFrame::HLine );
 	ConfigDialogBaseLayout->addWidget ( line2, 5, 0 );
 	
 	cbAutosave = new QCheckBox ( this, "cbAutos" );
 	ConfigDialogBaseLayout->addWidget ( cbAutosave, 6, 0 );
 	
-	line8 = new Q3Frame ( this, "line8" );
-	line8->setFrameShape ( Q3Frame::HLine );
-	line8->setFrameShadow ( Q3Frame::Sunken );
-	line8->setFrameShape ( Q3Frame::HLine );
+	line8 = new QFrame ( this, "line8" );
+	line8->setFrameShape ( QFrame::HLine );
+	line8->setFrameShadow ( QFrame::Sunken );
+	line8->setFrameShape ( QFrame::HLine );
 	ConfigDialogBaseLayout->addWidget ( line8, 7, 0 );
 	
 	layoutSave = new Q3HBoxLayout ( 0, 0, 2, "layoutSave" );
@@ -1197,10 +1197,10 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	layoutSave->addWidget ( cbSaveCatalogAlwaysInUtf8 );
 	ConfigDialogBaseLayout->addLayout ( layoutSave, 8, 0 );
 	
-	line3 = new Q3Frame ( this, "line3" );
-	line3->setFrameShape ( Q3Frame::HLine );
-	line3->setFrameShadow ( Q3Frame::Sunken );
-	line3->setFrameShape ( Q3Frame::HLine );
+	line3 = new QFrame ( this, "line3" );
+	line3->setFrameShape ( QFrame::HLine );
+	line3->setFrameShadow ( QFrame::Sunken );
+	line3->setFrameShape ( QFrame::HLine );
 	ConfigDialogBaseLayout->addWidget ( line3, 9, 0 );
 	
 	layout5 = new Q3HBoxLayout ( 0, 0, 6, "layout5" );
@@ -1288,10 +1288,10 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	}
 #endif
 	
-	line5 = new Q3Frame ( this, "line5" );
-	line5->setFrameShape ( Q3Frame::HLine );
-	line5->setFrameShadow ( Q3Frame::Sunken );
-	line5->setFrameShape ( Q3Frame::HLine );
+	line5 = new QFrame ( this, "line5" );
+	line5->setFrameShape ( QFrame::HLine );
+	line5->setFrameShadow ( QFrame::Sunken );
+	line5->setFrameShape ( QFrame::HLine );
 	ConfigDialogBaseLayout->addWidget ( line5, 14, 0 );
 	
 	layout6 = new Q3HBoxLayout ( 0, 0, 6, "layout6" );
@@ -1302,19 +1302,19 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	layout6->addWidget ( labHistorySize );
 	ConfigDialogBaseLayout->addLayout ( layout6, 15, 0 );
 	
-	line6 = new Q3Frame ( this, "line6" );
-	line6->setFrameShape ( Q3Frame::HLine );
-	line6->setFrameShadow ( Q3Frame::Sunken );
-	line6->setFrameShape ( Q3Frame::HLine );
+	line6 = new QFrame ( this, "line6" );
+	line6->setFrameShape ( QFrame::HLine );
+	line6->setFrameShadow ( QFrame::Sunken );
+	line6->setFrameShape ( QFrame::HLine );
 	ConfigDialogBaseLayout->addWidget ( line6, 16, 0 );
 	
 	riButton = new QPushButton ( this, "ributton" );
 	ConfigDialogBaseLayout->addWidget ( riButton, 17, 0 );
 	
-	line7 = new Q3Frame ( this, "line7" );
-	line7->setFrameShape ( Q3Frame::HLine );
-	line7->setFrameShadow ( Q3Frame::Sunken );
-	line7->setFrameShape ( Q3Frame::HLine );
+	line7 = new QFrame ( this, "line7" );
+	line7->setFrameShape ( QFrame::HLine );
+	line7->setFrameShadow ( QFrame::Sunken );
+	line7->setFrameShape ( QFrame::HLine );
 	ConfigDialogBaseLayout->addWidget ( line7, 18, 0 );
 	
 	layout7 = new Q3HBoxLayout ( 0, 0, 6, "layout7" );

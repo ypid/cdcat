@@ -11,7 +11,7 @@
 
 #include <qvariant.h>
 #include <qcombobox.h>
-#include <q3frame.h>
+#include <QFrame>
 #include <q3groupbox.h>
 #include <qlabel.h>
 #include <qpushbutton.h>
@@ -32,12 +32,12 @@
 
 
 ColorPreview::ColorPreview ( QWidget *parent )
-        : Q3Frame ( parent,"cpv" ) {
+        : QFrame ( parent,"cpv" ) {
     c = QColor ( 0,0,0 );
 }
 
 ColorSchemePreview::ColorSchemePreview ( QWidget *parent )
-        : Q3Frame ( parent,"cspv" ) {
+        : QFrame ( parent,"cspv" ) {
     setMinimumHeight ( 75 );
 
     ts = QColor ( 0,0,0 );
@@ -97,8 +97,8 @@ ColorSettings::ColorSettings ( CdCatConfig *cfgp, QWidget* parent, const char* n
     ColorSettingsLayout = new Q3VBoxLayout ( this, 11, 6, "ColorSettingsLayout" );
 
     preview = new ColorSchemePreview ( this );
-    preview->setFrameShape ( Q3Frame::StyledPanel );
-    preview->setFrameShadow ( Q3Frame::Raised );
+    preview->setFrameShape ( QFrame::StyledPanel );
+    preview->setFrameShadow ( QFrame::Raised );
     ColorSettingsLayout->addWidget ( preview );
 
     itemselector = new QComboBox ( FALSE, this, "itemselector" );
@@ -146,8 +146,8 @@ ColorSettings::ColorSettings ( CdCatConfig *cfgp, QWidget* parent, const char* n
     colorpreview = new ColorPreview ( groupBox1 );
     colorpreview->setMinimumSize ( QSize ( 40, 0 ) );
     colorpreview->setMaximumSize ( QSize ( 40, 32767 ) );
-    colorpreview->setFrameShape ( Q3Frame::StyledPanel );
-    colorpreview->setFrameShadow ( Q3Frame::Raised );
+    colorpreview->setFrameShape ( QFrame::StyledPanel );
+    colorpreview->setFrameShadow ( QFrame::Raised );
     groupBox1Layout->addWidget ( colorpreview );
     layout14->addWidget ( groupBox1 );
 

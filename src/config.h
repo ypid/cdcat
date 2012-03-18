@@ -18,7 +18,7 @@
 //Added by qt3to4:
 #include <Q3HBoxLayout>
 #include <Q3GridLayout>
-#include <Q3Frame>
+#include <QFrame>
 #include <QLabel>
 #include <Q3VBoxLayout>
 #include <QDateTime>
@@ -34,7 +34,7 @@ class QLabel;
 class QWidget;
 class CdCatMainWidget;
 class QSpinBox;
-class Q3Frame;
+class QFrame;
 class QFont;
 class QComboBox;
 class QGroupBox;
@@ -180,7 +180,7 @@ class ConfigDialog : public QDialog {
 		CdCatMainWidget *p;
 		QLineEdit* filename;
 		QPushButton* searchButton;
-		Q3Frame* line1;
+		QFrame* line1;
 		QSpinBox *spinFontSize;
 		QSpinBox *spinHistorySize;
 		QLabel* lab;
@@ -191,14 +191,14 @@ class ConfigDialog : public QDialog {
 		QCheckBox* cbShowProgressedFileInStatus;
 		QLineEdit* cdrompath_lineedit;
 		QLabel* cdrom_lab;
-		Q3Frame* line2;
-		Q3Frame* line3;
-		Q3Frame* line4;
-		Q3Frame* line5;
-		Q3Frame* line6;
-		Q3Frame* line61;
-		Q3Frame* line7;
-		Q3Frame* line8;
+		QFrame* line2;
+		QFrame* line3;
+		QFrame* line4;
+		QFrame* line5;
+		QFrame* line6;
+		QFrame* line61;
+		QFrame* line7;
+		QFrame* line8;
 		QPushButton* riButton;
 		QPushButton* okButton;
 		QPushButton* cancelButton;

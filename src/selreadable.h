@@ -14,7 +14,7 @@
 #include <qdialog.h>
 //Added by qt3to4:
 #include <Q3VBoxLayout>
-#include <Q3Frame>
+#include <QFrame>
 #include <Q3GridLayout>
 #include <Q3HBoxLayout>
 #include <QLabel>
@@ -24,7 +24,7 @@ class Q3VBoxLayout;
 class Q3HBoxLayout;
 class Q3GridLayout;
 class QCheckBox;
-class Q3Frame;
+class QFrame;
 class QLabel;
 class QLineEdit;
 class QPushButton;
@@ -44,9 +44,9 @@ class SelReadable : public QDialog {
 		CdCatConfig *conf;
 		QCheckBox* cbTag;
 		QCheckBox* cbInfo;
-		Q3Frame* line0;
+		QFrame* line0;
 		QCheckBox* cbaInfo;
-		Q3Frame* line1;
+		QFrame* line1;
 		QCheckBox* cbCont;
 		QCheckBox* cbFileInfo;
 		QCheckBox* cbThumb;
@@ -63,8 +63,8 @@ class SelReadable : public QDialog {
 		QLineEdit *lineeditPathExternalContentViewer;
 		QLineEdit *lineExcludeFiles;
 		
-		Q3Frame* line6;
-		Q3Frame* line7;
+		QFrame* line6;
+		QFrame* line7;
 		QPushButton* buttonOK;
 		QPushButton* buttonCancel;
 		QPushButton* buttonUseExternalContentViewer;

@@ -11,7 +11,7 @@
 
 #include <qvariant.h>
 #include <qmenubar.h>
-#include <q3frame.h>
+#include <QFrame>
 #include <q3header.h>
 #include <q3listview.h>
 #include <qtoolbutton.h>
@@ -70,9 +70,9 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	
 	splitMain = new QSplitter ( this );
 	
-	Toolbar = new Q3Frame ( this, "Toolbar" );
-	Toolbar->setFrameShape ( Q3Frame::StyledPanel );
-	Toolbar->setFrameShadow ( Q3Frame::Raised );
+	Toolbar = new QFrame ( this, "Toolbar" );
+	Toolbar->setFrameShape ( QFrame::StyledPanel );
+	Toolbar->setFrameShadow ( QFrame::Raised );
 	Toolbar->setMaximumHeight ( 36 );
 	Toolbar->setMinimumHeight ( 36 );
 	

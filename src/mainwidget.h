@@ -20,7 +20,7 @@
 #include <Q3HBoxLayout>
 #include <Q3VBoxLayout>
 #include <QLabel>
-#include <Q3Frame>
+#include <QFrame>
 #include <QCloseEvent>
 
 
@@ -28,7 +28,7 @@
 class Q3VBoxLayout;
 class Q3HBoxLayout;
 class Q3GridLayout;
-class Q3Frame;
+class QFrame;
 class Q3ListView;
 class Q3ListViewItem;
 class QToolButton;
@@ -53,7 +53,7 @@ public:
 
     DataBase      *db;
     CommentWidget * commentWidget;
-    Q3Frame* Toolbar;
+    QFrame* Toolbar;
     QMenuBar   *mainMenu;
     QToolButton* ButtonOpen;
     QToolButton* ButtonSave;
