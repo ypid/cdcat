@@ -18,7 +18,7 @@
 #include <qmessagebox.h>
 #include <q3dragobject.h>
 #include <qmime.h>
-#include <q3strlist.h>
+#include <QStringList>
 #include <qstringlist.h>
 #include <qapplication.h>
 #include <qevent.h>
@@ -351,9 +351,9 @@ void HDirectoryView::contentsDropEvent ( QDropEvent *e ) {
     Q3ListViewItem *item = itemAt ( contentsToViewport ( e->pos() ) );
     if ( item ) {
 
-        Q3StrList lst;
+        QStringList lst;
 
-        Q3UriDrag::decode ( e, lst );
+        Q3UriDrag::decodeToUnicodeUris ( e, lst );
 
         QString str;
 

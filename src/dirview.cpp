@@ -16,7 +16,6 @@
 #include <qmessagebox.h>
 #include <q3dragobject.h>
 #include <qmime.h>
-#include <q3strlist.h>
 #include <qstringlist.h>
 #include <qapplication.h>
 #include <q3header.h>

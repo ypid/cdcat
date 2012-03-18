@@ -14,7 +14,6 @@
 #include <q3listview.h>
 #include <q3multilineedit.h>
 #include <Q3PtrList>
-#include <q3strlist.h>
 #include <q3table.h>
 #include <QTextBrowser>
 #include <Q3ValueList>
