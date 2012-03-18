@@ -66,6 +66,7 @@ SOURCES	    =   adddialog.cpp \
 		        mainwidget.cpp \
 		        mp3tag.cpp \
 			cdcatmediainfo.cpp \
+			cdcatexif.cpp \
 		        newdbdialog.cpp \
 		        wdbfile.cpp \
 		        info.cpp \
@@ -142,8 +143,8 @@ win32 {
 	
 	########## exif
 	# use exif?
-	DEFINES+=USE_LIBEXIF
-	LIBS+= -lexif
+	DEFINES += USE_LIBEXIF
+	LIBS += -lexif
 	######### end exif
 	
 	LIBS       += -lz -ltar -lbz2 -ldl
