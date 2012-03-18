@@ -216,7 +216,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	QAction *quit_action = new QAction (QIcon(*get_t_save_icon()), tr ( "&Quit" ), this);
 	quit_action->setShortcuts(QKeySequence::Close);
 	quit_action->setStatusTip(tr("Close program"));
-	connect(quit_action, SIGNAL(triggered()), guis, SLOT(close()));
+	connect(quit_action, SIGNAL(triggered()), this, SLOT(close()));
 	fileMenu->addAction(quit_action);
 	
 	QAction *add_action = new QAction (QIcon(*get_t_add_icon()), tr ( "Add media..." ), this);
@@ -235,7 +235,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	rescan_action->setShortcut(QKeySequence (Qt::CTRL + Qt::Key_R));
 	rescan_action->setStatusTip(tr("Rescan existing media"));
 	connect(rescan_action, SIGNAL(triggered()), guis, SLOT(rescanEvent()));
-	fileMenu->addAction(rescan_action);
+	editMenu->addAction(rescan_action);
 	
 	editMenu->insertSeparator();
 	
