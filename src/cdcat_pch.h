@@ -15,8 +15,6 @@
 #include <q3listbox.h>
 #include <q3listview.h>
 #include <q3multilineedit.h>
-#include <Q3PopupMenu>
-#include <q3popupmenu.h>
 #include <Q3PtrList>
 #include <q3strlist.h>
 #include <q3table.h>
