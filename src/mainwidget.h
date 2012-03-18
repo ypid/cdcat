@@ -14,7 +14,7 @@
 #include <qpixmap.h>
 #include <qwidget.h>
 #include <qapplication.h>
-#include <q3popupmenu.h>
+#include <QMenu>
 //Added by qt3to4:
 #include <Q3GridLayout>
 #include <Q3HBoxLayout>
@@ -72,7 +72,7 @@ public:
     HQListView* listView;
     QLabel *statusl;
     QApplication *app;
-    Q3PopupMenu *historyMenu;
+    QMenu *historyMenu;
     QSplitter *splitMain;
 
 protected:

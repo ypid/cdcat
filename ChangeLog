@@ -1,4 +1,7 @@
 17. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
+	- q3popmenu qith qmenu replaced at mainwidget
+
+17. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
 	- handle files larger than 1tb fixed
 	- use double instead float internally
 	- tb size unit on find dialog added
