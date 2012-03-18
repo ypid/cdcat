@@ -15,7 +15,7 @@
 #include <qvariant.h>
 #include <qlabel.h>
 #include <qpoint.h>
-#include <q3popupmenu.h>
+#include <QMenu>
 #include <qlineedit.h>
 #include <qpushbutton.h>
 #include <qlayout.h>
@@ -388,8 +388,8 @@ int borrowingDialog::click ( int row,int col,const QPoint& mousePos ) {
     QString s;
     if ( /*button != 2 ||*/ col != 2 ) return 0;
 
-    Q3PopupMenu *pm = new Q3PopupMenu ( this,"bpm" );
-    Q3PopupMenu *pma = new Q3PopupMenu ( this,"bpma" );
+    QMenu *pm = new QMenu ( this);
+    QMenu *pma = new QMenu ( this );
     pm->insertItem ( tr ( "I got it back!" ),this,SLOT ( click_clr() ) );
     pm->insertItem ( tr ( "<< " ),pma );
 
@@ -409,6 +409,7 @@ int borrowingDialog::click ( int row,int col,const QPoint& mousePos ) {
     connect ( pma,SIGNAL ( activated ( int ) ),this,SLOT ( click_set ( int ) ) );
     last_row_clicked = row;
     pm->exec ( mousePos );
+    
     return 0;
 }
 
