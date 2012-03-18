@@ -23,7 +23,7 @@ class Q3VBoxLayout;
 class Q3HBoxLayout;
 class Q3GridLayout;
 class QPushButton;
-class Q3TextBrowser;
+class QTextBrowser;
 class QToolButton;
 class QLabel;
 class Node;

@@ -13,7 +13,7 @@
 #include <qtabwidget.h>
 #include <qwidget.h>
 #include <qlabel.h>
-#include <q3textbrowser.h>
+#include <QTextBrowser>
 #include <qlayout.h>
 #include <qtooltip.h>
 #include <q3whatsthis.h>
@@ -58,7 +58,7 @@ InfoDialog::InfoDialog ( QWidget* parent, const char* name, bool modal, Qt::WFla
     tab_2 = new QWidget ( tabWidget2, "tab_2" );
     tabLayout_2 = new Q3GridLayout ( tab_2, 1, 1, 11, 6, "tabLayout_2" );
 
-    textBrowser1 = new Q3TextBrowser ( tab_2, "textBrowser1" );
+    textBrowser1 = new QTextBrowser ( tab_2, "textBrowser1" );
 
     tabLayout_2->addWidget ( textBrowser1, 0, 0 );
     tabWidget2->insertTab ( tab_2, QString ( "" ) );
@@ -66,7 +66,7 @@ InfoDialog::InfoDialog ( QWidget* parent, const char* name, bool modal, Qt::WFla
     TabPage = new QWidget ( tabWidget2, "TabPage" );
     TabPageLayout = new Q3GridLayout ( TabPage, 1, 1, 11, 6, "TabPageLayout" );
 
-    textThanx = new Q3TextBrowser ( TabPage, "textLabel1_2" );
+    textThanx = new QTextBrowser ( TabPage, "textLabel1_2" );
 
     TabPageLayout->addWidget ( textThanx, 0, 0 );
     tabWidget2->insertTab ( TabPage, QString ( "" ) );

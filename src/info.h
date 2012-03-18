@@ -26,7 +26,7 @@ class QPushButton;
 class QTabWidget;
 class QWidget;
 class QLabel;
-class Q3TextBrowser;
+class QTextBrowser;
 
 class InfoDialog : public QDialog {
     Q_OBJECT
@@ -40,9 +40,9 @@ public:
     QWidget* tab;
     QLabel* textLabel1;
     QWidget* tab_2;
-    Q3TextBrowser* textBrowser1;
+    QTextBrowser* textBrowser1;
     QWidget* TabPage;
-    Q3TextBrowser* textThanx;
+    QTextBrowser* textThanx;
 
 protected:
     Q3GridLayout* helpDialogLayout;

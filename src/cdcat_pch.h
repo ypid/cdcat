@@ -17,7 +17,7 @@
 #include <Q3PtrList>
 #include <q3strlist.h>
 #include <q3table.h>
-#include <q3textbrowser.h>
+#include <QTextBrowser>
 #include <Q3ValueList>
 #include <Q3VBoxLayout>
 #include <q3whatsthis.h>
@@ -87,10 +87,9 @@
 #include <qstring.h>
 #include <QStringList>
 #include <qstringlist.h>
-#include <Qt3Support/Q3Frame>
+#include <QFrame>
 #include <Qt3Support/Q3MimeSourceFactory>
-#include <Qt3Support/Q3TextBrowser>
-#include <Qt3Support/Q3TextEdit>
+#include <QTextEdit>
 #include <qtabwidget.h>
 #include <QtCore/QVariant>
 #include <QtDebug>

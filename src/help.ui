@@ -15,7 +15,7 @@
   </property>
   <layout class="QVBoxLayout">
    <item>
-    <widget class="Q3TextBrowser" name="textBrowser1">
+    <widget class="QTextBrowser" name="textBrowser1">
      <property name="text">
       <string>&lt;p align=&quot;center&quot;&gt;&lt;font size=&quot;+1&quot;&gt;&lt;b&gt;Help&lt;/b&gt;&lt;/font&gt;&lt;/p&gt;&lt;br&gt;
 
@@ -63,20 +63,20 @@ E-mail: hyperr@freemail.hu
  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
  <customwidgets>
   <customwidget>
-   <class>Q3Frame</class>
+   <class>QFrame</class>
    <extends>QFrame</extends>
-   <header>Qt3Support/Q3Frame</header>
+   <header>QFrame</header>
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>Q3TextEdit</class>
-   <extends>Q3Frame</extends>
-   <header>q3textedit.h</header>
+   <class>QTextBrowser</class>
+   <extends>QTextBrowser</extends>
+   <header>QTextBrowser</header>
   </customwidget>
   <customwidget>
-   <class>Q3TextBrowser</class>
-   <extends>Q3TextEdit</extends>
-   <header>Qt3Support/Q3TextBrowser</header>
+   <class>QTextBrowser</class>
+   <extends>QTextBrowser</extends>
+   <header>QTextBrowser</header>
   </customwidget>
  </customwidgets>
  <resources/>
