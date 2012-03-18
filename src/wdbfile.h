@@ -13,7 +13,6 @@
 #include <stdio.h>
 #include <zlib.h>
 //Added by qt3to4:
-#include <Q3CString>
 
 #include <QtXml/QXmlDefaultHandler>
 #include <QtXml/QXmlLocator>
@@ -23,7 +22,6 @@
 class Node;
 class PWw;
 class QString;
-class Q3CString;
 class QTextCodec;
 class QDateTime;
 

@@ -4,7 +4,6 @@
  // Add C++ includes here
 #include <iostream>
 #include <q3buttongroup.h>
-#include <Q3CString>
 #include <q3dragobject.h>
 #include <Q3Frame>
 #include <q3frame.h>
