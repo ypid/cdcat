@@ -19,7 +19,6 @@
 #include <QTextBrowser>
 #include <Q3ValueList>
 #include <Q3VBoxLayout>
-#include <q3whatsthis.h>
 #include <qapplication.h>
 #include <QCalendarWidget>
 #include <QCheckBox>

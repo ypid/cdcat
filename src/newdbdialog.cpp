@@ -19,7 +19,6 @@
 #include <q3multilineedit.h>
 #include <qlayout.h>
 #include <qtooltip.h>
-#include <q3whatsthis.h>
 #include <qmessagebox.h>
 //Added by qt3to4:
 #include <Q3GridLayout>

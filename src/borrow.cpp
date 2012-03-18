@@ -20,7 +20,6 @@
 #include <qpushbutton.h>
 #include <qlayout.h>
 #include <qtooltip.h>
-#include <q3whatsthis.h>
 #include <qcheckbox.h>
 #include <q3table.h>
 #include <qmessagebox.h>

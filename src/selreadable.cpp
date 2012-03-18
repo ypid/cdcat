@@ -18,7 +18,6 @@
 #include <QComboBox>
 #include <QLayout>
 #include <QToolTip>
-#include <q3whatsthis.h>
 #include <QFileDialog>
 #include <QFileInfo>
 //Added by qt3to4:

@@ -17,7 +17,6 @@
 #include <qtoolbutton.h>
 #include <qlayout.h>
 #include <qtooltip.h>
-#include <q3whatsthis.h>
 #include <qimage.h>
 #include <qpixmap.h>
 #include <qdir.h>
@@ -487,7 +486,6 @@ void CdCatMainWidget::languageChange() {
 	QToolTip::add ( ButtonSaveAs, tr ( "Save the catalog to a new file." ) );
 	ButtonClose->setText ( QString::null );
 	QToolTip::add ( ButtonClose, tr ( "Close the actual catalog." ) );
-	Q3WhatsThis::add ( ButtonClose, QString::null );
 	ButtonAdd->setText ( QString::null );
 	QToolTip::add ( ButtonAdd, tr ( "Add a new media to the catalog." ) );
 	ButtonRescan->setText ( QString::null );
@@ -502,8 +500,6 @@ void CdCatMainWidget::languageChange() {
 	QToolTip::add ( ButtonNew, tr ( "Create a new, empty catalog and close the previous." ) );
 	ButtonFind->setText ( QString::null );
 	QToolTip::add ( ButtonFind, tr ( "Search an element in the database(catalog).You can search filenames, directory names, name parts or mp3 tags etc..." ) );
-	Q3WhatsThis::add ( ButtonFind, tr ( "Search an element." ) );
-	ButtonAbout->setText ( QString::null );
 	QToolTip::add ( ButtonAbout, tr ( "About" ) );
 	ButtonAboutQt->setText ( QString::null );
 	QToolTip::add ( ButtonAboutQt, tr ( "About Qt" ) );

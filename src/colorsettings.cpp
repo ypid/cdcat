@@ -18,7 +18,6 @@
 #include <qspinbox.h>
 #include <qlayout.h>
 #include <qtooltip.h>
-#include <q3whatsthis.h>
 #include <qimage.h>
 #include <qpixmap.h>
 #include <qevent.h>

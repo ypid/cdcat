@@ -19,7 +19,6 @@
 #include <q3multilineedit.h>
 #include <qlayout.h>
 #include <qtooltip.h>
-#include <q3whatsthis.h>
 #include <qstringlist.h>
 #include <qregexp.h>
 //Added by qt3to4:

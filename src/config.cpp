@@ -21,7 +21,6 @@
 #include <qtooltip.h>
 #include <qlabel.h>
 #include <qspinbox.h>
-#include <q3whatsthis.h>
 #include <qfile.h>
 #include <qfont.h>
 #include <qcolor.h>

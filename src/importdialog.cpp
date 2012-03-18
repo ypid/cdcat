@@ -15,7 +15,6 @@ Copyright : (C) 2003 Christoph Thielecke
 #include <qpushbutton.h>
 #include <qmessagebox.h>
 #include <qtooltip.h>
-#include <q3whatsthis.h>
 #include <qfile.h>
 #include <qfiledialog.h>
 //Added by qt3to4:
@@ -169,8 +168,6 @@ void ImportDialog::languageChange() {
     separator_lab->setText ( tr ( "Separator:" ) );
     QToolTip::add
     ( separator_lineedit , tr ( "This is the separator in dataline\n<path>SEPARATOR<size>SEPARATOR<date><space><time>" ) );
-    Q3WhatsThis::add
-    ( separator_lineedit , tr ( "Separator in data line" ) );
     buttonCancel->setText ( tr ( "Cancel" ) );
     buttonOK->setText ( tr ( "Import" ) );
     buttonGetFile->setText ( tr ( "..." ) );
@@ -226,12 +223,8 @@ void ImportDialog::languageChange() {
 
     QToolTip::add
     ( buttonGetFile , tr ( "Open the file dialog for selecting file to import." ) );
-    Q3WhatsThis::add
-    ( buttonGetFile , tr ( "Open file dialog" ) );
     QToolTip::add
     ( correctbadstyle , tr ( "Corrects bad output style from gtktalog.\n<media>SEPARATOR/<dir>/SEPARATOR/<dir>\n will be to\n<media>/<dir>/<dir>" ) );
-    Q3WhatsThis::add
-    ( correctbadstyle , tr ( "Corrects bad output style (gtktalog)" ) );
     info_lab->setText ( tr ( "<strong>Please read the README_IMPORT before you import!</strong>" ) );
 
 

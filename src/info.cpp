@@ -16,7 +16,6 @@
 #include <QTextBrowser>
 #include <qlayout.h>
 #include <qtooltip.h>
-#include <q3whatsthis.h>
 //Added by qt3to4:
 #include <Q3GridLayout>
 #include <QLocale>

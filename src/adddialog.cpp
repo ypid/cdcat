@@ -23,7 +23,6 @@
 #include <q3multilineedit.h>
 #include <qlayout.h>
 #include <qtooltip.h>
-#include <q3whatsthis.h>
 #include <qmessagebox.h>
 #include <qimage.h>
 #include <qpixmap.h>
