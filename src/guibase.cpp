@@ -25,7 +25,6 @@
 //Added by qt3to4:
 #include <Q3HBoxLayout>
 #include <QKeyEvent>
-#include <Q3PopupMenu>
 #include <Q3HBoxLayout>
 #include <QInputDialog>
 #include <QComboBox>
@@ -683,52 +682,50 @@ void GuiSlave::setGuiMenuAndToolBarEnabled ( bool enable ) {
 
 
 void GuiSlave::showListviewContextMenu ( Q3ListViewItem *, const QPoint &p, int ) {
-	mPopup = new Q3PopupMenu ( 0 );
-	mPopup->setCheckable ( true );
-
+	mPopup = new QMenu ( );
+	
 	if ( standON != NULL ) {
-		mPopup->insertItem ( *get_t_comment_icon(), tr ( "View/Edit Comment..." ), this, SLOT ( editComment() ) );
-		mPopup->insertItem ( *get_t_comment_icon(), tr ( "View/Edit Category..." ), this, SLOT ( editCategory() ) );
+		mPopup->addAction ( QIcon(*get_t_comment_icon()), tr ( "View/Edit Comment..." ), this, SLOT(editComment()) );
+		mPopup->addAction ( QIcon(*get_t_comment_icon()), tr ( "View/Edit Category..." ), this, SLOT(editCategory()) );
 		mPopup->insertSeparator();
-		mPopup->insertItem ( tr ( "Node size" ), this, SLOT ( sizeEvent() ) );
+		mPopup->addAction ( tr ( "Node size" ), this, SLOT(sizeEvent()) );
 		mPopup->insertSeparator();
-
+		
 		if ( haveContent ( standON ) ) {
 			if ( mainw->cconfig->useExternalContentViewer && QFileInfo ( mainw->cconfig->ExternalContentViewerPath ).exists() ) {
-				mPopup->insertItem ( *get_t_showc_icon(), tr ( "Show content..." ), this, SLOT ( showContent() ) );
+				mPopup->addAction ( QIcon(*get_t_showc_icon()), tr ( "Show content..." ), this, SLOT(showContent()) );
 			}
 			else {
-				mPopup->insertItem ( *get_t_showc_icon(), tr ( "Show/Remove content..." ), this, SLOT ( showContent() ) );
+				mPopup->addAction ( QIcon(*get_t_showc_icon()), tr ( "Show/Remove content..." ), this, SLOT(showContent()) );
 			}
 		}
-
+		
 		if ( standON->type == HC_CATLNK )
-			mPopup->insertItem ( *get_p_icon(), tr ( "Follow the link (Open it) !" ), this, SLOT ( followLnk() ) );
-
-		mPopup->insertItem ( tr ( "Rename node..." ), this, SLOT ( renameEvent() ) );
-		mPopup->insertItem ( *get_t_delete_icon() , tr ( "Delete node" ), this, SLOT ( deleteEvent() ) );
-
-
+			mPopup->addAction ( QIcon(*get_p_icon()), tr ( "Follow the link (Open it) !" ), this, SLOT(followLnk()) );
+		
+		mPopup->addAction (tr ( "Rename node..." ), this, SLOT(renameEvent()) );
+		mPopup->addAction ( QIcon(*get_t_delete_icon()), tr ( "Delete node" ), this, SLOT(deleteEvent()) );
+		
 		if ( standON->type == HC_MEDIA ) {
 			mPopup->insertSeparator();
 			if ( ( ( DBMedia * ) ( standON->data ) )->borrowing == "" )
-				mPopup->insertItem ( *get_t_sborrow_icon() , tr ( "Borrow this media to..." ), this, SLOT ( sborrowEvent() ) );
+				mPopup->addAction ( QIcon(*get_t_sborrow_icon()), tr ( "Borrow this media to..." ), this, SLOT(sborrowEvent()) );
 			else
-				mPopup->insertItem ( *get_t_cborrow_icon() , tr ( "I got it back! (clear borrowing mark)" ), this, SLOT ( cborrowEvent() ) );
-
+				mPopup->addAction ( QIcon(*get_t_cborrow_icon()), tr ( "I got it back! (clear borrowing mark)" ), this, SLOT(cborrowEvent()) );
+			
 			mPopup->insertSeparator();
-			mPopup->insertItem ( *get_t_rescan_icon() , tr ( "Rescan media..." ), this, SLOT ( rescanEvent() ) );
-			mPopup->insertItem ( tr ( "Re-Number media..." ), this, SLOT ( renumberEvent() ) );
+			mPopup->addAction ( QIcon(*get_t_rescan_icon()), tr ( "Rescan media..." ), this, SLOT(rescanEvent()) );
+			mPopup->addAction ( tr ( "Re-Number media..." ), this, SLOT(renumberEvent()) );
 		}
 		if ( standON->type == HC_FILE ) {
 			mPopup->insertSeparator();
-			mPopup->insertItem ( tr ( "search for duplicates..." ), this, SLOT ( searchDuplicatesEvent() ) );
+			mPopup->addAction ( tr ( "search for duplicates..." ), this, SLOT(searchDuplicatesEvent()) );
 		}
 	}
 	mPopup->insertSeparator();
-	mPopup->insertItem ( *get_t_add_icon() , tr ( "Add media..." ), this, SLOT ( addEvent() ) );
-	mPopup->insertItem ( *get_p_icon() , tr ( "Add a link to a CdCAt Catalog..." ), this, SLOT ( addlnkEvent() ) );
-	mPopup->insertItem ( tr ( "Insert Catalog..." ), this, SLOT ( insertcEvent() ) );
+	mPopup->addAction ( QIcon(*get_t_add_icon()), tr ( "Add media..." ), this, SLOT(addEvent()) );
+	mPopup->addAction ( QIcon(*get_p_icon()), tr ( "Add a link to a CdCat Catalog..." ), this, SLOT(addlnkEvent()) );
+	mPopup->addAction ( tr ( "Insert Catalog..." ), this, SLOT(insertcEvent()) );
 	mPopup->exec ( p );
 	delete mPopup;
 	mPopup = NULL;
@@ -745,42 +742,43 @@ void GuiSlave::showTreeContextMenu ( Q3ListViewItem *item, const QPoint &p2, int
 		     );
 	}
 
-	mPopup = new Q3PopupMenu ( 0 );
-	mPopup->setCheckable ( true );
+	mPopup = new QMenu ( );
 	if ( on != NULL ) {
-		mPopup->insertItem ( *get_t_comment_icon(), tr ( "View/Edit Comment..." ), this, SLOT ( editComment() ) );
-		mPopup->insertItem ( *get_t_comment_icon(), tr ( "View/Edit Category..." ), this, SLOT ( editCategory() ) );
+		mPopup->addAction ( QIcon(*get_t_comment_icon()), tr ( "View/Edit Comment..." ), this, SLOT(editComment()) );
+		mPopup->addAction ( tr ( "View/Edit Category..." ), this, SLOT(editCategory()) );
 		mPopup->insertSeparator();
-		mPopup->insertItem ( tr ( "Node size" ), this, SLOT ( sizeEvent() ) );
+		mPopup->addAction ( tr ( "Node size" ), this, SLOT(sizeEvent()) );
 		mPopup->insertSeparator();
 
 	}
 	if ( on != NULL && on->type != HC_CATALOG ) {
-		mPopup->insertItem ( tr ( "Rename node..." ), this, SLOT ( renameEvent() ) );
-		mPopup->insertItem ( *get_t_delete_icon() , tr ( "Delete node" ), this, SLOT ( deleteEvent() ) );
+		mPopup->addAction ( tr ( "Rename node..." ), this, SLOT(renameEvent()) );
+		mPopup->addAction ( QIcon(*get_t_delete_icon()), tr ( "Delete node" ), this, SLOT(deleteEvent()) );
 		mPopup->insertSeparator();
 		if ( on->type == HC_MEDIA ) {
 
 			if ( ( ( DBMedia * ) ( on->data ) )->borrowing == "" )
-				mPopup->insertItem ( *get_t_sborrow_icon() , tr ( "Borrow this media to..." ), this, SLOT ( sborrowEvent() ) );
+				mPopup->addAction ( QIcon(*get_t_sborrow_icon()), tr ( "Borrow this media to..." ), this, SLOT(sborrowEvent()) );
 			else
-				mPopup->insertItem ( *get_t_cborrow_icon() , tr ( "I got it back! (clear borrowing mark)" ), this, SLOT ( cborrowEvent() ) );
+				mPopup->addAction ( QIcon(*get_t_cborrow_icon()), tr ( "I got it back! (clear borrowing mark)" ), this, SLOT(cborrowEvent()) );
 
-			mPopup->insertItem ( *get_t_rescan_icon() , tr ( "Rescan media..." ), this, SLOT ( rescanEvent() ) );
-			mPopup->insertItem ( tr ( "Re-Number media..." ), this, SLOT ( renumberEvent() ) );
+			mPopup->addAction ( QIcon(*get_t_rescan_icon()), tr ( "Rescan media..." ), this, SLOT(rescanEvent()) );
+			mPopup->addAction ( tr ( "Re-Number media..." ), this, SLOT(renumberEvent()) );
+			
 			mPopup->insertSeparator();
 			context_item = ( HQListViewItem * ) item;
-			mPopup->insertItem ( *get_t_add_icon() , tr ( "Change media type..." ), this, SLOT ( typeChangeEvent() ) );
+			mPopup->addAction ( QIcon(*get_t_add_icon()), tr ( "Change media type..." ), this, SLOT(typeChangeEvent()) );
 		}
 	}
-	mPopup->insertItem ( *get_t_add_icon() , tr ( "Add media..." ), this, SLOT ( addEvent() ) );
-	mPopup->insertItem ( *get_p_icon() , tr ( "Add a link to a CdCAt Catalog..." ), this, SLOT ( addlnkEvent() ) );
-	mPopup->insertItem ( tr ( "Insert Catalog..." ), this, SLOT ( insertcEvent() ) );
+	mPopup->addAction ( QIcon(*get_t_add_icon()), tr ( "Add media..." ), this, SLOT(addEvent()) );
+	mPopup->addAction ( QIcon(*get_p_icon()), tr ( "Add a link to a Cdcat catalog..." ), this, SLOT(addlnkEvent()) );
+	mPopup->addAction ( tr ( "Insert Catalog..." ), this, SLOT(insertcEvent()) );
+	//mPopup->addAction ( tr ( "Insert Catalog (no duplicates)..." ), this, SLOT(insertcEventNoDup()) );
 	if ( on != NULL ) {
 		mPopup->insertSeparator();
-		mPopup->insertItem ( tr ( "Close all branch" ), this, SLOT ( closeBranch() ) );
+		mPopup->addAction ( tr ( "Close all branch" ), this, SLOT(closeBranch()) );
 	}
-
+	
 	save = standON;
 	standON = on;
 	mPopup->exec ( p2 );
@@ -1701,6 +1699,40 @@ int GuiSlave::insertcEvent ( void ) {
 	progress ( pww );
 
 	if ( mainw->db->insertDB ( fnc, false ) != 0 ) { // An error occured
+		QMessageBox::warning ( mainw, tr ( "Error while opening..." ),
+		                       mainw->db->errormsg );
+	}
+
+	progress ( pww );
+	panelsON();
+	progress ( pww );
+	pww->end();
+	mainw->db->pww = NULL;
+	delete pww;
+	return 0;
+}
+
+int GuiSlave::insertcEventNoDup ( void ) {
+	char fnc[256];
+	QString fn;
+
+	if ( mainw->db == NULL )
+		newEvent();
+	if ( mainw->db == NULL )
+		return 0;
+	fn = QFileDialog::getOpenFileName ( 0, tr ( "Insert a database file..." ), mainw->cconfig->lastDir, tr ( "CdCat databases (*.hcf )" ) );
+	if ( fn.isEmpty() )
+		return 0;
+
+	strcpy ( fnc, ( const char * ) QFile::encodeName ( fn ) );
+
+	panelsOFF();
+
+	PWw *pww = new PWw ( mainw, mainw->app );
+	mainw->db->pww = pww;
+	progress ( pww );
+
+	if ( mainw->db->insertDB ( fnc, true ) != 0 ) { // An error occured
 		QMessageBox::warning ( mainw, tr ( "Error while opening..." ),
 		                       mainw->db->errormsg );
 	}

@@ -14,7 +14,7 @@
 #include <qobject.h>
 #include <qdialog.h>
 #include <q3listview.h>
-#include <q3popupmenu.h>
+#include <QMenu>
 //Added by qt3to4:
 #include <QKeyEvent>
 
@@ -41,7 +41,7 @@ public:
     Node *NodePwd;
     Node *tmpParent;
 
-    Q3PopupMenu *mPopup;
+    QMenu *mPopup;
 
     GuiSlave ( CdCatMainWidget *p );
     Node *getNodeFromFullName ( Node *root,const QString& newloc );
@@ -82,6 +82,7 @@ public slots:
     int aboutQtEvent ( void );
     int helpEvent ( void );
     int insertcEvent ( void );
+    int insertcEventNoDup ( void );
     int renameEvent ( void );
     int typeChangeEvent( void );
     int sizeEvent ( void );
