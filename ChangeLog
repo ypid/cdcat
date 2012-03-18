@@ -2,6 +2,7 @@
 	- q3popmenu with qmenu replaced at mainwidget, guibase, borrowdialog
 	- q3cstring removed
 	- q3textbrowser replaced by qtextbrowser
+	- display content file pattern info if deabug info is enabled
 
 17. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
 	- handle files larger than 1tb fixed

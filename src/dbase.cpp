@@ -1175,8 +1175,8 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 			pcc2.setPattern ( QString ( pattern ) );
 			pcc2.setCaseSensitivity(Qt::CaseInsensitive);
 			//pcc   = pcre_compile ( pattern,0,&error,&erroroffset,NULL );
-			//if(*DEBUG_INFO_ENABLED)
-			//	std::cerr << "pcc2 pattern: " << pattern << ", match: " << pcc2.exactMatch(QString(( const char * ) QFile::encodeName ( fi->fileName()))) << std::endl;
+			if(*DEBUG_INFO_ENABLED)
+				std::cerr << "pcc2 pattern: " << pattern << ", match: " << pcc2.exactMatch(QString(( const char * ) QFile::encodeName ( fi->fileName()))) << std::endl;
  			//if(*DEBUG_INFO_ENABLED)
 			// 	std::cerr << "pcre_exec match: " << pcre_exec ( pcc,NULL, ( const char * ) QFile::encodeName ( fi->fileName() )
 			//                                   ,strlen ( ( const char * ) QFile::encodeName ( fi->fileName() ) )
@@ -1196,6 +1196,9 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 			unsigned long rsize = 0, rrsize;
 			unsigned char *rdata = 0;
 			Node *tt = fc->prop;
+			
+			if(*DEBUG_INFO_ENABLED)
+				std::cerr << "pattern " << pattern << ", matched for file " << ( const char * ) QFile::encodeName ( fi->fileName()) << ", reading content"<< std::endl;
 			
 			if ( storeLimit > MAX_STORED_SIZE )
 				storeLimit = MAX_STORED_SIZE;
