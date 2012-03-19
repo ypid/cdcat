@@ -1,4 +1,7 @@
-17. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
+19. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
+	- q3table replaced by qtablewidget
+
+18. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
 	- q3popmenu with qmenu replaced at mainwidget, guibase, borrowdialog
 	- q3cstring removed
 	- q3textbrowser replaced by qtextbrowser

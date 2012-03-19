@@ -17,10 +17,11 @@
 #include <Q3GridLayout>
 #include <Q3HBoxLayout>
 #include <QLabel>
+#include <QPoint>
 
 
 class QCheckBox;
-class Q3Table;
+class QTableWidget;
 class Q3VBoxLayout;
 class Q3HBoxLayout;
 class Q3GridLayout;
@@ -71,10 +72,11 @@ public:
     QLabel* textLabel;
     QCheckBox* cbOnlyBorrowed;
     QPushButton* buttonClear;
-    Q3Table* table;
+    QTableWidget* table;
     QPushButton* buttonOk;
     QPushButton* buttonCancel;
     int last_row_clicked;
+    QWidget *parent;
 
 public slots:
 
@@ -85,7 +87,7 @@ public slots:
     int schanged ( int row,int col );
     int sonlyb();
     int sstore();
-    int click ( int row,int col,const QPoint & mousePos );
+    int click (const QPoint & );
     int click_set ( int a );
     int click_clr ( void );
 
