@@ -907,6 +907,19 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 		i = 1 + ( QMessageBox::warning ( NULL, tr ( "Error" ), errormsg, tr ( "Ignore" ), tr ( "Cancel scanning" ) ) );
 		return i;
 	}
+	
+	if (doExcludeFiles) {
+		for (int i = 0; i < excludeFileRegExList.size(); i++) {
+			if ( *DEBUG_INFO_ENABLED )
+					std::cerr << "exclude dirs: checking regex \"" << qPrintable (excludeFileRegExList.at(i).pattern() ) << "\" against " << qPrintable ( dir->path() )<< std::endl;
+			if(excludeFileRegExList.at(i).exactMatch(dir->path())) {
+				if ( *DEBUG_INFO_ENABLED )
+					std::cerr << "exclude dirs: regex \"" << qPrintable (excludeFileRegExList.at(i).pattern() ) << "\" matched against " << qPrintable ( dir->path() ) << ", skipping" << std::endl;
+				continue;
+			}
+		}
+	}
+	
 	dirlist = new QFileInfoList ( dir->entryInfoList ( QString ( "*" ), QDir::All | QDir::Hidden | QDir::System ) );
 	
 	for ( int fi = 0; fi < dirlist->size(); ++fi ) {
@@ -924,10 +937,10 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 		if (doExcludeFiles) {
 			for (int i = 0; i < excludeFileRegExList.size(); i++) {
 				if ( *DEBUG_INFO_ENABLED )
-						std::cerr << "exclude files: checking regex \"" << qPrintable (excludeFileRegExList.at(i).pattern() ) << "\" against " << qPrintable ( fileInfo->fileName() )<< std::endl;
-				if(excludeFileRegExList.at(i).exactMatch(fileInfo->fileName())) {
+						std::cerr << "exclude files: checking regex \"" << qPrintable (excludeFileRegExList.at(i).pattern() ) << "\" against " << qPrintable ( fileInfo->filePath() )<< std::endl;
+				if(excludeFileRegExList.at(i).exactMatch(fileInfo->filePath())) {
 					if ( *DEBUG_INFO_ENABLED )
-						std::cerr << "exclude files: regex \"" << qPrintable (excludeFileRegExList.at(i).pattern() ) << "\" matched against " << qPrintable ( fileInfo->fileName() ) << ", skipping" << std::endl;
+						std::cerr << "exclude files: regex \"" << qPrintable (excludeFileRegExList.at(i).pattern() ) << "\" matched against " << qPrintable ( fileInfo->filePath() ) << ", skipping" << std::endl;
 					continue;
 				}
 			}

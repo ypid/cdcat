@@ -1,3 +1,7 @@
+24. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
+	- exclude rules are checked against file path instead file name
+	- exclude rules now checked against directory path too
+
 19. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
 	- q3table replaced by qtablewidget
 
