@@ -40,10 +40,6 @@
       <source>unknown</source>
       <translation>unbekannt</translation>
     </message>
-    <message>
-      <source></source>
-      <translation type="unfinished" />
-    </message>
   </context>
   <context>
     <name>CatalogTypeEditDialog</name>
@@ -165,10 +161,6 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
       <translation>Neuen, leeren Katalog erstellen und den vorherigen schliessen</translation>
     </message>
     <message>
-      <source>Search an element.</source>
-      <translation>Element suchen</translation>
-    </message>
-    <message>
       <source>About</source>
       <translation>Über</translation>
     </message>
@@ -185,28 +177,8 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
       <translation>Grösse</translation>
     </message>
     <message>
-      <source>New...</source>
-      <translation>Neu...</translation>
-    </message>
-    <message>
-      <source>Open...</source>
-      <translation>Öffnen...</translation>
-    </message>
-    <message>
-      <source>Save</source>
-      <translation>Speichern</translation>
-    </message>
-    <message>
-      <source>Save As...</source>
-      <translation>Speichern als...</translation>
-    </message>
-    <message>
       <source>Close</source>
       <translation>Schliessen</translation>
-    </message>
-    <message>
-      <source>Quit</source>
-      <translation>Beenden</translation>
     </message>
     <message>
       <source>Add media...</source>
@@ -263,10 +235,6 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     <message>
       <source>Sort media by name</source>
       <translation>Medium nach Name sortieren</translation>
-    </message>
-    <message>
-      <source>Sort media by type</source>
-      <translation>Medium nach Typ sortieren</translation>
     </message>
     <message>
       <source>Sort media by time</source>
@@ -339,6 +307,102 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     <message>
       <source>Search</source>
       <translation>Suchen</translation>
+    </message>
+    <message>
+      <source>&amp;New...</source>
+      <translation>&amp;Neu...</translation>
+    </message>
+    <message>
+      <source>Create a new catalog</source>
+      <translation>Neuen Katalog erstellen</translation>
+    </message>
+    <message>
+      <source>&amp;Open...</source>
+      <translation>&amp;Öffnen...</translation>
+    </message>
+    <message>
+      <source>Open a existing catalog</source>
+      <translation>Einen existierenden Katalog öffnen</translation>
+    </message>
+    <message>
+      <source>&amp;Save</source>
+      <translation>&amp;Speichern</translation>
+    </message>
+    <message>
+      <source>Save catalog</source>
+      <translation>Katalog speichern</translation>
+    </message>
+    <message>
+      <source>&amp;Save as...</source>
+      <translation>&amp;Speichern als...</translation>
+    </message>
+    <message>
+      <source>save catalog with new name</source>
+      <translation>Katalog unter neuem Namen speichern</translation>
+    </message>
+    <message>
+      <source>Close catalog</source>
+      <translation>Katalog schließen</translation>
+    </message>
+    <message>
+      <source>&amp;Quit</source>
+      <translation>&amp;Beenden</translation>
+    </message>
+    <message>
+      <source>Close program</source>
+      <translation>Programm schließen</translation>
+    </message>
+    <message>
+      <source>Add new media to catalog</source>
+      <translation>Neues Medium zum Katalog hinzufügen</translation>
+    </message>
+    <message>
+      <source>Add a link to a existing cdcat catalog</source>
+      <translation>Einen Verweis zu einem existierendem Katalog hinzufügen</translation>
+    </message>
+    <message>
+      <source>Rescan existing media</source>
+      <translation>Existierendes Medium neu einlesen</translation>
+    </message>
+    <message>
+      <source>Insert catalog into database</source>
+      <translation>Katalog in Datenbank einfügen</translation>
+    </message>
+    <message>
+      <source>Rename node</source>
+      <translation>Knoten umbenennen</translation>
+    </message>
+    <message>
+      <source>Renumber node</source>
+      <translation>Knoten umnummerieren</translation>
+    </message>
+    <message>
+      <source>Seek in database for files and folders</source>
+      <translation>In Datenbank nach Dateien und Ordnern suchen</translation>
+    </message>
+    <message>
+      <source>Calculate node size</source>
+      <translation>Knotengröße berechnen</translation>
+    </message>
+    <message>
+      <source>Edit cdcat configuration</source>
+      <translation>CdCat-Konfiguration bearbeiten</translation>
+    </message>
+    <message>
+      <source>Set the colors for display</source>
+      <translation>Farben für Anzeige setzen</translation>
+    </message>
+    <message>
+      <source>Import database (CSV/XML) from various catalog programs</source>
+      <translation>Datenbank von verschiedenen Katalogprogrammen importieren (CSV/XML)</translation>
+    </message>
+    <message>
+      <source>About Cdcat</source>
+      <translation>Über Cdcat</translation>
+    </message>
+    <message>
+      <source>About the Qt toolkit</source>
+      <translation>Über das Qt-Toolkit</translation>
     </message>
   </context>
   <context>
@@ -962,10 +1026,6 @@ Datenbank kann unvollständig sein</translation>
       <translation>Der Verknüpfung folgen (Öffnen)!</translation>
     </message>
     <message>
-      <source>Add a link to a CdCAt Catalog...</source>
-      <translation>Verknüpfung zu einem CdCat-Katalog hinzufügen</translation>
-    </message>
-    <message>
       <source>The link is empty.</source>
       <translation>Die Verknüpfung ist leer.</translation>
     </message>
@@ -1041,6 +1101,14 @@ Homepage: %3</translation>
       <source>Show/Remove content...</source>
       <translation>Inhalt anzeigen/löschen...</translation>
     </message>
+    <message>
+      <source>Add a link to a CdCat Catalog...</source>
+      <translation>Verweis auf CdCat-Datenbank hinzufügen...</translation>
+    </message>
+    <message>
+      <source>Add a link to a Cdcat catalog...</source>
+      <translation>Verweis auf CdCat-Datenbank hinzufügen...</translation>
+    </message>
   </context>
   <context>
     <name>HDirectoryView</name>
@@ -1115,10 +1183,6 @@ Homepage: %3</translation>
       <translation>Importieren</translation>
     </message>
     <message>
-      <source>Open file dialog</source>
-      <translation>Dateidialog öffnen</translation>
-    </message>
-    <message>
       <source>Error:</source>
       <translation>Fehler:</translation>
     </message>
@@ -1137,10 +1201,6 @@ Homepage: %3</translation>
     <message>
       <source>Create new Database</source>
       <translation>Neue Datenbank erstellen</translation>
-    </message>
-    <message>
-      <source>Corrects bad output style (gtktalog)</source>
-      <translation>Korrigiert schlechten Ausgabestil (gtktalog)</translation>
     </message>
     <message>
       <source>Type</source>
@@ -1171,10 +1231,6 @@ Homepage: %3</translation>
 &lt;path>SEPARATOR&lt;size>SEPARATOR&lt;date>&lt;space>&lt;time></source>
       <translation>Dies ist das Trennzeiche in Datenzeile 
 &lt;pfad>TRENNZEICHEN&lt;größe>TRENNZEICHEN&lt;datum>&lt;leerzeichen>&lt;zeit></translation>
-    </message>
-    <message>
-      <source>Separator in data line</source>
-      <translation>Trennzeichen in Datenzeile</translation>
     </message>
     <message>
       <source>...</source>
@@ -1714,20 +1770,40 @@ wird zu
       <translation>max. Größe:</translation>
     </message>
     <message>
-      <source>exclude files</source>
-      <translation>Dateien ausschließen</translation>
-    </message>
-    <message>
-      <source>; separated list of skip file patterns (regular expression)</source>
-      <translation>;-getrennte Liste von Dateien zum Überspringen (regurärer Ausdruck)</translation>
-    </message>
-    <message>
       <source>Read mp3 info as comment</source>
       <translation>MP3-Info's als Kommentar lesen</translation>
     </message>
     <message>
       <source>Read avi info as comment</source>
       <translation>AVI-Info's als Kommentar lesen</translation>
+    </message>
+    <message>
+      <source>Add exclude rule...</source>
+      <translation>Aussschlußregel hinzufügen</translation>
+    </message>
+    <message>
+      <source>Enter regular expression for exclude:</source>
+      <translation>Regulären Ausdruck zum Ausschließen eingeben:</translation>
+    </message>
+    <message>
+      <source>edit rule...</source>
+      <translation>Regel bearbeiten...</translation>
+    </message>
+    <message>
+      <source>delete rule...</source>
+      <translation>Regel löschen...</translation>
+    </message>
+    <message>
+      <source>exclude files/directories</source>
+      <translation>Dateien/Verzeichnisse ausschließen</translation>
+    </message>
+    <message>
+      <source>add exclude rule...</source>
+      <translation>Ausschlußregel hinzufügen...</translation>
+    </message>
+    <message>
+      <source>list of patterns (regular expression) for files/directories to skip on reading from filesystem</source>
+      <translation>Liste von Mustern (regulärer Ausdruck) für Dateien/Verzeichnisse, die beim Lesen vom Dateisystem übersprungen werden sollen</translation>
     </message>
   </context>
   <context>
@@ -1956,10 +2032,6 @@ wird zu
     <message>
       <source>Ok</source>
       <translation>OK</translation>
-    </message>
-    <message>
-      <source>0</source>
-      <translation>0</translation>
     </message>
     <message>
       <source>No</source>

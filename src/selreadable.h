@@ -19,6 +19,8 @@
 #include <Q3HBoxLayout>
 #include <QLabel>
 #include <QGroupBox>
+#include <QModelIndex>
+#include <QStringListModel>
 
 class Q3VBoxLayout;
 class Q3HBoxLayout;
@@ -33,6 +35,9 @@ class CdCatConfig;
 class QComboBox;
 class QRadioButton;
 class QGroupBox;
+class QListView;
+class QPoint;
+class QModelIndex;
 
 class SelReadable : public QDialog {
 		Q_OBJECT
@@ -61,13 +66,15 @@ class SelReadable : public QDialog {
 		QLineEdit *lineFiles;
 		QLineEdit *thumbLineExts;
 		QLineEdit *lineeditPathExternalContentViewer;
-		QLineEdit *lineExcludeFiles;
+		QListView *listviewExcludeFiles;
+		QStringListModel *exclude_model;
 		
 		QFrame* line6;
 		QFrame* line7;
 		QPushButton* buttonOK;
 		QPushButton* buttonCancel;
 		QPushButton* buttonUseExternalContentViewer;
+		QPushButton* buttonAddExcludeRule;
 		QComboBox *cbDefaultMp3TagVersion;
 		
 		QLabel* labelContentSize;
@@ -100,6 +107,10 @@ class SelReadable : public QDialog {
 		int scan ( void );
 		int selectExternalContentViewer( void );
 		void selectExternalContentViewerString( const QString& );
+		void addExcludeRulesClicked();
+		void editExcludeRuleClicked();
+		void deleteExcludeRuleClicked();
+		void excludeContextMenuRequested(const QPoint &);
 	
 	protected:
 		Q3VBoxLayout* SelReadableLayout;
@@ -115,10 +126,13 @@ class SelReadable : public QDialog {
 		Q3HBoxLayout* layoutThumbExts;
 		Q3HBoxLayout* layoutExternalContentViewer;
 		Q3HBoxLayout* layoutFileInfo;
-		Q3HBoxLayout* layoutExcludeFiles;
+		Q3HBoxLayout* layoutExcludeMain;
+		Q3VBoxLayout* layoutExcludeLeft;
 		Q3GridLayout* layoutShowArchiveFileOptionsGroup;
 
 		QString SupportedExtensions;
+		
+		QModelIndex contextmenu_modelindex;
 
 	protected slots:
 		virtual void languageChange();

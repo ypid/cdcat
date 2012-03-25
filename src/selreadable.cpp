@@ -20,6 +20,13 @@
 #include <QToolTip>
 #include <QFileDialog>
 #include <QFileInfo>
+#include <QListView>
+#include <QStringListModel>
+#include <QStandardItem>
+#include <QInputDialog>
+#include <QPoint>
+#include <QMenu>
+#include <QAction>
 //Added by qt3to4:
 #include <Q3HBoxLayout>
 #include <Q3VBoxLayout>
@@ -212,15 +219,18 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	SelReadableLayout->addWidget ( cbExif );
 #endif
 	
-	layoutExcludeFiles = new Q3HBoxLayout ( 0, 0, 6, "layoutExcludeFiles" );
+	layoutExcludeMain = new Q3HBoxLayout ( 0, 0, 6, "layoutExcludeMain" );
+	layoutExcludeLeft = new Q3VBoxLayout ( 0, 0, 6, "layoutExcludeLeft" );
 	cbDoExcludeFiles = new QCheckBox ( this, "cbDoExcludeFiles" );
 	labelExcludeFiles = new QLabel ( this, "labelExcludeFiles" );
-	lineExcludeFiles = new QLineEdit (this, "lineExcludeFiles");
-	layoutExcludeFiles->addWidget ( cbDoExcludeFiles );
-	layoutExcludeFiles->addWidget (labelExcludeFiles);
-	layoutExcludeFiles->addWidget (lineExcludeFiles);
+	buttonAddExcludeRule = new QPushButton( this, "buttonAddExcludeRule");
+	listviewExcludeFiles = new QListView (this);
+	layoutExcludeLeft->addWidget ( cbDoExcludeFiles );
+	layoutExcludeLeft->addWidget ( buttonAddExcludeRule );
+	layoutExcludeMain->addLayout(layoutExcludeLeft);
+	layoutExcludeMain->addWidget (listviewExcludeFiles);
 	
-	SelReadableLayout->addLayout ( layoutExcludeFiles );
+	SelReadableLayout->addLayout ( layoutExcludeMain );
 	
 	layoutButtons = new Q3HBoxLayout ( 0, 0, 6, "layoutButtons" );
 	QSpacerItem* spacer_2 = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
@@ -249,7 +259,10 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	connect ( buttonCancel, SIGNAL ( clicked() ), this, SLOT ( scan() ) );
 	connect ( buttonUseExternalContentViewer, SIGNAL ( clicked() ), this, SLOT ( selectExternalContentViewer() ) );
 	connect ( lineeditPathExternalContentViewer, SIGNAL ( textEdited ( const QString & ) ), this, SLOT ( selectExternalContentViewerString( const QString & ) ) );
+	connect ( buttonAddExcludeRule, SIGNAL( clicked()), this, SLOT( addExcludeRulesClicked()) );
 	
+	listviewExcludeFiles->setContextMenuPolicy(Qt::CustomContextMenu);
+	connect(listviewExcludeFiles, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(excludeContextMenuRequested(const QPoint &)));
 	
 	cpScanArchive->setChecked ( conf->doScanArchive );
 	cpShowArchiveFilePerms->setChecked ( conf->show_archive_file_perms );
@@ -379,7 +392,9 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	labFileInfoExtensionsStatusIcon->setToolTip(tr("Supported extensions:")+"&nbsp;" + SupportedFileInfoExtensions );
 	
 	cbDoExcludeFiles->setChecked(conf->doExcludeFiles);
-	lineExcludeFiles->setText(conf->ExcludeFileList.join(";"));
+	
+	exclude_model = new QStringListModel(conf->ExcludeFileList);
+	listviewExcludeFiles->setModel(exclude_model);
 	
 	schanged ( 0 );
 }
@@ -443,9 +458,9 @@ int SelReadable::schanged ( int ) {
 	}
 	
 	if(cbDoExcludeFiles->isChecked())
-		lineExcludeFiles->setEnabled(true);
+		listviewExcludeFiles->setEnabled(true);
 	else
-		lineExcludeFiles->setEnabled(false);
+		listviewExcludeFiles->setEnabled(false);
 	
 	return 0;
 }
@@ -480,7 +495,7 @@ int SelReadable::sok ( void ) {
 	else
 		conf->v1_over_v2  = false;
 	conf->doExcludeFiles  = cbDoExcludeFiles->isChecked();
-	conf->ExcludeFileList = lineExcludeFiles->text().split(";");
+	conf->ExcludeFileList = exclude_model->stringList();
 	
 	close();
 	return 0;
@@ -516,12 +531,61 @@ void SelReadable::selectExternalContentViewerString(const QString &s ) {
 	return;
 }
 
+void SelReadable::addExcludeRulesClicked() {
+	bool ok;
+	QString text = QInputDialog::getText(this, tr("Add exclude rule..."), tr("Enter regular expression for exclude:"), QLineEdit::Normal, "", &ok);
+	if(ok) {
+		QStringList excludeList = exclude_model->stringList();
+		excludeList.append(text);
+		exclude_model->setStringList(excludeList);
+		std::cout << "add rule: " << qPrintable(text) << std::endl;
+	}
+}
+
+void SelReadable::excludeContextMenuRequested(const QPoint& pos) {
+	QPoint globalPos = listviewExcludeFiles->mapToGlobal(pos);
+	QModelIndex modelindex = listviewExcludeFiles->indexAt(pos);
+	QString itemtext = exclude_model->data(modelindex, 0).toString();
+	std::cout << qPrintable(itemtext) << " is clicked" << std::endl;
+	contextmenu_modelindex = modelindex;
+	QMenu excludeContextMenu(this);
+	QAction EditRuleAction(tr("edit rule..."), this);
+	excludeContextMenu.addAction(&EditRuleAction);
+	connect(&EditRuleAction, SIGNAL(triggered()), this, SLOT(editExcludeRuleClicked()));
+	
+	QAction DeleteRuleAction(tr("delete rule..."), this);
+	excludeContextMenu.addAction(&DeleteRuleAction);
+	connect(&DeleteRuleAction, SIGNAL(triggered()), this, SLOT(deleteExcludeRuleClicked()));
+	
+	excludeContextMenu.exec(QCursor::pos());
+}
+
+
+void SelReadable::editExcludeRuleClicked() {
+	QString itemtext = exclude_model->data(contextmenu_modelindex, 0).toString();
+	std::cout << qPrintable(itemtext) << " is is to edited" << std::endl;
+	bool ok;
+	QString text = QInputDialog::getText(this, tr("Add exclude rule..."), tr("Enter regular expression for exclude:"), QLineEdit::Normal, itemtext, &ok);
+	if(ok) {
+		QStringList excludeList = exclude_model->stringList();
+		exclude_model->setData(contextmenu_modelindex, text);
+		//exclude_model->setStringList(excludeList);
+		std::cout << "edited rule: " << qPrintable(text) << std::endl;
+	}
+}
+
+void SelReadable::deleteExcludeRuleClicked() {
+	QString itemtext = exclude_model->data(contextmenu_modelindex, 0).toString();
+	std::cout << qPrintable(itemtext) << " is to be deleted" << std::endl;
+	exclude_model->removeRows( contextmenu_modelindex.row(), 1);
+}
 
 /*
  *  Destroys the object and frees any allocated resources
  */
 SelReadable::~SelReadable() {
 	// no need to delete child widgets, Qt does it all for us
+	delete exclude_model;
 }
 
 /*
@@ -566,8 +630,9 @@ void SelReadable::languageChange() {
 	thumbLineExts->setToolTip ( tr ( "; separated list of image file extensions, e.g. png;jpg;gif" ) );
 	labelContentSize->setText ( tr ( "max size:" ) );
 	maxSpinBox->setToolTip( tr ( "content size limit in kByte" ) );
-	cbDoExcludeFiles->setText(tr("exclude files"));
-	lineExcludeFiles->setToolTip(tr("; separated list of skip file patterns (regular expression)"));
+	cbDoExcludeFiles->setText(tr("exclude files/directories"));
+	buttonAddExcludeRule->setText(tr("add exclude rule..."));
+	listviewExcludeFiles->setToolTip(tr("list of patterns (regular expression) for files/directories to skip on reading from filesystem"));
 	buttonOK->setText ( tr ( "Ok" ) );
 	buttonCancel->setText ( tr ( "Cancel" ) );
 }
