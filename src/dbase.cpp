@@ -651,7 +651,7 @@ int DataBase::addMedia ( QString what, QString name, int number, int type, QStri
 			QString patt = ExcludeFileList.at(i);
 			QRegExp re;
 			re.setPattern ( QString ( patt ) );
-			re.setPatternSyntax ( QRegExp::Wildcard );
+			re.setPatternSyntax ( QRegExp::RegExp );
 			if (re.isValid()) {
 				excludeFileRegExList.append(re);
 			}

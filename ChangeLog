@@ -1,3 +1,6 @@
+25. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
+	- use real regex instead simple wildcard at exclude rules
+
 24. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
 	- exclude rules are checked against file path instead file name
 	- exclude rules now checked against directory path too
