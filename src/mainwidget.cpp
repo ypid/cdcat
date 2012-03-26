@@ -48,6 +48,8 @@
 
 #include <QScrollArea>
 
+#include <QMessageBox>
+
 /*
  *  Constructs a CdCatMainWidget as a child of 'parent', with the
  *  name 'name' and widget flags set to 'f'.
@@ -366,6 +368,14 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	mainMenu->hide();
 #endif
 	
+	// trayIcon
+	trayIcon = NULL;
+	if(cconfig->showTrayIcon) {
+		createTrayIcon();
+		trayIcon->show();
+		trayIcon->setToolTip(tr("Cdcat - idle"));
+	}
+	
 	languageChange();
 	
 	lvMain   = new Q3VBoxLayout ( this );
@@ -507,31 +517,113 @@ void CdCatMainWidget::languageChange() {
 }
 
 void CdCatMainWidget::closeEvent ( QCloseEvent *e ) {
-
-// An error occured during the REQUISTED saving of the database
-// (eg: access denied for writing...)
-	if ( guis->closeEvent() != 0 )
-		return;
-
-	cconfig->windowSize = size();
-	cconfig->windowPos  =  pos();
-	cconfig->mainP1 = ( splitMain->sizes() ) [0];
-	cconfig->mainP2 = ( splitMain->sizes() ) [1];
-	cconfig->mainP3 = ( splitMain->sizes() ) [2];
-
-	cconfig->writeConfig();
-	QWidget::closeEvent ( e );
+	//if (trayIcon != NULL && trayIcon->isVisible()) {
+	//	QMessageBox::information(this, tr("Systray"),
+	//				tr("The program will keep running in the "
+	//				"system tray. To terminate the program, "
+	//				"choose <b>Quit</b> in the context menu "
+	//				"of the system tray entry."));
+	//	hide();
+	//	e->ignore();
+	//}
+	//else
+	{
+		// An error occured during the REQUISTED saving of the database
+		// (eg: access denied for writing...)
+		if ( guis->closeEvent() != 0 )
+			return;
+		
+		cconfig->windowSize = size();
+		cconfig->windowPos  =  pos();
+		cconfig->mainP1 = ( splitMain->sizes() ) [0];
+		cconfig->mainP2 = ( splitMain->sizes() ) [1];
+		cconfig->mainP3 = ( splitMain->sizes() ) [2];
+		
+		cconfig->writeConfig();
+		QWidget::closeEvent ( e );
+	}
 }
 
 void CdCatMainWidget::pathScanned ( QString path ) {
 // 	std::cerr <<"CdCatMainWidget::pathScanned: " << qPrintable(path) << std::endl;
 	lastScanPath = path;
 	statusl->setText ( tr ( "Scanning:" ) + " " + path );
+	//if(cconfig->showTrayIcon && isHidden())
+	//	trayIcon->setToolTip(tr ( "Scanning:" ) + " " + path);
 }
 
 void CdCatMainWidget::extraInfoAppend(QString extraInfo) {
 	statusl->setText ( lastScanPath + " [" + extraInfo + "]" );
+	//if(cconfig->showTrayIcon && isHidden())
+	//	trayIcon->setToolTip(lastScanPath + " [" + extraInfo + "]");
 }
+
+void CdCatMainWidget::createTrayIcon() {
+	if (trayIcon == NULL) {
+		minimizeAction = new QAction(tr("Mi&nimize"), this);
+		connect(minimizeAction, SIGNAL(triggered()), this, SLOT(hide()));
+		
+		maximizeAction = new QAction(tr("Ma&ximize"), this);
+		connect(maximizeAction, SIGNAL(triggered()), this, SLOT(showMaximized()));
+		
+		restoreAction = new QAction(tr("&Restore"), this);
+		connect(restoreAction, SIGNAL(triggered()), this, SLOT(showNormal()));
+		
+		quitAction = new QAction(tr("&Quit"), this);
+		connect(quitAction, SIGNAL(triggered()), app, SLOT(quit()));
+		
+		trayIconMenu = new QMenu(this);
+		trayIconMenu->addAction(minimizeAction);
+		trayIconMenu->addAction(maximizeAction);
+		trayIconMenu->addAction(restoreAction);
+		trayIconMenu->addSeparator();
+		trayIconMenu->addAction(quitAction);
+		
+		trayIcon = new QSystemTrayIcon(this);
+		trayIcon->setContextMenu(trayIconMenu);
+		trayIcon->setIcon(QIcon(*get_p_icon()));
+		
+		connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
+			this, SLOT(trayIconActivated(QSystemTrayIcon::ActivationReason)));
+		}
+}
+
+
+void CdCatMainWidget::showTrayMessage() {
+
+}
+
+void CdCatMainWidget::trayIconActivated ( QSystemTrayIcon::ActivationReason reason ) {
+	switch (reason) {
+		case QSystemTrayIcon::Trigger:
+			std::cout << "systray single click " << std::endl;
+			if(isHidden())
+				showNormal();
+			else
+				hide();
+			break;
+		case QSystemTrayIcon::DoubleClick:
+			std::cout << "systray double click " << std::endl;
+			break;
+		case QSystemTrayIcon::MiddleClick:
+			std::cout << "systray middle click " << std::endl;
+			break;
+		default:
+			;
+	}
+	trayIcon->setIcon(QIcon(*get_p_icon()));
+	//QSystemTrayIcon::MessageIcon icon;
+	QSystemTrayIcon::MessageIcon icon = QSystemTrayIcon::MessageIcon(1);
+	
+	// foo: caption
+	// bar: message
+	//trayIcon->showMessage(QString("foo"), QString("bar"),   icon, 3 * 1000);
+}
+
+void CdCatMainWidget::trayIconMessageClicked() {
+	QMessageBox::information(0, tr("Systray"), tr("Sorry, I already gave what help I could.\nMaybe you should try asking a human?"));
+}
+
 
 
 // kate: indent-mode cstyle; replace-tabs off; tab-width 8; 

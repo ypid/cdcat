@@ -69,6 +69,7 @@ CdCatConfig::CdCatConfig ( void ) {
 	ownfont    = false;
 	fsize      = 8;
 	historysize = 10;
+	showTrayIcon = true;
 	autoload   = false;
 	autoloadfn = "";
 	nice       = true;
@@ -288,7 +289,15 @@ int CdCatConfig::readConfig ( void ) {
 					}
 					continue;
 				} // history
-					
+				
+				
+				if ( var == "showTrayIcon" ) {
+					if ( val == "true" )
+						showTrayIcon = true;
+					else
+						showTrayIcon = false;
+					continue;
+				}
 				if ( var == "autoload" ) {
 					if ( val == "true" )
 						autoload = true;
@@ -861,6 +870,10 @@ int CdCatConfig::writeConfig ( void ) {
 		
 		str << "history=" +  history_str << endl;
 		
+		if ( showTrayIcon )
+			str << "showTrayIcon=true"  << endl;
+		else
+			str << "showTrayIcon=false" << endl;
 		if ( autoload )
 			str << "autoload=true"  << endl;
 		else
@@ -1322,6 +1335,12 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	layout6->addWidget ( spinHistorySize );
 	labHistorySize = new QLabel ( this, "labHistorySize" );
 	layout6->addWidget ( labHistorySize );
+	
+	cbShowTrayIcon = new QCheckBox(tr( "show systray icon" ), this );
+	QSpacerItem* systrayspacer1 = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
+	layout6->addItem(systrayspacer1);
+	layout6->addWidget(cbShowTrayIcon);
+	
 	ConfigDialogBaseLayout->addLayout ( layout6, 15, 0 );
 	
 	line6 = new QFrame ( this, "line6" );
@@ -1392,6 +1411,7 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 		cbOwnFont->setChecked ( false );
 	
 	cbNice->setChecked ( p->cconfig->nice );
+	cbShowTrayIcon->setChecked( p->cconfig->showTrayIcon );
 	cbAutoload->setChecked ( p->cconfig->autoload );
 	cbAutosave->setChecked ( p->cconfig->autosave );
 	if ( !p->cconfig->autoloadfn.isEmpty() )
@@ -1432,6 +1452,7 @@ ConfigDialog::~ConfigDialog() {
 
 void ConfigDialog::languageChange() {
 	setCaption ( tr ( "Configure  CdCat..." ) );
+	cbShowTrayIcon->setText( tr( "Show systray icon" ));
 	cbAutoload->setText ( tr ( "Autoload DataBase on startup" ) );
 	cbAutosave->setText ( tr ( "Automatically save the database after every scan (for safety sake)" ) );
 	cbNice->setText ( tr ( "Save the XML-db.file nicer format(needs more space)" ) );
@@ -1476,6 +1497,7 @@ void ConfigDialog::cdrombutton() {
 
 void ConfigDialog::okExit() {
 	p->cconfig->nice        = cbNice->isChecked();
+	p->cconfig->showTrayIcon = cbShowTrayIcon->isChecked();
 	p->cconfig->autoload    = cbAutoload->isChecked();
 	p->cconfig->autosave    = cbAutosave->isChecked();
 	p->cconfig->autoloadfn  = filename->text();

@@ -1433,7 +1433,11 @@ int GuiSlave::addEvent ( void ) {
 				connect ( mainw->db, SIGNAL ( pathScanned ( QString ) ), mainw, SLOT ( pathScanned ( QString ) ) );
 				connect ( mainw->db, SIGNAL ( pathExtraInfoAppend( QString ) ), mainw, SLOT ( extraInfoAppend(QString)) );
 			}
-
+			if(mainw->cconfig->showTrayIcon) {
+				QSystemTrayIcon::MessageIcon icon = QSystemTrayIcon::MessageIcon(1);
+				mainw->trayIcon->showMessage(tr("Scan started"), tr("Scanning %1 into %2 has been started").arg(d->dDir, d->dName),   icon, 3 * 1000);
+			}
+			
 			i =  mainw->db->addMedia ( d->dDir, d->dName, d->serial, d->type,
 			                           ( d->dOwner.isEmpty() ? QString ( "" ) : d->dOwner ), ( d->dCategory.isEmpty() ? QString ( "" ) : d->dCategory ) );
 			
@@ -1441,6 +1445,17 @@ int GuiSlave::addEvent ( void ) {
 			if ( i == 2 ) {
 				QMessageBox::warning ( mainw,
 				                       tr ( "Warning..." ), tr ( "You have cancelled catalog scanning,\nthe DataBase may be incomplete" ));
+			}
+			
+			if(mainw->cconfig->showTrayIcon) {
+				if(i == 0) {
+					QSystemTrayIcon::MessageIcon icon = QSystemTrayIcon::MessageIcon(1);
+					mainw->trayIcon->showMessage(tr("Scan finished"), tr("Scanning %1 into %2 has been finished").arg(d->dDir, d->dName),   icon, 3 * 1000);
+				}
+				else {
+					QSystemTrayIcon::MessageIcon icon = QSystemTrayIcon::MessageIcon(2);
+					mainw->trayIcon->showMessage(tr("Scan finished"), tr("Scanning %1 into %2 has been finished (NOT complete)").arg(d->dDir, d->dName),   icon, 3 * 1000);
+				}
 			}
 			
 			if ( mainw->cconfig->showProgressedFileInStatus ) {
@@ -1682,6 +1697,17 @@ int GuiSlave::findEvent ( void ) {
 int GuiSlave::configEvent ( void ) {
 	ConfigDialog *d = new ConfigDialog ( mainw, "configdialog", true );
 	d->exec();
+	if(mainw->cconfig->showTrayIcon) {
+		if( mainw->trayIcon == NULL)
+			mainw->createTrayIcon();
+		mainw->trayIcon->show();
+		mainw->trayIcon->setToolTip(tr("Cdcat - idle"));
+	}
+	else {
+		if( mainw->trayIcon != NULL) {
+			mainw->trayIcon->hide();
+		}
+	}
 	return 0;
 }
 

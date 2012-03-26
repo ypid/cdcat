@@ -60,7 +60,7 @@ class CdCatConfig : public QObject {
 		//Configureable items:
 		int fsize;
 		int historysize;
-		
+		bool showTrayIcon;
 		bool autoload;
 		QString autoloadfn;
 		bool nice;
@@ -204,6 +204,7 @@ class ConfigDialog : public QDialog {
 		QPushButton* riButton;
 		QPushButton* okButton;
 		QPushButton* cancelButton;
+		QCheckBox* cbShowTrayIcon;
 		QCheckBox* cbAutoload;
 		QCheckBox* cbAutosave;
 		QCheckBox* cbOwnFont;

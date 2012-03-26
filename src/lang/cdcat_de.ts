@@ -40,10 +40,6 @@
       <source>unknown</source>
       <translation>unbekannt</translation>
     </message>
-    <message>
-      <source></source>
-      <translation type="unfinished" />
-    </message>
   </context>
   <context>
     <name>CatalogTypeEditDialog</name>
@@ -408,6 +404,31 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
       <source>About the Qt toolkit</source>
       <translation>Über das Qt-Toolkit</translation>
     </message>
+    <message>
+      <source>Mi&amp;nimize</source>
+      <translation>Mi&amp;nimieren</translation>
+    </message>
+    <message>
+      <source>Ma&amp;ximize</source>
+      <translation>Ma&amp;ximieren</translation>
+    </message>
+    <message>
+      <source>&amp;Restore</source>
+      <translation>&amp;Wiederherstellen</translation>
+    </message>
+    <message>
+      <source>Systray</source>
+      <translation>Systray</translation>
+    </message>
+    <message>
+      <source>Sorry, I already gave what help I could.
+Maybe you should try asking a human?</source>
+      <translation>/</translation>
+    </message>
+    <message>
+      <source>Cdcat - idle</source>
+      <translation>Cdcat - Leerlauf</translation>
+    </message>
   </context>
   <context>
     <name>ColorSchemePreview</name>
@@ -699,6 +720,14 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     <message>
       <source>font size</source>
       <translation>Schriftgröße</translation>
+    </message>
+    <message>
+      <source>show systray icon</source>
+      <translation>Dock-Symbol anzeigen</translation>
+    </message>
+    <message>
+      <source>Show systray icon</source>
+      <translation>Dock-Symbol anzeigen</translation>
     </message>
   </context>
   <context>
@@ -1150,6 +1179,26 @@ Homepage: %3</translation>
 the DataBase may be incomplete</source>
       <translation>Sie haben das Durchsuchen für den Katalog abgebrochen, 
 die Datenbank wird unvollständig sein</translation>
+    </message>
+    <message>
+      <source>Scan started</source>
+      <translation>Durchsuchen gestartet</translation>
+    </message>
+    <message>
+      <source>Scanning %1 into %2 has been started</source>
+      <translation>Durchsuchen von %1 in %2 wurde gestartet</translation>
+    </message>
+    <message>
+      <source>Scanning %1 into %2 has been finished</source>
+      <translation>Durchsuchen von %1 in %2 wurde beendet</translation>
+    </message>
+    <message>
+      <source>Scan finished</source>
+      <translation>Surchsuchen abgeschlossen</translation>
+    </message>
+    <message>
+      <source>Scanning %1 into %2 has been finished (NOT complete)</source>
+      <translation>Durchsuchen von %1 in %2 wurde beendet (NICHT komplett)</translation>
     </message>
   </context>
   <context>

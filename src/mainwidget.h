@@ -22,6 +22,7 @@
 #include <QLabel>
 #include <QFrame>
 #include <QCloseEvent>
+#include <QSystemTrayIcon>
 
 
 
@@ -40,68 +41,82 @@ class HQListView;
 class QLabel;
 class CdCatConfig;
 class QSplitter;
+class QSystemTrayIcon;
 
 class CdCatMainWidget : public QWidget {
-    Q_OBJECT
+		Q_OBJECT
+	public:
+		CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget *parent = 0, const char *name = 0, Qt::WFlags fl = 0 );
+		~CdCatMainWidget();
 
-public:
-    CdCatMainWidget ( CdCatConfig *ccp,QApplication *appp,QWidget* parent = 0, const char* name = 0, Qt::WFlags fl = 0 );
-    ~CdCatMainWidget();
+		CdCatConfig  *cconfig;
+		GuiSlave     *guis;
 
-    CdCatConfig  *cconfig;
-    GuiSlave     *guis;
+		DataBase      *db;
+		CommentWidget *commentWidget;
+		QFrame *Toolbar;
+		QMenuBar   *mainMenu;
+		QToolButton *ButtonOpen;
+		QToolButton *ButtonSave;
+		QToolButton *ButtonSaveAs;
+		QToolButton *ButtonClose;
+		QToolButton *ButtonAdd;
+		QToolButton *ButtonRescan;
+		QToolButton *ButtonDelete;
+		QToolButton *ButtonConfig;
+		QToolButton *ButtonHelp;
+		QToolButton *ButtonNew;
+		QToolButton *ButtonFind;
+		QToolButton *ButtonAbout;
+		QToolButton *ButtonAboutQt;
+		HDirectoryView *DirView;
+		HQListView *listView;
+		QLabel *statusl;
+		QApplication *app;
+		QMenu *historyMenu;
+		QSplitter *splitMain;
 
-    DataBase      *db;
-    CommentWidget * commentWidget;
-    QFrame* Toolbar;
-    QMenuBar   *mainMenu;
-    QToolButton* ButtonOpen;
-    QToolButton* ButtonSave;
-    QToolButton* ButtonSaveAs;
-    QToolButton* ButtonClose;
-    QToolButton* ButtonAdd;
-    QToolButton* ButtonRescan;
-    QToolButton* ButtonDelete;
-    QToolButton* ButtonConfig;
-    QToolButton* ButtonHelp;
-    QToolButton* ButtonNew;
-    QToolButton* ButtonFind;
-    QToolButton* ButtonAbout;
-    QToolButton* ButtonAboutQt;
-    HDirectoryView* DirView;
-    HQListView* listView;
-    QLabel *statusl;
-    QApplication *app;
-    QMenu *historyMenu;
-    QSplitter *splitMain;
+	protected:
+		Q3HBoxLayout *lToolbar;
+		Q3VBoxLayout *lvMain;
+		void closeEvent ( QCloseEvent *e );
+		QString lastScanPath; // last scanned path, used for restore if extrainfo changes
 
-protected:
-    Q3HBoxLayout *lToolbar;
-    Q3VBoxLayout *lvMain;
-    void closeEvent ( QCloseEvent *e );
-    QString lastScanPath; // last scanned path, used for restore if extrainfo changes
+	protected slots:
+		virtual void languageChange();
 
-protected slots:
-    virtual void languageChange();
+	public slots:
+		void pathScanned ( QString path );
+		void extraInfoAppend ( QString extraInfo );
+	
+	private:
+		QPixmap image0;
+		QPixmap image1;
+		QPixmap image2;
+		QPixmap image3;
+		QPixmap image4;
+		QPixmap image5;
+		QPixmap image6;
+		QPixmap image7;
+		QPixmap image8;
+		QPixmap image9;
+		QPixmap image10;
+		QPixmap image11;
+		QPixmap image12;
 
-public slots:
-    void pathScanned(QString path);
-    void extraInfoAppend(QString extraInfo);
-
-private:
-    QPixmap image0;
-    QPixmap image1;
-    QPixmap image2;
-    QPixmap image3;
-    QPixmap image4;
-    QPixmap image5;
-    QPixmap image6;
-    QPixmap image7;
-    QPixmap image8;
-    QPixmap image9;
-    QPixmap image10;
-    QPixmap image11;
-    QPixmap image12;
+	public:
+		QSystemTrayIcon *trayIcon;
+		QAction *minimizeAction;
+		QAction *maximizeAction;
+		QAction *restoreAction;
+		QAction *quitAction;
+		QMenu *trayIconMenu;
+		void createTrayIcon();
+	
+	private slots:
+		void trayIconActivated(QSystemTrayIcon::ActivationReason reason);
+		void showTrayMessage();
+		void trayIconMessageClicked();
 
 };
 

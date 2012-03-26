@@ -68,6 +68,7 @@
 #include <QDateTime>
 #include <QObject>
 #include <QFile>
+#include <QApplication>
 
 #ifdef USE_LIB7ZIP
 #include <lib7zip.h>
@@ -1102,6 +1103,8 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 					tt->data = ( void * ) new DBFile ( fileInfo->fileName(), fileInfo->lastModified(),
 					                                   comm, 0, UNIT_BYTE, this->pcategory );
 				}
+		if(pww->appl->hasPendingEvents())
+			pww->appl->processEvents();
 	}/*end of for,..next directory entry*/
 	return ret;
 }
@@ -1771,6 +1774,8 @@ QList<ArchiveFile> DataBase::scanArchive ( QString path, ArchiveType type ) {
 				if ( TH_ISREG ( t ) && tar_skip_regfile ( t ) == 0 ) {
 					//fprintf(stderr, "tar_skip_regfile(): %s\n", strerror(errno));
 				}
+				if(pww->appl->hasPendingEvents())
+					pww->appl->processEvents();
 			}
 			if ( *DEBUG_INFO_ENABLED )
 				std::cerr << "reading " << qPrintable ( path ) << " done." << std::endl;
