@@ -28,6 +28,7 @@
 #include <QPoint>
 #include <QMenu>
 #include <QAction>
+#include <QTextBrowser>
 //Added by qt3to4:
 #include <Q3HBoxLayout>
 #include <Q3VBoxLayout>
@@ -232,9 +233,22 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	layoutExcludeLeft = new Q3VBoxLayout ( 0, 0, 6, "layoutExcludeLeft" );
 	cbDoExcludeFiles = new QCheckBox ( this, "cbDoExcludeFiles" );
 	labelExcludeFiles = new QLabel ( this, "labelExcludeFiles" );
+	labExcludeRexexInfo = new QLabel ( this, "labExcludeRexexInfo" );
+	labExcludeRexexInfoButton = new QPushButton ( this, "labExcludeRexexInfoButton" );
+	connect ( labExcludeRexexInfoButton, SIGNAL(clicked()), this, SLOT(labExcludeRexexInfoButtonClicked()));
+	QSpacerItem* excludeRegexspacer = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
+	
 	buttonAddExcludeRule = new QPushButton( this, "buttonAddExcludeRule");
 	listviewExcludeFiles = new QListView (this);
 	layoutExcludeLeft->addWidget ( cbDoExcludeFiles );
+	
+	layoutExcludeRegexInfo = new Q3HBoxLayout ( 0, 0, 6, "layoutExcludeRegexInfo" );
+	layoutExcludeRegexInfo->addWidget ( labExcludeRexexInfo );
+	layoutExcludeRegexInfo->addWidget ( labExcludeRexexInfoButton );
+	
+	layoutExcludeRegexInfo->addItem ( excludeRegexspacer );
+	layoutExcludeLeft->addLayout(layoutExcludeRegexInfo);
+	
 	layoutExcludeLeft->addWidget ( buttonAddExcludeRule );
 	layoutExcludeMain->addLayout(layoutExcludeLeft);
 	layoutExcludeMain->addWidget (listviewExcludeFiles);
@@ -255,7 +269,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	QSpacerItem* spacer_3 = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	layoutButtons->addItem ( spacer_3 );
 	SelReadableLayout->addLayout ( layoutButtons );
-	languageChange();
+	
 	resize ( QSize ( 350, 216 ).expandedTo ( minimumSizeHint() ) );
 	
 	connect ( cbTag, SIGNAL ( stateChanged ( int ) ), this, SLOT ( schanged ( int ) ) );
@@ -414,6 +428,9 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	}
 	listviewExcludeFiles->setModel(exclude_model);
 	checkExcludeRules();
+	
+
+	languageChange();
 	schanged ( 0 );
 }
 
@@ -626,6 +643,115 @@ void SelReadable::checkExcludeRules() {
 	}
 }
 
+void SelReadable::labExcludeRexexInfoButtonClicked()
+{
+		RegexInfoHtml = "";
+	RegexInfoHtml += "<h4><span class=\"mw-headline\" id=\"POSIX_Basic_Regular_Expressions\">+"tr("POSIX Basic Regular Expressions")+"</span></h4>";
+	//RegexInfoHtml += "<p>"+tr("Traditional <a href=\"/wiki/Unix\" title=\"Unix\">Unix</a> regular expression syntax followed common conventions but often differed from tool to tool. The <a href=\"/wiki/Institute_of_Electrical_and_Electronics_Engineers\" title=\"Institute of Electrical and Electronics Engineers\">IEEE</a> <a href=\"/wiki/POSIX\" title=\"POSIX\">POSIX</a> Basic Regular Expressions (BRE) standard (ISO/IEC 9945-2:1993 <i>Information technology -- Portable Operating System Interface (POSIX) -- Part 2: Shell and Utilities</i>, successively revised as ISO/IEC 9945-2:2002 <i>Information technology -- Portable Operating System Interface (POSIX) -- Part 2: System Interfaces</i>, ISO/IEC 9945-2:2003, and currently ISO/IEC/IEEE 9945:2009 <i>Information technology -- Portable Operating System Interface (POSIX®) Base Specifications, Issue 7</i>) was designed mostly for backward compatibility with the traditional (Simple Regular Expression) syntax but provided a common standard which has since been adopted as the default syntax of many Unix regular expression tools, though there is often some variation or additional features.")+"</p>";
+	//RegexInfoHtml += "<p>"+tr("BRE was released alongside an alternative flavor called Extended Regular Expressions or ERE. Many Unix tools also provide support for ERE syntax with <a href=\"/wiki/Command_line_argument\" title=\"Command line argument\" class=\"mw-redirect\">command line arguments</a>.")+"</p>";
+	//RegexInfoHtml += "<p>"+tr("In the BRE syntax, most characters are treated as <a href=\"/wiki/Literal_(computer_science)\" title=\"Literal (computer science)\" class=\"mw-redirect\">literals</a>&#160;— they match only themselves (e.g., <code>a</code> matches \"<i>a</i>\"). The exceptions, listed below, are called <a href=\"/wiki/Metacharacter\" title=\"Metacharacter\">metacharacters</a> or metasequences.")+"</p>";
+	
+	//RegexInfoHtml += "<table class=\"wikitable\">";
+	//RegexInfoHtml += "<caption>"+tr("Examples for char selection")+"</caption>";
+	//RegexInfoHtml += "<tr>";
+	//RegexInfoHtml += "<td><code>.</code></td>";
+	//RegexInfoHtml += "<td>"+tr("most every char except special chars like &quot;\\&quot;")+"</td>";
+	//RegexInfoHtml += "</tr>";
+	//RegexInfoHtml += "<tr>";
+	//RegexInfoHtml += "<td><code><b>[egh]</b></code></td>";
+	//RegexInfoHtml += "<td>"+tr("one of the chars of &quot;e&quot;, &quot;g&quot; or &quot;h&quot;")+"</td>";
+	//RegexInfoHtml += "</tr>";
+	//RegexInfoHtml += "<tr>";
+	//RegexInfoHtml += "<td><code><b>[0-6]</b></code></td>";
+	//RegexInfoHtml += "<td>"+tr("one digit in range from &quot;0&quot; to &quot;6&quot; (hyphens are indicators for a range)")+"</td>";
+	//RegexInfoHtml += "</tr>";
+	//RegexInfoHtml += "<tr>";
+	//RegexInfoHtml += "<td><code><b>[A-Za-z0-9]</b></code></td>";
+	//RegexInfoHtml += "<td>"+tr("any latin char or any digit")+"</td>";
+	//RegexInfoHtml += "</tr>";
+	//RegexInfoHtml += "<tr>";
+	//RegexInfoHtml += "<td><code><b>[^a]</b></code></td>";
+	//RegexInfoHtml += "<td>"+tr("any digit except &quot;a&quot; (&quot;^&quot; at beginning of a char class negates it)")+"</td>";
+	//RegexInfoHtml += "</tr>";
+	//RegexInfoHtml += "<tr>";
+	//RegexInfoHtml += "<td><code><b>[-A-Z]</b></code>, <code><b>[A-Z-]</b></code> (+"+tr("respectively ")+". <code><b>[A-Z-a-z]</b></code>, "+tr("but not corresponding POSIX")+"</td>";
+	//RegexInfoHtml += "<td>"+tr("Selection contains also a hyphen &quot;-&quot; if the first or last char of a enumeration from a char class respectively PCRE and its meta function is disabled by a &quot;\\&quot; char before it.")+"</td>";
+	//RegexInfoHtml += "</tr>";
+	//RegexInfoHtml += "</table>";
+	//
+	RegexInfoHtml += "<table class=\"wikitable\">";
+	RegexInfoHtml += "<tr>";
+	RegexInfoHtml += "<th>"+tr("Metacharacter")+"</th>";
+	RegexInfoHtml += "<th>"+tr("Description")+"</th>";
+	RegexInfoHtml += "</tr>";
+	RegexInfoHtml += "<tr valign=\"top\">";
+	RegexInfoHtml += "<td><code>.</code></td>";
+	RegexInfoHtml += "<td>"+tr("Matches any single character (many applications exclude <a href=\"/wiki/Newline\" title=\"Newline\">newlines</a>, and exactly which characters are considered newlines is flavor-, character-encoding-, and platform-specific, but it is safe to assume that the line feed character is included). Within POSIX bracket expressions, the dot character matches a literal dot. For example, <code>a.c</code> matches \"<i>abc</i>\", etc., but <code>[a.c]</code> matches only \"<i>a</i>\", \"<i>.</i>\", or \"<i>c</i>\".")+"</td>";
+	RegexInfoHtml += "</tr>";
+	RegexInfoHtml += "<tr valign=\"top\">";
+	RegexInfoHtml += "<td><code>[&#160;]</code></td>";
+	RegexInfoHtml += "<td>"+tr("A bracket expression. Matches a single character that is contained within the brackets. For example, <code>[abc]</code> matches \"<i>a</i>\", \"<i>b</i>\", or \"<i>c</i>\". <code>[a-z]</code> specifies a range which matches any lowercase letter from \"<i>a</i>\" to \"<i>z</i>\". These forms can be mixed: <code>[abcx-z]</code> matches \"<i>a</i>\", \"<i>b</i>\", \"<i>c</i>\", \"<i>x</i>\", \"<i>y</i>\", or \"<i>z</i>\", as does <code>[a-cx-z]</code>.");
+	RegexInfoHtml += "<p>"+tr("The <code>-</code> character is treated as a literal character if it is the last or the first (after the <code>^</code>) character within the brackets: <code>[abc-]</code>, <code>[-abc]</code>. Note that backslash escapes are not allowed. The <code>]</code> character can be included in a bracket expression if it is the first (after the <code>^</code>) character: <code>[]abc]</code>.")+"</p>";
+	RegexInfoHtml += "</td>";
+	RegexInfoHtml += "</tr>";
+	RegexInfoHtml += "<tr valign=\"top\">";
+	RegexInfoHtml += "<td><code>[^&#160;]</code></td>";
+	RegexInfoHtml += "<td>"+tr("Matches a single character that is not contained within the brackets. For example, <code>[^abc]</code> matches any character other than \"<i>a</i>\", \"<i>b</i>\", or \"<i>c</i>\". <code>[^a-z]</code> matches any single character that is not a lowercase letter from \"<i>a</i>\" to \"<i>z</i>\". Likewise, literal characters and ranges can be mixed.")+"</td>";
+	RegexInfoHtml += "</tr>";
+	RegexInfoHtml += "<tr valign=\"top\">";
+	RegexInfoHtml += "<td><code>^</code></td>";
+	RegexInfoHtml += "<td>"+tr("Matches the starting position within the string. In line-based tools, it matches the starting position of any line.")+"</td>";
+	RegexInfoHtml += "</tr>";
+	RegexInfoHtml += "<tr valign=\"top\">";
+	RegexInfoHtml += "<td><code>$</code></td>";
+	RegexInfoHtml += "<td>Matches the ending position of the string or the position just before a string-ending newline. In line-based tools, it matches the ending position of any line.</td>";
+	RegexInfoHtml += "</tr>";
+	//RegexInfoHtml += "<tr valign=\"top\">";
+	//RegexInfoHtml += "<td><span class=\"nowrap\">BRE: <code>\\(&#160;\\)</code></span><br />";
+	//RegexInfoHtml += "<span class=\"nowrap\">ERE: <code>(&#160;)</code></span></td>";
+	//RegexInfoHtml += "<td>"+tr("Defines a marked subexpression. The string matched within the parentheses can be recalled later (see the next entry, <code>\\<i>n</i></code>). A marked subexpression is also called a block or capturing group.")+"</td>";
+	//RegexInfoHtml += "</tr>";
+	RegexInfoHtml += "<tr valign=\"top\">";
+	RegexInfoHtml += "<td><code>\\<i>n</i></code></td>";
+	RegexInfoHtml += "<td>"+tr("Matches what the <i>n</i>th marked subexpression matched, where <i>n</i> is a digit from 1 to 9. This construct is theoretically <b>irregular</b> and was not adopted in the POSIX ERE syntax. Some tools allow referencing more than nine capturing groups.")+"</td>";
+	RegexInfoHtml += "</tr>";
+	RegexInfoHtml += "<tr valign=\"top\">";
+	RegexInfoHtml += "<td><code>*</code></td>";
+	RegexInfoHtml += "<td>"+tr("Matches the preceding element zero or more times. For example, <code>ab*c</code> matches \"<i>ac</i>\", \"<i>abc</i>\", \"<i>abbbc</i>\", etc. <code>[xyz]*</code> matches \"\", \"<i>x</i>\", \"<i>y</i>\", \"<i>z</i>\", \"<i>zx</i>\", \"<i>zyx</i>\", \"<i>xyzzy</i>\", and so on. <code>\\(ab\\)*</code> matches \"\", \"<i>ab</i>\", \"<i>abab</i>\", \"<i>ababab</i>\", and so on.")+"</td>";
+	RegexInfoHtml += "</tr>";
+	//RegexInfoHtml += "<tr valign=\"top\">";
+	//RegexInfoHtml += "<td><span class=\"nowrap\">BRE: <code>\\{<i>m</i>,<i>n</i>\\}</code></span><br />";
+	//RegexInfoHtml += "<span class=\"nowrap\">ERE: <code>{<i>m</i>,<i>n</i>}</code></span></td>";
+	//RegexInfoHtml += "<td>"+tr("Matches the preceding element at least <i>m</i> and not more than <i>n</i> times. For example, <code>a\\{3,5\\}</code> matches only //"<i>aaa</i>\", \"<i>aaaa</i>\", and \"<i>aaaaa</i>\". This is not found in a few older instances of regular expressions.")+"</td>";
+	//RegexInfoHtml += "</tr>";
+	RegexInfoHtml += "</table>";
+	RegexInfoHtml += "<p><b>"+tr("Examples:")+"</b></p>";
+	RegexInfoHtml += "<ul>";
+	RegexInfoHtml += "<li><code>.at</code> "+tr("matches any three-character string ending with \"at\", including \"<i>hat</i>\", \"<i>cat</i>\", and \"<i>bat</i>\".")+"</li>";
+	RegexInfoHtml += "<li><code>[hc]at</code> "+tr("matches \"<i>hat</i>\" and \"<i>cat</i>\".")+"</li>";
+	RegexInfoHtml += "<li><code>[^b]at</code> "+tr("matches all strings matched by <code>.at</code> except \"<i>bat</i>\".")+"</li>";
+	RegexInfoHtml += "<li><code>^[hc]at</code> "+tr("matches \"<i>hat</i>\" and \"<i>cat</i>\", but only at the beginning of the string or line.")+"</li>";
+	RegexInfoHtml += "<li><code>[hc]at$</code> "+tr("matches \"<i>hat</i>\" and \"<i>cat</i>\", but only at the end of the string or line.")+"</li>";
+	RegexInfoHtml += "<li><code>\\[.\\]</code> "+tr("matches any single character surrounded by \"[\" and \"]\" since the brackets are escaped, for example: \"<i>[a]</i>\" and \"<i>[b]</i>\".")+"</li>";
+	RegexInfoHtml += "</ul>";
+	RegexInfoHtml += "<br>";
+	RegexInfoHtml += tr("Source:")+" <a href=\"http://www.wikipedia.org\">http://www.wikipedia.org</a>";
+	
+	QDialog di( this, "aboutregexdialog", true );
+	di.setCaption ( tr ( "About regular expressions" ) );
+	Q3VBoxLayout *layoutRegexInfoDialog = new Q3VBoxLayout ( 0, 0, 6, "layoutRegexInfoDialog" );
+	QPushButton *closeButton = new QPushButton(tr("close"), this);
+	connect(closeButton, SIGNAL(clicked(bool)), &di, SLOT(close()));
+	QTextBrowser *textBrowser1 = new QTextBrowser(&di);
+	textBrowser1->setText ( RegexInfoHtml );
+	layoutRegexInfoDialog->addWidget(textBrowser1);
+	layoutRegexInfoDialog->addWidget(closeButton);
+	di.setLayout(layoutRegexInfoDialog);
+	di.setModal(false);
+	di.resize(QSize(750,500));
+	di.exec();
+}
+
 
 /*
  *  Destroys the object and frees any allocated resources
@@ -645,7 +771,7 @@ void SelReadable::languageChange() {
 	cbScanArchive->setText ( tr ( "Scan for archive file list" ) );
 	cbShowProgressedArchiveFileInStatus->setText( tr("show archive file in status") );
 	cbShowProgressedArchiveFileInStatus->setToolTip( tr("show archive file at scanning in status") );
-	labArchiveExtensions->setText ( tr ( "Supported extensions:" ) + " " + SupportedExtensions );
+	labArchiveExtensions->setText ( tr ( "Supported extensions:" ) );
 	cbShowArchiveFilePerms->setText ( tr ( "Permission" ) );
 	cbShowArchiveFileUser->setText ( tr ( "User" ) );
 	cbShowArchiveFileGroup->setText ( tr ( "Group" ) );
@@ -680,6 +806,10 @@ void SelReadable::languageChange() {
 	labelContentSize->setText ( tr ( "max size:" ) );
 	maxSpinBox->setToolTip( tr ( "content size limit in kByte" ) );
 	cbDoExcludeFiles->setText(tr("exclude files/directories"));
+	labExcludeRexexInfo->setText(tr("About regex:"));
+	labExcludeRexexInfo->setToolTip(tr("Information about regular expressions"));
+	labExcludeRexexInfoButton->setText(tr("About regular expressions...."));
+	labExcludeRexexInfoButton->setToolTip(tr("Show introduction into regular expressions"));
 	buttonAddExcludeRule->setText(tr("add exclude rule..."));
 	listviewExcludeFiles->setToolTip(tr("list of patterns (regular expression) for files/directories to skip on reading from filesystem"));
 	buttonOK->setText ( tr ( "Ok" ) );
@@ -687,3 +817,4 @@ void SelReadable::languageChange() {
 }
 
 // kate: indent-mode cstyle; replace-tabs off; tab-width 8; 
+

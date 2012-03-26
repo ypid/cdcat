@@ -40,10 +40,6 @@
       <source>unknown</source>
       <translation>unbekannt</translation>
     </message>
-    <message>
-      <source></source>
-      <translation type="unfinished" />
-    </message>
   </context>
   <context>
     <name>CatalogTypeEditDialog</name>
@@ -1862,6 +1858,102 @@ wird zu
     <message>
       <source>show archive file in status</source>
       <translation>Archivdatei in Status anzeigen</translation>
+    </message>
+    <message>
+      <source>About regular expressions</source>
+      <translation>Über reguläre Ausdrücke</translation>
+    </message>
+    <message>
+      <source>close</source>
+      <translation>schliessen</translation>
+    </message>
+    <message>
+      <source>About regex:</source>
+      <translation>Über Regex:</translation>
+    </message>
+    <message>
+      <source>Information about regular expressions</source>
+      <translation>Informationen über reguläre Ausdrücke</translation>
+    </message>
+    <message>
+      <source>About regular expressions....</source>
+      <translation>Über reguläre Ausdrücke...</translation>
+    </message>
+    <message>
+      <source>Show introduction into regular expressions</source>
+      <translation>Einführung in reguläre Ausdrücke anzeigen</translation>
+    </message>
+    <message>
+      <source>Metacharacter</source>
+      <translation>Metazeichen</translation>
+    </message>
+    <message>
+      <source>Description</source>
+      <translation>Beschreibung</translation>
+    </message>
+    <message>
+      <source>Matches any single character (many applications exclude &lt;a href=&quot;/wiki/Newline&quot; title=&quot;Newline&quot;>newlines&lt;/a>, and exactly which characters are considered newlines is flavor-, character-encoding-, and platform-specific, but it is safe to assume that the line feed character is included). Within POSIX bracket expressions, the dot character matches a literal dot. For example, &lt;code>a.c&lt;/code> matches &quot;&lt;i>abc&lt;/i>&quot;, etc., but &lt;code>[a.c]&lt;/code> matches only &quot;&lt;i>a&lt;/i>&quot;, &quot;&lt;i>.&lt;/i>&quot;, or &quot;&lt;i>c&lt;/i>&quot;.</source>
+      <translation>Passt auf ein einzelnes Zeichen (viele Anwendungen schließen Zeilenende aus. Welche Zeichen exakt als Zeilenende  and exactly which characters are aufgefasst werden, hängt von der Variante, Zeichenkodierung und Plattform ab. Aber es ist sicher, dass das Zeilenvorschubzeichen enthalten ist). Mit den POSIX-Klammerausdrücken passt das Punktzeichen als Literal Punkt. Zum Beispiel &lt;code>a.c&lt;/code> passt auf &quot;&lt;i>abc&lt;/i>&quot;, etc., aber &lt;code>[a.c]&lt;/code> passt nur auf &quot;&lt;i>a&lt;/i>&quot;, &quot;&lt;i>.&lt;/i>&quot; oder &quot;&lt;i>c&lt;/i>&quot;.</translation>
+    </message>
+    <message>
+      <source>A bracket expression. Matches a single character that is contained within the brackets. For example, &lt;code>[abc]&lt;/code> matches &quot;&lt;i>a&lt;/i>&quot;, &quot;&lt;i>b&lt;/i>&quot;, or &quot;&lt;i>c&lt;/i>&quot;. &lt;code>[a-z]&lt;/code> specifies a range which matches any lowercase letter from &quot;&lt;i>a&lt;/i>&quot; to &quot;&lt;i>z&lt;/i>&quot;. These forms can be mixed: &lt;code>[abcx-z]&lt;/code> matches &quot;&lt;i>a&lt;/i>&quot;, &quot;&lt;i>b&lt;/i>&quot;, &quot;&lt;i>c&lt;/i>&quot;, &quot;&lt;i>x&lt;/i>&quot;, &quot;&lt;i>y&lt;/i>&quot;, or &quot;&lt;i>z&lt;/i>&quot;, as does &lt;code>[a-cx-z]&lt;/code>.</source>
+      <translation>Ein Klammerausdruck, welcher auf ein einzelnes Zeichen passt, dass in den Klammern eingeschlossen ist. Zum Beispiel passt &lt;code>[abc]&lt;/code> auf &quot;&lt;i>a&lt;/i>&quot;, &quot;&lt;i>b&lt;/i>&quot; oder &quot;&lt;i>c&lt;/i>&quot;. &lt;code>[a-z]&lt;/code> gibt einen Bereich an, der auf jeden Kleinbuchstaben von &quot;&lt;i>a&lt;/i>&quot; bis &quot;&lt;i>z&lt;/i>&quot; passt. Diese Formen können gemischt werden: &lt;code>[abcx-z]&lt;/code> passt auf &quot;&lt;i>a&lt;/i>&quot;, &quot;&lt;i>b&lt;/i>&quot;, &quot;&lt;i>c&lt;/i>&quot;, &quot;&lt;i>x&lt;/i>&quot;, &quot;&lt;i>y&lt;/i>&quot; oder &quot;&lt;i>z&lt;/i>&quot; wie auch &lt;code>[a-cx-z]&lt;/code>.</translation>
+    </message>
+    <message>
+      <source>The &lt;code>-&lt;/code> character is treated as a literal character if it is the last or the first (after the &lt;code>^&lt;/code>) character within the brackets: &lt;code>[abc-]&lt;/code>, &lt;code>[-abc]&lt;/code>. Note that backslash escapes are not allowed. The &lt;code>]&lt;/code> character can be included in a bracket expression if it is the first (after the &lt;code>^&lt;/code>) character: &lt;code>[]abc]&lt;/code>.</source>
+      <translation>Das &lt;code>-&lt;/code>-Zeichen wird aus  character is Literalzeichen behandelt, wenn es das letzte oder erste Zeichen (nach dem &lt;code>^&lt;/code>-Zeichen) zwischen den Klammern ist:: &lt;code>[abc-]&lt;/code>, &lt;code>[-abc]&lt;/code>. Bitte beachten Sie, dass Entwertung mit dem Backslash (\\) nicht erlaubt ist. Das &lt;code>]&lt;/code>-Zeichen kann in dem Klammerausdruck enthalten sein, wenn es das erste Zeichen (nach dem &lt;code>^&lt;/code>-Zeichen) ist: &lt;code>[]abc]&lt;/code>.</translation>
+    </message>
+    <message>
+      <source>Matches a single character that is not contained within the brackets. For example, &lt;code>[^abc]&lt;/code> matches any character other than &quot;&lt;i>a&lt;/i>&quot;, &quot;&lt;i>b&lt;/i>&quot;, or &quot;&lt;i>c&lt;/i>&quot;. &lt;code>[^a-z]&lt;/code> matches any single character that is not a lowercase letter from &quot;&lt;i>a&lt;/i>&quot; to &quot;&lt;i>z&lt;/i>&quot;. Likewise, literal characters and ranges can be mixed.</source>
+      <translation>Passt auf ein einzelnes Zeichen, dass nicht in Klammern eingeschlossen ist. Zum Beispiel, passt &lt;code>[^abc]&lt;/code>auf ein beliebiges Zeichen außer &quot;&lt;i>a&lt;/i>&quot;, &quot;&lt;i>b&lt;/i>&quot; oder &quot;&lt;i>c&lt;/i>&quot;. &lt;code>[^a-z]&lt;/code> passt auf ein einzelnes Zeichen, dass kein Kleinbuchstabe von &quot;&lt;i>a&lt;/i>&quot; bis &quot;&lt;i>z&lt;/i>&quot; ist. Ebenfalls können Literalzeichen und Bereiche gemischt werden.</translation>
+    </message>
+    <message>
+      <source>Matches the starting position within the string. In line-based tools, it matches the starting position of any line.</source>
+      <translation>Passt auf die Startposition der Zeichenkette. In Kommandozeilenwerkzeugen passt die Startposition jeder Zeile.</translation>
+    </message>
+    <message>
+      <source>Matches what the &lt;i>n&lt;/i>th marked subexpression matched, where &lt;i>n&lt;/i> is a digit from 1 to 9. This construct is theoretically &lt;b>irregular&lt;/b> and was not adopted in the POSIX ERE syntax. Some tools allow referencing more than nine capturing groups.</source>
+      <translation>Passt auf den &lt;i>n&lt;/i>-ten markierten Unterausdruck, wobei &lt;i>n&lt;/i> eine Zahl von 1 bis 9 ist. Dieses Konstrukt ist theoretisch &lt;b>irregulär&lt;/b> und wurde nicht auf in der POSIX ERE syntax angeglichen. Einige Werkzeuge erlauben das Referenzieren von mehr als 9 Aufzeichnungsgruppen.</translation>
+    </message>
+    <message>
+      <source>Matches the preceding element zero or more times. For example, &lt;code>ab*c&lt;/code> matches &quot;&lt;i>ac&lt;/i>&quot;, &quot;&lt;i>abc&lt;/i>&quot;, &quot;&lt;i>abbbc&lt;/i>&quot;, etc. &lt;code>[xyz]*&lt;/code> matches &quot;&quot;, &quot;&lt;i>x&lt;/i>&quot;, &quot;&lt;i>y&lt;/i>&quot;, &quot;&lt;i>z&lt;/i>&quot;, &quot;&lt;i>zx&lt;/i>&quot;, &quot;&lt;i>zyx&lt;/i>&quot;, &quot;&lt;i>xyzzy&lt;/i>&quot;, and so on. &lt;code>\(ab\)*&lt;/code> matches &quot;&quot;, &quot;&lt;i>ab&lt;/i>&quot;, &quot;&lt;i>abab&lt;/i>&quot;, &quot;&lt;i>ababab&lt;/i>&quot;, and so on.</source>
+      <translation>Passt auf das vorhergehende Element 0-mal oder mehrfach. Zum Beispiel, passt &lt;code>ab*c&lt;/code> auf &quot;&lt;i>ac&lt;/i>&quot;, &quot;&lt;i>abc&lt;/i>&quot;, &quot;&lt;i>abbbc&lt;/i>&quot;, etc. &lt;code>[xyz]*&lt;/code> passt auf &quot;&quot;, &quot;&lt;i>x&lt;/i>&quot;, &quot;&lt;i>y&lt;/i>&quot;, &quot;&lt;i>z&lt;/i>&quot;, &quot;&lt;i>zx&lt;/i>&quot;, &quot;&lt;i>zyx&lt;/i>&quot;, &quot;&lt;i>xyzzy&lt;/i>&quot; usw. &lt;code>\(ab\)*&lt;/code> passt auf &quot;&quot;, &quot;&lt;i>ab&lt;/i>&quot;, &quot;&lt;i>abab&lt;/i>&quot;, &quot;&lt;i>ababab&lt;/i>&quot; usw.</translation>
+    </message>
+    <message>
+      <source>Examples:</source>
+      <translation>Beispiele:</translation>
+    </message>
+    <message>
+      <source>matches any three-character string ending with &quot;at&quot;, including &quot;&lt;i>hat&lt;/i>&quot;, &quot;&lt;i>cat&lt;/i>&quot;, and &quot;&lt;i>bat&lt;/i>&quot;.</source>
+      <translation>Passt auf jede Zeichenkette, die 3 Zeichen lang ist und auf &quot;at&quot; endet, wie z.B. &quot;&lt;i>hat&lt;/i>&quot;, &quot;&lt;i>cat&lt;/i>&quot; und &quot;&lt;i>bat&lt;/i>&quot;.</translation>
+    </message>
+    <message>
+      <source>matches &quot;&lt;i>hat&lt;/i>&quot; and &quot;&lt;i>cat&lt;/i>&quot;.</source>
+      <translation>passt auf &quot;&lt;i>hat&lt;/i>&quot; und &quot;&lt;i>cat&lt;/i>&quot;.</translation>
+    </message>
+    <message>
+      <source>matches all strings matched by &lt;code>.at&lt;/code> except &quot;&lt;i>bat&lt;/i>&quot;.</source>
+      <translation>Passt auf alle Zeichenketten, die auf &lt;code>.at&lt;/code> passen, ausser auf &quot;&lt;i>bat&lt;/i>&quot;.</translation>
+    </message>
+    <message>
+      <source>matches &quot;&lt;i>hat&lt;/i>&quot; and &quot;&lt;i>cat&lt;/i>&quot;, but only at the beginning of the string or line.</source>
+      <translation>passt auf &quot;&lt;i>hat&lt;/i>&quot; und &quot;&lt;i>cat&lt;/i>&quot;, aber nur am Anfang der Zeichenkette oder Zeile</translation>
+    </message>
+    <message>
+      <source>matches &quot;&lt;i>hat&lt;/i>&quot; and &quot;&lt;i>cat&lt;/i>&quot;, but only at the end of the string or line.</source>
+      <translation>passt auf &quot;&lt;i>hat&lt;/i>&quot; und &quot;&lt;i>cat&lt;/i>&quot;, aber nur am Ende der Zeichenkette oder Zeile</translation>
+    </message>
+    <message>
+      <source>Source:</source>
+      <translation>Quelle:</translation>
+    </message>
+    <message>
+      <source>matches any single character surrounded by &quot;[&quot; and &quot;]&quot; since the brackets are escaped, for example: &quot;&lt;i>[a]&lt;/i>&quot; and &quot;&lt;i>[b]&lt;/i>&quot;.</source>
+      <translation>passt auf ein einzelnes Zeichen umrahmt von &quot;[&quot; und &quot;]&quot;, da die Klammern entwertet werden, z.B. &quot;&lt;i>[a]&lt;/i>&quot; und &quot;&lt;i>[b]&lt;/i>&quot;.</translation>
+    </message>
+    <message>
+      <source>POSIX Basic Regular Expressions</source>
+      <translation>Reguläre Basis-Ausdrücke nach POSIX</translation>
     </message>
   </context>
   <context>

@@ -76,6 +76,7 @@ class SelReadable : public QDialog {
 		QPushButton* buttonCancel;
 		QPushButton* buttonUseExternalContentViewer;
 		QPushButton* buttonAddExcludeRule;
+		QPushButton *labExcludeRexexInfoButton;
 		QComboBox *cbDefaultMp3TagVersion;
 		
 		QLabel* labelContentSize;
@@ -92,6 +93,7 @@ class SelReadable : public QDialog {
 		QLabel *labelExternalContentViewer;
 		QLabel *labelDefaultMp3TagVersion;
 		QLabel *labelExcludeFiles;
+		QLabel *labExcludeRexexInfo;
 		
 		QGroupBox *groupBoxShowArchiveFileOpts;
 		QCheckBox* cbScanArchive;
@@ -113,6 +115,7 @@ class SelReadable : public QDialog {
 		void editExcludeRuleClicked();
 		void deleteExcludeRuleClicked();
 		void excludeContextMenuRequested(const QPoint &);
+		void labExcludeRexexInfoButtonClicked();
 	
 	protected:
 		Q3VBoxLayout* SelReadableLayout;
@@ -132,9 +135,11 @@ class SelReadable : public QDialog {
 		Q3HBoxLayout* layoutFileInfo;
 		Q3HBoxLayout* layoutExcludeMain;
 		Q3VBoxLayout* layoutExcludeLeft;
+		Q3HBoxLayout* layoutExcludeRegexInfo;
 		Q3GridLayout* layoutShowArchiveFileOptionsGroup;
 
 		QString SupportedExtensions;
+		QString RegexInfoHtml;
 		
 		QModelIndex contextmenu_modelindex;
 
