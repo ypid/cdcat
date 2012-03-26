@@ -1,5 +1,6 @@
 26. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
 	- strip useless trailing slash from selected path on adddialog
+	- set last dir name as media name if type is not cd/dvd
 
 25. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
 	- use real regex instead simple wildcard at exclude rules
