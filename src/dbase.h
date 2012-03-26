@@ -352,6 +352,7 @@ class DataBase : public QObject {
 		bool storeExifData;
 		bool storeThumb;
 		bool doExcludeFiles;
+		bool useWildcardInsteadRegexForExclude;
 		
 		int thumbWidth;
 		int thumbHeight;

@@ -102,6 +102,7 @@ CdCatConfig::CdCatConfig ( void ) {
 	doScanArchive = true;
 	showProgressedArchiveFileInStatus = true;
 	doExcludeFiles = false;
+	useWildcardInsteadRegexForExclude = false;
 	storeThumb = true;
 	
 	readavii   = true;
@@ -788,6 +789,14 @@ int CdCatConfig::readConfig ( void ) {
 					ExcludeFileList= val.split(';');
 					continue;
 				}
+				if ( var == "useWildcardInsteadRegexForExclude" ) {
+					if ( val == "true" )
+						useWildcardInsteadRegexForExclude = true;
+					else
+						useWildcardInsteadRegexForExclude = false;
+					continue;
+				}
+				
 				
 				
 				std::cerr << "Unknown key found: " << qPrintable(var) << std::endl;
@@ -1123,6 +1132,12 @@ int CdCatConfig::writeConfig ( void ) {
 			str << "do_exclude_files=false" << endl;
 		
 		str << "exclude_file_list=" << ExcludeFileList.join(";") << endl;
+		
+		if(useWildcardInsteadRegexForExclude)
+			str << "useWildcardInsteadRegexForExclude=true" << endl;
+		else
+			str << "useWildcardInsteadRegexForExclude=false" << endl;
+		
 		f.close();
 		return 0;
 	}

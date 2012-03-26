@@ -78,6 +78,7 @@ class CdCatConfig : public QObject {
 		bool doScanArchive;
 		bool showProgressedArchiveFileInStatus;
 		bool doExcludeFiles;
+		bool useWildcardInsteadRegexForExclude;
 		bool useExternalContentViewer;
 		
 		

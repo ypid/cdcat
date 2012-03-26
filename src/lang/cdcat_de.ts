@@ -40,6 +40,10 @@
       <source>unknown</source>
       <translation>unbekannt</translation>
     </message>
+    <message>
+      <source></source>
+      <translation type="unfinished" />
+    </message>
   </context>
   <context>
     <name>CatalogTypeEditDialog</name>
@@ -1954,6 +1958,14 @@ wird zu
     <message>
       <source>POSIX Basic Regular Expressions</source>
       <translation>Reguläre Basis-Ausdrücke nach POSIX</translation>
+    </message>
+    <message>
+      <source>Use wildcard instead regex</source>
+      <translation>Wildcard anstelle von Regex benutzen</translation>
+    </message>
+    <message>
+      <source>Use wildcard expression instead regular expression</source>
+      <translation>Wildcard-Ausdruck anstelle regulärem Ausdruck benutzen</translation>
     </message>
   </context>
   <context>

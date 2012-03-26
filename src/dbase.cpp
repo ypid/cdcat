@@ -532,6 +532,7 @@ DataBase::DataBase ( void ) {
 	ThumbExtsList.append("bmp");
 	storeExifData = true;
 	doExcludeFiles = false;
+	useWildcardInsteadRegexForExclude = false;
 	ExcludeFileList.clear();
 	storeLimit      = 32 * 1024;
 	root            = new Node ( HC_CATALOG, NULL );
@@ -651,7 +652,10 @@ int DataBase::addMedia ( QString what, QString name, int number, int type, QStri
 			QString patt = ExcludeFileList.at(i);
 			QRegExp re;
 			re.setPattern ( QString ( patt ) );
-			re.setPatternSyntax ( QRegExp::RegExp );
+			if (useWildcardInsteadRegexForExclude)
+				re.setPatternSyntax ( QRegExp::Wildcard );
+			else
+				re.setPatternSyntax ( QRegExp::RegExp );
 			re.setCaseSensitivity( Qt::CaseInsensitive );
 			if (re.isValid()) {
 				excludeFileRegExList.append(re);

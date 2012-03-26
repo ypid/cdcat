@@ -58,6 +58,7 @@ class SelReadable : public QDialog {
 		QCheckBox* cbThumb;
 		QCheckBox* cbUseExternalContentViewer;
 		QCheckBox* cbDoExcludeFiles;
+		QCheckBox* cbUseWildcardInsteadRegexForExclude;
 		QSpinBox *thumbWidthSpinBox;
 		QSpinBox *thumbHeightSpinBox;
 		QSpinBox* maxSpinBox;

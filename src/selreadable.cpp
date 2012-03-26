@@ -232,6 +232,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	layoutExcludeMain = new Q3HBoxLayout ( 0, 0, 6, "layoutExcludeMain" );
 	layoutExcludeLeft = new Q3VBoxLayout ( 0, 0, 6, "layoutExcludeLeft" );
 	cbDoExcludeFiles = new QCheckBox ( this, "cbDoExcludeFiles" );
+	cbUseWildcardInsteadRegexForExclude = new QCheckBox ( this, "cbUseWildcardInsteadRegexForExclude" );
 	labelExcludeFiles = new QLabel ( this, "labelExcludeFiles" );
 	labExcludeRexexInfo = new QLabel ( this, "labExcludeRexexInfo" );
 	labExcludeRexexInfoButton = new QPushButton ( this, "labExcludeRexexInfoButton" );
@@ -241,6 +242,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	buttonAddExcludeRule = new QPushButton( this, "buttonAddExcludeRule");
 	listviewExcludeFiles = new QListView (this);
 	layoutExcludeLeft->addWidget ( cbDoExcludeFiles );
+	layoutExcludeLeft->addWidget ( cbUseWildcardInsteadRegexForExclude );
 	
 	layoutExcludeRegexInfo = new Q3HBoxLayout ( 0, 0, 6, "layoutExcludeRegexInfo" );
 	layoutExcludeRegexInfo->addWidget ( labExcludeRexexInfo );
@@ -418,6 +420,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	labFileInfoExtensionsStatusIcon->setToolTip(tr("Supported extensions:")+"&nbsp;" + SupportedFileInfoExtensions );
 	
 	cbDoExcludeFiles->setChecked(conf->doExcludeFiles);
+	cbUseWildcardInsteadRegexForExclude->setChecked(conf->useWildcardInsteadRegexForExclude);
 	
 	QStringList excludeList = conf->ExcludeFileList;
 	exclude_model = new QStandardItemModel(0, 1, this);
@@ -541,6 +544,7 @@ int SelReadable::sok ( void ) {
 	for (int i= 0; i < exclude_model->rowCount(); i++) {
 		conf->ExcludeFileList.append(exclude_model->index(i,0).data().toString());
 	}
+	conf->useWildcardInsteadRegexForExclude = cbUseWildcardInsteadRegexForExclude->isChecked();
 	close();
 	return 0;
 }
@@ -629,7 +633,10 @@ void SelReadable::checkExcludeRules() {
 		std::cout << qPrintable(itemtext) << " is to be checked" << std::endl;
 		QRegExp re;
 		re.setPattern ( itemtext );
-		re.setPatternSyntax ( QRegExp::RegExp );
+		if (cbUseWildcardInsteadRegexForExclude->isChecked())
+			re.setPatternSyntax ( QRegExp::Wildcard );
+		else
+			re.setPatternSyntax ( QRegExp::RegExp );
 		re.setCaseSensitivity( Qt::CaseInsensitive );
 		QStandardItem *item = exclude_model->item(i,0);
 		if (!re.isValid()) {
@@ -752,7 +759,7 @@ void SelReadable::labExcludeRexexInfoButtonClicked()
 	di.exec();
 }
 
-void SelReadable::excludeDataChanged(QStandardItem* item){
+void SelReadable::excludeDataChanged(QStandardItem*){
 	checkExcludeRules();
 }
 
@@ -809,6 +816,8 @@ void SelReadable::languageChange() {
 	labelContentSize->setText ( tr ( "max size:" ) );
 	maxSpinBox->setToolTip( tr ( "content size limit in kByte" ) );
 	cbDoExcludeFiles->setText(tr("exclude files/directories"));
+	cbUseWildcardInsteadRegexForExclude->setText(tr("Use wildcard instead regex"));
+	cbUseWildcardInsteadRegexForExclude->setToolTip(tr("Use wildcard expression instead regular expression"));
 	labExcludeRexexInfo->setText(tr("About regex:"));
 	labExcludeRexexInfo->setToolTip(tr("Information about regular expressions"));
 	labExcludeRexexInfoButton->setText(tr("About regular expressions...."));

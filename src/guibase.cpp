@@ -1016,6 +1016,7 @@ int GuiSlave::newEvent ( void ) {
 		mainw->db->storedFiles = mainw->cconfig->readcfiles;
 		mainw->db->doExcludeFiles = mainw->cconfig->doExcludeFiles;
 		mainw->db->ExcludeFileList = mainw->cconfig->ExcludeFileList;
+		mainw->db->useWildcardInsteadRegexForExclude = mainw->cconfig->useWildcardInsteadRegexForExclude;
 		panelsON();
 	}
 	return 0;
@@ -1057,6 +1058,7 @@ int GuiSlave::openEvent ( void ) {
 	mainw->db->storedFiles = mainw->cconfig->readcfiles;
 	mainw->db->doExcludeFiles = mainw->cconfig->doExcludeFiles;
 	mainw->db->ExcludeFileList = mainw->cconfig->ExcludeFileList;
+	mainw->db->useWildcardInsteadRegexForExclude = mainw->cconfig->useWildcardInsteadRegexForExclude;
 
 	PWw *pww = new PWw ( mainw, mainw->app );
 	mainw->db->pww = pww;
@@ -1300,6 +1302,7 @@ int GuiSlave::addEvent ( void ) {
 	mainw->db->storedFiles = mainw->cconfig->readcfiles;
 	mainw->db->doExcludeFiles = mainw->cconfig->doExcludeFiles;
 	mainw->db->ExcludeFileList = mainw->cconfig->ExcludeFileList;
+	mainw->db->useWildcardInsteadRegexForExclude = mainw->cconfig->useWildcardInsteadRegexForExclude;
 
 	if ( *DEBUG_INFO_ENABLED )
 		cerr << "ADDEVENT-1" << endl;
@@ -1589,6 +1592,7 @@ int GuiSlave::rescanEvent ( void ) {
 	mainw->db->storedFiles = mainw->cconfig->readcfiles;
 	mainw->db->doExcludeFiles = mainw->cconfig->doExcludeFiles;
 	mainw->db->ExcludeFileList = mainw->cconfig->ExcludeFileList;
+	mainw->db->useWildcardInsteadRegexForExclude = mainw->cconfig->useWildcardInsteadRegexForExclude;
 
 	if ( standON == NULL ) {
 		QMessageBox::warning ( mainw, tr ( "Error:" ), tr ( "There is no selected Media in the middle list box!" ) );
@@ -2013,6 +2017,7 @@ int GuiSlave::openHistoryElementEvent ( int id ) {
 	mainw->db->storedFiles = mainw->cconfig->readcfiles;
 	mainw->db->doExcludeFiles = mainw->cconfig->doExcludeFiles;
 	mainw->db->ExcludeFileList = mainw->cconfig->ExcludeFileList;
+	mainw->db->useWildcardInsteadRegexForExclude = mainw->cconfig->useWildcardInsteadRegexForExclude;
 
 	PWw *pww = new PWw ( mainw, mainw->app );
 	mainw->db->pww = pww;
@@ -2201,6 +2206,7 @@ int GuiSlave::followLnk ( void ) {
 		mainw->db->storedFiles = mainw->cconfig->readcfiles;
 		mainw->db->doExcludeFiles = mainw->cconfig->doExcludeFiles;
 		mainw->db->ExcludeFileList = mainw->cconfig->ExcludeFileList;
+		mainw->db->useWildcardInsteadRegexForExclude = mainw->cconfig->useWildcardInsteadRegexForExclude;
 
 		PWw *pww = new PWw ( mainw, mainw->app );
 		mainw->db->pww = pww;
