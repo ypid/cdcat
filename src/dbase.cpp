@@ -652,8 +652,12 @@ int DataBase::addMedia ( QString what, QString name, int number, int type, QStri
 			QRegExp re;
 			re.setPattern ( QString ( patt ) );
 			re.setPatternSyntax ( QRegExp::RegExp );
+			re.setCaseSensitivity( Qt::CaseInsensitive );
 			if (re.isValid()) {
 				excludeFileRegExList.append(re);
+			}
+			else {
+				std::cerr << "exclude pattern is invalid:" << qPrintable ( patt ) << std::endl;
 			}
 		}
 	}
@@ -908,18 +912,6 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 		return i;
 	}
 	
-	if (doExcludeFiles) {
-		for (int i = 0; i < excludeFileRegExList.size(); i++) {
-			if ( *DEBUG_INFO_ENABLED )
-					std::cerr << "exclude dirs: checking regex \"" << qPrintable (excludeFileRegExList.at(i).pattern() ) << "\" against " << qPrintable ( dir->path() )<< std::endl;
-			if(excludeFileRegExList.at(i).exactMatch(dir->path())) {
-				if ( *DEBUG_INFO_ENABLED )
-					std::cerr << "exclude dirs: regex \"" << qPrintable (excludeFileRegExList.at(i).pattern() ) << "\" matched against " << qPrintable ( dir->path() ) << ", skipping" << std::endl;
-				continue;
-			}
-		}
-	}
-	
 	dirlist = new QFileInfoList ( dir->entryInfoList ( QString ( "*" ), QDir::All | QDir::Hidden | QDir::System ) );
 	
 	for ( int fi = 0; fi < dirlist->size(); ++fi ) {
@@ -929,21 +921,25 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 		}
 		
 		if ( *DEBUG_INFO_ENABLED )
-			std::cerr << "processing in dir " << qPrintable ( what ) << " node: " << qPrintable ( fileInfo->filePath() ) << std::endl;
+			std::cerr << "processing in dir " << qPrintable ( what ) << " node: " << qPrintable ( fileInfo->fileName() ) << std::endl;
 		
 		if ( showProgressedFileInStatus )
 			emit pathScanned ( fileInfo->filePath() );
 		
 		if (doExcludeFiles) {
+			bool exclude_path_matched = false;
 			for (int i = 0; i < excludeFileRegExList.size(); i++) {
 				if ( *DEBUG_INFO_ENABLED )
-						std::cerr << "exclude files: checking regex \"" << qPrintable (excludeFileRegExList.at(i).pattern() ) << "\" against " << qPrintable ( fileInfo->filePath() )<< std::endl;
+						std::cerr << "exclude files: checking regex \"" << qPrintable (excludeFileRegExList.at(i).pattern() ) << "\" against file path " << qPrintable ( fileInfo->filePath() )<< std::endl;
 				if(excludeFileRegExList.at(i).exactMatch(fileInfo->filePath())) {
 					if ( *DEBUG_INFO_ENABLED )
-						std::cerr << "exclude files: regex \"" << qPrintable (excludeFileRegExList.at(i).pattern() ) << "\" matched against " << qPrintable ( fileInfo->filePath() ) << ", skipping" << std::endl;
-					continue;
+						std::cerr << "exclude files: regex MATCH: \"" << qPrintable (excludeFileRegExList.at(i).pattern() ) << "\" against file path " << qPrintable ( fileInfo->filePath() ) << ", skipping" << std::endl;
+					exclude_path_matched = true;
+					break;
 				}
 			}
+			if ( exclude_path_matched )
+				continue;
 		}
 		
 		/* Make a new node */
