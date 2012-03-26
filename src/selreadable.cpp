@@ -645,8 +645,8 @@ void SelReadable::checkExcludeRules() {
 
 void SelReadable::labExcludeRexexInfoButtonClicked()
 {
-		RegexInfoHtml = "";
-	RegexInfoHtml += "<h4><span class=\"mw-headline\" id=\"POSIX_Basic_Regular_Expressions\">+"tr("POSIX Basic Regular Expressions")+"</span></h4>";
+	RegexInfoHtml = "";
+	RegexInfoHtml += "<h4><span class=\"mw-headline\" id=\"POSIX_Basic_Regular_Expressions\">+"+tr("POSIX Basic Regular Expressions")+"</span></h4>";
 	//RegexInfoHtml += "<p>"+tr("Traditional <a href=\"/wiki/Unix\" title=\"Unix\">Unix</a> regular expression syntax followed common conventions but often differed from tool to tool. The <a href=\"/wiki/Institute_of_Electrical_and_Electronics_Engineers\" title=\"Institute of Electrical and Electronics Engineers\">IEEE</a> <a href=\"/wiki/POSIX\" title=\"POSIX\">POSIX</a> Basic Regular Expressions (BRE) standard (ISO/IEC 9945-2:1993 <i>Information technology -- Portable Operating System Interface (POSIX) -- Part 2: Shell and Utilities</i>, successively revised as ISO/IEC 9945-2:2002 <i>Information technology -- Portable Operating System Interface (POSIX) -- Part 2: System Interfaces</i>, ISO/IEC 9945-2:2003, and currently ISO/IEC/IEEE 9945:2009 <i>Information technology -- Portable Operating System Interface (POSIX®) Base Specifications, Issue 7</i>) was designed mostly for backward compatibility with the traditional (Simple Regular Expression) syntax but provided a common standard which has since been adopted as the default syntax of many Unix regular expression tools, though there is often some variation or additional features.")+"</p>";
 	//RegexInfoHtml += "<p>"+tr("BRE was released alongside an alternative flavor called Extended Regular Expressions or ERE. Many Unix tools also provide support for ERE syntax with <a href=\"/wiki/Command_line_argument\" title=\"Command line argument\" class=\"mw-redirect\">command line arguments</a>.")+"</p>";
 	//RegexInfoHtml += "<p>"+tr("In the BRE syntax, most characters are treated as <a href=\"/wiki/Literal_(computer_science)\" title=\"Literal (computer science)\" class=\"mw-redirect\">literals</a>&#160;— they match only themselves (e.g., <code>a</code> matches \"<i>a</i>\"). The exceptions, listed below, are called <a href=\"/wiki/Metacharacter\" title=\"Metacharacter\">metacharacters</a> or metasequences.")+"</p>";
@@ -751,7 +751,6 @@ void SelReadable::labExcludeRexexInfoButtonClicked()
 	di.resize(QSize(750,500));
 	di.exec();
 }
-
 
 /*
  *  Destroys the object and frees any allocated resources
