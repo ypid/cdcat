@@ -348,6 +348,7 @@ class DataBase : public QObject {
 		bool doScanArchive;
 		bool doScanArchiveTar;
 		bool doScanArchiveLib7zip;
+		bool showProgressedArchiveFileInStatus;
 		bool storeExifData;
 		bool storeThumb;
 		bool doExcludeFiles;
@@ -474,6 +475,7 @@ class DataBase : public QObject {
 		Node * putTagInfo ( Node *file, QString artist, QString title, QString comment, QString album, QString year, int tnumber );
 		
 		void setShowProgressedFileInStatus ( bool showProgressedFileInStatus );
+		void setShowProgressedArchiveFileInStatus (bool showProgressedArchiveFileInStatus);
 		void setDoArchiveScan ( bool doScanArchive ) {
 			this->doScanArchive = doScanArchive;
 		};
@@ -486,6 +488,7 @@ class DataBase : public QObject {
 	
 	signals:
 		void pathScanned ( QString path );
+		void pathExtraInfoAppend( QString extrainfo );
 };
 
 

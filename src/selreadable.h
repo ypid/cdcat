@@ -94,13 +94,14 @@ class SelReadable : public QDialog {
 		QLabel *labelExcludeFiles;
 		
 		QGroupBox *groupBoxShowArchiveFileOpts;
-		QCheckBox* cpScanArchive;
-		QCheckBox* cpShowArchiveFilePerms;
-		QCheckBox* cpShowArchiveFileUser;
-		QCheckBox* cpShowArchiveFileGroup;
-		QCheckBox* cpShowArchiveFileSize;
-		QCheckBox* cpShowArchiveFileDate;
-		QCheckBox* cpShowArchiveFileComment;
+		QCheckBox* cbScanArchive;
+		QCheckBox* cbShowProgressedArchiveFileInStatus;
+		QCheckBox* cbShowArchiveFilePerms;
+		QCheckBox* cbShowArchiveFileUser;
+		QCheckBox* cbShowArchiveFileGroup;
+		QCheckBox* cbShowArchiveFileSize;
+		QCheckBox* cbShowArchiveFileDate;
+		QCheckBox* cbShowArchiveFileComment;
 	
 	public slots:
 		int schanged ( int state );
@@ -124,6 +125,8 @@ class SelReadable : public QDialog {
 		Q3HBoxLayout* layout1;
 		Q3HBoxLayout* layout62;
 		Q3HBoxLayout* layoutShowArchiveFileOptions;
+		Q3HBoxLayout* layoutShowProgressedArchiveFileInStatus;
+		Q3HBoxLayout* layoutThumbGeneral;
 		Q3HBoxLayout* layoutThumbExts;
 		Q3HBoxLayout* layoutExternalContentViewer;
 		Q3HBoxLayout* layoutFileInfo;

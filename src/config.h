@@ -76,6 +76,7 @@ class CdCatConfig : public QObject {
 		bool saveAlwaysCatalogInUtf8;
 		bool showProgressedFileInStatus;
 		bool doScanArchive;
+		bool showProgressedArchiveFileInStatus;
 		bool doExcludeFiles;
 		bool useExternalContentViewer;
 		

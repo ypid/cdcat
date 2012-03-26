@@ -56,8 +56,6 @@
 
 using namespace std;
 
-
-
 CdCatConfig::CdCatConfig ( void ) {
 	
 	/* The default values of config.
@@ -102,6 +100,7 @@ CdCatConfig::CdCatConfig ( void ) {
 	saveAlwaysCatalogInUtf8 = true;
 	showProgressedFileInStatus = true;
 	doScanArchive = true;
+	showProgressedArchiveFileInStatus = true;
 	doExcludeFiles = false;
 	storeThumb = true;
 	
@@ -215,8 +214,6 @@ int CdCatConfig::startProgram ( DataBase **dbp, QWidget *mw ) {
 	return 0;
 }
 
-
-
 int secv ( const char *s, int i ) {
 	int v1, v2, v3;
 	
@@ -230,7 +227,6 @@ int secv ( const char *s, int i ) {
 		return v3;
 	return 0;
 }
-
 
 int CdCatConfig::readConfig ( void ) {
 	int error = 0;
@@ -699,6 +695,13 @@ int CdCatConfig::readConfig ( void ) {
 						doScanArchive = false;
 					continue;
 				}
+				if ( var == "showProgressedArchiveFileInStatus" ) {
+					if ( val == "true" )
+						showProgressedArchiveFileInStatus = true;
+					else
+						showProgressedArchiveFileInStatus = false;
+					continue;
+				}
 				if ( var == "find_in_archive" ) {
 					if ( val == "true" )
 						find_in_archive = true;
@@ -1065,6 +1068,11 @@ int CdCatConfig::writeConfig ( void ) {
 		else
 			str << "do_scan_archive=false" << endl;
 		
+		if(showProgressedArchiveFileInStatus)
+			str << "showProgressedArchiveFileInStatus=true" << endl;
+		else
+			str << "showProgressedArchiveFileInStatus=false" << endl;
+		
 		if ( find_in_archive )
 			str << "find_in_archive=true" << endl;
 		else
@@ -1407,7 +1415,6 @@ ConfigDialog::~ConfigDialog() {
 	// no need to delete child widgets, Qt does it all for us
 }
 
-
 void ConfigDialog::languageChange() {
 	setCaption ( tr ( "Configure  CdCat..." ) );
 	cbAutoload->setText ( tr ( "Autoload DataBase on startup" ) );
@@ -1439,13 +1446,11 @@ void ConfigDialog::languageChange() {
 	cbShowProgressedFileInStatus->setText ( tr ( "Show progressed file at scanning in status label" ) );
 }
 
-
 void ConfigDialog::ffdbutton() {
 	QString s = QFileDialog::getOpenFileName ( 0, tr ( "Choose a file to load automatically!" ), p->cconfig->lastDir, tr ( "CdCat databases (*.hcf )" ) );
 	if ( !s.isEmpty() )
 		filename->setText ( s );
 }
-
 
 void ConfigDialog::cdrombutton() {
 	QString s = QFileDialog::getExistingDirectory ( 0, tr ( "Choose path to cdrom!" ), p->cconfig->lastDir );
@@ -1453,7 +1458,6 @@ void ConfigDialog::cdrombutton() {
 	if ( !s.isEmpty() )
 		cdrompath_lineedit->setText ( s );
 }
-
 
 void ConfigDialog::okExit() {
 	p->cconfig->nice        = cbNice->isChecked();

@@ -525,6 +525,13 @@ void CdCatMainWidget::closeEvent ( QCloseEvent *e ) {
 
 void CdCatMainWidget::pathScanned ( QString path ) {
 // 	std::cerr <<"CdCatMainWidget::pathScanned: " << qPrintable(path) << std::endl;
+	lastScanPath = path;
 	statusl->setText ( tr ( "Scanning:" ) + " " + path );
 }
+
+void CdCatMainWidget::extraInfoAppend(QString extraInfo) {
+	statusl->setText ( lastScanPath + " [" + extraInfo + "]" );
+}
+
+
 // kate: indent-mode cstyle; replace-tabs off; tab-width 8; 

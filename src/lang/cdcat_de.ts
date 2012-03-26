@@ -40,10 +40,6 @@
       <source>unknown</source>
       <translation>unbekannt</translation>
     </message>
-    <message>
-      <source></source>
-      <translation type="unfinished" />
-    </message>
   </context>
   <context>
     <name>CatalogTypeEditDialog</name>
@@ -786,6 +782,38 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     <message>
       <source> link to </source>
       <translation> Verweis nach</translation>
+    </message>
+    <message>
+      <source>reading mp3 info</source>
+      <translation>MP3-Info wird gelesen</translation>
+    </message>
+    <message>
+      <source>reading media info</source>
+      <translation>Medien-Info wird gelesen</translation>
+    </message>
+    <message>
+      <source>reading avi info</source>
+      <translation>AVI-Info wird gelesen</translation>
+    </message>
+    <message>
+      <source>reading file content</source>
+      <translation>Dateiinhalt wird gelesen</translation>
+    </message>
+    <message>
+      <source>reading exif data</source>
+      <translation>Exif-Daten werden gelesen</translation>
+    </message>
+    <message>
+      <source>reading thumbnail data</source>
+      <translation>Vorschaubild wird gelesen</translation>
+    </message>
+    <message>
+      <source>scanning archive</source>
+      <translation>Archiv wird durchsucht</translation>
+    </message>
+    <message>
+      <source>scanning archive, file:</source>
+      <translation>Archiv wird durchsucht, Datei:</translation>
     </message>
   </context>
   <context>
@@ -1816,6 +1844,14 @@ wird zu
     <message>
       <source>regular expression is valid</source>
       <translation>regulärer Ausdruck ist gültig</translation>
+    </message>
+    <message>
+      <source>show archive file at scanning in status</source>
+      <translation>Archivdatei während des Durchsuchens in Status anzeigen</translation>
+    </message>
+    <message>
+      <source>show archive file in status</source>
+      <translation>Archivdatei in Status anzeigen</translation>
     </message>
   </context>
   <context>

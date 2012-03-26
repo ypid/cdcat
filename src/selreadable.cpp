@@ -56,15 +56,15 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	setSizeGripEnabled ( TRUE );
 	
 	layoutArchiveScan= new Q3HBoxLayout ( 0, 0, 6, "layoutArchiveScan" );
-	cpScanArchive = new QCheckBox ( this, "cpScanArchive" );
-//     cpScanArchive->setMaximumWidth ( 80 );
+	cbScanArchive = new QCheckBox ( this, "cpScanArchive" );
+//     cbScanArchive->setMaximumWidth ( 80 );
 	
 	QSpacerItem* archiveInfospacer1 = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	labArchiveExtensions = new QLabel ( this, "labArchiveExtensions" );
 	labArchiveExtensionsStatusIcon = new QLabel ( this, "labArchiveExtensionsStatusIcon" );
 	labArchiveExtensionsStatusIcon->setPixmap(*get_t_info_icon());
 	QSpacerItem* archiveInfospacer2 = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
-	layoutArchiveScan->addWidget ( cpScanArchive );
+	layoutArchiveScan->addWidget ( cbScanArchive );
 	layoutArchiveScan->addItem ( archiveInfospacer1 );
 	layoutArchiveScan->addWidget ( labArchiveExtensions );
 	layoutArchiveScan->addWidget ( labArchiveExtensionsStatusIcon );
@@ -72,26 +72,33 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	
 	SelReadableLayout->addLayout(layoutArchiveScan);
 	
+	
+	
 	layoutShowArchiveFileOptions = new Q3HBoxLayout ( 0, 0, 6, "layoutShowArchiveFileOptions" );
 	layoutShowArchiveFileOptions->addSpacing ( 25 );
 	groupBoxShowArchiveFileOpts = new QGroupBox ( this, "groupBoxShowArchiveFileOpts" );
 	layoutShowArchiveFileOptions->addWidget ( groupBoxShowArchiveFileOpts );
 	layoutShowArchiveFileOptionsGroup = new Q3GridLayout ( this, 1, 1, 5, 5, "layoutShowArchiveFileOptionsGroup" );
 	groupBoxShowArchiveFileOpts->setLayout ( layoutShowArchiveFileOptionsGroup );
-	cpShowArchiveFilePerms = new QCheckBox ( this, "cpShowArchiveFilePerms" );
-	cpShowArchiveFileUser = new QCheckBox ( this, "cpShowArchiveFileUser" );
-	cpShowArchiveFileGroup = new QCheckBox ( this, "cpShowArchiveFileGroup" );
-	cpShowArchiveFileSize = new QCheckBox ( this, "cpShowArchiveFileSize" );
-	cpShowArchiveFileDate = new QCheckBox ( this, "cpShowArchiveFileDate" );
-	cpShowArchiveFileComment = new QCheckBox ( this, "cpShowArchiveFileComment" );
-	layoutShowArchiveFileOptionsGroup->addWidget ( cpShowArchiveFilePerms, 0, 0 );
-	layoutShowArchiveFileOptionsGroup->addWidget ( cpShowArchiveFileUser, 0, 1 );
-	layoutShowArchiveFileOptionsGroup->addWidget ( cpShowArchiveFileGroup, 0, 2 );
-	layoutShowArchiveFileOptionsGroup->addWidget ( cpShowArchiveFileSize, 1, 0 );
-	layoutShowArchiveFileOptionsGroup->addWidget ( cpShowArchiveFileDate, 1, 1 );
-	layoutShowArchiveFileOptionsGroup->addWidget ( cpShowArchiveFileComment, 1, 2 );
+	cbShowArchiveFilePerms = new QCheckBox ( this, "cpShowArchiveFilePerms" );
+	cbShowArchiveFileUser = new QCheckBox ( this, "cpShowArchiveFileUser" );
+	cbShowArchiveFileGroup = new QCheckBox ( this, "cpShowArchiveFileGroup" );
+	cbShowArchiveFileSize = new QCheckBox ( this, "cpShowArchiveFileSize" );
+	cbShowArchiveFileDate = new QCheckBox ( this, "cpShowArchiveFileDate" );
+	cbShowArchiveFileComment = new QCheckBox ( this, "cpShowArchiveFileComment" );
+	layoutShowArchiveFileOptionsGroup->addWidget ( cbShowArchiveFilePerms, 0, 0 );
+	layoutShowArchiveFileOptionsGroup->addWidget ( cbShowArchiveFileUser, 0, 1 );
+	layoutShowArchiveFileOptionsGroup->addWidget ( cbShowArchiveFileGroup, 0, 2 );
+	layoutShowArchiveFileOptionsGroup->addWidget ( cbShowArchiveFileSize, 1, 0 );
+	layoutShowArchiveFileOptionsGroup->addWidget ( cbShowArchiveFileDate, 1, 1 );
+	layoutShowArchiveFileOptionsGroup->addWidget ( cbShowArchiveFileComment, 1, 2 );
 	
 	SelReadableLayout->addLayout ( layoutShowArchiveFileOptions );
+	layoutShowProgressedArchiveFileInStatus = new Q3HBoxLayout ( 0, 0, 2, "layoutExternalContentViewer" );
+	layoutShowArchiveFileOptions->addSpacing ( 25 );
+	cbShowProgressedArchiveFileInStatus = new QCheckBox ( this, "cbShowProgressedArchiveFileInStatus" );
+	layoutShowArchiveFileOptions->addWidget(cbShowProgressedArchiveFileInStatus);
+	SelReadableLayout->addLayout ( layoutShowProgressedArchiveFileInStatus);
 	
 	line6 = new QFrame ( this, "line1" );
 	line6->setFrameShape ( QFrame::HLine );
@@ -192,8 +199,14 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	layoutFileInfo->addItem ( fileInfospacer );
 	SelReadableLayout->addLayout ( layoutFileInfo );
 	
+	layoutThumbGeneral = new Q3HBoxLayout ( 0, 0, 6, "layoutThumbGeneral" );
 	cbThumb = new QCheckBox ( this, "cbThumb" );
-	SelReadableLayout->addWidget ( cbThumb );
+	layoutThumbGeneral->addWidget ( cbThumb );
+#ifdef USE_LIBEXIF
+	cbExif = new QCheckBox ( this, "cbExif" );
+	layoutThumbGeneral->addWidget ( cbExif );
+#endif
+	SelReadableLayout->addLayout(layoutThumbGeneral);
 	
 	layoutThumbExts = new Q3HBoxLayout ( 0, 0, 6, "layoutThumbExts" );
 	labThumbExts = new QLabel ( this, "labThumbExts" );
@@ -214,11 +227,6 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	layoutThumbExts->addWidget(labThumbXSize);
 	layoutThumbExts->addWidget(thumbHeightSpinBox);
 	SelReadableLayout->addLayout ( layoutThumbExts );
-	
-#ifdef USE_LIBEXIF
-	cbExif = new QCheckBox ( this, "cbExif" );
-	SelReadableLayout->addWidget ( cbExif );
-#endif
 	
 	layoutExcludeMain = new Q3HBoxLayout ( 0, 0, 6, "layoutExcludeMain" );
 	layoutExcludeLeft = new Q3VBoxLayout ( 0, 0, 6, "layoutExcludeLeft" );
@@ -253,7 +261,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	connect ( cbTag, SIGNAL ( stateChanged ( int ) ), this, SLOT ( schanged ( int ) ) );
 	connect ( cbCont, SIGNAL ( stateChanged ( int ) ), this, SLOT ( schanged ( int ) ) );
 	connect ( cbThumb, SIGNAL ( stateChanged ( int ) ), this, SLOT ( schanged ( int ) ) );
-	connect ( cpScanArchive, SIGNAL ( stateChanged ( int ) ), this, SLOT ( schanged(int)) );
+	connect ( cbScanArchive, SIGNAL ( stateChanged ( int ) ), this, SLOT ( schanged(int)) );
 	connect ( cbUseExternalContentViewer, SIGNAL ( stateChanged ( int ) ), this, SLOT ( schanged(int)) );
 	connect ( cbDoExcludeFiles , SIGNAL ( stateChanged ( int ) ), this, SLOT ( schanged(int)) );
 	connect ( buttonOK, SIGNAL ( clicked() ), this, SLOT ( sok() ) );
@@ -265,13 +273,16 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	listviewExcludeFiles->setContextMenuPolicy(Qt::CustomContextMenu);
 	connect(listviewExcludeFiles, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(excludeContextMenuRequested(const QPoint &)));
 	
-	cpScanArchive->setChecked ( conf->doScanArchive );
-	cpShowArchiveFilePerms->setChecked ( conf->show_archive_file_perms );
-	cpShowArchiveFileUser->setChecked ( conf->show_archive_file_user );
-	cpShowArchiveFileGroup->setChecked ( conf->show_archive_file_group );
-	cpShowArchiveFileSize->setChecked ( conf->show_archive_file_size );
-	cpShowArchiveFileDate->setChecked ( conf->show_archive_file_date );
-	cpShowArchiveFileComment->setChecked ( conf->show_archive_file_comment );
+	cbScanArchive->setChecked ( conf->doScanArchive );
+	cbShowProgressedArchiveFileInStatus->setChecked( conf->showProgressedArchiveFileInStatus );
+	if(!conf->showProgressedFileInStatus)
+		cbShowProgressedArchiveFileInStatus->setEnabled(false);
+	cbShowArchiveFilePerms->setChecked ( conf->show_archive_file_perms );
+	cbShowArchiveFileUser->setChecked ( conf->show_archive_file_user );
+	cbShowArchiveFileGroup->setChecked ( conf->show_archive_file_group );
+	cbShowArchiveFileSize->setChecked ( conf->show_archive_file_size );
+	cbShowArchiveFileDate->setChecked ( conf->show_archive_file_date );
+	cbShowArchiveFileComment->setChecked ( conf->show_archive_file_comment );
 	cbTag->setChecked ( conf->readtag );
 	cbCont->setChecked ( conf->readcontent );
 	cbUseExternalContentViewer->setChecked ( conf->useExternalContentViewer );
@@ -455,13 +466,16 @@ int SelReadable::schanged ( int ) {
 		thumbWidthSpinBox->setEnabled ( false );
 		thumbHeightSpinBox->setEnabled ( false );
 	}
-	if(cpScanArchive->isChecked()) {
+	if(cbScanArchive->isChecked()) {
 		groupBoxShowArchiveFileOpts->setEnabled(true);
+		if(conf->showProgressedArchiveFileInStatus)
+			cbShowProgressedArchiveFileInStatus->setEnabled(true);
 		labArchiveExtensions->setEnabled(true);
 		labArchiveExtensionsStatusIcon->setEnabled(true);
 	}
 	else {
 		groupBoxShowArchiveFileOpts->setEnabled(false);
+		cbShowProgressedArchiveFileInStatus->setEnabled(false);
 		labArchiveExtensions->setEnabled(false);
 		labArchiveExtensionsStatusIcon->setEnabled(false);
 	}
@@ -477,13 +491,14 @@ int SelReadable::schanged ( int ) {
 
 
 int SelReadable::sok ( void ) {
-	conf->doScanArchive  = cpScanArchive->isChecked();
-	conf->show_archive_file_perms  = cpShowArchiveFilePerms->isChecked();
-	conf->show_archive_file_user  = cpShowArchiveFileUser->isChecked();
-	conf->show_archive_file_group  = cpShowArchiveFileGroup->isChecked();
-	conf->show_archive_file_size  = cpShowArchiveFileSize->isChecked();
-	conf->show_archive_file_date  = cpShowArchiveFileDate->isChecked();
-	conf->show_archive_file_comment  = cpShowArchiveFileComment->isChecked();
+	conf->doScanArchive  = cbScanArchive->isChecked();
+	conf->showProgressedArchiveFileInStatus = cbShowProgressedArchiveFileInStatus->isChecked();
+	conf->show_archive_file_perms  = cbShowArchiveFilePerms->isChecked();
+	conf->show_archive_file_user  = cbShowArchiveFileUser->isChecked();
+	conf->show_archive_file_group  = cbShowArchiveFileGroup->isChecked();
+	conf->show_archive_file_size  = cbShowArchiveFileSize->isChecked();
+	conf->show_archive_file_date  = cbShowArchiveFileDate->isChecked();
+	conf->show_archive_file_comment  = cbShowArchiveFileComment->isChecked();
 	conf->readcontent = cbCont->isChecked();
 	conf->usefileinfo = cbFileInfo->isChecked();
 	conf->storeThumb = cbThumb->isChecked();
@@ -627,14 +642,16 @@ SelReadable::~SelReadable() {
 void SelReadable::languageChange() {
 	setCaption ( tr ( "Select readable items" ) );
 	groupBoxShowArchiveFileOpts->setTitle ( tr ( "Archive file display options" ) );
-	cpScanArchive->setText ( tr ( "Scan for archive file list" ) );
+	cbScanArchive->setText ( tr ( "Scan for archive file list" ) );
+	cbShowProgressedArchiveFileInStatus->setText( tr("show archive file in status") );
+	cbShowProgressedArchiveFileInStatus->setToolTip( tr("show archive file at scanning in status") );
 	labArchiveExtensions->setText ( tr ( "Supported extensions:" ) + " " + SupportedExtensions );
-	cpShowArchiveFilePerms->setText ( tr ( "Permission" ) );
-	cpShowArchiveFileUser->setText ( tr ( "User" ) );
-	cpShowArchiveFileGroup->setText ( tr ( "Group" ) );
-	cpShowArchiveFileSize->setText ( tr ( "Size" ) );
-	cpShowArchiveFileDate->setText ( tr ( "Date" ) );
-	cpShowArchiveFileComment->setText ( tr ( "Comment" ) );
+	cbShowArchiveFilePerms->setText ( tr ( "Permission" ) );
+	cbShowArchiveFileUser->setText ( tr ( "User" ) );
+	cbShowArchiveFileGroup->setText ( tr ( "Group" ) );
+	cbShowArchiveFileSize->setText ( tr ( "Size" ) );
+	cbShowArchiveFileDate->setText ( tr ( "Date" ) );
+	cbShowArchiveFileComment->setText ( tr ( "Comment" ) );
 	cbTag->setText ( tr ( "Read mp3 tags" ) );
 	cbThumb->setText( tr("Read thumbnails") );
 	cbThumb->setToolTip( tr("Read thumbnails from pictures") );

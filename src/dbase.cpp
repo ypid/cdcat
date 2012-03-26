@@ -1100,8 +1100,11 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 	DEBUG_INFO_ENABLED = init_debug_info();
 	/***MP3 tag scanning */
 	if ( storeMp3tags || storeMp3techinfo ) {
-		if ( ( fi->extension ( FALSE ) ).lower() ==  "mp3" ||
-		                ( fi->extension ( FALSE ) ).lower() ==  "mp2" ) {
+		if ( ( fi->extension ( FALSE ) ).lower() ==  "mp3" || ( fi->extension ( FALSE ) ).lower() ==  "mp2" ) {
+			
+			if ( showProgressedFileInStatus )
+				emit pathExtraInfoAppend ( tr("reading mp3 info") );
+			
 			ReadMp3Tag *reader = new ReadMp3Tag ( ( const char * ) QFile::encodeName ( fi->absFilePath() ), v1_over_v2 );
 			if ( storeMp3tags )
 				if ( reader->readed() && reader->exist() ) {
@@ -1142,12 +1145,18 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 
 	/* using fileinfo */
 	if ( storeFileInfo && me.getMediaInfoLibFound() ) {
+		if ( showProgressedFileInStatus )
+			emit pathExtraInfoAppend ( tr("reading media info") );
+		
 		QString info = CdcatMediaInfo ( fi->absoluteFilePath() ).getInfo();
 		if ( !info.isEmpty() )
 			fc->fileinfo = info;
 	}
 	/***Experimental AVI Header Scanning  */
 	if ( storeAvitechinfo ) {
+		if ( showProgressedFileInStatus )
+			emit pathExtraInfoAppend ( tr("reading avi info") );
+		
 		if ( ( fi->extension ( FALSE ) ).lower() == "avi" ) {
 			FILE* filePTR;
 			filePTR = fopen ( ( const char * ) QFile::encodeName ( fi->absFilePath() ), "r" );
@@ -1209,6 +1218,9 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 			if(*DEBUG_INFO_ENABLED)
 				std::cerr << "pattern " << pattern << ", matched for file " << ( const char * ) QFile::encodeName ( fi->fileName()) << ", reading content"<< std::endl;
 			
+			if ( showProgressedFileInStatus )
+				emit pathExtraInfoAppend ( tr("reading file content") );
+			
 			if ( storeLimit > MAX_STORED_SIZE )
 				storeLimit = MAX_STORED_SIZE;
 			//read the file
@@ -1257,6 +1269,9 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 	QString extension = fi->fileName().lower().section ( '.', -1, -1 );
 #ifdef USE_LIBEXIF
 	if(getExifSupportedExtensions().contains(extension)) {
+		if ( showProgressedFileInStatus )
+			emit pathExtraInfoAppend ( tr("reading exif data") );
+		
 		Node *tt = fc->prop;
 		CdcatExifData *ed = new CdcatExifData(fi->absFilePath());
 	 	if (storeExifData)
@@ -1281,6 +1296,9 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 	if(storeThumb) 
 	{
 		if (ThumbExtsList.contains(extension)) {
+			if ( showProgressedFileInStatus )
+				emit pathExtraInfoAppend ( tr("reading thumbnail data") );
+			
 			QImage thumbImage(fi->absFilePath());
 			if (!thumbImage.isNull()) {
 				Node *tt = fc->prop;
@@ -1634,7 +1652,10 @@ QList<ArchiveFile> DataBase::scanArchive ( QString path, ArchiveType type ) {
 		}
 		if ( *DEBUG_INFO_ENABLED )
 			std::cerr << "scanning archive " << qPrintable ( path ) << ",  type: " << type << std::endl;
-
+		
+		if ( showProgressedFileInStatus )
+			emit pathExtraInfoAppend ( tr("scanning archive") );
+		
 		int i = 0;
 		TAR *t;
 		int tar_open_ret;
@@ -1666,6 +1687,9 @@ QList<ArchiveFile> DataBase::scanArchive ( QString path, ArchiveType type ) {
 							if ( type == Archive_tar )
 								std::cerr << "file inside tar: " << t->th_buf.name << std::endl;
 				}
+				if ( showProgressedArchiveFileInStatus )
+					emit pathExtraInfoAppend ( tr("scanning archive, file:")+ " "+QString(t->th_buf.name) );
+				
 				char modestring[20];
 				struct passwd *pw;
 				struct group *gr;
@@ -1762,7 +1786,13 @@ QList<ArchiveFile> DataBase::scanArchive ( QString path, ArchiveType type ) {
 				Lib7zipTypes.append ( QString().fromWCharArray ( ( *extIt ).c_str() ) );
 			//std::cerr << "lib7zip supported extensions: " << qPrintable(Lib7zipTypes.join(" ")) << std::endl;
 		}
-
+		
+		if ( *DEBUG_INFO_ENABLED )
+			std::cerr << "scanning archive " << qPrintable ( path ) << ",  type: " << type << std::endl;
+		
+		if ( showProgressedFileInStatus )
+			emit pathExtraInfoAppend ( tr("scanning archive") );
+		
 		TestInStream stream ( path.toLocal8Bit().data(), path.lower().section ( '.', -1 ).toStdWString() );
 		if ( lib.OpenArchive ( &stream, &pArchive ) ) {
 			unsigned int numItems = 0;
@@ -1852,8 +1882,13 @@ QList<ArchiveFile> DataBase::scanArchive ( QString path, ArchiveType type ) {
 					// 				mtime2 = mtime2.addSecs(-11644473600);
 
 					QString path = QString::fromWCharArray ( pArchiveItem->GetFullPath().c_str() );
-					if ( *DEBUG_INFO_ENABLED )
+					if ( *DEBUG_INFO_ENABLED ) {
 						std::cerr << "file inside archive: " << qPrintable ( path ) << std::endl;
+					}
+					
+					if ( showProgressedArchiveFileInStatus )
+						emit pathExtraInfoAppend ( tr("scanning archive, file:")+ " "+QString( path ));
+					
 
 					//  -rw-r--r-- crissi   crissi       29656 Mar 17  8:33 2009 home/crissi/Desktop/file.gif
 					//QString line = QString().sprintf("%s %s %s    %ld %s %s", file_attr, user2.toLocal8Bit().data(), group2.toLocal8Bit().data(), size, mtime2.toString("MMM d h:s yyyy").toLocal8Bit().data(), path.toLocal8Bit().data() );
@@ -2126,6 +2161,11 @@ void DataBase::sortM ( int mode ) {
 
 void DataBase::setShowProgressedFileInStatus ( bool showProgressedFileInStatus ) {
 	this->showProgressedFileInStatus = showProgressedFileInStatus;
+}
+
+
+void DataBase::setShowProgressedArchiveFileInStatus(bool showProgressedArchiveFileInStatus) {
+	this->showProgressedArchiveFileInStatus = showProgressedArchiveFileInStatus;
 }
 
 

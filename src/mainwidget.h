@@ -79,12 +79,14 @@ protected:
     Q3HBoxLayout *lToolbar;
     Q3VBoxLayout *lvMain;
     void closeEvent ( QCloseEvent *e );
+    QString lastScanPath; // last scanned path, used for restore if extrainfo changes
 
 protected slots:
     virtual void languageChange();
 
 public slots:
-	void pathScanned(QString path);
+    void pathScanned(QString path);
+    void extraInfoAppend(QString extraInfo);
 
 private:
     QPixmap image0;
