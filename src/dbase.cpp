@@ -618,7 +618,7 @@ int DataBase::addMedia ( QString what, QString name, int number, int type, QStri
 	int returnv = 0;
 	Node *tt = root->child;
 	this->pcategory = pcategory;
-
+	
 	progress ( pww );
 	( ( DBCatalog * ) ( root->data ) )->touch();
 	if ( root->child == NULL )
@@ -886,6 +886,10 @@ void DBCatalog::touch ( void ) {
 }
 /*************************************************************************/
 int DataBase::scanFsToNode ( QString what, Node *to ) {
+	if ( pww->doCancel ) {
+		return 2;
+	}
+	
 	DEBUG_INFO_ENABLED = init_debug_info();
 	if ( *DEBUG_INFO_ENABLED )
 		std::cerr << "Loading node:" << qPrintable ( what ) << std::endl;
@@ -1064,7 +1068,11 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 				QString thr ( what );
 				thr = thr.append ( "/" );
 				thr = thr.append ( fileInfo->fileName() );
-
+				
+				
+				if ( pww->doCancel ) {
+					return 2;
+				}
 				if ( ( ret = scanFsToNode ( thr, tt ) ) == 2 )
 					return ret;
 			}

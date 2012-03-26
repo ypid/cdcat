@@ -1303,8 +1303,10 @@ int GuiSlave::addEvent ( void ) {
 
 	if ( *DEBUG_INFO_ENABLED )
 		cerr << "ADDEVENT-1" << endl;
-	PWw *pww = new PWw ( mainw, mainw->app, false, 0, tr ( "Scanning directory tree, please wait..." ) );
+	PWw *pww = new PWw ( mainw, mainw->app, false, 0, tr ( "Scanning directory tree, please wait..." ), true );
 	mainw->db->pww = pww;
+	pww->setProgressText(tr ( "Scanning directory tree, please wait..." ));
+	pww->setCancel(true);
 	QApplication::setOverrideCursor ( Qt::waitCursor );
 	d->type = mainw->cconfig->lastMediaType;
 
@@ -1431,7 +1433,13 @@ int GuiSlave::addEvent ( void ) {
 
 			i =  mainw->db->addMedia ( d->dDir, d->dName, d->serial, d->type,
 			                           ( d->dOwner.isEmpty() ? QString ( "" ) : d->dOwner ), ( d->dCategory.isEmpty() ? QString ( "" ) : d->dCategory ) );
-
+			
+			std::cerr << "ret addMedia: " << i << std::endl;
+			if ( i == 2 ) {
+				QMessageBox::warning ( mainw,
+				                       tr ( "Warning..." ), tr ( "You have cancelled catalog scanning,\nthe DataBase may be incomplete" ));
+			}
+			
 			if ( mainw->cconfig->showProgressedFileInStatus ) {
 				disconnect ( mainw->db, SIGNAL ( pathScanned ( QString ) ), mainw, SLOT ( pathScanned ( QString ) ) );
 				disconnect ( mainw->db, SIGNAL ( pathExtraInfoAppend( QString ) ), mainw, SLOT ( extraInfoAppend(QString)) );
@@ -1447,11 +1455,11 @@ int GuiSlave::addEvent ( void ) {
 			if ( *DEBUG_INFO_ENABLED )
 				cerr << "ADDEVENT-3" << endl;
 			panelsON();
-			if ( i != 0 ) {
+			if ( i != 0 && !pww->doCancel) {
 				QMessageBox::warning ( mainw,
 				                       tr ( "Warning..." ), tr ( "An error occured while scanning,\nthe DataBase may be incomplete" ) );
 			}
-
+			
 			if ( ! ( d->dComm ).isEmpty() ) {
 				Node *tn = ( mainw->db->getRootNode() )->child;
 				while ( tn->getNameOf() != d->dName )
@@ -1598,8 +1606,10 @@ int GuiSlave::rescanEvent ( void ) {
 
 	QApplication::setOverrideCursor ( Qt::waitCursor );
 
-	PWw *pww = new PWw ( mainw, mainw->app );
+	PWw *pww = new PWw ( mainw, mainw->app, false, 0, tr ( "Scanning directory tree, please wait..." ), true );
 	mainw->db->pww = pww;
+	pww->setProgressText(tr ( "Scanning directory tree, please wait..." ));
+	pww->setCancel(true);
 	progress ( pww );
 
 	panelsOFF();

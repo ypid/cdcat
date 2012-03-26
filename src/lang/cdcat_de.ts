@@ -40,6 +40,10 @@
       <source>unknown</source>
       <translation>unbekannt</translation>
     </message>
+    <message>
+      <source></source>
+      <translation type="unfinished" />
+    </message>
   </context>
   <context>
     <name>CatalogTypeEditDialog</name>
@@ -1140,6 +1144,12 @@ Homepage: %3</translation>
     <message>
       <source>Add a link to a Cdcat catalog...</source>
       <translation>Verweis auf CdCat-Datenbank hinzufügen...</translation>
+    </message>
+    <message>
+      <source>You have cancelled catalog scanning,
+the DataBase may be incomplete</source>
+      <translation>Sie haben das Durchsuchen für den Katalog abgebrochen, 
+die Datenbank wird unvollständig sein</translation>
     </message>
   </context>
   <context>

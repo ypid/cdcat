@@ -431,8 +431,11 @@ PWw::PWw ( QWidget *parent, QApplication *qapp, bool showProgress, long long int
 	this->showCancel = showCancel;
 	doCancel = false;
 	if(showCancel) {
-		if (cancelButton == NULL)
+		if (cancelButton == NULL) {
 			cancelButton = new QPushButton(this);
+			connect(cancelButton, SIGNAL(clicked(bool)), this, SLOT(doCancelReceived(bool)));
+			cancelButton->setText( tr("&Cancel") );
+		}
 	}
 	this->steps = steps;
 	if ( !progresstext.isEmpty() )
@@ -567,10 +570,12 @@ void PWw::setCancel ( bool showCancel ) {
 			connect(cancelButton, SIGNAL(clicked(bool)), this, SLOT(doCancelReceived(bool)));
 		}
 		cancelButton->show();
+		resize(width(), height()+cancelButton->height()+10);
 	}
 	else {
 		if (cancelButton != NULL) {
 			cancelButton->hide();
+			resize(width(), height()-cancelButton->height()-10);
 		}
 	}
 }
@@ -604,8 +609,8 @@ void PWw::paintEvent ( QPaintEvent * ) {
 #if (QT_VERSION >= QT_VERSION_CHECK(4, 6, 0)) // needs Qt 4.6.0 or better
 	p.beginNativePainting();
 #endif
-	p.drawRect ( 1, 1, borderless_width, myheight - 2 );
 	p.drawText ( begintext, 18, progresstext );
+	p.drawRect ( 1, 1, borderless_width, myheight - 2 );
 
 	QPixmap pm = anim_list.at ( s );
 	p.drawPixmap ( ( mywidth / 2 ) - ( pm.width() / 2 ), 25, pm );
@@ -632,6 +637,9 @@ void PWw::paintEvent ( QPaintEvent * ) {
 		cancelButton->move(2, buttom_offset+14 + 2);
 		cancelButton->resize(width()-4, cancelButton->height());
 	}
+	
+	
+	
 
 
 #if (QT_VERSION >= QT_VERSION_CHECK(4, 6, 0)) // needs Qt 4.6.0 or better
