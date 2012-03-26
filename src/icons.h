@@ -30,6 +30,7 @@ QPixmap * get_v_folderopen_icon ( void );
 QPixmap * get_v_file_icon ( void );
 QPixmap * get_v_back_icon ( void );
 QPixmap * get_p_icon ( void );
+QPixmap * get_p_icon_big ( void );
 QPixmap * get_t_open_icon ( void );
 QPixmap * get_t_save_icon ( void );
 QPixmap * get_t_saveas_icon ( void );

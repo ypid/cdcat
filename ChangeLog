@@ -7,6 +7,7 @@
 	- display extended status during scanning added (archive scanning, mp3 info, avi info, content, exif data, thumbnail)
 	- option for displaying archive file name during archive file in status added
 	- updated application icon with multiple sizes and svg added (thanks to Andras Somogyi, #3301448)
+	- icon size fixed
 
 25. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
 	- use real regex instead simple wildcard at exclude rules

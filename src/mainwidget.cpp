@@ -61,7 +61,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	
 	if ( !name )
 		setName ( "CdCatMainWidget" );
-	setIcon ( *get_p_icon() );
+	setIcon ( *get_p_icon_big() );
 	
 	db = NULL;
 	cconfig = ccp;

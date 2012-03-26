@@ -676,7 +676,7 @@ AddLnk::AddLnk ( GuiSlave *c, QWidget *parent )
 
 	caller = c;
 	setName ( "addlnkdialog" );
-	setIcon ( *get_p_icon() );
+	setIcon ( *get_p_icon_big() );
 
 	setSizeGripEnabled ( TRUE );
 

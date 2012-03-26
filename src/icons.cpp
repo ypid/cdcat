@@ -2119,6 +2119,148 @@ static const char* const a_4_data[] = {
 
 
 static const char* const p_icon_data[] = {
+    "16 16 122 2",
+    "       c None",
+    ".      c #BDAFAF",
+    "+      c #F7E2E2",
+    "@      c #FFDCDC",
+    "#      c #FDCECE",
+    "$      c #D8A8A8",
+    "%      c #D88B8B",
+    "&      c #FD8A8A",
+    "*      c #FF7D7D",
+    "=      c #F77070",
+    "-      c #BC6E6E",
+    ";      c #FCCBCB",
+    ">      c #FFBFBF",
+    ",      c #FFB2B2",
+    "'      c #FFA4A4",
+    ")      c #FF9797",
+    "!      c #E78686",
+    "~      c #E77A7A",
+    "{      c #FF6E6E",
+    "]      c #FF6161",
+    "^      c #FF5353",
+    "/      c #FF4545",
+    "(      c #FC3939",
+    "_      c #C39595",
+    ":      c #FFA3A3",
+    "<      c #FF9595",
+    "[      c #FF8787",
+    "}      c #FF7A7A",
+    "|      c #FF6C6C",
+    "1      c #FF5F5F",
+    "2      c #FF5151",
+    "3      c #FF4444",
+    "4      c #FF3636",
+    "5      c #FF2929",
+    "6      c #FF1B1B",
+    "7      c #FF0E0E",
+    "8      c #C24141",
+    "9      c #C38080",
+    "0      c #FF7878",
+    "a      c #FF6B6B",
+    "b      c #FF5D5D",
+    "c      c #FF5050",
+    "d      c #FF4242",
+    "e      c #FF3434",
+    "f      c #FF2727",
+    "g      c #FF1919",
+    "h      c #FF0D0D",
+    "i      c #FF0404",
+    "j      c #FF0000",
+    "k      c #C23D3D",
+    "l      c #AF7272",
+    "m      c #FF4E4E",
+    "n      c #FF4040",
+    "o      c #FF3333",
+    "p      c #FF2525",
+    "q      c #FF1818",
+    "r      c #FF0C0C",
+    "s      c #F80808",
+    "t      c #DF3B3A",
+    "u      c #DE4948",
+    "v      c #E72222",
+    "w      c #AE5252",
+    "x      c #E93434",
+    "y      c #FF1616",
+    "z      c #FF0A0A",
+    "A      c #FF0303",
+    "B      c #E92525",
+    "C      c #B49997",
+    "D      c #BCB1AF",
+    "E      c #CCC2C3",
+    "F      c #E0DADD",
+    "G      c #CB8788",
+    "H      c #BB4646",
+    "I      c #FB0505",
+    "J      c #BFA0A0",
+    "K      c #A69593",
+    "L      c #A6969B",
+    "M      c #B7A9B4",
+    "N      c #DDD4DC",
+    "O      c #E7E3E5",
+    "P      c #D82828",
+    "Q      c #E03131",
+    "R      c #D3CCC9",
+    "S      c #B2A5AA",
+    "T      c #A08085",
+    "U      c #BE7078",
+    "V      c #B5AEC1",
+    "W      c #CDC8CE",
+    "X      c #C2C2C0",
+    "Y      c #E81818",
+    "Z      c #DE3A3A",
+    "`      c #E4E1DF",
+    " .     c #C0B9C5",
+    "..     c #BD8089",
+    "+.     c #DB3535",
+    "@.     c #ABA5A6",
+    "#.     c #B6B4BD",
+    "$.     c #B7B7BA",
+    "%.     c #EC1313",
+    "&.     c #EF1615",
+    "*.     c #E3E0E0",
+    "=.     c #DDDAE7",
+    "-.     c #C4BECE",
+    ";.     c #B3A79D",
+    ">.     c #AEA38A",
+    ",.     c #AAA5A7",
+    "'.     c #A1A3AB",
+    ").     c #7E4F4F",
+    "!.     c #E81717",
+    "~.     c #DB6B6B",
+    "{.     c #E9E8F1",
+    "].     c #CECCDB",
+    "^.     c #BCB2AF",
+    "/.     c #A99D90",
+    "(.     c #989496",
+    "_.     c #523939",
+    ":.     c #D52323",
+    "<.     c #D52424",
+    "[.     c #797273",
+    "}.     c #A4A5AD",
+    "|.     c #A4A5A9",
+    "1.     c #8C8C8B",
+    "                                ",
+    "                                ",
+    "    . + @ # $     % & * = -     ",
+    "    ; > , ' ) ! ~ { ] ^ / (     ",
+    "  _ : < [ } | 1 2 3 4 5 6 7 8   ",
+    "  9 0 a b c d e f g h i j j k   ",
+    "  l m n o p q r i s t u v j w   ",
+    "    x y z A j j B C D E F G     ",
+    "    H j j j j I J K L M N O     ",
+    "      P j j j Q R S T U V W X   ",
+    "        Y j j Z `  ...+.@.#.$.  ",
+    "          %.j &.*.=.-.;.>.,.'.  ",
+    "          ).!.j ~.{.].^./.(.    ",
+    "            _.:.<.[.}.|.1.      ",
+    "                                ",
+    "                                "
+};
+
+static const char* const p_icon_data_big[] = {
     "48 48 720 2",
     "  	c None",
     ". 	c #8E8181",
@@ -6323,6 +6465,7 @@ QPixmap * a_2 = NULL;
 QPixmap * a_3 = NULL;
 QPixmap * a_4 = NULL;
 QPixmap * p_icon = NULL;
+QPixmap * p_icon_big = NULL;
 QPixmap * t_open_icon = NULL;
 QPixmap * t_save_icon = NULL;
 QPixmap * t_saveas_icon = NULL;
@@ -6411,6 +6554,9 @@ void init_icon_base ( void ) {
     if ( p_icon == NULL )
         p_icon = new QPixmap ( ( const char ** ) p_icon_data );
 
+    if ( p_icon_big == NULL )
+        p_icon_big = new QPixmap ( ( const char ** ) p_icon_data_big);
+    
     if ( t_open_icon == NULL )
         t_open_icon = new QPixmap ( ( const char ** ) t_open_icon_data );
 
@@ -6546,6 +6692,10 @@ QPixmap * get_v_back_icon ( void ) {
 
 QPixmap * get_p_icon ( void ) {
     return p_icon;
+}
+
+QPixmap * get_p_icon_big ( void ) {
+    return p_icon_big;
 }
 
 QPixmap * get_t_open_icon ( void ) {
