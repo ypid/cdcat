@@ -24,6 +24,7 @@
 #include <QStringListModel>
 #include <QStandardItem>
 #include <QInputDialog>
+#include <QMessageBox>
 #include <QPoint>
 #include <QMenu>
 #include <QAction>
@@ -393,9 +394,15 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	
 	cbDoExcludeFiles->setChecked(conf->doExcludeFiles);
 	
-	exclude_model = new QStringListModel(conf->ExcludeFileList);
+	QStringList excludeList = conf->ExcludeFileList;
+	exclude_model = new QStandardItemModel(0, 1, this);
+	for (int i = 0; i < excludeList.size(); i++) {
+		//std::cout << "insert rule: " << qPrintable(excludeList.at(i)) << std::endl;
+		QStandardItem *modelitem = new QStandardItem(QString(excludeList.at(i)));
+		exclude_model->appendRow(modelitem);
+	}
 	listviewExcludeFiles->setModel(exclude_model);
-	
+	checkExcludeRules();
 	schanged ( 0 );
 }
 
@@ -498,8 +505,10 @@ int SelReadable::sok ( void ) {
 	else
 		conf->v1_over_v2  = false;
 	conf->doExcludeFiles  = cbDoExcludeFiles->isChecked();
-	conf->ExcludeFileList = exclude_model->stringList();
-	
+	conf->ExcludeFileList.clear();
+	for (int i= 0; i < exclude_model->rowCount(); i++) {
+		conf->ExcludeFileList.append(exclude_model->index(i,0).data().toString());
+	}
 	close();
 	return 0;
 }
@@ -538,10 +547,10 @@ void SelReadable::addExcludeRulesClicked() {
 	bool ok;
 	QString text = QInputDialog::getText(this, tr("Add exclude rule..."), tr("Enter regular expression for exclude:"), QLineEdit::Normal, "", &ok);
 	if(ok) {
-		QStringList excludeList = exclude_model->stringList();
-		excludeList.append(text);
-		exclude_model->setStringList(excludeList);
+		QStandardItem *modelitem = new QStandardItem (text);
+		exclude_model->appendRow(modelitem);
 		std::cout << "add rule: " << qPrintable(text) << std::endl;
+		checkExcludeRules();
 	}
 }
 
@@ -570,10 +579,9 @@ void SelReadable::editExcludeRuleClicked() {
 	bool ok;
 	QString text = QInputDialog::getText(this, tr("Add exclude rule..."), tr("Enter regular expression for exclude:"), QLineEdit::Normal, itemtext, &ok);
 	if(ok) {
-		QStringList excludeList = exclude_model->stringList();
 		exclude_model->setData(contextmenu_modelindex, text);
-		//exclude_model->setStringList(excludeList);
 		std::cout << "edited rule: " << qPrintable(text) << std::endl;
+		checkExcludeRules();
 	}
 }
 
@@ -582,6 +590,27 @@ void SelReadable::deleteExcludeRuleClicked() {
 	std::cout << qPrintable(itemtext) << " is to be deleted" << std::endl;
 	exclude_model->removeRows( contextmenu_modelindex.row(), 1);
 }
+
+void SelReadable::checkExcludeRules() {
+	for (int i= 0; i < exclude_model->rowCount(); i++) {
+		QString itemtext = exclude_model->index(i,0).data().toString();
+		std::cout << qPrintable(itemtext) << " is to be checked" << std::endl;
+		QRegExp re;
+		re.setPattern ( itemtext );
+		re.setPatternSyntax ( QRegExp::RegExp );
+		re.setCaseSensitivity( Qt::CaseInsensitive );
+		QStandardItem *item = exclude_model->item(i,0);
+		if (!re.isValid()) {
+			item->setBackground(QColor("#FF9999"));
+			item->setToolTip(tr("regular expression is invalid"));
+		}
+		else {
+			item->setBackground(QColor("#99FF66"));
+			item->setToolTip(tr("regular expression is valid"));
+		}
+	}
+}
+
 
 /*
  *  Destroys the object and frees any allocated resources

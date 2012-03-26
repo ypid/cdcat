@@ -20,7 +20,7 @@
 #include <QLabel>
 #include <QGroupBox>
 #include <QModelIndex>
-#include <QStringListModel>
+#include <QStandardItemModel>
 
 class Q3VBoxLayout;
 class Q3HBoxLayout;
@@ -45,6 +45,7 @@ class SelReadable : public QDialog {
 	public:
 		SelReadable ( CdCatConfig *confp, QWidget* parent = 0, const char* name = 0, bool modal = FALSE, Qt::WFlags fl = 0 );
 		~SelReadable();
+		void checkExcludeRules();
 		
 		CdCatConfig *conf;
 		QCheckBox* cbTag;
@@ -67,7 +68,7 @@ class SelReadable : public QDialog {
 		QLineEdit *thumbLineExts;
 		QLineEdit *lineeditPathExternalContentViewer;
 		QListView *listviewExcludeFiles;
-		QStringListModel *exclude_model;
+		QStandardItemModel *exclude_model;
 		
 		QFrame* line6;
 		QFrame* line7;

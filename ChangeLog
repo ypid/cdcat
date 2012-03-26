@@ -3,6 +3,7 @@
 	- set last dir name as media name if type is not cd/dvd
 	- ask for new media name if media already exists instead of show error message
 	- exclude match fixed
+	- display regex validity in selreadable dialog
 
 25. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
 	- use real regex instead simple wildcard at exclude rules

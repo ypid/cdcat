@@ -40,6 +40,10 @@
       <source>unknown</source>
       <translation>unbekannt</translation>
     </message>
+    <message>
+      <source></source>
+      <translation type="unfinished" />
+    </message>
   </context>
   <context>
     <name>CatalogTypeEditDialog</name>
@@ -1804,6 +1808,14 @@ wird zu
     <message>
       <source>list of patterns (regular expression) for files/directories to skip on reading from filesystem</source>
       <translation>Liste von Mustern (regulärer Ausdruck) für Dateien/Verzeichnisse, die beim Lesen vom Dateisystem übersprungen werden sollen</translation>
+    </message>
+    <message>
+      <source>regular expression is invalid</source>
+      <translation>regulärer Ausdruck ist ungültig</translation>
+    </message>
+    <message>
+      <source>regular expression is valid</source>
+      <translation>regulärer Ausdruck ist gültig</translation>
     </message>
   </context>
   <context>
