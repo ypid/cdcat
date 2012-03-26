@@ -1928,10 +1928,6 @@ wird zu
       <translation>Neue CD %1</translation>
     </message>
     <message>
-      <source>The Media Name must be unique! Please change it!</source>
-      <translation>Der neue Medienname muss einzigartig sein! Bitte ändern!</translation>
-    </message>
-    <message>
       <source>The Value of Serial Number must be unique! Please change it!</source>
       <translation>Die Seriennummer muss einzigartig sein! Bitte den Wert ändern!</translation>
     </message>
@@ -1982,6 +1978,14 @@ wird zu
     <message>
       <source>detect CDROM/DVD med&amp;ia name after mount</source>
       <translation>CDROM/DVD-Med&amp;ienname nach dem Einbinden erkennen</translation>
+    </message>
+    <message>
+      <source>Enter media name...</source>
+      <translation>Medienname eingeben...</translation>
+    </message>
+    <message>
+      <source>The Media Name must be unique! Enter new media name:</source>
+      <translation>Der Medienname muß eindeutig sein! Bitte neuen Medienname eingeben:</translation>
     </message>
   </context>
   <context>
