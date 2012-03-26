@@ -428,7 +428,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	}
 	listviewExcludeFiles->setModel(exclude_model);
 	checkExcludeRules();
-	
+	connect(exclude_model, SIGNAL( itemChanged ( QStandardItem *)), this, SLOT(excludeDataChanged(QStandardItem *)));
 
 	languageChange();
 	schanged ( 0 );
@@ -750,6 +750,10 @@ void SelReadable::labExcludeRexexInfoButtonClicked()
 	di.setModal(false);
 	di.resize(QSize(750,500));
 	di.exec();
+}
+
+void SelReadable::excludeDataChanged(QStandardItem* item){
+	checkExcludeRules();
 }
 
 /*

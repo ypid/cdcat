@@ -116,6 +116,7 @@ class SelReadable : public QDialog {
 		void deleteExcludeRuleClicked();
 		void excludeContextMenuRequested(const QPoint &);
 		void labExcludeRexexInfoButtonClicked();
+		void excludeDataChanged ( QStandardItem * item );
 	
 	protected:
 		Q3VBoxLayout* SelReadableLayout;

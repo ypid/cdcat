@@ -10,6 +10,7 @@
 	- icon size fixed
 	- scanning filesystem by adding new media/rescan can now be cancelled
 	- regex help document added at selreadable dialog
+	- check exclude rules on live edit too
 
 25. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
 	- use real regex instead simple wildcard at exclude rules
