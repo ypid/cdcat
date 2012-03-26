@@ -426,11 +426,13 @@ int SelReadable::schanged ( int ) {
 		lineeditPathExternalContentViewer->setEnabled ( false );
 		buttonUseExternalContentViewer->setEnabled ( false );
 	}
-
-	if ( cbTag->isChecked() )
+	
+	if ( cbTag->isChecked() ) {
 		cbDefaultMp3TagVersion->setEnabled ( true );
-	else
+	}
+	else {
 		cbDefaultMp3TagVersion->setEnabled ( false );
+	}
 	
 	if ( cbThumb->isChecked() ) {
 		labThumbExts->setEnabled ( true );
@@ -457,11 +459,12 @@ int SelReadable::schanged ( int ) {
 		labArchiveExtensionsStatusIcon->setEnabled(false);
 	}
 	
-	if(cbDoExcludeFiles->isChecked())
+	if(cbDoExcludeFiles->isChecked()) {
 		listviewExcludeFiles->setEnabled(true);
-	else
+	}
+	else {
 		listviewExcludeFiles->setEnabled(false);
-	
+	}
 	return 0;
 }
 
