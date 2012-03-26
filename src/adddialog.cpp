@@ -361,6 +361,8 @@ int addDialog::bOk ( void ) {
 	dComm  = teComm->text();
 	dCategory = leCategory->text();
 	dDir   = dirView->sDir;
+	if(dDir.rightRef(1).toString() == "/")
+		dDir = dDir.leftRef(dDir.size()-1).toString();
 
 	caller->mainw->cconfig->addX      = x();
 	caller->mainw->cconfig->addY      = y();
