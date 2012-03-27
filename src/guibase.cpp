@@ -1324,19 +1324,19 @@ int GuiSlave::addEvent ( void ) {
 		//search the mount program:
 		if ( QFile ( "/usr/local/bin/mount" ).exists() )
 			arg[0] = mstr ( "/usr/local/bin/mount" );
-		else
+		else {
 			if ( QFile ( "/usr/local/sbin/mount" ).exists() )
 				arg[0] = mstr ( "/usr/local/sbin/mount" );
-			else
+			else {
 				if ( QFile ( "/usr/bin/mount" ).exists() )
 					arg[0] = mstr ( "/usr/bin/mount" );
-				else
+				else {
 					if ( QFile ( "/usr/sbin/mount" ).exists() )
 						arg[0] = mstr ( "/usr/sbin/mount" );
-					else
+					else {
 						if ( QFile ( "/bin/mount" ).exists() )
 							arg[0] = mstr ( "/bin/mount" );
-						else
+						else {
 							if ( QFile ( "/sbin/mount" ).exists() )
 								arg[0] = mstr ( "/sbin/mount" );
 							else {
@@ -1344,6 +1344,11 @@ int GuiSlave::addEvent ( void ) {
 								( d, tr ( "Cannot mount CD" ), tr ( "I can't find the \"mount\" program" ) );
 								arg[0] = mstr ( "mount" );
 							}
+						}
+					}
+				}
+			}
+		}
 		if ( *DEBUG_INFO_ENABLED )
 			fprintf ( stderr, "Call:%s %s...", arg[0], ( const char * ) mainw->cconfig->cdrompath );
 		arg[1] = mstr ( mainw->cconfig->cdrompath );
