@@ -541,6 +541,8 @@ void CdCatMainWidget::closeEvent ( QCloseEvent *e ) {
 		cconfig->mainP3 = ( splitMain->sizes() ) [2];
 		
 		cconfig->writeConfig();
+		if(cconfig->showTrayIcon && trayIcon != NULL && trayIcon->isVisible())
+			trayIcon->hide();
 		QWidget::closeEvent ( e );
 	}
 }
