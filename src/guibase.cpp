@@ -1472,8 +1472,8 @@ int GuiSlave::addEvent ( void ) {
 			}
 			
 			if ( mainw->cconfig->showProgressedFileInStatus ) {
-				disconnect ( mainw, SIGNAL ( pathScanned ( QString ) ), mainw, SLOT ( pathScanned ( QString ) ) );
-				disconnect ( mainw, SIGNAL ( pathExtraInfoAppend( QString ) ), mainw, SLOT ( extraInfoAppend(QString)) );
+				disconnect ( mainw->db, SIGNAL ( pathScanned ( QString ) ), mainw, SLOT ( pathScanned ( QString ) ) );
+				disconnect ( mainw->db, SIGNAL ( pathExtraInfoAppend( QString ) ), mainw, SLOT ( extraInfoAppend(QString)) );
 			}
 			//Do autosave if the user ask it in the config
 			if ( mainw->cconfig->autosave ) {
