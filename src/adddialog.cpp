@@ -595,8 +595,8 @@ void PWw::step ( long long int progress_step ) {
 	if ( showProgress )
 		this->progress_step = progress_step;
 
-	if ( !isActiveWindow() )
-		show();
+	//if ( !isActiveWindow() )
+	//	show();
 	repaint();
 
 
