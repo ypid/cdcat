@@ -1559,12 +1559,12 @@ bool importGtktalogXml::endElement ( const QString&, const QString & tag, const 
 	last_tag = tag;
 
 	if ( tag_content.length() > 1 ) {
-		if ( tag_content.at ( 0 ) == '\n' )
+		if ( tag_content.at ( 0 ) == '\n' ) {
 			if ( tag_content.at ( 1 ) == '\n' )
 				tag_content = tag_content.mid ( 2, tag_content.length() - 1 );
 			else
 				tag_content = tag_content.mid ( 1, tag_content.length() - 1 );
-
+		}
 	}
 
 	if ( *DEBUG_INFO_ENABLED )
