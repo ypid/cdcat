@@ -5,6 +5,7 @@
 	- animate systray icon during scanning added
 	- allow to maximize find dialog added
 	- hide progress dialog on minimize to tray too
+	- allow to faster cancel on scanning
 
 26. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
 	- strip useless trailing slash from selected path on adddialog

@@ -924,6 +924,9 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 	dirlist = new QFileInfoList ( dir->entryInfoList ( QString ( "*" ), QDir::All | QDir::Hidden | QDir::System ) );
 	
 	for ( int fi = 0; fi < dirlist->size(); ++fi ) {
+		if ( pww->doCancel ) {
+			return 2;
+		}
 		QFileInfo *fileInfo = new QFileInfo ( dirlist->at ( fi ) );
 		if ( fileInfo->fileName() == "." || fileInfo->fileName() == ".." ) {
 			continue;
@@ -1795,6 +1798,9 @@ QList<ArchiveFile> DataBase::scanArchive ( QString path, ArchiveType type ) {
 				}
 				if(pww->appl->hasPendingEvents())
 					pww->appl->processEvents();
+				if ( pww->doCancel ) {
+					return filelist;
+				}
 			}
 			if ( *DEBUG_INFO_ENABLED )
 				std::cerr << "reading " << qPrintable ( path ) << " done." << std::endl;
@@ -1942,6 +1948,9 @@ QList<ArchiveFile> DataBase::scanArchive ( QString path, ArchiveType type ) {
 				}
 				if(pww->appl->hasPendingEvents())
 					pww->appl->processEvents();
+				if ( pww->doCancel ) {
+					return filelist;
+				}
 			}
 		}
 		if ( *DEBUG_INFO_ENABLED )
