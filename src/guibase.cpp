@@ -1513,19 +1513,19 @@ int GuiSlave::addEvent ( void ) {
 				//search the eject program:
 				if ( QFile ( "/usr/local/bin/eject" ).exists() )
 					arg[0] = mstr ( "/usr/local/bin/eject" );
-				else
+				else {
 					if ( QFile ( "/usr/local/sbin/eject" ).exists() )
 						arg[0] = mstr ( "/usr/local/sbin/eject" );
-					else
+					else {
 						if ( QFile ( "/usr/bin/eject" ).exists() )
 							arg[0] = mstr ( "/usr/bin/eject" );
-						else
+						else {
 							if ( QFile ( "/usr/sbin/eject" ).exists() )
 								arg[0] = mstr ( "/usr/sbin/eject" );
-							else
+							else {
 								if ( QFile ( "/bin/eject" ).exists() )
 									arg[0] = mstr ( "/bin/eject" );
-								else
+								else {
 									if ( QFile ( "/sbin/eject" ).exists() )
 										arg[0] = mstr ( "/sbin/eject" );
 									else {
@@ -1533,7 +1533,12 @@ int GuiSlave::addEvent ( void ) {
 										( d, tr ( "Cannot eject CD" ), tr ( "I can't find the \"eject\" program" ) );
 										arg[0] = mstr ( "eject" );
 									}
-
+								}
+							}
+						}
+					}
+				}
+				
 				if ( *DEBUG_INFO_ENABLED )
 					fprintf ( stderr, "Call:%s %s...", arg[0], ( const char * ) mainw->cconfig->cdrompath );
 				arg[1] = mstr ( mainw->cconfig->cdrompath );
@@ -1653,6 +1658,8 @@ int GuiSlave::rescanEvent ( void ) {
 		connect ( mainw->db, SIGNAL ( pathExtraInfoAppend( QString ) ), mainw, SLOT ( extraInfoAppend(QString)) );
 	}
 	if(mainw->cconfig->showTrayIcon) {
+		connect ( mainw, SIGNAL ( minimizedToTray()), pww , SLOT(hide()));
+		connect ( mainw, SIGNAL ( restoredFromTray()), pww , SLOT(show()));
 		mainw->trayIcon->setToolTip(tr ( "Scanning directory tree, please wait..." ));
 		QSystemTrayIcon::MessageIcon icon = QSystemTrayIcon::MessageIcon(1);
 		mainw->startTrayIconAnim();
@@ -1662,6 +1669,8 @@ int GuiSlave::rescanEvent ( void ) {
 	int rescan_ret = mainw->db->addMedia ( rfd, "__rescanned__", -1, UNKNOWN, "system");
 	
 	if(mainw->cconfig->showTrayIcon) {
+		disconnect ( mainw, SIGNAL ( minimizedToTray()), pww , SLOT(hide()));
+		disconnect ( mainw, SIGNAL ( restoredFromTray()), pww , SLOT(show()));
 		if(rescan_ret == 0) {
 			QSystemTrayIcon::MessageIcon icon = QSystemTrayIcon::MessageIcon(1);
 			mainw->trayIcon->showMessage(tr("Scan finished"), tr("Scanning %1 into %2 has been finished").arg(rfd, "__rescanned__"),   icon, 3 * 1000);
