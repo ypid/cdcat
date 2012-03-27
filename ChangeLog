@@ -3,6 +3,7 @@
 	- only create exif data if its enabled to read exif data
 	- status support on rescan event added
 	- animate systray icon during scanning added
+	- allow to maximize find dialog added
 
 26. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
 	- strip useless trailing slash from selected path on adddialog

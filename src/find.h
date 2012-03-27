@@ -107,7 +107,7 @@ class findDialog : public QDialog {
 		Q_OBJECT
 
 	public:
-		findDialog ( CdCatMainWidget* parent = 0, const char* name = 0, bool isFindDuplicates = false, bool modal = FALSE, Qt::WFlags fl = 0 );
+		findDialog ( CdCatMainWidget* parent = 0, const char* name = 0, bool isFindDuplicates = false, bool modal = FALSE, Qt::WFlags fl = Qt::WStyle_MinMax );
 		~findDialog();
 		
 		
