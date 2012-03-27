@@ -956,8 +956,9 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 		if ( to->child == NULL )
 			to->child = tt = new Node ( fileInfo->isDir() ? HC_DIRECTORY : HC_FILE, to );
 		else {
-			while ( tt->next != NULL )
+			while ( tt->next != NULL ) {
 				tt = tt->next;
+			}
 			tt->next = new Node ( fileInfo->isDir() ? HC_DIRECTORY : HC_FILE, to );
 			tt = tt->next;
 		}
@@ -1121,6 +1122,8 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 				emit pathExtraInfoAppend ( tr("reading mp3 info") );
 			
 			ReadMp3Tag *reader = new ReadMp3Tag ( ( const char * ) QFile::encodeName ( fi->absFilePath() ), v1_over_v2 );
+			if(pww->appl->hasPendingEvents())
+				pww->appl->processEvents();
 			if ( storeMp3tags )
 				if ( reader->readed() && reader->exist() ) {
 					Node *tt = fc->prop;
@@ -1166,6 +1169,8 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 		QString info = CdcatMediaInfo ( fi->absoluteFilePath() ).getInfo();
 		if ( !info.isEmpty() )
 			fc->fileinfo = info;
+		if(pww->appl->hasPendingEvents())
+			pww->appl->processEvents();
 	}
 	/***Experimental AVI Header Scanning  */
 	if ( storeAvitechinfo ) {
@@ -1178,6 +1183,9 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 			if ( filePTR != NULL ) {
 				QString got = parseAviHeader ( filePTR ).replace ( QRegExp ( "\n" ), "#" );
 				fclose ( filePTR );
+				
+				if(pww->appl->hasPendingEvents())
+					pww->appl->processEvents();
 				
 				//store it as comment
 				if ( !got.isEmpty() ) {
@@ -1263,6 +1271,10 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 			}
 			
 			fclose ( f );
+			
+			if(pww->appl->hasPendingEvents())
+				pww->appl->processEvents();
+			
 			rdata[rsize] = '\0';
 			
 			//make the node in the db
@@ -1283,15 +1295,18 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 	
 	QString extension = fi->fileName().lower().section ( '.', -1, -1 );
 #ifdef USE_LIBEXIF
-	if(getExifSupportedExtensions().contains(extension)) {
-		if ( showProgressedFileInStatus )
-			emit pathExtraInfoAppend ( tr("reading exif data") );
-		
-		Node *tt = fc->prop;
-		CdcatExifData *ed = new CdcatExifData(fi->absFilePath());
-	 	if (storeExifData)
-		{
-			ed->readCdcatExifData();
+	if (storeExifData){
+		if(getExifSupportedExtensions().contains(extension)) {
+			if ( showProgressedFileInStatus )
+				emit pathExtraInfoAppend ( tr("reading exif data") );
+			
+			Node *tt = fc->prop;
+			CdcatExifData *ed = new CdcatExifData(fi->absFilePath());
+	 		ed->readCdcatExifData();
+			
+			if(pww->appl->hasPendingEvents())
+				pww->appl->processEvents();
+			
 			QStringList ExifData = ed->getExifData();
 			if ( tt == NULL )
 				fc->prop = tt = new Node ( HC_EXIF, NULL );
@@ -1303,9 +1318,9 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 			}
 			/*Fill the fields:*/
 			tt->data = ( void * ) new DBExifData ( ExifData );
-			
+			delete(ed);
 		}
-		delete(ed);
+		
 	}
 #endif
 	if(storeThumb) 
@@ -1315,6 +1330,10 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 				emit pathExtraInfoAppend ( tr("reading thumbnail data") );
 			
 			QImage thumbImage(fi->absFilePath());
+			
+			if(pww->appl->hasPendingEvents())
+				pww->appl->processEvents();
+			
 			if (!thumbImage.isNull()) {
 				Node *tt = fc->prop;
 				thumbImage = thumbImage.scaled(QSize(thumbWidth, thumbHeight), Qt::KeepAspectRatio);
@@ -1819,7 +1838,6 @@ QList<ArchiveFile> DataBase::scanArchive ( QString path, ArchiveType type ) {
 			
 			for ( unsigned int i = 0; i < numItems; i++ ) {
 				C7ZipArchiveItem * pArchiveItem = NULL;
-
 				if ( pArchive->GetItemInfo ( i, &pArchiveItem ) ) {
 					// 				printf("%d,%ls,%d\n", pArchiveItem->GetArchiveIndex(),
 					// 						pArchiveItem->GetFullPath().c_str(),
@@ -1922,6 +1940,8 @@ QList<ArchiveFile> DataBase::scanArchive ( QString path, ArchiveType type ) {
 					filelist.append ( af );
 					progress ( pww );
 				}
+				if(pww->appl->hasPendingEvents())
+					pww->appl->processEvents();
 			}
 		}
 		if ( *DEBUG_INFO_ENABLED )

@@ -1,3 +1,8 @@
+27. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
+	- allow gui often to refresh
+	- only create exif data if its enabled to read exif data
+	- 
+
 26. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
 	- strip useless trailing slash from selected path on adddialog
 	- set last dir name as media name if type is not cd/dvd
