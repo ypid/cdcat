@@ -40,6 +40,10 @@
       <source>unknown</source>
       <translation>unbekannt</translation>
     </message>
+    <message>
+      <source></source>
+      <translation type="unfinished" />
+    </message>
   </context>
   <context>
     <name>CatalogTypeEditDialog</name>
@@ -1199,6 +1203,10 @@ die Datenbank wird unvollständig sein</translation>
     <message>
       <source>Scanning %1 into %2 has been finished (NOT complete)</source>
       <translation>Durchsuchen von %1 in %2 wurde beendet (NICHT komplett)</translation>
+    </message>
+    <message>
+      <source>Cdcat - idle</source>
+      <translation>Cdcat - Leerlauf</translation>
     </message>
   </context>
   <context>

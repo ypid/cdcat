@@ -48,61 +48,66 @@
         <source>unknown</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../dbase.h" line="272"/>
+        <source></source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CatalogTypeEditDialog</name>
     <message>
-        <location filename="../guibase.cpp" line="2456"/>
+        <location filename="../guibase.cpp" line="2497"/>
         <source>Change media type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2457"/>
+        <location filename="../guibase.cpp" line="2498"/>
         <source>Change type of media</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2459"/>
+        <location filename="../guibase.cpp" line="2500"/>
         <source>CD</source>
         <translation type="unfinished">CD</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2460"/>
+        <location filename="../guibase.cpp" line="2501"/>
         <source>DVD</source>
         <translation type="unfinished">DVD</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2461"/>
+        <location filename="../guibase.cpp" line="2502"/>
         <source>HardDisc</source>
         <translation type="unfinished">Σκληρός δίσκος</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2462"/>
+        <location filename="../guibase.cpp" line="2503"/>
         <source>Floppy</source>
         <translation type="unfinished">Δισκέτα</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2463"/>
+        <location filename="../guibase.cpp" line="2504"/>
         <source>NetworkPlace</source>
         <translation type="unfinished">Περιοχή δικτύου</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2464"/>
+        <location filename="../guibase.cpp" line="2505"/>
         <source>FlashDrive</source>
         <translation type="unfinished">Δίσκος Flash</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2465"/>
+        <location filename="../guibase.cpp" line="2506"/>
         <source>OtherDevice</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2468"/>
+        <location filename="../guibase.cpp" line="2509"/>
         <source>Cancel</source>
         <translation type="unfinished">Ακύρωση</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2469"/>
+        <location filename="../guibase.cpp" line="2510"/>
         <source>OK</source>
         <translation type="unfinished">Ok</translation>
     </message>
@@ -291,12 +296,12 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Ρυθμίσεις...</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="507"/>
+        <location filename="../mainwidget.cpp" line="508"/>
         <source>Help</source>
         <translation>Βοήθεια</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="512"/>
+        <location filename="../mainwidget.cpp" line="513"/>
         <source>About</source>
         <translation>Σχετικά</translation>
     </message>
@@ -316,12 +321,12 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Άλλα</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="489"/>
+        <location filename="../mainwidget.cpp" line="490"/>
         <source>Hyper&apos;s CD Catalogizer</source>
         <translation>Hyper&apos;s CD Catalogizer</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="491"/>
+        <location filename="../mainwidget.cpp" line="492"/>
         <source>Open a catalog from a file.</source>
         <translation>Άνοιγμα καταλόγου από αρχείο.</translation>
     </message>
@@ -336,12 +341,12 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Αποθήκευση όλου του καταλόγου στο δίσκο.</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="497"/>
+        <location filename="../mainwidget.cpp" line="498"/>
         <source>Close the actual catalog.</source>
         <translation>Κλείσιμο του παρόντος καταλόγου.</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="499"/>
+        <location filename="../mainwidget.cpp" line="500"/>
         <source>Add a new media to the catalog.</source>
         <translation>Προσθήκη νέου μέσου στον κατάλογο.</translation>
     </message>
@@ -356,17 +361,17 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Διαγραφή του επιλέγμενου μέσου από τον κατάλογο.</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="505"/>
+        <location filename="../mainwidget.cpp" line="506"/>
         <source>Configuration of the program.</source>
         <translation>Ρυθμίσεις του προγράμματος.</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="509"/>
+        <location filename="../mainwidget.cpp" line="510"/>
         <source>Create a new, empty catalog and close the previous.</source>
         <translation>Δημιουργία νέου,κενού καταλόγου και κλείσιμο προηγούμενου.</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="511"/>
+        <location filename="../mainwidget.cpp" line="512"/>
         <source>Search an element in the database(catalog).You can search filenames, directory names, name parts or mp3 tags etc...</source>
         <translation>Αναζήτηση στοιχείου στη βάση(κατάλογο).Δυνατότητα αναζήτησης βάσει ονομάτων αρχείων,ονομάτων καταλόγων ή ετικέτες mp3 κτλ...</translation>
     </message>
@@ -411,12 +416,12 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="493"/>
+        <location filename="../mainwidget.cpp" line="494"/>
         <source>Save all modifications to the disc.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="495"/>
+        <location filename="../mainwidget.cpp" line="496"/>
         <source>Save the catalog to a new file.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -426,7 +431,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="501"/>
+        <location filename="../mainwidget.cpp" line="502"/>
         <source>Rescan the selected media.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -436,7 +441,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="514"/>
+        <location filename="../mainwidget.cpp" line="515"/>
         <source>About Qt</source>
         <translation type="unfinished"></translation>
     </message>
@@ -446,12 +451,12 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="503"/>
+        <location filename="../mainwidget.cpp" line="504"/>
         <source>Delete selected node.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="549"/>
+        <location filename="../mainwidget.cpp" line="550"/>
         <source>Scanning:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -516,7 +521,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="571"/>
+        <location filename="../mainwidget.cpp" line="572"/>
         <source>&amp;Quit</source>
         <translation type="unfinished"></translation>
     </message>
@@ -591,33 +596,33 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="562"/>
+        <location filename="../mainwidget.cpp" line="563"/>
         <source>Mi&amp;nimize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="565"/>
+        <location filename="../mainwidget.cpp" line="566"/>
         <source>Ma&amp;ximize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="568"/>
+        <location filename="../mainwidget.cpp" line="569"/>
         <source>&amp;Restore</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="624"/>
+        <location filename="../mainwidget.cpp" line="626"/>
         <source>Systray</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="624"/>
+        <location filename="../mainwidget.cpp" line="626"/>
         <source>Sorry, I already gave what help I could.
 Maybe you should try asking a human?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="616"/>
+        <location filename="../mainwidget.cpp" line="376"/>
         <source>Cdcat - idle</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1057,7 +1062,7 @@ Maybe you should try asking a human?</source>
         <translation type="obsolete">Δεν υπάρχει ανοιχτή βάση!</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1945"/>
+        <location filename="../dbase.cpp" line="1965"/>
         <source>I can&apos;t open the file: %1</source>
         <translation>Αδυναμία ανοίγματος αρχείου: %1</translation>
     </message>
@@ -1067,7 +1072,7 @@ Maybe you should try asking a human?</source>
         <translation>Αδυναμία ανάγνωσης καταλόγου:%1</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1981"/>
+        <location filename="../dbase.cpp" line="2001"/>
         <source>Error</source>
         <translation>Σφάλμα</translation>
     </message>
@@ -1087,7 +1092,7 @@ Maybe you should try asking a human?</source>
         <translation type="obsolete">Σύνδεσμος αναφέρετε σε:</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1981"/>
+        <location filename="../dbase.cpp" line="2001"/>
         <source>Error while parsing file: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1107,27 +1112,27 @@ Maybe you should try asking a human?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1009"/>
+        <location filename="../dbase.cpp" line="1010"/>
         <source>Symbolic link to file:#</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1064"/>
+        <location filename="../dbase.cpp" line="1065"/>
         <source>Symbolic link to directory:#</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1092"/>
+        <location filename="../dbase.cpp" line="1093"/>
         <source>DEAD Symbolic link to:#</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1102"/>
+        <location filename="../dbase.cpp" line="1103"/>
         <source>System file (e.g. FIFO, socket or device file)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1969"/>
+        <location filename="../dbase.cpp" line="1989"/>
         <source>Not enough memory to open the file: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1162,52 +1167,52 @@ Maybe you should try asking a human?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1747"/>
+        <location filename="../dbase.cpp" line="1766"/>
         <source>device </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1763"/>
+        <location filename="../dbase.cpp" line="1782"/>
         <source> link to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1121"/>
+        <location filename="../dbase.cpp" line="1122"/>
         <source>reading mp3 info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1164"/>
+        <location filename="../dbase.cpp" line="1167"/>
         <source>reading media info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1173"/>
+        <location filename="../dbase.cpp" line="1178"/>
         <source>reading avi info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1237"/>
+        <location filename="../dbase.cpp" line="1245"/>
         <source>reading file content</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1288"/>
+        <location filename="../dbase.cpp" line="1301"/>
         <source>reading exif data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1315"/>
+        <location filename="../dbase.cpp" line="1330"/>
         <source>reading thumbnail data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1811"/>
+        <location filename="../dbase.cpp" line="1830"/>
         <source>scanning archive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1907"/>
+        <location filename="../dbase.cpp" line="1925"/>
         <source>scanning archive, file:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1243,42 +1248,42 @@ Maybe you should try asking a human?</source>
         <translation>Κατάλογος</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1842"/>
+        <location filename="../guibase.cpp" line="1883"/>
         <source>Unknown(DB)</source>
         <translation>Άγνωστη βάση</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1846"/>
+        <location filename="../guibase.cpp" line="1887"/>
         <source>CD</source>
         <translation>CD</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1850"/>
+        <location filename="../guibase.cpp" line="1891"/>
         <source>DVD</source>
         <translation>DVD</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1854"/>
+        <location filename="../guibase.cpp" line="1895"/>
         <source>HardDisc</source>
         <translation>Σκληρός δίσκος</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1858"/>
+        <location filename="../guibase.cpp" line="1899"/>
         <source>Floppy</source>
         <translation>Δισκέτα</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1862"/>
+        <location filename="../guibase.cpp" line="1903"/>
         <source>NetworkDrv</source>
         <translation>Δίσκος Δικτύου</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1866"/>
+        <location filename="../guibase.cpp" line="1907"/>
         <source>FlashDrv</source>
         <translation>Δίσκος Flash</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1870"/>
+        <location filename="../guibase.cpp" line="1911"/>
         <source>OtherDevice</source>
         <translation>Άλλη Συσκευή</translation>
     </message>
@@ -1298,7 +1303,7 @@ Maybe you should try asking a human?</source>
         <translation>Hyper&apos;s CD Catalogizer</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1766"/>
+        <location filename="../guibase.cpp" line="1807"/>
         <source>CdCat databases (*.hcf )</source>
         <translation>Βάσεις CdCat (*.hcf)</translation>
     </message>
@@ -1308,7 +1313,7 @@ Maybe you should try asking a human?</source>
         <translation>Άνοιγμα αρχείου...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2241"/>
+        <location filename="../guibase.cpp" line="2282"/>
         <source>Error while opening...</source>
         <translation>Σφάλμα κατά το άνοιγμα...</translation>
     </message>
@@ -1338,17 +1343,17 @@ Maybe you should try asking a human?</source>
         <translation>Θέλετε να αποθηκεύσετε τις αλλαγές?</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2308"/>
+        <location filename="../guibase.cpp" line="2349"/>
         <source>Yes</source>
         <translation>Ναι</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2308"/>
+        <location filename="../guibase.cpp" line="2349"/>
         <source>No</source>
         <translation>Όχι</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2324"/>
+        <location filename="../guibase.cpp" line="2365"/>
         <source>Error:</source>
         <translation>Σφάλμα:</translation>
     </message>
@@ -1365,12 +1370,12 @@ Maybe you should try asking a human?</source>
 %1</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2306"/>
+        <location filename="../guibase.cpp" line="2347"/>
         <source>Confirmation</source>
         <translation>Επιβεβαίωση</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1478"/>
+        <location filename="../guibase.cpp" line="1482"/>
         <source>Warning...</source>
         <translation>Προειδοποίηση...</translation>
     </message>
@@ -1387,7 +1392,7 @@ the DataBase may be incomplete</source>
         <translation type="obsolete">Δεν υπάρχει επιλεγμένο μέσο στη μέση του πλαισίου λίστας!</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1617"/>
+        <location filename="../guibase.cpp" line="1621"/>
         <source>You can refresh ONLY a MEDIA node!</source>
         <translation>Μπορεί να ανανεωθεί μόνο ένα node μέσο!</translation>
     </message>
@@ -1399,7 +1404,7 @@ the DataBase may be incomplete</source>
 %1</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1766"/>
+        <location filename="../guibase.cpp" line="1807"/>
         <source>Insert a database file...</source>
         <translation>Εισαγωγή αρχείου βάσης...</translation>
     </message>
@@ -1409,7 +1414,7 @@ the DataBase may be incomplete</source>
         <translation type="obsolete">Αποτέλεσμα:</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1947"/>
+        <location filename="../guibase.cpp" line="1988"/>
         <source>The size of &quot;%1&quot; : 
  %2 
  %3 file /%4 directory</source>
@@ -1423,7 +1428,7 @@ the DataBase may be incomplete</source>
         <translation>Αδυναμία mount CD</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1549"/>
+        <location filename="../guibase.cpp" line="1553"/>
         <source>Cannot eject CD!</source>
         <translation>Αδυναμία eject CD!</translation>
     </message>
@@ -1433,17 +1438,17 @@ the DataBase may be incomplete</source>
         <translation>Αδυναμία εύρεσης προγράμματος &quot;mount&quot;</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1567"/>
+        <location filename="../guibase.cpp" line="1571"/>
         <source>Cannot mount CD!</source>
         <translation>Αδυναμία mount CD!</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1520"/>
+        <location filename="../guibase.cpp" line="1524"/>
         <source>Cannot eject CD</source>
         <translation>Αδυναμία eject CD</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1520"/>
+        <location filename="../guibase.cpp" line="1524"/>
         <source>I can&apos;t find the &quot;eject&quot; program</source>
         <translation>Αδυναμία εύρεσης προγράμματος &quot;eject&quot;</translation>
     </message>
@@ -1473,7 +1478,7 @@ the DataBase may be incomplete</source>
         <translation>Εισαγωγή καταλόγου...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1621"/>
+        <location filename="../guibase.cpp" line="1625"/>
         <source>Rescan %1</source>
         <translation>Επανανίχνευση %1</translation>
     </message>
@@ -1483,7 +1488,7 @@ the DataBase may be incomplete</source>
         <translation>Επαναρίθμηση μέσου...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1890"/>
+        <location filename="../guibase.cpp" line="1931"/>
         <source>It is NOT a media node!</source>
         <translation>Δεν είναι μέσο node!</translation>
     </message>
@@ -1538,34 +1543,34 @@ the DataBase may be incomplete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2324"/>
+        <location filename="../guibase.cpp" line="2365"/>
         <source>There is no selected item in the middle list box!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1478"/>
+        <location filename="../guibase.cpp" line="1482"/>
         <source>An error occured while scanning,
 the DataBase may be incomplete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1613"/>
+        <location filename="../guibase.cpp" line="1617"/>
         <source>There is no selected Media in the middle list box!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1638"/>
+        <location filename="../guibase.cpp" line="1676"/>
         <source>An error occured while scanning, the rescan operation was cancelled: 
 %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2201"/>
+        <location filename="../guibase.cpp" line="2242"/>
         <source>The link is empty.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2307"/>
+        <location filename="../guibase.cpp" line="2348"/>
         <source>Do you want to clear the borrowing mark from media &quot;%1&quot;?
 (Say yes if you got it back.)</source>
         <translation type="unfinished"></translation>
@@ -1590,17 +1595,17 @@ Homepage: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1622"/>
+        <location filename="../guibase.cpp" line="1626"/>
         <source>Select directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1952"/>
+        <location filename="../guibase.cpp" line="1993"/>
         <source>The result:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1630"/>
+        <location filename="../guibase.cpp" line="1647"/>
         <source>Scanning directory tree, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1655,34 +1660,39 @@ Homepage: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1447"/>
+        <location filename="../guibase.cpp" line="1449"/>
         <source>You have cancelled catalog scanning,
 the DataBase may be incomplete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1438"/>
+        <location filename="../guibase.cpp" line="1650"/>
         <source>Scan started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1438"/>
+        <location filename="../guibase.cpp" line="1650"/>
         <source>Scanning %1 into %2 has been started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1453"/>
+        <location filename="../guibase.cpp" line="1658"/>
         <source>Scanning %1 into %2 has been finished</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1457"/>
+        <location filename="../guibase.cpp" line="1662"/>
         <source>Scan finished</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1457"/>
+        <location filename="../guibase.cpp" line="1662"/>
         <source>Scanning %1 into %2 has been finished (NOT complete)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../guibase.cpp" line="1744"/>
+        <source>Cdcat - idle</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
