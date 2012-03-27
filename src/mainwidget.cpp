@@ -45,6 +45,7 @@
 #include "guibase.h"
 #include "config.h"
 #include "icons.h"
+#include "adddialog.h"
 
 #include <QScrollArea>
 
@@ -590,7 +591,6 @@ void CdCatMainWidget::createTrayIcon() {
 		}
 }
 
-
 void CdCatMainWidget::showTrayMessage() {
 
 }
@@ -599,10 +599,16 @@ void CdCatMainWidget::trayIconActivated ( QSystemTrayIcon::ActivationReason reas
 	switch (reason) {
 		case QSystemTrayIcon::Trigger:
 			std::cout << "systray single click " << std::endl;
-			if(isHidden())
+			if(isHidden()) {
 				showNormal();
-			else
+				if(db->pww != NULL )
+					db->pww->showNormal();
+			}
+			else {
 				hide();
+				if(db->pww != NULL && !db->pww->isHidden() )
+					db->pww->hide();
+			}
 			break;
 		case QSystemTrayIcon::DoubleClick:
 			std::cout << "systray double click " << std::endl;
@@ -614,12 +620,6 @@ void CdCatMainWidget::trayIconActivated ( QSystemTrayIcon::ActivationReason reas
 			;
 	}
 	trayIcon->setIcon(QIcon(*get_p_icon()));
-	//QSystemTrayIcon::MessageIcon icon;
-	QSystemTrayIcon::MessageIcon icon = QSystemTrayIcon::MessageIcon(1);
-	
-	// foo: caption
-	// bar: message
-	//trayIcon->showMessage(QString("foo"), QString("bar"),   icon, 3 * 1000);
 }
 
 void CdCatMainWidget::trayIconMessageClicked() {
@@ -639,7 +639,6 @@ void CdCatMainWidget::startTrayIconAnim() {
 	connect(&trayIconTimer, SIGNAL(timeout()), this, SLOT(trayIconAnimateTimerSlot()));
 	trayIconTimer.start(200);
 }
-
 
 void CdCatMainWidget::stopTrayIconAnim() {
 	trayIconTimer.stop();
