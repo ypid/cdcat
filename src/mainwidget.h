@@ -125,7 +125,10 @@ class CdCatMainWidget : public QWidget {
 		void showTrayMessage();
 		void trayIconMessageClicked();
 		void trayIconAnimateTimerSlot();
-
+	
+	signals:
+		void minimizedToTray();
+		void restoredFromTray();
 
 };
 

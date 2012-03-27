@@ -1439,6 +1439,8 @@ int GuiSlave::addEvent ( void ) {
 				connect ( mainw->db, SIGNAL ( pathExtraInfoAppend( QString ) ), mainw, SLOT ( extraInfoAppend(QString)) );
 			}
 			if(mainw->cconfig->showTrayIcon) {
+				connect ( mainw->db, SIGNAL ( minimizedToTray()), pww , SLOT(hide()));
+				connect ( mainw->db, SIGNAL ( restoredFromTray()), pww , SLOT(show()));
 				mainw->trayIcon->setToolTip(tr ( "Scanning directory tree, please wait..." ));
 				QSystemTrayIcon::MessageIcon icon = QSystemTrayIcon::MessageIcon(1);
 				mainw->startTrayIconAnim();
@@ -1455,6 +1457,8 @@ int GuiSlave::addEvent ( void ) {
 			}
 			
 			if(mainw->cconfig->showTrayIcon) {
+				disconnect ( mainw, SIGNAL ( minimizedToTray()), pww , SLOT(hide()));
+				disconnect ( mainw, SIGNAL ( restoredFromTray()), pww , SLOT(show()));
 				if(i == 0) {
 					QSystemTrayIcon::MessageIcon icon = QSystemTrayIcon::MessageIcon(1);
 					mainw->trayIcon->showMessage(tr("Scan finished"), tr("Scanning %1 into %2 has been finished").arg(d->dDir, d->dName),   icon, 3 * 1000);
@@ -1468,8 +1472,8 @@ int GuiSlave::addEvent ( void ) {
 			}
 			
 			if ( mainw->cconfig->showProgressedFileInStatus ) {
-				disconnect ( mainw->db, SIGNAL ( pathScanned ( QString ) ), mainw, SLOT ( pathScanned ( QString ) ) );
-				disconnect ( mainw->db, SIGNAL ( pathExtraInfoAppend( QString ) ), mainw, SLOT ( extraInfoAppend(QString)) );
+				disconnect ( mainw, SIGNAL ( pathScanned ( QString ) ), mainw, SLOT ( pathScanned ( QString ) ) );
+				disconnect ( mainw, SIGNAL ( pathExtraInfoAppend( QString ) ), mainw, SLOT ( extraInfoAppend(QString)) );
 			}
 			//Do autosave if the user ask it in the config
 			if ( mainw->cconfig->autosave ) {
