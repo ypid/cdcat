@@ -606,7 +606,7 @@ void CdCatMainWidget::trayIconActivated ( QSystemTrayIcon::ActivationReason reas
 			}
 			else {
 				hide();
-				if(db->pww != NULL && !db->pww->isHidden() )
+				if(db->pww != NULL )
 					db->pww->hide();
 			}
 			break;
