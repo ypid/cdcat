@@ -604,12 +604,12 @@ void CdCatMainWidget::trayIconActivated ( QSystemTrayIcon::ActivationReason reas
 			if(isHidden()) {
 				showNormal();
 				if(db->pww != NULL )
-					db->pww->showNormal();
+					db->pww->setVisible(true);
 			}
 			else {
 				hide();
 				if(db->pww != NULL )
-					db->pww->hide();
+					db->pww->setVisible(false);
 			}
 			break;
 		case QSystemTrayIcon::DoubleClick:
