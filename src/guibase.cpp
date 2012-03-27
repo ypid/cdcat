@@ -1439,8 +1439,8 @@ int GuiSlave::addEvent ( void ) {
 				connect ( mainw->db, SIGNAL ( pathExtraInfoAppend( QString ) ), mainw, SLOT ( extraInfoAppend(QString)) );
 			}
 			if(mainw->cconfig->showTrayIcon) {
-				connect ( mainw->db, SIGNAL ( minimizedToTray()), pww , SLOT(hide()));
-				connect ( mainw->db, SIGNAL ( restoredFromTray()), pww , SLOT(show()));
+				connect ( mainw, SIGNAL ( minimizedToTray()), pww , SLOT(hide()));
+				connect ( mainw, SIGNAL ( restoredFromTray()), pww , SLOT(show()));
 				mainw->trayIcon->setToolTip(tr ( "Scanning directory tree, please wait..." ));
 				QSystemTrayIcon::MessageIcon icon = QSystemTrayIcon::MessageIcon(1);
 				mainw->startTrayIconAnim();
