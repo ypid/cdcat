@@ -582,6 +582,8 @@ void CdCatMainWidget::createTrayIcon() {
 		trayIcon = new QSystemTrayIcon(this);
 		trayIcon->setContextMenu(trayIconMenu);
 		trayIcon->setIcon(QIcon(*get_p_icon()));
+		anim_list = get_anim_list();
+		trayIconAnimValue = 0;
 		
 		connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
 			this, SLOT(trayIconActivated(QSystemTrayIcon::ActivationReason)));
@@ -622,6 +624,27 @@ void CdCatMainWidget::trayIconActivated ( QSystemTrayIcon::ActivationReason reas
 
 void CdCatMainWidget::trayIconMessageClicked() {
 	QMessageBox::information(0, tr("Systray"), tr("Sorry, I already gave what help I could.\nMaybe you should try asking a human?"));
+}
+
+void CdCatMainWidget::trayIconAnimateTimerSlot() {
+	if(cconfig->showTrayIcon && trayIcon != NULL) {
+		QPixmap pm = anim_list.at ( trayIconAnimValue );
+		trayIcon->setIcon(QIcon(pm));
+		if ( ++trayIconAnimValue == 5 )
+			trayIconAnimValue = 0;
+	}
+}
+
+void CdCatMainWidget::startTrayIconAnim() {
+	connect(&trayIconTimer, SIGNAL(timeout()), this, SLOT(trayIconAnimateTimerSlot()));
+	trayIconTimer.start(200);
+}
+
+
+void CdCatMainWidget::stopTrayIconAnim() {
+	trayIconTimer.stop();
+	disconnect(&trayIconTimer, SIGNAL(timeout()), this, SLOT(trayIconAnimateTimerSlot()));
+	trayIcon->setIcon(QIcon(*get_p_icon()));
 }
 
 

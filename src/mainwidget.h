@@ -23,6 +23,8 @@
 #include <QFrame>
 #include <QCloseEvent>
 #include <QSystemTrayIcon>
+#include <QList>
+#include <QTimer>
 
 
 
@@ -103,6 +105,9 @@ class CdCatMainWidget : public QWidget {
 		QPixmap image10;
 		QPixmap image11;
 		QPixmap image12;
+		QList<QPixmap> anim_list;
+		int trayIconAnimValue;
+		QTimer trayIconTimer;
 
 	public:
 		QSystemTrayIcon *trayIcon;
@@ -112,11 +117,15 @@ class CdCatMainWidget : public QWidget {
 		QAction *quitAction;
 		QMenu *trayIconMenu;
 		void createTrayIcon();
+		void startTrayIconAnim();
+		void stopTrayIconAnim();
 	
 	private slots:
 		void trayIconActivated(QSystemTrayIcon::ActivationReason reason);
 		void showTrayMessage();
 		void trayIconMessageClicked();
+		void trayIconAnimateTimerSlot();
+
 
 };
 

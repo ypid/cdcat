@@ -1434,7 +1434,9 @@ int GuiSlave::addEvent ( void ) {
 				connect ( mainw->db, SIGNAL ( pathExtraInfoAppend( QString ) ), mainw, SLOT ( extraInfoAppend(QString)) );
 			}
 			if(mainw->cconfig->showTrayIcon) {
+				mainw->trayIcon->setToolTip(tr ( "Scanning directory tree, please wait..." ));
 				QSystemTrayIcon::MessageIcon icon = QSystemTrayIcon::MessageIcon(1);
+				mainw->startTrayIconAnim();
 				mainw->trayIcon->showMessage(tr("Scan started"), tr("Scanning %1 into %2 has been started").arg(d->dDir, d->dName),   icon, 3 * 1000);
 			}
 			
@@ -1456,6 +1458,8 @@ int GuiSlave::addEvent ( void ) {
 					QSystemTrayIcon::MessageIcon icon = QSystemTrayIcon::MessageIcon(2);
 					mainw->trayIcon->showMessage(tr("Scan finished"), tr("Scanning %1 into %2 has been finished (NOT complete)").arg(d->dDir, d->dName),   icon, 3 * 1000);
 				}
+				mainw->stopTrayIconAnim();
+				mainw->trayIcon->setToolTip(tr("Cdcat - idle"));
 			}
 			
 			if ( mainw->cconfig->showProgressedFileInStatus ) {
@@ -1619,7 +1623,7 @@ int GuiSlave::rescanEvent ( void ) {
 	}
 
 	o = tr ( "Rescan %1" ).arg ( standON->getNameOf() );
-	rfd = QFileDialog::getExistingDirectory ( 0, tr ( "Select directory" ), o );
+	rfd = QFileDialog::getExistingDirectory ( 0, tr ( "Select directory" ), mainw->cconfig->lastDir );
 	if ( rfd.isEmpty() )
 		return 0;
 
@@ -1632,7 +1636,41 @@ int GuiSlave::rescanEvent ( void ) {
 	progress ( pww );
 
 	panelsOFF();
-	if ( 0 != mainw->db->addMedia ( rfd, "__rescanned__", -1, UNKNOWN, "system" ) ) {
+	
+	if ( mainw->cconfig->showProgressedFileInStatus ) {
+		mainw->db->setShowProgressedFileInStatus ( mainw->cconfig->showProgressedFileInStatus );
+		mainw->db->setShowProgressedArchiveFileInStatus ( mainw->cconfig->showProgressedArchiveFileInStatus );
+		connect ( mainw->db, SIGNAL ( pathScanned ( QString ) ), mainw, SLOT ( pathScanned ( QString ) ) );
+		connect ( mainw->db, SIGNAL ( pathExtraInfoAppend( QString ) ), mainw, SLOT ( extraInfoAppend(QString)) );
+	}
+	if(mainw->cconfig->showTrayIcon) {
+		mainw->trayIcon->setToolTip(tr ( "Scanning directory tree, please wait..." ));
+		QSystemTrayIcon::MessageIcon icon = QSystemTrayIcon::MessageIcon(1);
+		mainw->startTrayIconAnim();
+		mainw->trayIcon->showMessage(tr("Scan started"), tr("Scanning %1 into %2 has been started").arg(rfd, "__rescanned__"),   icon, 3 * 1000);
+	}
+	
+	int rescan_ret = mainw->db->addMedia ( rfd, "__rescanned__", -1, UNKNOWN, "system");
+	
+	if(mainw->cconfig->showTrayIcon) {
+		if(rescan_ret == 0) {
+			QSystemTrayIcon::MessageIcon icon = QSystemTrayIcon::MessageIcon(1);
+			mainw->trayIcon->showMessage(tr("Scan finished"), tr("Scanning %1 into %2 has been finished").arg(rfd, "__rescanned__"),   icon, 3 * 1000);
+		}
+		else {
+			QSystemTrayIcon::MessageIcon icon = QSystemTrayIcon::MessageIcon(2);
+			mainw->trayIcon->showMessage(tr("Scan finished"), tr("Scanning %1 into %2 has been finished (NOT complete)").arg(rfd, "__rescanned__"),   icon, 3 * 1000);
+		}
+		mainw->stopTrayIconAnim();
+		mainw->trayIcon->setToolTip(tr("Cdcat - idle"));
+	}
+
+	if ( mainw->cconfig->showProgressedFileInStatus ) {
+		disconnect ( mainw->db, SIGNAL ( pathScanned ( QString ) ), mainw, SLOT ( pathScanned ( QString ) ) );
+		disconnect ( mainw->db, SIGNAL ( pathExtraInfoAppend( QString ) ), mainw, SLOT ( extraInfoAppend(QString)) );
+	}
+	
+	if ( rescan_ret != 0 )  {
 		Node *d;
 		o = tr ( "An error occured while scanning, the rescan operation was cancelled: \n%1" )
 		    .arg ( mainw->db->errormsg );
@@ -1663,6 +1701,8 @@ int GuiSlave::rescanEvent ( void ) {
 
 		mainw->db->deleteNode ( standON );
 	}
+	
+	
 	standON = NULL;
 	QApplication::restoreOverrideCursor();
 	//Do autosave if the user ask it in the config !
