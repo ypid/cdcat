@@ -603,13 +603,16 @@ void CdCatMainWidget::trayIconActivated ( QSystemTrayIcon::ActivationReason reas
 			std::cout << "systray single click " << std::endl;
 			if(isHidden()) {
 				showNormal();
-				if(db->pww != NULL )
+				if(db->pww != NULL ) {
 					db->pww->setVisible(true);
+				}
 			}
 			else {
 				hide();
-				if(db->pww != NULL )
+				std::cout << "db->pww " << db->pww << std::endl;
+				if(db->pww != NULL ) {
 					db->pww->setVisible(false);
+				}
 			}
 			break;
 		case QSystemTrayIcon::DoubleClick:
