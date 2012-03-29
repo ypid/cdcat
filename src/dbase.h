@@ -407,6 +407,8 @@ class DataBase : public QObject {
 		unsigned long getCountDirs ( Node *s, int level = 0 );
 		
 		PWw *pww; //Pease Wait Window :-)
+		
+		QStringList SupportedFileInfoExtensionsList;
 	
 	private:
 		Node *root;

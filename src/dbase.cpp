@@ -671,6 +671,8 @@ int DataBase::addMedia ( QString what, QString name, int number, int type, QStri
 			}
 		}
 	}
+	SupportedFileInfoExtensionsList.clear();
+	SupportedFileInfoExtensionsList = me.getSupportedExtensions();
 	
 	returnv = scanFsToNode ( what, tt );
 	delete [] pattern;
@@ -1168,14 +1170,16 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 
 	/* using fileinfo */
 	if ( storeFileInfo && me.getMediaInfoLibFound() ) {
-		if ( showProgressedFileInStatus )
-			emit pathExtraInfoAppend ( tr("reading media info") );
-		
-		QString info = CdcatMediaInfo ( fi->absoluteFilePath() ).getInfo();
-		if ( !info.isEmpty() )
-			fc->fileinfo = info;
-		if(pww->appl->hasPendingEvents())
-			pww->appl->processEvents();
+		if (SupportedFileInfoExtensionsList.contains(fi->extension ( FALSE ).lower())) {
+			if ( showProgressedFileInStatus )
+				emit pathExtraInfoAppend ( tr("reading media info") );
+			
+			QString info = CdcatMediaInfo ( fi->absoluteFilePath() ).getInfo();
+			if ( !info.isEmpty() )
+				fc->fileinfo = info;
+			if(pww->appl->hasPendingEvents())
+				pww->appl->processEvents();
+		}
 	}
 	/***Experimental AVI Header Scanning  */
 	if ( storeAvitechinfo ) {
