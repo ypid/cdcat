@@ -295,7 +295,23 @@ int addDialog::setMediaName ( const QString & ds ) {
 			}
 #endif
 			if ( !tm.isEmpty() ) {
-				leName->setText ( tm );
+				bool ok=false;
+				bool nameok=false;
+				QString medianame_tmp = tm;
+				QString text=tm;
+				while (text.isEmpty() || ok || (!text.isEmpty() && !caller->isIdentical ( text))) {
+					text = QInputDialog::getText ( 0, tr ( "Enter media name..." ), tr ( "The Media Name must be unique! Enter new media name:" ), QLineEdit::Normal, medianame_tmp, &ok );
+					if(!ok)
+						return 0;
+					if(!text.isEmpty() && caller->isIdentical ( text)) {
+						leName->setText ( tm );
+						dName  = text;
+						nameok = true;
+						break;
+					}
+					medianame_tmp+=".1";
+				}
+				
 #ifndef _WIN32
 
 				// also set the media type to DVD if needed
