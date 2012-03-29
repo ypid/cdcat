@@ -1350,39 +1350,73 @@ int GuiSlave::addEvent ( void ) {
 			}
 		}
 		if ( *DEBUG_INFO_ENABLED )
-			fprintf ( stderr, "Call:%s %s...", arg[0], ( const char * ) mainw->cconfig->cdrompath );
-		arg[1] = mstr ( mainw->cconfig->cdrompath );
-		arg[2] = 0;
-		env[0] = mstr ( "PATH=/usr/local/bin:/usr/bin:/bin" );
-		env[1] = 0;
-
-		pid = fork();
-		if ( pid == 0 ) { //mount process
-			if ( execve ( arg[0], ( char * const* ) arg, ( char * const* ) env ) == -1 )
-				exit ( -1 );
-			else
-				exit ( 0 ); //That's never happend.
-		}
-		else {        //cdcat process
-			int v;
-			pww->refreshTime = 200;
-			while ( 0 == waitpid ( pid, &v, WNOHANG ) ) {
-				progress ( pww );
-				usleep ( 500 );
+			std::cout << "mount program found at: " << arg[0] << std::endl;
+		if ( QFile ( "/etc/mtab" ).exists() ) {
+			// check if already mounted
+			QFile file("/etc/mtab");
+			if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+				while (!file.atEnd()) {
+					QString line = file.readLine();
+					QStringList mtablist = line.split(' ');
+					if (mtablist.size() > 3) {
+						QString mtab_mountpath = mtablist.at(1);
+						//if ( *DEBUG_INFO_ENABLED )
+						//	std::cout << "mtab device path: " << qPrintable(mtab_mountpath)<< " <=> " << qPrintable(mainw->cconfig->cdrompath) << std::endl;
+						if (mtab_mountpath == mainw->cconfig->cdrompath) {
+							if ( *DEBUG_INFO_ENABLED )
+								std::cout << "device path " << qPrintable( mainw->cconfig->cdrompath ) << " is already mounted, skipping mount" << std::endl;
+							mount_successful = true;
+							break;
+						}
+					}
+				}
+				file.close();
 			}
-			pww->refreshTime = 100;
-			fprintf ( stderr, "done.\n" );
-			if ( WEXITSTATUS ( v ) != 0 )
-				QMessageBox::warning ( 0, tr ( "Cannot mount CD!" ), tr ( "Cannot mount CD!" ) );
 			else {
-				mount_successful = true;
-				if ( d->cbAutoDetectAtMount->isChecked() ) {
-					// mount succeded, read media name
-					QString new_medianame = getCDName ( mainw->cconfig->cdrompath );
-					if ( ! new_medianame.isEmpty() ) {
-						if ( *DEBUG_INFO_ENABLED )
-							cerr << "new_medianame after mount: "  << qPrintable ( new_medianame ) << endl;
-						d->dName = new_medianame;
+				if ( *DEBUG_INFO_ENABLED )
+					std::cout << "mtab could not openend" << std::endl;
+			}
+		}
+		else {
+			if ( *DEBUG_INFO_ENABLED )
+				std::cout << "mtab could found" << std::endl;
+		}
+		if(!mount_successful) {
+			if ( *DEBUG_INFO_ENABLED )
+				fprintf ( stderr, "Call:%s %s...", arg[0], ( const char * ) mainw->cconfig->cdrompath );
+			arg[1] = mstr ( mainw->cconfig->cdrompath );
+			arg[2] = 0;
+			env[0] = mstr ( "PATH=/usr/local/bin:/usr/bin:/bin" );
+			env[1] = 0;
+			
+			pid = fork();
+			if ( pid == 0 ) { //mount process
+				if ( execve ( arg[0], ( char * const* ) arg, ( char * const* ) env ) == -1 )
+					exit ( -1 );
+				else
+					exit ( 0 ); //That's never happend.
+			}
+			else {        //cdcat process
+				int v;
+				pww->refreshTime = 200;
+				while ( 0 == waitpid ( pid, &v, WNOHANG ) ) {
+					progress ( pww );
+					usleep ( 500 );
+				}
+				pww->refreshTime = 100;
+				fprintf ( stderr, "done.\n" );
+				if ( WEXITSTATUS ( v ) != 0 )
+					QMessageBox::warning ( 0, tr ( "Cannot mount CD!" ), tr ( "Cannot mount CD!" ) );
+				else {
+					mount_successful = true;
+					if ( d->cbAutoDetectAtMount->isChecked() ) {
+						// mount succeded, read media name
+						QString new_medianame = getCDName ( mainw->cconfig->cdrompath );
+						if ( ! new_medianame.isEmpty() ) {
+							if ( *DEBUG_INFO_ENABLED )
+								cerr << "new_medianame after mount: "  << qPrintable ( new_medianame ) << endl;
+							d->dName = new_medianame;
+						}
 					}
 				}
 			}
