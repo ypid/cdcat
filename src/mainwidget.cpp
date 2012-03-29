@@ -600,7 +600,7 @@ void CdCatMainWidget::showTrayMessage() {
 void CdCatMainWidget::trayIconActivated ( QSystemTrayIcon::ActivationReason reason ) {
 	switch (reason) {
 		case QSystemTrayIcon::Trigger:
-			std::cout << "systray single click " << std::endl;
+			//std::cout << "systray single click " << std::endl;
 			if(isHidden()) {
 				showNormal();
 				emit restoredFromTray();
@@ -611,10 +611,10 @@ void CdCatMainWidget::trayIconActivated ( QSystemTrayIcon::ActivationReason reas
 			}
 			break;
 		case QSystemTrayIcon::DoubleClick:
-			std::cout << "systray double click " << std::endl;
+			//std::cout << "systray double click " << std::endl;
 			break;
 		case QSystemTrayIcon::MiddleClick:
-			std::cout << "systray middle click " << std::endl;
+			//std::cout << "systray middle click " << std::endl;
 			break;
 		default:
 			;
@@ -623,7 +623,7 @@ void CdCatMainWidget::trayIconActivated ( QSystemTrayIcon::ActivationReason reas
 }
 
 void CdCatMainWidget::trayIconMessageClicked() {
-	QMessageBox::information(0, tr("Systray"), tr("Sorry, I already gave what help I could.\nMaybe you should try asking a human?"));
+	//QMessageBox::information(0, tr("Systray"), tr("Sorry, I already gave what help I could.\nMaybe you should try asking a human?"));
 }
 
 void CdCatMainWidget::trayIconAnimateTimerSlot() {
