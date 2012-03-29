@@ -1,6 +1,7 @@
 28. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
 	- touch function of DBCatalog moved to proper place
 	- empty contents after first edit file node content fixed (#3492344)
+	- size optimizions on finddialog
 
 27. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
 	- allow gui often to refresh

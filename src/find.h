@@ -123,7 +123,7 @@ class findDialog : public QDialog {
 		QComboBox* cbSin;
 		QPushButton* buttonCancel;
 		QPushButton* buttonOk;
-		QLabel* textLabel3;
+		QLabel* findTextLabel;
 		QLabel* textLabel1;
 		QLabel* textLabel2;
 		QLabel* textLabel5;
@@ -173,6 +173,7 @@ class findDialog : public QDialog {
 		Q3GridLayout* layout37;
 		Q3VBoxLayout* layout31;
 		Q3HBoxLayout* layout17;
+		Q3HBoxLayout* findLineLayout;
 		Q3GridLayout* layout15;
 		Q3HBoxLayout* layout30;
 		Q3GridLayout* layout16;
