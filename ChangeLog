@@ -5,6 +5,7 @@
 	- option for keeping search result at finddialog added (#3496361)
 	- display avi scan info only if avi tech scan is performed
 	- scan only for media info if file has supported extension
+	- identical media name check at addialog fixed
 
 27. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
 	- allow gui often to refresh

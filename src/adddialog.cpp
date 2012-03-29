@@ -345,13 +345,20 @@ int addDialog::bOk ( void ) {
 	if ( !caller->isIdentical ( leName->text() ) ) {
 		//QMessageBox::warning ( ( QWidget * ) this, tr ( "Error:" ), tr ( "The Media Name must be unique! Please change it!" ) );
 		bool ok=false;
-		QString text = QInputDialog::getText ( 0, tr ( "Enter media name..." ), tr ( "The Media Name must be unique! Enter new media name:" ), QLineEdit::Normal, leName->text()+".1", &ok );
-		if ( ok && !text.isEmpty() && caller->isIdentical ( text)) {
-			leName->setText ( text );
-			dName  = text;
-		}
-		else {
-			return 0;
+		bool nameok=false;
+		QString medianame_tmp = leName->text();
+		QString text="";
+		while (text.isEmpty() || ok || (!text.isEmpty() && !caller->isIdentical ( text))) {
+			text = QInputDialog::getText ( 0, tr ( "Enter media name..." ), tr ( "The Media Name must be unique! Enter new media name:" ), QLineEdit::Normal, medianame_tmp, &ok );
+			if(!ok)
+				return 0;
+			if(!text.isEmpty() && caller->isIdentical ( text)) {
+				leName->setText ( text );
+				dName  = text;
+				nameok = true;
+				break;
+			}
+			medianame_tmp+=".1";
 		}
 	}
 	if ( !caller->isIdentical ( sbNumber->value() ) ) {
