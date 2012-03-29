@@ -563,7 +563,6 @@ void exportCdcatDB::ok() {
 		}
 		else {
 			// XML
-			int retv=0;
 			char fnc[256];
 			char fnc2[256];
 			char tmpbuffer[2048];
