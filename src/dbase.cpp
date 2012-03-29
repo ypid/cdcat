@@ -1179,10 +1179,9 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 	}
 	/***Experimental AVI Header Scanning  */
 	if ( storeAvitechinfo ) {
-		if ( showProgressedFileInStatus )
-			emit pathExtraInfoAppend ( tr("reading avi info") );
-		
 		if ( ( fi->extension ( FALSE ) ).lower() == "avi" ) {
+			if ( showProgressedFileInStatus )
+				emit pathExtraInfoAppend ( tr("reading avi info") );
 			FILE* filePTR;
 			filePTR = fopen ( ( const char * ) QFile::encodeName ( fi->absFilePath() ), "r" );
 			if ( filePTR != NULL ) {

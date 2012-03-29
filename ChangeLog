@@ -3,6 +3,7 @@
 	- empty contents after first edit file node content fixed (#3492344)
 	- size optimizions on finddialog
 	- option for keeping search result at finddialog added (#3496361)
+	- display avi scan info only if avi tech scan is performed
 
 27. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
 	- allow gui often to refresh
