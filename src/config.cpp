@@ -105,7 +105,7 @@ CdCatConfig::CdCatConfig ( void ) {
 	doExcludeFiles = false;
 	useWildcardInsteadRegexForExclude = false;
 	storeThumb = true;
-	
+	keep_search_result = false;
 	readavii   = true;
 	
 	find_cs    = false;
@@ -805,7 +805,13 @@ int CdCatConfig::readConfig ( void ) {
 						useWildcardInsteadRegexForExclude = false;
 					continue;
 				}
-				
+				if ( var == "keep_search_result" ) {
+					if ( val == "true" )
+						keep_search_result = true;
+					else
+						keep_search_result = false;
+					continue;
+				}
 				
 				
 				std::cerr << "Unknown key found: " << qPrintable(var) << std::endl;
@@ -1150,6 +1156,10 @@ int CdCatConfig::writeConfig ( void ) {
 			str << "useWildcardInsteadRegexForExclude=true" << endl;
 		else
 			str << "useWildcardInsteadRegexForExclude=false" << endl;
+		if(keep_search_result)
+			str << "keep_search_result=true" << endl;
+		else
+			str << "keep_search_result=false" << endl;
 		
 		f.close();
 		return 0;

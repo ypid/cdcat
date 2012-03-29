@@ -137,6 +137,7 @@ class CdCatConfig : public QObject {
 		bool show_archive_file_size;
 		bool show_archive_file_date;
 		bool show_archive_file_comment;
+		bool keep_search_result;
 		
 		int  findX;
 		int  findY;

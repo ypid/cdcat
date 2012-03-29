@@ -421,15 +421,6 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
       <translation>&amp;Wiederherstellen</translation>
     </message>
     <message>
-      <source>Systray</source>
-      <translation>Systray</translation>
-    </message>
-    <message>
-      <source>Sorry, I already gave what help I could.
-Maybe you should try asking a human?</source>
-      <translation>/</translation>
-    </message>
-    <message>
       <source>Cdcat - idle</source>
       <translation>Cdcat - Leerlauf</translation>
     </message>
@@ -2789,6 +2780,14 @@ wird zu
       <source>TiB</source>
       <translation>TiB</translation>
     </message>
+    <message>
+      <source>Keep search result</source>
+      <translation>Suchergebnis behalten</translation>
+    </message>
+    <message>
+      <source>Clear search results</source>
+      <translation>Suchergebnisse löschen</translation>
+    </message>
   </context>
   <context>
     <name>helpDialog</name>
@@ -3222,6 +3221,10 @@ E-mail: hyperr@freemail.hu
     <message>
       <source>searching is in progress</source>
       <translation>Suche läuft</translation>
+    </message>
+    <message>
+      <source>Last search results:</source>
+      <translation>Letzte Suchergebnisse:</translation>
     </message>
   </context>
 </TS>

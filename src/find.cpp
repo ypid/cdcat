@@ -87,6 +87,7 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		QSpacerItem* spacer_3 = new QSpacerItem ( 240, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 		QSpacerItem* spacer_4 = new QSpacerItem ( 200, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 		QSpacerItem* spacer_5 = new QSpacerItem ( 36, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
+		QSpacerItem* spacer_5_1 = new QSpacerItem ( 36, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 		QSpacerItem* spacer_6 = new QSpacerItem ( 190, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 		QSpacerItem* spacer_7 = new QSpacerItem ( 200, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 		QSpacerItem* spacer_8 = new QSpacerItem ( 190, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
@@ -117,6 +118,8 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		
 		cbCasesens = new QCheckBox ( this, "cbCasesens" );
 		cbEasy = new QCheckBox ( this, "cbEasy" );
+		
+		cbKeepSearchResult = new QCheckBox ( this, "cbKeepSearchResult" );
 		
 		cbFilename = new QCheckBox ( this, "cbFilename" );
 		cbDirname  = new QCheckBox ( this, "cbDirname" );
@@ -160,6 +163,8 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		spSizeMax = new QSpinBox ( this, "spSizeMax" );
 		spSizeMax->setMinimum ( 1 );
 		spSizeMax->setMaximum ( 10000000 );
+		
+		buttonClearSearchResult = new QPushButton ( this, "buttonClearSearchResult" );
 		
 		buttonOk = new QPushButton ( this, "buttonOk" );
 		buttonOk->setAutoDefault ( TRUE );
@@ -218,7 +223,8 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		/* layouts:   */
 		
 		findLineLayout->addWidget ( findTextLabel);
-		findLineLayout->addWidget (leText );
+		findLineLayout->addWidget ( leText );
+		findLineLayout->addWidget ( cbKeepSearchResult );
 		layout36->addWidget ( cbCasesens, 1, 0 );
 		layout36->addWidget ( cbDirname , 2, 0 );
 		layout36->addWidget ( cbFilename, 3, 0 );
@@ -266,6 +272,8 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		layout15->addWidget ( buttonOk, 0, 0 );
 		layout15->addItem ( spacer_5, 0, 1 );
 		layout15->addWidget ( buttonCancel, 0, 2 );
+		layout15->addItem ( spacer_5_1, 0, 3 );
+		layout15->addWidget ( buttonClearSearchResult, 0, 4 );
 		
 		layout17->addItem ( spacer_6 );
 		layout17->addLayout ( layout15 );
@@ -302,6 +310,7 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		connect ( buttonCancel, SIGNAL ( clicked() ), this, SLOT ( cancele() ) );
 		connect ( buttonOk, SIGNAL ( clicked() ), this, SLOT ( seeke() ) );
 		connect ( buttonClose, SIGNAL ( clicked() ), this, SLOT ( closee() ) );
+		connect ( buttonClearSearchResult, SIGNAL ( clicked() ), this, SLOT ( clearSearchResultClicked()) );
 		connect ( buttonPrintResult, SIGNAL ( clicked() ), this, SLOT ( printResultClicked() ) );
 		connect ( buttonExportResult, SIGNAL ( clicked() ), this, SLOT ( exportResultClicked() ) );
 		connect ( resultsl, SIGNAL ( currentChanged ( Q3ListViewItem * ) ), this, SLOT ( select ( Q3ListViewItem * ) ) );
@@ -328,6 +337,7 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		deDateStart->setDisplayFormat ( "dd.MM.yyyy hh:mm" );
 		deDateEnd->setDisplayFormat ( "dd.MM.yyyy hh:mm" );
 		
+		cbKeepSearchResult->setChecked( mainw->cconfig->keep_search_result );
 		cbSizeMin->setChecked ( mainw->cconfig->find_size_min );
 		cbSizeMax->setChecked ( mainw->cconfig->find_size_max );
 		spSizeMin->setValue ( mainw->cconfig->find_size_min_val );
@@ -351,6 +361,7 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		setTabOrder ( leText, buttonOk );
 		buttonPrintResult->setEnabled ( false );
 		buttonExportResult->setEnabled ( false );
+		buttonClearSearchResult->setEnabled( false );
 		leText->setFocus();
 	}
 	else {
@@ -411,6 +422,7 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		resultsl->setColumnWidthMode ( 0, Q3ListView::Maximum );
 		
 		buttonClose = new QPushButton ( this, "buttonClose" );
+		buttonClearSearchResult = NULL;
 		
 		layout30->addItem ( spacer_7 );
 		layout30->addWidget ( textLabel5 );
@@ -499,6 +511,7 @@ void findDialog::languageChange() {
 		resultsl->header()->setLabel ( 6, tr ( "Comment" ) );
 		resultsl->header()->setLabel ( 7, tr ( "Extension" ) );
 		findTextLabel->setText ( tr ( "Find:" ) );
+		cbKeepSearchResult->setText ( tr ( "Keep search result" ) );
 		cbFilename->setText ( tr ( "File name" ) );
 		cbAlbum->setText ( tr ( "mp3-tag Album" ) );
 		cbArtist->setText ( tr ( "mp3-tag Artist" ) );
@@ -513,6 +526,7 @@ void findDialog::languageChange() {
 		cbSizeMax->setText ( tr ( "Max size" ) );
 		cbUnsharpSearch->setText ( tr ( "Unsharp search (slow)" ) );
 		cbFindInArchive->setText ( tr ( "Find in archives too" ) );
+		buttonClearSearchResult->setText ( tr ( "Clear search results" ) );
 		buttonOk->setText ( tr ( "&Start search" ) );
 #ifndef _WIN32
 		buttonOk->setAccel ( QKeySequence ( QString::null ) );
@@ -535,6 +549,7 @@ void findDialog::languageChange() {
 /***************************************************************************/
 int findDialog::saveState ( void ) {
 	if ( !isFindDuplicates ) {
+		mainw->cconfig->keep_search_result = cbKeepSearchResult->isChecked();
 		mainw->cconfig->find_em    = cbEasy->isChecked();
 		mainw->cconfig->find_cs    = cbCasesens->isChecked();
 		mainw->cconfig->find_di    = cbDirname->isChecked();
@@ -931,9 +946,16 @@ void findDialog::exportResult ( bool isPrint ) {
 void findDialog::printResultClicked() {
 	exportResult ( true );
 }
+
 void findDialog::exportResultClicked() {
 	exportResult ( false );
 }
+
+void findDialog::clearSearchResultClicked() {
+	resultsl->clear();
+	buttonClearSearchResult->setEnabled(false);
+}
+
 
 /***************************************************************************
 
@@ -965,7 +987,8 @@ int seekEngine::start_seek ( void ) {
 	QObject::connect ( pww, SIGNAL ( cancelReceivedByUser ( bool ) ), pww, SLOT ( doCancelReceived ( bool ) ) );
 	progress ( pww );
 	QApplication::setOverrideCursor ( Qt::waitCursor );
-	fd->resultsl->clear();
+	if(!fd->cbKeepSearchResult->isChecked())
+		fd->resultsl->clear();
 	founded = 0;
 	
 	if ( !searchForDuplicates ) {
@@ -1069,7 +1092,7 @@ int seekEngine::start_seek ( void ) {
 	if ( pww->doCancel ) {
 		QMessageBox::warning ( 0, tr ( "Search cancelled" ), tr ( "You have cancelled searching." ) );
 	}
-	fd->textLabel5->setText ( tr ( "Results:" ) + " " + QString().setNum ( founded ) );
+	fd->textLabel5->setText ( tr ( "Last search results:" ) + " " + QString().setNum ( founded ) );
 	if ( founded == 0 )
 		fd->resultsl->insertItem ( new Q3ListViewItem ( fd->resultsl, tr ( "There is no matching." ) ) );
 	
@@ -1568,6 +1591,8 @@ void seekEngine::putNodeToList ( Node *n, QString comment ) {
 	
 	newitem->setMultiLinesEnabled ( true );
 	fd->resultsl->insertItem ( newitem );
+	if(fd->buttonClearSearchResult != NULL && !fd->buttonClearSearchResult->isEnabled())
+		fd->buttonClearSearchResult->setEnabled(true);
 	progress ( pww );
 	founded++;
 }

@@ -123,6 +123,7 @@ class findDialog : public QDialog {
 		QComboBox* cbSin;
 		QPushButton* buttonCancel;
 		QPushButton* buttonOk;
+		QPushButton* buttonClearSearchResult;
 		QLabel* findTextLabel;
 		QLabel* textLabel1;
 		QLabel* textLabel2;
@@ -157,6 +158,7 @@ class findDialog : public QDialog {
 		QCheckBox* cbSizeMax;
 		QCheckBox* cbUnsharpSearch;
 		QCheckBox* cbFindInArchive;
+		QCheckBox* cbKeepSearchResult;
 
 		bool use_unsharpsearch; // if unsharp match should be used
 		bool isFindDuplicates;
@@ -198,6 +200,7 @@ class findDialog : public QDialog {
 		void sizeMaxClicked();
 		void printResultClicked();
 		void exportResultClicked();
+		void clearSearchResultClicked();
 
 };
 
