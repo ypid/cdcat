@@ -374,6 +374,11 @@ DBCatalog::DBCatalog ( void ) {
 DBCatalog::~DBCatalog ( void ) {
 }
 
+void DBCatalog::touch ( void ) {
+	writed = 0;
+	modification = QDateTime::currentDateTime();
+}
+
 DBMedia::DBMedia ( QString n, int nu, QString o, int t, QString c, QDateTime mod, QString pcategory ) {
 	name    = n;
 	number  = nu;
@@ -885,10 +890,7 @@ int   DataBase::openDB ( char *filename ) {
 	return 0;
 }
 /***************************************************************************/
-void DBCatalog::touch ( void ) {
-	writed = 0;
-	modification = QDateTime::currentDateTime();
-}
+
 /*************************************************************************/
 int DataBase::scanFsToNode ( QString what, Node *to ) {
 	if ( pww->doCancel ) {
