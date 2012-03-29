@@ -66,6 +66,7 @@ public:
 
     Node *act;
     int  mode;
+    bool noRepaint;
 signals:
     void touchdb();
 protected:
@@ -82,6 +83,7 @@ private:
     QPixmap image13;
     QApplication *app;
     QPixmap contentsPixmap;
+    bool paintEventRunning;
 
 public slots:
     int editC ( void );
