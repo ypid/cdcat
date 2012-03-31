@@ -16,7 +16,7 @@
 #include <qtoolbutton.h>
 #include <qvariant.h>
 #include <qpushbutton.h>
-#include <q3multilineedit.h>
+#include <QTextEdit>
 #include <qlayout.h>
 #include <qtooltip.h>
 #include <qstringlist.h>
@@ -788,7 +788,7 @@ commentEdit::commentEdit ( QString cc, QWidget *parent, const char *name, bool m
 
 	layout5 = new Q3VBoxLayout ( 0, 0, 6, "layout5" );
 
-	teComm = new Q3MultiLineEdit ( this, "teComm" );
+	teComm = new QTextEdit ( this, "teComm" );
 	layout5->addWidget ( teComm );
 
 	layout4 = new Q3HBoxLayout ( 0, 0, 6, "layout4" );

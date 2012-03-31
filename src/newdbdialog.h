@@ -25,7 +25,7 @@ class QGridLayout;
 class QLabel;
 class QLineEdit;
 class QPushButton;
-class Q3MultiLineEdit;
+class QTextEdit;
 class Node;
 class GuiSlave;
 
@@ -50,7 +50,7 @@ public:
     QPushButton* buttonOK;
     QPushButton* buttonCancel;
 
-    Q3MultiLineEdit *teComm;
+    QTextEdit *teComm;
 
 
 

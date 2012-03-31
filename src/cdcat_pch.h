@@ -12,7 +12,7 @@
 #include <q3header.h>
 #include <q3listbox.h>
 #include <q3listview.h>
-#include <q3multilineedit.h>
+#include <QTextEdit>
 #include <QList>
 #include <QTableView>
 #include <QTextBrowser>

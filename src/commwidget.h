@@ -32,7 +32,7 @@ class QPaintEvent;
 class QPixmap;
 class Node;
 class QPushButton;
-class Q3MultiLineEdit;
+class QTextEdit;
 class QEvent;
 class CdCatConfig;
 class QScrollArea;
@@ -100,7 +100,7 @@ public:
     commentEdit ( QString cc,QWidget* parent = 0, const char* name = 0, bool modal = FALSE, bool isCommentEdit=true, Qt::WFlags fl = 0 );
     ~commentEdit();
 
-    Q3MultiLineEdit* teComm;
+    QTextEdit* teComm;
     QPushButton* buttonOk;
     QPushButton* buttonCancel;
 

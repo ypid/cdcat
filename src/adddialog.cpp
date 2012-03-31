@@ -20,7 +20,7 @@
 #include <qpushbutton.h>
 #include <qspinbox.h>
 #include <qcheckbox.h>
-#include <q3multilineedit.h>
+#include <QTextEdit>
 #include <qlayout.h>
 #include <qtooltip.h>
 #include <qmessagebox.h>
@@ -143,7 +143,7 @@ addDialog::addDialog ( GuiSlave *c, QWidget* parent, const char* name, bool moda
 
 	layout5->addWidget ( textLabel3, 0, 0 );
 
-	teComm = new Q3MultiLineEdit ( this, "teComm" );
+	teComm = new QTextEdit ( this, "teComm" );
 
 	layout5->addMultiCellWidget ( teComm, 0, 1, 1, 1 );
 	QSpacerItem* spacer = new QSpacerItem ( 20, 60, QSizePolicy::Minimum, QSizePolicy::Expanding );

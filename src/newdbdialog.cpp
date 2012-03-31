@@ -16,7 +16,7 @@
 #include <qlabel.h>
 #include <qlineedit.h>
 #include <qpushbutton.h>
-#include <q3multilineedit.h>
+#include <QTextEdit>
 #include <qlayout.h>
 #include <qtooltip.h>
 #include <qmessagebox.h>
@@ -57,7 +57,7 @@ newdbdialog::newdbdialog ( QWidget* parent, const char* name, bool modal, Qt::WF
     QSpacerItem* spacer_2 = new QSpacerItem ( 241, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
     NewDBDialogBaseLayout->addItem ( spacer_2, 4, 0 );
 
-    teComm = new Q3MultiLineEdit ( this, "teComm" );
+    teComm = new QTextEdit ( this, "teComm" );
 
     NewDBDialogBaseLayout->addMultiCellWidget ( teComm, 3, 3, 1, 1 );
 

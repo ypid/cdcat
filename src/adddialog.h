@@ -35,7 +35,7 @@ class Q3ListView;
 class Q3ListViewItem;
 class QPushButton;
 class QSpinBox;
-class Q3MultiLineEdit;
+class QTextEdit;
 class QCheckbox;
 class DirectoryView;
 class GuiSlave;
@@ -63,7 +63,7 @@ public:
     QPushButton* buttonCancel;
     QPushButton* buttonOK;
     QPushButton* buttonPli;
-    Q3MultiLineEdit *teComm;
+    QTextEdit *teComm;
     QLineEdit* leOwner;
     QLineEdit* leCategory;
     QComboBox* cbType;
