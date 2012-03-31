@@ -15,7 +15,7 @@
 #include <qobject.h>
 //Added by qt3to4:
 #include <QGridLayout>
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <Q3VBoxLayout>
 #include <QLabel>
 #include <QFrame>
@@ -25,7 +25,7 @@
 #include <QtGui/QDateTimeEdit>
 
 class Q3VBoxLayout;
-class Q3HBoxLayout;
+class QHBoxLayout;
 class QGridLayout;
 class QCheckBox;
 class QComboBox;
@@ -34,7 +34,7 @@ class QLabel;
 class QLineEdit;
 class Q3ListView;
 class Q3ListViewItem;
-class Q3HBoxLayout;
+class QHBoxLayout;
 class Q3VBoxLayout;
 class QSpinBox;
 class QPushButton;
@@ -112,7 +112,7 @@ class findDialog : public QDialog {
 		
 		
 		QFrame *input;
-		Q3HBoxLayout *h1, *h2, *h3, *h4;
+		QHBoxLayout *h1, *h2, *h3, *h4;
 		Q3VBoxLayout *v1;
 		CdCatMainWidget *mainw;
 		QPushButton* buttonClose;
@@ -174,14 +174,14 @@ class findDialog : public QDialog {
 		QGridLayout* layout36;
 		QGridLayout* layout37;
 		Q3VBoxLayout* layout31;
-		Q3HBoxLayout* layout17;
-		Q3HBoxLayout* findLineLayout;
+		QHBoxLayout* layout17;
+		QHBoxLayout* findLineLayout;
 		QGridLayout* layout15;
-		Q3HBoxLayout* layout30;
+		QHBoxLayout* layout30;
 		QGridLayout* layout16;
-		Q3HBoxLayout* layout_size_min;
-		Q3HBoxLayout* layout_size_max;
-		Q3HBoxLayout* layout_find_in_archive;
+		QHBoxLayout* layout_size_min;
+		QHBoxLayout* layout_size_max;
+		QHBoxLayout* layout_find_in_archive;
 		
 		QString searchFilepath;
 	

@@ -28,7 +28,7 @@
 #include <qimage.h>
 #include <qpixmap.h>
 //Added by qt3to4:
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <Q3VBoxLayout>
 
 char *buff = NULL;
@@ -53,7 +53,7 @@ borrowDialog::borrowDialog ( QString mname, QWidget* parent, const char* name, b
 	QSpacerItem* spacer = new QSpacerItem ( 20, 20, QSizePolicy::Minimum, QSizePolicy::Expanding );
 	borrowDialogLayout->addItem ( spacer );
 
-	layout4 = new Q3HBoxLayout ( 0, 0, 6, "layout4" );
+	layout4 = new QHBoxLayout ( 0, 0, 6, "layout4" );
 	QSpacerItem* spacer_2 = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	layout4->addItem ( spacer_2 );
 
@@ -135,7 +135,7 @@ borrowingDialog::borrowingDialog ( DataBase *dbp, QWidget* parent, const char* n
 	setIcon ( *get_m_borrow_icon() );
 	borrowingDialogLayout = new Q3VBoxLayout ( this, 11, 6, "borrowingDialogLayout" );
 	
-	layout1 = new Q3HBoxLayout ( 0, 0, 6, "layout1" );
+	layout1 = new QHBoxLayout ( 0, 0, 6, "layout1" );
 	QSpacerItem* spacer = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	layout1->addItem ( spacer );
 	
@@ -147,7 +147,7 @@ borrowingDialog::borrowingDialog ( DataBase *dbp, QWidget* parent, const char* n
 	QSpacerItem* spacer_3 = new QSpacerItem ( 20, 20, QSizePolicy::Minimum, QSizePolicy::Fixed );
 	borrowingDialogLayout->addItem ( spacer_3 );
 	
-	layout3 = new Q3HBoxLayout ( 0, 0, 6, "layout3" );
+	layout3 = new QHBoxLayout ( 0, 0, 6, "layout3" );
 	
 	cbOnlyBorrowed = new QCheckBox ( this, "cbOnlyBorrowed" );
 	layout3->addWidget ( cbOnlyBorrowed );
@@ -162,7 +162,7 @@ borrowingDialog::borrowingDialog ( DataBase *dbp, QWidget* parent, const char* n
 	
 	borrowingDialogLayout->addWidget ( ( QWidget * ) table );
 	
-	layout4 = new Q3HBoxLayout ( 0, 0, 6, "layout4" );
+	layout4 = new QHBoxLayout ( 0, 0, 6, "layout4" );
 	QSpacerItem* spacer_5 = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	layout4->addItem ( spacer_5 );
 	

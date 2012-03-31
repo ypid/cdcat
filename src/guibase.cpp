@@ -23,9 +23,9 @@
 #include <qapplication.h>
 #include <qsplitter.h>
 //Added by qt3to4:
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <QKeyEvent>
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <QInputDialog>
 #include <QComboBox>
 #include <QLabel>
@@ -2432,7 +2432,7 @@ int GuiSlave::searchDuplicatesEvent ( void ) {
 QPosDialog::QPosDialog ( CdCatMainWidget *parent )
 	: QDialog ( parent, "searchdd", true, Qt::WStyle_Customize | Qt::WStyle_NoBorder ) {
 	QPoint point;
-	Q3HBoxLayout *l1;
+	QHBoxLayout *l1;
 	Q3VBoxLayout *l2;
 
 	p = parent;
@@ -2445,7 +2445,7 @@ QPosDialog::QPosDialog ( CdCatMainWidget *parent )
 	l2->addWidget ( le );
 	l2->addSpacing ( 2 );
 
-	l1 = new Q3HBoxLayout ( this );
+	l1 = new QHBoxLayout ( this );
 	l1->addSpacing ( 2 );
 	l1->addLayout ( l2 );
 	l1->addSpacing ( 2 );

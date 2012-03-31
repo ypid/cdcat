@@ -22,7 +22,7 @@
 #include <qstringlist.h>
 #include <qregexp.h>
 //Added by qt3to4:
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <QPaintEvent>
 #include <QResizeEvent>
 #include <QGridLayout>
@@ -791,7 +791,7 @@ commentEdit::commentEdit ( QString cc, QWidget *parent, const char *name, bool m
 	teComm = new QTextEdit ( this, "teComm" );
 	layout5->addWidget ( teComm );
 
-	layout4 = new Q3HBoxLayout ( 0, 0, 6, "layout4" );
+	layout4 = new QHBoxLayout ( 0, 0, 6, "layout4" );
 	QSpacerItem *spacer = new QSpacerItem ( 130, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	layout4->addItem ( spacer );
 

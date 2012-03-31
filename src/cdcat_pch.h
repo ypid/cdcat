@@ -8,7 +8,7 @@
 #include <QFrame>
 #include <QGridLayout>
 #include <q3groupbox.h>
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <q3header.h>
 #include <q3listbox.h>
 #include <q3listview.h>

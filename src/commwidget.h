@@ -20,13 +20,13 @@
 #include <QResizeEvent>
 #include <QGridLayout>
 #include <QEvent>
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <Q3VBoxLayout>
 #include <QMouseEvent>
 #include <QPaintEvent>
 
 class Q3VBoxLayout;
-class Q3HBoxLayout;
+class QHBoxLayout;
 class QGridLayout;
 class QPaintEvent;
 class QPixmap;
@@ -111,7 +111,7 @@ public slots:
 protected:
     QGridLayout* CommentEditBaseLayout;
     Q3VBoxLayout* layout5;
-    Q3HBoxLayout* layout4;
+    QHBoxLayout* layout4;
 
 public:
     QString newc;

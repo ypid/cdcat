@@ -23,7 +23,7 @@
 #include <qdialog.h>
 //Added by qt3to4:
 #include <QGridLayout>
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <Q3VBoxLayout>
 #include <string.h>
 #include <stdio.h>
@@ -111,17 +111,17 @@ protected:
     QApplication *app;
     QGridLayout* exportCdcatDBLayout;
     Q3VBoxLayout* layout32;
-    Q3HBoxLayout* layout21;
+    QHBoxLayout* layout21;
     Q3VBoxLayout* layout10_2;
     Q3VBoxLayout* layout19;
-    Q3HBoxLayout* layout10;
+    QHBoxLayout* layout10;
     Q3VBoxLayout* layout10_2_2;
     Q3VBoxLayout* buttonGroup1Layout;
-    Q3HBoxLayout* layout26;
-    Q3HBoxLayout* layout25;
-    Q3HBoxLayout* layout29;
-    Q3HBoxLayout* layout4;
-    Q3HBoxLayout* layout27;
+    QHBoxLayout* layout26;
+    QHBoxLayout* layout25;
+    QHBoxLayout* layout29;
+    QHBoxLayout* layout4;
+    QHBoxLayout* layout27;
     Q3VBoxLayout* typeLayout;
     Q3VBoxLayout* fieldsLayout;
 

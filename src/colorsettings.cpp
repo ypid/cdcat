@@ -23,7 +23,7 @@
 #include <qevent.h>
 #include <qpainter.h>
 //Added by qt3to4:
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <QPaintEvent>
 #include <Q3VBoxLayout>
 
@@ -103,18 +103,18 @@ ColorSettings::ColorSettings ( CdCatConfig *cfgp, QWidget* parent, const char* n
     itemselector = new QComboBox ( FALSE, this, "itemselector" );
     ColorSettingsLayout->addWidget ( itemselector );
 
-    layout14 = new Q3HBoxLayout ( 0, 0, 6, "layout14" );
+    layout14 = new QHBoxLayout ( 0, 0, 6, "layout14" );
 
     groupBox1 = new Q3GroupBox ( this, "groupBox1" );
     groupBox1->setColumnLayout ( 0, Qt::Vertical );
     groupBox1->layout()->setSpacing ( 6 );
     groupBox1->layout()->setMargin ( 11 );
-    groupBox1Layout = new Q3HBoxLayout ( groupBox1->layout() );
+    groupBox1Layout = new QHBoxLayout ( groupBox1->layout() );
     groupBox1Layout->setAlignment ( Qt::AlignTop );
 
     layout4 = new Q3VBoxLayout ( 0, 0, 6, "layout4" );
 
-    layout1 = new Q3HBoxLayout ( 0, 0, 6, "rspin" );
+    layout1 = new QHBoxLayout ( 0, 0, 6, "rspin" );
 
     textLabel1 = new QLabel ( groupBox1, "textLabel1" );
     layout1->addWidget ( textLabel1 );
@@ -123,7 +123,7 @@ ColorSettings::ColorSettings ( CdCatConfig *cfgp, QWidget* parent, const char* n
     layout1->addWidget ( rspin );
     layout4->addLayout ( layout1 );
 
-    layout2 = new Q3HBoxLayout ( 0, 0, 6, "layout2" );
+    layout2 = new QHBoxLayout ( 0, 0, 6, "layout2" );
 
     textLabel1_2 = new QLabel ( groupBox1, "textLabel1_2" );
     layout2->addWidget ( textLabel1_2 );
@@ -132,7 +132,7 @@ ColorSettings::ColorSettings ( CdCatConfig *cfgp, QWidget* parent, const char* n
     layout2->addWidget ( gspin );
     layout4->addLayout ( layout2 );
 
-    layout3 = new Q3HBoxLayout ( 0, 0, 6, "layout3" );
+    layout3 = new QHBoxLayout ( 0, 0, 6, "layout3" );
 
     textLabel1_3 = new QLabel ( groupBox1, "textLabel1_3" );
     layout3->addWidget ( textLabel1_3 );
@@ -154,7 +154,7 @@ ColorSettings::ColorSettings ( CdCatConfig *cfgp, QWidget* parent, const char* n
     QSpacerItem* spacer = new QSpacerItem ( 20, 16, QSizePolicy::Minimum, QSizePolicy::Fixed );
     layout13->addItem ( spacer );
 
-    layout11 = new Q3HBoxLayout ( 0, 0, 6, "layout11" );
+    layout11 = new QHBoxLayout ( 0, 0, 6, "layout11" );
     QSpacerItem* spacer_2 = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
     layout11->addItem ( spacer_2 );
 

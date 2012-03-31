@@ -22,7 +22,7 @@ Copyright : (C) 2003 Christoph Thielecke
 //Added by qt3to4:
 #include <Q3VBoxLayout>
 #include <QGridLayout>
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <QLabel>
 
 
@@ -68,7 +68,7 @@ protected:
     QGridLayout* layout4;
     QGridLayout* ImportDialogLayout;
     Q3VBoxLayout* type_layout;
-    Q3HBoxLayout* csv_layout;
+    QHBoxLayout* csv_layout;
 
 protected slots:
     virtual void languageChange();

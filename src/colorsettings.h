@@ -17,7 +17,7 @@
 #include <QFrame>
 //Added by qt3to4:
 #include <QGridLayout>
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <Q3VBoxLayout>
 #include <QLabel>
 #include <QPaintEvent>
@@ -26,7 +26,7 @@
 
 class Q3VBoxLayout;
 class QColor;
-class Q3HBoxLayout;
+class QHBoxLayout;
 class QGridLayout;
 class QComboBox;
 class Q3GroupBox;
@@ -89,14 +89,14 @@ public:
 
 protected:
     Q3VBoxLayout* ColorSettingsLayout;
-    Q3HBoxLayout* layout14;
-    Q3HBoxLayout* groupBox1Layout;
+    QHBoxLayout* layout14;
+    QHBoxLayout* groupBox1Layout;
     Q3VBoxLayout* layout4;
-    Q3HBoxLayout* layout1;
-    Q3HBoxLayout* layout2;
-    Q3HBoxLayout* layout3;
+    QHBoxLayout* layout1;
+    QHBoxLayout* layout2;
+    QHBoxLayout* layout3;
     Q3VBoxLayout* layout13;
-    Q3HBoxLayout* layout11;
+    QHBoxLayout* layout11;
     Q3VBoxLayout* layout9;
 
 protected slots:

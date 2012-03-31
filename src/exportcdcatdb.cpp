@@ -27,7 +27,7 @@ Copyright : (C) 2003 Christoph Thielecke
 #include <qstring.h>
 #include <qregexp.h>
 //Added by qt3to4:
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <QGridLayout>
 #include <Q3VBoxLayout>
 #include <iostream>
@@ -62,7 +62,7 @@ exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget* parent, const ch
     exportCdcatDBLayout = new QGridLayout ( this, 1, 1, 12, 6, "exportCdcatDBLayout" );
 
     layout32 = new Q3VBoxLayout ( 0, 0, 6, "layout32" );
-    layout21 = new Q3HBoxLayout ( 0, 0, 6, "layout21" );
+    layout21 = new QHBoxLayout ( 0, 0, 6, "layout21" );
     layout10_2 = new Q3VBoxLayout ( 0, 0, 6, "layout10_2" );
     textLabel2 = new QLabel ( this, "textLabel2" );
     layout10_2->addWidget ( textLabel2 );
@@ -77,7 +77,7 @@ exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget* parent, const ch
     QSpacerItem* spacer = new QSpacerItem ( 20, 180, QSizePolicy::Minimum, QSizePolicy::Expanding );
     layout19->addItem ( spacer );
 
-    layout10 = new Q3HBoxLayout ( 0, 0, 6, "layout10" );
+    layout10 = new QHBoxLayout ( 0, 0, 6, "layout10" );
 
     buttonRemove = new QPushButton ( this, "buttonRemove" );
     buttonRemove->setMinimumSize ( QSize ( 50, 23 ) );
@@ -106,7 +106,7 @@ exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget* parent, const ch
     layout21->addLayout ( layout10_2_2 );
     layout32->addLayout ( layout21 );
 
-    layout27 = new Q3HBoxLayout ( 0,0,4,"layout27" );
+    layout27 = new QHBoxLayout ( 0,0,4,"layout27" );
 
     checkAllMedia = new QCheckBox ( this, "checkAllMedia" );
     layout27->addWidget ( checkAllMedia );
@@ -114,7 +114,7 @@ exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget* parent, const ch
     layout32->addLayout ( layout27 );
 
     buttonGroup1 = new Q3ButtonGroup ( 3, Qt::Horizontal, tr ( "Type" ),this, "buttonGroup1" );
-    layout26 = new Q3HBoxLayout ( 0, 0, 6, "layout26" );
+    layout26 = new QHBoxLayout ( 0, 0, 6, "layout26" );
 
     radioCsv = new QRadioButton ( buttonGroup1, "radioCsv" );
 
@@ -178,7 +178,7 @@ exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget* parent, const ch
 
     layout32->addWidget ( buttonGroupFields );
 
-    layout29 = new Q3HBoxLayout ( 0, 0, 6, "layout29" );
+    layout29 = new QHBoxLayout ( 0, 0, 6, "layout29" );
 
     textLabel3 = new QLabel ( this, "textLabel3" );
     layout29->addWidget ( textLabel3 );
@@ -190,7 +190,7 @@ exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget* parent, const ch
     layout29->addWidget ( buttonFile );
     layout32->addLayout ( layout29 );
 
-    layout4 = new Q3HBoxLayout ( 0, 0, 6, "layout4" );
+    layout4 = new QHBoxLayout ( 0, 0, 6, "layout4" );
     QSpacerItem* spacer_6 = new QSpacerItem ( 163, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
     layout4->addItem ( spacer_6 );
 

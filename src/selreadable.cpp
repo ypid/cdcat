@@ -30,7 +30,7 @@
 #include <QAction>
 #include <QTextBrowser>
 //Added by qt3to4:
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <Q3VBoxLayout>
 
 #ifdef USE_LIB7ZIP
@@ -56,7 +56,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	SelReadableLayout = new Q3VBoxLayout ( this, 15, 6, "SelReadableLayout" );
 	setSizeGripEnabled ( TRUE );
 	
-	layoutArchiveScan= new Q3HBoxLayout ( 0, 0, 6, "layoutArchiveScan" );
+	layoutArchiveScan= new QHBoxLayout ( 0, 0, 6, "layoutArchiveScan" );
 	cbScanArchive = new QCheckBox ( this, "cpScanArchive" );
 //     cbScanArchive->setMaximumWidth ( 80 );
 	
@@ -75,7 +75,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	
 	
 	
-	layoutShowArchiveFileOptions = new Q3HBoxLayout ( 0, 0, 6, "layoutShowArchiveFileOptions" );
+	layoutShowArchiveFileOptions = new QHBoxLayout ( 0, 0, 6, "layoutShowArchiveFileOptions" );
 	layoutShowArchiveFileOptions->addSpacing ( 25 );
 	groupBoxShowArchiveFileOpts = new QGroupBox ( this, "groupBoxShowArchiveFileOpts" );
 	layoutShowArchiveFileOptions->addWidget ( groupBoxShowArchiveFileOpts );
@@ -95,7 +95,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	layoutShowArchiveFileOptionsGroup->addWidget ( cbShowArchiveFileComment, 1, 2 );
 	
 	SelReadableLayout->addLayout ( layoutShowArchiveFileOptions );
-	layoutShowProgressedArchiveFileInStatus = new Q3HBoxLayout ( 0, 0, 2, "layoutExternalContentViewer" );
+	layoutShowProgressedArchiveFileInStatus = new QHBoxLayout ( 0, 0, 2, "layoutExternalContentViewer" );
 	layoutShowArchiveFileOptions->addSpacing ( 25 );
 	cbShowProgressedArchiveFileInStatus = new QCheckBox ( this, "cbShowProgressedArchiveFileInStatus" );
 	layoutShowArchiveFileOptions->addWidget(cbShowProgressedArchiveFileInStatus);
@@ -114,7 +114,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	labelDefaultMp3TagVersion = new QLabel(this, "labelDefaultMp3TagVersion");
 	QSpacerItem* mp3tagspacer = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	
-	layout1 = new Q3HBoxLayout ( 0, 0, 6, "layout1" );
+	layout1 = new QHBoxLayout ( 0, 0, 6, "layout1" );
 	layout1->addSpacing ( 25 );
 	layout1->addWidget ( cbTag );
 	layout1->addItem(mp3tagspacer);
@@ -124,7 +124,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	
 	SelReadableLayout->addLayout ( layout1 );
 	
-	layoutInfo = new Q3HBoxLayout ( 0, 0, 6, "layoutInfo" );
+	layoutInfo = new QHBoxLayout ( 0, 0, 6, "layoutInfo" );
 	cbInfo = new QCheckBox ( this, "cbInfo" );
 	cbaInfo = new QCheckBox ( this, "cbaInfo" );
 	layoutInfo->addWidget ( cbaInfo );
@@ -140,14 +140,14 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	cbCont = new QCheckBox ( this, "cbCont" );
 	SelReadableLayout->addWidget ( cbCont );
 
-	layout12 = new Q3HBoxLayout ( 0, 0, 6, "layout12" );
+	layout12 = new QHBoxLayout ( 0, 0, 6, "layout12" );
 	layout12->addSpacing ( 25 );
 //     QSpacerItem* spacer = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 //     layout12->addItem ( spacer );
 
 	layout11 = new Q3VBoxLayout ( 0, 0, 6, "layout11" );
 	
-	layout9 = new Q3HBoxLayout ( 0, 0, 6, "layout9" );
+	layout9 = new QHBoxLayout ( 0, 0, 6, "layout9" );
 	
 	labelContent = new QLabel ( this, "labelContent" );
 	lineFiles = new QLineEdit ( this, "lineFiles" );
@@ -174,7 +174,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	layout12->addLayout ( layout11 );
 	SelReadableLayout->addLayout ( layout12 );
 	
-	layoutExternalContentViewer = new Q3HBoxLayout ( 0, 0, 7, "layoutExternalContentViewer" );
+	layoutExternalContentViewer = new QHBoxLayout ( 0, 0, 7, "layoutExternalContentViewer" );
 	cbUseExternalContentViewer = new QCheckBox ( this, "cbUseExternalContentViewer" );
 // 	labelExternalContentViewer = new QLabel ( this, "labelExternalContentViewer" );
 	lineeditPathExternalContentViewer = new QLineEdit ( this, "lineeditPathExternalContentViewer" );
@@ -189,7 +189,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	cbFileInfo = new QCheckBox ( this, "cbFileInfo" );
 	SelReadableLayout->addWidget ( cbFileInfo );
 	
-	layoutFileInfo = new Q3HBoxLayout ( 0, 0, 6, "layoutFileInfo" );
+	layoutFileInfo = new QHBoxLayout ( 0, 0, 6, "layoutFileInfo" );
 	labFileInfoExtensions = new QLabel ( this, "labFileInfoExtensions" );
 	labFileInfoExtensionsStatusIcon = new QLabel ( this, "labFileInfoExtensionsStatusIcon" );
 	labFileInfoExtensionsStatusIcon->setPixmap(*get_t_info_icon());
@@ -200,7 +200,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	layoutFileInfo->addItem ( fileInfospacer );
 	SelReadableLayout->addLayout ( layoutFileInfo );
 	
-	layoutThumbGeneral = new Q3HBoxLayout ( 0, 0, 6, "layoutThumbGeneral" );
+	layoutThumbGeneral = new QHBoxLayout ( 0, 0, 6, "layoutThumbGeneral" );
 	cbThumb = new QCheckBox ( this, "cbThumb" );
 	layoutThumbGeneral->addWidget ( cbThumb );
 #ifdef USE_LIBEXIF
@@ -209,7 +209,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 #endif
 	SelReadableLayout->addLayout(layoutThumbGeneral);
 	
-	layoutThumbExts = new Q3HBoxLayout ( 0, 0, 6, "layoutThumbExts" );
+	layoutThumbExts = new QHBoxLayout ( 0, 0, 6, "layoutThumbExts" );
 	labThumbExts = new QLabel ( this, "labThumbExts" );
 	thumbLineExts = new QLineEdit ( this, "thumbLineExts" );
 	thumbLineExts->setMinimumWidth ( 150 );
@@ -229,7 +229,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	layoutThumbExts->addWidget(thumbHeightSpinBox);
 	SelReadableLayout->addLayout ( layoutThumbExts );
 	
-	layoutExcludeMain = new Q3HBoxLayout ( 0, 0, 6, "layoutExcludeMain" );
+	layoutExcludeMain = new QHBoxLayout ( 0, 0, 6, "layoutExcludeMain" );
 	layoutExcludeLeft = new Q3VBoxLayout ( 0, 0, 6, "layoutExcludeLeft" );
 	cbDoExcludeFiles = new QCheckBox ( this, "cbDoExcludeFiles" );
 	cbUseWildcardInsteadRegexForExclude = new QCheckBox ( this, "cbUseWildcardInsteadRegexForExclude" );
@@ -244,7 +244,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	layoutExcludeLeft->addWidget ( cbDoExcludeFiles );
 	layoutExcludeLeft->addWidget ( cbUseWildcardInsteadRegexForExclude );
 	
-	layoutExcludeRegexInfo = new Q3HBoxLayout ( 0, 0, 6, "layoutExcludeRegexInfo" );
+	layoutExcludeRegexInfo = new QHBoxLayout ( 0, 0, 6, "layoutExcludeRegexInfo" );
 	layoutExcludeRegexInfo->addWidget ( labExcludeRexexInfo );
 	layoutExcludeRegexInfo->addWidget ( labExcludeRexexInfoButton );
 	
@@ -257,7 +257,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	
 	SelReadableLayout->addLayout ( layoutExcludeMain );
 	
-	layoutButtons = new Q3HBoxLayout ( 0, 0, 6, "layoutButtons" );
+	layoutButtons = new QHBoxLayout ( 0, 0, 6, "layoutButtons" );
 	QSpacerItem* spacer_2 = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	layoutButtons->addItem ( spacer_2 );
 	

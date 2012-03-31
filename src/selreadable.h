@@ -16,14 +16,14 @@
 #include <Q3VBoxLayout>
 #include <QFrame>
 #include <QGridLayout>
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <QLabel>
 #include <QGroupBox>
 #include <QModelIndex>
 #include <QStandardItemModel>
 
 class Q3VBoxLayout;
-class Q3HBoxLayout;
+class QHBoxLayout;
 class QGridLayout;
 class QCheckBox;
 class QFrame;
@@ -121,23 +121,23 @@ class SelReadable : public QDialog {
 	
 	protected:
 		Q3VBoxLayout* SelReadableLayout;
-		Q3HBoxLayout* layoutInfo;
-		Q3HBoxLayout* layout12;
+		QHBoxLayout* layoutInfo;
+		QHBoxLayout* layout12;
 		Q3VBoxLayout* layout11;
-		Q3HBoxLayout* layout9;
-		Q3HBoxLayout* layoutArchiveScan;
-		Q3HBoxLayout* layoutButtons;
-		Q3HBoxLayout* layout1;
-		Q3HBoxLayout* layout62;
-		Q3HBoxLayout* layoutShowArchiveFileOptions;
-		Q3HBoxLayout* layoutShowProgressedArchiveFileInStatus;
-		Q3HBoxLayout* layoutThumbGeneral;
-		Q3HBoxLayout* layoutThumbExts;
-		Q3HBoxLayout* layoutExternalContentViewer;
-		Q3HBoxLayout* layoutFileInfo;
-		Q3HBoxLayout* layoutExcludeMain;
+		QHBoxLayout* layout9;
+		QHBoxLayout* layoutArchiveScan;
+		QHBoxLayout* layoutButtons;
+		QHBoxLayout* layout1;
+		QHBoxLayout* layout62;
+		QHBoxLayout* layoutShowArchiveFileOptions;
+		QHBoxLayout* layoutShowProgressedArchiveFileInStatus;
+		QHBoxLayout* layoutThumbGeneral;
+		QHBoxLayout* layoutThumbExts;
+		QHBoxLayout* layoutExternalContentViewer;
+		QHBoxLayout* layoutFileInfo;
+		QHBoxLayout* layoutExcludeMain;
 		Q3VBoxLayout* layoutExcludeLeft;
-		Q3HBoxLayout* layoutExcludeRegexInfo;
+		QHBoxLayout* layoutExcludeRegexInfo;
 		QGridLayout* layoutShowArchiveFileOptionsGroup;
 
 		QString SupportedExtensions;

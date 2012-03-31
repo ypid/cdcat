@@ -17,7 +17,7 @@
 #include <QList>
 //Added by qt3to4:
 #include <QGridLayout>
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <Q3VBoxLayout>
 #include <QLabel>
 #include <QMouseEvent>
@@ -26,7 +26,7 @@
 #include <QPushButton>
 
 class Q3VBoxLayout;
-class Q3HBoxLayout;
+class QHBoxLayout;
 class QGridLayout;
 class QComboBox;
 class QLabel;
@@ -77,16 +77,16 @@ public:
 protected:
     QGridLayout* addDialogLayout;
     Q3VBoxLayout* layout10;
-    Q3HBoxLayout* layout11;
+    QHBoxLayout* layout11;
     Q3VBoxLayout* layout12;
-    Q3HBoxLayout* layout9;
+    QHBoxLayout* layout9;
     Q3VBoxLayout* layout8;
     Q3VBoxLayout* layout7;
-    Q3HBoxLayout* layout2;
-    Q3HBoxLayout* layout3;
-    Q3HBoxLayout* layout4;
+    QHBoxLayout* layout2;
+    QHBoxLayout* layout3;
+    QHBoxLayout* layout4;
     QGridLayout* layout5;
-    Q3HBoxLayout* layout1;
+    QHBoxLayout* layout1;
 
 protected slots:
     virtual void languageChange();
@@ -180,8 +180,8 @@ public:
 
     Q3VBoxLayout *vbox;
 
-    Q3HBoxLayout *hbox1;
-    Q3HBoxLayout *hbox2;
+    QHBoxLayout *hbox1;
+    QHBoxLayout *hbox2;
 
 public slots:
 

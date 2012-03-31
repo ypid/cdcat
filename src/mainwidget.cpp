@@ -26,7 +26,7 @@
 #include <qfontmetrics.h>
 #include <qsplitter.h>
 //Added by qt3to4:
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <QCloseEvent>
 #include <QList>
 #include <QKeyEvent>
@@ -56,8 +56,10 @@
  *  name 'name' and widget flags set to 'f'.
  */
 CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget* parent, const char* name, Qt::WFlags fl )
-	: QWidget ( parent, name, fl ) {
+	: QMainWindow ( parent, name, fl ) {
 	
+	main = new QWidget(this);
+	setCentralWidget(main);
 	app = appp;
 	
 	int fontHeight = ( new QFontMetrics ( app->font() ) )->height();
@@ -72,63 +74,11 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	
 	splitMain = new QSplitter ( this );
 	
-	Toolbar = new QFrame ( this, "Toolbar" );
-	Toolbar->setFrameShape ( QFrame::StyledPanel );
-	Toolbar->setFrameShadow ( QFrame::Raised );
-	Toolbar->setMaximumHeight ( 36 );
-	Toolbar->setMinimumHeight ( 36 );
-	
-	ButtonNew = new QToolButton ( Toolbar, "ButtonNew" );
-	ButtonNew->setPixmap ( *get_t_new_icon() );
-	ButtonNew->setMaximumSize ( 30, 30 );
-	
-	ButtonOpen = new QToolButton ( Toolbar, "ButtonOpen" );
-	ButtonOpen->setMaximumSize ( 30, 30 );
-	ButtonOpen->setPixmap ( *get_t_open_icon() );
-	
-	ButtonSave = new QToolButton ( Toolbar, "ButtonSave" );
-	ButtonSave->setMaximumSize ( 30, 30 );
-	ButtonSave->setPixmap ( *get_t_save_icon() );
-	
-	ButtonSaveAs = new QToolButton ( Toolbar, "ButtonSaveAs" );
-	ButtonSaveAs->setMaximumSize ( 30, 30 );
-	ButtonSaveAs->setPixmap ( * get_t_saveas_icon() );
-	
-	ButtonClose = new QToolButton ( Toolbar, "ButtonClose" );
-	ButtonClose->setMaximumSize ( 30, 30 );
-	ButtonClose->setPixmap ( *get_t_close_icon() );
-	
-	ButtonAdd = new QToolButton ( Toolbar, "ButtonAdd" );
-	ButtonAdd->setMaximumSize ( 30, 30 );
-	ButtonAdd->setPixmap ( *get_t_add_icon() );
-	
-	ButtonRescan = new QToolButton ( Toolbar, "ButtonRescan" );
-	ButtonRescan->setMaximumSize ( 30, 30 );
-	ButtonRescan->setPixmap ( *get_t_rescan_icon() );
-	
-	ButtonDelete = new QToolButton ( Toolbar, "ButtonDelete" );
-	ButtonDelete->setMaximumSize ( 30, 30 );
-	ButtonDelete->setPixmap ( *get_t_delete_icon() );
-	
-	ButtonConfig = new QToolButton ( Toolbar, "ButtonConfig" );
-	ButtonConfig->setMaximumSize ( 30, 30 );
-	ButtonConfig->setPixmap ( *get_t_config_icon() );
-	
-	ButtonHelp = new QToolButton ( Toolbar, "ButtonHelp" );
-	ButtonHelp->setMaximumSize ( 30, 30 );
-	ButtonHelp->setPixmap ( *get_t_help_icon() );
-	
-	ButtonFind = new QToolButton ( Toolbar, "ButtonFind" );
-	ButtonFind->setMaximumSize ( 30, 30 );
-	ButtonFind->setPixmap ( *get_t_find_icon() );
-	
-	ButtonAbout = new QToolButton ( Toolbar, "ButtonAbout" );
-	ButtonAbout->setMaximumSize ( 30, 30 );
-	ButtonAbout->setPixmap ( *get_t_about_icon() );
-	
-	ButtonAboutQt = new QToolButton ( Toolbar, "ButtonAboutQt" );
-	ButtonAboutQt->setMaximumSize ( 30, 30 );
-	ButtonAboutQt->setPixmap ( * ( get_t_qtlogo_icon() ) );
+	Toolbar = addToolBar ( tr("Main toolbar") );
+	//Toolbar->setFrameShape ( QFrame::StyledPanel );
+	//Toolbar->setFrameShadow ( QFrame::Raised );
+	//Toolbar->setMaximumHeight ( 36 );
+	//Toolbar->setMinimumHeight ( 36 );
 	
 	statusl = new QLabel ( tr ( "No item selected" ), this, "statusl" );
 	statusl->setMaximumHeight ( fontHeight + 2 );
@@ -141,7 +91,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	listView->header()->setLabel ( 1, tr ( "Size" ) );
 	listView->clear();
 	
-	commentWidget = new CommentWidget ( cconfig, app , 0, "CommentWiget" );
+	commentWidget = new CommentWidget ( cconfig, app , this, "CommentWiget" );
 	
 	QScrollArea *scrollArea = new QScrollArea ( splitMain );
 	scrollArea->setBackgroundRole ( QPalette::Dark );
@@ -150,18 +100,19 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	
 	commentWidget->setScrollArea ( scrollArea );
 	
-	guis = new GuiSlave ( this );
+	guis = new GuiSlave ( this);
 	
 	/*Menubar*/
-	mainMenu = new QMenuBar ( this, "menu" );
+	mainMenu = menuBar();
+	
 	mainMenu->setMaximumHeight ( fontHeight * 2 );
 	mainMenu->setMinimumHeight ( fontHeight * 2 );
-	QMenu *fileMenu = new QMenu();
-	QMenu *editMenu = new QMenu();
-	QMenu *findMenu = new QMenu();
-	QMenu *inoutMenu = new QMenu();
-	QMenu *othersMenu = new QMenu();
-	QMenu *helpMenu = new QMenu();
+	QMenu *fileMenu = new QMenu(this);
+	QMenu *editMenu = new QMenu(this);
+	QMenu *findMenu = new QMenu(this);
+	QMenu *inoutMenu = new QMenu(this);
+	QMenu *othersMenu = new QMenu(this);
+	QMenu *helpMenu = new QMenu(this);
 	
 	QAction *new_action = new QAction (QIcon(*get_t_new_icon()), tr ( "&New..." ), this);
 	new_action->setShortcuts(QKeySequence::New);
@@ -221,12 +172,14 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	quit_action->setStatusTip(tr("Close program"));
 	connect(quit_action, SIGNAL(triggered()), this, SLOT(close()));
 	fileMenu->addAction(quit_action);
+	Toolbar->addAction(quit_action);
 	
 	QAction *add_action = new QAction (QIcon(*get_t_add_icon()), tr ( "Add media..." ), this);
 	add_action->setShortcut(QKeySequence (Qt::Key_A ));
 	add_action->setStatusTip(tr("Add new media to catalog"));
 	connect(add_action, SIGNAL(triggered()), guis, SLOT(addEvent()));
 	editMenu->addAction(add_action);
+	Toolbar->addAction(add_action);
 	
 	QAction *addlink_action = new QAction (QIcon(*get_p_icon()), tr ( "Add a link to a CdCat Catalog..." ), this);
 	addlink_action->setShortcut(QKeySequence (Qt::CTRL + Qt::Key_L));
@@ -379,46 +332,26 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	
 	languageChange();
 	
-	lvMain   = new Q3VBoxLayout ( this );
-	lToolbar = new Q3HBoxLayout ( Toolbar );
-	
-	lvMain->insertWidget ( 0, mainMenu, 1 );
-	lvMain->insertWidget ( 1, Toolbar, 1 );
+	lvMain   = new Q3VBoxLayout ( main );
 	lvMain->insertSpacing ( 2, 4 );
 	lvMain->insertWidget ( 3, splitMain, 8 );
 	lvMain->insertSpacing ( 4, 4 );
 	lvMain->insertWidget ( 5, statusl, 1 );
 	lvMain->insertSpacing ( 6, 4 );
 	
-	lToolbar->insertSpacing ( 0, 4 );
-	lToolbar->insertWidget ( 1, ButtonNew, 1 );
-	lToolbar->insertSpacing ( 2, 2 );
-	lToolbar->insertWidget ( 3, ButtonOpen, 1 );
-	lToolbar->insertSpacing ( 4, 2 );
-	lToolbar->insertWidget ( 5, ButtonSave, 1 );
-	lToolbar->insertSpacing ( 6, 2 );
-	lToolbar->insertWidget ( 7, ButtonSaveAs, 1 );
-	lToolbar->insertSpacing ( 8, 2 );
-	lToolbar->insertWidget ( 9, ButtonClose, 1 );
-	lToolbar->insertSpacing ( 10, 16 );
-	lToolbar->insertWidget ( 11, ButtonAdd, 1 );
-	lToolbar->insertSpacing ( 12, 2 );
-	lToolbar->insertWidget ( 13, ButtonRescan, 1 );
-	lToolbar->insertSpacing ( 14, 2 );
-	lToolbar->insertWidget ( 15, ButtonDelete, 1 );
-	lToolbar->insertSpacing ( 16, 15 );
-	lToolbar->insertWidget ( 17, ButtonFind, 1 );
-	lToolbar->insertSpacing ( 18, 15 );
-	lToolbar->insertWidget ( 19, ButtonConfig, 1 );
-	lToolbar->insertSpacing ( 20, 8 );
-	lToolbar->insertStretch ( 21 );
-	lToolbar->insertSpacing ( 22, 8 );
-	lToolbar->insertWidget ( 23, ButtonHelp, 1 );
-	lToolbar->insertSpacing ( 24, 2 );
-	lToolbar->insertWidget ( 25, ButtonAbout, 1 );
-	lToolbar->insertSpacing ( 26, 2 );
-	lToolbar->insertWidget ( 27, ButtonAboutQt, 1 );
-	lToolbar->insertSpacing ( 28, 4 );
+	Toolbar->addAction(new_action);
+	Toolbar->addAction(open_action);
+	Toolbar->addAction(save_action);
+	Toolbar->addAction(saveas_action);
+	Toolbar->addAction(close_action);
+	Toolbar->addAction(add_action);
+	Toolbar->addAction(rescan_action);
+	Toolbar->addAction(delete_action);
+	Toolbar->addAction(find_action);
+	Toolbar->addAction(config_action);
+	Toolbar->addAction(help_action);
+	Toolbar->addAction(about_action);
+	Toolbar->addAction(aboutqt_action);
 	
 	resize ( ( cconfig->windowSize ).expandedTo ( minimumSizeHint() ) );
 	move ( cconfig->windowPos );
@@ -444,19 +377,8 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	connect ( listView, SIGNAL ( clicked ( Q3ListViewItem * ) ), guis, SLOT ( standOn ( Q3ListViewItem * ) ) );
 	connect ( listView, SIGNAL ( doubleClicked ( Q3ListViewItem * ) ), guis, SLOT ( doubleClickOn ( Q3ListViewItem * ) ) );
 	
-	connect ( ButtonNew   , SIGNAL ( clicked() ), guis, SLOT ( newEvent () ) );
-	connect ( ButtonOpen  , SIGNAL ( clicked() ), guis, SLOT ( openEvent () ) );
-	connect ( ButtonSave  , SIGNAL ( clicked() ), guis, SLOT ( saveEvent () ) );
-	connect ( ButtonSaveAs, SIGNAL ( clicked() ), guis, SLOT ( saveasEvent() ) );
-	connect ( ButtonClose , SIGNAL ( clicked() ), guis, SLOT ( closeEvent () ) );
-	connect ( ButtonAdd   , SIGNAL ( clicked() ), guis, SLOT ( addEvent () ) );
-	connect ( ButtonDelete, SIGNAL ( clicked() ), guis, SLOT ( deleteEvent() ) );
-	connect ( ButtonRescan, SIGNAL ( clicked() ), guis, SLOT ( rescanEvent() ) );
-	connect ( ButtonFind  , SIGNAL ( clicked() ), guis, SLOT ( findEvent () ) );
-	connect ( ButtonConfig, SIGNAL ( clicked() ), guis, SLOT ( configEvent() ) );
-	connect ( ButtonHelp  , SIGNAL ( clicked() ), guis, SLOT ( helpEvent () ) );
-	connect ( ButtonAbout , SIGNAL ( clicked() ), guis, SLOT ( aboutEvent () ) );
-	connect ( ButtonAboutQt , SIGNAL ( clicked() ), guis, SLOT ( aboutQtEvent () ) );
+// 	connect ( ButtonFind  , SIGNAL ( clicked() ), guis, SLOT ( findEvent () ) );
+// 	connect ( ButtonConfig, SIGNAL ( clicked() ), guis, SLOT ( configEvent() ) );
 	
 	connect ( commentWidget , SIGNAL ( touchdb() ), guis, SLOT ( cHcaption() ) );
 	
@@ -489,32 +411,6 @@ CdCatMainWidget::~CdCatMainWidget() {
  */
 void CdCatMainWidget::languageChange() {
 	setCaption ( tr ( "Hyper's CD Catalogizer" ) );
-	ButtonOpen->setText ( QString::null );
-	QToolTip::add ( ButtonOpen, tr ( "Open a catalog from a file." ) );
-	ButtonSave->setText ( QString::null );
-	QToolTip::add ( ButtonSave, tr ( "Save all modifications to the disc." ) );
-	ButtonSaveAs->setText ( QString::null );
-	QToolTip::add ( ButtonSaveAs, tr ( "Save the catalog to a new file." ) );
-	ButtonClose->setText ( QString::null );
-	QToolTip::add ( ButtonClose, tr ( "Close the actual catalog." ) );
-	ButtonAdd->setText ( QString::null );
-	QToolTip::add ( ButtonAdd, tr ( "Add a new media to the catalog." ) );
-	ButtonRescan->setText ( QString::null );
-	QToolTip::add ( ButtonRescan, tr ( "Rescan the selected media." ) );
-	ButtonDelete->setText ( QString::null );
-	QToolTip::add ( ButtonDelete, tr ( "Delete selected node." ) );
-	ButtonConfig->setText ( QString::null );
-	QToolTip::add ( ButtonConfig, tr ( "Configuration of the program." ) );
-	ButtonHelp->setText ( QString::null );
-	QToolTip::add ( ButtonHelp, tr ( "Help" ) );
-	ButtonNew->setText ( QString::null );
-	QToolTip::add ( ButtonNew, tr ( "Create a new, empty catalog and close the previous." ) );
-	ButtonFind->setText ( QString::null );
-	QToolTip::add ( ButtonFind, tr ( "Search an element in the database(catalog).You can search filenames, directory names, name parts or mp3 tags etc..." ) );
-	QToolTip::add ( ButtonAbout, tr ( "About" ) );
-	ButtonAboutQt->setText ( QString::null );
-	QToolTip::add ( ButtonAboutQt, tr ( "About Qt" ) );
-
 }
 
 void CdCatMainWidget::closeEvent ( QCloseEvent *e ) {

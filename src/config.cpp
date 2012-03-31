@@ -29,7 +29,7 @@
 #include <qcombobox.h>
 #include <qgroupbox.h>
 //Added by qt3to4:
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <QGridLayout>
 
 
@@ -1186,7 +1186,7 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	setSizeGripEnabled ( TRUE );
 	ConfigDialogBaseLayout = new QGridLayout ( this, 1, 1, 20, 6, "ConfigDialogBaseLayout" );
 	
-	layout1 = new Q3HBoxLayout ( 0, 0, 6, "layout1" );
+	layout1 = new QHBoxLayout ( 0, 0, 6, "layout1" );
 	cbAutoload = new QCheckBox ( this, "cbAutoload" );
 	filename = new QLineEdit ( this, "filename" );
 	searchButton = new QPushButton ( this, "searchButton" );
@@ -1208,7 +1208,7 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	cbOwnFont = new QCheckBox ( "Use own font size", this, "ownfontcb" );
 	
 	
-	layout4 = new Q3HBoxLayout ( 0, 0, 5, "layout4" );
+	layout4 = new QHBoxLayout ( 0, 0, 5, "layout4" );
 	spinFontSize = new QSpinBox ( this, "spinFontSize" );
 	spinFontSize->setMaximumWidth ( 80 );
 	QSpacerItem* fontspacer = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
@@ -1235,7 +1235,7 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	line8->setFrameShape ( QFrame::HLine );
 	ConfigDialogBaseLayout->addWidget ( line8, 7, 0 );
 	
-	layoutSave = new Q3HBoxLayout ( 0, 0, 2, "layoutSave" );
+	layoutSave = new QHBoxLayout ( 0, 0, 2, "layoutSave" );
 	cbNice = new QCheckBox ( this, "cbNice" );
 	cbSaveCatalogAlwaysInUtf8 = new QCheckBox ( this, "cbSaveCatalogAlwaysInUtf8" );
 	layoutSave->addWidget ( cbNice );
@@ -1248,7 +1248,7 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	line3->setFrameShape ( QFrame::HLine );
 	ConfigDialogBaseLayout->addWidget ( line3, 9, 0 );
 	
-	layout5 = new Q3HBoxLayout ( 0, 0, 6, "layout5" );
+	layout5 = new QHBoxLayout ( 0, 0, 6, "layout5" );
 	cdrompath_lineedit = new QLineEdit ( this, "cdrompath_lineedit" );
 	layout5->addWidget ( cdrompath_lineedit );
 	cdrom_lab = new QLabel ( this, "cdrom_lab" );
@@ -1265,7 +1265,7 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 #endif
 	
 #ifdef _WIN32
-	layout9   = new Q3HBoxLayout ( 0, 0, 5, "layout9" );
+	layout9   = new QHBoxLayout ( 0, 0, 5, "layout9" );
 	cbLang    = new QComboBox ( this, "languageselector" );
 	langLabel = new QLabel ( this, "langlabel" );
 	layout9->insertSpacing ( 0, 5 );
@@ -1300,7 +1300,7 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	
 #ifdef Q_WS_MAC
  	//cerr << "config: mac! " << endl;
-	layout9   = new Q3HBoxLayout ( 0, 0, 5, "layout9" );
+	layout9   = new QHBoxLayout ( 0, 0, 5, "layout9" );
 	cbLang    = new QComboBox ( this, "languageselector" );
 	langLabel = new QLabel ( this, "langlabel" );
 	layout9->insertSpacing ( 0, 5 );
@@ -1339,7 +1339,7 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	line5->setFrameShape ( QFrame::HLine );
 	ConfigDialogBaseLayout->addWidget ( line5, 14, 0 );
 	
-	layout6 = new Q3HBoxLayout ( 0, 0, 6, "layout6" );
+	layout6 = new QHBoxLayout ( 0, 0, 6, "layout6" );
 	spinHistorySize = new QSpinBox ( this, "spinHistorySize" );
 	spinHistorySize->setMaximumWidth ( 80 );
 	layout6->addWidget ( spinHistorySize );
@@ -1368,11 +1368,11 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	line7->setFrameShape ( QFrame::HLine );
 	ConfigDialogBaseLayout->addWidget ( line7, 18, 0 );
 	
-	layout7 = new Q3HBoxLayout ( 0, 0, 6, "layout7" );
+	layout7 = new QHBoxLayout ( 0, 0, 6, "layout7" );
 	QSpacerItem* spacer = new QSpacerItem ( 110, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	layout7->addItem ( spacer );
 	
-	layoutStatus = new Q3HBoxLayout ( 0, 0, 2, "layoutStatus" );
+	layoutStatus = new QHBoxLayout ( 0, 0, 2, "layoutStatus" );
 	cbEnableDebugInfo = new QCheckBox ( this, "cbEnableDebugInfo" );
 	cbShowProgressedFileInStatus = new QCheckBox ( this, "cbShowProgressedFileInStatus" );
 	layoutStatus->addWidget ( cbEnableDebugInfo );

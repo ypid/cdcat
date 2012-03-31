@@ -15,12 +15,12 @@
 //Added by qt3to4:
 #include <Q3VBoxLayout>
 #include <QGridLayout>
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <QTextBrowser>
 #include <QLabel>
 
 class Q3VBoxLayout;
-class Q3HBoxLayout;
+class QHBoxLayout;
 class QGridLayout;
 class QPushButton;
 class QTextBrowser;
@@ -47,7 +47,7 @@ public slots:
 
 protected:
     QGridLayout* ShowContentLayout;
-    Q3HBoxLayout* layout1;
+    QHBoxLayout* layout1;
 
 protected slots:
     virtual void languageChange();

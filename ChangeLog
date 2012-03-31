@@ -3,6 +3,11 @@
 	- q3ptrlist replaced by qlist
 	- q3multilinedit replaced by qtextedit
 	- q3valuelist replaced by qlist
+	- q3hboxlayout replaced by qhboxlayout
+	- q3vboxlayout replaced by qvboxlayout
+	- mainwidget now uses qmainwidget as base class
+	- custom toolbar replaced by qmainwidget toolbar (this allows to undock it from mainwidget and let the user move to other place
+	- qtoolbuttons replaced by qaction in qtoolbar
 
 28. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
 	- touch function of DBCatalog moved to proper place

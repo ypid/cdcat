@@ -22,7 +22,7 @@
 #include <qmessagebox.h>
 //Added by qt3to4:
 #include <QGridLayout>
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 
 #include <stdio.h>
 #include <string.h>
@@ -78,7 +78,7 @@ newdbdialog::newdbdialog ( QWidget* parent, const char* name, bool modal, Qt::WF
 
     NewDBDialogBaseLayout->addWidget ( textLabelCategory, 2, 0 );
 
-    layout12 = new Q3HBoxLayout ( 0, 0, 6, "layout12" );
+    layout12 = new QHBoxLayout ( 0, 0, 6, "layout12" );
     QSpacerItem* spacer_3 = new QSpacerItem ( 140, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
     layout12->addItem ( spacer_3 );
 

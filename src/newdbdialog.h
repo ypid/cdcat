@@ -16,11 +16,11 @@
 //Added by qt3to4:
 #include <Q3VBoxLayout>
 #include <QGridLayout>
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <QLabel>
 
 class Q3VBoxLayout;
-class Q3HBoxLayout;
+class QHBoxLayout;
 class QGridLayout;
 class QLabel;
 class QLineEdit;
@@ -56,7 +56,7 @@ public:
 
 protected:
     QGridLayout* NewDBDialogBaseLayout;
-    Q3HBoxLayout* layout12;
+    QHBoxLayout* layout12;
 
 protected slots:
     virtual void languageChange();

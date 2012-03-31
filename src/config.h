@@ -16,7 +16,7 @@
 #include <qdialog.h>
 #include <qstringlist.h>
 //Added by qt3to4:
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <QGridLayout>
 #include <QFrame>
 #include <QLabel>
@@ -24,7 +24,7 @@
 #include <QDateTime>
 
 class Q3VBoxLayout;
-class Q3HBoxLayout;
+class QHBoxLayout;
 class QGridLayout;
 class QCheckBox;
 class QLineEdit;
@@ -212,29 +212,29 @@ class ConfigDialog : public QDialog {
 	
 	protected:
 		QGridLayout* ConfigDialogBaseLayout;
-		Q3HBoxLayout* layout1;
-		Q3HBoxLayout* layout2;
-		Q3HBoxLayout* layout3;
-		Q3HBoxLayout* layout4;
-		Q3HBoxLayout* layout5;
-		Q3HBoxLayout* layout6;
-		Q3HBoxLayout* layout7;
-		Q3HBoxLayout* layout8;
-		Q3HBoxLayout* layoutSave;
-		Q3HBoxLayout* layoutStatus;
+		QHBoxLayout* layout1;
+		QHBoxLayout* layout2;
+		QHBoxLayout* layout3;
+		QHBoxLayout* layout4;
+		QHBoxLayout* layout5;
+		QHBoxLayout* layout6;
+		QHBoxLayout* layout7;
+		QHBoxLayout* layout8;
+		QHBoxLayout* layoutSave;
+		QHBoxLayout* layoutStatus;
 		
 #ifndef _WIN32
 		QCheckBox* cbMoEj;
 #endif
 		
 #ifdef _WIN32
-		Q3HBoxLayout* layout9;
+		QHBoxLayout* layout9;
 		QComboBox  * cbLang;
 		QLabel     * langLabel;
 #endif
 		
 #ifdef Q_WS_MAC
-		Q3HBoxLayout* layout9;
+		QHBoxLayout* layout9;
 		QComboBox  * cbLang;
 		QLabel     * langLabel;
 #endif

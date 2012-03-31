@@ -35,7 +35,7 @@
 #include <qfontmetrics.h>
 #include <qfiledialog.h>
 //Added by qt3to4:
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <QPaintEvent>
 #include <QGridLayout>
 #include <QMouseEvent>
@@ -66,7 +66,7 @@ addDialog::addDialog ( GuiSlave *c, QWidget* parent, const char* name, bool moda
 
 	layout10 = new Q3VBoxLayout ( 0, 0, 6, "layout10" );
 
-	layout9 = new Q3HBoxLayout ( 0, 0, 6, "layout9" );
+	layout9 = new QHBoxLayout ( 0, 0, 6, "layout9" );
 
 	layout8 = new Q3VBoxLayout ( 0, 0, 6, "layout8" );
 
@@ -96,7 +96,7 @@ addDialog::addDialog ( GuiSlave *c, QWidget* parent, const char* name, bool moda
 	textLabel1->setBuddy ( leName );
 	layout7->addWidget ( leName );
 
-	layout2 = new Q3HBoxLayout ( 0, 0, 6, "layout2" );
+	layout2 = new QHBoxLayout ( 0, 0, 6, "layout2" );
 
 	textLabel2 = new QLabel ( this, "textLabel2" );
 	layout2->addWidget ( textLabel2 );
@@ -106,7 +106,7 @@ addDialog::addDialog ( GuiSlave *c, QWidget* parent, const char* name, bool moda
 	textLabel2->setBuddy ( sbNumber );
 	layout7->addLayout ( layout2 );
 
-	layout3 = new Q3HBoxLayout ( 0, 0, 6, "layout3" );
+	layout3 = new QHBoxLayout ( 0, 0, 6, "layout3" );
 
 	textLabel4 = new QLabel ( this, "textLabel4" );
 	textLabel4->setBuddy ( textLabel4 );
@@ -116,7 +116,7 @@ addDialog::addDialog ( GuiSlave *c, QWidget* parent, const char* name, bool moda
 	layout3->addWidget ( cbType );
 	layout7->addLayout ( layout3 );
 
-	layout4 = new Q3HBoxLayout ( 0, 0, 6, "layout4" );
+	layout4 = new QHBoxLayout ( 0, 0, 6, "layout4" );
 
 	textLabel5 = new QLabel ( this, "textLabel5" );
 	layout4->addWidget ( textLabel5 );
@@ -126,7 +126,7 @@ addDialog::addDialog ( GuiSlave *c, QWidget* parent, const char* name, bool moda
 	textLabel5->setBuddy ( leOwner );
 	layout7->addLayout ( layout4 );
 
-	layout11 = new Q3HBoxLayout ( 0, 0, 6, "layout11" );
+	layout11 = new QHBoxLayout ( 0, 0, 6, "layout11" );
 
 	textLabelCategory = new QLabel ( this, "textLabelCategory" );
 	layout11->addWidget ( textLabelCategory );
@@ -156,7 +156,7 @@ addDialog::addDialog ( GuiSlave *c, QWidget* parent, const char* name, bool moda
 	layout9->addLayout ( layout7 );
 	layout10->addLayout ( layout9 );
 
-	layout1 = new Q3HBoxLayout ( 0, 0, 6, "layout1" );
+	layout1 = new QHBoxLayout ( 0, 0, 6, "layout1" );
 	QSpacerItem* spacer_2 = new QSpacerItem ( 90, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	layout1->addItem ( spacer_2 );
 
@@ -714,8 +714,8 @@ AddLnk::AddLnk ( GuiSlave *c, QWidget *parent )
 	vbox  = new Q3VBoxLayout ( this, 5, 5 );
 
 
-	hbox1 = new Q3HBoxLayout ( 0, 5, 5 );
-	hbox2 = new Q3HBoxLayout ( 0, 5, 5 );
+	hbox1 = new QHBoxLayout ( 0, 5, 5 );
+	hbox2 = new QHBoxLayout ( 0, 5, 5 );
 
 	label = new QLabel ( this, "textLabel6" );
 

@@ -28,7 +28,7 @@
 #include <QSpinBox>
 #include <qtextcodec.h>
 //Added by qt3to4:
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <QGridLayout>
 #include <Q3VBoxLayout>
 #include <QCloseEvent>
@@ -98,18 +98,18 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		
 		layout40 = new Q3VBoxLayout ( this, 0, 6, "layout40" );
 		layout39 = new QGridLayout ( this, 1, 1, 0, 6, "layout39" );
-		findLineLayout = new Q3HBoxLayout ( this, 0, 6, "findLineLayout" );
+		findLineLayout = new QHBoxLayout ( this, 0, 6, "findLineLayout" );
 		layout36 = new QGridLayout ( this, 0, 1, 0, 6, "layout36" );
 		layout37 = new QGridLayout ( this, 0, 1, 0, 6, "layout37" );
 		layout31 = new Q3VBoxLayout ( this, 0, 6, "layout31" );
-		layout17 = new Q3HBoxLayout ( this, 0, 6, "layout17" );
+		layout17 = new QHBoxLayout ( this, 0, 6, "layout17" );
 		layout15 = new QGridLayout ( this, 1, 1, 0, 6, "layout15" );
-		layout30 = new Q3HBoxLayout ( this, 0, 6, "layout30" );
+		layout30 = new QHBoxLayout ( this, 0, 6, "layout30" );
 		layout16 = new QGridLayout ( this, 1, 1, 0, 6, "layout16" );
 		//     layout17 = new QGridLayout ( this, 1, 1, 0, 6, "layout17" );
-		layout_size_min = new Q3HBoxLayout ( this, 0, 2, "layout_size_min" );
-		layout_size_max = new Q3HBoxLayout ( this, 0, 2, "layout_size_max" );
-		layout_find_in_archive = new Q3HBoxLayout ( this, 0, 2, "layout_find_in_archive" );
+		layout_size_min = new QHBoxLayout ( this, 0, 2, "layout_size_min" );
+		layout_size_max = new QHBoxLayout ( this, 0, 2, "layout_size_max" );
+		layout_find_in_archive = new QHBoxLayout ( this, 0, 2, "layout_find_in_archive" );
 		
 		leText = new QLineEdit ( this, "leText" );
 		
@@ -392,9 +392,9 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		//layout36 = new QGridLayout ( this, 1, 1, 0, 6, "layout36" );
 		//layout37 = new QGridLayout ( this, 1, 1, 0, 6, "layout37" );
 		layout31 = new Q3VBoxLayout ( this, 0, 6, "layout31" );
-		layout17 = new Q3HBoxLayout ( this, 0, 6, "layout17" );
+		layout17 = new QHBoxLayout ( this, 0, 6, "layout17" );
 		layout15 = new QGridLayout ( this, 1, 1, 0, 6, "layout15" );
-		layout30 = new Q3HBoxLayout ( this, 0, 6, "layout30" );
+		layout30 = new QHBoxLayout ( this, 0, 6, "layout30" );
 		layout16 = new QGridLayout ( this, 1, 1, 0, 6, "layout16" );
 		
 		buttonOk = new QPushButton ( this, "buttonOk" );

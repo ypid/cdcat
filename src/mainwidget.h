@@ -17,7 +17,7 @@
 #include <QMenu>
 //Added by qt3to4:
 #include <QGridLayout>
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <Q3VBoxLayout>
 #include <QLabel>
 #include <QFrame>
@@ -25,11 +25,13 @@
 #include <QSystemTrayIcon>
 #include <QList>
 #include <QTimer>
+#include <QToolBar>
+#include <QMainWindow>
 
 
 
 class Q3VBoxLayout;
-class Q3HBoxLayout;
+class QHBoxLayout;
 class QGridLayout;
 class QFrame;
 class Q3ListView;
@@ -45,7 +47,7 @@ class CdCatConfig;
 class QSplitter;
 class QSystemTrayIcon;
 
-class CdCatMainWidget : public QWidget {
+class CdCatMainWidget : public QMainWindow{
 		Q_OBJECT
 	public:
 		CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget *parent = 0, const char *name = 0, Qt::WFlags fl = 0 );
@@ -56,30 +58,17 @@ class CdCatMainWidget : public QWidget {
 
 		DataBase      *db;
 		CommentWidget *commentWidget;
-		QFrame *Toolbar;
+		QToolBar *Toolbar;
 		QMenuBar   *mainMenu;
-		QToolButton *ButtonOpen;
-		QToolButton *ButtonSave;
-		QToolButton *ButtonSaveAs;
-		QToolButton *ButtonClose;
-		QToolButton *ButtonAdd;
-		QToolButton *ButtonRescan;
-		QToolButton *ButtonDelete;
-		QToolButton *ButtonConfig;
-		QToolButton *ButtonHelp;
-		QToolButton *ButtonNew;
-		QToolButton *ButtonFind;
-		QToolButton *ButtonAbout;
-		QToolButton *ButtonAboutQt;
 		HDirectoryView *DirView;
 		HQListView *listView;
 		QLabel *statusl;
 		QApplication *app;
 		QMenu *historyMenu;
 		QSplitter *splitMain;
+		QWidget *main;
 
 	protected:
-		Q3HBoxLayout *lToolbar;
 		Q3VBoxLayout *lvMain;
 		void closeEvent ( QCloseEvent *e );
 		QString lastScanPath; // last scanned path, used for restore if extrainfo changes

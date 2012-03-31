@@ -15,7 +15,7 @@
 //Added by qt3to4:
 #include <Q3VBoxLayout>
 #include <QGridLayout>
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <QLabel>
 #include <QPoint>
 
@@ -23,7 +23,7 @@
 class QCheckBox;
 class QTableWidget;
 class Q3VBoxLayout;
-class Q3HBoxLayout;
+class QHBoxLayout;
 class QGridLayout;
 class QLabel;
 class QLineEdit;
@@ -48,7 +48,7 @@ public:
 
 protected:
     Q3VBoxLayout* borrowDialogLayout;
-    Q3HBoxLayout* layout4;
+    QHBoxLayout* layout4;
 
 protected slots:
     int sok ( void );
@@ -94,9 +94,9 @@ public slots:
 
 protected:
     Q3VBoxLayout* borrowingDialogLayout;
-    Q3HBoxLayout* layout1;
-    Q3HBoxLayout* layout3;
-    Q3HBoxLayout* layout4;
+    QHBoxLayout* layout1;
+    QHBoxLayout* layout3;
+    QHBoxLayout* layout4;
 
 protected slots:
     virtual void languageChange();

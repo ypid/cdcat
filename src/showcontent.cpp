@@ -21,7 +21,7 @@
 #include <qfiledialog.h>
 //Added by qt3to4:
 #include <QGridLayout>
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 
 #include "icons.h"
 #include "dbase.h"
@@ -45,7 +45,7 @@ ShowContent::ShowContent ( Node *node,bool isCategory, QWidget* parent, const ch
 
     ShowContentLayout = new QGridLayout ( this, 1, 1, 11, 6, "ShowContentLayout" );
 
-    layout1 = new Q3HBoxLayout ( 0, 0, 6, "layout1" );
+    layout1 = new QHBoxLayout ( 0, 0, 6, "layout1" );
 
     closeButton = new QPushButton ( this, "closeButton" );
     layout1->addWidget ( closeButton );
