@@ -10,6 +10,7 @@
 	- qtoolbuttons replaced by qaction in qtoolbar
 	- q3listbox replaced by qlistwidget
 	- q3buttongroup replaced by qgroupbox
+	- q3groupbox replaced by qgroupbox
 
 28. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
 	- touch function of DBCatalog moved to proper place

@@ -12,7 +12,7 @@
 #include <qvariant.h>
 #include <qcombobox.h>
 #include <QFrame>
-#include <q3groupbox.h>
+#include <QGroupBox>
 #include <qlabel.h>
 #include <qpushbutton.h>
 #include <qspinbox.h>
@@ -105,11 +105,9 @@ ColorSettings::ColorSettings ( CdCatConfig *cfgp, QWidget* parent, const char* n
 
     layout14 = new QHBoxLayout ( 0, 0, 6, "layout14" );
 
-    groupBox1 = new Q3GroupBox ( this, "groupBox1" );
-    groupBox1->setColumnLayout ( 0, Qt::Vertical );
-    groupBox1->layout()->setSpacing ( 6 );
-    groupBox1->layout()->setMargin ( 11 );
-    groupBox1Layout = new QHBoxLayout ( groupBox1->layout() );
+    groupBox1 = new QGroupBox ( this, "groupBox1" );
+    groupBox1Layout = new QHBoxLayout ( this);
+    groupBox1->setLayout(groupBox1Layout);
     groupBox1Layout->setAlignment ( Qt::AlignTop );
 
     layout4 = new QVBoxLayout ( 0, 0, 6, "layout4" );

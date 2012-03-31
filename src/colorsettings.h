@@ -29,7 +29,7 @@ class QColor;
 class QHBoxLayout;
 class QGridLayout;
 class QComboBox;
-class Q3GroupBox;
+class QGroupBox;
 class QLabel;
 class QPushButton;
 class QSpinBox;
@@ -76,7 +76,7 @@ public:
 
     ColorSchemePreview* preview;
     QComboBox* itemselector;
-    Q3GroupBox* groupBox1;
+    QGroupBox* groupBox1;
     QLabel* textLabel1;
     QSpinBox* rspin;
     QLabel* textLabel1_2;
