@@ -13,7 +13,7 @@
 #include <qvariant.h>
 #include <qdialog.h>
 //Added by qt3to4:
-#include <Q3VBoxLayout>
+#include <QVBoxLayout>
 #include <QGridLayout>
 #include <QHBoxLayout>
 #include <QLabel>
@@ -22,7 +22,7 @@
 
 class QCheckBox;
 class QTableWidget;
-class Q3VBoxLayout;
+class QVBoxLayout;
 class QHBoxLayout;
 class QGridLayout;
 class QLabel;
@@ -47,7 +47,7 @@ public:
 
 
 protected:
-    Q3VBoxLayout* borrowDialogLayout;
+    QVBoxLayout* borrowDialogLayout;
     QHBoxLayout* layout4;
 
 protected slots:
@@ -93,7 +93,7 @@ public slots:
 
 
 protected:
-    Q3VBoxLayout* borrowingDialogLayout;
+    QVBoxLayout* borrowingDialogLayout;
     QHBoxLayout* layout1;
     QHBoxLayout* layout3;
     QHBoxLayout* layout4;

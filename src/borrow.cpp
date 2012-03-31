@@ -29,7 +29,7 @@
 #include <qpixmap.h>
 //Added by qt3to4:
 #include <QHBoxLayout>
-#include <Q3VBoxLayout>
+#include <QVBoxLayout>
 
 char *buff = NULL;
 
@@ -43,7 +43,7 @@ borrowDialog::borrowDialog ( QString mname, QWidget* parent, const char* name, b
 	setSizeGripEnabled ( TRUE );
 	setIcon ( *get_t_sborrow_icon() );
 
-	borrowDialogLayout = new Q3VBoxLayout ( this, 11, 6, "borrowDialogLayout" );
+	borrowDialogLayout = new QVBoxLayout ( this, 11, 6, "borrowDialogLayout" );
 
 	textLabel = new QLabel ( this, "textLabel" );
 	borrowDialogLayout->addWidget ( textLabel );
@@ -133,7 +133,7 @@ borrowingDialog::borrowingDialog ( DataBase *dbp, QWidget* parent, const char* n
 		setName ( "borrowingDialog" );
 	setSizeGripEnabled ( TRUE );
 	setIcon ( *get_m_borrow_icon() );
-	borrowingDialogLayout = new Q3VBoxLayout ( this, 11, 6, "borrowingDialogLayout" );
+	borrowingDialogLayout = new QVBoxLayout ( this, 11, 6, "borrowingDialogLayout" );
 	
 	layout1 = new QHBoxLayout ( 0, 0, 6, "layout1" );
 	QSpacerItem* spacer = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );

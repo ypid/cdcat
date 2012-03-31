@@ -20,10 +20,10 @@
 #include <QGridLayout>
 #include <QFrame>
 #include <QLabel>
-#include <Q3VBoxLayout>
+#include <QVBoxLayout>
 #include <QDateTime>
 
-class Q3VBoxLayout;
+class QVBoxLayout;
 class QHBoxLayout;
 class QGridLayout;
 class QCheckBox;

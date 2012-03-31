@@ -21,11 +21,11 @@
 #include <QGridLayout>
 #include <QEvent>
 #include <QHBoxLayout>
-#include <Q3VBoxLayout>
+#include <QVBoxLayout>
 #include <QMouseEvent>
 #include <QPaintEvent>
 
-class Q3VBoxLayout;
+class QVBoxLayout;
 class QHBoxLayout;
 class QGridLayout;
 class QPaintEvent;
@@ -110,7 +110,7 @@ public slots:
 
 protected:
     QGridLayout* CommentEditBaseLayout;
-    Q3VBoxLayout* layout5;
+    QVBoxLayout* layout5;
     QHBoxLayout* layout4;
 
 public:

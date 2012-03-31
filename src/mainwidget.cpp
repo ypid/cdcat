@@ -30,7 +30,7 @@
 #include <QCloseEvent>
 #include <QList>
 #include <QKeyEvent>
-#include <Q3VBoxLayout>
+#include <QVBoxLayout>
 #include <QAction>
 #include <QPixmap>
 #include <QLatin1String>
@@ -332,7 +332,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	
 	languageChange();
 	
-	lvMain   = new Q3VBoxLayout ( main );
+	lvMain   = new QVBoxLayout ( main );
 	lvMain->insertSpacing ( 2, 4 );
 	lvMain->insertWidget ( 3, splitMain, 8 );
 	lvMain->insertSpacing ( 4, 4 );

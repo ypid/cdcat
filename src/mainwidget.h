@@ -18,7 +18,7 @@
 //Added by qt3to4:
 #include <QGridLayout>
 #include <QHBoxLayout>
-#include <Q3VBoxLayout>
+#include <QVBoxLayout>
 #include <QLabel>
 #include <QFrame>
 #include <QCloseEvent>
@@ -30,7 +30,7 @@
 
 
 
-class Q3VBoxLayout;
+class QVBoxLayout;
 class QHBoxLayout;
 class QGridLayout;
 class QFrame;
@@ -69,7 +69,7 @@ class CdCatMainWidget : public QMainWindow{
 		QWidget *main;
 
 	protected:
-		Q3VBoxLayout *lvMain;
+		QVBoxLayout *lvMain;
 		void closeEvent ( QCloseEvent *e );
 		QString lastScanPath; // last scanned path, used for restore if extrainfo changes
 

@@ -28,7 +28,7 @@
 #include <QGridLayout>
 #include <QMouseEvent>
 #include <QEvent>
-#include <Q3VBoxLayout>
+#include <QVBoxLayout>
 #include <QLocale>
 #include <QScrollArea>
 
@@ -786,7 +786,7 @@ commentEdit::commentEdit ( QString cc, QWidget *parent, const char *name, bool m
 	setSizeGripEnabled ( TRUE );
 	CommentEditBaseLayout = new QGridLayout ( this, 1, 1, 11, 6, "CommentEditBaseLayout" );
 
-	layout5 = new Q3VBoxLayout ( 0, 0, 6, "layout5" );
+	layout5 = new QVBoxLayout ( 0, 0, 6, "layout5" );
 
 	teComm = new QTextEdit ( this, "teComm" );
 	layout5->addWidget ( teComm );

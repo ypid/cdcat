@@ -17,7 +17,7 @@
 #include <QTableView>
 #include <QTextBrowser>
 #include <QList>
-#include <Q3VBoxLayout>
+#include <QVBoxLayout>
 #include <qapplication.h>
 #include <QCalendarWidget>
 #include <QCheckBox>

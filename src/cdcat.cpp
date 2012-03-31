@@ -79,7 +79,7 @@ int main ( int argi, char **argc ) {
 
     QString langpath;
 
-    for ( uint i = 0; i < translation_paths.count(); ++i ) {
+    for ( int i = 0; i < translation_paths.count(); ++i ) {
         //cerr <<"path: " << qPrintable(translation_paths.at(i)) << endl;
         QFileInfo info ( translation_paths.at ( i ) + "/cdcat_" + locale + ".qm" );
         if ( info.exists() ) {

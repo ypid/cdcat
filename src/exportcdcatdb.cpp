@@ -29,7 +29,7 @@ Copyright : (C) 2003 Christoph Thielecke
 //Added by qt3to4:
 #include <QHBoxLayout>
 #include <QGridLayout>
-#include <Q3VBoxLayout>
+#include <QVBoxLayout>
 #include <iostream>
 
 #include "icons.h"
@@ -61,9 +61,9 @@ exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget* parent, const ch
 
     exportCdcatDBLayout = new QGridLayout ( this, 1, 1, 12, 6, "exportCdcatDBLayout" );
 
-    layout32 = new Q3VBoxLayout ( 0, 0, 6, "layout32" );
+    layout32 = new QVBoxLayout ( 0, 0, 6, "layout32" );
     layout21 = new QHBoxLayout ( 0, 0, 6, "layout21" );
-    layout10_2 = new Q3VBoxLayout ( 0, 0, 6, "layout10_2" );
+    layout10_2 = new QVBoxLayout ( 0, 0, 6, "layout10_2" );
     textLabel2 = new QLabel ( this, "textLabel2" );
     layout10_2->addWidget ( textLabel2 );
 
@@ -73,7 +73,7 @@ exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget* parent, const ch
     layout10_2->addWidget ( listAllMedia );
     layout21->addLayout ( layout10_2 );
 
-    layout19 = new Q3VBoxLayout ( 0, 0, 6, "layout19" );
+    layout19 = new QVBoxLayout ( 0, 0, 6, "layout19" );
     QSpacerItem* spacer = new QSpacerItem ( 20, 180, QSizePolicy::Minimum, QSizePolicy::Expanding );
     layout19->addItem ( spacer );
 
@@ -95,7 +95,7 @@ exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget* parent, const ch
     layout19->addItem ( spacer_2 );
     layout21->addLayout ( layout19 );
 
-    layout10_2_2 = new Q3VBoxLayout ( 0, 0, 6, "layout10_2_2" );
+    layout10_2_2 = new QVBoxLayout ( 0, 0, 6, "layout10_2_2" );
 
     textLabel2_2 = new QLabel ( this, "textLabel2_2" );
     layout10_2_2->addWidget ( textLabel2_2 );

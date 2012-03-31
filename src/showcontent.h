@@ -13,13 +13,13 @@
 #include <qpixmap.h>
 #include <qdialog.h>
 //Added by qt3to4:
-#include <Q3VBoxLayout>
+#include <QVBoxLayout>
 #include <QGridLayout>
 #include <QHBoxLayout>
 #include <QTextBrowser>
 #include <QLabel>
 
-class Q3VBoxLayout;
+class QVBoxLayout;
 class QHBoxLayout;
 class QGridLayout;
 class QPushButton;

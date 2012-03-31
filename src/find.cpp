@@ -30,7 +30,7 @@
 //Added by qt3to4:
 #include <QHBoxLayout>
 #include <QGridLayout>
-#include <Q3VBoxLayout>
+#include <QVBoxLayout>
 #include <QCloseEvent>
 #include <QDateTimeEdit>
 #include <QDateTime>
@@ -96,12 +96,12 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		QSpacerItem* spacer_11 = new QSpacerItem ( 200, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 		QSpacerItem* spacer_12 = new QSpacerItem ( 200, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 		
-		layout40 = new Q3VBoxLayout ( this, 0, 6, "layout40" );
+		layout40 = new QVBoxLayout ( this, 0, 6, "layout40" );
 		layout39 = new QGridLayout ( this, 1, 1, 0, 6, "layout39" );
 		findLineLayout = new QHBoxLayout ( this, 0, 6, "findLineLayout" );
 		layout36 = new QGridLayout ( this, 0, 1, 0, 6, "layout36" );
 		layout37 = new QGridLayout ( this, 0, 1, 0, 6, "layout37" );
-		layout31 = new Q3VBoxLayout ( this, 0, 6, "layout31" );
+		layout31 = new QVBoxLayout ( this, 0, 6, "layout31" );
 		layout17 = new QHBoxLayout ( this, 0, 6, "layout17" );
 		layout15 = new QGridLayout ( this, 1, 1, 0, 6, "layout15" );
 		layout30 = new QHBoxLayout ( this, 0, 6, "layout30" );
@@ -387,11 +387,11 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		QSpacerItem* spacer_11 = new QSpacerItem ( 200, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 		QSpacerItem* spacer_12 = new QSpacerItem ( 200, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 		
-		layout40 = new Q3VBoxLayout ( this, 0, 6, "layout40" );
+		layout40 = new QVBoxLayout ( this, 0, 6, "layout40" );
 		layout39 = new QGridLayout ( this, 0, 1, 0, 6, "layout39" );
 		//layout36 = new QGridLayout ( this, 1, 1, 0, 6, "layout36" );
 		//layout37 = new QGridLayout ( this, 1, 1, 0, 6, "layout37" );
-		layout31 = new Q3VBoxLayout ( this, 0, 6, "layout31" );
+		layout31 = new QVBoxLayout ( this, 0, 6, "layout31" );
 		layout17 = new QHBoxLayout ( this, 0, 6, "layout17" );
 		layout15 = new QGridLayout ( this, 1, 1, 0, 6, "layout15" );
 		layout30 = new QHBoxLayout ( this, 0, 6, "layout30" );

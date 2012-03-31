@@ -13,7 +13,7 @@
 #include <qvariant.h>
 #include <qdialog.h>
 //Added by qt3to4:
-#include <Q3VBoxLayout>
+#include <QVBoxLayout>
 #include <QFrame>
 #include <QGridLayout>
 #include <QHBoxLayout>
@@ -22,7 +22,7 @@
 #include <QModelIndex>
 #include <QStandardItemModel>
 
-class Q3VBoxLayout;
+class QVBoxLayout;
 class QHBoxLayout;
 class QGridLayout;
 class QCheckBox;
@@ -120,10 +120,10 @@ class SelReadable : public QDialog {
 		void excludeDataChanged ( QStandardItem * item );
 	
 	protected:
-		Q3VBoxLayout* SelReadableLayout;
+		QVBoxLayout* SelReadableLayout;
 		QHBoxLayout* layoutInfo;
 		QHBoxLayout* layout12;
-		Q3VBoxLayout* layout11;
+		QVBoxLayout* layout11;
 		QHBoxLayout* layout9;
 		QHBoxLayout* layoutArchiveScan;
 		QHBoxLayout* layoutButtons;
@@ -136,7 +136,7 @@ class SelReadable : public QDialog {
 		QHBoxLayout* layoutExternalContentViewer;
 		QHBoxLayout* layoutFileInfo;
 		QHBoxLayout* layoutExcludeMain;
-		Q3VBoxLayout* layoutExcludeLeft;
+		QVBoxLayout* layoutExcludeLeft;
 		QHBoxLayout* layoutExcludeRegexInfo;
 		QGridLayout* layoutShowArchiveFileOptionsGroup;
 

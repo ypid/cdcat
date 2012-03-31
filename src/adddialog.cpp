@@ -39,7 +39,7 @@
 #include <QPaintEvent>
 #include <QGridLayout>
 #include <QMouseEvent>
-#include <Q3VBoxLayout>
+#include <QVBoxLayout>
 
 #include <QInputDialog>
 
@@ -64,11 +64,11 @@ addDialog::addDialog ( GuiSlave *c, QWidget* parent, const char* name, bool moda
 	setSizeGripEnabled ( TRUE );
 	addDialogLayout = new QGridLayout ( this, 1, 1, 11, 6, "addDialogLayout" );
 
-	layout10 = new Q3VBoxLayout ( 0, 0, 6, "layout10" );
+	layout10 = new QVBoxLayout ( 0, 0, 6, "layout10" );
 
 	layout9 = new QHBoxLayout ( 0, 0, 6, "layout9" );
 
-	layout8 = new Q3VBoxLayout ( 0, 0, 6, "layout8" );
+	layout8 = new QVBoxLayout ( 0, 0, 6, "layout8" );
 
 	textLabel6 = new QLabel ( this, "textLabel6" );
 	layout8->addWidget ( textLabel6 );
@@ -82,7 +82,7 @@ addDialog::addDialog ( GuiSlave *c, QWidget* parent, const char* name, bool moda
 
 	layout9->addLayout ( layout8 );
 
-	layout7 = new Q3VBoxLayout ( 0, 0, 6, "layout7" );
+	layout7 = new QVBoxLayout ( 0, 0, 6, "layout7" );
 
 	textLabel1 = new QLabel ( this, "textLabel1" );
 	layout7->addWidget ( textLabel1 );
@@ -711,7 +711,7 @@ AddLnk::AddLnk ( GuiSlave *c, QWidget *parent )
 
 	setSizeGripEnabled ( TRUE );
 
-	vbox  = new Q3VBoxLayout ( this, 5, 5 );
+	vbox  = new QVBoxLayout ( this, 5, 5 );
 
 
 	hbox1 = new QHBoxLayout ( 0, 5, 5 );

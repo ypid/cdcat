@@ -26,7 +26,7 @@ class QWidget;
 class QComboBox;
 class QLabel;
 class QPushButton;
-class Q3VBoxLayout;
+class QVBoxLayout;
 class QPainter;
 class DataBase;
 class HQListViewItem;
@@ -177,7 +177,7 @@ public:
 	QComboBox *cbType;
 	QPushButton *buttonOK;
 	QPushButton *buttonCancel;
-	Q3VBoxLayout* layout1;
+	QVBoxLayout* layout1;
 	bool changeOk;
 
 public slots:

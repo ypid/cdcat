@@ -16,7 +16,7 @@
 //Added by qt3to4:
 #include <QGridLayout>
 #include <QHBoxLayout>
-#include <Q3VBoxLayout>
+#include <QVBoxLayout>
 #include <QLabel>
 #include <QFrame>
 #include <QCloseEvent>
@@ -24,7 +24,7 @@
 #include <QRegExp>
 #include <QtGui/QDateTimeEdit>
 
-class Q3VBoxLayout;
+class QVBoxLayout;
 class QHBoxLayout;
 class QGridLayout;
 class QCheckBox;
@@ -35,7 +35,7 @@ class QLineEdit;
 class Q3ListView;
 class Q3ListViewItem;
 class QHBoxLayout;
-class Q3VBoxLayout;
+class QVBoxLayout;
 class QSpinBox;
 class QPushButton;
 class DateTimeEdit;
@@ -113,7 +113,7 @@ class findDialog : public QDialog {
 		
 		QFrame *input;
 		QHBoxLayout *h1, *h2, *h3, *h4;
-		Q3VBoxLayout *v1;
+		QVBoxLayout *v1;
 		CdCatMainWidget *mainw;
 		QPushButton* buttonClose;
 		QPushButton* buttonExportResult;
@@ -169,11 +169,11 @@ class findDialog : public QDialog {
 		void exportResult ( bool isPrint );
 		
 		QGridLayout* FindDialogBaseLayout;
-		Q3VBoxLayout* layout40;
+		QVBoxLayout* layout40;
 		QGridLayout* layout39;
 		QGridLayout* layout36;
 		QGridLayout* layout37;
-		Q3VBoxLayout* layout31;
+		QVBoxLayout* layout31;
 		QHBoxLayout* layout17;
 		QHBoxLayout* findLineLayout;
 		QGridLayout* layout15;

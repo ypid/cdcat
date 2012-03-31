@@ -25,7 +25,7 @@
 //Added by qt3to4:
 #include <QHBoxLayout>
 #include <QPaintEvent>
-#include <Q3VBoxLayout>
+#include <QVBoxLayout>
 
 #include "icons.h"
 
@@ -93,7 +93,7 @@ ColorSettings::ColorSettings ( CdCatConfig *cfgp, QWidget* parent, const char* n
     cfg=cfgp;
     setIcon ( *get_t_colorconfig_icon() );
     setSizeGripEnabled ( TRUE );
-    ColorSettingsLayout = new Q3VBoxLayout ( this, 11, 6, "ColorSettingsLayout" );
+    ColorSettingsLayout = new QVBoxLayout ( this, 11, 6, "ColorSettingsLayout" );
 
     preview = new ColorSchemePreview ( this );
     preview->setFrameShape ( QFrame::StyledPanel );
@@ -112,7 +112,7 @@ ColorSettings::ColorSettings ( CdCatConfig *cfgp, QWidget* parent, const char* n
     groupBox1Layout = new QHBoxLayout ( groupBox1->layout() );
     groupBox1Layout->setAlignment ( Qt::AlignTop );
 
-    layout4 = new Q3VBoxLayout ( 0, 0, 6, "layout4" );
+    layout4 = new QVBoxLayout ( 0, 0, 6, "layout4" );
 
     layout1 = new QHBoxLayout ( 0, 0, 6, "rspin" );
 
@@ -150,7 +150,7 @@ ColorSettings::ColorSettings ( CdCatConfig *cfgp, QWidget* parent, const char* n
     groupBox1Layout->addWidget ( colorpreview );
     layout14->addWidget ( groupBox1 );
 
-    layout13 = new Q3VBoxLayout ( 0, 0, 6, "layout13" );
+    layout13 = new QVBoxLayout ( 0, 0, 6, "layout13" );
     QSpacerItem* spacer = new QSpacerItem ( 20, 16, QSizePolicy::Minimum, QSizePolicy::Fixed );
     layout13->addItem ( spacer );
 
@@ -158,7 +158,7 @@ ColorSettings::ColorSettings ( CdCatConfig *cfgp, QWidget* parent, const char* n
     QSpacerItem* spacer_2 = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
     layout11->addItem ( spacer_2 );
 
-    layout9 = new Q3VBoxLayout ( 0, 0, 6, "layout9" );
+    layout9 = new QVBoxLayout ( 0, 0, 6, "layout9" );
 
     buttonOk = new QPushButton ( this, "buttonOk" );
     buttonOk->setMinimumSize ( QSize ( 100, 0 ) );

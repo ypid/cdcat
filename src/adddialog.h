@@ -18,14 +18,14 @@
 //Added by qt3to4:
 #include <QGridLayout>
 #include <QHBoxLayout>
-#include <Q3VBoxLayout>
+#include <QVBoxLayout>
 #include <QLabel>
 #include <QMouseEvent>
 #include <QPaintEvent>
 #include <QCheckBox>
 #include <QPushButton>
 
-class Q3VBoxLayout;
+class QVBoxLayout;
 class QHBoxLayout;
 class QGridLayout;
 class QComboBox;
@@ -76,12 +76,12 @@ public:
 
 protected:
     QGridLayout* addDialogLayout;
-    Q3VBoxLayout* layout10;
+    QVBoxLayout* layout10;
     QHBoxLayout* layout11;
-    Q3VBoxLayout* layout12;
+    QVBoxLayout* layout12;
     QHBoxLayout* layout9;
-    Q3VBoxLayout* layout8;
-    Q3VBoxLayout* layout7;
+    QVBoxLayout* layout8;
+    QVBoxLayout* layout7;
     QHBoxLayout* layout2;
     QHBoxLayout* layout3;
     QHBoxLayout* layout4;
@@ -178,7 +178,7 @@ public:
     QPushButton *buttonCancel;
     QLabel *label;
 
-    Q3VBoxLayout *vbox;
+    QVBoxLayout*vbox;
 
     QHBoxLayout *hbox1;
     QHBoxLayout *hbox2;

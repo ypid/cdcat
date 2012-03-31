@@ -18,13 +18,13 @@
 //Added by qt3to4:
 #include <QGridLayout>
 #include <QHBoxLayout>
-#include <Q3VBoxLayout>
+#include <QVBoxLayout>
 #include <QLabel>
 #include <QPaintEvent>
 
 #include "config.h"
 
-class Q3VBoxLayout;
+class QVBoxLayout;
 class QColor;
 class QHBoxLayout;
 class QGridLayout;
@@ -88,16 +88,16 @@ public:
     QPushButton* buttonCancel;
 
 protected:
-    Q3VBoxLayout* ColorSettingsLayout;
+    QVBoxLayout* ColorSettingsLayout;
     QHBoxLayout* layout14;
     QHBoxLayout* groupBox1Layout;
-    Q3VBoxLayout* layout4;
+    QVBoxLayout* layout4;
     QHBoxLayout* layout1;
     QHBoxLayout* layout2;
     QHBoxLayout* layout3;
-    Q3VBoxLayout* layout13;
+    QVBoxLayout* layout13;
     QHBoxLayout* layout11;
-    Q3VBoxLayout* layout9;
+    QVBoxLayout* layout9;
 
 protected slots:
     virtual void languageChange();

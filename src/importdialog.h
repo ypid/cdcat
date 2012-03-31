@@ -20,7 +20,7 @@ Copyright : (C) 2003 Christoph Thielecke
 #include <qradiobutton.h>
 #include <q3buttongroup.h>
 //Added by qt3to4:
-#include <Q3VBoxLayout>
+#include <QVBoxLayout>
 #include <QGridLayout>
 #include <QHBoxLayout>
 #include <QLabel>
@@ -67,7 +67,7 @@ public:
 protected:
     QGridLayout* layout4;
     QGridLayout* ImportDialogLayout;
-    Q3VBoxLayout* type_layout;
+    QVBoxLayout* type_layout;
     QHBoxLayout* csv_layout;
 
 protected slots:

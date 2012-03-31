@@ -2433,14 +2433,14 @@ QPosDialog::QPosDialog ( CdCatMainWidget *parent )
 	: QDialog ( parent, "searchdd", true, Qt::WStyle_Customize | Qt::WStyle_NoBorder ) {
 	QPoint point;
 	QHBoxLayout *l1;
-	Q3VBoxLayout *l2;
+	QVBoxLayout *l2;
 
 	p = parent;
 	le = new QLineEdit ( this, "leedit" );
 
 	setBackgroundMode ( Qt::PaletteDark );
 
-	l2 = new Q3VBoxLayout();
+	l2 = new QVBoxLayout();
 	l2->addSpacing ( 2 );
 	l2->addWidget ( le );
 	l2->addSpacing ( 2 );
@@ -2524,7 +2524,7 @@ CatalogTypeEditDialog::CatalogTypeEditDialog ( CdCatMainWidget *parent, Node *n 
 	changeOk = false;
 
 	setSizeGripEnabled ( TRUE );
-	layout1 = new Q3VBoxLayout ( this, 0, 6, "layout1" );
+	layout1 = new QVBoxLayout ( this, 0, 6, "layout1" );
 	TextLabel = new QLabel ( this, "textLabel6" );
 	layout1->addWidget ( TextLabel );
 	cbType = new QComboBox ( FALSE, this, "cbType" );

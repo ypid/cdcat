@@ -24,7 +24,7 @@
 //Added by qt3to4:
 #include <QGridLayout>
 #include <QHBoxLayout>
-#include <Q3VBoxLayout>
+#include <QVBoxLayout>
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -110,20 +110,20 @@ protected:
     PWw *pww;
     QApplication *app;
     QGridLayout* exportCdcatDBLayout;
-    Q3VBoxLayout* layout32;
+    QVBoxLayout* layout32;
     QHBoxLayout* layout21;
-    Q3VBoxLayout* layout10_2;
-    Q3VBoxLayout* layout19;
+    QVBoxLayout* layout10_2;
+    QVBoxLayout* layout19;
     QHBoxLayout* layout10;
-    Q3VBoxLayout* layout10_2_2;
-    Q3VBoxLayout* buttonGroup1Layout;
+    QVBoxLayout* layout10_2_2;
+    QVBoxLayout* buttonGroup1Layout;
     QHBoxLayout* layout26;
     QHBoxLayout* layout25;
     QHBoxLayout* layout29;
     QHBoxLayout* layout4;
     QHBoxLayout* layout27;
-    Q3VBoxLayout* typeLayout;
-    Q3VBoxLayout* fieldsLayout;
+    QVBoxLayout* typeLayout;
+    QVBoxLayout* fieldsLayout;
 
     DataBase *p;
     QString separator;

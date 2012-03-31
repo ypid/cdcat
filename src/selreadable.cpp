@@ -31,7 +31,7 @@
 #include <QTextBrowser>
 //Added by qt3to4:
 #include <QHBoxLayout>
-#include <Q3VBoxLayout>
+#include <QVBoxLayout>
 
 #ifdef USE_LIB7ZIP
 #include <lib7zip.h>
@@ -53,7 +53,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 		setName ( "SelReadable" );
 	setIcon ( *get_t_config_icon() );
 	
-	SelReadableLayout = new Q3VBoxLayout ( this, 15, 6, "SelReadableLayout" );
+	SelReadableLayout = new QVBoxLayout ( this, 15, 6, "SelReadableLayout" );
 	setSizeGripEnabled ( TRUE );
 	
 	layoutArchiveScan= new QHBoxLayout ( 0, 0, 6, "layoutArchiveScan" );
@@ -145,7 +145,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 //     QSpacerItem* spacer = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 //     layout12->addItem ( spacer );
 
-	layout11 = new Q3VBoxLayout ( 0, 0, 6, "layout11" );
+	layout11 = new QVBoxLayout ( 0, 0, 6, "layout11" );
 	
 	layout9 = new QHBoxLayout ( 0, 0, 6, "layout9" );
 	
@@ -230,7 +230,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	SelReadableLayout->addLayout ( layoutThumbExts );
 	
 	layoutExcludeMain = new QHBoxLayout ( 0, 0, 6, "layoutExcludeMain" );
-	layoutExcludeLeft = new Q3VBoxLayout ( 0, 0, 6, "layoutExcludeLeft" );
+	layoutExcludeLeft = new QVBoxLayout ( 0, 0, 6, "layoutExcludeLeft" );
 	cbDoExcludeFiles = new QCheckBox ( this, "cbDoExcludeFiles" );
 	cbUseWildcardInsteadRegexForExclude = new QCheckBox ( this, "cbUseWildcardInsteadRegexForExclude" );
 	labelExcludeFiles = new QLabel ( this, "labelExcludeFiles" );
@@ -748,7 +748,7 @@ void SelReadable::labExcludeRexexInfoButtonClicked()
 	
 	QDialog di( this, "aboutregexdialog", true );
 	di.setCaption ( tr ( "About regular expressions" ) );
-	Q3VBoxLayout *layoutRegexInfoDialog = new Q3VBoxLayout ( 0, 0, 6, "layoutRegexInfoDialog" );
+	QVBoxLayout *layoutRegexInfoDialog = new QVBoxLayout ( 0, 0, 6, "layoutRegexInfoDialog" );
 	QPushButton *closeButton = new QPushButton(tr("close"), this);
 	connect(closeButton, SIGNAL(clicked(bool)), &di, SLOT(close()));
 	QTextBrowser *textBrowser1 = new QTextBrowser(&di);
