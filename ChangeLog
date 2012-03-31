@@ -1,5 +1,6 @@
 31. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
 	- q3gridlayout replaced by qgridlayout
+	- q3ptrlist replaced by qlist
 
 28. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
 	- touch function of DBCatalog moved to proper place

@@ -17,8 +17,7 @@ Copyright : (C) 2003 Peter Deak
 #include <qapplication.h>
 #include <qmessagebox.h>
 #include <qdir.h>
-//Added by qt3to4:
-#include <Q3PtrList>
+#include <QList>
 
 #include "dbase.h"
 #include "cdcat.h"
@@ -68,31 +67,30 @@ int main ( int argi, char **argc ) {
 
 #else
 
-    Q3PtrList<QString> translation_paths;
-    //translation_paths = new QPtrList <QString> ();
-    translation_paths.setAutoDelete ( TRUE );		// the list owns the objects
+    QList<QString> translation_paths;
+    //translation_paths = new QList <QString> ();
     QString locale = QTextCodec::locale();
     QString locale2 = locale.left ( 2 );
     QString prefix = applicationDirPath ( argc ).left ( applicationDirPath ( argc ).length() - 4 ) + "/"; // /usr/local/bin -> /usr/local
-    translation_paths.append ( new QString ( prefix + "share/cdcat/translations" ) );
-    translation_paths.append ( new QString ( applicationDirPath ( argc ) + "/lang" ) );
-    translation_paths.append ( new QString ( prefix + "share/locale/" + locale + "/LC_MESSAGES" ) );
-    translation_paths.append ( new QString ( prefix + "share/locale/" + locale2 + "/LC_MESSAGES" ) );
+    translation_paths.append ( QString ( prefix + "share/cdcat/translations" ) );
+    translation_paths.append ( QString ( applicationDirPath ( argc ) + "/lang" ) );
+    translation_paths.append ( QString ( prefix + "share/locale/" + locale + "/LC_MESSAGES" ) );
+    translation_paths.append ( QString ( prefix + "share/locale/" + locale2 + "/LC_MESSAGES" ) );
 
     QString langpath;
 
     for ( uint i = 0; i < translation_paths.count(); ++i ) {
-        //cerr <<"path: " << *translation_paths.at(i) << endl;
-        QFileInfo info ( *translation_paths.at ( i ) + "/cdcat_" + locale + ".qm" );
+        //cerr <<"path: " << qPrintable(translation_paths.at(i)) << endl;
+        QFileInfo info ( translation_paths.at ( i ) + "/cdcat_" + locale + ".qm" );
         if ( info.exists() ) {
-            // cerr << "file " + *translation_paths.at( i ) + "/cdcat_" + locale + ".qm" + " does exist!" << endl;
-            langpath = *translation_paths.at ( i ) + "/cdcat_" + locale + ".qm";
+            // cerr << "file " + qPrintable(translation_paths.at( i )) + "/cdcat_" + qPrintable(locale) + ".qm" + " does exist!" << endl;
+            langpath = translation_paths.at ( i ) + "/cdcat_" + locale + ".qm";
         } else {
-            // cerr << "file " + *translation_paths.at( i ) + "/cdcat_" + locale + ".qm" + " does NOT exist!" << endl;
-            QFileInfo info2 ( *translation_paths.at ( i ) + "/cdcat_" + locale2 + ".qm" );
+            // cerr << "file " + qPrintable(translation_paths.at( i ) + "/cdcat_" + qPrintable(locale) + ".qm" + " does NOT exist!" << endl;
+            QFileInfo info2 ( translation_paths.at ( i ) + "/cdcat_" + locale2 + ".qm" );
             if ( info2.exists() ) {
-                // cerr << "file " + *translation_paths.at( i ) + "/cdcat_" + locale2 + ".qm" + " does exist!" << endl;
-                langpath = *translation_paths.at ( i ) + "/cdcat_" + locale2 + ".qm";
+                // cerr << "file " + qPrintable(translation_paths.at( i )) + "/cdcat_" + qPrintable(locale2) + ".qm" + " does exist!" << endl;
+                langpath = translation_paths.at ( i ) + "/cdcat_" + locale2 + ".qm";
             }
         }
 
