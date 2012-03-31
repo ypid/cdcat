@@ -35,7 +35,7 @@
 #include <QListWidget>
 #include <qpushbutton.h>
 #include <qcheckbox.h>
-#include <q3buttongroup.h>
+#include <QGroupBox>
 #include <qradiobutton.h>
 #include <qspinbox.h>
 #include <qlineedit.h>
@@ -45,6 +45,8 @@
 #include <ctype.h>
 #include <qfile.h>
 #include <QLayout>
+#include <QGridLayout>
+#include <QVBoxLayout>
 #include <QStandardItemModel>
 
 
@@ -90,8 +92,10 @@ public:
 
     QCheckBox* checkExportTitle;
     QCheckBox* checkExportTableHeader;
-    Q3ButtonGroup* buttonGroup1;
-    Q3ButtonGroup* buttonGroupFields;
+    QGroupBox* buttonGroup1;
+    QGroupBox* buttonGroupFields;
+    QGridLayout* layoutGroup1;
+    QGridLayout* layoutGroupFields;
     QRadioButton* radioHtml;
     QRadioButton* radioCsv;
     QRadioButton* radioXml;
@@ -111,6 +115,8 @@ protected:
     PWw *pww;
     QApplication *app;
     QGridLayout* exportCdcatDBLayout;
+    QHBoxLayout* layoutAddRemove;
+    QVBoxLayout* layoutAddRemoveCheckAll;
     QVBoxLayout* layout32;
     QHBoxLayout* layout21;
     QVBoxLayout* layout10_2;

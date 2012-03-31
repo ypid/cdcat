@@ -3,7 +3,7 @@
 #if defined __cplusplus
  // Add C++ includes here
 #include <iostream>
-#include <q3buttongroup.h>
+#include <QGroupBox>
 #include <q3dragobject.h>
 #include <QFrame>
 #include <QGridLayout>

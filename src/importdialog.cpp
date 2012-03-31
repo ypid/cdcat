@@ -47,8 +47,9 @@ ImportDialog::ImportDialog ( QWidget* parent, const char* name, bool modal, Qt::
     buttonGetFile = new QPushButton ( this, "buttonGetFile" );
     layout4->addWidget ( buttonGetFile, 1,5 );
 
-    importButtonBox = new Q3ButtonGroup ( 1,Qt::Horizontal,tr ( "Type" ),this,"import_button_box" );
-    importButtonBox->setRadioButtonExclusive ( true );
+    importButtonBox = new QGroupBox ( tr ( "Type" ),this,"import_button_box" );
+    layoutGroupBox = new QVBoxLayout(this);
+    importButtonBox->setLayout(layoutGroupBox);
     importTypeCsvGtktalog = new QRadioButton ( "&Gtktalog CSV",importButtonBox, "importTypeCsvGtktalog" );
     importTypeCsvKatCeDe = new QRadioButton ( "&Kat-DeCe CSV",importButtonBox, "importTypeCsvKatCeDe" );
     importTypeCsvDisclib = new QRadioButton ( "&Disclib CSV",importButtonBox, "importTypeCsvDisclib" );
@@ -60,6 +61,18 @@ ImportDialog::ImportDialog ( QWidget* parent, const char* name, bool modal, Qt::
     importTypeCsvWhereisit = new QRadioButton ( "&Advanced Disk Catalog CSV",importButtonBox, "importTypeCsvWhereisit" );
     importTypeGtktalogXml = new QRadioButton ( "Gtktalog &XML",importButtonBox ,"importTypeGtktalogXml" );
     importTypeWhereisitXml = new QRadioButton ( "&WhereIsIt XML (classic)", importButtonBox, "importTypeWhereisitXml" );
+
+    layoutGroupBox->addWidget(importTypeCsvGtktalog);
+    layoutGroupBox->addWidget(importTypeCsvKatCeDe);
+    layoutGroupBox->addWidget(importTypeCsvDisclib);
+    layoutGroupBox->addWidget(importTypeCsvVisualcd);
+    layoutGroupBox->addWidget(importTypeCsvVvv);
+    layoutGroupBox->addWidget(importTypeCsvAdvancedFileOrganizer);
+    layoutGroupBox->addWidget(importTypeCsvFileArchivist);
+    layoutGroupBox->addWidget(importTypeCsvAdvancedDiskCatalog);
+    layoutGroupBox->addWidget(importTypeCsvWhereisit);
+    layoutGroupBox->addWidget(importTypeGtktalogXml);
+    layoutGroupBox->addWidget(importTypeWhereisitXml);
 
     layout4->addMultiCellWidget ( importButtonBox, 2, 5, 1, 4 );
 

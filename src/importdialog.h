@@ -18,7 +18,7 @@ Copyright : (C) 2003 Christoph Thielecke
 #include <qlayout.h>
 #include <qcheckbox.h>
 #include <qradiobutton.h>
-#include <q3buttongroup.h>
+#include <QGroupBox>
 //Added by qt3to4:
 #include <QVBoxLayout>
 #include <QGridLayout>
@@ -61,7 +61,7 @@ public:
     QRadioButton *importTypeCsvWhereisit;
     QRadioButton *importTypeGtktalogXml;
     QRadioButton *importTypeWhereisitXml;
-    Q3ButtonGroup *importButtonBox;
+    QGroupBox *importButtonBox;
 
 
 protected:
@@ -69,6 +69,7 @@ protected:
     QGridLayout* ImportDialogLayout;
     QVBoxLayout* type_layout;
     QHBoxLayout* csv_layout;
+    QVBoxLayout* layoutGroupBox;
 
 protected slots:
     virtual void languageChange();

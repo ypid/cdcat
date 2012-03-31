@@ -16,7 +16,7 @@ Copyright : (C) 2003 Christoph Thielecke
 #include <QListWidget>
 #include <QListWidgetItem>
 #include <qcheckbox.h>
-#include <q3buttongroup.h>
+#include <QGroupBox>
 #include <qradiobutton.h>
 #include <qlineedit.h>
 #include <qlayout.h>
@@ -79,20 +79,34 @@ exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget* parent, const ch
     QSpacerItem* spacer = new QSpacerItem ( 20, 180, QSizePolicy::Minimum, QSizePolicy::Expanding );
     layout19->addItem ( spacer );
 
-    layout10 = new QHBoxLayout ( 0, 0, 6, "layout10" );
+    layout10 = new QHBoxLayout (this );
+    layoutAddRemove = new QHBoxLayout ( this );
+    layoutAddRemove->setAlignment(Qt::AlignHCenter);
+    
+
+    layoutAddRemoveCheckAll = new QVBoxLayout ( this );
+    layoutAddRemoveCheckAll->setAlignment(Qt::AlignVCenter);
 
     buttonRemove = new QPushButton ( this, "buttonRemove" );
     buttonRemove->setMinimumSize ( QSize ( 50, 23 ) );
     buttonRemove->setMaximumSize ( QSize ( 50, 23 ) );
     buttonRemove->setPixmap ( *get_t_remove_export_icon() );
-    layout10->addWidget ( buttonRemove );
+    layoutAddRemove->addWidget ( buttonRemove );
 
     buttonAdd = new QPushButton ( this, "buttonAdd" );
     buttonAdd->setMinimumSize ( QSize ( 50, 23 ) );
     buttonAdd->setMaximumSize ( QSize ( 50, 23 ) );
     buttonAdd->setPixmap ( *get_t_add_export_icon() );
-    layout10->addWidget ( buttonAdd );
+    layoutAddRemove->addWidget ( buttonAdd );
+
+    checkAllMedia = new QCheckBox ( this, "checkAllMedia" );
+    layoutAddRemoveCheckAll->addLayout(layoutAddRemove);
+    layoutAddRemoveCheckAll->addWidget ( checkAllMedia );
+    
+    layout10->addLayout(layoutAddRemoveCheckAll);
+
     layout19->addLayout ( layout10 );
+
     QSpacerItem* spacer_2 = new QSpacerItem ( 20, 210, QSizePolicy::Minimum, QSizePolicy::Expanding );
     layout19->addItem ( spacer_2 );
     layout21->addLayout ( layout19 );
@@ -111,30 +125,34 @@ exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget* parent, const ch
 
     layout27 = new QHBoxLayout ( 0,0,4,"layout27" );
 
-    checkAllMedia = new QCheckBox ( this, "checkAllMedia" );
-    layout27->addWidget ( checkAllMedia );
-
     layout32->addLayout ( layout27 );
 
-    buttonGroup1 = new Q3ButtonGroup ( 3, Qt::Horizontal, tr ( "Type" ),this, "buttonGroup1" );
+    buttonGroup1 = new QGroupBox ( tr ( "Type" ), this, "buttonGroup1" );
+    layoutGroup1 = new QGridLayout(this);
+    
     layout26 = new QHBoxLayout ( 0, 0, 6, "layout26" );
 
-    radioCsv = new QRadioButton ( buttonGroup1, "radioCsv" );
+    radioCsv = new QRadioButton ( this, "radioCsv" );
+    layoutGroup1->addWidget(radioCsv, 0, 0);
 
-    seperatorLabel = new QLabel ( buttonGroup1, "seperatorLabel" );
+    seperatorLabel = new QLabel ( this, "seperatorLabel" );
+    layoutGroup1->addWidget(seperatorLabel, 0, 1);
 
-    separatorInput = new QLineEdit ( buttonGroup1, "separatorInput" );
+    separatorInput = new QLineEdit ( this, "separatorInput" );
+    layoutGroup1->addWidget(separatorInput, 0, 2);
 
     separatorInput->setMaximumSize ( QSize ( 25, 32767 ) );
 
-    radioHtml = new QRadioButton ( buttonGroup1, "radioHtml" );
-    layout26->addWidget ( radioHtml );
+    radioHtml = new QRadioButton ( this, "radioHtml" );
+    layoutGroup1->addWidget ( radioHtml, 1, 0 );
 
-    radioXml = new QRadioButton ( buttonGroup1, "radioXml" );
-    layout26->addWidget ( radioXml );
+    radioXml = new QRadioButton ( this, "radioXml" );
+    layoutGroup1->addWidget ( radioXml , 2, 0);
 
 
-    checkOnlyMedia = new QCheckBox ( buttonGroup1, "checkOnlyMedia" );
+    checkOnlyMedia = new QCheckBox ( this, "checkOnlyMedia" );
+    layoutGroup1->addWidget(checkOnlyMedia, 1, 1);
+    buttonGroup1->setLayout(layoutGroup1);
 
     seperatorLabel->setAlignment ( Qt::AlignRight );
 
@@ -143,41 +161,43 @@ exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget* parent, const ch
 
     layout32->addWidget ( buttonGroup1 );
 
-    buttonGroupFields = new Q3ButtonGroup ( 2, Qt::Horizontal,tr ( "What to export" ) ,this,"buttonGroupFields" );
+    buttonGroupFields = new QGroupBox ( tr ( "What to export" ) );
+    layoutGroupFields = new QGridLayout;
 
-    checkExportTitle = new QCheckBox ( buttonGroupFields,"checkExportTitle" );
-    buttonGroupFields->insert ( checkExportTitle );
+    checkExportTitle = new QCheckBox (tr ( "HTML headline" ) );
+    layoutGroupFields->addWidget ( checkExportTitle, 0, 0 );
 
-    checkExportTableHeader	= new QCheckBox ( buttonGroupFields,"checkExportTableHeader" );
-    buttonGroupFields->insert ( checkExportTableHeader );
+    checkExportTableHeader = new QCheckBox (  tr ( "table header/comment line" ) );
+    layoutGroupFields->addWidget ( checkExportTableHeader, 0, 1 );
 
-    checkExportMediaName = new	QCheckBox ( buttonGroupFields,"checkExportMediaName" );
-    buttonGroupFields->insert ( checkExportMediaName );
+    checkExportMediaName = new QCheckBox (tr ( "Media name" ) );
+    layoutGroupFields->addWidget ( checkExportMediaName, 0, 2 );
 
-    checkExportMediaNumber = new	QCheckBox ( buttonGroupFields,"checkExportMediaNumber" );
-    buttonGroupFields->insert ( checkExportMediaNumber );
+    checkExportMediaNumber = new QCheckBox (  tr ( "Media number" ) );
+    layoutGroupFields->addWidget ( checkExportMediaNumber, 1, 0 );
 
-    checkExportPath = new QCheckBox ( buttonGroupFields,"checkExportPath" );
-    buttonGroupFields->insert ( checkExportPath );
+    checkExportPath = new QCheckBox ( tr ( "Path" ) );
+    layoutGroupFields->addWidget ( checkExportPath, 1, 1 );
 
+    checkExportSize = new QCheckBox ( tr ( "Size" ) );
+    layoutGroupFields->addWidget ( checkExportSize, 1, 2 );
 
-    checkExportSize = new QCheckBox ( buttonGroupFields,"checkExportSize" );
-    buttonGroupFields->insert ( checkExportSize );
+    checkExportDate = new QCheckBox (  tr ( "Date" )  );
+    layoutGroupFields->addWidget ( checkExportDate, 2, 0 );
 
-    checkExportDate = new QCheckBox ( buttonGroupFields,"checkExportDate" );
-    buttonGroupFields->insert ( checkExportDate );
+    checkExportComment = new QCheckBox ( tr ( "Comment" ) );
+    layoutGroupFields->addWidget ( checkExportComment, 2, 1 );
 
-    checkExportComment = new QCheckBox ( buttonGroupFields,"checkExportComment" );
-    buttonGroupFields->insert ( checkExportComment );
+    checkExportCategory = new QCheckBox ( tr ( "Category" ));
+    layoutGroupFields->addWidget ( checkExportCategory, 2, 2 );
 
-    checkExportCategory = new QCheckBox ( buttonGroupFields,"checkExportCategory" );
-    buttonGroupFields->insert ( checkExportCategory );
+    checkExportMp3Tag = new QCheckBox (  tr( "export mp3 tag" )  );
+    layoutGroupFields->addWidget ( checkExportMp3Tag, 3, 0 );
 
-    checkExportMp3Tag = new QCheckBox ( buttonGroupFields,"checkExportMp3Tag" );
-    buttonGroupFields->insert ( checkExportMp3Tag );
+    checkExportBorrow = new QCheckBox ( tr( "export borrow information" ) );
+    layoutGroupFields->addWidget ( checkExportBorrow, 3, 1 );
 
-    checkExportBorrow = new QCheckBox ( buttonGroupFields,"checkExportBorrow" );
-    buttonGroupFields->insert ( checkExportBorrow );
+    buttonGroupFields->setLayout(layoutGroupFields);
 
     layout32->addWidget ( buttonGroupFields );
 
