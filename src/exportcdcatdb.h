@@ -32,7 +32,7 @@
 #include <qpixmap.h>
 #include <qlayout.h>
 #include <qlabel.h>
-#include <q3listbox.h>
+#include <QListWidget>
 #include <qpushbutton.h>
 #include <qcheckbox.h>
 #include <q3buttongroup.h>
@@ -45,6 +45,7 @@
 #include <ctype.h>
 #include <qfile.h>
 #include <QLayout>
+#include <QStandardItemModel>
 
 
 #include "guibase.h"
@@ -68,11 +69,11 @@ public:
 
     void fillMedia();
     QLabel* textLabel2;
-    Q3ListBox* listAllMedia;
+    QListWidget* listAllMedia;
     QPushButton* buttonRemove;
     QPushButton* buttonAdd;
     QLabel* textLabel2_2;
-    Q3ListBox* listSelectedMedia;
+    QListWidget* listSelectedMedia;
     QCheckBox* checkAllMedia;
     QCheckBox* checkOnlyMedia;
     QCheckBox* checkExportMediaName;

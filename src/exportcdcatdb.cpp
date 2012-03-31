@@ -13,7 +13,8 @@ Copyright : (C) 2003 Christoph Thielecke
 #include <qvariant.h>
 #include <qpushbutton.h>
 #include <qlabel.h>
-#include <q3listbox.h>
+#include <QListWidget>
+#include <QListWidgetItem>
 #include <qcheckbox.h>
 #include <q3buttongroup.h>
 #include <qradiobutton.h>
@@ -67,8 +68,10 @@ exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget* parent, const ch
     textLabel2 = new QLabel ( this, "textLabel2" );
     layout10_2->addWidget ( textLabel2 );
 
-    listAllMedia = new Q3ListBox ( this, "listAllMedia" );
-    listAllMedia->setSelectionMode ( Q3ListBox::Extended );
+    listAllMedia = new QListWidget( this);
+    listAllMedia->setSortingEnabled(true);
+    listAllMedia->setSelectionMode(QAbstractItemView::MultiSelection);
+    //listAllMedia->setSelectionMode ( Q3ListBox::Extended );
 
     layout10_2->addWidget ( listAllMedia );
     layout21->addLayout ( layout10_2 );
@@ -100,8 +103,10 @@ exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget* parent, const ch
     textLabel2_2 = new QLabel ( this, "textLabel2_2" );
     layout10_2_2->addWidget ( textLabel2_2 );
 
-    listSelectedMedia = new Q3ListBox ( this, "listSelectedMedia" );
-    listSelectedMedia->setSelectionMode ( Q3ListBox::Extended );
+    listSelectedMedia = new QListWidget ( this );
+    listSelectedMedia->setSortingEnabled(true);
+    listSelectedMedia->setSelectionMode(QAbstractItemView::MultiSelection);
+    //listSelectedMedia->setSelectionMode ( Q3ListBox::Extended );
     layout10_2_2->addWidget ( listSelectedMedia );
     layout21->addLayout ( layout10_2_2 );
     layout32->addLayout ( layout21 );
@@ -209,7 +214,7 @@ exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget* parent, const ch
     exportCdcatDBLayout->addLayout ( layout32, 0, 0 );
     languageChange();
     resize ( QSize ( 418, 389 ).expandedTo ( minimumSizeHint() ) );
-
+    
     // signals and slots connections
     connect ( buttonOk, SIGNAL ( clicked() ), this, SLOT ( ok() ) );
     connect ( buttonCancel, SIGNAL ( clicked() ), this, SLOT ( cancel() ) );
@@ -357,11 +362,11 @@ void exportCdcatDB::fillMedia() {
             continue;
         }
 
-        this->listAllMedia->insertItem ( tmp->getNameOf() );
+        this->listAllMedia->insertItem ( 0, tmp->getNameOf() );
         tmp = tmp->next;
     }
 
-    listAllMedia->sort();
+    listAllMedia->sortItems();
 }
 
 bool exportCdcatDB::doHtmlExport() {
@@ -630,30 +635,30 @@ void exportCdcatDB::cancel() {
 void exportCdcatDB::addMedia() {
     uint i;
     for ( i = 0; i < listAllMedia->count();i++ )
-        if ( listAllMedia->isSelected ( i ) )
-            listSelectedMedia->insertItem ( listAllMedia->text ( i ) );
+        if ( listAllMedia->item ( i )->isSelected() )
+            listSelectedMedia->insertItem ( 0, listAllMedia->item( i )->text() );
 
 
     for ( i = 0; i < listAllMedia->count();i++ )
-        while ( i < listAllMedia->count() && listAllMedia->isSelected ( i ) )
-            listAllMedia->removeItem ( i );
-    listAllMedia->sort();
-    listSelectedMedia->sort();
+        while ( i < listAllMedia->count() && listAllMedia->item ( i )->isSelected() )
+            listAllMedia->takeItem ( i );
+    listAllMedia->sortItems();
+    listSelectedMedia->sortItems();
 
 }
 
 void exportCdcatDB::removeMedia() {
     uint i;
     for ( i = 0; i < listSelectedMedia->count();i++ )
-        if ( listSelectedMedia->isSelected ( i ) )
-            listAllMedia->insertItem ( listSelectedMedia->text ( i ) );
+        if ( listSelectedMedia->item ( i )->isSelected() )
+            listAllMedia->insertItem (0, listSelectedMedia->item ( i )->text() );
 
 
     for ( i = 0; i < listSelectedMedia->count();i++ )
-        while ( i < listSelectedMedia->count() && listSelectedMedia->isSelected ( i ) )
-            listSelectedMedia->removeItem ( i );
-    listAllMedia->sort();
-    listSelectedMedia->sort();
+        while ( i < listSelectedMedia->count() && listSelectedMedia->item ( i )->isSelected() )
+            listSelectedMedia->takeItem ( i );
+    listAllMedia->sortItems();
+    listSelectedMedia->sortItems();
 
 }
 
@@ -712,7 +717,7 @@ int exportCdcatDB::writeMedia ( Node *source ) {
 	else
 		// need to check if in listSelectedMedia
 		for ( uint i = 0; i < listSelectedMedia->count();i++ ) {
-			if ( listSelectedMedia->text ( i ) == medianame ) {
+			if ( listSelectedMedia->item ( i )->text() == medianame ) {
 				inList = true;
 				break;
 			}

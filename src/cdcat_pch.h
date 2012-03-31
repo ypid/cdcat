@@ -9,9 +9,8 @@
 #include <QGridLayout>
 #include <q3groupbox.h>
 #include <QHBoxLayout>
-#include <q3header.h>
 #include <q3listbox.h>
-#include <q3listview.h>
+#include <QListView>
 #include <QTextEdit>
 #include <QList>
 #include <QTableView>
