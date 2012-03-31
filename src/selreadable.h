@@ -15,7 +15,7 @@
 //Added by qt3to4:
 #include <Q3VBoxLayout>
 #include <QFrame>
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <Q3HBoxLayout>
 #include <QLabel>
 #include <QGroupBox>
@@ -24,7 +24,7 @@
 
 class Q3VBoxLayout;
 class Q3HBoxLayout;
-class Q3GridLayout;
+class QGridLayout;
 class QCheckBox;
 class QFrame;
 class QLabel;
@@ -138,7 +138,7 @@ class SelReadable : public QDialog {
 		Q3HBoxLayout* layoutExcludeMain;
 		Q3VBoxLayout* layoutExcludeLeft;
 		Q3HBoxLayout* layoutExcludeRegexInfo;
-		Q3GridLayout* layoutShowArchiveFileOptionsGroup;
+		QGridLayout* layoutShowArchiveFileOptionsGroup;
 
 		QString SupportedExtensions;
 		QString RegexInfoHtml;

@@ -14,7 +14,7 @@
 #include <qdialog.h>
 #include <qobject.h>
 //Added by qt3to4:
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <Q3HBoxLayout>
 #include <Q3VBoxLayout>
 #include <QLabel>
@@ -26,7 +26,7 @@
 
 class Q3VBoxLayout;
 class Q3HBoxLayout;
-class Q3GridLayout;
+class QGridLayout;
 class QCheckBox;
 class QComboBox;
 class QFrame;
@@ -168,17 +168,17 @@ class findDialog : public QDialog {
 		void closeEvent ( QCloseEvent *ce );
 		void exportResult ( bool isPrint );
 		
-		Q3GridLayout* FindDialogBaseLayout;
+		QGridLayout* FindDialogBaseLayout;
 		Q3VBoxLayout* layout40;
-		Q3GridLayout* layout39;
-		Q3GridLayout* layout36;
-		Q3GridLayout* layout37;
+		QGridLayout* layout39;
+		QGridLayout* layout36;
+		QGridLayout* layout37;
 		Q3VBoxLayout* layout31;
 		Q3HBoxLayout* layout17;
 		Q3HBoxLayout* findLineLayout;
-		Q3GridLayout* layout15;
+		QGridLayout* layout15;
 		Q3HBoxLayout* layout30;
-		Q3GridLayout* layout16;
+		QGridLayout* layout16;
 		Q3HBoxLayout* layout_size_min;
 		Q3HBoxLayout* layout_size_max;
 		Q3HBoxLayout* layout_find_in_archive;

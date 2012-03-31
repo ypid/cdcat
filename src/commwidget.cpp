@@ -25,7 +25,7 @@
 #include <Q3HBoxLayout>
 #include <QPaintEvent>
 #include <QResizeEvent>
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <QMouseEvent>
 #include <QEvent>
 #include <Q3VBoxLayout>
@@ -784,7 +784,7 @@ commentEdit::commentEdit ( QString cc, QWidget *parent, const char *name, bool m
 
 	setBaseSize ( QSize ( 300, 150 ) );
 	setSizeGripEnabled ( TRUE );
-	CommentEditBaseLayout = new Q3GridLayout ( this, 1, 1, 11, 6, "CommentEditBaseLayout" );
+	CommentEditBaseLayout = new QGridLayout ( this, 1, 1, 11, 6, "CommentEditBaseLayout" );
 
 	layout5 = new Q3VBoxLayout ( 0, 0, 6, "layout5" );
 

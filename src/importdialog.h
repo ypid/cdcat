@@ -21,7 +21,7 @@ Copyright : (C) 2003 Christoph Thielecke
 #include <q3buttongroup.h>
 //Added by qt3to4:
 #include <Q3VBoxLayout>
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <Q3HBoxLayout>
 #include <QLabel>
 
@@ -65,8 +65,8 @@ public:
 
 
 protected:
-    Q3GridLayout* layout4;
-    Q3GridLayout* ImportDialogLayout;
+    QGridLayout* layout4;
+    QGridLayout* ImportDialogLayout;
     Q3VBoxLayout* type_layout;
     Q3HBoxLayout* csv_layout;
 

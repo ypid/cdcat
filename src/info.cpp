@@ -16,8 +16,7 @@
 #include <QTextBrowser>
 #include <qlayout.h>
 #include <qtooltip.h>
-//Added by qt3to4:
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <QLocale>
 
 #include "cdcat.h"
@@ -38,7 +37,7 @@ InfoDialog::InfoDialog ( QWidget* parent, const char* name, bool modal, Qt::WFla
         setName ( "helpDialog" );
     setIcon ( *get_t_about_icon() );
 
-    helpDialogLayout = new Q3GridLayout ( this, 1, 1, 11, 6, "helpDialogLayout" );
+    helpDialogLayout = new QGridLayout ( this, 1, 1, 11, 6, "helpDialogLayout" );
 
     closeButton = new QPushButton ( this, "closeButton" );
 
@@ -47,7 +46,7 @@ InfoDialog::InfoDialog ( QWidget* parent, const char* name, bool modal, Qt::WFla
     tabWidget2 = new QTabWidget ( this, "tabWidget2" );
 
     tab = new QWidget ( tabWidget2, "tab" );
-    tabLayout = new Q3GridLayout ( tab, 1, 1, 11, 6, "tabLayout" );
+    tabLayout = new QGridLayout ( tab, 1, 1, 11, 6, "tabLayout" );
 
     textLabel1 = new QLabel ( tab, "textLabel1" );
 
@@ -55,7 +54,7 @@ InfoDialog::InfoDialog ( QWidget* parent, const char* name, bool modal, Qt::WFla
     tabWidget2->insertTab ( tab, QString ( "" ) );
 
     tab_2 = new QWidget ( tabWidget2, "tab_2" );
-    tabLayout_2 = new Q3GridLayout ( tab_2, 1, 1, 11, 6, "tabLayout_2" );
+    tabLayout_2 = new QGridLayout ( tab_2, 1, 1, 11, 6, "tabLayout_2" );
 
     textBrowser1 = new QTextBrowser ( tab_2, "textBrowser1" );
 
@@ -63,7 +62,7 @@ InfoDialog::InfoDialog ( QWidget* parent, const char* name, bool modal, Qt::WFla
     tabWidget2->insertTab ( tab_2, QString ( "" ) );
 
     TabPage = new QWidget ( tabWidget2, "TabPage" );
-    TabPageLayout = new Q3GridLayout ( TabPage, 1, 1, 11, 6, "TabPageLayout" );
+    TabPageLayout = new QGridLayout ( TabPage, 1, 1, 11, 6, "TabPageLayout" );
 
     textThanx = new QTextBrowser ( TabPage, "textLabel1_2" );
 

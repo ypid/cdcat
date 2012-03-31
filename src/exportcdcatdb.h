@@ -22,7 +22,7 @@
 #include <qdatetime.h>
 #include <qdialog.h>
 //Added by qt3to4:
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <Q3HBoxLayout>
 #include <Q3VBoxLayout>
 #include <string.h>
@@ -109,7 +109,7 @@ public:
 protected:
     PWw *pww;
     QApplication *app;
-    Q3GridLayout* exportCdcatDBLayout;
+    QGridLayout* exportCdcatDBLayout;
     Q3VBoxLayout* layout32;
     Q3HBoxLayout* layout21;
     Q3VBoxLayout* layout10_2;

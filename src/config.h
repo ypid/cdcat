@@ -17,7 +17,7 @@
 #include <qstringlist.h>
 //Added by qt3to4:
 #include <Q3HBoxLayout>
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <QFrame>
 #include <QLabel>
 #include <Q3VBoxLayout>
@@ -25,7 +25,7 @@
 
 class Q3VBoxLayout;
 class Q3HBoxLayout;
-class Q3GridLayout;
+class QGridLayout;
 class QCheckBox;
 class QLineEdit;
 class QPushButton;
@@ -211,7 +211,7 @@ class ConfigDialog : public QDialog {
 		QCheckBox* cbOwnFont;
 	
 	protected:
-		Q3GridLayout* ConfigDialogBaseLayout;
+		QGridLayout* ConfigDialogBaseLayout;
 		Q3HBoxLayout* layout1;
 		Q3HBoxLayout* layout2;
 		Q3HBoxLayout* layout3;

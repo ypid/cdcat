@@ -29,7 +29,7 @@
 #include <qtextcodec.h>
 //Added by qt3to4:
 #include <Q3HBoxLayout>
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <Q3VBoxLayout>
 #include <QCloseEvent>
 #include <QDateTimeEdit>
@@ -80,7 +80,7 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 	
 	setSizeGripEnabled ( TRUE );
 	if ( !isFindDuplicates ) {
-		FindDialogBaseLayout = new Q3GridLayout ( this, 0, 1, 11, 6, "FindDialogBaseLayout" );
+		FindDialogBaseLayout = new QGridLayout ( this, 0, 1, 11, 6, "FindDialogBaseLayout" );
 		
 		//    QSpacerItem* spacer = new QSpacerItem( 210, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 		QSpacerItem* spacer_2 = new QSpacerItem ( 240, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
@@ -97,16 +97,16 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		QSpacerItem* spacer_12 = new QSpacerItem ( 200, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 		
 		layout40 = new Q3VBoxLayout ( this, 0, 6, "layout40" );
-		layout39 = new Q3GridLayout ( this, 1, 1, 0, 6, "layout39" );
+		layout39 = new QGridLayout ( this, 1, 1, 0, 6, "layout39" );
 		findLineLayout = new Q3HBoxLayout ( this, 0, 6, "findLineLayout" );
-		layout36 = new Q3GridLayout ( this, 0, 1, 0, 6, "layout36" );
-		layout37 = new Q3GridLayout ( this, 0, 1, 0, 6, "layout37" );
+		layout36 = new QGridLayout ( this, 0, 1, 0, 6, "layout36" );
+		layout37 = new QGridLayout ( this, 0, 1, 0, 6, "layout37" );
 		layout31 = new Q3VBoxLayout ( this, 0, 6, "layout31" );
 		layout17 = new Q3HBoxLayout ( this, 0, 6, "layout17" );
-		layout15 = new Q3GridLayout ( this, 1, 1, 0, 6, "layout15" );
+		layout15 = new QGridLayout ( this, 1, 1, 0, 6, "layout15" );
 		layout30 = new Q3HBoxLayout ( this, 0, 6, "layout30" );
-		layout16 = new Q3GridLayout ( this, 1, 1, 0, 6, "layout16" );
-		//     layout17 = new Q3GridLayout ( this, 1, 1, 0, 6, "layout17" );
+		layout16 = new QGridLayout ( this, 1, 1, 0, 6, "layout16" );
+		//     layout17 = new QGridLayout ( this, 1, 1, 0, 6, "layout17" );
 		layout_size_min = new Q3HBoxLayout ( this, 0, 2, "layout_size_min" );
 		layout_size_max = new Q3HBoxLayout ( this, 0, 2, "layout_size_max" );
 		layout_find_in_archive = new Q3HBoxLayout ( this, 0, 2, "layout_find_in_archive" );
@@ -375,7 +375,7 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 			searchFilepath = mainw->guis->standON->getFullPath();
 		
 		setSizeGripEnabled ( TRUE );
-		FindDialogBaseLayout = new Q3GridLayout ( this, 1, 1, 11, 6, "FindDialogBaseLayout" );
+		FindDialogBaseLayout = new QGridLayout ( this, 1, 1, 11, 6, "FindDialogBaseLayout" );
 		
 		QSpacerItem* spacer_4 = new QSpacerItem ( 200, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 		QSpacerItem* spacer_5 = new QSpacerItem ( 36, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
@@ -388,14 +388,14 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		QSpacerItem* spacer_12 = new QSpacerItem ( 200, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 		
 		layout40 = new Q3VBoxLayout ( this, 0, 6, "layout40" );
-		layout39 = new Q3GridLayout ( this, 0, 1, 0, 6, "layout39" );
-		//layout36 = new Q3GridLayout ( this, 1, 1, 0, 6, "layout36" );
-		//layout37 = new Q3GridLayout ( this, 1, 1, 0, 6, "layout37" );
+		layout39 = new QGridLayout ( this, 0, 1, 0, 6, "layout39" );
+		//layout36 = new QGridLayout ( this, 1, 1, 0, 6, "layout36" );
+		//layout37 = new QGridLayout ( this, 1, 1, 0, 6, "layout37" );
 		layout31 = new Q3VBoxLayout ( this, 0, 6, "layout31" );
 		layout17 = new Q3HBoxLayout ( this, 0, 6, "layout17" );
-		layout15 = new Q3GridLayout ( this, 1, 1, 0, 6, "layout15" );
+		layout15 = new QGridLayout ( this, 1, 1, 0, 6, "layout15" );
 		layout30 = new Q3HBoxLayout ( this, 0, 6, "layout30" );
-		layout16 = new Q3GridLayout ( this, 1, 1, 0, 6, "layout16" );
+		layout16 = new QGridLayout ( this, 1, 1, 0, 6, "layout16" );
 		
 		buttonOk = new QPushButton ( this, "buttonOk" );
 		buttonOk->setAutoDefault ( TRUE );

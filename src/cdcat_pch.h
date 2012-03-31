@@ -6,7 +6,7 @@
 #include <q3buttongroup.h>
 #include <q3dragobject.h>
 #include <QFrame>
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <q3groupbox.h>
 #include <Q3HBoxLayout>
 #include <q3header.h>

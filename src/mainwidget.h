@@ -16,7 +16,7 @@
 #include <qapplication.h>
 #include <QMenu>
 //Added by qt3to4:
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <Q3HBoxLayout>
 #include <Q3VBoxLayout>
 #include <QLabel>
@@ -30,7 +30,7 @@
 
 class Q3VBoxLayout;
 class Q3HBoxLayout;
-class Q3GridLayout;
+class QGridLayout;
 class QFrame;
 class Q3ListView;
 class Q3ListViewItem;

@@ -30,7 +30,7 @@
 #include <qgroupbox.h>
 //Added by qt3to4:
 #include <Q3HBoxLayout>
-#include <Q3GridLayout>
+#include <QGridLayout>
 
 
 #include <stdio.h>
@@ -1184,7 +1184,7 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	p = parent;
 	
 	setSizeGripEnabled ( TRUE );
-	ConfigDialogBaseLayout = new Q3GridLayout ( this, 1, 1, 20, 6, "ConfigDialogBaseLayout" );
+	ConfigDialogBaseLayout = new QGridLayout ( this, 1, 1, 20, 6, "ConfigDialogBaseLayout" );
 	
 	layout1 = new Q3HBoxLayout ( 0, 0, 6, "layout1" );
 	cbAutoload = new QCheckBox ( this, "cbAutoload" );

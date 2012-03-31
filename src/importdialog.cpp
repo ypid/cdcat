@@ -18,7 +18,7 @@ Copyright : (C) 2003 Christoph Thielecke
 #include <qfile.h>
 #include <qfiledialog.h>
 //Added by qt3to4:
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <stdio.h>
 #include <stdlib.h>
 #include <qvariant.h>
@@ -32,7 +32,7 @@ ImportDialog::ImportDialog ( QWidget* parent, const char* name, bool modal, Qt::
 
     setSizeGripEnabled ( true );
 
-    layout4 = new Q3GridLayout ( this, 10, 6, 10, 10, "layout4" );
+    layout4 = new QGridLayout ( this, 10, 6, 10, 10, "layout4" );
 
     info_lab = new QLabel ( this, "info_lab" );
     info_lab->setText ( "info" );

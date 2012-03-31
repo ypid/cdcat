@@ -16,7 +16,7 @@
 #include <qdialog.h>
 #include <QFrame>
 //Added by qt3to4:
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <Q3HBoxLayout>
 #include <Q3VBoxLayout>
 #include <QLabel>
@@ -27,7 +27,7 @@
 class Q3VBoxLayout;
 class QColor;
 class Q3HBoxLayout;
-class Q3GridLayout;
+class QGridLayout;
 class QComboBox;
 class Q3GroupBox;
 class QLabel;

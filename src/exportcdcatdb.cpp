@@ -28,7 +28,7 @@ Copyright : (C) 2003 Christoph Thielecke
 #include <qregexp.h>
 //Added by qt3to4:
 #include <Q3HBoxLayout>
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <Q3VBoxLayout>
 #include <iostream>
 
@@ -59,7 +59,7 @@ exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget* parent, const ch
 
     this->setCaption ( tr ( "Export database..." ) );
 
-    exportCdcatDBLayout = new Q3GridLayout ( this, 1, 1, 12, 6, "exportCdcatDBLayout" );
+    exportCdcatDBLayout = new QGridLayout ( this, 1, 1, 12, 6, "exportCdcatDBLayout" );
 
     layout32 = new Q3VBoxLayout ( 0, 0, 6, "layout32" );
     layout21 = new Q3HBoxLayout ( 0, 0, 6, "layout21" );

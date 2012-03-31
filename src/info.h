@@ -15,13 +15,11 @@
 #include <qstring.h>
 //Added by qt3to4:
 #include <Q3VBoxLayout>
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <Q3HBoxLayout>
 #include <QLabel>
 
-class Q3VBoxLayout;
-class Q3HBoxLayout;
-class Q3GridLayout;
+class QGridLayout;
 class QPushButton;
 class QTabWidget;
 class QWidget;
@@ -45,10 +43,10 @@ public:
     QTextBrowser* textThanx;
 
 protected:
-    Q3GridLayout* helpDialogLayout;
-    Q3GridLayout* tabLayout;
-    Q3GridLayout* tabLayout_2;
-    Q3GridLayout* TabPageLayout;
+    QGridLayout* helpDialogLayout;
+    QGridLayout* tabLayout;
+    QGridLayout* tabLayout_2;
+    QGridLayout* TabPageLayout;
     QString infotext;
     QString contribution;
     QString license;

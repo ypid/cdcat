@@ -18,7 +18,7 @@
 //Added by qt3to4:
 #include <QPixmap>
 #include <QResizeEvent>
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <QEvent>
 #include <Q3HBoxLayout>
 #include <Q3VBoxLayout>
@@ -27,7 +27,7 @@
 
 class Q3VBoxLayout;
 class Q3HBoxLayout;
-class Q3GridLayout;
+class QGridLayout;
 class QPaintEvent;
 class QPixmap;
 class Node;
@@ -109,7 +109,7 @@ public slots:
     virtual int pushCancel();
 
 protected:
-    Q3GridLayout* CommentEditBaseLayout;
+    QGridLayout* CommentEditBaseLayout;
     Q3VBoxLayout* layout5;
     Q3HBoxLayout* layout4;
 

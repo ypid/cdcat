@@ -20,7 +20,7 @@
 #include <qmessagebox.h>
 #include <qfiledialog.h>
 //Added by qt3to4:
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <Q3HBoxLayout>
 
 #include "icons.h"
@@ -43,7 +43,7 @@ ShowContent::ShowContent ( Node *node,bool isCategory, QWidget* parent, const ch
         setName ( "ShowContent" );
     setIcon ( *get_t_showc_icon() );
 
-    ShowContentLayout = new Q3GridLayout ( this, 1, 1, 11, 6, "ShowContentLayout" );
+    ShowContentLayout = new QGridLayout ( this, 1, 1, 11, 6, "ShowContentLayout" );
 
     layout1 = new Q3HBoxLayout ( 0, 0, 6, "layout1" );
 

@@ -1,3 +1,6 @@
+31. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
+	- q3gridlayout replaced by qgridlayout
+
 28. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
 	- touch function of DBCatalog moved to proper place
 	- empty contents after first edit file node content fixed (#3492344)

@@ -21,7 +21,7 @@
 #include <qtooltip.h>
 #include <qmessagebox.h>
 //Added by qt3to4:
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <Q3HBoxLayout>
 
 #include <stdio.h>
@@ -44,7 +44,7 @@ newdbdialog::newdbdialog ( QWidget* parent, const char* name, bool modal, Qt::WF
     setIcon ( *get_t_new_icon() );
 
     setSizeGripEnabled ( TRUE );
-    NewDBDialogBaseLayout = new Q3GridLayout ( this, 1, 1, 11, 6, "NewDBDialogBaseLayout" );
+    NewDBDialogBaseLayout = new QGridLayout ( this, 1, 1, 11, 6, "NewDBDialogBaseLayout" );
 
     leOwner = new QLineEdit ( this, "leOwner" );
     NewDBDialogBaseLayout->addWidget ( leOwner, 1, 1 );

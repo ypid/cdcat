@@ -14,14 +14,14 @@
 #include <qdialog.h>
 //Added by qt3to4:
 #include <Q3VBoxLayout>
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <Q3HBoxLayout>
 #include <QTextBrowser>
 #include <QLabel>
 
 class Q3VBoxLayout;
 class Q3HBoxLayout;
-class Q3GridLayout;
+class QGridLayout;
 class QPushButton;
 class QTextBrowser;
 class QToolButton;
@@ -46,7 +46,7 @@ public slots:
     int savenode ( void );
 
 protected:
-    Q3GridLayout* ShowContentLayout;
+    QGridLayout* ShowContentLayout;
     Q3HBoxLayout* layout1;
 
 protected slots:

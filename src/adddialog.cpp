@@ -37,7 +37,7 @@
 //Added by qt3to4:
 #include <Q3HBoxLayout>
 #include <QPaintEvent>
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <QMouseEvent>
 #include <Q3VBoxLayout>
 
@@ -62,7 +62,7 @@ addDialog::addDialog ( GuiSlave *c, QWidget* parent, const char* name, bool moda
 	setIcon ( *get_t_add_icon() );
 
 	setSizeGripEnabled ( TRUE );
-	addDialogLayout = new Q3GridLayout ( this, 1, 1, 11, 6, "addDialogLayout" );
+	addDialogLayout = new QGridLayout ( this, 1, 1, 11, 6, "addDialogLayout" );
 
 	layout10 = new Q3VBoxLayout ( 0, 0, 6, "layout10" );
 
@@ -136,7 +136,7 @@ addDialog::addDialog ( GuiSlave *c, QWidget* parent, const char* name, bool moda
 	textLabelCategory->setBuddy ( leCategory );
 	layout7->addLayout ( layout11 );
 
-	layout5 = new Q3GridLayout ( 0, 1, 1, 0, 6, "layout5" );
+	layout5 = new QGridLayout ( 0, 1, 1, 0, 6, "layout5" );
 
 	textLabel3 = new QLabel ( this, "textLabel3" );
 	textLabel3->setBuddy ( textLabel3 );

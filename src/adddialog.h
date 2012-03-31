@@ -16,7 +16,7 @@
 #include <qdatetime.h>
 #include <QList>
 //Added by qt3to4:
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <Q3HBoxLayout>
 #include <Q3VBoxLayout>
 #include <QLabel>
@@ -27,7 +27,7 @@
 
 class Q3VBoxLayout;
 class Q3HBoxLayout;
-class Q3GridLayout;
+class QGridLayout;
 class QComboBox;
 class QLabel;
 class QLineEdit;
@@ -75,7 +75,7 @@ public:
 #endif
 
 protected:
-    Q3GridLayout* addDialogLayout;
+    QGridLayout* addDialogLayout;
     Q3VBoxLayout* layout10;
     Q3HBoxLayout* layout11;
     Q3VBoxLayout* layout12;
@@ -85,7 +85,7 @@ protected:
     Q3HBoxLayout* layout2;
     Q3HBoxLayout* layout3;
     Q3HBoxLayout* layout4;
-    Q3GridLayout* layout5;
+    QGridLayout* layout5;
     Q3HBoxLayout* layout1;
 
 protected slots:
