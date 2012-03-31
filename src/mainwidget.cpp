@@ -28,7 +28,7 @@
 //Added by qt3to4:
 #include <Q3HBoxLayout>
 #include <QCloseEvent>
-#include <Q3ValueList>
+#include <QList>
 #include <QKeyEvent>
 #include <Q3VBoxLayout>
 #include <QAction>
@@ -423,7 +423,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	resize ( ( cconfig->windowSize ).expandedTo ( minimumSizeHint() ) );
 	move ( cconfig->windowPos );
 	
-	Q3ValueList<int> splitterSizesList;
+	QList<int> splitterSizesList;
 	splitterSizesList.append ( cconfig->mainP1 );
 	splitterSizesList.append ( cconfig->mainP2 ); // remaining space for listView
 	splitterSizesList.append ( cconfig->mainP3 );

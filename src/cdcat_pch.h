@@ -16,7 +16,7 @@
 #include <QList>
 #include <QTableView>
 #include <QTextBrowser>
-#include <Q3ValueList>
+#include <QList>
 #include <Q3VBoxLayout>
 #include <qapplication.h>
 #include <QCalendarWidget>
