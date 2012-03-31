@@ -71,7 +71,6 @@ exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget* parent, const ch
     listAllMedia = new QListWidget( this);
     listAllMedia->setSortingEnabled(true);
     listAllMedia->setSelectionMode(QAbstractItemView::MultiSelection);
-    //listAllMedia->setSelectionMode ( Q3ListBox::Extended );
 
     layout10_2->addWidget ( listAllMedia );
     layout21->addLayout ( layout10_2 );
@@ -106,7 +105,6 @@ exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget* parent, const ch
     listSelectedMedia = new QListWidget ( this );
     listSelectedMedia->setSortingEnabled(true);
     listSelectedMedia->setSelectionMode(QAbstractItemView::MultiSelection);
-    //listSelectedMedia->setSelectionMode ( Q3ListBox::Extended );
     layout10_2_2->addWidget ( listSelectedMedia );
     layout21->addLayout ( layout10_2_2 );
     layout32->addLayout ( layout21 );
