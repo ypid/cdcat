@@ -3,6 +3,7 @@
 	- regression on repaint commwidget fixed
 	- save position and size of content dialog added
 	- save position and size of comment/category dialog added
+	- proper init of INFOLIST items at parseAviHeader()
 
 31. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
 	- q3gridlayout replaced by qgridlayout
