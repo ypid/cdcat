@@ -1,5 +1,6 @@
 01. Apr 2012 Christoph Thielecke <crissi99@gmx.de>
 	- menu height fixed
+	- regression on repaint commwidget fixed
 
 31. Mar 2012 Christoph Thielecke <crissi99@gmx.de>
 	- q3gridlayout replaced by qgridlayout

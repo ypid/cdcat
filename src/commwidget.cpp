@@ -706,8 +706,6 @@ void CommentWidget::updateContents() {
 
 void CommentWidget::paintEvent ( QPaintEvent * ) {
 	//cerr <<"paintEvent"<<endl;
-	if(noRepaint || paintEventRunning)
-		return;
 	paintEventRunning = true;
 	QPainter p ( this );
 	//delete text;
