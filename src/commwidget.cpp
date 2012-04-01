@@ -67,8 +67,8 @@ CommentWidget::CommentWidget ( CdCatConfig *cc, QApplication *appl, QWidget *par
 	: QWidget ( parent, name, fl ) {
 	if ( !name )
 		setName ( "CommentWidget" );
-
 	cconfig = cc;
+	std::cout << "commwidget:: cconfig " << cconfig << std::endl;
 	app  = appl;
 	ox   = mx = 0;
 	ox   = my = 0;
@@ -736,14 +736,15 @@ void CommentWidget::showNode ( Node *node, int mod ) {
 }
 
 int CommentWidget::editC ( void ) {
-	editNodeComment ( act, this );
+	std::cout << "commwidget::editC cconfig " << cconfig << std::endl;
+	editNodeComment ( act, this, cconfig );
 	emit touchdb();
 	repaint();
 	return 0;
 }
 
 int CommentWidget::showC ( void ) {
-	ShowContent *sc = new ShowContent ( act, false, this, "showcw", true );
+	ShowContent *sc = new ShowContent ( act, false, cconfig, this, "showcw", true );
 	sc->exec();
 	emit touchdb();
 	repaint();
@@ -753,14 +754,14 @@ int CommentWidget::showC ( void ) {
 
 
 int CommentWidget::editCategory ( void ) {
-	editNodeComment ( act, this, false );
+	editNodeComment ( act, this, cconfig, false );
 	emit touchdb();
 	repaint();
 	return 0;
 }
 
 int CommentWidget::showCategory ( void ) {
-	ShowContent *sc = new ShowContent ( act, true, this, "showcw", true );
+	ShowContent *sc = new ShowContent ( act, true, cconfig, this, "showcw", true );
 	sc->exec();
 	emit touchdb();
 	repaint();
@@ -770,12 +771,14 @@ int CommentWidget::showCategory ( void ) {
 
 /****************************************************************************************/
 
-commentEdit::commentEdit ( QString cc, QWidget *parent, const char *name, bool modal, bool isCommentEdit, Qt::WFlags fl )
+commentEdit::commentEdit ( QString cc, QWidget *parent, CdCatConfig *cconfig, const char *name, bool modal, bool isCommentEdit, Qt::WFlags fl )
 	: QDialog ( parent, name, modal, fl )
 
 {
 	OK = 0;
 	this->isCommentEdit = isCommentEdit;
+	this->cconfig = cconfig;
+	std::cout << "commentEdit cconfig " << this->cconfig << std::endl;
 	if ( !name )
 		setName ( "commentEdit" );
 	setIcon ( *get_t_comment_icon() );
@@ -809,7 +812,8 @@ commentEdit::commentEdit ( QString cc, QWidget *parent, const char *name, bool m
 
 	CommentEditBaseLayout->addLayout ( layout5, 0, 0 );
 	languageChange();
-	resize ( QSize ( 600, 199 ).expandedTo ( minimumSizeHint() ) );
+	resize ( QSize ( cconfig->commentWindowSize_width, cconfig->commentWindowSize_height ).expandedTo ( minimumSizeHint() ) );
+	move (cconfig->commentWindowPos_x, cconfig->commentWindowPos_y );
 
 	// signals and slots connections
 	connect ( buttonOk, SIGNAL ( clicked() ), this, SLOT ( pushOk() ) );
@@ -822,6 +826,15 @@ commentEdit::commentEdit ( QString cc, QWidget *parent, const char *name, bool m
  *  Destroys the object and frees any allocated resources
  */
 commentEdit::~commentEdit() {
+	bool need_save = false;
+	if (x() != cconfig->commentWindowPos_x || y() != cconfig->commentWindowPos_y || width() != cconfig->commentWindowSize_width || cconfig->commentWindowSize_height)
+		need_save = true;
+	cconfig->commentWindowPos_x = x();
+	cconfig->commentWindowPos_y = y();
+	cconfig->commentWindowSize_width  = width();
+	cconfig->commentWindowSize_height = height();
+	if(need_save)
+		cconfig->writeConfig();
 	// no need to delete child widgets, Qt does it all for us
 }
 
@@ -851,11 +864,10 @@ int commentEdit::pushCancel ( void ) {
 	return 0;
 }
 
-int editNodeComment ( Node *node, QWidget *parent, bool isCommentEdit ) {
+int editNodeComment ( Node *node, QWidget *parent, CdCatConfig *cconfig, bool isCommentEdit ) {
 	QString o, n, newCaption;
 	if ( node == NULL )
 		return 0;
-	
 	if ( isCommentEdit ) {
 		switch ( node->type ) {
 			case HC_CATALOG  :
@@ -904,7 +916,7 @@ int editNodeComment ( Node *node, QWidget *parent, bool isCommentEdit ) {
 		}
 	}
 
-	commentEdit ce( o, parent, "commentEdit", true, isCommentEdit );
+	commentEdit ce( o, parent, cconfig, "commentEdit", true, isCommentEdit );
 	ce.setCaption ( ce.caption() + " " + newCaption );
 	ce.teComm->setText ( o );
 	ce.exec();

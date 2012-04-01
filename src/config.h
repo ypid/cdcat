@@ -96,6 +96,14 @@ class CdCatConfig : public QObject {
 		QPoint  windowPos;
 		int windowSize_height;
 		int windowSize_width;
+		int contentWindowPos_x;
+		int contentWindowPos_y;
+		int contentWindowSize_height;
+		int contentWindowSize_width;
+		int commentWindowPos_x;
+		int commentWindowPos_y;
+		int commentWindowSize_height;
+		int commentWindowSize_width;
 		QString cdrompath;
 		QString lastDir;
 		QString lastSearchPattern;

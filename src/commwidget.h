@@ -25,6 +25,8 @@
 #include <QMouseEvent>
 #include <QPaintEvent>
 
+#include "config.h"
+
 class QVBoxLayout;
 class QHBoxLayout;
 class QGridLayout;
@@ -37,7 +39,7 @@ class QEvent;
 class CdCatConfig;
 class QScrollArea;
 
-int editNodeComment ( Node *node,QWidget *parent, bool isCommentEdit=true );
+int editNodeComment ( Node *node, QWidget *parent, CdCatConfig *cconfig, bool isCommentEdit=true );
 
 class HQToolButton : public QToolButton {
 public:
@@ -52,8 +54,8 @@ class CommentWidget : public QWidget {
 
 public:
 
-    CommentWidget ( CdCatConfig * cc,QApplication *appl, QWidget *parent=0,const char *name=0, Qt::WFlags fl=0 );
-
+    CommentWidget ( CdCatConfig * cc,QApplication *appl, QWidget *parent=0, const char *name=0, Qt::WFlags fl=0 );
+    
     CdCatConfig * cconfig;
     HQToolButton* ButtonEdit;
     HQToolButton* ButtonCategory;
@@ -97,7 +99,7 @@ class commentEdit : public QDialog {
     Q_OBJECT
 
 public:
-    commentEdit ( QString cc,QWidget* parent = 0, const char* name = 0, bool modal = FALSE, bool isCommentEdit=true, Qt::WFlags fl = 0 );
+    commentEdit ( QString cc,QWidget* parent = 0, CdCatConfig *cconfig = NULL, const char* name = 0, bool modal = FALSE, bool isCommentEdit=true, Qt::WFlags fl = 0 );
     ~commentEdit();
 
     QTextEdit* teComm;
@@ -117,6 +119,7 @@ public:
     QString newc;
     int OK;
     bool isCommentEdit;
+    CdCatConfig *cconfig;
 
 protected slots:
     virtual void languageChange();

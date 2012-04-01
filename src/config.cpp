@@ -374,6 +374,38 @@ int CdCatConfig::readConfig ( void ) {
 					windowPos.setY ( val.toInt() );
 					continue;
 				}
+				if ( var == "contentWindowSize_height" ) {
+					contentWindowSize_height = val.toInt();
+					continue;
+				}
+				if ( var == "contentWindowSize_width" ) {
+					contentWindowSize_width = val.toInt();
+					continue;
+				}
+				if ( var == "contentWindowPos_x" ) {
+					contentWindowPos_x = val.toInt();
+					continue;
+				}
+				if ( var == "contentWindowPos_y" ) {
+					contentWindowPos_y = val.toInt();
+					continue;
+				}
+				if ( var == "commentWindowSize_height" ) {
+					commentWindowSize_height = val.toInt();
+					continue;
+				}
+				if ( var == "commentWindowSize_width" ) {
+					commentWindowSize_width = val.toInt();
+					continue;
+				}
+				if ( var == "commentWindowPos_x" ) {
+					commentWindowPos_x = val.toInt();
+					continue;
+				}
+				if ( var == "commentWindowPos_y" ) {
+					commentWindowPos_y = val.toInt();
+					continue;
+				}
 				if ( var == "dirview_size" ) {
 					mainP1 = val.toInt();
 					continue;
@@ -923,6 +955,18 @@ int CdCatConfig::writeConfig ( void ) {
 		
 		str << "windowPos_x=" << windowPos.x() << endl;
 		str << "windowPos_y=" << windowPos.y() << endl;
+		
+		str << "contentWindowSize_height=" << contentWindowSize_height << endl;
+		str << "contentWindowSize_width=" << contentWindowSize_width << endl;
+		
+		str << "contentWindowPos_x=" << contentWindowPos_x << endl;
+		str << "contentWindowPos_y=" << contentWindowPos_y << endl;
+		
+		str << "commentWindowSize_height=" << commentWindowSize_height << endl;
+		str << "commentWindowSize_width=" << commentWindowSize_width << endl;
+		
+		str << "commentWindowPos_x=" << commentWindowPos_x << endl;
+		str << "commentWindowPos_y=" << commentWindowPos_y << endl;
 		
 		str << "dirview_size=" << mainP1 << endl;
 		str << "listview_size=" << mainP2 << endl;

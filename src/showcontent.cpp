@@ -33,8 +33,10 @@
  *  The dialog will by default be modeless, unless you set 'modal' to
  *  TRUE to construct a modal dialog.
  */
-ShowContent::ShowContent ( Node *node,bool isCategory, QWidget* parent, const char* name, bool modal, Qt::WFlags fl )
+ShowContent::ShowContent ( Node *node,bool isCategory, CdCatConfig *cconfig, QWidget* parent, const char* name, bool modal, Qt::WFlags fl )
         : QDialog ( parent, name, modal, fl ) {
+
+    this->cconfig = cconfig;
     mynode = NULL;
     parentnode = node;
     this->isCategory = isCategory;
@@ -117,7 +119,8 @@ ShowContent::ShowContent ( Node *node,bool isCategory, QWidget* parent, const ch
     }
     ShowContentLayout->addWidget ( textBrowser, 1, 0 );
     languageChange();
-    resize ( QSize ( 413, 296 ).expandedTo ( minimumSizeHint() ) );
+    resize ( QSize ( cconfig->contentWindowSize_width, cconfig->contentWindowSize_height ).expandedTo ( minimumSizeHint() ) );
+    move (cconfig->contentWindowPos_x, cconfig->contentWindowPos_y );
     connect ( closeButton,SIGNAL ( clicked() ),this,SLOT ( close() ) );
     if(isCategory) {
 	deleteButton->hide();
@@ -133,7 +136,16 @@ ShowContent::ShowContent ( Node *node,bool isCategory, QWidget* parent, const ch
  *  Destroys the object and frees any allocated resources
  */
 ShowContent::~ShowContent() {
-    // no need to delete child widgets, Qt does it all for us
+	bool need_save = false;
+	if (x() != cconfig->contentWindowPos_x || y() != cconfig->contentWindowPos_y || width() != cconfig->contentWindowSize_width || cconfig->contentWindowSize_height)
+		need_save = true;
+	cconfig->contentWindowPos_x = x();
+	cconfig->contentWindowPos_y = y();
+	cconfig->contentWindowSize_width  = width();
+	cconfig->contentWindowSize_height = height();
+	if(need_save)
+		cconfig->writeConfig();
+	// no need to delete child widgets, Qt does it all for us
 }
 
 /*
