@@ -105,8 +105,6 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	/*Menubar*/
 	mainMenu = menuBar();
 	
-	mainMenu->setMaximumHeight ( fontHeight * 2 );
-	mainMenu->setMinimumHeight ( fontHeight * 2 );
 	QMenu *fileMenu = new QMenu(this);
 	QMenu *editMenu = new QMenu(this);
 	QMenu *findMenu = new QMenu(this);
