@@ -68,7 +68,6 @@ CommentWidget::CommentWidget ( CdCatConfig *cc, QApplication *appl, QWidget *par
 	if ( !name )
 		setName ( "CommentWidget" );
 	cconfig = cc;
-	std::cout << "commwidget:: cconfig " << cconfig << std::endl;
 	app  = appl;
 	ox   = mx = 0;
 	ox   = my = 0;
