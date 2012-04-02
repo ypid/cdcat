@@ -76,6 +76,9 @@ class CdCatMainWidget : public QMainWindow{
 
 	protected slots:
 		virtual void languageChange();
+		void toolBarToogled();
+		void statusBarToogled();
+		void commentWidgetToogled();
 
 	public slots:
 		void pathScanned ( QString path );
@@ -106,6 +109,10 @@ class CdCatMainWidget : public QMainWindow{
 		QAction *maximizeAction;
 		QAction *restoreAction;
 		QAction *quitAction;
+
+		QAction *view_toolbar_action;
+		QAction *view_statusbar_action;
+		QAction *view_comment_widget_action;
 		QMenu *trayIconMenu;
 		void createTrayIcon();
 		void startTrayIconAnim();

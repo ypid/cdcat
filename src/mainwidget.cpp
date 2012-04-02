@@ -118,6 +118,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 
 	QMenu *fileMenu = new QMenu ( this );
 	QMenu *editMenu = new QMenu ( this );
+	QMenu *viewMenu = new QMenu ( this );
 	QMenu *findMenu = new QMenu ( this );
 	QMenu *inoutMenu = new QMenu ( this );
 	QMenu *othersMenu = new QMenu ( this );
@@ -254,7 +255,31 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	sortti_action->setStatusTip ( tr ( "Sort media by time" ) );
 	connect ( sortti_action, SIGNAL ( triggered() ), guis, SLOT ( sortTiEvent() ) );
 	editMenu->addAction ( sortti_action );
-
+	
+	view_toolbar_action = new QAction ( tr ( "view tool bar" ), this );
+	//view_toolbar_action->setShortcuts(QKeySequence::Save);
+	view_toolbar_action->setStatusTip ( tr ( "View tool bar in main window" ) );
+	view_toolbar_action->setCheckable(true);
+	view_toolbar_action->setChecked(cconfig->showToolBar);
+	connect ( view_toolbar_action, SIGNAL ( triggered() ), this, SLOT ( toolBarToogled() ) );
+	viewMenu->addAction ( view_toolbar_action );
+	
+	view_statusbar_action = new QAction ( tr ( "view status bar" ), this );
+	//view_statusbar_action->setShortcuts(QKeySequence::Save);
+	view_statusbar_action->setStatusTip ( tr ( "View status bar in main window" ) );
+	view_statusbar_action->setCheckable(true);
+	view_statusbar_action->setChecked(cconfig->showStatusBar);
+	connect ( view_statusbar_action, SIGNAL ( triggered() ), this, SLOT ( statusBarToogled() ) );
+	viewMenu->addAction ( view_statusbar_action );
+	
+	view_comment_widget_action = new QAction ( tr ( "view comment dock" ), this );
+	//view_comment_widget_action->setShortcuts(QKeySequence::Save);
+	view_comment_widget_action->setStatusTip ( tr ( "show comment dock" ) );
+	view_comment_widget_action->setCheckable(true);
+	view_comment_widget_action->setChecked(cconfig->showCommentDock);
+	connect ( view_comment_widget_action, SIGNAL ( triggered() ), this, SLOT ( commentWidgetToogled()));
+	viewMenu->addAction ( view_comment_widget_action );
+	
 	QAction *find_action = new QAction ( QIcon ( *get_t_find_icon() ), tr ( "Seek in database..." ), this );
 	find_action->setShortcut ( QKeySequence ( Qt::CTRL + Qt::Key_F ) );
 	find_action->setStatusTip ( tr ( "Seek in database for files and folders" ) );
@@ -323,6 +348,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 
 	mainMenu->insertItem ( tr ( "Catalog" ), fileMenu );
 	mainMenu->insertItem ( tr ( "Edit" ), editMenu );
+	mainMenu->insertItem ( tr ( "View" ), viewMenu );
 	mainMenu->insertItem ( tr ( "Search" ), findMenu );
 	mainMenu->insertItem ( tr ( "Import/Export" ), inoutMenu );
 	mainMenu->insertItem ( tr ( "Others" ), othersMenu );
@@ -403,6 +429,21 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 // 	connect ( ButtonConfig, SIGNAL ( clicked() ), guis, SLOT ( configEvent() ) );
 
 	connect ( commentWidget , SIGNAL ( touchdb() ), guis, SLOT ( cHcaption() ) );
+	
+	if(cconfig->showToolBar)
+		Toolbar->show();
+	else
+		Toolbar->hide();
+	
+	if(cconfig->showStatusBar)
+		statusBar()->show();
+	else
+		statusBar()->hide();
+	
+	if(cconfig->showCommentDock)
+		CommentDock->show();
+	else
+		CommentDock->hide();
 
 	show();
 
@@ -502,6 +543,10 @@ void CdCatMainWidget::closeEvent ( QCloseEvent *e ) {
 		}
 		cconfig->commentDockSize_dockarea = dockWidgetArea(CommentDock);
 		cconfig->commentDockIsFloating = CommentDock->isFloating();
+		
+		cconfig->showStatusBar = view_statusbar_action->isChecked();
+		cconfig->showToolBar = view_toolbar_action->isChecked();
+		cconfig->showCommentDock = view_comment_widget_action->isChecked();
 		
 		cconfig->writeConfig();
 		if ( cconfig->showTrayIcon && trayIcon != NULL && trayIcon->isVisible() )
@@ -606,6 +651,27 @@ void CdCatMainWidget::stopTrayIconAnim() {
 	trayIconTimer.stop();
 	disconnect ( &trayIconTimer, SIGNAL ( timeout() ), this, SLOT ( trayIconAnimateTimerSlot() ) );
 	trayIcon->setIcon ( QIcon ( *get_p_icon() ) );
+}
+
+void CdCatMainWidget::statusBarToogled() {
+	if(view_statusbar_action->isChecked())
+		statusBar()->show();
+	else
+		statusBar()->hide();
+}
+
+void CdCatMainWidget::toolBarToogled() {
+	if(view_toolbar_action->isChecked())
+		Toolbar->show();
+	else
+		Toolbar->hide();
+}
+
+void CdCatMainWidget::commentWidgetToogled() {
+	if(view_comment_widget_action->isChecked())
+		CommentDock->show();
+	else
+		CommentDock->hide();
 }
 
 

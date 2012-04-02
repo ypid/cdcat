@@ -40,6 +40,10 @@
       <source>unknown</source>
       <translation>unbekannt</translation>
     </message>
+    <message>
+      <source></source>
+      <translation type="unfinished" />
+    </message>
   </context>
   <context>
     <name>CatalogTypeEditDialog</name>
@@ -233,10 +237,6 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
       <translation>Farben setzen...</translation>
     </message>
     <message>
-      <source>No item selected</source>
-      <translation>Kein Element ausgewählt</translation>
-    </message>
-    <message>
       <source>Seek in the panel</source>
       <translation>In Bedienfeld suchen</translation>
     </message>
@@ -383,6 +383,34 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     <message>
       <source>Comment dock</source>
       <translation>Kommentardock</translation>
+    </message>
+    <message>
+      <source>view tool bar</source>
+      <translation>Werkzeugleiste anzeigen</translation>
+    </message>
+    <message>
+      <source>View tool bar in main window</source>
+      <translation>Werkzeugleiste in Hauptfenster anzeigen</translation>
+    </message>
+    <message>
+      <source>view status bar</source>
+      <translation>Statusleiste anzeigen</translation>
+    </message>
+    <message>
+      <source>View status bar in main window</source>
+      <translation>Statusleiste in Hauptfenster anzeigen</translation>
+    </message>
+    <message>
+      <source>view comment dock</source>
+      <translation>Kommentardock anzeigen</translation>
+    </message>
+    <message>
+      <source>show comment dock</source>
+      <translation>Kommentardock anzeigen</translation>
+    </message>
+    <message>
+      <source>View</source>
+      <translation>Anzeigen</translation>
     </message>
   </context>
   <context>

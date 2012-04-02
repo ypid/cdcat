@@ -62,6 +62,9 @@ class CdCatConfig : public QObject {
 		int historysize;
 		bool showTrayIcon;
 		bool commentDockIsFloating;
+		bool showStatusBar;
+		bool showToolBar;
+		bool showCommentDock;
 		bool autoload;
 		QString autoloadfn;
 		bool nice;

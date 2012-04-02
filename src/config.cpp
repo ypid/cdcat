@@ -71,6 +71,9 @@ CdCatConfig::CdCatConfig ( void ) {
 	historysize = 10;
 	showTrayIcon = true;
 	commentDockIsFloating = false;
+	showStatusBar = true;
+	showToolBar = true;
+	showCommentDock = true;
 	autoload   = false;
 	autoloadfn = "";
 	nice       = true;
@@ -301,6 +304,28 @@ int CdCatConfig::readConfig ( void ) {
 						showTrayIcon = false;
 					continue;
 				}
+				if ( var == "showStatusBar" ) {
+					if ( val == "true" )
+						showStatusBar = true;
+					else
+						showStatusBar = false;
+					continue;
+				}
+				if ( var == "showToolBar" ) {
+					if ( val == "true" )
+						showToolBar = true;
+					else
+						showToolBar = false;
+					continue;
+				}
+				if ( var == "showCommentDock" ) {
+					if ( val == "true" )
+						showCommentDock = true;
+					else
+						showCommentDock = false;
+					continue;
+				}
+				
 				if ( var == "autoload" ) {
 					if ( val == "true" )
 						autoload = true;
@@ -942,6 +967,18 @@ int CdCatConfig::writeConfig ( void ) {
 			str << "showTrayIcon=true"  << endl;
 		else
 			str << "showTrayIcon=false" << endl;
+		if ( showStatusBar )
+			str << "showStatusBar=true"  << endl;
+		else
+			str << "showStatusBar=false" << endl;
+		if ( showToolBar )
+			str << "showToolBar=true"  << endl;
+		else
+			str << "showToolBar=false" << endl;
+		if ( showCommentDock )
+			str << "showCommentDock=true"  << endl;
+		else
+			str << "showCommentDock=false" << endl;
 		if ( autoload )
 			str << "autoload=true"  << endl;
 		else
