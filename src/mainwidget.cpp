@@ -50,6 +50,7 @@
 #include "adddialog.h"
 
 #include <QScrollArea>
+#include <QStatusBar>
 
 #include <QMessageBox>
 
@@ -81,10 +82,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	//Toolbar->setFrameShadow ( QFrame::Raised );
 	//Toolbar->setMaximumHeight ( 36 );
 	//Toolbar->setMinimumHeight ( 36 );
-
-	statusl = new QLabel ( tr ( "No item selected" ), this, "statusl" );
-	statusl->setMaximumHeight ( fontHeight + 2 );
-
+	
 	DirView = new HDirectoryView ( &db, splitMain, "DirView" );
 	DirView->header()->setLabel ( 0, tr ( "Directory Tree" ) );
 
@@ -116,6 +114,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 
 	/*Menubar*/
 	mainMenu = menuBar();
+	statusBar()->show();
 
 	QMenu *fileMenu = new QMenu ( this );
 	QMenu *editMenu = new QMenu ( this );
@@ -346,9 +345,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	lvMain->insertSpacing ( 2, 4 );
 	lvMain->insertWidget ( 3, splitMain, 8 );
 	lvMain->insertSpacing ( 4, 4 );
-	lvMain->insertWidget ( 5, statusl, 1 );
-	lvMain->insertSpacing ( 6, 4 );
-
+	
 	Toolbar->addAction ( new_action );
 	Toolbar->addAction ( open_action );
 	Toolbar->addAction ( save_action );
@@ -516,13 +513,13 @@ void CdCatMainWidget::closeEvent ( QCloseEvent *e ) {
 void CdCatMainWidget::pathScanned ( QString path ) {
 // 	std::cerr <<"CdCatMainWidget::pathScanned: " << qPrintable(path) << std::endl;
 	lastScanPath = path;
-	statusl->setText ( tr ( "Scanning:" ) + " " + path );
+	statusBar()->showMessage ( tr ( "Scanning:" ) + " " + path );
 	//if(cconfig->showTrayIcon && isHidden())
 	//	trayIcon->setToolTip(tr ( "Scanning:" ) + " " + path);
 }
 
 void CdCatMainWidget::extraInfoAppend ( QString extraInfo ) {
-	statusl->setText ( lastScanPath + " [" + extraInfo + "]" );
+	statusBar ()->showMessage( lastScanPath + " [" + extraInfo + "]" );
 	//if(cconfig->showTrayIcon && isHidden())
 	//	trayIcon->setToolTip(lastScanPath + " [" + extraInfo + "]");
 }

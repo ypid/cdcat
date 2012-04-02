@@ -34,6 +34,8 @@
 #include <QTemporaryFile>
 #include <QProcess>
 
+#include <QStatusBar>
+
 #ifndef _WIN32
 
 #include <unistd.h>
@@ -133,14 +135,14 @@ void GuiSlave::updateStatusl ( Node *n ) {
 	QString o ( "" );
 	if ( n == NULL ) {
 		if ( mainw->db == NULL )
-			mainw->statusl->setText ( tr ( "No database opened." ) );
+			mainw->statusBar ()->showMessage( tr ( "No database opened." ) );
 		else
-			mainw->statusl->setText ( tr ( "No item selected." ) );
+			mainw->statusBar ()->showMessage( tr ( "No item selected." ) );
 		return;
 	}
 	if ( *DEBUG_INFO_ENABLED )
 		cerr << "F-updateStatusl: " << qPrintable ( n->getFullPath() ) << endl;
-	mainw->statusl->setText ( n->getFullPath() );
+	mainw->statusBar()->showMessage( n->getFullPath() );
 }
 
 int GuiSlave::isIdentical ( int i ) {

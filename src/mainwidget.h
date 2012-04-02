@@ -63,7 +63,6 @@ class CdCatMainWidget : public QMainWindow{
 		QMenuBar   *mainMenu;
 		HDirectoryView *DirView;
 		HQListView *listView;
-		QLabel *statusl;
 		QApplication *app;
 		QMenu *historyMenu;
 		QSplitter *splitMain;
