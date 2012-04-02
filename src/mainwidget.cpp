@@ -303,7 +303,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	connect ( export_action, SIGNAL ( triggered() ), guis, SLOT ( exportEvent() ) );
 	inoutMenu->addAction ( export_action );
 
-	QAction *help_action = new QAction ( QIcon ( *get_t_save_icon() ), tr ( "Help" ), this );
+	QAction *help_action = new QAction ( QIcon ( *get_t_help_icon() ), tr ( "Help" ), this );
 	help_action->setShortcut ( QKeySequence ( Qt::Key_F1 ) );
 	help_action->setStatusTip ( tr ( "Help" ) );
 	connect ( help_action, SIGNAL ( triggered() ), guis, SLOT ( helpEvent() ) );

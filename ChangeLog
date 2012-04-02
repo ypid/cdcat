@@ -2,6 +2,7 @@
 	- commwidget is now a dockable widget (can be undocked)
 	- custom status bar replaced by statusbar of qmainwindow (prevents resizing application window if message is too long)
 	- displaying lib7zip found status at selreadable dialog fixed
+	- icon for help action fixed
 
 01. Apr 2012 Christoph Thielecke <crissi99@gmx.de>
 	- menu height fixed
