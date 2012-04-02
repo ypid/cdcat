@@ -376,7 +376,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 				linelen += SupportedExtensionsList.at ( i ).size() + 2;
 			}
 		}
-		QString sevenzip_libfound_text = "";
+		sevenzip_libfound_text = "";
 #ifdef USE_LIB7ZIP
 		sevenzip_libfound_text = "<font color=\"red\">" + tr ( "lib7zip found" ) + "</font>";
 		if ( sevenzip_libfound )
@@ -783,7 +783,7 @@ void SelReadable::languageChange() {
 	cbScanArchive->setText ( tr ( "Scan for archive file list" ) );
 	cbShowProgressedArchiveFileInStatus->setText( tr("show archive file in status") );
 	cbShowProgressedArchiveFileInStatus->setToolTip( tr("show archive file at scanning in status") );
-	labArchiveExtensions->setText ( tr ( "Supported extensions:" ) );
+	labArchiveExtensions->setText ( tr ( "Supported extensions:" )+ " "+sevenzip_libfound_text);
 	cbShowArchiveFilePerms->setText ( tr ( "Permission" ) );
 	cbShowArchiveFileUser->setText ( tr ( "User" ) );
 	cbShowArchiveFileGroup->setText ( tr ( "Group" ) );

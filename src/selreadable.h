@@ -144,6 +144,8 @@ class SelReadable : public QDialog {
 		QString RegexInfoHtml;
 		
 		QModelIndex contextmenu_modelindex;
+		
+		QString sevenzip_libfound_text;
 
 	protected slots:
 		virtual void languageChange();
