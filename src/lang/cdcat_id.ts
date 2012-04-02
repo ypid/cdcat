@@ -48,6 +48,11 @@
         <source>unknown</source>
         <translation type="unfinished">tidak diketahui</translation>
     </message>
+    <message>
+        <location filename="../dbase.h" line="272"/>
+        <source></source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CatalogTypeEditDialog</name>
@@ -257,22 +262,22 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Urutkan media berdasarkan waktu</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="283"/>
+        <location filename="../mainwidget.cpp" line="291"/>
         <source>Seek in database...</source>
         <translation>Cari dalam database...</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="301"/>
+        <location filename="../mainwidget.cpp" line="309"/>
         <source>Node size</source>
         <translation>Ukuran node</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="307"/>
+        <location filename="../mainwidget.cpp" line="315"/>
         <source>Configuration...</source>
         <translation>Konfigurasi...</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="355"/>
+        <location filename="../mainwidget.cpp" line="363"/>
         <source>Help</source>
         <translation>Bantuan</translation>
     </message>
@@ -282,22 +287,22 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Tentang</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="349"/>
+        <location filename="../mainwidget.cpp" line="357"/>
         <source>Catalog</source>
         <translation>Katalog</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="350"/>
+        <location filename="../mainwidget.cpp" line="358"/>
         <source>Edit</source>
         <translation>Edit</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="354"/>
+        <location filename="../mainwidget.cpp" line="362"/>
         <source>Others</source>
         <translation>Lainnya</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="510"/>
+        <location filename="../mainwidget.cpp" line="518"/>
         <source>Hyper&apos;s CD Catalogizer</source>
         <translation>Katalog CD Hyper</translation>
     </message>
@@ -352,7 +357,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Exspor database</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="353"/>
+        <location filename="../mainwidget.cpp" line="361"/>
         <source>Import/Export</source>
         <translation>Impor/Ekspor</translation>
     </message>
@@ -367,7 +372,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Impor database (csv/gtktalog)</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="297"/>
+        <location filename="../mainwidget.cpp" line="305"/>
         <source>Borrowing info...</source>
         <translation>Informasi peminjaman...</translation>
     </message>
@@ -387,7 +392,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Tambahkan link ke sebuah katalog CdCat...</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="313"/>
+        <location filename="../mainwidget.cpp" line="321"/>
         <source>Set Colors...</source>
         <translation>Pilih warna...</translation>
     </message>
@@ -402,12 +407,12 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Scan ulang media yang dipilih.</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="291"/>
+        <location filename="../mainwidget.cpp" line="299"/>
         <source>Seek in the panel</source>
         <translation>Cari di dalam panel</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="343"/>
+        <location filename="../mainwidget.cpp" line="351"/>
         <source>About Qt</source>
         <translation type="unfinished"></translation>
     </message>
@@ -417,22 +422,22 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="561"/>
+        <location filename="../mainwidget.cpp" line="569"/>
         <source>Scanning:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="319"/>
+        <location filename="../mainwidget.cpp" line="327"/>
         <source>Import database (CSV/XML)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="327"/>
+        <location filename="../mainwidget.cpp" line="335"/>
         <source>Export database (CSV/HTML/XML)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="352"/>
+        <location filename="../mainwidget.cpp" line="360"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
@@ -482,7 +487,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="583"/>
+        <location filename="../mainwidget.cpp" line="591"/>
         <source>&amp;Quit</source>
         <translation type="unfinished"></translation>
     </message>
@@ -522,57 +527,57 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="285"/>
+        <location filename="../mainwidget.cpp" line="293"/>
         <source>Seek in database for files and folders</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="303"/>
+        <location filename="../mainwidget.cpp" line="311"/>
         <source>Calculate node size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="309"/>
+        <location filename="../mainwidget.cpp" line="317"/>
         <source>Edit cdcat configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="315"/>
+        <location filename="../mainwidget.cpp" line="323"/>
         <source>Set the colors for display</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="321"/>
+        <location filename="../mainwidget.cpp" line="329"/>
         <source>Import database (CSV/XML) from various catalog programs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="339"/>
+        <location filename="../mainwidget.cpp" line="347"/>
         <source>About Cdcat</source>
         <translation type="unfinished">Tentang CdCat</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="345"/>
+        <location filename="../mainwidget.cpp" line="353"/>
         <source>About the Qt toolkit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="574"/>
+        <location filename="../mainwidget.cpp" line="582"/>
         <source>Mi&amp;nimize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="577"/>
+        <location filename="../mainwidget.cpp" line="585"/>
         <source>Ma&amp;ximize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="580"/>
+        <location filename="../mainwidget.cpp" line="588"/>
         <source>&amp;Restore</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="365"/>
+        <location filename="../mainwidget.cpp" line="373"/>
         <source>Cdcat - idle</source>
         <translation type="unfinished"></translation>
     </message>
@@ -617,8 +622,13 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="351"/>
+        <location filename="../mainwidget.cpp" line="359"/>
         <source>View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwidget.cpp" line="285"/>
+        <source>show systray icon</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

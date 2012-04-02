@@ -40,10 +40,6 @@
       <source>unknown</source>
       <translation>unbekannt</translation>
     </message>
-    <message>
-      <source></source>
-      <translation type="unfinished" />
-    </message>
   </context>
   <context>
     <name>CatalogTypeEditDialog</name>
@@ -411,6 +407,10 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     <message>
       <source>View</source>
       <translation>Anzeigen</translation>
+    </message>
+    <message>
+      <source>show systray icon</source>
+      <translation>Dock-Symbol anzeigen</translation>
     </message>
   </context>
   <context>

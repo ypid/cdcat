@@ -280,6 +280,14 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	connect ( view_comment_widget_action, SIGNAL ( triggered() ), this, SLOT ( commentWidgetToogled()));
 	viewMenu->addAction ( view_comment_widget_action );
 	
+	view_tray_action = new QAction ( tr ( "show systray icon" ), this );
+	//view_tray_action->setShortcuts(QKeySequence::Save);
+	view_tray_action->setStatusTip ( tr ( "show systray icon" ) );
+	view_tray_action->setCheckable(true);
+	view_tray_action->setChecked(cconfig->showTrayIcon);
+	connect ( view_tray_action, SIGNAL ( triggered() ), this, SLOT ( dockToogled()));
+	viewMenu->addAction ( view_tray_action );
+	
 	QAction *find_action = new QAction ( QIcon ( *get_t_find_icon() ), tr ( "Seek in database..." ), this );
 	find_action->setShortcut ( QKeySequence ( Qt::CTRL + Qt::Key_F ) );
 	find_action->setStatusTip ( tr ( "Seek in database for files and folders" ) );
@@ -547,6 +555,7 @@ void CdCatMainWidget::closeEvent ( QCloseEvent *e ) {
 		cconfig->showStatusBar = view_statusbar_action->isChecked();
 		cconfig->showToolBar = view_toolbar_action->isChecked();
 		cconfig->showCommentDock = view_comment_widget_action->isChecked();
+		cconfig->showTrayIcon = view_tray_action->isChecked();
 		
 		cconfig->writeConfig();
 		if ( cconfig->showTrayIcon && trayIcon != NULL && trayIcon->isVisible() )
@@ -672,6 +681,20 @@ void CdCatMainWidget::commentWidgetToogled() {
 		CommentDock->show();
 	else
 		CommentDock->hide();
+}
+
+void CdCatMainWidget::dockToogled() {
+	if(view_tray_action->isChecked()) {
+		if( trayIcon == NULL)
+			createTrayIcon();
+		trayIcon->show();
+		trayIcon->setToolTip(tr("Cdcat - idle"));
+	}
+	else {
+		if( trayIcon != NULL) {
+			trayIcon->hide();
+		}
+	}
 }
 
 

@@ -8,6 +8,7 @@
 	- show/hide status bar added
 	- show/hide toolbar added
 	- show/hide comment dock added
+	- show/hide systray added
 
 01. Apr 2012 Christoph Thielecke <crissi99@gmx.de>
 	- menu height fixed
