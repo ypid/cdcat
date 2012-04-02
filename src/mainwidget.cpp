@@ -176,7 +176,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 
 	fileMenu->insertSeparator();
 
-	QAction *quit_action = new QAction ( QIcon ( *get_t_save_icon() ), tr ( "&Quit" ), this );
+	QAction *quit_action = new QAction ( QIcon ( *get_t_close_icon() ), tr ( "&Quit" ), this );
 	quit_action->setShortcuts ( QKeySequence::Close );
 	quit_action->setStatusTip ( tr ( "Close program" ) );
 	connect ( quit_action, SIGNAL ( triggered() ), this, SLOT ( close() ) );
@@ -261,7 +261,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	connect ( find_action, SIGNAL ( triggered() ), guis, SLOT ( findEvent() ) );
 	findMenu->addAction ( find_action );
 
-	QAction *findpanel_action = new QAction ( QIcon ( *get_t_save_icon() ), tr ( "Seek in the panel" ), this );
+	QAction *findpanel_action = new QAction ( QIcon ( *get_t_find_icon() ), tr ( "Seek in the panel" ), this );
 	findpanel_action->setShortcut ( QKeySequence ( Qt::ALT + Qt::Key_S ) );
 	findpanel_action->setStatusTip ( tr ( "Seek in the panel" ) );
 	connect ( findpanel_action, SIGNAL ( triggered() ), guis, SLOT ( posEvent() ) );
