@@ -61,6 +61,7 @@ class CdCatConfig : public QObject {
 		int fsize;
 		int historysize;
 		bool showTrayIcon;
+		bool commentDockIsFloating;
 		bool autoload;
 		QString autoloadfn;
 		bool nice;
@@ -96,6 +97,11 @@ class CdCatConfig : public QObject {
 		QPoint  windowPos;
 		int windowSize_height;
 		int windowSize_width;
+		int commentDockPos_x;
+		int commentDockPos_y;
+		int commentDockSize_width;
+		int commentDockSize_height;
+		int commentDockSize_dockarea;
 		int contentWindowPos_x;
 		int contentWindowPos_y;
 		int contentWindowSize_height;

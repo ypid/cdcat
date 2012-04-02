@@ -59,6 +59,7 @@ class CdCatMainWidget : public QMainWindow{
 		DataBase      *db;
 		CommentWidget *commentWidget;
 		QToolBar *Toolbar;
+		QDockWidget* CommentDock;
 		QMenuBar   *mainMenu;
 		HDirectoryView *DirView;
 		HQListView *listView;
@@ -67,6 +68,7 @@ class CdCatMainWidget : public QMainWindow{
 		QMenu *historyMenu;
 		QSplitter *splitMain;
 		QWidget *main;
+		void setDockSize(QDockWidget *dock, int, int);
 
 	protected:
 		QVBoxLayout *lvMain;
@@ -97,6 +99,7 @@ class CdCatMainWidget : public QMainWindow{
 		QList<QPixmap> anim_list;
 		int trayIconAnimValue;
 		QTimer trayIconTimer;
+		QSize oldMaxSize, oldMinSize;
 
 	public:
 		QSystemTrayIcon *trayIcon;
@@ -114,6 +117,7 @@ class CdCatMainWidget : public QMainWindow{
 		void showTrayMessage();
 		void trayIconMessageClicked();
 		void trayIconAnimateTimerSlot();
+		void returnToOldMaxMinSizes();
 	
 	signals:
 		void minimizedToTray();

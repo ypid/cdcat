@@ -70,6 +70,7 @@ CdCatConfig::CdCatConfig ( void ) {
 	fsize      = 8;
 	historysize = 10;
 	showTrayIcon = true;
+	commentDockIsFloating = false;
 	autoload   = false;
 	autoloadfn = "";
 	nice       = true;
@@ -153,6 +154,8 @@ CdCatConfig::CdCatConfig ( void ) {
 	windowSize.setHeight ( windowSize_height = 480 );
 	windowPos.setX ( 5 );
 	windowPos.setY ( 5 );
+	
+	commentDockSize_dockarea = Qt::RightDockWidgetArea;
 	
 	comm_bg    = new QColor ( 255, 225, 0 );
 	comm_stext = new QColor ( 0, 0, 0 );
@@ -372,6 +375,33 @@ int CdCatConfig::readConfig ( void ) {
 				}
 				if ( var == "windowPos_y" ) {
 					windowPos.setY ( val.toInt() );
+					continue;
+				}
+				if ( var == "commentDockSize_width" ) {
+					commentDockSize_width = val.toInt();
+					continue;
+				}
+				if ( var == "commentDockSize_height" ) {
+					commentDockSize_height = val.toInt();
+					continue;
+				}
+				if ( var == "commentDockPos_x" ) {
+					commentDockPos_x = val.toInt();
+					continue;
+				}
+				if ( var == "commentDockPos_y" ) {
+					commentDockPos_y = val.toInt();
+					continue;
+				}
+				if ( var == "commentDockSize_dockarea" ) {
+					commentDockSize_dockarea = val.toInt();
+					continue;
+				}
+				if ( var == "commentDockIsFloating" ) {
+					if(val == "true")
+						commentDockIsFloating = true;
+					else
+						commentDockIsFloating = false;
 					continue;
 				}
 				if ( var == "contentWindowSize_height" ) {
@@ -955,6 +985,16 @@ int CdCatConfig::writeConfig ( void ) {
 		
 		str << "windowPos_x=" << windowPos.x() << endl;
 		str << "windowPos_y=" << windowPos.y() << endl;
+		
+		str << "commentDockSize_width=" << commentDockSize_width << endl;
+		str << "commentDockSize_height=" << commentDockSize_height << endl;
+		str << "commentDockPos_x=" << commentDockPos_x << endl;
+		str << "commentDockPos_y=" << commentDockPos_y << endl;
+		str << "commentDockSize_dockarea=" << commentDockSize_dockarea << endl;
+		if(commentDockIsFloating)
+			str << "commentDockIsFloating=true" << endl;
+		else
+			str << "commentDockIsFloating=false" << endl;
 		
 		str << "contentWindowSize_height=" << contentWindowSize_height << endl;
 		str << "contentWindowSize_width=" << contentWindowSize_width << endl;

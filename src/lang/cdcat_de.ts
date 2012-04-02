@@ -40,10 +40,6 @@
       <source>unknown</source>
       <translation>unbekannt</translation>
     </message>
-    <message>
-      <source></source>
-      <translation type="unfinished" />
-    </message>
   </context>
   <context>
     <name>CatalogTypeEditDialog</name>
@@ -141,32 +137,8 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
       <translation>Hypers CD-Katalogisierer</translation>
     </message>
     <message>
-      <source>Open a catalog from a file.</source>
-      <translation>Einen Katalog von Datei öffnen</translation>
-    </message>
-    <message>
-      <source>Close the actual catalog.</source>
-      <translation>Aktuellen Katalog schliessen</translation>
-    </message>
-    <message>
-      <source>Add a new media to the catalog.</source>
-      <translation>Neues Medium zu Katalog hinzufügen</translation>
-    </message>
-    <message>
-      <source>Configuration of the program.</source>
-      <translation>Konfiguration des Programms</translation>
-    </message>
-    <message>
       <source>Help</source>
       <translation>Hilfe</translation>
-    </message>
-    <message>
-      <source>Create a new, empty catalog and close the previous.</source>
-      <translation>Neuen, leeren Katalog erstellen und den vorherigen schliessen</translation>
-    </message>
-    <message>
-      <source>About</source>
-      <translation>Über</translation>
     </message>
     <message>
       <source>Directory Tree</source>
@@ -229,10 +201,6 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
       <translation>Andere</translation>
     </message>
     <message>
-      <source>Search an element in the database(catalog).You can search filenames, directory names, name parts or mp3 tags etc...</source>
-      <translation>Element in Datenbank (Katalog) suchen. Es kann nach Dateinamen, Verzeichnisnamen, Namensteilen oder MP3-Tags gesucht werden...</translation>
-    </message>
-    <message>
       <source>Sort media by number</source>
       <translation>Medium nach Nummer sortieren</translation>
     </message>
@@ -261,24 +229,12 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
       <translation>Ausleihinformation...</translation>
     </message>
     <message>
-      <source>Save all modifications to the disc.</source>
-      <translation>Alle Änderungen auf Festplatte speichern.</translation>
-    </message>
-    <message>
-      <source>Save the catalog to a new file.</source>
-      <translation>Katalog in eine neue Datei speichern.</translation>
-    </message>
-    <message>
       <source>Set Colors...</source>
       <translation>Farben setzen...</translation>
     </message>
     <message>
       <source>No item selected</source>
       <translation>Kein Element ausgewählt</translation>
-    </message>
-    <message>
-      <source>Rescan the selected media.</source>
-      <translation>Ausgewähltes Medium neu einlesen</translation>
     </message>
     <message>
       <source>Seek in the panel</source>
@@ -291,10 +247,6 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     <message>
       <source>Add a link to a CdCat Catalog...</source>
       <translation>Verweis auf CdCat-Datenbank hinzufügen...</translation>
-    </message>
-    <message>
-      <source>Delete selected node.</source>
-      <translation>Ausgewählten Knoten löschen</translation>
     </message>
     <message>
       <source>Scanning:</source>
@@ -423,6 +375,14 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     <message>
       <source>Cdcat - idle</source>
       <translation>Cdcat - Leerlauf</translation>
+    </message>
+    <message>
+      <source>Main toolbar</source>
+      <translation>Hauptwerkzeugleiste</translation>
+    </message>
+    <message>
+      <source>Comment dock</source>
+      <translation>Kommentardock</translation>
     </message>
   </context>
   <context>

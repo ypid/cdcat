@@ -1,3 +1,6 @@
+02. Apr 2012 Christoph Thielecke <crissi99@gmx.de>
+	- commwidget is now a dockable widget (can be undocked)
+
 01. Apr 2012 Christoph Thielecke <crissi99@gmx.de>
 	- menu height fixed
 	- regression on repaint commwidget fixed
