@@ -248,6 +248,7 @@ bool CdcatMediaInfo::detectSupportedExtensions() {
 		MediaInfoSupportedFileExtensions.append("dts");
 		MediaInfoSupportedFileExtensions.append("aac");
 		MediaInfoSupportedFileExtensions.append("mac");
+		MediaInfoSupportedFileExtensions.append("m4v");
 	}
 	else {
 		MediaInfoSupportedFileExtensions.clear();
