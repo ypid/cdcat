@@ -2187,7 +2187,7 @@ int GuiSlave::editComment ( void ) {
 	if ( standON == NULL )
 		return 0;
 
-	editNodeComment ( standON, mainw, mainw->cconfig );
+	editNodeComment ( standON, mainw, mainw->cconfig  );
 	cHcaption();
 	mainw->commentWidget->updateContents();
 	return 0;
@@ -2199,7 +2199,7 @@ int GuiSlave::editCategory ( void ) {
 	if ( standON == NULL )
 		return 0;
 
-	editNodeComment ( standON, mainw, mainw->cconfig, false );
+	editNodeComment ( standON, mainw,  mainw->cconfig, false );
 	cHcaption();
 	mainw->commentWidget->updateContents();
 	return 0;
@@ -2256,7 +2256,7 @@ int GuiSlave::showContent ( void ) {
 			tmpContentTempFile.remove();
 		}
 		else {
-			ShowContent *sc = new ShowContent ( standON, false, mainw->cconfig, (QWidget *)this, "showcw" );
+			ShowContent *sc = new ShowContent ( standON, false, mainw->cconfig, mainw, "showcw" );
 			sc->exec();
 			delete sc;
 		}
