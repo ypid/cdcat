@@ -82,9 +82,11 @@ protected:
 
 private:
     int mx,my,ox,oy;
+    bool update_contents_running;
     QPixmap image13;
     QApplication *app;
     QPixmap contentsPixmap;
+    QPixmap contentsPixmapTmp;
     bool paintEventRunning;
 
 public slots:

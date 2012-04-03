@@ -75,6 +75,7 @@ CommentWidget::CommentWidget ( CdCatConfig *cc, QApplication *appl, QWidget *par
 	act  = NULL;
 	sa = NULL;
 	paintEventRunning = false;
+	update_contents_running = false;
 	setMinimumSize ( 70, 70 );
 
 	ButtonContent = new HQToolButton ( this );
@@ -103,10 +104,9 @@ CommentWidget::CommentWidget ( CdCatConfig *cc, QApplication *appl, QWidget *par
 	connect ( ButtonContent, SIGNAL ( clicked() ), this, SLOT ( showC() ) );
 
 
-	setMinimumSize ( QSize ( 200, 400 ) );
+	setMinimumSize ( QSize ( 300, 400 ) );
 	// contentsPixmap = QPixmap(width(), height());
 	updateContents();
-
 }
 
 void CommentWidget::setScrollArea ( QScrollArea *sa ) {
@@ -146,8 +146,9 @@ void  CommentWidget::mouseReleaseEvent ( QMouseEvent * ) {
 void CommentWidget::updateContents() {
 	//if(paintEventRunning)
 	//	return;
-	QApplication::setOverrideCursor ( Qt::waitCursor );
-	QPixmap contentsPixmapTmp = QPixmap( width(), height() );
+	update_contents_running = true;
+	//QApplication::setOverrideCursor ( Qt::waitCursor );
+	contentsPixmapTmp = QPixmap( width(), height() );
 	//contentsPixmapTmp.resize(800, 2000);
 	contentsPixmapTmp.fill();
 	QPainter p ( &contentsPixmapTmp );
@@ -163,6 +164,7 @@ void CommentWidget::updateContents() {
 	int valueoffset = 0; // text: value
 	int ispace = 1;
 	bool need_showc_button = false;
+	bool need_editc_button = false;
 
 	pixelsHigh -= 1; //I think it was too big...
 
@@ -174,7 +176,7 @@ void CommentWidget::updateContents() {
 
 	/*the .. case */
 	if ( act != NULL ) {
-		ButtonEdit->setEnabled ( true );
+		need_editc_button = true;
 
 		if ( mode ) {
 			p.setPen ( *cconfig->comm_stext );
@@ -186,6 +188,8 @@ void CommentWidget::updateContents() {
 		p.setPen ( *cconfig->comm_stext );
 		p.drawText ( mx + 15, my + w, tr ( "Name:" ) );
 		valueoffset =  fm.boundingRect ( tr ( "Name:" ) ).size().width();
+		if (mx+ 15 + valueoffset > fontwidth)
+			fontwidth = mx+ 15 + valueoffset + 20;
 		text = act->getNameOf();
 		text.prepend ( " " );
 
@@ -197,487 +201,552 @@ void CommentWidget::updateContents() {
 		p.setPen ( *cconfig->comm_stext );
 		p.drawText ( mx + 15, my + w, tr ( "At media (number/name):" ) );
 		valueoffset =  fm.boundingRect ( tr ( "At media (number/name):" ) ).size().width();
+		if (mx+ 15 + valueoffset > fontwidth)
+			fontwidth = mx+ 15 + valueoffset + 20;
 		tmp = act;
 		while ( tmp != NULL && tmp->type != HC_MEDIA && tmp->type != HC_CATALOG )
 			tmp = tmp->parent;
 		text = " ";
-		if ( tmp == NULL )
+		if ( tmp == NULL ) {
 			text += tr ( "Unknown" );
-		if ( tmp->type == HC_CATALOG )
-			text += ( ( DBCatalog * ) ( tmp->data ) )->name;
-		if ( tmp->type == HC_MEDIA ) {
-			text += QString().setNum ( ( ( DBMedia * ) ( tmp->data ) )->number ) + " / " + ( ( DBMedia * ) ( tmp->data ) )->name;
-			if ( ! ( ( ( DBMedia * ) ( tmp->data ) )->borrowing.isEmpty() ) ) {
-				p.setPen ( QPen ( QColor ( Qt::red ), 2 ) );
-				p.drawLine ( width() - 24, 14, width() - 14, 24 );
+		}
+		else {
+			if ( tmp->type == HC_CATALOG )
+				text += ( ( DBCatalog * ) ( tmp->data ) )->name;
+			if ( tmp->type == HC_MEDIA ) {
+				text += QString().setNum ( ( ( DBMedia * ) ( tmp->data ) )->number ) + " / " + ( ( DBMedia * ) ( tmp->data ) )->name;
+				if ( ! ( ( ( DBMedia * ) ( tmp->data ) )->borrowing.isEmpty() ) ) {
+					p.setPen ( QPen ( QColor ( Qt::red ), 2 ) );
+					p.drawLine ( width() - 24, 14, width() - 14, 24 );
+				}
 			}
-		}
-		p.setPen ( QPen ( *cconfig->comm_vtext, 1 ) );
-		p.drawText ( mx + 15 + valueoffset, my + w, text );
-		w += pixelsHigh + ispace;
-
-		/*type*/
-		p.setPen ( *cconfig->comm_stext );
-		p.drawText ( mx + 15, my + w, tr ( "Type:" ) );
-		valueoffset =  fm.boundingRect ( tr ( "Type:" ) ).size().width();
-		switch ( act->type ) {
-			case HC_CATALOG  :
-				text = tr ( " CdCat Catalog root" );
-				break;
-			case HC_CATLNK   :
-				text = tr ( " Link to a CdCat catalog" );
-				break;
-			case HC_DIRECTORY:
-				text = tr ( " Directory" );
-				break;
-			case HC_FILE     :
-				text = tr ( " File" );
-				break;
-			case HC_MEDIA    :
-				text = QString ( " " ) + tr ( "Media" ) + QString ( "" ).sprintf ( " (%s)", getMType ( ( ( DBMedia * ) ( act->data ) )->type ) );
-				break;
-		}
-		p.setPen ( *cconfig->comm_vtext );
-		p.drawText ( mx + 15 + valueoffset, my + w, text );
-		w += pixelsHigh + ispace;
-
-		/*if file->size*/
-		if ( act->type == HC_FILE ) {
-			p.setPen ( *cconfig->comm_stext );
-			p.drawText ( mx + 15, my + w, tr ( "Size:" ) );
-			valueoffset =  fm.boundingRect ( tr ( "Size:" ) ).size().width();
-			text.sprintf ( " %.2f ", ( ( DBFile * ) ( act->data ) )->size );
-			text += QString ( getSType ( ( ( DBFile * ) ( act->data ) )->sizeType, true ) );
-			p.setPen ( *cconfig->comm_vtext );
+			p.setPen ( QPen ( *cconfig->comm_vtext, 1 ) );
 			p.drawText ( mx + 15 + valueoffset, my + w, text );
+			valueoffset =  fm.boundingRect ( text ).size().width();
+			if (mx+ 15 + valueoffset > fontwidth)
+			fontwidth = mx+ 15 + valueoffset + 20;
 			w += pixelsHigh + ispace;
-		}
 
-		/*if catlnkfile->location*/
-		if ( act->type == HC_CATLNK ) {
+			/*type*/
 			p.setPen ( *cconfig->comm_stext );
-			p.drawText ( mx + 15, my + w, tr ( "Location:" ) );
-			valueoffset =  fm.boundingRect ( tr ( "Location:" ) ).size().width();
-			p.setPen ( *cconfig->comm_vtext );
-			text.sprintf ( " %s", ( ( DBCatLnk * ) ( act->data ) )->location );
-			p.drawText ( mx + 15 + valueoffset, my + w, text );
-			w += pixelsHigh + ispace;
-		}
-
-		if ( act->type != HC_CATLNK ) {
-			/*mod.time*/
-
-			p.setPen ( *cconfig->comm_stext );
-			p.drawText ( mx + 15, my + w, tr ( "Last modification:" ) );
-			valueoffset =  fm.boundingRect ( tr ( "Last modification:" ) ).size().width();
+			p.drawText ( mx + 15, my + w, tr ( "Type:" ) );
+			valueoffset =  fm.boundingRect ( tr ( "Type:" ) ).size().width();
+			if (mx+ 15 + valueoffset > fontwidth)
+			fontwidth = mx+ 15 + valueoffset + 20;
 			switch ( act->type ) {
 				case HC_CATALOG  :
-					mod = ( ( DBCatalog * ) ( act->data ) )->modification;
+					text = tr ( " CdCat Catalog root" );
+					break;
+				case HC_CATLNK   :
+					text = tr ( " Link to a CdCat catalog" );
 					break;
 				case HC_DIRECTORY:
-					mod = ( ( DBDirectory * ) ( act->data ) )->modification;
+					text = tr ( " Directory" );
 					break;
 				case HC_FILE     :
-					mod = ( ( DBFile * ) ( act->data ) )->modification;
+					text = tr ( " File" );
 					break;
 				case HC_MEDIA    :
-					mod = ( ( DBMedia * ) ( act->data ) )->modification;
+					text = QString ( " " ) + tr ( "Media" ) + QString ( "" ).sprintf ( " (%s)", getMType ( ( ( DBMedia * ) ( act->data ) )->type ) );
 					break;
 			}
-
-			//sprintf(text," %s",((DBMedia *)(act->data))->modification);break;
-			text = date_to_str ( mod );
-
 			p.setPen ( *cconfig->comm_vtext );
 			p.drawText ( mx + 15 + valueoffset, my + w, text );
+			valueoffset =  fm.boundingRect ( text ).size().width();
+			if (mx+ 15 + valueoffset > fontwidth)
+				fontwidth = mx+ 15 + valueoffset + 20;
 			w += pixelsHigh + ispace;
 
+			/*if file->size*/
+			if ( act->type == HC_FILE ) {
+				p.setPen ( *cconfig->comm_stext );
+				p.drawText ( mx + 15, my + w, tr ( "Size:" ) );
+				text.sprintf ( " %.2f ", ( ( DBFile * ) ( act->data ) )->size );
+				text += QString ( getSType ( ( ( DBFile * ) ( act->data ) )->sizeType, true ) );
+				p.setPen ( *cconfig->comm_vtext );
+				p.drawText ( mx + 15 + valueoffset, my + w, text );
+				valueoffset =  fm.boundingRect ( text ).size().width();
+				if (mx+ 15 + valueoffset > fontwidth)
+					fontwidth = mx+ 15 + valueoffset + 20;
+				w += pixelsHigh + ispace;
+			}
 
-			/*owner*/
-			p.setPen ( *cconfig->comm_stext );
-			p.drawText ( mx + 15, my + w, tr ( "Owner:" ) );
-			valueoffset =  fm.boundingRect ( tr ( "Owner:" ) ).size().width();
-			tmp = act;
-			while ( tmp != NULL && tmp->type != HC_MEDIA && tmp->type != HC_CATALOG )
-				tmp = tmp->parent;
-			text = " ";
-			if ( tmp == NULL )
-				text = tr ( "Unknown" );
-			if ( tmp->type == HC_CATALOG )
-				text += ( ( DBCatalog * ) ( tmp->data ) )->owner;
-			if ( tmp->type == HC_MEDIA )
-				text += ( ( DBMedia * ) ( tmp->data ) )->owner;
+			/*if catlnkfile->location*/
+			if ( act->type == HC_CATLNK ) {
+				p.setPen ( *cconfig->comm_stext );
+				p.drawText ( mx + 15, my + w, tr ( "Location:" ) );
+				valueoffset =  fm.boundingRect ( tr ( "Location:" ) ).size().width();
+				p.setPen ( *cconfig->comm_vtext );
+				text.sprintf ( " %s", ( ( DBCatLnk * ) ( act->data ) )->location );
+				p.drawText ( mx + 15 + valueoffset, my + w, text );
+				valueoffset =  fm.boundingRect ( text ).size().width();
+				if (mx+ 15 + valueoffset > fontwidth)
+					fontwidth = mx+ 15 + valueoffset + 20;
+				w += pixelsHigh + ispace;
+			}
 
-			p.setPen ( *cconfig->comm_vtext );
-			p.drawText ( mx + 15 + valueoffset, my + w, text );
-			w += pixelsHigh + ispace;
+			if ( act->type != HC_CATLNK ) {
+				/*mod.time*/
 
-		}
-		/*file properties*/
-		if ( act->type == HC_FILE && ( ( DBFile * ) ( act->data ) )->prop != NULL ) { //File props:
-			tmp = ( ( DBFile * ) ( act->data ) )->prop;
-			while ( tmp != NULL ) {
-				/*mp3tag*/
-				if ( tmp->type == HC_MP3TAG ) {
-					p.setPen ( *cconfig->comm_fr );
-					p.drawLine ( 12, my + w - 11, width() - 12, my + w - 11 );
-					p.setPen ( *cconfig->comm_stext );
-					p.drawText ( mx + 12, my + w, tr ( "Mp3-Tag:" ) );
-					w += pixelsHigh;
-					//p.drawText ( mx+12,my+w,tr ( "(Art/Tit/Alb/Year/Comm)" ) );
-					//w+=pixelsHigh+2;
-					p.setPen ( *cconfig->comm_vtext );
-					p.drawText ( mx + 20, my + w, tr ( "Artist:" ) + " " + ( ( DBMp3Tag * ) ( tmp->data ) )->artist );
-					w += pixelsHigh;
-					p.drawText ( mx + 20, my + w, tr ( "Title:" ) + " " + ( ( DBMp3Tag * ) ( tmp->data ) )->title + " (" + tr ( "track:" ) + " " + QString().setNum ( ( ( DBMp3Tag * ) ( tmp->data ) )->tnumber ) + ")" );
-					w += pixelsHigh;
-					p.drawText ( mx + 20, my + w, tr ( "Album:" ) + " " + ( ( DBMp3Tag * ) ( tmp->data ) )->album );
-					w += pixelsHigh;
-					p.drawText ( mx + 20, my + w, tr ( "Year:" ) + " " + ( ( DBMp3Tag * ) ( tmp->data ) )->year );
-					w += pixelsHigh;
-					p.drawText ( mx + 20, my + w, tr ( "Comment:" ) + " " + ( ( DBMp3Tag * ) ( tmp->data ) )->comment );
-					w += pixelsHigh + 2;
+				p.setPen ( *cconfig->comm_stext );
+				p.drawText ( mx + 15, my + w, tr ( "Last modification:" ) );
+				valueoffset =  fm.boundingRect ( tr ( "Last modification:" ) ).size().width();
+				switch ( act->type ) {
+					case HC_CATALOG  :
+						mod = ( ( DBCatalog * ) ( act->data ) )->modification;
+						break;
+					case HC_DIRECTORY:
+						mod = ( ( DBDirectory * ) ( act->data ) )->modification;
+						break;
+					case HC_FILE     :
+						mod = ( ( DBFile * ) ( act->data ) )->modification;
+						break;
+					case HC_MEDIA    :
+						mod = ( ( DBMedia * ) ( act->data ) )->modification;
+						break;
 				}
-				/* exif data */
-				else
-					if ( tmp->type == HC_EXIF ) {
+
+				//sprintf(text," %s",((DBMedia *)(act->data))->modification);break;
+				text = date_to_str ( mod );
+
+				p.setPen ( *cconfig->comm_vtext );
+				p.drawText ( mx + 15 + valueoffset, my + w, text );
+				valueoffset =  fm.boundingRect ( text ).size().width();
+				if (mx+ 15 + valueoffset > fontwidth)
+					fontwidth = mx+ 15 + valueoffset + 20;
+				w += pixelsHigh + ispace;
+
+
+				/*owner*/
+				p.setPen ( *cconfig->comm_stext );
+				p.drawText ( mx + 15, my + w, tr ( "Owner:" ) );
+				valueoffset =  fm.boundingRect ( tr ( "Owner:" ) ).size().width();
+				tmp = act;
+				while ( tmp != NULL && tmp->type != HC_MEDIA && tmp->type != HC_CATALOG )
+					tmp = tmp->parent;
+				text = " ";
+				if ( tmp == NULL )
+					text = tr ( "Unknown" );
+				if ( tmp->type == HC_CATALOG )
+					text += ( ( DBCatalog * ) ( tmp->data ) )->owner;
+				if ( tmp->type == HC_MEDIA )
+					text += ( ( DBMedia * ) ( tmp->data ) )->owner;
+
+				p.setPen ( *cconfig->comm_vtext );
+				p.drawText ( mx + 15 + valueoffset, my + w, text );
+				valueoffset =  fm.boundingRect ( text ).size().width();
+				if (mx+ 15 + valueoffset > fontwidth)
+					fontwidth = mx+ 15 + valueoffset + 20;
+				w += pixelsHigh + ispace;
+
+			}
+			/*file properties*/
+			if ( act->type == HC_FILE && ( ( DBFile * ) ( act->data ) )->prop != NULL ) { //File props:
+				tmp = ( ( DBFile * ) ( act->data ) )->prop;
+				while ( tmp != NULL ) {
+					/*mp3tag*/
+					if ( tmp->type == HC_MP3TAG ) {
 						p.setPen ( *cconfig->comm_fr );
 						p.drawLine ( 12, my + w - 11, width() - 12, my + w - 11 );
 						p.setPen ( *cconfig->comm_stext );
-						p.drawText ( mx + 12, my + w, tr ( "Exif data:" ) );
+						p.drawText ( mx + 12, my + w, tr ( "Mp3-Tag:" ) );
 						w += pixelsHigh;
+						//p.drawText ( mx+12,my+w,tr ( "(Art/Tit/Alb/Year/Comm)" ) );
+						//w+=pixelsHigh+2;
 						p.setPen ( *cconfig->comm_vtext );
-						QStringList ExifData = ( ( DBExifData * ) ( tmp->data ) )->ExifDataList;
-						std::cout << "exif data: " << qPrintable ( ExifData.join ( "#" ) ) << std::endl;
-						for ( int i = 0; i < ExifData.size(); ++i ) {
-							p.drawText ( mx + 20, my + w, ExifData.at ( i ) );
-							w += pixelsHigh;
-						}
+						text =  tr ( "Artist:" ) + " " + ( ( DBMp3Tag * ) ( tmp->data ) )->artist;
+						p.drawText ( mx + 20, my + w, text);
+						valueoffset =  fm.boundingRect ( text ).size().width();
+						if (mx+ 15 + valueoffset > fontwidth)
+							fontwidth = mx+ 15 + valueoffset + 20;
 						w += pixelsHigh;
-						p.setPen ( *cconfig->comm_stext );
+						text = tr ( "Title:" ) + " " + ( ( DBMp3Tag * ) ( tmp->data ) )->title + " (" + tr ( "track:" ) + " " + QString().setNum ( ( ( DBMp3Tag * ) ( tmp->data ) )->tnumber ) + ")";
+						p.drawText ( mx + 20, my + w, text);
+						valueoffset =  fm.boundingRect ( text ).size().width();
+						if (mx+ 15 + valueoffset > fontwidth)
+							fontwidth = mx+ 15 + valueoffset + 20;
+						w += pixelsHigh;
+						text = tr ( "Album:" ) + " " + ( ( DBMp3Tag * ) ( tmp->data ) )->album;
+						p.drawText ( mx + 20, my + w, text );
+						valueoffset =  fm.boundingRect ( text ).size().width();
+						if (mx+ 15 + valueoffset > fontwidth)
+							fontwidth = mx+ 15 + valueoffset + 20;
+						w += pixelsHigh;
+						text = tr ( "Year:" ) + " " + ( ( DBMp3Tag * ) ( tmp->data ) )->year;
+						p.drawText ( mx + 20, my + w, text );
+						valueoffset =  fm.boundingRect ( text ).size().width();
+						if (mx+ 15 + valueoffset > fontwidth)
+							fontwidth = mx+ 15 + valueoffset + 20;
+						w += pixelsHigh;
+						text = tr ( "Comment:" ) + " " + ( ( DBMp3Tag * ) ( tmp->data ) )->comment;
+						p.drawText ( mx + 20, my + w, text );
+						valueoffset =  fm.boundingRect ( text ).size().width();
+						if (mx+ 15 + valueoffset > fontwidth)
+							fontwidth = mx+ 15 + valueoffset + 20;
+						w += pixelsHigh + 2;
 					}
-
-				/* thumbnail */
+					/* exif data */
 					else
-						if ( tmp->type == HC_THUMB ) {
+						if ( tmp->type == HC_EXIF ) {
 							p.setPen ( *cconfig->comm_fr );
 							p.drawLine ( 12, my + w - 11, width() - 12, my + w - 11 );
 							p.setPen ( *cconfig->comm_stext );
-							p.drawText ( mx + 12, my + w, tr ( "Thumbnail:" ) );
+							p.drawText ( mx + 12, my + w, tr ( "Exif data:" ) );
 							w += pixelsHigh;
 							p.setPen ( *cconfig->comm_vtext );
-							p.drawImage ( mx + 20, my + w, ( ( ( DBThumb * ) ( tmp->data ) )->ThumbImage ) );
-							w += ( ( ( ( DBThumb * ) ( tmp->data ) )->ThumbImage ) ).height() + 10;
-							w += pixelsHigh;
-						}
-				tmp = tmp->next;
-			}
-		}
-
-		switch ( act->type ) {
-			case HC_CATALOG  :
-				text = ( ( DBCatalog * ) ( act->data ) )->comment;
-				break;
-			case HC_DIRECTORY:
-				text = ( ( DBDirectory * ) ( act->data ) )->comment;
-				break;
-			case HC_FILE     :
-				text = ( ( DBFile * ) ( act->data ) )->comment;
-				break;
-			case HC_MEDIA    :
-				text = ( ( DBMedia * ) ( act->data ) )->comment;
-				break;
-			case HC_CATLNK   :
-				text = ( ( DBCatLnk * ) ( act->data ) )->comment;
-				break;
-		}
-		if ( !text.isEmpty() ) {
-			w++;
-			p.setPen ( *cconfig->comm_fr );
-			p.drawLine ( 12, my + w - pixelsHigh, width() - 12, my + w - pixelsHigh );
-			p.setPen ( *cconfig->comm_stext );
-			w++;
-			p.drawText ( mx + 15, my + w, tr ( "Comment:" ) );
-			w += pixelsHigh;
-			p.setPen ( *cconfig->comm_vtext );
-			textList = QStringList::split ( QRegExp ( "#|\n|\r\n" ), text, TRUE );
-			for ( QStringList::Iterator it = textList.begin(); it != textList.end(); ++it ) {
-				int max_comment_len = 80;
-				int stringlen = ( *it ).size();
-				if ( stringlen > max_comment_len ) {
-					// 		cerr << "oversized comment line (" << stringlen <<"): " << qPrintable(*it) << endl;
-					int curlen = 0;
-					QStringList textList2;
-					for ( int curidx = 0; curidx < stringlen; curidx++ ) {
-						if ( curlen == max_comment_len ) {
-							textList2.append ( ( *it ).mid ( curidx - max_comment_len, curidx ) );
-							// 				cerr << "added sub comment line (" << (*it).mid(curidx-max_comment_len, curidx).length() <<"): " << qPrintable((*it).mid(curidx-max_comment_len, curidx)) << endl;
-							curlen = 0;
-						}
-						curlen++;
-					}
-					for ( QStringList::Iterator it2 = textList2.begin(); it2 != textList2.end(); ++it2 ) {
-						p.drawText ( mx + 20, my + w, ( *it2 ) );
-						w += pixelsHigh;
-					}
-				} else {
-					// 		cerr << "undersized comment line (" << stringlen <<"): " << qPrintable(*it) << endl;
-					p.drawText ( mx + 20, my + w, ( *it ) );
-					w += pixelsHigh;
-				}
-			}
-			w++;
-			p.setPen ( *cconfig->comm_fr );
-			p.drawLine ( 12, my + w - pixelsHigh, width() - 12, my + w - pixelsHigh );
-			p.setPen ( *cconfig->comm_stext );
-		}
-
-		switch ( act->type ) {
-			case HC_CATALOG  :
-				text = ( ( DBCatalog * ) ( act->data ) )->category;
-				break;
-			case HC_DIRECTORY:
-				text = ( ( DBDirectory * ) ( act->data ) )->category;
-				break;
-			case HC_FILE:
-				text = ( ( DBFile * ) ( act->data ) )->category;
-				break;
-			case HC_MEDIA:
-				text = ( ( DBMedia * ) ( act->data ) )->category;
-				break;
-			case HC_CATLNK:
-				text = ( ( DBCatLnk * ) ( act->data ) )->category;
-				break;
-		}
-
-		if ( ! text.isEmpty() ) {
-			//w+=pixelsHigh+2;
-			p.setPen ( *cconfig->comm_stext );
-			w++;
-			p.setPen ( *cconfig->comm_fr );
-			p.drawLine ( 12, my + w - pixelsHigh, width() - 12, my + w - pixelsHigh );
-			p.setPen ( *cconfig->comm_stext );
-			w++;
-			p.drawText ( mx + 15, my + w, tr ( "Category:" ) );
-			w += pixelsHigh;
-			w++;
-			p.setPen ( *cconfig->comm_vtext );
-			textList = QStringList::split ( QRegExp ( "#|\n|\r\n" ), text, TRUE );
-			for ( QStringList::Iterator it = textList.begin(); it != textList.end(); ++it ) {
-				int max_category_len = 80;
-				int stringlen = ( *it ).size();
-				if ( stringlen > max_category_len ) {
-					// 		cerr << "oversized category line (" << stringlen <<"): " << qPrintable(*it) << endl;
-					int curlen = 0;
-					QStringList textList2;
-					for ( int curidx = 0; curidx < stringlen; curidx++ ) {
-						if ( curlen == max_category_len ) {
-							textList2.append ( ( *it ).mid ( curidx - max_category_len, curidx ) );
-							// 				cerr << "added sub category line (" << (*it).mid(curidx-max_category_len, curidx).length() <<"): " << qPrintable((*it).mid(curidx-max_category_len, curidx)) << endl;
-							curlen = 0;
-						}
-						curlen++;
-					}
-					for ( QStringList::Iterator it2 = textList2.begin(); it2 != textList2.end(); ++it2 ) {
-						p.drawText ( mx + 20, my + w, ( *it2 ) );
-						w += pixelsHigh;
-					}
-				} else {
-					// 		cerr << "undersized category line (" << stringlen <<"): " << qPrintable(*it) << endl;
-					p.drawText ( mx + 20, my + w, ( *it ) );
-					w += pixelsHigh;
-				}
-
-			}
-			w++;
-			p.setPen ( *cconfig->comm_fr );
-			p.drawLine ( 12, my + w - pixelsHigh, width() - 12, my + w - pixelsHigh );
-			p.setPen ( *cconfig->comm_stext );
-			w++;
-
-		}
-		QFont oldFont;
-		oldFont = p.font();
-		switch ( act->type ) {
-			case HC_FILE:
-				/* archive content */
-				QList<ArchiveFile> ArchiveFileList = ( ( DBFile * ) ( act->data ) )->archivecontent;
-				if ( ArchiveFileList.size() > 0 ) {
-					w += pixelsHigh + ispace;
-
-					p.setPen ( *cconfig->comm_fr );
-					p.drawLine ( 12, my + w - pixelsHigh, width() - 12, my + w - pixelsHigh );
-					p.setPen ( *cconfig->comm_stext );
-					w++;
-					p.drawText ( mx + 15, my + w, tr ( "Archive contents:" ) );
-					//w+=pixelsHigh;
-					//w++;
-					p.setFont ( QFont ( "Fixed", font().pointSize() - 1 ) );
-
-					QTextDocument *doc = new QTextDocument ( this );
-					doc->setUndoRedoEnabled ( false );
-					QString html  = "";
-					html += "<html>";
-					html += "<head>";
-					html += "<style type=\"text/css\">";
-					html += ".tableline{font-size:" + QString().setNum ( font().pointSize() - 1 ) + "pt;}";
-					html += "</style>";
-					html += "</head>";
-					html += "<body>";
-					html += "<table colspacing=\"5\" rowspacing=\"5\">";
-					html += "<tr>";
-					if ( cconfig->show_archive_file_perms ) {
-						html += "<th>";
-						html += tr ( "Rights" );
-						html += "</th>";
-					}
-					if ( cconfig->show_archive_file_user ) {
-						html += "<th>";
-						html += tr ( "Owner" );
-						html += "</th>";
-					}
-					if ( cconfig->show_archive_file_group ) {
-						html += "<th>";
-						html += tr ( "Group" );
-						html += "</th>";
-					}
-					if ( cconfig->show_archive_file_size ) {
-						html += "<th>";
-						html += tr ( "Size" );
-						html += "</th>";
-					}
-					if ( cconfig->show_archive_file_date ) {
-						html += "<th>";
-						html += tr ( "Changed" );
-						html += "</th>";
-					}
-
-					html += "<th>";
-					html += tr ( "Path" );
-					html += "</th>";
-
-					if ( cconfig->show_archive_file_comment ) {
-						html += "<th>";
-						html += tr ( "Comment" );
-						html += "</th>";
-					}
-					html += "</tr>";
-
-					p.setPen ( *cconfig->comm_vtext );
-					for ( int i = 0; i < ArchiveFileList.size(); i++ ) {
-						ArchiveFile af = ArchiveFileList.at ( i );
-						html += af.toPrettyString ( cconfig->show_archive_file_perms, cconfig->show_archive_file_user, cconfig->show_archive_file_group, cconfig->show_archive_file_size, cconfig->show_archive_file_date, cconfig->show_archive_file_comment, true, ( font().pointSize() - 1 ) );
-					}
-
-					html += "</table>";
-					html += "</body>";
-					html += "</html>";
-
-					doc->setHtml ( html );
-					//doc->setTextWidth(width());
-					//doc->setUseDesignMetrics(true);
-					//doc->setDefaultTextOption ( QTextOption (Qt::AlignHCenter )  );
-					//doc->drawContents(&p, QRectF(QRect(mx+15+valueoffset, my+w ,doc->size().height() , width())));
-
-
-					p.save();
-					p.translate ( QPoint ( mx + 10, my + w ) );
-					doc->setDefaultFont ( QFont ( "Fixed", font().pointSize() - 1 ) );
-					//if (doc->size().width()+30 > fontwidth)
-					fontwidth = doc->size().width() + 30;
-					if ( w + doc->size().height() > contentsPixmap.height() )
-						contentsPixmap.resize ( fontwidth, w + 200 );
-
-					doc->drawContents ( &p );
-					p.restore();
-					w += doc->size().height();
-					/* end archive file list */
-
-					//w++;
-					p.setPen ( *cconfig->comm_fr );
-					p.drawLine ( 12, my + w, width() - 12, my + w );
-					p.setPen ( *cconfig->comm_stext );
-					w++;
-					w++;
-
-				}
-				w += pixelsHigh;
-				w += pixelsHigh;
-
-				break;
-				// 		default:
-				// 			;
-		}
-		p.setFont ( oldFont );
-
-		switch ( act->type ) {
-			case HC_FILE :
-				QString info = ( ( DBFile * ) ( act->data ) )->fileinfo;
-				if ( !info.isEmpty() ) {
-					// 				w+=pixelsHigh;
-					p.setPen ( *cconfig->comm_stext );
-					p.drawText ( mx + 15, my + w, tr ( "File info:" ) );
-					w += pixelsHigh;
-					p.setPen ( *cconfig->comm_vtext );
-					textList = QStringList::split ( QRegExp ( "#|\n|\r\n" ), info, TRUE );
-					for ( QStringList::Iterator it = textList.begin(); it != textList.end(); ++it ) {
-						int max_fileinfo_len = 80;
-						int stringlen = ( *it ).size();
-						if ( stringlen > max_fileinfo_len ) {
-							// 		cerr << "oversized fileinfo line (" << stringlen <<"): " << qPrintable(*it) << endl;
-							int curlen = 0;
-							QStringList textList2;
-							for ( int curidx = 0; curidx < stringlen; curidx++ ) {
-								if ( curlen == max_fileinfo_len ) {
-									textList2.append ( ( *it ).mid ( curidx - max_fileinfo_len, curidx ) );
-									// 				cerr << "added sub fileinfo line (" << (*it).mid(curidx-max_fileinfo_len, curidx).length() <<"): " << qPrintable((*it).mid(curidx-max_fileinfo_len, curidx)) << endl;
-									curlen = 0;
-								}
-								curlen++;
-							}
-							for ( QStringList::Iterator it2 = textList2.begin(); it2 != textList2.end(); ++it2 ) {
-								p.drawText ( mx + 20, my + w, ( *it2 ) );
+							QStringList ExifData = ( ( DBExifData * ) ( tmp->data ) )->ExifDataList;
+							std::cout << "exif data: " << qPrintable ( ExifData.join ( "#" ) ) << std::endl;
+							for ( int i = 0; i < ExifData.size(); ++i ) {
+								text = ExifData.at ( i );
+								p.drawText ( mx + 20, my + w, text );
+								valueoffset =  fm.boundingRect ( text ).size().width();
+								if (mx+ 15 + valueoffset > fontwidth)
+									fontwidth = mx+ 15 + valueoffset + 20;
 								w += pixelsHigh;
 							}
-						} else {
-							// 		cerr << "undersized fileinfo line (" << stringlen <<"): " << qPrintable(*it) << endl;
-							p.drawText ( mx + 20, my + w, ( *it ) );
 							w += pixelsHigh;
-
+							p.setPen ( *cconfig->comm_stext );
 						}
+
+					/* thumbnail */
+						else
+							if ( tmp->type == HC_THUMB ) {
+								p.setPen ( *cconfig->comm_fr );
+								p.drawLine ( 12, my + w - 11, width() - 12, my + w - 11 );
+								p.setPen ( *cconfig->comm_stext );
+								p.drawText ( mx + 12, my + w, tr ( "Thumbnail:" ) );
+								w += pixelsHigh;
+								p.setPen ( *cconfig->comm_vtext );
+								p.drawImage ( mx + 20, my + w, ( ( ( DBThumb * ) ( tmp->data ) )->ThumbImage ) );
+								w += ( ( ( ( DBThumb * ) ( tmp->data ) )->ThumbImage ) ).height() + 10;
+								w += pixelsHigh;
+							}
+					tmp = tmp->next;
+				}
+			}
+
+			switch ( act->type ) {
+				case HC_CATALOG  :
+					text = ( ( DBCatalog * ) ( act->data ) )->comment;
+					break;
+				case HC_DIRECTORY:
+					text = ( ( DBDirectory * ) ( act->data ) )->comment;
+					break;
+				case HC_FILE     :
+					text = ( ( DBFile * ) ( act->data ) )->comment;
+					break;
+				case HC_MEDIA    :
+					text = ( ( DBMedia * ) ( act->data ) )->comment;
+					break;
+				case HC_CATLNK   :
+					text = ( ( DBCatLnk * ) ( act->data ) )->comment;
+					break;
+			}
+			if ( !text.isEmpty() ) {
+				w++;
+				p.setPen ( *cconfig->comm_fr );
+				p.drawLine ( 12, my + w - pixelsHigh, width() - 12, my + w - pixelsHigh );
+				p.setPen ( *cconfig->comm_stext );
+				w++;
+				p.drawText ( mx + 15, my + w, tr ( "Comment:" ) );
+				w += pixelsHigh;
+				p.setPen ( *cconfig->comm_vtext );
+				textList = QStringList::split ( QRegExp ( "#|\n|\r\n" ), text, TRUE );
+				for ( QStringList::Iterator it = textList.begin(); it != textList.end(); ++it ) {
+					int max_comment_len = 80;
+					int stringlen = ( *it ).size();
+					if ( stringlen > max_comment_len ) {
+						// 		cerr << "oversized comment line (" << stringlen <<"): " << qPrintable(*it) << endl;
+						int curlen = 0;
+						QStringList textList2;
+						for ( int curidx = 0; curidx < stringlen; curidx++ ) {
+							if ( curlen == max_comment_len ) {
+								textList2.append ( ( *it ).mid ( curidx - max_comment_len, curidx ) );
+								// 				cerr << "added sub comment line (" << (*it).mid(curidx-max_comment_len, curidx).length() <<"): " << qPrintable((*it).mid(curidx-max_comment_len, curidx)) << endl;
+								curlen = 0;
+							}
+							curlen++;
+						}
+						for ( QStringList::Iterator it2 = textList2.begin(); it2 != textList2.end(); ++it2 ) {
+							p.drawText ( mx + 20, my + w, ( *it2 ) );
+							w += pixelsHigh;
+						}
+					} else {
+						// 		cerr << "undersized comment line (" << stringlen <<"): " << qPrintable(*it) << endl;
+						p.drawText ( mx + 20, my + w, ( *it ) );
+						w += pixelsHigh;
 					}
-					p.setPen ( *cconfig->comm_fr );
-					p.drawLine ( 12, my + w, width() - 12, my + w );
-					p.setPen ( *cconfig->comm_stext );
-					w++;
 				}
-				break;
+				w++;
+				p.setPen ( *cconfig->comm_fr );
+				p.drawLine ( 12, my + w - pixelsHigh, width() - 12, my + w - pixelsHigh );
+				p.setPen ( *cconfig->comm_stext );
+			}
 
-		}
+			switch ( act->type ) {
+				case HC_CATALOG  :
+					text = ( ( DBCatalog * ) ( act->data ) )->category;
+					break;
+				case HC_DIRECTORY:
+					text = ( ( DBDirectory * ) ( act->data ) )->category;
+					break;
+				case HC_FILE:
+					text = ( ( DBFile * ) ( act->data ) )->category;
+					break;
+				case HC_MEDIA:
+					text = ( ( DBMedia * ) ( act->data ) )->category;
+					break;
+				case HC_CATLNK:
+					text = ( ( DBCatLnk * ) ( act->data ) )->category;
+					break;
+			}
 
-		w += pixelsHigh;
-		w += pixelsHigh;
-		w += pixelsHigh;
+			if ( ! text.isEmpty() ) {
+				//w+=pixelsHigh+2;
+				p.setPen ( *cconfig->comm_stext );
+				w++;
+				p.setPen ( *cconfig->comm_fr );
+				p.drawLine ( 12, my + w - pixelsHigh, width() - 12, my + w - pixelsHigh );
+				p.setPen ( *cconfig->comm_stext );
+				w++;
+				p.drawText ( mx + 15, my + w, tr ( "Category:" ) );
+				w += pixelsHigh;
+				w++;
+				p.setPen ( *cconfig->comm_vtext );
+				textList = QStringList::split ( QRegExp ( "#|\n|\r\n" ), text, TRUE );
+				for ( QStringList::Iterator it = textList.begin(); it != textList.end(); ++it ) {
+					int max_category_len = 80;
+					int stringlen = ( *it ).size();
+					if ( stringlen > max_category_len ) {
+						// 		cerr << "oversized category line (" << stringlen <<"): " << qPrintable(*it) << endl;
+						int curlen = 0;
+						QStringList textList2;
+						for ( int curidx = 0; curidx < stringlen; curidx++ ) {
+							if ( curlen == max_category_len ) {
+								textList2.append ( ( *it ).mid ( curidx - max_category_len, curidx ) );
+								// 				cerr << "added sub category line (" << (*it).mid(curidx-max_category_len, curidx).length() <<"): " << qPrintable((*it).mid(curidx-max_category_len, curidx)) << endl;
+								curlen = 0;
+							}
+							curlen++;
+						}
+						for ( QStringList::Iterator it2 = textList2.begin(); it2 != textList2.end(); ++it2 ) {
+							p.drawText ( mx + 20, my + w, ( *it2 ) );
+							w += pixelsHigh;
+						}
+					} else {
+						// 		cerr << "undersized category line (" << stringlen <<"): " << qPrintable(*it) << endl;
+						p.drawText ( mx + 20, my + w, ( *it ) );
+						w += pixelsHigh;
+					}
 
-		/*Content button stuff*/
-		if ( act->type == HC_FILE && ( ( DBFile * ) ( act->data ) )->prop != NULL ) {
-			tmp = ( ( DBFile * ) ( act->data ) )->prop;
-			while ( tmp != NULL ) {
-				if ( tmp->type == HC_CONTENT ) {
-					need_showc_button = true;
 				}
-				tmp = tmp->next;
+				w++;
+				p.setPen ( *cconfig->comm_fr );
+				p.drawLine ( 12, my + w - pixelsHigh, width() - 12, my + w - pixelsHigh );
+				p.setPen ( *cconfig->comm_stext );
+				w++;
+
+			}
+			QFont oldFont;
+			oldFont = p.font();
+			switch ( act->type ) {
+				case HC_FILE:
+					/* archive content */
+					QList<ArchiveFile> ArchiveFileList = ( ( DBFile * ) ( act->data ) )->archivecontent;
+					if ( ArchiveFileList.size() > 0 ) {
+						w += pixelsHigh + ispace;
+
+						p.setPen ( *cconfig->comm_fr );
+						p.drawLine ( 12, my + w - pixelsHigh, width() - 12, my + w - pixelsHigh );
+						p.setPen ( *cconfig->comm_stext );
+						w++;
+						p.drawText ( mx + 15, my + w, tr ( "Archive contents:" ) );
+						//w+=pixelsHigh;
+						//w++;
+						p.setFont ( QFont ( "Fixed", font().pointSize() - 1 ) );
+
+						QTextDocument *doc = new QTextDocument ( this );
+						doc->setUndoRedoEnabled ( false );
+						QString html  = "";
+						html += "<html>";
+						html += "<head>";
+						html += "<style type=\"text/css\">";
+						html += ".tableline{font-size:" + QString().setNum ( font().pointSize() - 1 ) + "pt;}";
+						html += "</style>";
+						html += "</head>";
+						html += "<body>";
+						html += "<table colspacing=\"5\" rowspacing=\"5\">";
+						html += "<tr>";
+						if ( cconfig->show_archive_file_perms ) {
+							html += "<th>";
+							html += tr ( "Rights" );
+							html += "</th>";
+						}
+						if ( cconfig->show_archive_file_user ) {
+							html += "<th>";
+							html += tr ( "Owner" );
+							html += "</th>";
+						}
+						if ( cconfig->show_archive_file_group ) {
+							html += "<th>";
+							html += tr ( "Group" );
+							html += "</th>";
+						}
+						if ( cconfig->show_archive_file_size ) {
+							html += "<th>";
+							html += tr ( "Size" );
+							html += "</th>";
+						}
+						if ( cconfig->show_archive_file_date ) {
+							html += "<th>";
+							html += tr ( "Changed" );
+							html += "</th>";
+						}
+
+						html += "<th>";
+						html += tr ( "Path" );
+						html += "</th>";
+
+						if ( cconfig->show_archive_file_comment ) {
+							html += "<th>";
+							html += tr ( "Comment" );
+							html += "</th>";
+						}
+						html += "</tr>";
+
+						p.setPen ( *cconfig->comm_vtext );
+						for ( int i = 0; i < ArchiveFileList.size(); i++ ) {
+							ArchiveFile af = ArchiveFileList.at ( i );
+							html += af.toPrettyString ( cconfig->show_archive_file_perms, cconfig->show_archive_file_user, cconfig->show_archive_file_group, cconfig->show_archive_file_size, cconfig->show_archive_file_date, cconfig->show_archive_file_comment, true, ( font().pointSize() - 1 ) );
+						}
+
+						html += "</table>";
+						html += "</body>";
+						html += "</html>";
+
+						doc->setHtml ( html );
+						//doc->setTextWidth(width());
+						//doc->setUseDesignMetrics(true);
+						//doc->setDefaultTextOption ( QTextOption (Qt::AlignHCenter )  );
+						//doc->drawContents(&p, QRectF(QRect(mx+15+valueoffset, my+w ,doc->size().height() , width())));
+
+
+						p.save();
+						p.translate ( QPoint ( mx + 10, my + w ) );
+						doc->setDefaultFont ( QFont ( "Fixed", font().pointSize() - 1 ) );
+						if (doc->size().width()+30 > fontwidth)
+							fontwidth = doc->size().width() + 30;
+						//if ( w + doc->size().height() > contentsPixmap.height() )
+						//	contentsPixmap.resize ( fontwidth, w + 200 );
+
+						doc->drawContents ( &p );
+						p.restore();
+						w += doc->size().height();
+						/* end archive file list */
+
+						//w++;
+						p.setPen ( *cconfig->comm_fr );
+						p.drawLine ( 12, my + w, width() - 12, my + w );
+						p.setPen ( *cconfig->comm_stext );
+						w++;
+						w++;
+
+					}
+					w += pixelsHigh;
+					w += pixelsHigh;
+
+					break;
+					// 		default:
+					// 			;
+			}
+			p.setFont ( oldFont );
+
+			switch ( act->type ) {
+				case HC_FILE :
+					QString info = ( ( DBFile * ) ( act->data ) )->fileinfo;
+					if ( !info.isEmpty() ) {
+						// 				w+=pixelsHigh;
+						p.setPen ( *cconfig->comm_stext );
+						p.drawText ( mx + 15, my + w, tr ( "File info:" ) );
+						w += pixelsHigh;
+						p.setPen ( *cconfig->comm_vtext );
+						textList = QStringList::split ( QRegExp ( "#|\n|\r\n" ), info, TRUE );
+						for ( QStringList::Iterator it = textList.begin(); it != textList.end(); ++it ) {
+							int max_fileinfo_len = 80;
+							int stringlen = ( *it ).size();
+							if ( stringlen > max_fileinfo_len ) {
+								// 		cerr << "oversized fileinfo line (" << stringlen <<"): " << qPrintable(*it) << endl;
+								int curlen = 0;
+								QStringList textList2;
+								for ( int curidx = 0; curidx < stringlen; curidx++ ) {
+									if ( curlen == max_fileinfo_len ) {
+										textList2.append ( ( *it ).mid ( curidx - max_fileinfo_len, curidx ) );
+										// 				cerr << "added sub fileinfo line (" << (*it).mid(curidx-max_fileinfo_len, curidx).length() <<"): " << qPrintable((*it).mid(curidx-max_fileinfo_len, curidx)) << endl;
+										curlen = 0;
+									}
+									curlen++;
+								}
+								for ( QStringList::Iterator it2 = textList2.begin(); it2 != textList2.end(); ++it2 ) {
+									text = (*it2);
+									p.drawText ( mx + 20, my + w, text );
+									valueoffset =  fm.boundingRect ( text ).size().width();
+									if (mx+ 20 + valueoffset > fontwidth)
+										fontwidth = mx+ 20 + valueoffset + 20;
+									w += pixelsHigh;
+								}
+							} else {
+								// 		cerr << "undersized fileinfo line (" << stringlen <<"): " << qPrintable(*it) << endl;
+								text = (*it);
+								p.drawText ( mx + 20, my + w, text );
+								valueoffset =  fm.boundingRect ( text ).size().width();
+								if (mx+ 20 + valueoffset > fontwidth)
+									fontwidth = mx+ 20 + valueoffset + 20;
+								w += pixelsHigh;
+
+							}
+						}
+						p.setPen ( *cconfig->comm_fr );
+						p.drawLine ( 12, my + w, width() - 12, my + w );
+						p.setPen ( *cconfig->comm_stext );
+						w += pixelsHigh;
+					}
+					break;
+
+			}
+
+			w += pixelsHigh;
+			w += pixelsHigh;
+			w += pixelsHigh;
+
+			/*Content button stuff*/
+			if ( act->type == HC_FILE && ( ( DBFile * ) ( act->data ) )->prop != NULL ) {
+				tmp = ( ( DBFile * ) ( act->data ) )->prop;
+				while ( tmp != NULL ) {
+					if ( tmp->type == HC_CONTENT ) {
+						need_showc_button = true;
+					}
+					tmp = tmp->next;
+				}
 			}
 		}
 		/*others...*/
 	} else {
-		ButtonEdit->setEnabled ( false );
+		need_editc_button = false;
 		p.setPen ( *cconfig->comm_stext );
 		//p.setPen ( *cconfig->comm_stext );
 		p.setPen ( *cconfig->comm_vtext );
 		p.drawText ( mx + 15, my + 25, tr ( "There is no selected element." ) );
 	}
+	
 
+	//if ( w > height() || fontwidth > width() )
+	//	resize ( fontwidth, w );
+	contentsPixmapTmp.resize(fontwidth, w);
+	p.end();
+
+	if( !need_editc_button)
+		ButtonEdit->setEnabled ( false );
+	
 	if ( !need_showc_button ) {
 		ButtonContent->setEnabled ( false );
 		//disconnect
@@ -687,27 +756,30 @@ void CommentWidget::updateContents() {
 		ButtonContent->setEnabled ( true );
 		//connect
 	}
-	if ( w > height() )
-		resize ( fontwidth, w );
-
+	
+	
 	ButtonContent->show();
 	ButtonEdit->show();
 	
-	p.end();
-	if ( sa != NULL )
-		sa->ensureVisible ( 0, 0 );
 	
-	contentsPixmap = contentsPixmapTmp;
-	if(!paintEventRunning)
+	//if ( sa != NULL )
+	//	sa->ensureVisible ( 0, 0 );
+	
+
+	update_contents_running = false;
+	if(!paintEventRunning) {
+		contentsPixmap = contentsPixmapTmp;
 		repaint();
-	QApplication::restoreOverrideCursor();
+	}
+	//QApplication::restoreOverrideCursor();
 }
 
 void CommentWidget::paintEvent ( QPaintEvent * ) {
 	//cerr <<"paintEvent"<<endl;
+	if(update_contents_running)
+		return;
 	paintEventRunning = true;
 	QPainter p ( this );
-	//delete text;
 	//cerr <<"paintEvent-end"<<endl;
 	p.drawPixmap ( p.viewport(), contentsPixmap );
 #if (QT_VERSION >= QT_VERSION_CHECK(4, 6, 0)) // needs Qt 4.6.0 or better
@@ -724,7 +796,13 @@ void  CommentWidget::resizeEvent ( QResizeEvent *re ) {
 	ButtonCategoryEdit->setGeometry ( 85, ( ( re->size() ).height() ) - 45, 30, 30 );
 //     ButtonCategory->setGeometry ( 120, ( ( re->size() ).height() )-45,30,30 );
 	//resize(QSize(sa->viewport()->size().width()-45, sa->viewport()->size().height()-45));
-	updateContents();
+	//if(old_x != x() || old_y != y() || old_width != width() || old_height != height())
+	if(!update_contents_running)
+	//resize(re->size());
+	//sa->resize(sizeHint());
+	//contentsPixmap.resize(sa->viewport()->size());
+	//if(!paintEventRunning)
+		updateContents();
 }
 
 void CommentWidget::showNode ( Node *node, int mod ) {
@@ -735,7 +813,6 @@ void CommentWidget::showNode ( Node *node, int mod ) {
 }
 
 int CommentWidget::editC ( void ) {
-	std::cout << "commwidget::editC cconfig " << cconfig << std::endl;
 	editNodeComment ( act, this, cconfig );
 	emit touchdb();
 	repaint();
