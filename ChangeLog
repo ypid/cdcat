@@ -2,6 +2,7 @@
 	- m4v extension for mediainfo scanning added
 	- parameters resorted
 	- use mainwindow as parent instead guislave (again)
+	- size of process dialog fixed if no progressbar is shown 
 
 02. Apr 2012 Christoph Thielecke <crissi99@gmx.de>
 	- commwidget is now a dockable widget (can be undocked)
