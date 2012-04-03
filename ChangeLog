@@ -1,5 +1,6 @@
 03. Apr 2012 Christoph Thielecke <crissi99@gmx.de>
 	- m4v extension for mediainfo scanning added
+	- parameters resorted
 
 02. Apr 2012 Christoph Thielecke <crissi99@gmx.de>
 	- commwidget is now a dockable widget (can be undocked)

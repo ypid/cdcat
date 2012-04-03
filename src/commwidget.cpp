@@ -770,7 +770,7 @@ int CommentWidget::showCategory ( void ) {
 
 /****************************************************************************************/
 
-commentEdit::commentEdit ( QString cc, QWidget *parent, CdCatConfig *cconfig, const char *name, bool modal, bool isCommentEdit, Qt::WFlags fl )
+commentEdit::commentEdit ( QString cc, CdCatConfig *cconfig, QWidget *parent, const char *name, bool modal, bool isCommentEdit, Qt::WFlags fl )
 	: QDialog ( parent, name, modal, fl )
 
 {
@@ -915,7 +915,7 @@ int editNodeComment ( Node *node, QWidget *parent, CdCatConfig *cconfig, bool is
 		}
 	}
 
-	commentEdit ce( o, parent, cconfig, "commentEdit", true, isCommentEdit );
+	commentEdit ce( o, cconfig, parent, "commentEdit", true, isCommentEdit );
 	ce.setCaption ( ce.caption() + " " + newCaption );
 	ce.teComm->setText ( o );
 	ce.exec();
