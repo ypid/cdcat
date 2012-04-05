@@ -94,6 +94,7 @@ CdCatConfig::CdCatConfig ( void ) {
 	readinfo   = true;
 	readcontent = false;
 	readcfiles = "*.nfo;*.diz";
+	ContentViewerFont = "";
 	ThumbExtsList.clear();
 	ThumbExtsList.append("png");
 	ThumbExtsList.append("gif");
@@ -650,6 +651,11 @@ int CdCatConfig::readConfig ( void ) {
 						ExternalContentViewerPath = val;
 					continue;
 				}
+				if ( var == "ContentViewerFont" ) {
+					if ( !val.isEmpty() )
+						ContentViewerFont = val;
+					continue;
+				}
 				if ( var == "read_content_limit" ) {
 					readclimit = val.toInt();
 					continue;
@@ -1168,7 +1174,8 @@ int CdCatConfig::writeConfig ( void ) {
 		else
 			str << "use_ext_content_viewer=false" << endl;
 		
-		str << "ext_content_viewer_path=" << qPrintable( ExternalContentViewerPath ) << endl;
+		str << "ext_content_viewer_path=" << ExternalContentViewerPath << endl;
+		str << "ContentViewerFont=" << ContentViewerFont << endl;
 		
 		if ( usefileinfo )
 			str << "use_fileinfo=true" << endl;

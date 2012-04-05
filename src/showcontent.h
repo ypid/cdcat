@@ -18,6 +18,7 @@
 #include <QHBoxLayout>
 #include <QTextBrowser>
 #include <QLabel>
+ #include <QFontComboBox>
 
 #include "config.h"
 
@@ -42,6 +43,7 @@ public:
     QToolButton* saveButton;
     QTextBrowser* textBrowser;
     QLabel* sizel;
+    QFontComboBox *comboFont;
 
 public slots:
     int deletenode ( void );
@@ -52,7 +54,8 @@ protected:
     QHBoxLayout* layout1;
 
 protected slots:
-    virtual void languageChange();
+    void languageChange();
+    void setCurrentFont(const QFont &);
 
 private:
     Node *parentnode,*mynode;

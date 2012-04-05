@@ -40,6 +40,10 @@
       <source>unknown</source>
       <translation>unbekannt</translation>
     </message>
+    <message>
+      <source></source>
+      <translation type="unfinished" />
+    </message>
   </context>
   <context>
     <name>CatalogTypeEditDialog</name>
@@ -2069,6 +2073,10 @@ wird zu
     <message>
       <source>Set content</source>
       <translation>Inhalt setzen</translation>
+    </message>
+    <message>
+      <source>select font for display</source>
+      <translation>Schriftart zum Anzeigen auswählen</translation>
     </message>
   </context>
   <context>

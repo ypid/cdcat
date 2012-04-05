@@ -118,6 +118,7 @@ class CdCatConfig : public QObject {
 		QString lastSearchPattern;
 		QString readcfiles;
 		QString ExternalContentViewerPath;
+		QString ContentViewerFont;
 		int  mainP1;
 		int  mainP2;
 		int  mainP3;
