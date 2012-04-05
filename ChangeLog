@@ -1,6 +1,9 @@
 05. Apr 2012 Christoph Thielecke <crissi99@gmx.de>
 	- font selector at content viewer dialog added
 	- display content size correctly on context viewer dialog
+	- resize of commwidget content fixed
+	- commwidget contents fixes
+	- display content size if file has stored content
 
 03. Apr 2012 Christoph Thielecke <crissi99@gmx.de>
 	- m4v extension for mediainfo scanning added

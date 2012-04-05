@@ -40,10 +40,6 @@
       <source>unknown</source>
       <translation>unbekannt</translation>
     </message>
-    <message>
-      <source></source>
-      <translation type="unfinished" />
-    </message>
   </context>
   <context>
     <name>CatalogTypeEditDialog</name>
@@ -624,6 +620,14 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     <message>
       <source>Thumbnail:</source>
       <translation>Vorschaubild:</translation>
+    </message>
+    <message>
+      <source>Stored size:</source>
+      <translation>Gespeicherte Größe:</translation>
+    </message>
+    <message>
+      <source>There is no selected element:</source>
+      <translation>Es gibt kein ausgewähltes Element:</translation>
     </message>
   </context>
   <context>

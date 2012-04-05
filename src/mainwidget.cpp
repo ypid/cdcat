@@ -103,13 +103,6 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	//scrollArea->resize ( 500, 100 );
 	addDockWidget ( (Qt::DockWidgetArea)cconfig->commentDockSize_dockarea, CommentDock );
 	CommentDock->setWidget ( scrollArea );
-	scrollArea->setWidgetResizable ( true );
-	//scrollArea->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Minimum);
-	//scrollArea->resize(commentWidget->sizeHint());
-	//commentWidget->resize(scrollArea->size() );
-
-
-
 	guis = new GuiSlave ( this );
 
 	/*Menubar*/

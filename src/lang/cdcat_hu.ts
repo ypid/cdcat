@@ -111,6 +111,11 @@
         <source>unknown</source>
         <translation type="unfinished">ismeretlen</translation>
     </message>
+    <message>
+        <location filename="../dbase.h" line="272"/>
+        <source></source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CatalogTypeEditDialog</name>
@@ -257,7 +262,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Nincs kiválasztott elem</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="518"/>
+        <location filename="../mainwidget.cpp" line="511"/>
         <source>Hyper&apos;s CD Catalogizer</source>
         <translation>Hyper CD Katalogizálója</translation>
     </message>
@@ -302,7 +307,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">A program beállításai.</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="363"/>
+        <location filename="../mainwidget.cpp" line="356"/>
         <source>Help</source>
         <translation>Súgó</translation>
     </message>
@@ -362,7 +367,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Mentés más néven...</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="172"/>
+        <location filename="../mainwidget.cpp" line="165"/>
         <source>Close</source>
         <translation>Bezárás</translation>
     </message>
@@ -372,57 +377,57 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Kilépés</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="187"/>
+        <location filename="../mainwidget.cpp" line="180"/>
         <source>Add media...</source>
         <translation>Média hozzáadása...</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="200"/>
+        <location filename="../mainwidget.cpp" line="193"/>
         <source>Rescan media...</source>
         <translation>Média újraolvasása...</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="208"/>
+        <location filename="../mainwidget.cpp" line="201"/>
         <source>Insert Catalog...</source>
         <translation>Katalógus beillesztése...</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="216"/>
+        <location filename="../mainwidget.cpp" line="209"/>
         <source>Rename node...</source>
         <translation>Csomópont átnevezése...</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="236"/>
+        <location filename="../mainwidget.cpp" line="229"/>
         <source>Delete node</source>
         <translation>Csomópont törlése</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="291"/>
+        <location filename="../mainwidget.cpp" line="284"/>
         <source>Seek in database...</source>
         <translation>Keresés az adatbázisban...</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="309"/>
+        <location filename="../mainwidget.cpp" line="302"/>
         <source>Node size</source>
         <translation>Helyfoglalás</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="315"/>
+        <location filename="../mainwidget.cpp" line="308"/>
         <source>Configuration...</source>
         <translation>Beállítások...</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="357"/>
+        <location filename="../mainwidget.cpp" line="350"/>
         <source>Catalog</source>
         <translation>Katalógus</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="358"/>
+        <location filename="../mainwidget.cpp" line="351"/>
         <source>Edit</source>
         <translation>Szerkesztés</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="362"/>
+        <location filename="../mainwidget.cpp" line="355"/>
         <source>Others</source>
         <translation>Egyebek</translation>
     </message>
@@ -432,12 +437,12 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Keresés az adatbázisban(katalógusban). Kereshetsz fájlnevekre, könyvtárnevekre ,mp3 tag-re, stb...</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="243"/>
+        <location filename="../mainwidget.cpp" line="236"/>
         <source>Sort media by number</source>
         <translation>Médiák rendezése számuk szerint</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="249"/>
+        <location filename="../mainwidget.cpp" line="242"/>
         <source>Sort media by name</source>
         <translation>Médiák rendezése nevük szerint</translation>
     </message>
@@ -447,7 +452,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Médiák rendezése típusuk szerint</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="255"/>
+        <location filename="../mainwidget.cpp" line="248"/>
         <source>Sort media by time</source>
         <translation>Médiák rendezése létrehozásuk alapján</translation>
     </message>
@@ -462,7 +467,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Import</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="159"/>
+        <location filename="../mainwidget.cpp" line="152"/>
         <source>Recent files...</source>
         <translation>Legutóbb megnyitott állományok...</translation>
     </message>
@@ -472,12 +477,12 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Adatbázis exportálása</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="361"/>
+        <location filename="../mainwidget.cpp" line="354"/>
         <source>Import/Export</source>
         <translation>Import/Export</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="222"/>
+        <location filename="../mainwidget.cpp" line="215"/>
         <source>Re-Number media node...</source>
         <translation>Média átsorszámozása...</translation>
     </message>
@@ -487,7 +492,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Adatbázis importálása(csv/gtktalog)</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="305"/>
+        <location filename="../mainwidget.cpp" line="298"/>
         <source>Borrowing info...</source>
         <translation>Kölcsönzési információk...</translation>
     </message>
@@ -507,7 +512,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">CdCat Katalógus hivatkozás hozzáadása...</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="321"/>
+        <location filename="../mainwidget.cpp" line="314"/>
         <source>Set Colors...</source>
         <translation>Színek beállítása...</translation>
     </message>
@@ -522,17 +527,17 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Újraolvassa a kiválasztott médiát.</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="299"/>
+        <location filename="../mainwidget.cpp" line="292"/>
         <source>Seek in the panel</source>
         <translation>Keresés a panelen</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="351"/>
+        <location filename="../mainwidget.cpp" line="344"/>
         <source>About Qt</source>
         <translation>A Qt ról</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="194"/>
+        <location filename="../mainwidget.cpp" line="187"/>
         <source>Add a link to a CdCat Catalog...</source>
         <translation>Hivatkozás egy CdCat katalógusra...</translation>
     </message>
@@ -542,162 +547,162 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">A kijelöl csomópont törlése.</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="570"/>
+        <location filename="../mainwidget.cpp" line="563"/>
         <source>Scanning:</source>
         <translation>Vizsgálat:</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="327"/>
+        <location filename="../mainwidget.cpp" line="320"/>
         <source>Import database (CSV/XML)</source>
         <translation>Adatbázis importálása (CSV/XML)</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="335"/>
+        <location filename="../mainwidget.cpp" line="328"/>
         <source>Export database (CSV/HTML/XML)</source>
         <translation>Adatbázis exportálása (CSV/HTML/XML)</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="360"/>
+        <location filename="../mainwidget.cpp" line="353"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="127"/>
+        <location filename="../mainwidget.cpp" line="120"/>
         <source>&amp;New...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="129"/>
+        <location filename="../mainwidget.cpp" line="122"/>
         <source>Create a new catalog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="133"/>
+        <location filename="../mainwidget.cpp" line="126"/>
         <source>&amp;Open...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="135"/>
+        <location filename="../mainwidget.cpp" line="128"/>
         <source>Open a existing catalog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="139"/>
+        <location filename="../mainwidget.cpp" line="132"/>
         <source>&amp;Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="141"/>
+        <location filename="../mainwidget.cpp" line="134"/>
         <source>Save catalog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="145"/>
+        <location filename="../mainwidget.cpp" line="138"/>
         <source>&amp;Save as...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="147"/>
+        <location filename="../mainwidget.cpp" line="140"/>
         <source>save catalog with new name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="174"/>
+        <location filename="../mainwidget.cpp" line="167"/>
         <source>Close catalog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="592"/>
+        <location filename="../mainwidget.cpp" line="585"/>
         <source>&amp;Quit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="182"/>
+        <location filename="../mainwidget.cpp" line="175"/>
         <source>Close program</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="189"/>
+        <location filename="../mainwidget.cpp" line="182"/>
         <source>Add new media to catalog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="196"/>
+        <location filename="../mainwidget.cpp" line="189"/>
         <source>Add a link to a existing cdcat catalog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="202"/>
+        <location filename="../mainwidget.cpp" line="195"/>
         <source>Rescan existing media</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="210"/>
+        <location filename="../mainwidget.cpp" line="203"/>
         <source>Insert catalog into database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="218"/>
+        <location filename="../mainwidget.cpp" line="211"/>
         <source>Rename node</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="224"/>
+        <location filename="../mainwidget.cpp" line="217"/>
         <source>Renumber node</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="293"/>
+        <location filename="../mainwidget.cpp" line="286"/>
         <source>Seek in database for files and folders</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="311"/>
+        <location filename="../mainwidget.cpp" line="304"/>
         <source>Calculate node size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="317"/>
+        <location filename="../mainwidget.cpp" line="310"/>
         <source>Edit cdcat configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="323"/>
+        <location filename="../mainwidget.cpp" line="316"/>
         <source>Set the colors for display</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="329"/>
+        <location filename="../mainwidget.cpp" line="322"/>
         <source>Import database (CSV/XML) from various catalog programs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="347"/>
+        <location filename="../mainwidget.cpp" line="340"/>
         <source>About Cdcat</source>
         <translation type="unfinished">A CdCat-ról</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="353"/>
+        <location filename="../mainwidget.cpp" line="346"/>
         <source>About the Qt toolkit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="583"/>
+        <location filename="../mainwidget.cpp" line="576"/>
         <source>Mi&amp;nimize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="586"/>
+        <location filename="../mainwidget.cpp" line="579"/>
         <source>Ma&amp;ximize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="589"/>
+        <location filename="../mainwidget.cpp" line="582"/>
         <source>&amp;Restore</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="691"/>
+        <location filename="../mainwidget.cpp" line="684"/>
         <source>Cdcat - idle</source>
         <translation type="unfinished"></translation>
     </message>
@@ -712,42 +717,42 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="259"/>
+        <location filename="../mainwidget.cpp" line="252"/>
         <source>view tool bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="261"/>
+        <location filename="../mainwidget.cpp" line="254"/>
         <source>View tool bar in main window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="267"/>
+        <location filename="../mainwidget.cpp" line="260"/>
         <source>view status bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="269"/>
+        <location filename="../mainwidget.cpp" line="262"/>
         <source>View status bar in main window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="275"/>
+        <location filename="../mainwidget.cpp" line="268"/>
         <source>view comment dock</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="277"/>
+        <location filename="../mainwidget.cpp" line="270"/>
         <source>show comment dock</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="359"/>
+        <location filename="../mainwidget.cpp" line="352"/>
         <source>View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="285"/>
+        <location filename="../mainwidget.cpp" line="278"/>
         <source>show systray icon</source>
         <translation type="unfinished"></translation>
     </message>
@@ -846,27 +851,27 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">típus:</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="238"/>
+        <location filename="../commwidget.cpp" line="240"/>
         <source> CdCat Catalog root</source>
         <translation>CdCat gyökér adatbázis</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="244"/>
+        <location filename="../commwidget.cpp" line="246"/>
         <source> Directory</source>
         <translation>Könyvtár</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="247"/>
+        <location filename="../commwidget.cpp" line="249"/>
         <source> File</source>
         <translation>Fájl</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="250"/>
+        <location filename="../commwidget.cpp" line="252"/>
         <source>Media</source>
         <translation>Média</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="263"/>
+        <location filename="../commwidget.cpp" line="266"/>
         <source>Size:</source>
         <translation>Méret:</translation>
     </message>
@@ -876,12 +881,12 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Utolsó módosítás:</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="323"/>
+        <location filename="../commwidget.cpp" line="329"/>
         <source>Owner:</source>
         <translation>Tulajdonos:</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="329"/>
+        <location filename="../commwidget.cpp" line="337"/>
         <source>Unknown</source>
         <translation>Ismeretlen</translation>
     </message>
@@ -891,7 +896,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Média (szám/név):</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="352"/>
+        <location filename="../commwidget.cpp" line="361"/>
         <source>Mp3-Tag:</source>
         <translation>Mp3-tag:</translation>
     </message>
@@ -901,7 +906,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">(Szerz/Cím/Alb/Év/Megj)</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="451"/>
+        <location filename="../commwidget.cpp" line="470"/>
         <source>Comment:</source>
         <translation>Megjegyzés:</translation>
     </message>
@@ -921,37 +926,37 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Nincs kiválasztott elem.</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="190"/>
+        <location filename="../commwidget.cpp" line="192"/>
         <source>Name:</source>
         <translation>Név:</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="233"/>
+        <location filename="../commwidget.cpp" line="235"/>
         <source>Type:</source>
         <translation>Típus:</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="738"/>
+        <location filename="../commwidget.cpp" line="815"/>
         <source>There is no selected element.</source>
         <translation>Nincs kiválasztott elem.</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="241"/>
+        <location filename="../commwidget.cpp" line="243"/>
         <source> Link to a CdCat catalog</source>
         <translation>Hivatkozás egy CdCat katalógusra</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="278"/>
+        <location filename="../commwidget.cpp" line="284"/>
         <source>Location:</source>
         <translation>Hely:</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="293"/>
+        <location filename="../commwidget.cpp" line="298"/>
         <source>Last modification:</source>
         <translation>Utolsó módosítás:</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="203"/>
+        <location filename="../commwidget.cpp" line="205"/>
         <source>At media (number/name):</source>
         <translation>Médiában (Szám/Név):</translation>
     </message>
@@ -961,88 +966,98 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Szerkeszti és frissíti az aktuális kategória lapot.</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="512"/>
+        <location filename="../commwidget.cpp" line="535"/>
         <source>Category:</source>
         <translation>Kategória:</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="563"/>
+        <location filename="../commwidget.cpp" line="590"/>
         <source>Archive contents:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="357"/>
+        <location filename="../commwidget.cpp" line="368"/>
         <source>Artist:</source>
         <translation type="unfinished">Szerző:</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="363"/>
+        <location filename="../commwidget.cpp" line="374"/>
         <source>Title:</source>
         <translation type="unfinished">Cím:</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="363"/>
+        <location filename="../commwidget.cpp" line="374"/>
         <source>track:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="369"/>
+        <location filename="../commwidget.cpp" line="380"/>
         <source>Album:</source>
         <translation type="unfinished">Album:</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="375"/>
+        <location filename="../commwidget.cpp" line="386"/>
         <source>Year:</source>
         <translation type="unfinished">Év:</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="670"/>
+        <location filename="../commwidget.cpp" line="701"/>
         <source>File info:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="582"/>
+        <location filename="../commwidget.cpp" line="611"/>
         <source>Rights</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="587"/>
+        <location filename="../commwidget.cpp" line="616"/>
         <source>Owner</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="592"/>
+        <location filename="../commwidget.cpp" line="621"/>
         <source>Group</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="597"/>
+        <location filename="../commwidget.cpp" line="626"/>
         <source>Size</source>
         <translation type="unfinished">Méret</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="602"/>
+        <location filename="../commwidget.cpp" line="631"/>
         <source>Changed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="612"/>
+        <location filename="../commwidget.cpp" line="641"/>
         <source>Comment</source>
         <translation type="unfinished">Megjegyzés</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="607"/>
+        <location filename="../commwidget.cpp" line="636"/>
         <source>Path</source>
         <translation type="unfinished">Elérési út</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="394"/>
+        <location filename="../commwidget.cpp" line="406"/>
         <source>Exif data:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="417"/>
+        <location filename="../commwidget.cpp" line="432"/>
         <source>Thumbnail:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../commwidget.cpp" line="796"/>
+        <source>Stored size:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../commwidget.cpp" line="816"/>
+        <source>There is no selected element:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3817,22 +3832,22 @@ Létreh. dátuma</translation>
         <translation type="obsolete">Megjegyzés szerkesztése</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="926"/>
+        <location filename="../commwidget.cpp" line="1028"/>
         <source>Cancel</source>
         <translation>Mégsem</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="927"/>
+        <location filename="../commwidget.cpp" line="1029"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="923"/>
+        <location filename="../commwidget.cpp" line="1025"/>
         <source>Edit comment of</source>
         <translation>Megjegyzés szerkesztése</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="925"/>
+        <location filename="../commwidget.cpp" line="1027"/>
         <source>Edit category of</source>
         <translation>Kategória szerkesztése</translation>
     </message>
