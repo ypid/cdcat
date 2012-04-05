@@ -4,6 +4,7 @@
 	- resize of commwidget content fixed
 	- commwidget contents fixes
 	- display content size if file has stored content
+	- empty file content which sometimes happend fixed
 
 03. Apr 2012 Christoph Thielecke <crissi99@gmx.de>
 	- m4v extension for mediainfo scanning added

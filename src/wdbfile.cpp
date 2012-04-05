@@ -1664,11 +1664,10 @@ bool CdCatXmlHandler::endElement ( const QString & namespaceURI, const QString &
 										tt = tt->next;
 									}
 									/*Fill data part:*/
-									
-									bytes = new unsigned char[ ( rsize = ( strlen ( FREA->dataBuffer ) / 2 ) ) + 1];
-									for ( i = 0; i < rsize; i++ )
-										bytes[i] = decodeHexa ( FREA->dataBuffer[i * 2], FREA->dataBuffer[i * 2 + 1] );
-									bytes[rsize] = '\0';
+									rsize = ( strlen ( currentText.toLocal8Bit().data() ) / 2 );
+									if ( *DEBUG_INFO_ENABLED )
+										cerr << "Start_end: content size: " << currentText.size() << " (raw: " << rsize << ")" << endl;
+									bytes = new unsigned char[ rsize + 1];
 									
 									char *tempbuffer = currentText.toLocal8Bit().data();
 									bytes = new unsigned char[ ( rsize = ( strlen ( tempbuffer ) / 2 ) ) + 1];
@@ -1678,6 +1677,7 @@ bool CdCatXmlHandler::endElement ( const QString & namespaceURI, const QString &
 									//bytes = (unsigned char *)QByteArray::fromHex(currentText.toLocal8Bit()).constData();
 									//rsize = QByteArray::fromHex(currentText.toLocal8Bit()).size();
 									tt->data = ( void * ) new DBContent ( bytes, rsize );
+									
 								}
 								else {
 									if ( el == "comment" ) {
