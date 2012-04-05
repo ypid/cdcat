@@ -1127,6 +1127,8 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 			
 			if ( showProgressedFileInStatus )
 				emit pathExtraInfoAppend ( tr("reading mp3 info") );
+			if ( *DEBUG_INFO_ENABLED )
+				std::cerr << "reading mp3 info for " << qPrintable ( fi->filePath() ) << std::endl;
 			
 			ReadMp3Tag *reader = new ReadMp3Tag ( ( const char * ) QFile::encodeName ( fi->absFilePath() ), v1_over_v2 );
 			if(pww->appl->hasPendingEvents())
@@ -1173,6 +1175,8 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 		if (SupportedFileInfoExtensionsList.contains(fi->extension ( FALSE ).lower())) {
 			if ( showProgressedFileInStatus )
 				emit pathExtraInfoAppend ( tr("reading media info") );
+			if ( *DEBUG_INFO_ENABLED )
+				std::cerr << "reading media info for " << qPrintable ( fi->filePath() ) << std::endl;
 			
 			QString info = CdcatMediaInfo ( fi->absoluteFilePath() ).getInfo();
 			if ( !info.isEmpty() )
@@ -1186,11 +1190,16 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 		if ( ( fi->extension ( FALSE ) ).lower() == "avi" ) {
 			if ( showProgressedFileInStatus )
 				emit pathExtraInfoAppend ( tr("reading avi info") );
+			if ( *DEBUG_INFO_ENABLED )
+				std::cerr << "reading avi info for " << qPrintable ( fi->filePath() ) << std::endl;
 			FILE* filePTR;
 			filePTR = fopen ( ( const char * ) QFile::encodeName ( fi->absFilePath() ), "r" );
 			if ( filePTR != NULL ) {
 				QString got = parseAviHeader ( filePTR ).replace ( QRegExp ( "\n" ), "#" );
 				fclose ( filePTR );
+				
+				if ( *DEBUG_INFO_ENABLED )
+					std::cerr << "avi info for " << qPrintable ( fi->filePath() ) << ": " << qPrintable(got) << std::endl;
 				
 				if(pww->appl->hasPendingEvents())
 					pww->appl->processEvents();
@@ -1201,6 +1210,10 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 						fc->comment.append ( "#" );
 					fc->comment.append ( got );
 				}
+			}
+			else {
+				if ( *DEBUG_INFO_ENABLED )
+					std::cerr << "could not reading avi info for " << qPrintable ( fi->filePath() ) << std::endl;
 			}
 		}
 	}
