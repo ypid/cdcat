@@ -6,6 +6,7 @@
 	- display content size if file has stored content
 	- empty file content which sometimes happend fixed
 	- show debug output for avi parsing if debug output is enabled
+	- draw line before file info if file info is shown
 
 03. Apr 2012 Christoph Thielecke <crissi99@gmx.de>
 	- m4v extension for mediainfo scanning added

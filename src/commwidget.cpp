@@ -695,7 +695,11 @@ void CommentWidget::updateContents() {
 				case HC_FILE :
 					QString info = ( ( DBFile * ) ( act->data ) )->fileinfo;
 					if ( !info.isEmpty() ) {
-						// 				w+=pixelsHigh;
+						w+=pixelsHigh;
+						p.setPen ( *cconfig->comm_fr );
+						p.drawLine ( 12, my + w - pixelsHigh, width() - 12, my + w - pixelsHigh );
+						p.setPen ( *cconfig->comm_stext );
+						w++;
 						p.setPen ( *cconfig->comm_stext );
 						p.drawText ( mx + 15, my + w, tr ( "File info:" ) );
 						valueoffset =  fm.boundingRect ( tr ( "File info:" ) ).size().width();
