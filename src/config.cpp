@@ -118,6 +118,7 @@ CdCatConfig::CdCatConfig ( void ) {
 	find_di    = true;
 	find_fi    = true;
 	find_co    = true;
+	find_category = false;
 	find_ct    = true;
 	find_mco   = true;
 	find_mar   = true;
@@ -511,11 +512,22 @@ int CdCatConfig::readConfig ( void ) {
 						find_co = false;
 					continue;
 				}
-				if ( var == "find_checkbox_content" ) {
+				if ( var == "find_checkbox_comment" ) {
 					if ( val == "true" )
-						find_ct = true;
+						find_co = true;
 					else
-						find_ct = false;
+						find_co = false;
+					continue;
+				}
+				if ( var == "find_category" ) {
+					if ( val == "true" )
+						find_category = true;
+					else
+						find_category = false;
+					continue;
+				}
+				if ( var == "lastFindCategory" ) {
+					lastFindCategory = val;
 					continue;
 				}
 				if ( var == "find_checkbox_mp3artist" ) {
@@ -1080,6 +1092,13 @@ int CdCatConfig::writeConfig ( void ) {
 			str << "find_checkbox_comment=true" << endl;
 		else
 			str << "find_checkbox_comment=false" << endl;
+		
+		if ( find_category )
+			str << "find_category=true" << endl;
+		else
+			str << "find_category=false" << endl;
+		
+		str << "lastFindCategory=" << lastFindCategory << endl;
 		
 		if ( find_ct )
 			str << "find_checkbox_content=true" << endl;

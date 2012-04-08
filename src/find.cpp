@@ -1,11 +1,10 @@
-
 /****************************************************************************
                              Hyper's CD Catalog
 		A multiplatform qt and xml based catalog program
 
  Author    : Peter Deak (hyperr@freemail.hu)
  License   : GPL
- Copyright : (C) 2003 Peter Deak
+ Copyright : (C) 2003 Peter Deak, 2010 Christoph Thielecke
 ****************************************************************************/
 
 #include "find.h"
@@ -112,6 +111,7 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		layout_find_in_archive = new QHBoxLayout ( this, 0, 2, "layout_find_in_archive" );
 		
 		leText = new QLineEdit ( this, "leText" );
+		leCategory = new QLineEdit ( this, "leCategory" );
 		
 		deDateStart = new QDateTimeEdit ( QDateTime ( QDate ( 1, 1, 1900 ) ) , this );
 		deDateEnd = new QDateTimeEdit ( QDateTime ( QDate().currentDate() ), this );
@@ -124,6 +124,7 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		cbFilename = new QCheckBox ( this, "cbFilename" );
 		cbDirname  = new QCheckBox ( this, "cbDirname" );
 		cbComment  = new QCheckBox ( this, "cbComment" );
+		cbCategory  = new QCheckBox ( this, "cbCategory" );
 		cbContent  = new QCheckBox ( this, "cbContent" );
 		
 		cbArtist = new QCheckBox ( this, "cbArtist" );
@@ -183,6 +184,7 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		resultsl->addColumn ( tr ( "Path" ) );
 		resultsl->addColumn ( tr ( "Modification" ) );
 		resultsl->addColumn ( tr ( "Comment" ) );
+		resultsl->addColumn ( tr ( "Category" ) );
 		resultsl->addColumn ( tr ( "Extension" ) );
 		
 		resultsl->setColumnAlignment ( 2, Qt::AlignRight );
@@ -207,6 +209,7 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		cbArtist   -> setChecked ( mainw->cconfig->find_mar );
 		cbAlbum    -> setChecked ( mainw->cconfig->find_mal );
 		cbComment  -> setChecked ( mainw->cconfig->find_co );
+		cbCategory  -> setChecked ( mainw->cconfig->find_category );
 		cbTitle    -> setChecked ( mainw->cconfig->find_mti );
 		cbEasy     -> setChecked ( mainw->cconfig->find_em );
 		cbFilename -> setChecked ( mainw->cconfig->find_fi );
@@ -235,6 +238,8 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		layout36->addWidget ( cbTitle , 3, 1 );
 		layout36->addWidget ( cbAlbum , 4, 1 );
 		layout36->addWidget ( cbTcomm , 5, 1 );
+		layout36->addWidget ( cbCategory, 6, 0 );
+		layout36->addWidget ( leCategory, 6, 1 );
 		layout37->addWidget ( cbDateStart , 6, 0 );
 		layout37->addWidget ( cbDateEnd , 7, 0 );
 		layout37->addWidget ( deDateStart, 6, 1 );
@@ -321,7 +326,7 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		//connect ( deDateEnd, SIGNAL ( ),this,SLOT ( dateEndDoubleClicked()));
 		connect ( cbSizeMin, SIGNAL ( clicked() ), this, SLOT ( sizeMinClicked() ) );
 		connect ( cbSizeMax, SIGNAL ( clicked() ), this, SLOT ( sizeMaxClicked() ) );
-		
+		connect ( cbCategory, SIGNAL ( clicked() ), this, SLOT ( categoryClicked()) );
 		
 		deDateStart->setEnabled ( false );
 		deDateEnd->setEnabled ( false );
@@ -354,6 +359,7 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		
 		
 		leText->setText ( mainw->cconfig->lastSearchPattern );
+		leCategory->setText ( mainw->cconfig->lastFindCategory );
 		
 		dateStartChanged ( 0 );
 		dateEndChanged ( 0 );
@@ -416,6 +422,7 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		resultsl->addColumn ( tr ( "Path" ) );
 		resultsl->addColumn ( tr ( "Modification" ) );
 		resultsl->addColumn ( tr ( "Comment" ) );
+		resultsl->addColumn ( tr ( "Category" ) );
 		resultsl->addColumn ( tr ( "Extension" ) );
 		
 		resultsl->setColumnAlignment ( 2, Qt::AlignRight );
@@ -483,7 +490,8 @@ void findDialog::languageChange() {
 		resultsl->header()->setLabel ( 4, tr ( "Path" ) );
 		resultsl->header()->setLabel ( 5, tr ( "Modification" ) );
 		resultsl->header()->setLabel ( 6, tr ( "Comment" ) );
-		resultsl->header()->setLabel ( 7, tr ( "Extension" ) );
+		resultsl->header()->setLabel ( 7, tr ( "Category" ) );
+		resultsl->header()->setLabel ( 8, tr ( "Extension" ) );
 		
 		buttonOk->setText ( tr ( "&Start search" ) );
 #ifndef _WIN32
@@ -509,7 +517,8 @@ void findDialog::languageChange() {
 		resultsl->header()->setLabel ( 4, tr ( "Path" ) );
 		resultsl->header()->setLabel ( 5, tr ( "Modification" ) );
 		resultsl->header()->setLabel ( 6, tr ( "Comment" ) );
-		resultsl->header()->setLabel ( 7, tr ( "Extension" ) );
+		resultsl->header()->setLabel ( 7, tr ( "Category" ) );
+		resultsl->header()->setLabel ( 8, tr ( "Extension" ) );
 		findTextLabel->setText ( tr ( "Find:" ) );
 		cbKeepSearchResult->setText ( tr ( "Keep search result" ) );
 		cbFilename->setText ( tr ( "File name" ) );
@@ -519,6 +528,7 @@ void findDialog::languageChange() {
 		cbDirname->setText ( tr ( "Media / Directory name" ) );
 		cbTitle->setText ( tr ( "mp3-tag Title" ) );
 		cbComment->setText ( tr ( "Comment" ) );
+		cbCategory->setText ( tr ( "Category" ) );
 		cbContent->setText ( tr ( "Content" ) );
 		cbDateStart->setText ( tr ( "Date start" ) );
 		cbDateEnd->setText ( tr ( "Date end" ) );
@@ -528,6 +538,7 @@ void findDialog::languageChange() {
 		cbFindInArchive->setText ( tr ( "Find in archives too" ) );
 		buttonClearSearchResult->setText ( tr ( "Clear search results" ) );
 		buttonOk->setText ( tr ( "&Start search" ) );
+		leCategory->setToolTip( tr("Category for find") );
 #ifndef _WIN32
 		buttonOk->setAccel ( QKeySequence ( QString::null ) );
 #endif
@@ -555,6 +566,7 @@ int findDialog::saveState ( void ) {
 		mainw->cconfig->find_di    = cbDirname->isChecked();
 		mainw->cconfig->find_fi    = cbFilename->isChecked();
 		mainw->cconfig->find_co    = cbComment->isChecked();
+		mainw->cconfig->find_category    = cbCategory->isChecked();
 		mainw->cconfig->find_ct    = cbContent->isChecked();
 		mainw->cconfig->find_mar   = cbArtist->isChecked();
 		mainw->cconfig->find_mti   = cbTitle->isChecked();
@@ -577,6 +589,7 @@ int findDialog::saveState ( void ) {
 		mainw->cconfig->findWidth  = width();
 		mainw->cconfig->findHeight = height();
 		mainw->cconfig->lastSearchPattern = leText->text();
+		mainw->cconfig->lastFindCategory = leCategory->text();
 	}
 	else {
 		//mainw->cconfig->find_em    = cbEasy->isChecked();
@@ -752,6 +765,15 @@ void findDialog::sizeMaxClicked() {
 	}
 }
 
+void findDialog::categoryClicked() {
+	if(cbCategory->isChecked()) {
+		leCategory->setEnabled(true);
+	}
+	else {
+		leCategory->setEnabled(false);
+	}
+}
+
 void findDialog::exportResult ( bool isPrint ) {
 	DEBUG_INFO_ENABLED = init_debug_info();
 	/* get info from results listview
@@ -881,6 +903,7 @@ void findDialog::exportResult ( bool isPrint ) {
 	result_str += "<th>" + tr ( "Path" ) + "</th>";
 	result_str += "<th>" + tr ( "Modification" ) + "</th>";
 	result_str += "<th>" + tr ( "Comment" ) + "</th>";
+	result_str += "<th>" + tr ( "Category" ) + "</th>";
 	result_str += "</tr>\n";
 	Q3ListViewItem *lastChild = resultsl->firstChild();
 	int i = 0;
@@ -909,6 +932,7 @@ void findDialog::exportResult ( bool isPrint ) {
 		result_str += "<td style=\"font-size:-2;\">" + lastChild->text ( 4 ) + "</td>";
 		result_str += "<td style=\"font-size:-2;\">" + lastChild->text ( 5 ) + "</td>";
 		result_str += "<td style=\"font-size:-2;\">" + lastChild->text ( 6 ).replace ( "\n", "<br>" ) + "</td>";
+		result_str += "<td style=\"font-size:-2;\">" + lastChild->text ( 7 ).replace ( "\n", "<br>" ) + "</td>";
 		result_str += "</tr>\n";
 		if ( *DEBUG_INFO_ENABLED ) {
 			cerr << "result_str: " << qPrintable ( result_str ) << endl;
@@ -987,11 +1011,12 @@ int seekEngine::start_seek ( void ) {
 	QObject::connect ( pww, SIGNAL ( cancelReceivedByUser ( bool ) ), pww, SLOT ( doCancelReceived ( bool ) ) );
 	progress ( pww );
 	QApplication::setOverrideCursor ( Qt::waitCursor );
-	if(!fd->cbKeepSearchResult->isChecked())
-		fd->resultsl->clear();
 	founded = 0;
 	
 	if ( !searchForDuplicates ) {
+		if(!fd->cbKeepSearchResult->isChecked())
+			fd->resultsl->clear();
+		
 		//get the pattern
 		if ( fd->cbEasy->isChecked() )
 			strncpy ( patt, ( const char * ) ( ( QTextCodec::codecForLocale() )->fromUnicode ( "*" + fd->leText->text() + "*" ) ), 2047 );
@@ -1032,6 +1057,12 @@ int seekEngine::start_seek ( void ) {
 		dirname  = fd->cbDirname ->isChecked();
 		filename = fd->cbFilename->isChecked();
 		comment  = fd->cbComment ->isChecked();
+		category = fd->leCategory->text();
+		find_category = fd->cbCategory->isChecked();
+		if(find_category && category.isEmpty()) {
+			find_category = false;
+		}
+		
 		tartist  = fd->cbArtist  ->isChecked();
 		ttitle   = fd->cbTitle   ->isChecked();
 		tcomment = fd->cbTcomm   ->isChecked();
@@ -1044,6 +1075,7 @@ int seekEngine::start_seek ( void ) {
 		sizeMinChecked = fd->cbSizeMin->isChecked();
 		sizeMaxChecked = fd->cbSizeMax->isChecked();
 		findInArchivesChecked = fd->cbFindInArchive->isChecked();
+		
 		
 		if ( sizeMinChecked ) {
 			if ( fd->cbSizeUnitMin->currentIndex() == 0 )
@@ -1129,19 +1161,35 @@ int seekEngine::analyzeNode ( PWw *pww,  Node *n, Node *pa ) {
 				analyzeNode ( pww, n->child );
 				return 0;
 			case HC_MEDIA:
+				if(find_category) {
+					if(( ( DBMedia * ) ( n->data ) )->category.contains(category))
+						putNodeToList ( n );
+				}
 				progress ( pww );
 				analyzeNode ( pww, n->child );
 				analyzeNode ( pww, n->next );
 				return 0;
 			case HC_DIRECTORY:
 				progress ( pww );
+				if(find_category) {
+					if(( ( DBDirectory * ) ( n->data ) )->category.contains(category))
+						putNodeToList ( n );
+				}
 				analyzeNode ( pww, n->child );
 				analyzeNode ( pww, n->next );
 				return 0;
 			case HC_CATLNK:
+				if(find_category) {
+					if(( ( DBCatLnk * ) ( n->data ) )->category.contains(category))
+						putNodeToList ( n );
+				}
 				analyzeNode ( pww, n->next );
 				return 0;
 			case HC_FILE:
+				if(find_category) {
+					if(( ( DBFile * ) ( n->data ) )->category.contains(category))
+						putNodeToList ( n );
+				}
 				if ( *DEBUG_INFO_ENABLED )
 					//std::cout << "testing file: " << qPrintable(n->getNameOf()) << " name: " << qPrintable(fd->mainw->guis->standON->getNameOf()) << " <=> " << qPrintable(n->getNameOf()) << ". size: " <<  (( DBFile * ) ( fd->mainw->guis->standON ))->size << " <=> " << ( ( DBFile * ) ( n->data ) )->size << ", size type: " <<  (( DBFile * ) ( fd->mainw->guis->standON ) )->sizeType << " <=> " << ( ( DBFile * ) ( n->data ) )->sizeType  << std::endl;
 					std::cout << "testing file: " << qPrintable ( n->getNameOf() ) << " name: " << qPrintable ( fd->mainw->guis->standON->getNameOf() ) << " <=> " << qPrintable ( n->getNameOf() ) << std::endl;
@@ -1543,6 +1591,7 @@ void seekEngine::putNodeToList ( Node *n, QString comment ) {
 	QString   type;
 	QString   size_str = "";
 	QString   media = "";
+	QString   tmp_category = "";
 	QString extension = "";
 	QDateTime mod;
 	if ( n == NULL )
@@ -1555,11 +1604,13 @@ void seekEngine::putNodeToList ( Node *n, QString comment ) {
 			type = tr ( "media" );
 			mod  = ( ( DBMedia * ) ( n->data ) )->modification;
 			comment  = ( ( DBMedia * ) ( n->data ) )->comment;
+			tmp_category  = ( ( DBMedia * ) ( n->data ) )->category;
 			break;
 		case HC_DIRECTORY:
 			type = tr ( "dir" );
 			mod  = ( ( DBDirectory * ) ( n->data ) )->modification;
 			comment  = ( ( DBDirectory * ) ( n->data ) )->comment;
+			tmp_category  = ( ( DBDirectory * ) ( n->data ) )->category;
 			break;
 		case HC_FILE:
 			type = tr ( "file" );
@@ -1567,6 +1618,7 @@ void seekEngine::putNodeToList ( Node *n, QString comment ) {
 			size_str += QString ( getSType ( ( ( DBFile * ) ( n->data ) )->sizeType, true ) );
 			mod  = ( ( DBFile * ) ( n->data ) )->modification;
 			comment  = ( ( DBFile * ) ( n->data ) )->comment;
+			tmp_category  = ( ( DBFile * ) ( n->data ) )->category;
 			if ( n->getFullPath().contains ( '.' ) ) {
 				extension = n->getFullPath().split ( "." ).last();
 			}
@@ -1587,7 +1639,9 @@ void seekEngine::putNodeToList ( Node *n, QString comment ) {
 	
 	media = tmp->getNameOf() + "/" + QString().setNum ( ( ( DBMedia * ) ( tmp->data ) )->number );
 	Q3ListViewItem *newitem;
-	newitem = new Q3ListViewItem ( fd->resultsl, n->getNameOf(), type, size_str, media, n->getFullPath(), date_to_str ( mod ), comment, extension );
+	newitem = new Q3ListViewItem ( fd->resultsl, n->getNameOf(), type, size_str, media, n->getFullPath(), date_to_str ( mod ), comment );
+	newitem->setText (7, tmp_category);
+	newitem->setText (8, extension);
 	
 	newitem->setMultiLinesEnabled ( true );
 	fd->resultsl->insertItem ( newitem );

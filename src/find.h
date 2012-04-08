@@ -4,7 +4,7 @@
 
  Author    : Peter Deak (hyperr@freemail.hu)
  License   : GPL
- Copyright : (C) 2003 Peter Deak
+ Copyright : (C) 2003 Peter Deak, 2010 Christoph Thielecke
 ****************************************************************************/
 
 #ifndef FINDDIALOG_H
@@ -77,6 +77,7 @@ class seekEngine : public QObject {
 		bool dirname;
 		bool filename;
 		bool comment;
+		bool find_category;
 		bool tartist;
 		bool ttitle;
 		bool talbum;
@@ -93,6 +94,7 @@ class seekEngine : public QObject {
 		
 		QString  media;
 		QString  owner;
+		QString category;
 		
 		QDateTime dateStart;
 		QDateTime dateEnd;
@@ -135,6 +137,7 @@ class findDialog : public QDialog {
 		QFrame* line2;
 		Q3ListView* resultsl;
 		QLineEdit* leText;
+		QLineEdit* leCategory;
 		QSpinBox* spSizeMin;
 		QSpinBox* spSizeMax;
 		QComboBox *cbSizeUnitMin;
@@ -143,6 +146,7 @@ class findDialog : public QDialog {
 		QDateTimeEdit* deDateStart;
 		QDateTimeEdit* deDateEnd;
 		QCheckBox* cbComment;
+		QCheckBox* cbCategory;
 		QCheckBox* cbFilename;
 		QCheckBox* cbDirname;
 		QCheckBox* cbTcomm;
@@ -198,6 +202,7 @@ class findDialog : public QDialog {
 		void dateEndDoubleClicked();
 		void sizeMinClicked();
 		void sizeMaxClicked();
+		void categoryClicked();
 		void printResultClicked();
 		void exportResultClicked();
 		void clearSearchResultClicked();

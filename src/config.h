@@ -117,6 +117,7 @@ class CdCatConfig : public QObject {
 		QString lastDir;
 		QString lastSearchPattern;
 		QString readcfiles;
+		QString lastFindCategory;
 		QString ExternalContentViewerPath;
 		QString ContentViewerFont;
 		int  mainP1;
@@ -138,6 +139,7 @@ class CdCatConfig : public QObject {
 		bool find_di;
 		bool find_fi;
 		bool find_co;
+		bool find_category;
 		bool find_ct;
 		bool find_mco;
 		bool find_mar;

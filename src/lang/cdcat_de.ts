@@ -40,6 +40,10 @@
       <source>unknown</source>
       <translation>unbekannt</translation>
     </message>
+    <message>
+      <source></source>
+      <translation type="unfinished" />
+    </message>
   </context>
   <context>
     <name>CatalogTypeEditDialog</name>
@@ -2787,6 +2791,14 @@ wird zu
     <message>
       <source>Clear search results</source>
       <translation>Suchergebnisse löschen</translation>
+    </message>
+    <message>
+      <source>Category</source>
+      <translation>Kategorie</translation>
+    </message>
+    <message>
+      <source>Category for find</source>
+      <translation>Kategorie zum Finden</translation>
     </message>
   </context>
   <context>
