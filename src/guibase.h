@@ -13,9 +13,10 @@
 
 #include <qobject.h>
 #include <qdialog.h>
-#include <q3listview.h>
+#include <QTreeWidget>
+#include <QTreeWidgetItem>
+#include <Q3ListViewItem>
 #include <QMenu>
-//Added by qt3to4:
 #include <QKeyEvent>
 
 class Node;
@@ -31,6 +32,38 @@ class QPainter;
 class DataBase;
 class HQListViewItem;
 
+/**********************************************************************/
+class HQListViewItem : public QTreeWidgetItem {
+public:
+    int etype;
+    HQListViewItem ( QTreeWidget *parent );
+    HQListViewItem ( QTreeWidget *parent, QString label1, QString label2, QString label3 );
+    //HQListViewItem ( QTreeWidget *parent, QTreeWidgetItem *after,QString label1,QString label2,QString label3 );
+
+//   virtual int compare(QListViewItem *i,int col,bool ascending) const;
+    QString key ( int column,bool ascending ) const;
+};
+
+class HQListView : public QTreeWidget {
+    Q_OBJECT
+public:
+    CdCatMainWidget *mainw;
+    HQListView ( CdCatMainWidget *mw,QWidget *parent=0,const char *name=0,Qt::WFlags f=0 );
+    void start ( void );
+    void setCurrentVisible ( void );
+    void changed ( void );
+
+protected:
+    void keyPressEvent ( QKeyEvent *ke );
+
+    //This is need for memoryze the current sorting state.
+    //It is'nt necessary under QT 3.X becouse there is sorting query function,
+    //but I didn't found it in QT 2.3.0 (Non-Commercial for Win)
+public:
+    void setSorting ( int column, bool increasing = TRUE );
+    int  scol;
+    bool sasc;
+};
 
 class GuiSlave : public QObject {
     Q_OBJECT
@@ -57,10 +90,11 @@ public slots:
 
     int hotKeys ( QKeyEvent *ke );
     int listUpdate ( const QString& newloc );
-    int standOn ( Q3ListViewItem *on );
-    int doubleClickOn ( Q3ListViewItem *on );
-    void showListviewContextMenu ( Q3ListViewItem *, const QPoint &, int );
+    int standOn ( QTreeWidgetItem *on, int col );
+    int doubleClickOn ( QTreeWidgetItem *on, int col );
+    void showListviewContextMenu ( QPoint );
     void showTreeContextMenu ( Q3ListViewItem *, const QPoint &, int );
+    void currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*);
 
     int cHcaption ( void );
 
@@ -116,40 +150,7 @@ private:
 
 };
 
-/**********************************************************************/
-class HQListViewItem : public Q3ListViewItem {
-public:
-    int etype;
-    HQListViewItem ( Q3ListView *parent );
-    HQListViewItem ( Q3ListView *parent,QString label1,QString label2,QString label3 );
-    HQListViewItem ( Q3ListView *parent,Q3ListViewItem *after,QString label1,QString label2,QString label3 );
 
-//   virtual int compare(QListViewItem *i,int col,bool ascending) const;
-    virtual QString key ( int column,bool ascending ) const;
-protected:
-    void paintCell ( QPainter *p,const QColorGroup & cg,int column,int width,int align );
-};
-
-class HQListView : public Q3ListView {
-    Q_OBJECT
-public:
-    CdCatMainWidget *mainw;
-    HQListView ( CdCatMainWidget *mw,QWidget *parent=0,const char *name=0,Qt::WFlags f=0 );
-    void start ( void );
-    void curr_vis ( void );
-    void changed ( void );
-
-protected:
-    void keyPressEvent ( QKeyEvent *ke );
-
-    //This is need for memoryze the current sorting state.
-    //It is'nt necessary under QT 3.X becouse there is sorting query function,
-    //but I didn't found it in QT 2.3.0 (Non-Commercial for Win)
-public:
-    virtual void setSorting ( int column, bool increasing = TRUE );
-    int  scol;
-    bool sasc;
-};
 
 //**********************************************************************
 class QPosDialog : public QDialog {

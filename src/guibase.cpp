@@ -15,14 +15,13 @@
 #include <q3header.h>
 #include <qpainter.h>
 
-#include <qregexp.h>
-#include <qpixmap.h>
-#include <qmessagebox.h>
+#include <QRegExp>
+#include <QPixmap>
+#include <QMessageBox>
 #include <QFileDialog>
 #include <QFileInfo>
-#include <qapplication.h>
-#include <qsplitter.h>
-//Added by qt3to4:
+#include <QApplication>
+#include <QSplitter>
 #include <QHBoxLayout>
 #include <QKeyEvent>
 #include <QHBoxLayout>
@@ -33,8 +32,8 @@
 #include <QMenuBar>
 #include <QTemporaryFile>
 #include <QProcess>
-
 #include <QStatusBar>
+#include <QHeaderView>
 
 #ifndef _WIN32
 
@@ -82,6 +81,204 @@ char *rbuff = NULL;
 
 CdCatConfig *glob_conf;
 
+/*****************************************************************************
+ *
+ *  class HQListView
+ *
+*****************************************************************************/
+
+HQListViewItem::HQListViewItem ( QTreeWidget *parent )
+	: QTreeWidgetItem ( parent ) {
+	setChildIndicatorPolicy(QTreeWidgetItem::DontShowIndicator);
+}
+
+HQListViewItem::HQListViewItem ( QTreeWidget *parent, QString label1, QString label2, QString label3 )
+	: QTreeWidgetItem ( parent ) {
+	setChildIndicatorPolicy(QTreeWidgetItem::DontShowIndicator);
+	setText(0, label1);
+	setText(1, label2);
+	setText(2, label3);
+}
+/*
+HQListViewItem::HQListViewItem ( QTreeWidget *parent, QTreeWidgetItem *after, QString label1, QString label2, QString label3 )
+	: QTreeWidgetItem ( parent ) {
+	setChildIndicatorPolicy(QTreeWidgetItem::DontShowIndicator);
+	setText(0, label1);
+	setText(1, label2);
+	setText(2, label3);
+}
+*/
+
+QString HQListViewItem::key ( int column, bool ascending ) const {
+	double value = 0;
+	int    mod   = ascending ? etype : 5 - etype ;
+
+	switch ( column ) {
+			//NAME
+		case 0:
+			return text ( column ).prepend ( '1' + mod );
+			//SIZE
+		case 1:
+			//ret = (QListViewItem::key(1,ascending)).append('0'+mod);
+			if ( etype == 2 && !text ( 1 ).isEmpty() ) {
+				value = getSizeFS ( text ( 1 ) );
+				switch ( getSizetFS ( text ( 1 ) ) ) {
+					case UNIT_KBYTE:
+						value *= SIZE_ONE_KBYTE;
+						break;
+					case UNIT_MBYTE:
+						value *= SIZE_ONE_MBYTE;
+						break;
+					case UNIT_GBYTE:
+						value *= SIZE_ONE_GBYTE;
+						break;
+					case UNIT_TBYTE:
+						value *= SIZE_ONE_GBYTE * 1024;
+						break;
+					default:
+						break;
+				}
+				return ( ( QString().setNum ( ( double ) value ) )
+				         .rightJustify ( 10, '0' ) )
+				       .prepend ( '1' + mod );
+			}
+			if ( etype == 3 ) { //HC_MEDIA
+				return ( QString().setNum ( text ( 1 ).toInt() ) )
+				       .rightJustify ( 10, '0' )
+				       .prepend ( '1' + mod );
+			}
+			return text ( 0 ).prepend ( '1' + mod );
+			//TYPE
+		case 2:
+			return ( text ( 2 ).append ( text ( 0 ) ) ).prepend ( '1' + mod );
+
+	}
+	return "";
+}
+
+void HQListView::changed ( void ) {
+	//emit currentChanged ( currentItem() ); // FIXME: maybe obsolete
+}
+
+void HQListView::start ( void ) {
+	;
+}
+
+HQListView::HQListView ( CdCatMainWidget *mw, QWidget *parent, const char *name, Qt::WFlags f )
+	: QTreeWidget ( parent ) {
+	mainw = mw;
+	setColumnCount(3);
+	QStringList labels;
+	labels.append(tr ( "Name" ));
+	labels.append(tr ( "Size" ));
+	labels.append(tr ( "Type" ));
+	setHeaderLabels(labels);
+	setIndentation(0); // remove the indention (|_ sign)
+	setSortingEnabled(false);
+	header()->setResizeMode(0,QHeaderView::Stretch);
+	header()->setResizeMode(1,QHeaderView::Stretch);
+	header()->setResizeMode(2,QHeaderView::Stretch);
+	setContextMenuPolicy(Qt::CustomContextMenu);
+	setSorting(0, true);
+	
+ 	QPalette p( palette() );
+ 	p.setColor( QPalette::Highlight,  *mainw->cconfig->comm_bg );
+ 	setPalette( p );
+	/*
+	setSelectionMode ( Single );
+	setAllColumnsShowFocus ( true );
+	*/
+}
+
+void HQListView::setCurrentVisible ( void ) {
+/*	Q3ListViewItem * i;
+	if ( ( i = currentItem() ) != 0 )
+		ensureItemVisible ( i );
+	*/ // FIXME: maybe obsolete
+}
+
+void HQListView::setSorting ( int column, bool increasing ) {
+	scol = column;
+	sasc = increasing;
+	
+	if ( scol < 0 || scol > 3 )
+		scol = 0;
+// 	if (increasing)
+// 		sortByColumn ( scol, Qt::AscendingOrder );
+// 	else
+// 		sortByColumn ( scol, Qt::DescendingOrder );
+}
+
+void HQListView::keyPressEvent ( QKeyEvent *ke ) {
+	Node *tmp;
+	QTreeWidgetItem *it;
+
+
+	if ( mainw->guis->hotKeys ( ke ) )
+		return; //It was a hotkey and it's handled yet
+
+	if ( mainw->db == NULL )
+		return;
+
+	if ( ke->key() == Qt::Key_Left || ke->key() == Qt::Key_Backspace ) {
+		if ( mainw->guis->NodePwd->parent != NULL ) {
+			mainw->guis->tmpParent =  mainw->guis->NodePwd;
+			mainw->guis->NodePwd   = mainw->guis->NodePwd->parent;
+		}
+
+		mainw->guis->updateListFromNode();
+	}
+
+	if ( ke->key() == Qt::Key_Right || ke->key() == Qt::Key_Return ) {
+		it = currentItem();
+		if ( !strcmp ( it->text ( 0 ), ".." ) ) {
+
+			if ( mainw->guis->NodePwd->parent != NULL ) {
+				mainw->guis->tmpParent =  mainw->guis->NodePwd;
+				mainw->guis->NodePwd   = mainw->guis->NodePwd->parent;
+			}
+		}
+		else {   //step down
+			tmp = mainw->guis->NodePwd->child;
+			while ( strcmp ( tmp->getNameOf(), it->text ( 0 ) ) ) {
+				tmp = tmp->next;
+				if ( tmp == NULL )
+					return;
+			}
+			if ( tmp->type == HC_FILE ) {
+				mainw->guis->showContent();
+				return;
+			}
+			if ( tmp->type == HC_CATLNK ) {
+				mainw->guis->followLnk();
+				return;
+			}
+
+			mainw->guis->NodePwd = tmp;
+		}
+
+		mainw->guis->updateListFromNode();
+	}
+
+	setCurrentVisible();
+	if ( ke->key() == Qt::Key_Left || ke->key() == Qt::Key_Right )
+		return;
+	
+	QTreeWidget::keyPressEvent ( ke );
+}
+
+GuiSlave::GuiSlave ( CdCatMainWidget *p ) {
+	mainw = p;
+
+	standON = NULL;
+	tmpParent = NULL;
+	if ( mainw->db != NULL ) {
+		updateListFromNode ( mainw->db->getRootNode() );
+		standOn ( mainw->listView->currentItem(), 0 );
+	}
+	glob_conf = p->cconfig;
+}
+
 void GuiSlave::checkversion ( QWidget *p, DataBase *db ) {
 	if ( db == NULL )
 		return;
@@ -113,18 +310,6 @@ I understand maximum %1 datafile version but readed %2\n\n\
 Strongly recommended to upgrade your cdcat!!!\n\
 Homepage: %3" ).arg ( DVERS ).arg ( fv ).arg ( HOMEPAGE ) );
 
-}
-
-GuiSlave::GuiSlave ( CdCatMainWidget *p ) {
-	mainw = p;
-
-	standON = NULL;
-	tmpParent = NULL;
-	if ( mainw->db != NULL ) {
-		updateListFromNode ( mainw->db->getRootNode() );
-		standOn ( mainw->listView->currentItem() );
-	}
-	glob_conf = p->cconfig;
 }
 
 void GuiSlave::updateStatusl ( Node *n ) {
@@ -363,16 +548,16 @@ int GuiSlave::updateListFromNode ( Node *pdir ) {
 
 	//Set column text:
 	if ( pdir != NULL && pdir->type == HC_CATALOG ) {
-		mainw->listView->setColumnText ( 1, tr ( "Number" ) );
+		mainw->listView->model()->setHeaderData( 1,Qt::Horizontal, tr ( "Number" ) );
 	}
 	else {
-		mainw->listView->setColumnText ( 1, tr ( "Size" ) );
+		mainw->listView->model()->setHeaderData( 1,Qt::Horizontal, tr ( "Size" ) );
 	}
 
 
 	if ( pdir->parent != NULL ) {
 		lvi = new HQListViewItem ( mainw->listView, "..", "", tr ( "Directory" ) );
-		lvi->setPixmap ( 0, *get_v_back_icon() );
+		lvi->setIcon ( 0, QIcon(*get_v_back_icon() ));
 		lvi->etype = 0;
 	}
 
@@ -381,156 +566,176 @@ int GuiSlave::updateListFromNode ( Node *pdir ) {
 
 	/*List everything*/
 
+	// step 1: list dirs
 	while ( tmp != NULL ) {
 		if ( tmp->type == HC_MP3TAG )
 			return 1; //Error
-
-		// 2.(size) Column name:
-
-		if ( tmp->type == HC_FILE ) {
-			QString filetype = " " + tr ( getSType ( ( ( DBFile * ) ( tmp->data ) )->sizeType, true ) );
-// 		cerr << "file type " << qPrintable(filetype) << endl;
-			if ( filetype == " " || filetype.isEmpty() )
-				filetype = " " + getSType ( ( ( DBFile * ) ( tmp->data ) )->sizeType, false );
-			qstr1.sprintf ( "%.2f", ( ( DBFile * ) ( tmp->data ) )->size );
-			qstr1 = qstr1 + filetype;
-		}
-		else
-			if ( tmp->type == HC_MEDIA )
-				qstr1.setNum ( ( ( DBMedia * ) ( tmp->data ) )->number );
-			else
-				qstr1 = " ";
-
-
-		// 3. Column name:
-		switch ( tmp->type ) {
-			case HC_CATALOG :
-				qstr2 = tr ( "Catalog" );
-				break;
-			case HC_MEDIA   :
-				switch ( ( ( DBMedia* ) ( tmp->data ) )->type ) {
-					case UNKNOWN :
-						qstr2 = tr ( "Unknown(DB)" );
-						break;
-					case CD      :
-						qstr2 = tr ( "CD" );
-						break;
-					case DVD     :
-						qstr2 = tr ( "DVD" );
-						break;
-					case HARDDISC:
-						qstr2 = tr ( "HardDisc" );
-						break;
-					case FLOPPY  :
-						qstr2 = tr ( "Floppy" );
-						break;
-					case NETPLACE:
-						qstr2 = tr ( "NetworkDrv" );
-						break;
-					case FLASHDRV:
-						qstr2 = tr ( "FlashDrv" );
-						break;
-					case OTHERD  :
-						qstr2 = tr ( "OtherDevice" );
-						break;
+		
+		if (tmp->type == HC_DIRECTORY) {
+			// 2.(size) Column name:
+			qstr1 = " ";
+			
+			// 3. Column name:
+			qstr2 = tr ( "Directory" );
+			
+			//if(*DEBUG_INFO_ENABLED)
+			//	cerr <<"GETNAMEOF-----------"<<qPrintable ( tmp->getNameOf() ) <<endl;
+			QString valami;
+			valami = tmp->getNameOf();
+			
+			//!!!
+			//valami.append("---1");
+			//if(*DEBUG_INFO_ENABLED)
+			//	cerr <<"GETNAMEOF-----------"<<qPrintable ( valami ) <<endl;
+			
+			lvi = new HQListViewItem ( mainw->listView, valami, qstr1, qstr2 );
+			lvi->etype = 1;
+			lvi->setIcon ( 0, QIcon(*get_v_folderclosed_icon() ));
+			
+			if ( tmpParent != NULL ) { /*Return to previous parent*/
+				if ( tmp->getNameOf() == tmpParent->getNameOf() ) {
+					mainw->listView->setCurrentItem ( lvi );
+					tmpParent = NULL;
+					fflag = 1;
 				}
-				break;
-			case HC_DIRECTORY:
-				qstr2 = tr ( "Directory" );
-				break;
-			case HC_FILE:
-				qstr2 = tr ( "File" );
-				break;
-			case HC_CATLNK:
-				qstr2 = tr ( "Catalog Link" );
-				break;
-		}
-
-		//if(*DEBUG_INFO_ENABLED)
-		//	cerr <<"GETNAMEOF-----------"<<qPrintable ( tmp->getNameOf() ) <<endl;
-		QString valami;
-		valami = tmp->getNameOf();
-//!!!
-//valami.append("---1");
-		//if(*DEBUG_INFO_ENABLED)
-		//	cerr <<"GETNAMEOF-----------"<<qPrintable ( valami ) <<endl;
-
-		lvi = new HQListViewItem ( mainw->listView, valami, qstr1, qstr2 );
-
-		switch ( tmp->type ) {
-			case HC_CATALOG  :
-				lvi->etype = 0;
-				break;
-			case HC_MEDIA    :
-				lvi->etype = 3;
-				break;
-			case HC_DIRECTORY:
-				lvi->etype = 1;
-				break;
-			case HC_FILE     :
-				lvi->etype = 2;
-				break;
-			case HC_CATLNK   :
-				lvi->etype = ( mainw->cconfig->linkf ? 0 : 4 );
-				break;
-		}
-
-		switch ( tmp->type ) {
-			case HC_CATALOG :
-				break;
-			case HC_MEDIA:
-				switch ( ( ( DBMedia* ) ( tmp->data ) )->type ) {
-					case UNKNOWN :
-						lvi->setPixmap ( 0, *get_m_unknown_icon() );
-						break;
-					case CD      :
-						lvi->setPixmap ( 0, *get_m_cd_icon() );
-						break;
-					case DVD     :
-						lvi->setPixmap ( 0, *get_m_dvd_icon() );
-						break;
-					case HARDDISC:
-						lvi->setPixmap ( 0, *get_m_hdd_icon() );
-						break;
-					case FLOPPY  :
-						lvi->setPixmap ( 0, *get_m_floppy_icon() );
-						break;
-					case NETPLACE:
-						lvi->setPixmap ( 0, *get_m_net_icon() );
-						break;
-					case FLASHDRV:
-						lvi->setPixmap ( 0, *get_m_flash_icon() );
-						break;
-					case OTHERD  :
-						lvi->setPixmap ( 0, *get_m_other_icon() );
-						break;
-				}
-				break;
-			case HC_DIRECTORY:
-				lvi->setPixmap ( 0, *get_v_folderclosed_icon() );
-				break;
-			case HC_FILE:
-				lvi->setPixmap ( 0, *get_v_file_icon() );
-				break;
-			case HC_CATLNK:
-				lvi->setPixmap ( 0, *get_p_icon() );
-				break;
-		}
-
-		if ( tmpParent != NULL ) { /*Return to previous parent*/
-			if ( tmp->getNameOf() == tmpParent->getNameOf() ) {
-				mainw->listView->setCurrentItem ( lvi );
-				tmpParent = NULL;
-				fflag = 1;
 			}
 		}
 		tmp = tmp->next;
 	}
 
+	tmp = pdir->child;
+	// step 2: list other
+	while ( tmp != NULL ) {
+		if ( tmp->type == HC_MP3TAG )
+			return 1; //Error
+		if (tmp->type != HC_DIRECTORY) {
+
+			// 2.(size) Column name:
+			
+			if ( tmp->type == HC_FILE ) {
+				QString filetype = " " + tr ( getSType ( ( ( DBFile * ) ( tmp->data ) )->sizeType, true ) );
+			//cerr << "file type " << qPrintable(filetype) << endl;
+				if ( filetype == " " || filetype.isEmpty() )
+					filetype = " " + getSType ( ( ( DBFile * ) ( tmp->data ) )->sizeType, false );
+				qstr1.sprintf ( "%.2f", ( ( DBFile * ) ( tmp->data ) )->size );
+				qstr1 = qstr1 + filetype;
+			}
+			else {
+				if ( tmp->type == HC_MEDIA )
+					qstr1.setNum ( ( ( DBMedia * ) ( tmp->data ) )->number );
+				else
+					qstr1 = " ";
+			}
+			// 3. Column name:
+			switch ( tmp->type ) {
+				case HC_CATALOG :
+					qstr2 = tr ( "Catalog" );
+					break;
+				case HC_MEDIA   :
+					switch ( ( ( DBMedia* ) ( tmp->data ) )->type ) {
+						case UNKNOWN :
+							qstr2 = tr ( "Unknown(DB)" );
+							break;
+						case CD      :
+							qstr2 = tr ( "CD" );
+							break;
+						case DVD     :
+							qstr2 = tr ( "DVD" );
+							break;
+						case HARDDISC:
+							qstr2 = tr ( "HardDisc" );
+							break;
+						case FLOPPY  :
+							qstr2 = tr ( "Floppy" );
+							break;
+						case NETPLACE:
+							qstr2 = tr ( "NetworkDrv" );
+							break;
+						case FLASHDRV:
+							qstr2 = tr ( "FlashDrv" );
+							break;
+						case OTHERD  :
+							qstr2 = tr ( "OtherDevice" );
+							break;
+					}
+					break;
+				case HC_FILE:
+					qstr2 = tr ( "File" );
+					break;
+				case HC_CATLNK:
+					qstr2 = tr ( "Catalog Link" );
+					break;
+			}
+
+			//if(*DEBUG_INFO_ENABLED)
+			//	cerr <<"GETNAMEOF-----------"<<qPrintable ( tmp->getNameOf() ) <<endl;
+			QString valami;
+			valami = tmp->getNameOf();
+			
+			//!!!
+			//valami.append("---1");
+			//if(*DEBUG_INFO_ENABLED)
+			//	cerr <<"GETNAMEOF-----------"<<qPrintable ( valami ) <<endl;
+			
+			lvi = new HQListViewItem ( mainw->listView, valami, qstr1, qstr2 );
+			switch ( tmp->type ) {
+				case HC_CATALOG :
+					lvi->etype = 0;
+					break;
+				case HC_MEDIA:
+					lvi->etype = 3;
+					switch ( ( ( DBMedia* ) ( tmp->data ) )->type ) {
+						case UNKNOWN :
+							lvi->setIcon ( 0, QIcon(*get_m_unknown_icon() ));
+							break;
+						case CD      :
+							lvi->setIcon ( 0, QIcon(*get_m_cd_icon() ));
+							break;
+						case DVD     :
+							lvi->setIcon ( 0, QIcon(*get_m_dvd_icon() ));
+							break;
+						case HARDDISC:
+							lvi->setIcon ( 0, QIcon(*get_m_hdd_icon() ));
+							break;
+						case FLOPPY  :
+							lvi->setIcon ( 0, QIcon(*get_m_floppy_icon() ));
+							break;
+						case NETPLACE:
+							lvi->setIcon ( 0, QIcon(*get_m_net_icon() ));
+							break;
+						case FLASHDRV:
+							lvi->setIcon ( 0, QIcon(*get_m_flash_icon() ));
+							break;
+						case OTHERD  :
+							lvi->setIcon ( 0, QIcon(*get_m_other_icon() ));
+							break;
+					}
+					break;
+				case HC_FILE:
+					lvi->etype = 2;
+					lvi->setIcon ( 0, QIcon(*get_v_file_icon() ));
+					break;
+				case HC_CATLNK:
+					lvi->etype = ( mainw->cconfig->linkf ? 0 : 4 );
+					lvi->setIcon ( 0, QIcon(*get_p_icon() ));
+					break;
+			}
+			
+			if ( tmpParent != NULL ) { /*Return to previous parent*/
+				if ( tmp->getNameOf() == tmpParent->getNameOf() ) {
+					mainw->listView->setCurrentItem ( lvi );
+					tmpParent = NULL;
+					fflag = 1;
+				}
+			}
+		}
+		tmp = tmp->next;
+	}
+	
 	mainw->listView->setSorting ( mainw->listView->scol, mainw->listView->sasc );
 
 	if ( !fflag )
-		mainw->listView->setCurrentItem ( mainw->listView->firstChild() );
+		mainw->listView->setCurrentItem ( mainw->listView->topLevelItem(0) );
 
 	if ( *DEBUG_INFO_ENABLED )
 		cerr << "BEACON-1" << endl;
@@ -543,7 +748,7 @@ int GuiSlave::updateListFromNode ( Node *pdir ) {
 	return 0;
 }
 
-int GuiSlave::standOn ( Q3ListViewItem *on ) {
+int GuiSlave::standOn ( QTreeWidgetItem *on, int col ) {
 	DEBUG_INFO_ENABLED = init_debug_info();
 	if ( *DEBUG_INFO_ENABLED )
 		cerr << "F-standOn" << endl;
@@ -553,7 +758,7 @@ int GuiSlave::standOn ( Q3ListViewItem *on ) {
 		return 0;
 	if ( *DEBUG_INFO_ENABLED )
 		cerr << "1" << endl;
-	mainw->listView->setSelected ( on, true );
+	mainw->listView->setItemSelected(on, true);
 
 	if ( on->text ( 0 ) == ".." ) {
 		mainw->commentWidget->showNode ( NodePwd, 1 );
@@ -589,7 +794,7 @@ int GuiSlave::standOn ( Q3ListViewItem *on ) {
 	return 0;
 }
 
-int GuiSlave::doubleClickOn ( Q3ListViewItem *on ) {
+int GuiSlave::doubleClickOn ( QTreeWidgetItem *on, int col ) {
 	DEBUG_INFO_ENABLED = init_debug_info();
 	if ( *DEBUG_INFO_ENABLED )
 		cerr << "F-doubleClickOn" << endl;
@@ -619,6 +824,28 @@ int GuiSlave::doubleClickOn ( Q3ListViewItem *on ) {
 	}
 	updateListFromNode();
 	return 0;
+}
+
+void GuiSlave::currentItemChanged(QTreeWidgetItem* current,QTreeWidgetItem*before) {
+// 	if (current != NULL) {
+// 		current->setBackground(0, *mainw->cconfig->comm_bg);
+// 		current->setTextColor(0, Qt::black);
+// 		current->setBackground(1, *mainw->cconfig->comm_bg);
+// 		current->setTextColor(1, Qt::black);
+// 		current->setBackground(2, *mainw->cconfig->comm_bg);
+// 		current->setTextColor(2, Qt::black);
+// 	}
+// 	if (before != NULL) {
+// 		QColor bgColor (Qt::white);
+// 		QColor textcolor (Qt::black);
+// 		//QColor color = tmp_item.textColor(0);
+// 		before->setForeground(0, bgColor);
+// 		before->setTextColor(0, textcolor);
+// 		before->setForeground(1, bgColor);
+// 		before->setTextColor(1, textcolor);
+// 		before->setForeground(2, bgColor);
+// 		before->setTextColor(2, textcolor);
+// 	}
 }
 
 void GuiSlave::panelsOFF ( void ) {
@@ -667,7 +894,7 @@ void GuiSlave::panelsON ( void ) {
 	mainw->commentWidget->act = NULL;
 	mainw->commentWidget->repaint();
 	updateStatusl ( standON );
-	standOn ( mainw->listView->currentItem() );
+	standOn ( mainw->listView->currentItem(), 0 );
 	cHcaption();
 }
 
@@ -682,8 +909,7 @@ void GuiSlave::setGuiMenuAndToolBarEnabled ( bool enable ) {
 	}
 }
 
-
-void GuiSlave::showListviewContextMenu ( Q3ListViewItem *, const QPoint &p, int ) {
+void GuiSlave::showListviewContextMenu ( QPoint p ) {
 	mPopup = new QMenu ( );
 	
 	if ( standON != NULL ) {
@@ -728,7 +954,7 @@ void GuiSlave::showListviewContextMenu ( Q3ListViewItem *, const QPoint &p, int 
 	mPopup->addAction ( QIcon(*get_t_add_icon()), tr ( "Add media..." ), this, SLOT(addEvent()) );
 	mPopup->addAction ( QIcon(*get_p_icon()), tr ( "Add a link to a CdCat Catalog..." ), this, SLOT(addlnkEvent()) );
 	mPopup->addAction ( tr ( "Insert Catalog..." ), this, SLOT(insertcEvent()) );
-	mPopup->exec ( p );
+	mPopup->exec ( mainw->listView->mapToGlobal (p) );
 	delete mPopup;
 	mPopup = NULL;
 }
@@ -790,118 +1016,6 @@ void GuiSlave::showTreeContextMenu ( Q3ListViewItem *item, const QPoint &p2, int
 	context_item = NULL;
 }
 
-
-/*****************************************************************************
- *
- *  class HQListView
- *
-*****************************************************************************/
-
-void HQListViewItem::paintCell ( QPainter *p, const QColorGroup & cg, int column, int width, int align ) {
-	QColorGroup ocg ( cg );
-	ocg.setColor ( QColorGroup::Highlight, *glob_conf->comm_bg );
-	ocg.setColor ( QColorGroup::HighlightedText, QColor ( Qt::black ) );
-	Q3ListViewItem::paintCell ( p, ocg, column, width, align );
-}
-
-HQListViewItem::HQListViewItem ( Q3ListView *parent )
-	: Q3ListViewItem ( parent ) {
-	setExpandable ( FALSE );
-}
-
-HQListViewItem::HQListViewItem ( Q3ListView *parent, QString label1, QString label2, QString label3 )
-	: Q3ListViewItem ( parent, label1, label2, label3 ) {
-	setExpandable ( FALSE );
-}
-
-HQListViewItem::HQListViewItem ( Q3ListView *parent, Q3ListViewItem *after, QString label1, QString label2, QString label3 )
-	: Q3ListViewItem ( parent, after, label1, label2, label3 ) {
-	setExpandable ( FALSE );
-}
-
-QString HQListViewItem::key ( int column, bool ascending ) const {
-	double value = 0;
-	int    mod   = ascending ? etype : 5 - etype ;
-
-	switch ( column ) {
-			//NAME
-		case 0:
-			return text ( column ).prepend ( '1' + mod );
-			//SIZE
-		case 1:
-			//ret = (QListViewItem::key(1,ascending)).append('0'+mod);
-			if ( etype == 2 && !text ( 1 ).isEmpty() ) {
-				value = getSizeFS ( text ( 1 ) );
-				switch ( getSizetFS ( text ( 1 ) ) ) {
-					case UNIT_KBYTE:
-						value *= SIZE_ONE_KBYTE;
-						break;
-					case UNIT_MBYTE:
-						value *= SIZE_ONE_MBYTE;
-						break;
-					case UNIT_GBYTE:
-						value *= SIZE_ONE_GBYTE;
-						break;
-					case UNIT_TBYTE:
-						value *= SIZE_ONE_GBYTE * 1024;
-						break;
-					default:
-						break;
-				}
-				return ( ( QString().setNum ( ( double ) value ) )
-				         .rightJustify ( 10, '0' ) )
-				       .prepend ( '1' + mod );
-			}
-			if ( etype == 3 ) { //HC_MEDIA
-				return ( QString().setNum ( text ( 1 ).toInt() ) )
-				       .rightJustify ( 10, '0' )
-				       .prepend ( '1' + mod );
-			}
-			return text ( 0 ).prepend ( '1' + mod );
-			//TYPE
-		case 2:
-			return ( text ( 2 ).append ( text ( 0 ) ) ).prepend ( '1' + mod );
-
-	}
-	return "";
-}
-
-void HQListView::changed ( void ) {
-	emit currentChanged ( currentItem() );
-}
-
-void HQListView::start ( void ) {
-	;
-}
-
-HQListView::HQListView ( CdCatMainWidget *mw, QWidget *parent, const char *name, Qt::WFlags f )
-	: Q3ListView ( parent, name, f ) {
-	mainw = mw;
-	setSelectionMode ( Single );
-	addColumn ( tr ( "Name" ) );
-	addColumn ( tr ( "Size" ) );
-	addColumn ( tr ( "Type" ) );
-	setAllColumnsShowFocus ( true );
-	setShowSortIndicator ( true );
-	setSorting ( -1 );
-}
-
-void HQListView::curr_vis ( void ) {
-	Q3ListViewItem * i;
-	if ( ( i = currentItem() ) != 0 )
-		ensureItemVisible ( i );
-}
-
-void HQListView::setSorting ( int column, bool increasing ) {
-	scol = column;
-	sasc = increasing;
-
-	if ( scol < 0 || scol > 3 )
-		scol = 0;
-
-	Q3ListView::setSorting ( scol, increasing );
-}
-
 int GuiSlave::hotKeys ( QKeyEvent *ke ) {
 	switch ( ke->key() ) {
 			/*  Handled from mainwidget.cpp
@@ -929,63 +1043,6 @@ int GuiSlave::hotKeys ( QKeyEvent *ke ) {
 	return 0;
 }
 
-void HQListView::keyPressEvent ( QKeyEvent *ke ) {
-	Node *tmp;
-	Q3ListViewItem *it;
-
-
-	if ( mainw->guis->hotKeys ( ke ) )
-		return; //It was a hotkey and it's handled yet
-
-	if ( mainw->db == NULL )
-		return;
-
-	if ( ke->key() == Qt::Key_Left || ke->key() == Qt::Key_Backspace ) {
-		if ( mainw->guis->NodePwd->parent != NULL ) {
-			mainw->guis->tmpParent =  mainw->guis->NodePwd;
-			mainw->guis->NodePwd   = mainw->guis->NodePwd->parent;
-		}
-
-		mainw->guis->updateListFromNode();
-	}
-
-	if ( ke->key() == Qt::Key_Right || ke->key() == Qt::Key_Return ) {
-		it = currentItem();
-		if ( !strcmp ( it->text ( 0 ), ".." ) ) {
-
-			if ( mainw->guis->NodePwd->parent != NULL ) {
-				mainw->guis->tmpParent =  mainw->guis->NodePwd;
-				mainw->guis->NodePwd   = mainw->guis->NodePwd->parent;
-			}
-		}
-		else {   //step down
-			tmp = mainw->guis->NodePwd->child;
-			while ( strcmp ( tmp->getNameOf(), it->text ( 0 ) ) ) {
-				tmp = tmp->next;
-				if ( tmp == NULL )
-					return;
-			}
-			if ( tmp->type == HC_FILE ) {
-				mainw->guis->showContent();
-				return;
-			}
-			if ( tmp->type == HC_CATLNK ) {
-				mainw->guis->followLnk();
-				return;
-			}
-
-			mainw->guis->NodePwd = tmp;
-		}
-
-		mainw->guis->updateListFromNode();
-	}
-
-	curr_vis();
-	if ( ke->key() == Qt::Key_Left || ke->key() == Qt::Key_Right )
-		return;
-
-	Q3ListView::keyPressEvent ( ke );
-}
 
 /* Mainwindow buttons ***********************************/
 int GuiSlave::newEvent ( void ) {
@@ -1935,35 +1992,35 @@ int GuiSlave::typeChangeEvent ( ) {
 		switch ( ( ( DBMedia * ) ( standON->data ) )->type ) {
 			case UNKNOWN :
 				context_item->setText ( 1, tr ( "Unknown(DB)" ) );
-				context_item->setPixmap ( 0, *get_m_unknown_icon() );
+				context_item->setIcon ( 0, QIcon(*get_m_unknown_icon() ));
 				break;
 			case CD:
 				context_item->setText ( 1, tr ( "CD" ) );
-				context_item->setPixmap ( 0, *get_m_cd_icon() );
+				context_item->setIcon ( 0, QIcon(*get_m_cd_icon() ));
 				break;
 			case DVD:
 				context_item->setText ( 1, tr ( "DVD" ) );
-				context_item->setPixmap ( 0, *get_m_dvd_icon() );
+				context_item->setIcon ( 0, QIcon(*get_m_dvd_icon() ));
 				break;
 			case HARDDISC:
 				context_item->setText ( 1, tr ( "HardDisc" ) );
-				context_item->setPixmap ( 0, *get_m_hdd_icon() );
+				context_item->setIcon ( 0, QIcon(*get_m_hdd_icon() ));
 				break;
 			case FLOPPY:
 				context_item->setText ( 1, tr ( "Floppy" ) );
-				context_item->setPixmap ( 0, *get_m_floppy_icon() );
+				context_item->setIcon ( 0, QIcon(*get_m_floppy_icon() ));
 				break;
 			case NETPLACE:
 				context_item->setText ( 1, tr ( "NetworkDrv" ) );
-				context_item->setPixmap ( 0, *get_m_net_icon() );
+				context_item->setIcon ( 0, QIcon(*get_m_net_icon() ));
 				break;
 			case FLASHDRV:
 				context_item->setText ( 1, tr ( "FlashDrv" ) );
-				context_item->setPixmap ( 0, *get_m_flash_icon() );
+				context_item->setIcon ( 0, QIcon(*get_m_flash_icon() ));
 				break;
 			case OTHERD:
 				context_item->setText ( 1, tr ( "OtherDevice" ) );
-				context_item->setPixmap ( 0, *get_m_other_icon() );
+				context_item->setIcon ( 0, QIcon(*get_m_other_icon() ));
 				break;
 		}
 		saveEvent();
@@ -2469,15 +2526,16 @@ int QPosDialog::pos ( const QString & str ) {
 	DEBUG_INFO_ENABLED = init_debug_info();
 	if ( *DEBUG_INFO_ENABLED )
 		cerr << "QPosDialog::pos() str: " << qPrintable ( str ) << endl;
-	Q3ListViewItemIterator it ( p->listView );
+	QTreeWidgetItemIterator it(p->listView);
 	
-	for ( ; ( it.current() ) != NULL; it++ ) {
-		if ( ( ( it.current() )->text ( 0 ) ) == str ) {
-			p->listView->setCurrentItem ( it.current() );
-			p->listView->curr_vis();
-			p->guis->standOn ( it.current() );
+	while (*it) {
+		if ( (*it)->text ( 0 ) == str ) {
+			p->listView->setCurrentItem ( (*it) );
+			p->listView->setCurrentVisible();
+			p->guis->standOn ( (*it), 0 );
 			return 0;
 		}
+		++it;
 	}
 	return 0;
 }

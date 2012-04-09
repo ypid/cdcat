@@ -13,11 +13,10 @@
 #include <qcheckbox.h>
 #include <qcombobox.h>
 #include <QFrame>
-#include <q3header.h>
 #include <qlayout.h>
 #include <qlabel.h>
 #include <qlineedit.h>
-#include <q3listview.h>
+#include <QHeaderView>
 #include <qpushbutton.h>
 #include <qlayout.h>
 #include <qtooltip.h>
@@ -176,19 +175,27 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		buttonCancel->setAutoDefault ( TRUE );
 		buttonCancel->setMinimumWidth ( 80 );
 		
-		resultsl = new Q3ListView ( this, "resultsl" );
-		resultsl->addColumn ( tr ( "Name" ) );
-		resultsl->addColumn ( tr ( "Type" ) );
-		resultsl->addColumn ( tr ( "Size" ) );
-		resultsl->addColumn ( tr ( "Media" ) );
-		resultsl->addColumn ( tr ( "Path" ) );
-		resultsl->addColumn ( tr ( "Modification" ) );
-		resultsl->addColumn ( tr ( "Comment" ) );
-		resultsl->addColumn ( tr ( "Category" ) );
-		resultsl->addColumn ( tr ( "Extension" ) );
+		resultsl = new QTreeWidget ( this );
+		QStringList labels;
+		labels.append ( tr ( "Name" ) );
+		labels.append ( tr ( "Type" ) );
+		labels.append ( tr ( "Size" ) );
+		labels.append ( tr ( "Media" ) );
+		labels.append ( tr ( "Path" ) );
+		labels.append ( tr ( "Modification" ) );
+		labels.append ( tr ( "Comment" ) );
+		labels.append ( tr ( "Category" ) );
+		labels.append ( tr ( "Extension" ) );
+		resultsl->setHeaderLabels(labels);
+		resultsl->header()->setResizeMode(0,QHeaderView::Stretch);
+		resultsl->header()->setResizeMode(1,QHeaderView::Stretch);
+		resultsl->header()->setResizeMode(2,QHeaderView::Stretch);
+		resultsl->header()->setResizeMode(3,QHeaderView::Stretch);
+		resultsl->header()->setResizeMode(4,QHeaderView::Stretch);
+		resultsl->header()->setResizeMode(5,QHeaderView::Stretch);
+		resultsl->header()->setResizeMode(6,QHeaderView::Stretch);
 		
-		resultsl->setColumnAlignment ( 2, Qt::AlignRight );
-		resultsl->setColumnWidthMode ( 0, Q3ListView::Maximum );
+		//resultsl->setColumnAlignment ( 2, Qt::AlignRight ); // FIXME
 		
 		buttonClose = new QPushButton ( this, "buttonClose" );
 		buttonPrintResult = new QPushButton ( this, "buttonPrintResult" );
@@ -318,8 +325,8 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		connect ( buttonClearSearchResult, SIGNAL ( clicked() ), this, SLOT ( clearSearchResultClicked()) );
 		connect ( buttonPrintResult, SIGNAL ( clicked() ), this, SLOT ( printResultClicked() ) );
 		connect ( buttonExportResult, SIGNAL ( clicked() ), this, SLOT ( exportResultClicked() ) );
-		connect ( resultsl, SIGNAL ( currentChanged ( Q3ListViewItem * ) ), this, SLOT ( select ( Q3ListViewItem * ) ) );
-		connect ( resultsl, SIGNAL ( clicked ( Q3ListViewItem * ) ), this, SLOT ( select ( Q3ListViewItem * ) ) );
+		connect ( resultsl, SIGNAL (    currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), this, SLOT ( select ( QTreeWidgetItem*,QTreeWidgetItem* ) ) );
+		connect ( resultsl, SIGNAL ( itemClicked ( QTreeWidgetItem *, int ) ), this, SLOT ( select ( QTreeWidgetItem *, int ) ) );
 		connect ( cbDateStart, SIGNAL ( stateChanged ( int ) ), this, SLOT ( dateStartChanged ( int ) ) );
 		connect ( cbDateEnd, SIGNAL ( stateChanged ( int ) ), this, SLOT ( dateEndChanged ( int ) ) );
 		//connect ( deDateStart, SIGNAL ( clicked()),this,SLOT ( dateStartDoubleClicked()));
@@ -414,19 +421,27 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		
 		textLabel5 = new QLabel ( this, "textLabel5" );
 		
-		resultsl = new Q3ListView ( this, "resultsl" );
-		resultsl->addColumn ( tr ( "Name" ) );
-		resultsl->addColumn ( tr ( "Type" ) );
-		resultsl->addColumn ( tr ( "Size" ) );
-		resultsl->addColumn ( tr ( "Media" ) );
-		resultsl->addColumn ( tr ( "Path" ) );
-		resultsl->addColumn ( tr ( "Modification" ) );
-		resultsl->addColumn ( tr ( "Comment" ) );
-		resultsl->addColumn ( tr ( "Category" ) );
-		resultsl->addColumn ( tr ( "Extension" ) );
+		resultsl = new QTreeWidget ( this );
+		QStringList labels;
+		labels.append ( tr ( "Name" ) );
+		labels.append ( tr ( "Type" ) );
+		labels.append ( tr ( "Size" ) );
+		labels.append ( tr ( "Media" ) );
+		labels.append ( tr ( "Path" ) );
+		labels.append ( tr ( "Modification" ) );
+		labels.append ( tr ( "Comment" ) );
+		labels.append ( tr ( "Category" ) );
+		labels.append ( tr ( "Extension" ) );
+		resultsl->setHeaderLabels(labels);
 		
-		resultsl->setColumnAlignment ( 2, Qt::AlignRight );
-		resultsl->setColumnWidthMode ( 0, Q3ListView::Maximum );
+		//resultsl->setColumnAlignment ( 2, Qt::AlignRight ); // FIXME
+		resultsl->header()->setResizeMode(0,QHeaderView::Stretch);
+		resultsl->header()->setResizeMode(1,QHeaderView::Stretch);
+		resultsl->header()->setResizeMode(2,QHeaderView::Stretch);
+		resultsl->header()->setResizeMode(3,QHeaderView::Stretch);
+		resultsl->header()->setResizeMode(4,QHeaderView::Stretch);
+		resultsl->header()->setResizeMode(5,QHeaderView::Stretch);
+		resultsl->header()->setResizeMode(6,QHeaderView::Stretch);
 		
 		buttonClose = new QPushButton ( this, "buttonClose" );
 		buttonClearSearchResult = NULL;
@@ -464,8 +479,8 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		
 		languageChange();
 		
-		connect ( resultsl, SIGNAL ( currentChanged ( Q3ListViewItem * ) ), this, SLOT ( select ( Q3ListViewItem * ) ) );
-		connect ( resultsl, SIGNAL ( clicked ( Q3ListViewItem * ) ), this, SLOT ( select ( Q3ListViewItem * ) ) );
+		connect ( resultsl, SIGNAL (    currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), this, SLOT ( select ( QTreeWidgetItem*,QTreeWidgetItem* ) ) );
+		connect ( resultsl, SIGNAL ( itemClicked ( QTreeWidgetItem *, int ) ), this, SLOT ( select ( QTreeWidgetItem *, int ) ) );
 		connect ( buttonCancel, SIGNAL ( clicked() ), this, SLOT ( cancele() ) );
 		connect ( buttonOk, SIGNAL ( clicked() ), this, SLOT ( seeke() ) );
 		connect ( buttonClose, SIGNAL ( clicked() ), this, SLOT ( closee() ) );
@@ -483,15 +498,17 @@ findDialog::~findDialog() {
 void findDialog::languageChange() {
 	if ( isFindDuplicates ) {
 		setCaption ( tr ( "Search for duplicates in the database..." ) );
-		resultsl->header()->setLabel ( 0, tr ( "Name" ) );
-		resultsl->header()->setLabel ( 1, tr ( "Type" ) );
-		resultsl->header()->setLabel ( 2, tr ( "Size" ) );
-		resultsl->header()->setLabel ( 3, tr ( "Media" ) );
-		resultsl->header()->setLabel ( 4, tr ( "Path" ) );
-		resultsl->header()->setLabel ( 5, tr ( "Modification" ) );
-		resultsl->header()->setLabel ( 6, tr ( "Comment" ) );
-		resultsl->header()->setLabel ( 7, tr ( "Category" ) );
-		resultsl->header()->setLabel ( 8, tr ( "Extension" ) );
+		QStringList labels;
+		labels.append ( tr ( "Name" ) );
+		labels.append ( tr ( "Type" ) );
+		labels.append ( tr ( "Size" ) );
+		labels.append ( tr ( "Media" ) );
+		labels.append ( tr ( "Path" ) );
+		labels.append ( tr ( "Modification" ) );
+		labels.append ( tr ( "Comment" ) );
+		labels.append ( tr ( "Category" ) );
+		labels.append ( tr ( "Extension" ) );
+		resultsl->setHeaderLabels(labels);
 		
 		buttonOk->setText ( tr ( "&Start search" ) );
 #ifndef _WIN32
@@ -510,15 +527,17 @@ void findDialog::languageChange() {
 		setCaption ( tr ( "Search in the database..." ) );
 		textLabel1->setText ( tr ( "Seek in:" ) );
 		textLabel2->setText ( tr ( "Owner:" ) );
-		resultsl->header()->setLabel ( 0, tr ( "Name" ) );
-		resultsl->header()->setLabel ( 1, tr ( "Type" ) );
-		resultsl->header()->setLabel ( 2, tr ( "Size" ) );
-		resultsl->header()->setLabel ( 3, tr ( "Media" ) );
-		resultsl->header()->setLabel ( 4, tr ( "Path" ) );
-		resultsl->header()->setLabel ( 5, tr ( "Modification" ) );
-		resultsl->header()->setLabel ( 6, tr ( "Comment" ) );
-		resultsl->header()->setLabel ( 7, tr ( "Category" ) );
-		resultsl->header()->setLabel ( 8, tr ( "Extension" ) );
+		QStringList labels;
+		labels.append ( tr ( "Name" ) );
+		labels.append ( tr ( "Type" ) );
+		labels.append ( tr ( "Size" ) );
+		labels.append ( tr ( "Media" ) );
+		labels.append ( tr ( "Path" ) );
+		labels.append ( tr ( "Modification" ) );
+		labels.append ( tr ( "Comment" ) );
+		labels.append ( tr ( "Category" ) );
+		labels.append ( tr ( "Extension" ) );
+		resultsl->setHeaderLabels(labels);
 		findTextLabel->setText ( tr ( "Find:" ) );
 		cbKeepSearchResult->setText ( tr ( "Keep search result" ) );
 		cbFilename->setText ( tr ( "File name" ) );
@@ -658,7 +677,13 @@ int findDialog::fillCBox ( void ) {
 }
 /***************************************************************************/
 
-int findDialog::select ( Q3ListViewItem *i ) {
+int findDialog::select ( QTreeWidgetItem *i, int ) {
+	QTreeWidgetItem *dummy = NULL;
+	return select(i, dummy);
+}
+
+
+int findDialog::select ( QTreeWidgetItem *i, QTreeWidgetItem * ) {
 	if ( i == NULL )
 		return 0;
 	
@@ -670,12 +695,14 @@ int findDialog::select ( Q3ListViewItem *i ) {
 	
 	mainw->guis->updateListFromNode (
 	        ( mainw->guis->getNodeFromFullName ( mainw->db->getRootNode(), nodepath ) ) );
-	for ( Q3ListViewItemIterator it = mainw->listView->firstChild(); it.current(); it++ ) {
-		if ( ( it.current() )->text ( 0 ) == i->text ( 0 ) ) {
-			mainw->listView->setCurrentItem ( it.current() );
-			mainw->listView->curr_vis();
+	QTreeWidgetItemIterator it(mainw->listView);
+	while(*it) {
+		if ( ( (*it) )->text ( 0 ) == i->text ( 0 ) ) {
+			mainw->listView->setCurrentItem ( (*it) );
+			mainw->listView->setCurrentVisible();
 			mainw->listView->repaint();
 		}
+		++it;
 	}
 	return 0;
 }
@@ -712,7 +739,7 @@ int findDialog::seeke ( void ) {
 	se->start_seek();
 	delete se;
 	if ( !isFindDuplicates ) {
-		if ( resultsl->childCount() > 0 ) {
+		if ( resultsl->children().count() > 0 ) {
 			buttonPrintResult->setEnabled ( true );
 			buttonExportResult->setEnabled ( true );
 		}
@@ -801,7 +828,7 @@ void findDialog::exportResult ( bool isPrint ) {
 	QTextCodec::setCodecForTr ( QTextCodec::codecForName ( "UTF-8" ) );
 	QString result_str;
 	if ( *DEBUG_INFO_ENABLED )
-		cerr << "result (childCount: " << resultsl->childCount() << "): " << endl;
+		cerr << "result (childCount: " << resultsl->children().count() << "): " << endl;
 	result_str += "<html>\n";
 	result_str += "<head>\n";
 	result_str += "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>\n";
@@ -905,9 +932,9 @@ void findDialog::exportResult ( bool isPrint ) {
 	result_str += "<th>" + tr ( "Comment" ) + "</th>";
 	result_str += "<th>" + tr ( "Category" ) + "</th>";
 	result_str += "</tr>\n";
-	Q3ListViewItem *lastChild = resultsl->firstChild();
+	QTreeWidgetItemIterator lastChild(resultsl);
 	int i = 0;
-	while ( lastChild ) {
+	while ( *lastChild ) {
 		/*
 			listView data:
 			0: name
@@ -920,24 +947,24 @@ void findDialog::exportResult ( bool isPrint ) {
 		*/
 		if ( *DEBUG_INFO_ENABLED ) {
 			for ( int j = 0; j <= 6; j++ )
-				cerr << "result[" << i << "][" << j << "]: " << qPrintable ( lastChild->text ( j ) ) << endl;
+				cerr << "result[" << i << "][" << j << "]: " << qPrintable ( (*lastChild)->text ( j ) ) << endl;
 		}
 		
 		result_str += "<tr>";
 		result_str += "<td align=\"right\" style=\"font-size:-2;\">" + QString().setNum ( i + 1 ) + "</td>";
-		result_str += "<td style=\"font-size:-2;\">" + lastChild->text ( 0 ) + "</td>";
-		result_str += "<td style=\"font-size:-2;\">" + lastChild->text ( 1 ) + "</td>";
-		result_str += "<td style=\"font-size:-2;\">" + lastChild->text ( 2 ) + "</td>";
-		result_str += "<td style=\"font-size:-2;\">" + lastChild->text ( 3 ) + "</td>";
-		result_str += "<td style=\"font-size:-2;\">" + lastChild->text ( 4 ) + "</td>";
-		result_str += "<td style=\"font-size:-2;\">" + lastChild->text ( 5 ) + "</td>";
-		result_str += "<td style=\"font-size:-2;\">" + lastChild->text ( 6 ).replace ( "\n", "<br>" ) + "</td>";
-		result_str += "<td style=\"font-size:-2;\">" + lastChild->text ( 7 ).replace ( "\n", "<br>" ) + "</td>";
+		result_str += "<td style=\"font-size:-2;\">" + (*lastChild)->text ( 0 ) + "</td>";
+		result_str += "<td style=\"font-size:-2;\">" + (*lastChild)->text ( 1 ) + "</td>";
+		result_str += "<td style=\"font-size:-2;\">" + (*lastChild)->text ( 2 ) + "</td>";
+		result_str += "<td style=\"font-size:-2;\">" + (*lastChild)->text ( 3 ) + "</td>";
+		result_str += "<td style=\"font-size:-2;\">" + (*lastChild)->text ( 4 ) + "</td>";
+		result_str += "<td style=\"font-size:-2;\">" + (*lastChild)->text ( 5 ) + "</td>";
+		result_str += "<td style=\"font-size:-2;\">" + (*lastChild)->text ( 6 ).replace ( "\n", "<br>" ) + "</td>";
+		result_str += "<td style=\"font-size:-2;\">" + (*lastChild)->text ( 7 ).replace ( "\n", "<br>" ) + "</td>";
 		result_str += "</tr>\n";
 		if ( *DEBUG_INFO_ENABLED ) {
 			cerr << "result_str: " << qPrintable ( result_str ) << endl;
 		}
-		lastChild = lastChild->nextSibling();
+		++lastChild;
 		i++;
 	}
 	result_str += "</table>\n";
@@ -1125,8 +1152,11 @@ int seekEngine::start_seek ( void ) {
 		QMessageBox::warning ( 0, tr ( "Search cancelled" ), tr ( "You have cancelled searching." ) );
 	}
 	fd->textLabel5->setText ( tr ( "Last search results:" ) + " " + QString().setNum ( founded ) );
-	if ( founded == 0 )
-		fd->resultsl->insertItem ( new Q3ListViewItem ( fd->resultsl, tr ( "There is no matching." ) ) );
+	if ( founded == 0 ) {
+		QTreeWidgetItem *newitem = new QTreeWidgetItem ( fd->resultsl);
+		newitem->setText(0, tr ( "There is no matching." ));
+		fd->resultsl->addTopLevelItem( newitem );
+	}
 	
 	QObject::disconnect ( pww, SIGNAL ( cancelReceivedByUser ( bool ) ), pww, SLOT ( doCancelReceived ( bool ) ) );
 	progress ( pww );
@@ -1638,13 +1668,20 @@ void seekEngine::putNodeToList ( Node *n, QString comment ) {
 	}
 	
 	media = tmp->getNameOf() + "/" + QString().setNum ( ( ( DBMedia * ) ( tmp->data ) )->number );
-	Q3ListViewItem *newitem;
-	newitem = new Q3ListViewItem ( fd->resultsl, n->getNameOf(), type, size_str, media, n->getFullPath(), date_to_str ( mod ), comment );
+	QTreeWidgetItem *newitem;
+	newitem = new QTreeWidgetItem ( fd->resultsl);
+	newitem->setText(0, n->getNameOf());
+	newitem->setText(1, type);
+	newitem->setText(2, size_str);
+	newitem->setText(3, media);
+	newitem->setText(4, n->getFullPath());
+	newitem->setText(5, date_to_str ( mod ));
+	newitem->setText(6, comment );
 	newitem->setText (7, tmp_category);
 	newitem->setText (8, extension);
 	
-	newitem->setMultiLinesEnabled ( true );
-	fd->resultsl->insertItem ( newitem );
+	//newitem->setMultiLinesEnabled ( true ); // FIXME
+	fd->resultsl->addTopLevelItem ( newitem );
 	if(fd->buttonClearSearchResult != NULL && !fd->buttonClearSearchResult->isEnabled())
 		fd->buttonClearSearchResult->setEnabled(true);
 	progress ( pww );

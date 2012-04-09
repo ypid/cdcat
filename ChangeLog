@@ -1,4 +1,10 @@
-06. Apr 2012 Christoph Thielecke <crissi99@gmx.de>
+09. Apr 2012 Christoph Thielecke <crissi99@gmx.de>
+	- hqlistview ported to qtreewidget
+	- hqlistviewitem ported to qtreewidgetitem
+	- q3listview at finddialog replaced by qtreewidget
+	- q3listviewitem at finddialog replaced by qtreewidgetitem
+
+08. Apr 2012 Christoph Thielecke <crissi99@gmx.de>
 	- crash at search for duplicates fixed
 	- find for category at finddialog added
 

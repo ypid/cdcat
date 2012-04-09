@@ -13,7 +13,6 @@
 #include <qvariant.h>
 #include <qdialog.h>
 #include <qobject.h>
-//Added by qt3to4:
 #include <QGridLayout>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
@@ -23,6 +22,8 @@
 // #include <pcre.h>
 #include <QRegExp>
 #include <QtGui/QDateTimeEdit>
+#include <QTreeWidget>
+#include <QTreeWidgetItem>
 
 class QVBoxLayout;
 class QHBoxLayout;
@@ -32,8 +33,6 @@ class QComboBox;
 class QFrame;
 class QLabel;
 class QLineEdit;
-class Q3ListView;
-class Q3ListViewItem;
 class QHBoxLayout;
 class QVBoxLayout;
 class QSpinBox;
@@ -135,7 +134,7 @@ class findDialog : public QDialog {
 		QLabel* textLabel8;
 		QLabel* textLabelFindInArchive;
 		QFrame* line2;
-		Q3ListView* resultsl;
+		QTreeWidget* resultsl;
 		QLineEdit* leText;
 		QLineEdit* leCategory;
 		QSpinBox* spSizeMin;
@@ -191,7 +190,8 @@ class findDialog : public QDialog {
 	
 	protected slots:
 		virtual void languageChange();
-		int select ( Q3ListViewItem *i );
+		int select ( QTreeWidgetItem *after, QTreeWidgetItem *before );
+		int select (QTreeWidgetItem *i, int col);
 		int closee ( void );
 		int cancele ( void );
 		int seeke ( void );

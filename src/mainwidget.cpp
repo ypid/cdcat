@@ -13,7 +13,8 @@
 #include <qmenubar.h>
 #include <QFrame>
 #include <q3header.h>
-#include <q3listview.h>
+#include <QTreeWidget>
+#include <QHeaderView>
 #include <qtoolbutton.h>
 #include <qlayout.h>
 #include <qtooltip.h>
@@ -87,8 +88,8 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	DirView->header()->setLabel ( 0, tr ( "Directory Tree" ) );
 
 	listView = new HQListView ( this, splitMain, "listView" );
-	listView->header()->setLabel ( 0, tr ( "Name" ) );
-	listView->header()->setLabel ( 1, tr ( "Size" ) );
+	//listView->header()->setLabel ( 0, tr ( "Name" ) ); // FIXME: maybe obsolete
+	//listView->header()->setLabel ( 1, tr ( "Size" ) ); // FIXME: maybe obsolete
 	listView->clear();
 
 
@@ -419,12 +420,13 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	connect ( DirView , SIGNAL ( hitkey ( QKeyEvent * ) ), guis, SLOT ( hotKeys ( QKeyEvent * ) ) );
 	connect ( DirView, SIGNAL ( rightButtonPressed ( Q3ListViewItem *, const QPoint &, int ) ),
 	          guis, SLOT ( showTreeContextMenu ( Q3ListViewItem *, const QPoint &, int ) ) );
-	connect ( listView, SIGNAL ( rightButtonClicked ( Q3ListViewItem *, const QPoint &, int ) ),
-	          guis, SLOT ( showListviewContextMenu ( Q3ListViewItem *, const QPoint &, int ) ) );
+	connect ( listView, SIGNAL ( customContextMenuRequested ( const QPoint  ) ),
+	          guis, SLOT ( showListviewContextMenu ( const QPoint ) ) );
 
-	connect ( listView, SIGNAL ( currentChanged ( Q3ListViewItem * ) ), guis, SLOT ( standOn ( Q3ListViewItem * ) ) );
-	connect ( listView, SIGNAL ( clicked ( Q3ListViewItem * ) ), guis, SLOT ( standOn ( Q3ListViewItem * ) ) );
-	connect ( listView, SIGNAL ( doubleClicked ( Q3ListViewItem * ) ), guis, SLOT ( doubleClickOn ( Q3ListViewItem * ) ) );
+	//connect ( listView, SIGNAL (    itemChanged  ( QTreeWidgetItem *, int ) ), guis, SLOT ( standOn ( QTreeWidgetItem *, int ) ) );
+	//connect ( listView, SIGNAL (    currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), guis, SLOT ( currentItemChanged ( QTreeWidgetItem*,QTreeWidgetItem* ) ) );
+	connect ( listView, SIGNAL ( itemClicked ( QTreeWidgetItem *, int ) ), guis, SLOT ( standOn ( QTreeWidgetItem *, int ) ) );
+	connect ( listView, SIGNAL (   itemDoubleClicked ( QTreeWidgetItem *, int ) ), guis, SLOT ( doubleClickOn ( QTreeWidgetItem *, int ) ) );
 
 // 	connect ( ButtonFind  , SIGNAL ( clicked() ), guis, SLOT ( findEvent () ) );
 // 	connect ( ButtonConfig, SIGNAL ( clicked() ), guis, SLOT ( configEvent() ) );
