@@ -12,7 +12,6 @@
 #include <qvariant.h>
 #include <qmenubar.h>
 #include <QFrame>
-#include <q3header.h>
 #include <QTreeWidget>
 #include <QHeaderView>
 #include <qtoolbutton.h>
@@ -85,11 +84,15 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	//Toolbar->setMinimumHeight ( 36 );
 	
 	DirView = new HDirectoryView ( &db, splitMain, "DirView" );
-	DirView->header()->setLabel ( 0, tr ( "Directory Tree" ) );
+	QStringList labels;
+	labels.append(tr ( "Directory Tree" ) );
+	DirView->setHeaderLabels(labels);
 
 	listView = new HQListView ( this, splitMain, "listView" );
-	//listView->header()->setLabel ( 0, tr ( "Name" ) ); // FIXME: maybe obsolete
-	//listView->header()->setLabel ( 1, tr ( "Size" ) ); // FIXME: maybe obsolete
+	QStringList labels2;
+	labels2.append(tr ( "Name" ) );
+	labels2.append(tr ( "Size" ) );
+	listView->setHeaderLabels(labels2);
 	listView->clear();
 
 
@@ -418,8 +421,8 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	
 	connect ( DirView , SIGNAL ( folderSelected ( const QString & ) ), guis, SLOT ( listUpdate ( const QString & ) ) );
 	connect ( DirView , SIGNAL ( hitkey ( QKeyEvent * ) ), guis, SLOT ( hotKeys ( QKeyEvent * ) ) );
-	connect ( DirView, SIGNAL ( rightButtonPressed ( Q3ListViewItem *, const QPoint &, int ) ),
-	          guis, SLOT ( showTreeContextMenu ( Q3ListViewItem *, const QPoint &, int ) ) );
+	connect ( DirView, SIGNAL ( customContextMenuRequested ( const QPoint  ) ),
+	          guis, SLOT ( showTreeContextMenu ( const QPoint ) ) );
 	connect ( listView, SIGNAL ( customContextMenuRequested ( const QPoint  ) ),
 	          guis, SLOT ( showListviewContextMenu ( const QPoint ) ) );
 

@@ -10,12 +10,12 @@
 #ifndef DIRVIEW_H
 #define DIRVIEW_H
 
-#include <q3listview.h>
+#include <QTreeWidget>
+#include <QTreeWidgetItem>
 #include <qstring.h>
 #include <qfile.h>
 #include <qfileinfo.h>
 #include <qtimer.h>
-//Added by qt3to4:
 #include <QPixmap>
 #include <QDragEnterEvent>
 #include <QDropEvent>
@@ -36,16 +36,24 @@ class Node;
 class QPainter;
 class QColorGroup;
 
-class LNode : public Q3ListViewItem {
+class LNode : public QTreeWidgetItem {
 public:
 
-    LNode ( Q3ListView * parent, Node * dbnodep );
+    LNode ( QTreeWidget * parent, Node * dbnodep );
 
     LNode ( LNode * parent, Node* dbnodep, const QString &col2 )
-            : Q3ListViewItem ( parent, col2 ), pix ( 0 ) { node=dbnodep; }
+            : QTreeWidgetItem ( parent, QTreeWidgetItem::UserType), pix ( 0 ) {
+		node=dbnodep;
+		setText(0, col2);
+		setChildIndicatorPolicy(QTreeWidgetItem::ShowIndicator);
+   }
 
     LNode ( LNode * parent,LNode *after,Node* dbnodep, const QString &col2 )
-            : Q3ListViewItem ( parent,after, col2 ), pix ( 0 ) { node=dbnodep; }
+            : QTreeWidgetItem ( parent, QTreeWidgetItem::UserType ), pix ( 0 ) {
+	node=dbnodep; 
+	setText(0, col2);
+	setChildIndicatorPolicy(QTreeWidgetItem::ShowIndicator);
+   }
 
     LNode ( LNode * parent, Node*dbnodep );
 
@@ -53,7 +61,7 @@ public:
 
     QString fullName();
 
-    void setOpen ( bool );
+    void setExpanded ( bool );
     void setup();
 
     const QPixmap *pixmap ( int i ) const;
@@ -65,10 +73,11 @@ private:
     Node  * node;
     LNode * p;
     QPixmap *pix;
+    bool childsCollected;
 
 };
 
-class HDirectoryView : public Q3ListView {
+class HDirectoryView : public QTreeWidget {
     Q_OBJECT
 
 public:
@@ -87,24 +96,22 @@ signals:
     void hitkey ( QKeyEvent * );
 
 protected slots:
-    void slotFolderSelected ( Q3ListViewItem * );
-    void slotFolderSelectedR ( Q3ListViewItem * );
+    void slotFolderSelected ( QTreeWidgetItem *item, int col );
+    void slotFolderSelectedR ( QTreeWidgetItem *item, int col );
     void openFolder();
+    void itemExpanded ( QTreeWidgetItem * item );
+    void itemCollapsed ( QTreeWidgetItem * item );
+
 
 protected:
     void keyPressEvent ( QKeyEvent *e );
-    void contentsDragEnterEvent ( QDragEnterEvent *e );
-    void contentsDragMoveEvent ( QDragMoveEvent *e );
-    void contentsDragLeaveEvent ( QDragLeaveEvent *e );
-    void contentsDropEvent ( QDropEvent *e );
-    void contentsMouseMoveEvent ( QMouseEvent *e );
     void contentsMousePressEvent ( QMouseEvent *e );
     void contentsMouseReleaseEvent ( QMouseEvent *e );
 
 private:
-    QString fullPath ( Q3ListViewItem* item );
-    Q3ListViewItem *oldCurrent;
-    Q3ListViewItem *dropItem;
+    QString fullPath ( QTreeWidgetItem* item );
+    QTreeWidgetItem *oldCurrent;
+    QTreeWidgetItem *dropItem;
     QTimer* autoopen_timer;
     QPoint presspos;
     bool mousePressed;

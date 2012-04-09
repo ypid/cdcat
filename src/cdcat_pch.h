@@ -4,12 +4,10 @@
  // Add C++ includes here
 #include <iostream>
 #include <QGroupBox>
-#include <q3dragobject.h>
 #include <QFrame>
 #include <QGridLayout>
 #include <QGroupBox>
 #include <QHBoxLayout>
-#include <q3listbox.h>
 #include <QListView>
 #include <QTextEdit>
 #include <QList>
@@ -84,7 +82,6 @@
 #include <QStringList>
 #include <qstringlist.h>
 #include <QFrame>
-#include <Qt3Support/Q3MimeSourceFactory>
 #include <QTextEdit>
 #include <qtabwidget.h>
 #include <QtCore/QVariant>

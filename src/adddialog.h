@@ -15,7 +15,6 @@
 #include <qdialog.h>
 #include <qdatetime.h>
 #include <QList>
-//Added by qt3to4:
 #include <QGridLayout>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
@@ -31,8 +30,6 @@ class QGridLayout;
 class QComboBox;
 class QLabel;
 class QLineEdit;
-class Q3ListView;
-class Q3ListViewItem;
 class QPushButton;
 class QSpinBox;
 class QTextEdit;

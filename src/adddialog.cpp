@@ -13,10 +13,8 @@
 
 #include <qvariant.h>
 #include <qcombobox.h>
-#include <q3header.h>
 #include <qlabel.h>
 #include <qlineedit.h>
-#include <q3listview.h>
 #include <qpushbutton.h>
 #include <qspinbox.h>
 #include <qcheckbox.h>

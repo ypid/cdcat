@@ -1,3 +1,10 @@
+10. Apr 2012 Christoph Thielecke <crissi99@gmx.de>
+	- dirview ported to qtreewidget
+	- lnode ported to qtreewidgetitem
+	- hdirview ported to qtreewidget
+	- directory ported to qtreewidgetitem
+	- qt3 compat includes removed
+
 09. Apr 2012 Christoph Thielecke <crissi99@gmx.de>
 	- hqlistview ported to qtreewidget
 	- hqlistviewitem ported to qtreewidgetitem

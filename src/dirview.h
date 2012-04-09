@@ -11,12 +11,12 @@
 #ifndef DIRVIEW_H
 #define DIRVIEW_H
 
-#include <q3listview.h>
+#include <QTreeWidget>
+#include <QTreeWidgetItem>
 #include <qstring.h>
 #include <qfile.h>
 #include <qfileinfo.h>
 #include <qtimer.h>
-//Added by qt3to4:
 #include <QMouseEvent>
 #include <QDragMoveEvent>
 #include <QDragLeaveEvent>
@@ -31,10 +31,10 @@ class QDragMoveEvent;
 class QDragLeaveEvent;
 class QDropEvent;
 
-class FileItem : public Q3ListViewItem {
+class FileItem : public QTreeWidgetItem {
 public:
-    FileItem ( Q3ListViewItem *parent, const QString &s1, const QString &s2 )
-            : Q3ListViewItem ( parent, s1, s2 ), pix ( 0 ) {}
+    FileItem ( QTreeWidgetItem *parent, const QString &s1, const QString &s2 )
+            : QTreeWidgetItem ( parent ), pix ( 0 ) {}
 
     const QPixmap *pixmap ( int i ) const;
     void setPixmap ( QPixmap *p );
@@ -44,32 +44,32 @@ private:
 
 };
 
-class Directory : public Q3ListViewItem {
+class Directory : public QTreeWidgetItem {
 public:
-    Directory ( Q3ListView * parent, const QString& filename );
-    Directory ( Directory * parent, const QString& filename, const QString &col2 )
-            : Q3ListViewItem ( parent, filename, col2 ), pix ( 0 ) {}
+    Directory ( QTreeWidget * parent, const QString& filename );
     Directory ( Directory * parent, const QString& filename );
 
     QString text ( int column ) const;
 
     QString fullName();
 
-    void setOpen ( bool );
+
     void setup();
 
     const QPixmap *pixmap ( int i ) const;
     void setPixmap ( QPixmap *p );
+    void setExpanded ( bool );
 
 private:
     QFile f;
     Directory * p;
     bool readable;
+    bool childsCollected;
     QPixmap *pix;
 
 };
 
-class DirectoryView : public Q3ListView {
+class DirectoryView : public QTreeWidget {
     Q_OBJECT
 
 public:
@@ -83,8 +83,10 @@ signals:
     void folderSelected ( const QString & );
 
 protected slots:
-    void slotFolderSelected ( Q3ListViewItem * );
-    void slotFolderSelectedR ( Q3ListViewItem * );
+    void slotFolderSelected ( QTreeWidgetItem *, int );
+    void slotFolderSelectedR ( QTreeWidgetItem *, int );
+    void itemExpanded ( QTreeWidgetItem * item );
+    void itemCollapsed ( QTreeWidgetItem * item );
     void openFolder();
 
 protected:
@@ -92,9 +94,9 @@ protected:
     void contentsMouseReleaseEvent ( QMouseEvent *e );
 
 private:
-    QString fullPath ( Q3ListViewItem* item );
-    Q3ListViewItem *oldCurrent;
-    Q3ListViewItem *dropItem;
+    QString fullPath ( QTreeWidgetItem* item );
+    QTreeWidgetItem *oldCurrent;
+    QTreeWidgetItem *dropItem;
     QTimer* autoopen_timer;
     QPoint presspos;
     bool mousePressed;

@@ -16,12 +16,10 @@
 #include <qcheckbox.h>
 #include <qlayout.h>
 #include <qobject.h>
-#include <q3listview.h>
 #include <qfiledialog.h>
 #include <qwidget.h>
 #include <qdatetime.h>
 #include <qdialog.h>
-//Added by qt3to4:
 #include <QGridLayout>
 #include <QHBoxLayout>
 #include <QVBoxLayout>

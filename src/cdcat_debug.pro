@@ -1,4 +1,4 @@
-VERSION         =   1.7
+VERSION         =   1.9
 FORMS      	= help.ui
 TARGET          = cdcat
 TRANSLATIONS	= lang/cdcat_hu.ts \

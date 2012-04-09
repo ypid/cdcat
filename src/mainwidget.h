@@ -34,8 +34,6 @@ class QVBoxLayout;
 class QHBoxLayout;
 class QGridLayout;
 class QFrame;
-class Q3ListView;
-class Q3ListViewItem;
 class QToolButton;
 class CommentWidget;
 class HDirectoryView;
@@ -48,7 +46,7 @@ class QSplitter;
 class QSystemTrayIcon;
 
 class CdCatMainWidget : public QMainWindow{
-		Q_OBJECT
+	Q_OBJECT
 	public:
 		CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget *parent = 0, const char *name = 0, Qt::WFlags fl = 0 );
 		~CdCatMainWidget();

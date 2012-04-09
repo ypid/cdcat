@@ -14,17 +14,19 @@
 #include <qevent.h>
 #include <qpoint.h>
 #include <qmessagebox.h>
-#include <q3dragobject.h>
 #include <qmime.h>
 #include <qstringlist.h>
 #include <qapplication.h>
-#include <q3header.h>
 #include <qobject.h>
-//Added by qt3to4:
 #include <QMouseEvent>
+
+#include <QHeaderView>
+
+#include <iostream>
 
 #include "dirview.h"
 #include "icons.h"
+#include "cdcat.h"
 
 /*****************************************************************************
  *
@@ -33,32 +35,37 @@
  *****************************************************************************/
 
 Directory::Directory ( Directory * parent, const QString& filename )
-	: Q3ListViewItem ( parent ), f ( filename ),
-	  pix ( 0 ) {
+	: QTreeWidgetItem ( parent, QTreeWidgetItem::UserType), f ( filename ) {
 	p = parent;
 	readable = QDir ( fullName() ).isReadable();
 
 	if ( !readable )
-		setPixmap ( get_v_folderlocked_icon() );
+		setIcon ( 0, QIcon(*get_v_folderlocked_icon()) );
 	else
-		setPixmap ( get_v_folderclosed_icon() );
+		setIcon ( 0, QIcon(*get_v_folderclosed_icon()) );
+	setText(0, filename);
+	childsCollected = false;
+	setChildIndicatorPolicy(QTreeWidgetItem::ShowIndicator);
 }
 
 
-Directory::Directory ( Q3ListView * parent, const QString& filename )
-	: Q3ListViewItem ( parent ), f ( filename ),
-	  pix ( 0 ) {
-	p = 0;
+Directory::Directory ( QTreeWidget * parent, const QString& filename )
+	: QTreeWidgetItem ( parent, QTreeWidgetItem::UserType ), f ( filename ) {
+	p = NULL;
 	readable = QDir ( fullName() ).isReadable();
+	setText(0, filename);
+	childsCollected = false;
+	setChildIndicatorPolicy(QTreeWidgetItem::ShowIndicator);
+	this->setExpanded(true);
 }
 
 
 void Directory::setPixmap ( QPixmap *px ) {
-	pix = px;
+	//pix = px;
 	setup();
-	widthChanged ( 0 );
-	invalidateHeight();
-	repaint();
+	//widthChanged ( 0 );
+	//invalidateHeight();
+	//repaint();
 }
 
 
@@ -68,22 +75,22 @@ const QPixmap *Directory::pixmap ( int i ) const {
 	return pix;
 }
 
-void Directory::setOpen ( bool o ) {
+void Directory::setExpanded ( bool o ) {
 	if ( o )
-		setPixmap ( get_v_folderopen_icon() );
+		setIcon (0, QIcon(*get_v_folderopen_icon()) );
 	else
-		setPixmap ( get_v_folderclosed_icon() );
+		setIcon (0, QIcon(*get_v_folderclosed_icon()) );
 
-	if ( o && !childCount() ) {
+	if ( o && !childsCollected ) {
 		QString s ( fullName() );
 		QDir thisDir ( s );
 		if ( !thisDir.isReadable() ) {
 			readable = FALSE;
-			setExpandable ( FALSE );
+			// setExpandable ( FALSE ); // FIXME
 			return;
 		}
 
-		listView()->setUpdatesEnabled ( FALSE );
+		//listView()->setUpdatesEnabled ( FALSE ); //FIXME
 		QFileInfoList *files = new QFileInfoList ( thisDir.entryInfoList() );
 		if ( files ) {
 			for ( int i = 0; i < files->size(); ++i ) {
@@ -93,22 +100,27 @@ void Directory::setOpen ( bool o ) {
 				}
 				else
 					if ( fi->isDir() ) {
-						( void ) new Directory ( this, fi->fileName() );
+						Directory *d = new Directory ( this, fi->fileName() );
 					}
 					else {
 						;
 					}
 			}
+			childsCollected = true;
+			setChildIndicatorPolicy(QTreeWidgetItem::ShowIndicator);
 		}
-		listView()->setUpdatesEnabled ( TRUE );
+		else {
+			setChildIndicatorPolicy(QTreeWidgetItem::DontShowIndicator);
+		}
+		//listView()->setUpdatesEnabled ( TRUE ); //FIXME
 	}
-	Q3ListViewItem::setOpen ( o );
+	QTreeWidgetItem::setExpanded ( o );
 }
 
 
 void Directory::setup() {
-	setExpandable ( TRUE );
-	Q3ListViewItem::setup();
+	//setExpandable ( TRUE );
+	//QTreeWidgetItem::setup();
 }
 
 
@@ -144,19 +156,24 @@ QString Directory::text ( int column ) const {
  *****************************************************************************/
 
 DirectoryView::DirectoryView ( QWidget *parent, const char *name )
-	: Q3ListView ( parent, name ),  oldCurrent ( 0 ), dropItem ( 0 ), mousePressed ( FALSE ) {
+	: QTreeWidget ( parent ),  oldCurrent ( 0 ), dropItem ( 0 ), mousePressed ( FALSE ) {
 
 	autoopen_timer = new QTimer ( this );
+	
+	setSortingEnabled(true);
+	sortByColumn ( 0, Qt::AscendingOrder );
+	setItemsExpandable(true);
+	connect ( this, SIGNAL ( itemDoubleClicked(QTreeWidgetItem*,int)),
+	          this, SLOT ( slotFolderSelected ( QTreeWidgetItem *, int ) ) );
 
-	setShowSortIndicator ( true );
-	connect ( this, SIGNAL ( doubleClicked ( Q3ListViewItem * ) ),
-	          this, SLOT ( slotFolderSelected ( Q3ListViewItem * ) ) );
+	//connect ( this, SIGNAL ( itemPressed(QTreeWidgetItem*,int)),
+	 //         this, SLOT ( slotFolderSelectedR ( QTreeWidgetItem *, int ) ) );
 
-	connect ( this, SIGNAL ( pressed ( Q3ListViewItem * ) ),
-	          this, SLOT ( slotFolderSelectedR ( Q3ListViewItem * ) ) );
-
-	connect ( this, SIGNAL ( returnPressed ( Q3ListViewItem * ) ),
-	          this, SLOT ( slotFolderSelectedR ( Q3ListViewItem * ) ) );
+	connect ( this, SIGNAL ( itemClicked ( QTreeWidgetItem *, int ) ),
+	          this, SLOT ( slotFolderSelectedR ( QTreeWidgetItem *, int ) ) );
+	
+	connect (this, SIGNAL( itemExpanded(QTreeWidgetItem*)), this, SLOT(itemExpanded(QTreeWidgetItem*)));
+	connect (this, SIGNAL( itemCollapsed(QTreeWidgetItem*)), this, SLOT(itemCollapsed(QTreeWidgetItem*)));
 
 	setAcceptDrops ( TRUE );
 	viewport()->setAcceptDrops ( TRUE );
@@ -164,8 +181,10 @@ DirectoryView::DirectoryView ( QWidget *parent, const char *name )
 	connect ( autoopen_timer, SIGNAL ( timeout() ),
 	          this, SLOT ( openFolder() ) );
 
-	addColumn ( tr ( "Name" ) );
-	setTreeStepSize ( 10 );
+	QStringList labels;
+	labels.append( tr ( "Name" ) );
+	setHeaderLabels(labels);
+	//setIndentation ( 10 );
 
 	QFileInfoList *roots = new QFileInfoList ( QDir::drives() );
 
@@ -180,7 +199,7 @@ DirectoryView::DirectoryView ( QWidget *parent, const char *name )
 #else
 		if ( roots->count() >= 1 ) {
 #endif
-			root->setOpen ( TRUE );
+			root->setExpanded ( true );
 		}
 	}
 #ifdef Q_WS_MAC
@@ -193,44 +212,60 @@ DirectoryView::DirectoryView ( QWidget *parent, const char *name )
 			continue;
 		Directory * root = new Directory ( this, fi->filePath() );
 		if ( volumes->count() >= 1 )
-			root->setOpen ( TRUE );
+			root->setExpanded ( true );
 	}
 	setDir ( "Volumes" );
 #endif
 
-	setAllColumnsShowFocus ( TRUE );
-	repaint();
+	setAllColumnsShowFocus ( true );
+	//repaint();
 	sDir = "";
 
 }
 
-void DirectoryView::slotFolderSelected ( Q3ListViewItem *i ) {
+void DirectoryView::slotFolderSelected ( QTreeWidgetItem *i, int col ) {
 	if ( i == NULL )
 		return;
 	Directory *dir = ( Directory* ) i;
 	emit folderSelected ( dir->fullName() );
 }
 
-void DirectoryView::slotFolderSelectedR ( Q3ListViewItem *i ) {
+void DirectoryView::slotFolderSelectedR ( QTreeWidgetItem *i , int col) {
 	if ( i == NULL )
 		return;
 	Directory *dir = ( Directory* ) i;
 	sDir = dir->fullName();
+	if(dir->isExpanded())
+		dir->setExpanded(false);
+	else
+		dir->setExpanded(true);
 	emit folderSelected ( dir->fullName() );
 }
 
+void DirectoryView::itemExpanded ( QTreeWidgetItem *item ) {
+	((Directory *)item)->setExpanded(true);
+}
+
+void DirectoryView::itemCollapsed ( QTreeWidgetItem *item ) {
+	((Directory *)item)->setExpanded(false);
+}
 
 void DirectoryView::openFolder() {
 	autoopen_timer->stop();
-	if ( dropItem && !dropItem->isOpen() ) {
-		dropItem->setOpen ( TRUE );
-		dropItem->repaint();
+	if ( dropItem) {
+		if( !dropItem->isExpanded() ) {
+		dropItem->setExpanded ( true );
+		//dropItem->repaint();
+		}
+	}
+	else {
+		currentItem()->setExpanded(true);
 	}
 }
 
 static const int autoopenTime = 750;
 
-QString DirectoryView::fullPath ( Q3ListViewItem* item ) {
+QString DirectoryView::fullPath ( QTreeWidgetItem* item ) {
 	QString fullpath = item->text ( 0 );
 	while ( ( item = item->parent() ) ) {
 		if ( item->parent() )
@@ -242,18 +277,18 @@ QString DirectoryView::fullPath ( Q3ListViewItem* item ) {
 }
 
 void DirectoryView::contentsMousePressEvent ( QMouseEvent* e ) {
-	Q3ListView::contentsMousePressEvent ( e );
-	QPoint p ( contentsToViewport ( e->pos() ) );
-	Q3ListViewItem *i = itemAt ( p );
-	if ( i ) {
-		// if the user clicked into the root decoration of the item, don't try to start a drag!
-		if ( p.x() > header()->cellPos ( header()->mapToActual ( 0 ) ) +
-		                treeStepSize() * ( i->depth() + ( rootIsDecorated() ? 1 : 0 ) ) + itemMargin() ||
-		                p.x() < header()->cellPos ( header()->mapToActual ( 0 ) ) ) {
-			presspos = e->pos();
-			mousePressed = TRUE;
-		}
-	}
+	//QTreeWidget::contentsMousePressEvent ( e );
+	QPoint p (  e->pos()  );
+	QTreeWidgetItem *i = itemAt ( p );
+// 	if ( i ) {
+// 		// if the user clicked into the root decoration of the item, don't try to start a drag!
+// 		if ( p.x() > header()->cellPos ( header()->mapToActual ( 0 ) ) +
+// 		                treeStepSize() * ( i->depth() + ( rootIsDecorated() ? 1 : 0 ) ) + itemMargin() ||
+// 		                p.x() < header()->cellPos ( header()->mapToActual ( 0 ) ) ) {
+// 			presspos = e->pos();
+// 			mousePressed = TRUE;
+// 		}
+// 	} // FIXME
 
 }
 
@@ -265,10 +300,10 @@ void DirectoryView::contentsMouseReleaseEvent ( QMouseEvent * ) {
 void DirectoryView::setDir ( const QString &s ) {
 	if ( s.right ( s.size() - 1 ) == "/" )
 		s.leftRef ( s.size() - 1 );
-	Q3ListViewItemIterator it ( this );
-	++it;
-	for ( ; it.current(); ++it ) {
-		it.current()->setOpen ( FALSE );
+	QTreeWidgetItemIterator it ( this );
+	while ( *it ) {
+		(*it)->setExpanded ( false );
+		++it;
 	}
 
 	QStringList lst ( QStringList::split (
@@ -279,45 +314,47 @@ void DirectoryView::setDir ( const QString &s ) {
 #endif
 	                          , s ) );
 
-	Q3ListViewItem *item = firstChild();
+	QTreeWidgetItemIterator it3(this);
 	QStringList::Iterator it2 = lst.begin();
-	for ( ; it2 != lst.end(); ++it2 ) {
-		while ( item ) {
-			if ( item->text ( 0 ) == *it2 ) {
-				item->setOpen ( TRUE );
-				ensureItemVisible ( item );
-				Q3ListViewItem * item2 = item->itemAbove();
-				if ( item2 != NULL ) {
-					Q3ListViewItem *item3 = item2->itemAbove();
-					if ( item3 != NULL ) {
-						Q3ListViewItem *item4 = item2->itemAbove();
-						if ( item4 != NULL ) {
-							ensureItemVisible ( item4 );
-						}
-						else {
-							ensureItemVisible ( item3 );
-						}
-					}
-					else {
-						ensureItemVisible ( item2 );
-					}
-				}
-				break;
-			}
-			item = item->itemBelow();
-		}
-	}
+// 	for ( ; it2 != lst.end(); ++it2 ) {
+// 		while ( (*it3) ) {
+// 			if ( (*it3)->text ( 0 ) == *it2 ) {
+// 				(*it3)->setExpanded ( TRUE );
+// 				//ensureItemVisible ( item ); //FIXME
+// 				QTreeWidgetItem * item2 = item->itemAbove();
+// 				if ( item2 != NULL ) {
+// 					QTreeWidgetItem *item3 = item2->itemAbove();
+// 					if ( item3 != NULL ) {
+// 						QTreeWidgetItem *item4 = item2->itemAbove();
+// 						if ( item4 != NULL ) {
+// 							//ensureItemVisible ( item4 ); //FIXME
+// 						}
+// 						else {
+// 							//ensureItemVisible ( item3 ); //FIXME
+// 						}
+// 					}
+// 					else {
+// 						//ensureItemVisible ( item2 ); //FIXME
+// 					}
+// 				}
+// 				break;
+// 			}
+// 			++it;
+// 		}
+// 	} //FIXME
 
-	if ( item )
-		setCurrentItem ( item );
+	if ( (*it3) ) {
+		setCurrentItem ( (*it3) );
+		(*it3)->setExpanded(true);
+	}
 }
 
 void FileItem::setPixmap ( QPixmap *p ) {
-	pix = p;
-	setup();
-	widthChanged ( 0 );
-	invalidateHeight();
-	repaint();
+	//pix = p;
+	//setup();
+	//widthChanged ( 0 );
+	//invalidateHeight();
+	//repaint();
 }
 
 

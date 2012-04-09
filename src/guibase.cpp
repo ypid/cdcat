@@ -8,11 +8,8 @@
 ****************************************************************************/
 
 #include <string.h>
-
-#include <q3listview.h>
 #include <qimage.h>
 #include <qlabel.h>
-#include <q3header.h>
 #include <qpainter.h>
 
 #include <QRegExp>
@@ -191,7 +188,7 @@ HQListView::HQListView ( CdCatMainWidget *mw, QWidget *parent, const char *name,
 }
 
 void HQListView::setCurrentVisible ( void ) {
-/*	Q3ListViewItem * i;
+/*	QTreeWidgetItem * i;
 	if ( ( i = currentItem() ) != 0 )
 		ensureItemVisible ( i );
 	*/ // FIXME: maybe obsolete
@@ -531,21 +528,20 @@ int GuiSlave::updateListFromNode ( Node *pdir ) {
 	HQListViewItem *lvi = NULL;
 	QString qstr1;
 	QString qstr2;
-
+	
 	if ( pdir == NULL )  {
 		if ( *DEBUG_INFO_ENABLED )
 			cerr << "F-updateListFromNode: pdir is null" << endl;
 		pdir = NodePwd;
 	}
-
+	
 	if ( pdir == NULL ) {
 		mainw->listView->clear();
 		return 0;
 	}
-
 	mainw->listView->clear();
 	mainw->listView->setSorting ( mainw->listView->scol, mainw->listView->sasc );
-
+	
 	//Set column text:
 	if ( pdir != NULL && pdir->type == HC_CATALOG ) {
 		mainw->listView->model()->setHeaderData( 1,Qt::Horizontal, tr ( "Number" ) );
@@ -553,19 +549,18 @@ int GuiSlave::updateListFromNode ( Node *pdir ) {
 	else {
 		mainw->listView->model()->setHeaderData( 1,Qt::Horizontal, tr ( "Size" ) );
 	}
-
-
+	
 	if ( pdir->parent != NULL ) {
 		lvi = new HQListViewItem ( mainw->listView, "..", "", tr ( "Directory" ) );
 		lvi->setIcon ( 0, QIcon(*get_v_back_icon() ));
 		lvi->etype = 0;
 	}
-
+	
 	NodePwd = pdir;
 	tmp = pdir->child;
-
+	
 	/*List everything*/
-
+	
 	// step 1: list dirs
 	while ( tmp != NULL ) {
 		if ( tmp->type == HC_MP3TAG )
@@ -602,7 +597,7 @@ int GuiSlave::updateListFromNode ( Node *pdir ) {
 		}
 		tmp = tmp->next;
 	}
-
+	
 	tmp = pdir->child;
 	// step 2: list other
 	while ( tmp != NULL ) {
@@ -959,7 +954,7 @@ void GuiSlave::showListviewContextMenu ( QPoint p ) {
 	mPopup = NULL;
 }
 
-void GuiSlave::showTreeContextMenu ( Q3ListViewItem *item, const QPoint &p2, int ) {
+void GuiSlave::showTreeContextMenu ( const QPoint p2 ) {
 	Node *on, *save;
 	if ( mainw->db == NULL )
 		on = NULL;
@@ -969,8 +964,9 @@ void GuiSlave::showTreeContextMenu ( Q3ListViewItem *item, const QPoint &p2, int
 		             ( ( LNode * ) mainw->DirView->currentItem() )->fullName()
 		     );
 	}
+	cout << "GuiSlave::showTreeContextMenu on: " << qPrintable(on->getNameOf()) << endl;
 
-	mPopup = new QMenu ( );
+	mPopup = new QMenu ();
 	if ( on != NULL ) {
 		mPopup->addAction ( QIcon(*get_t_comment_icon()), tr ( "View/Edit Comment..." ), this, SLOT(editComment()) );
 		mPopup->addAction ( tr ( "View/Edit Category..." ), this, SLOT(editCategory()) );
@@ -994,7 +990,7 @@ void GuiSlave::showTreeContextMenu ( Q3ListViewItem *item, const QPoint &p2, int
 			mPopup->addAction ( tr ( "Re-Number media..." ), this, SLOT(renumberEvent()) );
 			
 			mPopup->insertSeparator();
-			context_item = ( HQListViewItem * ) item;
+			context_item = mainw->DirView->itemAt(p2) ;
 			mPopup->addAction ( QIcon(*get_t_add_icon()), tr ( "Change media type..." ), this, SLOT(typeChangeEvent()) );
 		}
 	}
@@ -1009,7 +1005,7 @@ void GuiSlave::showTreeContextMenu ( Q3ListViewItem *item, const QPoint &p2, int
 	
 	save = standON;
 	standON = on;
-	mPopup->exec ( p2 );
+	mPopup->exec ( mainw->DirView->mapToGlobal (p2) );
 	standON = save;
 	delete mPopup;
 	mPopup = NULL;

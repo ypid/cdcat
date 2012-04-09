@@ -1,4 +1,4 @@
-VERSION         =   1.7
+VERSION         =   2.0
 TRANSLATIONS	= lang/cdcat_hu.ts \
                   lang/cdcat_de.ts \
 		  lang/cdcat_es.ts \

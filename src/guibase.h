@@ -15,7 +15,6 @@
 #include <qdialog.h>
 #include <QTreeWidget>
 #include <QTreeWidgetItem>
-#include <Q3ListViewItem>
 #include <QMenu>
 #include <QKeyEvent>
 
@@ -93,7 +92,7 @@ public slots:
     int standOn ( QTreeWidgetItem *on, int col );
     int doubleClickOn ( QTreeWidgetItem *on, int col );
     void showListviewContextMenu ( QPoint );
-    void showTreeContextMenu ( Q3ListViewItem *, const QPoint &, int );
+    void showTreeContextMenu ( const QPoint );
     void currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*);
 
     int cHcaption ( void );
@@ -146,7 +145,7 @@ public slots:
     int openHistoryElementEvent ( int id );
 
 private:
-	HQListViewItem *context_item;
+	QTreeWidgetItem *context_item;
 
 };
 
