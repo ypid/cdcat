@@ -4,6 +4,7 @@
 	- hdirview ported to qtreewidget
 	- directory ported to qtreewidgetitem
 	- qt3 compat includes removed
+	- indicator and indention on results listview removed
 
 09. Apr 2012 Christoph Thielecke <crissi99@gmx.de>
 	- hqlistview ported to qtreewidget

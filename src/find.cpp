@@ -194,6 +194,7 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		resultsl->header()->setResizeMode(4,QHeaderView::Stretch);
 		resultsl->header()->setResizeMode(5,QHeaderView::Stretch);
 		resultsl->header()->setResizeMode(6,QHeaderView::Stretch);
+		resultsl->setIndentation(0); // remove the indention (|_ sign)
 		
 		//resultsl->setColumnAlignment ( 2, Qt::AlignRight ); // FIXME
 		
@@ -433,6 +434,7 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		labels.append ( tr ( "Category" ) );
 		labels.append ( tr ( "Extension" ) );
 		resultsl->setHeaderLabels(labels);
+		resultsl->setIndentation(0); // remove the indention (|_ sign)
 		
 		//resultsl->setColumnAlignment ( 2, Qt::AlignRight ); // FIXME
 		resultsl->header()->setResizeMode(0,QHeaderView::Stretch);
@@ -1155,6 +1157,7 @@ int seekEngine::start_seek ( void ) {
 	if ( founded == 0 ) {
 		QTreeWidgetItem *newitem = new QTreeWidgetItem ( fd->resultsl);
 		newitem->setText(0, tr ( "There is no matching." ));
+		newitem->setChildIndicatorPolicy(QTreeWidgetItem::DontShowIndicator);
 		fd->resultsl->addTopLevelItem( newitem );
 	}
 	
@@ -1679,6 +1682,7 @@ void seekEngine::putNodeToList ( Node *n, QString comment ) {
 	newitem->setText(6, comment );
 	newitem->setText (7, tmp_category);
 	newitem->setText (8, extension);
+	newitem->setChildIndicatorPolicy(QTreeWidgetItem::DontShowIndicator);
 	
 	//newitem->setMultiLinesEnabled ( true ); // FIXME
 	fd->resultsl->addTopLevelItem ( newitem );
