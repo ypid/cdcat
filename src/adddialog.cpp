@@ -286,14 +286,14 @@ int addDialog::setMediaName ( const QString & ds ) {
 
 
 #ifdef _WIN32
-			if ( ( cbType->currentItem() + 1 == CD &&  cbType->currentItem() + 1 == DVD ) && ( confdir  == selected ) ) {
+			if ( ( cbType->currentIndex() + 1 == CD &&  cbType->currentIndex() + 1 == DVD ) && ( confdir  == selected ) ) {
 				if ( !caller->mainw->cconfig->cdrompath.replace ( "/", "\\" ).isEmpty() ) {
-					tm = getCDName ( caller->mainw->cconfig->cdrompath.replace ( "/", "\\" ) );
+					tm = getCDName ( caller->mainw->cconfig->cdrompath.replace ( "/", "\\" ).toLocal8Bit().constData() );
 				}
 			}
 			else {
 				//QMessageBox::warning ( ( QWidget * ) this,tr ( "Warning:" ),tr ( "Trying selected drive name" ) );
-				tm = getCDName ( dirView->sDir.replace ( "/", "\\" ) );
+				tm = getCDName ( dirView->sDir.replace ( "/", "\\" ).toLocal8Bit().constData() );
 			}
 #endif
 			if ( !tm.isEmpty() ) {
