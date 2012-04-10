@@ -134,7 +134,7 @@ char *mstr ( const char *imp ) {
 
 QString applicationFilePath ( char **argc ) {
 #ifdef Q_WS_WIN
-	return QDir::cleanDirPath ( QFile::decodeName ( "cdcat" ) );
+	return QDir::cleanPath ( QFile::decodeName ( "cdcat" ) );
 #else
 
 	QString absPath;
