@@ -1412,9 +1412,9 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 #endif
 	
 #ifdef _WIN32
-	layout9   = new QHBoxLayout ( 0, 0, 5, "layout9" );
-	cbLang    = new QComboBox ( this, "languageselector" );
-	langLabel = new QLabel ( this, "langlabel" );
+	layout9   = new QHBoxLayout ( this );
+	cbLang    = new QComboBox ( this );
+	langLabel = new QLabel ( this );
 	layout9->insertSpacing ( 0, 5 );
 	layout9->insertWidget ( 1, cbLang );
 	layout9->insertWidget ( 2, langLabel );
