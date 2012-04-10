@@ -1422,26 +1422,28 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	ConfigDialogBaseLayout->addLayout ( layout9, 13, 0 );
 	
 	/*scanning existing languages:*/
-	cbLang->insertItem ( "eng", 0 );
+	cbLang->insertItem ( 0, QString("eng") );
 	QDir d ( "./lang" );
 	
 	if ( d.exists() ) {
 		d.setFilter ( QDir::Files );
-		d.setNameFilter ( "cdcat_??.qm" );
+		QStringList filters;
+		filters << "cdcat_??.qm";
+		d.setNameFilters(filters);
 		QFileInfoList list ( d.entryInfoList() );
 		//QFileInfoListIterator it ( list. );
 		//QFileInfo *fi;
 		foreach ( const QFileInfo & fi , list )
 		//while ( ( fi = it.current() ) != 0 )
 		{
-			cbLang->insertItem ( ( fi.fileName() ).mid ( 6, 2 ) );
+			cbLang->insertItem ( 0, ( fi.fileName() ).mid ( 6, 2 ) );
 			//++it;
 		}
 		/*end scanning*/
 	}
 	else {
 		cbLang->setEnabled ( false );
-		cbLang->insertItem ( "eng" );
+		cbLang->insertItem (0, QString("eng") );
 	}
 #endif
 	
@@ -1582,10 +1584,10 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 #endif
 	
 #ifdef _WIN32
-	cbLang->setCurrentItem ( 0 );
+	cbLang->setCurrentIndex ( 0 );
 	for ( int i = 0; i < cbLang->count(); i++ )
-		if ( p->cconfig->lang == cbLang->text ( i ) )
-			cbLang->setCurrentItem ( i );
+		if ( p->cconfig->lang == cbLang->currentText ( ) )
+			cbLang->setCurrentIndex ( i );
 #endif
 	
 #ifdef Q_WS_MAC
