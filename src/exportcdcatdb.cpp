@@ -27,7 +27,7 @@ Copyright : (C) 2003 Christoph Thielecke
 #include <qapplication.h>
 #include <qstring.h>
 #include <qregexp.h>
-//Added by qt3to4:
+#include<QTextCodec>
 #include <QHBoxLayout>
 #include <QGridLayout>
 #include <QVBoxLayout>
@@ -47,25 +47,26 @@ using namespace std;
  *  The dialog will by default be modeless, unless you set 'modal' to
  *  TRUE to construct a modal dialog.
  */
-exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget* parent, const char* name, bool modal, Qt::WFlags fl ) : QDialog ( parent, name, modal, fl ) {
+exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget* parent, const char* name, bool modal, Qt::WFlags fl ) : QDialog ( parent, fl ) {
     this->mainw = mainw;
     p = mainw->db;
     app = mainw->app;
     
     pww = NULL;
 
+    setModal(modal);
     if ( !name )
-        setName ( "exportCdcatDB" );
+        setObjectName ( "exportCdcatDB" );
     setSizeGripEnabled ( TRUE );
 
-    this->setCaption ( tr ( "Export database..." ) );
+    setWindowTitle ( tr ( "Export database..." ) );
 
-    exportCdcatDBLayout = new QGridLayout ( this, 1, 1, 12, 6, "exportCdcatDBLayout" );
+    exportCdcatDBLayout = new QGridLayout ( this );
 
-    layout32 = new QVBoxLayout ( 0, 0, 6, "layout32" );
-    layout21 = new QHBoxLayout ( 0, 0, 6, "layout21" );
-    layout10_2 = new QVBoxLayout ( 0, 0, 6, "layout10_2" );
-    textLabel2 = new QLabel ( this, "textLabel2" );
+    layout32 = new QVBoxLayout ( this );
+    layout21 = new QHBoxLayout ( this );
+    layout10_2 = new QVBoxLayout ( this );
+    textLabel2 = new QLabel ( this );
     layout10_2->addWidget ( textLabel2 );
 
     listAllMedia = new QListWidget( this);
@@ -75,7 +76,7 @@ exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget* parent, const ch
     layout10_2->addWidget ( listAllMedia );
     layout21->addLayout ( layout10_2 );
 
-    layout19 = new QVBoxLayout ( 0, 0, 6, "layout19" );
+    layout19 = new QVBoxLayout ( this );
     QSpacerItem* spacer = new QSpacerItem ( 20, 180, QSizePolicy::Minimum, QSizePolicy::Expanding );
     layout19->addItem ( spacer );
 
@@ -87,19 +88,19 @@ exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget* parent, const ch
     layoutAddRemoveCheckAll = new QVBoxLayout ( this );
     layoutAddRemoveCheckAll->setAlignment(Qt::AlignVCenter);
 
-    buttonRemove = new QPushButton ( this, "buttonRemove" );
+    buttonRemove = new QPushButton ( this );
     buttonRemove->setMinimumSize ( QSize ( 50, 23 ) );
     buttonRemove->setMaximumSize ( QSize ( 50, 23 ) );
-    buttonRemove->setPixmap ( *get_t_remove_export_icon() );
+    buttonRemove->setIcon ( QIcon(*get_t_remove_export_icon()) );
     layoutAddRemove->addWidget ( buttonRemove );
 
-    buttonAdd = new QPushButton ( this, "buttonAdd" );
+    buttonAdd = new QPushButton ( this );
     buttonAdd->setMinimumSize ( QSize ( 50, 23 ) );
     buttonAdd->setMaximumSize ( QSize ( 50, 23 ) );
-    buttonAdd->setPixmap ( *get_t_add_export_icon() );
+    buttonAdd->setIcon ( QIcon(*get_t_add_export_icon()) );
     layoutAddRemove->addWidget ( buttonAdd );
 
-    checkAllMedia = new QCheckBox ( this, "checkAllMedia" );
+    checkAllMedia = new QCheckBox ( this );
     layoutAddRemoveCheckAll->addLayout(layoutAddRemove);
     layoutAddRemoveCheckAll->addWidget ( checkAllMedia );
     
@@ -111,9 +112,9 @@ exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget* parent, const ch
     layout19->addItem ( spacer_2 );
     layout21->addLayout ( layout19 );
 
-    layout10_2_2 = new QVBoxLayout ( 0, 0, 6, "layout10_2_2" );
+    layout10_2_2 = new QVBoxLayout ( this );
 
-    textLabel2_2 = new QLabel ( this, "textLabel2_2" );
+    textLabel2_2 = new QLabel ( this );
     layout10_2_2->addWidget ( textLabel2_2 );
 
     listSelectedMedia = new QListWidget ( this );
@@ -123,34 +124,34 @@ exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget* parent, const ch
     layout21->addLayout ( layout10_2_2 );
     layout32->addLayout ( layout21 );
 
-    layout27 = new QHBoxLayout ( 0,0,4,"layout27" );
+    layout27 = new QHBoxLayout ( this );
 
     layout32->addLayout ( layout27 );
 
-    buttonGroup1 = new QGroupBox ( tr ( "Type" ), this, "buttonGroup1" );
+    buttonGroup1 = new QGroupBox ( tr ( "Type" ), this );
     layoutGroup1 = new QGridLayout(this);
     
-    layout26 = new QHBoxLayout ( 0, 0, 6, "layout26" );
+    layout26 = new QHBoxLayout ( this );
 
-    radioCsv = new QRadioButton ( this, "radioCsv" );
+    radioCsv = new QRadioButton ( this );
     layoutGroup1->addWidget(radioCsv, 0, 0);
 
-    seperatorLabel = new QLabel ( this, "seperatorLabel" );
+    seperatorLabel = new QLabel ( this );
     layoutGroup1->addWidget(seperatorLabel, 0, 1);
 
-    separatorInput = new QLineEdit ( this, "separatorInput" );
+    separatorInput = new QLineEdit ( this );
     layoutGroup1->addWidget(separatorInput, 0, 2);
 
     separatorInput->setMaximumSize ( QSize ( 25, 32767 ) );
 
-    radioHtml = new QRadioButton ( this, "radioHtml" );
+    radioHtml = new QRadioButton ( this );
     layoutGroup1->addWidget ( radioHtml, 1, 0 );
 
-    radioXml = new QRadioButton ( this, "radioXml" );
+    radioXml = new QRadioButton ( this );
     layoutGroup1->addWidget ( radioXml , 2, 0);
 
 
-    checkOnlyMedia = new QCheckBox ( this, "checkOnlyMedia" );
+    checkOnlyMedia = new QCheckBox ( this );
     layoutGroup1->addWidget(checkOnlyMedia, 1, 1);
     buttonGroup1->setLayout(layoutGroup1);
 
@@ -201,28 +202,28 @@ exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget* parent, const ch
 
     layout32->addWidget ( buttonGroupFields );
 
-    layout29 = new QHBoxLayout ( 0, 0, 6, "layout29" );
+    layout29 = new QHBoxLayout ( this );
 
-    textLabel3 = new QLabel ( this, "textLabel3" );
+    textLabel3 = new QLabel ( this );
     layout29->addWidget ( textLabel3 );
 
-    fileName = new QLineEdit ( this, "fileName" );
+    fileName = new QLineEdit ( this );
     layout29->addWidget ( fileName );
 
-    buttonFile = new QPushButton ( this, "buttonFile" );
+    buttonFile = new QPushButton ( this );
     layout29->addWidget ( buttonFile );
     layout32->addLayout ( layout29 );
 
-    layout4 = new QHBoxLayout ( 0, 0, 6, "layout4" );
+    layout4 = new QHBoxLayout ( this );
     QSpacerItem* spacer_6 = new QSpacerItem ( 163, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
     layout4->addItem ( spacer_6 );
 
-    buttonOk = new QPushButton ( this, "buttonOk" );
+    buttonOk = new QPushButton ( this );
     buttonOk->setAutoDefault ( TRUE );
     buttonOk->setDefault ( TRUE );
     layout4->addWidget ( buttonOk );
 
-    buttonCancel = new QPushButton ( this, "buttonCancel" );
+    buttonCancel = new QPushButton ( this );
     buttonCancel->setAutoDefault ( TRUE );
     layout4->addWidget ( buttonCancel );
     QSpacerItem* spacer_5 = new QSpacerItem ( 163, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
@@ -307,17 +308,13 @@ exportCdcatDB::~exportCdcatDB() {
 void exportCdcatDB::languageChange() {
 
     textLabel2->setText ( tr ( "Availiable media" ) );
-    QToolTip::add
-    ( listAllMedia, tr ( "Add media" ) );
+    listAllMedia->setToolTip( tr ( "Add media" ) );
     buttonRemove->setText ( QString::null );
-    QToolTip::add
-    ( buttonRemove, tr ( "Remove media" ) );
+    buttonRemove->setToolTip( tr ( "Remove media" ) );
     buttonAdd->setText ( QString::null );
-    QToolTip::add
-    ( buttonAdd, tr ( "Add media" ) );
+    buttonAdd->setToolTip( tr ( "Add media" ) );
     textLabel2_2->setText ( tr ( "Media to export" ) );
-    QToolTip::add
-    ( listSelectedMedia, tr ( "Media to export" ) );
+    listSelectedMedia->setToolTip( tr ( "Media to export" ) );
     checkAllMedia->setText ( tr ( "All media" ) );
     checkOnlyMedia->setText ( tr ( "Only media" ) );
     //spinColsLabel->setText( tr( "columns:" ) );
@@ -330,6 +327,7 @@ void exportCdcatDB::languageChange() {
     textLabel3->setText ( tr ( "File to export:" ) );
     buttonFile->setText ( tr ( "..." ) );
     buttonOk->setText ( tr ( "&OK" ) );
+    buttonCancel->setText ( tr ( "&Cancel" ) );
     checkExportMediaName->setText ( tr ( "Media name" ) );
     checkExportMediaNumber->setText ( tr ( "Media number" ) );
     checkExportPath->setText ( tr ( "Path" ) );
@@ -344,15 +342,13 @@ void exportCdcatDB::languageChange() {
     checkExportTableHeader->setText ( tr ( "table header/comment line" ) );
 
 #ifndef _WIN32
-
-    buttonOk->setAccel ( QKeySequence ( QString::null ) );
+//     buttonOk->removeAction(buttonOk->actions().first());
 #endif
 
-    buttonCancel->setText ( tr ( "&Cancel" ) );
+//     buttonCancel->removeAction(buttonOk->actions().first());
 
 #ifndef _WIN32
-
-    buttonCancel->setAccel ( QKeySequence ( QString::null ) );
+//     buttonCancel->removeAction(buttonOk->actions().first());
 #endif
 }
 
@@ -370,7 +366,7 @@ void exportCdcatDB::fillMedia() {
         return ;
     }
     Node *source = p->getRootNode();
-    setCaption ( tr ( "Export CdCat database: " ) + ( ( DBCatalog * ) ( source->data ) ) ->name );
+    setWindowTitle( tr ( "Export CdCat database: " ) + ( ( DBCatalog * ) ( source->data ) ) ->name );
     Node *tmp;
     tmp = source->child;
 
@@ -409,20 +405,20 @@ void exportCdcatDB::ok() {
 
         /*extension correction:*/
         if ( radioHtml->isChecked() &&
-                ! ( ( ( fileName->text() ).right ( 5 ) ).lower() == ".html" ||
-                    ( ( fileName->text() ).right ( 4 ) ).lower() == ".htm" ) ) {
+                ! ( ( ( fileName->text() ).right ( 5 ) ).toLower() == ".html" ||
+                    ( ( fileName->text() ).right ( 4 ) ).toLower() == ".htm" ) ) {
             QString q ( fileName->text() );
             fileName->setText ( q.append ( ".html" ) );
         }
 
         else if ( radioCsv->isChecked() &&
-                ( ( fileName->text() ).right ( 4 ) ).lower() != ".csv" ) {
+                ( ( fileName->text() ).right ( 4 ) ).toLower() != ".csv" ) {
             QString q ( fileName->text() );
             fileName->setText ( q.append ( ".csv" ) );
         }
 
         else if ( radioXml->isChecked() &&
-                ( ( fileName->text() ).right ( 4 ) ).lower() != ".xml" ) {
+                ( ( fileName->text() ).right ( 4 ) ).toLower() != ".xml" ) {
             QString q ( fileName->text() );
             fileName->setText ( q.append ( ".xml" ) );
         }
@@ -540,7 +536,7 @@ void exportCdcatDB::ok() {
 
 	/* header end */
 
-        f.setName ( fileName->text() );
+        setWindowTitle ( fileName->text() );
 
         int overwrite=0;
         if ( f.exists() ) {
@@ -564,7 +560,7 @@ void exportCdcatDB::ok() {
 			//QApplication::setOverrideCursor( waitCursor );
 			if ( f.open ( QIODevice::WriteOnly ) ) {
 				QTextStream str ( &f );   // we will serialize the data into file f
-				str.setEncoding ( QTextStream::UnicodeUTF8 );
+				str.setCodec(QTextCodec::codecForName("UTF-8"));
 				//str << " # output generated by cdcat" << endl;
 				writeDown ( p->getRootNode() );
 
@@ -593,8 +589,8 @@ void exportCdcatDB::ok() {
 
 			fn = fileName->text().replace(".xml", "");
 
-			sprintf ( fnc,"%s.xml.gz", ( const char * ) fn );
-			sprintf ( fnc2,"%s.xml", ( const char * ) fn );
+			sprintf ( fnc,"%s.xml.gz", fn.toLocal8Bit().constData() );
+			sprintf ( fnc2,"%s.xml", fn.toLocal8Bit().constData() );
 
 // 			std::cerr << "fnc: " << fnc << ", fnc2: " << fnc2 << std::endl; 
 			

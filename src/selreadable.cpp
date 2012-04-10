@@ -44,25 +44,26 @@
 #include "cdcatmediainfo.h"
 
 SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name, bool modal, Qt::WFlags fl )
-	: QDialog ( parent, name, modal, fl )
+	: QDialog ( parent, fl )
 
 {
 	conf = confp;
 	DEBUG_INFO_ENABLED = init_debug_info();
 	if ( !name )
-		setName ( "SelReadable" );
-	setIcon ( *get_t_config_icon() );
+		setObjectName ( "SelReadable" );
+	setModal(modal);
+	setWindowIcon ( *get_t_config_icon() );
 	
-	SelReadableLayout = new QVBoxLayout ( this, 15, 6, "SelReadableLayout" );
+	SelReadableLayout = new QVBoxLayout ( this );
 	setSizeGripEnabled ( TRUE );
 	
-	layoutArchiveScan= new QHBoxLayout ( 0, 0, 6, "layoutArchiveScan" );
-	cbScanArchive = new QCheckBox ( this, "cpScanArchive" );
+	layoutArchiveScan= new QHBoxLayout ( this );
+	cbScanArchive = new QCheckBox ( this );
 //     cbScanArchive->setMaximumWidth ( 80 );
 	
 	QSpacerItem* archiveInfospacer1 = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
-	labArchiveExtensions = new QLabel ( this, "labArchiveExtensions" );
-	labArchiveExtensionsStatusIcon = new QLabel ( this, "labArchiveExtensionsStatusIcon" );
+	labArchiveExtensions = new QLabel ( this );
+	labArchiveExtensionsStatusIcon = new QLabel ( this );
 	labArchiveExtensionsStatusIcon->setPixmap(*get_t_info_icon());
 	QSpacerItem* archiveInfospacer2 = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	layoutArchiveScan->addWidget ( cbScanArchive );
@@ -75,18 +76,18 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	
 	
 	
-	layoutShowArchiveFileOptions = new QHBoxLayout ( 0, 0, 6, "layoutShowArchiveFileOptions" );
+	layoutShowArchiveFileOptions = new QHBoxLayout ( this );
 	layoutShowArchiveFileOptions->addSpacing ( 25 );
-	groupBoxShowArchiveFileOpts = new QGroupBox ( this, "groupBoxShowArchiveFileOpts" );
+	groupBoxShowArchiveFileOpts = new QGroupBox ( this);
 	layoutShowArchiveFileOptions->addWidget ( groupBoxShowArchiveFileOpts );
-	layoutShowArchiveFileOptionsGroup = new QGridLayout ( this, 1, 1, 5, 5, "layoutShowArchiveFileOptionsGroup" );
+	layoutShowArchiveFileOptionsGroup = new QGridLayout ( this );
 	groupBoxShowArchiveFileOpts->setLayout ( layoutShowArchiveFileOptionsGroup );
-	cbShowArchiveFilePerms = new QCheckBox ( this, "cpShowArchiveFilePerms" );
-	cbShowArchiveFileUser = new QCheckBox ( this, "cpShowArchiveFileUser" );
-	cbShowArchiveFileGroup = new QCheckBox ( this, "cpShowArchiveFileGroup" );
-	cbShowArchiveFileSize = new QCheckBox ( this, "cpShowArchiveFileSize" );
-	cbShowArchiveFileDate = new QCheckBox ( this, "cpShowArchiveFileDate" );
-	cbShowArchiveFileComment = new QCheckBox ( this, "cpShowArchiveFileComment" );
+	cbShowArchiveFilePerms = new QCheckBox ( this );
+	cbShowArchiveFileUser = new QCheckBox ( this );
+	cbShowArchiveFileGroup = new QCheckBox ( this );
+	cbShowArchiveFileSize = new QCheckBox ( this );
+	cbShowArchiveFileDate = new QCheckBox ( this );
+	cbShowArchiveFileComment = new QCheckBox ( this);
 	layoutShowArchiveFileOptionsGroup->addWidget ( cbShowArchiveFilePerms, 0, 0 );
 	layoutShowArchiveFileOptionsGroup->addWidget ( cbShowArchiveFileUser, 0, 1 );
 	layoutShowArchiveFileOptionsGroup->addWidget ( cbShowArchiveFileGroup, 0, 2 );
@@ -95,26 +96,26 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	layoutShowArchiveFileOptionsGroup->addWidget ( cbShowArchiveFileComment, 1, 2 );
 	
 	SelReadableLayout->addLayout ( layoutShowArchiveFileOptions );
-	layoutShowProgressedArchiveFileInStatus = new QHBoxLayout ( 0, 0, 2, "layoutExternalContentViewer" );
+	layoutShowProgressedArchiveFileInStatus = new QHBoxLayout ( this );
 	layoutShowArchiveFileOptions->addSpacing ( 25 );
-	cbShowProgressedArchiveFileInStatus = new QCheckBox ( this, "cbShowProgressedArchiveFileInStatus" );
+	cbShowProgressedArchiveFileInStatus = new QCheckBox ( this );
 	layoutShowArchiveFileOptions->addWidget(cbShowProgressedArchiveFileInStatus);
 	SelReadableLayout->addLayout ( layoutShowProgressedArchiveFileInStatus);
 	
-	line6 = new QFrame ( this, "line1" );
+	line6 = new QFrame ( this );
 	line6->setFrameShape ( QFrame::HLine );
 	line6->setFrameShadow ( QFrame::Sunken );
 	line6->setFrameShape ( QFrame::HLine );
 	SelReadableLayout->addWidget ( line6 );
 
-	cbTag = new QCheckBox ( this, "cbTag" );
-	cbDefaultMp3TagVersion = new QComboBox(this, "cbDefaultMp3TagVersion");
+	cbTag = new QCheckBox ( this );
+	cbDefaultMp3TagVersion = new QComboBox(this);
 	cbDefaultMp3TagVersion->addItem(tr ( "version" ) + " 1");
 	cbDefaultMp3TagVersion->addItem(tr ( "version" ) + " 2");
-	labelDefaultMp3TagVersion = new QLabel(this, "labelDefaultMp3TagVersion");
+	labelDefaultMp3TagVersion = new QLabel(this);
 	QSpacerItem* mp3tagspacer = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	
-	layout1 = new QHBoxLayout ( 0, 0, 6, "layout1" );
+	layout1 = new QHBoxLayout ( this );
 	layout1->addSpacing ( 25 );
 	layout1->addWidget ( cbTag );
 	layout1->addItem(mp3tagspacer);
@@ -124,33 +125,33 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	
 	SelReadableLayout->addLayout ( layout1 );
 	
-	layoutInfo = new QHBoxLayout ( 0, 0, 6, "layoutInfo" );
-	cbInfo = new QCheckBox ( this, "cbInfo" );
-	cbaInfo = new QCheckBox ( this, "cbaInfo" );
+	layoutInfo = new QHBoxLayout ( this );
+	cbInfo = new QCheckBox ( this );
+	cbaInfo = new QCheckBox ( this );
 	layoutInfo->addWidget ( cbaInfo );
 	layoutInfo->addWidget ( cbInfo );
 	SelReadableLayout->addLayout ( layoutInfo );
 
-	line1 = new QFrame ( this, "line1" );
+	line1 = new QFrame ( this );
 	line1->setFrameShape ( QFrame::HLine );
 	line1->setFrameShadow ( QFrame::Sunken );
 	line1->setFrameShape ( QFrame::HLine );
 	SelReadableLayout->addWidget ( line1 );
 
-	cbCont = new QCheckBox ( this, "cbCont" );
+	cbCont = new QCheckBox ( this );
 	SelReadableLayout->addWidget ( cbCont );
 
-	layout12 = new QHBoxLayout ( 0, 0, 6, "layout12" );
+	layout12 = new QHBoxLayout ( this );
 	layout12->addSpacing ( 25 );
 //     QSpacerItem* spacer = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 //     layout12->addItem ( spacer );
 
-	layout11 = new QVBoxLayout ( 0, 0, 6, "layout11" );
+	layout11 = new QVBoxLayout ( this );
 	
-	layout9 = new QHBoxLayout ( 0, 0, 6, "layout9" );
+	layout9 = new QHBoxLayout ( this );
 	
-	labelContent = new QLabel ( this, "labelContent" );
-	lineFiles = new QLineEdit ( this, "lineFiles" );
+	labelContent = new QLabel ( this );
+	lineFiles = new QLineEdit ( this );
 	lineFiles->setMinimumWidth ( 150 );
 	
 	
@@ -159,9 +160,12 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	layout9->addWidget ( lineFiles );
 	layout9->addItem (contentspacer);
 	
-	maxSpinBox = new QSpinBox ( 1, MAX_STORED_SIZE / 1024, 1, this, "maxSpinBox" );
-	labelContentSize = new QLabel ( this, "labelContentSize" );
-	labelContentSizeUnit = new QLabel ( this, "labelContentSizeUnit" );
+	maxSpinBox = new QSpinBox ( this );
+	maxSpinBox->setMinimum(1);
+	maxSpinBox->setMaximum(MAX_STORED_SIZE/1024);
+	maxSpinBox->setSingleStep(1);
+	labelContentSize = new QLabel ( this );
+	labelContentSizeUnit = new QLabel ( this );
 	labelContentSizeUnit->setText(tr("KiB"));
 	QSpacerItem* contentSizeSpacer = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	
@@ -174,11 +178,11 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	layout12->addLayout ( layout11 );
 	SelReadableLayout->addLayout ( layout12 );
 	
-	layoutExternalContentViewer = new QHBoxLayout ( 0, 0, 7, "layoutExternalContentViewer" );
-	cbUseExternalContentViewer = new QCheckBox ( this, "cbUseExternalContentViewer" );
-// 	labelExternalContentViewer = new QLabel ( this, "labelExternalContentViewer" );
-	lineeditPathExternalContentViewer = new QLineEdit ( this, "lineeditPathExternalContentViewer" );
-	buttonUseExternalContentViewer = new QPushButton ( this, "buttonUseExternalContentViewer" );
+	layoutExternalContentViewer = new QHBoxLayout ( this );
+	cbUseExternalContentViewer = new QCheckBox ( this );
+// 	labelExternalContentViewer = new QLabel ( this );
+	lineeditPathExternalContentViewer = new QLineEdit ( this );
+	buttonUseExternalContentViewer = new QPushButton ( this );
 	layoutExternalContentViewer->addSpacing ( 25 );
 	layoutExternalContentViewer->addWidget( cbUseExternalContentViewer );
 // 	layoutExternalContentViewer->addWidget( labelExternalContentViewer );
@@ -186,12 +190,12 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	layoutExternalContentViewer->addWidget( buttonUseExternalContentViewer );
 	SelReadableLayout->addLayout ( layoutExternalContentViewer );
 	
-	cbFileInfo = new QCheckBox ( this, "cbFileInfo" );
+	cbFileInfo = new QCheckBox ( this );
 	SelReadableLayout->addWidget ( cbFileInfo );
 	
-	layoutFileInfo = new QHBoxLayout ( 0, 0, 6, "layoutFileInfo" );
-	labFileInfoExtensions = new QLabel ( this, "labFileInfoExtensions" );
-	labFileInfoExtensionsStatusIcon = new QLabel ( this, "labFileInfoExtensionsStatusIcon" );
+	layoutFileInfo = new QHBoxLayout ( this );
+	labFileInfoExtensions = new QLabel ( this );
+	labFileInfoExtensionsStatusIcon = new QLabel ( this );
 	labFileInfoExtensionsStatusIcon->setPixmap(*get_t_info_icon());
 	QSpacerItem* fileInfospacer = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	layoutFileInfo->addSpacing ( 25 );
@@ -200,24 +204,31 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	layoutFileInfo->addItem ( fileInfospacer );
 	SelReadableLayout->addLayout ( layoutFileInfo );
 	
-	layoutThumbGeneral = new QHBoxLayout ( 0, 0, 6, "layoutThumbGeneral" );
-	cbThumb = new QCheckBox ( this, "cbThumb" );
+	layoutThumbGeneral = new QHBoxLayout ( this );
+	cbThumb = new QCheckBox ( this );
 	layoutThumbGeneral->addWidget ( cbThumb );
 #ifdef USE_LIBEXIF
-	cbExif = new QCheckBox ( this, "cbExif" );
+	cbExif = new QCheckBox ( this );
 	layoutThumbGeneral->addWidget ( cbExif );
 #endif
 	SelReadableLayout->addLayout(layoutThumbGeneral);
 	
-	layoutThumbExts = new QHBoxLayout ( 0, 0, 6, "layoutThumbExts" );
-	labThumbExts = new QLabel ( this, "labThumbExts" );
-	thumbLineExts = new QLineEdit ( this, "thumbLineExts" );
+	layoutThumbExts = new QHBoxLayout ( this );
+	labThumbExts = new QLabel ( this );
+	thumbLineExts = new QLineEdit ( this );
 	thumbLineExts->setMinimumWidth ( 150 );
 	QSpacerItem* thumpspacer = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
-	thumbWidthSpinBox = new QSpinBox ( 20, 400, 150, this, "thumbWidthSpinBox" );
-	labThumbXSize = new QLabel ( this, "labThumbXSize" );
-	thumbHeightSpinBox = new QSpinBox ( 20, 400, 150, this, "thumbHeightSpinBox" );
-	labThumbSize = new QLabel ( this, "labThumbSize" );
+	thumbWidthSpinBox = new QSpinBox ( this );
+	thumbWidthSpinBox->setMinimum(20);
+	thumbWidthSpinBox->setMaximum(400);
+	thumbWidthSpinBox->setSingleStep(150);
+	
+	labThumbXSize = new QLabel ( this );
+	thumbHeightSpinBox = new QSpinBox ( this );
+	thumbHeightSpinBox->setMinimum(20);
+	thumbHeightSpinBox->setMaximum(400);
+	thumbHeightSpinBox->setSingleStep(150);
+	labThumbSize = new QLabel ( this );
 	
 	layoutThumbExts->addSpacing ( 25 );
 	layoutThumbExts->addWidget ( labThumbExts );
@@ -229,22 +240,22 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	layoutThumbExts->addWidget(thumbHeightSpinBox);
 	SelReadableLayout->addLayout ( layoutThumbExts );
 	
-	layoutExcludeMain = new QHBoxLayout ( 0, 0, 6, "layoutExcludeMain" );
-	layoutExcludeLeft = new QVBoxLayout ( 0, 0, 6, "layoutExcludeLeft" );
-	cbDoExcludeFiles = new QCheckBox ( this, "cbDoExcludeFiles" );
-	cbUseWildcardInsteadRegexForExclude = new QCheckBox ( this, "cbUseWildcardInsteadRegexForExclude" );
-	labelExcludeFiles = new QLabel ( this, "labelExcludeFiles" );
-	labExcludeRexexInfo = new QLabel ( this, "labExcludeRexexInfo" );
-	labExcludeRexexInfoButton = new QPushButton ( this, "labExcludeRexexInfoButton" );
+	layoutExcludeMain = new QHBoxLayout ( this );
+	layoutExcludeLeft = new QVBoxLayout ( this );
+	cbDoExcludeFiles = new QCheckBox ( this );
+	cbUseWildcardInsteadRegexForExclude = new QCheckBox ( this );
+	labelExcludeFiles = new QLabel ( this );
+	labExcludeRexexInfo = new QLabel ( this );
+	labExcludeRexexInfoButton = new QPushButton ( this );
 	connect ( labExcludeRexexInfoButton, SIGNAL(clicked()), this, SLOT(labExcludeRexexInfoButtonClicked()));
 	QSpacerItem* excludeRegexspacer = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	
-	buttonAddExcludeRule = new QPushButton( this, "buttonAddExcludeRule");
+	buttonAddExcludeRule = new QPushButton( this);
 	listviewExcludeFiles = new QListView (this);
 	layoutExcludeLeft->addWidget ( cbDoExcludeFiles );
 	layoutExcludeLeft->addWidget ( cbUseWildcardInsteadRegexForExclude );
 	
-	layoutExcludeRegexInfo = new QHBoxLayout ( 0, 0, 6, "layoutExcludeRegexInfo" );
+	layoutExcludeRegexInfo = new QHBoxLayout ( this );
 	layoutExcludeRegexInfo->addWidget ( labExcludeRexexInfo );
 	layoutExcludeRegexInfo->addWidget ( labExcludeRexexInfoButton );
 	
@@ -257,15 +268,15 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	
 	SelReadableLayout->addLayout ( layoutExcludeMain );
 	
-	layoutButtons = new QHBoxLayout ( 0, 0, 6, "layoutButtons" );
+	layoutButtons = new QHBoxLayout ( this );
 	QSpacerItem* spacer_2 = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	layoutButtons->addItem ( spacer_2 );
 	
-	buttonOK = new QPushButton ( this, "buttonOK" );
+	buttonOK = new QPushButton ( this );
 	buttonOK->setMinimumSize ( QSize ( 80, 0 ) );
 	layoutButtons->addWidget ( buttonOK );
 	
-	buttonCancel = new QPushButton ( this, "buttonCancel" );
+	buttonCancel = new QPushButton ( this );
 	buttonCancel->setMinimumSize ( QSize ( 80, 0 ) );
 	layoutButtons->addWidget ( buttonCancel );
 	QSpacerItem* spacer_3 = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
@@ -304,11 +315,15 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	cbUseExternalContentViewer->setChecked ( conf->useExternalContentViewer );
 	lineeditPathExternalContentViewer->setText( conf->ExternalContentViewerPath );
 	if(QFileInfo(conf->ExternalContentViewerPath).exists()) {
-		lineeditPathExternalContentViewer->setPaletteBackgroundColor(QColor("#99FF66"));
+		QPalette palette;
+		palette.setColor(lineeditPathExternalContentViewer->backgroundRole(), QColor("#99FF66"));
+		lineeditPathExternalContentViewer->setPalette(palette);
 		lineeditPathExternalContentViewer->setToolTip( tr("Path to external content viewer (found)"));
 	}
 	else {
-		lineeditPathExternalContentViewer->setPaletteBackgroundColor(QColor("#FF9999"));
+		QPalette palette;
+		palette.setColor(lineeditPathExternalContentViewer->backgroundRole(), QColor("#FF9999"));
+		lineeditPathExternalContentViewer->setPalette(palette);
 		lineeditPathExternalContentViewer->setToolTip( tr("Path to external content viewer (not found)"));
 	}
 	cbFileInfo->setChecked ( conf->usefileinfo );
@@ -569,12 +584,16 @@ void SelReadable::selectExternalContentViewerString(const QString &s ) {
 		lineeditPathExternalContentViewer->setText ( s );
 	}
 	if(QFileInfo(lineeditPathExternalContentViewer->text()).exists()) {
-			lineeditPathExternalContentViewer->setPaletteBackgroundColor(QColor("#99FF66"));
+			QPalette palette;
+			palette.setColor(lineeditPathExternalContentViewer->backgroundRole(), QColor("#99FF66"));
+			lineeditPathExternalContentViewer->setPalette(palette);
 			lineeditPathExternalContentViewer->setToolTip( tr("Path to external content viewer (found)"));
 			return;
 	}
 	
-	lineeditPathExternalContentViewer->setPaletteBackgroundColor(QColor("#FF9999"));
+	QPalette palette;
+	palette.setColor(lineeditPathExternalContentViewer->backgroundRole(), QColor("#FF9999"));
+	lineeditPathExternalContentViewer->setPalette(palette);
 	lineeditPathExternalContentViewer->setToolTip( tr("Path to external content viewer (not found)"));
 	return;
 }
@@ -746,9 +765,10 @@ void SelReadable::labExcludeRexexInfoButtonClicked()
 	RegexInfoHtml += "<br>";
 	RegexInfoHtml += tr("Source:")+" <a href=\"http://www.wikipedia.org\">http://www.wikipedia.org</a>";
 	
-	QDialog di( this, "aboutregexdialog", true );
-	di.setCaption ( tr ( "About regular expressions" ) );
-	QVBoxLayout *layoutRegexInfoDialog = new QVBoxLayout ( 0, 0, 6, "layoutRegexInfoDialog" );
+	QDialog di( this);
+	di.setModal(true);
+	di.setWindowTitle ( tr ( "About regular expressions" ) );
+	QVBoxLayout *layoutRegexInfoDialog = new QVBoxLayout ( this );
 	QPushButton *closeButton = new QPushButton(tr("close"), this);
 	connect(closeButton, SIGNAL(clicked(bool)), &di, SLOT(close()));
 	QTextBrowser *textBrowser1 = new QTextBrowser(&di);
@@ -778,7 +798,7 @@ SelReadable::~SelReadable() {
  *  language.
  */
 void SelReadable::languageChange() {
-	setCaption ( tr ( "Select readable items" ) );
+	setWindowTitle ( tr ( "Select readable items" ) );
 	groupBoxShowArchiveFileOpts->setTitle ( tr ( "Archive file display options" ) );
 	cbScanArchive->setText ( tr ( "Scan for archive file list" ) );
 	cbShowProgressedArchiveFileInStatus->setText( tr("show archive file in status") );

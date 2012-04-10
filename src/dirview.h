@@ -34,7 +34,10 @@ class QDropEvent;
 class FileItem : public QTreeWidgetItem {
 public:
     FileItem ( QTreeWidgetItem *parent, const QString &s1, const QString &s2 )
-            : QTreeWidgetItem ( parent ), pix ( 0 ) {}
+            : QTreeWidgetItem ( parent ), pix ( 0 ) {
+		setText(0, s1);
+		setText(1, s2);
+	}
 
     const QPixmap *pixmap ( int i ) const;
     void setPixmap ( QPixmap *p );

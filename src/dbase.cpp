@@ -925,7 +925,7 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 		return i;
 	}
 	
-	dirlist = new QFileInfoList ( dir->entryInfoList ( QString ( "*" ), QDir::All | QDir::Hidden | QDir::System ) );
+	dirlist = new QFileInfoList ( dir->entryInfoList ( QStringList(QString ( "*" )), QDir::Dirs | QDir::Files | QDir::Hidden | QDir::System ) );
 	
 	for ( int fi = 0; fi < dirlist->size(); ++fi ) {
 		if ( pww->doCancel ) {
@@ -1018,7 +1018,7 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 			}
 			else {
 				comm = ( char* ) NULL;
-				QString extension = fileInfo->fileName().lower().section ( '.', -1, -1 );
+				QString extension = fileInfo->fileName().toLower().section ( '.', -1, -1 );
 				doScanArchive = true;
 				doScanArchiveTar = true;
 				doScanArchiveLib7zip = true;
@@ -1030,20 +1030,20 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 							archivecontent = scanArchive ( what + "/" + fileInfo->fileName(), Archive_tar );
 						}
 						else
-							if ( fileInfo->fileName().lower().section ( '.', -2, -1 ) == "tar.gz" ) {
+							if ( fileInfo->fileName().toLower().section ( '.', -2, -1 ) == "tar.gz" ) {
 								if ( *DEBUG_INFO_ENABLED )
 									std::cerr << "targz found: " << qPrintable ( what + "/" + fileInfo->fileName() ) << std::endl;
 								archivecontent = scanArchive ( what + "/" + fileInfo->fileName(), Archive_targz );
 							}
 							else
-								if ( fileInfo->fileName().lower().section ( '.', -2, -1 ) == "tar.bz2" ) {
+								if ( fileInfo->fileName().toLower().section ( '.', -2, -1 ) == "tar.bz2" ) {
 									if ( *DEBUG_INFO_ENABLED )
 										std::cerr << "tarbz2 found: " << qPrintable ( what + "/" + fileInfo->fileName() ) << std::endl;
 									archivecontent = scanArchive ( what + "/" + fileInfo->fileName(), Archive_tarbz2 );
 								}
 					}
 					if ( doScanArchiveLib7zip )  {
-						if ( Lib7zipTypes.contains ( extension )  && ! ( fileInfo->fileName().lower().section ( '.', -1, -1 ) == "tar" ||  fileInfo->fileName().lower().section ( '.', -2, -1 ) == "tar.gz" || fileInfo->fileName().lower().section ( '.', -2, -1 ) == "tar.bz2" ) ) {
+						if ( Lib7zipTypes.contains ( extension )  && ! ( fileInfo->fileName().toLower().section ( '.', -1, -1 ) == "tar" ||  fileInfo->fileName().toLower().section ( '.', -2, -1 ) == "tar.gz" || fileInfo->fileName().toLower().section ( '.', -2, -1 ) == "tar.bz2" ) ) {
 							if ( *DEBUG_INFO_ENABLED )
 								std::cerr << "lib7zip found: " << qPrintable ( what + "/" + fileInfo->fileName() ) << std::endl;
 							archivecontent = scanArchive ( what + "/" + fileInfo->fileName(), Archive_lib7zip );
@@ -1123,14 +1123,14 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 	DEBUG_INFO_ENABLED = init_debug_info();
 	/***MP3 tag scanning */
 	if ( storeMp3tags || storeMp3techinfo ) {
-		if ( ( fi->extension ( FALSE ) ).lower() ==  "mp3" || ( fi->extension ( FALSE ) ).lower() ==  "mp2" ) {
+		if ( ( fi->suffix () ).toLower() ==  "mp3" || ( fi->suffix () ).toLower() ==  "mp2" ) {
 			
 			if ( showProgressedFileInStatus )
 				emit pathExtraInfoAppend ( tr("reading mp3 info") );
 			if ( *DEBUG_INFO_ENABLED )
 				std::cerr << "reading mp3 info for " << qPrintable ( fi->filePath() ) << std::endl;
 			
-			ReadMp3Tag *reader = new ReadMp3Tag ( ( const char * ) QFile::encodeName ( fi->absFilePath() ), v1_over_v2 );
+			ReadMp3Tag *reader = new ReadMp3Tag ( ( const char * ) QFile::encodeName ( fi->absoluteFilePath() ), v1_over_v2 );
 			if(pww->appl->hasPendingEvents())
 				pww->appl->processEvents();
 			if ( storeMp3tags )
@@ -1172,7 +1172,7 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 
 	/* using fileinfo */
 	if ( storeFileInfo && me.getMediaInfoLibFound() ) {
-		if (SupportedFileInfoExtensionsList.contains(fi->extension ( FALSE ).lower())) {
+		if (SupportedFileInfoExtensionsList.contains(fi->suffix ().toLower())) {
 			if ( showProgressedFileInStatus )
 				emit pathExtraInfoAppend ( tr("reading media info") );
 			if ( *DEBUG_INFO_ENABLED )
@@ -1187,13 +1187,13 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 	}
 	/***Experimental AVI Header Scanning  */
 	if ( storeAvitechinfo ) {
-		if ( ( fi->extension ( FALSE ) ).lower() == "avi" ) {
+		if ( ( fi->suffix ( ) ).toLower() == "avi" ) {
 			if ( showProgressedFileInStatus )
 				emit pathExtraInfoAppend ( tr("reading avi info") );
 			if ( *DEBUG_INFO_ENABLED )
 				std::cerr << "reading avi info for " << qPrintable ( fi->filePath() ) << std::endl;
 			FILE* filePTR;
-			filePTR = fopen ( ( const char * ) QFile::encodeName ( fi->absFilePath() ), "r" );
+			filePTR = fopen ( ( const char * ) QFile::encodeName ( fi->absoluteFilePath() ), "r" );
 			if ( filePTR != NULL ) {
 				QString got = parseAviHeader ( filePTR ).replace ( QRegExp ( "\n" ), "#" );
 				fclose ( filePTR );
@@ -1226,11 +1226,11 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 	//         int         ovector[30];
 		bool match = false;
 		
-		QStringList exts ( QStringList::split ( ";", storedFiles ) );
+		QStringList exts = storedFiles.split ( ";" );
 		QStringList::Iterator it = exts.begin();
 		
 		for ( ; it != exts.end(); ++it ) { // stepping on the ; separated patterns
-			strcpy ( pattern, ( const char * ) ( *it ) );
+			strcpy ( pattern, ( ( *it ).toLocal8Bit().constData() ));
 			easyFormConversion ( pattern );
 			caseSensConversion ( pattern );
 			QRegExp pcc2;
@@ -1270,11 +1270,11 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 			//read the file
 			if ( ( rsize = fi->size() ) > storeLimit )
 				rsize = storeLimit;
-			f = fopen ( ( const char * ) QFile::encodeName ( fi->absFilePath() ), "rb" );
+			f = fopen ( ( const char * ) QFile::encodeName ( fi->absoluteFilePath() ), "rb" );
 			if ( f == NULL ) {
 				errormsg = QString ( "I couldn't open the \"%1\" file. (content read 1)\n" )
-				           .arg ( fi->absFilePath() );
-				fprintf ( stderr, "%s", ( const char * ) errormsg );
+				           .arg ( fi->absoluteFilePath() );
+				fprintf ( stderr, "%s", errormsg.toLocal8Bit().constData() );
 				success = false;
 			}
 			
@@ -1284,10 +1284,10 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 			if ( rsize != rrsize ) {
 				errormsg = QString ( "I couldn't correctly read the content of file \"%1\" . (content read 2)\n"
 				                     "size difference %2 != %3\n" )
-				           .arg ( fi->absFilePath() )
+				           .arg ( fi->absoluteFilePath() )
 				           .arg ( rsize )
 				           .arg ( rrsize );
-				fprintf ( stderr, "%s", ( const char * ) errormsg );
+				fprintf ( stderr, "%s", errormsg.toLocal8Bit().constData() );
 				success = false;
 			}
 			
@@ -1314,7 +1314,7 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 		}//end of if(match)
 	}//end of if(storeContent)
 	
-	QString extension = fi->fileName().lower().section ( '.', -1, -1 );
+	QString extension = fi->fileName().toLower().section ( '.', -1, -1 );
 #ifdef USE_LIBEXIF
 	if (storeExifData){
 		if(getExifSupportedExtensions().contains(extension)) {
@@ -1322,7 +1322,7 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 				emit pathExtraInfoAppend ( tr("reading exif data") );
 			
 			Node *tt = fc->prop;
-			CdcatExifData *ed = new CdcatExifData(fi->absFilePath());
+			CdcatExifData *ed = new CdcatExifData(fi->absoluteFilePath());
 	 		ed->readCdcatExifData();
 			
 			if(pww->appl->hasPendingEvents())
@@ -1350,7 +1350,7 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 			if ( showProgressedFileInStatus )
 				emit pathExtraInfoAppend ( tr("reading thumbnail data") );
 			
-			QImage thumbImage(fi->absFilePath());
+			QImage thumbImage(fi->absoluteFilePath());
 			
 			if(pww->appl->hasPendingEvents())
 				pww->appl->processEvents();
@@ -1853,7 +1853,7 @@ QList<ArchiveFile> DataBase::scanArchive ( QString path, ArchiveType type ) {
 		if ( showProgressedFileInStatus )
 			emit pathExtraInfoAppend ( tr("scanning archive") );
 		
-		TestInStream stream ( path.toLocal8Bit().data(), path.lower().section ( '.', -1 ).toStdWString() );
+		TestInStream stream ( path.toLocal8Bit().data(), path.toLower().section ( '.', -1 ).toStdWString() );
 		if ( lib.OpenArchive ( &stream, &pArchive ) ) {
 			unsigned int numItems = 0;
 			pArchive->GetItemCount ( &numItems );

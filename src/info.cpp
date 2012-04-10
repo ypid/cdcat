@@ -32,42 +32,43 @@
  *  TRUE to construct a modal dialog.
  */
 InfoDialog::InfoDialog ( QWidget* parent, const char* name, bool modal, Qt::WFlags fl )
-        : QDialog ( parent, name, modal, fl ) {
+        : QDialog ( parent, fl ) {
     if ( !name )
-        setName ( "helpDialog" );
-    setIcon ( *get_t_about_icon() );
+        setObjectName ( "helpDialog" );
+    setModal(modal);
+    setWindowIcon ( *get_t_about_icon() );
 
-    helpDialogLayout = new QGridLayout ( this, 1, 1, 11, 6, "helpDialogLayout" );
+    helpDialogLayout = new QGridLayout ( this );
 
-    closeButton = new QPushButton ( this, "closeButton" );
+    closeButton = new QPushButton ( this );
 
     helpDialogLayout->addWidget ( closeButton, 1, 0 );
 
-    tabWidget2 = new QTabWidget ( this, "tabWidget2" );
+    tabWidget2 = new QTabWidget ( this );
 
-    tab = new QWidget ( tabWidget2, "tab" );
-    tabLayout = new QGridLayout ( tab, 1, 1, 11, 6, "tabLayout" );
+    tab = new QWidget ( tabWidget2 );
+    tabLayout = new QGridLayout ( tab );
 
-    textLabel1 = new QLabel ( tab, "textLabel1" );
+    textLabel1 = new QLabel ( tab );
 
     tabLayout->addWidget ( textLabel1, 0, 0 );
-    tabWidget2->insertTab ( tab, QString ( "" ) );
+    tabWidget2->insertTab ( 0, tab, QString ( "" ) );
 
-    tab_2 = new QWidget ( tabWidget2, "tab_2" );
-    tabLayout_2 = new QGridLayout ( tab_2, 1, 1, 11, 6, "tabLayout_2" );
+    tab_2 = new QWidget ( tabWidget2 );
+    tabLayout_2 = new QGridLayout ( tab_2 );
 
-    textBrowser1 = new QTextBrowser ( tab_2, "textBrowser1" );
+    textBrowser1 = new QTextBrowser ( tab_2 );
 
     tabLayout_2->addWidget ( textBrowser1, 0, 0 );
-    tabWidget2->insertTab ( tab_2, QString ( "" ) );
+    tabWidget2->insertTab ( 1, tab_2, QString ( "" ) );
 
-    TabPage = new QWidget ( tabWidget2, "TabPage" );
-    TabPageLayout = new QGridLayout ( TabPage, 1, 1, 11, 6, "TabPageLayout" );
+    TabPage = new QWidget ( tabWidget2 );
+    TabPageLayout = new QGridLayout ( TabPage );
 
-    textThanx = new QTextBrowser ( TabPage, "textLabel1_2" );
+    textThanx = new QTextBrowser ( TabPage );
 
     TabPageLayout->addWidget ( textThanx, 0, 0 );
-    tabWidget2->insertTab ( TabPage, QString ( "" ) );
+    tabWidget2->insertTab ( 2, TabPage, QString ( "" ) );
 
     helpDialogLayout->addWidget ( tabWidget2, 0, 0 );
 
@@ -440,13 +441,13 @@ InfoDialog::~InfoDialog() {
  *  language.
  */
 void InfoDialog::languageChange() {
-    setCaption ( tr ( "About cdcat" ) );
+    setWindowTitle ( tr ( "About cdcat" ) );
     closeButton->setText ( tr ( "close" ) );
     textLabel1->setText ( infotext );
-    tabWidget2->changeTab ( tab, tr ( "About Cdcat" ) );
+    tabWidget2->setTabText(0, tr ( "About Cdcat" ) );
     textBrowser1->setText ( license );
-    tabWidget2->changeTab ( tab_2, tr ( "License" ) );
+    tabWidget2->setTabText(1, tr ( "License" ) );
     textThanx->setText ( contribution );
-    tabWidget2->changeTab ( TabPage, tr ( "Thanks" ) );
+    tabWidget2->setTabText ( 2, tr ( "Thanks" ) );
 }
 

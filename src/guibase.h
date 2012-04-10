@@ -142,7 +142,7 @@ public slots:
 
     int posEvent ( void );
 
-    int openHistoryElementEvent ( int id );
+    int openHistoryElementEvent ( QAction *action );
 
 private:
 	QTreeWidgetItem *context_item;

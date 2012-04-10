@@ -67,8 +67,6 @@ public:
     const QPixmap *pixmap ( int i ) const;
     void setPixmap ( QPixmap *p );
 
-    void paintCell ( QPainter *p,const QColorGroup & cg,int column,int width,int align );
-
 private:
     Node  * node;
     LNode * p;

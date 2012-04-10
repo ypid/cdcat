@@ -177,7 +177,7 @@ FileWriter::FileWriter ( gzFile ff, bool nicefp, QString encoding ) {
 	if ( *DEBUG_INFO_ENABLED )
 		std::cerr << "using encoding for writing: " << qPrintable ( XML_ENCODING ) << endl;
 	if ( XML_ENCODING != "UTF-8" ) {
-		converter = QTextCodec::codecForName ( XML_ENCODING );
+		converter = QTextCodec::codecForName ( XML_ENCODING.toLocal8Bit() );
 	}
 	nicef = nicefp;
 	level = 0;
@@ -185,7 +185,7 @@ FileWriter::FileWriter ( gzFile ff, bool nicefp, QString encoding ) {
 
 	spgtable = ( char ** ) malloc ( 50 * sizeof ( char * ) );
 	for ( i = 0; i < 50; i++ )
-		spgtable[i] = strdup ( ( const char * ) ( QString().fill ( ' ', i ) ) );
+		spgtable[i] = strdup ( QString().fill ( ' ', i ).toLocal8Bit().constData() );
 }
 
 FileWriter::~FileWriter() {
@@ -591,7 +591,7 @@ QString FileReader::get_cutf8 ( QString s ) {
 	//if(*DEBUG_INFO_ENABLED)
 	//	cerr<<"Start-converting |"<<s<<"|"<<endl;
 	if ( XML_ENCODING != "UTF8" ) {
-		ret = converter->toUnicode ( s );
+		ret = converter->toUnicode ( s.toLocal8Bit() );
 		return ret;
 	}
 	else {
@@ -895,7 +895,7 @@ int FileReader::readFrom ( Node *source, bool skipDuplicatesOnInsert ) {
 	QStringList encodingline_parts = line2.split ( '"' );
 	XML_ENCODING = encodingline_parts.at ( 3 );
 	if ( XML_ENCODING != "UTF-8" )
-		converter = QTextCodec::codecForName ( XML_ENCODING );
+		converter = QTextCodec::codecForName ( XML_ENCODING.toLocal8Bit() );
 
 	if ( *DEBUG_INFO_ENABLED )
 		std::cerr << "detected encoding: " << XML_ENCODING.toAscii().constData() << endl;
@@ -1063,7 +1063,7 @@ QString FileReader::getCatName ( void ) {
 		//pww->setProgressText(DataBase::tr("Converting to unicode, please wait..."));
 		if ( *DEBUG_INFO_ENABLED )
 			std::cerr << "set data source to utf8  converted text..." << endl;
-		mysource.setData ( converter->toUnicode ( QString ( dataBuffer ) ) );
+		mysource.setData ( converter->toUnicode ( QString ( dataBuffer ).toLocal8Bit() ) );
 	}
 	
 	pww->setProgressText ( DataBase::tr ( "Parsing file, please wait..." ) );
@@ -1297,14 +1297,14 @@ Please change it with an older version or rewrite it in the xml file!" );
 						return false;
 					}
 					
-					ti1 = getTypeFS ( FREA->getStr2 ( attr, "type"  , "Error while parsing \"media\" node" ) );
+					ti1 = getTypeFS ( FREA->getStr2 ( attr, "type"  , "Error while parsing \"media\" node" ).toLocal8Bit().constData() );
 					if ( FREA->error_found ) {
 						cerr << qPrintable(FREA->errormsg) << " el: "<<qPrintable(el)<<endl;
 						return false;
 					}
 					if ( ti1 == UNKNOWN ) {
 						FREA->errormsg = QString ( "Unknown media type in the file. (\"%1\")" )
-						                 .arg ( FREA->getStr2 ( attr, "type"  , "Error while parsing \"media\" node" ) );
+						                 .arg ( FREA->getStr2 ( attr, "type"  , "Error while parsing \"media\" node" ).toLocal8Bit().constData() );
 						
 						FREA->error_found = 1;
 						cerr << qPrintable(FREA->errormsg) << " el: "<<qPrintable(el)<<endl;
@@ -1333,14 +1333,14 @@ Please change it with an older version or rewrite it in the xml file!" );
 						return false;
 					}
 					
-					ti1 = getTypeFS ( FREA->getStr2 ( attr, "type"  , "Error while parsing \"media\" node" ) );
+					ti1 = getTypeFS ( FREA->getStr2 ( attr, "type"  , "Error while parsing \"media\" node" ).toLocal8Bit().constData() );
 					if ( FREA->error_found ) {
 						cerr << qPrintable(FREA->errormsg) << " el: "<<qPrintable(el)<<endl;
 						return false;
 					}
 					if ( ti1 == UNKNOWN ) {
 						FREA->errormsg = QString ( "Line %1: Unknown media type in the file. (\"%1\")" )
-						                 .arg ( FREA->getStr2 ( attr, "type"  , "Error while parsing \"media\" node" ) );
+						                 .arg ( FREA->getStr2 ( attr, "type"  , "Error while parsing \"media\" node" ).toLocal8Bit().constData() );
 						FREA->error_found = 1;
 						cerr << qPrintable(FREA->errormsg) << " el: "<<qPrintable(el)<<endl;
 						return false;
@@ -1412,7 +1412,7 @@ Please change it with an older version or rewrite it in the xml file!" );
 						//if(*DEBUG_INFO_ENABLED)
 						//	cerr <<"4"<<endl;
 						
-						tf1 = getSizeFS ( FREA->getStr2 ( attr, "size", "Error while parsing \"file\" node" ) );
+						tf1 = getSizeFS ( FREA->getStr2 ( attr, "size", "Error while parsing \"file\" node" ).toLocal8Bit().constData() );
 						//if(*DEBUG_INFO_ENABLED)
 						//	cerr <<"5"<<endl;
 						
@@ -1428,14 +1428,14 @@ Please change it with an older version or rewrite it in the xml file!" );
 							return false;
 						}
 						
-						ti1 = getSizetFS ( FREA->getStr2 ( attr, "size", "Error while parsing \"file\" node" ) );
+						ti1 = getSizetFS ( FREA->getStr2 ( attr, "size", "Error while parsing \"file\" node" ).toLocal8Bit().constData() );
 						if ( FREA->error_found ) {
 							cerr << qPrintable(FREA->errormsg) << " el: "<<qPrintable(el)<<endl;
 							return false;
 						}
 						if ( ti1 == -1 ) {
 							FREA->errormsg = QString ( "Unknown size type in file node. (\"%1\")" )
-							                 .arg ( FREA->getStr2 ( attr, "size", "Error while parsing \"file\" node" ) );
+							                 .arg ( FREA->getStr2 ( attr, "size", "Error while parsing \"file\" node" ).toLocal8Bit().constData() );
 							FREA->error_found = 1;
 							cerr << qPrintable(FREA->errormsg) << " el: "<<qPrintable(el)<<endl;
 							return false;
@@ -1512,7 +1512,7 @@ Please change it with an older version or rewrite it in the xml file!" );
 								//ts1 = FREA->get_cutf8 ( FREA->getStr2 ( attr,"name"  ,"Error while parsing \"catlnk\" node" ) );
 								ts1 = FREA->getStr2 ( attr, "name"  , "Error while parsing \"catlnk\" node" );
 								
-								readed_loc = mstr ( FREA->getStr2 ( attr, "location" , "Error while parsing \"catlnk\" node" ) );
+								readed_loc = mstr ( FREA->getStr2 ( attr, "location" , "Error while parsing \"catlnk\" node" ).toLocal8Bit().constData() );
 								if ( FREA->error_found ) {
 									cerr << qPrintable(FREA->errormsg) << " el: "<<qPrintable(el)<<endl;
 									return false;
@@ -1762,7 +1762,7 @@ bool CdCatXmlHandler::endElement ( const QString & namespaceURI, const QString &
 // 			std::cout << "currentText: " << qPrintable(currentText) << std::endl;
 															QList<ArchiveFile> ArchiveFileList;
 															ArchiveFileList.clear();
-															QStringList textList = QStringList::split ( '\n', currentText );
+															QStringList textList = currentText.split ( '\n');
 															for ( int i = 0; i < textList.size(); i++ ) {
 																if ( !textList.at ( i ).isEmpty() && textList.at ( i ).trimmed().size() > 4 ) {
 // 					std::cout << "line: \"" << qPrintable(textList.at(i)) << "\""<< std::endl;

@@ -35,7 +35,7 @@
  *  TRUE to construct a modal dialog.
  */
 ShowContent::ShowContent ( Node *node, bool isCategory, CdCatConfig *cconfig, QWidget *parent, const char *name, bool modal, Qt::WFlags fl )
-	: QDialog ( parent, name, modal, fl ) {
+	: QDialog ( parent, fl ) {
 	
 	this->cconfig = cconfig;
 	mynode = NULL;
@@ -43,21 +43,22 @@ ShowContent::ShowContent ( Node *node, bool isCategory, CdCatConfig *cconfig, QW
 	this->isCategory = isCategory;
 	
 	if ( !name )
-		setName ( "ShowContent" );
-	setIcon ( *get_t_showc_icon() );
+		setObjectName ( "ShowContent" );
+	setModal(modal);
+	setWindowIcon ( *get_t_showc_icon() );
 	
-	ShowContentLayout = new QGridLayout ( this, 1, 1, 11, 6, "ShowContentLayout" );
+	ShowContentLayout = new QGridLayout ( this );
 	
-	layout1 = new QHBoxLayout ( 0, 0, 6, "layout1" );
+	layout1 = new QHBoxLayout ( this );
 	
-	closeButton = new QPushButton ( this, "closeButton" );
+	closeButton = new QPushButton ( this );
 	layout1->addWidget ( closeButton );
 	QSpacerItem *spacer1 = new QSpacerItem ( 240, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	QSpacerItem *spacer2 = new QSpacerItem ( 240, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	
 	layout1->addItem ( spacer1 );
 	
-	QLabel *sizel = new QLabel ( this, "sizel" );
+	QLabel *sizel = new QLabel ( this );
 	sizel->setText ( tr ( "%1 kByte" ).arg ( 0 ) );
 	
 	layout1->addWidget ( sizel );
@@ -66,20 +67,20 @@ ShowContent::ShowContent ( Node *node, bool isCategory, CdCatConfig *cconfig, QW
 	comboFont = new QFontComboBox ( this );
 	layout1->addWidget ( comboFont );
 	
-	deleteButton = new QToolButton ( this, "deleteButton" );
-	deleteButton->setPixmap ( *get_t_deletec_icon() );
-	QToolTip::add ( deleteButton , tr ( "Remove the file content from the database. (Warning: Unrecoverable!)" ) );
+	deleteButton = new QToolButton ( this );
+	deleteButton->setIcon ( QIcon(*get_t_deletec_icon()) );
+	deleteButton->setToolTip( tr ( "Remove the file content from the database. (Warning: Unrecoverable!)" ) );
 	
-	saveButton = new QToolButton ( this, "saveButton" );
-	saveButton->setPixmap ( *get_t_save_icon() );
-	QToolTip::add ( saveButton , tr ( "Save this content to a new file" ) );
+	saveButton = new QToolButton ( this );
+	saveButton->setIcon ( QIcon(*get_t_save_icon()) );
+	saveButton->setToolTip( tr ( "Save this content to a new file" ) );
 	
 	layout1->addWidget ( saveButton );
 	layout1->addWidget ( deleteButton );
 	
 	ShowContentLayout->addLayout ( layout1, 0, 0 );
 	
-	textBrowser = new QTextBrowser ( this, "textBrowser" );
+	textBrowser = new QTextBrowser ( this );
 	if(!cconfig->ContentViewerFont.isEmpty()) {
 		QFont contentFont = QFont();
 		contentFont.fromString( cconfig->ContentViewerFont);
@@ -89,7 +90,7 @@ ShowContent::ShowContent ( Node *node, bool isCategory, CdCatConfig *cconfig, QW
 	
 	if ( isCategory ) {
 		if ( node != NULL ) {
-			setCaption ( tr ( "Category of %1" ).arg ( node->getNameOf() ) );
+			setWindowTitle ( tr ( "Category of %1" ).arg ( node->getNameOf() ) );
 			
 			QString o;
 			switch ( node->type ) {
@@ -113,7 +114,7 @@ ShowContent::ShowContent ( Node *node, bool isCategory, CdCatConfig *cconfig, QW
 		}
 	} else {
 		if ( node != NULL && node->type == HC_FILE ) {
-			setCaption ( tr ( "Content of %1" ).arg ( node->getNameOf() ) );
+			setWindowTitle ( tr ( "Content of %1" ).arg ( node->getNameOf() ) );
 			mynode = ( ( DBFile * ) ( node->data ) )->prop;
 			while ( mynode != NULL ) {
 				if ( mynode->type == HC_CONTENT )
@@ -199,9 +200,9 @@ ShowContent::~ShowContent() {
  */
 void ShowContent::languageChange() {
 	if ( isCategory )
-		setCaption ( tr ( "Set category" ) );
+		setWindowTitle ( tr ( "Set category" ) );
 	else
-		setCaption ( tr ( "Set content" ) );
+		setWindowTitle ( tr ( "Set content" ) );
 	comboFont->setToolTip ( tr ( "select font for display" ) );
 	closeButton->setText ( tr ( "Close" ) );
 	deleteButton->setText ( QString::null );

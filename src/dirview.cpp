@@ -80,7 +80,6 @@ void Directory::setExpanded ( bool o ) {
 		setIcon (0, QIcon(*get_v_folderopen_icon()) );
 	else
 		setIcon (0, QIcon(*get_v_folderclosed_icon()) );
-
 	if ( o && !childsCollected ) {
 		QString s ( fullName() );
 		QDir thisDir ( s );
@@ -101,6 +100,7 @@ void Directory::setExpanded ( bool o ) {
 				else
 					if ( fi->isDir() ) {
 						Directory *d = new Directory ( this, fi->fileName() );
+						d->setExpanded(false);
 					}
 					else {
 						;
@@ -128,11 +128,11 @@ QString Directory::fullName() {
 	QString s;
 	if ( p ) {
 		s = p->fullName();
-		s.append ( f.name() );
+		s.append ( f.fileName() );
 		s.append ( "/" );
 	}
 	else {
-		s = f.name();
+		s = f.fileName();
 	}
 	return s;
 }
@@ -140,7 +140,7 @@ QString Directory::fullName() {
 
 QString Directory::text ( int column ) const {
 	if ( column == 0 )
-		return f.name();
+		return f.fileName();
 	else
 		if ( readable )
 			return QObject::tr ( "Directory" );
@@ -259,7 +259,7 @@ void DirectoryView::openFolder() {
 		}
 	}
 	else {
-		currentItem()->setExpanded(true);
+		itemAt(0,0)->setExpanded(true);
 	}
 }
 
@@ -306,20 +306,21 @@ void DirectoryView::setDir ( const QString &s ) {
 		++it;
 	}
 
-	QStringList lst ( QStringList::split (
+	QStringList lst = s.split (
 #ifdef _WIN32
 	                          "\\"
 #else
 	                          "/"
 #endif
-	                          , s ) );
+	                          );
 
 	QTreeWidgetItemIterator it3(this);
-	QStringList::Iterator it2 = lst.begin();
-// 	for ( ; it2 != lst.end(); ++it2 ) {
-// 		while ( (*it3) ) {
-// 			if ( (*it3)->text ( 0 ) == *it2 ) {
-// 				(*it3)->setExpanded ( TRUE );
+	for (int i = 1; i < lst.size(); i++) {
+		while ( (*it3) ) {
+			if ( (*it3)->text ( 0 ) == lst.at(i) ) {
+				(*it3)->setExpanded(true);
+				setCurrentItem ( (*it3) );
+				
 // 				//ensureItemVisible ( item ); //FIXME
 // 				QTreeWidgetItem * item2 = item->itemAbove();
 // 				if ( item2 != NULL ) {
@@ -337,15 +338,10 @@ void DirectoryView::setDir ( const QString &s ) {
 // 						//ensureItemVisible ( item2 ); //FIXME
 // 					}
 // 				}
-// 				break;
-// 			}
-// 			++it;
-// 		}
-// 	} //FIXME
-
-	if ( (*it3) ) {
-		setCurrentItem ( (*it3) );
-		(*it3)->setExpanded(true);
+				break;
+			}
+			++it3;
+		}
 	}
 }
 

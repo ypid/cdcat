@@ -34,34 +34,35 @@
 char *buff = NULL;
 
 borrowDialog::borrowDialog ( QString mname, QWidget* parent, const char* name, bool modal, Qt::WFlags fl )
-	: QDialog ( parent, name, modal, fl )
+	: QDialog ( parent, fl )
 
 {
 	ok = 0;
+	setModal(modal);
 	if ( !name )
-		setName ( "borrowDialog" );
+		 ( "borrowDialog" );
 	setSizeGripEnabled ( TRUE );
-	setIcon ( *get_t_sborrow_icon() );
+	setWindowIcon ( *get_t_sborrow_icon() );
 
-	borrowDialogLayout = new QVBoxLayout ( this, 11, 6, "borrowDialogLayout" );
+	borrowDialogLayout = new QVBoxLayout ( this );
 
-	textLabel = new QLabel ( this, "textLabel" );
+	textLabel = new QLabel ( this );
 	borrowDialogLayout->addWidget ( textLabel );
 
-	leWho = new QLineEdit ( this, "leWho" );
+	leWho = new QLineEdit ( this);
 	borrowDialogLayout->addWidget ( leWho );
 	QSpacerItem* spacer = new QSpacerItem ( 20, 20, QSizePolicy::Minimum, QSizePolicy::Expanding );
 	borrowDialogLayout->addItem ( spacer );
 
-	layout4 = new QHBoxLayout ( 0, 0, 6, "layout4" );
+	layout4 = new QHBoxLayout ();
 	QSpacerItem* spacer_2 = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	layout4->addItem ( spacer_2 );
 
-	buttonOk = new QPushButton ( this, "buttonOk" );
+	buttonOk = new QPushButton ( this );
 	buttonOk->setMinimumSize ( QSize ( 80, 0 ) );
 	layout4->addWidget ( buttonOk );
 
-	buttonCancel = new QPushButton ( this, "buttonCancel" );
+	buttonCancel = new QPushButton ( this );
 	buttonCancel->setMinimumSize ( QSize ( 80, 0 ) );
 	layout4->addWidget ( buttonCancel );
 	QSpacerItem* spacer_3 = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
@@ -110,7 +111,7 @@ borrowDialog::~borrowDialog() {
  *  language.
  */
 void borrowDialog::languageChange() {
-	setCaption ( tr ( "Borrowing..." ) );
+	setWindowTitle ( tr ( "Borrowing..." ) );
 	textLabel->setText ( tr ( "I borrow the \"\" named media to:" ) );
 	buttonOk->setText ( tr ( "Ok" ) );
 	buttonCancel->setText ( tr ( "Cancel" ) );
@@ -122,24 +123,25 @@ void borrowDialog::languageChange() {
 ****************************************************************************/
 
 borrowingDialog::borrowingDialog ( DataBase *dbp, QWidget* parent, const char* name, bool modal, Qt::WFlags fl )
-	: QDialog ( parent, name, modal, fl )
+	: QDialog ( parent, fl )
 
 {
+	setModal(modal);
 	last_row_clicked = -1;
 	ch = 0;
 	db = dbp;
 	this->parent = parent;
 	if ( !name )
-		setName ( "borrowingDialog" );
+		 ( "borrowingDialog" );
 	setSizeGripEnabled ( TRUE );
-	setIcon ( *get_m_borrow_icon() );
-	borrowingDialogLayout = new QVBoxLayout ( this, 11, 6, "borrowingDialogLayout" );
+	setWindowIcon ( *get_m_borrow_icon() );
+	borrowingDialogLayout = new QVBoxLayout ( this );
 	
-	layout1 = new QHBoxLayout ( 0, 0, 6, "layout1" );
+	layout1 = new QHBoxLayout ( this );
 	QSpacerItem* spacer = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	layout1->addItem ( spacer );
 	
-	textLabel = new QLabel ( this, "textLabel" );
+	textLabel = new QLabel ( this );
 	layout1->addWidget ( textLabel );
 	QSpacerItem* spacer_2 = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	layout1->addItem ( spacer_2 );
@@ -147,14 +149,14 @@ borrowingDialog::borrowingDialog ( DataBase *dbp, QWidget* parent, const char* n
 	QSpacerItem* spacer_3 = new QSpacerItem ( 20, 20, QSizePolicy::Minimum, QSizePolicy::Fixed );
 	borrowingDialogLayout->addItem ( spacer_3 );
 	
-	layout3 = new QHBoxLayout ( 0, 0, 6, "layout3" );
+	layout3 = new QHBoxLayout ( this );
 	
-	cbOnlyBorrowed = new QCheckBox ( this, "cbOnlyBorrowed" );
+	cbOnlyBorrowed = new QCheckBox ( this );
 	layout3->addWidget ( cbOnlyBorrowed );
 	QSpacerItem* spacer_4 = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	layout3->addItem ( spacer_4 );
 	
-	buttonClear = new QPushButton ( this, "buttonClear" );
+	buttonClear = new QPushButton ( this );
 	layout3->addWidget ( buttonClear );
 	borrowingDialogLayout->addLayout ( layout3 );
 	
@@ -162,15 +164,15 @@ borrowingDialog::borrowingDialog ( DataBase *dbp, QWidget* parent, const char* n
 	
 	borrowingDialogLayout->addWidget ( ( QWidget * ) table );
 	
-	layout4 = new QHBoxLayout ( 0, 0, 6, "layout4" );
+	layout4 = new QHBoxLayout ( this );
 	QSpacerItem* spacer_5 = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	layout4->addItem ( spacer_5 );
 	
-	buttonOk = new QPushButton ( this, "buttonOk" );
+	buttonOk = new QPushButton ( this );
 	buttonOk->setMinimumSize ( QSize ( 80, 0 ) );
 	layout4->addWidget ( buttonOk );
 	
-	//buttonCancel = new QPushButton( this, "buttonCancel" );
+	//buttonCancel = new QPushButton( this );
 	//buttonCancel->setMinimumSize( QSize( 80, 0 ) );
 	//layout4->addWidget( buttonCancel );
 	QSpacerItem* spacer_6 = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
@@ -183,10 +185,10 @@ borrowingDialog::borrowingDialog ( DataBase *dbp, QWidget* parent, const char* n
 	
 	connect ( buttonOk, SIGNAL ( clicked() ), this, SLOT ( sok() ) );
 	//connect(buttonCancel,SIGNAL(clicked()),this,SLOT(scancel()));
-	connect ( table, SIGNAL ( valueChanged ( int, int ) ), this, SLOT ( schanged ( int, int ) ) );
+	connect ( table, SIGNAL (  cellChanged ( int, int ) ), this, SLOT ( schanged ( int, int ) ) );
 	connect ( cbOnlyBorrowed, SIGNAL ( clicked() ), this, SLOT ( sonlyb() ) );
 	connect ( buttonClear, SIGNAL ( clicked() ), this, SLOT ( sclear() ) );
-	connect ( table, SIGNAL ( itemClicked (  QTableWidgetItem *) ), table, SLOT ( setCurrentItem( QTableWidgetItem *) ));
+	connect ( table, SIGNAL ( itemClicked (  QTableWidgetItem *) ), this, SLOT ( setCurrentItem ( QTableWidgetItem *  ) ));
 	
 	table->setContextMenuPolicy(Qt::CustomContextMenu); 
 	connect ( table, SIGNAL ( customContextMenuRequested(const QPoint &)), this, SLOT ( click (const QPoint &) ) );
@@ -205,7 +207,7 @@ borrowingDialog::~borrowingDialog() {
  *  language.
  */
 void borrowingDialog::languageChange() {
-	setCaption ( tr ( "Borrowing info..." ) );
+	setWindowTitle ( tr ( "Borrowing info..." ) );
 	textLabel->setText ( tr ( "Media borrowing info:" ) );
 	cbOnlyBorrowed->setText ( tr ( "Show only borrowed items" ) );
 	buttonClear->setText ( tr ( "Clear all borrowing info" ) );
@@ -240,12 +242,6 @@ int borrowingDialog::filltable() {
 	int num = 0;
 	Node *tmp = NULL;
 	
-	for ( i = 0; i < table->rowCount(); i++ ) {
-		table->item ( i, 0 )->setText ( "" );
-		table->item ( i, 1 )->setText ( "" );
-		table->item ( i, 2 )->setText ( "" );
-	}
-	
 	table->setRowCount( 0 );
 	table->setColumnCount ( 3 );
 	QStringList headerTitleList;
@@ -253,6 +249,12 @@ int borrowingDialog::filltable() {
 	headerTitleList.append ( tr ( "Borrowed" ) );
 	headerTitleList.append ( tr ( "where is it now?" ) );
 	table->setHorizontalHeaderLabels ( headerTitleList );
+	
+// 	for ( i = 0; i < table->rowCount(); i++ ) {
+// 		table->item ( i, 0 )->setText ( "" );
+// 		table->item ( i, 1 )->setText ( "" );
+// 		table->item ( i, 2 )->setText ( "" );
+// 	}
 	
 	table->setRowCount( table->rowCount() + 1 );
 	//table->item(table->rowCount() - 1)->setText (tr ( "0" ) );
@@ -277,11 +279,17 @@ int borrowingDialog::filltable() {
 		
 		if ( ( ( DBMedia * ) ( tmp->data ) )->borrowing.isEmpty() ) {
 			table->setItem ( num, 2, new QTableWidgetItem ( "" ));
-			table->item(num, 2)->setFlags(Qt::ItemIsEditable);
+			//table->item(num, 2)->setFlags(Qt::ItemIsEditable);
+			Qt::ItemFlags eFlags = table->item(num, 2)->flags();
+			eFlags |= Qt::ItemIsEditable;
+			table->item(num, 2)->setFlags(eFlags);
 		}
 		else {
 			table->setItem ( num, 2, new QTableWidgetItem (  ( ( DBMedia * ) ( tmp->data ) )->borrowing ) );
-			table->item(num, 2)->setFlags(Qt::ItemIsEditable);
+			//table->item(num, 2)->setFlags(Qt::ItemIsEditable);
+			Qt::ItemFlags eFlags = table->item(num, 2)->flags();
+			eFlags |= Qt::ItemIsEditable;
+			table->item(num, 2)->setFlags(eFlags);
 		}
 		
 		//table->updateCell ( num, 0 );
@@ -292,7 +300,7 @@ int borrowingDialog::filltable() {
 	}
 	
 	table->setSortingEnabled ( FALSE );
-	table->setSelectionMode ( QTableWidget::NoSelection );
+	//table->setSelectionMode ( QTableWidget::NoSelection );
 	
 	return 0;
 }
@@ -304,23 +312,27 @@ int borrowingDialog::schanged ( int row, int col ) {
 	newv = table->item ( row, col )->text ( );
 	
 	if ( col == 1 ) { //Yes or No
-		if ( newv.lower() == tr ( "Yes" ).lower() || newv.lower() == tr ( "No" ).lower() ) {
-			if ( newv.lower() == tr ( "No" ).lower() ) {
+		if ( newv.toLower() == tr ( "Yes" ).toLower() || newv.toLower() == tr ( "No" ).toLower() ) {
+			if ( newv.toLower() == tr ( "No" ).toLower() ) {
 				table->item ( row, 1 )->setText ( tr ( "No" ) );
-				table->item ( row, 2 )->setText ( "" );
+				if(table->item ( row, 2 ) != NULL)
+					table->item ( row, 2 )->setText ( "-" );
 			}
 			else {   //Yes
 				table->item ( row, 1 )->setText ( tr ( "Yes" ) );
-				if ( table->item ( row, 2 )->text ( ).isEmpty() )
-					table->item ( row, 2 )->setText ( tr ( "unknown" ) );
+				if(table->item ( row, 2 ) != NULL)
+					if ( table->item ( row, 2 )->text ( ).isEmpty() )
+						table->item ( row, 2 )->setText ( tr ( "unknown" ) );
 			}
 		}
 		else {
 			QMessageBox::warning ( this, tr ( "Error" ), tr ( "Set \"Yes\" or \"No\" !" ) );
-			if ( table->item ( row, 2 )->text ( ).isEmpty() )
-				table->item ( row, 1 )->setText ( tr ( "No" ) );
-			else
-				table->item ( row, 1 )->setText ( tr ( "Yes" ) );
+			if(table->item ( row, 2 ) != NULL) {
+				if ( table->item ( row, 2 )->text ( ).isEmpty() )
+					table->item ( row, 1 )->setText ( tr ( "No" ) );
+				else
+					table->item ( row, 1 )->setText ( tr ( "Yes" ) );
+			}
 		}
 	}
 	
@@ -359,7 +371,7 @@ int borrowingDialog::sstore ( void ) {
 		isborrowed = 0;
 		for ( i = 0; i < table->rowCount(); i++ ) {
 			if ( tmp->getNameOf() == table->item ( i, 0 )->text ( ) &&
-			                ( table->item ( i, 1 )->text ( ) ).lower() == tr ( "Yes" ).lower() ) {
+			                ( table->item ( i, 1 )->text ( ) ).toLower() == tr ( "Yes" ).toLower() ) {
 				isborrowed = 1;
 				if ( ! ( ( ( DBMedia * ) ( tmp->data ) )->borrowing.isEmpty() ) )
 					( ( DBMedia * ) ( tmp->data ) )->borrowing = "" ;
@@ -403,10 +415,17 @@ int borrowingDialog::click (const QPoint &mousePos) {
 	if ( /*button != 2 ||*/ col != 2 )
 		return 0;
 	
+	
 	QMenu *pm = new QMenu ( table );
 	QMenu *pma = new QMenu ( table );
-	pm->insertItem ( tr ( "I got it back!" ), this, SLOT ( click_clr() ) );
-	pm->insertItem ( tr ( "<< " ), pma );
+	QAction *back_action = new QAction(this);
+	back_action->setText(tr ( "I got it back!" ));
+	pm->addAction(back_action);
+	connect (back_action, SIGNAL(triggered(bool)),  this, SLOT ( click_clr() ) );
+	connect (pma, SIGNAL(triggered(bool)),  pma, SLOT ( open(bool) ) );
+	QAction *pma_action = new QAction(this);
+	pma->setTitle( tr ( "<< " ) );
+	pm->addMenu(pma);
 	
 	for ( i = 0; i < table->rowCount(); i++ ) {
 		s = table->item ( i, 2 )->text ( );
@@ -418,13 +437,17 @@ int borrowingDialog::click (const QPoint &mousePos) {
 				b = 1;
 		}
 		if ( !b ) {
-			pma->insertItem ( s, i );
+			
+			std::cout << "borrowingDialog::addtem: " << qPrintable(s) << std::endl;
+			QAction *a = new QAction(pma);
+			a->setText(s);
+			pma->addAction ( a );
 		}
 	}
 	
 	connect ( pma, SIGNAL ( activated ( int ) ), this, SLOT ( click_set ( int ) ) );
 	last_row_clicked = row;
-	pm->popup( QCursor::pos());
+	pm->exec( QCursor::pos());
 	return 0;
 }
 
@@ -443,8 +466,12 @@ int borrowingDialog::click_set ( int a ) {
 }
 
 
-
-
+void borrowingDialog::setCurrentItem ( QTableWidgetItem *item ) {
+	int row = item->row();
+	table->item(row, 0)->setSelected(true);
+	table->item(row, 1)->setSelected(true);
+	table->item(row, 2)->setSelected(true);
+}
 
 
 

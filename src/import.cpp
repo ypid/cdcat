@@ -167,7 +167,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 			int linecount = 0;
 			int lines = 0;
 
-			QApplication::setOverrideCursor ( Qt::waitCursor );
+			QApplication::setOverrideCursor ( Qt::WaitCursor );
 			guislave->panelsOFF();
 
 			QFile f ( filename );
@@ -240,14 +240,14 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 							//     QMessageBox::warning (0, "wrong", line);
 							int idx = 0;
 							while ( idx != -1 ) {
-								idx = line.find ( QString ( separator + pathsep ), idx );
+								idx = line.indexOf ( QString ( separator + pathsep ), idx );
 								if ( idx != -1 ) {
 									line.replace ( idx, QString ( separator + pathsep ).length(), "/" );
 								}
 							}
 							idx = 0;
 							while ( idx != -1 ) {
-								idx = line.find ( QString ( pathsep + separator ), idx );
+								idx = line.indexOf ( QString ( pathsep + separator ), idx );
 								if ( idx != -1 ) {
 									line.replace ( idx, QString ( pathsep + separator ).length(), "/" );
 								}
@@ -256,8 +256,8 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 						}
 
 						if ( csvtype == "gtktalog" ) {
-							int mediaindex = line.find ( pathsep, 0 );
-							int pathindex = line.find ( separator, mediaindex + 1 );
+							int mediaindex = line.indexOf ( pathsep, 0 );
+							int pathindex = line.indexOf ( separator, mediaindex + 1 );
 							fullpath = ( line.mid ( mediaindex, pathindex - mediaindex ) );
 
 							if ( pathsep == "\\" )
@@ -274,16 +274,16 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 							//if(*DEBUG_INFO_ENABLED)
 							//  cerr << "importGtktalogCsv path: " << qPrintable(path) << endl;
 
-							int sizeindex = line.find ( separator, pathindex + 1 );
-							QString sizestring = line.mid ( pathindex + 1, sizeindex - pathindex - 1 ).stripWhiteSpace();
+							int sizeindex = line.indexOf ( separator, pathindex + 1 );
+							QString sizestring = line.mid ( pathindex + 1, sizeindex - pathindex - 1 ).trimmed();
 							//if(*DEBUG_INFO_ENABLED)
 							//  cerr << "importGtktalogCsv sizestring: " << qPrintable(sizestring) << endl;
-							size = ( ( line.mid ( pathindex + 1, sizeindex - pathindex - 1 ) ).stripWhiteSpace() ).toDouble();
+							size = ( ( line.mid ( pathindex + 1, sizeindex - pathindex - 1 ) ).trimmed() ).toDouble();
 
 							//if(*DEBUG_INFO_ENABLED)
 							//  cerr << "importGtktalogCsv size: " << size << endl;
 
-							datetimestring = ( line.mid ( sizeindex + 1, line.length() ) ).stripWhiteSpace();
+							datetimestring = ( line.mid ( sizeindex + 1, line.length() ) ).trimmed();
 							if ( *DEBUG_INFO_ENABLED )
 								cerr << "importGtktalogCsv datetimestring: " << qPrintable ( datetimestring ) << endl;
 
@@ -293,11 +293,11 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 							// date in other format: day.month.year hour:minute:second
 							if ( datetimestring.contains ( '.' ) )
 								datesep = ".";
-							int dayindex = datetimestring.find ( datesep );
-							int monthindex = datetimestring.find ( datesep, dayindex + 1 );
-							int yearindex = datetimestring.find ( " ", monthindex + 1 );
-							int hourindex = datetimestring.find ( ":", yearindex + 1 );
-							int minuteindex = datetimestring.find ( ":", hourindex + 1 );
+							int dayindex = datetimestring.indexOf ( datesep );
+							int monthindex = datetimestring.indexOf ( datesep, dayindex + 1 );
+							int yearindex = datetimestring.indexOf ( " ", monthindex + 1 );
+							int hourindex = datetimestring.indexOf ( ":", yearindex + 1 );
+							int minuteindex = datetimestring.indexOf ( ":", hourindex + 1 );
 
 							int day = ( datetimestring.mid ( 0, dayindex ) ).toInt();
 							QString day_ = ( datetimestring.mid ( 0, dayindex ) );
@@ -368,9 +368,9 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 									continue;
 								}
 								filename = QString ( csvList.at ( 4 ) ).replace ( "\"", "" ) + QString ( csvList.at ( 5 ) ).replace ( "\"", "" );
-								QString sizestring = QString ( csvList.at ( 6 ) ).replace ( "\"", "" ).replace ( ",", "." ).replace ( ".", "" ).replace ( "#", "" ).stripWhiteSpace();
+								QString sizestring = QString ( csvList.at ( 6 ) ).replace ( "\"", "" ).replace ( ",", "." ).replace ( ".", "" ).replace ( "#", "" ).trimmed();
 								// size is double and its kib!
-								size = uint ( QString ( csvList.at ( 6 ) ).replace ( "\"", "" ).replace ( ",", "." ).replace ( ".", "" ).replace ( "#", "" ).stripWhiteSpace().toDouble() * 1024 );
+								size = uint ( QString ( csvList.at ( 6 ) ).replace ( "\"", "" ).replace ( ",", "." ).replace ( ".", "" ).replace ( "#", "" ).trimmed().toDouble() * 1024 );
 								//if(*DEBUG_INFO_ENABLED)
 								//	cerr << "importGtktalogCsv size: " << size << endl;
 								datetimestring = QString ( csvList.at ( 7 ) ).replace ( "\"", "" );
@@ -381,11 +381,11 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 								// date is in format: year.month.day hour:minute
 								if ( datetimestring.contains ( '.' ) )
 									datesep = ".";
-								int yearindex = datetimestring.find ( datesep, 0 );
-								int monthindex = datetimestring.find ( datesep, yearindex + 1 );
-								int dayindex = datetimestring.find ( " ", monthindex + 1 );
-								int hourindex = datetimestring.find ( " ", dayindex + 1 );
-								int minuteindex = datetimestring.find ( ":", hourindex + 1 );
+								int yearindex = datetimestring.indexOf ( datesep, 0 );
+								int monthindex = datetimestring.indexOf ( datesep, yearindex + 1 );
+								int dayindex = datetimestring.indexOf ( " ", monthindex + 1 );
+								int hourindex = datetimestring.indexOf ( " ", dayindex + 1 );
+								int minuteindex = datetimestring.indexOf ( ":", hourindex + 1 );
 								int year = ( datetimestring.mid ( 0, yearindex ) ).toInt();
 								QString monthstring = datetimestring.mid ( yearindex + 1, monthindex - yearindex - 1 );
 								int month = ( datetimestring.mid ( yearindex + 1, monthindex - yearindex - 1 ) ).toInt();
@@ -497,11 +497,11 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 									// date in other format: day.month.year hour:minute:second
 									if ( datetimestring.contains ( '.' ) )
 										datesep = ".";
-									int dayindex = datetimestring.find ( datesep );
-									int monthindex = datetimestring.find ( datesep, dayindex + 1 );
-									int yearindex = datetimestring.find ( " ", monthindex + 1 );
-									int hourindex = datetimestring.find ( ":", yearindex + 1 );
-									int minuteindex = datetimestring.find ( ":", hourindex + 1 );
+									int dayindex = datetimestring.indexOf ( datesep );
+									int monthindex = datetimestring.indexOf ( datesep, dayindex + 1 );
+									int yearindex = datetimestring.indexOf ( " ", monthindex + 1 );
+									int hourindex = datetimestring.indexOf ( ":", yearindex + 1 );
+									int minuteindex = datetimestring.indexOf ( ":", hourindex + 1 );
 
 									int day = ( datetimestring.mid ( 0, dayindex ) ).toInt();
 									QString day_ = ( datetimestring.mid ( 0, dayindex ) );
@@ -608,11 +608,11 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 
 										// date in format: day.month.year hour:minute:second
 										QString datesep = ".";
-										int dayindex = datetimestring.find ( datesep );
-										int monthindex = datetimestring.find ( datesep, dayindex + 1 );
-										int yearindex = datetimestring.find ( " ", monthindex + 1 );
-										int hourindex = datetimestring.find ( ":", yearindex + 1 );
-										int minuteindex = datetimestring.find ( ":", hourindex + 1 );
+										int dayindex = datetimestring.indexOf ( datesep );
+										int monthindex = datetimestring.indexOf ( datesep, dayindex + 1 );
+										int yearindex = datetimestring.indexOf ( " ", monthindex + 1 );
+										int hourindex = datetimestring.indexOf ( ":", yearindex + 1 );
+										int minuteindex = datetimestring.indexOf ( ":", hourindex + 1 );
 										int day = ( datetimestring.mid ( 0, dayindex ) ).toInt();
 										QString day_ = ( datetimestring.mid ( 0, dayindex ) );
 										int month = ( datetimestring.mid ( dayindex + 1, monthindex - dayindex - 1 ) ).toInt();
@@ -725,11 +725,11 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 
 											// date in format: day.month.year hour:minute:second
 											QString datesep = ".";
-											int dayindex = datetimestring.find ( datesep );
-											int monthindex = datetimestring.find ( datesep, dayindex + 1 );
-											int yearindex = datetimestring.find ( " ", monthindex + 1 );
-											int hourindex = datetimestring.find ( ":", yearindex + 1 );
-											int minuteindex = datetimestring.find ( ":", hourindex + 1 );
+											int dayindex = datetimestring.indexOf ( datesep );
+											int monthindex = datetimestring.indexOf ( datesep, dayindex + 1 );
+											int yearindex = datetimestring.indexOf ( " ", monthindex + 1 );
+											int hourindex = datetimestring.indexOf ( ":", yearindex + 1 );
+											int minuteindex = datetimestring.indexOf ( ":", hourindex + 1 );
 											int day = ( datetimestring.mid ( 0, dayindex ) ).toInt();
 											QString day_ = ( datetimestring.mid ( 0, dayindex ) );
 											int month = ( datetimestring.mid ( dayindex + 1, monthindex - dayindex - 1 ) ).toInt();
@@ -841,11 +841,11 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 
 												// date in format: day.month.year hour:minute:second
 												QString datesep = ".";
-												int dayindex = datetimestring.find ( datesep );
-												int monthindex = datetimestring.find ( datesep, dayindex + 1 );
-												int yearindex = datetimestring.find ( " ", monthindex + 1 );
-												int hourindex = datetimestring.find ( ":", yearindex + 1 );
-												int minuteindex = datetimestring.find ( ":", hourindex + 1 );
+												int dayindex = datetimestring.indexOf ( datesep );
+												int monthindex = datetimestring.indexOf ( datesep, dayindex + 1 );
+												int yearindex = datetimestring.indexOf ( " ", monthindex + 1 );
+												int hourindex = datetimestring.indexOf ( ":", yearindex + 1 );
+												int minuteindex = datetimestring.indexOf ( ":", hourindex + 1 );
 												int day = ( datetimestring.mid ( 0, dayindex ) ).toInt();
 												QString day_ = ( datetimestring.mid ( 0, dayindex ) );
 												int month = ( datetimestring.mid ( dayindex + 1, monthindex - dayindex - 1 ) ).toInt();
@@ -964,11 +964,11 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 
 													// date in format: day.month.year hour:minute:second
 													QString datesep = ".";
-													int dayindex = datetimestring.find ( datesep );
-													int monthindex = datetimestring.find ( datesep, dayindex + 1 );
-													int yearindex = datetimestring.find ( " ", monthindex + 1 );
-													int hourindex = datetimestring.find ( ":", yearindex + 1 );
-													int minuteindex = datetimestring.find ( ":", hourindex + 1 );
+													int dayindex = datetimestring.indexOf ( datesep );
+													int monthindex = datetimestring.indexOf ( datesep, dayindex + 1 );
+													int yearindex = datetimestring.indexOf ( " ", monthindex + 1 );
+													int hourindex = datetimestring.indexOf ( ":", yearindex + 1 );
+													int minuteindex = datetimestring.indexOf ( ":", hourindex + 1 );
 													int day = ( datetimestring.mid ( 0, dayindex ) ).toInt();
 													QString day_ = ( datetimestring.mid ( 0, dayindex ) );
 													int month = ( datetimestring.mid ( dayindex + 1, monthindex - dayindex - 1 ) ).toInt();
@@ -1233,11 +1233,11 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 															datetimestring = datestring + " " + timestring;
 															// date in format: year-month-dayhour:minute:second
 															QString datesep = "-";
-															int yearindex = datetimestring.find ( datesep );
-															int monthindex = datetimestring.find ( datesep, yearindex + 1 );
-															int dayindex = datetimestring.find ( " ", monthindex + 1 );
-															int hourindex = datetimestring.find ( ":", dayindex + 1 );
-															int minuteindex = datetimestring.find ( ":", hourindex + 1 );
+															int yearindex = datetimestring.indexOf ( datesep );
+															int monthindex = datetimestring.indexOf ( datesep, yearindex + 1 );
+															int dayindex = datetimestring.indexOf ( " ", monthindex + 1 );
+															int hourindex = datetimestring.indexOf ( ":", dayindex + 1 );
+															int minuteindex = datetimestring.indexOf ( ":", hourindex + 1 );
 															int year = ( datetimestring.mid ( 0, yearindex ) ).toInt();
 															QString year_ = ( datetimestring.mid ( 0, yearindex ) );
 															int month = ( datetimestring.mid ( yearindex + 1, monthindex - yearindex - 1 ) ).toInt();
@@ -1363,13 +1363,13 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 				QMessageBox::information ( 0, tr ( "Import successful" ), msg );
 			}
 			else {
-				if ( f.status() == IO_ReadError )
+				if ( f.error() == QFile::ReadError)
 					QMessageBox::critical ( 0, tr ( "file read error" ), tr ( "Could not read file" ) );
 
-				if ( f.status() == IO_FatalError )
+				if ( f.error() == QFile::FatalError )
 					QMessageBox::critical ( 0, tr ( "Fatal error" ), tr ( "Fatal error occured." ) );
 
-				if ( f.status() == IO_OpenError )
+				if ( f.error() == QFile::OpenError )
 					QMessageBox::critical ( 0, tr ( "file open error" ), tr ( "Could not open file" ) );
 			}
 		} // file dialog canceled
@@ -1427,7 +1427,7 @@ int importGtktalogCsv::addNewMedia ( QString new_medianame, QDateTime media_modi
 
 		if ( !obj.getPath().isEmpty() ) {
 			path += "/";
-			dirindex = path.find ( "/" );
+			dirindex = path.indexOf ( "/" );
 			while ( dirindex != -1 ) {
 
 				QString dir = path.mid ( startindex, dirindex - startindex );
@@ -1441,7 +1441,7 @@ int importGtktalogCsv::addNewMedia ( QString new_medianame, QDateTime media_modi
 				}
 
 				startindex = dirindex + 1;
-				dirindex = path.find ( "/", dirindex + 1 );
+				dirindex = path.indexOf ( "/", dirindex + 1 );
 
 				env = curr;
 
@@ -1651,13 +1651,13 @@ bool importGtktalogXml::endElement ( const QString&, const QString & tag, const 
 						else
 							if ( tag == "file_date" ) {
 								// found file size
-								datetimestring = tag_content.stripWhiteSpace();
+								datetimestring = tag_content.trimmed();
 
-								int dayindex = datetimestring.find ( "/" );
-								int monthindex = datetimestring.find ( "/", dayindex + 1 );
-								int yearindex = datetimestring.find ( " ", monthindex + 1 );
-								int hourindex = datetimestring.find ( ":", yearindex + 1 );
-								int minuteindex = datetimestring.find ( ":", hourindex + 1 );
+								int dayindex = datetimestring.indexOf ( "/" );
+								int monthindex = datetimestring.indexOf ( "/", dayindex + 1 );
+								int yearindex = datetimestring.indexOf ( " ", monthindex + 1 );
+								int hourindex = datetimestring.indexOf ( ":", yearindex + 1 );
+								int minuteindex = datetimestring.indexOf ( ":", hourindex + 1 );
 
 								int day = ( datetimestring.mid ( 0, dayindex ) ).toInt();
 								QString day_ = ( datetimestring.mid ( 0, dayindex ) );
@@ -1690,7 +1690,7 @@ bool importGtktalogXml::endElement ( const QString&, const QString & tag, const 
 
 									else
 										if ( tag == "report" ) {
-											guislave->mainw->db->setName ( catalogName );
+											guislave->mainw->db->setDBName ( catalogName );
 										}
 										else
 											if ( tag == "directory" ) {
@@ -1794,7 +1794,7 @@ importGtktalogXml::importGtktalogXml ( GuiSlave * parent, QString filename, bool
 		lines = 0;
 
 
-		QApplication::setOverrideCursor ( Qt::waitCursor );
+		QApplication::setOverrideCursor ( Qt::WaitCursor );
 		guislave->panelsOFF();
 
 		QFile f ( filename );
@@ -1825,7 +1825,7 @@ importGtktalogXml::importGtktalogXml ( GuiSlave * parent, QString filename, bool
 		is_directory = false;
 		is_archive = false;
 
-		QXmlInputSource source ( f );
+		QXmlInputSource source ( &f );
 		QXmlSimpleReader reader;
 		reader.setContentHandler ( this );
 		reader.setErrorHandler ( this );
@@ -2004,7 +2004,7 @@ int importGtktalogXml::addNewMedia ( QString new_medianame, QDateTime media_modi
 
 		if ( !obj.getPath().isEmpty() ) {
 			path += "/";
-			dirindex = path.find ( "/" );
+			dirindex = path.indexOf ( "/" );
 			while ( dirindex != -1 ) {
 
 				QString dir = path.mid ( startindex, dirindex - startindex );
@@ -2018,7 +2018,7 @@ int importGtktalogXml::addNewMedia ( QString new_medianame, QDateTime media_modi
 				}
 
 				startindex = dirindex + 1;
-				dirindex = path.find ( "/", dirindex + 1 );
+				dirindex = path.indexOf ( "/", dirindex + 1 );
 
 				env = curr;
 
@@ -2123,10 +2123,10 @@ bool importWhereIsItXml::startElement ( const QString&, const QString&,
 
 
 	if ( name2 == "REPORT" ) {
-		catalogName = atts.value ( "Title" ).stripWhiteSpace();
+		catalogName = atts.value ( "Title" ).trimmed();
 		if ( *DEBUG_INFO_ENABLED ) {
 			line += "catalogName: \"" + catalogName + "\"\n";
-			guislave->mainw->db->setName ( catalogName );
+			guislave->mainw->db->setDBName ( catalogName );
 			std::cout << qPrintable ( line ) << endl;
 		}
 	}
@@ -2178,11 +2178,11 @@ bool importWhereIsItXml::endElement ( const QString&, const QString & tag, const
 		else
 			if ( tag == "DATE" ) {
 
-				currentText.stripWhiteSpace();
+				currentText.trimmed();
 
-				int index0 = currentText.find ( "-", 0 );
-				int index1 = currentText.find ( "-", index0 - 1 );
-				int index2 = currentText.find ( "-", index1 + 1 );
+				int index0 = currentText.indexOf ( "-", 0 );
+				int index1 = currentText.indexOf ( "-", index0 - 1 );
+				int index2 = currentText.indexOf ( "-", index1 + 1 );
 				int day = 1;
 				int month = 1;
 				int year = 2010;
@@ -2321,10 +2321,10 @@ bool importWhereIsItXml::endElement ( const QString&, const QString & tag, const
 									if ( tag == "TIME" ) {
 										// found file time
 
-										datetimestring = currentText.stripWhiteSpace();
+										datetimestring = currentText.trimmed();
 
-										int hourindex = datetimestring.find ( ":", 1 );
-										int minuteindex = datetimestring.find ( ":", hourindex + 1 );
+										int hourindex = datetimestring.indexOf ( ":", 1 );
+										int minuteindex = datetimestring.indexOf ( ":", hourindex + 1 );
 										int hour = ( datetimestring.mid ( 0, minuteindex - hourindex - 1 ) ).toInt();
 										int minute = ( datetimestring.mid ( hourindex + 1, minuteindex - 1 - hourindex ) ).toInt();
 										int second = ( datetimestring.mid ( minuteindex + 1, datetimestring.length() - 1 ) ).toInt();
@@ -2438,7 +2438,7 @@ bool importWhereIsItXml::endElement ( const QString&, const QString & tag, const
 																	QString tmp_path2 = "";
 																	/*              int index = 1;
 																	              int index2 = 1;*/
-																	QStringList fields = QStringList::split ( '\\', tmp_path );
+																	QStringList fields = tmp_path.split ( '\\' );
 
 																	for ( QStringList::Iterator point = fields.begin(); point != fields.end(); ++point ) {
 																		tmp_path2 = *point;
@@ -2520,7 +2520,7 @@ bool importWhereIsItXml::endElement ( const QString&, const QString & tag, const
 																	QString tmp_path2 = "";
 																	/*              int index = 1;
 																	              int index2 = 1;*/
-																	QStringList fields = QStringList::split ( '\\', tmp_path );
+																	QStringList fields = tmp_path.split ( '\\' );
 
 																	for ( QStringList::Iterator point = fields.begin(); point != fields.end(); ++point ) {
 																		tmp_path2 = *point;
@@ -2608,7 +2608,7 @@ importWhereIsItXml::importWhereIsItXml ( GuiSlave * parent, QString filename, bo
 		lines = 0;
 
 
-		QApplication::setOverrideCursor ( Qt::waitCursor );
+		QApplication::setOverrideCursor ( Qt::WaitCursor );
 		guislave->panelsOFF();
 
 		QFile f ( filename );
@@ -2619,7 +2619,7 @@ importWhereIsItXml::importWhereIsItXml ( GuiSlave * parent, QString filename, bo
 		/*std::cout << "counting lines... ";*/
 		register FILE *filehdl;
 		register int c;
-		if ( ( filehdl = fopen ( filename, "r" ) ) == NULL )
+		if ( ( filehdl = fopen ( filename.toLocal8Bit().constData(), "r" ) ) == NULL )
 			std::cerr << "Can't open " << qPrintable ( filename ) << endl;
 		else {
 			//      file_raise( f, FALSE );
@@ -2674,7 +2674,7 @@ importWhereIsItXml::importWhereIsItXml ( GuiSlave * parent, QString filename, bo
 		filenumber = 0;
 		linecount = 0;
 
-		QXmlInputSource source ( f );
+		QXmlInputSource source ( &f );
 		QXmlSimpleReader reader;
 		reader.setContentHandler ( this );
 		reader.setErrorHandler ( this );

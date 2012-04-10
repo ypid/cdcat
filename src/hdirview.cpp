@@ -64,13 +64,6 @@ LNode::LNode ( QTreeWidget *parent, Node *dbnodep )
 	setChildIndicatorPolicy(QTreeWidgetItem::ShowIndicator);
 }
 
-void LNode::paintCell ( QPainter *p, const QColorGroup &cg, int column, int width, int align ) {
-	QColorGroup ocg ( cg );
-	ocg.setColor ( QColorGroup::Highlight, QColor ( 225, 225, 225 ) );
-	ocg.setColor ( QColorGroup::HighlightedText, QColor ( Qt::black ) );
-	//QTreeWidgetItem::paintCell ( p,ocg,column,width,align ); //FIXME
-}
-
 void LNode::setPixmap ( QPixmap *px ) {
 	pix = px;
 	setup();
@@ -396,7 +389,7 @@ void HDirectoryView::setDir ( Node *node ) {
 
 	if ( !s.isEmpty() ) {
 		/*Jump to...*/
-		QStringList lst ( QStringList::split ( "/", s ) );
+		QStringList lst = s.split ( "/" );
 		QTreeWidgetItemIterator it ( this );
 
 		QStringList::Iterator it2 = lst.begin();
@@ -409,6 +402,7 @@ void HDirectoryView::setDir ( Node *node ) {
 				++it;
 			}
 		}
+		
 		if ( ( *it ) ) {
 			setCurrentItem ( ( *it ) );
 			setAllColumnsShowFocus ( true );

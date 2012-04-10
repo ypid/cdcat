@@ -50,13 +50,13 @@ int  cshow = 1;
 char *abuff = NULL;
 
 HQToolButton::HQToolButton ( QWidget *parent )
-	: QToolButton ( parent, "Button" ) {
+	: QToolButton ( parent ) {
 	setMaximumSize ( 30, 30 );
 	setText ( QString::null );
 }
 
 void  HQToolButton::enterEvent ( QEvent * ) {
-	QApplication::setOverrideCursor ( Qt::arrowCursor );
+	QApplication::setOverrideCursor ( Qt::ArrowCursor );
 }
 
 void  HQToolButton::leaveEvent ( QEvent * ) {
@@ -64,9 +64,9 @@ void  HQToolButton::leaveEvent ( QEvent * ) {
 }
 
 CommentWidget::CommentWidget ( CdCatConfig *cc, QApplication *appl, QWidget *parent, const char *name, Qt::WFlags fl )
-	: QWidget ( parent, name, fl ) {
+	: QWidget ( parent, fl ) {
 	if ( !name )
-		setName ( "CommentWidget" );
+		setObjectName ( "CommentWidget" );
 	cconfig = cc;
 	app  = appl;
 	ox   = mx = 0;
@@ -79,24 +79,24 @@ CommentWidget::CommentWidget ( CdCatConfig *cc, QApplication *appl, QWidget *par
 	setMinimumSize ( 70, 70 );
 
 	ButtonContent = new HQToolButton ( this );
-	ButtonContent->setPixmap ( *get_t_showc_icon() );
+	ButtonContent->setIcon ( QIcon(*get_t_showc_icon() ));
 	ButtonContent->setGeometry ( 55, height() - 45, 30, 30 );
-	QToolTip::add ( ButtonContent, tr ( "Shows the content of the file." ) );
+	ButtonContent->setToolTip( tr ( "Shows the content of the file." ) );
 
 	ButtonEdit = new HQToolButton ( this );
-	ButtonEdit->setPixmap ( *get_t_comment_icon() );
+	ButtonEdit->setIcon ( QIcon(*get_t_comment_icon()) );
 	ButtonEdit->setGeometry ( 20, height() - 45, 30, 30 );
-	QToolTip::add ( ButtonEdit   , tr ( "Edit and refresh the actual comment page." ) );
+	ButtonEdit->setToolTip( tr ( "Edit and refresh the actual comment page." ) );
 
 //     ButtonCategory = new HQToolButton ( this );
-//     ButtonCategory->setPixmap ( *get_t_showc_icon() );
+//     ButtonCategory->setIcon ( QIcon(*get_t_showc_icon() ));
 //     ButtonCategory->setGeometry ( 120,height()-45,30,30 );
 //     QToolTip::add ( ButtonCategory   , tr ( "Show the actual category page." ) );
 
 	ButtonCategoryEdit = new HQToolButton ( this );
-	ButtonCategoryEdit->setPixmap ( *get_t_comment_icon() );
+	ButtonCategoryEdit->setIcon ( QIcon(*get_t_comment_icon()) );
 	ButtonCategoryEdit->setGeometry ( 85, height() - 45, 30, 30 );
-	QToolTip::add ( ButtonCategoryEdit   , tr ( "Edit and refresh the actual category page." ) );
+	ButtonCategoryEdit->setToolTip(tr ( "Edit and refresh the actual category page." ) );
 
 	connect ( ButtonEdit, SIGNAL ( clicked() ), this, SLOT ( editC() ) );
 //     connect ( ButtonCategory,SIGNAL ( clicked() ),this,SLOT ( showCategory()) );
@@ -117,7 +117,7 @@ void  CommentWidget::enterEvent ( QEvent * ) {
 }
 
 void  CommentWidget::leaveEvent ( QEvent * ) {
-	QApplication::setOverrideCursor ( Qt::arrowCursor );
+	QApplication::setOverrideCursor ( Qt::ArrowCursor );
 }
 
 void  CommentWidget::mouseMoveEvent ( QMouseEvent *me ) {
@@ -146,7 +146,7 @@ void CommentWidget::updateContents() {
 	//if(paintEventRunning)
 	//	return;
 	update_contents_running = true;
-	//QApplication::setOverrideCursor ( Qt::waitCursor );
+	//QApplication::setOverrideCursor ( Qt::WaitCursor );
 	contentsPixmapTmp = QPixmap( width(), height() );
 	//contentsPixmapTmp.resize(800, 2000);
 	contentsPixmapTmp.fill();
@@ -472,7 +472,7 @@ void CommentWidget::updateContents() {
 					fontwidth = mx+ 15 + valueoffset + 20;
 				w += pixelsHigh;
 				p.setPen ( *cconfig->comm_vtext );
-				textList = QStringList::split ( QRegExp ( "#|\n|\r\n" ), text, TRUE );
+				textList = text.split( QRegExp ( "#|\n|\r\n" ) );
 				for ( QStringList::Iterator it = textList.begin(); it != textList.end(); ++it ) {
 					int max_comment_len = 80;
 					int stringlen = ( *it ).size();
@@ -538,7 +538,7 @@ void CommentWidget::updateContents() {
 				w += pixelsHigh;
 				w++;
 				p.setPen ( *cconfig->comm_vtext );
-				textList = QStringList::split ( QRegExp ( "#|\n|\r\n" ), text, TRUE );
+				textList = text.split ( QRegExp ( "#|\n|\r\n" ) );
 				for ( QStringList::Iterator it = textList.begin(); it != textList.end(); ++it ) {
 					int max_category_len = 80;
 					int stringlen = ( *it ).size();
@@ -707,7 +707,7 @@ void CommentWidget::updateContents() {
 								fontwidth = mx+ 15 + valueoffset + 20;
 						w += pixelsHigh;
 						p.setPen ( *cconfig->comm_vtext );
-						textList = QStringList::split ( QRegExp ( "#|\n|\r\n" ), info, TRUE );
+						textList = info.split ( QRegExp ( "#|\n|\r\n" ) );
 						for ( QStringList::Iterator it = textList.begin(); it != textList.end(); ++it ) {
 							int max_fileinfo_len = 80;
 							int stringlen = ( *it ).size();
@@ -827,7 +827,7 @@ void CommentWidget::updateContents() {
 	w+=5;
 	//w += pixelsHigh;
 	
-	contentsPixmapTmp.resize(fontwidth, w);
+	contentsPixmapTmp = contentsPixmapTmp.copy(0, 0, fontwidth, w);
 	p.end();
 	
 	if( !need_editc_button)
@@ -954,37 +954,38 @@ int CommentWidget::showCategory ( void ) {
 /****************************************************************************************/
 
 commentEdit::commentEdit ( QString cc, CdCatConfig *cconfig, QWidget *parent, const char *name, bool modal, bool isCommentEdit, Qt::WFlags fl )
-	: QDialog ( parent, name, modal, fl )
+	: QDialog ( parent, fl )
 
 {
+	setModal(modal);
 	OK = 0;
 	this->isCommentEdit = isCommentEdit;
 	this->cconfig = cconfig;
 	std::cout << "commentEdit cconfig " << this->cconfig << std::endl;
 	if ( !name )
-		setName ( "commentEdit" );
-	setIcon ( *get_t_comment_icon() );
+		setObjectName ( "commentEdit" );
+	setWindowIcon ( *get_t_comment_icon() );
 
 	setBaseSize ( QSize ( 300, 150 ) );
 	setSizeGripEnabled ( TRUE );
-	CommentEditBaseLayout = new QGridLayout ( this, 1, 1, 11, 6, "CommentEditBaseLayout" );
+	CommentEditBaseLayout = new QGridLayout ( this );
 
-	layout5 = new QVBoxLayout ( 0, 0, 6, "layout5" );
+	layout5 = new QVBoxLayout (this);
 
-	teComm = new QTextEdit ( this, "teComm" );
+	teComm = new QTextEdit ( this );
 	layout5->addWidget ( teComm );
 
-	layout4 = new QHBoxLayout ( 0, 0, 6, "layout4" );
+	layout4 = new QHBoxLayout ( this );
 	QSpacerItem *spacer = new QSpacerItem ( 130, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	layout4->addItem ( spacer );
 
-	buttonOk = new QPushButton ( this, "buttonOk" );
+	buttonOk = new QPushButton ( this );
 	buttonOk->setMinimumSize ( QSize ( 80, 0 ) );
 	buttonOk->setAutoDefault ( TRUE );
 	buttonOk->setDefault ( TRUE );
 	layout4->addWidget ( buttonOk );
 
-	buttonCancel = new QPushButton ( this, "buttonCancel" );
+	buttonCancel = new QPushButton ( this );
 	buttonCancel->setMinimumSize ( QSize ( 80, 0 ) );
 	buttonCancel->setAutoDefault ( TRUE );
 	layout4->addWidget ( buttonCancel );
@@ -1026,16 +1027,16 @@ commentEdit::~commentEdit() {
  */
 void commentEdit::languageChange() {
 	if ( isCommentEdit )
-		setCaption ( tr ( "Edit comment of" ) );
+		setWindowTitle ( tr ( "Edit comment of" ) );
 	else
-		setCaption ( tr ( "Edit category of" ) );
+		setWindowTitle ( tr ( "Edit category of" ) );
 	buttonCancel->setText ( tr ( "Cancel" ) );
 	buttonOk->setText ( tr ( "OK" ) );
 }
 
 int commentEdit::pushOk ( void ) {
 	OK = 1;
-	newc = teComm->text();
+	newc = teComm->toPlainText();
 	close();
 	return 0;
 }
@@ -1099,7 +1100,7 @@ int editNodeComment ( Node *node, QWidget *parent, CdCatConfig *cconfig, bool is
 	}
 
 	commentEdit ce( o, cconfig, parent, "commentEdit", true, isCommentEdit );
-	ce.setCaption ( ce.caption() + " " + newCaption );
+	ce.setWindowTitle ( ce.windowTitle() + " " + newCaption );
 	ce.teComm->setText ( o );
 	ce.exec();
 	if ( ce.OK == 0 )

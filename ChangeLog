@@ -5,6 +5,9 @@
 	- directory ported to qtreewidgetitem
 	- qt3 compat includes removed
 	- indicator and indention on results listview removed
+	- qt3support members rewritten
+	- swapped context menu call fixed
+	- allow clear result listview if only status text in it
 
 09. Apr 2012 Christoph Thielecke <crissi99@gmx.de>
 	- hqlistview ported to qtreewidget

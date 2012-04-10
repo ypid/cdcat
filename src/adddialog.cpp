@@ -51,118 +51,122 @@
 #include "selreadable.h"
 
 addDialog::addDialog ( GuiSlave *c, QWidget* parent, const char* name, bool modal, Qt::WFlags fl )
-	: QDialog ( parent, name, modal, fl ) {
+	: QDialog ( parent, fl ) {
 	int i;
+	setModal(modal);
 
 	caller = c;
 	if ( !name )
-		setName ( "addDialog" );
-	setIcon ( *get_t_add_icon() );
+		setObjectName ( "addDialog" );
+	setWindowIcon ( *get_t_add_icon() );
 
 	setSizeGripEnabled ( TRUE );
-	addDialogLayout = new QGridLayout ( this, 1, 1, 11, 6, "addDialogLayout" );
+	addDialogLayout = new QGridLayout ( this );
 
-	layout10 = new QVBoxLayout ( 0, 0, 6, "layout10" );
+	layout10 = new QVBoxLayout ( this );
 
-	layout9 = new QHBoxLayout ( 0, 0, 6, "layout9" );
+	layout9 = new QHBoxLayout ( this );
 
-	layout8 = new QVBoxLayout ( 0, 0, 6, "layout8" );
+	layout8 = new QVBoxLayout ( this );
 
-	textLabel6 = new QLabel ( this, "textLabel6" );
+	textLabel6 = new QLabel ( this );
 	layout8->addWidget ( textLabel6 );
 
-	dirView = new DirectoryView ( this, "mydirview" );
+	dirView = new DirectoryView ( this );
 	dirView->resize ( 190, 210 );
 	dirView->setGeometry ( QRect ( 10, 40, 190, 210 ) );
-	dirView->setCaption ( tr ( "Directory Browser" ) );
+	dirView->setWindowTitle ( tr ( "Directory Browser" ) );
 
 	layout8->addWidget ( dirView );
 
 	layout9->addLayout ( layout8 );
 
-	layout7 = new QVBoxLayout ( 0, 0, 6, "layout7" );
+	layout7 = new QVBoxLayout ( this );
 
-	textLabel1 = new QLabel ( this, "textLabel1" );
+	textLabel1 = new QLabel ( this );
 	layout7->addWidget ( textLabel1 );
 
 #ifndef _WIN32
-	cbAutoDetectAtMount = new QCheckBox ( this, "cbAutoDetectAtMount" );
+	cbAutoDetectAtMount = new QCheckBox ( this );
 	layout7->addWidget ( cbAutoDetectAtMount );
 #endif
 
-	leName = new QLineEdit ( this, "leName" );
+	leName = new QLineEdit ( this );
 	textLabel1->setBuddy ( leName );
 	layout7->addWidget ( leName );
 
-	layout2 = new QHBoxLayout ( 0, 0, 6, "layout2" );
+	layout2 = new QHBoxLayout (this );
 
-	textLabel2 = new QLabel ( this, "textLabel2" );
+	textLabel2 = new QLabel ( this );
 	layout2->addWidget ( textLabel2 );
 
-	sbNumber = new QSpinBox ( 0, 50000, 1, this, "sbNumber" );
+	sbNumber = new QSpinBox ( this );
+	sbNumber->setMinimum(0);
+	sbNumber->setMaximum(50000);
+	sbNumber->setSingleStep(1);
 	layout2->addWidget ( sbNumber );
 	textLabel2->setBuddy ( sbNumber );
 	layout7->addLayout ( layout2 );
 
-	layout3 = new QHBoxLayout ( 0, 0, 6, "layout3" );
+	layout3 = new QHBoxLayout ( this );
 
-	textLabel4 = new QLabel ( this, "textLabel4" );
+	textLabel4 = new QLabel ( this );
 	textLabel4->setBuddy ( textLabel4 );
 	layout3->addWidget ( textLabel4 );
 
-	cbType = new QComboBox ( FALSE, this, "cbType" );
+	cbType = new QComboBox ( this );
 	layout3->addWidget ( cbType );
 	layout7->addLayout ( layout3 );
 
-	layout4 = new QHBoxLayout ( 0, 0, 6, "layout4" );
+	layout4 = new QHBoxLayout ( this );
 
-	textLabel5 = new QLabel ( this, "textLabel5" );
+	textLabel5 = new QLabel ( this );
 	layout4->addWidget ( textLabel5 );
 
-	leOwner = new QLineEdit ( this, "leOwner" );
+	leOwner = new QLineEdit ( this );
 	layout4->addWidget ( leOwner );
 	textLabel5->setBuddy ( leOwner );
 	layout7->addLayout ( layout4 );
 
-	layout11 = new QHBoxLayout ( 0, 0, 6, "layout11" );
+	layout11 = new QHBoxLayout ( this );
 
-	textLabelCategory = new QLabel ( this, "textLabelCategory" );
+	textLabelCategory = new QLabel ( this );
 	layout11->addWidget ( textLabelCategory );
 
-	leCategory = new QLineEdit ( this, "leCategory" );
+	leCategory = new QLineEdit ( this );
 	layout11->addWidget ( leCategory );
 	textLabelCategory->setBuddy ( leCategory );
 	layout7->addLayout ( layout11 );
 
-	layout5 = new QGridLayout ( 0, 1, 1, 0, 6, "layout5" );
+	layout5 = new QGridLayout ( this );
 
-	textLabel3 = new QLabel ( this, "textLabel3" );
+	textLabel3 = new QLabel ( this );
 	textLabel3->setBuddy ( textLabel3 );
 
 	layout5->addWidget ( textLabel3, 0, 0 );
 
-	teComm = new QTextEdit ( this, "teComm" );
+	teComm = new QTextEdit ( this );
 
-	layout5->addMultiCellWidget ( teComm, 0, 1, 1, 1 );
+	layout5->addWidget ( teComm, 0, 1, 1, 1 );
 	QSpacerItem* spacer = new QSpacerItem ( 20, 60, QSizePolicy::Minimum, QSizePolicy::Expanding );
 	layout5->addItem ( spacer, 1, 0 );
 	layout7->addLayout ( layout5 );
 
-	buttonPli = new QPushButton ( this, "buttonReadable" );
+	buttonPli = new QPushButton ( this);
 	layout7->addWidget ( buttonPli );
 
 	layout9->addLayout ( layout7 );
 	layout10->addLayout ( layout9 );
 
-	layout1 = new QHBoxLayout ( 0, 0, 6, "layout1" );
+	layout1 = new QHBoxLayout ( this );
 	QSpacerItem* spacer_2 = new QSpacerItem ( 90, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	layout1->addItem ( spacer_2 );
 
-	buttonOK = new QPushButton ( this, "buttonOk" );
+	buttonOK = new QPushButton ( this );
 	buttonOK->setMinimumWidth ( 100 );
 	layout1->addWidget ( buttonOK );
 
-	buttonCancel = new QPushButton ( this, "buttonCancel" );
+	buttonCancel = new QPushButton ( this );
 	buttonCancel->setMinimumWidth ( 100 );
 	layout1->addWidget ( buttonCancel );
 	QSpacerItem* spacer_3 = new QSpacerItem ( 110, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
@@ -201,7 +205,7 @@ addDialog::addDialog ( GuiSlave *c, QWidget* parent, const char* name, bool moda
 	resize ( QSize ( ( ( CdCatMainWidget * ) parent )->cconfig->addWidth, ( ( CdCatMainWidget * ) parent )->cconfig->addHeight ).expandedTo ( minimumSizeHint() ) );
 	move ( ( ( CdCatMainWidget * ) parent )->cconfig->addX, ( ( CdCatMainWidget * ) parent )->cconfig->addY );
 
-	if ( cbType->currentItem() + 1 == CD || cbType->currentItem() + 1 == DVD ) {
+	if ( cbType->currentIndex() + 1 == CD || cbType->currentIndex() + 1 == DVD ) {
 		dirView->setDir ( ( ( CdCatMainWidget * ) parent )->cconfig->cdrompath );
 		dirView->sDir = ( ( CdCatMainWidget * ) parent )->cconfig->cdrompath;
 		//    setMediaName ( ( ( CdCatMainWidget * ) parent )->cconfig->cdrompath );
@@ -234,7 +238,7 @@ addDialog::~addDialog() {
  */
 
 void addDialog::languageChange() {
-	setCaption ( tr ( "Add Media to the Database" ) );
+	buttonOK->setText ( tr ( "Add Media to the Database" ) );
 	textLabel6->setText ( tr ( "Choose a directory to scan:" ) );
 	textLabel1->setText ( tr ( "Media &Name:" ) );
 	textLabel2->setText ( tr ( "S&erial number of Media:" ) );
@@ -249,13 +253,13 @@ void addDialog::languageChange() {
 	cbAutoDetectAtMount->setText ( tr ( "detect CDROM/DVD med&ia name after mount" ) );
 #endif
 	cbType->clear();
-	cbType->insertItem ( *get_m_cd_icon(), tr ( "CD" ) );
-	cbType->insertItem ( *get_m_dvd_icon(), tr ( "DVD" ) );
-	cbType->insertItem ( *get_m_hdd_icon(), tr ( "HardDisc" ) );
-	cbType->insertItem ( *get_m_floppy_icon(), tr ( "Floppy" ) );
-	cbType->insertItem ( *get_m_net_icon(), tr ( "NetworkPlace" ) );
-	cbType->insertItem ( *get_m_flash_icon(), tr ( "FlashDrive" ) );
-	cbType->insertItem ( *get_m_other_icon(), tr ( "OtherDevice" ) );
+	cbType->insertItem ( 0, QIcon(*get_m_cd_icon()), tr ( "CD" ) );
+	cbType->insertItem ( 0, QIcon(*get_m_dvd_icon()), tr ( "DVD" ) );
+	cbType->insertItem ( 0, QIcon(*get_m_hdd_icon()), tr ( "HardDisc" ) );
+	cbType->insertItem ( 0, QIcon(*get_m_floppy_icon()), tr ( "Floppy" ) );
+	cbType->insertItem ( 0, QIcon(*get_m_net_icon()), tr ( "NetworkPlace" ) );
+	cbType->insertItem ( 0, QIcon(*get_m_flash_icon()), tr ( "FlashDrive" ) );
+	cbType->insertItem ( 0, QIcon(*get_m_other_icon()), tr ( "OtherDevice" ) );
 //  cbType->setCurrentText(tr( "CD" )); // default
 }
 
@@ -270,13 +274,13 @@ int addDialog::setMediaName ( const QString & ds ) {
 	QDir confdir ( caller->mainw->cconfig->cdrompath );
 	QDir selected ( ds );
 #endif
-	QApplication::setOverrideCursor ( Qt::waitCursor );
+	QApplication::setOverrideCursor ( Qt::WaitCursor );
 
-	if ( cbType->currentItem() + 1 == CD  || cbType->currentItem() + 1 == DVD )  {
+	if ( cbType->currentIndex() + 1 == CD  || cbType->currentIndex() + 1 == DVD )  {
 		//std::cerr << "setMediaName: mediatype is cd/dvd"<< std::endl;
 
 		if ( confdir  == selected ) {
-			tm = getCDName ( caller->mainw->cconfig->cdrompath );
+			tm = getCDName ( caller->mainw->cconfig->cdrompath.toLocal8Bit().constData());
 		}
 		if ( confdir  == selected && ! ( tm.isEmpty() ) ) {
 
@@ -313,10 +317,10 @@ int addDialog::setMediaName ( const QString & ds ) {
 #ifndef _WIN32
 
 				// also set the media type to DVD if needed
-				if ( diskIsDVD ( caller->mainw->cconfig->cdrompath ) )
-					cbType->setCurrentItem ( DVD - 1 );
+				if ( diskIsDVD ( caller->mainw->cconfig->cdrompath.toLocal8Bit().constData() ) )
+					cbType->setCurrentIndex ( DVD - 1 );
 				else
-					cbType->setCurrentItem ( CD - 1 );
+					cbType->setCurrentIndex( CD - 1 );
 #endif
 				volumename = 1;
 			}
@@ -346,7 +350,7 @@ int addDialog::setMediaName ( const QString & ds ) {
 }
 
 int addDialog::bOk ( void ) {
-	if ( ( leName->text() ).isEmpty() && ! ( cbType->currentItem() + 1 == CD || cbType->currentItem() + 1 == DVD ) ) {
+	if ( ( leName->text() ).isEmpty() && ! ( cbType->currentIndex() + 1 == CD || cbType->currentIndex() + 1 == DVD ) ) {
 		QMessageBox::warning ( ( QWidget * ) this, tr ( "Error:" ), tr ( "You must be fill the \"Name\" field!" ) );
 		return 0;
 	}
@@ -386,11 +390,11 @@ int addDialog::bOk ( void ) {
 	}
 
 	OK = 1;
-	type   = cbType->currentItem() + 1;
+	type   = cbType->currentIndex() + 1;
 	serial = sbNumber->value();
 	dName  = leName->text();
 	dOwner = leOwner->text();
-	dComm  = teComm->text();
+	dComm  = teComm->toPlainText();
 	dCategory = leCategory->text();
 	dDir   = dirView->sDir;
 	if(dDir.rightRef(1).toString() == "/")
@@ -426,9 +430,9 @@ void addDialog::autoDetectAtMountToggled() {
 }
 
 void addDialog::cbTypeToggeled ( int ) {
-	if ( caller->mainw->cconfig->lastMediaType != cbType->currentItem() + 1 ) {
+	if ( caller->mainw->cconfig->lastMediaType != cbType->currentIndex() + 1 ) {
 // 	std::cerr << "mediatype changed from " << caller->mainw->cconfig->lastMediaType << " to " << cbType->currentItem() +1 << std::endl;
-		caller->mainw->cconfig->lastMediaType = cbType->currentItem() + 1;
+		caller->mainw->cconfig->lastMediaType = cbType->currentIndex() + 1;
 		caller->mainw->cconfig->writeConfig();
 	}
 }
@@ -436,13 +440,14 @@ void addDialog::cbTypeToggeled ( int ) {
 
 /**************************************************************************/
 
-PWw::PWw ( QWidget *parent, QApplication *qapp, bool showProgress, long long int steps, QString progresstext, bool showCancel ) : QWidget ( parent, "PleaseWaitBox",
+PWw::PWw ( QWidget *parent, QApplication *qapp, bool showProgress, long long int steps, QString progresstext, bool showCancel ) : QWidget ( parent
 #ifdef QT_NO_COMPAT
-	                Qt::WType_Dialog | Qt::WStyle_Customize | Qt::WStyle_NoBorder | Qt::WShowModal
+	                ,Qt::WType_Dialog /*| Qt::FramelessWindowHint*/
 #else
-	                Qt::WType_Modal  | Qt::WStyle_Customize | Qt::WStyle_NoBorder
+	                /*, Qt::FramelessWindowHint*/
 #endif
-	                                                                                                                                          ) {
+	               
+) {
 	int i;
 	QFont ownf;
 	refreshTime = 250;
@@ -506,9 +511,10 @@ PWw::PWw ( QWidget *parent, QApplication *qapp, bool showProgress, long long int
 
 	setMinimumSize ( 10, myheight );
 	setMaximumSize ( mywidth, myheight );
-
-	setGeometry ( parent->x() + ( ( parent->width() - mywidth ) / 2 ),
-	              parent->y() + ( ( parent->height() - myheight ) / 2 ),
+	QPoint p(parent->x(), parent->y());
+	p = mapFromGlobal(p);
+	setGeometry ( p.x() + ( ( parent->width() - mywidth ) / 2 ),
+	              p.y() + ( ( parent->height() - myheight ) / 2 ),
 	              mywidth, myheight );
 
 	begintext = 5;
@@ -628,7 +634,9 @@ void PWw::step ( long long int progress_step ) {
 
 void PWw::paintEvent ( QPaintEvent * ) {
 	QPainter p ( this );
-	p.setClipping ( FALSE );
+	p.setClipping ( true );
+	p.fillRect(QRect(0, 0, width(), height()), palette().background());
+	
 	int borderless_width = mywidth - 4;
 #if (QT_VERSION >= QT_VERSION_CHECK(4, 6, 0)) // needs Qt 4.6.0 or better
 	p.beginNativePainting();
@@ -704,33 +712,35 @@ void progress ( PWw *p, long long int progress_step ) {
 /**************************************************************************/
 
 AddLnk::AddLnk ( GuiSlave *c, QWidget *parent )
-	: QDialog ( parent, "addlnkdialog", true ) {
+	: QDialog ( parent) {
+		
+	setModal(true);
 
 	caller = c;
-	setName ( "addlnkdialog" );
-	setIcon ( *get_p_icon_big() );
+	setObjectName ( "addlnkdialog" );
+	setWindowIcon ( *get_p_icon_big() );
 
 	setSizeGripEnabled ( TRUE );
 
-	vbox  = new QVBoxLayout ( this, 5, 5 );
+	vbox  = new QVBoxLayout ( this );
 
 
-	hbox1 = new QHBoxLayout ( 0, 5, 5 );
-	hbox2 = new QHBoxLayout ( 0, 5, 5 );
+	hbox1 = new QHBoxLayout ( this );
+	hbox2 = new QHBoxLayout ( this );
 
-	label = new QLabel ( this, "textLabel6" );
+	label = new QLabel ( this );
 
-	fname = new QLineEdit ( this, "FnameLineedit" );
-	bselect = new QPushButton ( this, "SelectFname" );
+	fname = new QLineEdit ( this );
+	bselect = new QPushButton ( this );
 	bselect->setText ( "..." );
 	bselect->setMaximumWidth ( 30 );
 
 	hbox1->addWidget ( fname );
 	hbox1->addWidget ( bselect );
 
-	buttonOk = new QPushButton ( this, "bok" );
+	buttonOk = new QPushButton ( this );
 	buttonOk->setMinimumWidth ( 80 );
-	buttonCancel = new QPushButton ( this, "bcan" );
+	buttonCancel = new QPushButton ( this );
 	buttonCancel->setMinimumWidth ( 80 );
 
 	hbox2->addStretch();
@@ -753,7 +763,7 @@ AddLnk::AddLnk ( GuiSlave *c, QWidget *parent )
 
 
 void AddLnk::languageChange() {
-	setCaption ( tr ( "Add a \"Catalog Link\" to the database" ) );
+	setWindowTitle ( tr ( "Add a \"Catalog Link\" to the database" ) );
 	label->setText ( tr ( "Location of the .hcf file:" ) );
 
 	buttonCancel->setText ( tr ( "Cancel" ) );

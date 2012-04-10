@@ -62,15 +62,15 @@
 using namespace std;
 
 findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindDuplicates, bool modal, Qt::WFlags fl )
-	: QDialog ( parent, name, modal, fl ) {
+	: QDialog ( parent, fl ) {
 	if ( !name ) {
 		if ( isFindDuplicates ) {
 		}
 		else {
-			setName ( "findDialog" );
+			setObjectName ( "findDialog" );
 		}
 	}
-	setIcon ( *get_t_find_icon() );
+	setWindowIcon ( *get_t_find_icon() );
 	setModal ( modal );
 	mainw = parent;
 	use_unsharpsearch = false;
@@ -78,7 +78,7 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 	
 	setSizeGripEnabled ( TRUE );
 	if ( !isFindDuplicates ) {
-		FindDialogBaseLayout = new QGridLayout ( this, 0, 1, 11, 6, "FindDialogBaseLayout" );
+		FindDialogBaseLayout = new QGridLayout ( this );
 		
 		//    QSpacerItem* spacer = new QSpacerItem( 210, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 		QSpacerItem* spacer_2 = new QSpacerItem ( 240, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
@@ -94,84 +94,84 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		QSpacerItem* spacer_11 = new QSpacerItem ( 200, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 		QSpacerItem* spacer_12 = new QSpacerItem ( 200, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 		
-		layout40 = new QVBoxLayout ( this, 0, 6, "layout40" );
-		layout39 = new QGridLayout ( this, 1, 1, 0, 6, "layout39" );
-		findLineLayout = new QHBoxLayout ( this, 0, 6, "findLineLayout" );
-		layout36 = new QGridLayout ( this, 0, 1, 0, 6, "layout36" );
-		layout37 = new QGridLayout ( this, 0, 1, 0, 6, "layout37" );
-		layout31 = new QVBoxLayout ( this, 0, 6, "layout31" );
-		layout17 = new QHBoxLayout ( this, 0, 6, "layout17" );
-		layout15 = new QGridLayout ( this, 1, 1, 0, 6, "layout15" );
-		layout30 = new QHBoxLayout ( this, 0, 6, "layout30" );
-		layout16 = new QGridLayout ( this, 1, 1, 0, 6, "layout16" );
+		layout40 = new QVBoxLayout ( this );
+		layout39 = new QGridLayout ( this );
+		findLineLayout = new QHBoxLayout ( this );
+		layout36 = new QGridLayout ( this );
+		layout37 = new QGridLayout ( this );
+		layout31 = new QVBoxLayout ( this );
+		layout17 = new QHBoxLayout ( this );
+		layout15 = new QGridLayout ( this );
+		layout30 = new QHBoxLayout ( this );
+		layout16 = new QGridLayout ( this );
 		//     layout17 = new QGridLayout ( this, 1, 1, 0, 6, "layout17" );
-		layout_size_min = new QHBoxLayout ( this, 0, 2, "layout_size_min" );
-		layout_size_max = new QHBoxLayout ( this, 0, 2, "layout_size_max" );
-		layout_find_in_archive = new QHBoxLayout ( this, 0, 2, "layout_find_in_archive" );
+		layout_size_min = new QHBoxLayout ( this );
+		layout_size_max = new QHBoxLayout ( this );
+		layout_find_in_archive = new QHBoxLayout ( this );
 		
-		leText = new QLineEdit ( this, "leText" );
-		leCategory = new QLineEdit ( this, "leCategory" );
+		leText = new QLineEdit ( this );
+		leCategory = new QLineEdit ( this );
 		
 		deDateStart = new QDateTimeEdit ( QDateTime ( QDate ( 1, 1, 1900 ) ) , this );
 		deDateEnd = new QDateTimeEdit ( QDateTime ( QDate().currentDate() ), this );
 		
-		cbCasesens = new QCheckBox ( this, "cbCasesens" );
-		cbEasy = new QCheckBox ( this, "cbEasy" );
+		cbCasesens = new QCheckBox ( this );
+		cbEasy = new QCheckBox ( this );
 		
-		cbKeepSearchResult = new QCheckBox ( this, "cbKeepSearchResult" );
+		cbKeepSearchResult = new QCheckBox ( this );
 		
-		cbFilename = new QCheckBox ( this, "cbFilename" );
-		cbDirname  = new QCheckBox ( this, "cbDirname" );
-		cbComment  = new QCheckBox ( this, "cbComment" );
-		cbCategory  = new QCheckBox ( this, "cbCategory" );
-		cbContent  = new QCheckBox ( this, "cbContent" );
+		cbFilename = new QCheckBox ( this );
+		cbDirname  = new QCheckBox ( this );
+		cbComment  = new QCheckBox ( this );
+		cbCategory  = new QCheckBox ( this );
+		cbContent  = new QCheckBox ( this );
 		
-		cbArtist = new QCheckBox ( this, "cbArtist" );
-		cbTitle = new QCheckBox ( this, "cbTitle" );
-		cbAlbum = new QCheckBox ( this, "cbAlbum" );
-		cbTcomm = new QCheckBox ( this, "cbTcomm" );
-		cbDateStart = new QCheckBox ( this, "cbDateStart" );
-		cbDateEnd = new QCheckBox ( this, "cbDateEnd" );
-		cbSizeMin = new QCheckBox ( this, "cbSizeMin" );
-		cbSizeMax = new QCheckBox ( this, "cbSizeMax" );
-		cbUnsharpSearch = new QCheckBox ( this, "cbUnsharpSearch" );
-		cbFindInArchive = new QCheckBox ( this, "cbFindInArchive" );
+		cbArtist = new QCheckBox ( this );
+		cbTitle = new QCheckBox ( this );
+		cbAlbum = new QCheckBox ( this );
+		cbTcomm = new QCheckBox ( this );
+		cbDateStart = new QCheckBox ( this );
+		cbDateEnd = new QCheckBox ( this );
+		cbSizeMin = new QCheckBox ( this );
+		cbSizeMax = new QCheckBox ( this );
+		cbUnsharpSearch = new QCheckBox ( this );
+		cbFindInArchive = new QCheckBox ( this );
 		
-		cbOwner = new QComboBox ( FALSE, this, "cbOwner" );
+		cbOwner = new QComboBox ( this );
 		cbOwner->setMinimumSize ( QSize ( 0, 0 ) );
 		
-		cbSin = new QComboBox ( FALSE, this, "cbSin" );
+		cbSin = new QComboBox ( this );
 		
-		cbSizeUnitMin = new QComboBox ( false, this, "cbSizeUnitMin" );
+		cbSizeUnitMin = new QComboBox ( this );
 		cbSizeUnitMin->addItem ( tr ( "Byte" ) );
 		cbSizeUnitMin->addItem ( tr ( "KiB" ) );
 		cbSizeUnitMin->addItem ( tr ( "MiB" ) );
 		cbSizeUnitMin->addItem ( tr ( "GiB" ) );
 		cbSizeUnitMin->addItem ( tr ( "TiB" ) );
 		
-		cbSizeUnitMax = new QComboBox ( false, this, "cbSizeUnitMax" );
+		cbSizeUnitMax = new QComboBox ( this );
 		cbSizeUnitMax->addItem ( tr ( "Byte" ) );
 		cbSizeUnitMax->addItem ( tr ( "KiB" ) );
 		cbSizeUnitMax->addItem ( tr ( "MiB" ) );
 		cbSizeUnitMax->addItem ( tr ( "GiB" ) );
 		cbSizeUnitMax->addItem ( tr ( "TiB" ) );
 		
-		spSizeMin = new QSpinBox ( this, "spSizeMin" );
+		spSizeMin = new QSpinBox ( this );
 		spSizeMin->setMinimum ( 1 );
 		spSizeMin->setMaximum ( 10000000 );
 		
-		spSizeMax = new QSpinBox ( this, "spSizeMax" );
+		spSizeMax = new QSpinBox ( this );
 		spSizeMax->setMinimum ( 1 );
 		spSizeMax->setMaximum ( 10000000 );
 		
-		buttonClearSearchResult = new QPushButton ( this, "buttonClearSearchResult" );
+		buttonClearSearchResult = new QPushButton ( this );
 		
-		buttonOk = new QPushButton ( this, "buttonOk" );
+		buttonOk = new QPushButton ( this );
 		buttonOk->setAutoDefault ( TRUE );
 		buttonOk->setDefault ( TRUE );
 		buttonOk->setMinimumWidth ( 80 );
 		
-		buttonCancel = new QPushButton ( this, "buttonCancel" );
+		buttonCancel = new QPushButton ( this );
 		buttonCancel->setAutoDefault ( TRUE );
 		buttonCancel->setMinimumWidth ( 80 );
 		
@@ -198,17 +198,17 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		
 		//resultsl->setColumnAlignment ( 2, Qt::AlignRight ); // FIXME
 		
-		buttonClose = new QPushButton ( this, "buttonClose" );
-		buttonPrintResult = new QPushButton ( this, "buttonPrintResult" );
-		buttonExportResult = new QPushButton ( this, "buttonExportResult" );
+		buttonClose = new QPushButton ( this );
+		buttonPrintResult = new QPushButton ( this );
+		buttonExportResult = new QPushButton ( this );
 		
-		findTextLabel = new QLabel ( this, "findTextLabel" );
-		textLabel1 = new QLabel ( this, "textLabel1" );
-		textLabel2 = new QLabel ( this, "textLabel2" );
-		textLabel5 = new QLabel ( this, "textLabel5" );
-		textLabel6 = new QLabel ( this, "textLabel6" );
-		textLabel7 = new QLabel ( this, "textLabel7" );
-		textLabelFindInArchive = new QLabel ( this, "textLabelFindInArchive" );
+		findTextLabel = new QLabel ( this );
+		textLabel1 = new QLabel ( this );
+		textLabel2 = new QLabel ( this );
+		textLabel5 = new QLabel ( this );
+		textLabel6 = new QLabel ( this );
+		textLabel7 = new QLabel ( this );
+		textLabelFindInArchive = new QLabel ( this );
 		
 		/* saved ops: */
 		
@@ -260,7 +260,7 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		layout37->addWidget ( cbSin, 2, 1 );
 		layout37->addWidget ( textLabel1, 2, 0 );
 		layout37->addWidget ( textLabel2, 3, 0 );
-		layout37->addMultiCell ( spacer_3, 1, 1, 0, 1 );
+		layout37->addItem ( spacer_3, 1, 1, 0, 1 );
 		
 		layout_size_min->addWidget ( spSizeMin );
 		layout_size_min->addWidget ( cbSizeUnitMin );
@@ -380,8 +380,8 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 	}
 	else {
 		if ( !name )
-			setName ( "findDuplicatesDialog" );
-		setIcon ( *get_t_find_icon() );
+			setObjectName ( "findDuplicatesDialog" );
+		setWindowIcon ( *get_t_find_icon() );
 		
 		mainw = parent;
 		searchFilepath = "";
@@ -389,7 +389,7 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 			searchFilepath = mainw->guis->standON->getFullPath();
 		
 		setSizeGripEnabled ( TRUE );
-		FindDialogBaseLayout = new QGridLayout ( this, 1, 1, 11, 6, "FindDialogBaseLayout" );
+		FindDialogBaseLayout = new QGridLayout ( this );
 		
 		QSpacerItem* spacer_4 = new QSpacerItem ( 200, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 		QSpacerItem* spacer_5 = new QSpacerItem ( 36, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
@@ -401,26 +401,26 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		QSpacerItem* spacer_11 = new QSpacerItem ( 200, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 		QSpacerItem* spacer_12 = new QSpacerItem ( 200, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 		
-		layout40 = new QVBoxLayout ( this, 0, 6, "layout40" );
-		layout39 = new QGridLayout ( this, 0, 1, 0, 6, "layout39" );
+		layout40 = new QVBoxLayout ( this );
+		layout39 = new QGridLayout ( this );
 		//layout36 = new QGridLayout ( this, 1, 1, 0, 6, "layout36" );
 		//layout37 = new QGridLayout ( this, 1, 1, 0, 6, "layout37" );
-		layout31 = new QVBoxLayout ( this, 0, 6, "layout31" );
-		layout17 = new QHBoxLayout ( this, 0, 6, "layout17" );
-		layout15 = new QGridLayout ( this, 1, 1, 0, 6, "layout15" );
-		layout30 = new QHBoxLayout ( this, 0, 6, "layout30" );
-		layout16 = new QGridLayout ( this, 1, 1, 0, 6, "layout16" );
+		layout31 = new QVBoxLayout ( this );
+		layout17 = new QHBoxLayout ( this );
+		layout15 = new QGridLayout ( this );
+		layout30 = new QHBoxLayout ( this );
+		layout16 = new QGridLayout ( this );
 		
-		buttonOk = new QPushButton ( this, "buttonOk" );
+		buttonOk = new QPushButton ( this );
 		buttonOk->setAutoDefault ( TRUE );
 		buttonOk->setDefault ( TRUE );
 		buttonOk->setMinimumWidth ( 80 );
 		
-		buttonCancel = new QPushButton ( this, "buttonCancel" );
+		buttonCancel = new QPushButton ( this );
 		buttonCancel->setAutoDefault ( TRUE );
 		buttonCancel->setMinimumWidth ( 80 );
 		
-		textLabel5 = new QLabel ( this, "textLabel5" );
+		textLabel5 = new QLabel ( this );
 		
 		resultsl = new QTreeWidget ( this );
 		QStringList labels;
@@ -445,7 +445,7 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		resultsl->header()->setResizeMode(5,QHeaderView::Stretch);
 		resultsl->header()->setResizeMode(6,QHeaderView::Stretch);
 		
-		buttonClose = new QPushButton ( this, "buttonClose" );
+		buttonClose = new QPushButton ( this );
 		buttonClearSearchResult = NULL;
 		
 		layout30->addItem ( spacer_7 );
@@ -499,7 +499,7 @@ findDialog::~findDialog() {
 /***************************************************************************/
 void findDialog::languageChange() {
 	if ( isFindDuplicates ) {
-		setCaption ( tr ( "Search for duplicates in the database..." ) );
+		setWindowTitle ( tr ( "Search for duplicates in the database..." ) );
 		QStringList labels;
 		labels.append ( tr ( "Name" ) );
 		labels.append ( tr ( "Type" ) );
@@ -514,11 +514,11 @@ void findDialog::languageChange() {
 		
 		buttonOk->setText ( tr ( "&Start search" ) );
 #ifndef _WIN32
-		buttonOk->setAccel ( QKeySequence ( QString::null ) );
+// 		buttonOk->setAccel ( QKeySequence ( QString::null ) );
 #endif
 		buttonCancel->setText ( tr ( "&Cancel" ) );
 #ifndef _WIN32
-		buttonCancel->setAccel ( QKeySequence ( QString::null ) );
+// 		buttonCancel->setAccel ( QKeySequence ( QString::null ) );
 #endif
 		textLabel5->setText ( tr ( "Duplicates for:" ) + " " + searchFilepath );
 		buttonClose->setText ( tr ( "Close" ) );
@@ -526,7 +526,7 @@ void findDialog::languageChange() {
 		resultsl->clear();
 	}
 	else {
-		setCaption ( tr ( "Search in the database..." ) );
+		setWindowTitle ( tr ( "Search in the database..." ) );
 		textLabel1->setText ( tr ( "Seek in:" ) );
 		textLabel2->setText ( tr ( "Owner:" ) );
 		QStringList labels;
@@ -561,11 +561,11 @@ void findDialog::languageChange() {
 		buttonOk->setText ( tr ( "&Start search" ) );
 		leCategory->setToolTip( tr("Category for find") );
 #ifndef _WIN32
-		buttonOk->setAccel ( QKeySequence ( QString::null ) );
+// 		buttonOk->setAccel ( QKeySequence ( QString::null ) );
 #endif
 		buttonCancel->setText ( tr ( "&Cancel" ) );
 #ifndef _WIN32
-		buttonCancel->setAccel ( QKeySequence ( QString::null ) );
+// 		buttonCancel->setAccel ( QKeySequence ( QString::null ) );
 #endif
 		textLabel5->setText ( tr ( "Results: search not started" ) );
 		buttonClose->setText ( tr ( "Close / Go to selected" ) );
@@ -653,11 +653,11 @@ int findDialog::fillCBox ( void ) {
 		return 0;
 	
 	cbOwner->clear();
-	cbOwner->insertItem ( tr ( "All/Everybody" ), 0 );
-	cbOwner->insertItem ( ( ( DBCatalog * ) ( tmp->data ) )->owner );
+	cbOwner->insertItem (0,  tr ( "All/Everybody" ) );
+	cbOwner->insertItem (0, ( ( DBCatalog * ) ( tmp->data ) )->owner );
 	
 	cbSin  ->clear();
-	cbSin  ->insertItem ( tr ( "All media" ), 0 );
+	cbSin  ->insertItem ( 0, tr ( "All media" ) );
 	
 	tmp = tmp->child; //Jump to the first media
 	while ( tmp != NULL ) {
@@ -666,13 +666,13 @@ int findDialog::fillCBox ( void ) {
 			continue;
 		}
 		
-		cbSin  ->insertItem ( tmp->getNameOf() );
+		cbSin  ->insertItem (0,  tmp->getNameOf() );
 		c = cbOwner->count();
 		for ( i = 0, f = 1; c > i; i++ )
-			if ( ( ( DBMedia * ) ( tmp->data ) )->owner == cbOwner->text ( i ) )
+			if ( ( ( DBMedia * ) ( tmp->data ) )->owner == cbOwner->currentText () )
 				f = 0;
 		if ( f )
-			cbOwner->insertItem ( ( ( DBMedia * ) ( tmp->data ) )->owner );
+			cbOwner->insertItem ( 0, ( ( DBMedia * ) ( tmp->data ) )->owner );
 		tmp = tmp->next;
 	}
 	return 0;
@@ -1031,15 +1031,16 @@ seekEngine::~seekEngine ( void ) {
 /***************************************************************************/
 int seekEngine::start_seek ( void ) {
 	DEBUG_INFO_ENABLED = init_debug_info();
+	QApplication::setOverrideCursor ( Qt::WaitCursor );
 	pww = new PWw ( fd, fd->mainw->app );
 	pww->setCancel ( true );
 	pww->refreshTime = 200;
 	pww->setProgressText ( tr ( "Searching, please wait..." ) );
-	
+	pww->show();
 	
 	QObject::connect ( pww, SIGNAL ( cancelReceivedByUser ( bool ) ), pww, SLOT ( doCancelReceived ( bool ) ) );
 	progress ( pww );
-	QApplication::setOverrideCursor ( Qt::waitCursor );
+	
 	founded = 0;
 	
 	if ( !searchForDuplicates ) {
@@ -1140,9 +1141,9 @@ int seekEngine::start_seek ( void ) {
 		media = fd->cbSin->currentText();
 		owner = fd->cbOwner->currentText();
 		
-		if ( 0 == fd->cbOwner->currentItem() )
+		if ( 0 == fd->cbOwner->currentIndex() )
 			allowner = true;
-		if ( 0 == fd->cbSin  ->currentItem() )
+		if ( 0 == fd->cbSin->currentIndex() )
 			allmedia = true;
 	}
 	
@@ -1157,6 +1158,7 @@ int seekEngine::start_seek ( void ) {
 	if ( founded == 0 ) {
 		QTreeWidgetItem *newitem = new QTreeWidgetItem ( fd->resultsl);
 		newitem->setText(0, tr ( "There is no matching." ));
+		fd->buttonClearSearchResult->setEnabled(true);
 		newitem->setChildIndicatorPolicy(QTreeWidgetItem::DontShowIndicator);
 		fd->resultsl->addTopLevelItem( newitem );
 	}
@@ -1178,8 +1180,10 @@ int seekEngine::analyzeNode ( PWw *pww,  Node *n, Node *pa ) {
 		fd->mainw->app->processEvents();
 	
 	progress ( pww );
+	
 	if ( n == NULL || pww->doCancel )
 		return 0;
+	
 	if ( searchForDuplicates ) {
 		if ( fd->mainw->guis->standON == NULL ) {
 			if ( *DEBUG_INFO_ENABLED )
@@ -1290,6 +1294,8 @@ int seekEngine::analyzeNode ( PWw *pww,  Node *n, Node *pa ) {
 					
 					analyzeNode ( pww, n->child );
 				}
+				analyzeNode ( pww, n->child );
+				progress ( pww );
 				analyzeNode ( pww, n->next );
 				return 0;
 			
@@ -1686,8 +1692,7 @@ void seekEngine::putNodeToList ( Node *n, QString comment ) {
 	
 	//newitem->setMultiLinesEnabled ( true ); // FIXME
 	fd->resultsl->addTopLevelItem ( newitem );
-	if(fd->buttonClearSearchResult != NULL && !fd->buttonClearSearchResult->isEnabled())
-		fd->buttonClearSearchResult->setEnabled(true);
+	fd->buttonClearSearchResult->setEnabled(true);
 	progress ( pww );
 	founded++;
 }

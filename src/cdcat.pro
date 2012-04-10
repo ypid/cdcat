@@ -171,8 +171,5 @@ FORMS      	    = help.ui
 TARGET          = cdcat
 INSTALLS += target translations distfiles
 QT += xml
-
-#The following line was inserted by qt3to4
-QT +=  qt3support 
 CONFIG += uic
 

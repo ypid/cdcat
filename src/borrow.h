@@ -12,12 +12,12 @@
 
 #include <qvariant.h>
 #include <qdialog.h>
-//Added by qt3to4:
 #include <QVBoxLayout>
 #include <QGridLayout>
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QPoint>
+#include <QTableWidgetItem>
 
 
 class QCheckBox;
@@ -90,6 +90,7 @@ public slots:
     int click (const QPoint & );
     int click_set ( int a );
     int click_clr ( void );
+    void setCurrentItem ( QTableWidgetItem * item );
 
 
 protected:

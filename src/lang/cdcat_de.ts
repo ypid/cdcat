@@ -40,10 +40,6 @@
       <source>unknown</source>
       <translation>unbekannt</translation>
     </message>
-    <message>
-      <source></source>
-      <translation type="unfinished" />
-    </message>
   </context>
   <context>
     <name>CatalogTypeEditDialog</name>
@@ -157,10 +153,6 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
       <translation>Grösse</translation>
     </message>
     <message>
-      <source>Close</source>
-      <translation>Schliessen</translation>
-    </message>
-    <message>
       <source>Add media...</source>
       <translation>Medium hinzufügen...</translation>
     </message>
@@ -191,10 +183,6 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     <message>
       <source>Configuration...</source>
       <translation>Konfiguration...</translation>
-    </message>
-    <message>
-      <source>Catalog</source>
-      <translation>Katalog</translation>
     </message>
     <message>
       <source>Edit</source>
@@ -415,6 +403,10 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     <message>
       <source>show systray icon</source>
       <translation>Dock-Symbol anzeigen</translation>
+    </message>
+    <message>
+      <source>File</source>
+      <translation>Datei</translation>
     </message>
   </context>
   <context>
@@ -1209,38 +1201,6 @@ die Datenbank wird unvollständig sein</translation>
     <message>
       <source>Type</source>
       <translation>Typ</translation>
-    </message>
-    <message>
-      <source>Copy</source>
-      <translation>Kopieren</translation>
-    </message>
-    <message>
-      <source>Move</source>
-      <translation>Verschieben</translation>
-    </message>
-    <message>
-      <source>Link</source>
-      <translation>Verknüpfung</translation>
-    </message>
-    <message>
-      <source>Unknown</source>
-      <translation>Unbekannt</translation>
-    </message>
-    <message>
-      <source>Drop target</source>
-      <translation>Dropziel</translation>
-    </message>
-    <message>
-      <source>Not implemented</source>
-      <translation>Nicht implementiert</translation>
-    </message>
-    <message>
-      <source>Drag source</source>
-      <translation>Dragquelle</translation>
-    </message>
-    <message>
-      <source>Delete </source>
-      <translation>Löschen </translation>
     </message>
   </context>
   <context>
@@ -2338,10 +2298,6 @@ wird zu
       <translation>&amp;OK</translation>
     </message>
     <message>
-      <source>&amp;Cancel</source>
-      <translation>&amp;Abbrechen</translation>
-    </message>
-    <message>
       <source>Availiable media</source>
       <translation>Verfügbare Medien</translation>
     </message>
@@ -2544,6 +2500,10 @@ wird zu
     <message>
       <source>Only media</source>
       <translation>Nur Medium</translation>
+    </message>
+    <message>
+      <source>&amp;Cancel</source>
+      <translation>&amp;Abbrechen</translation>
     </message>
   </context>
   <context>

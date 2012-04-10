@@ -31,12 +31,12 @@
 
 
 ColorPreview::ColorPreview ( QWidget *parent )
-        : QFrame ( parent,"cpv" ) {
+        : QFrame ( parent ) {
     c = QColor ( 0,0,0 );
 }
 
 ColorSchemePreview::ColorSchemePreview ( QWidget *parent )
-        : QFrame ( parent,"cspv" ) {
+        : QFrame ( parent ) {
     setMinimumHeight ( 75 );
 
     ts = QColor ( 0,0,0 );
@@ -86,56 +86,57 @@ void ColorSchemePreview::paintEvent ( QPaintEvent *event ) {
 
 
 ColorSettings::ColorSettings ( CdCatConfig *cfgp, QWidget* parent, const char* name, bool modal, Qt::WFlags fl )
-        : QDialog ( parent, name, modal, fl ) {
+        : QDialog ( parent, fl ) {
     if ( !name )
-        setName ( "ColorSettings" );
+        setObjectName ( "ColorSettings" );
+    setModal(modal);
 
     cfg=cfgp;
-    setIcon ( *get_t_colorconfig_icon() );
+    setWindowIcon ( *get_t_colorconfig_icon() );
     setSizeGripEnabled ( TRUE );
-    ColorSettingsLayout = new QVBoxLayout ( this, 11, 6, "ColorSettingsLayout" );
+    ColorSettingsLayout = new QVBoxLayout (this );
 
     preview = new ColorSchemePreview ( this );
     preview->setFrameShape ( QFrame::StyledPanel );
     preview->setFrameShadow ( QFrame::Raised );
     ColorSettingsLayout->addWidget ( preview );
 
-    itemselector = new QComboBox ( FALSE, this, "itemselector" );
+    itemselector = new QComboBox ( this );
     ColorSettingsLayout->addWidget ( itemselector );
 
-    layout14 = new QHBoxLayout ( 0, 0, 6, "layout14" );
+    layout14 = new QHBoxLayout ( this );
 
-    groupBox1 = new QGroupBox ( this, "groupBox1" );
+    groupBox1 = new QGroupBox ( this );
     groupBox1Layout = new QHBoxLayout ( this);
     groupBox1->setLayout(groupBox1Layout);
     groupBox1Layout->setAlignment ( Qt::AlignTop );
 
-    layout4 = new QVBoxLayout ( 0, 0, 6, "layout4" );
+    layout4 = new QVBoxLayout ( this );
 
-    layout1 = new QHBoxLayout ( 0, 0, 6, "rspin" );
+    layout1 = new QHBoxLayout ( this );
 
-    textLabel1 = new QLabel ( groupBox1, "textLabel1" );
+    textLabel1 = new QLabel ( groupBox1 );
     layout1->addWidget ( textLabel1 );
 
-    rspin = new QSpinBox ( groupBox1, "spinBox1" );
+    rspin = new QSpinBox ( groupBox1 );
     layout1->addWidget ( rspin );
     layout4->addLayout ( layout1 );
 
-    layout2 = new QHBoxLayout ( 0, 0, 6, "layout2" );
+    layout2 = new QHBoxLayout ( this );
 
-    textLabel1_2 = new QLabel ( groupBox1, "textLabel1_2" );
+    textLabel1_2 = new QLabel ( groupBox1 );
     layout2->addWidget ( textLabel1_2 );
 
-    gspin = new QSpinBox ( groupBox1, "gspin" );
+    gspin = new QSpinBox ( groupBox1 );
     layout2->addWidget ( gspin );
     layout4->addLayout ( layout2 );
 
-    layout3 = new QHBoxLayout ( 0, 0, 6, "layout3" );
+    layout3 = new QHBoxLayout ( this );
 
-    textLabel1_3 = new QLabel ( groupBox1, "textLabel1_3" );
+    textLabel1_3 = new QLabel ( groupBox1 );
     layout3->addWidget ( textLabel1_3 );
 
-    bspin = new QSpinBox ( groupBox1, "bspin" );
+    bspin = new QSpinBox ( groupBox1 );
     layout3->addWidget ( bspin );
     layout4->addLayout ( layout3 );
     groupBox1Layout->addLayout ( layout4 );
@@ -148,21 +149,21 @@ ColorSettings::ColorSettings ( CdCatConfig *cfgp, QWidget* parent, const char* n
     groupBox1Layout->addWidget ( colorpreview );
     layout14->addWidget ( groupBox1 );
 
-    layout13 = new QVBoxLayout ( 0, 0, 6, "layout13" );
+    layout13 = new QVBoxLayout ( this );
     QSpacerItem* spacer = new QSpacerItem ( 20, 16, QSizePolicy::Minimum, QSizePolicy::Fixed );
     layout13->addItem ( spacer );
 
-    layout11 = new QHBoxLayout ( 0, 0, 6, "layout11" );
+    layout11 = new QHBoxLayout ( this );
     QSpacerItem* spacer_2 = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
     layout11->addItem ( spacer_2 );
 
-    layout9 = new QVBoxLayout ( 0, 0, 6, "layout9" );
+    layout9 = new QVBoxLayout ( this );
 
-    buttonOk = new QPushButton ( this, "buttonOk" );
+    buttonOk = new QPushButton ( this );
     buttonOk->setMinimumSize ( QSize ( 100, 0 ) );
     layout9->addWidget ( buttonOk );
 
-    buttonCancel = new QPushButton ( this, "buttonCancel" );
+    buttonCancel = new QPushButton ( this );
     buttonCancel->setMinimumSize ( QSize ( 100, 0 ) );
     layout9->addWidget ( buttonCancel );
     layout11->addLayout ( layout9 );
@@ -175,15 +176,15 @@ ColorSettings::ColorSettings ( CdCatConfig *cfgp, QWidget* parent, const char* n
     resize ( QSize ( 429, 324 ).expandedTo ( minimumSizeHint() ) );
 
 
-    rspin->setMaxValue ( 255 );
-    gspin->setMaxValue ( 255 );
-    bspin->setMaxValue ( 255 );
+    rspin->setMaximum ( 255 );
+    gspin->setMaximum ( 255 );
+    bspin->setMaximum ( 255 );
 
-    rspin->setLineStep ( 10 );
-    gspin->setLineStep ( 10 );
-    bspin->setLineStep ( 10 );
+    rspin->setSingleStep ( 10 );
+    gspin->setSingleStep ( 10 );
+    bspin->setSingleStep ( 10 );
 
-    itemselector->setCurrentItem ( 0 );
+    itemselector->setCurrentIndex ( 0 );
 
     bg= *cfg->comm_bg;
     ts= *cfg->comm_stext;
@@ -219,12 +220,12 @@ ColorSettings::~ColorSettings() {
  *  language.
  */
 void ColorSettings::languageChange() {
-    setCaption ( tr ( "ColorSettings" ) );
+    setWindowTitle ( tr ( "ColorSettings" ) );
     itemselector->clear();
-    itemselector->insertItem ( tr ( "Comment area background and the file higlighting line" ) );
-    itemselector->insertItem ( tr ( "Frame of comment area" ) );
-    itemselector->insertItem ( tr ( "Comment window static text (Program text)" ) );
-    itemselector->insertItem ( tr ( "Comment window variable text (Data)" ) );
+    itemselector->insertItem (0,  tr ( "Comment area background and the file higlighting line" ) );
+    itemselector->insertItem (0,  tr ( "Frame of comment area" ) );
+    itemselector->insertItem (0,  tr ( "Comment window static text (Program text)" ) );
+    itemselector->insertItem (0,  tr ( "Comment window variable text (Data)" ) );
     groupBox1->setTitle ( tr ( "color" ) );
     textLabel1->setText ( tr ( "Red:" ) );
     textLabel1_2->setText ( tr ( "Green:" ) );

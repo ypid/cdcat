@@ -59,7 +59,7 @@
  *  name 'name' and widget flags set to 'f'.
  */
 CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget *parent, const char *name, Qt::WFlags fl )
-	: QMainWindow ( parent, name, fl ) {
+	: QMainWindow ( parent, fl ) {
 
 	main = new QWidget ( this );
 	setCentralWidget ( main );
@@ -68,8 +68,8 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	int fontHeight = ( new QFontMetrics ( app->font() ) )->height();
 
 	if ( !name )
-		setName ( "CdCatMainWidget" );
-	setIcon ( *get_p_icon_big() );
+		setObjectName ( "CdCatMainWidget" );
+	setWindowIcon ( *get_p_icon_big() );
 
 	db = NULL;
 	cconfig = ccp;
@@ -111,15 +111,23 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 
 	/*Menubar*/
 	mainMenu = menuBar();
+	mainMenu->show();
 	statusBar()->show();
 
 	QMenu *fileMenu = new QMenu ( this );
+	fileMenu->setTitle(tr("File"));
 	QMenu *editMenu = new QMenu ( this );
+	editMenu->setTitle(tr("Edit"));
 	QMenu *viewMenu = new QMenu ( this );
+	viewMenu->setTitle(tr("View"));
 	QMenu *findMenu = new QMenu ( this );
+	findMenu->setTitle(tr("Search"));
 	QMenu *inoutMenu = new QMenu ( this );
+	inoutMenu->setTitle(tr("Import/Export"));
 	QMenu *othersMenu = new QMenu ( this );
+	othersMenu->setTitle(tr("Others"));
 	QMenu *helpMenu = new QMenu ( this );
+	helpMenu->setTitle(tr("Help"));
 
 	QAction *new_action = new QAction ( QIcon ( *get_t_new_icon() ), tr ( "&New..." ), this );
 	new_action->setShortcuts ( QKeySequence::New );
@@ -145,8 +153,8 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	connect ( saveas_action, SIGNAL ( triggered() ), guis, SLOT ( saveasEvent() ) );
 	fileMenu->addAction ( saveas_action );
 
-	fileMenu->insertSeparator ();
-	historyMenu = new QMenu();
+	fileMenu->insertSeparator (NULL);
+	historyMenu = new QMenu(this);
 
 	//QAction *history_action = new QMenu (QIcon(*get_t_open_icon()), tr ( "Recent files..." ), this);
 	//history_action->setShortcuts(QKeySequence::Open);
@@ -161,18 +169,18 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 			QAction *history_action = new QAction ( QIcon ( *get_p_icon() ), cconfig->hlist.at ( i ), this );
 			//history_action->setShortcut( QKeySequence (Qt::CTRL + Qt::Key_W));
 			//history_action->setStatusTip(tr("Open catalog history element"));
-			connect ( history_action, SIGNAL ( activated ( int ) ), guis, SLOT ( openHistoryElementEvent ( int ) ) );
 			historyMenu->addAction ( history_action );
 		}
 	}
+	connect ( historyMenu, SIGNAL ( triggered ( QAction * ) ), guis, SLOT ( openHistoryElementEvent ( QAction * ) ) );
 
-	QAction *close_action = new QAction ( QIcon ( *get_t_close_icon() ), tr ( "Close" ), this );
+	QAction *close_action = new QAction ( QIcon ( *get_t_close_icon() ), tr ( "Close catalog" ), this );
 	close_action->setShortcut ( QKeySequence ( Qt::CTRL + Qt::Key_W ) );
 	close_action->setStatusTip ( tr ( "Close catalog" ) );
 	connect ( close_action, SIGNAL ( triggered() ), guis, SLOT ( closeEvent() ) );
 	fileMenu->addAction ( close_action );
 
-	fileMenu->insertSeparator();
+	fileMenu->insertSeparator(NULL);
 
 	QAction *quit_action = new QAction ( QIcon ( *get_t_close_icon() ), tr ( "&Quit" ), this );
 	quit_action->setShortcuts ( QKeySequence::Close );
@@ -200,7 +208,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	connect ( rescan_action, SIGNAL ( triggered() ), guis, SLOT ( rescanEvent() ) );
 	editMenu->addAction ( rescan_action );
 
-	editMenu->insertSeparator();
+	editMenu->insertSeparator(NULL);
 
 	QAction *insert_action = new QAction ( QIcon ( *get_m_import_icon() ), tr ( "Insert Catalog..." ), this );
 	//insert_action->setShortcut(QKeySequence::Save);
@@ -208,7 +216,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	connect ( insert_action, SIGNAL ( triggered() ), guis, SLOT ( insertcEvent() ) );
 	editMenu->addAction ( insert_action );
 
-	editMenu->insertSeparator();
+	editMenu->insertSeparator(NULL);
 
 	QAction *rename_action = new QAction ( QIcon ( *get_t_save_icon() ), tr ( "Rename node..." ), this );
 	rename_action->setShortcut ( QKeySequence ( Qt::CTRL + Qt::Key_E ) );
@@ -234,7 +242,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	connect ( delete_action, SIGNAL ( triggered() ), guis, SLOT ( deleteEvent() ) );
 	editMenu->addAction ( delete_action );
 
-	editMenu->insertSeparator();
+	editMenu->insertSeparator(NULL);
 	QAction *sortnu_action = new QAction ( QIcon ( *get_t_save_icon() ), tr ( "Sort media by number" ), this );
 	//sortnu_action->setShortcuts(QKeySequence::Save);
 	sortnu_action->setStatusTip ( tr ( "Sort media by number" ) );
@@ -351,13 +359,13 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	connect ( aboutqt_action, SIGNAL ( triggered() ), guis, SLOT ( aboutQtEvent() ) );
 	helpMenu->addAction ( aboutqt_action );
 
-	mainMenu->insertItem ( tr ( "Catalog" ), fileMenu );
-	mainMenu->insertItem ( tr ( "Edit" ), editMenu );
-	mainMenu->insertItem ( tr ( "View" ), viewMenu );
-	mainMenu->insertItem ( tr ( "Search" ), findMenu );
-	mainMenu->insertItem ( tr ( "Import/Export" ), inoutMenu );
-	mainMenu->insertItem ( tr ( "Others" ), othersMenu );
-	mainMenu->insertItem ( tr ( "Help" ), helpMenu );
+	mainMenu->addMenu ( fileMenu );
+	mainMenu->addMenu ( editMenu );
+	mainMenu->addMenu ( viewMenu );
+	mainMenu->addMenu ( findMenu );
+	mainMenu->addMenu ( inoutMenu );
+	mainMenu->addMenu ( othersMenu );
+	mainMenu->addMenu ( helpMenu );
 #ifdef Q_WS_MAC
 	mainMenu->hide();
 #endif
@@ -412,8 +420,8 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	}
 	
 	splitMain->setSizes ( splitterSizesList );
-	splitMain->setResizeMode ( DirView, QSplitter::Stretch );
-	splitMain->setResizeMode ( listView, QSplitter::Stretch );
+	splitMain->setStretchFactor(splitMain->indexOf(DirView), 1);
+	splitMain->setStretchFactor(splitMain->indexOf(listView), 1);
 	splitMain->setStyle ( new QPlastiqueStyle() );
 
 	if(!cconfig->commentDockIsFloating)
@@ -422,9 +430,9 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	connect ( DirView , SIGNAL ( folderSelected ( const QString & ) ), guis, SLOT ( listUpdate ( const QString & ) ) );
 	connect ( DirView , SIGNAL ( hitkey ( QKeyEvent * ) ), guis, SLOT ( hotKeys ( QKeyEvent * ) ) );
 	connect ( DirView, SIGNAL ( customContextMenuRequested ( const QPoint  ) ),
-	          guis, SLOT ( showTreeContextMenu ( const QPoint ) ) );
+	          guis, SLOT ( showListviewContextMenu  ( const QPoint ) ) );
 	connect ( listView, SIGNAL ( customContextMenuRequested ( const QPoint  ) ),
-	          guis, SLOT ( showListviewContextMenu ( const QPoint ) ) );
+	          guis, SLOT ( showTreeContextMenu( const QPoint ) ) );
 
 	//connect ( listView, SIGNAL (    itemChanged  ( QTreeWidgetItem *, int ) ), guis, SLOT ( standOn ( QTreeWidgetItem *, int ) ) );
 	//connect ( listView, SIGNAL (    currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), guis, SLOT ( currentItemChanged ( QTreeWidgetItem*,QTreeWidgetItem* ) ) );
@@ -513,7 +521,7 @@ CdCatMainWidget::~CdCatMainWidget() {
  *  language.
  */
 void CdCatMainWidget::languageChange() {
-	setCaption ( tr ( "Hyper's CD Catalogizer" ) );
+	setWindowTitle ( tr ( "Hyper's CD Catalogizer" ) );
 }
 
 void CdCatMainWidget::closeEvent ( QCloseEvent *e ) {

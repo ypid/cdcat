@@ -207,7 +207,7 @@ int CdCatConfig::startProgram ( DataBase **dbp, QWidget *mw ) {
 		PWw *pww = new PWw ( mw );
 		( *dbp )->pww = pww;
 		progress ( pww );
-		if ( ( *dbp )->openDB ( ( char * ) ( ( const char * ) loadablefile ) ) ) {
+		if ( ( *dbp )->openDB ( loadablefile.toLocal8Bit().data() ) ) {
 			( *dbp ) = NULL;
 			QMessageBox::warning ( mw, tr ( "Error during autoload..." ),
 			                       startpar ? tr ( "I can't open the autoload catalog according the first command line parameter.\nCheck the file!\n" )
@@ -264,9 +264,9 @@ int CdCatConfig::readConfig ( void ) {
 			msg += "\n";
 			
 			if ( !line.startsWith ( "#" ) && !line.isEmpty() && line.contains ( "=" ) ) {
-				int index = line.find ( '=' );
-				QString var = ( line.left ( index ) ).stripWhiteSpace();
-				QString val = ( line.mid ( index + 1, line.length() - index ) ).stripWhiteSpace();
+				int index = line.indexOf ( '=' );
+				QString var = ( line.left ( index ) ).simplified();
+				QString val = ( line.mid ( index + 1, line.length() - index ) ).simplified();
 				
 				//   QString info = "variable: "+var+", val: "+val;
 				//   QMessageBox::information(0,"found",info);
@@ -285,7 +285,7 @@ int CdCatConfig::readConfig ( void ) {
 						int idx = 0;
 						int idx2 = 0;
 						while ( idx2 > -1 ) {
-							idx2 = history.find ( ';', idx );
+							idx2 = history.indexOf ( ';', idx );
 							if ( ( int ) idx != ( int ) ( history.length() - 1 ) ) {
 								if ( ! ( history.mid ( idx, idx2 - idx ) ).isEmpty() )
 									hlist.append ( history.mid ( idx, idx2 - idx ) );
@@ -293,7 +293,7 @@ int CdCatConfig::readConfig ( void ) {
 							idx = idx2 + 1;
 						}
 						while ( ( int ) hlist.count() > ( int ) historysize )
-							hlist.remove ( hlist.begin() );
+							hlist.removeFirst ();
 					}
 					continue;
 				} // history
@@ -725,33 +725,33 @@ int CdCatConfig::readConfig ( void ) {
 				}
 				if ( var == "comment_bg_color" ) {
 					int r = 0, g = 0, b = 0;
-					r = secv ( val, 0 );
-					g = secv ( val, 1 );
-					b = secv ( val, 2 );
+					r = secv ( val.toLocal8Bit().data(), 0 );
+					g = secv ( val.toLocal8Bit().data(), 1 );
+					b = secv ( val.toLocal8Bit().data(), 2 );
 					comm_bg->setRgb ( r, g, b );
 					continue;
 				}
 				if ( var == "comment_fr_color" ) {
 					int r = 0, g = 0, b = 0;
-					r = secv ( val, 0 );
-					g = secv ( val, 1 );
-					b = secv ( val, 2 );
+					r = secv ( val.toLocal8Bit().data(), 0 );
+					g = secv ( val.toLocal8Bit().data(), 1 );
+					b = secv ( val.toLocal8Bit().data(), 2 );
 					comm_fr->setRgb ( r, g, b );
 					continue;
 				}
 				if ( var == "comment_ts_color" ) {
 					int r = 0, g = 0, b = 0;
-					r = secv ( val, 0 );
-					g = secv ( val, 1 );
-					b = secv ( val, 2 );
+					r = secv ( val.toLocal8Bit().data(), 0 );
+					g = secv ( val.toLocal8Bit().data(), 1 );
+					b = secv ( val.toLocal8Bit().data(), 2 );
 					comm_stext->setRgb ( r, g, b );
 					continue;
 				}
 				if ( var == "comment_td_color" ) {
 					int r = 0, g = 0, b = 0;
-					r = secv ( val, 0 );
-					g = secv ( val, 1 );
-					b = secv ( val, 2 );
+					r = secv ( val.toLocal8Bit().data(), 0 );
+					g = secv ( val.toLocal8Bit().data(), 1 );
+					b = secv ( val.toLocal8Bit().data(), 2 );
 					comm_vtext->setRgb ( r, g, b );
 					continue;
 				}
@@ -950,7 +950,7 @@ int CdCatConfig::writeConfig ( void ) {
 	
 	if ( f.open ( QIODevice::WriteOnly ) ) {
 		QTextStream str ( &f ); // we will serialize the data into file f
-		str.setEncoding ( QTextStream::Latin1 );
+		str.setCodec(QTextCodec::codecForName("ISO-8859-1"));
 
 		QString fsize_str, historysize_str, historylength_str, history_str;
 
@@ -1323,20 +1323,20 @@ int CdCatConfig::writeConfig ( void ) {
 
 /************************************************************************************/
 ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool modal, Qt::WFlags fl )
-	: QDialog ( parent, name, modal, fl ) {
+	: QDialog ( parent, fl ) {
 	if ( !name )
-		setName ( "ConfigDialog" );
-	setIcon ( *get_t_config_icon() );
-	
+		setObjectName ( "ConfigDialog" );
+	setWindowIcon ( *get_t_config_icon() );
+	setModal(modal);
 	p = parent;
 	
 	setSizeGripEnabled ( TRUE );
-	ConfigDialogBaseLayout = new QGridLayout ( this, 1, 1, 20, 6, "ConfigDialogBaseLayout" );
+	ConfigDialogBaseLayout = new QGridLayout ( this );
 	
-	layout1 = new QHBoxLayout ( 0, 0, 6, "layout1" );
-	cbAutoload = new QCheckBox ( this, "cbAutoload" );
-	filename = new QLineEdit ( this, "filename" );
-	searchButton = new QPushButton ( this, "searchButton" );
+	layout1 = new QHBoxLayout ( this );
+	cbAutoload = new QCheckBox ( this );
+	filename = new QLineEdit ( this );
+	searchButton = new QPushButton ( this );
 	searchButton->setText ( "..." );
 	searchButton->setFlat ( FALSE );
 	
@@ -1346,68 +1346,68 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	layout1->addWidget ( searchButton );
 	ConfigDialogBaseLayout->addLayout ( layout1, 0, 0 );
 	
-	line1 = new QFrame ( this, "line1" );
+	line1 = new QFrame ( this );
 	line1->setFrameShape ( QFrame::HLine );
 	line1->setFrameShadow ( QFrame::Sunken );
 	line1->setFrameShape ( QFrame::HLine );
 	ConfigDialogBaseLayout->addWidget ( line1, 2, 0 );
 	
-	cbOwnFont = new QCheckBox ( "Use own font size", this, "ownfontcb" );
+	cbOwnFont = new QCheckBox ( "Use own font size", this );
 	
 	
-	layout4 = new QHBoxLayout ( 0, 0, 5, "layout4" );
-	spinFontSize = new QSpinBox ( this, "spinFontSize" );
+	layout4 = new QHBoxLayout ( this );
+	spinFontSize = new QSpinBox ( this );
 	spinFontSize->setMaximumWidth ( 80 );
 	QSpacerItem* fontspacer = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	
-	lab = new QLabel ( this, "lab" );
+	lab = new QLabel ( this );
 	layout4->addWidget ( cbOwnFont, 0 );
 	layout1->addItem(fontspacer);
 	layout4->addWidget ( spinFontSize );
 	layout4->addWidget ( lab );
 	ConfigDialogBaseLayout->addLayout ( layout4, 4, 0 );
 	
-	line2 = new QFrame ( this, "line2" );
+	line2 = new QFrame ( this );
 	line2->setFrameShape ( QFrame::HLine );
 	line2->setFrameShadow ( QFrame::Sunken );
 	line2->setFrameShape ( QFrame::HLine );
 	ConfigDialogBaseLayout->addWidget ( line2, 5, 0 );
 	
-	cbAutosave = new QCheckBox ( this, "cbAutos" );
+	cbAutosave = new QCheckBox ( this );
 	ConfigDialogBaseLayout->addWidget ( cbAutosave, 6, 0 );
 	
-	line8 = new QFrame ( this, "line8" );
+	line8 = new QFrame ( this );
 	line8->setFrameShape ( QFrame::HLine );
 	line8->setFrameShadow ( QFrame::Sunken );
 	line8->setFrameShape ( QFrame::HLine );
 	ConfigDialogBaseLayout->addWidget ( line8, 7, 0 );
 	
-	layoutSave = new QHBoxLayout ( 0, 0, 2, "layoutSave" );
-	cbNice = new QCheckBox ( this, "cbNice" );
-	cbSaveCatalogAlwaysInUtf8 = new QCheckBox ( this, "cbSaveCatalogAlwaysInUtf8" );
+	layoutSave = new QHBoxLayout ( this );
+	cbNice = new QCheckBox ( this );
+	cbSaveCatalogAlwaysInUtf8 = new QCheckBox ( this );
 	layoutSave->addWidget ( cbNice );
 	layoutSave->addWidget ( cbSaveCatalogAlwaysInUtf8 );
 	ConfigDialogBaseLayout->addLayout ( layoutSave, 8, 0 );
 	
-	line3 = new QFrame ( this, "line3" );
+	line3 = new QFrame ( this );
 	line3->setFrameShape ( QFrame::HLine );
 	line3->setFrameShadow ( QFrame::Sunken );
 	line3->setFrameShape ( QFrame::HLine );
 	ConfigDialogBaseLayout->addWidget ( line3, 9, 0 );
 	
-	layout5 = new QHBoxLayout ( 0, 0, 6, "layout5" );
-	cdrompath_lineedit = new QLineEdit ( this, "cdrompath_lineedit" );
+	layout5 = new QHBoxLayout ( this );
+	cdrompath_lineedit = new QLineEdit ( this );
 	layout5->addWidget ( cdrompath_lineedit );
-	cdrom_lab = new QLabel ( this, "cdrom_lab" );
+	cdrom_lab = new QLabel ( this );
 	layout5->addWidget ( cdrom_lab );
-	searchButton2 = new QPushButton ( this, "cdrombutton" );
+	searchButton2 = new QPushButton ( this );
 	searchButton2->setText ( "..." );
 	searchButton2->setFlat ( FALSE );
 	layout5->addWidget ( searchButton2 );
 	ConfigDialogBaseLayout->addLayout ( layout5, 10, 0 );
 	
 #ifndef _WIN32
-	cbMoEj = new QCheckBox ( this, "cbMoEj" );
+	cbMoEj = new QCheckBox ( this );
 	ConfigDialogBaseLayout->addWidget ( cbMoEj, 12, 0 );
 #endif
 	
@@ -1480,17 +1480,17 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	}
 #endif
 	
-	line5 = new QFrame ( this, "line5" );
+	line5 = new QFrame ( this );
 	line5->setFrameShape ( QFrame::HLine );
 	line5->setFrameShadow ( QFrame::Sunken );
 	line5->setFrameShape ( QFrame::HLine );
 	ConfigDialogBaseLayout->addWidget ( line5, 14, 0 );
 	
-	layout6 = new QHBoxLayout ( 0, 0, 6, "layout6" );
-	spinHistorySize = new QSpinBox ( this, "spinHistorySize" );
+	layout6 = new QHBoxLayout ( this );
+	spinHistorySize = new QSpinBox ( this );
 	spinHistorySize->setMaximumWidth ( 80 );
 	layout6->addWidget ( spinHistorySize );
-	labHistorySize = new QLabel ( this, "labHistorySize" );
+	labHistorySize = new QLabel ( this );
 	layout6->addWidget ( labHistorySize );
 	
 	cbShowTrayIcon = new QCheckBox(tr( "show systray icon" ), this );
@@ -1500,39 +1500,39 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	
 	ConfigDialogBaseLayout->addLayout ( layout6, 15, 0 );
 	
-	line6 = new QFrame ( this, "line6" );
+	line6 = new QFrame ( this );
 	line6->setFrameShape ( QFrame::HLine );
 	line6->setFrameShadow ( QFrame::Sunken );
 	line6->setFrameShape ( QFrame::HLine );
 	ConfigDialogBaseLayout->addWidget ( line6, 16, 0 );
 	
-	riButton = new QPushButton ( this, "ributton" );
+	riButton = new QPushButton ( this );
 	ConfigDialogBaseLayout->addWidget ( riButton, 17, 0 );
 	
-	line7 = new QFrame ( this, "line7" );
+	line7 = new QFrame ( this );
 	line7->setFrameShape ( QFrame::HLine );
 	line7->setFrameShadow ( QFrame::Sunken );
 	line7->setFrameShape ( QFrame::HLine );
 	ConfigDialogBaseLayout->addWidget ( line7, 18, 0 );
 	
-	layout7 = new QHBoxLayout ( 0, 0, 6, "layout7" );
+	layout7 = new QHBoxLayout ( this );
 	QSpacerItem* spacer = new QSpacerItem ( 110, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	layout7->addItem ( spacer );
 	
-	layoutStatus = new QHBoxLayout ( 0, 0, 2, "layoutStatus" );
-	cbEnableDebugInfo = new QCheckBox ( this, "cbEnableDebugInfo" );
-	cbShowProgressedFileInStatus = new QCheckBox ( this, "cbShowProgressedFileInStatus" );
+	layoutStatus = new QHBoxLayout (this );
+	cbEnableDebugInfo = new QCheckBox ( this );
+	cbShowProgressedFileInStatus = new QCheckBox ( this );
 	layoutStatus->addWidget ( cbEnableDebugInfo );
 	layoutStatus->addWidget ( cbShowProgressedFileInStatus );
 	ConfigDialogBaseLayout->addLayout ( layoutStatus, 19, 0 );
 	
-	okButton = new QPushButton ( this, "okButton" );
+	okButton = new QPushButton ( this );
 	okButton->setMinimumSize ( QSize ( 100, 0 ) );
 	okButton->setAutoDefault ( TRUE );
 	okButton->setDefault ( TRUE );
 	layout7->addWidget ( okButton );
 	
-	cancelButton = new QPushButton ( this, "cancelButton" );
+	cancelButton = new QPushButton ( this );
 	cancelButton->setMinimumSize ( QSize ( 100, 0 ) );
 	cancelButton->setAutoDefault ( TRUE );
 	layout7->addWidget ( cancelButton );
@@ -1608,7 +1608,7 @@ ConfigDialog::~ConfigDialog() {
 }
 
 void ConfigDialog::languageChange() {
-	setCaption ( tr ( "Configure  CdCat..." ) );
+	setWindowTitle ( tr ( "Configure  CdCat..." ) );
 	cbShowTrayIcon->setText( tr( "Show systray icon" ));
 	cbAutoload->setText ( tr ( "Autoload DataBase on startup" ) );
 	cbAutosave->setText ( tr ( "Automatically save the database after every scan (for safety sake)" ) );
@@ -1723,9 +1723,9 @@ void ConfigDialog::okExit() {
 	QFont *font = new QFont();
 	font->setPointSize ( p->cconfig->fsize );
 	if ( p->cconfig->ownfont )
-		p->app->setFont ( *font, TRUE );
+		p->app->setFont ( *font );
 	else
-		p->app->setFont ( *p->cconfig->defaultfont, TRUE );
+		p->app->setFont ( *p->cconfig->defaultfont );
 	
 	close();
 }
