@@ -268,8 +268,8 @@ int addDialog::setMediaName ( const QString & ds ) {
 	//std::cerr << "mediatype " << cbType->currentItem() +1 << std::endl;
 
 #ifdef _WIN32
-	QDir confdir ( ( caller->mainw->cconfig->cdrompath ).lower() );
-	QDir selected ( ds.lower() );
+	QDir confdir ( ( caller->mainw->cconfig->cdrompath ).toLower() );
+	QDir selected ( ds.toLower() );
 #else
 	QDir confdir ( caller->mainw->cconfig->cdrompath );
 	QDir selected ( ds );
