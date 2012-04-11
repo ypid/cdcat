@@ -40,33 +40,38 @@ int main ( int argi, char **argc ) {
 	CdCatConfig *cconfig = new CdCatConfig();
 	QTranslator *translator = 0;
 	int font_size = 8;
-
+	
 	if ( argi > 1 )
 		cconfig->setParameter ( argc[1] );
-
+	
 	if ( cconfig->readConfig() == 0 )
 		font_size = cconfig->fsize;
 	else
 		cconfig->writeConfig();
-
+	
 	DEBUG_INFO_ENABLED = init_debug_info();
 	*DEBUG_INFO_ENABLED = cconfig->debug_info_enabled;
 	if ( *DEBUG_INFO_ENABLED )
 		cerr << qPrintable ( QString ( "DEBUG_INFO_ENABLED: true" ) ) << endl;
 	else
 		cerr << qPrintable ( QString ( "DEBUG_INFO_ENABLED: false" ) ) << endl;
-
+	
 	QFont *font = new QFont();
 	font->setPointSize ( font_size );
-
-
+	
 #ifdef _WIN32
 	QString langpath ( applicationDirPath ( argc ) + "/lang/cdcat_" );
 	langpath += cconfig->lang;
 	langpath += ".qm";
+#endif
+#ifdef Q_WS_MAC
+	QString langpath ( applicationDirPath ( argc ) + "/lang/cdcat_" );
+	langpath += cconfig->lang;
+	langpath += ".qm";
+#endif
 
-#else
-
+#ifndef _WIN32
+#ifndef Q_WS_MAC
 	QList<QString> translation_paths;
 	//translation_paths = new QList <QString> ();
 	QString locale = QLocale().name();
@@ -76,9 +81,9 @@ int main ( int argi, char **argc ) {
 	translation_paths.append ( QString ( applicationDirPath ( argc ) + "/lang" ) );
 	translation_paths.append ( QString ( prefix + "share/locale/" + locale + "/LC_MESSAGES" ) );
 	translation_paths.append ( QString ( prefix + "share/locale/" + locale2 + "/LC_MESSAGES" ) );
-
+	
 	QString langpath;
-
+	
 	for ( int i = 0; i < translation_paths.count(); ++i ) {
 		//cerr <<"path: " << qPrintable(translation_paths.at(i)) << endl;
 		QFileInfo info ( translation_paths.at ( i ) + "/cdcat_" + locale + ".qm" );
@@ -93,32 +98,31 @@ int main ( int argi, char **argc ) {
 				langpath = translation_paths.at ( i ) + "/cdcat_" + locale2 + ".qm";
 			}
 		}
-
 	}
-
 #endif
-
+#endif
+	
 	if ( translator ) {
 		app.removeTranslator ( translator );
 		delete translator;
 	}
-
+	
 	translator = new QTranslator ( 0 );
-
+	
 	if ( !langpath.isEmpty() ) {
 		//cerr << "using language file " << langpath << endl;
 		translator->load ( langpath, "." );
 		app.installTranslator ( translator );
 	}
-
+	
 	init_icon_base();
-
+	
 	CdCatMainWidget *mw = new CdCatMainWidget ( cconfig, &app, 0, "MainWindow" );
-
+	
 	cconfig->defaultfont = new QFont ( app.font() );
 	if ( cconfig->ownfont )
 		app.setFont ( *font );
-
+	
 	mw->show();
 	return app.exec();
 }
