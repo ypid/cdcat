@@ -238,7 +238,7 @@ QString getCDSerial ( const char *CDpath ) {
 	//DWORD dw = reinterpret_cast<DWORD> ( myChar );
 	//bufName1 = reinterpret_cast<char*> ( dw );
 	bufName1 = strncpy(&bufName1, myChar, 63);
-	name = QString ( bufName1 ).toLocal8Bit().data();
+	//name = QString ( bufName1 ).toLocal8Bit().data();
 	//QMessageBox::information(0, "vol1", "path: "+QString(CDpath)+"\nname: \""+QString(name)+"\"");
 	return QString ( bufName1 );
 	/* end ANSI */
