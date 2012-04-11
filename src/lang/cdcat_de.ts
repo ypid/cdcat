@@ -40,6 +40,10 @@
       <source>unknown</source>
       <translation>unbekannt</translation>
     </message>
+    <message>
+      <source></source>
+      <translation type="unfinished" />
+    </message>
   </context>
   <context>
     <name>CatalogTypeEditDialog</name>
@@ -407,6 +411,10 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     <message>
       <source>File</source>
       <translation>Datei</translation>
+    </message>
+    <message>
+      <source>Type</source>
+      <translation>Typ</translation>
     </message>
   </context>
   <context>
@@ -2830,6 +2838,24 @@ E-mail: hyperr@freemail.hu
 &lt;b>Homepage:&lt;/b>
 &lt;blockquote>Mehr Infos über das Programm und neue Versionen können von der Homepage von 
  cdcat:&lt;br>&lt;tt>http://cdcat.sourceforge.net&lt;/tt> bekommen werden. &lt;/blockquote></translation>
+    </message>
+    <message>
+      <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;>
+&lt;html>&lt;head>&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; />&lt;style type=&quot;text/css&quot;>
+p, li { white-space: pre-wrap; }
+&lt;/style>&lt;/head>&lt;body style=&quot; font-family:'DejaVu Sans'; font-size:9pt; font-weight:400; font-style:normal;&quot;>
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;>&lt;span style=&quot; font-weight:600;&quot;>Help&lt;/span>&lt;/p>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;>&lt;br />&lt;span style=&quot; font-weight:600;&quot;>What's this?&lt;/span>&lt;br />&lt;/p>
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:40px; margin-right:40px; -qt-block-indent:0; text-indent:0px;&quot;>The cdcat is graphical (QT based) multiplatform (Linux/Windows) catalog program which scans the directories/drives you want and memorize the filesystem including the tags of mp3's and other data and store it in a small file. The database is stored in a gzipped XML format, so you can hack it, or use it if necessary :-) And the program can store the content of some specified files up to a limit size if you want. (for example: *.nfo) &lt;/p>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;>&lt;br />&lt;span style=&quot; font-weight:600;&quot;>Usage:&lt;/span>&lt;br />&lt;/p>
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:40px; margin-right:40px; -qt-block-indent:0; text-indent:0px;&quot;>&lt;span style=&quot; font-style:italic;&quot;>Create a new catalog&lt;/span>: Run the &lt;span style=&quot; font-family:'Courier New,courier';&quot;>New&lt;/span> command in the catalog menu. You have to type the name of the new catalog. You can specify the default username of the media(which you scan later), and add a comment to the catalog.&lt;br />Before the scanning select the necessary readable components in the config dialog, which can be mp3 tags content of some files or etc. If you done this, you &quot;can scan one of your media with &lt;span style=&quot; font-family:'Courier New,courier';&quot;>Add media&lt;/span>command in the Edit menu. In that dialog you have to specyfi the directory/or drive the media you want to add. It's recommended to specify the name and the number of the media which has to be unique. (The program always generate one identical name and number) You can label the media to a owner, if necessary. &lt;br />If you scanned your media, you will be able to browse in it with the browser window (like mc) , or search in it. You can save the catalog with &lt;span style=&quot; font-family:'Courier New,courier';&quot;>save as&lt;/span> command in the Catalog menu. &lt;br />&lt;br />&lt;span style=&quot; font-style:italic;&quot;>Open an existing catalog:&lt;/span>Run the &lt;span style=&quot; font-family:'Courier New,courier';&quot;>open&lt;/span> command in the Catalog menu, and choice the file of the catalog. (*.hcf) After the opening you will be able browse the catalog or search in it. &lt;br />&lt;/p>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;>&lt;br />&lt;span style=&quot; font-weight:600;&quot;>Author:&lt;/span> &lt;/p>
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:40px; margin-right:40px; -qt-block-indent:0; text-indent:0px;&quot;>The program was written by Peter Deak (hungary)&lt;br />E-mail: hyperr@freemail.hu &lt;br />&lt;/p>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;>&lt;br />&lt;span style=&quot; font-weight:600;&quot;>License:&lt;/span> &lt;/p>
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:40px; margin-right:40px; -qt-block-indent:0; text-indent:0px;&quot;>General Public License (GPL)&lt;/p>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;>&lt;br />&lt;span style=&quot; font-weight:600;&quot;>Homepage:&lt;/span> &lt;/p>
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:40px; margin-right:40px; -qt-block-indent:0; text-indent:0px;&quot;>You can read about the program and get new versions, sources etc, in the hompage of cdcat:&lt;br />&lt;span style=&quot; font-family:'Courier New,courier';&quot;>http://cdcat.sourceforge.net&lt;/span>&lt;/p>&lt;/body>&lt;/html></source>
+      <translation type="unfinished" />
     </message>
   </context>
   <context>
