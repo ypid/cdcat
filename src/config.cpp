@@ -1590,10 +1590,10 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 #endif
 	
 #ifdef Q_WS_MAC
-	cbLang->setCurrentItem ( 0 );
+	cbLang->setCurrentIndex ( 0 );
 	for ( int i = 0; i < cbLang->count(); i++ )
-		if ( p->cconfig->lang == cbLang->text ( i ) )
-			cbLang->setCurrentItem ( i );
+		if ( p->cconfig->lang == cbLang->currentText ( i ) )
+			cbLang->setCurrentIndex ( i );
 #endif
 	
 	cbEnableDebugInfo->setChecked ( p->cconfig->debug_info_enabled );
