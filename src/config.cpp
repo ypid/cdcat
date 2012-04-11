@@ -1351,7 +1351,7 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	line1->setFrameShape ( QFrame::HLine );
 	ConfigDialogBaseLayout->addWidget ( line1, 2, 0 );
 	
-	cbOwnFont = new QCheckBox ( "Use own font size", this );
+	cbOwnFont = new QCheckBox ( tr("Use own font size"), this );
 	
 	
 	layout4 = new QHBoxLayout ( this );
@@ -1421,7 +1421,6 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	ConfigDialogBaseLayout->addLayout ( layout9, 13, 0 );
 	
 	/*scanning existing languages:*/
-	cbLang->insertItem ( 0, QString("eng") );
 	QDir d ( "./lang" );
 	
 	if ( d.exists() ) {
@@ -1442,8 +1441,8 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	}
 	else {
 		cbLang->setEnabled ( false );
-		cbLang->insertItem (0, QString("eng") );
 	}
+	cbLang->insertItem ( 0, QString("eng") );
 #endif
 	
 #ifdef Q_WS_MAC
@@ -1458,7 +1457,6 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	ConfigDialogBaseLayout->addLayout ( layout9, 13, 0 );
 	
 	/*scanning existing languages:*/
-	cbLang->insertItem ( 0, QString("eng") );
 	QDir d ( "./lang" );
 	
 	if ( d.exists() ) {
@@ -1479,8 +1477,8 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	}
 	else {
 		cbLang->setEnabled ( false );
-		cbLang->insertItem ( 0, QString("eng") );
 	}
+	cbLang->insertItem ( 0, QString("eng") );
 #endif
 	
 	line5 = new QFrame ( this );
