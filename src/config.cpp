@@ -1448,9 +1448,9 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	
 #ifdef Q_WS_MAC
  	//cerr << "config: mac! " << endl;
-	layout9   = new QHBoxLayout ( 0, 0, 5, "layout9" );
-	cbLang    = new QComboBox ( this, "languageselector" );
-	langLabel = new QLabel ( this, "langlabel" );
+	layout9   = new QHBoxLayout ( this );
+	cbLang    = new QComboBox ( this );
+	langLabel = new QLabel ( this );
 	layout9->insertSpacing ( 0, 5 );
 	layout9->insertWidget ( 1, cbLang );
 	layout9->insertWidget ( 2, langLabel );
@@ -1458,12 +1458,14 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	ConfigDialogBaseLayout->addLayout ( layout9, 13, 0 );
 	
 	/*scanning existing languages:*/
-	cbLang->insertItem ( "eng", 0 );
+	cbLang->insertItem ( 0, QString("eng") );
 	QDir d ( "./lang" );
 	
 	if ( d.exists() ) {
 		d.setFilter ( QDir::Files );
-		d.setNameFilter ( "cdcat_??.qm" );
+		QStringList filters;
+		filters << "cdcat_??.qm";
+		d.setNameFilters(filters);
 		QFileInfoList list ( d.entryInfoList() );
 		//QFileInfoListIterator it ( list. );
 		//QFileInfo *fi;
@@ -1477,7 +1479,7 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	}
 	else {
 		cbLang->setEnabled ( false );
-		cbLang->insertItem ( "eng" );
+		cbLang->insertItem ( 0, QString("eng") );
 	}
 #endif
 	
