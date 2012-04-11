@@ -13,6 +13,7 @@
 #include <QString>
 
 QString getCDName ( const char *CDpath );
+QString getCDSerial ( const char *CDpath );
 bool diskIsDVD ( const char *CDpath );
 
 #endif
