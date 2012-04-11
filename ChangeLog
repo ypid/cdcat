@@ -3,6 +3,7 @@
 	- select lang at osx fixed
 	- changing language on the fly fixed (win32/osx)
 	- switching back to english lang fixed (win32/osx)
+	- missing label translation at file view on translation change added
 
 10. Apr 2012 Christoph Thielecke <crissi99@gmx.de>
 	- dirview ported to qtreewidget

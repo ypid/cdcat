@@ -537,6 +537,7 @@ void CdCatMainWidget::languageChange() {
 	QStringList labels2;
 	labels2.append(tr ( "Name" ) );
 	labels2.append(tr ( "Size" ) );
+	labels2.append(tr ( "Type" ) );
 	listView->setHeaderLabels(labels2);
 
 	new_action->setText(tr ( "&New..." ));
