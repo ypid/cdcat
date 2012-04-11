@@ -1472,7 +1472,7 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 		foreach ( const QFileInfo & fi , list )
 		//while ( ( fi = it.current() ) != 0 )
 		{
-			cbLang->insertItem ( ( fi.fileName() ).mid ( 6, 2 ) );
+			cbLang->insertItem ( 0, ( fi.fileName() ).mid ( 6, 2 ) );
 			//++it;
 		}
 		/*end scanning*/
