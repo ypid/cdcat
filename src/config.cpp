@@ -1586,16 +1586,18 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	
 #ifdef _WIN32
 	cbLang->setCurrentIndex ( 0 );
-	for ( int i = 0; i < cbLang->count(); i++ )
-		if ( p->cconfig->lang == cbLang->currentText ( ) )
-			cbLang->setCurrentIndex ( i );
+	int index = cbLang->findText( p->cconfig->lang );
+	if(index != -1) {
+		cbLang->setCurrentIndex ( index );
+	}
 #endif
 	
 #ifdef Q_WS_MAC
 	cbLang->setCurrentIndex ( 0 );
-	for ( int i = 0; i < cbLang->count(); i++ )
-		if ( p->cconfig->lang == cbLang->currentText ( ) )
-			cbLang->setCurrentIndex ( i );
+	int index = cbLang->findText( p->cconfig->lang );
+	if(index != -1) {
+		cbLang->setCurrentIndex ( index );
+	}
 #endif
 	
 	cbEnableDebugInfo->setChecked ( p->cconfig->debug_info_enabled );

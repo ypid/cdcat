@@ -1,3 +1,6 @@
+11. Apr 2012 Christoph Thielecke <crissi99@gmx.de>
+	- lang selector fixed
+
 10. Apr 2012 Christoph Thielecke <crissi99@gmx.de>
 	- dirview ported to qtreewidget
 	- lnode ported to qtreewidgetitem
