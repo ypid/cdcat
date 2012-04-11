@@ -1594,7 +1594,7 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 #ifdef Q_WS_MAC
 	cbLang->setCurrentIndex ( 0 );
 	for ( int i = 0; i < cbLang->count(); i++ )
-		if ( p->cconfig->lang == cbLang->currentText ( i ) )
+		if ( p->cconfig->lang == cbLang->currentText ( ) )
 			cbLang->setCurrentIndex ( i );
 #endif
 	
