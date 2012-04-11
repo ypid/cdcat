@@ -2139,7 +2139,7 @@ int GuiSlave::sortTiEvent ( void ) {
 int GuiSlave::helpEvent ( void ) {
 	QDialog dh;
 	Ui_helpDialog *ui_dh = new  Ui_helpDialog();
-	ui_dh->setupUi ( ( QDialog * ) ( &dh ) );
+	ui_dh->setupUi ( ( &dh ) );
 	dh.exec();
 	delete ui_dh;
 
