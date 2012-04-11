@@ -1422,7 +1422,7 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	
 	/*scanning existing languages:*/
 	QDir d ( "./lang" );
-	
+	cbLang->insertItem ( 0, QString("eng") );
 	if ( d.exists() ) {
 		d.setFilter ( QDir::Files );
 		QStringList filters;
@@ -1442,7 +1442,6 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	else {
 		cbLang->setEnabled ( false );
 	}
-	cbLang->insertItem ( 0, QString("eng") );
 #endif
 	
 #ifdef Q_WS_MAC
@@ -1458,7 +1457,7 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	
 	/*scanning existing languages:*/
 	QDir d ( "./lang" );
-	
+	cbLang->insertItem ( 0, QString("eng") );
 	if ( d.exists() ) {
 		d.setFilter ( QDir::Files );
 		QStringList filters;
@@ -1478,7 +1477,7 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	else {
 		cbLang->setEnabled ( false );
 	}
-	cbLang->insertItem ( 0, QString("eng") );
+	
 #endif
 	
 	line5 = new QFrame ( this );
