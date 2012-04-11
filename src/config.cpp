@@ -1672,14 +1672,17 @@ void ConfigDialog::okExit() {
 #endif
 	
 #ifdef _WIN32
-	QTranslator *translator = 0;
 	QString langfile ( "./lang/cdcat_" );
 	langfile += p->cconfig->lang;
 	langfile += ".qm";
 	
+	
+	p->app->removeTranslator ( translator );
+	delete(translator);
+	
 	translator = new QTranslator ( 0 );
 	translator->load ( langfile, "." );
-	p->app->removeTranslator ( translator );
+	
 	
 	//read the value
 	p->cconfig->lang        = cbLang->currentText();
@@ -1695,14 +1698,17 @@ void ConfigDialog::okExit() {
 #endif
 	
 #ifdef Q_WS_MAC
-	QTranslator *translator = 0;
 	QString langfile ( "./lang/cdcat_" );
 	langfile += p->cconfig->lang;
 	langfile += ".qm";
 	
+	
+	p->app->removeTranslator ( translator );
+	delete(translator);
+	
 	translator = new QTranslator ( 0 );
 	translator->load ( langfile, "." );
-	p->app->removeTranslator ( translator );
+	
 	
 	//read the value
 	p->cconfig->lang        = cbLang->currentText();

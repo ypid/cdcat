@@ -62,6 +62,13 @@ class CdCatMainWidget : public QMainWindow{
 		HQListView *listView;
 		QApplication *app;
 		QMenu *historyMenu;
+		QMenu *fileMenu;
+		QMenu *editMenu;
+		QMenu *viewMenu;
+		QMenu *findMenu;
+		QMenu *inoutMenu;
+		QMenu *othersMenu;
+		QMenu *helpMenu;
 		QSplitter *splitMain;
 		QWidget *main;
 		void setDockSize(QDockWidget *dock, int, int);
@@ -103,11 +110,39 @@ class CdCatMainWidget : public QMainWindow{
 
 	public:
 		QSystemTrayIcon *trayIcon;
+		QAction *new_action;
+		QAction *open_action;
+		QAction *save_action;
+		QAction *saveas_action;
+		//QAction *history_action;
+		QAction *close_action;
+		QAction *quit_action;
+		QAction *add_action;
+		QAction *addlink_action;
+		QAction *rescan_action;
+		QAction *insert_action;
+		QAction *rename_action;
+		QAction *renumber_action;
+		//QAction *changemediatype_action;
+		QAction *delete_action;
+		QAction *sortnu_action;
+		QAction *sortna_action;
+		QAction *sortti_action;
+		QAction *find_action;
+		QAction *findpanel_action;
+		QAction *borrow_action;
+		QAction *size_action;
+		QAction *config_action;
+		QAction *color_action;
+		QAction *import_action;
+		QAction *export_action;
+		QAction *help_action;
+		QAction *about_action;
+		QAction *aboutqt_action;
 		QAction *minimizeAction;
 		QAction *maximizeAction;
 		QAction *restoreAction;
 		QAction *quitAction;
-
 		QAction *view_toolbar_action;
 		QAction *view_statusbar_action;
 		QAction *view_comment_widget_action;

@@ -10,6 +10,7 @@
 #ifndef CDCAT_CDCAT
 #define CDCAT_CDCAT
 
+#include <qtranslator.h>
 #include "config.h"
 
 //#define IS_RELEASE
@@ -34,7 +35,7 @@ class QString;
 char  * mstr ( const char *imp );
 QString applicationDirPath ( char **argc );
 QString applicationFilePath ( char **argc );
-
+static QTranslator *translator;
 bool * init_debug_info();
 #endif
 

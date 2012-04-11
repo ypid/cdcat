@@ -11,7 +11,7 @@ Copyright : (C) 2003 Peter Deak
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <qtranslator.h>
+
 #include <qtextcodec.h>
 #include <qfont.h>
 #include <qapplication.h>
@@ -38,7 +38,7 @@ bool  *init_debug_info() {
 int main ( int argi, char **argc ) {
 	QApplication app ( argi, argc );
 	CdCatConfig *cconfig = new CdCatConfig();
-	QTranslator *translator = 0;
+	translator = 0;
 	int font_size = 8;
 	
 	if ( argi > 1 )
