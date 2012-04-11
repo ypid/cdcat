@@ -15,7 +15,6 @@
 #include <qvariant.h>
 #include <qdialog.h>
 #include <qtoolbutton.h>
-//Added by qt3to4:
 #include <QPixmap>
 #include <QResizeEvent>
 #include <QGridLayout>

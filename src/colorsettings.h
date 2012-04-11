@@ -15,7 +15,6 @@
 #include <qpixmap.h>
 #include <qdialog.h>
 #include <QFrame>
-//Added by qt3to4:
 #include <QGridLayout>
 #include <QHBoxLayout>
 #include <QVBoxLayout>

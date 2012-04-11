@@ -29,7 +29,6 @@
 #include <QMenu>
 #include <QAction>
 #include <QTextBrowser>
-//Added by qt3to4:
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 

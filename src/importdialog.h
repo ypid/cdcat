@@ -19,7 +19,6 @@ Copyright : (C) 2003 Christoph Thielecke
 #include <qcheckbox.h>
 #include <qradiobutton.h>
 #include <QGroupBox>
-//Added by qt3to4:
 #include <QVBoxLayout>
 #include <QGridLayout>
 #include <QHBoxLayout>

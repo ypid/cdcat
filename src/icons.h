@@ -1,5 +1,3 @@
-//Added by qt3to4:
-#include <QPixmap>
 /****************************************************************************
                              Hyper's CD Catalog
 		A multiplatform qt and xml based catalog program
@@ -12,6 +10,7 @@
 #ifndef ICONBASE_H_CDCAT
 #define ICONBASE_H_CDCAT
 
+#include <QPixmap>
 class QPixmap;
 
 void      init_icon_base ( void );

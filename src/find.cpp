@@ -25,7 +25,6 @@
 #include <qmessagebox.h>
 #include <QSpinBox>
 #include <qtextcodec.h>
-//Added by qt3to4:
 #include <QHBoxLayout>
 #include <QGridLayout>
 #include <QVBoxLayout>

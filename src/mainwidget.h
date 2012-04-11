@@ -15,7 +15,6 @@
 #include <qwidget.h>
 #include <qapplication.h>
 #include <QMenu>
-//Added by qt3to4:
 #include <QGridLayout>
 #include <QHBoxLayout>
 #include <QVBoxLayout>

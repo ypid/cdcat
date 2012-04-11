@@ -12,7 +12,6 @@
 
 #include <stdio.h>
 #include <zlib.h>
-//Added by qt3to4:
 
 #include <QtXml/QXmlDefaultHandler>
 #include <QtXml/QXmlLocator>

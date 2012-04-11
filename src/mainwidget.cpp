@@ -25,7 +25,6 @@
 #include <qlabel.h>
 #include <qfontmetrics.h>
 #include <qsplitter.h>
-//Added by qt3to4:
 #include <QHBoxLayout>
 #include <QCloseEvent>
 #include <QList>

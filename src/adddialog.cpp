@@ -32,7 +32,6 @@
 #include <qapplication.h>
 #include <qfontmetrics.h>
 #include <qfiledialog.h>
-//Added by qt3to4:
 #include <QHBoxLayout>
 #include <QPaintEvent>
 #include <QGridLayout>

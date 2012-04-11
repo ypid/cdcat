@@ -19,7 +19,6 @@
 #include <qlabel.h>
 #include <qmessagebox.h>
 #include <qfiledialog.h>
-//Added by qt3to4:
 #include <QGridLayout>
 #include <QHBoxLayout>
 
