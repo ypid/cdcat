@@ -234,10 +234,10 @@ QString getCDSerial ( const char *CDpath ) {
 	if ( !GetVolumeInformationA ( CDpath, bufName1, 64, &dwSerial, NULL, NULL, NULL, 0 ) ) {
 		return QString ( "" );
 	}
-	char *myChar = "Hello World";
+// 	char *myChar = "Hello World";
 	//DWORD dw = reinterpret_cast<DWORD> ( myChar );
 	//bufName1 = reinterpret_cast<char*> ( dw );
-	bufName1 = strncpy(&bufName1, myChar, 63);
+// 	bufName1 = strncpy(&bufName1, myChar, 63);
 	//name = QString ( bufName1 ).toLocal8Bit().data();
 	//QMessageBox::information(0, "vol1", "path: "+QString(CDpath)+"\nname: \""+QString(name)+"\"");
 	return QString ( bufName1 );
