@@ -1,8 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ui version="4.0">
+<ui version="4.0" >
  <class>helpDialog</class>
- <widget class="QDialog" name="helpDialog">
-  <property name="geometry">
+ <widget class="QDialog" name="helpDialog" >
+  <property name="geometry" >
    <rect>
     <x>0</x>
     <y>0</y>
@@ -10,75 +9,59 @@
     <height>354</height>
    </rect>
   </property>
-  <property name="windowTitle">
+  <property name="windowTitle" >
    <string>help</string>
   </property>
-  <layout class="QVBoxLayout">
+  <layout class="QVBoxLayout" >
    <item>
-    <widget class="QTextBrowser" name="textBrowser1">
-     <property name="text">
-      <string>&lt;p align=&quot;center&quot;&gt;&lt;font size=&quot;+1&quot;&gt;&lt;b&gt;Help&lt;/b&gt;&lt;/font&gt;&lt;/p&gt;&lt;br&gt;
+    <layout class="QHBoxLayout" name="horizontalLayout" />
+   </item>
+   <item>
+    <widget class="QTextBrowser" name="textBrowser1" >
+     <property name="text" stdset="0" >
+      <string>&lt;p align="center">&lt;font size="+1">&lt;b>Help&lt;/b>&lt;/font>&lt;/p>&lt;br>
 
-&lt;b&gt;What's this?&lt;/b&gt;&lt;br&gt;
-&lt;blockquote&gt;
+&lt;b>What's this?&lt;/b>&lt;br>
+&lt;blockquote>
 The cdcat is graphical (QT based) multiplatform (Linux/Windows) catalog program which scans the directories/drives you want and memorize the filesystem including the tags of mp3's and other data and store it in a small file.
 The database is stored in a gzipped XML format, so you can hack it, or use it if necessary :-)
 And the program can store the content of some specified files up to a limit size if you want. (for example: *.nfo)
-&lt;/blockquote&gt;
-&lt;br&gt;
-&lt;b&gt;Usage:&lt;/b&gt;&lt;br&gt;
-&lt;blockquote&gt;
-&lt;i&gt;Create a new catalog&lt;/i&gt;: Run the &lt;tt&gt;New&lt;/tt&gt; command in the catalog menu. You have to type the name of the new catalog. You can specify the default username of the media(which you scan later), and add a comment to the catalog.&lt;br&gt;Before the scanning select the necessary readable components in the config dialog, which can be mp3 tags content of some files or etc.  If you done this, you can scan one of your media with &lt;tt&gt;Add media&lt;/tt&gt;command in the Edit menu. In that dialog you have to specyfi the directory/or drive the media you want to add. It's recommended to specify the name and the number of the media which has to be unique. (The program always generate one identical name and number) You can label the media to a owner, if necessary.
-&lt;br&gt;If you scanned your media, you will be able to browse in it with the browser window (like mc) , or search in it. You can save the catalog with &lt;tt&gt;save as&lt;/tt&gt; command in the Catalog menu.
-&lt;br&gt;
-&lt;br&gt;
-&lt;i&gt;Open an existing catalog:&lt;/i&gt;Run the &lt;tt&gt;open&lt;/tt&gt; command in the Catalog menu, and choice the file of the catalog. (*.hcf)  After the opening you will be able browse the catalog or search in it.
-&lt;br&gt;
-&lt;/blockquote&gt;
-&lt;br&gt;
-&lt;b&gt;Author:&lt;/b&gt;
-&lt;blockquote&gt;The program was written by  Peter Deak  (hungary)&lt;br&gt;
+&lt;/blockquote>
+&lt;br>
+&lt;b>Usage:&lt;/b>&lt;br>
+&lt;blockquote>
+&lt;i>Create a new catalog&lt;/i>: Run the &lt;tt>New&lt;/tt> command in the catalog menu. You have to type the name of the new catalog. You can specify the default username of the media(which you scan later), and add a comment to the catalog.&lt;br>Before the scanning select the necessary readable components in the config dialog, which can be mp3 tags content of some files or etc.  If you done this, you can scan one of your media with &lt;tt>Add media&lt;/tt>command in the Edit menu. In that dialog you have to specyfi the directory/or drive the media you want to add. It's recommended to specify the name and the number of the media which has to be unique. (The program always generate one identical name and number) You can label the media to a owner, if necessary.
+&lt;br>If you scanned your media, you will be able to browse in it with the browser window (like mc) , or search in it. You can save the catalog with &lt;tt>save as&lt;/tt> command in the Catalog menu.
+&lt;br>
+&lt;br>
+&lt;i>Open an existing catalog:&lt;/i>Run the &lt;tt>open&lt;/tt> command in the Catalog menu, and choice the file of the catalog. (*.hcf)  After the opening you will be able browse the catalog or search in it.
+&lt;br>
+&lt;/blockquote>
+&lt;br>
+&lt;b>Author:&lt;/b>
+&lt;blockquote>The program was written by  Peter Deak  (hungary)&lt;br>
 E-mail: hyperr@freemail.hu
-&lt;br&gt;
-&lt;/blockquote&gt;
-&lt;br&gt;
-&lt;b&gt;License:&lt;/b&gt;
-&lt;blockquote&gt;General Public License (GPL)&lt;/blockquote&gt;
-&lt;br&gt;
-&lt;b&gt;Homepage:&lt;/b&gt;
-&lt;blockquote&gt;You can read about the program and get new versions, sources etc, in the hompage of cdcat:&lt;br&gt;&lt;tt&gt;http://cdcat.sourceforge.net&lt;/tt&gt;&lt;/blockquote&gt;</string>
+&lt;br>
+&lt;/blockquote>
+&lt;br>
+&lt;b>License:&lt;/b>
+&lt;blockquote>General Public License (GPL)&lt;/blockquote>
+&lt;br>
+&lt;b>Homepage:&lt;/b>
+&lt;blockquote>You can read about the program and get new versions, sources etc, in the hompage of cdcat:&lt;br>&lt;tt>http://cdcat.sourceforge.net&lt;/tt>&lt;/blockquote></string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="closeButton">
-     <property name="text">
+    <widget class="QPushButton" name="closeButton" >
+     <property name="text" >
       <string>close</string>
      </property>
     </widget>
    </item>
   </layout>
  </widget>
- <layoutdefault spacing="6" margin="11"/>
- <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
- <customwidgets>
-  <customwidget>
-   <class>QFrame</class>
-   <extends>QFrame</extends>
-   <header>QFrame</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>QTextBrowser</class>
-   <extends>QTextBrowser</extends>
-   <header>QTextBrowser</header>
-  </customwidget>
-  <customwidget>
-   <class>QTextBrowser</class>
-   <extends>QTextBrowser</extends>
-   <header>QTextBrowser</header>
-  </customwidget>
- </customwidgets>
+ <layoutdefault spacing="6" margin="11" />
  <resources/>
  <connections>
   <connection>
@@ -87,11 +70,11 @@ E-mail: hyperr@freemail.hu
    <receiver>helpDialog</receiver>
    <slot>close()</slot>
    <hints>
-    <hint type="sourcelabel">
+    <hint type="sourcelabel" >
      <x>20</x>
      <y>20</y>
     </hint>
-    <hint type="destinationlabel">
+    <hint type="destinationlabel" >
      <x>20</x>
      <y>20</y>
     </hint>
