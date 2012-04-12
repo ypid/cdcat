@@ -275,6 +275,7 @@ HDirectoryView::HDirectoryView ( DataBase **dbp, QWidget *parent, const char *na
 	          this, SLOT ( openFolder() ) );
 
 	//setSorting ( -1 );
+	setSortingEnabled(true);
 	start();
 
 	QStringList labels;
