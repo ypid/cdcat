@@ -146,6 +146,7 @@ public slots:
 
 private:
 	QTreeWidgetItem *context_item;
+	QTreeWidgetItem *last_dirview_item;
 
 };
 

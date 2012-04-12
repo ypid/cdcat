@@ -429,9 +429,9 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	connect ( DirView , SIGNAL ( folderSelected ( const QString & ) ), guis, SLOT ( listUpdate ( const QString & ) ) );
 	connect ( DirView , SIGNAL ( hitkey ( QKeyEvent * ) ), guis, SLOT ( hotKeys ( QKeyEvent * ) ) );
 	connect ( DirView, SIGNAL ( customContextMenuRequested ( const QPoint  ) ),
-	          guis, SLOT ( showListviewContextMenu  ( const QPoint ) ) );
+	          guis, SLOT ( showTreeContextMenu  ( const QPoint ) ) );
 	connect ( listView, SIGNAL ( customContextMenuRequested ( const QPoint  ) ),
-	          guis, SLOT ( showTreeContextMenu( const QPoint ) ) );
+	          guis, SLOT ( showListviewContextMenu( const QPoint ) ) );
 
 	//connect ( listView, SIGNAL (    itemChanged  ( QTreeWidgetItem *, int ) ), guis, SLOT ( standOn ( QTreeWidgetItem *, int ) ) );
 	//connect ( listView, SIGNAL (    currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), guis, SLOT ( currentItemChanged ( QTreeWidgetItem*,QTreeWidgetItem* ) ) );

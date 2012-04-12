@@ -729,8 +729,9 @@ int GuiSlave::updateListFromNode ( Node *pdir ) {
 	
 	mainw->listView->setSorting ( mainw->listView->scol, mainw->listView->sasc );
 
-	if ( !fflag )
+	if ( !fflag ) {
 		mainw->listView->setCurrentItem ( mainw->listView->topLevelItem(0) );
+	}
 
 	if ( *DEBUG_INFO_ENABLED )
 		cerr << "BEACON-1" << endl;
@@ -775,6 +776,7 @@ int GuiSlave::standOn ( QTreeWidgetItem *on, int ) {
 	if ( *DEBUG_INFO_ENABLED )
 		cerr << "3" << endl;
 	standON = tmp;
+	last_dirview_item = on;
 
 	if ( *DEBUG_INFO_ENABLED )
 		cerr << "4" << endl;
@@ -906,6 +908,10 @@ void GuiSlave::setGuiMenuAndToolBarEnabled ( bool enable ) {
 
 void GuiSlave::showListviewContextMenu ( QPoint p ) {
 	mPopup = new QMenu ( mainw);
+	QTreeWidgetItem *on = mainw->listView->itemAt(p);
+	if(on != last_dirview_item) {
+		standOn(on, 0);
+	}
 	
 	if ( standON != NULL ) {
 		mPopup->addAction ( QIcon(*get_t_comment_icon()), tr ( "View/Edit Comment..." ), this, SLOT(editComment()) );
@@ -949,7 +955,7 @@ void GuiSlave::showListviewContextMenu ( QPoint p ) {
 	mPopup->addAction ( QIcon(*get_t_add_icon()), tr ( "Add media..." ), this, SLOT(addEvent()) );
 	mPopup->addAction ( QIcon(*get_p_icon()), tr ( "Add a link to a CdCat Catalog..." ), this, SLOT(addlnkEvent()) );
 	mPopup->addAction ( tr ( "Insert Catalog..." ), this, SLOT(insertcEvent()) );
-	mPopup->exec ( mainw->DirView->viewport()->mapToGlobal (p) );
+	mPopup->exec ( mainw->listView->viewport()->mapToGlobal (p) );
 	delete mPopup;
 	mPopup = NULL;
 }
@@ -964,7 +970,7 @@ void GuiSlave::showTreeContextMenu ( const QPoint p2 ) {
 		             ( ( LNode * ) mainw->DirView->currentItem() )->fullName()
 		     );
 	}
-
+	
 	mPopup = new QMenu (mainw);
 	if ( on != NULL ) {
 		mPopup->addAction ( QIcon(*get_t_comment_icon()), tr ( "View/Edit Comment..." ), this, SLOT(editComment()) );
@@ -1004,7 +1010,7 @@ void GuiSlave::showTreeContextMenu ( const QPoint p2 ) {
 	
 	save = standON;
 	standON = on;
-	mPopup->exec ( mainw->listView->viewport()->mapToGlobal (p2) );
+	mPopup->exec ( mainw->DirView->viewport()->mapToGlobal (p2) );
 	standON = save;
 	delete mPopup;
 	mPopup = NULL;

@@ -1,5 +1,6 @@
 12. Apr 2012 Christoph Thielecke <crissi99@gmx.de>
 	- sorting at treeview and fileview reenabled
+	- context menu entries for listview and treeview fixed
 
 11. Apr 2012 Christoph Thielecke <crissi99@gmx.de>
 	- lang selector fixed
