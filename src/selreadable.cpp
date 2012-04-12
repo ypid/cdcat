@@ -372,7 +372,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 		}
 #else
 	   if ( *DEBUG_INFO_ENABLED )
-		std::cerr << "lib7zip library not supported" << std::end;
+		std::cerr << "lib7zip library not supported" << std::endl;
 #endif
 		SupportedExtensionsList.sort();
 		int linelen = 0;
