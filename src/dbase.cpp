@@ -574,7 +574,7 @@ DataBase::DataBase ( void ) {
 	}
 #else
 	   if ( *DEBUG_INFO_ENABLED )
-		std::cerr << "lib7zip library not supported" << std::end;
+		std::cerr << "lib7zip library not supported" << std::endl;
 #endif
 }
 
