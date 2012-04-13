@@ -194,6 +194,7 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		resultsl->header()->setResizeMode(5,QHeaderView::Stretch);
 		resultsl->header()->setResizeMode(6,QHeaderView::Stretch);
 		resultsl->setIndentation(0); // remove the indention (|_ sign)
+		resultsl->setSortingEnabled(true);
 		
 		//resultsl->setColumnAlignment ( 2, Qt::AlignRight ); // FIXME
 		
@@ -434,6 +435,7 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		labels.append ( tr ( "Extension" ) );
 		resultsl->setHeaderLabels(labels);
 		resultsl->setIndentation(0); // remove the indention (|_ sign)
+		resultsl->setSortingEnabled(true);
 		
 		//resultsl->setColumnAlignment ( 2, Qt::AlignRight ); // FIXME
 		resultsl->header()->setResizeMode(0,QHeaderView::Stretch);
