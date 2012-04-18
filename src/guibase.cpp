@@ -172,9 +172,6 @@ HQListView::HQListView ( CdCatMainWidget *mw, QWidget *parent, const char *, Qt:
 	setHeaderLabels(labels);
 	setIndentation(0); // remove the indention (|_ sign)
 	setSortingEnabled(true);
-	header()->setResizeMode(0,QHeaderView::Stretch);
-	header()->setResizeMode(1,QHeaderView::Stretch);
-	header()->setResizeMode(2,QHeaderView::Stretch);
 	setContextMenuPolicy(Qt::CustomContextMenu);
 	setSorting(0, true);
 	

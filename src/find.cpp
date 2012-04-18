@@ -186,13 +186,6 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		labels.append ( tr ( "Category" ) );
 		labels.append ( tr ( "Extension" ) );
 		resultsl->setHeaderLabels(labels);
-		resultsl->header()->setResizeMode(0,QHeaderView::Stretch);
-		resultsl->header()->setResizeMode(1,QHeaderView::Stretch);
-		resultsl->header()->setResizeMode(2,QHeaderView::Stretch);
-		resultsl->header()->setResizeMode(3,QHeaderView::Stretch);
-		resultsl->header()->setResizeMode(4,QHeaderView::Stretch);
-		resultsl->header()->setResizeMode(5,QHeaderView::Stretch);
-		resultsl->header()->setResizeMode(6,QHeaderView::Stretch);
 		resultsl->setIndentation(0); // remove the indention (|_ sign)
 		resultsl->setSortingEnabled(true);
 		
@@ -438,13 +431,6 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		resultsl->setSortingEnabled(true);
 		
 		//resultsl->setColumnAlignment ( 2, Qt::AlignRight ); // FIXME
-		resultsl->header()->setResizeMode(0,QHeaderView::Stretch);
-		resultsl->header()->setResizeMode(1,QHeaderView::Stretch);
-		resultsl->header()->setResizeMode(2,QHeaderView::Stretch);
-		resultsl->header()->setResizeMode(3,QHeaderView::Stretch);
-		resultsl->header()->setResizeMode(4,QHeaderView::Stretch);
-		resultsl->header()->setResizeMode(5,QHeaderView::Stretch);
-		resultsl->header()->setResizeMode(6,QHeaderView::Stretch);
 		
 		buttonClose = new QPushButton ( this );
 		buttonClearSearchResult = NULL;
