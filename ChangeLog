@@ -1,3 +1,6 @@
+19. Apr 2012 Christoph Thielecke <crissi99@gmx.de>
+	- crash at adding new media if dirview is empty fixed
+
 18. Apr 2012 Christoph Thielecke <crissi99@gmx.de>
 	- make listview columns resizeable again
 

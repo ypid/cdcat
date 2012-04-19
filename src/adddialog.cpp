@@ -212,7 +212,9 @@ addDialog::addDialog ( GuiSlave *c, QWidget* parent, const char* name, bool moda
 	else {
 		dirView->setDir ( ( ( CdCatMainWidget * ) parent )->cconfig->lastDir );
 		dirView->sDir = ( ( CdCatMainWidget * ) parent )->cconfig->lastDir;
-		leName->setText (dirView->currentItem()->text(0));
+		if (dirView->currentItem() != NULL) {
+			leName->setText (dirView->currentItem()->text(0));
+		}
 	}
 }
 
