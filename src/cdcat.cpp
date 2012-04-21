@@ -35,8 +35,34 @@ bool  *init_debug_info() {
 	return DEBUG_INFO_ENABLED;
 }
 
+#ifndef QT_NO_DEBUG
+static void myMessageOutput(QtMsgType type, const char *msg) {
+	switch (type) {
+		case QtDebugMsg:
+			fprintf(stderr, "Debug: %s\n", msg);
+			break;
+		case QtWarningMsg:
+			fprintf(stderr, "Warning: %s\n", msg);
+			break;
+		case QtCriticalMsg:
+			fprintf(stderr, "Critical: %s\n", msg);
+			break;
+		case QtFatalMsg:
+			fprintf(stderr, "Fatal: %s\n", msg);
+			//abort();
+			char *i=NULL;
+			char j = i[5];
+	}
+}
+#endif
+
 int main ( int argi, char **argc ) {
+#ifndef QT_NO_DEBUG
+#warning ====> installing own message handler
+	qInstallMsgHandler(myMessageOutput);
+#endif
 	QApplication app ( argi, argc );
+	
 	CdCatConfig *cconfig = new CdCatConfig();
 	translator = 0;
 	int font_size = 8;
