@@ -1669,10 +1669,12 @@ bool CdCatXmlHandler::endElement ( const QString & namespaceURI, const QString &
 										cerr << "Start_end: content size: " << currentText.size() << " (raw: " << rsize << ")" << endl;
 									bytes = new unsigned char[ rsize + 1];
 									
-									char *tempbuffer = currentText.toLocal8Bit().data();
+									char *tempbuffer = NULL;
+									tempbuffer =strdup (currentText.toLocal8Bit().data());
 									bytes = new unsigned char[ ( rsize = ( strlen ( tempbuffer ) / 2 ) ) + 1];
-									for ( i = 0; i < rsize; i++ )
+									for ( i = 0; i < rsize; i++ ) {
 										bytes[i] = decodeHexa ( tempbuffer[i * 2], tempbuffer[i * 2 + 1] );
+									}
 									bytes[rsize] = '\0';
 									//bytes = (unsigned char *)QByteArray::fromHex(currentText.toLocal8Bit()).constData();
 									//rsize = QByteArray::fromHex(currentText.toLocal8Bit()).size();
@@ -1834,7 +1836,6 @@ bool CdCatXmlHandler::endElement ( const QString & namespaceURI, const QString &
 															switch ( FREA->sp->type ) {
 																case HC_FILE     :
 																	//( ( DBFile      * ) ( FREA->sp->data ) ) -> comment = FREA->get_cutf8 ( currentText );
-																	unsigned char *bytes;
 																	unsigned long rsize, i;
 																	
 																	Node *tt = ( ( DBFile * ) ( FREA->sp->data ) )->prop;
@@ -1852,7 +1853,6 @@ bool CdCatXmlHandler::endElement ( const QString & namespaceURI, const QString &
 																	if ( *DEBUG_INFO_ENABLED )
 																		cout << "found thumb: (" << QByteArray::fromHex ( currentText.toLocal8Bit() ).size() << " bytes), size: " << tmpThumbImage.width() << "x" << tmpThumbImage.height() << std::endl;
 																	tt->data = ( void * ) new DBThumb ( tmpThumbImage );
-																	free ( bytes );
 																	break;
 															}
 														}
