@@ -1167,7 +1167,7 @@ int GuiSlave::openEvent ( void ) {
 			if ( *DEBUG_INFO_ENABLED )
 				cerr << "2" << endl;
 			QAction *newaction = new QAction ( *get_t_open_icon(), fn, 0 );
-			mainw->historyMenu->insertAction ( mainw->historyMenu->actions().at ( 0 ), newaction );
+			mainw->historyMenu->addAction ( newaction );
 			if ( *DEBUG_INFO_ENABLED )
 				cerr << "3" << endl;
 			if ( ( int ) mainw->cconfig->hlist.count() > ( int ) mainw->cconfig->historysize ) {
