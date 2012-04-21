@@ -176,7 +176,7 @@ class CdCatConfig : public QObject {
 		bool    mounteject;
 #endif
 		
-#ifdef _WIN32
+#if defined(_WIN32) || defined(_OS2)
 		QString lang;
 #endif
 #ifdef Q_WS_MAC
@@ -246,7 +246,7 @@ class ConfigDialog : public QDialog {
 		QCheckBox* cbMoEj;
 #endif
 		
-#ifdef _WIN32
+#if defined(_WIN32) || defined(_OS2)
 		QHBoxLayout* layout9;
 		QComboBox  * cbLang;
 		QLabel     * langLabel;

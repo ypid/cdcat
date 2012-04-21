@@ -85,7 +85,7 @@ addDialog::addDialog ( GuiSlave *c, QWidget* parent, const char* name, bool moda
 	textLabel1 = new QLabel ( this );
 	layout7->addWidget ( textLabel1 );
 
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(_OS2)
 	cbAutoDetectAtMount = new QCheckBox ( this );
 	layout7->addWidget ( cbAutoDetectAtMount );
 #endif
@@ -182,7 +182,7 @@ addDialog::addDialog ( GuiSlave *c, QWidget* parent, const char* name, bool moda
 	connect ( dirView, SIGNAL ( folderSelected ( const QString & ) ), this, SLOT ( setMediaName ( const QString & ) ) );
 	connect ( cbType, SIGNAL ( activated ( int ) ), this, SLOT ( cbTypeToggeled ( int ) ) );
 	
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(_OS2)
 	connect ( cbAutoDetectAtMount, SIGNAL ( clicked() ), this, SLOT ( autoDetectAtMountToggled() ) );
 	cbAutoDetectAtMount->setChecked ( true );
 #endif
@@ -250,7 +250,7 @@ void addDialog::languageChange() {
 	buttonCancel->setText ( tr ( "&Cancel" ) );
 	buttonOK->setText ( tr ( "&Scan" ) );
 	buttonPli->setText ( tr ( "Select &readable items" ) );
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(_OS2)
 	cbAutoDetectAtMount->setText ( tr ( "detect CDROM/DVD med&ia name after mount" ) );
 #endif
 	cbType->clear();
@@ -268,7 +268,7 @@ int addDialog::setMediaName ( const QString & ds ) {
 	QString tm;
 	//std::cerr << "mediatype " << cbType->currentItem() +1 << std::endl;
 
-#ifdef _WIN32
+#if defined(_WIN32) || defined(_OS2)
 	QDir confdir ( ( caller->mainw->cconfig->cdrompath ).toLower() );
 	QDir selected ( ds.toLower() );
 #else
@@ -286,7 +286,7 @@ int addDialog::setMediaName ( const QString & ds ) {
 		if ( confdir  == selected && ! ( tm.isEmpty() ) ) {
 
 
-#ifdef _WIN32
+#if defined(_WIN32) || defined(_OS2)
 			if ( ( cbType->currentIndex() + 1 == CD &&  cbType->currentIndex() + 1 == DVD ) && ( confdir  == selected ) ) {
 				if ( !caller->mainw->cconfig->cdrompath.replace ( "/", "\\" ).isEmpty() ) {
 					tm = getCDName ( caller->mainw->cconfig->cdrompath.replace ( "/", "\\" ).toLocal8Bit().constData() );
@@ -315,7 +315,7 @@ int addDialog::setMediaName ( const QString & ds ) {
 					medianame_tmp+=".1";
 				}
 				
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(_OS2)
 
 				// also set the media type to DVD if needed
 				if ( diskIsDVD ( caller->mainw->cconfig->cdrompath.toLocal8Bit().constData() ) )
@@ -337,7 +337,7 @@ int addDialog::setMediaName ( const QString & ds ) {
 	}
 	else {
 		//std::cerr << "setMediaName: mediatype is not cd/dvd"<< std::endl;
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(_OS2)
 		tm = dirView->sDir.split ( '/' ).at ( dirView->sDir.split ( '/' ).size() - 2 );
 #else
 		tm = dirView->sDir.split ( '/' ).at ( dirView->sDir.split ( '/' ).size() - 2 );
@@ -422,7 +422,7 @@ int addDialog::bCan ( void ) {
 
 
 void addDialog::autoDetectAtMountToggled() {
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(_OS2)
 	if ( cbAutoDetectAtMount->isChecked() )
 		leName->setEnabled ( false );
 	else

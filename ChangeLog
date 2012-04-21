@@ -1,7 +1,8 @@
-22. Apr 2012 Christoph Thielecke <crissi99@gmx.de>
+21. Apr 2012 Christoph Thielecke <crissi99@gmx.de>
 	- crash on loading file content fixed
 	- crash on insert history action fixed
 	- own messagehandler on debug build added
+	- os/2 support added
 
 19. Apr 2012 Christoph Thielecke <crissi99@gmx.de>
 	- crash at adding new media if dirview is empty fixed

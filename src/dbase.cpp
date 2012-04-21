@@ -47,7 +47,7 @@
 
 #include <bzlib.h>
 
-#ifndef _WIN32
+#if defined(_WIN32)
 #include <pwd.h>
 #include <grp.h>
 #endif
@@ -1376,7 +1376,7 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 	return 0;
 }
 
-#ifdef _WIN32
+#if defined(_WIN32)
 /* WIN32 fake posix */
 int fchmod ( int fd, int mode ) {
 	// dummy
@@ -1552,7 +1552,7 @@ void DataBase::strmode ( mode_t mode, char* p ) {
 		case S_IFCHR:                   /* character special */
 			*p++ = 'c';
 			break;
-#ifndef _WIN32 // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
+#if !defined(_WIN32) // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
 		case S_IFBLK:                   /* block special */
 			*p++ = 'b';
 			break;
@@ -1560,12 +1560,12 @@ void DataBase::strmode ( mode_t mode, char* p ) {
 		case S_IFREG:                   /* regular */
 			*p++ = '-';
 			break;
-#ifndef _WIN32 // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
+#if !defined(_WIN32)  // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
 		case S_IFLNK:                   /* symbolic link */
 			*p++ = 'l';
 			break;
 #endif
-#ifndef _WIN32 // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
+#if !defined(_WIN32)  // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
 		case S_IFSOCK:                  /* socket */
 			*p++ = 's';
 			break;
@@ -1585,7 +1585,7 @@ void DataBase::strmode ( mode_t mode, char* p ) {
 			break;
 	}
 	/* usr */
-#ifndef _WIN32 // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
+#if !defined(_WIN32)  // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
 	if ( mode & S_IRUSR )
 		*p++ = 'r';
 	else
@@ -1593,7 +1593,7 @@ void DataBase::strmode ( mode_t mode, char* p ) {
 #else
 	*p++ = '-';
 #endif
-#ifndef _WIN32 // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
+#if !defined(_WIN32)  // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
 	if ( mode & S_IWUSR )
 		*p++ = 'w';
 	else
@@ -1601,7 +1601,7 @@ void DataBase::strmode ( mode_t mode, char* p ) {
 #else
 	*p++ = '-';
 #endif
-#ifndef _WIN32 // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
+#if !defined(_WIN32)  // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
 	switch ( mode & ( S_IXUSR | S_ISUID ) ) {
 		case 0:
 			*p++ = '-';
@@ -1620,7 +1620,7 @@ void DataBase::strmode ( mode_t mode, char* p ) {
 	*p++ = '-';
 #endif
 	/* group */
-#ifndef _WIN32 // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
+#if !defined(_WIN32)  // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
 	if ( mode & S_IRGRP )
 		*p++ = 'r';
 	else
@@ -1628,7 +1628,7 @@ void DataBase::strmode ( mode_t mode, char* p ) {
 #else
 	*p++ = '-';
 #endif
-#ifndef _WIN32 // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
+#if !defined(_WIN32)  // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
 	if ( mode & S_IWGRP )
 		*p++ = 'w';
 	else
@@ -1636,7 +1636,7 @@ void DataBase::strmode ( mode_t mode, char* p ) {
 #else
 	*p++ = '-';
 #endif
-#ifndef _WIN32 // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
+#if !defined(_WIN32)  // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
 	switch ( mode & ( S_IXGRP | S_ISGID ) ) {
 		case 0:
 			*p++ = '-';
@@ -1655,7 +1655,7 @@ void DataBase::strmode ( mode_t mode, char* p ) {
 	*p++ = '-';
 #endif
 	/* other */
-#ifndef _WIN32 // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
+#if !defined(_WIN32)  // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
 	if ( mode & S_IROTH )
 		*p++ = 'r';
 	else
@@ -1663,7 +1663,7 @@ void DataBase::strmode ( mode_t mode, char* p ) {
 #else
 	*p++ = '-';
 #endif
-#ifndef _WIN32 // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
+#if !defined(_WIN32)  // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
 	if ( mode & S_IWOTH )
 		*p++ = 'w';
 	else
@@ -1671,7 +1671,7 @@ void DataBase::strmode ( mode_t mode, char* p ) {
 #else
 	*p++ = '-';
 #endif
-#ifndef _WIN32 // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
+#if !defined(_WIN32)  // modified by SUGAWARA Genki <sgwr_dts@yahoo.co.jp>
 	switch ( mode & ( S_IXOTH | S_ISVTX ) ) {
 		case 0:
 			*p++ = '-';
@@ -1795,7 +1795,7 @@ QList<ArchiveFile> DataBase::scanArchive ( QString path, ArchiveType type ) {
 				af.date.setTime_t ( mtime );
 				af.path = QString().sprintf ( "%s", th_get_pathname ( t ) );
 
-#ifndef _WIN32
+#if !defined(_WIN32) 
 				if ( TH_ISSYM ( t ) || TH_ISLNK ( t ) ) {
 					if ( TH_ISSYM ( t ) )
 						af.filetype = QString().sprintf ( " -> " );

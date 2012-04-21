@@ -193,7 +193,7 @@ DirectoryView::DirectoryView ( QWidget *parent, const char *name )
 		//std::cerr << "DirView::DirView() root found: " << qPrintable(fi->filePath()) << std::endl;
 
 		Directory * root = new Directory ( this, fi->filePath() );
-#ifdef _WIN32
+#if defined(_WIN32) || defined(_OS2) 
 		//Skip reading floppy drives on startup.
 		if ( roots->count() >= 1 && fi->filePath() != QString ( "A:/" ) && fi->filePath() != QString ( "B:/" ) ) {
 #else

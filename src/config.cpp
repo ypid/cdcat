@@ -47,7 +47,7 @@
 #include "mainwidget.h"
 #include "selreadable.h"
 
-#ifdef _WIN32
+#if defined(_WIN32) || defined(_OS2)
 #define CONFIGFILE "cdcat.cfg"
 #else
 #define CONFIGFILE ".cdcatconf"
@@ -77,7 +77,7 @@ CdCatConfig::CdCatConfig ( void ) {
 	autoloadfn = "";
 	nice       = true;
 	// set dummy
-#ifdef _WIN32
+#if defined(_WIN32) || defined(_OS2)
 	cdrompath = "D:/";
 	lastDir = getenv ( "USER_PROFILE" );
 #else
@@ -172,14 +172,12 @@ CdCatConfig::CdCatConfig ( void ) {
 	mounteject = false;
 #endif
 	
-#ifdef _WIN32
-	lang       = "eng";
-#endif
-	
-#ifdef Q_WS_MAC
+#if defined(_WIN32) || defined(Q_WS_MAC) || defined(_OS2)
 	lang       = "eng";
 #endif
 }
+
+
 
 CdCatConfig::~CdCatConfig ( void ) {
 	DEBUG_INFO_ENABLED = init_debug_info();
@@ -239,7 +237,7 @@ int secv ( const char *s, int i ) {
 
 int CdCatConfig::readConfig ( void ) {
 	int error = 0;
-#ifdef _WIN32
+#if defined(_WIN32) || defined(_OS2)
 	QFile f ( CONFIGFILE );
 #else
 	
@@ -375,13 +373,7 @@ int CdCatConfig::readConfig ( void ) {
 				}
 #endif
 				
-#ifdef _WIN32
-				if ( var == "lang" ) {
-					lang = val;
-					continue;
-				}
-#endif
-#ifdef Q_WS_MAC
+#if defined(_WIN32) || defined(Q_WS_MAC) || defined(_OS2)
 				if ( var == "lang" ) {
 					lang = val;
 					continue;
@@ -933,7 +925,7 @@ int CdCatConfig::readConfig ( void ) {
 
 int CdCatConfig::writeConfig ( void ) {
 
-#ifdef _WIN32
+#if defined(_WIN32) || defined(_OS2)
 	QFile f ( CONFIGFILE );
 #else
 	if ( getenv ( "HOME" ) == NULL ) {
@@ -1026,14 +1018,10 @@ int CdCatConfig::writeConfig ( void ) {
 			str << "mounteject=false" << endl;
 #endif
 		
-#ifdef _WIN32
+#if defined(_WIN32) || defined(Q_WS_MAC) || defined(_OS2)
 		str << "lang=" + lang << endl;
 #endif
 
-#ifdef Q_WS_MAC
-		str << "lang=" + lang << endl;
-#endif
-		
 		str << "windowSize_height=" << windowSize.height() << endl;
 		str << "windowSize_width=" << windowSize.width() << endl;
 		
@@ -1311,7 +1299,7 @@ int CdCatConfig::writeConfig ( void ) {
 		return 0;
 	}
 	else {
-#ifdef _WIN32
+#if defined(_WIN32) || defined(_OS2)
 		QMessageBox::warning ( 0, tr ( "Error while saving config file..." ), tr ( "I can't create or rewrite the ./cdcat.cfg file " ) );
 #else
 		QMessageBox::warning ( 0, tr ( "Error while saving config file..." ), tr ( "I can't create or rewrite the $(HOME)/.cdcatconfig file " ) );
@@ -1410,7 +1398,7 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	ConfigDialogBaseLayout->addWidget ( cbMoEj, 12, 0 );
 #endif
 	
-#ifdef _WIN32
+#if defined(_WIN32) || defined(Q_WS_MAC) || defined(_OS2)
 	layout9   = new QHBoxLayout ( this );
 	cbLang    = new QComboBox ( this );
 	langLabel = new QLabel ( this );
@@ -1442,42 +1430,6 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	else {
 		cbLang->setEnabled ( false );
 	}
-#endif
-	
-#ifdef Q_WS_MAC
- 	//cerr << "config: mac! " << endl;
-	layout9   = new QHBoxLayout ( this );
-	cbLang    = new QComboBox ( this );
-	langLabel = new QLabel ( this );
-	layout9->insertSpacing ( 0, 5 );
-	layout9->insertWidget ( 1, cbLang );
-	layout9->insertWidget ( 2, langLabel );
-	layout9->insertSpacing ( 3, 5 );
-	ConfigDialogBaseLayout->addLayout ( layout9, 13, 0 );
-	
-	/*scanning existing languages:*/
-	QDir d ( "./lang" );
-	cbLang->insertItem ( 0, QString("eng") );
-	if ( d.exists() ) {
-		d.setFilter ( QDir::Files );
-		QStringList filters;
-		filters << "cdcat_??.qm";
-		d.setNameFilters(filters);
-		QFileInfoList list ( d.entryInfoList() );
-		//QFileInfoListIterator it ( list. );
-		//QFileInfo *fi;
-		foreach ( const QFileInfo & fi , list )
-		//while ( ( fi = it.current() ) != 0 )
-		{
-			cbLang->insertItem ( 0, ( fi.fileName() ).mid ( 6, 2 ) );
-			//++it;
-		}
-		/*end scanning*/
-	}
-	else {
-		cbLang->setEnabled ( false );
-	}
-	
 #endif
 	
 	line5 = new QFrame ( this );
@@ -1581,15 +1533,7 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	cbMoEj ->setChecked ( p->cconfig->mounteject );
 #endif
 	
-#ifdef _WIN32
-	cbLang->setCurrentIndex ( 0 );
-	int index = cbLang->findText( p->cconfig->lang );
-	if(index != -1) {
-		cbLang->setCurrentIndex ( index );
-	}
-#endif
-	
-#ifdef Q_WS_MAC
+#if defined(_WIN32) || defined(Q_WS_MAC) || defined(_OS2)
 	cbLang->setCurrentIndex ( 0 );
 	int index = cbLang->findText( p->cconfig->lang );
 	if(index != -1) {
@@ -1628,11 +1572,7 @@ void ConfigDialog::languageChange() {
 	cbMoEj->setText ( tr ( "Scanning: mount cdrom at start / eject when finish" ) );
 #endif
 	
-#ifdef _WIN32
-	langLabel->setText ( tr ( "The language of CdCat interface" ) );
-#endif
-	
-#ifdef Q_WS_MAC
+#if defined(_WIN32) || defined(Q_WS_MAC) || defined(_OS2)
 	langLabel->setText ( tr ( "The language of CdCat interface" ) );
 #endif
 	
@@ -1668,33 +1608,7 @@ void ConfigDialog::okExit() {
 	p->cconfig->mounteject  = cbMoEj->isChecked();
 #endif
 	
-#ifdef _WIN32
-	QString langfile ( "./lang/cdcat_" );
-	langfile += p->cconfig->lang;
-	langfile += ".qm";
-	
-	
-	p->app->removeTranslator ( translator );
-	delete(translator);
-	
-	translator = new QTranslator ( 0 );
-	translator->load ( langfile, "." );
-	
-	
-	//read the value
-	p->cconfig->lang        = cbLang->currentText();
-	
-	translator = 0;
-	langfile = "./lang/cdcat_";
-	langfile += p->cconfig->lang;
-	langfile += ".qm";
-	
-	translator = new QTranslator ( 0 );
-	translator->load ( langfile, "." );
-	p->app->installTranslator ( translator );
-#endif
-	
-#ifdef Q_WS_MAC
+#if defined(_WIN32) || defined(Q_WS_MAC) || defined(_OS2)
 	QString langfile ( "./lang/cdcat_" );
 	langfile += p->cconfig->lang;
 	langfile += ".qm";

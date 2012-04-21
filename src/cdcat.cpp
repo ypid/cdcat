@@ -85,19 +85,14 @@ int main ( int argi, char **argc ) {
 	QFont *font = new QFont();
 	font->setPointSize ( font_size );
 	
-#ifdef _WIN32
-	QString langpath ( applicationDirPath ( argc ) + "/lang/cdcat_" );
-	langpath += cconfig->lang;
-	langpath += ".qm";
-#endif
-#ifdef Q_WS_MAC
+#if defined(_WIN32) || defined(Q_WS_MAC) || defined(_OS2)
 	QString langpath ( applicationDirPath ( argc ) + "/lang/cdcat_" );
 	langpath += cconfig->lang;
 	langpath += ".qm";
 #endif
 
 #ifndef _WIN32
-#ifndef Q_WS_MAC
+#if !defined(Q_WS_MAC) && !defined(_OS2)
 	QList<QString> translation_paths;
 	//translation_paths = new QList <QString> ();
 	QString locale = QLocale().name();

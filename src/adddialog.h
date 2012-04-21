@@ -67,7 +67,7 @@ public:
     QSpinBox* sbNumber;
     QLineEdit* leName;
     DirectoryView* dirView;
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(_OS2)
     QCheckBox *cbAutoDetectAtMount;
 #endif
 

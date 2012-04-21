@@ -1151,7 +1151,7 @@ int GuiSlave::openEvent ( void ) {
 
 		if ( *DEBUG_INFO_ENABLED )
 			cerr << "0-1" << endl;
-//         if ( mainw->cconfig->hlist.isEmpty() ) cerr <<"emptlyysdsaféashfk"<<endl;
+//         if ( mainw->cconfig->hlist.isEmpty() ) cerr <<"emptlyysdsafÃ©ashfk"<<endl;
 		if ( *DEBUG_INFO_ENABLED )
 			cerr << "0-2" << endl;
 		//mainw->cconfig->hlist.grep ( "AAAA" );
@@ -1332,7 +1332,7 @@ int GuiSlave::deleteEvent ( void ) {
 
 int GuiSlave::addEvent ( void ) {
 	int i;
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(_OS2) 
 	bool mount_successful = false;
 #endif
 	DEBUG_INFO_ENABLED = init_debug_info();
@@ -1370,7 +1370,7 @@ int GuiSlave::addEvent ( void ) {
 	QApplication::setOverrideCursor ( Qt::WaitCursor );
 	d->type = mainw->cconfig->lastMediaType;
 
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(_OS2) 
 	if ( ( d->type == CD || d->type == DVD )  &&  mainw->cconfig->mounteject &&
 	                d->dDir == mainw->cconfig->cdrompath ) {
 		int pid;
@@ -1487,7 +1487,7 @@ int GuiSlave::addEvent ( void ) {
 	}
 #endif
 
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(_OS2) 
 	if ( ( ( d->type == CD || d->type == DVD ) && ( ( mainw->cconfig->mounteject && mount_successful ) || ( !mainw->cconfig->mounteject ) ) )  || ( d->type != CD && d->type != DVD ) ) {
 #endif
 // 	if(*DEBUG_INFO_ENABLED)
@@ -1592,7 +1592,7 @@ int GuiSlave::addEvent ( void ) {
 		progress ( pww );
 		if ( *DEBUG_INFO_ENABLED )
 			cerr << "ADDEVENT-4" << endl;
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(_OS2) 
 		if ( mainw->cconfig->mounteject ) {
 			if ( ( d->type == CD || d->type == DVD ) &&
 			                d->dDir == mainw->cconfig->cdrompath ) {
@@ -1667,7 +1667,7 @@ int GuiSlave::addEvent ( void ) {
 		}
 #endif
 
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(_OS2) 
 		// mount_successful
 	}
 	if ( ( d->type == CD || d->type == DVD ) && mainw->cconfig->mounteject && !mount_successful ) {
