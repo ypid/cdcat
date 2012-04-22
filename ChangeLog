@@ -1,3 +1,6 @@
+22. Apr 2012 Christoph Thielecke <crissi99@gmx.de>
+	- load media info on static mediainfo fixed
+
 21. Apr 2012 Christoph Thielecke <crissi99@gmx.de>
 	- crash on loading file content fixed
 	- crash on insert history action fixed

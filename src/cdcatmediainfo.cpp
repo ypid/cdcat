@@ -149,6 +149,7 @@ bool CdcatMediaInfo::initMediaInfoLib() {
 	DEBUG_INFO_ENABLED = init_debug_info();
 #ifdef MEDIAINFO_STATIC
 	MediaInfoHandler = new MediaInfo();
+	mediaInfoLibFound = true;
 	if(*DEBUG_INFO_ENABLED) {
 		cout << "initMediaInfoLib(): mediainfo lib version: " << fromMediaInfoStrtoQString(MediaInfoHandler->Option(toMediaInfoString(QString("Info_Version")))).split(" - ").at(1).toStdString()  << endl;
 	}
