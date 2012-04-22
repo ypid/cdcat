@@ -110,13 +110,60 @@ win32 {
 	LIBS       += -lz -ldl /usr/lib/libtar.a /usr/lib/libbz2.a /usr/lib/lib7zip.a
 } else:os2 {
 	# OS/2
+	CONFIG += console
+
+	########## lib7zip
+	# use lib7zip?
+	#DEFINES+=USE_LIB7ZIP
+	
+
+	# STATIC
+	#LIBS+=c:/usr/lib/lib7zip.a
+
+	# DYNAMIC
+	#LIBS+= -llib7zip
+	######### end lib7zip
+
+	######### mediainfo
+	# use libmediainfo as static library?
+	# STATIC
+	DEFINES += MEDIAINFO_STATIC
+	LIBS+=c:/usr/lib/mediainfo.a c:/usr/lib/zen.a c:/usr/lib/pthread.a
+
+	# DYNAMIC. no pkgconfig
+	#LIBS+= -lmediainfo
+
+
+	########## exif
+	# use exif?
+	#DEFINES += USE_LIBEXIF
+	#LIBS += -lexif
+	######### end exif
+
+	#LIBS       += -lz -ltar -lbz2 -ldl
+	# temporary kluge until it's decided how to get char type from libmediainfo,
+	# maybe also via pkgconfig (Debian Bug #656929, could remove the extra
+	# hack in cdcatmediainfo.h when it's ready)
+	DEFINES += MEDIAINFO_UNICODE
+
+	LIBS       += -lz c:/usr/lib/libtar.a -lbz2 -ldl
+	INCLUDEPATH += c:/usr/include
+	distfiles.files +=   ../README_CSV_IMPORT ../Authors ../README ../ChangeLog ../COPYING ../TRANSLATORS_README ../cdcat.png
+	distfiles.path =     c:/usr/share/cdcat
+	target.path +=       c:/usr/bin
+	translations.path += c:/usr/share/cdcat/translations
+	QMAKE_CXXFLAGS += -O2 -D_OS2
+
+
+} else {
+	# unix
 
 	########## lib7zip
 	# use lib7zip?
 	#DEFINES+=USE_LIB7ZIP
 
 	# STATIC
-	#LIBS+=c:\usr\lib\lib7zip.a
+	#LIBS+=/usr/local/lib/lib7zip.a
 
 	# DYNAMIC
 	#LIBS+= -llib7zip
@@ -126,7 +173,7 @@ win32 {
 	# use libmediainfo as static library?
 	# STATIC
 	#DEFINES += MEDIAINFO_STATIC
-	#LIBS+=c:\usr\lib\libmediainfo.a
+	#LIBS+=/usr/local/lib/libmediainfo.a
 
 	# DYNAMIC. no pkgconfig
 	#LIBS+= -lmediainfo
@@ -148,69 +195,23 @@ win32 {
 	######### end exif
 
 	#LIBS       += -lz -ltar -lbz2 -ldl
+	# libmediainfo ships API info via pkgconfig so use it!
+	#CONFIG += link_pkgconfig
+	#PKGCONFIG += libmediainfo
 	# temporary kluge until it's decided how to get char type from libmediainfo,
 	# maybe also via pkgconfig (Debian Bug #656929, could remove the extra
 	# hack in cdcatmediainfo.h when it's ready)
-	DEFINES += MEDIAINFO_UNICODE
+	#DEFINES += MEDIAINFO_UNICODE
 
 	LIBS       += -lz c:\usr\lib\libtar.a -lbz2 -ldl
-  INCLUDEPATH += c:\usr\include
-	distfiles.files +=   ..\README_CSV_IMPORT ..\Authors ..\README ..\ChangeLog ..\COPYING ..\TRANSLATORS_README ..\cdcat.png
-	distfiles.path =     c:\usr\share\cdcat
-	target.path +=       c:\usr\bin
-	translations.path += c:\usr\share\cdcat\translations
-	QMAKE_CXXFLAGS += -O2 -D_OS2
-
-
-} else {
-	# unix
-
-	########## lib7zip
-	# use lib7zip?
-	DEFINES+=USE_LIB7ZIP
-
-	# STATIC
-	LIBS+=/usr/local/lib/lib7zip.a
-
-	# DYNAMIC
-	#LIBS+= -llib7zip
-	######### end lib7zip
-
-	######### mediainfo
-	# use libmediainfo as static library?
-	# STATIC
-	#DEFINES += MEDIAINFO_STATIC
-	#LIBS+=/usr/local/lib/libmediainfo.a
-
-	# DYNAMIC. no pkgconfig
-	LIBS+= -lmediainfo
-
-	# libmediainfo ships API info via pkgconfig so use it!
-	CONFIG += link_pkgconfig
-	PKGCONFIG += libmediainfo
-	# temporary kluge until it's decided how to get char type from libmediainfo,
-	# maybe also via pkgconfig (Debian Bug #656929, could remove the extra
-	# hack in cdcatmediainfo.h when it's ready)
-	DEFINES += MEDIAINFO_UNICODE
-	######### end mediainfo
-
-
-	########## exif
-	# use exif?
-	DEFINES += USE_LIBEXIF
-	LIBS += -lexif
-	######### end exif
-
-	LIBS       += -lz -ltar -lbz2 -ldl
-
-	distfiles.files +=   ../README_CSV_IMPORT ../Authors ../README ../ChangeLog ../COPYING ../	TRANSLATORS_README ../cdcat.png
+	distfiles.files +=   ../README_CSV_IMPORT ../Authors ../README ../ChangeLog ../COPYING ../TRANSLATORS_README ../cdcat.png
 	distfiles.path =     /usr/local/share/cdcat
 	target.path +=       /usr/local/bin
 	translations.path += /usr/local/share/cdcat/translations
 
 	# security hardening flags
-	DEFINES += _FORTIFY_SOURCE=2
-	QMAKE_CXXFLAGS += -std=c++0x -g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Wformat-security -Werror=format-security
+	#DEFINES += _FORTIFY_SOURCE=2
+	#QMAKE_CXXFLAGS += -std=c++0x -g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Wformat-security -Werror=format-security
 }
 
 FORMS      	    = help.ui
