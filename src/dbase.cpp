@@ -47,7 +47,7 @@
 
 #include <bzlib.h>
 
-#if defined(_WIN32)
+#if !defined(_WIN32) && !defined(_OS2)
 #include <pwd.h>
 #include <grp.h>
 #endif
