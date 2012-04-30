@@ -285,8 +285,8 @@ HDirectoryView::HDirectoryView ( DataBase **dbp, QWidget *parent, const char *na
 	//header()->setClickEnabled ( FALSE, header()->count() - 1 ); // FIXME
 	//header()->setResizeEnabled ( FALSE, header()->count() - 1 ); //FIXME
 
-	header()->setResizeMode(0,QHeaderView::Stretch);
-	header()->setResizeMode(1,QHeaderView::Stretch);
+	//header()->setResizeMode(0,QHeaderView::Stretch);
+	//header()->setResizeMode(1,QHeaderView::Stretch);
 	//setSelectionMode ( Single );
 	setSelectionMode ( QAbstractItemView::SingleSelection );
 	setItemsExpandable(true);

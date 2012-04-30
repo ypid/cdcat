@@ -1,3 +1,6 @@
+30. Apr 2012 Christoph Thielecke <crissi99@gmx.de>
+	- allow user to resize column width of directory tree again
+
 22. Apr 2012 Christoph Thielecke <crissi99@gmx.de>
 	- load media info on static mediainfo fixed
 	- language loading on os/2 fixed
