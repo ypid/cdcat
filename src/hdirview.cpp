@@ -287,6 +287,7 @@ HDirectoryView::HDirectoryView ( DataBase **dbp, QWidget *parent, const char *na
 
 	//setSorting ( -1 );
 	setSortingEnabled(true);
+	sortByColumn(0, Qt::AscendingOrder);
 	start();
 
 	QStringList labels;

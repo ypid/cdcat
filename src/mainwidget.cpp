@@ -86,6 +86,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	QStringList labels;
 	labels.append(tr ( "Directory Tree" ) );
 	DirView->setHeaderLabels(labels);
+	DirView->setSortingEnabled(true);
 
 	listView = new HQListView ( this, splitMain, "listView" );
 	QStringList labels2;
@@ -93,6 +94,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	labels2.append(tr ( "Size" ) );
 	listView->setHeaderLabels(labels2);
 	listView->clear();
+	listView->setSorting(0, false);
 
 
 	commentWidget = new CommentWidget ( cconfig, app , this, "CommentWiget" );
@@ -539,6 +541,7 @@ void CdCatMainWidget::languageChange() {
 	labels2.append(tr ( "Size" ) );
 	labels2.append(tr ( "Type" ) );
 	listView->setHeaderLabels(labels2);
+	listView->sortByColumn(0, Qt::AscendingOrder);
 
 	new_action->setText(tr ( "&New..." ));
         new_action->setStatusTip ( tr ( "Create a new catalog" ));

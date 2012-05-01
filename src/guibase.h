@@ -41,6 +41,7 @@ public:
 
 //   virtual int compare(QListViewItem *i,int col,bool ascending) const;
     QString key ( int column,bool ascending ) const;
+    bool operator < (const QTreeWidgetItem &other) const;
 };
 
 class HQListView : public QTreeWidget {

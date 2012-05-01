@@ -96,6 +96,29 @@ HQListViewItem::HQListViewItem ( QTreeWidget *parent, QString label1, QString la
 	setText(1, label2);
 	setText(2, label3);
 }
+
+bool HQListViewItem::operator < (const QTreeWidgetItem &other) const {
+	int col = treeWidget()->sortColumn();
+	//std::cerr << "HQListViewItem::operator < col: " << col << ", text(0): " << qPrintable(text(0)) << ", other.text(0): " << qPrintable(other.text(0)) << std::endl;
+	if (col == 0 || col == 1) {
+		if(text(0) == "..") {
+			return false;
+		}
+		else {
+			return QTreeWidgetItem::operator<(other);
+		}
+	}
+	else {
+		// col 3
+		if(other.text(0) == "..") {
+			return false;
+		}
+		else {
+			return QTreeWidgetItem::operator<(other);
+		}
+	}
+}
+
 /*
 HQListViewItem::HQListViewItem ( QTreeWidget *parent, QTreeWidgetItem *after, QString label1, QString label2, QString label3 )
 	: QTreeWidgetItem ( parent ) {
@@ -174,6 +197,7 @@ HQListView::HQListView ( CdCatMainWidget *mw, QWidget *parent, const char *, Qt:
 	setSortingEnabled(true);
 	setContextMenuPolicy(Qt::CustomContextMenu);
 	setSorting(0, true);
+	sortByColumn(0, Qt::AscendingOrder);
 	
  	QPalette p( palette() );
  	p.setColor( QPalette::Highlight,  *mainw->cconfig->comm_bg );
@@ -197,10 +221,10 @@ void HQListView::setSorting ( int column, bool increasing ) {
 	
 	if ( scol < 0 || scol > 3 )
 		scol = 0;
-// 	if (increasing)
-// 		sortByColumn ( scol, Qt::AscendingOrder );
-// 	else
-// 		sortByColumn ( scol, Qt::DescendingOrder );
+	if (increasing)
+		sortByColumn ( scol, Qt::AscendingOrder );
+	else
+		sortByColumn ( scol, Qt::DescendingOrder );
 }
 
 void HQListView::keyPressEvent ( QKeyEvent *ke ) {
@@ -537,7 +561,7 @@ int GuiSlave::updateListFromNode ( Node *pdir ) {
 		return 0;
 	}
 	mainw->listView->clear();
-	mainw->listView->setSorting ( mainw->listView->scol, mainw->listView->sasc );
+	//mainw->listView->setSorting ( mainw->listView->scol, mainw->listView->sasc );
 	
 	//Set column text:
 	if ( pdir != NULL && pdir->type == HC_CATALOG ) {
@@ -724,7 +748,7 @@ int GuiSlave::updateListFromNode ( Node *pdir ) {
 		tmp = tmp->next;
 	}
 	
-	mainw->listView->setSorting ( mainw->listView->scol, mainw->listView->sasc );
+	//mainw->listView->setSorting ( mainw->listView->scol, mainw->listView->sasc );
 
 	if ( !fflag ) {
 		mainw->listView->setCurrentItem ( mainw->listView->topLevelItem(0) );
