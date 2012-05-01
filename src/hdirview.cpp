@@ -188,6 +188,7 @@ void LNode::setExpanded ( bool o ) {
 		//listView()->setUpdatesEnabled ( TRUE ); //FIXME
 	}
 	QTreeWidgetItem::setExpanded ( o );
+	treeWidget()->resizeColumnToContents(0);
 }
 
 
