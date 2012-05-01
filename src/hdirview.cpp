@@ -138,37 +138,47 @@ void LNode::setExpanded ( bool o ) {
 			switch ( tmp->type ) {
 				case HC_CATALOG :
 					newnode->setIcon ( 0, QIcon(*get_p_icon() ));
+					newnode->setText(1, QObject::tr ( "Catalog" ));
 					break;
 				case HC_MEDIA :
 					switch ( ( ( DBMedia * ) ( tmp->data ) )->type ) {
 						case UNKNOWN :
 							newnode->setIcon ( 0, QIcon(*get_m_unknown_icon() ));
+							newnode->setText(1,  QObject::tr ( "Unknown(DB)" ));
 							break;
 						case CD      :
 							newnode->setIcon ( 0, QIcon(*get_m_cd_icon() ));
+							newnode->setText(1,  QObject::tr ( "CD" ));
 							break;
 						case DVD     :
 							newnode->setIcon ( 0, QIcon( *get_m_dvd_icon() ));
+							newnode->setText(1,  QObject::tr ( "DVD" ));
 							break;
 						case HARDDISC:
 							newnode->setIcon ( 0, QIcon(*get_m_hdd_icon() ));
+							newnode->setText(1,  QObject::tr ( "HardDisc" ));
 							break;
 						case FLOPPY  :
 							newnode->setIcon ( 0, QIcon(*get_m_floppy_icon() ));
+							newnode->setText(1,  QObject::tr ( "Floppy" ));
 							break;
 						case NETPLACE:
 							newnode->setIcon ( 0, QIcon(*get_m_net_icon() ));
+							newnode->setText(1,  QObject::tr ( "NetworkDrv" ));
 							break;
 						case FLASHDRV:
 							newnode->setIcon ( 0, QIcon(*get_m_flash_icon()) );
+							newnode->setText(1,  QObject::tr ( "FlashDrv" ));
 							break;
 						case OTHERD  :
 							newnode->setIcon ( 0, QIcon(*get_m_other_icon()) );
+							newnode->setText(1,  QObject::tr ( "OtherDevice" ));
 							break;
 					}
 					break;
 				case HC_DIRECTORY:
 					newnode->setIcon ( 0, QIcon(*get_v_folderclosed_icon()) );
+					newnode->setText(1,  QObject::tr ( "Directory" ));
 					break;
 			}
 			
@@ -246,6 +256,7 @@ void HDirectoryView::start ( void ) {
 		n = new LNode ( this, ( *db )->getRootNode() );
 		n->setPixmap ( get_p_icon() );
 		n->setText(0, ( *db )->getRootNode()->getNameOf());
+		n->setText(1, n->text(1) );
 		n->setup();
 		n->setExpanded ( true );
 	}
