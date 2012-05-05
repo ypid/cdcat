@@ -63,8 +63,8 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	main = new QWidget ( this );
 	setCentralWidget ( main );
 	app = appp;
-
-	int fontHeight = ( new QFontMetrics ( app->font() ) )->height();
+	QFontMetrics fm = app->font();
+	int fontHeight = ( &fm )->height();
 
 	if ( !name )
 		setObjectName ( "CdCatMainWidget" );
