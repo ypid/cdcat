@@ -392,9 +392,15 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 		}
 		sevenzip_libfound_text = "";
 #ifdef USE_LIB7ZIP
-		sevenzip_libfound_text = "<font color=\"red\">" + tr ( "lib7zip found" ) + "</font>";
-		if ( sevenzip_libfound )
-			sevenzip_libfound_text = "<font color=\"green\">" + tr ( "lib7zip found" ) + "</font>";
+		sevenzip_libfound_text = "<font color=\"red\">" + tr ( "lib7zip not found" ) + "</font>";
+		if ( sevenzip_libfound ) {
+#ifdef LIB_7ZIP_VERSION
+			QString Lib7ZipVersion = LIB_7ZIP_VERSION;
+#else
+			QString Lib7ZipVersion = tr("unknown");
+#endif
+			sevenzip_libfound_text = "<font color=\"green\">" + tr ( "lib7zip found" ) + ": " + Lib7ZipVersion  + "</font>";
+		}
 		
 #else
 		sevenzip_libfound_text = "<font color=\"red\">" + tr ( "lib7zip not supported" ) + "</font>";

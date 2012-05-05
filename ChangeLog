@@ -1,3 +1,7 @@
+05. May 2012 Christoph Thielecke <crissi99@gmx.de>
+	- memleak fixes
+	- version number of detected lib7zip on selreadable dialog added
+
 01. May 2012 Christoph Thielecke <crissi99@gmx.de>
 	- displaying type in directory tree fixed
 	- sort order on treeview  and directory view now ascending be default
