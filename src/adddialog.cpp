@@ -196,7 +196,7 @@ addDialog::addDialog ( GuiSlave *c, QWidget* parent, const char* name, bool moda
 	//setMediaName ( " " );
 
 	type = caller->mainw->cconfig->lastMediaType;
-	cbType->setCurrentIndex ( caller->mainw->cconfig->lastMediaType - 1 );
+	cbType->setCurrentIndex ( caller->mainw->cconfig->lastMediaType );
 
 
 	buttonOK->setFocus();
@@ -204,7 +204,7 @@ addDialog::addDialog ( GuiSlave *c, QWidget* parent, const char* name, bool moda
 	resize ( QSize ( ( ( CdCatMainWidget * ) parent )->cconfig->addWidth, ( ( CdCatMainWidget * ) parent )->cconfig->addHeight ).expandedTo ( minimumSizeHint() ) );
 	move ( ( ( CdCatMainWidget * ) parent )->cconfig->addX, ( ( CdCatMainWidget * ) parent )->cconfig->addY );
 
-	if ( cbType->currentIndex() + 1 == CD || cbType->currentIndex() + 1 == DVD ) {
+	if ( cbType->currentIndex() == CD || cbType->currentIndex() == DVD ) {
 		dirView->setDir ( ( ( CdCatMainWidget * ) parent )->cconfig->cdrompath );
 		dirView->sDir = ( ( CdCatMainWidget * ) parent )->cconfig->cdrompath;
 		//    setMediaName ( ( ( CdCatMainWidget * ) parent )->cconfig->cdrompath );
@@ -254,19 +254,20 @@ void addDialog::languageChange() {
 	cbAutoDetectAtMount->setText ( tr ( "detect CDROM/DVD med&ia name after mount" ) );
 #endif
 	cbType->clear();
-	cbType->insertItem ( 0, QIcon(*get_m_cd_icon()), tr ( "CD" ) );
-	cbType->insertItem ( 0, QIcon(*get_m_dvd_icon()), tr ( "DVD" ) );
-	cbType->insertItem ( 0, QIcon(*get_m_hdd_icon()), tr ( "HardDisc" ) );
-	cbType->insertItem ( 0, QIcon(*get_m_floppy_icon()), tr ( "Floppy" ) );
-	cbType->insertItem ( 0, QIcon(*get_m_net_icon()), tr ( "NetworkPlace" ) );
-	cbType->insertItem ( 0, QIcon(*get_m_flash_icon()), tr ( "FlashDrive" ) );
-	cbType->insertItem ( 0, QIcon(*get_m_other_icon()), tr ( "OtherDevice" ) );
+	cbType->insertItem ( 0, QIcon(*get_m_other_icon()), tr ( "unknown" ) );
+	cbType->insertItem ( 1, QIcon(*get_m_cd_icon()), tr ( "CD" ) );
+	cbType->insertItem ( 2, QIcon(*get_m_dvd_icon()), tr ( "DVD" ) );
+	cbType->insertItem ( 3, QIcon(*get_m_hdd_icon()), tr ( "HardDisc" ) );
+	cbType->insertItem ( 4, QIcon(*get_m_floppy_icon()), tr ( "Floppy" ) );
+	cbType->insertItem ( 5, QIcon(*get_m_net_icon()), tr ( "NetworkPlace" ) );
+	cbType->insertItem ( 6, QIcon(*get_m_flash_icon()), tr ( "FlashDrive" ) );
+	cbType->insertItem ( 7, QIcon(*get_m_other_icon()), tr ( "OtherDevice" ) );
 //  cbType->setCurrentText(tr( "CD" )); // default
 }
 
 int addDialog::setMediaName ( const QString & ds ) {
 	QString tm;
-	//std::cerr << "mediatype " << cbType->currentItem() +1 << std::endl;
+	//std::cerr << "mediatype " << cbType->currentIndex() << std::endl;
 
 #if defined(_WIN32) || defined(_OS2)
 	QDir confdir ( ( caller->mainw->cconfig->cdrompath ).toLower() );
@@ -277,7 +278,7 @@ int addDialog::setMediaName ( const QString & ds ) {
 #endif
 	QApplication::setOverrideCursor ( Qt::WaitCursor );
 
-	if ( cbType->currentIndex() + 1 == CD  || cbType->currentIndex() + 1 == DVD )  {
+	if ( cbType->currentIndex() == CD  || cbType->currentIndex() == DVD )  {
 		//std::cerr << "setMediaName: mediatype is cd/dvd"<< std::endl;
 
 		if ( confdir  == selected ) {
@@ -287,7 +288,7 @@ int addDialog::setMediaName ( const QString & ds ) {
 
 
 #if defined(_WIN32) || defined(_OS2)
-			if ( ( cbType->currentIndex() + 1 == CD &&  cbType->currentIndex() + 1 == DVD ) && ( confdir  == selected ) ) {
+			if ( ( cbType->currentIndex() == CD &&  cbType->currentIndex() == DVD ) && ( confdir  == selected ) ) {
 				if ( !caller->mainw->cconfig->cdrompath.replace ( "/", "\\" ).isEmpty() ) {
 					tm = getCDName ( caller->mainw->cconfig->cdrompath.replace ( "/", "\\" ).toLocal8Bit().constData() );
 				}
@@ -319,9 +320,9 @@ int addDialog::setMediaName ( const QString & ds ) {
 
 				// also set the media type to DVD if needed
 				if ( diskIsDVD ( caller->mainw->cconfig->cdrompath.toLocal8Bit().constData() ) )
-					cbType->setCurrentIndex ( DVD - 1 );
+					cbType->setCurrentIndex ( DVD );
 				else
-					cbType->setCurrentIndex( CD - 1 );
+					cbType->setCurrentIndex( CD );
 #endif
 				volumename = 1;
 			}
@@ -351,7 +352,7 @@ int addDialog::setMediaName ( const QString & ds ) {
 }
 
 int addDialog::bOk ( void ) {
-	if ( ( leName->text() ).isEmpty() && ! ( cbType->currentIndex() + 1 == CD || cbType->currentIndex() + 1 == DVD ) ) {
+	if ( ( leName->text() ).isEmpty() && ! ( cbType->currentIndex() == CD || cbType->currentIndex() == DVD ) ) {
 		QMessageBox::warning ( ( QWidget * ) this, tr ( "Error:" ), tr ( "You must be fill the \"Name\" field!" ) );
 		return 0;
 	}
@@ -391,7 +392,7 @@ int addDialog::bOk ( void ) {
 	}
 
 	OK = 1;
-	type   = cbType->currentIndex() + 1;
+	type   = cbType->currentIndex();
 	serial = sbNumber->value();
 	dName  = leName->text();
 	dOwner = leOwner->text();
@@ -431,9 +432,9 @@ void addDialog::autoDetectAtMountToggled() {
 }
 
 void addDialog::cbTypeToggeled ( int ) {
-	if ( caller->mainw->cconfig->lastMediaType != cbType->currentIndex() + 1 ) {
+	if ( caller->mainw->cconfig->lastMediaType != cbType->currentIndex() ) {
 // 	std::cerr << "mediatype changed from " << caller->mainw->cconfig->lastMediaType << " to " << cbType->currentItem() +1 << std::endl;
-		caller->mainw->cconfig->lastMediaType = cbType->currentIndex() + 1;
+		caller->mainw->cconfig->lastMediaType = cbType->currentIndex();
 		caller->mainw->cconfig->writeConfig();
 	}
 }
