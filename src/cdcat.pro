@@ -166,7 +166,7 @@ win32 {
 	#LIBS+=/usr/local/lib/lib7zip.a
 
 	# DYNAMIC
-	#LIBS+= -llib7zip
+	#LIBS+= -l7zip
 	######### end lib7zip
 
 	######### mediainfo
@@ -202,8 +202,16 @@ win32 {
 	# maybe also via pkgconfig (Debian Bug #656929, could remove the extra
 	# hack in cdcatmediainfo.h when it's ready)
 	#DEFINES += MEDIAINFO_UNICODE
+	
+	###### libtar
+	# STATIC
+	#LIBS += /usr/local/lib/libtar.a
 
-	LIBS       += -lz c:\usr\lib\libtar.a -lbz2 -ldl
+	# DYNAMIC
+	LIBS += -ltar
+	###### end libtar
+
+	LIBS       += -lz -lbz2 -ldl
 	distfiles.files +=   ../README_CSV_IMPORT ../Authors ../README ../ChangeLog ../COPYING ../TRANSLATORS_README ../cdcat.png
 	distfiles.path =     /usr/local/share/cdcat
 	target.path +=       /usr/local/bin

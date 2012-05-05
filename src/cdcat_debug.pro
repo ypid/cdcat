@@ -177,10 +177,10 @@ win32 {
 	DEFINES+=USE_LIB7ZIP
 
 	# STATIC
-	LIBS+=/usr/local/lib/lib7zip.a
+	#LIBS+=/usr/local/lib/lib7zip.a
 
 	# DYNAMIC
-	#LIBS+= -l7zip
+	LIBS+= -l7zip
 	######### end lib7zip
 
 	######### mediainfo
@@ -208,6 +208,13 @@ win32 {
 	LIBS+= -lexif
 	######### end exif
 
+	###### libtar
+	# STATIC
+	#LIBS += /usr/local/lib/libtar.a
+
+	# DYNAMIC
+	LIBS += -ltar
+	###### end libtar
 
 	LIBS       += -lz -ltar -lbz2 -ldl
 	distfiles.files +=   ../README_CSV_IMPORT ../Authors ../README ../ChangeLog ../COPYING ../TRANSLATORS_README ../cdcat.png
