@@ -142,6 +142,7 @@ bool CdcatMediaInfo::readCdcatMediaInfo(){
 CdcatMediaInfo::~CdcatMediaInfo ( void ) {
 	// FIXME close & delete should be done at close cdcat
 // 	MediaInfoHandler->Close();
+	delete MediaInfoHandler;
 	
 }
 
