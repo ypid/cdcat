@@ -40,10 +40,6 @@
       <source>unknown</source>
       <translation>unbekannt</translation>
     </message>
-    <message>
-      <source></source>
-      <translation type="unfinished" />
-    </message>
   </context>
   <context>
     <name>CatalogTypeEditDialog</name>
@@ -1982,6 +1978,14 @@ wird zu
     <message>
       <source>Use wildcard expression instead regular expression</source>
       <translation>Wildcard-Ausdruck anstelle regulärem Ausdruck benutzen</translation>
+    </message>
+    <message>
+      <source>lib7zip not found</source>
+      <translation>lib7zip nicht gefunden</translation>
+    </message>
+    <message>
+      <source>unknown</source>
+      <translation>unbekannt</translation>
     </message>
   </context>
   <context>
