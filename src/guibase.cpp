@@ -1175,7 +1175,7 @@ int GuiSlave::openEvent ( void ) {
 
 		if ( *DEBUG_INFO_ENABLED )
 			cerr << "0-1" << endl;
-//         if ( mainw->cconfig->hlist.isEmpty() ) cerr <<"emptlyysdsafÃ©ashfk"<<endl;
+//         if ( mainw->cconfig->hlist.isEmpty() ) cerr <<"emptlyysdsaféashfk"<<endl;
 		if ( *DEBUG_INFO_ENABLED )
 			cerr << "0-2" << endl;
 		//mainw->cconfig->hlist.grep ( "AAAA" );
@@ -2638,7 +2638,7 @@ void CatalogTypeEditDialog::languageChange() {
 	cbType->insertItem ( 0, *get_m_flash_icon(), tr ( "FlashDrive" ) );
 	cbType->insertItem ( 0, *get_m_other_icon(), tr ( "OtherDevice" ) );
 	//cbType->setCurrentText(tr( "CD" )); // default
-	cbType->setCurrentIndex ( ( ( DBMedia * ) ( n->data ) )->type - 1 );
+	cbType->setCurrentIndex ( ( ( DBMedia * ) ( n->data ) )->type );
 	buttonCancel->setText ( tr ( "Cancel" ) );
 	buttonOK->setText ( tr ( "OK" ) );
 }
@@ -2647,10 +2647,10 @@ void CatalogTypeEditDialog::okExit() {
 	DEBUG_INFO_ENABLED = init_debug_info();
 	changeOk = true;
 	if ( *DEBUG_INFO_ENABLED )
-		std::cerr << "mediatype changed from " << ( ( DBMedia * ) ( n->data ) )->type - 1 << " to " << cbType->currentIndex() + 1 << std::endl;
-	( ( DBMedia * ) ( n->data ) )->type = cbType->currentIndex() + 1;
+		std::cerr << "mediatype changed from " << ( ( DBMedia * ) ( n->data ) )->type << " to " << cbType->currentIndex() << std::endl;
+	( ( DBMedia * ) ( n->data ) )->type = cbType->currentIndex();
 	if ( *DEBUG_INFO_ENABLED )
-		std::cerr << "mediatype new: " << ( ( DBMedia * ) ( n->data ) )->type - 1 << std::endl;
+		std::cerr << "mediatype new: " << ( ( DBMedia * ) ( n->data ) )->type << std::endl;
 	close();
 }
 
@@ -2661,7 +2661,7 @@ void CatalogTypeEditDialog::cancel() {
 void CatalogTypeEditDialog::cbTypeToggeled ( int ) {
 	DEBUG_INFO_ENABLED = init_debug_info();
 	if ( *DEBUG_INFO_ENABLED )
-		std::cerr << "mediatype changed to " << cbType->currentIndex() + 1 << std::endl;
+		std::cerr << "mediatype changed to " << cbType->currentIndex() << std::endl;
 }
 
 
