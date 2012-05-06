@@ -1,5 +1,6 @@
 06. May 2012 Christoph Thielecke <crissi99@gmx.de>
 	- sorting directories on listview fixed
+	- resize colum of name colum at listview automaticlly to fit the text in it
 
 05. May 2012 Christoph Thielecke <crissi99@gmx.de>
 	- memleak fixes
@@ -10,7 +11,7 @@
 	- displaying type in directory tree fixed
 	- sort order on treeview  and directory view now ascending be default
 	- keep ".." entry always as first entry on sort listview
-	- resize colum of name colum automaticlly to fit the text in it
+	- resize colum of name colum at treeview automaticlly to fit the text in it
 
 30. Apr 2012 Christoph Thielecke <crissi99@gmx.de>
 	- allow user to resize column width of directory tree again

@@ -773,6 +773,8 @@ int GuiSlave::updateListFromNode ( Node *pdir ) {
 	if ( !fflag ) {
 		mainw->listView->setCurrentItem ( mainw->listView->topLevelItem(0) );
 	}
+	
+	mainw->listView->resizeColumnToContents(0);
 
 	if ( *DEBUG_INFO_ENABLED )
 		cerr << "BEACON-1" << endl;
