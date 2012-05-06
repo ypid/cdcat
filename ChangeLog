@@ -1,6 +1,7 @@
 06. May 2012 Christoph Thielecke <crissi99@gmx.de>
 	- sorting directories on listview fixed
 	- resize colum of name colum at listview automaticlly to fit the text in it
+	- crash on scanning special avi files fixed
 
 05. May 2012 Christoph Thielecke <crissi99@gmx.de>
 	- memleak fixes

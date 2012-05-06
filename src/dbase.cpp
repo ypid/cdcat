@@ -1121,16 +1121,23 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 
 int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 	DEBUG_INFO_ENABLED = init_debug_info();
+	
+	QString file_suffix = fi->suffix();
+	QString file_abspath = fi->absoluteFilePath();
+	QString file_path = fi->filePath();
+	QString file_name = fi->fileName();
+	qint64 file_size = fi->size();
+	
 	/***MP3 tag scanning */
 	if ( storeMp3tags || storeMp3techinfo ) {
-		if ( ( fi->suffix () ).toLower() ==  "mp3" || ( fi->suffix () ).toLower() ==  "mp2" ) {
+		if ( file_suffix.toLower() ==  "mp3" || file_suffix.toLower() ==  "mp2" ) {
 			
 			if ( showProgressedFileInStatus )
 				emit pathExtraInfoAppend ( tr("reading mp3 info") );
 			if ( *DEBUG_INFO_ENABLED )
-				std::cerr << "reading mp3 info for " << qPrintable ( fi->filePath() ) << std::endl;
+				std::cerr << "reading mp3 info for " << qPrintable ( file_path ) << std::endl;
 			
-			ReadMp3Tag *reader = new ReadMp3Tag ( ( const char * ) QFile::encodeName ( fi->absoluteFilePath() ), v1_over_v2 );
+			ReadMp3Tag *reader = new ReadMp3Tag ( ( const char * ) QFile::encodeName ( file_abspath ), v1_over_v2 );
 			if(pww->appl->hasPendingEvents())
 				pww->appl->processEvents();
 			if ( storeMp3tags )
@@ -1169,16 +1176,16 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 			}
 		}
 	}
-
+	
 	/* using fileinfo */
 	if ( storeFileInfo && me.getMediaInfoLibFound() ) {
-		if (SupportedFileInfoExtensionsList.contains(fi->suffix ().toLower())) {
+		if (SupportedFileInfoExtensionsList.contains(file_suffix.toLower())) {
 			if ( showProgressedFileInStatus )
 				emit pathExtraInfoAppend ( tr("reading media info") );
 			if ( *DEBUG_INFO_ENABLED )
-				std::cerr << "reading media info for " << qPrintable ( fi->filePath() ) << std::endl;
+				std::cerr << "reading media info for " << qPrintable ( file_path ) << std::endl;
 			
-			QString info = CdcatMediaInfo ( fi->absoluteFilePath() ).getInfo();
+			QString info = CdcatMediaInfo ( file_abspath ).getInfo();
 			if ( !info.isEmpty() )
 				fc->fileinfo = info;
 			if(pww->appl->hasPendingEvents())
@@ -1187,19 +1194,19 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 	}
 	/***Experimental AVI Header Scanning  */
 	if ( storeAvitechinfo ) {
-		if ( ( fi->suffix ( ) ).toLower() == "avi" ) {
+		if ( ( file_suffix ).toLower() == "avi" ) {
 			if ( showProgressedFileInStatus )
 				emit pathExtraInfoAppend ( tr("reading avi info") );
 			if ( *DEBUG_INFO_ENABLED )
-				std::cerr << "reading avi info for " << qPrintable ( fi->filePath() ) << std::endl;
+				std::cerr << "reading avi info for " << qPrintable ( file_path ) << std::endl;
 			FILE* filePTR;
-			filePTR = fopen ( ( const char * ) QFile::encodeName ( fi->absoluteFilePath() ), "r" );
+			filePTR = fopen ( ( const char * ) QFile::encodeName ( file_abspath ), "r" );
 			if ( filePTR != NULL ) {
 				QString got = parseAviHeader ( filePTR ).replace ( QRegExp ( "\n" ), "#" );
 				fclose ( filePTR );
 				
 				if ( *DEBUG_INFO_ENABLED )
-					std::cerr << "avi info for " << qPrintable ( fi->filePath() ) << ": " << qPrintable(got) << std::endl;
+					std::cerr << "avi info for " << qPrintable ( file_path ) << ": " << qPrintable(got) << std::endl;
 				
 				if(pww->appl->hasPendingEvents())
 					pww->appl->processEvents();
@@ -1213,7 +1220,7 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 			}
 			else {
 				if ( *DEBUG_INFO_ENABLED )
-					std::cerr << "could not reading avi info for " << qPrintable ( fi->filePath() ) << std::endl;
+					std::cerr << "could not reading avi info for " << qPrintable ( file_path ) << std::endl;
 			}
 		}
 	}
@@ -1238,15 +1245,15 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 			pcc2.setCaseSensitivity(Qt::CaseInsensitive);
 			//pcc   = pcre_compile ( pattern,0,&error,&erroroffset,NULL );
 			if(*DEBUG_INFO_ENABLED)
-				std::cerr << "pcc2 pattern: " << pattern << ", match: " << pcc2.exactMatch(QString(( const char * ) QFile::encodeName ( fi->fileName()))) << std::endl;
+				std::cerr << "pcc2 pattern: " << pattern << ", match: " << pcc2.exactMatch(QString(( const char * ) QFile::encodeName ( file_name))) << std::endl;
  			//if(*DEBUG_INFO_ENABLED)
-			// 	std::cerr << "pcre_exec match: " << pcre_exec ( pcc,NULL, ( const char * ) QFile::encodeName ( fi->fileName() )
-			//                                   ,strlen ( ( const char * ) QFile::encodeName ( fi->fileName() ) )
+			// 	std::cerr << "pcre_exec match: " << pcre_exec ( pcc,NULL, ( const char * ) QFile::encodeName ( file_name )
+			//                                   ,strlen ( ( const char * ) QFile::encodeName ( file_name ) )
 			//                                   ,0,0,ovector,30 )  << std::endl;
-			//             if ( 1 == pcre_exec ( pcc,NULL, ( const char * ) QFile::encodeName ( fi->fileName() )
-			//                                   ,strlen ( ( const char * ) QFile::encodeName ( fi->fileName() ) )
+			//             if ( 1 == pcre_exec ( pcc,NULL, ( const char * ) QFile::encodeName ( file_name )
+			//                                   ,strlen ( ( const char * ) QFile::encodeName ( file_name ) )
 			//                                   ,0,0,ovector,30 ) ) {
-			if ( pcc2.exactMatch(QString(( const char * ) QFile::encodeName ( fi->fileName()))) == 1 ) {
+			if ( pcc2.exactMatch(QString(( const char * ) QFile::encodeName ( file_name))) == 1 ) {
 				match = true;
 				break;
 			}
@@ -1260,7 +1267,7 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 			Node *tt = fc->prop;
 			
 			if(*DEBUG_INFO_ENABLED)
-				std::cerr << "pattern " << pattern << ", matched for file " << ( const char * ) QFile::encodeName ( fi->fileName()) << ", reading content"<< std::endl;
+				std::cerr << "pattern " << pattern << ", matched for file " << ( const char * ) QFile::encodeName ( file_name ) << ", reading content"<< std::endl;
 			
 			if ( showProgressedFileInStatus )
 				emit pathExtraInfoAppend ( tr("reading file content") );
@@ -1268,12 +1275,12 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 			if ( storeLimit > MAX_STORED_SIZE )
 				storeLimit = MAX_STORED_SIZE;
 			//read the file
-			if ( ( rsize = fi->size() ) > storeLimit )
+			if ( ( rsize = file_size ) > storeLimit )
 				rsize = storeLimit;
-			f = fopen ( ( const char * ) QFile::encodeName ( fi->absoluteFilePath() ), "rb" );
+			f = fopen ( ( const char * ) QFile::encodeName ( file_abspath ), "rb" );
 			if ( f == NULL ) {
 				errormsg = QString ( "I couldn't open the \"%1\" file. (content read 1)\n" )
-				           .arg ( fi->absoluteFilePath() );
+				           .arg ( file_abspath );
 				fprintf ( stderr, "%s", errormsg.toLocal8Bit().constData() );
 				success = false;
 			}
@@ -1284,7 +1291,7 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 			if ( rsize != rrsize ) {
 				errormsg = QString ( "I couldn't correctly read the content of file \"%1\" . (content read 2)\n"
 				                     "size difference %2 != %3\n" )
-				           .arg ( fi->absoluteFilePath() )
+				           .arg ( file_abspath )
 				           .arg ( rsize )
 				           .arg ( rrsize );
 				fprintf ( stderr, "%s", errormsg.toLocal8Bit().constData() );
@@ -1314,15 +1321,14 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 		}//end of if(match)
 	}//end of if(storeContent)
 	
-	QString extension = fi->fileName().toLower().section ( '.', -1, -1 );
 #ifdef USE_LIBEXIF
 	if (storeExifData){
-		if(getExifSupportedExtensions().contains(extension)) {
+		if(getExifSupportedExtensions().contains(file_suffix)) {
 			if ( showProgressedFileInStatus )
 				emit pathExtraInfoAppend ( tr("reading exif data") );
 			
 			Node *tt = fc->prop;
-			CdcatExifData *ed = new CdcatExifData(fi->absoluteFilePath());
+			CdcatExifData *ed = new CdcatExifData(file_abspath);
 	 		ed->readCdcatExifData();
 			
 			if(pww->appl->hasPendingEvents())
@@ -1346,11 +1352,11 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 #endif
 	if(storeThumb) 
 	{
-		if (ThumbExtsList.contains(extension)) {
+		if (ThumbExtsList.contains(file_suffix)) {
 			if ( showProgressedFileInStatus )
 				emit pathExtraInfoAppend ( tr("reading thumbnail data") );
 			
-			QImage thumbImage(fi->absoluteFilePath());
+			QImage thumbImage(file_abspath);
 			
 			if(pww->appl->hasPendingEvents())
 				pww->appl->processEvents();
@@ -1713,7 +1719,7 @@ QList<ArchiveFile> DataBase::scanArchive ( QString path, ArchiveType type ) {
 		
 		int i = 0;
 		TAR *t;
-		int tar_open_ret;
+		int tar_open_ret = -1;
 		if ( type == Archive_tar )
 			tar_open_ret = tar_open ( &t, path.toLocal8Bit().data(), ( NULL ), O_RDONLY, 0, ( verbose ? TAR_VERBOSE : 0 ) | ( use_gnu ? TAR_GNU : 0 ) );
 		if ( type == Archive_targz )

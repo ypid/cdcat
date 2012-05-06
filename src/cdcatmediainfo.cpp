@@ -90,52 +90,54 @@ bool CdcatMediaInfo::readCdcatMediaInfo(){
 		return false;
 	}
 	MediaInfoNameSpace::String MediaInfoStr(toMediaInfoString(filename));
-	MediaInfoHandler->Open(MediaInfoStr);
-// 	MediaInfoHandler->Option("Language", "German;German" );
-// 	if(*DEBUG_INFO_ENABLED)
-// 		cout << "langs of mediainfo: " << MediaInfoHandler.Option("Language_Get").c_str() << endl;
-	
-	
-// 	MediaInfoHandler.Option("Language", QString(QString("Image")+QString(";")+tr("Image")).toLocal8Bit().constData());
-// 	MediaInfoHandler.Option("Language", "Image;Bild");
-	String info = MediaInfoHandler->Inform();
-	if(*DEBUG_INFO_ENABLED)
-		cout << "mediainfo for " << filename.toLocal8Bit().constData() << ": " << fromMediaInfoStrtoQString(info).toLocal8Bit().constData() << endl;
-	if(*DEBUG_INFO_ENABLED) {
-	String ver = toMediaInfoString(QString("Info_Version"));
-// 	cout << "mediainfo version: " << fromMediaInfoStrtoQString(MediaInfoHandler->Option(ver)).toLocal8Bit().constData() << endl;
-// 	cout << "mediainfo codecs: " << MediaInfoHandler.Option("Info_Codecs").c_str() << endl;
-
+	int fileopencount = MediaInfoHandler->Open(MediaInfoStr);
+	if(fileopencount > 0 ) {
+		//MediaInfoHandler->Option("Language", "German;German" );
+		//if(*DEBUG_INFO_ENABLED)
+		//	cout << "langs of mediainfo: " << MediaInfoHandler.Option("Language_Get").c_str() << endl;
+		
+		// 	MediaInfoHandler.Option("Language", QString(QString("Image")+QString(";")+tr("Image")).toLocal8Bit().constData());
+		// 	MediaInfoHandler.Option("Language", "Image;Bild");
+		String info = MediaInfoHandler->Inform();
+		if(*DEBUG_INFO_ENABLED)
+			cout << "mediainfo for " << filename.toLocal8Bit().constData() << ": " << fromMediaInfoStrtoQString(info).toLocal8Bit().constData() << endl;
+		if(*DEBUG_INFO_ENABLED) {
+		String ver = toMediaInfoString(QString("Info_Version"));
+		// 	cout << "mediainfo version: " << fromMediaInfoStrtoQString(MediaInfoHandler->Option(ver)).toLocal8Bit().constData() << endl;
+		// 	cout << "mediainfo codecs: " << MediaInfoHandler.Option("Info_Codecs").c_str() << endl;
+		}
+		InfoText = fromMediaInfoStrtoQString(info);
+		
+		// 	size_t Stream_General_Number;
+		// 	size_t GeneralCount =  MediaInfoHandler.Count_Get (Stream_General, Stream_General_Number);
+		// 	size_t Stream_Video_Number;
+		// 	size_t VideoCount =  MediaInfoHandler.Count_Get (Stream_General, Stream_Video_Number);
+		// 	size_t Stream_Audio_Number;
+		// 	size_t AudioCount =  MediaInfoHandler.Count_Get (Stream_General, Stream_Audio_Number);
+		// 	size_t Stream_Text_Number;
+		// 	size_t TextCount =  MediaInfoHandler.Count_Get (Stream_General, Stream_Text_Number);
+		// 	size_t Stream_Chapters_Number;
+		// 	size_t ChaptersCount =  MediaInfoHandler.Count_Get (Stream_General, Stream_Chapters_Number);
+		// 	size_t Stream_Menu_Number;
+		// 	size_t MenuCount =  MediaInfoHandler.Count_Get (Stream_General, Stream_Menu_Number);
+		// 
+		// 	if(*DEBUG_INFO_ENABLED)
+		// 		cout << "general: " << GeneralCount << ", video: " << VideoCount << ", audio: " << AudioCount << ", text: " << TextCount << ", chapters: " << ChaptersCount << ", menu: " << MenuCount << endl;
+		// 
+		// //   Stream_General    StreamKind = General. 
+		// //   Stream_Video    StreamKind = Video. 
+		// //   Stream_Audio    StreamKind = Audio. 
+		// //   Stream_Text    StreamKind = Text. 
+		// //   Stream_Chapters    StreamKind = Chapters. 
+		// //   Stream_Image    StreamKind = Image. 
+		// //   Stream_Menu
+		return true;
 	}
-	
+	else {
+		cout << "mediainfo for " << filename.toLocal8Bit().constData() << " has been failed" << endl;
 
-	InfoText = fromMediaInfoStrtoQString(info);
-	
-// 	size_t Stream_General_Number;
-// 	size_t GeneralCount =  MediaInfoHandler.Count_Get (Stream_General, Stream_General_Number);
-// 	size_t Stream_Video_Number;
-// 	size_t VideoCount =  MediaInfoHandler.Count_Get (Stream_General, Stream_Video_Number);
-// 	size_t Stream_Audio_Number;
-// 	size_t AudioCount =  MediaInfoHandler.Count_Get (Stream_General, Stream_Audio_Number);
-// 	size_t Stream_Text_Number;
-// 	size_t TextCount =  MediaInfoHandler.Count_Get (Stream_General, Stream_Text_Number);
-// 	size_t Stream_Chapters_Number;
-// 	size_t ChaptersCount =  MediaInfoHandler.Count_Get (Stream_General, Stream_Chapters_Number);
-// 	size_t Stream_Menu_Number;
-// 	size_t MenuCount =  MediaInfoHandler.Count_Get (Stream_General, Stream_Menu_Number);
-// 
-// 	if(*DEBUG_INFO_ENABLED)
-// 		cout << "general: " << GeneralCount << ", video: " << VideoCount << ", audio: " << AudioCount << ", text: " << TextCount << ", chapters: " << ChaptersCount << ", menu: " << MenuCount << endl;
-// 
-// //   Stream_General    StreamKind = General. 
-// //   Stream_Video    StreamKind = Video. 
-// //   Stream_Audio    StreamKind = Audio. 
-// //   Stream_Text    StreamKind = Text. 
-// //   Stream_Chapters    StreamKind = Chapters. 
-// //   Stream_Image    StreamKind = Image. 
-// //   Stream_Menu
-
-	return true;
+		return false;
+	}
 }
 
 
