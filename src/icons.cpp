@@ -6634,6 +6634,56 @@ void init_icon_base ( void ) {
 
 }
 
+void deinit_icon_base ( void ) {
+        delete (m_catalog_icon );
+        delete (m_unknown_icon );
+        delete (m_cd_icon );
+        delete (m_dvd_icon );
+        delete (m_hdd_icon );
+        delete (m_net_icon );
+        delete (m_flash_icon );
+        delete (m_other_icon );
+        delete (m_floppy_icon );
+        delete (v_folderlocked_icon );
+        delete (v_folderclosed_icon );
+        delete (v_folderopen_icon );
+        delete (v_file_icon );
+        delete (v_back_icon );
+        delete (a_0 );
+        delete (a_1 );
+        delete (a_2 );
+        delete (a_3 );
+        delete (a_4 );
+        delete (p_icon );
+        delete (p_icon_big );
+        delete (t_open_icon );
+        delete (t_save_icon );
+        delete (t_saveas_icon );
+        delete (t_close_icon );
+        delete (t_add_icon );
+        delete (t_rescan_icon );
+        delete (t_delete_icon );
+        delete (t_config_icon );
+        delete (t_help_icon );
+        delete (t_new_icon );
+        delete (t_find_icon );
+        delete (t_about_icon );
+        delete (t_comment_icon );
+        delete (t_add_export_icon );
+        delete (t_remove_export_icon );
+        delete (t_showc_icon );
+        delete (t_deletec_icon );
+        delete (m_export_icon );
+        delete (m_import_icon );
+        delete (m_borrow_icon );
+        delete (t_sborrow_icon );
+        delete (t_cborrow_icon );
+        delete (t_colorconfig_icon );
+        delete (t_qtlogo_icon );
+        delete (t_info_icon );
+}
+
+
 QPixmap * get_m_catalog_icon ( void ) {
     return m_catalog_icon;
 }

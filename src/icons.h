@@ -14,6 +14,7 @@
 class QPixmap;
 
 void      init_icon_base ( void );
+void      deinit_icon_base ( void );
 QPixmap * get_m_catalog_icon ( void );
 QPixmap * get_m_unknown_icon ( void );
 QPixmap * get_m_cd_icon ( void );

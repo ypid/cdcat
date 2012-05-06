@@ -82,9 +82,6 @@ int main ( int argi, char **argc ) {
 	else
 		cerr << qPrintable ( QString ( "DEBUG_INFO_ENABLED: false" ) ) << endl;
 	
-	QFont *font = new QFont();
-	font->setPointSize ( font_size );
-	
 #if defined(_WIN32) || defined(Q_WS_MAC) || defined(_OS2)
 	QString langpath ( applicationDirPath ( argc ) + "/lang/cdcat_" );
 	langpath += cconfig->lang;
@@ -141,11 +138,17 @@ int main ( int argi, char **argc ) {
 	CdCatMainWidget *mw = new CdCatMainWidget ( cconfig, &app, 0, "MainWindow" );
 	
 	cconfig->defaultfont = new QFont ( app.font() );
-	if ( cconfig->ownfont )
+	if ( cconfig->ownfont ) {
+		QFont *font = new QFont();
+		font->setPointSize ( font_size );
 		app.setFont ( *font );
+	}
 	
 	mw->show();
-	return app.exec();
+
+	int ret_val = app.exec();
+	deinit_icon_base();
+	return ret_val;
 }
 
 char *mstr ( const char *imp ) {
