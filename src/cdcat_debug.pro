@@ -122,7 +122,7 @@ win32 {
 	#DEFINES+=USE_LIB7ZIP
 
 	# STATIC
-	#LIBS+=c:\usr\lib\lib7zip.a
+	#LIBS+=c:/usr/lib/lib7zip.a
 
 	# DYNAMIC
 	#LIBS+= -llib7zip
@@ -132,7 +132,7 @@ win32 {
 	# use libmediainfo as static library?
 	# STATIC
 	#DEFINES += MEDIAINFO_STATIC
-	#LIBS+=c:\usr\lib\libmediainfo.a
+	#LIBS+=c:/usr/lib/libmediainfo.a
 
 	# DYNAMIC. no pkgconfig
 	#LIBS+= -lmediainfo
@@ -159,12 +159,12 @@ win32 {
 	# hack in cdcatmediainfo.h when it's ready)
 	DEFINES += MEDIAINFO_UNICODE
 	CONFIG += console
-	LIBS       += -lz c:\usr\lib\libtar.a -lbz2 -ldl
-  INCLUDEPATH += c:\usr\include
-	distfiles.files +=   ..\README_CSV_IMPORT ..\Authors ..\README ..\ChangeLog ..\COPYING ..\TRANSLATORS_README ..\cdcat.png
-	distfiles.path =     c:\usr\share\cdcat
-	target.path +=       c:\usr\bin
-	translations.path += c:\usr\share\cdcat\translations
+	LIBS       += -lz c:/usr/lib/libtar.a -lbz2 -ldl
+	INCLUDEPATH += c:/usr/include
+	distfiles.files +=   ../README_CSV_IMPORT ../Authors ../README ../ChangeLog ../COPYING ../TRANSLATORS_README ../cdcat.png
+	distfiles.path =     c:/usr/share/cdcat
+	target.path +=       c:/usr/bin
+	translations.path += c:/usr/share/cdcat/translations
 	QMAKE_CXXFLAGS += -O2 -D_OS2
 
 

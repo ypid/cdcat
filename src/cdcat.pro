@@ -114,11 +114,10 @@ win32 {
 
 	########## lib7zip
 	# use lib7zip?
-	#DEFINES+=USE_LIB7ZIP
+	DEFINES+=USE_LIB7ZIP
 	
-
 	# STATIC
-	#LIBS+=c:/usr/lib/lib7zip.a
+	LIBS+=c:/usr/lib/lib7zip.a
 
 	# DYNAMIC
 	#LIBS+= -llib7zip
@@ -127,13 +126,13 @@ win32 {
 	######### mediainfo
 	# use libmediainfo as static library?
 	# STATIC
-	DEFINES += MEDIAINFO_STATIC
-	LIBS+=c:/usr/lib/mediainfo.a c:/usr/lib/zen.a c:/usr/lib/pthread.a
-
+	#DEFINES += MEDIAINFO_STATIC
+	#LIBS+=c:/usr/lib/mediainfo.a c:/usr/lib/zen.a c:/usr/lib/pthread.a
+	
 	# DYNAMIC. no pkgconfig
 	#LIBS+= -lmediainfo
-
-
+	
+	
 	########## exif
 	# use exif?
 	#DEFINES += USE_LIBEXIF
