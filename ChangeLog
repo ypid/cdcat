@@ -1,3 +1,6 @@
+06. May 2012 Christoph Thielecke <crissi99@gmx.de>
+	- sorting directories on listview fixed
+
 05. May 2012 Christoph Thielecke <crissi99@gmx.de>
 	- memleak fixes
 	- version number of detected lib7zip on selreadable dialog added

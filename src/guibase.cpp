@@ -101,19 +101,39 @@ bool HQListViewItem::operator < (const QTreeWidgetItem &other) const {
 	int col = treeWidget()->sortColumn();
 	//std::cerr << "HQListViewItem::operator < col: " << col << ", text(0): " << qPrintable(text(0)) << ", other.text(0): " << qPrintable(other.text(0)) << std::endl;
 	if (col == 0 || col == 1) {
+		// this is the item to compared
 		if(text(0) == "..") {
 			return false;
 		}
 		else {
-			return QTreeWidgetItem::operator<(other);
+			if(etype == HC_DIRECTORY) {
+				if(((HQListViewItem &)other).etype == HC_FILE)
+					return true;
+				else
+					return text(0) < other.text(0);
+			}
+			if(etype == HC_FILE) {
+				if(((HQListViewItem &)other).etype == HC_DIRECTORY)
+					return false;
+				else
+					return text(0) < other.text(0);
+			}
+			
+			return text(0) < other.text(0);
 		}
 	}
-	else {
+	else 
+	{
 		// col 3
+		// param is the item to compared
 		if(other.text(0) == "..") {
 			return false;
 		}
 		else {
+			if(this->etype == HC_DIRECTORY && ((HQListViewItem &)other).etype == HC_FILE)
+				return true;
+			if(this->etype == HC_FILE && ((HQListViewItem &)other).etype == HC_DIRECTORY)
+				return false;
 			return QTreeWidgetItem::operator<(other);
 		}
 	}
@@ -140,7 +160,7 @@ QString HQListViewItem::key ( int column, bool ascending ) const {
 			//SIZE
 		case 1:
 			//ret = (QListViewItem::key(1,ascending)).append('0'+mod);
-			if ( etype == 2 && !text ( 1 ).isEmpty() ) {
+			if ( etype == HC_FILE && !text ( 1 ).isEmpty() ) {
 				value = getSizeFS ( text ( 1 ).toLocal8Bit().constData() );
 				switch ( getSizetFS ( text ( 1 ).toLocal8Bit().constData() ) ) {
 					case UNIT_KBYTE:
@@ -162,7 +182,7 @@ QString HQListViewItem::key ( int column, bool ascending ) const {
 				         .rightJustified ( 10, '0' ) )
 				       .prepend ( '1' + mod );
 			}
-			if ( etype == 3 ) { //HC_MEDIA
+			if ( etype == HC_MEDIA ) { //HC_MEDIA
 				return ( QString().setNum ( text ( 1 ).toInt() ) )
 				       .rightJustified ( 10, '0' )
 				       .prepend ( '1' + mod );
@@ -574,7 +594,7 @@ int GuiSlave::updateListFromNode ( Node *pdir ) {
 	if ( pdir->parent != NULL ) {
 		lvi = new HQListViewItem ( mainw->listView, "..", "", tr ( "Directory" ) );
 		lvi->setIcon ( 0, QIcon(*get_v_back_icon() ));
-		lvi->etype = 0;
+		lvi->etype = HC_DIRECTORY;
 	}
 	
 	NodePwd = pdir;
@@ -605,7 +625,7 @@ int GuiSlave::updateListFromNode ( Node *pdir ) {
 			//	cerr <<"GETNAMEOF-----------"<<qPrintable ( valami ) <<endl;
 			
 			lvi = new HQListViewItem ( mainw->listView, valami, qstr1, qstr2 );
-			lvi->etype = 1;
+			lvi->etype = HC_DIRECTORY;
 			lvi->setIcon ( 0, QIcon(*get_v_folderclosed_icon() ));
 			
 			if ( tmpParent != NULL ) { /*Return to previous parent*/
@@ -696,10 +716,10 @@ int GuiSlave::updateListFromNode ( Node *pdir ) {
 			lvi = new HQListViewItem ( mainw->listView, valami, qstr1, qstr2 );
 			switch ( tmp->type ) {
 				case HC_CATALOG :
-					lvi->etype = 0;
+					lvi->etype = HC_CATALOG;
 					break;
 				case HC_MEDIA:
-					lvi->etype = 3;
+					lvi->etype = HC_MEDIA;
 					switch ( ( ( DBMedia* ) ( tmp->data ) )->type ) {
 						case UNKNOWN :
 							lvi->setIcon ( 0, QIcon(*get_m_unknown_icon() ));
@@ -728,11 +748,11 @@ int GuiSlave::updateListFromNode ( Node *pdir ) {
 					}
 					break;
 				case HC_FILE:
-					lvi->etype = 2;
+					lvi->etype = HC_FILE;
 					lvi->setIcon ( 0, QIcon(*get_v_file_icon() ));
 					break;
 				case HC_CATLNK:
-					lvi->etype = ( mainw->cconfig->linkf ? 0 : 4 );
+					lvi->etype = ( mainw->cconfig->linkf ? 0 : HC_CATLNK );
 					lvi->setIcon ( 0, QIcon(*get_p_icon() ));
 					break;
 			}
