@@ -321,9 +321,7 @@ GuiSlave::GuiSlave ( CdCatMainWidget *p ) {
 
 GuiSlave::~GuiSlave() {
 #ifndef NO_MEDIAINFO
-	 if (MediaInfoHandler != NULL) {
-		 delete MediaInfoHandler;
-	 }
+	 cleanupMediainfo();
 #endif
 }
 

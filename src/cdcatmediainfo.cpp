@@ -34,11 +34,18 @@ using namespace std;
 static QStringList MediaInfoSupportedFileExtensions;
 static bool mediaInfoLibInitDone = false;
 static bool mediaInfoLibFound = false;
+static MediaInfoNameSpace::MediaInfo *MediaInfoHandler=NULL;
+
+bool cleanupMediainfo() {
+	if (MediaInfoHandler != NULL) {
+		 delete MediaInfoHandler;
+	}
+}
 
 /* convienent funcs for MediaInfo */
 QString fromMediaInfoStrtoQString(MediaInfoNameSpace::String str) {
    QString str2;
-#if defined(_WIN32) || defined(MEDIAINFO_UNICODE) || defined(_OS2)
+#if (defined(_WIN32) || defined(MEDIAINFO_UNICODE)) && !defined(_OS2)
 	str2 = QString::fromStdWString(str);
 #else
 	str2 = QString::fromStdString(str);
@@ -49,7 +56,7 @@ QString fromMediaInfoStrtoQString(MediaInfoNameSpace::String str) {
 
 
 MediaInfoNameSpace::String toMediaInfoString(const QString &str) {
-#if defined(_WIN32) || defined(MEDIAINFO_UNICODE)
+#if (defined(_WIN32) || defined(MEDIAINFO_UNICODE)) && !defined(_OS2)
    return (str.toStdWString());
 #else
    return (str.toStdString());

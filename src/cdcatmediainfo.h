@@ -53,7 +53,7 @@
 #include <iostream>
 #include <iomanip>
 
-static MediaInfoNameSpace::MediaInfo *MediaInfoHandler=NULL;
+bool cleanupMediainfo();
 
 class CdcatMediaInfo : public QObject {
 public:
@@ -73,7 +73,6 @@ public:
 private:
 	QString InfoText;
 	bool initMediaInfoLib();
-
 };
 
 
