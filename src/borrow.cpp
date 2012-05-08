@@ -5,7 +5,9 @@
   Author    : Peter Deak (hyperr@freemail.hu)
   License   : GPL
   Copyright : (C) 2003 Peter Deak
-****************************************************************************/
+ ****************************************************************************/
+
+#include <iostream>
 
 #include "borrow.h"
 #include "icons.h"

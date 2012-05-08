@@ -40,6 +40,10 @@
       <source>unknown</source>
       <translation>unbekannt</translation>
     </message>
+    <message>
+      <source></source>
+      <translation type="unfinished" />
+    </message>
   </context>
   <context>
     <name>CatalogTypeEditDialog</name>
@@ -838,6 +842,10 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     <message>
       <source>scanning archive, file:</source>
       <translation>Archiv wird durchsucht, Datei:</translation>
+    </message>
+    <message>
+      <source>unknown</source>
+      <translation>unbekannt</translation>
     </message>
   </context>
   <context>
@@ -1987,6 +1995,14 @@ wird zu
       <source>unknown</source>
       <translation>unbekannt</translation>
     </message>
+    <message>
+      <source>support not compiled in</source>
+      <translation>Unterstützung nicht einkompiliert</translation>
+    </message>
+    <message>
+      <source>mediainfo not supported</source>
+      <translation>mediainfo nicht unterstützt</translation>
+    </message>
   </context>
   <context>
     <name>ShowContent</name>
@@ -2172,6 +2188,10 @@ wird zu
     <message>
       <source>The Media Name must be unique! Enter new media name:</source>
       <translation>Der Medienname muß eindeutig sein! Bitte neuen Medienname eingeben:</translation>
+    </message>
+    <message>
+      <source>unknown</source>
+      <translation>unbekannt</translation>
     </message>
   </context>
   <context>

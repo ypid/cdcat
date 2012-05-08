@@ -16,71 +16,71 @@ TRANSLATIONS	= lang/cdcat_hu.ts \
 						lang/start/cdcat_nolang.ts
 
 translations.files += lang/cdcat_de.qm \
-							 lang/cdcat_es.qm \
-							 lang/cdcat_fr.qm \
-		      lang/cdcat_cz.qm \
-		      lang/cdcat_pl.qm \
-		      lang/cdcat_el.qm \
-		      lang/cdcat_it.qm \
-		      lang/cdcat_sk.qm \
-		      lang/cdcat_sr.qm \
-	  	      lang/cdcat_pt.qm \
-	  	      lang/cdcat_id.qm \
-		      lang/cdcat_hu.qm
+			lang/cdcat_es.qm \
+			lang/cdcat_fr.qm \
+			lang/cdcat_cz.qm \
+			lang/cdcat_pl.qm \
+			lang/cdcat_el.qm \
+			lang/cdcat_it.qm \
+			lang/cdcat_sk.qm \
+			lang/cdcat_sr.qm \
+			lang/cdcat_pt.qm \
+			lang/cdcat_id.qm \
+			lang/cdcat_hu.qm
 HEADERS		=   adddialog.h\
-		    cdcat.h \
-		    commwidget.h \
-		    config.h \
-		    dbase.h \
-		    dirview.h \
-		    find.h \
-		    guibase.h \
-		    hdirview.h \
-		    mainwidget.h \
-		    mp3tag.h \
-		    cdcatmediainfo.h \
-		    cdcatexif.h \
-		    newdbdialog.h \
-		    import.h \
-		    importdialog.h \
-		    wdbfile.h \
-		    icons.h \
-		    info.h \
-		    exportcdcatdb.h \
-		    showcontent.h \
-		    selreadable.h \
-		    borrow.h \
-		    tparser.h \
-		    colorsettings.h \
-		    misc.h \
-		    dmetaph.h
+			cdcat.h \
+			commwidget.h \
+			config.h \
+			dbase.h \
+			dirview.h \
+			find.h \
+			guibase.h \
+			hdirview.h \
+			mainwidget.h \
+			mp3tag.h \
+			cdcatmediainfo.h \
+			cdcatexif.h \
+			newdbdialog.h \
+			import.h \
+			importdialog.h \
+			wdbfile.h \
+			icons.h \
+			info.h \
+			exportcdcatdb.h \
+			showcontent.h \
+			selreadable.h \
+			borrow.h \
+			tparser.h \
+			colorsettings.h \
+			misc.h \
+			dmetaph.h
 SOURCES		=   adddialog.cpp \
-		    cdcat.cpp \
-		    commwidget.cpp \
-		    config.cpp \
-		    dbase.cpp \
-		    dirview.cpp \
-		    find.cpp \
-		    guibase.cpp \
-		    hdirview.cpp \
-		    icons.cpp \
-		    import.cpp \
-		    importdialog.cpp \
-		    mainwidget.cpp \
-		    mp3tag.cpp \
-		    cdcatmediainfo.cpp \
-		    cdcatexif.cpp \
-		    newdbdialog.cpp \
-		    wdbfile.cpp \
-		    info.cpp \
-		    exportcdcatdb.cpp \
-		    showcontent.cpp \
-		    selreadable.cpp \
-		    colorsettings.cpp \
-		    borrow.cpp \
-		    tparser.cpp \
-		    misc.cpp \
-		    dmetaph.cpp
+			cdcat.cpp \
+			commwidget.cpp \
+			config.cpp \
+			dbase.cpp \
+			dirview.cpp \
+			find.cpp \
+			guibase.cpp \
+			hdirview.cpp \
+			icons.cpp \
+			import.cpp \
+			importdialog.cpp \
+			mainwidget.cpp \
+			mp3tag.cpp \
+			cdcatmediainfo.cpp \
+			cdcatexif.cpp \
+			newdbdialog.cpp \
+			wdbfile.cpp \
+			info.cpp \
+			exportcdcatdb.cpp \
+			showcontent.cpp \
+			selreadable.cpp \
+			colorsettings.cpp \
+			borrow.cpp \
+			tparser.cpp \
+			misc.cpp \
+			dmetaph.cpp
 
 #            unix:system(lrelease cdcat.pro)
 
@@ -116,27 +116,30 @@ win32 {
 	LIBS       += -lz -ldl /usr/lib/libtar.a /usr/lib/libbz2.a /usr/lib/lib7zip.a
 } else:os2 {
 	# OS/2
-
+	
 	########## lib7zip
 	# use lib7zip?
 	#DEFINES+=USE_LIB7ZIP
-
+	
 	# STATIC
 	#LIBS+=c:/usr/lib/lib7zip.a
-
+	
 	# DYNAMIC
 	#LIBS+= -llib7zip
 	######### end lib7zip
-
+	
 	######### mediainfo
 	# use libmediainfo as static library?
 	# STATIC
 	#DEFINES += MEDIAINFO_STATIC
 	#LIBS+=c:/usr/lib/libmediainfo.a
-
+	
 	# DYNAMIC. no pkgconfig
 	#LIBS+= -lmediainfo
-
+	
+	# disable mediainfo
+	#DEFINES += NO_MEDIAINFO
+	
 	# libmediainfo ships API info via pkgconfig so use it!
 	#CONFIG += link_pkgconfig
 	#PKGCONFIG += libmediainfo
@@ -145,19 +148,13 @@ win32 {
 	# hack in cdcatmediainfo.h when it's ready)
 	#DEFINES += MEDIAINFO_UNICODE
 	######### end mediainfo
-
-
+	
 	########## exif
 	# use exif?
 	#DEFINES += USE_LIBEXIF
 	#LIBS += -lexif
 	######### end exif
-
-	#LIBS       += -lz -ltar -lbz2 -ldl
-	# temporary kluge until it's decided how to get char type from libmediainfo,
-	# maybe also via pkgconfig (Debian Bug #656929, could remove the extra
-	# hack in cdcatmediainfo.h when it's ready)
-	DEFINES += MEDIAINFO_UNICODE
+	
 	CONFIG += console
 	LIBS       += -lz c:/usr/lib/libtar.a -lbz2 -ldl
 	INCLUDEPATH += c:/usr/include
@@ -175,23 +172,26 @@ win32 {
 	########## lib7zip
 	# use lib7zip?
 	DEFINES+=USE_LIB7ZIP
-
+	
 	# STATIC
 	#LIBS+=/usr/local/lib/lib7zip.a
-
+	
 	# DYNAMIC
 	LIBS+= -l7zip
 	######### end lib7zip
-
+	
 	######### mediainfo
 	# use libmediainfo as static library?
 	# STATIC
 	#DEFINES += MEDIAINFO_STATIC
 	#LIBS+=/usr/local/lib/libmediainfo.a
-
+	
 	# DYNAMIC. no pkgconfig
 	LIBS+= -lmediainfo
-
+	
+	# disable mediainfo
+	#DEFINES += NO_MEDIAINFO
+	
 	# libmediainfo ships API info via pkgconfig so use it!
 	CONFIG += link_pkgconfig
 	PKGCONFIG += libmediainfo
@@ -200,8 +200,7 @@ win32 {
 	# hack in cdcatmediainfo.h when it's ready)
 	DEFINES += MEDIAINFO_UNICODE
 	######### end mediainfo
-
-
+	
 	########## exif
 	# use exif?
 	DEFINES+=USE_LIBEXIF

@@ -20,7 +20,8 @@ lib7zip (>= 1.4.1, optional): http://code.google.com/p/lib7zip/downloads/detail?
 
 
 mediainfo: http://mediainfo.sourceforge.net/
-	- for compiling only MediaInfoDLL is required (MediaInfoDLL/MediaInfoDLL.h), it can be downloaded here: http://mediainfo.svn.sourceforge.net/viewvc/mediainfo/MediaInfoLib/trunk/Source/MediaInfoDLL/MediaInfoDLL.h?revision=3213
+	- for use dynamic mediainfo support only MediaInfoDLL is at compile time required (MediaInfoDLL/MediaInfoDLL.h), it can be downloaded here: http://mediainfo.svn.sourceforge.net/viewvc/mediainfo/MediaInfoLib/trunk/Source/MediaInfoDLL/MediaInfoDLL.h?revision=3213
+	- for disable mediainfo completly use -DNO_MEDIAINFO or tweak cdcat.pro
 	- for usage and/or compiling install mediainfo (http://mediainfo.sourceforge.net/Download)
 
 cdcat compile:

@@ -31,7 +31,10 @@ typedef int gid_t;
 #endif
 
 #include <libtar.h>
+
+#ifndef NO_MEDIAINFO
 #include "cdcatmediainfo.h"
+#endif
 
 // values for class Node::type
 #define HC_UNINITIALIZED 0
@@ -426,7 +429,9 @@ class DataBase : public QObject {
 		QList<ArchiveFile> scanArchive ( QString path, ArchiveType type );
 		QString pcategory;
 		
+#ifndef NO_MEDIAINFO
 		CdcatMediaInfo me;
+#endif
 	
 	public:
 		/*

@@ -77,6 +77,7 @@ public:
     QMenu *mPopup;
 
     GuiSlave ( CdCatMainWidget *p );
+    ~GuiSlave();
     Node *getNodeFromFullName ( Node *root,const QString& newloc );
     int updateListFromNode ( Node *pdir = 0 );
     int isIdentical ( int i );

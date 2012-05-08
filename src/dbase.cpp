@@ -559,8 +559,14 @@ DataBase::DataBase ( void ) {
 		doScanArchiveLib7zip = false;
 	}
 	else {
-		 if ( *DEBUG_INFO_ENABLED )
-			 fprintf ( stderr, "lib7zip initialize succeeded, lib7zip scanning enabled\n" );
+        if ( *DEBUG_INFO_ENABLED ) {
+#ifdef LIB_7ZIP_VERSION
+			QString Lib7ZipVersion = LIB_7ZIP_VERSION;
+#else
+			QString Lib7ZipVersion = tr("unknown");
+#endif
+			 fprintf ( stderr, "lib7zip (%s) initialize succeeded, lib7zip scanning enabled\n",  Lib7ZipVersion.toLocal8Bit().constData());
+        }
 	}
 	if ( !lib.GetSupportedExts ( exts ) ) {
 		fprintf ( stderr, "lib7zip get supported exts failed, lib7zip scanning disabled\n" );
@@ -671,8 +677,11 @@ int DataBase::addMedia ( QString what, QString name, int number, int type, QStri
 			}
 		}
 	}
+	
+#ifndef NO_MEDIAINFO
 	SupportedFileInfoExtensionsList.clear();
 	SupportedFileInfoExtensionsList = me.getSupportedExtensions();
+#endif
 	
 	returnv = scanFsToNode ( what, tt );
 	delete [] pattern;
@@ -1177,6 +1186,7 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 		}
 	}
 	
+#ifndef NO_MEDIAINFO
 	/* using fileinfo */
 	if ( storeFileInfo && me.getMediaInfoLibFound() ) {
 		if (SupportedFileInfoExtensionsList.contains(file_suffix.toLower())) {
@@ -1192,6 +1202,8 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 				pww->appl->processEvents();
 		}
 	}
+#endif
+	
 	/***Experimental AVI Header Scanning  */
 	if ( storeAvitechinfo ) {
 		if ( ( file_suffix ).toLower() == "avi" ) {

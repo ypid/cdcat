@@ -11,6 +11,7 @@
 #ifndef CDCAT_MEDIAINFO_H
 #define CDCAT_MEDIAINFO_H
 
+#ifndef NO_MEDIAINFO
 
 #ifdef MEDIAINFO_UNICODE
 // workaround for mediainfo char width confusion
@@ -52,6 +53,8 @@
 #include <iostream>
 #include <iomanip>
 
+static MediaInfoNameSpace::MediaInfo *MediaInfoHandler=NULL;
+
 class CdcatMediaInfo : public QObject {
 public:
 
@@ -75,6 +78,6 @@ private:
 
 
 
-
+#endif
 #endif
 

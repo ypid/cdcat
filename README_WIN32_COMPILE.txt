@@ -20,12 +20,12 @@ libzip2: http://downloads.sourceforge.net/project/gnuwin32/bzip2/1.0.5/bzip2-1.0
 
 lib7zip (>= 1.4.1, optional): http://code.google.com/p/lib7zip/downloads/detail?name=lib7zip-1.4.1.tar.gz&can=3&q=
 	- compile:
-		1. unpack 7zip source 
+		1. unpack lib7zip source 
 		2. set P7ZIP_SOURCE_DIR=<full path to 7z922 dir>
 		3. cd lib7zip-1.4.1\Lib7Zip
 		4. sh
 		5. CFLAGS="-DUNICODE=1 -D_UNICODE" CXXFLAGS="-DUNICODE=1 -D_UNICODE" CPPFLAGS="-DUNICODE=1 -D_UNICODE" ../configure
-		6. make 7z
+		6. make
 
 zlib: http://zlib.net/zlib-1.2.5.tar.gz
 	- compile:
@@ -37,7 +37,8 @@ zlib: http://zlib.net/zlib-1.2.5.tar.gz
 Qt4: http://qt.nokia.com/downloads/windows-cpp
 
 mediainfo: http://mediainfo.sourceforge.net/
-	- for compiling only MediaInfoDLL is required (MediaInfoDLL/MediaInfoDLL.h), it can be downloaded here: http://mediainfo.svn.sourceforge.net/viewvc/mediainfo/MediaInfoLib/trunk/Source/MediaInfoDLL/MediaInfoDLL.h?revision=3213
+	- for use dynamic mediainfo support only MediaInfoDLL is at compile time required (MediaInfoDLL/MediaInfoDLL.h), it can be downloaded here: http://mediainfo.svn.sourceforge.net/viewvc/mediainfo/MediaInfoLib/trunk/Source/MediaInfoDLL/MediaInfoDLL.h?revision=3213
+	- for disable mediainfo completly use -DNO_MEDIAINFO or tweak cdcat.pro
 	- for usage and/or compiling install mediainfo (http://mediainfo.sourceforge.net/Download)
 
 cdcat compile:

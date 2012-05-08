@@ -63,7 +63,9 @@
 
 #include "misc.h"
 
+#ifndef NO_MEDIAINFO
 #include "cdcatmediainfo.h"
+#endif
 
 #ifdef USE_LIBEXIF
 #include "cdcatexif.h"
@@ -315,6 +317,14 @@ GuiSlave::GuiSlave ( CdCatMainWidget *p ) {
 		standOn ( mainw->listView->currentItem(), 0 );
 	}
 	glob_conf = p->cconfig;
+}
+
+GuiSlave::~GuiSlave() {
+#ifndef NO_MEDIAINFO
+	 if (MediaInfoHandler != NULL) {
+		 delete MediaInfoHandler;
+	 }
+#endif
 }
 
 void GuiSlave::checkversion ( QWidget *p, DataBase *db ) {
@@ -932,7 +942,7 @@ void GuiSlave::panelsON ( void ) {
 	mainw->listView->start();
 	updateListFromNode();
 	mainw->commentWidget->act = NULL;
-	mainw->commentWidget->repaint();
+	//mainw->commentWidget->repaint();
 	updateStatusl ( standON );
 	standOn ( mainw->listView->currentItem(), 0 );
 	cHcaption();
@@ -1351,8 +1361,6 @@ int GuiSlave::closeEvent ( void ) {
 		mainw->db = NULL;
 		standON = NodePwd = NULL;
 	}
-
-	panelsON();
 	return retv;
 }
 
@@ -1406,7 +1414,9 @@ int GuiSlave::addEvent ( void ) {
 	mainw->db->doExcludeFiles = mainw->cconfig->doExcludeFiles;
 	mainw->db->ExcludeFileList = mainw->cconfig->ExcludeFileList;
 	mainw->db->useWildcardInsteadRegexForExclude = mainw->cconfig->useWildcardInsteadRegexForExclude;
-
+	
+	panelsOFF();
+	
 	if ( *DEBUG_INFO_ENABLED )
 		cerr << "ADDEVENT-1" << endl;
 	PWw *pww = new PWw ( mainw, mainw->app, false, 0, tr ( "Scanning directory tree, please wait..." ), true );
@@ -1735,6 +1745,7 @@ int GuiSlave::addEvent ( void ) {
 	delete pww;
 	if ( *DEBUG_INFO_ENABLED )
 		cerr << "ADDEVENT-8" << endl;
+	panelsON();
 	QApplication::restoreOverrideCursor();
 	return 0;
 }

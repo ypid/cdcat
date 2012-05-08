@@ -36,11 +36,17 @@
 #include <lib7zip.h>
 #endif
 
+#include <iostream>
+
 #include "config.h"
 #include "icons.h"
 #include "dbase.h"
 #include "cdcat.h"
+
+#ifndef NO_MEDIAINFO
 #include "cdcatmediainfo.h"
+#endif
+
 
 SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name, bool modal, Qt::WFlags fl )
 	: QDialog ( parent, fl )
@@ -404,12 +410,14 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 		
 #else
 		sevenzip_libfound_text = "<font color=\"red\">" + tr ( "lib7zip not supported" ) + "</font>";
+		labArchiveExtensionsStatusIcon->setToolTip ( tr ( "support not compiled in" ) );
 #endif
  		labArchiveExtensions->setText(  tr ( "Archive support:" )+ " "+sevenzip_libfound_text );
 		labArchiveExtensionsStatusIcon->setToolTip ( tr ( "Supported extensions:" ) + "&nbsp;" + SupportedExtensions );
 	}
 	
 	
+#ifndef NO_MEDIAINFO
 	// FIXME: get from fileinfo
 	CdcatMediaInfo me;
 	
@@ -438,6 +446,11 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 		fileinfo_libfound_text = "<font color=\"green\">" + tr ( "mediainfo found" ) + ": " + me.getMediaInfoVersion() + "</font>";
 	labFileInfoExtensions->setText ( tr ( "mediainfo status:" )+ " "+fileinfo_libfound_text);
 	labFileInfoExtensionsStatusIcon->setToolTip(tr("Supported extensions:")+"&nbsp;" + SupportedFileInfoExtensions );
+#else
+	QString fileinfo_libfound_text = "<font color=\"red\">" + tr ( "mediainfo not supported" ) + "</font>";
+	labFileInfoExtensions->setText ( tr ( "mediainfo status:" )+ " "+fileinfo_libfound_text);
+	labFileInfoExtensionsStatusIcon->setToolTip ( tr ( "support not compiled in" ) );
+#endif
 	
 	cbDoExcludeFiles->setChecked(conf->doExcludeFiles);
 	cbUseWildcardInsteadRegexForExclude->setChecked(conf->useWildcardInsteadRegexForExclude);

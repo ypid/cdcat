@@ -9,6 +9,7 @@
  Info: read mediainfo using libmediainfo
 ****************************************************************************/
 
+#ifndef NO_MEDIAINFO
 #include "config.h"
 #include "cdcat.h"
 #include "cdcatmediainfo.h"
@@ -33,29 +34,28 @@ using namespace std;
 static QStringList MediaInfoSupportedFileExtensions;
 static bool mediaInfoLibInitDone = false;
 static bool mediaInfoLibFound = false;
-static MediaInfoNameSpace::MediaInfo *MediaInfoHandler=0;
-
 
 /* convienent funcs for MediaInfo */
-#if defined(_WIN32) || defined(MEDIAINFO_UNICODE)
-QString fromMediaInfoStrtoQString(String str) {
-	return QString::fromStdWString(str);
-}
+QString fromMediaInfoStrtoQString(MediaInfoNameSpace::String str) {
+   QString str2;
+#if defined(_WIN32) || defined(MEDIAINFO_UNICODE) || defined(_OS2)
+	str2 = QString::fromStdWString(str);
 #else
-QString fromMediaInfoStrtoQString(String str) {
-	return QString::fromStdString(str);
-}
+	str2 = QString::fromStdString(str);
 #endif
+    return str2;
+}
 
+
+
+MediaInfoNameSpace::String toMediaInfoString(const QString &str) {
 #if defined(_WIN32) || defined(MEDIAINFO_UNICODE)
-inline MediaInfoNameSpace::String toMediaInfoString(const QString &str) {
-	return str.toStdWString();
-}
+   return ((MediaInfoNameSpace::String)str.toStdWString());
 #else
-inline MediaInfoNameSpace::String toMediaInfoString(const QString &str) {
-	return str.toStdString();
-}
+   return ((MediaInfoNameSpace::String)str.toStdString());
 #endif
+}
+
 
 
 
@@ -83,6 +83,11 @@ bool CdcatMediaInfo::readCdcatMediaInfo(){
 	
 	// read data
 	DEBUG_INFO_ENABLED = init_debug_info();
+	if (MediaInfoHandler == NULL) {
+		if(*DEBUG_INFO_ENABLED)
+			cout << "readCdcatMediaInfo() MediaInfoHandler is invalid" << endl;
+		return false;
+	}
 	
 	if (filename == "") {
 		if(*DEBUG_INFO_ENABLED)
@@ -144,7 +149,7 @@ bool CdcatMediaInfo::readCdcatMediaInfo(){
 CdcatMediaInfo::~CdcatMediaInfo ( void ) {
 	// FIXME close & delete should be done at close cdcat
 // 	MediaInfoHandler->Close();
-	delete MediaInfoHandler;
+//	delete MediaInfoHandler;
 	
 }
 
@@ -152,9 +157,15 @@ bool CdcatMediaInfo::initMediaInfoLib() {
 	DEBUG_INFO_ENABLED = init_debug_info();
 #ifdef MEDIAINFO_STATIC
 	MediaInfoHandler = new MediaInfo();
+    if (MediaInfoHandler != NULL) {
 	mediaInfoLibFound = true;
 	if(*DEBUG_INFO_ENABLED) {
 		cout << "initMediaInfoLib(): mediainfo lib version: " << fromMediaInfoStrtoQString(MediaInfoHandler->Option(toMediaInfoString(QString("Info_Version")))).split(" - ").at(1).toStdString()  << endl;
+	  }
+   }
+	else {
+		if(*DEBUG_INFO_ENABLED)
+			cout << "initMediaInfoLib(): init mediainfo lib failed" << endl;
 	}
 #else
 	int success = MediaInfoDLL_Load();
@@ -184,12 +195,14 @@ QString CdcatMediaInfo::getMediaInfoVersion() {
 }
 
 bool CdcatMediaInfo::detectSupportedExtensions() {
+   bool success = false;
 	if (!mediaInfoLibInitDone) {
+      MediaInfoSupportedFileExtensions.clear();
 		// init lib
-		mediaInfoLibFound = initMediaInfoLib();
+		success = mediaInfoLibFound = initMediaInfoLib();
 	}
 	
-	if (mediaInfoLibFound) {
+	if ( success && mediaInfoLibFound) {
 		MediaInfoSupportedFileExtensions.append("mkv");
 		MediaInfoSupportedFileExtensions.append("mka");
 		MediaInfoSupportedFileExtensions.append("mks");
@@ -253,12 +266,10 @@ bool CdcatMediaInfo::detectSupportedExtensions() {
 		MediaInfoSupportedFileExtensions.append("aac");
 		MediaInfoSupportedFileExtensions.append("mac");
 		MediaInfoSupportedFileExtensions.append("m4v");
-	}
-	else {
-		MediaInfoSupportedFileExtensions.clear();
+	return true;
 	}
 
-	return true;
+	return false;
 }
 
 QStringList CdcatMediaInfo::getSupportedExtensions() {
@@ -274,5 +285,6 @@ QString CdcatMediaInfo::getInfo() {
 	return InfoText;
 }
 
+#endif
 
 /*end of file*/
