@@ -50,9 +50,9 @@ QString fromMediaInfoStrtoQString(MediaInfoNameSpace::String str) {
 
 MediaInfoNameSpace::String toMediaInfoString(const QString &str) {
 #if defined(_WIN32) || defined(MEDIAINFO_UNICODE)
-   return ((MediaInfoNameSpace::String)str.toStdWString());
+   return (str.toStdWString());
 #else
-   return ((MediaInfoNameSpace::String)str.toStdString());
+   return (str.toStdString());
 #endif
 }
 
