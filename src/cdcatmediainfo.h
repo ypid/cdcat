@@ -53,7 +53,7 @@
 #include <iostream>
 #include <iomanip>
 
-bool cleanupMediainfo();
+void cleanupMediainfo();
 
 class CdcatMediaInfo : public QObject {
 public:

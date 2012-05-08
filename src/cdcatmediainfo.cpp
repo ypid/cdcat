@@ -36,7 +36,7 @@ static bool mediaInfoLibInitDone = false;
 static bool mediaInfoLibFound = false;
 static MediaInfoNameSpace::MediaInfo *MediaInfoHandler=NULL;
 
-bool cleanupMediainfo() {
+void cleanupMediainfo() {
 	if (MediaInfoHandler != NULL) {
 		 delete MediaInfoHandler;
 	}
