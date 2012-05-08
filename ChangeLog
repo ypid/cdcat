@@ -7,6 +7,7 @@
 	- crash at close fixed
 	- compile fix
 	- warnings fixed
+	- close mediainfo properly
 
 06. May 2012 Christoph Thielecke <crissi99@gmx.de>
 	- sorting directories on listview fixed

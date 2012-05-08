@@ -114,7 +114,7 @@ bool CdcatMediaInfo::readCdcatMediaInfo(){
 		if(*DEBUG_INFO_ENABLED)
 			cout << "mediainfo for " << filename.toLocal8Bit().constData() << ": " << fromMediaInfoStrtoQString(info).toLocal8Bit().constData() << endl;
 		if(*DEBUG_INFO_ENABLED) {
-		String ver = toMediaInfoString(QString("Info_Version"));
+		//String ver = toMediaInfoString(QString("Info_Version"));
 		// 	cout << "mediainfo version: " << fromMediaInfoStrtoQString(MediaInfoHandler->Option(ver)).toLocal8Bit().constData() << endl;
 		// 	cout << "mediainfo codecs: " << MediaInfoHandler.Option("Info_Codecs").c_str() << endl;
 		}
@@ -143,11 +143,12 @@ bool CdcatMediaInfo::readCdcatMediaInfo(){
 		// //   Stream_Chapters    StreamKind = Chapters. 
 		// //   Stream_Image    StreamKind = Image. 
 		// //   Stream_Menu
+		MediaInfoHandler->Close();
 		return true;
 	}
 	else {
 		cout << "mediainfo for " << filename.toLocal8Bit().constData() << " has been failed" << endl;
-
+		MediaInfoHandler->Close();
 		return false;
 	}
 }
@@ -155,7 +156,7 @@ bool CdcatMediaInfo::readCdcatMediaInfo(){
 
 CdcatMediaInfo::~CdcatMediaInfo ( void ) {
 	// FIXME close & delete should be done at close cdcat
-// 	MediaInfoHandler->Close();
+// 	
 //	delete MediaInfoHandler;
 	
 }
