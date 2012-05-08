@@ -1054,7 +1054,7 @@ QString FileReader::getCatName ( void ) {
 	xmlReader.setErrorHandler ( handler );
 	
 	QXmlInputSource mysource;
-	if ( XML_ENCODING.toAscii().constData() == "UTF-8" ) {
+	if ( XML_ENCODING == QString("UTF-8") ) {
 		if ( *DEBUG_INFO_ENABLED )
 			std::cerr << "set data source text..." << endl;
 		mysource.setData ( QString ( dataBuffer ) );
@@ -1152,13 +1152,13 @@ bool CdCatXmlHandler::startElement ( const QString & namespaceURI, const QString
 		}
 		if ( onlyCatalog ) {
 			//catname = FREA->get_cutf8 ( FREA->getStr2 ( attr,"name","Error while parsing \"catalog\" node" ) );
-			catname = FREA->getStr2 ( attr, "name", "Error while parsing \"catalog\" node" );
+			catname = FREA->getStr2 ( attr, (char *)"name", (char *)"Error while parsing \"catalog\" node" );
 			return true;
 		}
 		
 		( ( DBCatalog * ) ( ( FREA->sp )->data ) ) ->name =
 			//FREA->get_cutf8 ( FREA->getStr2 ( attr,"name","Error while parsing \"catalog\" node" ) );
-		FREA->getStr2 ( attr, "name", "Error while parsing \"catalog\" node" );
+		FREA->getStr2 ( attr, (char *)"name", (char *)"Error while parsing \"catalog\" node" );
 		if ( FREA->error_found ) {
 			cerr <<"Error while parsing \"catalog\" node, el: "<<qPrintable(el)<<endl;
 			return false;
@@ -1169,14 +1169,14 @@ bool CdCatXmlHandler::startElement ( const QString & namespaceURI, const QString
 		
 		( ( DBCatalog * ) ( ( FREA->sp )->data ) ) ->owner =
 			//FREA->get_cutf8 ( FREA->getStr2 ( attr,"owner","Error while parsing \"catalog\" node" ));
-		        FREA->getStr2 ( attr, "owner", "Error while parsing \"catalog\" node" );
+		        FREA->getStr2 ( attr, (char *)"owner", (char *)"Error while parsing \"catalog\" node" );
 		if ( FREA->error_found ) {
 			cerr << qPrintable(FREA->errormsg) << " el: "<<qPrintable(el)<<endl;
 			return false;
 		}
 		
 		( ( DBCatalog * ) ( ( FREA->sp )->data ) ) ->modification =
-		        FREA->get_dcutf8 ( FREA->getStr2 ( attr, "time", "Error while parsing \"catalog\" node" ) );
+		        FREA->get_dcutf8 ( FREA->getStr2 ( attr, (char *)"time", (char *)"Error while parsing \"catalog\" node" ) );
 		if ( FREA->error_found ) {
 			cerr << qPrintable(FREA->errormsg) << " el: "<<qPrintable(el)<<endl;
 			return false;
@@ -1201,7 +1201,7 @@ bool CdCatXmlHandler::startElement ( const QString & namespaceURI, const QString
 			
 			( ( DBCatalog * ) ( tmp->data ) ) ->fileversion =
 				//FREA->get_cutf8 ( FREA->getStr2 ( attr,"version","Error while parsing \"datafile\" node" ) );
-			FREA->getStr2 ( attr, "version", "Error while parsing \"datafile\" node" );
+			FREA->getStr2 ( attr, (char *)"version", (char *)"Error while parsing \"datafile\" node" );
 			if ( FREA->error_found ) {
 				cerr <<"Error while parsing \"datafile\" node, el: "<<qPrintable(el)<<endl;
 				return false;
@@ -1225,7 +1225,7 @@ bool CdCatXmlHandler::startElement ( const QString & namespaceURI, const QString
 					QString newname;
 					
 					//newname = FREA->get_cutf8 ( FREA->getStr2 ( attr,"name"  ,"Error while parsing \"media\" node" ) );
-					newname = FREA->getStr2 ( attr, "name"  , "Error while parsing \"media\" node" );
+					newname = FREA->getStr2 ( attr, (char *)"name"  , (char *)"Error while parsing \"media\" node" );
 					if ( FREA->error_found ) {
 						cerr << qPrintable(FREA->errormsg) << " el: "<<qPrintable(el)<<endl;
 						return false;
@@ -1241,7 +1241,7 @@ Please change it with an older version or rewrite it in the xml file!" );
 						return false;
 					}
 					
-					newnum = ( int ) FREA->getDouble2 ( attr, "number", "Error while parsing \"media\" node" );
+					newnum = ( int ) FREA->getDouble2 ( attr, (char *)"number", (char *)"Error while parsing \"media\" node" );
 					if ( FREA->error_found ) {
 						cerr << qPrintable(FREA->errormsg) << " el: "<<qPrintable(el)<<endl;
 						return false;
@@ -1286,25 +1286,25 @@ Please change it with an older version or rewrite it in the xml file!" );
 					
 					/*Fill data part:*/
 					//ts1 = FREA->get_cutf8 ( FREA->getStr2 ( attr,"owner" ,"Error while parsing \"media\" node" ) );
-					ts1 = FREA->getStr2 ( attr, "owner" , "Error while parsing \"media\" node" );
+					ts1 = FREA->getStr2 ( attr, (char *)"owner" , (char *)"Error while parsing \"media\" node" );
 					if ( FREA->error_found ) {
 						cerr << qPrintable(FREA->errormsg) << " el: "<<qPrintable(el)<<endl;
 						return false;
 					}
-					td1 = FREA->get_dcutf8 ( FREA->getStr2 ( attr, "time"  , "Error while parsing \"media\" node" ) );
+					td1 = FREA->get_dcutf8 ( FREA->getStr2 ( attr, (char *)"time"  , (char *)"Error while parsing \"media\" node" ) );
 					if ( FREA->error_found ) {
 						cerr << qPrintable(FREA->errormsg) << " el: "<<qPrintable(el)<<endl;
 						return false;
 					}
 					
-					ti1 = getTypeFS ( FREA->getStr2 ( attr, "type"  , "Error while parsing \"media\" node" ).toLocal8Bit().constData() );
+					ti1 = getTypeFS ( FREA->getStr2 ( attr, (char *)"type"  , (char *)"Error while parsing \"media\" node" ).toLocal8Bit().constData() );
 					if ( FREA->error_found ) {
 						cerr << qPrintable(FREA->errormsg) << " el: "<<qPrintable(el)<<endl;
 						return false;
 					}
 					if ( ti1 == UNKNOWN ) {
 						FREA->errormsg = QString ( "Unknown media type in the file. (\"%1\")" )
-						                 .arg ( FREA->getStr2 ( attr, "type"  , "Error while parsing \"media\" node" ).toLocal8Bit().constData() );
+						                 .arg ( FREA->getStr2 ( attr, (char *)"type"  , (char *)"Error while parsing \"media\" node" ).toLocal8Bit().constData() );
 						
 						FREA->error_found = 1;
 						cerr << qPrintable(FREA->errormsg) << " el: "<<qPrintable(el)<<endl;
@@ -1316,11 +1316,11 @@ Please change it with an older version or rewrite it in the xml file!" );
 				else {
 					/*Fill data part:*/
 					//ts1 = FREA->get_cutf8 ( FREA->getStr2 ( attr,"name"  ,"Error while parsing \"media\" node" ) );
-					ts1 = FREA->getStr2 ( attr, "name"  , "Error while parsing \"media\" node" );
+					ts1 = FREA->getStr2 ( attr, (char *)"name"  , (char *)"Error while parsing \"media\" node" );
 					//ts2 = FREA->get_cutf8 ( FREA->getStr2 ( attr,"owner" ,"Error while parsing \"media\" node" ) );
-					ts2 = FREA->getStr2 ( attr, "owner" , "Error while parsing \"media\" node" );
-					tf1 = FREA->getDouble2 ( attr, "number", "Error while parsing \"media\" node" );
-					td1 = FREA->get_dcutf8 ( FREA->getStr2 ( attr, "time"  , "Error while parsing \"media\" node" ) );
+					ts2 = FREA->getStr2 ( attr, (char *)"owner" , (char *)"Error while parsing \"media\" node" );
+					tf1 = FREA->getDouble2 ( attr, (char *)"number", (char *)"Error while parsing \"media\" node" );
+					td1 = FREA->get_dcutf8 ( FREA->getStr2 ( attr, (char *)"time"  , (char *)"Error while parsing \"media\" node" ) );
 					if ( FREA->error_found ) {
 						cerr << qPrintable(FREA->errormsg) << " el: "<<qPrintable(el)<<endl;
 						return false;
@@ -1333,14 +1333,14 @@ Please change it with an older version or rewrite it in the xml file!" );
 						return false;
 					}
 					
-					ti1 = getTypeFS ( FREA->getStr2 ( attr, "type"  , "Error while parsing \"media\" node" ).toLocal8Bit().constData() );
+					ti1 = getTypeFS ( FREA->getStr2 ( attr, (char *)"type"  , (char *)"Error while parsing \"media\" node" ).toLocal8Bit().constData() );
 					if ( FREA->error_found ) {
 						cerr << qPrintable(FREA->errormsg) << " el: "<<qPrintable(el)<<endl;
 						return false;
 					}
 					if ( ti1 == UNKNOWN ) {
 						FREA->errormsg = QString ( "Line %1: Unknown media type in the file. (\"%1\")" )
-						                 .arg ( FREA->getStr2 ( attr, "type"  , "Error while parsing \"media\" node" ).toLocal8Bit().constData() );
+						                 .arg ( FREA->getStr2 ( attr, (char *)"type"  , (char *)"Error while parsing \"media\" node" ).toLocal8Bit().constData() );
 						FREA->error_found = 1;
 						cerr << qPrintable(FREA->errormsg) << " el: "<<qPrintable(el)<<endl;
 						return false;
@@ -1365,8 +1365,8 @@ Please change it with an older version or rewrite it in the xml file!" );
 					}
 					/*Fill data part:*/
 					//ts1 = FREA->get_cutf8 ( FREA->getStr2 ( attr,"name"  ,"Error while parsing \"directory\" node" ) );
-					ts1 = FREA->getStr2 ( attr, "name"  , "Error while parsing \"directory\" node" ) ;
-					td1 = FREA->get_dcutf8 ( FREA->getStr2 ( attr, "time" , "Error while parsing \"directory\" node" ) );
+					ts1 = FREA->getStr2 ( attr, (char *)"name"  , (char *)"Error while parsing \"directory\" node" ) ;
+					td1 = FREA->get_dcutf8 ( FREA->getStr2 ( attr, (char *)"time" , (char *)"Error while parsing \"directory\" node" ) );
 					if ( FREA->error_found ) {
 						cerr << qPrintable(FREA->errormsg) << " el: "<<qPrintable(el)<<endl;
 						return false;
@@ -1392,7 +1392,7 @@ Please change it with an older version or rewrite it in the xml file!" );
 						//if(*DEBUG_INFO_ENABLED)
 						//	cerr <<"1"<<endl;
 						//ts1 = FREA->get_cutf8 ( FREA->getStr2 ( attr,"name"  ,"Error while parsing \"file\" node" ) );
-						ts1 = FREA->getStr2 ( attr, "name"  , "Error while parsing \"file\" node" );
+						ts1 = FREA->getStr2 ( attr, (char *)"name"  , (char *)"Error while parsing \"file\" node" );
 						//if(*DEBUG_INFO_ENABLED)
 						//	cerr <<"2"<<endl;
 						
@@ -1401,7 +1401,7 @@ Please change it with an older version or rewrite it in the xml file!" );
 							return false;
 						}
 						
-						td1 = FREA->get_dcutf8 ( FREA->getStr2 ( attr, "time"  , "Error while parsing \"file\" node" ) );
+						td1 = FREA->get_dcutf8 ( FREA->getStr2 ( attr, (char *)"time"  , (char *)"Error while parsing \"file\" node" ) );
 						//if(*DEBUG_INFO_ENABLED)
 						//	cerr <<"3"<<endl;
 						
@@ -1412,7 +1412,7 @@ Please change it with an older version or rewrite it in the xml file!" );
 						//if(*DEBUG_INFO_ENABLED)
 						//	cerr <<"4"<<endl;
 						
-						tf1 = getSizeFS ( FREA->getStr2 ( attr, "size", "Error while parsing \"file\" node" ).toLocal8Bit().constData() );
+						tf1 = getSizeFS ( FREA->getStr2 ( attr, (char *)"size", (char *)"Error while parsing \"file\" node" ).toLocal8Bit().constData() );
 						//if(*DEBUG_INFO_ENABLED)
 						//	cerr <<"5"<<endl;
 						
@@ -1422,20 +1422,20 @@ Please change it with an older version or rewrite it in the xml file!" );
 						}
 						if ( tf1 == -1 ) {
 							FREA->errormsg = QString ( "Unknown size data in file node. (\"%1\")" )
-							                 .arg ( FREA->getStr2 ( attr, "size", "Error while parsing \"file\" node" ) );
+							                 .arg ( FREA->getStr2 ( attr, (char *)"size", (char *)"Error while parsing \"file\" node" ) );
 							FREA->error_found = 1;
 							cerr << qPrintable(FREA->errormsg) << " el: "<<qPrintable(el)<<endl;
 							return false;
 						}
 						
-						ti1 = getSizetFS ( FREA->getStr2 ( attr, "size", "Error while parsing \"file\" node" ).toLocal8Bit().constData() );
+						ti1 = getSizetFS ( FREA->getStr2 ( attr, (char *)"size", (char *)"Error while parsing \"file\" node" ).toLocal8Bit().constData() );
 						if ( FREA->error_found ) {
 							cerr << qPrintable(FREA->errormsg) << " el: "<<qPrintable(el)<<endl;
 							return false;
 						}
 						if ( ti1 == -1 ) {
 							FREA->errormsg = QString ( "Unknown size type in file node. (\"%1\")" )
-							                 .arg ( FREA->getStr2 ( attr, "size", "Error while parsing \"file\" node" ).toLocal8Bit().constData() );
+							                 .arg ( FREA->getStr2 ( attr, (char *)"size", (char *)"Error while parsing \"file\" node" ).toLocal8Bit().constData() );
 							FREA->error_found = 1;
 							cerr << qPrintable(FREA->errormsg) << " el: "<<qPrintable(el)<<endl;
 							return false;
@@ -1474,19 +1474,19 @@ Please change it with an older version or rewrite it in the xml file!" );
 							}
 							/*Fill data part:*/
 							//ts1 = FREA->get_cutf8 ( FREA->getStr2 ( attr,"artist"  ,"Error while parsing \"mp3tag\" node" ));
-							ts1 = FREA->getStr2 ( attr, "artist"  , "Error while parsing \"mp3tag\" node" );
+							ts1 = FREA->getStr2 ( attr, (char *)"artist"  , (char *)"Error while parsing \"mp3tag\" node" );
 							//ts2 = FREA->get_cutf8 ( FREA->getStr2 ( attr,"title"   ,"Error while parsing \"mp3tag\" node" ) );
-							ts2 = FREA->getStr2 ( attr, "title"   , "Error while parsing \"mp3tag\" node" );
+							ts2 = FREA->getStr2 ( attr, (char *)"title"   , (char *)"Error while parsing \"mp3tag\" node" );
 							//ts3 = FREA->get_cutf8 ( FREA->getStr2 ( attr,"album"  ,"Error while parsing \"mp3tag\" node" ) );
-							ts3 = FREA->getStr2 ( attr, "album"  , "Error while parsing \"mp3tag\" node" );
+							ts3 = FREA->getStr2 ( attr, (char *)"album"  , (char *)"Error while parsing \"mp3tag\" node" );
 							//ts4 = FREA->get_cutf8 ( FREA->getStr2 ( attr,"year"   ,"Error while parsing \"mp3tag\" node" ) );
-							ts4 = FREA->getStr2 ( attr, "year"   , "Error while parsing \"mp3tag\" node" );
+							ts4 = FREA->getStr2 ( attr, (char *)"year"   , (char *)"Error while parsing \"mp3tag\" node" );
 							if ( FREA->error_found ) {
 								cerr << qPrintable(FREA->errormsg) << " el: "<<qPrintable(el)<<endl;
 								return false;
 							}
 							ti1 = 0;
-							ti1 = FREA->getDouble2 ( attr, "tnum"   , "Error while parsing \"mp3tag\" node" );
+							ti1 = FREA->getDouble2 ( attr, (char *)"tnum"   , (char *)"Error while parsing \"mp3tag\" node" );
 							// this is NO error
 							FREA->error_found = 0;
 							
@@ -1510,9 +1510,9 @@ Please change it with an older version or rewrite it in the xml file!" );
 								}
 								/*Fill data part:*/
 								//ts1 = FREA->get_cutf8 ( FREA->getStr2 ( attr,"name"  ,"Error while parsing \"catlnk\" node" ) );
-								ts1 = FREA->getStr2 ( attr, "name"  , "Error while parsing \"catlnk\" node" );
+								ts1 = FREA->getStr2 ( attr, (char *)"name"  , (char *)"Error while parsing \"catlnk\" node" );
 								
-								readed_loc = mstr ( FREA->getStr2 ( attr, "location" , "Error while parsing \"catlnk\" node" ).toLocal8Bit().constData() );
+								readed_loc = mstr ( FREA->getStr2 ( attr, (char *)"location" , (char *)"Error while parsing \"catlnk\" node" ).toLocal8Bit().constData() );
 								if ( FREA->error_found ) {
 									cerr << qPrintable(FREA->errormsg) << " el: "<<qPrintable(el)<<endl;
 									return false;

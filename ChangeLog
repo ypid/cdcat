@@ -6,6 +6,7 @@
 	- display info that mediainfo support is not compiled in at selreadable dialog if mediainfo was disabled at compile time
 	- crash at close fixed
 	- compile fix
+	- warnings fixed
 
 06. May 2012 Christoph Thielecke <crissi99@gmx.de>
 	- sorting directories on listview fixed
