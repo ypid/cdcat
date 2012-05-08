@@ -45,7 +45,7 @@ bool cleanupMediainfo() {
 /* convienent funcs for MediaInfo */
 QString fromMediaInfoStrtoQString(MediaInfoNameSpace::String str) {
    QString str2;
-#if (defined(_WIN32) || defined(MEDIAINFO_UNICODE)) && !defined(_OS2)
+#if defined(_WIN32) || defined(MEDIAINFO_UNICODE)
 	str2 = QString::fromStdWString(str);
 #else
 	str2 = QString::fromStdString(str);
@@ -56,7 +56,7 @@ QString fromMediaInfoStrtoQString(MediaInfoNameSpace::String str) {
 
 
 MediaInfoNameSpace::String toMediaInfoString(const QString &str) {
-#if (defined(_WIN32) || defined(MEDIAINFO_UNICODE)) && !defined(_OS2)
+#if defined(_WIN32) || defined(MEDIAINFO_UNICODE)
    return (str.toStdWString());
 #else
    return (str.toStdString());

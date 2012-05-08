@@ -25,7 +25,7 @@
 //#define MEDIAINFO_STATIC
 
 #ifdef MEDIAINFO_STATIC
-    #include "MediaInfo/MediaInfo.h" //Staticly-loaded library (.lib or .a or .so)
+    #include "MediaInfo/MediaInfo.h" //Staticly-loaded library (.lib or .a)
     #define MediaInfoNameSpace MediaInfoLib
 #else //MEDIAINFO_STATIC
     #include "MediaInfoDLL/MediaInfoDLL.h" //Dynamicly-loaded library (.dll or .so)
