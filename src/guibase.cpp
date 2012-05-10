@@ -1588,8 +1588,8 @@ int GuiSlave::addEvent ( void ) {
 				connect ( mainw->db, SIGNAL ( pathExtraInfoAppend( QString ) ), mainw, SLOT ( extraInfoAppend(QString)) );
 			}
 			if (mainw->cconfig->displayCurrentScannedFileInTray) {
-				//connect ( mainw->db, SIGNAL ( fileScanned(QString)), mainw, SLOT ( setTrayToolTipInfo ( QString ) ) );
-				connect ( mainw->db, SIGNAL ( fileScanned(QString)), mainw, SLOT ( setTrayText ( QString ) ) );
+				connect ( mainw->db, SIGNAL ( fileScanned(QString)), mainw, SLOT ( setTrayToolTipInfo ( QString ) ) );
+				//connect ( mainw->db, SIGNAL ( fileScanned(QString)), mainw, SLOT ( setTrayText ( QString ) ) );
 			}
 			if(mainw->cconfig->showTrayIcon) {
 				connect ( mainw, SIGNAL ( minimizedToTray()), pww , SLOT(hide()));
@@ -1630,6 +1630,7 @@ int GuiSlave::addEvent ( void ) {
 			}
 			
 			if (mainw->cconfig->displayCurrentScannedFileInTray) {
+				//disconnect ( mainw->db, SIGNAL ( fileScanned(QString)), mainw, SLOT ( setTrayText ( QString ) ) );
 				disconnect ( mainw->db, SIGNAL ( fileScanned(QString)), mainw, SLOT ( setTrayToolTipInfo ( QString ) ) );
 			}
 			
@@ -1827,6 +1828,7 @@ int GuiSlave::rescanEvent ( void ) {
 	}
 	
 	if (mainw->cconfig->displayCurrentScannedFileInTray) {
+		//disconnect ( mainw->db, SIGNAL ( fileScanned(QString)), mainw, SLOT ( setTrayText ( QString ) ) );
 		disconnect ( mainw->db, SIGNAL ( fileScanned(QString)), mainw, SLOT ( setTrayToolTipInfo ( QString ) ) );
 	}
 	
@@ -1853,6 +1855,7 @@ int GuiSlave::rescanEvent ( void ) {
 	}
 	
 	if (mainw->cconfig->displayCurrentScannedFileInTray) {
+		//disconnect ( mainw->db, SIGNAL ( fileScanned(QString)), mainw, SLOT ( setTrayText ( QString ) ) );
 		disconnect ( mainw->db, SIGNAL ( fileScanned(QString)), mainw, SLOT ( setTrayToolTipInfo ( QString ) ) );
 	}
 	
