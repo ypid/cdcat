@@ -809,6 +809,14 @@ int CdCatConfig::readConfig ( void ) {
 						showProgressedArchiveFileInStatus = false;
 					continue;
 				}
+				if ( var == "displayCurrentScannedFileInTray" ) {
+					if ( val == "true" )
+						displayCurrentScannedFileInTray = true;
+					else
+						displayCurrentScannedFileInTray = false;
+					continue;
+				}
+				
 				if ( var == "find_in_archive" ) {
 					if ( val == "true" )
 						find_in_archive = true;
@@ -1236,6 +1244,11 @@ int CdCatConfig::writeConfig ( void ) {
 		else
 			str << "showProgressedArchiveFileInStatus=false" << endl;
 		
+		if(displayCurrentScannedFileInTray)
+			str << "displayCurrentScannedFileInTray=true" << endl;
+		else
+			str << "displayCurrentScannedFileInTray=false" << endl;
+		
 		if ( find_in_archive )
 			str << "find_in_archive=true" << endl;
 		else
@@ -1529,7 +1542,7 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	
 	cbNice->setChecked ( p->cconfig->nice );
 	cbShowTrayIcon->setChecked( p->cconfig->showTrayIcon );
-	cbShowCurrentScannedFileInTrayIcon->setChecked( p->cconfig->showProgressedFileInStatus );
+	cbShowCurrentScannedFileInTrayIcon->setChecked( p->cconfig->displayCurrentScannedFileInTray );
 	cbAutoload->setChecked ( p->cconfig->autoload );
 	cbAutosave->setChecked ( p->cconfig->autosave );
 	if ( !p->cconfig->autoloadfn.isEmpty() )
@@ -1650,6 +1663,7 @@ void ConfigDialog::okExit() {
 	*DEBUG_INFO_ENABLED = cbEnableDebugInfo->isChecked();
 	p->cconfig->saveAlwaysCatalogInUtf8 = cbSaveCatalogAlwaysInUtf8->isChecked();
 	p->cconfig->showProgressedFileInStatus = cbShowProgressedFileInStatus->isChecked();
+	p->cconfig->displayCurrentScannedFileInTray = cbShowCurrentScannedFileInTrayIcon->isChecked();
 	
 	p->cconfig->writeConfig();
 	
