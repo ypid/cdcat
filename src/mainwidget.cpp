@@ -795,6 +795,19 @@ void CdCatMainWidget::dockToogled() {
 	}
 }
 
+void CdCatMainWidget::setTrayToolTipInfo ( QString tooltipinfo ) {
+	if(trayIcon) {
+		trayIcon->setToolTip(tooltipinfo);
+	}
+}
+
+void CdCatMainWidget::setTrayText ( QString text, QString header ) {
+	if(trayIcon) {
+		trayIcon->showMessage(header , text, QSystemTrayIcon::Information, 2000);
+	}
+}
+
+
 
 
 // kate: indent-mode cstyle; indent-width 8; replace-tabs off; tab-width 8; 

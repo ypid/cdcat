@@ -88,6 +88,8 @@ class CdCatMainWidget : public QMainWindow{
 	public slots:
 		void pathScanned ( QString path );
 		void extraInfoAppend ( QString extraInfo );
+		void setTrayToolTipInfo ( QString tooltipinfo );
+		void setTrayText ( QString text, QString header = tr("processing file") );
 	
 	private:
 		QPixmap image0;

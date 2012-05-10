@@ -528,6 +528,7 @@ DataBase::DataBase ( void ) {
 	storeMp3tags    = true;
 	storeContent    = true;
 	showProgressedFileInStatus = true;
+	displayCurrentScannedFileInTray = false;
 	storedFiles     = "*.nfo;*.diz;readme.txt";
 	storeThumb = true;
 	ThumbExtsList.clear();
@@ -983,6 +984,10 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 			if ( *DEBUG_INFO_ENABLED )
 				std::cerr << "adding file: " << qPrintable ( fileInfo->fileName() ) << std::endl;
 			
+			//if ( displayCurrentScannedFileInTray ) {
+			//	emit fileScanned ( fileInfo->filePath() );
+			//}
+			
 			double size = fileInfo->size();
 			double s = size;
 			int   st = UNIT_BYTE;
@@ -1192,7 +1197,12 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 			if ( *DEBUG_INFO_ENABLED )
 				std::cerr << "reading media info for " << qPrintable ( file_path ) << std::endl;
 			
+			if ( displayCurrentScannedFileInTray ) {
+				emit fileScanned ( tr("reading media info")+ ": "+file_path );
+			}
+			
 			QString info = CdcatMediaInfo ( file_abspath ).getInfo();
+			
 			if ( !info.isEmpty() )
 				fc->fileinfo = info;
 			if(pww->appl->hasPendingEvents())
@@ -1726,6 +1736,10 @@ QList<ArchiveFile> DataBase::scanArchive ( QString path, ArchiveType type ) {
 		if ( showProgressedFileInStatus )
 			emit pathExtraInfoAppend ( tr("scanning archive") );
 		
+		if ( displayCurrentScannedFileInTray ) {
+			emit fileScanned ( tr("scanning archive")+ ": "+path );
+		}
+		
 		int i = 0;
 		TAR *t;
 		int tar_open_ret = -1;
@@ -1867,6 +1881,10 @@ QList<ArchiveFile> DataBase::scanArchive ( QString path, ArchiveType type ) {
 		
 		if ( showProgressedFileInStatus )
 			emit pathExtraInfoAppend ( tr("scanning archive") );
+		
+		if ( displayCurrentScannedFileInTray ) {
+			emit fileScanned ( tr("scanning archive")+ ": "+path );
+		}
 		
 		TestInStream stream ( path.toLocal8Bit().data(), path.toLower().section ( '.', -1 ).toStdWString() );
 		if ( lib.OpenArchive ( &stream, &pArchive ) ) {

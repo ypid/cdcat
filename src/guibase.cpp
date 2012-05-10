@@ -1415,6 +1415,7 @@ int GuiSlave::addEvent ( void ) {
 	mainw->db->doExcludeFiles = mainw->cconfig->doExcludeFiles;
 	mainw->db->ExcludeFileList = mainw->cconfig->ExcludeFileList;
 	mainw->db->useWildcardInsteadRegexForExclude = mainw->cconfig->useWildcardInsteadRegexForExclude;
+	mainw->db->displayCurrentScannedFileInTray = mainw->cconfig->displayCurrentScannedFileInTray;
 	
 	panelsOFF();
 	
@@ -1586,6 +1587,10 @@ int GuiSlave::addEvent ( void ) {
 				connect ( mainw->db, SIGNAL ( pathScanned ( QString ) ), mainw, SLOT ( pathScanned ( QString ) ) );
 				connect ( mainw->db, SIGNAL ( pathExtraInfoAppend( QString ) ), mainw, SLOT ( extraInfoAppend(QString)) );
 			}
+			if (mainw->cconfig->displayCurrentScannedFileInTray) {
+				//connect ( mainw->db, SIGNAL ( fileScanned(QString)), mainw, SLOT ( setTrayToolTipInfo ( QString ) ) );
+				connect ( mainw->db, SIGNAL ( fileScanned(QString)), mainw, SLOT ( setTrayText ( QString ) ) );
+			}
 			if(mainw->cconfig->showTrayIcon) {
 				connect ( mainw, SIGNAL ( minimizedToTray()), pww , SLOT(hide()));
 				connect ( mainw, SIGNAL ( restoredFromTray()), pww , SLOT(show()));
@@ -1623,6 +1628,11 @@ int GuiSlave::addEvent ( void ) {
 				disconnect ( mainw->db, SIGNAL ( pathScanned ( QString ) ), mainw, SLOT ( pathScanned ( QString ) ) );
 				disconnect ( mainw->db, SIGNAL ( pathExtraInfoAppend( QString ) ), mainw, SLOT ( extraInfoAppend(QString)) );
 			}
+			
+			if (mainw->cconfig->displayCurrentScannedFileInTray) {
+				disconnect ( mainw->db, SIGNAL ( fileScanned(QString)), mainw, SLOT ( setTrayToolTipInfo ( QString ) ) );
+			}
+			
 			//Do autosave if the user ask it in the config
 			if ( mainw->cconfig->autosave ) {
 				int retv = 0;

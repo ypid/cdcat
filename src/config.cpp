@@ -106,6 +106,7 @@ CdCatConfig::CdCatConfig ( void ) {
 	showProgressedFileInStatus = true;
 	doScanArchive = true;
 	showProgressedArchiveFileInStatus = true;
+	displayCurrentScannedFileInTray = false;
 	doExcludeFiles = false;
 	useWildcardInsteadRegexForExclude = false;
 	storeThumb = true;
@@ -1444,39 +1445,45 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	layout6->addWidget ( spinHistorySize );
 	labHistorySize = new QLabel ( this );
 	layout6->addWidget ( labHistorySize );
-	
-	cbShowTrayIcon = new QCheckBox(tr( "show systray icon" ), this );
-	QSpacerItem* systrayspacer1 = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
-	layout6->addItem(systrayspacer1);
-	layout6->addWidget(cbShowTrayIcon);
-	
 	ConfigDialogBaseLayout->addLayout ( layout6, 15, 0 );
+	
+	layoutDock = new QHBoxLayout ( this );
+	cbShowTrayIcon = new QCheckBox(tr( "show systray icon" ), this );
+	cbShowCurrentScannedFileInTrayIcon = new QCheckBox(tr( "display current scanned file in tray" ), this );
+	//QSpacerItem* systrayspacer1 = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
+	//layoutDock->addItem(systrayspacer1);
+	layoutDock->addWidget(cbShowTrayIcon);
+	layoutDock->addWidget(cbShowCurrentScannedFileInTrayIcon);
+	
+	
+	ConfigDialogBaseLayout->addLayout ( layoutDock, 16, 0 );
+	
 	
 	line6 = new QFrame ( this );
 	line6->setFrameShape ( QFrame::HLine );
 	line6->setFrameShadow ( QFrame::Sunken );
 	line6->setFrameShape ( QFrame::HLine );
-	ConfigDialogBaseLayout->addWidget ( line6, 16, 0 );
+	ConfigDialogBaseLayout->addWidget ( line6, 17, 0 );
 	
 	riButton = new QPushButton ( this );
-	ConfigDialogBaseLayout->addWidget ( riButton, 17, 0 );
+	ConfigDialogBaseLayout->addWidget ( riButton, 18, 0 );
 	
 	line7 = new QFrame ( this );
 	line7->setFrameShape ( QFrame::HLine );
 	line7->setFrameShadow ( QFrame::Sunken );
 	line7->setFrameShape ( QFrame::HLine );
-	ConfigDialogBaseLayout->addWidget ( line7, 18, 0 );
-	
-	layout7 = new QHBoxLayout ( this );
-	QSpacerItem* spacer = new QSpacerItem ( 110, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
-	layout7->addItem ( spacer );
+	ConfigDialogBaseLayout->addWidget ( line7, 19, 0 );
 	
 	layoutStatus = new QHBoxLayout (this );
 	cbEnableDebugInfo = new QCheckBox ( this );
 	cbShowProgressedFileInStatus = new QCheckBox ( this );
 	layoutStatus->addWidget ( cbEnableDebugInfo );
 	layoutStatus->addWidget ( cbShowProgressedFileInStatus );
-	ConfigDialogBaseLayout->addLayout ( layoutStatus, 19, 0 );
+	ConfigDialogBaseLayout->addLayout ( layoutStatus, 20, 0 );
+	
+	layout7 = new QHBoxLayout ( this );
+	QSpacerItem* spacer = new QSpacerItem ( 110, 21, QSizePolicy::Expanding, QSizePolicy::Minimum );
+	layout7->addItem ( spacer );
 	
 	okButton = new QPushButton ( this );
 	okButton->setMinimumSize ( QSize ( 100, 0 ) );
@@ -1491,7 +1498,7 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	QSpacerItem* spacer_2 = new QSpacerItem ( 130, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	layout7->addItem ( spacer_2 );
 	
-	ConfigDialogBaseLayout->addLayout ( layout7, 20, 0 );
+	ConfigDialogBaseLayout->addLayout ( layout7, 22, 0 );
 	
 	connect ( searchButton2, SIGNAL ( clicked() ), this, SLOT ( cdrombutton() ) );
 	
@@ -1504,6 +1511,7 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	connect ( searchButton, SIGNAL ( clicked() ), this, SLOT ( ffdbutton() ) );
 	connect ( cbOwnFont, SIGNAL ( clicked() ), this, SLOT ( ownFontToggled() ) );
 	connect ( riButton, SIGNAL ( clicked() ), this, SLOT ( runri() ) );
+	connect ( cbShowTrayIcon, SIGNAL ( clicked() ), this, SLOT ( showDockToggled()) );
 	
 	if ( p->cconfig->ownfont ) {
 		spinFontSize->setEnabled ( true );
@@ -1521,6 +1529,7 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	
 	cbNice->setChecked ( p->cconfig->nice );
 	cbShowTrayIcon->setChecked( p->cconfig->showTrayIcon );
+	cbShowCurrentScannedFileInTrayIcon->setChecked( p->cconfig->showProgressedFileInStatus );
 	cbAutoload->setChecked ( p->cconfig->autoload );
 	cbAutosave->setChecked ( p->cconfig->autosave );
 	if ( !p->cconfig->autoloadfn.isEmpty() )
@@ -1556,6 +1565,8 @@ ConfigDialog::~ConfigDialog() {
 void ConfigDialog::languageChange() {
 	setWindowTitle ( tr ( "Configure  CdCat..." ) );
 	cbShowTrayIcon->setText( tr( "Show systray icon" ));
+	cbShowCurrentScannedFileInTrayIcon->setText( tr( "display current scanned file in tray" ) );
+	cbShowCurrentScannedFileInTrayIcon->setToolTip( tr( "display current scanned file in tray (mediainfo / archive scan)" ) );
 	cbAutoload->setText ( tr ( "Autoload DataBase on startup" ) );
 	cbAutosave->setText ( tr ( "Automatically save the database after every scan (for safety sake)" ) );
 	cbNice->setText ( tr ( "Save the XML-db.file nicer format(needs more space)" ) );
@@ -1662,6 +1673,16 @@ void ConfigDialog::ownFontToggled() {
 		spinFontSize->setEnabled ( false );
 	}
 }
+
+void ConfigDialog::showDockToggled() {
+	if (cbShowTrayIcon->isChecked()) {
+		cbShowCurrentScannedFileInTrayIcon->setEnabled(true);
+	}
+	else {
+		cbShowCurrentScannedFileInTrayIcon->setEnabled(false);
+	}
+}
+
 
 void ConfigDialog::runri() {
 	SelReadable *sr = new SelReadable ( p->cconfig, this, "runri", true );

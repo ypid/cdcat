@@ -83,6 +83,7 @@ class CdCatConfig : public QObject {
 		bool doExcludeFiles;
 		bool useWildcardInsteadRegexForExclude;
 		bool useExternalContentViewer;
+		bool displayCurrentScannedFileInTray;
 		
 		
 		//bool doScanArchiveTar;
@@ -225,6 +226,7 @@ class ConfigDialog : public QDialog {
 		QPushButton* okButton;
 		QPushButton* cancelButton;
 		QCheckBox* cbShowTrayIcon;
+		QCheckBox* cbShowCurrentScannedFileInTrayIcon;
 		QCheckBox* cbAutoload;
 		QCheckBox* cbAutosave;
 		QCheckBox* cbOwnFont;
@@ -241,6 +243,7 @@ class ConfigDialog : public QDialog {
 		QHBoxLayout* layout8;
 		QHBoxLayout* layoutSave;
 		QHBoxLayout* layoutStatus;
+		QHBoxLayout* layoutDock;
 		
 #ifndef _WIN32
 		QCheckBox* cbMoEj;
@@ -269,6 +272,7 @@ class ConfigDialog : public QDialog {
 		virtual void languageChange();
 		void ownFontToggled();
 		virtual void cdrombutton();
+		void showDockToggled();
 };
 
 #endif // CONFIGDIALOG_H

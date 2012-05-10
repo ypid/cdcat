@@ -352,6 +352,7 @@ class DataBase : public QObject {
 		bool doScanArchiveTar;
 		bool doScanArchiveLib7zip;
 		bool showProgressedArchiveFileInStatus;
+		bool displayCurrentScannedFileInTray;
 		bool storeExifData;
 		bool storeThumb;
 		bool doExcludeFiles;
@@ -496,6 +497,7 @@ class DataBase : public QObject {
 	
 	signals:
 		void pathScanned ( QString path );
+		void fileScanned ( QString filepath );
 		void pathExtraInfoAppend( QString extrainfo );
 };
 
