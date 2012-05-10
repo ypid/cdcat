@@ -1828,8 +1828,8 @@ int GuiSlave::rescanEvent ( void ) {
 	}
 	
 	if (mainw->cconfig->displayCurrentScannedFileInTray) {
-		//disconnect ( mainw->db, SIGNAL ( fileScanned(QString)), mainw, SLOT ( setTrayText ( QString ) ) );
-		disconnect ( mainw->db, SIGNAL ( fileScanned(QString)), mainw, SLOT ( setTrayToolTipInfo ( QString ) ) );
+		//connect ( mainw->db, SIGNAL ( fileScanned(QString)), mainw, SLOT ( setTrayText ( QString ) ) );
+		connect ( mainw->db, SIGNAL ( fileScanned(QString)), mainw, SLOT ( setTrayToolTipInfo ( QString ) ) );
 	}
 	
 	int rescan_ret = mainw->db->addMedia ( rfd, "__rescanned__", -1, UNKNOWN, "system");
