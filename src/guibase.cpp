@@ -2215,6 +2215,7 @@ int GuiSlave::exportEvent ( void ) {
 
 int GuiSlave::importEvent ( void ) {
 	import i ( this );
+	panelsON();
 	return 0;
 }
 
