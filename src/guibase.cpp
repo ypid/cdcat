@@ -1785,6 +1785,7 @@ int GuiSlave::rescanEvent ( void ) {
 	mainw->db->doExcludeFiles = mainw->cconfig->doExcludeFiles;
 	mainw->db->ExcludeFileList = mainw->cconfig->ExcludeFileList;
 	mainw->db->useWildcardInsteadRegexForExclude = mainw->cconfig->useWildcardInsteadRegexForExclude;
+	mainw->db->displayCurrentScannedFileInTray = mainw->cconfig->displayCurrentScannedFileInTray;
 
 	if ( standON == NULL ) {
 		QMessageBox::warning ( mainw, tr ( "Error:" ), tr ( "There is no selected Media in the middle list box!" ) );
@@ -1825,6 +1826,10 @@ int GuiSlave::rescanEvent ( void ) {
 		mainw->trayIcon->showMessage(tr("Scan started"), tr("Scanning %1 into %2 has been started").arg(rfd, "__rescanned__"),   icon, 3 * 1000);
 	}
 	
+	if (mainw->cconfig->displayCurrentScannedFileInTray) {
+		disconnect ( mainw->db, SIGNAL ( fileScanned(QString)), mainw, SLOT ( setTrayToolTipInfo ( QString ) ) );
+	}
+	
 	int rescan_ret = mainw->db->addMedia ( rfd, "__rescanned__", -1, UNKNOWN, "system");
 	
 	if(mainw->cconfig->showTrayIcon) {
@@ -1846,6 +1851,11 @@ int GuiSlave::rescanEvent ( void ) {
 		disconnect ( mainw->db, SIGNAL ( pathScanned ( QString ) ), mainw, SLOT ( pathScanned ( QString ) ) );
 		disconnect ( mainw->db, SIGNAL ( pathExtraInfoAppend( QString ) ), mainw, SLOT ( extraInfoAppend(QString)) );
 	}
+	
+	if (mainw->cconfig->displayCurrentScannedFileInTray) {
+		disconnect ( mainw->db, SIGNAL ( fileScanned(QString)), mainw, SLOT ( setTrayToolTipInfo ( QString ) ) );
+	}
+	
 	
 	if ( rescan_ret != 0 )  {
 		Node *d;

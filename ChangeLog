@@ -4,6 +4,7 @@
 	- option for display current scanned file (reading mediainfo, scanning archive) in tray added
 	- help dialog reworked
 	- load/save display current scanned file in tray fixed
+	- display current scanned file (reading mediainfo, scanning archive) in tray also on rescan added
 
 08. May 2012 Christoph Thielecke <crissi99@gmx.de>
 	- possibility to disable mediainfo at compile time added
