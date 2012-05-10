@@ -1402,6 +1402,9 @@ int GuiSlave::addEvent ( void ) {
 	mainw->db->storeAvitechinfo = mainw->cconfig->readavii;
 	mainw->db->storeFileInfo = mainw->cconfig->usefileinfo;
 	mainw->db->storeContent = mainw->cconfig->readcontent;
+	mainw->db->doScanArchive = mainw->cconfig->doScanArchive;
+	mainw->db->doScanArchiveTar = mainw->cconfig->doScanArchive; // FIXME: make dynamiclly
+	mainw->db->doScanArchiveLib7zip = mainw->cconfig->doScanArchive;  // FIXME: make dynamiclly
 	mainw->db->storeExifData = mainw->cconfig->storeExifData;
 	mainw->db->storeThumb = mainw->cconfig->storeThumb;
 	mainw->db->ThumbExtsList = mainw->cconfig->ThumbExtsList;

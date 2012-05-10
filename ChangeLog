@@ -1,5 +1,6 @@
 10. May 2012 Christoph Thielecke <crissi99@gmx.de>
 	- folter tree after import now works again
+	- dont scan archive if disabled in config
 
 08. May 2012 Christoph Thielecke <crissi99@gmx.de>
 	- possibility to disable mediainfo at compile time added

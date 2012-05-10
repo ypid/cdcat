@@ -1028,9 +1028,6 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 			else {
 				comm = ( char* ) NULL;
 				QString extension = fileInfo->fileName().toLower().section ( '.', -1, -1 );
-				doScanArchive = true;
-				doScanArchiveTar = true;
-				doScanArchiveLib7zip = true;
 				if ( doScanArchive ) {
 					if ( doScanArchiveTar ) {
 						if ( extension == "tar" ) {
