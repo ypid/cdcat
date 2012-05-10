@@ -2211,6 +2211,89 @@ int GuiSlave::helpEvent ( void ) {
 	QDialog dh;
 	Ui_helpDialog *ui_dh = new  Ui_helpDialog();
 	ui_dh->setupUi ( ( &dh ) );
+	
+	dh.resize(750, 550);
+	
+	QString helptext = "";
+	helptext += "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">";
+	helptext += "<html><head><meta name=\"qrichtext\" content=\"1\" />";
+	helptext += "<style type=\"text/css\">; p, li { white-space: pre-wrap; }</style>";
+	helptext += "</head>";
+	helptext += "<body style=\" font-family:'DejaVu Sans'; font-size:9pt; font-weight:400; font-style:normal;\">";
+	
+	helptext += "<h1>"+tr("Help")+"</h1>";
+	
+	helptext += "<h2>"+tr("Whats this?")+"</h2>";
+	helptext += " <p>";
+	
+	helptext += tr("The cdcat is graphical (QT based) multiplatform (Linux/Windows) catalog program which scans the directories/drives you want and memorize the filesystem including the tags of mp3's and other data and store it in a small file. The database is stored in a gzipped XML format, so you can hack it, or use it if necessary :-).)");
+	
+	helptext += tr("The program can store the content of some specified files up to a limit size if you want. (for example: *.nfo)");
+	
+	helptext += " </p>";
+	helptext += "<h2>"+tr("Usage:")+"</h2>";
+	helptext += " <p>";
+	
+	helptext += tr("Before the scanning select the necessary readable components in the config dialog, which can be mp3 tags content of some files or etc.");
+	
+	helptext += "</p><br>";
+	
+	helptext += "<h2>"+tr("Create a new catalog")+"</h2>";
+	helptext += "<p>";
+	
+	helptext += tr("Run the %1 command in the catalog menu. You have to type the name of the new catalog. You can specify the default username of the media(which you scan later), and add a comment to the catalog.").arg("<i>"+tr("New")+"</i>");
+	
+	helptext += "<br />";
+	
+	helptext += "<h2>"+tr("Add media")+"</h2>";
+	
+	helptext += "<p>";
+	
+	helptext += tr("Run the %1 command in the edit menu. In that dialog you have to specify the directory/or drive the media you want to add. It's recommended to specify the name and the number of the media which has to be unique. (The program always generate one identical name and number). You can label the media to a owner, if necessary.").arg(+"<i>"+tr("Add media...")+"</i>");
+	
+	
+	helptext += " <br />";
+	
+	helptext += tr("If you scanned your media, you will be able to browse in it with the browser window (like mc) , or search in it. You can save the catalog with %1 command in the file menu.").arg(" <i>"+tr("save as")+"</i>");
+	
+	helptext += " <br /><br />";
+	helptext += "</p><br>";
+	
+	helptext += "<h2>"+tr("Open an existing catalog:")+"</h2>";
+	
+	helptext += tr("Run the %1 command in the file menu, and choice the file of the catalog. (*.hcf). After the opening you will be able browse the catalog or search in it.").arg(" <span style=\" font-family:'Courier New,courier';\">"+tr("open")+"</span>");
+	
+	helptext += " <br /></p>";
+	
+	helptext += "<h2>"+tr("Author:")+"</h2>";
+	helptext += "<p>";
+	
+	helptext += tr("The program was written by Peter Deak (hungary)");
+	
+	helptext += "<br />";
+	helptext += tr("The current maintainer is %1.").arg("Christoph Thielecke");
+	
+	helptext += "<br /><br /></p>";
+	
+	helptext += "<h2>"+tr("License:")+"</h2>";
+	
+	helptext += "<p>";
+	
+	helptext += tr("General Public License (GPL)");
+	
+	helptext += "</p>";
+	
+	helptext += tr("Homepage:");
+	
+	helptext += "<p>";
+	
+	helptext += tr("You can read about the program and get new versions, sources etc, in the hompage of cdcat:")+" ";
+	
+	helptext += "<a href=\"http://cdcat.sourceforge.net/\">http://cdcat.sourceforge.net</a>";
+	helptext += "</p></body></html>";
+	
+	
+	ui_dh->textBrowser1->setHtml(helptext);
 	dh.exec();
 	delete ui_dh;
 
