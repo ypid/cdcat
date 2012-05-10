@@ -2236,14 +2236,14 @@ int GuiSlave::helpEvent ( void ) {
 	
 	helptext += tr("Before the scanning select the necessary readable components in the config dialog, which can be mp3 tags content of some files or etc.");
 	
-	helptext += "</p><br>";
+	helptext += "</p>";
 	
 	helptext += "<h2>"+tr("Create a new catalog")+"</h2>";
 	helptext += "<p>";
 	
 	helptext += tr("Run the %1 command in the catalog menu. You have to type the name of the new catalog. You can specify the default username of the media(which you scan later), and add a comment to the catalog.").arg("<i>"+tr("New")+"</i>");
 	
-	helptext += "<br />";
+	helptext += "</p>";
 	
 	helptext += "<h2>"+tr("Add media")+"</h2>";
 	
@@ -2256,14 +2256,13 @@ int GuiSlave::helpEvent ( void ) {
 	
 	helptext += tr("If you scanned your media, you will be able to browse in it with the browser window (like mc) , or search in it. You can save the catalog with %1 command in the file menu.").arg(" <i>"+tr("save as")+"</i>");
 	
-	helptext += " <br /><br />";
-	helptext += "</p><br>";
+	helptext += "</p>";
 	
 	helptext += "<h2>"+tr("Open an existing catalog:")+"</h2>";
 	
-	helptext += tr("Run the %1 command in the file menu, and choice the file of the catalog. (*.hcf). After the opening you will be able browse the catalog or search in it.").arg(" <span style=\" font-family:'Courier New,courier';\">"+tr("open")+"</span>");
+	helptext += tr("Run the %1 command in the file menu, and choice the file of the catalog. (*.hcf). After the opening you will be able browse the catalog or search in it.").arg("<i>"+tr("open")+"</i>");
 	
-	helptext += " <br /></p>";
+	helptext += "</p>";
 	
 	helptext += "<h2>"+tr("Author:")+"</h2>";
 	helptext += "<p>";
@@ -2273,7 +2272,7 @@ int GuiSlave::helpEvent ( void ) {
 	helptext += "<br />";
 	helptext += tr("The current maintainer is %1.").arg("Christoph Thielecke");
 	
-	helptext += "<br /><br /></p>";
+	helptext += "</p>";
 	
 	helptext += "<h2>"+tr("License:")+"</h2>";
 	
@@ -2283,7 +2282,7 @@ int GuiSlave::helpEvent ( void ) {
 	
 	helptext += "</p>";
 	
-	helptext += tr("Homepage:");
+	helptext += "<h2>"+tr("Homepage:")+"</h2>";
 	
 	helptext += "<p>";
 	
