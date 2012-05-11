@@ -347,6 +347,12 @@ int addDialog::setMediaName ( const QString & ds ) {
 	}
 	//std::cerr << "setMediaName: sDir: " << qPrintable(dirView->sDir)<< std::endl;
 	caller->mainw->cconfig->lastDir = dirView->sDir;
+	
+	if (dirView->sDir == "/" && leName->text().isEmpty()) {
+		leName->setText("root");
+		dName = "root";
+	}
+	
 	QApplication::restoreOverrideCursor();
 	return 0;
 }
@@ -399,9 +405,8 @@ int addDialog::bOk ( void ) {
 	dComm  = teComm->toPlainText();
 	dCategory = leCategory->text();
 	dDir   = dirView->sDir;
-	if(dDir.rightRef(1).toString() == "/")
-		dDir = dDir.leftRef(dDir.size()-1).toString();
-
+	
+	std::cout << "dDir: " << qPrintable(dDir) << std::endl;
 	caller->mainw->cconfig->addX      = x();
 	caller->mainw->cconfig->addY      = y();
 	caller->mainw->cconfig->addWidth  = width();
