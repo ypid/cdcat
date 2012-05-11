@@ -826,8 +826,9 @@ void CommentWidget::updateContents() {
 	w+=5;
 	//w += pixelsHigh;
 	
-	contentsPixmapTmp = contentsPixmapTmp.copy(0, 0, fontwidth, w);
 	p.end();
+	
+	
 	
 	if( !need_editc_button)
 		ButtonEdit->setEnabled ( false );
