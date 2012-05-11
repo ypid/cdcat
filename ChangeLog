@@ -1,6 +1,8 @@
 11. May 2012 Christoph Thielecke <crissi99@gmx.de>
 	- scanning / fixed
 	- set media name automaticlly if / is selected
+	- size of progressdialog fixed
+	- hide read errors prepared
 
 10. May 2012 Christoph Thielecke <crissi99@gmx.de>
 	- folter tree after import now works again

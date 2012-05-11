@@ -357,6 +357,7 @@ class DataBase : public QObject {
 		bool storeThumb;
 		bool doExcludeFiles;
 		bool useWildcardInsteadRegexForExclude;
+		bool ignoreReadErrors;
 		
 		int thumbWidth;
 		int thumbHeight;

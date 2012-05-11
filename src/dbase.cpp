@@ -540,6 +540,7 @@ DataBase::DataBase ( void ) {
 	storeExifData = true;
 	doExcludeFiles = false;
 	useWildcardInsteadRegexForExclude = false;
+	ignoreReadErrors = false;
 	ExcludeFileList.clear();
 	storeLimit      = 32 * 1024;
 	root            = new Node ( HC_CATALOG, NULL );
@@ -926,12 +927,15 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 			std::cerr << "dir " << qPrintable ( what ) << " is not readable";
 		
 		int i;
-		if ( QFileInfo ( what ).isDir() )
-			errormsg = tr ( "Cannot read directory: %1" ).arg ( what );
-		else
-			errormsg = tr ( "Cannot read file: %1" ).arg ( what ); /* socket files and dead symbolic links end here */
+		if(!ignoreReadErrors) {
+			
+			if ( QFileInfo ( what ).isDir() )
+				errormsg = tr ( "Cannot read directory: %1" ).arg ( what );
+			else
+				errormsg = tr ( "Cannot read file: %1" ).arg ( what ); /* socket files and dead symbolic links end here */
 		
-		i = 1 + ( QMessageBox::warning ( NULL, tr ( "Error" ), errormsg, tr ( "Ignore" ), tr ( "Cancel scanning" ) ) );
+			i = 1 + ( QMessageBox::warning ( NULL, tr ( "Error" ), errormsg, tr ( "Ignore" ), tr ( "Cancel scanning" ) ) );
+		}
 		return i;
 	}
 	

@@ -481,7 +481,7 @@ PWw::PWw ( QWidget *parent, QApplication *qapp, bool showProgress, long long int
 	if ( showProgress )
 		baseheight += 40;
 	else {
-		baseheight -= 30;
+		//baseheight -= 30;
 	}
 
 	if ( showCancel )
