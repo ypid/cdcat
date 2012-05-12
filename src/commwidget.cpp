@@ -895,7 +895,7 @@ void CommentWidget::paintEvent ( QPaintEvent * ) {
 	paintEventRunning = false;
 }
 
-void  CommentWidget::resizeEvent ( QResizeEvent *re ) {
+void  CommentWidget::resizeEvent ( QResizeEvent * ) {
 	//ButtonEdit   ->setGeometry ( 20, ( ( re->size() ).height() ) - 45, 30, 30 );
 	//ButtonContent->setGeometry ( 55, ( ( re->size() ).height() ) - 45, 30, 30 );
 	//ButtonCategoryEdit->setGeometry ( 85, ( ( re->size() ).height() ) - 45, 30, 30 );
