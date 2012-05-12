@@ -237,8 +237,11 @@ void DirectoryView::slotFolderSelectedR ( QTreeWidgetItem *i , int) {
 	sDir = dir->fullName();
 	if(dir->isExpanded())
 		dir->setExpanded(false);
-	else
+	else {
+		emit setExpandedInProgress(true);
 		dir->setExpanded(true);
+		emit setExpandedInProgress(false);
+	}
 	emit folderSelected ( dir->fullName() );
 }
 

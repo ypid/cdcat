@@ -92,6 +92,7 @@ protected slots:
     int sread();
     void autoDetectAtMountToggled();
     void cbTypeToggeled(int type);
+   void setBusyState(bool);
 
 public slots:
 	int setMediaName ( const QString & ds );

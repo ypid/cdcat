@@ -180,7 +180,10 @@ addDialog::addDialog ( GuiSlave *c, QWidget* parent, const char* name, bool moda
 	connect ( buttonCancel, SIGNAL ( clicked() ), this, SLOT ( bCan() ) );
 	connect ( buttonPli, SIGNAL ( clicked() ), this, SLOT ( sread() ) );
 	connect ( dirView, SIGNAL ( folderSelected ( const QString & ) ), this, SLOT ( setMediaName ( const QString & ) ) );
+	connect ( dirView, SIGNAL ( setExpandedInProgress(bool)), this, SLOT ( setBusyState (bool ) ) );
 	connect ( cbType, SIGNAL ( activated ( int ) ), this, SLOT ( cbTypeToggeled ( int ) ) );
+	
+	
 	
 #if !defined(_WIN32) && !defined(_OS2)
 	connect ( cbAutoDetectAtMount, SIGNAL ( clicked() ), this, SLOT ( autoDetectAtMountToggled() ) );
@@ -441,6 +444,15 @@ void addDialog::cbTypeToggeled ( int ) {
 // 	std::cerr << "mediatype changed from " << caller->mainw->cconfig->lastMediaType << " to " << cbType->currentItem() +1 << std::endl;
 		caller->mainw->cconfig->lastMediaType = cbType->currentIndex();
 		caller->mainw->cconfig->writeConfig();
+	}
+}
+
+void addDialog::setBusyState ( bool state ) {
+	if(state) {
+		QApplication::setOverrideCursor ( Qt::WaitCursor );
+	}
+	else {
+		QApplication::restoreOverrideCursor();
 	}
 }
 

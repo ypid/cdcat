@@ -84,6 +84,7 @@ public slots:
 
 signals:
     void folderSelected ( const QString & );
+    void setExpandedInProgress(bool);
 
 protected slots:
     void slotFolderSelected ( QTreeWidgetItem *, int );
