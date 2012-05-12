@@ -618,14 +618,21 @@ void PWw::setCancel ( bool showCancel ) {
 }
 
 void PWw::step ( long long int progress_step ) {
-	if ( appl != NULL )
-		if ( appl->hasPendingEvents() )
+	
+	if ( appl != NULL ) {
+		if ( appl->hasPendingEvents() ) {
 			appl->processEvents();
+		}
+	}
+	else {
+		return;
+	}
 	
 	QTime tt = QTime::currentTime();
 	
 	if ( t.msecsTo ( tt ) < refreshTime )
 		return;
+	
 	t = tt;
 	
 	if ( showProgress )

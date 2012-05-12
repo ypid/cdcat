@@ -41,18 +41,13 @@ using namespace std;
 #include "guibase.h"
 #include "icons.h"
 
-
-
-LNode::LNode ( LNode *parent, Node *dbnodep )
-	: QTreeWidgetItem ( parent, QTreeWidgetItem::UserType ),
-	  pix ( 0 ) {
-	p = parent;
-	node = dbnodep;
-	setIcon (0,  QIcon(*get_v_folderclosed_icon()) );
-	childsCollected = false;
-	setChildIndicatorPolicy(QTreeWidgetItem::ShowIndicator);
+LNode::LNode ( LNode * parent, Node* dbnodep, const QString &col2 )
+            : QTreeWidgetItem ( parent, QTreeWidgetItem::UserType), pix ( 0 ) {
+		node=dbnodep;
+		setText(0, col2);
+		childsCollected = false;
+		setChildIndicatorPolicy(QTreeWidgetItem::ShowIndicator);
 }
-
 
 LNode::LNode ( QTreeWidget *parent, Node *dbnodep )
 	: QTreeWidgetItem ( parent, QTreeWidgetItem::UserType ),
@@ -60,9 +55,21 @@ LNode::LNode ( QTreeWidget *parent, Node *dbnodep )
 	node = dbnodep;
 	p = 0;
 	childsCollected = false;
-	setExpanded(true);
+	//setExpanded(true);
 	setChildIndicatorPolicy(QTreeWidgetItem::ShowIndicator);
 }
+
+LNode::LNode ( LNode * parent,LNode *after,Node* dbnodep, const QString &col2 )
+            : QTreeWidgetItem ( parent, QTreeWidgetItem::UserType ), pix ( 0 ) {
+	node=dbnodep; 
+	setText(0, col2);
+	childsCollected = false;
+	setChildIndicatorPolicy(QTreeWidgetItem::ShowIndicator);
+   }
+
+
+
+
 
 void LNode::setPixmap ( QPixmap *px ) {
 	pix = px;
@@ -119,7 +126,8 @@ void LNode::setExpanded ( bool o ) {
 				setIcon ( 0, QIcon(*get_v_folderclosed_icon() ));
 			break;
 	}
-	if ( o && !childsCollected ) {
+	
+	if ( o && !childsCollected) {
 		
 		Node *tmp = node->child;
 		if(tmp != NULL)
@@ -185,7 +193,7 @@ void LNode::setExpanded ( bool o ) {
 			tmp = tmp->next;
 		}
 		childsCollected = true;
-		//listView()->setUpdatesEnabled ( TRUE ); //FIXME
+		treeWidget()->setUpdatesEnabled ( TRUE ); //FIXME
 	}
 	QTreeWidgetItem::setExpanded ( o );
 	treeWidget()->resizeColumnToContents(0);
@@ -274,8 +282,7 @@ HDirectoryView::HDirectoryView ( DataBase **dbp, QWidget *parent, const char *na
 	//connect ( this, SIGNAL ( itemPressed ( QTreeWidgetItem * , int ) ),
 	//          this, SLOT ( slotFolderSelectedR ( QTreeWidgetItem *, int ) ) );
 
-	connect ( this, SIGNAL ( itemClicked ( QTreeWidgetItem *, int ) ),
-	          this, SLOT ( slotFolderSelectedR ( QTreeWidgetItem *, int ) ) );
+	connect ( this, SIGNAL ( itemClicked ( QTreeWidgetItem *, int ) ), this, SLOT ( slotFolderSelectedR ( QTreeWidgetItem *, int ) ) );
 
 	connect (this, SIGNAL( itemExpanded(QTreeWidgetItem*)), this, SLOT(itemExpanded(QTreeWidgetItem*)));
 	connect (this, SIGNAL( itemCollapsed(QTreeWidgetItem*)), this, SLOT(itemCollapsed(QTreeWidgetItem*)));
@@ -283,8 +290,8 @@ HDirectoryView::HDirectoryView ( DataBase **dbp, QWidget *parent, const char *na
 	setAcceptDrops ( TRUE );
 	viewport()->setAcceptDrops ( TRUE );
 
-	connect ( autoopen_timer, SIGNAL ( timeout() ),
-	          this, SLOT ( openFolder() ) );
+// 	connect ( autoopen_timer, SIGNAL ( timeout() ),
+// 	          this, SLOT ( openFolder() ) );
 
 	//setSorting ( -1 );
 	setSortingEnabled(true);
@@ -312,15 +319,19 @@ void HDirectoryView::slotFolderSelected ( QTreeWidgetItem *i, int col ) {
 	if ( i == NULL )
 		return;
 	DEBUG_INFO_ENABLED = init_debug_info();
-	LNode *lnode = ( LNode * ) i;
-	emit folderSelected ( lnode->fullName() );
+	if ( *DEBUG_INFO_ENABLED )
+		std::cerr << "HDirectoryView::slotFolderSelected item path: " << qPrintable ( ( ( LNode * )i)->fullName( )) << std::endl;
+	
+	emit folderSelected ( ( ( LNode * )i)->fullName() );
 }
-
-
 
 void HDirectoryView::slotFolderSelectedR ( QTreeWidgetItem *i, int col ) {
 	if ( i == NULL )
 		return;
+	DEBUG_INFO_ENABLED = init_debug_info();
+	if ( *DEBUG_INFO_ENABLED )
+		std::cerr << "HDirectoryView::slotFolderSelectedR item path: " << qPrintable ( ( ( LNode * )i)->fullName( )) << std::endl;
+	
 	LNode *lnode = ( LNode * ) i;
 	if ( *DEBUG_INFO_ENABLED ) {
 		//cerr << lnode->fullName()<<endl;
@@ -329,25 +340,25 @@ void HDirectoryView::slotFolderSelectedR ( QTreeWidgetItem *i, int col ) {
 		lnode->setExpanded(false);
 	else
 		lnode->setExpanded(true);
-	emit folderSelected ( lnode->fullName() );
+	emit folderSelected ( ( ( LNode * )i)->fullName() );
 	//i->setSelected(true);
 }
 
-void HDirectoryView::openFolder() {
-	autoopen_timer->stop();
-	if ( dropItem ) {
-		if( !dropItem->isExpanded() ) {
-		dropItem->setExpanded ( TRUE );
-		//dropItem->repaint();
-		} else {
-		dropItem->setExpanded ( FALSE );
-		//dropItem->repaint();
-		}
-	}
-	else {
-		itemAt(0,0)->setExpanded(true);
-	}
-}
+// void HDirectoryView::openFolder() {
+// 	autoopen_timer->stop();
+// 	if ( dropItem ) {
+// 		if( !dropItem->isExpanded() ) {
+// 		dropItem->setExpanded ( TRUE );
+// 		//dropItem->repaint();
+// 		} else {
+// 		dropItem->setExpanded ( FALSE );
+// 		//dropItem->repaint();
+// 		}
+// 	}
+// 	else {
+// 		itemAt(0,0)->setExpanded(true);
+// 	}
+// }
 
 void HDirectoryView::itemExpanded ( QTreeWidgetItem *item ) {
 	((LNode *)item)->setExpanded(true);
@@ -375,8 +386,8 @@ QString HDirectoryView::fullPath ( QTreeWidgetItem *item ) {
 
 void HDirectoryView::contentsMousePressEvent ( QMouseEvent *e ) {
 	//QTreeWidget::contentsMousePressEvent ( e ); // FIXME
-	QPoint p ( e->pos() ) ;
-	QTreeWidgetItem *i = itemAt ( p );
+// 	QPoint p ( e->pos() ) ;
+// 	QTreeWidgetItem *i = itemAt ( p );
 //     if ( i ) {
 //         // if the user clicked into the root decoration of the item, don't try to start a drag!
 //         if ( p.x() > header()->pos ( )  +

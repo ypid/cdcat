@@ -109,7 +109,7 @@ class TestInStream : public C7ZipInStream {
 					// free the string
 					delete[] lpszW;
 #else
-
+					m_strFileExt = L"7z";
 #endif
 				}
 				if ( *DEBUG_INFO_ENABLED )
@@ -120,13 +120,13 @@ class TestInStream : public C7ZipInStream {
 			}
 		}
 
-		virtual ~TestInStream() {
+		~TestInStream() {
 			if ( m_pFile )
 				fclose ( m_pFile );
 		}
 
 	public:
-		virtual wstring GetExt() const {
+		wstring GetExt() const {
 			DEBUG_INFO_ENABLED = init_debug_info();
 
 			if ( *DEBUG_INFO_ENABLED )
@@ -134,7 +134,7 @@ class TestInStream : public C7ZipInStream {
 			return m_strFileExt;
 		}
 
-		virtual int Read ( void *data, unsigned int size, unsigned int *processedSize ) {
+		int Read ( void *data, unsigned int size, unsigned int *processedSize ) {
 			if ( !m_pFile )
 				return 1;
 
@@ -151,7 +151,7 @@ class TestInStream : public C7ZipInStream {
 			return 1;
 		}
 
-		virtual int Seek ( __int64 offset, unsigned int seekOrigin, unsigned __int64 *newPosition ) {
+		int Seek ( __int64 offset, unsigned int seekOrigin, unsigned __int64 *newPosition ) {
 			if ( !m_pFile )
 				return 1;
 
@@ -167,7 +167,7 @@ class TestInStream : public C7ZipInStream {
 			return result;
 		}
 
-		virtual int GetSize ( unsigned __int64 * size ) {
+		int GetSize ( unsigned __int64 * size ) {
 			if ( size )
 				*size = m_nFileSize;
 			return 0;
@@ -541,6 +541,7 @@ DataBase::DataBase ( void ) {
 	doExcludeFiles = false;
 	useWildcardInsteadRegexForExclude = false;
 	ignoreReadErrors = false;
+	doWork = true;
 	ExcludeFileList.clear();
 	storeLimit      = 32 * 1024;
 	root            = new Node ( HC_CATALOG, NULL );
@@ -709,7 +710,7 @@ int   DataBase::saveDB ( void ) {
 	fw = new FileWriter ( f, nicef, this->XML_ENCODING );
 	fw->pww = pww;
 	progress ( pww );
-	int i = fw->writeDown ( root );
+	fw->writeDown ( root );
 	( ( DBCatalog * ) ( root->data ) )->writed = 1;
 	progress ( pww );
 	gzclose ( f );
@@ -864,7 +865,12 @@ int   DataBase::openDB ( char *filename ) {
 
 	fw->pww = pww;
 	progress ( pww );
-
+	
+	if(!doWork) {
+		gzclose ( f );
+		delete fw;
+		return 1;
+	}
 	if ( root != NULL )
 		delete root; //Free previous database in memory
 
@@ -882,6 +888,13 @@ int   DataBase::openDB ( char *filename ) {
 		errormsg = fw->errormsg;
 		if ( *DEBUG_INFO_ENABLED )
 			std::cerr << "filereader reported error:" << qPrintable ( fw->errormsg ) << std::endl;
+		
+		if(!doWork) {
+			gzclose ( f );
+			delete fw;
+			free ( allocated_buffer );
+			return 1;
+		}
 		
 		delete root;
 		root = NULL;
@@ -926,7 +939,7 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 		if ( *DEBUG_INFO_ENABLED )
 			std::cerr << "dir " << qPrintable ( what ) << " is not readable";
 		
-		int i;
+		int i=0;
 		if(!ignoreReadErrors) {
 			
 			if ( QFileInfo ( what ).isDir() )
@@ -1481,8 +1494,8 @@ int bz2open_frontend ( char *pathname, int oflags, int mode ) {
 	BZFILE *bz2f;
 	char bzoflags[3];
 	int fd;
-	int bzerror;
-	int verbose = 0;
+	//int bzerror;
+	//int verbose = 0;
 	switch ( oflags & O_ACCMODE ) {
 		case O_WRONLY:
 			break;
@@ -1728,7 +1741,7 @@ QList<ArchiveFile> DataBase::scanArchive ( QString path, ArchiveType type ) {
 
 	if ( type == Archive_tar || type == Archive_targz  || type == Archive_tarbz2 ) {
 		int use_zlib = 0;
-		int use_bzip2 = 0;
+		//int use_bzip2 = 0;
 		int verbose = 0;
 		int use_gnu = 0;
 		if ( type == Archive_targz ) {
@@ -1791,10 +1804,10 @@ QList<ArchiveFile> DataBase::scanArchive ( QString path, ArchiveType type ) {
 #ifdef HAVE_STRFTIME
 				char timebuf[18];
 #else
-				const char *months[] = {
-					"Jan", "Feb", "Mar", "Apr", "May", "Jun",
-					"Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-				};
+				//const char *months[] = {
+				//	"Jan", "Feb", "Mar", "Apr", "May", "Jun",
+				//	"Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+				//};
 #endif
 
 				uid = th_get_uid ( t );

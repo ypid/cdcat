@@ -40,23 +40,9 @@ class LNode : public QTreeWidgetItem {
 public:
 
     LNode ( QTreeWidget * parent, Node * dbnodep );
-
-    LNode ( LNode * parent, Node* dbnodep, const QString &col2 )
-            : QTreeWidgetItem ( parent, QTreeWidgetItem::UserType), pix ( 0 ) {
-		node=dbnodep;
-		setText(0, col2);
-		setChildIndicatorPolicy(QTreeWidgetItem::ShowIndicator);
-   }
-
-    LNode ( LNode * parent,LNode *after,Node* dbnodep, const QString &col2 )
-            : QTreeWidgetItem ( parent, QTreeWidgetItem::UserType ), pix ( 0 ) {
-	node=dbnodep; 
-	setText(0, col2);
-	setChildIndicatorPolicy(QTreeWidgetItem::ShowIndicator);
-   }
-
-    LNode ( LNode * parent, Node*dbnodep );
-
+    LNode ( LNode * parent, Node* dbnodep, const QString &col2="" );
+    LNode ( LNode * parent,LNode *after,Node* dbnodep, const QString &col2 );
+ 
     QString text ( int column ) const;
 
     QString fullName();
@@ -96,7 +82,7 @@ signals:
 protected slots:
     void slotFolderSelected ( QTreeWidgetItem *item, int col );
     void slotFolderSelectedR ( QTreeWidgetItem *item, int col );
-    void openFolder();
+//     void openFolder();
     void itemExpanded ( QTreeWidgetItem * item );
     void itemCollapsed ( QTreeWidgetItem * item );
 

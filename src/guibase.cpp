@@ -221,9 +221,6 @@ HQListView::HQListView ( CdCatMainWidget *mw, QWidget *parent, const char *, Qt:
 	setSorting(0, true);
 	sortByColumn(0, Qt::AscendingOrder);
 	
- 	QPalette p( palette() );
- 	p.setColor( QPalette::Highlight,  *mainw->cconfig->comm_bg );
- 	setPalette( p );
 	/*
 	setSelectionMode ( Single );
 	setAllColumnsShowFocus ( true );
@@ -363,7 +360,6 @@ void GuiSlave::updateStatusl ( Node *n ) {
 	if ( *DEBUG_INFO_ENABLED )
 		std::cerr << "F-updateStatusl" << endl;
 
-	QString o ( "" );
 	if ( n == NULL ) {
 		if ( mainw->db == NULL )
 			mainw->statusBar ()->showMessage( tr ( "No database opened." ) );
@@ -639,6 +635,10 @@ int GuiSlave::updateListFromNode ( Node *pdir ) {
 			if ( tmpParent != NULL ) { /*Return to previous parent*/
 				if ( tmp->getNameOf() == tmpParent->getNameOf() ) {
 					mainw->listView->setCurrentItem ( lvi );
+					if (lvi->isExpanded())
+						lvi->setExpanded(false);
+					else
+						lvi->setExpanded(true);
 					tmpParent = NULL;
 					fflag = 1;
 				}
@@ -783,13 +783,13 @@ int GuiSlave::updateListFromNode ( Node *pdir ) {
 	}
 	
 	mainw->listView->resizeColumnToContents(0);
-
+	
 	if ( *DEBUG_INFO_ENABLED )
 		cerr << "BEACON-1" << endl;
 	mainw->listView->changed();
 	if ( *DEBUG_INFO_ENABLED )
 		cerr << "BEACON-2" << endl;
-	mainw->DirView->setDir ( NodePwd );
+	//mainw->DirView->setDir ( NodePwd );
 	if ( *DEBUG_INFO_ENABLED )
 		cerr << "BEACON-3" << endl;
 	return 0;
@@ -1317,7 +1317,7 @@ int GuiSlave::saveasEvent ( void ) {
 	else {
 		// add history item
 		mainw->cconfig->hlist.insert ( 0, fnc );
-		QAction *newaction = new QAction ( *get_t_open_icon(), fnc, 0 );
+		QAction *newaction = new QAction ( *get_p_icon(), fnc, 0 );
 		mainw->historyMenu->insertAction ( mainw->historyMenu->actions().at ( 0 ), newaction );
 	}
 	panelsOFF();
@@ -1352,7 +1352,9 @@ int GuiSlave::closeEvent ( void ) {
 			}
 	}
 	panelsOFF();
-
+	
+	mainw->db->doWork = false;
+	
 	/* Freeing database object */
 	if ( retv == 0 ) {
 		delete mainw->db;
@@ -2376,7 +2378,7 @@ int GuiSlave::openHistoryElementEvent ( QAction *action) {
 	//QMessageBox::information(0,"new history element",fn);
 	if ( ( mainw->cconfig->hlist.filter ( fn ) ).isEmpty() ) {
 		mainw->cconfig->hlist.append ( fn );
-		mainw->historyMenu->addAction ( *get_t_open_icon(), fn );
+		mainw->historyMenu->addAction ( *get_p_icon(), fn );
 	}
 
 	if ( ( int ) mainw->cconfig->hlist.count() > ( int ) mainw->cconfig->historysize ) {

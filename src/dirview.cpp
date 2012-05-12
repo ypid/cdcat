@@ -60,7 +60,7 @@ Directory::Directory ( QTreeWidget * parent, const QString& filename )
 }
 
 
-void Directory::setPixmap ( QPixmap *px ) {
+void Directory::setPixmap ( QPixmap * ) {
 	//pix = px;
 	setup();
 	//widthChanged ( 0 );
@@ -155,10 +155,10 @@ QString Directory::text ( int column ) const {
  *
  *****************************************************************************/
 
-DirectoryView::DirectoryView ( QWidget *parent, const char *name )
+DirectoryView::DirectoryView ( QWidget *parent, const char * )
 	: QTreeWidget ( parent ),  oldCurrent ( 0 ), dropItem ( 0 ), mousePressed ( FALSE ) {
 
-	autoopen_timer = new QTimer ( this );
+// 	autoopen_timer = new QTimer ( this );
 	
 	setSortingEnabled(true);
 	sortByColumn ( 0, Qt::AscendingOrder );
@@ -178,8 +178,8 @@ DirectoryView::DirectoryView ( QWidget *parent, const char *name )
 	setAcceptDrops ( TRUE );
 	viewport()->setAcceptDrops ( TRUE );
 
-	connect ( autoopen_timer, SIGNAL ( timeout() ),
-	          this, SLOT ( openFolder() ) );
+// 	connect ( autoopen_timer, SIGNAL ( timeout() ),
+// 	          this, SLOT ( openFolder() ) );
 
 	QStringList labels;
 	labels.append( tr ( "Name" ) );
@@ -223,14 +223,14 @@ DirectoryView::DirectoryView ( QWidget *parent, const char *name )
 
 }
 
-void DirectoryView::slotFolderSelected ( QTreeWidgetItem *i, int col ) {
+void DirectoryView::slotFolderSelected ( QTreeWidgetItem *i, int ) {
 	if ( i == NULL )
 		return;
 	Directory *dir = ( Directory* ) i;
 	emit folderSelected ( dir->fullName() );
 }
 
-void DirectoryView::slotFolderSelectedR ( QTreeWidgetItem *i , int col) {
+void DirectoryView::slotFolderSelectedR ( QTreeWidgetItem *i , int) {
 	if ( i == NULL )
 		return;
 	Directory *dir = ( Directory* ) i;
@@ -250,18 +250,18 @@ void DirectoryView::itemCollapsed ( QTreeWidgetItem *item ) {
 	((Directory *)item)->setExpanded(false);
 }
 
-void DirectoryView::openFolder() {
-	autoopen_timer->stop();
-	if ( dropItem) {
-		if( !dropItem->isExpanded() ) {
-		dropItem->setExpanded ( true );
-		//dropItem->repaint();
-		}
-	}
-	else {
-		itemAt(0,0)->setExpanded(true);
-	}
-}
+// void DirectoryView::openFolder() {
+// 	autoopen_timer->stop();
+// 	if ( dropItem) {
+// 		if( !dropItem->isExpanded() ) {
+// 		dropItem->setExpanded ( true );
+// 		//dropItem->repaint();
+// 		}
+// 	}
+// 	else {
+// 		itemAt(0,0)->setExpanded(true);
+// 	}
+// }
 
 static const int autoopenTime = 750;
 
@@ -276,10 +276,10 @@ QString DirectoryView::fullPath ( QTreeWidgetItem* item ) {
 	return fullpath;
 }
 
-void DirectoryView::contentsMousePressEvent ( QMouseEvent* e ) {
+void DirectoryView::contentsMousePressEvent ( QMouseEvent*  ) {
 	//QTreeWidget::contentsMousePressEvent ( e );
-	QPoint p (  e->pos()  );
-	QTreeWidgetItem *i = itemAt ( p );
+//	QPoint p (  e->pos()  );
+//	QTreeWidgetItem *i = itemAt ( p );
 // 	if ( i ) {
 // 		// if the user clicked into the root decoration of the item, don't try to start a drag!
 // 		if ( p.x() > header()->cellPos ( header()->mapToActual ( 0 ) ) +
@@ -345,7 +345,7 @@ void DirectoryView::setDir ( const QString &s ) {
 	}
 }
 
-void FileItem::setPixmap ( QPixmap *p ) {
+void FileItem::setPixmap ( QPixmap * ) {
 	//pix = p;
 	//setup();
 	//widthChanged ( 0 );

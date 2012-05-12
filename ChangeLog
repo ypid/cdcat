@@ -1,4 +1,11 @@
 11. May 2012 Christoph Thielecke <crissi99@gmx.de>
+	- display tree childs open fixed
+	- use default selected color for listview
+	- compiler warnings reduced
+	- prevent a crash on close if catalog is currently loading
+	- wrong icon on adding history element on save catalog fixed
+
+11. May 2012 Christoph Thielecke <crissi99@gmx.de>
 	- scanning / fixed
 	- set media name automaticlly if / is selected
 	- size of progressdialog fixed

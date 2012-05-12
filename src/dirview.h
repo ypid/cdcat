@@ -90,7 +90,7 @@ protected slots:
     void slotFolderSelectedR ( QTreeWidgetItem *, int );
     void itemExpanded ( QTreeWidgetItem * item );
     void itemCollapsed ( QTreeWidgetItem * item );
-    void openFolder();
+//     void openFolder();
 
 protected:
     void contentsMousePressEvent ( QMouseEvent *e );
