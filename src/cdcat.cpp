@@ -50,8 +50,6 @@ static void myMessageOutput(QtMsgType type, const char *msg) {
 		case QtFatalMsg:
 			fprintf(stderr, "Fatal: %s\n", msg);
 			//abort();
-			char *i=NULL;
-			char j = i[5];
 	}
 }
 #endif
