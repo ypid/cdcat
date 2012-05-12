@@ -223,7 +223,7 @@ win32 {
 
 	# security hardening flags
 	DEFINES += _FORTIFY_SOURCE=2
-	QMAKE_CXXFLAGS += -std=c++0x -g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Wformat-security -Werror=format-security
+	QMAKE_CXXFLAGS += -std=c++0x -g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wall
 }
 INSTALLS += target translations distfiles
 
