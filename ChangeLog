@@ -4,6 +4,7 @@
 	- compiler warnings reduced
 	- prevent a crash on close if catalog is currently loading
 	- wrong icon on adding history element on save catalog fixed
+	- importing media date for adding new media on gtktalog xml import fixed
 
 11. May 2012 Christoph Thielecke <crissi99@gmx.de>
 	- scanning / fixed

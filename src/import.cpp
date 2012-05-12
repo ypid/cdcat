@@ -52,7 +52,7 @@ lineObject::lineObject ( QString medianame, QString path, QString filename,
 lineObject::~lineObject() {
 }
 
-lineObject::lineObject ( const lineObject& newobj ) {
+lineObject::lineObject ( const lineObject& newobj ) : QObject() {
 	medianame = newobj.medianame;
 	path = newobj.path;
 	filename = newobj.filename;
@@ -1249,7 +1249,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 															QDate date ( year, month, day );
 															QTime time ( hour, minute, second );
 															datetime = QDateTime ( date, time );
-															int fileindex = fullpath.lastIndexOf ( '/' );
+															//	int fileindex = fullpath.lastIndexOf ( '/' );
 															//if(*DEBUG_INFO_ENABLED)
 															//      cerr << "importGtktalogCsv fileindex: " << fileindex << endl;
 															dirpath = QString ( csvList.at ( 6 ) );
@@ -1986,7 +1986,7 @@ int importGtktalogXml::addNewMedia ( QString new_medianame, QDateTime media_modi
 	Node *env, *curr;
 	curr = db->getMediaNode ( new_medianame );
 	if ( curr == NULL )
-		curr = db->putMediaNode ( new_medianame , mediacount, tr ( "importuser" ), CD, media_comment, datetime, media_category );
+		curr = db->putMediaNode ( new_medianame , mediacount, tr ( "importuser" ), CD, media_comment, media_modification, media_category );
 
 	QString msg;
 	lineObject obj ( "", "", "", 0.0, QDateTime(), "", "", "" );
