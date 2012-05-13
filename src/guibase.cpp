@@ -102,42 +102,25 @@ HQListViewItem::HQListViewItem ( QTreeWidget *parent, QString label1, QString la
 bool HQListViewItem::operator < (const QTreeWidgetItem &other) const {
 	int col = treeWidget()->sortColumn();
 	//std::cerr << "HQListViewItem::operator < col: " << col << ", text(0): " << qPrintable(text(0)) << ", other.text(0): " << qPrintable(other.text(0)) << std::endl;
-	if (col == 0 || col == 1) {
-		// this is the item to compared
-		if(text(0) == "..") {
-			return false;
-		}
-		else {
-			if(etype == HC_DIRECTORY) {
-				if(((HQListViewItem &)other).etype == HC_FILE)
-					return true;
-				else
-					return text(0) < other.text(0);
-			}
-			if(etype == HC_FILE) {
-				if(((HQListViewItem &)other).etype == HC_DIRECTORY)
-					return false;
-				else
-					return text(0) < other.text(0);
-			}
-			
-			return text(0) < other.text(0);
-		}
+	// this is the item to compared
+	if(text(0) == "..") {
+		return false;
 	}
-	else 
-	{
-		// col 3
-		// param is the item to compared
-		if(other.text(0) == "..") {
-			return false;
-		}
-		else {
-			if(this->etype == HC_DIRECTORY && ((HQListViewItem &)other).etype == HC_FILE)
+	else {
+		if(etype == HC_DIRECTORY) {
+			if(((HQListViewItem &)other).etype == HC_FILE)
 				return true;
-			if(this->etype == HC_FILE && ((HQListViewItem &)other).etype == HC_DIRECTORY)
-				return false;
-			return QTreeWidgetItem::operator<(other);
+			else
+				return text(0) < other.text(0);
 		}
+		if(etype == HC_FILE) {
+			if(((HQListViewItem &)other).etype == HC_DIRECTORY)
+				return false;
+			else
+				return text(0) < other.text(0);
+		}
+		
+		return text(0) < other.text(0);
 	}
 }
 
@@ -1299,6 +1282,7 @@ int GuiSlave::saveasEvent ( void ) {
 	mainw->db->pww = pww;
 	pww->setProgressText(tr("Saving catalog, please wait..."));
 	pww->show();
+	
 	progress ( pww );
 	QApplication::setOverrideCursor ( Qt::WaitCursor );
 
