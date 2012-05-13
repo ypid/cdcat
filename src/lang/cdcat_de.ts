@@ -40,6 +40,10 @@
       <source>unknown</source>
       <translation>unbekannt</translation>
     </message>
+    <message>
+      <source></source>
+      <translation type="unfinished" />
+    </message>
   </context>
   <context>
     <name>CatalogTypeEditDialog</name>
@@ -1302,6 +1306,10 @@ die Datenbank wird unvollständig sein</translation>
     <message>
       <source>If you scanned your media, you will be able to browse in it with the browser window (like mc) , or search in it. You can save the catalog with %1 command in the file menu.</source>
       <translation>Wenn Sie Ihr Medium durchsucht haben, können Sie dies im Durchsuchen-Fenster durchsuchen (wie im mc) oder in ihm suchen. Sie können den Katalog mit dem %1-Kommando aus dem Dateimenü speichern.</translation>
+    </message>
+    <message>
+      <source>Saving catalog, please wait...</source>
+      <translation>Katalog wird gespeichert, bitte warten...</translation>
     </message>
   </context>
   <context>

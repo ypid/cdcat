@@ -3,6 +3,7 @@
 	- code cleanup
 	- set special config settings on autoload on db correctly
 	- create pww on mainwidget instead on guibase
+	- display progressdialog on save/saveas added
 
 11. May 2012 Christoph Thielecke <crissi99@gmx.de>
 	- display tree childs open fixed

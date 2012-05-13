@@ -1253,7 +1253,10 @@ int GuiSlave::saveEvent ( void ) {
 
 	PWw *pww = new PWw ( mainw, mainw->app );
 	mainw->db->pww = pww;
+	pww->setProgressText(tr("Saving catalog, please wait..."));
+	pww->show();
 	progress ( pww );
+	
 	QApplication::setOverrideCursor ( Qt::WaitCursor );
 	mainw->db->setNice ( mainw->cconfig->nice );
 	if ( mainw->cconfig->saveAlwaysCatalogInUtf8 )
@@ -1294,6 +1297,8 @@ int GuiSlave::saveasEvent ( void ) {
 
 	PWw *pww = new PWw ( mainw, mainw->app );
 	mainw->db->pww = pww;
+	pww->setProgressText(tr("Saving catalog, please wait..."));
+	pww->show();
 	progress ( pww );
 	QApplication::setOverrideCursor ( Qt::WaitCursor );
 
