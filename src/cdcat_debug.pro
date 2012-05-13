@@ -132,13 +132,13 @@ win32 {
 	# use libmediainfo as static library?
 	# STATIC
 	#DEFINES += MEDIAINFO_STATIC
-	#LIBS+=c:/usr/lib/libmediainfo.a
+	#LIBS+=c:/usr/lib/libmediainfo.a c:/usr/lib/zen.a c:/usr/lib/pthread.a
 	
 	# DYNAMIC. no pkgconfig
 	#LIBS+= -lmediainfo
 	
 	# disable mediainfo
-	#DEFINES += NO_MEDIAINFO
+	DEFINES += NO_MEDIAINFO
 	
 	# libmediainfo ships API info via pkgconfig so use it!
 	#CONFIG += link_pkgconfig

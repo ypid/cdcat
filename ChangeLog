@@ -9,6 +9,7 @@
 	- status info about supported image extensions on selreadable dialog added
 	- display supported image extensions on console if debug info is enabled
 	- keep ".." entry always as first entry on sort listview on change on 3. column
+	- version increased to 2.0
 
 11. May 2012 Christoph Thielecke <crissi99@gmx.de>
 	- display tree childs open fixed

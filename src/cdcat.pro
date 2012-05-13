@@ -127,7 +127,7 @@ win32 {
 	# use libmediainfo as static library?
 	# STATIC
 	#DEFINES += MEDIAINFO_STATIC
-	#LIBS+=c:/usr/lib/mediainfo.a
+	#LIBS+=c:/usr/lib/mediainfo.a c:/usr/lib/zen.a c:/usr/lib/pthread.a
 	
 	# DYNAMIC. no pkgconfig
 	#LIBS+= -lmediainfo
@@ -135,10 +135,10 @@ win32 {
 	# temporary kluge until it's decided how to get char type from libmediainfo,
 	# maybe also via pkgconfig (Debian Bug #656929, could remove the extra
 	# hack in cdcatmediainfo.h when it's ready)
-	DEFINES += MEDIAINFO_UNICODE
+	#DEFINES += MEDIAINFO_UNICODE
 	
 	# disable mediainfo
-	#DEFINES += NO_MEDIAINFO
+	DEFINES += NO_MEDIAINFO
 	
 	
 	########## exif
@@ -148,7 +148,7 @@ win32 {
 	######### end exif
 
 	#LIBS       += -lz -ltar -lbz2 -ldl
-	LIBS       += -lz c:/usr/lib/libtar.a -lbz2 c:/usr/lib/zen.a c:/usr/lib/pthread.a
+	LIBS       += -lz c:/usr/lib/libtar.a -lbz2
 	INCLUDEPATH += c:/usr/include
 	distfiles.files +=   ../README_CSV_IMPORT ../Authors ../README ../ChangeLog ../COPYING ../TRANSLATORS_README ../cdcat.png
 	distfiles.path =     c:/usr/share/cdcat
