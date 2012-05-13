@@ -27,7 +27,7 @@
 #include <QToolBar>
 #include <QMainWindow>
 
-
+#include "adddialog.h"
 
 class QVBoxLayout;
 class QHBoxLayout;
@@ -71,6 +71,7 @@ class CdCatMainWidget : public QMainWindow{
 		QMenu *helpMenu;
 		QSplitter *splitMain;
 		QWidget *main;
+		PWw *pww;
 		void setDockSize(QDockWidget *dock, int, int);
 
 	protected:

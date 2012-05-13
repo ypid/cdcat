@@ -2,6 +2,7 @@
 	- datatype on reading at reading double from xml fixed
 	- code cleanup
 	- set special config settings on autoload on db correctly
+	- create pww on mainwidget instead on guibase
 
 11. May 2012 Christoph Thielecke <crissi99@gmx.de>
 	- display tree childs open fixed

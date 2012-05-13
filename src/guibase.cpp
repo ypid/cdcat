@@ -1423,10 +1423,11 @@ int GuiSlave::addEvent ( void ) {
 	
 	if ( *DEBUG_INFO_ENABLED )
 		cerr << "ADDEVENT-1" << endl;
-	PWw *pww = new PWw ( mainw, mainw->app, false, 0, tr ( "Scanning directory tree, please wait..." ), true );
-	mainw->db->pww = pww;
+	PWw *pww = mainw->pww;
+	pww->showProgress = false;
 	pww->setProgressText(tr ( "Scanning directory tree, please wait..." ));
 	pww->setCancel(true);
+	mainw->db->pww = pww;
 	QApplication::setOverrideCursor ( Qt::WaitCursor );
 	d->type = mainw->cconfig->lastMediaType;
 
@@ -1756,7 +1757,7 @@ int GuiSlave::addEvent ( void ) {
 	mainw->db->pww = NULL;
 	if ( *DEBUG_INFO_ENABLED )
 		cerr << "ADDEVENT-7" << endl;
-	delete pww;
+	pww->hide();
 	if ( *DEBUG_INFO_ENABLED )
 		cerr << "ADDEVENT-8" << endl;
 	panelsON();

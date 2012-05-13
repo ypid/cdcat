@@ -71,6 +71,8 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 
 	db = NULL;
 	cconfig = ccp;
+	pww = new PWw(this, appp);
+	pww->hide();
 	cconfig->startProgram ( &db, this );
 
 	splitMain = new QSplitter ( this );
@@ -514,6 +516,7 @@ void CdCatMainWidget::returnToOldMaxMinSizes() {
  */
 CdCatMainWidget::~CdCatMainWidget() {
 	// no need to delete child widgets, Qt does it all for us
+	delete pww;
 }
 
 /*
