@@ -70,6 +70,8 @@
 #include <QFile>
 #include <QApplication>
 
+#include <QImageReader>
+
 #ifdef USE_LIB7ZIP
 #include <lib7zip.h>
 #endif
@@ -585,6 +587,16 @@ DataBase::DataBase ( void ) {
 	   if ( *DEBUG_INFO_ENABLED )
 		std::cerr << "lib7zip library not supported" << std::endl;
 #endif
+	 if ( *DEBUG_INFO_ENABLED ) {
+		if(storeThumb) {
+			std::cout << "supported thumnail image formats:";
+			QList<QByteArray> supportedFormats = QImageReader::supportedImageFormats();
+			for (int i = 0; i < supportedFormats.size(); ++i) {
+				std::cout << " " <<supportedFormats.at(i).constData();
+			}
+			std::cout  << std::endl;
+		}
+	 }
 }
 
 DataBase::~DataBase ( void ) {

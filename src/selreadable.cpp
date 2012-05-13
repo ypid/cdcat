@@ -31,6 +31,7 @@
 #include <QTextBrowser>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
+#include <QImageReader>
 
 #ifdef USE_LIB7ZIP
 #include <lib7zip.h>
@@ -222,6 +223,8 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	labThumbExts = new QLabel ( this );
 	thumbLineExts = new QLineEdit ( this );
 	thumbLineExts->setMinimumWidth ( 150 );
+	labThumbExtsStatusIcon = new QLabel ( this );
+	labThumbExtsStatusIcon->setPixmap(*get_t_info_icon());
 	QSpacerItem* thumpspacer = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	thumbWidthSpinBox = new QSpinBox ( this );
 	thumbWidthSpinBox->setMinimum(20);
@@ -238,6 +241,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	layoutThumbExts->addSpacing ( 25 );
 	layoutThumbExts->addWidget ( labThumbExts );
 	layoutThumbExts->addWidget ( thumbLineExts );
+	layoutThumbExts->addWidget ( labThumbExtsStatusIcon );
 	layoutThumbExts->addItem(thumpspacer);
 	layoutThumbExts->addWidget(labThumbSize);
 	layoutThumbExts->addWidget(thumbWidthSpinBox);
@@ -451,6 +455,13 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	labFileInfoExtensions->setText ( tr ( "mediainfo status:" )+ " "+fileinfo_libfound_text);
 	labFileInfoExtensionsStatusIcon->setToolTip ( tr ( "support not compiled in" ) );
 #endif
+	
+	thumb_supported_ext_text = "";
+	QList<QByteArray> supportedFormats = QImageReader::supportedImageFormats();
+	for (int i = 0; i < supportedFormats.size(); ++i) {
+		thumb_supported_ext_text += " ";
+		thumb_supported_ext_text += QString(supportedFormats.at(i));
+	}
 	
 	cbDoExcludeFiles->setChecked(conf->doExcludeFiles);
 	cbUseWildcardInsteadRegexForExclude->setChecked(conf->useWildcardInsteadRegexForExclude);
@@ -853,6 +864,7 @@ void SelReadable::languageChange() {
 	lineFiles->setToolTip ( tr ( "; separated list of readable file patterns" ) );
 	labThumbExts->setText ( tr ( "File extensions:" ) );
 	thumbLineExts->setToolTip ( tr ( "; separated list of image file extensions, e.g. png;jpg;gif" ) );
+	labThumbExtsStatusIcon->setToolTip(tr("Supported image extensions found: ")+thumb_supported_ext_text);
 	labelContentSize->setText ( tr ( "max size:" ) );
 	maxSpinBox->setToolTip( tr ( "content size limit in kByte" ) );
 	cbDoExcludeFiles->setText(tr("exclude files/directories"));

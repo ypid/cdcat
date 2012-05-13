@@ -40,10 +40,6 @@
       <source>unknown</source>
       <translation>unbekannt</translation>
     </message>
-    <message>
-      <source></source>
-      <translation type="unfinished" />
-    </message>
   </context>
   <context>
     <name>CatalogTypeEditDialog</name>
@@ -2110,6 +2106,10 @@ wird zu
     <message>
       <source>mediainfo not supported</source>
       <translation>mediainfo nicht unterstützt</translation>
+    </message>
+    <message>
+      <source>Supported image extensions found: </source>
+      <translation>Unterstützte Bildendungen gefunden:</translation>
     </message>
   </context>
   <context>

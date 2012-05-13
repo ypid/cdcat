@@ -3,7 +3,7 @@
 <context>
     <name></name>
     <message>
-        <location filename="../dbase.cpp" line="193"/>
+        <location filename="../dbase.cpp" line="195"/>
         <source>Not available</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11,32 +11,32 @@
 <context>
     <name>AddLnk</name>
     <message>
-        <location filename="../adddialog.cpp" line="767"/>
+        <location filename="../adddialog.cpp" line="769"/>
         <source>Add a &quot;Catalog Link&quot; to the database</source>
         <translation type="unfinished">Adicionar uma \&quot;Ligação de Catalogo\&quot; à base de dados</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="768"/>
+        <location filename="../adddialog.cpp" line="770"/>
         <source>Location of the .hcf file:</source>
         <translation type="unfinished">Localização do ficheiro .hcf:</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="770"/>
+        <location filename="../adddialog.cpp" line="772"/>
         <source>Cancel</source>
         <translation type="unfinished">Cancelar</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="771"/>
+        <location filename="../adddialog.cpp" line="773"/>
         <source>Ok</source>
         <translation type="unfinished">Ok</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="788"/>
+        <location filename="../adddialog.cpp" line="790"/>
         <source>CdCat databases (*.hcf )</source>
         <translation type="unfinished">Bases de dados do CdCat (*.hcf )</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="788"/>
+        <location filename="../adddialog.cpp" line="790"/>
         <source>Open a file...</source>
         <translation type="unfinished">Abrir ficheiro...</translation>
     </message>
@@ -47,11 +47,6 @@
         <location filename="../dbase.h" line="275"/>
         <source>unknown</source>
         <translation type="unfinished">desconhecido</translation>
-    </message>
-    <message>
-        <location filename="../dbase.h" line="275"/>
-        <source></source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1062,27 +1057,27 @@ It is necessary because I&apos;d like to save the config file into your home dir
 <context>
     <name>DataBase</name>
     <message>
-        <location filename="../dbase.cpp" line="705"/>
+        <location filename="../dbase.cpp" line="717"/>
         <source>I can&apos;t rewrite the file: %1</source>
         <translation>Impossível reescrever o ficheiro: %1</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="730"/>
+        <location filename="../dbase.cpp" line="742"/>
         <source>I can&apos;t create the file: %1</source>
         <translation>Impossível criar o ficheiro: %1</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="2042"/>
+        <location filename="../dbase.cpp" line="2054"/>
         <source>I can&apos;t open the file: %1</source>
         <translation>Impossível abrir o ficheiro: %1</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="946"/>
+        <location filename="../dbase.cpp" line="958"/>
         <source>Cannot read directory: %1</source>
         <translation>Impossível ler a directoria: %1</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="2078"/>
+        <location filename="../dbase.cpp" line="2090"/>
         <source>Error</source>
         <translation>Erro</translation>
     </message>
@@ -1092,7 +1087,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Ignorar directoria</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="950"/>
+        <location filename="../dbase.cpp" line="962"/>
         <source>Cancel scanning</source>
         <translation>Cancelar a varredura</translation>
     </message>
@@ -1102,47 +1097,47 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Ligação simbólica#aponta para:</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="2078"/>
+        <location filename="../dbase.cpp" line="2090"/>
         <source>Error while parsing file: %1</source>
         <translation>Erro ao analisar o ficheiro: %1</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="754"/>
+        <location filename="../dbase.cpp" line="766"/>
         <source>No database opened!</source>
         <translation>Nenhuma base de dados aberta!</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="948"/>
+        <location filename="../dbase.cpp" line="960"/>
         <source>Cannot read file: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="950"/>
+        <location filename="../dbase.cpp" line="962"/>
         <source>Ignore</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1048"/>
+        <location filename="../dbase.cpp" line="1060"/>
         <source>Symbolic link to file:#</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1100"/>
+        <location filename="../dbase.cpp" line="1112"/>
         <source>Symbolic link to directory:#</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1128"/>
+        <location filename="../dbase.cpp" line="1140"/>
         <source>DEAD Symbolic link to:#</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1138"/>
+        <location filename="../dbase.cpp" line="1150"/>
         <source>System file (e.g. FIFO, socket or device file)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="2066"/>
+        <location filename="../dbase.cpp" line="2078"/>
         <source>Not enough memory to open the file: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1177,57 +1172,57 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1833"/>
+        <location filename="../dbase.cpp" line="1845"/>
         <source>device </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1849"/>
+        <location filename="../dbase.cpp" line="1861"/>
         <source> link to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1164"/>
+        <location filename="../dbase.cpp" line="1176"/>
         <source>reading mp3 info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1218"/>
+        <location filename="../dbase.cpp" line="1230"/>
         <source>reading media info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1235"/>
+        <location filename="../dbase.cpp" line="1247"/>
         <source>reading avi info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1309"/>
+        <location filename="../dbase.cpp" line="1321"/>
         <source>reading file content</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1364"/>
+        <location filename="../dbase.cpp" line="1376"/>
         <source>reading exif data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1393"/>
+        <location filename="../dbase.cpp" line="1405"/>
         <source>reading thumbnail data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1903"/>
+        <location filename="../dbase.cpp" line="1915"/>
         <source>scanning archive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1999"/>
+        <location filename="../dbase.cpp" line="2011"/>
         <source>scanning archive, file:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="569"/>
+        <location filename="../dbase.cpp" line="571"/>
         <source>unknown</source>
         <translation type="unfinished">desconhecido</translation>
     </message>
@@ -2252,7 +2247,7 @@ será
         <translation type="obsolete">Cancelar</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="592"/>
+        <location filename="../adddialog.cpp" line="594"/>
         <source>&amp;Cancel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2452,52 +2447,52 @@ será
 <context>
     <name>SelReadable</name>
     <message>
-        <location filename="../selreadable.cpp" line="819"/>
+        <location filename="../selreadable.cpp" line="830"/>
         <source>Select readable items</source>
         <translation>Seleccionar items a ler</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="831"/>
+        <location filename="../selreadable.cpp" line="842"/>
         <source>Read mp3 tags</source>
         <translation>Ler as tags dos mp3</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="847"/>
+        <location filename="../selreadable.cpp" line="858"/>
         <source>Store content of some files</source>
         <translation>Guardar conteúdo de alguns ficheiros</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="867"/>
+        <location filename="../selreadable.cpp" line="879"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="868"/>
+        <location filename="../selreadable.cpp" line="880"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="857"/>
+        <location filename="../selreadable.cpp" line="869"/>
         <source>content size limit in kByte</source>
         <translation>tamanho do conteúdo em kBytes</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="853"/>
+        <location filename="../selreadable.cpp" line="864"/>
         <source>; separated list of readable file patterns</source>
         <translation>;lista separada dos padrões de ficheiros a ler</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="842"/>
+        <location filename="../selreadable.cpp" line="853"/>
         <source>Default tag</source>
         <translation>Tag por defeito</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="119"/>
+        <location filename="../selreadable.cpp" line="120"/>
         <source>version</source>
         <translation>versão</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="844"/>
+        <location filename="../selreadable.cpp" line="855"/>
         <source>Read mp3 technical info as comment (bitrate,freq,length...)</source>
         <translation>Ler informação técnica do mp3 como comentário (bitrate, frequência,  duração...)</translation>
     </message>
@@ -2507,393 +2502,398 @@ será
         <translation type="obsolete">Ler informação técnica do avi como comentário (codecs, duração,...)</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="846"/>
+        <location filename="../selreadable.cpp" line="857"/>
         <source>Read avi technical info as comment (codecs,length,...)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="824"/>
+        <location filename="../selreadable.cpp" line="835"/>
         <source>Supported extensions:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="820"/>
+        <location filename="../selreadable.cpp" line="831"/>
         <source>Archive file display options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="821"/>
+        <location filename="../selreadable.cpp" line="832"/>
         <source>Scan for archive file list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="851"/>
+        <location filename="../selreadable.cpp" line="862"/>
         <source>Read some technical info using mediainfo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="833"/>
+        <location filename="../selreadable.cpp" line="844"/>
         <source>Read thumbnails from pictures</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="839"/>
+        <location filename="../selreadable.cpp" line="850"/>
         <source>Read EXIF data from pictures</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="837"/>
+        <location filename="../selreadable.cpp" line="848"/>
         <source>x</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="855"/>
+        <location filename="../selreadable.cpp" line="866"/>
         <source>; separated list of image file extensions, e.g. png;jpg;gif</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="608"/>
+        <location filename="../selreadable.cpp" line="619"/>
         <source>Path to external content viewer (found)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="615"/>
+        <location filename="../selreadable.cpp" line="626"/>
         <source>Path to external content viewer (not found)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="592"/>
+        <location filename="../selreadable.cpp" line="603"/>
         <source>Choose path to external context viewer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="849"/>
+        <location filename="../selreadable.cpp" line="860"/>
         <source>...</source>
         <translation type="unfinished">...</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="850"/>
+        <location filename="../selreadable.cpp" line="861"/>
         <source>Select external viewer...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="174"/>
+        <location filename="../selreadable.cpp" line="175"/>
         <source>KiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="408"/>
+        <location filename="../selreadable.cpp" line="412"/>
         <source>lib7zip found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="412"/>
+        <location filename="../selreadable.cpp" line="416"/>
         <source>lib7zip not supported</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="415"/>
+        <location filename="../selreadable.cpp" line="419"/>
         <source>Archive support:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="444"/>
+        <location filename="../selreadable.cpp" line="448"/>
         <source>mediainfo not found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="446"/>
+        <location filename="../selreadable.cpp" line="450"/>
         <source>mediainfo found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="451"/>
+        <location filename="../selreadable.cpp" line="455"/>
         <source>mediainfo status:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="825"/>
+        <location filename="../selreadable.cpp" line="836"/>
         <source>Permission</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="826"/>
+        <location filename="../selreadable.cpp" line="837"/>
         <source>User</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="827"/>
+        <location filename="../selreadable.cpp" line="838"/>
         <source>Group</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="828"/>
+        <location filename="../selreadable.cpp" line="839"/>
         <source>Size</source>
         <translation type="unfinished">Tamanho</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="829"/>
+        <location filename="../selreadable.cpp" line="840"/>
         <source>Date</source>
         <translation type="unfinished">Data</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="830"/>
+        <location filename="../selreadable.cpp" line="841"/>
         <source>Comment</source>
         <translation type="unfinished">Comentário</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="832"/>
+        <location filename="../selreadable.cpp" line="843"/>
         <source>Read thumbnails</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="834"/>
+        <location filename="../selreadable.cpp" line="845"/>
         <source>Size:</source>
         <translation type="unfinished">Tamanho:</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="835"/>
+        <location filename="../selreadable.cpp" line="846"/>
         <source>Thumbnail size (width) in pixels</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="836"/>
+        <location filename="../selreadable.cpp" line="847"/>
         <source>Thumbnail size (height) in pixels</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="848"/>
+        <location filename="../selreadable.cpp" line="859"/>
         <source>Use external file content viewer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="852"/>
+        <location filename="../selreadable.cpp" line="863"/>
         <source>file patterns:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="854"/>
+        <location filename="../selreadable.cpp" line="865"/>
         <source>File extensions:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="856"/>
+        <location filename="../selreadable.cpp" line="868"/>
         <source>max size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="843"/>
+        <location filename="../selreadable.cpp" line="854"/>
         <source>Read mp3 info as comment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="845"/>
+        <location filename="../selreadable.cpp" line="856"/>
         <source>Read avi info as comment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="653"/>
+        <location filename="../selreadable.cpp" line="664"/>
         <source>Add exclude rule...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="653"/>
+        <location filename="../selreadable.cpp" line="664"/>
         <source>Enter regular expression for exclude:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="637"/>
+        <location filename="../selreadable.cpp" line="648"/>
         <source>edit rule...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="641"/>
+        <location filename="../selreadable.cpp" line="652"/>
         <source>delete rule...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="858"/>
+        <location filename="../selreadable.cpp" line="870"/>
         <source>exclude files/directories</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="865"/>
+        <location filename="../selreadable.cpp" line="877"/>
         <source>add exclude rule...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="866"/>
+        <location filename="../selreadable.cpp" line="878"/>
         <source>list of patterns (regular expression) for files/directories to skip on reading from filesystem</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="681"/>
+        <location filename="../selreadable.cpp" line="692"/>
         <source>regular expression is invalid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="685"/>
+        <location filename="../selreadable.cpp" line="696"/>
         <source>regular expression is valid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="823"/>
+        <location filename="../selreadable.cpp" line="834"/>
         <source>show archive file at scanning in status</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="822"/>
+        <location filename="../selreadable.cpp" line="833"/>
         <source>show archive file in status</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="788"/>
+        <location filename="../selreadable.cpp" line="799"/>
         <source>About regular expressions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="790"/>
+        <location filename="../selreadable.cpp" line="801"/>
         <source>close</source>
         <translation type="unfinished">fechar</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="861"/>
+        <location filename="../selreadable.cpp" line="873"/>
         <source>About regex:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="862"/>
+        <location filename="../selreadable.cpp" line="874"/>
         <source>Information about regular expressions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="863"/>
+        <location filename="../selreadable.cpp" line="875"/>
         <source>About regular expressions....</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="864"/>
+        <location filename="../selreadable.cpp" line="876"/>
         <source>Show introduction into regular expressions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="730"/>
+        <location filename="../selreadable.cpp" line="741"/>
         <source>Metacharacter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="731"/>
+        <location filename="../selreadable.cpp" line="742"/>
         <source>Description</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="735"/>
+        <location filename="../selreadable.cpp" line="746"/>
         <source>Matches any single character (many applications exclude &lt;a href=&quot;/wiki/Newline&quot; title=&quot;Newline&quot;&gt;newlines&lt;/a&gt;, and exactly which characters are considered newlines is flavor-, character-encoding-, and platform-specific, but it is safe to assume that the line feed character is included). Within POSIX bracket expressions, the dot character matches a literal dot. For example, &lt;code&gt;a.c&lt;/code&gt; matches &quot;&lt;i&gt;abc&lt;/i&gt;&quot;, etc., but &lt;code&gt;[a.c]&lt;/code&gt; matches only &quot;&lt;i&gt;a&lt;/i&gt;&quot;, &quot;&lt;i&gt;.&lt;/i&gt;&quot;, or &quot;&lt;i&gt;c&lt;/i&gt;&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="739"/>
+        <location filename="../selreadable.cpp" line="750"/>
         <source>A bracket expression. Matches a single character that is contained within the brackets. For example, &lt;code&gt;[abc]&lt;/code&gt; matches &quot;&lt;i&gt;a&lt;/i&gt;&quot;, &quot;&lt;i&gt;b&lt;/i&gt;&quot;, or &quot;&lt;i&gt;c&lt;/i&gt;&quot;. &lt;code&gt;[a-z]&lt;/code&gt; specifies a range which matches any lowercase letter from &quot;&lt;i&gt;a&lt;/i&gt;&quot; to &quot;&lt;i&gt;z&lt;/i&gt;&quot;. These forms can be mixed: &lt;code&gt;[abcx-z]&lt;/code&gt; matches &quot;&lt;i&gt;a&lt;/i&gt;&quot;, &quot;&lt;i&gt;b&lt;/i&gt;&quot;, &quot;&lt;i&gt;c&lt;/i&gt;&quot;, &quot;&lt;i&gt;x&lt;/i&gt;&quot;, &quot;&lt;i&gt;y&lt;/i&gt;&quot;, or &quot;&lt;i&gt;z&lt;/i&gt;&quot;, as does &lt;code&gt;[a-cx-z]&lt;/code&gt;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="740"/>
+        <location filename="../selreadable.cpp" line="751"/>
         <source>The &lt;code&gt;-&lt;/code&gt; character is treated as a literal character if it is the last or the first (after the &lt;code&gt;^&lt;/code&gt;) character within the brackets: &lt;code&gt;[abc-]&lt;/code&gt;, &lt;code&gt;[-abc]&lt;/code&gt;. Note that backslash escapes are not allowed. The &lt;code&gt;]&lt;/code&gt; character can be included in a bracket expression if it is the first (after the &lt;code&gt;^&lt;/code&gt;) character: &lt;code&gt;[]abc]&lt;/code&gt;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="745"/>
+        <location filename="../selreadable.cpp" line="756"/>
         <source>Matches a single character that is not contained within the brackets. For example, &lt;code&gt;[^abc]&lt;/code&gt; matches any character other than &quot;&lt;i&gt;a&lt;/i&gt;&quot;, &quot;&lt;i&gt;b&lt;/i&gt;&quot;, or &quot;&lt;i&gt;c&lt;/i&gt;&quot;. &lt;code&gt;[^a-z]&lt;/code&gt; matches any single character that is not a lowercase letter from &quot;&lt;i&gt;a&lt;/i&gt;&quot; to &quot;&lt;i&gt;z&lt;/i&gt;&quot;. Likewise, literal characters and ranges can be mixed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="749"/>
+        <location filename="../selreadable.cpp" line="760"/>
         <source>Matches the starting position within the string. In line-based tools, it matches the starting position of any line.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="762"/>
+        <location filename="../selreadable.cpp" line="773"/>
         <source>Matches what the &lt;i&gt;n&lt;/i&gt;th marked subexpression matched, where &lt;i&gt;n&lt;/i&gt; is a digit from 1 to 9. This construct is theoretically &lt;b&gt;irregular&lt;/b&gt; and was not adopted in the POSIX ERE syntax. Some tools allow referencing more than nine capturing groups.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="766"/>
+        <location filename="../selreadable.cpp" line="777"/>
         <source>Matches the preceding element zero or more times. For example, &lt;code&gt;ab*c&lt;/code&gt; matches &quot;&lt;i&gt;ac&lt;/i&gt;&quot;, &quot;&lt;i&gt;abc&lt;/i&gt;&quot;, &quot;&lt;i&gt;abbbc&lt;/i&gt;&quot;, etc. &lt;code&gt;[xyz]*&lt;/code&gt; matches &quot;&quot;, &quot;&lt;i&gt;x&lt;/i&gt;&quot;, &quot;&lt;i&gt;y&lt;/i&gt;&quot;, &quot;&lt;i&gt;z&lt;/i&gt;&quot;, &quot;&lt;i&gt;zx&lt;/i&gt;&quot;, &quot;&lt;i&gt;zyx&lt;/i&gt;&quot;, &quot;&lt;i&gt;xyzzy&lt;/i&gt;&quot;, and so on. &lt;code&gt;\(ab\)*&lt;/code&gt; matches &quot;&quot;, &quot;&lt;i&gt;ab&lt;/i&gt;&quot;, &quot;&lt;i&gt;abab&lt;/i&gt;&quot;, &quot;&lt;i&gt;ababab&lt;/i&gt;&quot;, and so on.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="774"/>
+        <location filename="../selreadable.cpp" line="785"/>
         <source>Examples:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="776"/>
+        <location filename="../selreadable.cpp" line="787"/>
         <source>matches any three-character string ending with &quot;at&quot;, including &quot;&lt;i&gt;hat&lt;/i&gt;&quot;, &quot;&lt;i&gt;cat&lt;/i&gt;&quot;, and &quot;&lt;i&gt;bat&lt;/i&gt;&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="777"/>
+        <location filename="../selreadable.cpp" line="788"/>
         <source>matches &quot;&lt;i&gt;hat&lt;/i&gt;&quot; and &quot;&lt;i&gt;cat&lt;/i&gt;&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="778"/>
+        <location filename="../selreadable.cpp" line="789"/>
         <source>matches all strings matched by &lt;code&gt;.at&lt;/code&gt; except &quot;&lt;i&gt;bat&lt;/i&gt;&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="779"/>
+        <location filename="../selreadable.cpp" line="790"/>
         <source>matches &quot;&lt;i&gt;hat&lt;/i&gt;&quot; and &quot;&lt;i&gt;cat&lt;/i&gt;&quot;, but only at the beginning of the string or line.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="780"/>
+        <location filename="../selreadable.cpp" line="791"/>
         <source>matches &quot;&lt;i&gt;hat&lt;/i&gt;&quot; and &quot;&lt;i&gt;cat&lt;/i&gt;&quot;, but only at the end of the string or line.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="784"/>
+        <location filename="../selreadable.cpp" line="795"/>
         <source>Source:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="781"/>
+        <location filename="../selreadable.cpp" line="792"/>
         <source>matches any single character surrounded by &quot;[&quot; and &quot;]&quot; since the brackets are escaped, for example: &quot;&lt;i&gt;[a]&lt;/i&gt;&quot; and &quot;&lt;i&gt;[b]&lt;/i&gt;&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="693"/>
+        <location filename="../selreadable.cpp" line="704"/>
         <source>POSIX Basic Regular Expressions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="859"/>
+        <location filename="../selreadable.cpp" line="871"/>
         <source>Use wildcard instead regex</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="860"/>
+        <location filename="../selreadable.cpp" line="872"/>
         <source>Use wildcard expression instead regular expression</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="401"/>
+        <location filename="../selreadable.cpp" line="405"/>
         <source>lib7zip not found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="406"/>
+        <location filename="../selreadable.cpp" line="410"/>
         <source>unknown</source>
         <translation type="unfinished">desconhecido</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="452"/>
+        <location filename="../selreadable.cpp" line="456"/>
         <source>support not compiled in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="450"/>
+        <location filename="../selreadable.cpp" line="454"/>
         <source>mediainfo not supported</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../selreadable.cpp" line="867"/>
+        <source>Supported image extensions found: </source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -6,6 +6,8 @@
 	- display progressdialog on save/saveas added
 	- progressdialog fixes
 	- speedup catalog line detection on catalog reading
+	- status info about supported image extensions on selreadable dialog added
+	- display supported image extensions on console if debug info is enabled
 
 11. May 2012 Christoph Thielecke <crissi99@gmx.de>
 	- display tree childs open fixed

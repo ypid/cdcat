@@ -89,6 +89,8 @@ class SelReadable : public QDialog {
 		QLabel *labThumb;
 		QLabel *labThumbSize;
 		QLabel *labThumbXSize;
+		QLabel *labThumbExtsStatusIcon;
+		QLabel *labThumbInfo;
 		QLabel *labThumbExts;
 		QLabel *labelExternalContentViewer;
 		QLabel *labelDefaultMp3TagVersion;
@@ -145,6 +147,7 @@ class SelReadable : public QDialog {
 		QModelIndex contextmenu_modelindex;
 		
 		QString sevenzip_libfound_text;
+		QString thumb_supported_ext_text;
 
 	protected slots:
 		virtual void languageChange();
