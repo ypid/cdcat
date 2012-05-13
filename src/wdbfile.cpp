@@ -211,7 +211,6 @@ QString FileWriter::to_cutf8 ( QString s ) {
 }
 
 QString FileWriter::to_dcutf8 ( QDateTime d ) {
-	char *ret;
 	QString o ( "" );
 	QDate qdd = d.date();
 	QTime qtt = d.time();
@@ -487,10 +486,9 @@ int  FileWriter::writeContent ( Node *source ) {
 }
 
 int  FileWriter::writeExif ( Node *source ) {
-	unsigned long i;
 	gzprintf ( f, "%s<exif>", spg ( level ) );
 	QStringList ExifDataList = ( ( DBExifData * ) ( source->data ) )->ExifDataList;
-	QString c;
+	QString c= "";
 	for ( int i = 0; i < ExifDataList.size(); i++ ) {
 		c += ExifDataList.at ( i );
 		c += '\n';
@@ -819,7 +817,7 @@ double FileReader::getDouble2 ( const QXmlAttributes &atts, char *what, char *er
 		error_found  = 1;
 		return   0;
 	}
-	if ( 1 != sscanf ( atts.value ( i ).toLocal8Bit().constData(), "%f", & r ) ) {
+	if ( 1 != sscanf ( atts.value ( i ).toLocal8Bit().constData(), "%lf", & r ) ) {
 //                 errormsg = QString ( "Line %1: %2:I can't understanding \"%3\" attribute." )
 //                            .arg ( XML_GetCurrentLineNumber ( *pp ) ).arg ( err ).arg ( what );
 		errormsg = QString ( "%1:I can't understanding \"%2\" attribute." )
@@ -1836,7 +1834,6 @@ bool CdCatXmlHandler::endElement ( const QString & namespaceURI, const QString &
 															switch ( FREA->sp->type ) {
 																case HC_FILE     :
 																	//( ( DBFile      * ) ( FREA->sp->data ) ) -> comment = FREA->get_cutf8 ( currentText );
-																	unsigned long rsize, i;
 																	
 																	Node *tt = ( ( DBFile * ) ( FREA->sp->data ) )->prop;
 																	if ( tt == NULL )

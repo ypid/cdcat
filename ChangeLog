@@ -1,3 +1,7 @@
+12. May 2012 Christoph Thielecke <crissi99@gmx.de>
+	- datatype on reading at reading double from xml fixed
+	- code cleanup
+
 11. May 2012 Christoph Thielecke <crissi99@gmx.de>
 	- display tree childs open fixed
 	- use default selected color for listview
