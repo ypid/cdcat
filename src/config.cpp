@@ -215,7 +215,26 @@ int CdCatConfig::startProgram ( DataBase **dbp, QWidget *mw ) {
 		pww->end();
 		if ( ( *dbp ) != NULL ) {
 			( *dbp )->pww = NULL;
-			( *dbp )->setDoArchiveScan ( doScanArchive );
+			( *dbp )->storeMp3tags     = readtag;
+			( *dbp )->v1_over_v2       = v1_over_v2;
+			( *dbp )->storeMp3techinfo = readinfo;
+			( *dbp )->storeAvitechinfo = readavii;
+			( *dbp )->storeFileInfo = usefileinfo;
+			( *dbp )->storeContent = readcontent;
+			( *dbp )->doScanArchive = doScanArchive;
+			( *dbp )->doScanArchiveTar = doScanArchive; // FIXME: make dynamiclly
+			( *dbp )->doScanArchiveLib7zip = doScanArchive;  // FIXME: make dynamiclly
+			( *dbp )->storeExifData = storeExifData;
+			( *dbp )->storeThumb = storeThumb;
+			( *dbp )->ThumbExtsList = ThumbExtsList;
+			( *dbp )->thumbWidth = thumbWidth;
+			( *dbp )->thumbHeight = thumbHeight;
+			( *dbp )->storeLimit      = readclimit;
+			( *dbp )->storedFiles = readcfiles;
+			( *dbp )->doExcludeFiles = doExcludeFiles;
+			( *dbp )->ExcludeFileList = ExcludeFileList;
+			( *dbp )->useWildcardInsteadRegexForExclude = useWildcardInsteadRegexForExclude;
+			( *dbp )->displayCurrentScannedFileInTray = displayCurrentScannedFileInTray;
 		}
 		delete pww;
 	}
