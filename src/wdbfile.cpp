@@ -904,7 +904,7 @@ int FileReader::readFrom ( Node *source, bool skipDuplicatesOnInsert ) {
 	int readcount = 0;
 	linecount = 0;
 	long long int offset = 0;
-	char tmpbuffer[2048];
+	char tmpbuffer[4096];
 
 	if ( *DEBUG_INFO_ENABLED )
 		std::cerr << "start reading file..." << endl;
@@ -914,13 +914,13 @@ int FileReader::readFrom ( Node *source, bool skipDuplicatesOnInsert ) {
 	pww->setProgressText ( DataBase::tr ( "Reading file, please wait..." ) );
 	pww->setCancel ( true );
 	while ( len != allocated_buffer_len ) {
-		readcount = gzread ( f, tmpbuffer, 2048 );
+		readcount = gzread ( f, tmpbuffer, 4096 );
 		len += readcount;
 		//if(*DEBUG_INFO_ENABLED)
 		//  cerr << "readcount: " << readcount << endl;
 		for ( int i = 0; i < readcount; i++ )
 			dataBuffer[i + offset] = tmpbuffer[i];
-// 		strncat(dataBuffer, tmpbuffer, 2048);
+// 		strncat(dataBuffer, tmpbuffer, 4096);
 		offset += readcount;
 		progress ( pww, len );
 		if ( pww->doCancel ) {
@@ -1030,11 +1030,11 @@ QString FileReader::getCatName ( void ) {
 		std::cerr << "start reading file..." << endl;
 	while ( readcount == -1 || readcount > 0 ) {
 		progress ( pww );
-		readcount = gzread ( f, tmpbuffer, 1024 );
+		readcount = gzread ( f, tmpbuffer, 4096 );
 		len += readcount;
 		//if(*DEBUG_INFO_ENABLED)
 		//  cerr << "readcount: " << readcount << endl;
-		strncat ( dataBuffer, tmpbuffer, 1024 );
+		strncat ( dataBuffer, tmpbuffer, 4096 );
 	}
 	
 	if ( *DEBUG_INFO_ENABLED )
