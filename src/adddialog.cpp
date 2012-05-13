@@ -467,7 +467,7 @@ PWw::PWw ( QWidget *parent, QApplication *qapp, bool showProgress, long long int
 #endif
 	               
 ) {
-	int i;
+	int i=0;
 	QFont ownf;
 	refreshTime = 250;
 	appl = qapp;
@@ -488,35 +488,25 @@ PWw::PWw ( QWidget *parent, QApplication *qapp, bool showProgress, long long int
 	else
 		this->progresstext = tr ( "Please Wait..." );
 	
-
-	baseheight = 50;
+	baseheight = 120;
 	if ( showProgress )
 		baseheight += 40;
-	else {
-		//baseheight -= 30;
-	}
-
+	
 	if ( showCancel )
 		baseheight += 50;
-
+	
 	mywidth = 160;
 	myheight = baseheight;
-
+	
 	/* Calculate the necesary font size*/
 	ownf = font();
-	i = 10;
-//     do {
-//         i--;
-//         ownf.setPointSize ( i );
-//         if ( fm != NULL ) delete fm;
-//         fm = new QFontMetrics ( ownf );
-//         if ( i<10 ) break;
-//     } while ( fm->width ( this->progresstext ) > ( width()-5 ) );
 
 	ownf.setPointSize ( i );
 	QFontMetrics fm ( ownf );
 	mywidth = ( fm.width ( this->progresstext ) ) + 10;
-	myheight = fm.height() + baseheight;
+	if (mywidth < 160)
+		mywidth = 160;
+	myheight += fm.height();
 	fontheight = fm.height();
 
 	if ( showCancel && cancelButton != NULL ) {
@@ -546,7 +536,6 @@ PWw::PWw ( QWidget *parent, QApplication *qapp, bool showProgress, long long int
 	/*Get the firt value of the timer*/
 	t = QTime::currentTime();
 	s = 0;
-	show();
 }
 
 PWw::~PWw() {
@@ -564,42 +553,25 @@ void PWw::end ( void ) {
 void PWw::setProgressText ( QString progresstext ) {
 	int i;
 	QFont ownf;
-	if ( !progresstext.isEmpty() )
+	bool progresstext_was_empty=false;
+	if(this->progresstext.isEmpty())
+		progresstext_was_empty = true;
+	if ( !progresstext.isEmpty() ) {
 		this->progresstext = progresstext;
+	}
 
 	/* Calculate the necesary font size*/
 	ownf = font();
 	i = 10;
-//     do {
-//         i--;
-//         ownf.setPointSize ( i );
-//         if ( fm != NULL ) delete fm;
-//         fm = new QFontMetrics ( ownf );
-//         if ( i<4 ) break;
-//     } while ( fm->width ( this->progresstext ) > ( width()-5 ) );
-
+	
 	ownf.setPointSize ( i );
 	QFontMetrics fm ( ownf );
-	fontheight = fm.height();
-	baseheight = 30;
 	
-	baseheight += 40;
-	
-	mywidth = ( fm.width ( progresstext ) ) + 10;
-	myheight = fm.height() + baseheight;
-	
-	if ( showCancel ) {
-		//myheight += fontheight+10;
-		//begincanceltext = mywidth/2- fm.width ( tr("Cancel") )/2;
-		if(cancelButton != NULL)
-			myheight += cancelButton->height() + 4;
-		//std::cerr << "setCancel!" << std::endl;
-	}
-
+ 	mywidth = ( fm.width ( progresstext ) ) + 10;
 	begintext = 5;
-
+	
 	setFont ( ownf );
-
+	
 	if ( width() != mywidth ) {
 		hide();
 		setMinimumSize ( mywidth, myheight );
@@ -610,6 +582,10 @@ void PWw::setProgressText ( QString progresstext ) {
 }
 
 void PWw::setCancel ( bool showCancel ) {
+	bool cancel_was_set_before=false;
+	if(this->showCancel)
+		cancel_was_set_before = true;
+	
 	this->showCancel = showCancel;
 	setProgressText ( this->progresstext );
 	if(showCancel) {
@@ -619,12 +595,14 @@ void PWw::setCancel ( bool showCancel ) {
 			connect(cancelButton, SIGNAL(clicked(bool)), this, SLOT(doCancelReceived(bool)));
 		}
 		cancelButton->show();
-		resize(width(), height()+cancelButton->height()+10);
+		if(!cancel_was_set_before)
+			resize(width(), height()+cancelButton->height()+10);
 	}
 	else {
 		if (cancelButton != NULL) {
 			cancelButton->hide();
-			resize(width(), height()-cancelButton->height()-10);
+			if(cancel_was_set_before)
+				resize(width(), height()-cancelButton->height()-10);
 		}
 	}
 }
@@ -671,7 +649,7 @@ void PWw::paintEvent ( QPaintEvent * ) {
 
 	QPixmap pm = anim_list.at ( s );
 	p.drawPixmap ( ( mywidth / 2 ) - ( pm.width() / 2 ), 25, pm );
-	int buttom_offset = fontheight + pm.height() + 15;
+	int buttom_offset = fontheight + pm.height() + 25;
 	
 	if ( showProgress ) {
 		p.setPen ( QPen ( QColor().black() ) );
@@ -691,8 +669,8 @@ void PWw::paintEvent ( QPaintEvent * ) {
 	//	p.setBrush(QBrush(Qt::NoBrush));
 	//	p.drawText (begincanceltext, buttom_offset, tr("Cancel") );
 		buttom_offset += 2;
-		cancelButton->move(2, buttom_offset+14 + 2);
-		cancelButton->resize(width()-4, cancelButton->height());
+		cancelButton->move(10, buttom_offset+14 + 2);
+		cancelButton->resize(width()-20, cancelButton->height());
 	}
 	
 	
