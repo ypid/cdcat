@@ -342,13 +342,16 @@ int  FileWriter::writeHeader ( void ) {
 
 int  FileWriter::writeCatalog ( Node *source ) {
 	QString c1, c2, c3;
-
+	int c4;
+	
 	c1 = to_cutf8 ( ( ( DBCatalog * ) ( source->data ) )->name );
 	c2 = to_cutf8 ( ( ( DBCatalog * ) ( source->data ) )->owner );
 	c3 = to_dcutf8 ( ( ( DBCatalog * ) ( source->data ) )->modification );
+	c4 = ( ( DBCatalog * ) ( source->data ) )->sortedBy;
+	
 	progress ( pww );
-	gzprintf ( f, "<catalog name=\"%s\" owner=\"%s\" time=\"%s\">\n",
-	           c1.toLocal8Bit().data(), c2.toLocal8Bit().data(), c3.toLocal8Bit().data() );
+	gzprintf ( f, "<catalog name=\"%s\" owner=\"%s\" time=\"%s\" sortedBy=\"%s\">\n",
+	           c1.toLocal8Bit().data(), c2.toLocal8Bit().data(), c3.toLocal8Bit().data(), QString().setNum(c4).toLocal8Bit().data() );
 
 	gzprintf ( f, "<datafile version=\"%s\"/>\n", DVERS );
 
@@ -1178,6 +1181,34 @@ bool CdCatXmlHandler::startElement ( const QString & namespaceURI, const QString
 		if ( FREA->error_found ) {
 			cerr << qPrintable(FREA->errormsg) << " el: "<<qPrintable(el)<<endl;
 			return false;
+		}
+		
+		QString sortedByRaw = FREA->getStr2 ( attr, (char *)"sortedBy", (char *)"Error while parsing \"catalog\" node" );
+		if ( FREA->error_found ) {
+			// this is not a error -> default
+			( ( DBCatalog * ) ( ( FREA->sp )->data ) ) ->sortedBy = 1; // NAME
+			if(*DEBUG_INFO_ENABLED)
+				std::cerr << "sortedBy (default): " << ( ( DBCatalog * ) ( ( FREA->sp )->data ) ) ->sortedBy << std::endl;
+		}
+		else {
+			if (sortedByRaw == "") {
+				// default
+				( ( DBCatalog * ) ( ( FREA->sp )->data ) ) ->sortedBy = 1; // NAME
+				if(*DEBUG_INFO_ENABLED)
+					std::cerr << "sortedBy (default): " << ( ( DBCatalog * ) ( ( FREA->sp )->data ) ) ->sortedBy << std::endl;
+			}
+			else {
+				int val =  sortedByRaw.toInt();
+				if (val == NUMBER  || val == NAME || val == TIME || val == TYPE) {
+					( ( DBCatalog * ) ( ( FREA->sp )->data ) ) ->sortedBy = val;
+					if(*DEBUG_INFO_ENABLED)
+						std::cerr << "sortedBy (valid): " << ( ( DBCatalog * ) ( ( FREA->sp )->data ) ) ->sortedBy << std::endl;
+				}
+				else {
+					if(*DEBUG_INFO_ENABLED)
+						std::cerr << "sortedBy (invalid: " << val << ", default): " << ( ( DBCatalog * ) ( ( FREA->sp )->data ) ) ->sortedBy << std::endl;
+				}
+			}
 		}
 	}
 	else {

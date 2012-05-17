@@ -2180,7 +2180,11 @@ int GuiSlave::sortNuEvent ( void ) {
 	if ( mainw->db == NULL )
 		return 0;
 	panelsOFF();
+	mainw->DirView->setSortingEnabled(false);
+	//mainw->DirView->sortByColumn(0, Qt::AscendingOrder);
 	mainw->db->sortM ( NUMBER );
+	mainw->DirView->clear();
+	mainw->DirView->start();
 	panelsON();
 	return 0;
 }
@@ -2190,6 +2194,10 @@ int GuiSlave::sortNaEvent ( void ) {
 		return 0;
 	panelsOFF();
 	mainw->db->sortM ( NAME );
+	mainw->DirView->clear();
+	mainw->DirView->setSortingEnabled(true);
+	mainw->DirView->sortByColumn(0, Qt::AscendingOrder);
+	mainw->DirView->start();
 	panelsON();
 	return 0;
 }
@@ -2199,6 +2207,10 @@ int GuiSlave::sortTyEvent ( void ) {
 		return 0;
 	panelsOFF();
 	mainw->db->sortM ( TYPE );
+	mainw->DirView->clear();
+	mainw->DirView->setSortingEnabled(false);
+	mainw->DirView->sortByColumn(0, Qt::AscendingOrder);
+	mainw->DirView->start();
 	panelsON();
 	return 0;
 }
@@ -2208,6 +2220,10 @@ int GuiSlave::sortTiEvent ( void ) {
 		return 0;
 	panelsOFF();
 	mainw->db->sortM ( TIME );
+	mainw->DirView->clear();
+	mainw->DirView->setSortingEnabled(false);
+	mainw->DirView->sortByColumn(0, Qt::AscendingOrder);
+	mainw->DirView->start();
 	panelsON();
 	return 0;
 }

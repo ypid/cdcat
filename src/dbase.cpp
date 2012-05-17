@@ -371,6 +371,7 @@ DBCatalog::DBCatalog ( void ) {
 	strcpy ( filename, "" );
 	modification = QDateTime::currentDateTime();
 	fileversion  = "";
+	sortedBy = NAME;
 }
 
 DBCatalog::~DBCatalog ( void ) {
@@ -548,6 +549,7 @@ DataBase::DataBase ( void ) {
 	storeLimit      = 32 * 1024;
 	root            = new Node ( HC_CATALOG, NULL );
 	root->data      = ( void * ) new DBCatalog();
+	((DBCatalog *)(root->data))->sortedBy = NAME;
 	XML_ENCODING = "UTF-8";
 	Lib7zipTypes.clear();
 	Lib7zipTypes.append ( "zip" );
@@ -2282,6 +2284,7 @@ void DataBase::sortM ( int mode ) {
 			
 		}
 	}
+	((DBCatalog *)root->data)->sortedBy = mode;
 	root->touchDB();
 }
 

@@ -267,6 +267,21 @@ void HDirectoryView::start ( void ) {
 		n->setText(0, ( *db )->getRootNode()->getNameOf());
 		n->setText(1, n->text(1) );
 		n->setup();
+		switch ( ((DBCatalog *)n)->sortedBy ) {
+			case NUMBER:
+				setSortingEnabled(false);
+				break;
+			case NAME:
+				setSortingEnabled(true);
+				sortByColumn(0, Qt::AscendingOrder);
+				break;
+			case TYPE:
+				setSortingEnabled(false);
+				break;
+			case TIME:
+				setSortingEnabled(false);
+				break;
+		}
 		n->setExpanded ( true );
 	}
 }

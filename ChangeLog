@@ -1,3 +1,7 @@
+17. May 2012 Christoph Thielecke <crissi99@gmx.de>
+	- sort by number, time and type fixed
+	- sort state will now saved to catalog
+
 12. May 2012 Christoph Thielecke <crissi99@gmx.de>
 	- datatype on reading at reading double from xml fixed
 	- code cleanup

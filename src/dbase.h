@@ -164,6 +164,8 @@ class DBCatalog { //type is 1
 		
 		DBCatalog ( QString n, QString o, QString c, QDateTime mod = QDateTime::currentDateTime(), QString pcategory = "" );
 		// n:name , o:owner , c:comment, mod:modification, pcategory:category
+		
+		int sortedBy;
 };
 
 class DBMedia { //type is 2
