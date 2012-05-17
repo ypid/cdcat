@@ -345,6 +345,32 @@ void CommentWidget::updateContents() {
 				if (mx+ 15 + valueoffset > fontwidth)
 					fontwidth = mx+ 15 + valueoffset + 20;
 				w += pixelsHigh + ispace;
+				
+				if ( tmp->type == HC_CATALOG ) {
+					QString sortedBy;
+					switch ( ((DBCatalog *)tmp->data)->sortedBy ) {
+						case NUMBER:
+							sortedBy += tr("Number");
+							break;
+						case NAME:
+							sortedBy += tr("Name");
+							break;
+						case TYPE:
+							sortedBy += tr("Type");
+							break;
+						case TIME:
+							sortedBy += tr("Time");
+							break;
+					}
+					p.setPen ( *cconfig->comm_stext );
+					p.drawText ( mx + 15, my + w, tr("sorted by:")+ " " );
+					valueoffset =  fm.boundingRect ( tr("sorted by:")+ " " ).size().width();
+					if (mx+ 15 + valueoffset > fontwidth)
+						fontwidth = mx+ 15 + valueoffset + 20;
+					p.setPen ( *cconfig->comm_vtext );
+					p.drawText ( mx + 15+valueoffset + 5, my + w, sortedBy );
+					w += pixelsHigh + ispace;
+				}
 			}
 			
 			/*file properties*/
