@@ -568,6 +568,20 @@ int GuiSlave::updateListFromNode ( Node *pdir ) {
 		return 0;
 	}
 	mainw->listView->clear();
+	switch ( ((DBCatalog *)mainw->db->getRootNode()->data)->sortedBy ) {
+			case NUMBER:
+				mainw->listView->setSortingEnabled(false);
+				break;
+			case NAME:
+				mainw->listView->setSortingEnabled(true);
+				break;
+			case TYPE:
+				mainw->listView->setSortingEnabled(false);
+				break;
+			case TIME:
+				mainw->listView->setSortingEnabled(false);
+				break;
+	}
 	//mainw->listView->setSorting ( mainw->listView->scol, mainw->listView->sasc );
 	
 	//Set column text:
