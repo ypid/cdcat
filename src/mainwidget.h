@@ -128,9 +128,11 @@ class CdCatMainWidget : public QMainWindow{
 		QAction *renumber_action;
 		//QAction *changemediatype_action;
 		QAction *delete_action;
-		QAction *sortnu_action;
+		QAction *sortnu_ascending_action;
+		QAction *sortnu_descending_action;
 		QAction *sortna_action;
-		QAction *sortti_action;
+		QAction *sortti_ascending_action;
+		QAction *sortti_descending_action;
 		QAction *find_action;
 		QAction *findpanel_action;
 		QAction *borrow_action;

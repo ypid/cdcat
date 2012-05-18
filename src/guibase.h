@@ -128,10 +128,13 @@ public slots:
     int sborrowEvent ( void );
     int cborrowEvent ( void );
 
-    int sortNuEvent ( void );
+    int sortNuEventAscending ( void );
+    int sortNuEventDescending ( void );
     int sortNaEvent ( void );
-    int sortTyEvent ( void );
-    int sortTiEvent ( void );
+    int sortTyEventAscending ( void );
+    int sortTyEventDescending ( void );
+    int sortTiEventAscending ( void );
+    int sortTiEventDescending ( void );
     int closeBranch ( void );
     int editComment ( void );
     int showContent ( void );

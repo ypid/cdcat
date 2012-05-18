@@ -2220,12 +2220,17 @@ Node * DataBase::getMOnPos ( int p ) {
 	return step;
 }
 
-void DataBase::sortM ( int mode ) {
+void DataBase::sortM ( int mode, bool ascending ) {
 	Node *step;
 	void *data;
 	int length;
 	int type;
 	int i, j;
+	
+#define MYOP <
+	if (ascending == false) {
+#define MYOP >
+	}
 	
 	if ( root == NULL )
 		return;
@@ -2246,7 +2251,7 @@ void DataBase::sortM ( int mode ) {
 				else {
 					switch ( mode ) {
 						case NUMBER:
-							if ( ( ( DBMedia * ) ( getMOnPos ( i )->data ) )->number <
+							if ( ( ( DBMedia * ) ( getMOnPos ( i )->data ) )->number MYOP
 							                ( ( DBMedia * ) ( getMOnPos ( j )->data ) )->number )
 								continue;
 							break;
@@ -2257,12 +2262,18 @@ void DataBase::sortM ( int mode ) {
 								continue;
 							break;
 						case TYPE:
-							if ( ( ( DBMedia * ) ( getMOnPos ( i )->data ) )->type <=
+							if(ascending == true) {
+#define MYOP <=
+							}
+							else {
+#define MYOP >=
+							}
+							if ( ( ( DBMedia * ) ( getMOnPos ( i )->data ) )->type MYOP
 							                ( ( DBMedia * ) ( getMOnPos ( j )->data ) )->type )
 								continue;
 							break;
 						case TIME:
-							if ( ( ( DBMedia * ) ( getMOnPos ( i )->data ) )->modification <
+							if ( ( ( DBMedia * ) ( getMOnPos ( i )->data ) )->modification MYOP
 							                ( ( DBMedia * ) ( getMOnPos ( j )->data ) )->modification )
 								continue;
 							break;

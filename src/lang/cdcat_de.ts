@@ -40,10 +40,6 @@
       <source>unknown</source>
       <translation>unbekannt</translation>
     </message>
-    <message>
-      <source></source>
-      <translation type="unfinished" />
-    </message>
   </context>
   <context>
     <name>CatalogTypeEditDialog</name>
@@ -197,16 +193,8 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
       <translation>Andere</translation>
     </message>
     <message>
-      <source>Sort media by number</source>
-      <translation>Medium nach Nummer sortieren</translation>
-    </message>
-    <message>
       <source>Sort media by name</source>
       <translation>Medium nach Name sortieren</translation>
-    </message>
-    <message>
-      <source>Sort media by time</source>
-      <translation>Medium nach Zeit sortieren</translation>
     </message>
     <message>
       <source>Recent files...</source>
@@ -419,6 +407,22 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     <message>
       <source>processing file</source>
       <translation>Datei wird verarbeitet</translation>
+    </message>
+    <message>
+      <source>Sort media by number (ascending)</source>
+      <translation>Medium nach Nummer sortieren (aufsteigend)</translation>
+    </message>
+    <message>
+      <source>Sort media by number (descending)</source>
+      <translation>Medium nach Nummer sortieren (absteigend)</translation>
+    </message>
+    <message>
+      <source>Sort media by time (ascending)</source>
+      <translation>Medium nach Zeit sortieren (aufsteigend)</translation>
+    </message>
+    <message>
+      <source>Sort media by time (descending)</source>
+      <translation>Medium nach Zeit sortieren (absteigend)</translation>
     </message>
   </context>
   <context>

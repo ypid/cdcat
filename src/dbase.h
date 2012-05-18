@@ -405,7 +405,7 @@ class DataBase : public QObject {
 		
 		void  deleteNode ( Node *d );
 		
-		void  sortM ( int mode );
+		void  sortM ( int mode, bool ascending = true );
 		//sort the media in the catalog
 		
 		void addLnk ( const char *loc );

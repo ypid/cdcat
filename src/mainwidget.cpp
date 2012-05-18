@@ -245,11 +245,17 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	editMenu->addAction ( delete_action );
 
 	editMenu->insertSeparator(NULL);
-	sortnu_action = new QAction ( QIcon ( *get_t_save_icon() ), tr ( "Sort media by number" ), this );
-	//sortnu_action->setShortcuts(QKeySequence::Save);
-	sortnu_action->setStatusTip ( tr ( "Sort media by number" ) );
-	connect ( sortnu_action, SIGNAL ( triggered() ), guis, SLOT ( sortNuEvent() ) );
-	editMenu->addAction ( sortnu_action );
+	sortnu_ascending_action = new QAction ( QIcon ( *get_t_save_icon() ), tr ( "Sort media by number (ascending)" ), this );
+	//sortnu_ascending_action->setShortcuts(QKeySequence::Save);
+	sortnu_ascending_action->setStatusTip ( tr ( "Sort media by number (ascending)" ) );
+	connect ( sortnu_ascending_action, SIGNAL ( triggered() ), guis, SLOT ( sortNuEventAscending()) );
+	editMenu->addAction ( sortnu_ascending_action );
+	
+	sortnu_descending_action = new QAction ( QIcon ( *get_t_save_icon() ), tr ( "Sort media by number (descending)" ), this );
+	//sortnu_descending_action->setShortcuts(QKeySequence::Save);
+	sortnu_descending_action->setStatusTip ( tr ( "Sort media by number (descending)" ) );
+	connect ( sortnu_descending_action, SIGNAL ( triggered() ), guis, SLOT ( sortNuEventDescending()) );
+	editMenu->addAction ( sortnu_descending_action );
 
 	sortna_action = new QAction ( QIcon ( *get_t_save_icon() ), tr ( "Sort media by name" ), this );
 	//sortna_action->setShortcuts(QKeySequence::Save);
@@ -257,11 +263,17 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	connect ( sortna_action, SIGNAL ( triggered() ), guis, SLOT ( sortNaEvent() ) );
 	editMenu->addAction ( sortna_action );
 
-	sortti_action = new QAction ( QIcon ( *get_t_save_icon() ), tr ( "Sort media by time" ), this );
-	//sortti_action->setShortcuts(QKeySequence::Save);
-	sortti_action->setStatusTip ( tr ( "Sort media by time" ) );
-	connect ( sortti_action, SIGNAL ( triggered() ), guis, SLOT ( sortTiEvent() ) );
-	editMenu->addAction ( sortti_action );
+	sortti_ascending_action = new QAction ( QIcon ( *get_t_save_icon() ), tr ( "Sort media by time (ascending)" ), this );
+	//sortti_ascending_action->setShortcuts(QKeySequence::Save);
+	sortti_ascending_action->setStatusTip ( tr ( "Sort media by time (ascending)" ) );
+	connect ( sortti_ascending_action, SIGNAL ( triggered() ), guis, SLOT ( sortTiEventAscending()) );
+	editMenu->addAction ( sortti_ascending_action );
+	
+	sortti_descending_action = new QAction ( QIcon ( *get_t_save_icon() ), tr ( "Sort media by time (descending)" ), this );
+	//sortti_descending_action->setShortcuts(QKeySequence::Save);
+	sortti_descending_action->setStatusTip ( tr ( "Sort media by time (descending)" ) );
+	connect ( sortti_descending_action, SIGNAL ( triggered() ), guis, SLOT ( sortTiEventDescending()) );
+	editMenu->addAction ( sortti_descending_action );
 	
 	view_toolbar_action = new QAction ( tr ( "view tool bar" ), this );
 	//view_toolbar_action->setShortcuts(QKeySequence::Save);
@@ -574,12 +586,16 @@ void CdCatMainWidget::languageChange() {
         //changemediatype_action->setText(tr ( "Change media type..." ), this));
         delete_action->setText(tr ( "Delete node" ));
         delete_action->setStatusTip ( tr ( "Delete node" ));
-        sortnu_action->setText(tr ( "Sort media by number" ));
-        sortnu_action->setStatusTip ( tr ( "Sort media by number" ));
+        sortnu_ascending_action->setText(tr ( "Sort media by number (ascending)" ));
+        sortnu_ascending_action->setStatusTip ( tr ( "Sort media by number (ascending)" ));
+        sortnu_descending_action->setText(tr ( "Sort media by number (descending)" ));
+        sortnu_descending_action->setStatusTip ( tr ( "Sort media by number (descending)" ));
         sortna_action->setText(tr ( "Sort media by name" ));
         sortna_action->setStatusTip ( tr ( "Sort media by name" ));
-        sortti_action->setText(tr ( "Sort media by time" ));
-        sortti_action->setStatusTip ( tr ( "Sort media by time" ));
+        sortti_ascending_action->setText(tr ( "Sort media by time (ascending)" ));
+        sortti_ascending_action->setStatusTip ( tr ( "Sort media by time (ascending)" ));
+        sortti_descending_action->setText(tr ( "Sort media by time (descending)" ));
+        sortti_descending_action->setStatusTip ( tr ( "Sort media by time (descending)" ));
         view_toolbar_action->setText(tr ( "view tool bar" ));
         view_toolbar_action->setStatusTip ( tr ( "View tool bar in main window" ));
         view_statusbar_action->setText(tr ( "view status bar" ));
