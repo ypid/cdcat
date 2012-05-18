@@ -2,6 +2,7 @@
 	- set medianame on adding new media at cd/dvd type fixed
 	- use cdrom path for cd/dvd instead of selected path in tree
 	- menu entries for resort catalog in descending order (number, time) added
+	- loading some settings fixed (content, date start, start end at find dialog) 
 
 17. May 2012 Christoph Thielecke <crissi99@gmx.de>
 	- sort by number, time and type fixed

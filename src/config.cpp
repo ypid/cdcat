@@ -541,6 +541,14 @@ int CdCatConfig::readConfig ( void ) {
 					lastFindCategory = val;
 					continue;
 				}
+				
+				if ( var == "find_checkbox_content" ) {
+					if ( val == "true" )
+						find_ct = true;
+					else
+						find_ct = false;
+					continue;
+				}
 				if ( var == "find_checkbox_mp3artist" ) {
 					if ( val == "true" )
 						find_mar = true;
@@ -683,14 +691,14 @@ int CdCatConfig::readConfig ( void ) {
 					readclimit = val.toInt();
 					continue;
 				}
-				if ( var == "find_date_start" ) {
+				if ( var == "find_checkbox_date_start" ) {
 					if ( val == "true" )
 						find_date_start = true;
 					else
 						find_date_start = false;
 					continue;
 				}
-				if ( var == "find_date_end" ) {
+				if ( var == "find_checkbox_date_end" ) {
 					if ( val == "true" )
 						find_date_end = true;
 					else
