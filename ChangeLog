@@ -1,3 +1,6 @@
+18. May 2012 Christoph Thielecke <crissi99@gmx.de>
+	- set medianame on adding new media at cd/dvd type fixed
+
 17. May 2012 Christoph Thielecke <crissi99@gmx.de>
 	- sort by number, time and type fixed
 	- sort state will now saved to catalog

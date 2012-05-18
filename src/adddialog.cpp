@@ -288,8 +288,6 @@ int addDialog::setMediaName ( const QString & ds ) {
 			tm = getCDName ( caller->mainw->cconfig->cdrompath.toLocal8Bit().constData());
 		}
 		if ( confdir  == selected && ! ( tm.isEmpty() ) ) {
-
-
 #if defined(_WIN32) || defined(_OS2)
 			if ( ( cbType->currentIndex() == CD &&  cbType->currentIndex() == DVD ) && ( confdir  == selected ) ) {
 				if ( !caller->mainw->cconfig->cdrompath.replace ( "/", "\\" ).isEmpty() ) {
@@ -328,6 +326,7 @@ int addDialog::setMediaName ( const QString & ds ) {
 					cbType->setCurrentIndex( CD );
 #endif
 				volumename = 1;
+				leName->setText ( tm );
 			}
 			else {
 				volumename = 0;
@@ -347,14 +346,14 @@ int addDialog::setMediaName ( const QString & ds ) {
 		tm = dirView->sDir.split ( '/' ).at ( dirView->sDir.split ( '/' ).size() - 2 );
 #endif
 		leName->setText ( tm );
+		
+		if (dirView->sDir == "/" && leName->text().isEmpty()) {
+			leName->setText("root");
+			dName = "root";
+		}
 	}
 	//std::cerr << "setMediaName: sDir: " << qPrintable(dirView->sDir)<< std::endl;
 	caller->mainw->cconfig->lastDir = dirView->sDir;
-	
-	if (dirView->sDir == "/" && leName->text().isEmpty()) {
-		leName->setText("root");
-		dName = "root";
-	}
 	
 	QApplication::restoreOverrideCursor();
 	return 0;
