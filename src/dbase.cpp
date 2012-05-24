@@ -101,18 +101,8 @@ class TestInStream : public C7ZipInStream {
 				unsigned int pos = m_strFileName.find_last_of ( "." );
 
 				if ( pos != m_strFileName.npos ) {
-#ifdef _WIN32
-					std::string tmp = m_strFileName.substr ( pos + 1 );
-					int nLen = MultiByteToWideChar ( CP_ACP, 0, tmp.c_str(), -1, NULL, NULL );
-					LPWSTR lpszW = new WCHAR[nLen];
-					MultiByteToWideChar ( CP_ACP, 0,
-					                      tmp.c_str(), -1, lpszW, nLen );
-					m_strFileExt = lpszW;
-					// free the string
-					delete[] lpszW;
-#else
-					m_strFileExt = L"7z";
-#endif
+					QString ext = QString::fromStdString ( m_strFileName).split('.').last();
+					m_strFileExt = ext.toStdWString();
 				}
 				if ( *DEBUG_INFO_ENABLED )
 					printf ( "Ext:%ls\n", m_strFileExt.c_str() );

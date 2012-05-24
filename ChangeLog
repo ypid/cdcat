@@ -1,3 +1,7 @@
+24. May 2012 Christoph Thielecke <crissi99@gmx.de>
+	- crash at scanning archive with special names in archive list fixed
+	- detection of file extension on non win32 systems fixed
+
 18. May 2012 Christoph Thielecke <crissi99@gmx.de>
 	- set medianame on adding new media at cd/dvd type fixed
 	- use cdrom path for cd/dvd instead of selected path in tree
