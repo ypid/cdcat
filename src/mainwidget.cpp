@@ -626,7 +626,9 @@ void CdCatMainWidget::languageChange() {
         about_action->setStatusTip ( tr ( "About Cdcat" ));
         aboutqt_action->setText(tr ( "About Qt" ));
         aboutqt_action->setStatusTip ( tr ( "About the Qt toolkit" ));
-        trayIcon->setToolTip ( tr ( "Cdcat - idle" ));
+	if (trayIcon != NULL) {
+		trayIcon->setToolTip ( tr ( "Cdcat - idle" ));
+	}
 	minimizeAction->setText(tr ( "Mi&nimize" ));
 	maximizeAction->setText(tr ( "Ma&ximize" ));
 	restoreAction->setText(tr ( "&Restore" ));

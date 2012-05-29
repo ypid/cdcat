@@ -1,3 +1,6 @@
+29. May 2012 Christoph Thielecke <crissi99@gmx.de>
+	- crash on start fixed if trayicon is disabled (#3529967)
+
 24. May 2012 Christoph Thielecke <crissi99@gmx.de>
 	- crash at scanning archive with special names in archive list fixed
 	- detection of file extension on non win32 systems fixed
