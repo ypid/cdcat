@@ -628,11 +628,11 @@ void CdCatMainWidget::languageChange() {
         aboutqt_action->setStatusTip ( tr ( "About the Qt toolkit" ));
 	if (trayIcon != NULL) {
 		trayIcon->setToolTip ( tr ( "Cdcat - idle" ));
+		minimizeAction->setText(tr ( "Mi&nimize" ));
+		maximizeAction->setText(tr ( "Ma&ximize" ));
+		restoreAction->setText(tr ( "&Restore" ));
+		quitAction->setText(tr ( "&Quit" ));
 	}
-	minimizeAction->setText(tr ( "Mi&nimize" ));
-	maximizeAction->setText(tr ( "Ma&ximize" ));
-	restoreAction->setText(tr ( "&Restore" ));
-	quitAction->setText(tr ( "&Quit" ));
 	setWindowTitle ( tr ( "Hyper's CD Catalogizer" ) );
 }
 
