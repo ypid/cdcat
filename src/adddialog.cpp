@@ -269,74 +269,76 @@ void addDialog::languageChange() {
 }
 
 int addDialog::setMediaName ( const QString & ds ) {
+	//std::cerr << "setMediaName(): ds: " << qPrintable(ds) << std::endl;
 	QString tm;
-	//
-	std::cerr << "mediatype " << cbType->currentIndex() << std::endl;
+	//std::cerr << "mediatype " << cbType->currentIndex() << std::endl;
 
 #if defined(_WIN32) || defined(_OS2)
-	QDir confdir ( ( caller->mainw->cconfig->cdrompath ).toLower() );
 	QDir selected ( ds.toLower() );
+	QString ds2 = ds;
 #else
-	QDir confdir ( caller->mainw->cconfig->cdrompath );
 	QDir selected ( ds );
 #endif
 	QApplication::setOverrideCursor ( Qt::WaitCursor );
 
 	if ( cbType->currentIndex() == CD  || cbType->currentIndex() == DVD )  {
-		//std::cerr << "setMediaName: mediatype is cd/dvd"<< std::endl;
-
-		if ( confdir  == selected ) {
-			tm = getCDName ( caller->mainw->cconfig->cdrompath.toUtf8().constData());
-		}
-		if ( confdir  == selected && ! ( tm.isEmpty() ) ) {
+		//std::cerr << "setMediaName(): mediatype is cd/dvd"<< std::endl;
+		if ( cbType->currentIndex() == CD &&  cbType->currentIndex() == DVD ) {
 #if defined(_WIN32) || defined(_OS2)
-			if ( ( cbType->currentIndex() == CD &&  cbType->currentIndex() == DVD ) && ( confdir  == selected ) ) {
-				if ( !caller->mainw->cconfig->cdrompath.replace ( "/", "\\" ).isEmpty() ) {
-					tm = getCDName ( caller->mainw->cconfig->cdrompath.replace ( "/", "\\" ).toUtf8().constData() );
-				}
+			
+			if ( !ds2.replace ( "/", "\\" ).isEmpty() ) {
+				tm = getCDName ( ds2.replace ( "/", "\\" ).toUtf8().constData() );
 			}
-			else {
-				//QMessageBox::warning ( ( QWidget * ) this,tr ( "Warning:" ),tr ( "Trying selected drive name" ) );
-				tm = getCDName ( dirView->sDir.replace ( "/", "\\" ).toUtf8().constData() );
+#else
+			if ( !ds.isEmpty() ) {
+				tm = getCDName ( ds.toUtf8().constData() );
 			}
 #endif
-			if ( !tm.isEmpty() ) {
-				bool ok=false;
-				bool nameok=false;
-				QString medianame_tmp = tm;
-				QString text=tm;
-				while (text.isEmpty() || ok || (!text.isEmpty() && !caller->isIdentical ( text))) {
-					text = QInputDialog::getText ( 0, tr ( "Enter media name..." ), tr ( "The Media Name must be unique! Enter new media name:" ), QLineEdit::Normal, medianame_tmp, &ok );
-					if(!ok)
-						return 0;
-					if(!text.isEmpty() && caller->isIdentical ( text)) {
-						leName->setText ( tm );
-						dName  = text;
-						nameok = true;
-						break;
-					}
-					medianame_tmp+=".1";
+		}
+		else {
+			//QMessageBox::warning ( ( QWidget * ) this,tr ( "Warning:" ),tr ( "Trying selected drive name" ) );
+#if defined(_WIN32) || defined(_OS2)
+			tm = getCDName ( ds2.replace ( "/", "\\" ).toUtf8().constData() );
+#else
+			tm = getCDName ( ds.toUtf8().constData() );
+#endif
+		}
+		//std::cerr << "setMediaName(): tm: " << qPrintable(tm) << std::endl;
+		if ( !tm.isEmpty() ) {
+			bool ok=false;
+			bool nameok=false;
+			QString medianame_tmp = tm;
+			QString text=tm;
+			while (text.isEmpty() || ok || (!text.isEmpty() && !caller->isIdentical ( text))) {
+				text = QInputDialog::getText ( 0, tr ( "Enter media name..." ), tr ( "The Media Name must be unique! Enter new media name:" ), QLineEdit::Normal, medianame_tmp, &ok );
+				if(!ok)
+					return 0;
+				if(!text.isEmpty() && caller->isIdentical ( text)) {
+					leName->setText ( tm );
+					dName  = text;
+					nameok = true;
+					break;
 				}
-				
+				medianame_tmp+=".1";
+			}
+			
 #if !defined(_WIN32) && !defined(_OS2)
-
-				// also set the media type to DVD if needed
-				if ( diskIsDVD ( caller->mainw->cconfig->cdrompath.toUtf8().constData() ) )
-					cbType->setCurrentIndex ( DVD );
-				else
-					cbType->setCurrentIndex( CD );
+			// also set the media type to DVD if needed
+			if ( diskIsDVD ( ds.toUtf8().constData() ) )
+				cbType->setCurrentIndex ( DVD );
+			else
+				cbType->setCurrentIndex( CD );
 #endif
-				volumename = 1;
-				leName->setText ( tm );
-			}
-			else {
-				volumename = 0;
-			}
-			if ( volumename == 0 ) {
-				volumename = 0;
-				tm = tr ( "New Disk %1" ).arg ( sbNumber->value() );
-				leName->setText ( tm );
-			}
+			volumename = 1;
+			leName->setText ( tm );
+		}
+		else {
+			volumename = 0;
+		}
+		if ( volumename == 0 ) {
+			volumename = 0;
+			tm = tr ( "New Disk %1" ).arg ( sbNumber->value() );
+			leName->setText ( tm );
 		}
 	}
 	else {

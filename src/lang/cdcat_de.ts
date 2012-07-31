@@ -40,6 +40,10 @@
       <source>unknown</source>
       <translation>unbekannt</translation>
     </message>
+    <message>
+      <source></source>
+      <translation type="unfinished" />
+    </message>
   </context>
   <context>
     <name>CatalogTypeEditDialog</name>
@@ -689,10 +693,6 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
       <translation>XML-DB-Datei in schönerem Format speichern (benötigt mehr Platz)</translation>
     </message>
     <message>
-      <source>Path to cdrom device</source>
-      <translation>Pfad zum CDROM-Gerät</translation>
-    </message>
-    <message>
       <source>Scanning: mount cdrom at start / eject when finish</source>
       <translation>CDROM beim Start mounten / auswerfen, wenn beendet</translation>
     </message>
@@ -759,6 +759,14 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     <message>
       <source>display current scanned file in tray (mediainfo / archive scan)</source>
       <translation>aktuell eingelesene Datei in Dock anzeigen (Medieninfo- / Archive durchsuchen)</translation>
+    </message>
+    <message>
+      <source>Path to cdrom device / mount dir</source>
+      <translation>Pfad zum CDROM-Gerät / Mountverzeichnis</translation>
+    </message>
+    <message>
+      <source>This is the path to the cdrom/dvd device or the path where its mounted</source>
+      <translation>Dies ist der Pfad zum CDROM-/DVD-Gerät oder der Pafd wo es eingebunden ist</translation>
     </message>
   </context>
   <context>

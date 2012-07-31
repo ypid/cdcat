@@ -31,38 +31,38 @@ using namespace std;
 FILE *openDevice ( const char *CDpath ) {
 	char *devicename = new char[64];
 	FILE *result;
-
 	QString cfgcdpath = QString ( CDpath ).replace ( QRegExp ( "/$" ), "" );
+	bool device_found = false;
 
 	strcpy ( devicename, "" );
-
-
+	
 	QFile f ( "/etc/fstab" );
 	QString line;
-
 	if ( f.open ( QIODevice::ReadOnly ) ) {	// file opened successfully
 		QTextStream t ( &f );	// use a text stream
-
 		while ( !t.atEnd() ) {
 			line = t.readLine();	// line of text excluding '\n'
-
+			
 			if ( !line.startsWith ( "#" ) && !line.isEmpty() ) {
 				if ( ( ( line.section ( "\t", 1, 1, QString::SectionSkipEmpty ) ).replace ( QRegExp ( "/$" ), "" ) ).compare ( cfgcdpath ) == 0 ) {
 					strcpy ( devicename, line.section ( "\t", 0, 0 ).toLocal8Bit().constData() );
+					device_found = true;
 				}
 				if ( ( ( line.section ( " " , 1, 1, QString::SectionSkipEmpty ) ).replace ( QRegExp ( "/$" ), "" ) ).compare ( cfgcdpath ) == 0 ) {
 					strcpy ( devicename, line.section ( " " , 0, 0 ).toLocal8Bit().constData() );
+					device_found = true;
 				}
 			}
 		}
 		f.close();
 	}
-	else
-		return NULL;
-	if ( !strcmp ( devicename, "" ) )
-		return NULL;
-
-	//fprintf(stderr,"devicename: |%s|\n",devicename);
+	
+	if (!device_found) {
+		// its the pure device name (e.g. /dev/sr0)
+		strcpy ( devicename, CDpath );
+	}
+	
+	fprintf(stderr,"openDevice(): devicename: |%s|\n",devicename);
 	result = fopen ( devicename, "r" );
 	delete devicename;
 	return result;
@@ -100,6 +100,8 @@ QString getCDName ( const char *CDpath ) {
 		/** Read the volume name of the device *******************/
 
 		deviceptr = openDevice ( CDpath );
+		if ( *DEBUG_INFO_ENABLED )
+			std::cerr << "getCDName(): could not open device" << endl;
 		if ( !deviceptr )
 			return name;
 		fseek ( deviceptr, 32808, SEEK_SET );
@@ -107,7 +109,7 @@ QString getCDName ( const char *CDpath ) {
 		fclose ( deviceptr );
 
 		if ( *DEBUG_INFO_ENABLED )
-			std::cerr << "getCDName: " << name << endl;
+			std::cerr << "getCDName(): " << name << endl;
 		name[32] = '\0';
 
 		//strip whitespaces

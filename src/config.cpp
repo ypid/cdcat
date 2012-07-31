@@ -1617,7 +1617,8 @@ void ConfigDialog::languageChange() {
 	lab->setText ( tr ( "font size" ) );
 	cbOwnFont->setToolTip ( tr ( "Application font size.(must restart cdcat!) " ) );
 	labHistorySize->setText ( tr ( "Number of history entries" ) );
-	cdrom_lab->setText ( tr ( "Path to cdrom device" ) );
+	cdrom_lab->setText ( tr ( "Path to cdrom device / mount dir" ) );
+	cdrompath_lineedit->setToolTip( tr("This is the path to the cdrom/dvd device or the path where its mounted"));
 	
 #ifndef _WIN32
 	cbMoEj->setText ( tr ( "Scanning: mount cdrom at start / eject when finish" ) );

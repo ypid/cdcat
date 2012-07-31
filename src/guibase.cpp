@@ -146,8 +146,8 @@ QString HQListViewItem::key ( int column, bool ascending ) const {
 		case 1:
 			//ret = (QListViewItem::key(1,ascending)).append('0'+mod);
 			if ( etype == HC_FILE && !text ( 1 ).isEmpty() ) {
-				value = getSizeFS ( text ( 1 ).toLocal8Bit().constData() );
-				switch ( getSizetFS ( text ( 1 ).toLocal8Bit().constData() ) ) {
+				value = getSizeFS ( text ( 1 ).toUtf8().constData() );
+				switch ( getSizetFS ( text ( 1 ).toUtf8().constData() ) ) {
 					case UNIT_KBYTE:
 						value *= SIZE_ONE_KBYTE;
 						break;
@@ -251,7 +251,7 @@ void HQListView::keyPressEvent ( QKeyEvent *ke ) {
 
 	if ( ke->key() == Qt::Key_Right || ke->key() == Qt::Key_Return ) {
 		it = currentItem();
-		if ( !strcmp ( it->text ( 0 ).toLocal8Bit().constData(), ".." ) ) {
+		if ( !strcmp ( it->text ( 0 ).toUtf8().constData(), ".." ) ) {
 
 			if ( mainw->guis->NodePwd->parent != NULL ) {
 				mainw->guis->tmpParent =  mainw->guis->NodePwd;
@@ -260,7 +260,7 @@ void HQListView::keyPressEvent ( QKeyEvent *ke ) {
 		}
 		else {   //step down
 			tmp = mainw->guis->NodePwd->child;
-			while ( strcmp ( tmp->getNameOf().toLocal8Bit().constData(), it->text ( 0 ).toLocal8Bit().constData() ) ) {
+			while ( strcmp ( tmp->getNameOf().toUtf8().constData(), it->text ( 0 ).toUtf8().constData() ) ) {
 				tmp = tmp->next;
 				if ( tmp == NULL )
 					return;
@@ -654,7 +654,7 @@ int GuiSlave::updateListFromNode ( Node *pdir ) {
 			// 2.(size) Column name:
 			
 			if ( tmp->type == HC_FILE ) {
-				QString filetype = QString(" ") + tr ( getSType ( ( ( DBFile * ) ( tmp->data ) )->sizeType, true ).toLocal8Bit().constData() );
+				QString filetype = QString(" ") + tr ( getSType ( ( ( DBFile * ) ( tmp->data ) )->sizeType, true ).toUtf8().constData() );
 			//cerr << "file type " << qPrintable(filetype) << endl;
 				if ( filetype == " " || filetype.isEmpty() )
 					filetype = " " + getSType ( ( ( DBFile * ) ( tmp->data ) )->sizeType, false );
@@ -1202,7 +1202,7 @@ int GuiSlave::openEvent ( void ) {
 
 		if ( *DEBUG_INFO_ENABLED )
 			cerr << "0-1" << endl;
-//         if ( mainw->cconfig->hlist.isEmpty() ) cerr <<"emptlyysdsaféashfk"<<endl;
+//         if ( mainw->cconfig->hlist.isEmpty() ) cerr <<"emptlyysdsafï¿½ashfk"<<endl;
 		if ( *DEBUG_INFO_ENABLED )
 			cerr << "0-2" << endl;
 		//mainw->cconfig->hlist.grep ( "AAAA" );
@@ -1304,7 +1304,7 @@ int GuiSlave::saveasEvent ( void ) {
 
 	//extension correction if necessary
 	if ( strlen ( fnc ) < 5 || strcmp ( ( fnc + ( strlen ( fnc ) - 4 ) ), ".hcf" ) != 0 )
-		sprintf ( fnc, "%s.hcf", fn.toLocal8Bit().constData() );
+		sprintf ( fnc, "%s.hcf", fn.toUtf8().constData() );
 
 	progress ( pww );
 
@@ -1392,6 +1392,7 @@ int GuiSlave::addEvent ( void ) {
 #if !defined(_WIN32) && !defined(_OS2) 
 	bool mount_successful = false;
 #endif
+	QString cdrom_mountpath = mainw->cconfig->cdrompath;
 	DEBUG_INFO_ENABLED = init_debug_info();
 	if ( mainw->db == NULL )
 		newEvent();
@@ -1433,65 +1434,88 @@ int GuiSlave::addEvent ( void ) {
 	mainw->db->pww = pww;
 	QApplication::setOverrideCursor ( Qt::WaitCursor );
 	d->type = mainw->cconfig->lastMediaType;
+	
 
 #if !defined(_WIN32) && !defined(_OS2) 
-	if ( ( d->type == CD || d->type == DVD )  &&  mainw->cconfig->mounteject ) {
+	if ( ( d->type == CD || d->type == DVD ) ) {
 		d->dDir == mainw->cconfig->cdrompath;
 		int pid;
-
 		char **arg = new char*[3];
 		char **env = new char*[2];
 
-		//search the mount program:
-		if ( QFile ( "/usr/local/bin/mount" ).exists() )
-			arg[0] = mstr ( "/usr/local/bin/mount" );
-		else {
-			if ( QFile ( "/usr/local/sbin/mount" ).exists() )
-				arg[0] = mstr ( "/usr/local/sbin/mount" );
+		if (mainw->cconfig->mounteject) {
+			//search the mount program:
+			if ( QFile ( "/usr/local/bin/mount" ).exists() )
+				arg[0] = mstr ( "/usr/local/bin/mount" );
 			else {
-				if ( QFile ( "/usr/bin/mount" ).exists() )
-					arg[0] = mstr ( "/usr/bin/mount" );
+				if ( QFile ( "/usr/local/sbin/mount" ).exists() )
+					arg[0] = mstr ( "/usr/local/sbin/mount" );
 				else {
-					if ( QFile ( "/usr/sbin/mount" ).exists() )
-						arg[0] = mstr ( "/usr/sbin/mount" );
+					if ( QFile ( "/usr/bin/mount" ).exists() )
+						arg[0] = mstr ( "/usr/bin/mount" );
 					else {
-						if ( QFile ( "/bin/mount" ).exists() )
-							arg[0] = mstr ( "/bin/mount" );
+						if ( QFile ( "/usr/sbin/mount" ).exists() )
+							arg[0] = mstr ( "/usr/sbin/mount" );
 						else {
-							if ( QFile ( "/sbin/mount" ).exists() )
-								arg[0] = mstr ( "/sbin/mount" );
+							if ( QFile ( "/bin/mount" ).exists() )
+								arg[0] = mstr ( "/bin/mount" );
 							else {
-								QMessageBox::warning
-								( d, tr ( "Cannot mount CD" ), tr ( "I can't find the \"mount\" program" ) );
-								arg[0] = mstr ( "mount" );
+								if ( QFile ( "/sbin/mount" ).exists() )
+									arg[0] = mstr ( "/sbin/mount" );
+								else {
+									QMessageBox::warning
+									( d, tr ( "Cannot mount CD" ), tr ( "I can't find the \"mount\" program" ) );
+									arg[0] = mstr ( "mount" );
+								}
 							}
 						}
 					}
 				}
 			}
+			if ( *DEBUG_INFO_ENABLED )
+				std::cout << "mount program found at: " << arg[0] << std::endl;
 		}
-		if ( *DEBUG_INFO_ENABLED )
-			std::cout << "mount program found at: " << arg[0] << std::endl;
 		if ( QFile ( "/etc/mtab" ).exists() ) {
 			// check if already mounted
 			QFile file("/etc/mtab");
 			if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-				while (!file.atEnd()) {
-					QString line = file.readLine();
+				//if ( *DEBUG_INFO_ENABLED )
+				//	std::cout << "/etc/mtab opened" << std::endl;
+				
+				QString line = file.readLine();
+				while (line.length() > 0) {
+					line = file.readLine();
+					//if ( *DEBUG_INFO_ENABLED )
+					//	std::cout << "mtab line: " << qPrintable(line) << std::endl;
 					QStringList mtablist = line.split(' ');
 					if (mtablist.size() > 3) {
+						QString mtab_devicepath = mtablist.at(0);
 						QString mtab_mountpath = mtablist.at(1);
 						//if ( *DEBUG_INFO_ENABLED )
 						//	std::cout << "mtab device path: " << qPrintable(mtab_mountpath)<< " <=> " << qPrintable(mainw->cconfig->cdrompath) << std::endl;
 						if (mtab_mountpath == mainw->cconfig->cdrompath) {
 							if ( *DEBUG_INFO_ENABLED )
-								std::cout << "device path " << qPrintable( mainw->cconfig->cdrompath ) << " is already mounted, skipping mount" << std::endl;
+								std::cout << "mount path " << qPrintable( mtab_mountpath ) << " (" << qPrintable(mtab_devicepath) << ") is already mounted, skipping mount" << std::endl;
 							mount_successful = true;
 							break;
 						}
+						if (mtab_devicepath == mainw->cconfig->cdrompath) {
+							if ( *DEBUG_INFO_ENABLED )
+								std::cout << "device path " << qPrintable( mtab_devicepath ) << " is already mounted (" << qPrintable(mtab_mountpath) << "), skipping mount" << std::endl;
+							mount_successful = true;
+							cdrom_mountpath = mtab_mountpath;
+							d->dDir = mtab_mountpath;
+							break;
+						}
+					}
+					else {
+						//if ( *DEBUG_INFO_ENABLED )
+						//	std::cout << "invalid mtab line: " << qPrintable(line) << ", skipping" << std::endl;
 					}
 				}
 				file.close();
+				//if ( *DEBUG_INFO_ENABLED )
+				//	std::cout << "/etc/mtab closed" << std::endl;
 			}
 			else {
 				if ( *DEBUG_INFO_ENABLED )
@@ -1500,12 +1524,12 @@ int GuiSlave::addEvent ( void ) {
 		}
 		else {
 			if ( *DEBUG_INFO_ENABLED )
-				std::cout << "mtab could found" << std::endl;
+				std::cout << "mtab could not found" << std::endl;
 		}
-		if(!mount_successful) {
+		if(mainw->cconfig->mounteject && !mount_successful) {
 			if ( *DEBUG_INFO_ENABLED )
-				fprintf ( stderr, "Call:%s %s...", arg[0], ( const char * ) mainw->cconfig->cdrompath.toLocal8Bit().constData() );
-			arg[1] = mstr ( mainw->cconfig->cdrompath.toLocal8Bit().constData() );
+				fprintf ( stderr, "Call:%s %s...", arg[0], ( const char * ) cdrom_mountpath.toUtf8().constData() );
+			arg[1] = mstr ( cdrom_mountpath.toUtf8().constData() );
 			arg[2] = 0;
 			env[0] = mstr ( "PATH=/usr/local/bin:/usr/bin:/bin" );
 			env[1] = 0;
@@ -1532,7 +1556,7 @@ int GuiSlave::addEvent ( void ) {
 					mount_successful = true;
 					if ( d->cbAutoDetectAtMount->isChecked() ) {
 						// mount succeded, read media name
-						QString new_medianame = getCDName ( mainw->cconfig->cdrompath.toLocal8Bit().constData() );
+						QString new_medianame = getCDName ( cdrom_mountpath.toUtf8().constData() );
 						if ( ! new_medianame.isEmpty() ) {
 							if ( *DEBUG_INFO_ENABLED )
 								cerr << "new_medianame after mount: "  << qPrintable ( new_medianame ) << endl;
@@ -1544,6 +1568,56 @@ int GuiSlave::addEvent ( void ) {
 		}
 		delete []env;
 		delete []arg;
+		
+		if ( QFile ( "/etc/mtab" ).exists() ) {
+			// check if already mounted
+			QFile file("/etc/mtab");
+			if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+				//if ( *DEBUG_INFO_ENABLED )
+				//	std::cout << "/etc/mtab opened" << std::endl;
+				
+				QString line = file.readLine();
+				while (line.length() > 0) {
+					line = file.readLine();
+					//if ( *DEBUG_INFO_ENABLED )
+					//	std::cout << "mtab line: " << qPrintable(line) << std::endl;
+					QStringList mtablist = line.split(' ');
+					if (mtablist.size() > 3) {
+						QString mtab_devicepath = mtablist.at(0);
+						QString mtab_mountpath = mtablist.at(1);
+						//if ( *DEBUG_INFO_ENABLED )
+						//	std::cout << "mtab device path: " << qPrintable(mtab_mountpath)<< " <=> " << qPrintable(mainw->cconfig->cdrompath) << std::endl;
+						if (mtab_mountpath == mainw->cconfig->cdrompath) {
+							if ( *DEBUG_INFO_ENABLED )
+								std::cout << "mount path " << qPrintable( mtab_mountpath ) << " (" << qPrintable(mtab_devicepath) << ") is already mounted, skipping mount" << std::endl;
+							break;
+						}
+						if (mtab_devicepath == mainw->cconfig->cdrompath) {
+							if ( *DEBUG_INFO_ENABLED )
+								std::cout << "device path " << qPrintable( mtab_devicepath ) << " is already mounted (" << qPrintable(mtab_mountpath) << "), skipping mount" << std::endl;
+							cdrom_mountpath = mtab_mountpath;
+							d->dDir = mtab_mountpath;
+							break;
+						}
+					}
+					else {
+						//if ( *DEBUG_INFO_ENABLED )
+						//	std::cout << "invalid mtab line: " << qPrintable(line) << ", skipping" << std::endl;
+					}
+				}
+				file.close();
+				//if ( *DEBUG_INFO_ENABLED )
+				//	std::cout << "/etc/mtab closed" << std::endl;
+			}
+			else {
+				if ( *DEBUG_INFO_ENABLED )
+					std::cout << "mtab could not openend" << std::endl;
+			}
+		}
+		else {
+			if ( *DEBUG_INFO_ENABLED )
+				std::cout << "mtab could not found" << std::endl;
+		}
 	}
 	else {
 		if ( *DEBUG_INFO_ENABLED )
@@ -1557,11 +1631,14 @@ int GuiSlave::addEvent ( void ) {
 // 	if(*DEBUG_INFO_ENABLED)
 // 		cerr<< "media type: " << d->type <<endl;
 		if ( d->type == CD || d->type == DVD ) {
+			if (mainw->cconfig->cdrompath != cdrom_mountpath) {
+				d->setMediaName ( mainw->cconfig->cdrompath );
+			}
+			else {
+				d->setMediaName ( cdrom_mountpath );
+			}
 			if ( *DEBUG_INFO_ENABLED )
-				cerr << "media name for cd (1): " << qPrintable ( d->leName->text() ) << endl;
-			d->setMediaName ( mainw->cconfig->cdrompath );
-			if ( *DEBUG_INFO_ENABLED )
-				cerr << "media name for cd (2): " << qPrintable ( d->leName->text() ) << endl;
+				cerr << "media name for cd: " << qPrintable ( d->leName->text() ) << endl;
 			if ( d->leName->text().isEmpty() ) {
 				bool ok;
 				QString text = QInputDialog::getText ( 0, tr ( "Enter media name..." ),
@@ -1606,10 +1683,14 @@ int GuiSlave::addEvent ( void ) {
 				mainw->trayIcon->showMessage(tr("Scan started"), tr("Scanning %1 into %2 has been started").arg(d->dDir, d->dName),   icon, 3 * 1000);
 			}
 			
+			if ( *DEBUG_INFO_ENABLED )
+				std::cerr << "Scanning " << qPrintable(d->dDir) << " into " << qPrintable(d->dName) << std::endl;
+			
 			i =  mainw->db->addMedia ( d->dDir, d->dName, d->serial, d->type,
 			                           ( d->dOwner.isEmpty() ? QString ( "" ) : d->dOwner ), ( d->dCategory.isEmpty() ? QString ( "" ) : d->dCategory ) );
 			
-			std::cerr << "ret addMedia: " << i << std::endl;
+			if ( *DEBUG_INFO_ENABLED )
+				std::cerr << "ret addMedia: " << i << std::endl;
 			if ( i == 2 ) {
 				QMessageBox::warning ( mainw,
 				                       tr ( "Warning..." ), tr ( "You have cancelled catalog scanning,\nthe DataBase may be incomplete" ));
@@ -1705,8 +1786,8 @@ int GuiSlave::addEvent ( void ) {
 				}
 				
 				if ( *DEBUG_INFO_ENABLED )
-					fprintf ( stderr, "Call:%s %s...", arg[0], ( const char * ) mainw->cconfig->cdrompath.toLocal8Bit().constData() );
-				arg[1] = mstr ( mainw->cconfig->cdrompath.toLocal8Bit().constData() );
+					fprintf ( stderr, "Call:%s %s...", arg[0], ( const char * ) mainw->cconfig->cdrompath.toUtf8().constData() );
+				arg[1] = mstr ( cdrom_mountpath.toUtf8().constData() );
 				arg[2] = 0;
 				env[0] = mstr ( "PATH=/usr/local/bin:/usr/bin:/bin" );
 				env[1] = 0;

@@ -1,6 +1,9 @@
 31. Jul 2012 Christoph Thielecke <crissi99@gmx.de>
 	- writing utf8 encoded filenames and content fixed (#3550586)
-	- setting media name with utf8 chars fixed 
+	- setting media name with utf8 chars fixed
+	- detection of cd/dvd media name fixed
+	- detection if cd/dvd already mounted on linux fixed (#3535884)
+	- device path can now also specified at settings for cd/dvd device
 
 29. May 2012 Christoph Thielecke <crissi99@gmx.de>
 	- crash on start fixed if trayicon is disabled (#3529967)
