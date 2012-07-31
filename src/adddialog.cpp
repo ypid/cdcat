@@ -270,7 +270,8 @@ void addDialog::languageChange() {
 
 int addDialog::setMediaName ( const QString & ds ) {
 	QString tm;
-	//std::cerr << "mediatype " << cbType->currentIndex() << std::endl;
+	//
+	std::cerr << "mediatype " << cbType->currentIndex() << std::endl;
 
 #if defined(_WIN32) || defined(_OS2)
 	QDir confdir ( ( caller->mainw->cconfig->cdrompath ).toLower() );
@@ -285,18 +286,18 @@ int addDialog::setMediaName ( const QString & ds ) {
 		//std::cerr << "setMediaName: mediatype is cd/dvd"<< std::endl;
 
 		if ( confdir  == selected ) {
-			tm = getCDName ( caller->mainw->cconfig->cdrompath.toLocal8Bit().constData());
+			tm = getCDName ( caller->mainw->cconfig->cdrompath.toUtf8().constData());
 		}
 		if ( confdir  == selected && ! ( tm.isEmpty() ) ) {
 #if defined(_WIN32) || defined(_OS2)
 			if ( ( cbType->currentIndex() == CD &&  cbType->currentIndex() == DVD ) && ( confdir  == selected ) ) {
 				if ( !caller->mainw->cconfig->cdrompath.replace ( "/", "\\" ).isEmpty() ) {
-					tm = getCDName ( caller->mainw->cconfig->cdrompath.replace ( "/", "\\" ).toLocal8Bit().constData() );
+					tm = getCDName ( caller->mainw->cconfig->cdrompath.replace ( "/", "\\" ).toUtf8().constData() );
 				}
 			}
 			else {
 				//QMessageBox::warning ( ( QWidget * ) this,tr ( "Warning:" ),tr ( "Trying selected drive name" ) );
-				tm = getCDName ( dirView->sDir.replace ( "/", "\\" ).toLocal8Bit().constData() );
+				tm = getCDName ( dirView->sDir.replace ( "/", "\\" ).toUtf8().constData() );
 			}
 #endif
 			if ( !tm.isEmpty() ) {
@@ -320,7 +321,7 @@ int addDialog::setMediaName ( const QString & ds ) {
 #if !defined(_WIN32) && !defined(_OS2)
 
 				// also set the media type to DVD if needed
-				if ( diskIsDVD ( caller->mainw->cconfig->cdrompath.toLocal8Bit().constData() ) )
+				if ( diskIsDVD ( caller->mainw->cconfig->cdrompath.toUtf8().constData() ) )
 					cbType->setCurrentIndex ( DVD );
 				else
 					cbType->setCurrentIndex( CD );

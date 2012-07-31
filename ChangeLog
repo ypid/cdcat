@@ -1,5 +1,6 @@
 31. Jul 2012 Christoph Thielecke <crissi99@gmx.de>
 	- writing utf8 encoded filenames and content fixed (#3550586)
+	- setting media name with utf8 chars fixed 
 
 29. May 2012 Christoph Thielecke <crissi99@gmx.de>
 	- crash on start fixed if trayicon is disabled (#3529967)
