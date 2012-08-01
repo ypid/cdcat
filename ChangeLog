@@ -1,5 +1,6 @@
 01. Aug 2012 Christoph Thielecke <crissi99@gmx.de>
 	- adding history entry on save as fixed
+	- version increased to 2.1
 
 31. Jul 2012 Christoph Thielecke <crissi99@gmx.de>
 	- writing utf8 encoded filenames and content fixed (#3550586)
