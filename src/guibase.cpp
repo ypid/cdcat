@@ -1217,7 +1217,7 @@ int GuiSlave::openEvent ( void ) {
 			mainw->cconfig->hlist.insert ( 0, QString ( fn ) );
 			if ( *DEBUG_INFO_ENABLED )
 				cerr << "2" << endl;
-			QAction *newaction = new QAction ( *get_t_open_icon(), fn, 0 );
+			QAction *newaction = new QAction ( *get_p_icon(), fn, 0 );
 			mainw->historyMenu->addAction ( newaction );
 			if ( *DEBUG_INFO_ENABLED )
 				cerr << "3" << endl;
@@ -1319,9 +1319,26 @@ int GuiSlave::saveasEvent ( void ) {
 	}
 	else {
 		// add history item
-		mainw->cconfig->hlist.insert ( 0, fnc );
-		QAction *newaction = new QAction ( *get_p_icon(), fnc, 0 );
-		mainw->historyMenu->insertAction ( mainw->historyMenu->actions().at ( 0 ), newaction );
+		if ( mainw->cconfig->hlist.isEmpty() || mainw->cconfig->hlist.filter ( "^" + QString ( fnc ) + "$" ).isEmpty() ) {
+			if ( *DEBUG_INFO_ENABLED )
+				cerr << "1" << endl;
+			mainw->cconfig->hlist.insert ( 0, QString ( fnc ) );
+			if ( *DEBUG_INFO_ENABLED )
+				cerr << "2" << endl;
+			QAction *newaction = new QAction ( *get_p_icon(), fnc, 0 );
+			mainw->historyMenu->addAction ( newaction );
+			if ( *DEBUG_INFO_ENABLED )
+				cerr << "3" << endl;
+			if ( ( int ) mainw->cconfig->hlist.count() > ( int ) mainw->cconfig->historysize ) {
+				if ( *DEBUG_INFO_ENABLED )
+					cerr << "4" << endl;
+				( mainw->cconfig->hlist ).removeLast ( );
+				if ( *DEBUG_INFO_ENABLED )
+					cerr << "5" << endl;
+				mainw->historyMenu->removeAction ( mainw->historyMenu->actions().last() );
+			}
+		}
+		
 	}
 	panelsOFF();
 	progress ( pww );
