@@ -386,6 +386,7 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		
 		QSpacerItem* spacer_4 = new QSpacerItem ( 200, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 		QSpacerItem* spacer_5 = new QSpacerItem ( 36, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
+		QSpacerItem* spacer_5_1 = new QSpacerItem ( 36, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 		QSpacerItem* spacer_6 = new QSpacerItem ( 190, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 		QSpacerItem* spacer_7 = new QSpacerItem ( 200, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 		QSpacerItem* spacer_8 = new QSpacerItem ( 190, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
@@ -432,8 +433,9 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		
 		//resultsl->setColumnAlignment ( 2, Qt::AlignRight ); // FIXME
 		
+		buttonClearSearchResult = new QPushButton ( this );
+		
 		buttonClose = new QPushButton ( this );
-		buttonClearSearchResult = NULL;
 		
 		layout30->addItem ( spacer_7 );
 		layout30->addWidget ( textLabel5 );
@@ -442,6 +444,8 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		layout15->addWidget ( buttonOk, 0, 0 );
 		layout15->addItem ( spacer_5, 0, 1 );
 		layout15->addWidget ( buttonCancel, 0, 2 );
+		layout15->addItem ( spacer_5_1, 0, 3 );
+		layout15->addWidget ( buttonClearSearchResult, 0, 4 );
 		
 		layout16->addItem ( spacer_9, 0, 2 );
 		layout16->addWidget ( buttonClose, 0, 1 );
@@ -473,6 +477,7 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		connect ( buttonCancel, SIGNAL ( clicked() ), this, SLOT ( cancele() ) );
 		connect ( buttonOk, SIGNAL ( clicked() ), this, SLOT ( seeke() ) );
 		connect ( buttonClose, SIGNAL ( clicked() ), this, SLOT ( closee() ) );
+		connect ( buttonClearSearchResult, SIGNAL ( clicked() ), this, SLOT ( clearSearchResultClicked()) );
 		
 	}
 }
@@ -509,6 +514,7 @@ void findDialog::languageChange() {
 #endif
 		textLabel5->setText ( tr ( "Duplicates for:" ) + " " + searchFilepath );
 		buttonClose->setText ( tr ( "Close" ) );
+		buttonClearSearchResult->setText ( tr ( "Clear search results" ) );
 		
 		resultsl->clear();
 	}
