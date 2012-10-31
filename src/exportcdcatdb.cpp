@@ -1,5 +1,3 @@
-
-
 /****************************************************************************
                             Hyper's CD Catalog
 	A multiplatform qt and xml based catalog program
@@ -263,7 +261,7 @@ exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget* parent, const ch
 
     if ( p != NULL ) {
 	QString lastDir =  mainw->cconfig->lastDir;
-	if (lastDir.isEmpty()) {
+	if (lastDir.isEmpty() || !QDir(lastDir).exists() ) {
 	QString homedir;
 #ifndef _WIN32
 		homedir = getenv("HOME");
@@ -272,7 +270,9 @@ exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget* parent, const ch
 #endif
 		lastDir = homedir;
 	}
-        fileName->setText ( lastDir +"/"+ ( ( DBCatalog * ) ( ( p->getRootNode() )->data ) )->name+".html" );
+	if (!lastDir.isEmpty())
+		lastDir += "/";
+        fileName->setText ( lastDir + ( p->getDBName() )+ ".html");
 	}
 
     checkOnlyMedia->setChecked ( false );
@@ -1103,8 +1103,21 @@ void exportCdcatDB::exportTypeToggled() {
 	listAllMedia->setEnabled(true);
 	checkOnlyMediaToggled();
 
-        if ( p != NULL )
-            fileName->setText ( lastDir+"/"+ ( ( DBCatalog * ) ( ( p->getRootNode() )->data ) )->name+".html" );
+        if ( p != NULL ) {
+		QString lastDir =  mainw->cconfig->lastDir;
+		if (lastDir.isEmpty() || !QDir(lastDir).exists() ) {
+		QString homedir;
+#ifndef _WIN32
+		homedir = getenv("HOME");
+#else
+		homedir = getenv("USER_PROFILE");
+#endif
+		lastDir = homedir;
+		}
+		if (!lastDir.isEmpty())
+			lastDir += "/";
+		fileName->setText ( lastDir + ( p->getDBName() )+ ".html");
+       }
 
     }
 
@@ -1127,8 +1140,21 @@ void exportCdcatDB::exportTypeToggled() {
 	listSelectedMedia->setEnabled(true);
 	listAllMedia->setEnabled(true);
 
-        if ( p != NULL )
-            fileName->setText (lastDir +"/"+ ( ( DBCatalog * ) ( ( p->getRootNode() )->data ) )->name+".csv" );
+        if ( p != NULL ) {
+		QString lastDir =  mainw->cconfig->lastDir;
+		if (lastDir.isEmpty() || !QDir(lastDir).exists() ) {
+		QString homedir;
+#ifndef _WIN32
+		homedir = getenv("HOME");
+#else
+		homedir = getenv("USER_PROFILE");
+#endif
+		lastDir = homedir;
+		}
+		if (!lastDir.isEmpty())
+			lastDir += "/";
+		fileName->setText ( lastDir + ( p->getDBName() )+ ".csv");
+	}
 
     }
     if ( radioXml->isChecked() ) {
@@ -1150,8 +1176,21 @@ void exportCdcatDB::exportTypeToggled() {
 	listSelectedMedia->setEnabled(false);
 	listAllMedia->setEnabled(false);
 
-        if ( p != NULL )
-            fileName->setText (lastDir +"/"+ ( ( DBCatalog * ) ( ( p->getRootNode() )->data ) )->name+".xml" );
+        if ( p != NULL ) {
+		QString lastDir =  mainw->cconfig->lastDir;
+		if (lastDir.isEmpty() || !QDir(lastDir).exists() ) {
+		QString homedir;
+#ifndef _WIN32
+		homedir = getenv("HOME");
+#else
+		homedir = getenv("USER_PROFILE");
+#endif
+		lastDir = homedir;
+		}
+		if (!lastDir.isEmpty())
+			lastDir += "/";
+            fileName->setText ( lastDir + ( p->getDBName() )+ ".xml");
+	}
 
     }
 }

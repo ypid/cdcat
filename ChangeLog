@@ -1,5 +1,6 @@
 31. Oct 2012 Christoph Thielecke <crissi99@gmx.de>
 	- export fixed (#3576090)
+	- default filename at export fixed
 
 03. Aug 2012 Christoph Thielecke <crissi99@gmx.de>
 	- crash at search on duplicates fixed
