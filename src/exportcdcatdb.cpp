@@ -539,6 +539,9 @@ void exportCdcatDB::ok() {
         setWindowTitle ( fileName->text() );
 
         int overwrite=0;
+        
+        f.setFileName(fileName->text());
+        
         if ( f.exists() ) {
             //QApplication::restoreOverrideCursor();
             QMessageBox mb ( tr ( "Overwrite?" ),
