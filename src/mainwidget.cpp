@@ -528,6 +528,7 @@ void CdCatMainWidget::returnToOldMaxMinSizes() {
  */
 CdCatMainWidget::~CdCatMainWidget() {
 	// no need to delete child widgets, Qt does it all for us
+	delete DirView;
 	delete pww;
 }
 

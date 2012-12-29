@@ -1,5 +1,6 @@
 29. Dec 2012 Christoph Thielecke <crissi99@gmx.de>
 	- memleaks at scanning filesystem fixed
+	- memleaks at exit fixed
 
 23. Dec 2012 Christoph Thielecke <crissi99@gmx.de>
 	- memleak at scanning filesystem fixed
