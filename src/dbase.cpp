@@ -575,6 +575,7 @@ DataBase::DataBase ( void ) {
 		if ( *DEBUG_INFO_ENABLED )
 			std::cerr << "lib7zip supported extensions: " << qPrintable ( Lib7zipTypes.join ( " " ) ) << std::endl;
 	}
+	lib.Deinitialize();
 #else
 	   if ( *DEBUG_INFO_ENABLED )
 		std::cerr << "lib7zip library not supported" << std::endl;
@@ -2024,6 +2025,7 @@ QList<ArchiveFile> DataBase::scanArchive ( QString path, ArchiveType type ) {
 				}
 			}
 		}
+		lib.Deinitialize();
 		if ( *DEBUG_INFO_ENABLED )
 			std::cerr << "reading " << qPrintable ( path ) << " done." << std::endl;
 	}

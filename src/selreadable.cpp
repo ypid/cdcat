@@ -376,6 +376,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 					SupportedExtensionsList.append ( QString().fromWCharArray ( ( *extIt ).c_str() ) );
 				}
 			}
+			lib.Deinitialize();
 		}
 		else {
 			fprintf ( stderr, "lib7zip initialize failed, lib7zip scanning disabled\n" );
