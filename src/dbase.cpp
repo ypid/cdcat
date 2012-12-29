@@ -953,13 +953,14 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 		
 			i = 1 + ( QMessageBox::warning ( NULL, tr ( "Error" ), errormsg, tr ( "Ignore" ), tr ( "Cancel scanning" ) ) );
 		}
+		delete dir;
 		return i;
 	}
-	
 	dirlist = new QFileInfoList ( dir->entryInfoList ( QStringList(QString ( "*" )), QDir::Dirs | QDir::Files | QDir::Hidden | QDir::System ) );
 	
 	for ( int fi = 0; fi < dirlist->size(); ++fi ) {
 		if ( pww->doCancel ) {
+			delete dirlist;
 			return 2;
 		}
 		QFileInfo *fileInfo = new QFileInfo ( dirlist->at ( fi ) );
@@ -1116,10 +1117,13 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 				
 				
 				if ( pww->doCancel ) {
+					delete dirlist;
 					return 2;
 				}
-				if ( ( ret = scanFsToNode ( thr, tt ) ) == 2 )
+				if ( ( ret = scanFsToNode ( thr, tt ) ) == 2 ) {
+					delete dirlist;
 					return ret;
+				}
 			}
 			else
 				if ( fileInfo->isSymLink() ) { /* DEAD SYMBOLIC LINK */
