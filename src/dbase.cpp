@@ -2218,11 +2218,6 @@ void DataBase::sortM ( int mode, bool ascending ) {
 	int type;
 	int i, j;
 	
-#define MYOP <
-	if (ascending == false) {
-#define MYOP >
-	}
-	
 	if ( root == NULL )
 		return;
 	length = 0;
@@ -2242,9 +2237,14 @@ void DataBase::sortM ( int mode, bool ascending ) {
 				else {
 					switch ( mode ) {
 						case NUMBER:
-							if ( ( ( DBMedia * ) ( getMOnPos ( i )->data ) )->number MYOP
-							                ( ( DBMedia * ) ( getMOnPos ( j )->data ) )->number )
-								continue;
+							if (ascending) {
+								if ( ( ( DBMedia * ) ( getMOnPos ( i )->data ) )->number < ( ( DBMedia * ) ( getMOnPos ( j )->data ) )->number )
+									continue;
+							}
+							else {
+								if ( ( ( DBMedia * ) ( getMOnPos ( i )->data ) )->number > ( ( DBMedia * ) ( getMOnPos ( j )->data ) )->number )
+									continue;
+							}
 							break;
 						case NAME:
 							if ( 0 < QString::localeAwareCompare (
@@ -2253,20 +2253,24 @@ void DataBase::sortM ( int mode, bool ascending ) {
 								continue;
 							break;
 						case TYPE:
-							if(ascending == true) {
-#define MYOP <=
+							if (ascending) {
+								if ( ( ( DBMedia * ) ( getMOnPos ( i )->data ) )->type <= ( ( DBMedia * ) ( getMOnPos ( j )->data ) )->type )
+									continue;
 							}
 							else {
-#define MYOP >=
+								if ( ( ( DBMedia * ) ( getMOnPos ( i )->data ) )->type >= ( ( DBMedia * ) ( getMOnPos ( j )->data ) )->type )
+									continue;
 							}
-							if ( ( ( DBMedia * ) ( getMOnPos ( i )->data ) )->type MYOP
-							                ( ( DBMedia * ) ( getMOnPos ( j )->data ) )->type )
-								continue;
 							break;
 						case TIME:
-							if ( ( ( DBMedia * ) ( getMOnPos ( i )->data ) )->modification MYOP
-							                ( ( DBMedia * ) ( getMOnPos ( j )->data ) )->modification )
-								continue;
+							if (ascending) {
+								if ( ( ( DBMedia * ) ( getMOnPos ( i )->data ) )->modification <= ( ( DBMedia * ) ( getMOnPos ( j )->data ) )->modification )
+									continue;
+							}
+							else {
+								if ( ( ( DBMedia * ) ( getMOnPos ( i )->data ) )->modification >= ( ( DBMedia * ) ( getMOnPos ( j )->data ) )->modification )
+									continue;
+							}
 							break;
 					}
 				}

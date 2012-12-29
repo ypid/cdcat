@@ -1,6 +1,7 @@
 29. Dec 2012 Christoph Thielecke <crissi99@gmx.de>
 	- memleaks at scanning filesystem fixed
 	- memleaks at exit fixed
+	- sorting by ascending or descending results in descending fixed (#3559284)
 
 23. Dec 2012 Christoph Thielecke <crissi99@gmx.de>
 	- memleak at scanning filesystem fixed
