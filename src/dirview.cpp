@@ -90,16 +90,16 @@ void Directory::setExpanded ( bool o ) {
 		}
 
 		//listView()->setUpdatesEnabled ( FALSE ); //FIXME
-		QFileInfoList *files = new QFileInfoList ( thisDir.entryInfoList() );
-		if ( files ) {
-			for ( int i = 0; i < files->size(); ++i ) {
-				QFileInfo *fi = new QFileInfo ( files->at ( i ) );
-				if ( fi->fileName() == "." || fi->fileName() == ".." ) {
+		QFileInfoList files ( thisDir.entryInfoList() );
+		if ( files.size() > 0 ) {
+			for ( int i = 0; i < files.size(); ++i ) {
+				QFileInfo fi ( files.at ( i ) );
+				if ( fi.fileName() == "." || fi.fileName() == ".." ) {
 					; // nothing
 				}
 				else
-					if ( fi->isDir() ) {
-						Directory *d = new Directory ( this, fi->fileName() );
+					if ( fi.isDir() ) {
+						Directory *d = new Directory ( this, fi.fileName() );
 						d->setExpanded(false);
 					}
 					else {
