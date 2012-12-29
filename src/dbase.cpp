@@ -934,12 +934,9 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 	int ret;
 	QString comm = NULL;
 	QList<ArchiveFile> archivecontent = QList<ArchiveFile>();
-	QDir *dir = NULL;
-	QFileInfoList *dirlist = NULL;
-	
 	ret = 0;
-	dir = new QDir ( what );
-	if ( !dir->isReadable() ) {
+	QDir dir ( what );
+	if ( !dir.isReadable() ) {
 		if ( *DEBUG_INFO_ENABLED )
 			std::cerr << "dir " << qPrintable ( what ) << " is not readable";
 		
@@ -953,35 +950,33 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 		
 			i = 1 + ( QMessageBox::warning ( NULL, tr ( "Error" ), errormsg, tr ( "Ignore" ), tr ( "Cancel scanning" ) ) );
 		}
-		delete dir;
 		return i;
 	}
-	dirlist = new QFileInfoList ( dir->entryInfoList ( QStringList(QString ( "*" )), QDir::Dirs | QDir::Files | QDir::Hidden | QDir::System ) );
+	QFileInfoList dirlist( dir.entryInfoList ( QStringList(QString ( "*" )), QDir::Dirs | QDir::Files | QDir::Hidden | QDir::System ) );
 	
-	for ( int fi = 0; fi < dirlist->size(); ++fi ) {
+	for ( int fi = 0; fi < dirlist.size(); ++fi ) {
 		if ( pww->doCancel ) {
-			delete dirlist;
 			return 2;
 		}
-		QFileInfo *fileInfo = new QFileInfo ( dirlist->at ( fi ) );
-		if ( fileInfo->fileName() == "." || fileInfo->fileName() == ".." ) {
+		QFileInfo fileInfo ( dirlist.at ( fi ) );
+		if ( fileInfo.fileName() == "." || fileInfo.fileName() == ".." ) {
 			continue;
 		}
 		
 		if ( *DEBUG_INFO_ENABLED )
-			std::cerr << "processing in dir " << qPrintable ( what ) << " node: " << qPrintable ( fileInfo->fileName() ) << std::endl;
+			std::cerr << "processing in dir " << qPrintable ( what ) << " node: " << qPrintable ( fileInfo.fileName() ) << std::endl;
 		
 		if ( showProgressedFileInStatus )
-			emit pathScanned ( fileInfo->filePath() );
+			emit pathScanned ( fileInfo.filePath() );
 		
 		if (doExcludeFiles) {
 			bool exclude_path_matched = false;
 			for (int i = 0; i < excludeFileRegExList.size(); i++) {
 				if ( *DEBUG_INFO_ENABLED )
-						std::cerr << "exclude files: checking regex \"" << qPrintable (excludeFileRegExList.at(i).pattern() ) << "\" against file path " << qPrintable ( fileInfo->filePath() )<< std::endl;
-				if(excludeFileRegExList.at(i).exactMatch(fileInfo->filePath())) {
+						std::cerr << "exclude files: checking regex \"" << qPrintable (excludeFileRegExList.at(i).pattern() ) << "\" against file path " << qPrintable ( fileInfo.filePath() )<< std::endl;
+				if(excludeFileRegExList.at(i).exactMatch(fileInfo.filePath())) {
 					if ( *DEBUG_INFO_ENABLED )
-						std::cerr << "exclude files: regex MATCH: \"" << qPrintable (excludeFileRegExList.at(i).pattern() ) << "\" against file path " << qPrintable ( fileInfo->filePath() ) << ", skipping" << std::endl;
+						std::cerr << "exclude files: regex MATCH: \"" << qPrintable (excludeFileRegExList.at(i).pattern() ) << "\" against file path " << qPrintable ( fileInfo.filePath() ) << ", skipping" << std::endl;
 					exclude_path_matched = true;
 					break;
 				}
@@ -993,24 +988,24 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 		/* Make a new node */
 		Node *tt = to->child;
 		if ( to->child == NULL )
-			to->child = tt = new Node ( fileInfo->isDir() ? HC_DIRECTORY : HC_FILE, to );
+			to->child = tt = new Node ( fileInfo.isDir() ? HC_DIRECTORY : HC_FILE, to );
 		else {
 			while ( tt->next != NULL ) {
 				tt = tt->next;
 			}
-			tt->next = new Node ( fileInfo->isDir() ? HC_DIRECTORY : HC_FILE, to );
+			tt->next = new Node ( fileInfo.isDir() ? HC_DIRECTORY : HC_FILE, to );
 			tt = tt->next;
 		}
 		/*Fill the data field */
-		if ( fileInfo->isFile() ) { /* FILE */
+		if ( fileInfo.isFile() ) { /* FILE */
 			if ( *DEBUG_INFO_ENABLED )
-				std::cerr << "adding file: " << qPrintable ( fileInfo->fileName() ) << std::endl;
+				std::cerr << "adding file: " << qPrintable ( fileInfo.fileName() ) << std::endl;
 			
 			//if ( displayCurrentScannedFileInTray ) {
 			//	emit fileScanned ( fileInfo->filePath() );
 			//}
 			
-			double size = fileInfo->size();
+			double size = fileInfo.size();
 			double s = size;
 			int   st = UNIT_BYTE;
 // 			if ( *DEBUG_INFO_ENABLED )
@@ -1048,109 +1043,106 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 			
 			progress ( pww );
 			
-			if ( fileInfo->isSymLink() ) { /* SYMBOLIC LINK to a FILE */
+			if ( fileInfo.isSymLink() ) { /* SYMBOLIC LINK to a FILE */
 				comm = tr ( "Symbolic link to file:#" )
-				       + dir->relativeFilePath ( fileInfo->symLinkTarget() );
+				       + dir.relativeFilePath ( fileInfo.symLinkTarget() );
 			}
 			else {
 				comm = ( char* ) NULL;
-				QString extension = fileInfo->fileName().toLower().section ( '.', -1, -1 );
+				QString extension = fileInfo.fileName().toLower().section ( '.', -1, -1 );
 				if ( doScanArchive ) {
 					if ( doScanArchiveTar ) {
 						if ( extension == "tar" ) {
 							if ( *DEBUG_INFO_ENABLED )
-								std::cerr << "tarfile found: " << qPrintable ( what + "/" + fileInfo->fileName() ) << std::endl;
-							archivecontent = scanArchive ( what + "/" + fileInfo->fileName(), Archive_tar );
+								std::cerr << "tarfile found: " << qPrintable ( what + "/" + fileInfo.fileName() ) << std::endl;
+							archivecontent = scanArchive ( what + "/" + fileInfo.fileName(), Archive_tar );
 						}
 						else
-							if ( fileInfo->fileName().toLower().section ( '.', -2, -1 ) == "tar.gz" ) {
+							if ( fileInfo.fileName().toLower().section ( '.', -2, -1 ) == "tar.gz" ) {
 								if ( *DEBUG_INFO_ENABLED )
-									std::cerr << "targz found: " << qPrintable ( what + "/" + fileInfo->fileName() ) << std::endl;
-								archivecontent = scanArchive ( what + "/" + fileInfo->fileName(), Archive_targz );
+									std::cerr << "targz found: " << qPrintable ( what + "/" + fileInfo.fileName() ) << std::endl;
+								archivecontent = scanArchive ( what + "/" + fileInfo.fileName(), Archive_targz );
 							}
 							else
-								if ( fileInfo->fileName().toLower().section ( '.', -2, -1 ) == "tar.bz2" ) {
+								if ( fileInfo.fileName().toLower().section ( '.', -2, -1 ) == "tar.bz2" ) {
 									if ( *DEBUG_INFO_ENABLED )
-										std::cerr << "tarbz2 found: " << qPrintable ( what + "/" + fileInfo->fileName() ) << std::endl;
-									archivecontent = scanArchive ( what + "/" + fileInfo->fileName(), Archive_tarbz2 );
+										std::cerr << "tarbz2 found: " << qPrintable ( what + "/" + fileInfo.fileName() ) << std::endl;
+									archivecontent = scanArchive ( what + "/" + fileInfo.fileName(), Archive_tarbz2 );
 								}
 					}
 					if ( doScanArchiveLib7zip )  {
-						if ( Lib7zipTypes.contains ( extension )  && ! ( fileInfo->fileName().toLower().section ( '.', -1, -1 ) == "tar" ||  fileInfo->fileName().toLower().section ( '.', -2, -1 ) == "tar.gz" || fileInfo->fileName().toLower().section ( '.', -2, -1 ) == "tar.bz2" ) ) {
+						if ( Lib7zipTypes.contains ( extension )  && ! ( fileInfo.fileName().toLower().section ( '.', -1, -1 ) == "tar" ||  fileInfo.fileName().toLower().section ( '.', -2, -1 ) == "tar.gz" || fileInfo.fileName().toLower().section ( '.', -2, -1 ) == "tar.bz2" ) ) {
 							if ( *DEBUG_INFO_ENABLED )
-								std::cerr << "lib7zip found: " << qPrintable ( what + "/" + fileInfo->fileName() ) << std::endl;
-							archivecontent = scanArchive ( what + "/" + fileInfo->fileName(), Archive_lib7zip );
+								std::cerr << "lib7zip found: " << qPrintable ( what + "/" + fileInfo.fileName() ) << std::endl;
+							archivecontent = scanArchive ( what + "/" + fileInfo.fileName(), Archive_lib7zip );
 						}
 					}
 
 				}
 			}
-			tt->data = ( void * ) new DBFile ( fileInfo->fileName(), fileInfo->lastModified(), comm, s, st, this->pcategory, archivecontent );
+			tt->data = ( void * ) new DBFile ( fileInfo.fileName(), fileInfo.lastModified(), comm, s, st, this->pcategory, archivecontent );
 			archivecontent.clear();
-			scanFileProp ( fileInfo, ( DBFile * ) tt->data );
+			scanFileProp ( &fileInfo, ( DBFile * ) tt->data );
 		}
 		else
-			if ( fileInfo->isDir() ) { /* DIRECTORY */
+			if ( fileInfo.isDir() ) { /* DIRECTORY */
 				if ( *DEBUG_INFO_ENABLED )
-					std::cerr << "adding dir: " << qPrintable ( fileInfo->fileName() ) << std::endl;
+					std::cerr << "adding dir: " << qPrintable ( fileInfo.fileName() ) << std::endl;
 				
 				progress ( pww );
 				
-				if ( fileInfo->isSymLink() ) { /* SYMBOLIC LINK to a DIRECTORY */
+				if ( fileInfo.isSymLink() ) { /* SYMBOLIC LINK to a DIRECTORY */
 					/* These links appear as empty directories in the GUI */
 					/* Change to DBFile for show them as files */
 					tt->data = ( void * ) new DBDirectory (
-					                   fileInfo->fileName(), fileInfo->lastModified(),
+					                   fileInfo.fileName(), fileInfo.lastModified(),
 					                   tr ( "Symbolic link to directory:#" )
-					                   + dir->relativeFilePath ( fileInfo->symLinkTarget() ), this->pcategory );
+					                   + dir.relativeFilePath ( fileInfo.symLinkTarget() ), this->pcategory );
 					continue; /* Do not recurse into symbolically linked directories */
 				}
 				else {
 					tt->data = ( void * ) new DBDirectory (
-					                   fileInfo->fileName(), fileInfo->lastModified(), ( char* ) NULL, this->pcategory );
+					                   fileInfo.fileName(), fileInfo.lastModified(), ( char* ) NULL, this->pcategory );
 				}
 				
 				/* Start recursion: */
 				QString thr ( what );
 				thr = thr.append ( "/" );
-				thr = thr.append ( fileInfo->fileName() );
+				thr = thr.append ( fileInfo.fileName() );
 				
 				
 				if ( pww->doCancel ) {
-					delete dirlist;
 					return 2;
 				}
 				if ( ( ret = scanFsToNode ( thr, tt ) ) == 2 ) {
-					delete dirlist;
 					return ret;
 				}
 			}
 			else
-				if ( fileInfo->isSymLink() ) { /* DEAD SYMBOLIC LINK */
+				if ( fileInfo.isSymLink() ) { /* DEAD SYMBOLIC LINK */
 					if ( *DEBUG_INFO_ENABLED )
-						std::cerr << "adding dead symlink: " << qPrintable ( fileInfo->fileName() ) << std::endl;
+						std::cerr << "adding dead symlink: " << qPrintable ( fileInfo.fileName() ) << std::endl;
 					
 					progress ( pww );
 					
 					comm = tr ( "DEAD Symbolic link to:#" )
-					       + dir->relativeFilePath ( fileInfo->symLinkTarget() );
-					tt->data = ( void * ) new DBFile ( fileInfo->fileName(), QDateTime(),
+					       + dir.relativeFilePath ( fileInfo.symLinkTarget() );
+					tt->data = ( void * ) new DBFile ( fileInfo.fileName(), QDateTime(),
 					                                   comm, 0, UNIT_BYTE, this->pcategory );
 				}
 				else {   /* SYSTEM FILE (e.g. FIFO, socket or device file) */
 					if ( *DEBUG_INFO_ENABLED )
-						std::cerr << "adding system file: " << qPrintable ( fileInfo->fileName() ) << std::endl;
+						std::cerr << "adding system file: " << qPrintable ( fileInfo.fileName() ) << std::endl;
 					
 					progress ( pww );
 					
 					comm = tr ( "System file (e.g. FIFO, socket or device file)" );
-					tt->data = ( void * ) new DBFile ( fileInfo->fileName(), fileInfo->lastModified(),
+					tt->data = ( void * ) new DBFile ( fileInfo.fileName(), fileInfo.lastModified(),
 					                                   comm, 0, UNIT_BYTE, this->pcategory );
 				}
 		if(pww->appl->hasPendingEvents())
 			pww->appl->processEvents();
 	}/*end of for,..next directory entry*/
-	delete dirlist;
 	return ret;
 }
 
