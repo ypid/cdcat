@@ -1862,7 +1862,9 @@ QList<ArchiveFile> DataBase::scanArchive ( QString path, ArchiveType type ) {
 						af.filetype += QString().sprintf ( "%.100s", t->th_buf.linkname );
 				}
 #endif
-
+				
+				tar_close(t);
+				
 				filelist.append ( af );
 				progress ( pww );
 
