@@ -1319,12 +1319,13 @@ Please change it with an older version or rewrite it in the xml file!" );
 						return false;
 					}
 					if ( ti1 == UNKNOWN ) {
-						r->errormsg = QString ( "Unknown media type in the file. (\"%1\")" )
-						                 .arg ( r->getStr2 ( attr, (char *)"type"  , (char *)"Error while parsing \"media\" node" ).toUtf8().constData() );
-						
-						r->error_found = 1;
-						cerr << qPrintable(r->errormsg) << " el: "<<qPrintable(el)<<endl;
-						return false;
+// 						r->errormsg = QString ( "Unknown media type in the file. (\"%1\")" )
+// 						                 .arg ( r->getStr2 ( attr, (char *)"type"  , (char *)"Error while parsing \"media\" node" ).toUtf8().constData() );
+// 						
+// 						r->error_found = 1;
+// 						cerr << qPrintable(r->errormsg) << " el: "<<qPrintable(el)<<endl;
+// 						return false;
+						ti1 = OTHERD;
 					}
 					
 					tt->data = ( void * ) new DBMedia ( newname, newnum, ts1, ti1, "", td1 );
@@ -1355,11 +1356,12 @@ Please change it with an older version or rewrite it in the xml file!" );
 						return false;
 					}
 					if ( ti1 == UNKNOWN ) {
-						r->errormsg = QString ( "Line %1: Unknown media type in the file. (\"%1\")" )
-						                 .arg ( r->getStr2 ( attr, (char *)"type"  , (char *)"Error while parsing \"media\" node" ).toUtf8().constData() );
-						r->error_found = 1;
-						cerr << qPrintable(r->errormsg) << " el: "<<qPrintable(el)<<endl;
-						return false;
+// 						r->errormsg = QString ( "Line %1: Unknown media type in the file. (\"%1\")" )
+// 						                 .arg ( r->getStr2 ( attr, (char *)"type"  , (char *)"Error while parsing \"media\" node" ).toUtf8().constData() );
+// 						r->error_found = 1;
+// 						cerr << qPrintable(r->errormsg) << " el: "<<qPrintable(el)<<endl;
+// 						return false;
+						ti1 = OTHERD;
 					}
 					
 					tt->data = ( void * ) new DBMedia ( ts1, ( int ) tf1, ts2, ti1, "", td1 );

@@ -2,6 +2,7 @@
 	- segmentation fault on 'add link to a cdcat catalog' fixed (#3597794)
 	- setting progress text fixed
 	- changing media type using media type dialog fixed (#3581829)
+	- dont stop parsing at unknown media type, change automaticlly to other type
 
 29. Dec 2012 Christoph Thielecke <crissi99@gmx.de>
 	- memleaks at scanning filesystem fixed
