@@ -1202,7 +1202,7 @@ int GuiSlave::openEvent ( void ) {
 
 		if ( *DEBUG_INFO_ENABLED )
 			cerr << "0-1" << endl;
-//         if ( mainw->cconfig->hlist.isEmpty() ) cerr <<"emptlyysdsaf�ashfk"<<endl;
+//         if ( mainw->cconfig->hlist.isEmpty() ) cerr <<"emptlyysdsaf?ashfk"<<endl;
 		if ( *DEBUG_INFO_ENABLED )
 			cerr << "0-2" << endl;
 		//mainw->cconfig->hlist.grep ( "AAAA" );
@@ -2931,21 +2931,22 @@ CatalogTypeEditDialog::CatalogTypeEditDialog ( CdCatMainWidget *parent, Node *n 
 	connect ( cbType, SIGNAL ( activated ( int ) ), this, SLOT ( cbTypeToggeled ( int ) ) );
 	languageChange();
 	resize ( QSize ( 200, 250 ).expandedTo ( minimumSizeHint() ) );
+	cbType->setCurrentIndex ( ( ( DBMedia * ) ( n->data ) )->type - 1 );
 }
 
 void CatalogTypeEditDialog::languageChange() {
 	setWindowTitle ( tr ( "Change media type" ) );
 	TextLabel->setText ( tr ( "Change type of media" ) + " " + this->n->getFullPath() );
 	cbType->clear();
-	cbType->insertItem ( 0, *get_m_cd_icon(), tr ( "CD" ) );
-	cbType->insertItem ( 0, *get_m_dvd_icon(), tr ( "DVD" ) );
-	cbType->insertItem ( 0, *get_m_hdd_icon(), tr ( "HardDisc" ) );
-	cbType->insertItem ( 0, *get_m_floppy_icon(), tr ( "Floppy" ) );
-	cbType->insertItem ( 0, *get_m_net_icon(), tr ( "NetworkPlace" ) );
-	cbType->insertItem ( 0, *get_m_flash_icon(), tr ( "FlashDrive" ) );
-	cbType->insertItem ( 0, *get_m_other_icon(), tr ( "OtherDevice" ) );
+	cbType->insertItem ( CD, *get_m_cd_icon(), tr ( "CD" ) );
+	cbType->insertItem ( DVD, *get_m_dvd_icon(), tr ( "DVD" ) );
+	cbType->insertItem ( HARDDISC, *get_m_hdd_icon(), tr ( "HardDisc" ) );
+	cbType->insertItem ( FLOPPY, *get_m_floppy_icon(), tr ( "Floppy" ) );
+	cbType->insertItem ( NETPLACE, *get_m_net_icon(), tr ( "NetworkPlace" ) );
+	cbType->insertItem ( FLASHDRV, *get_m_flash_icon(), tr ( "FlashDrive" ) );
+	cbType->insertItem ( OTHERD, *get_m_other_icon(), tr ( "OtherDevice" ) );
+	
 	//cbType->setCurrentText(tr( "CD" )); // default
-	cbType->setCurrentIndex ( ( ( DBMedia * ) ( n->data ) )->type );
 	buttonCancel->setText ( tr ( "Cancel" ) );
 	buttonOK->setText ( tr ( "OK" ) );
 }
@@ -2954,10 +2955,10 @@ void CatalogTypeEditDialog::okExit() {
 	DEBUG_INFO_ENABLED = init_debug_info();
 	changeOk = true;
 	if ( *DEBUG_INFO_ENABLED )
-		std::cerr << "mediatype changed from " << ( ( DBMedia * ) ( n->data ) )->type << " to " << cbType->currentIndex() << std::endl;
-	( ( DBMedia * ) ( n->data ) )->type = cbType->currentIndex();
+		std::cerr << "mediatype changed from " << ( ( DBMedia * ) ( n->data ) )->type << " to " << cbType->currentIndex() +1 << std::endl;
+	( ( DBMedia * ) ( n->data ) )->type = cbType->currentIndex() + 1;
 	if ( *DEBUG_INFO_ENABLED )
-		std::cerr << "mediatype new: " << ( ( DBMedia * ) ( n->data ) )->type << std::endl;
+		std::cerr << "mediatype new: " << ( ( DBMedia * ) ( n->data ) )->type +1 << std::endl;
 	close();
 }
 
