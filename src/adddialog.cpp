@@ -555,13 +555,8 @@ void PWw::end ( void ) {
 void PWw::setProgressText ( QString progresstext ) {
 	int i;
 	QFont ownf;
-	bool progresstext_was_empty=false;
-	if(this->progresstext.isEmpty())
-		progresstext_was_empty = true;
-	if ( !progresstext.isEmpty() ) {
-		this->progresstext = progresstext;
-	}
-
+	this->progresstext = progresstext;
+	
 	/* Calculate the necesary font size*/
 	ownf = font();
 	i = 10;
@@ -569,7 +564,7 @@ void PWw::setProgressText ( QString progresstext ) {
 	ownf.setPointSize ( i );
 	QFontMetrics fm ( ownf );
 	
- 	mywidth = ( fm.width ( progresstext ) ) + 10;
+ 	mywidth = ( fm.width ( this->progresstext ) ) + 10;
 	begintext = 5;
 	
 	setFont ( ownf );
