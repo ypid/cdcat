@@ -2039,7 +2039,10 @@ void DataBase::addLnk ( const char *loc ) {
 	FileReader *fw = NULL;
 	DEBUG_INFO_ENABLED = init_debug_info();
 
-	Node *tmp = root->child, *n = new Node ( HC_CATLNK, root );
+	Node *tmp = root;
+	Node root2 ( HC_CATALOG, NULL ); //Malloc root node
+	root2.data = ( void * ) new DBCatalog();
+	Node *n = new Node ( HC_CATLNK, root );
 
 	/* Reading database name from the pointed file */
 	f = gzopen ( loc, "rb" );
@@ -2065,7 +2068,7 @@ void DataBase::addLnk ( const char *loc ) {
 		std::cerr << "detected uncompressed size: " << filesize << std::endl;
 
 	char *allocated_buffer = NULL;
-	allocated_buffer = ( char * ) calloc ( filesize, sizeof ( QChar ) );
+	allocated_buffer = ( char * ) malloc ( filesize );
 	if ( allocated_buffer == NULL ) {
 		// fail => no enough memory
 		QMessageBox::warning ( NULL, tr ( "Error" ), tr ( "Not enough memory to open the file: %1" ).arg ( QString ( loc ) ) );
@@ -2078,6 +2081,7 @@ void DataBase::addLnk ( const char *loc ) {
 
 	fw = new FileReader ( f, allocated_buffer, filesize );
 	fw->pww = pww;
+	fw->sp = &root2;
 	catname = fw->getCatName();
 	if ( catname.isEmpty() ) {
 		QMessageBox::warning ( NULL, tr ( "Error" ), tr ( "Error while parsing file: %1" ).arg ( loc ) );
@@ -2089,6 +2093,7 @@ void DataBase::addLnk ( const char *loc ) {
 	gzclose ( f );
 	free ( allocated_buffer );
 	delete fw;
+	
 	/* end reading from the file */
 
 	catname.prepend ( "@" );
@@ -2099,6 +2104,7 @@ void DataBase::addLnk ( const char *loc ) {
 		root->child = n;
 	}
 	else {
+		tmp = root;
 		while ( tmp->next != NULL )
 			tmp = tmp->next;
 		tmp->next = n;

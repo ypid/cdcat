@@ -75,6 +75,7 @@ public:
     QString get_cutf8 ( QString s );
     QDateTime get_dcutf8 ( QString s );
     QString XML_ENCODING;
+    QString catname;
 private:
     gzFile f;
 
