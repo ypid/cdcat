@@ -1760,7 +1760,7 @@ QList<ArchiveFile> DataBase::scanArchive ( QString path, ArchiveType type ) {
 		}
 		
 		int i = 0;
-		TAR *t;
+		TAR *t = NULL;
 		int tar_open_ret = -1;
 		if ( type == Archive_tar )
 			tar_open_ret = tar_open ( &t, path.toLocal8Bit().data(), ( NULL ), O_RDONLY, 0, ( verbose ? TAR_VERBOSE : 0 ) | ( use_gnu ? TAR_GNU : 0 ) );
@@ -1856,7 +1856,6 @@ QList<ArchiveFile> DataBase::scanArchive ( QString path, ArchiveType type ) {
 				}
 #endif
 				
-				tar_close(t);
 				
 				filelist.append ( af );
 				progress ( pww );
@@ -1873,6 +1872,7 @@ QList<ArchiveFile> DataBase::scanArchive ( QString path, ArchiveType type ) {
 			if ( *DEBUG_INFO_ENABLED )
 				std::cerr << "reading " << qPrintable ( path ) << " done." << std::endl;
 		}
+		tar_close(t);
 	}
 #ifdef USE_LIB7ZIP
 	if ( type == Archive_lib7zip ) {
