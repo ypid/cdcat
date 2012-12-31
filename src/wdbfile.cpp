@@ -368,7 +368,7 @@ int  FileWriter::writeCatalog ( Node *source ) {
 	return 0;
 }
 
-int  FileWriter::writeMedia ( Node *source ) {
+int  FileWriter::writeMedia ( Node *source, bool doNext ) {
 	QString c1, c2, c3;
 
 	c1 = to_cutf8 ( ( ( DBMedia * ) ( source->data ) )->name );
@@ -394,6 +394,10 @@ int  FileWriter::writeMedia ( Node *source ) {
 		writeDown ( source->child );
 	level--;
 	gzprintf ( f, "%s</media>\n", spg ( level ) );
+	
+	if (!doNext)
+		return 0;
+	
 	if ( source->next  != NULL )
 		writeDown ( source->next );
 
@@ -423,7 +427,7 @@ int  FileWriter::writeDirectory ( Node *source ) {
 	return 0;
 }
 
-int  FileWriter::writeFile ( Node *source ) {
+int  FileWriter::writeFile ( Node *source, bool doNext ) {
 	QString c1, c2;
 
 	c1 = to_cutf8 ( ( ( DBFile * ) ( source->data ) )->name );
@@ -444,6 +448,10 @@ int  FileWriter::writeFile ( Node *source ) {
 		writeDown ( ( ( DBFile * ) ( source->data ) )->prop );
 	level--;
 	gzprintf ( f, "%s</file>\n", spg ( level ) );
+	
+	if (!doNext)
+		return 0;
+	
 	if ( source->next  != NULL )
 		writeDown ( source->next );
 
@@ -883,7 +891,7 @@ int FileReader::readFrom ( Node *source, bool skipDuplicatesOnInsert ) {
 	int readcount = 0;
 	linecount = 0;
 	long long int offset = 0;
-	char tmpbuffer[4096];
+	char tmpbuffer[4097];
 
 	if ( *DEBUG_INFO_ENABLED )
 		std::cerr << "start reading file..." << endl;
@@ -1080,6 +1088,7 @@ QString FileReader::getCatName ( void ) {
 	}
 	return "";
 }
+
 CdCatXmlHandler::CdCatXmlHandler ( FileReader *r, bool onlyCatalog ) {
 	this->r = r;
 	data = r;
@@ -1326,6 +1335,7 @@ Please change it with an older version or rewrite it in the xml file!" );
 // 						cerr << qPrintable(r->errormsg) << " el: "<<qPrintable(el)<<endl;
 // 						return false;
 						ti1 = OTHERD;
+						r->error_found = 0;
 					}
 					
 					tt->data = ( void * ) new DBMedia ( newname, newnum, ts1, ti1, "", td1 );
@@ -1361,6 +1371,7 @@ Please change it with an older version or rewrite it in the xml file!" );
 // 						r->error_found = 1;
 // 						cerr << qPrintable(r->errormsg) << " el: "<<qPrintable(el)<<endl;
 // 						return false;
+						r->error_found = 0;
 						ti1 = OTHERD;
 					}
 					

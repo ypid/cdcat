@@ -48,7 +48,7 @@ public:
     int writeDown ( Node *source );
     bool nicef;
 
-private:
+//private:
     char **spgtable;
     inline char * spg ( int spn );
     void commentWriter ( QString& c );
@@ -58,9 +58,9 @@ private:
 
     int  writeHeader ( void );
     int  writeCatalog ( Node *source );
-    int  writeMedia ( Node *source );
+    int  writeMedia ( Node *source, bool doNext = true );
     int  writeDirectory ( Node *source );
-    int  writeFile ( Node *source );
+    int  writeFile ( Node *source, bool doNext = true );
     int  writeMp3Tag ( Node *source );
     int  writeContent ( Node *source );
     int  writeCatLnk ( Node *source );
@@ -140,3 +140,4 @@ class CdCatXmlHandler : public QXmlDefaultHandler {
 
 
 #endif
+

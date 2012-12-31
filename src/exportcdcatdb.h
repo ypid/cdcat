@@ -133,6 +133,8 @@ protected:
     DataBase *p;
     QString separator;
     QFile f;
+    gzFile ff;
+    FileWriter *fw;
     int writeDown ( Node *source );
     int  writeCatalog ( Node *source );
     int  writeMedia ( Node *source );
