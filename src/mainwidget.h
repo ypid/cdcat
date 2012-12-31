@@ -130,7 +130,8 @@ class CdCatMainWidget : public QMainWindow{
 		QAction *delete_action;
 		QAction *sortnu_ascending_action;
 		QAction *sortnu_descending_action;
-		QAction *sortna_action;
+		QAction *sortna_ascending_action;
+		QAction *sortna_descending_action;
 		QAction *sortti_ascending_action;
 		QAction *sortti_descending_action;
 		QAction *find_action;

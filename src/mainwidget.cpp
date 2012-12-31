@@ -257,11 +257,17 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	connect ( sortnu_descending_action, SIGNAL ( triggered() ), guis, SLOT ( sortNuEventDescending()) );
 	editMenu->addAction ( sortnu_descending_action );
 
-	sortna_action = new QAction ( QIcon ( *get_t_save_icon() ), tr ( "Sort media by name" ), this );
-	//sortna_action->setShortcuts(QKeySequence::Save);
-	sortna_action->setStatusTip ( tr ( "Sort media by name" ) );
-	connect ( sortna_action, SIGNAL ( triggered() ), guis, SLOT ( sortNaEvent() ) );
-	editMenu->addAction ( sortna_action );
+	sortna_ascending_action = new QAction ( QIcon ( *get_t_save_icon() ), tr ( "Sort media by name (ascending)" ), this );
+	//sortna_ascending_action->setShortcuts(QKeySequence::Save);
+	sortna_ascending_action->setStatusTip ( tr ( "Sort media by name" ) );
+	connect ( sortna_ascending_action, SIGNAL ( triggered() ), guis, SLOT ( sortNaEventAscending()) );
+	editMenu->addAction ( sortna_ascending_action );
+
+	sortna_descending_action = new QAction ( QIcon ( *get_t_save_icon() ), tr ( "Sort media by name (descending)" ), this );
+	//sortna_descending_action->setShortcuts(QKeySequence::Save);
+	sortna_descending_action->setStatusTip ( tr ( "Sort media by name (descending)" ) );
+	connect ( sortna_descending_action, SIGNAL ( triggered() ), guis, SLOT ( sortNaEventDescending()) );
+	editMenu->addAction ( sortna_descending_action );
 
 	sortti_ascending_action = new QAction ( QIcon ( *get_t_save_icon() ), tr ( "Sort media by time (ascending)" ), this );
 	//sortti_ascending_action->setShortcuts(QKeySequence::Save);
@@ -591,8 +597,10 @@ void CdCatMainWidget::languageChange() {
         sortnu_ascending_action->setStatusTip ( tr ( "Sort media by number (ascending)" ));
         sortnu_descending_action->setText(tr ( "Sort media by number (descending)" ));
         sortnu_descending_action->setStatusTip ( tr ( "Sort media by number (descending)" ));
-        sortna_action->setText(tr ( "Sort media by name" ));
-        sortna_action->setStatusTip ( tr ( "Sort media by name" ));
+        sortna_ascending_action->setText(tr ( "Sort media by name (ascending)" ));
+        sortna_ascending_action->setStatusTip ( tr ( "Sort media by name (ascending)" ));
+	sortna_descending_action->setText(tr ( "Sort media by name (descending)" ));
+        sortna_descending_action->setStatusTip ( tr ( "Sort media by name (descending)" ));
         sortti_ascending_action->setText(tr ( "Sort media by time (ascending)" ));
         sortti_ascending_action->setStatusTip ( tr ( "Sort media by time (ascending)" ));
         sortti_descending_action->setText(tr ( "Sort media by time (descending)" ));

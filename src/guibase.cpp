@@ -2316,7 +2316,7 @@ int GuiSlave::sortNuEventDescending ( void ) {
 	return 0;
 }
 
-int GuiSlave::sortNaEvent ( void ) {
+int GuiSlave::sortNaEventAscending ( void ) {
 	if ( mainw->db == NULL )
 		return 0;
 	panelsOFF();
@@ -2329,6 +2329,21 @@ int GuiSlave::sortNaEvent ( void ) {
 	panelsON();
 	return 0;
 }
+
+int GuiSlave::sortNaEventDescending ( void ) {
+	if ( mainw->db == NULL )
+		return 0;
+	panelsOFF();
+	mainw->db->sortM ( NAME );
+	mainw->DirView->clear();
+	mainw->DirView->setSortingEnabled(true);
+	mainw->listView->setSortingEnabled(true);
+	mainw->DirView->sortByColumn(0, Qt::DescendingOrder);
+	mainw->DirView->start();
+	panelsON();
+	return 0;
+}
+
 
 int GuiSlave::sortTyEventAscending ( void ) {
 	if ( mainw->db == NULL )

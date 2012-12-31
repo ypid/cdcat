@@ -130,7 +130,8 @@ public slots:
 
     int sortNuEventAscending ( void );
     int sortNuEventDescending ( void );
-    int sortNaEvent ( void );
+    int sortNaEventAscending ( void );
+    int sortNaEventDescending ( void );
     int sortTyEventAscending ( void );
     int sortTyEventDescending ( void );
     int sortTiEventAscending ( void );
