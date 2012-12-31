@@ -281,6 +281,18 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	connect ( sortti_descending_action, SIGNAL ( triggered() ), guis, SLOT ( sortTiEventDescending()) );
 	editMenu->addAction ( sortti_descending_action );
 	
+	sortty_ascending_action = new QAction ( QIcon ( *get_t_save_icon() ), tr ( "Sort media by type (ascending)" ), this );
+	//sortty_ascending_action->setShortcuts(QKeySequence::Save);
+	sortty_ascending_action->setStatusTip ( tr ( "Sort media by type (ascending)" ) );
+	connect ( sortty_ascending_action, SIGNAL ( triggered() ), guis, SLOT ( sortTyEventAscending()) );
+	editMenu->addAction ( sortty_ascending_action );
+	
+	sortty_descending_action = new QAction ( QIcon ( *get_t_save_icon() ), tr ( "Sort media by type (descending)" ), this );
+	//sortty_descending_action->setShortcuts(QKeySequence::Save);
+	sortty_descending_action->setStatusTip ( tr ( "Sort media by type (descending)" ) );
+	connect ( sortty_descending_action, SIGNAL ( triggered() ), guis, SLOT ( sortTyEventDescending()) );
+	editMenu->addAction ( sortty_descending_action );
+	
 	view_toolbar_action = new QAction ( tr ( "view tool bar" ), this );
 	//view_toolbar_action->setShortcuts(QKeySequence::Save);
 	view_toolbar_action->setStatusTip ( tr ( "View tool bar in main window" ) );
@@ -605,6 +617,10 @@ void CdCatMainWidget::languageChange() {
         sortti_ascending_action->setStatusTip ( tr ( "Sort media by time (ascending)" ));
         sortti_descending_action->setText(tr ( "Sort media by time (descending)" ));
         sortti_descending_action->setStatusTip ( tr ( "Sort media by time (descending)" ));
+        sortty_ascending_action->setText(tr ( "Sort media by type (ascending)" ));
+        sortty_ascending_action->setStatusTip ( tr ( "Sort media by type (ascending)" ));
+        sortty_descending_action->setText(tr ( "Sort media by type (descending)" ));
+        sortty_descending_action->setStatusTip ( tr ( "Sort media by type (descending)" ));
         view_toolbar_action->setText(tr ( "view tool bar" ));
         view_toolbar_action->setStatusTip ( tr ( "View tool bar in main window" ));
         view_statusbar_action->setText(tr ( "view status bar" ));

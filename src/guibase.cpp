@@ -2320,7 +2320,7 @@ int GuiSlave::sortNaEventAscending ( void ) {
 	if ( mainw->db == NULL )
 		return 0;
 	panelsOFF();
-	mainw->db->sortM ( NAME );
+	mainw->db->sortM ( NAME, true );
 	mainw->DirView->clear();
 	mainw->DirView->setSortingEnabled(true);
 	mainw->listView->setSortingEnabled(true);
@@ -2334,7 +2334,7 @@ int GuiSlave::sortNaEventDescending ( void ) {
 	if ( mainw->db == NULL )
 		return 0;
 	panelsOFF();
-	mainw->db->sortM ( NAME );
+	mainw->db->sortM ( NAME, false );
 	mainw->DirView->clear();
 	mainw->DirView->setSortingEnabled(true);
 	mainw->listView->setSortingEnabled(true);
@@ -2344,16 +2344,15 @@ int GuiSlave::sortNaEventDescending ( void ) {
 	return 0;
 }
 
-
 int GuiSlave::sortTyEventAscending ( void ) {
 	if ( mainw->db == NULL )
 		return 0;
 	panelsOFF();
 	mainw->db->sortM ( TYPE, true );
 	mainw->DirView->clear();
-	mainw->DirView->setSortingEnabled(false);
-	mainw->listView->setSortingEnabled(false);
-	mainw->DirView->sortByColumn(0, Qt::AscendingOrder);
+	mainw->DirView->setSortingEnabled(true);
+	mainw->listView->setSortingEnabled(true);
+	mainw->DirView->sortByColumn(1, Qt::AscendingOrder);
 	mainw->DirView->start();
 	panelsON();
 	return 0;
@@ -2365,9 +2364,9 @@ int GuiSlave::sortTyEventDescending ( void ) {
 	panelsOFF();
 	mainw->db->sortM ( TYPE, false );
 	mainw->DirView->clear();
-	mainw->DirView->setSortingEnabled(false);
-	mainw->listView->setSortingEnabled(false);
-	mainw->DirView->sortByColumn(0, Qt::DescendingOrder);
+	mainw->DirView->setSortingEnabled(true);
+	mainw->listView->setSortingEnabled(true);
+	mainw->DirView->sortByColumn(1, Qt::DescendingOrder);
 	mainw->DirView->start();
 	panelsON();
 	return 0;
@@ -2400,7 +2399,6 @@ int GuiSlave::sortTiEventDescending ( void ) {
 	panelsON();
 	return 0;
 }
-
 
 int GuiSlave::helpEvent ( void ) {
 	QDialog dh;

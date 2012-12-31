@@ -1,5 +1,6 @@
 31. Dec 2012 Christoph Thielecke <crissi99@gmx.de>
 	- sort catalog by name (descending) added
+	- sort catalog by media type (ascending/descending) added
 
 30. Dec 2012 Christoph Thielecke <crissi99@gmx.de>
 	- segmentation fault on 'add link to a cdcat catalog' fixed (#3597794)

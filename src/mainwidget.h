@@ -134,6 +134,8 @@ class CdCatMainWidget : public QMainWindow{
 		QAction *sortna_descending_action;
 		QAction *sortti_ascending_action;
 		QAction *sortti_descending_action;
+		QAction *sortty_ascending_action;
+		QAction *sortty_descending_action;
 		QAction *find_action;
 		QAction *findpanel_action;
 		QAction *borrow_action;

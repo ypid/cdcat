@@ -40,6 +40,10 @@
       <source>unknown</source>
       <translation>unbekannt</translation>
     </message>
+    <message>
+      <source></source>
+      <translation type="unfinished" />
+    </message>
   </context>
   <context>
     <name>CatalogTypeEditDialog</name>
@@ -431,6 +435,14 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     <message>
       <source>Sort media by name (descending)</source>
       <translation>Medium nach Name sortieren (absteigend)</translation>
+    </message>
+    <message>
+      <source>Sort media by type (ascending)</source>
+      <translation>Medium nach Typ sortieren (aufsteigend)</translation>
+    </message>
+    <message>
+      <source>Sort media by type (descending)</source>
+      <translation>Medium nach Typ sortieren (absteigend)</translation>
     </message>
   </context>
   <context>
