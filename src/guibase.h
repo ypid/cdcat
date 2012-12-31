@@ -117,6 +117,7 @@ public slots:
     int aboutQtEvent ( void );
     int helpEvent ( void );
     int insertcEvent ( void );
+    int insertCdcatXmlEvent ( void );
     int insertcEventNoDup ( void );
     int renameEvent ( void );
     int typeChangeEvent( void );

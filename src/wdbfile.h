@@ -77,7 +77,9 @@ public:
     QString XML_ENCODING;
     QString catname;
 private:
-    gzFile f;
+    gzFile gf;
+    FILE *f;
+    bool isGzFile;
 
     QTextCodec *converter;
 
@@ -104,6 +106,7 @@ public:
     double getDouble2 (const QXmlAttributes &atts,char *what,char *err );
     int      isthere ( const char **from,char *what );
     FileReader ( gzFile ff, char *allocated_buffer, long long int allocated_buffer_len, int ins = 0 );
+    FileReader ( FILE *f, char *allocated_buffer, long long int allocated_buffer_len, int ins = 0 );
     QXmlSimpleReader xmlReader;
 
     QString getCatName ( void );

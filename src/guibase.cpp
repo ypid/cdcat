@@ -2090,6 +2090,40 @@ int GuiSlave::insertcEvent ( void ) {
 	return 0;
 }
 
+int GuiSlave::insertCdcatXmlEvent ( void ) {
+	char fnc[256];
+	QString fn;
+
+	if ( mainw->db == NULL )
+		newEvent();
+	if ( mainw->db == NULL )
+		return 0;
+	fn = QFileDialog::getOpenFileName ( 0, tr ( "Insert a cdcat exported xml file..." ), mainw->cconfig->lastDir, tr ( "CdCat xml export (*.xml )" ) );
+	if ( fn.isEmpty() )
+		return 0;
+
+	strcpy ( fnc, ( const char * ) QFile::encodeName ( fn ) );
+
+	panelsOFF();
+
+	PWw *pww = new PWw ( mainw, mainw->app );
+	mainw->db->pww = pww;
+	progress ( pww );
+
+	if ( mainw->db->insertDB ( fnc, false, true ) != 0 ) { // An error occured
+		QMessageBox::warning ( mainw, tr ( "Error while opening..." ),
+		                       mainw->db->errormsg );
+	}
+
+	progress ( pww );
+	panelsON();
+	progress ( pww );
+	pww->end();
+	mainw->db->pww = NULL;
+	delete pww;
+	return 0;
+}
+
 int GuiSlave::insertcEventNoDup ( void ) {
 	char fnc[256];
 	QString fn;

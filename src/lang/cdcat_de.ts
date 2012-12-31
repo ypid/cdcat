@@ -444,6 +444,22 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
       <source>Sort media by type (descending)</source>
       <translation>Medium nach Typ sortieren (absteigend)</translation>
     </message>
+    <message>
+      <source>Insert Cdcat XML export...</source>
+      <translation>Cdcat-XML-Export einfügen...</translation>
+    </message>
+    <message>
+      <source>Insert Cdcat XML export</source>
+      <translation>Cdcat-XML-Export einfügen</translation>
+    </message>
+    <message>
+      <source>Insert Cdcat export XML...</source>
+      <translation>Cdcat-XML-Export einfügen...</translation>
+    </message>
+    <message>
+      <source>Insert Cdcat exported XML into database</source>
+      <translation>Cdcat-XML-Export in Datenbank einfügen</translation>
+    </message>
   </context>
   <context>
     <name>ColorSchemePreview</name>
@@ -1358,6 +1374,14 @@ die Datenbank wird unvollständig sein</translation>
     <message>
       <source>Saving catalog, please wait...</source>
       <translation>Katalog wird gespeichert, bitte warten...</translation>
+    </message>
+    <message>
+      <source>Insert a cdcat exported xml file...</source>
+      <translation>Von Cdcat exportierte XML-Datei einfügen...</translation>
+    </message>
+    <message>
+      <source>CdCat xml export (*.xml )</source>
+      <translation>Cdcat-XML-Export (*.xml)</translation>
     </message>
   </context>
   <context>

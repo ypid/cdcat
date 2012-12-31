@@ -217,7 +217,14 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	insert_action->setStatusTip ( tr ( "Insert catalog into database" ) );
 	connect ( insert_action, SIGNAL ( triggered() ), guis, SLOT ( insertcEvent() ) );
 	editMenu->addAction ( insert_action );
-
+	
+	insert_cdcat_xml_action = new QAction ( QIcon ( *get_m_import_icon() ), tr ( "Insert Cdcat export XML..." ), this );
+	//insert_cdcat_xml_action->setShortcut(QKeySequence::Save);
+	insert_cdcat_xml_action->setStatusTip ( tr ( "Insert Cdcat exported XML into database" ) );
+	connect ( insert_cdcat_xml_action, SIGNAL ( triggered() ), guis, SLOT ( insertCdcatXmlEvent()) );
+	editMenu->addAction ( insert_cdcat_xml_action );
+	
+	
 	editMenu->insertSeparator(NULL);
 
 	rename_action = new QAction ( QIcon ( *get_t_save_icon() ), tr ( "Rename node..." ), this );
@@ -598,6 +605,8 @@ void CdCatMainWidget::languageChange() {
         rescan_action->setStatusTip ( tr ( "Rescan existing media" ));
         insert_action->setText(tr ( "Insert Catalog..." ));
         insert_action->setStatusTip ( tr ( "Insert catalog into database" ));
+        insert_cdcat_xml_action->setText(tr ( "Insert Cdcat XML export..." ));
+        insert_cdcat_xml_action->setStatusTip ( tr ( "Insert Cdcat XML export" ));
         rename_action->setText(tr ( "Rename node..." ));
         rename_action->setStatusTip ( tr ( "Rename node" ));
         renumber_action->setText(tr ( "Re-Number media node..." ));

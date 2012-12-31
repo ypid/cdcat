@@ -652,7 +652,7 @@ void exportCdcatDB::ok() {
 								//std::cerr << "before gzclose" << std::endl;
 								gzclose ( ff2 );
 								//std::cerr << "before unlink" << std::endl;
-								//unlink ( fnc );
+								unlink ( fnc );
 							}
 							//std::cerr << "before close" << std::endl;
 							f.close();

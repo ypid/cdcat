@@ -862,7 +862,7 @@ DBMp3Tag *tmp_tagp = NULL;
 
 int FileReader::readFrom ( Node *source, bool skipDuplicatesOnInsert ) {
 	DEBUG_INFO_ENABLED = init_debug_info();
-	char line[80]; // encoding detect
+	char line[81]; // encoding detect
 	error_found = 0;
 	int done = 0;
 	sp  = sb_backup  = source;
@@ -870,21 +870,31 @@ int FileReader::readFrom ( Node *source, bool skipDuplicatesOnInsert ) {
 
 	if ( *DEBUG_INFO_ENABLED )
 		cerr << "Start Cycle" << endl;
-
+	
+	line[0] = '\0';
+	
 	// detect encoding
-	int len = gzread ( f, line, 80 );
+	int len = -1;
+	if (isGzFile)
+		len = gzread ( gf, line, 80 );
+	else
+		len = fread(line, 1, 80, f);
 	//cerr <<"line: " << line <<endl;
 	QString line2 ( line );
-	//if (*DEBUG_INFO_ENABLED)
-	//	std::cerr <<"line2: " << line2.constData() <<endl;
+// 	if (*DEBUG_INFO_ENABLED)
+// 		std::cerr <<"line2: " << line2.constData() <<endl;
 	QStringList encodingline_parts = line2.split ( '"' );
-	XML_ENCODING = encodingline_parts.at ( 3 );
+	if (encodingline_parts.size() > 2)
+		XML_ENCODING = encodingline_parts.at ( 3 );
 	if ( XML_ENCODING != "UTF-8" )
 		converter = QTextCodec::codecForName ( XML_ENCODING.toUtf8() );
 
 	if ( *DEBUG_INFO_ENABLED )
 		std::cerr << "detected encoding: " << XML_ENCODING.toAscii().constData() << endl;
-	gzrewind ( f );
+	if (isGzFile)
+		gzrewind ( gf );
+	else
+		rewind(f);
 
 	/* now read the buffer */
 	len = 0;
@@ -901,10 +911,15 @@ int FileReader::readFrom ( Node *source, bool skipDuplicatesOnInsert ) {
 	pww->setProgressText ( DataBase::tr ( "Reading file, please wait..." ) );
 	pww->setCancel ( true );
 	while ( len != allocated_buffer_len ) {
-		readcount = gzread ( f, tmpbuffer, 4096 );
+		if (isGzFile) {
+			readcount = gzread ( gf, tmpbuffer, 4096 );
+		}
+		else {
+			readcount = fread(tmpbuffer, 1, 1024, f);
+		}
 		len += readcount;
-		//if(*DEBUG_INFO_ENABLED)
-		//  cerr << "readcount: " << readcount << endl;
+		if(*DEBUG_INFO_ENABLED)
+		 cerr << "readcount: " << readcount << endl;
 		for ( int i = 0; i < readcount; i++ )
 			dataBuffer[i + offset] = tmpbuffer[i];
 // 		strncat(dataBuffer, tmpbuffer, 4096);
@@ -973,13 +988,26 @@ int FileReader::readFrom ( Node *source, bool skipDuplicatesOnInsert ) {
 	return done;
 }
 
-FileReader::FileReader ( gzFile ff, char *allocated_buffer, long long int allocated_buffer_len, int ins ) {
-	f = ff;
+FileReader::FileReader ( gzFile gf, char *allocated_buffer, long long int allocated_buffer_len, int ins ) {
+	this->gf = gf;
+	this->f = NULL;
 	insert = ins;
 	converter = QTextCodec::codecForName ( "utf8" );
 	dataBuffer = allocated_buffer;
 	this->allocated_buffer_len = allocated_buffer_len;
 	this->pww = NULL;
+	isGzFile = true;
+}
+
+FileReader::FileReader ( FILE *f, char *allocated_buffer, long long int allocated_buffer_len, int ins ) {
+	this->f = f;
+	this->gf = NULL;
+	insert = ins;
+	converter = QTextCodec::codecForName ( "utf8" );
+	dataBuffer = allocated_buffer;
+	this->allocated_buffer_len = allocated_buffer_len;
+	this->pww = NULL;
+	isGzFile = false;
 }
 
 
@@ -990,10 +1018,14 @@ FileReader::FileReader ( gzFile ff, char *allocated_buffer, long long int alloca
 QString FileReader::getCatName ( void ) {
 	DEBUG_INFO_ENABLED = init_debug_info();
 	
-	char line[80]; // encoding detect
+	char line[81]; // encoding detect
 	error_found = 0;
 	// detect encoding
-	int len = gzread ( f, line, 80 );
+	int len = 0;
+	if (isGzFile)
+		len = gzread ( gf, line, 80 );
+	else
+		len = fread(line, 1, 80, f);
 	//cerr <<"line: " << line <<endl;
 	QString line2 ( line );
 	//if (*DEBUG_INFO_ENABLED)
@@ -1005,14 +1037,18 @@ QString FileReader::getCatName ( void ) {
 	
 	if ( *DEBUG_INFO_ENABLED )
 		std::cerr << "detected encoding: " << XML_ENCODING.toAscii().constData() << endl;
-	gzrewind ( f );
+	
+	if (isGzFile)
+		gzrewind ( gf );
+	else
+		rewind(f);
 	
 	/* now read the buffer */
 	len = 0;
 	int readcount = 0;
 	linecount = 0;
 	long long int offset = 0;
-	char tmpbuffer[4096];
+	char tmpbuffer[4097];
 	
 	if ( *DEBUG_INFO_ENABLED )
 		std::cerr << "start reading file..." << endl;
@@ -1021,7 +1057,12 @@ QString FileReader::getCatName ( void ) {
 	pww->setProgressText ( DataBase::tr ( "Reading file, please wait..." ) );
 	pww->setCancel ( true );
 	while ( len != allocated_buffer_len ) {
-		readcount = gzread ( f, tmpbuffer, 4096 );
+		if (isGzFile) {
+			readcount = gzread ( gf, tmpbuffer, 4096 );
+		}
+		else {
+			readcount = fread(tmpbuffer, 1, 1024, f);
+		}
 		len += readcount;
 		//if(*DEBUG_INFO_ENABLED)
 		//  cerr << "readcount: " << readcount << endl;

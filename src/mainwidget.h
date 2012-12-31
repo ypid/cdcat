@@ -124,6 +124,7 @@ class CdCatMainWidget : public QMainWindow{
 		QAction *addlink_action;
 		QAction *rescan_action;
 		QAction *insert_action;
+		QAction *insert_cdcat_xml_action;
 		QAction *rename_action;
 		QAction *renumber_action;
 		//QAction *changemediatype_action;

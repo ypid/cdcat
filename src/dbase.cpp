@@ -749,9 +749,10 @@ int   DataBase::saveAsDB ( char *filename ) {
 	return 0;
 }
 /***************************************************************************/
-int   DataBase::insertDB ( char *filename, bool skipDuplicatesOnInsert ) {
+int   DataBase::insertDB ( char *filename, bool skipDuplicatesOnInsert, bool isGzFile ) {
 	int i;
-	gzFile f = NULL;
+	gzFile gf = NULL;
+	FILE *f = NULL;
 	FileReader *fw = NULL;
 	DEBUG_INFO_ENABLED = init_debug_info();
 
@@ -760,25 +761,49 @@ int   DataBase::insertDB ( char *filename, bool skipDuplicatesOnInsert ) {
 		return 1;
 	}
 	progress ( pww );
-	f = gzopen ( filename, "rb" );
-	if ( f == NULL ) {
-		errormsg = tr ( "I can't open the file: %1" ).arg ( filename );
-		return 1;
+	if (isGzFile) {
+		gf = gzopen ( filename, "rb" );
+		if ( gf == NULL ) {
+			errormsg = tr ( "I can't open the file: %1" ).arg ( filename );
+			return 1;
+		}
+	}
+	else {
+		f = fopen ( filename, "rb" );
+		if ( f == NULL ) {
+			errormsg = tr ( "I can't open the file: %1" ).arg ( filename );
+			return 1;
+		}
 	}
 
 	// check free memory
 	char testbuffer[1024];
 	long long int filesize = 0;
 	int readcount = 0;
-	readcount = gzread ( f, testbuffer, 1024 );
+	if (isGzFile) {
+		readcount = gzread ( gf, testbuffer, 1024 );
+	}
+	else {
+		readcount = fread(testbuffer, 1, 1024, f);
+	}
 	while ( readcount != 0 ) {
 		filesize += readcount;
 		//if(*DEBUG_INFO_ENABLED)
 		//  cerr << "readcount: " << readcount << std::endl;
-		readcount = gzread ( f, testbuffer, 1024 );
+		if (isGzFile) {
+			readcount = gzread ( gf, testbuffer, 1024 );
+		}
+		else {
+			readcount = fread(testbuffer, 1, 1024, f);
+		}
 		progress ( pww );
 	}
-	gzrewind ( f );
+	if (isGzFile) {
+		gzrewind ( gf );
+	}
+	else {
+		rewind(f);
+	}
 	if ( *DEBUG_INFO_ENABLED )
 		std::cerr << "detected uncompressed size: " << filesize << std::endl;
 
@@ -795,7 +820,12 @@ int   DataBase::insertDB ( char *filename, bool skipDuplicatesOnInsert ) {
 	/* end memtest */
 
 	progress ( pww );
-	fw = new FileReader ( f, allocated_buffer, filesize, 1 );
+	if(isGzFile) {
+		fw = new FileReader ( gf, allocated_buffer, filesize, 1 );
+	}
+	else {
+		fw = new FileReader ( f, allocated_buffer, filesize, 1 );
+	}
 
 	fw->pww = pww;
 	progress ( pww );
@@ -816,7 +846,12 @@ int   DataBase::insertDB ( char *filename, bool skipDuplicatesOnInsert ) {
 	( ( DBCatalog * ) ( root->data ) )->touch();
 	progress ( pww );
 
-	gzclose ( f );
+	if (isGzFile) {
+		gzclose ( gf );
+	}
+	else {
+		fclose( f );
+	}
 	free ( allocated_buffer );
 	delete fw;
 	return 0;

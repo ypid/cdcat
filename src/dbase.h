@@ -395,7 +395,7 @@ class DataBase : public QObject {
 		int   openDB ( char *filename );
 		//Open the catalog from a file
 		
-		int   insertDB ( char *filename, bool skipDuplicatesOnInsert = false );
+		int   insertDB ( char *filename, bool skipDuplicatesOnInsert = false, bool isGzFile = true );
 		//insert a new catalog from filename into the existing catalog.
 		
 		int   addMedia ( QString what, QString name, int number, int type );
