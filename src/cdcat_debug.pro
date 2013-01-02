@@ -174,10 +174,10 @@ win32 {
 	DEFINES+=USE_LIB7ZIP
 	
 	# STATIC
-	#LIBS+=/usr/local/lib/lib7zip.a
+	LIBS+=/usr/local/lib/lib7zip.a
 	
 	# DYNAMIC
-	LIBS+= -l7zip
+	#LIBS+= -l7zip
 	######### end lib7zip
 	
 	######### mediainfo
@@ -223,7 +223,7 @@ win32 {
 
 	# security hardening flags
 	DEFINES += _FORTIFY_SOURCE=2
-	QMAKE_CXXFLAGS += -std=c++0x -g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wall
+	QMAKE_CXXFLAGS += -std=c++0x -g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wall -pipe
 }
 INSTALLS += target translations distfiles
 

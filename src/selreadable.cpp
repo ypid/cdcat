@@ -744,7 +744,7 @@ void SelReadable::labExcludeRexexInfoButtonClicked()
 	RegexInfoHtml += "</tr>";
 	RegexInfoHtml += "<tr valign=\"top\">";
 	RegexInfoHtml += "<td><code>.</code></td>";
-	RegexInfoHtml += "<td>"+tr("Matches any single character (many applications exclude <a href=\"/wiki/Newline\" title=\"Newline\">newlines</a>, and exactly which characters are considered newlines is flavor-, character-encoding-, and platform-specific, but it is safe to assume that the line feed character is included). Within POSIX bracket expressions, the dot character matches a literal dot. For example, <code>a.c</code> matches \"<i>abc</i>\", etc., but <code>[a.c]</code> matches only \"<i>a</i>\", \"<i>.</i>\", or \"<i>c</i>\".")+"</td>";
+	RegexInfoHtml += "<td>"+tr("Matches any single character (many applications exclude <a href=\"http://en.wikipedia.org/wiki/Newline\" title=\"Newline\">newlines</a>, and exactly which characters are considered newlines is flavor-, character-encoding-, and platform-specific, but it is safe to assume that the line feed character is included). Within POSIX bracket expressions, the dot character matches a literal dot. For example, <code>a.c</code> matches \"<i>abc</i>\", etc., but <code>[a.c]</code> matches only \"<i>a</i>\", \"<i>.</i>\", or \"<i>c</i>\".")+"</td>";
 	RegexInfoHtml += "</tr>";
 	RegexInfoHtml += "<tr valign=\"top\">";
 	RegexInfoHtml += "<td><code>[&#160;]</code></td>";
@@ -793,7 +793,9 @@ void SelReadable::labExcludeRexexInfoButtonClicked()
 	RegexInfoHtml += "<li><code>\\[.\\]</code> "+tr("matches any single character surrounded by \"[\" and \"]\" since the brackets are escaped, for example: \"<i>[a]</i>\" and \"<i>[b]</i>\".")+"</li>";
 	RegexInfoHtml += "</ul>";
 	RegexInfoHtml += "<br>";
-	RegexInfoHtml += tr("Source:")+" <a href=\"http://www.wikipedia.org\">http://www.wikipedia.org</a>";
+	RegexInfoHtml += tr("Source:")+" "+tr("<a href=\"http://en.wikipedia.org/wiki/Regex\">regular expressions</a>");
+	RegexInfoHtml += "<br>";
+	RegexInfoHtml += tr("From")+" <a href=\"http://www.wikipedia.org\">http://www.wikipedia.org</a>";
 	
 	QDialog di( this);
 	di.setModal(true);
@@ -802,7 +804,8 @@ void SelReadable::labExcludeRexexInfoButtonClicked()
 	QPushButton *closeButton = new QPushButton(tr("close"), this);
 	connect(closeButton, SIGNAL(clicked(bool)), &di, SLOT(close()));
 	QTextBrowser *textBrowser1 = new QTextBrowser(&di);
-	textBrowser1->setText ( RegexInfoHtml );
+	textBrowser1->setHtml ( RegexInfoHtml );
+	textBrowser1->setOpenExternalLinks(true);
 	layoutRegexInfoDialog->addWidget(textBrowser1);
 	layoutRegexInfoDialog->addWidget(closeButton);
 	di.setLayout(layoutRegexInfoDialog);

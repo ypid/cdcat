@@ -2096,10 +2096,6 @@ wird zu
       <translation>Beschreibung</translation>
     </message>
     <message>
-      <source>Matches any single character (many applications exclude &lt;a href=&quot;/wiki/Newline&quot; title=&quot;Newline&quot;>newlines&lt;/a>, and exactly which characters are considered newlines is flavor-, character-encoding-, and platform-specific, but it is safe to assume that the line feed character is included). Within POSIX bracket expressions, the dot character matches a literal dot. For example, &lt;code>a.c&lt;/code> matches &quot;&lt;i>abc&lt;/i>&quot;, etc., but &lt;code>[a.c]&lt;/code> matches only &quot;&lt;i>a&lt;/i>&quot;, &quot;&lt;i>.&lt;/i>&quot;, or &quot;&lt;i>c&lt;/i>&quot;.</source>
-      <translation>Passt auf ein einzelnes Zeichen (viele Anwendungen schließen Zeilenende aus. Welche Zeichen exakt als Zeilenende  and exactly which characters are aufgefasst werden, hängt von der Variante, Zeichenkodierung und Plattform ab. Aber es ist sicher, dass das Zeilenvorschubzeichen enthalten ist). Mit den POSIX-Klammerausdrücken passt das Punktzeichen als Literal Punkt. Zum Beispiel &lt;code>a.c&lt;/code> passt auf &quot;&lt;i>abc&lt;/i>&quot;, etc., aber &lt;code>[a.c]&lt;/code> passt nur auf &quot;&lt;i>a&lt;/i>&quot;, &quot;&lt;i>.&lt;/i>&quot; oder &quot;&lt;i>c&lt;/i>&quot;.</translation>
-    </message>
-    <message>
       <source>A bracket expression. Matches a single character that is contained within the brackets. For example, &lt;code>[abc]&lt;/code> matches &quot;&lt;i>a&lt;/i>&quot;, &quot;&lt;i>b&lt;/i>&quot;, or &quot;&lt;i>c&lt;/i>&quot;. &lt;code>[a-z]&lt;/code> specifies a range which matches any lowercase letter from &quot;&lt;i>a&lt;/i>&quot; to &quot;&lt;i>z&lt;/i>&quot;. These forms can be mixed: &lt;code>[abcx-z]&lt;/code> matches &quot;&lt;i>a&lt;/i>&quot;, &quot;&lt;i>b&lt;/i>&quot;, &quot;&lt;i>c&lt;/i>&quot;, &quot;&lt;i>x&lt;/i>&quot;, &quot;&lt;i>y&lt;/i>&quot;, or &quot;&lt;i>z&lt;/i>&quot;, as does &lt;code>[a-cx-z]&lt;/code>.</source>
       <translation>Ein Klammerausdruck, welcher auf ein einzelnes Zeichen passt, dass in den Klammern eingeschlossen ist. Zum Beispiel passt &lt;code>[abc]&lt;/code> auf &quot;&lt;i>a&lt;/i>&quot;, &quot;&lt;i>b&lt;/i>&quot; oder &quot;&lt;i>c&lt;/i>&quot;. &lt;code>[a-z]&lt;/code> gibt einen Bereich an, der auf jeden Kleinbuchstaben von &quot;&lt;i>a&lt;/i>&quot; bis &quot;&lt;i>z&lt;/i>&quot; passt. Diese Formen können gemischt werden: &lt;code>[abcx-z]&lt;/code> passt auf &quot;&lt;i>a&lt;/i>&quot;, &quot;&lt;i>b&lt;/i>&quot;, &quot;&lt;i>c&lt;/i>&quot;, &quot;&lt;i>x&lt;/i>&quot;, &quot;&lt;i>y&lt;/i>&quot; oder &quot;&lt;i>z&lt;/i>&quot; wie auch &lt;code>[a-cx-z]&lt;/code>.</translation>
     </message>
@@ -2186,6 +2182,18 @@ wird zu
     <message>
       <source>Supported image extensions found: </source>
       <translation>Unterstützte Bildendungen gefunden:</translation>
+    </message>
+    <message>
+      <source>Matches any single character (many applications exclude &lt;a href=&quot;http://en.wikipedia.org/wiki/Newline&quot; title=&quot;Newline&quot;>newlines&lt;/a>, and exactly which characters are considered newlines is flavor-, character-encoding-, and platform-specific, but it is safe to assume that the line feed character is included). Within POSIX bracket expressions, the dot character matches a literal dot. For example, &lt;code>a.c&lt;/code> matches &quot;&lt;i>abc&lt;/i>&quot;, etc., but &lt;code>[a.c]&lt;/code> matches only &quot;&lt;i>a&lt;/i>&quot;, &quot;&lt;i>.&lt;/i>&quot;, or &quot;&lt;i>c&lt;/i>&quot;.</source>
+      <translation>Passt auf ein einzelnes Zeichen (viele Anwendungen schließen &lt;a href=&quot;http://de.wikipedia.org/wiki/Newline&quot; title=&quot;Newline&quot;>Zeilenende&lt;/a> aus. Welche Zeichen exakt als Zeilenende und welche Zeichen als Zeilenende aufgefasst werden, hängt von der Variante, Zeichenkodierung und Plattform ab. Aber es ist sicher, dass das Zeilenvorschubzeichen enthalten ist). Mit den POSIX-Klammerausdrücken passt das Punktzeichen als Zeichen Punkt. Zum Beispiel &lt;code>a.c&lt;/code> passt auf &quot;&lt;i>abc&lt;/i>&quot;, etc., aber &lt;code>[a.c]&lt;/code> passt nur auf &quot;&lt;i>a&lt;/i>&quot;, &quot;&lt;i>.&lt;/i>&quot; oder &quot;&lt;i>c&lt;/i>&quot;.</translation>
+    </message>
+    <message>
+      <source>&lt;a href=&quot;http://en.wikipedia.org/wiki/Regex&quot;>regular expressions&lt;/a></source>
+      <translation>&lt;a href=&quot;http://de.wikipedia.org/wiki/Regex&quot;>reguläre Ausdrücke&lt;/a></translation>
+    </message>
+    <message>
+      <source>From</source>
+      <translation>Von</translation>
     </message>
   </context>
   <context>
@@ -3053,7 +3061,11 @@ E-mail: hyperr@freemail.hu
 p, li { white-space: pre-wrap; }
 &lt;/style>&lt;/head>&lt;body style=&quot; font-family:'DejaVu Sans'; font-size:9pt; font-weight:400; font-style:normal;&quot;>
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:40px; margin-right:40px; -qt-block-indent:0; text-indent:0px;&quot;>&lt;/p>&lt;/body>&lt;/html></source>
-      <translation type="unfinished" />
+      <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;>
+&lt;html>&lt;head>&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; />&lt;style type=&quot;text/css&quot;>
+p, li { white-space: pre-wrap; }
+&lt;/style>&lt;/head>&lt;body style=&quot; font-family:'DejaVu Sans'; font-size:9pt; font-weight:400; font-style:normal;&quot;>
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:40px; margin-right:40px; -qt-block-indent:0; text-indent:0px;&quot;>&lt;/p>&lt;/body>&lt;/html></translation>
     </message>
   </context>
   <context>
