@@ -107,12 +107,12 @@
 <context>
     <name>ArchiveFile</name>
     <message>
-        <location filename="../dbase.h" line="277"/>
+        <location filename="../dbase.h" line="278"/>
         <source>unknown</source>
         <translation type="unfinished">ismeretlen</translation>
     </message>
     <message>
-        <location filename="../dbase.h" line="277"/>
+        <location filename="../dbase.h" line="278"/>
         <source></source>
         <translation type="unfinished"></translation>
     </message>
@@ -2818,42 +2818,42 @@ Szerző:&lt;br&gt;&lt;font size=&quot;+2&quot;&gt; Deák Péter (hyperr@freemail
 Copyright (C) 2003 Deák Péter (GPL)&lt;/p&gt;&lt;/font&gt;&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="112"/>
+        <location filename="../info.cpp" line="111"/>
         <source>German translation &amp; additional programming</source>
         <translation>Német fordítás &amp; módosítások</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="126"/>
+        <location filename="../info.cpp" line="125"/>
         <source>Spanish translation</source>
         <translation>Spanyol fordítás</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="132"/>
+        <location filename="../info.cpp" line="131"/>
         <source>Czech translation</source>
         <translation>Cseh fordítás</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="444"/>
+        <location filename="../info.cpp" line="424"/>
         <source>About cdcat</source>
         <translation>A CdCat-ról</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="445"/>
+        <location filename="../info.cpp" line="425"/>
         <source>close</source>
         <translation>Bezárás</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="447"/>
+        <location filename="../info.cpp" line="428"/>
         <source>About Cdcat</source>
         <translation>A CdCat-ról</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="449"/>
+        <location filename="../info.cpp" line="431"/>
         <source>License</source>
         <translation>Licensz</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="451"/>
+        <location filename="../info.cpp" line="433"/>
         <source>Thanks</source>
         <translation>Köszönet</translation>
     </message>
@@ -2868,12 +2868,12 @@ Copyright (C) 2003 Deák Péter (GPL)&lt;/p&gt;&lt;/font&gt;&lt;/p&gt;</translat
         <translation>Verzió:</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="101"/>
+        <location filename="../info.cpp" line="100"/>
         <source>Author:</source>
         <translation>Szerző:</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="103"/>
+        <location filename="../info.cpp" line="102"/>
         <source>Copyright (C) 2003 Peter Deak (GPL)</source>
         <translation>Copyright (C) 2003 Deák Péter (GPL)</translation>
     </message>
@@ -2883,17 +2883,17 @@ Copyright (C) 2003 Deák Péter (GPL)&lt;/p&gt;&lt;/font&gt;&lt;/p&gt;</translat
         <translation type="obsolete">Lengyel fordítás</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="120"/>
+        <location filename="../info.cpp" line="119"/>
         <source>AVI reader plugin &amp; Polish translation</source>
         <translation>AVI felolvasó plugin &amp; lengyel fordítás</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="105"/>
+        <location filename="../info.cpp" line="104"/>
         <source>Copyright (C) 2010 Christoph Thielecke (GPL)</source>
         <translation>Copyright (C) 2010 Christoph Thielecke (GPL)</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="114"/>
+        <location filename="../info.cpp" line="113"/>
         <source>Ported to Qt4</source>
         <translation>Qt4 re portolta</translation>
     </message>
@@ -2906,6 +2906,16 @@ Copyright (C) 2003 Deák Péter (GPL)&lt;/p&gt;&lt;/font&gt;&lt;/p&gt;</translat
         <location filename="../info.cpp" line="97"/>
         <source>Development version build at</source>
         <translation>Fejlesztői verzió</translation>
+    </message>
+    <message>
+        <location filename="../info.cpp" line="138"/>
+        <source>For more details about the GPL license and to read in other languages, visit %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../info.cpp" line="138"/>
+        <source>GPL page on GNU website</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

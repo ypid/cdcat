@@ -44,12 +44,12 @@
 <context>
     <name>ArchiveFile</name>
     <message>
-        <location filename="../dbase.h" line="277"/>
+        <location filename="../dbase.h" line="278"/>
         <source>unknown</source>
         <translation type="unfinished">neznámy</translation>
     </message>
     <message>
-        <location filename="../dbase.h" line="277"/>
+        <location filename="../dbase.h" line="278"/>
         <source></source>
         <translation type="unfinished"></translation>
     </message>
@@ -2388,42 +2388,42 @@ na
 <context>
     <name>InfoDialog</name>
     <message>
-        <location filename="../info.cpp" line="112"/>
+        <location filename="../info.cpp" line="111"/>
         <source>German translation &amp; additional programming</source>
         <translation>Nemecký preklad &amp; programovanie</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="126"/>
+        <location filename="../info.cpp" line="125"/>
         <source>Spanish translation</source>
         <translation>Španielský preklad</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="132"/>
+        <location filename="../info.cpp" line="131"/>
         <source>Czech translation</source>
         <translation>Český preklad</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="444"/>
+        <location filename="../info.cpp" line="424"/>
         <source>About cdcat</source>
         <translation>O programe</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="445"/>
+        <location filename="../info.cpp" line="425"/>
         <source>close</source>
         <translation>zatvoriť</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="447"/>
+        <location filename="../info.cpp" line="428"/>
         <source>About Cdcat</source>
         <translation>O programe</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="449"/>
+        <location filename="../info.cpp" line="431"/>
         <source>License</source>
         <translation>Licencia</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="451"/>
+        <location filename="../info.cpp" line="433"/>
         <source>Thanks</source>
         <translation>Poďakovanie</translation>
     </message>
@@ -2438,12 +2438,12 @@ na
         <translation>Verzia:</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="101"/>
+        <location filename="../info.cpp" line="100"/>
         <source>Author:</source>
         <translation>Autor:</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="103"/>
+        <location filename="../info.cpp" line="102"/>
         <source>Copyright (C) 2003 Peter Deak (GPL)</source>
         <translation>Copyright (C) 2003 Peter Deak (GPL)</translation>
     </message>
@@ -2453,17 +2453,17 @@ na
         <translation type="obsolete">Poľský preklad</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="120"/>
+        <location filename="../info.cpp" line="119"/>
         <source>AVI reader plugin &amp; Polish translation</source>
         <translation>AVI plugin &amp; Poľský preklad</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="105"/>
+        <location filename="../info.cpp" line="104"/>
         <source>Copyright (C) 2010 Christoph Thielecke (GPL)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="114"/>
+        <location filename="../info.cpp" line="113"/>
         <source>Ported to Qt4</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2475,6 +2475,16 @@ na
     <message>
         <location filename="../info.cpp" line="97"/>
         <source>Development version build at</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../info.cpp" line="138"/>
+        <source>For more details about the GPL license and to read in other languages, visit %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../info.cpp" line="138"/>
+        <source>GPL page on GNU website</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

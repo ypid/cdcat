@@ -35,9 +35,9 @@ public:
     QPushButton* closeButton;
     QTabWidget* tabWidget2;
     QWidget* tab;
-    QLabel* textLabel1;
     QWidget* tab_2;
     QTextBrowser* textBrowser1;
+    QTextBrowser* textBrowser2;
     QWidget* TabPage;
     QTextBrowser* textThanx;
 

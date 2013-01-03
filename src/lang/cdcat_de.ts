@@ -1667,6 +1667,14 @@ wird zu
       <source>Development version build at</source>
       <translation>Entwicklungsversion erstellt am</translation>
     </message>
+    <message>
+      <source>For more details about the GPL license and to read in other languages, visit %1.</source>
+      <translation>Für weitere Details der GPL-Lizenz und um sie in anderen Sprachen zu lesen, besuchen Sie die %1.</translation>
+    </message>
+    <message>
+      <source>GPL page on GNU website</source>
+      <translation>GPL-Seite auf der GNU-Webseite</translation>
+    </message>
   </context>
   <context>
     <name>PWw</name>

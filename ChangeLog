@@ -1,5 +1,7 @@
 03. Jan 2012 Christoph Thielecke <crissi99@gmx.de>
 	- Q_OBJECT macro on ArchiveFile class added
+	- cdcat homepage link at info dialog fixed
+	- gpl page link at info dialog added
 
 02. Jan 2012 Christoph Thielecke <crissi99@gmx.de>
 	- links now working in regex info dialog (thanks to Alain Aupeix)
