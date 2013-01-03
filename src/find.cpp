@@ -1,3 +1,4 @@
+
 /****************************************************************************
                              Hyper's CD Catalog
 		A multiplatform qt and xml based catalog program
@@ -39,6 +40,8 @@
 #include <QPainter>
 #include <QTextDocument>
 #include <QTextCodec>
+#include <QDir>
+#include <QStatusBar>
 
 // #include <pcre.h>
 #include <QRegExp>
@@ -696,6 +699,9 @@ int findDialog::select ( QTreeWidgetItem *i, QTreeWidgetItem * ) {
 			mainw->listView->setCurrentItem ( (*it) );
 			mainw->listView->setCurrentVisible();
 			mainw->listView->repaint();
+			QString dirpath = QFileInfo(i->text ( 4 )).absoluteDir().absolutePath();
+			//std::cout << "path: " << qPrintable(i->text(4)) << ", dirpath: " << qPrintable(dirpath) << std::endl;
+			mainw->statusBar()->showMessage(tr("Selected dir: ") + dirpath );
 		}
 		++it;
 	}

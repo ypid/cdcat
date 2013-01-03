@@ -48,66 +48,61 @@
         <source>unknown</source>
         <translation type="unfinished">neznámy</translation>
     </message>
-    <message>
-        <location filename="../dbase.h" line="278"/>
-        <source></source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>CatalogTypeEditDialog</name>
     <message>
-        <location filename="../guibase.cpp" line="2985"/>
+        <location filename="../guibase.cpp" line="2984"/>
         <source>Change media type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2986"/>
+        <location filename="../guibase.cpp" line="2985"/>
         <source>Change type of media</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2988"/>
+        <location filename="../guibase.cpp" line="2987"/>
         <source>CD</source>
         <translation type="unfinished">CD</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2989"/>
+        <location filename="../guibase.cpp" line="2988"/>
         <source>DVD</source>
         <translation type="unfinished">DVD</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2990"/>
+        <location filename="../guibase.cpp" line="2989"/>
         <source>HardDisc</source>
         <translation type="unfinished">HardDisk</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2991"/>
+        <location filename="../guibase.cpp" line="2990"/>
         <source>Floppy</source>
         <translation type="unfinished">Disketa</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2992"/>
+        <location filename="../guibase.cpp" line="2991"/>
         <source>NetworkPlace</source>
         <translation type="unfinished">Sieťový disk</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2993"/>
+        <location filename="../guibase.cpp" line="2992"/>
         <source>FlashDrive</source>
         <translation type="unfinished">FlashDisk</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2994"/>
+        <location filename="../guibase.cpp" line="2993"/>
         <source>OtherDevice</source>
         <translation type="unfinished">Ostatné</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2997"/>
+        <location filename="../guibase.cpp" line="2996"/>
         <source>Cancel</source>
         <translation type="unfinished">Zrušiť</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2998"/>
+        <location filename="../guibase.cpp" line="2997"/>
         <source>OK</source>
         <translation type="unfinished">OK</translation>
     </message>
@@ -1455,7 +1450,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Otvoriť súbor...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2769"/>
+        <location filename="../guibase.cpp" line="2768"/>
         <source>Error while opening...</source>
         <translation>Chyba pri otváraní...</translation>
     </message>
@@ -1485,17 +1480,17 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Chcete uložiť zmeny?</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2836"/>
+        <location filename="../guibase.cpp" line="2835"/>
         <source>Yes</source>
         <translation>Áno</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2836"/>
+        <location filename="../guibase.cpp" line="2835"/>
         <source>No</source>
         <translation>Nie</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2852"/>
+        <location filename="../guibase.cpp" line="2851"/>
         <source>Error:</source>
         <translation>Chyba:</translation>
     </message>
@@ -1507,7 +1502,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
 %1</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2834"/>
+        <location filename="../guibase.cpp" line="2833"/>
         <source>Confirmation</source>
         <translation>Potvrdenie</translation>
     </message>
@@ -1631,7 +1626,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Zobraziť/Odstrániť obsah...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2852"/>
+        <location filename="../guibase.cpp" line="2851"/>
         <source>There is no selected item in the middle list box!</source>
         <translation>V strednom paneli nie je vybraná žiadna položka!</translation>
     </message>
@@ -1660,7 +1655,7 @@ databáza pravdepodobne nebude kompletná</translation>
         <translation>Zapožičať médium...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2835"/>
+        <location filename="../guibase.cpp" line="2834"/>
         <source>Do you want to clear the borrowing mark from media &quot;%1&quot;?
 (Say yes if you got it back.)</source>
         <translation>Naozaj zmazať informácie o zapožičaní média:
@@ -1710,7 +1705,7 @@ Domovská stránka: %3</translation>
         <translation type="obsolete">Pridaj linku ku katalógu CdCat...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2729"/>
+        <location filename="../guibase.cpp" line="2728"/>
         <source>The link is empty.</source>
         <translation>Linka neobsahuje žiadnu informáciu.</translation>
     </message>
@@ -3974,62 +3969,62 @@ na
 <context>
     <name>findDialog</name>
     <message>
-        <location filename="../find.cpp" line="921"/>
+        <location filename="../find.cpp" line="927"/>
         <source>Name</source>
         <translation>Názov</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="922"/>
+        <location filename="../find.cpp" line="928"/>
         <source>Type</source>
         <translation>Typ</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="924"/>
+        <location filename="../find.cpp" line="930"/>
         <source>Media</source>
         <translation>Médium</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="925"/>
+        <location filename="../find.cpp" line="931"/>
         <source>Path</source>
         <translation>Cesta</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="926"/>
+        <location filename="../find.cpp" line="932"/>
         <source>Modification</source>
         <translation>Posledná zmena</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="522"/>
+        <location filename="../find.cpp" line="525"/>
         <source>Search in the database...</source>
         <translation>Hľadať...</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="564"/>
+        <location filename="../find.cpp" line="567"/>
         <source>Close / Go to selected</source>
         <translation>Zatvoriť / Choď na označené</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="536"/>
+        <location filename="../find.cpp" line="539"/>
         <source>Find:</source>
         <translation>Nájsť:</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="523"/>
+        <location filename="../find.cpp" line="526"/>
         <source>Seek in:</source>
         <translation>Hľadať v:</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="524"/>
+        <location filename="../find.cpp" line="527"/>
         <source>Owner:</source>
         <translation>Vlastník:</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="927"/>
+        <location filename="../find.cpp" line="933"/>
         <source>Comment</source>
         <translation>Komentár</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="868"/>
+        <location filename="../find.cpp" line="874"/>
         <source>File name</source>
         <translation>Meno súboru</translation>
     </message>
@@ -4039,42 +4034,42 @@ na
         <translation type="obsolete">Meno adresára</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="880"/>
+        <location filename="../find.cpp" line="886"/>
         <source>mp3-tag Comment</source>
         <translation>mp3-tag Komentár</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="878"/>
+        <location filename="../find.cpp" line="884"/>
         <source>mp3-tag Album</source>
         <translation>mp3-tag Album</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="876"/>
+        <location filename="../find.cpp" line="882"/>
         <source>mp3-tag Title</source>
         <translation>mp3-tag Názov</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="874"/>
+        <location filename="../find.cpp" line="880"/>
         <source>mp3-tag Artist</source>
         <translation>mp3-tag Interpret</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="853"/>
+        <location filename="../find.cpp" line="859"/>
         <source>Case sensitive</source>
         <translation>Rozlišovať malé/VEĽKÉ</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="845"/>
+        <location filename="../find.cpp" line="851"/>
         <source>Use easy matching instead regex</source>
         <translation>Použiť jednoduché porovnávanie</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="649"/>
+        <location filename="../find.cpp" line="652"/>
         <source>All/Everybody</source>
         <translation>Všetci</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="653"/>
+        <location filename="../find.cpp" line="656"/>
         <source>All media</source>
         <translation>Všetky médiá</translation>
     </message>
@@ -4084,7 +4079,7 @@ na
         <translation type="obsolete">&amp;OK</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="559"/>
+        <location filename="../find.cpp" line="562"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Zrušiť</translation>
     </message>
@@ -4094,213 +4089,218 @@ na
         <translation type="obsolete">Výsledky</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="872"/>
+        <location filename="../find.cpp" line="878"/>
         <source>Content</source>
         <translation>Obsah</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="866"/>
+        <location filename="../find.cpp" line="872"/>
         <source>Media / Directory name</source>
         <translation>Médium / Názov adresára</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="899"/>
+        <location filename="../find.cpp" line="905"/>
         <source>Date start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="903"/>
+        <location filename="../find.cpp" line="909"/>
         <source>Date end</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="152"/>
+        <location filename="../find.cpp" line="155"/>
         <source>Byte</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="153"/>
+        <location filename="../find.cpp" line="156"/>
         <source>KiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="154"/>
+        <location filename="../find.cpp" line="157"/>
         <source>MiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="155"/>
+        <location filename="../find.cpp" line="158"/>
         <source>GiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="907"/>
+        <location filename="../find.cpp" line="913"/>
         <source>Min size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="911"/>
+        <location filename="../find.cpp" line="917"/>
         <source>Max size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="554"/>
+        <location filename="../find.cpp" line="557"/>
         <source>&amp;Start search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="923"/>
+        <location filename="../find.cpp" line="929"/>
         <source>Size</source>
         <translation type="unfinished">Veľkosť</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="887"/>
+        <location filename="../find.cpp" line="893"/>
         <source>Unsharp search (slow)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="552"/>
+        <location filename="../find.cpp" line="555"/>
         <source>Find in archives too</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="565"/>
+        <location filename="../find.cpp" line="568"/>
         <source>Print result...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="566"/>
+        <location filename="../find.cpp" line="569"/>
         <source>Export result to HTML...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="809"/>
+        <location filename="../find.cpp" line="815"/>
         <source>Print cdcat result</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="814"/>
+        <location filename="../find.cpp" line="820"/>
         <source>Result file name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="816"/>
+        <location filename="../find.cpp" line="822"/>
         <source>Filename missing</source>
         <translation type="unfinished">Chýba meno súboru</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="816"/>
+        <location filename="../find.cpp" line="822"/>
         <source>Please enter a filename!</source>
         <translation type="unfinished">Prosím zadajte názov súboru!</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="833"/>
+        <location filename="../find.cpp" line="839"/>
         <source>Cdcat search result</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="834"/>
+        <location filename="../find.cpp" line="840"/>
         <source>catalog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="834"/>
+        <location filename="../find.cpp" line="840"/>
         <source>created at:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="837"/>
+        <location filename="../find.cpp" line="843"/>
         <source>used search options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="841"/>
+        <location filename="../find.cpp" line="847"/>
         <source>search pattern:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="889"/>
+        <location filename="../find.cpp" line="895"/>
         <source>on</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="891"/>
+        <location filename="../find.cpp" line="897"/>
         <source>off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="863"/>
+        <location filename="../find.cpp" line="869"/>
         <source>Search in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="883"/>
+        <location filename="../find.cpp" line="889"/>
         <source>archives</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="897"/>
+        <location filename="../find.cpp" line="903"/>
         <source>other options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="987"/>
+        <location filename="../find.cpp" line="993"/>
         <source>File cant open: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="987"/>
+        <location filename="../find.cpp" line="993"/>
         <source>Cant open file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="494"/>
+        <location filename="../find.cpp" line="497"/>
         <source>Search for duplicates in the database...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="515"/>
+        <location filename="../find.cpp" line="518"/>
         <source>Duplicates for:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="516"/>
+        <location filename="../find.cpp" line="519"/>
         <source>Close</source>
         <translation type="unfinished">Zatvoriť</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="563"/>
+        <location filename="../find.cpp" line="566"/>
         <source>Results: search not started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="534"/>
+        <location filename="../find.cpp" line="537"/>
         <source>Extension</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="156"/>
+        <location filename="../find.cpp" line="159"/>
         <source>TiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="537"/>
+        <location filename="../find.cpp" line="540"/>
         <source>Keep search result</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="553"/>
+        <location filename="../find.cpp" line="556"/>
         <source>Clear search results</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="928"/>
+        <location filename="../find.cpp" line="934"/>
         <source>Category</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="555"/>
+        <location filename="../find.cpp" line="558"/>
         <source>Category for find</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../find.cpp" line="704"/>
+        <source>Selected dir: </source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4993,7 +4993,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>seekEngine</name>
     <message>
-        <location filename="../find.cpp" line="1067"/>
+        <location filename="../find.cpp" line="1073"/>
         <source>Error in the pattern:</source>
         <translation>Chyba vo vzorke:</translation>
     </message>
@@ -5003,62 +5003,62 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">OK</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1153"/>
+        <location filename="../find.cpp" line="1159"/>
         <source>There is no matching.</source>
         <translation>Nič nenájdené.</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1642"/>
+        <location filename="../find.cpp" line="1648"/>
         <source>dir</source>
         <translation>adr</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1648"/>
+        <location filename="../find.cpp" line="1654"/>
         <source>file</source>
         <translation>súbor</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1659"/>
+        <location filename="../find.cpp" line="1665"/>
         <source>error</source>
         <translation>chyba</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1636"/>
+        <location filename="../find.cpp" line="1642"/>
         <source>media</source>
         <translation>médium</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1031"/>
+        <location filename="../find.cpp" line="1037"/>
         <source>Searching, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1148"/>
+        <location filename="../find.cpp" line="1154"/>
         <source>Search cancelled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1148"/>
+        <location filename="../find.cpp" line="1154"/>
         <source>You have cancelled searching.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1495"/>
+        <location filename="../find.cpp" line="1501"/>
         <source>File in archive: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1144"/>
+        <location filename="../find.cpp" line="1150"/>
         <source>Results:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1144"/>
+        <location filename="../find.cpp" line="1150"/>
         <source>searching is in progress</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1150"/>
+        <location filename="../find.cpp" line="1156"/>
         <source>Last search results:</source>
         <translation type="unfinished"></translation>
     </message>

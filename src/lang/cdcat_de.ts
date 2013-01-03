@@ -40,10 +40,6 @@
       <source>unknown</source>
       <translation>unbekannt</translation>
     </message>
-    <message>
-      <source></source>
-      <translation type="unfinished" />
-    </message>
   </context>
   <context>
     <name>CatalogTypeEditDialog</name>
@@ -2991,6 +2987,10 @@ wird zu
     <message>
       <source>Category for find</source>
       <translation>Kategorie zum Finden</translation>
+    </message>
+    <message>
+      <source>Selected dir: </source>
+      <translation>Gewähltes Verzeichnis:</translation>
     </message>
   </context>
   <context>
