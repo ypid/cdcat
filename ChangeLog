@@ -1,3 +1,6 @@
+03. Jan 2012 Christoph Thielecke <crissi99@gmx.de>
+	- Q_OBJECT macro on ArchiveFile class added
+
 02. Jan 2012 Christoph Thielecke <crissi99@gmx.de>
 	- links now working in regex info dialog (thanks to Alain Aupeix)
 	- wikipedia link fixed in regex info dialog

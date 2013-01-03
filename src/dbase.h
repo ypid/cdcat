@@ -273,6 +273,7 @@ class DBCatLnk { //type is 7
 };
 
 class ArchiveFile : public QObject { //type is 8
+	Q_OBJECT
 	public:
 		ArchiveFile ( QString fileattr = "-rw- rw- rw-", QString user = tr ( "unknown" ), QString group = tr ( "unknown" ), long long int size = 0, QDateTime date = QDateTime().currentDateTime(), QString path = "/", QString filetype = tr ( "" ) );
 		ArchiveFile ( const ArchiveFile& );
