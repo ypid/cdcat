@@ -2701,18 +2701,17 @@ int GuiSlave::showContent ( void ) {
 int GuiSlave::addlnkEvent ( void ) {
 	if ( mainw->db == NULL )
 		return 0;
-
-	AddLnk *al = new AddLnk ( this, mainw );
-	al->exec();
-	if ( al->ok ) {
-		PWw *pww = new PWw ( mainw, mainw->app );
+	PWw *pww = NULL;
+	AddLnk al( this, mainw );
+	al.exec();
+	if ( al.ok ) {
+		pww = new PWw ( mainw, mainw->app );
 		mainw->db->pww = pww;
 		panelsOFF();
-		mainw->db->addLnk ( ( const char * ) QFile::encodeName ( al->fname->text() ) );
+		mainw->db->addLnk ( ( const char * ) QFile::encodeName ( al.fname->text() ) );
 		panelsON();
 	}
-	mainw->db->pww->hide();
-	delete al;
+	delete pww;
 	cHcaption();
 	return 0;
 }
