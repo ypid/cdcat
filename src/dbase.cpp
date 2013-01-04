@@ -838,7 +838,7 @@ int   DataBase::insertDB ( char *filename, bool skipDuplicatesOnInsert, bool isG
 		if ( *DEBUG_INFO_ENABLED )
 			std::cerr << "error:" << qPrintable ( fw->errormsg ) << std::endl;
 		delete fw;
-		gzclose ( f );
+		gzclose ( gf );
 		free ( allocated_buffer );
 		return 1;
 	}
