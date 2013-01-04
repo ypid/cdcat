@@ -2384,7 +2384,7 @@ deviendra
     <message>
         <location filename="../info.cpp" line="97"/>
         <source>Development version build at</source>
-        <translation>Version de dévelopement produite à</translation>
+        <translation>Version de développement produite le</translation>
     </message>
     <message>
         <location filename="../info.cpp" line="104"/>
