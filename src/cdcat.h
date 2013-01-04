@@ -23,7 +23,7 @@
 
 // Datafile version:
 // The known versions listed in guibase.cpp - checkversion !
-#define DVERS    "2.1"
+#define DVERS    "2.2"
 
 // CdCat homepage location:
 #define HOMEPAGE "<a href=\"http://cdcat.sf.net\">http://cdcat.sf.net</a>"

@@ -328,6 +328,8 @@ void GuiSlave::checkversion ( QWidget *p, DataBase *db ) {
 		return;
 	if ( fv == "2.1" )
 		return;
+	if ( fv == "2.2" )
+		return;
 
 	QMessageBox::warning ( p, tr ( "Warning..." ),
 	                       tr (
