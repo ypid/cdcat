@@ -4245,7 +4245,7 @@ deviendra
     <message>
         <location filename="../find.cpp" line="704"/>
         <source>Selected dir: </source>
-        <translation type="unfinished"></translation>
+        <translation>Répertoire sélectionné :</translation>
     </message>
 </context>
 <context>
