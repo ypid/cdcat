@@ -214,6 +214,11 @@ win32 {
 	# DYNAMIC
 	LIBS += -ltar
 	###### end libtar
+	
+	###### encryption
+	DEFINES += CATALOG_ENCRYPTION
+	LIBS+= -lcrypto++ -lpthread
+	###### end encryption
 
 	LIBS       += -lz -ltar -lbz2 -ldl
 	distfiles.files +=   ../README_CSV_IMPORT ../Authors ../README ../ChangeLog ../COPYING ../TRANSLATORS_README ../cdcat.png

@@ -147,6 +147,8 @@ void LNode::setExpanded ( bool o ) {
 				case HC_CATALOG :
 					newnode->setIcon ( 0, QIcon(*get_p_icon() ));
 					newnode->setText(1, QObject::tr ( "Catalog" ));
+					if(( ( DBCatalog * ) ( ( tmp )->data ) )->isEncryptedCatalog)
+						newnode->setText(1, QObject::tr ( "Catalog (encrypted)" ));
 					break;
 				case HC_MEDIA :
 					switch ( ( ( DBMedia * ) ( tmp->data ) )->type ) {
@@ -224,7 +226,10 @@ QString LNode::text ( int column ) const {
 	else {
 		switch ( node->type ) {
 			case HC_CATALOG :
-				return QObject::tr ( "Catalog" );
+				if(( ( DBCatalog * ) ( ( node )->data ) )->isEncryptedCatalog)
+					return QObject::tr ( "Catalog (encrypted)" );
+				else
+					return QObject::tr ( "Catalog" );
 			case HC_MEDIA   :
 				switch ( ( ( DBMedia * ) ( node->data ) )->type ) {
 					case UNKNOWN :

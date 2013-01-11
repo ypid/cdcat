@@ -1,5 +1,6 @@
 11. Jan 2012 Christoph Thielecke <crissi99@gmx.de>
 	- display compiled in features in about dialog added
+	- support for encrypted catalog added (requires libcrypto++, can be disabled on compile time)
 	
 03. Jan 2012 Christoph Thielecke <crissi99@gmx.de>
 	- Q_OBJECT macro on ArchiveFile class added

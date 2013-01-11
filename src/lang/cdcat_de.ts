@@ -40,6 +40,10 @@
       <source>unknown</source>
       <translation>unbekannt</translation>
     </message>
+    <message>
+      <source></source>
+      <translation type="unfinished" />
+    </message>
   </context>
   <context>
     <name>CatalogTypeEditDialog</name>
@@ -1379,6 +1383,34 @@ die Datenbank wird unvollständig sein</translation>
       <source>CdCat xml export (*.xml )</source>
       <translation>Cdcat-XML-Export (*.xml)</translation>
     </message>
+    <message>
+      <source>Change password...</source>
+      <translation>Passwort ändern...</translation>
+    </message>
+    <message>
+      <source>Password has been successfully changed</source>
+      <translation>Passwort wurde erfolgreich geändert</translation>
+    </message>
+    <message>
+      <source>Password changed</source>
+      <translation>Passwort geändert</translation>
+    </message>
+    <message>
+      <source>Password length is too short, must be minimum 4 chars</source>
+      <translation>Passwortlänge ist zu kurz, muss mindestens 4 Zeichen lang sein</translation>
+    </message>
+    <message>
+      <source>Password too short</source>
+      <translation>Passwort zu kurz</translation>
+    </message>
+    <message>
+      <source>Password length is too big, must be maximal %1 chars</source>
+      <translation>Passwortlänge ist zu lang, darf maximal %1 Zeichen lang sein</translation>
+    </message>
+    <message>
+      <source>Password too big</source>
+      <translation>Passwort zu lang</translation>
+    </message>
   </context>
   <context>
     <name>HDirectoryView</name>
@@ -1671,6 +1703,30 @@ wird zu
       <source>GPL page on GNU website</source>
       <translation>GPL-Seite auf der GNU-Webseite</translation>
     </message>
+    <message>
+      <source>Features:</source>
+      <translation>Fähigkeiten:</translation>
+    </message>
+    <message>
+      <source>archive read support using lib7zip</source>
+      <translation>Unterstützung zum Lesen von Archiven mit lib7zip</translation>
+    </message>
+    <message>
+      <source>mediainfo (compiled in)</source>
+      <translation>mediainfo (einkompiliert)</translation>
+    </message>
+    <message>
+      <source>mediainfo</source>
+      <translation>mediainfo</translation>
+    </message>
+    <message>
+      <source>exif data read support</source>
+      <translation>Unterstützung zum Lesen von EXIF-Ddaten</translation>
+    </message>
+    <message>
+      <source>encrypted catalog support</source>
+      <translation>Unterstützung für verschlüsselten Katalog</translation>
+    </message>
   </context>
   <context>
     <name>PWw</name>
@@ -1831,6 +1887,34 @@ wird zu
       <source>More Data:
 </source>
       <translation>Mehr Daten:</translation>
+    </message>
+    <message>
+      <source>Enter password...</source>
+      <translation>Passwort eingeben...</translation>
+    </message>
+    <message>
+      <source>Enter password for catalog:</source>
+      <translation>Passwort für Katalog eingeben:</translation>
+    </message>
+    <message>
+      <source>Catalog (encrypted)</source>
+      <translation>Katalog (verschlüsselt)</translation>
+    </message>
+    <message>
+      <source>password empty</source>
+      <translation>Passwort leer</translation>
+    </message>
+    <message>
+      <source>cant set password</source>
+      <translation>Passwort kann nicht gesetzt werden</translation>
+    </message>
+    <message>
+      <source>decrypt failed</source>
+      <translation>Entschlüsselung fehlgeschlagen</translation>
+    </message>
+    <message>
+      <source>cant load catalog: encrypted catalog support not available</source>
+      <translation>Katalog kann nicht geladen werden: Unterstützung für verschlüsselten Katalog nicht verfügbar</translation>
     </message>
   </context>
   <context>
@@ -3316,6 +3400,30 @@ p, li { white-space: pre-wrap; }
     <message>
       <source>Category:</source>
       <translation>Kategorie:</translation>
+    </message>
+    <message>
+      <source>encrypt catalog</source>
+      <translation>Katalog verschlüsseln</translation>
+    </message>
+    <message>
+      <source>password for catalog</source>
+      <translation>Passwort für Katalog</translation>
+    </message>
+    <message>
+      <source>Password length is too short, must be minimum 4 chars</source>
+      <translation>Passwortlänge ist zu kurz, muss mindestens 4 Zeichen lang sein</translation>
+    </message>
+    <message>
+      <source>Password too short</source>
+      <translation>Passwort zu kurz</translation>
+    </message>
+    <message>
+      <source>Password length is too big, must be maximal %1 chars</source>
+      <translation>Passwortlänge ist zu lang, darf maximal %1 Zeichen lang sein</translation>
+    </message>
+    <message>
+      <source>Password too big</source>
+      <translation>Passwort zu lang</translation>
     </message>
     <message>
       <source></source>

@@ -18,6 +18,8 @@ lib7zip (>= 1.4.1, optional): http://code.google.com/p/lib7zip/downloads/detail?
 		5. make
 		6. copy lib7zip-1.4.1/Lib7Zip/lib7zip.a to /usr/local/lib
 
+libcrypto++ (optional) source: http://www.cryptopp.com/wiki/Linux
+	- it will be used for catalog encryption, enable in cdcat.pro (can be disabled in cdcat.pro)
 
 mediainfo: http://mediainfo.sourceforge.net/
 	- for use dynamic mediainfo support only MediaInfoDLL is at compile time required (MediaInfoDLL/MediaInfoDLL.h), it can be downloaded here: http://mediainfo.svn.sourceforge.net/viewvc/mediainfo/MediaInfoLib/trunk/Source/MediaInfoDLL/MediaInfoDLL.h?revision=3213

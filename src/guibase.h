@@ -129,6 +129,10 @@ public slots:
     int sborrowEvent ( void );
     int cborrowEvent ( void );
 
+#ifdef CATALOG_ENCRYPTION
+    int changePassEvent ( void );
+#endif
+
     int sortNuEventAscending ( void );
     int sortNuEventDescending ( void );
     int sortNaEventAscending ( void );

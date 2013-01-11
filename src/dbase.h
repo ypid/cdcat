@@ -166,6 +166,7 @@ class DBCatalog { //type is 1
 		// n:name , o:owner , c:comment, mod:modification, pcategory:category
 		
 		int sortedBy;
+		bool isEncryptedCatalog;
 };
 
 class DBMedia { //type is 2

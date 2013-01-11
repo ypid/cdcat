@@ -117,6 +117,10 @@ InfoDialog::InfoDialog ( QWidget *parent, const char *name, bool modal, Qt::WFla
 	infotext += tr("exif data read support") + "<br>";
 #endif
 
+#ifdef CATALOG_ENCRYPTION
+	infotext += tr("encrypted catalog support") + "<br>";
+#endif
+
 
 	infotext += "<br>\n";
 	infotext += tr ( "Author:" );

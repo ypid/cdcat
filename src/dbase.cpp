@@ -351,6 +351,7 @@ DBCatalog::DBCatalog ( QString n, QString o, QString c, QDateTime mod, QString p
 	strcpy ( filename, "" );
 	fileversion = "";
 	modification = mod;
+	isEncryptedCatalog = false;
 }
 
 DBCatalog::DBCatalog ( void ) {
@@ -815,7 +816,6 @@ int   DataBase::insertDB ( char *filename, bool skipDuplicatesOnInsert, bool isG
 		return 1;
 	}
 	else {
-		//free(allocated_buffer); // we keep the memory, delete after read
 	}
 	/* end memtest */
 
@@ -839,7 +839,6 @@ int   DataBase::insertDB ( char *filename, bool skipDuplicatesOnInsert, bool isG
 			std::cerr << "error:" << qPrintable ( fw->errormsg ) << std::endl;
 		delete fw;
 		gzclose ( gf );
-		free ( allocated_buffer );
 		return 1;
 	}
 
@@ -852,7 +851,6 @@ int   DataBase::insertDB ( char *filename, bool skipDuplicatesOnInsert, bool isG
 	else {
 		fclose( f );
 	}
-	free ( allocated_buffer );
 	delete fw;
 	return 0;
 }
@@ -896,7 +894,6 @@ int   DataBase::openDB ( char *filename ) {
 		return 1;
 	}
 	else {
-		//free(allocated_buffer); // we keep the memory, delete after read
 	}
 	/* end memtest */
 
@@ -932,7 +929,6 @@ int   DataBase::openDB ( char *filename ) {
 		if(!doWork) {
 			gzclose ( f );
 			delete fw;
-			free ( allocated_buffer );
 			return 1;
 		}
 		
@@ -940,18 +936,16 @@ int   DataBase::openDB ( char *filename ) {
 		root = NULL;
 		delete fw;
 		gzclose ( f );
-		free ( allocated_buffer );
 		return 1;
 	}
 
 
 	( ( DBCatalog * ) ( root->data ) )->writed = 1;
 	strcpy ( ( ( DBCatalog * ) ( root->data ) )->filename, filename );
-
+	std::cerr << "isEncryptedCatalog: " << ( ( DBCatalog * ) ( root->data ) )->isEncryptedCatalog << std::endl;
 	progress ( pww );
 
 	gzclose ( f );
-	free ( allocated_buffer );
 	delete fw;
 	return 0;
 }
@@ -2110,7 +2104,6 @@ void DataBase::addLnk ( const char *loc ) {
 		return;
 	}
 	else {
-		//free(allocated_buffer); // we keep the memory, delete after read
 	}
 	/* end memtest */
 
@@ -2122,11 +2115,9 @@ void DataBase::addLnk ( const char *loc ) {
 		QMessageBox::warning ( NULL, tr ( "Error" ), tr ( "Error while parsing file: %1" ).arg ( loc ) );
 		delete fw;
 		gzclose ( f );
-		free ( allocated_buffer );
 		return;
 	}
 	gzclose ( f );
-	free ( allocated_buffer );
 	delete fw;
 	
 	/* end reading from the file */

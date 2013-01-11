@@ -1049,6 +1049,14 @@ void GuiSlave::showTreeContextMenu ( const QPoint p2 ) {
 			mPopup->addAction ( QIcon(*get_t_add_icon()), tr ( "Change media type..." ), this, SLOT(typeChangeEvent()) );
 		}
 	}
+#ifdef CATALOG_ENCRYPTION
+	if ( on != NULL && on->type == HC_CATALOG ) {
+		mPopup->insertSeparator(NULL);
+		mPopup->addAction ( tr ( "Change password..." ), this, SLOT(changePassEvent()) );
+		mPopup->insertSeparator(NULL);
+	}
+#endif
+	
 	mPopup->addAction ( QIcon(*get_t_add_icon()), tr ( "Add media..." ), this, SLOT(addEvent()) );
 	mPopup->addAction ( QIcon(*get_p_icon()), tr ( "Add a link to a Cdcat catalog..." ), this, SLOT(addlnkEvent()) );
 	mPopup->addAction ( tr ( "Insert Catalog..." ), this, SLOT(insertcEvent()) );
@@ -1127,6 +1135,11 @@ int GuiSlave::newEvent ( void ) {
 		mainw->db->doExcludeFiles = mainw->cconfig->doExcludeFiles;
 		mainw->db->ExcludeFileList = mainw->cconfig->ExcludeFileList;
 		mainw->db->useWildcardInsteadRegexForExclude = mainw->cconfig->useWildcardInsteadRegexForExclude;
+		
+#ifdef CATALOG_ENCRYPTION
+		( ( DBCatalog * ) ( (mainw->db->getRootNode() )->data ) )->isEncryptedCatalog = d->catalogEncrypted;
+		generate_cryptokey ( d->encryptionPassword );
+#endif
 		panelsON();
 	}
 	return 0;
@@ -2860,6 +2873,30 @@ int GuiSlave::searchDuplicatesEvent ( void ) {
 	delete finddupd;
 	return 0;
 }
+
+#ifdef CATALOG_ENCRYPTION
+int GuiSlave::changePassEvent ( void ) {
+	bool ok = false;
+	QString Password = QInputDialog::getText ( 0, QObject::tr ( "Enter password..." ), QObject::tr ( "Enter password for catalog:" ), QLineEdit::Password, "", &ok );
+	if ( ok ) {
+		if(Password.size() >= 4) {
+			if (Password.size() > CryptoPP::Blowfish::BLOCKSIZE) {
+				QMessageBox::warning ( 0,  tr("Password too big"), tr ( "Password length is too big, must be maximal %1 chars" ).arg(QString().setNum(CryptoPP::Blowfish::BLOCKSIZE)) );
+			}
+			else {
+				generate_cryptokey ( Password );
+				QMessageBox::information (0, tr("Password changed"), tr ( "Password has been successfully changed" ));
+				saveEvent();
+				return 0;
+			}
+		}
+		else {
+			QMessageBox::warning ( 0, tr("Password too short"), tr ( "Password length is too short, must be minimum 4 chars" ) );
+		}
+	}
+	return 1;
+}
+#endif
 
 //*****************************************************************************
 // Positioning dialog

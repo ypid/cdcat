@@ -16,6 +16,30 @@
 #include <QtXml/QXmlDefaultHandler>
 #include <QtXml/QXmlLocator>
 
+#ifdef CATALOG_ENCRYPTION
+// libcrypto++
+#include <crypto++/osrng.h>
+#include <crypto++/secblock.h>
+#include <crypto++/blowfish.h>
+#include <crypto++/filters.h>
+#include <crypto++/modes.h>
+#include <crypto++/hex.h>
+#endif
+
+#ifdef CATALOG_ENCRYPTION
+static CryptoPP::AutoSeededRandomPool prng;
+
+static CryptoPP::SecByteBlock crypto_key(CryptoPP::Blowfish::BLOCKSIZE);
+
+static byte iv[CryptoPP::Blowfish::BLOCKSIZE];
+
+
+int generate_cryptokey(QString password);
+int decrypt ( std::string &encrypted_data, std::string &decrypted_data);
+int encrypt ( std::string &decrypted_data, std::string &encrypted_data);
+
+#endif
+
 #include "dbase.h"
 
 class Node;
@@ -30,6 +54,7 @@ double       getSizeFS ( const char *str );
 int         getSizetFS ( const char *str );
 int         getTypeFS ( const char *str );
 
+static char enc_hcf_header[] = "__ENCRYTED_HCF__";
 
 class FileWriter {
 private:
@@ -40,6 +65,11 @@ private:
     gzFile f;
     int level;
 
+#ifdef CATALOG_ENCRYPTION
+    QString unencryptedBuffer;
+    bool isEncryptedCatalog;
+#endif
+
 public:
     FileWriter ( gzFile ff,bool nicefp, QString encoding );
     ~FileWriter();
@@ -48,6 +78,12 @@ public:
     int writeDown ( Node *source );
     bool nicef;
 
+private:
+
+    /* write to gzFile or unencryptedBuffer */
+    void real_write(QString msg); 
+
+public:
 //private:
     char **spgtable;
     inline char * spg ( int spn );
@@ -101,7 +137,7 @@ public:
     bool skipDuplicatesOnInsert;
     bool parseresult;
 
-    int      readFrom ( Node *source, bool skipDuplicatesOnInsert = false );
+    int      readFrom ( Node *source, bool skipDuplicatesOnInsert = false, bool only_name = false );
     QString getStr2(const QXmlAttributes &atts,char *what,char *err );
     double getDouble2 (const QXmlAttributes &atts,char *what,char *err );
     int      isthere ( const char **from,char *what );
@@ -139,8 +175,6 @@ class CdCatXmlHandler : public QXmlDefaultHandler {
 		double testFileInDBSize;
 		bool testFileInDBFound;
 };
-
-
 
 #endif
 

@@ -26,6 +26,10 @@
 #include <stdio.h>
 #include <string.h>
 
+#ifdef CATALOG_ENCRYPTION
+#include <crypto++/blowfish.h>
+#endif
+
 #include "icons.h"
 /*
  *  Constructs a newdbdialog as a child of 'parent', with the
@@ -70,6 +74,22 @@ newdbdialog::newdbdialog ( QWidget *parent, const char *name, bool modal, Qt::WF
 	NewDBDialogBaseLayout->addWidget ( textLabelDatabase, 4, 0,1 ,1 );
 	NewDBDialogBaseLayout->addWidget ( leName, 4, 1, 1, 1 );
 
+#ifdef CATALOG_ENCRYPTION
+	textLabelEncryption = new QLabel ( this );
+	cbEncryption = new QCheckBox ( this );
+	NewDBDialogBaseLayout->addWidget ( textLabelEncryption, 5, 0,1 ,1 );
+	NewDBDialogBaseLayout->addWidget ( cbEncryption, 5, 1, 1, 1 );
+
+	textLabelEncryptionPassword = new QLabel ( this );
+	leEncryptionPassword = new QLineEdit ( this );
+	leEncryptionPassword->setEchoMode(QLineEdit::Password);
+	NewDBDialogBaseLayout->addWidget ( textLabelEncryptionPassword, 6, 0,1 ,1 );
+	NewDBDialogBaseLayout->addWidget ( leEncryptionPassword, 6, 1, 1, 1 );
+	
+	catalogEncrypted = false;
+	encryptionPassword ="";
+#endif
+
 	layout12 = new QHBoxLayout ( this );
 	QSpacerItem *spacer_3 = new QSpacerItem ( 140, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	layout12->addItem ( spacer_3 );
@@ -87,7 +107,7 @@ newdbdialog::newdbdialog ( QWidget *parent, const char *name, bool modal, Qt::WF
 	QSpacerItem *spacer_4 = new QSpacerItem ( 170, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	layout12->addItem ( spacer_4 );
 
-	NewDBDialogBaseLayout->addLayout ( layout12, 6, 0, 2, 2 );
+	NewDBDialogBaseLayout->addLayout ( layout12, 7, 0, 2, 2 );
 
 
 	languageChange();
@@ -120,6 +140,10 @@ void newdbdialog::languageChange() {
 	buttonOK->setText ( tr ( "OK" ) );
 	buttonCancel->setText ( tr ( "Cancel" ) );
 	teComm->setText ( tr ( " " ) );
+#ifdef CATALOG_ENCRYPTION
+	textLabelEncryption->setText( tr("encrypt catalog") );
+	textLabelEncryptionPassword->setText( tr("password for catalog") );
+#endif
 }
 
 
@@ -129,6 +153,20 @@ int newdbdialog::ok ( void ) {
 	ownerD = leOwner->text();
 	commD  = teComm->toPlainText();
 	categoryD  = leCategory->text();
+#ifdef CATALOG_ENCRYPTION
+	if(cbEncryption->isChecked() ) {
+		if( leEncryptionPassword->text().size() < 4) {
+			QMessageBox::warning ( this, tr("Password too short"), tr ( "Password length is too short, must be minimum 4 chars" ) );
+			return 1;
+		}
+		if( leEncryptionPassword->text().size() > CryptoPP::Blowfish::BLOCKSIZE) {
+			QMessageBox::warning ( this, tr("Password too big"), tr ( "Password length is too big, must be maximal %1 chars" ).arg(QString().setNum(CryptoPP::Blowfish::BLOCKSIZE)) );
+			return 1;
+		}
+	}
+	catalogEncrypted = cbEncryption->isChecked();
+	encryptionPassword = leEncryptionPassword->text();
+#endif
 	close();
 	return 0;
 }
