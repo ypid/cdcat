@@ -96,6 +96,28 @@ InfoDialog::InfoDialog ( QWidget *parent, const char *name, bool modal, Qt::WFla
 #else
 	infotext += "<b>(" + tr ( "Development version build at" ) + " " + __DATE__ + " " + __TIME__ + ", Qt " + QString ( QT_VERSION_STR ) + ")" + DEBUG_INFO + "</b>";
 #endif
+	
+	infotext += "<b>";
+	infotext += tr ( "Features:" );
+	infotext += "</b><br>\n";
+
+#ifdef USE_LIB7ZIP
+	infotext += tr ( "archive read support using lib7zip" ) + "<br>";
+#endif
+
+#ifdef MEDIAINFO_STATIC
+	infotext += tr ( "mediainfo (compiled in)" ) + "<br>";
+#endif
+
+#ifdef MEDIAINFO_UNICODE
+	infotext += tr("mediainfo") + "<br>";
+#endif
+
+#ifdef USE_LIBEXIF
+	infotext += tr("exif data read support") + "<br>";
+#endif
+
+
 	infotext += "<br>\n";
 	infotext += tr ( "Author:" );
 	infotext += "<br><font size=\"+2\"><b>Christoph Thielecke (crissi99@gmx.de)</b><br></font>\n";

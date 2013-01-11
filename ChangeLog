@@ -1,3 +1,6 @@
+11. Jan 2012 Christoph Thielecke <crissi99@gmx.de>
+	- display compiled in features in about dialog added
+	
 03. Jan 2012 Christoph Thielecke <crissi99@gmx.de>
 	- Q_OBJECT macro on ArchiveFile class added
 	- cdcat homepage link at info dialog fixed
