@@ -117,6 +117,11 @@ class CdCatMainWidget : public QMainWindow{
 		QAction *open_action;
 		QAction *save_action;
 		QAction *saveas_action;
+#ifdef CATALOG_ENCRYPTION
+		QAction *changepass_action;
+		QAction *disableencryption_action;
+		QAction *enableencryption_action;
+#endif
 		//QAction *history_action;
 		QAction *close_action;
 		QAction *quit_action;

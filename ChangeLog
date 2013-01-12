@@ -1,3 +1,7 @@
+12. Jan 2012 Christoph Thielecke <crissi99@gmx.de>
+	- menu entries/context menu entries for enable/disable encryption added
+	- password confirmation on set/change encryption password added
+
 11. Jan 2012 Christoph Thielecke <crissi99@gmx.de>
 	- display compiled in features in about dialog added
 	- support for encrypted catalog added (requires libcrypto++, can be disabled on compile time)

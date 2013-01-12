@@ -40,10 +40,6 @@
       <source>unknown</source>
       <translation>unbekannt</translation>
     </message>
-    <message>
-      <source></source>
-      <translation type="unfinished" />
-    </message>
   </context>
   <context>
     <name>CatalogTypeEditDialog</name>
@@ -459,6 +455,30 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     <message>
       <source>Insert Cdcat exported XML into database</source>
       <translation>Cdcat-XML-Export in Datenbank einfügen</translation>
+    </message>
+    <message>
+      <source>Change password...</source>
+      <translation>Passwort ändern...</translation>
+    </message>
+    <message>
+      <source>Changes password for catalog encryption</source>
+      <translation>Ändert das Passwort für Katalogverschlüsselung</translation>
+    </message>
+    <message>
+      <source>Disable encryption</source>
+      <translation>Verschlüsselung deaktivieren</translation>
+    </message>
+    <message>
+      <source>Disables catalog encryption</source>
+      <translation>Deaktiviert Katalogverschlüsselung</translation>
+    </message>
+    <message>
+      <source>Enable encryption</source>
+      <translation>Verschlüsselung aktivieren</translation>
+    </message>
+    <message>
+      <source>Enables catalog encryption</source>
+      <translation>Aktiviert Katalogverschlüsselung</translation>
     </message>
   </context>
   <context>
@@ -1171,7 +1191,7 @@ Datenbank kann unvollständig sein</translation>
     </message>
     <message>
       <source>Number</source>
-      <translation>Zahl</translation>
+      <translation>Nummer</translation>
     </message>
     <message>
       <source>Size</source>
@@ -1410,6 +1430,30 @@ die Datenbank wird unvollständig sein</translation>
     <message>
       <source>Password too big</source>
       <translation>Passwort zu lang</translation>
+    </message>
+    <message>
+      <source>Disable encryption</source>
+      <translation>Verschlüsselung deaktivieren</translation>
+    </message>
+    <message>
+      <source>Enable encryption</source>
+      <translation>Verschlüsselung aktivieren</translation>
+    </message>
+    <message>
+      <source>Encryption has been successfully enabled</source>
+      <translation>Verschlüsselung wurde erfolgreich aktiviert</translation>
+    </message>
+    <message>
+      <source>Encryption has been successfully disabled</source>
+      <translation>Verschlüsselung wurde erfolgreich deaktiviert</translation>
+    </message>
+    <message>
+      <source>Passwords not match</source>
+      <translation>Passwörter stimmen nicht überein</translation>
+    </message>
+    <message>
+      <source>Passwords does not match</source>
+      <translation>Passwörter stimmen nicht überein</translation>
     </message>
   </context>
   <context>
@@ -1915,6 +1959,10 @@ wird zu
     <message>
       <source>cant load catalog: encrypted catalog support not available</source>
       <translation>Katalog kann nicht geladen werden: Unterstützung für verschlüsselten Katalog nicht verfügbar</translation>
+    </message>
+    <message>
+      <source>Enter password for catalog (again):</source>
+      <translation>Passwort für Katalog eingeben (nochmal):</translation>
     </message>
   </context>
   <context>

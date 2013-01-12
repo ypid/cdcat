@@ -154,7 +154,30 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	saveas_action->setStatusTip ( tr ( "save catalog with new name" ) );
 	connect ( saveas_action, SIGNAL ( triggered() ), guis, SLOT ( saveasEvent() ) );
 	fileMenu->addAction ( saveas_action );
+	
+#ifdef CATALOG_ENCRYPTION
+	changepass_action = new QAction ( QIcon ( *get_t_info_icon() ), tr ( "Change password..." ), this );
+	//changepass_action->setShortcuts ( QKeySequence::Open );
+	changepass_action->setStatusTip ( tr ( "Changes password for catalog encryption" ) );
+	connect ( changepass_action, SIGNAL ( triggered() ), guis, SLOT ( changePassEvent() ) );
+	fileMenu->addAction ( changepass_action );
+	changepass_action->setEnabled(false);
+	
+	disableencryption_action = new QAction ( QIcon ( *get_t_info_icon() ), tr ( "Disable encryption" ), this );
+	//disableencryption_action->setShortcuts ( QKeySequence::Open );
+	disableencryption_action->setStatusTip (  tr ( "Disables catalog encryption" ) );
+	connect ( disableencryption_action, SIGNAL ( triggered() ), guis, SLOT ( disableEncryptionEvent() ) );
+	fileMenu->addAction ( disableencryption_action );
+	disableencryption_action->setEnabled(false);
 
+	enableencryption_action = new QAction ( QIcon ( *get_t_info_icon() ), tr ( "Enable encryption" ), this );
+// 	enableencryption_action->setShortcuts ( QKeySequence::Open );
+	enableencryption_action->setStatusTip (tr ( "Enables catalog encryption" ) );
+	connect ( enableencryption_action, SIGNAL ( triggered() ), guis, SLOT ( enableEncryptionEvent() ) );
+	fileMenu->addAction ( enableencryption_action );
+	enableencryption_action->setEnabled(false);
+#endif
+	
 	fileMenu->insertSeparator (NULL);
 	historyMenu = new QMenu(this);
 
@@ -428,6 +451,11 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	Toolbar->addAction ( open_action );
 	Toolbar->addAction ( save_action );
 	Toolbar->addAction ( saveas_action );
+#ifdef CATALOG_ENCRYPTION
+	Toolbar->addAction ( changepass_action );
+	Toolbar->addAction ( disableencryption_action );
+	Toolbar->addAction ( enableencryption_action );
+#endif
 	Toolbar->addAction ( close_action );
 	Toolbar->addAction ( add_action );
 	Toolbar->addAction ( rescan_action );
@@ -591,6 +619,14 @@ void CdCatMainWidget::languageChange() {
         save_action->setStatusTip ( tr ( "Save catalog" ));
         saveas_action->setText(tr ( "&Save as..." ));
         saveas_action->setStatusTip ( tr ( "save catalog with new name" ));
+#ifdef CATALOG_ENCRYPTION
+	changepass_action->setText(tr ( "Change password..." ));
+	changepass_action->setStatusTip ( tr ( "Changes password for catalog encryption" ));
+	disableencryption_action->setText(tr ( "Disable encryption" ));
+	disableencryption_action->setStatusTip ( tr ( "Disables catalog encryption" ));
+	enableencryption_action->setText(tr ( "Enable encryption" ));
+	enableencryption_action->setStatusTip ( tr ( "Enables catalog encryption" ));
+#endif
         //history_action->setText(tr ( "Recent files..." ), this));
         historyMenu->setTitle ( tr ( "Recent files..." ));
         close_action->setText(tr ( "Close catalog" ));

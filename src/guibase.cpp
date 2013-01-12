@@ -1051,9 +1051,16 @@ void GuiSlave::showTreeContextMenu ( const QPoint p2 ) {
 	}
 #ifdef CATALOG_ENCRYPTION
 	if ( on != NULL && on->type == HC_CATALOG ) {
-		mPopup->insertSeparator(NULL);
-		mPopup->addAction ( tr ( "Change password..." ), this, SLOT(changePassEvent()) );
-		mPopup->insertSeparator(NULL);
+		bool isEncryptedCatalog = ( ( DBCatalog * ) ( (on )->data ) )->isEncryptedCatalog;
+		if (isEncryptedCatalog) {
+			mPopup->insertSeparator(NULL);
+			mPopup->addAction ( tr ( "Change password..." ), this, SLOT(changePassEvent()) );
+			mPopup->addAction ( tr ( "Disable encryption" ), this, SLOT(disableEncryptionEvent()) );
+			mPopup->insertSeparator(NULL);
+		}
+		else {
+			mPopup->addAction ( tr ( "Enable encryption" ), this, SLOT(Event()) );
+		}
 	}
 #endif
 	
@@ -1255,6 +1262,22 @@ int GuiSlave::openEvent ( void ) {
 	if ( mainw->db != NULL )
 		mainw->db->pww = NULL;
 	delete pww;
+	
+#ifdef CATALOG_ENCRYPTION
+	if ( mainw->db != NULL ) {
+		Node *root = mainw->db->getRootNode();
+		bool isEncryptedCatalog = ( ( DBCatalog * ) ( (root )->data ) )->isEncryptedCatalog;
+		if (isEncryptedCatalog) {
+			mainw->disableencryption_action->setEnabled(true);
+			mainw->enableencryption_action->setEnabled(false);
+		}
+		else {
+			mainw->disableencryption_action->setEnabled(false);
+			mainw->enableencryption_action->setEnabled(true);
+		}
+	}
+#endif
+	
 	QApplication::restoreOverrideCursor();
 	return 0;
 }
@@ -1283,7 +1306,7 @@ int GuiSlave::saveEvent ( void ) {
 		QApplication::restoreOverrideCursor();
 		return 0;
 	}
-
+	
 	panelsOFF();
 	panelsON();
 
@@ -2618,6 +2641,20 @@ int GuiSlave::openHistoryElementEvent ( QAction *action) {
 	if ( mainw->db != NULL )
 		mainw->db->pww = NULL;
 	delete pww;
+#ifdef CATALOG_ENCRYPTION
+	if ( mainw->db != NULL ) {
+		Node *root = mainw->db->getRootNode();
+		bool isEncryptedCatalog = ( ( DBCatalog * ) ( (root )->data ) )->isEncryptedCatalog;
+		if (isEncryptedCatalog) {
+			mainw->disableencryption_action->setEnabled(true);
+			mainw->enableencryption_action->setEnabled(false);
+		}
+		else {
+			mainw->disableencryption_action->setEnabled(false);
+			mainw->enableencryption_action->setEnabled(true);
+		}
+	}
+#endif
 	QApplication::restoreOverrideCursor();
 	return 0;
 }
@@ -2877,25 +2914,76 @@ int GuiSlave::searchDuplicatesEvent ( void ) {
 #ifdef CATALOG_ENCRYPTION
 int GuiSlave::changePassEvent ( void ) {
 	bool ok = false;
+	bool ok_again = false;
 	QString Password = QInputDialog::getText ( 0, QObject::tr ( "Enter password..." ), QObject::tr ( "Enter password for catalog:" ), QLineEdit::Password, "", &ok );
-	if ( ok ) {
-		if(Password.size() >= 4) {
-			if (Password.size() > CryptoPP::Blowfish::BLOCKSIZE) {
-				QMessageBox::warning ( 0,  tr("Password too big"), tr ( "Password length is too big, must be maximal %1 chars" ).arg(QString().setNum(CryptoPP::Blowfish::BLOCKSIZE)) );
+	QString PasswordAgain = QInputDialog::getText ( 0, QObject::tr ( "Enter password..." ), QObject::tr ( "Enter password for catalog (again):" ), QLineEdit::Password, "", &ok_again );
+	if ( ok && ok_again ) {
+		if ( Password == PasswordAgain) { 
+			if(Password.size() >= 4) {
+				if (Password.size() > CryptoPP::Blowfish::BLOCKSIZE) {
+					QMessageBox::critical ( 0,  tr("Password too big"), tr ( "Password length is too big, must be maximal %1 chars" ).arg(QString().setNum(CryptoPP::Blowfish::BLOCKSIZE)) );
+				}
+				else {
+					generate_cryptokey ( Password );
+					QMessageBox::information (0, tr("Password changed"), tr ( "Password has been successfully changed" ));
+					saveEvent();
+					return 0;
+				}
 			}
 			else {
-				generate_cryptokey ( Password );
-				QMessageBox::information (0, tr("Password changed"), tr ( "Password has been successfully changed" ));
-				saveEvent();
-				return 0;
+				QMessageBox::critical ( 0, tr("Password too short"), tr ( "Password length is too short, must be minimum 4 chars" ) );
 			}
 		}
 		else {
-			QMessageBox::warning ( 0, tr("Password too short"), tr ( "Password length is too short, must be minimum 4 chars" ) );
+			QMessageBox::critical ( 0, tr("Passwords not match"), tr ( "Passwords does not match" ) );
 		}
 	}
 	return 1;
 }
+
+int GuiSlave::enableEncryptionEvent ( void ) {
+	Node *root = mainw->db->getRootNode();
+	bool ok = false;
+	bool ok_again = false;
+	QString Password = QInputDialog::getText ( 0, QObject::tr ( "Enter password..." ), QObject::tr ( "Enter password for catalog:" ), QLineEdit::Password, "", &ok );
+	QString PasswordAgain = QInputDialog::getText ( 0, QObject::tr ( "Enter password..." ), QObject::tr ( "Enter password for catalog (again):" ), QLineEdit::Password, "", &ok_again );
+	if ( ok && ok_again ) {
+		if ( Password == PasswordAgain) { 
+			if(Password.size() >= 4) {
+				if (Password.size() > CryptoPP::Blowfish::BLOCKSIZE) {
+					QMessageBox::critical ( 0,  tr("Password too big"), tr ( "Password length is too big, must be maximal %1 chars" ).arg(QString().setNum(CryptoPP::Blowfish::BLOCKSIZE)) );
+				}
+				else {
+					( ( DBCatalog * ) ( ( root )->data ) )->isEncryptedCatalog = true;
+					generate_cryptokey ( Password );
+					QMessageBox::information (0, tr("Password changed"), tr ( "Encryption has been successfully enabled" ));
+					saveEvent();
+					mainw->disableencryption_action->setEnabled(true);
+					mainw->enableencryption_action->setEnabled(false);
+					return 0;
+				}
+			}
+			else {
+				QMessageBox::critical ( 0, tr("Password too short"), tr ( "Password length is too short, must be minimum 4 chars" ) );
+			}
+		}
+		else {
+			QMessageBox::critical ( 0, tr("Passwords not match"), tr ( "Passwords does not match" ) );
+		}
+	}
+	return 1;
+}
+
+int GuiSlave::disableEncryptionEvent ( void ) {
+	Node *root = mainw->db->getRootNode();
+	( ( DBCatalog * ) ( ( root )->data ) )->isEncryptedCatalog = false;
+	QMessageBox::information (0, tr("Password changed"), tr ( "Encryption has been successfully disabled" ));
+	saveEvent();
+	mainw->disableencryption_action->setEnabled(false);
+	mainw->enableencryption_action->setEnabled(true);
+	return 1;
+}
+
 #endif
 
 //*****************************************************************************

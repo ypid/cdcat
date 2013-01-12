@@ -131,6 +131,8 @@ public slots:
 
 #ifdef CATALOG_ENCRYPTION
     int changePassEvent ( void );
+    int enableEncryptionEvent ( void );
+    int disableEncryptionEvent ( void );
 #endif
 
     int sortNuEventAscending ( void );
