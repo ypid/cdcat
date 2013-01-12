@@ -2067,7 +2067,7 @@ int generate_cryptokey ( QString password ) {
 	//printf("\nplease enter pass => ");
  	//fgets(reinterpret_cast<char*>(crypto_key.BytePtr()), 10, stdin);
 
-	strncpy(reinterpret_cast<char*>(crypto_key.BytePtr()), (password+"\n").toLocal8Bit().constData(), CryptoPP::Blowfish::BLOCKSIZE);
+	strncpy(reinterpret_cast<char*>(crypto_key.BytePtr()), (password).toLocal8Bit().constData(), CryptoPP::Blowfish::BLOCKSIZE);
 
 	return 0;
 }
