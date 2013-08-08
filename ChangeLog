@@ -3,6 +3,7 @@
 	- return type of isIdentical changed from int to bool 
 	- media name not changed after dialog on add media fixed (#53)
 	- check for existing media name not only for cd/dvd added
+	- missing initialisation of QTextCodec resulting in unability to run mediainfo on accentuated filenames fixed (#55)
 
 12. Jan 2012 Christoph Thielecke <crissi99@gmx.de>
 	- menu entries/context menu entries for enable/disable encryption added
