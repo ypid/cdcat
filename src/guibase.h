@@ -80,8 +80,8 @@ public:
     ~GuiSlave();
     Node *getNodeFromFullName ( Node *root,const QString& newloc );
     int updateListFromNode ( Node *pdir = 0 );
-    int isIdentical ( int i );
-    int isIdentical ( QString q );
+    bool isIdentical ( int i );
+    bool isIdentical ( QString q );
     bool haveContent ( Node *node );
     void updateStatusl ( Node *n );
     void checkversion ( QWidget *p,DataBase *db );

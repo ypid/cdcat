@@ -357,26 +357,26 @@ void GuiSlave::updateStatusl ( Node *n ) {
 	mainw->statusBar()->showMessage( n->getFullPath() );
 }
 
-int GuiSlave::isIdentical ( int i ) {
+bool GuiSlave::isIdentical ( int i ) {
 	DEBUG_INFO_ENABLED = init_debug_info();
 	if ( *DEBUG_INFO_ENABLED )
 		std::cerr << "F-isIdentical" << endl;
 	Node *t;
 
 	if ( mainw->db == NULL )
-		return 1;
+		return false;
 	t = mainw->db->getRootNode();
 	if ( t->child == NULL )
-		return 1;
+		return false;
 	t = t->child;
 	while ( t != NULL ) {
 		if ( t->type == HC_MEDIA )
 			if ( ( ( DBMedia * ) ( t->data ) )->number == i )
-				return 0;
+				return true;
 
 		t = t->next;
 	}
-	return 1;
+	return false;
 }
 
 bool GuiSlave::haveContent ( Node *node ) {
@@ -401,26 +401,26 @@ bool GuiSlave::haveContent ( Node *node ) {
 	return need_showc;
 }
 
-int GuiSlave::isIdentical ( QString q ) {
+bool GuiSlave::isIdentical ( QString q ) {
 	DEBUG_INFO_ENABLED = init_debug_info();
 	if ( *DEBUG_INFO_ENABLED )
 		cerr << "F-isIdentical" << endl;
 	Node *t;
 
 	if ( mainw->db == NULL )
-		return 1;
+		return false;
 	t = mainw->db->getRootNode();
 	if ( t->child == NULL )
-		return 1;
+		return false;
 	t = t->child;
 	while ( t != NULL ) {
 		if ( t->type == HC_MEDIA )
 			if ( ( ( DBMedia * ) ( t->data ) )->name == q )
-				return 0;
+				return true;
 
 		t = t->next;
 	}
-	return 1;
+	return false;
 }
 
 Node *GuiSlave::getNodeFromFullName ( Node *root, const QString& newloc ) {

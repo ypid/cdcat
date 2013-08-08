@@ -1,5 +1,8 @@
 08. Aug 2013 Christoph Thielecke <crissi99@gmx.de>
 	- displaying nfo pattern on debug info disabled
+	- return type of isIdentical changed from int to bool 
+	- media name not changed after dialog on add media fixed (#53)
+	- check for existing media name not only for cd/dvd added
 
 12. Jan 2012 Christoph Thielecke <crissi99@gmx.de>
 	- menu entries/context menu entries for enable/disable encryption added

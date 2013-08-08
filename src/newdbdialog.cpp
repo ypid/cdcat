@@ -245,7 +245,7 @@ int renamedialog::ok ( void ) {
 	}
 
 	if ( patient->type == HC_MEDIA ) {
-		if ( !slave->isIdentical ( leText->text() ) ) {
+		if ( slave->isIdentical ( leText->text() ) ) {
 			QMessageBox::warning ( this, tr ( "Error:" ), tr ( "The new (media) name must be unique!" ) );
 			return 0;
 		}
@@ -368,7 +368,7 @@ int renumberdialog::ok ( void ) {
 		return 0;
 	}
 
-	if ( !slave->isIdentical ( newnumber ) ) {
+	if ( slave->isIdentical ( newnumber ) ) {
 		QMessageBox::warning ( this, tr ( "Error:" ), tr ( "The new media-number must be unique!" ) );
 		return 0;
 	}

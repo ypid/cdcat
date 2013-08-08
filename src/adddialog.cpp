@@ -191,7 +191,7 @@ addDialog::addDialog ( GuiSlave *c, QWidget* parent, const char* name, bool moda
 #endif
 	
 	
-	for ( i = 1; !caller->isIdentical ( i ); i++ )
+	for ( i = 1; caller->isIdentical ( i ); i++ )
 		{ };
 	sbNumber->setValue ( i );
 
@@ -305,23 +305,6 @@ int addDialog::setMediaName ( const QString & ds ) {
 		}
 		//std::cerr << "setMediaName(): tm: " << qPrintable(tm) << std::endl;
 		if ( !tm.isEmpty() ) {
-			bool ok=false;
-			bool nameok=false;
-			QString medianame_tmp = tm;
-			QString text=tm;
-			while (text.isEmpty() || ok || (!text.isEmpty() && !caller->isIdentical ( text))) {
-				text = QInputDialog::getText ( 0, tr ( "Enter media name..." ), tr ( "The Media Name must be unique! Enter new media name:" ), QLineEdit::Normal, medianame_tmp, &ok );
-				if(!ok)
-					return 0;
-				if(!text.isEmpty() && caller->isIdentical ( text)) {
-					leName->setText ( tm );
-					dName  = text;
-					nameok = true;
-					break;
-				}
-				medianame_tmp+=".1";
-			}
-			
 #if !defined(_WIN32) && !defined(_OS2)
 			// also set the media type to DVD if needed
 			if ( diskIsDVD ( ds.toUtf8().constData() ) )
@@ -355,6 +338,23 @@ int addDialog::setMediaName ( const QString & ds ) {
 			dName = "root";
 		}
 	}
+	
+	bool ok=false;
+	QString medianame_tmp = tm;
+	medianame_tmp+=".1";
+	QString text=tm;
+	while (text.isEmpty() || (!text.isEmpty() && caller->isIdentical ( text))) {
+		text = QInputDialog::getText ( 0, tr ( "Enter media name..." ), tr ( "The Media Name must be unique! Enter new media name:" ), QLineEdit::Normal, medianame_tmp, &ok );
+		if(!ok)
+			return 0;
+		if(!text.isEmpty() && !caller->isIdentical ( text)) {
+			leName->setText ( text );
+			dName  = text;
+			break;
+		}
+	}
+	
+	
 	//std::cerr << "setMediaName: sDir: " << qPrintable(dirView->sDir)<< std::endl;
 	caller->mainw->cconfig->lastDir = dirView->sDir;
 	
@@ -372,27 +372,24 @@ int addDialog::bOk ( void ) {
 		QMessageBox::warning ( ( QWidget * ) this, tr ( "Error:" ), tr ( "The media name can't begin with the \"@\" character!" ) );
 		return 0;
 	}
-
-	if ( !caller->isIdentical ( leName->text() ) ) {
+	
+	if ( caller->isIdentical ( leName->text() ) ) {
 		//QMessageBox::warning ( ( QWidget * ) this, tr ( "Error:" ), tr ( "The Media Name must be unique! Please change it!" ) );
 		bool ok=false;
-		bool nameok=false;
 		QString medianame_tmp = leName->text();
+		medianame_tmp+=".1";
 		QString text="";
-		while (text.isEmpty() || ok || (!text.isEmpty() && !caller->isIdentical ( text))) {
+		while (text.isEmpty() || (!text.isEmpty() && caller->isIdentical ( text))) {
 			text = QInputDialog::getText ( 0, tr ( "Enter media name..." ), tr ( "The Media Name must be unique! Enter new media name:" ), QLineEdit::Normal, medianame_tmp, &ok );
 			if(!ok)
 				return 0;
-			if(!text.isEmpty() && caller->isIdentical ( text)) {
+			if(!text.isEmpty() && !caller->isIdentical ( text)) {
 				leName->setText ( text );
-				dName  = text;
-				nameok = true;
 				break;
 			}
-			medianame_tmp+=".1";
 		}
 	}
-	if ( !caller->isIdentical ( sbNumber->value() ) ) {
+	if ( caller->isIdentical ( sbNumber->value() ) ) {
 		QMessageBox::warning ( ( QWidget * ) this, tr ( "Error:" ), tr ( "The Value of Serial Number must be unique! Please change it!" ) );
 		return 0;
 	}
