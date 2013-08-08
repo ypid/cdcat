@@ -657,8 +657,8 @@ void exportCdcatDB::ok() {
 							//std::cerr << "before close" << std::endl;
 							f.close();
 						}
+						f.close();
 					} else {
-
 						if ( !fnc2_openend ) {
 							std::cerr << "write file open failed!" << std::endl;
 						}
