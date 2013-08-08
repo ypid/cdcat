@@ -633,7 +633,7 @@ void exportCdcatDB::ok() {
 						}
 						if ( save_hcf_ok ) {
 							// now lets rewrite it
-							gzFile ff2 = gzopen ( fnc, "r" );
+							gzFile ff2 = gzopen ( fnc, "rb" );
 							if ( ff2 == NULL ) {
 								std::cerr << "open gz file failed!" << std::endl;
 							} else {

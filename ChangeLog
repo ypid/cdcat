@@ -5,6 +5,7 @@
 	- check for existing media name not only for cd/dvd added
 	- missing initialisation of QTextCodec resulting in unability to run mediainfo on accentuated filenames fixed (#55)
 	- missing close file handle on xml export fixed (#56)
+	- wrong read mode of catalog on xml export fixed (#57)
 
 12. Jan 2012 Christoph Thielecke <crissi99@gmx.de>
 	- menu entries/context menu entries for enable/disable encryption added
