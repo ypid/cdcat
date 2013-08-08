@@ -1311,8 +1311,8 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 			pcc2.setPattern ( QString ( pattern ) );
 			pcc2.setCaseSensitivity(Qt::CaseInsensitive);
 			//pcc   = pcre_compile ( pattern,0,&error,&erroroffset,NULL );
-			if(*DEBUG_INFO_ENABLED)
-				std::cerr << "pcc2 pattern: " << pattern << ", match: " << pcc2.exactMatch(QString(( const char * ) QFile::encodeName ( file_name))) << std::endl;
+			//if(*DEBUG_INFO_ENABLED)
+			//	std::cerr << "pcc2 pattern: " << pattern << ", match: " << pcc2.exactMatch(QString(( const char * ) QFile::encodeName ( file_name))) << std::endl;
  			//if(*DEBUG_INFO_ENABLED)
 			// 	std::cerr << "pcre_exec match: " << pcre_exec ( pcc,NULL, ( const char * ) QFile::encodeName ( file_name )
 			//                                   ,strlen ( ( const char * ) QFile::encodeName ( file_name ) )

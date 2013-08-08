@@ -1,3 +1,6 @@
+08. Aug 2013 Christoph Thielecke <crissi99@gmx.de>
+	- displaying nfo pattern on debug info disabled
+
 12. Jan 2012 Christoph Thielecke <crissi99@gmx.de>
 	- menu entries/context menu entries for enable/disable encryption added
 	- password confirmation on set/change encryption password added
