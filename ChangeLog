@@ -1,3 +1,6 @@
+09. Aug 2013 Christoph Thielecke <crissi99@gmx.de>
+	- initial russian translation added (thanks to Vitaly A. Kuzmin)
+
 08. Aug 2013 Christoph Thielecke <crissi99@gmx.de>
 	- displaying nfo pattern on debug info disabled
 	- return type of isIdentical changed from int to bool 
