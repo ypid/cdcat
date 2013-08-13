@@ -106,7 +106,7 @@ class Node {
 			9 - exif
 			10 - thumbnail
 		*/
-		int type; 
+		int type; // node type
 		
 		Node *next;   //neighbour node. (Same level)
 		Node *child;  //one level below
