@@ -156,21 +156,20 @@ bool CdcatMediaInfo::readCdcatMediaInfo(){
 
 CdcatMediaInfo::~CdcatMediaInfo ( void ) {
 	// FIXME close & delete should be done at close cdcat
-// 	
-//	delete MediaInfoHandler;
-	
+	cleanupMediainfo();
 }
 
 bool CdcatMediaInfo::initMediaInfoLib() {
 	DEBUG_INFO_ENABLED = init_debug_info();
 #ifdef MEDIAINFO_STATIC
+	cleanupMediainfo();
 	MediaInfoHandler = new MediaInfo();
-    if (MediaInfoHandler != NULL) {
-	mediaInfoLibFound = true;
-	if(*DEBUG_INFO_ENABLED) {
-		cout << "initMediaInfoLib(): mediainfo lib version: " << fromMediaInfoStrtoQString(MediaInfoHandler->Option(toMediaInfoString(QString("Info_Version")))).split(" - ").at(1).toStdString()  << endl;
-	  }
-   }
+	if (MediaInfoHandler != NULL) {
+		mediaInfoLibFound = true;
+		if(*DEBUG_INFO_ENABLED) {
+			cout << "initMediaInfoLib(): mediainfo lib version: " << fromMediaInfoStrtoQString(MediaInfoHandler->Option(toMediaInfoString(QString("Info_Version")))).split(" - ").at(1).toStdString()  << endl;
+		}
+	}
 	else {
 		if(*DEBUG_INFO_ENABLED)
 			cout << "initMediaInfoLib(): init mediainfo lib failed" << endl;
@@ -205,7 +204,7 @@ QString CdcatMediaInfo::getMediaInfoVersion() {
 bool CdcatMediaInfo::detectSupportedExtensions() {
    bool success = false;
 	if (!mediaInfoLibInitDone) {
-      MediaInfoSupportedFileExtensions.clear();
+		MediaInfoSupportedFileExtensions.clear();
 		// init lib
 		success = mediaInfoLibFound = initMediaInfoLib();
 	}
