@@ -300,9 +300,6 @@ GuiSlave::GuiSlave ( CdCatMainWidget *p ) {
 }
 
 GuiSlave::~GuiSlave() {
-#ifndef NO_MEDIAINFO
-	 cleanupMediainfo();
-#endif
 }
 
 void GuiSlave::checkversion ( QWidget *p, DataBase *db ) {
