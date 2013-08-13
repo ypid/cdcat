@@ -265,35 +265,42 @@ Node::Node ( int t, Node *p ) {
 }
 
 Node::~Node ( void ) {
-	//if(child != NULL) delete child;
+	if(child != NULL)
+		delete child;
 	if ( next  != NULL )
 		delete next;
 	if ( data  != NULL ) {
-		switch ( type ) {
+ 		switch ( type ) {
 			case HC_UNINITIALIZED:
 				break;
-			case HC_CATALOG      :
-				delete ( ( DBCatalog   * ) data );
+			case HC_CATALOG:
+				delete ( ( DBCatalog* ) data );
 				break;
-			case HC_MEDIA        :
-				delete ( ( DBMedia     * ) data );
+			case HC_MEDIA:
+				delete ( ( DBMedia* ) data );
 				break;
-			case HC_DIRECTORY    :
-				delete ( ( DBDirectory * ) data );
+			case HC_DIRECTORY:
+				delete ( ( DBDirectory* ) data );
 				break;
-			case HC_FILE         :
-				delete ( ( DBFile      * ) data );
+ 			case HC_FILE:
+ 				delete ( ( DBFile* ) data );
+ 				break;
+			case HC_MP3TAG:
+				delete ( ( DBMp3Tag* ) data );
 				break;
-			case HC_MP3TAG       :
-				delete ( ( DBMp3Tag    * ) data );
+			case HC_CONTENT:
+				delete ( ( DBContent* ) data );
 				break;
-			case HC_CONTENT      :
-				delete ( ( DBContent   * ) data );
+			case HC_CATLNK:
+				delete ( ( DBCatLnk* ) data );
 				break;
-			case HC_CATLNK       :
-				delete ( ( DBCatLnk    * ) data );
+			case HC_EXIF:
+				delete ( ( DBExifData* ) data );
 				break;
-		}
+			case HC_THUMB:
+				delete ( ( DBThumb* ) data );
+				break;
+ 		}
 	}
 	child = next = NULL;
 	data = NULL;

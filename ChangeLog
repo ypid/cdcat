@@ -7,6 +7,7 @@
 	- double free fixed
 	- memleak on setting splitter style fixed
 	- memleaks on exit fixed
+	- memleaks on closing catalog fixed
 
 09. Aug 2013 Christoph Thielecke <crissi99@gmx.de>
 	- initial russian translation added (thanks to Vitaly A. Kuzmin)
