@@ -67,7 +67,7 @@ class HDirectoryView : public QTreeWidget {
 public:
     void start ( void );
     HDirectoryView ( DataBase **dbp,QWidget *parent = 0, const char *name = 0 );
-
+    ~HDirectoryView();
     DataBase **db;
 
 public slots:

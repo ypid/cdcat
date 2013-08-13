@@ -333,6 +333,11 @@ HDirectoryView::HDirectoryView ( DataBase **dbp, QWidget *parent, const char *na
 	setContextMenuPolicy(Qt::CustomContextMenu);
 }
 
+HDirectoryView::~HDirectoryView() {
+	delete autoopen_timer;
+}
+
+
 void HDirectoryView::slotFolderSelected ( QTreeWidgetItem *i, int col ) {
 	if ( !i )
 		return;
