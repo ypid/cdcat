@@ -100,7 +100,7 @@ HQListViewItem::HQListViewItem ( QTreeWidget *parent, QString label1, QString la
 }
 
 bool HQListViewItem::operator < (const QTreeWidgetItem &other) const {
-	int col = treeWidget()->sortColumn();
+	//int col = treeWidget()->sortColumn();
 	//std::cerr << "HQListViewItem::operator < col: " << col << ", text(0): " << qPrintable(text(0)) << ", other.text(0): " << qPrintable(other.text(0)) << std::endl;
 	// this is the item to compared
 	if(text(0) == "..") {
