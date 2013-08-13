@@ -43,6 +43,7 @@ class QLabel;
 class CdCatConfig;
 class QSplitter;
 class QSystemTrayIcon;
+class QScrollArea;
 
 class CdCatMainWidget : public QMainWindow{
 	Q_OBJECT
@@ -110,6 +111,7 @@ class CdCatMainWidget : public QMainWindow{
 		int trayIconAnimValue;
 		QTimer trayIconTimer;
 		QSize oldMaxSize, oldMinSize;
+		QScrollArea *scrollArea;
 
 	public:
 		QSystemTrayIcon *trayIcon;

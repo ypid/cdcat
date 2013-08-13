@@ -5,6 +5,8 @@
 	- memleak at config class fixed
 	- memleak at HDirectoryView fixed
 	- double free fixed
+	- memleak on setting splitter style fixed
+	- memleaks on exit fixed
 
 09. Aug 2013 Christoph Thielecke <crissi99@gmx.de>
 	- initial russian translation added (thanks to Vitaly A. Kuzmin)

@@ -489,7 +489,8 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	splitMain->setSizes ( splitterSizesList );
 	splitMain->setStretchFactor(splitMain->indexOf(DirView), 1);
 	splitMain->setStretchFactor(splitMain->indexOf(listView), 1);
-	splitMain->setStyle ( new QPlastiqueStyle() );
+	QPlastiqueStyle plastic_style;
+	splitMain->setStyle ( &plastic_style );
 
 	if(!cconfig->commentDockIsFloating)
 		CommentDock->resize(QSize(cconfig->mainP3, CommentDock->height()));
@@ -583,6 +584,8 @@ CdCatMainWidget::~CdCatMainWidget() {
 	// no need to delete child widgets, Qt does it all for us
 	delete DirView;
 	delete pww;
+	delete guis;
+	delete main;
 }
 
 /*
