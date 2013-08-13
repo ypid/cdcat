@@ -1769,8 +1769,6 @@ bool CdCatXmlHandler::endElement ( const QString &namespaceURI, const QString &l
 									rsize = ( strlen ( currentText.toUtf8().data() ) / 2 );
 									if ( *DEBUG_INFO_ENABLED )
 										cerr << "Start_end: content size: " << currentText.size() << " (raw: " << rsize << ")" << endl;
-									bytes = new unsigned char[ rsize + 1];
-
 									char *tempbuffer = NULL;
 									tempbuffer = strdup ( currentText.toUtf8().data() );
 									bytes = new unsigned char[ ( rsize = ( strlen ( tempbuffer ) / 2 ) ) + 1];
@@ -1778,6 +1776,7 @@ bool CdCatXmlHandler::endElement ( const QString &namespaceURI, const QString &l
 										bytes[i] = decodeHexa ( tempbuffer[i * 2], tempbuffer[i * 2 + 1] );
 									}
 									bytes[rsize] = '\0';
+									free(tempbuffer);
 									//bytes = (unsigned char *)QByteArray::fromHex(currentText.toUtf8()).constData();
 									//rsize = QByteArray::fromHex(currentText.toUtf8()).size();
 									tt->data = ( void * ) new DBContent ( bytes, rsize );
@@ -2075,7 +2074,7 @@ int generate_cryptokey ( QString password ) {
 int decrypt ( std::string &encrypted_data, std::string &decrypted_data ) {
 	std::string encoded;
 	std::string recovered;
-	unsigned int i;
+//	unsigned int i;
 // 	for (i=0; i< inlen;i++) {
 // 		char c = encrypted_data[i];
 // 		cipher += c;
@@ -2084,10 +2083,7 @@ int decrypt ( std::string &encrypted_data, std::string &decrypted_data ) {
 	// Pretty print
 	CryptoPP::StringSource s2 ( encrypted_data, true, new CryptoPP::HexEncoder ( new CryptoPP::StringSink ( encoded )));
 
-	printf ( "inbuff string (stripped) (%d):\n", encrypted_data.size() );
-
-
-
+//	printf ( "inbuff string (stripped) (%d):\n", encrypted_data.size() );
 // 	std::cout << "cipher: " << encrypted_data<< std::endl;
 
 
@@ -2129,9 +2125,6 @@ int decrypt ( std::string &encrypted_data, std::string &decrypted_data ) {
 int encrypt ( std::string &decrypted_data, std::string &encrypted_data ) {
 	std::string cipher;
 	std::string encoded;
-
-	unsigned int i;
-
 	try {
 // 		std::cout << "plain text: " << decrypted_data << std::endl;
 
