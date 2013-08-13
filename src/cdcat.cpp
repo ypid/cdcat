@@ -139,7 +139,7 @@ int main ( int argi, char **argc ) {
 	
 	init_icon_base();
 	
-	CdCatMainWidget *mw = new CdCatMainWidget ( cconfig, &app, 0, "MainWindow" );
+	CdCatMainWidget mw( cconfig, &app, 0, "MainWindow" );
 	
 	cconfig->defaultfont = app.font();
 	if ( cconfig->ownfont ) {
@@ -148,11 +148,10 @@ int main ( int argi, char **argc ) {
 		app.setFont ( font );
 	}
 	
-	mw->show();
+	mw.show();
 
 	int ret_val = app.exec();
 	deinit_icon_base();
-	delete mw;
 	delete cconfig;
 	return ret_val;
 }
