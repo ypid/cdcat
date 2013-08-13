@@ -171,8 +171,8 @@ class CdCatConfig : public QObject {
 		QDateTime find_date_start_val;
 		QDateTime find_date_end_val;
 		
-		QColor *comm_bg, *comm_stext, *comm_vtext, *comm_fr;
-		QFont *defaultfont;
+		QColor comm_bg, comm_stext, comm_vtext, comm_fr;
+		QFont defaultfont;
 #ifndef _WIN32
 		bool    mounteject;
 #endif

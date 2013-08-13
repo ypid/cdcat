@@ -167,8 +167,8 @@ void CommentWidget::updateContents() {
 	pixelsHigh -= 1; //I think it was too big...
 	
 	p.setFont ( QFont ( "Fixed", cconfig->fsize - 1 ) );
-	p.setPen ( *cconfig->comm_fr );
-	p.fillRect ( 10, 10, width() - 20, height() - 20, *cconfig->comm_bg/*QColor(255,229,28)*/ );
+	p.setPen ( cconfig->comm_fr );
+	p.fillRect ( 10, 10, width() - 20, height() - 20, cconfig->comm_bg/*QColor(255,229,28)*/ );
 	p.drawRect ( 10, 10, width() - 20, height() - 20 );
 	p.setClipRect ( 10, 10, width() - 20, height() - 20 );
 
@@ -177,7 +177,7 @@ void CommentWidget::updateContents() {
 		need_editc_button = true;
 
 		if ( mode ) {
-			p.setPen ( *cconfig->comm_stext );
+			p.setPen ( cconfig->comm_stext );
 			p.drawText ( mx + 15, my + w, tr ( "Upper container! (..)" ) );
 			valueoffset =  fm.boundingRect ( tr ( "Upper container! (..)" ) ).size().width();
 			if (mx+ 15 + valueoffset > fontwidth)
@@ -186,7 +186,7 @@ void CommentWidget::updateContents() {
 		}
 		
 		/*name*/
-		p.setPen ( *cconfig->comm_stext );
+		p.setPen ( cconfig->comm_stext );
 		p.drawText ( mx + 15, my + w, tr ( "Name:" ) );
 		valueoffset =  fm.boundingRect ( tr ( "Name:" ) ).size().width();
 		if (mx+ 15 + valueoffset > fontwidth)
@@ -194,12 +194,12 @@ void CommentWidget::updateContents() {
 		text = act->getNameOf();
 		text.prepend ( " " );
 
-		p.setPen ( *cconfig->comm_vtext );
+		p.setPen ( cconfig->comm_vtext );
 		p.drawText ( mx + 15 + valueoffset + 5, my + w, text );
 		w += pixelsHigh + ispace;
 
 		/*media*/
-		p.setPen ( *cconfig->comm_stext );
+		p.setPen ( cconfig->comm_stext );
 		p.drawText ( mx + 15, my + w, tr ( "At media (number/name):" ) );
 		valueoffset =  fm.boundingRect ( tr ( "At media (number/name):" ) ).size().width();
 		if (mx+ 15 + valueoffset > fontwidth)
@@ -221,7 +221,7 @@ void CommentWidget::updateContents() {
 					p.drawLine ( width() - 24, 14, width() - 14, 24 );
 				}
 			}
-			p.setPen ( QPen ( *cconfig->comm_vtext, 1 ) );
+			p.setPen ( QPen ( cconfig->comm_vtext, 1 ) );
 			p.drawText ( mx + 15 + valueoffset + 5, my + w, text );
 			valueoffset =  fm.boundingRect ( text ).size().width();
 			if (mx+ 15 + valueoffset > fontwidth)
@@ -229,7 +229,7 @@ void CommentWidget::updateContents() {
 			w += pixelsHigh + ispace;
 			
 			/*type*/
-			p.setPen ( *cconfig->comm_stext );
+			p.setPen ( cconfig->comm_stext );
 			p.drawText ( mx + 15, my + w, tr ( "Type:" ) );
 			valueoffset =  fm.boundingRect ( tr ( "Type:" ) ).size().width();
 			if (mx+ 15 + valueoffset > fontwidth)
@@ -251,7 +251,7 @@ void CommentWidget::updateContents() {
 					text = QString ( " " ) + tr ( "Media" ) + QString ( "" ).sprintf ( " (%s)", getMType ( ( ( DBMedia * ) ( act->data ) )->type ) );
 					break;
 			}
-			p.setPen ( *cconfig->comm_vtext );
+			p.setPen ( cconfig->comm_vtext );
 			p.drawText ( mx + 15 + valueoffset + 5, my + w, text );
 			valueoffset =  fm.boundingRect ( text ).size().width();
 			if (mx+ 15 + valueoffset > fontwidth)
@@ -260,14 +260,14 @@ void CommentWidget::updateContents() {
 			
 			/*if file->size*/
 			if ( act->type == HC_FILE ) {
-				p.setPen ( *cconfig->comm_stext );
+				p.setPen ( cconfig->comm_stext );
 				p.drawText ( mx + 15, my + w, tr ( "Size:" ) );
 				valueoffset =  fm.boundingRect ( tr ( "Size:" ) ).size().width();
 				if (mx+ 15 + valueoffset > fontwidth)
 					fontwidth = mx+ 15 + valueoffset + 20;
 				text.sprintf ( " %.2f ", ( ( DBFile * ) ( act->data ) )->size );
 				text += QString ( getSType ( ( ( DBFile * ) ( act->data ) )->sizeType, true ) );
-				p.setPen ( *cconfig->comm_vtext );
+				p.setPen ( cconfig->comm_vtext );
 				p.drawText ( mx + 15 + valueoffset + 5, my + w, text );
 				valueoffset =  fm.boundingRect ( text ).size().width();
 				if (mx+ 15 + valueoffset > fontwidth)
@@ -278,10 +278,10 @@ void CommentWidget::updateContents() {
 
 			/*if catlnkfile->location*/
 			if ( act->type == HC_CATLNK ) {
-				p.setPen ( *cconfig->comm_stext );
+				p.setPen ( cconfig->comm_stext );
 				p.drawText ( mx + 15, my + w, tr ( "Location:" ) );
 				valueoffset =  fm.boundingRect ( tr ( "Location:" ) ).size().width();
-				p.setPen ( *cconfig->comm_vtext );
+				p.setPen ( cconfig->comm_vtext );
 				text.sprintf ( " %s", ( ( DBCatLnk * ) ( act->data ) )->location );
 				p.drawText ( mx + 15 + valueoffset + 5, my + w, text );
 				valueoffset =  fm.boundingRect ( text ).size().width();
@@ -292,7 +292,7 @@ void CommentWidget::updateContents() {
 			
 			/*mod.time*/
 			if ( act->type != HC_CATLNK ) {
-				p.setPen ( *cconfig->comm_stext );
+				p.setPen ( cconfig->comm_stext );
 				p.drawText ( mx + 15, my + w, tr ( "Last modification:" ) );
 				valueoffset =  fm.boundingRect ( tr ( "Last modification:" ) ).size().width();
 				if (mx+ 15 + valueoffset > fontwidth)
@@ -315,7 +315,7 @@ void CommentWidget::updateContents() {
 				//sprintf(text," %s",((DBMedia *)(act->data))->modification);break;
 				text = date_to_str ( mod );
 				
-				p.setPen ( *cconfig->comm_vtext );
+				p.setPen ( cconfig->comm_vtext );
 				p.drawText ( mx + 15 + valueoffset + 5, my + w, text );
 				valueoffset =  fm.boundingRect ( text ).size().width();
 				if (mx+ 15 + valueoffset > fontwidth)
@@ -323,7 +323,7 @@ void CommentWidget::updateContents() {
 				w += pixelsHigh + ispace;
 				
 				/*owner*/
-				p.setPen ( *cconfig->comm_stext );
+				p.setPen ( cconfig->comm_stext );
 				p.drawText ( mx + 15, my + w, tr ( "Owner:" ) );
 				valueoffset =  fm.boundingRect ( tr ( "Owner:" ) ).size().width();
 				if (mx+ 15 + valueoffset > fontwidth)
@@ -339,7 +339,7 @@ void CommentWidget::updateContents() {
 				if ( tmp->type == HC_MEDIA )
 					text += ( ( DBMedia * ) ( tmp->data ) )->owner;
 
-				p.setPen ( *cconfig->comm_vtext );
+				p.setPen ( cconfig->comm_vtext );
 				p.drawText ( mx + 15 + valueoffset + 5, my + w, text );
 				valueoffset =  fm.boundingRect ( text ).size().width();
 				if (mx+ 15 + valueoffset > fontwidth)
@@ -362,12 +362,12 @@ void CommentWidget::updateContents() {
 							sortedBy += tr("Time");
 							break;
 					}
-					p.setPen ( *cconfig->comm_stext );
+					p.setPen ( cconfig->comm_stext );
 					p.drawText ( mx + 15, my + w, tr("sorted by:")+ " " );
 					valueoffset =  fm.boundingRect ( tr("sorted by:")+ " " ).size().width();
 					if (mx+ 15 + valueoffset > fontwidth)
 						fontwidth = mx+ 15 + valueoffset + 20;
-					p.setPen ( *cconfig->comm_vtext );
+					p.setPen ( cconfig->comm_vtext );
 					p.drawText ( mx + 15+valueoffset + 5, my + w, sortedBy );
 					w += pixelsHigh + ispace;
 				}
@@ -379,9 +379,9 @@ void CommentWidget::updateContents() {
 				while ( tmp != NULL ) {
 					/*mp3tag*/
 					if ( tmp->type == HC_MP3TAG ) {
-						p.setPen ( *cconfig->comm_fr );
+						p.setPen ( cconfig->comm_fr );
 						p.drawLine ( 12, my + w - 11, width() - 12, my + w - 11 );
-						p.setPen ( *cconfig->comm_stext );
+						p.setPen ( cconfig->comm_stext );
 						p.drawText ( mx + 12, my + w, tr ( "Mp3-Tag:" ) );
 						valueoffset =  fm.boundingRect ( tr ( "Mp3-Tag:" ) ).size().width();
 						if (mx+ 15 + valueoffset > fontwidth)
@@ -389,7 +389,7 @@ void CommentWidget::updateContents() {
 						w += pixelsHigh;
 						//p.drawText ( mx+12,my+w,tr ( "(Art/Tit/Alb/Year/Comm)" ) );
 						//w+=pixelsHigh+2;
-						p.setPen ( *cconfig->comm_vtext );
+						p.setPen ( cconfig->comm_vtext );
 						text =  tr ( "Artist:" ) + " " + ( ( DBMp3Tag * ) ( tmp->data ) )->artist;
 						p.drawText ( mx + 20, my + w, text);
 						valueoffset =  fm.boundingRect ( text ).size().width();
@@ -424,15 +424,15 @@ void CommentWidget::updateContents() {
 					
 					/* exif data */
 					if ( tmp->type == HC_EXIF ) {
-							p.setPen ( *cconfig->comm_fr );
+							p.setPen ( cconfig->comm_fr );
 							p.drawLine ( 12, my + w - 11, width() - 12, my + w - 11 );
-							p.setPen ( *cconfig->comm_stext );
+							p.setPen ( cconfig->comm_stext );
 							p.drawText ( mx + 12, my + w, tr ( "Exif data:" ) );
 							valueoffset =  fm.boundingRect ( tr ( "Exif data:" ) ).size().width();
 								if (mx+ 15 + valueoffset > fontwidth)
 									fontwidth = mx+ 15 + valueoffset + 20;
 							w += pixelsHigh;
-							p.setPen ( *cconfig->comm_vtext );
+							p.setPen ( cconfig->comm_vtext );
 							QStringList ExifData = ( ( DBExifData * ) ( tmp->data ) )->ExifDataList;
 							
 							//std::cout << "exif data: " << qPrintable ( ExifData.join ( "#" ) ) << std::endl;
@@ -445,20 +445,20 @@ void CommentWidget::updateContents() {
 								w += pixelsHigh;
 							}
 							//w += pixelsHigh;
-							p.setPen ( *cconfig->comm_stext );
+							p.setPen ( cconfig->comm_stext );
 					}
 					
 					/* thumbnail */
 					if ( tmp->type == HC_THUMB ) {
-						p.setPen ( *cconfig->comm_fr );
+						p.setPen ( cconfig->comm_fr );
 						p.drawLine ( 12, my + w - 11, width() - 12, my + w - 11 );
-						p.setPen ( *cconfig->comm_stext );
+						p.setPen ( cconfig->comm_stext );
 						p.drawText ( mx + 12, my + w, tr ( "Thumbnail:" ) );
 						valueoffset =  fm.boundingRect ( tr ( "Thumbnail:" ) ).size().width();
 						if (mx+ 15 + valueoffset > fontwidth)
 							fontwidth = mx+ 15 + valueoffset + 20;
 						w += pixelsHigh;
-						p.setPen ( *cconfig->comm_vtext );
+						p.setPen ( cconfig->comm_vtext );
 						p.drawImage ( mx + 20, my + w, ( ( ( DBThumb * ) ( tmp->data ) )->ThumbImage ) );
 						w += ( ( ( ( DBThumb * ) ( tmp->data ) )->ThumbImage ) ).height() + 10;
 						w += pixelsHigh;
@@ -487,16 +487,16 @@ void CommentWidget::updateContents() {
 			}
 			if ( !text.isEmpty() ) {
 				w++;
-				p.setPen ( *cconfig->comm_fr );
+				p.setPen ( cconfig->comm_fr );
 				p.drawLine ( 12, my + w - pixelsHigh, width() - 12, my + w - pixelsHigh );
-				p.setPen ( *cconfig->comm_stext );
+				p.setPen ( cconfig->comm_stext );
 				w++;
 				p.drawText ( mx + 15, my + w, tr ( "Comment:" ) );
 				valueoffset =  fm.boundingRect ( tr ( "Comment:" ) ).size().width();
 				if (mx+ 15 + valueoffset > fontwidth)
 					fontwidth = mx+ 15 + valueoffset + 20;
 				w += pixelsHigh;
-				p.setPen ( *cconfig->comm_vtext );
+				p.setPen ( cconfig->comm_vtext );
 				textList = text.split( QRegExp ( "#|\n|\r\n" ) );
 				for ( QStringList::Iterator it = textList.begin(); it != textList.end(); ++it ) {
 					int max_comment_len = 80;
@@ -524,9 +524,9 @@ void CommentWidget::updateContents() {
 					}
 				}
 				w++;
-				//p.setPen ( *cconfig->comm_fr );
+				//p.setPen ( cconfig->comm_fr );
 				//p.drawLine ( 12, my + w - pixelsHigh, width() - 12, my + w - pixelsHigh );
-				//p.setPen ( *cconfig->comm_stext );
+				//p.setPen ( cconfig->comm_stext );
 				//w++;
 			}
 			
@@ -550,11 +550,11 @@ void CommentWidget::updateContents() {
 			}
 			if ( ! text.isEmpty() ) {
 				//w+=pixelsHigh+2;
-				p.setPen ( *cconfig->comm_stext );
+				p.setPen ( cconfig->comm_stext );
 				w++;
-				p.setPen ( *cconfig->comm_fr );
+				p.setPen ( cconfig->comm_fr );
 				p.drawLine ( 12, my + w - pixelsHigh, width() - 12, my + w - pixelsHigh );
-				p.setPen ( *cconfig->comm_stext );
+				p.setPen ( cconfig->comm_stext );
 				w++;
 				p.drawText ( mx + 15, my + w, tr ( "Category:" ) );
 				valueoffset =  fm.boundingRect ( tr ( "Category:" ) ).size().width();
@@ -562,7 +562,7 @@ void CommentWidget::updateContents() {
 					fontwidth = mx+ 15 + valueoffset + 20;
 				w += pixelsHigh;
 				w++;
-				p.setPen ( *cconfig->comm_vtext );
+				p.setPen ( cconfig->comm_vtext );
 				textList = text.split ( QRegExp ( "#|\n|\r\n" ) );
 				for ( QStringList::Iterator it = textList.begin(); it != textList.end(); ++it ) {
 					int max_category_len = 80;
@@ -591,9 +591,9 @@ void CommentWidget::updateContents() {
 
 				}
 				w++;
-				//p.setPen ( *cconfig->comm_fr );
+				//p.setPen ( cconfig->comm_fr );
 				//p.drawLine ( 12, my + w - pixelsHigh, width() - 12, my + w - pixelsHigh );
-				//p.setPen ( *cconfig->comm_stext );
+				//p.setPen ( cconfig->comm_stext );
 				//w++;
 			}
 			
@@ -607,9 +607,9 @@ void CommentWidget::updateContents() {
 					if ( ArchiveFileList.size() > 0 ) {
 						w += pixelsHigh + ispace;
 						
-						p.setPen ( *cconfig->comm_fr );
+						p.setPen ( cconfig->comm_fr );
 						p.drawLine ( 12, my + w - pixelsHigh, width() - 12, my + w - pixelsHigh );
-						p.setPen ( *cconfig->comm_stext );
+						p.setPen ( cconfig->comm_stext );
 						w++;
 						p.drawText ( mx + 15, my + w, tr ( "Archive contents:" ) );
 						valueoffset =  fm.boundingRect ( tr ( "Archive contents:" ) ).size().width();
@@ -668,7 +668,7 @@ void CommentWidget::updateContents() {
 						}
 						html += "</tr>";
 						
-						p.setPen ( *cconfig->comm_vtext );
+						p.setPen ( cconfig->comm_vtext );
 						for ( int i = 0; i < ArchiveFileList.size(); i++ ) {
 							ArchiveFile af = ArchiveFileList.at ( i );
 							html += af.toPrettyString ( cconfig->show_archive_file_perms, cconfig->show_archive_file_user, cconfig->show_archive_file_group, cconfig->show_archive_file_size, cconfig->show_archive_file_date, cconfig->show_archive_file_comment, true, ( font().pointSize() - 1 ) );
@@ -699,9 +699,9 @@ void CommentWidget::updateContents() {
 						/* end archive file list */
 						
 						//w++;
-						p.setPen ( *cconfig->comm_fr );
+						p.setPen ( cconfig->comm_fr );
 						p.drawLine ( 12, my + w, width() - 12, my + w );
-						p.setPen ( *cconfig->comm_stext );
+						p.setPen ( cconfig->comm_stext );
 						//w++;
 						//w++;
 						//w += pixelsHigh;
@@ -721,17 +721,17 @@ void CommentWidget::updateContents() {
 					QString info = ( ( DBFile * ) ( act->data ) )->fileinfo;
 					if ( !info.isEmpty() ) {
 						w+=pixelsHigh;
-						p.setPen ( *cconfig->comm_fr );
+						p.setPen ( cconfig->comm_fr );
 						p.drawLine ( 12, my + w - pixelsHigh, width() - 12, my + w - pixelsHigh );
-						p.setPen ( *cconfig->comm_stext );
+						p.setPen ( cconfig->comm_stext );
 						w++;
-						p.setPen ( *cconfig->comm_stext );
+						p.setPen ( cconfig->comm_stext );
 						p.drawText ( mx + 15, my + w, tr ( "File info:" ) );
 						valueoffset =  fm.boundingRect ( tr ( "File info:" ) ).size().width();
 							if (mx+ 15 + valueoffset > fontwidth)
 								fontwidth = mx+ 15 + valueoffset + 20;
 						w += pixelsHigh;
-						p.setPen ( *cconfig->comm_vtext );
+						p.setPen ( cconfig->comm_vtext );
 						textList = info.split ( QRegExp ( "#|\n|\r\n" ) );
 						for ( QStringList::Iterator it = textList.begin(); it != textList.end(); ++it ) {
 							int max_fileinfo_len = 80;
@@ -766,9 +766,9 @@ void CommentWidget::updateContents() {
 								w += pixelsHigh;
 							}
 						}
-						p.setPen ( *cconfig->comm_fr );
+						p.setPen ( cconfig->comm_fr );
 						p.drawLine ( 12, my + w, width() - 12, my + w );
-						p.setPen ( *cconfig->comm_stext );
+						p.setPen ( cconfig->comm_stext );
 						//w += pixelsHigh;
 					}
 					break;
@@ -781,9 +781,9 @@ void CommentWidget::updateContents() {
 					if ( tmp->type == HC_CONTENT ) {
 						need_showc_button = true;
 						w++;
-						p.setPen ( *cconfig->comm_fr );
+						p.setPen ( cconfig->comm_fr );
 						p.drawLine ( 12, my + w - pixelsHigh, width() - 12, my + w - pixelsHigh );
-						p.setPen ( *cconfig->comm_stext );
+						p.setPen ( cconfig->comm_stext );
 						w++;
 						QString sizestr = "";
 						double size = ( ( DBContent * ) ( tmp->data ) )->storedSize;
@@ -820,12 +820,12 @@ void CommentWidget::updateContents() {
 						sizestr.sprintf ( "%.2f", ( s));
 						QString filetype = " " + getSType ( st , true ) ;
 						text = sizestr + filetype;
-						p.setPen ( *cconfig->comm_stext );
+						p.setPen ( cconfig->comm_stext );
 						p.drawText ( mx + 15, my + w, tr ( "Stored size:" ) );
 						valueoffset =  fm.boundingRect ( tr ( "Stored size:" ) ).size().width();
 						if (mx+ 15 + valueoffset > fontwidth)
 							fontwidth = mx+ 15 + valueoffset + 20;
-						p.setPen ( *cconfig->comm_vtext );
+						p.setPen ( cconfig->comm_vtext );
 						p.drawText ( mx + 15 + valueoffset + 5, my + w, text );
 					}
 					tmp = tmp->next;
@@ -838,9 +838,9 @@ void CommentWidget::updateContents() {
 		/*others...*/
 	} else {
 		need_editc_button = false;
-		p.setPen ( *cconfig->comm_stext );
-		//p.setPen ( *cconfig->comm_stext );
-		p.setPen ( *cconfig->comm_vtext );
+		p.setPen ( cconfig->comm_stext );
+		//p.setPen ( cconfig->comm_stext );
+		p.setPen ( cconfig->comm_vtext );
 		p.drawText ( mx + 15, my + 25, tr ( "There is no selected element." ) );
 		valueoffset =  fm.boundingRect ( tr ( "There is no selected element:" ) ).size().width();
 		if (mx+ 15 + valueoffset > fontwidth)

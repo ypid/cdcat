@@ -185,10 +185,10 @@ ColorSettings::ColorSettings ( CdCatConfig *cfgp, QWidget* parent, const char* n
 
     itemselector->setCurrentIndex ( 0 );
 
-    bg= *cfg->comm_bg;
-    ts= *cfg->comm_stext;
-    td= *cfg->comm_vtext;
-    fr= *cfg->comm_fr;
+    bg= cfg->comm_bg;
+    ts= cfg->comm_stext;
+    td= cfg->comm_vtext;
+    fr= cfg->comm_fr;
     changedcurr ( 3 );
     changedcurr ( 2 );
     changedcurr ( 1 );
@@ -308,10 +308,10 @@ int ColorSettings::change ( void ) {
 }
 
 int ColorSettings::sok ( void ) {
-    *cfg->comm_bg    = bg;
-    *cfg->comm_stext = ts;
-    *cfg->comm_vtext = td;
-    *cfg->comm_fr    = fr;
+    cfg->comm_bg    = bg;
+    cfg->comm_stext = ts;
+    cfg->comm_vtext = td;
+    cfg->comm_fr    = fr;
     cfg->writeConfig();
     close();
     return 0;

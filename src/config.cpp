@@ -162,10 +162,10 @@ CdCatConfig::CdCatConfig ( void ) {
 	
 	commentDockSize_dockarea = Qt::RightDockWidgetArea;
 	
-	comm_bg    = new QColor ( 255, 225, 0 );
-	comm_stext = new QColor ( 0, 0, 0 );
-	comm_vtext = new QColor ( 10, 10, 255 );
-	comm_fr    = new QColor ( 0, 0, 0 );
+	comm_bg    = QColor ( 255, 225, 0 );
+	comm_stext = QColor ( 0, 0, 0 );
+	comm_vtext = QColor ( 10, 10, 255 );
+	comm_fr    = QColor ( 0, 0, 0 );
 	
 	linkf      = true;
 	
@@ -747,7 +747,7 @@ int CdCatConfig::readConfig ( void ) {
 					r = secv ( val.toLocal8Bit().data(), 0 );
 					g = secv ( val.toLocal8Bit().data(), 1 );
 					b = secv ( val.toLocal8Bit().data(), 2 );
-					comm_bg->setRgb ( r, g, b );
+					comm_bg.setRgb ( r, g, b );
 					continue;
 				}
 				if ( var == "comment_fr_color" ) {
@@ -755,7 +755,7 @@ int CdCatConfig::readConfig ( void ) {
 					r = secv ( val.toLocal8Bit().data(), 0 );
 					g = secv ( val.toLocal8Bit().data(), 1 );
 					b = secv ( val.toLocal8Bit().data(), 2 );
-					comm_fr->setRgb ( r, g, b );
+					comm_fr.setRgb ( r, g, b );
 					continue;
 				}
 				if ( var == "comment_ts_color" ) {
@@ -763,7 +763,7 @@ int CdCatConfig::readConfig ( void ) {
 					r = secv ( val.toLocal8Bit().data(), 0 );
 					g = secv ( val.toLocal8Bit().data(), 1 );
 					b = secv ( val.toLocal8Bit().data(), 2 );
-					comm_stext->setRgb ( r, g, b );
+					comm_stext.setRgb ( r, g, b );
 					continue;
 				}
 				if ( var == "comment_td_color" ) {
@@ -771,7 +771,7 @@ int CdCatConfig::readConfig ( void ) {
 					r = secv ( val.toLocal8Bit().data(), 0 );
 					g = secv ( val.toLocal8Bit().data(), 1 );
 					b = secv ( val.toLocal8Bit().data(), 2 );
-					comm_vtext->setRgb ( r, g, b );
+					comm_vtext.setRgb ( r, g, b );
 					continue;
 				}
 				if ( var == "catalog_link_is_first" ) {
@@ -1227,10 +1227,10 @@ int CdCatConfig::writeConfig ( void ) {
 		str << "read_content_files=" << readcfiles << endl;
 		str << "read_content_limit=" << readclimit << endl;
 		
-		str << "comment_bg_color=" << comm_bg->red() << "," << comm_bg->green() << "," << comm_bg->blue() << endl;
-		str << "comment_fr_color=" << comm_fr->red() << "," << comm_fr->green() << "," << comm_fr->blue() << endl;
-		str << "comment_ts_color=" << comm_stext->red() << "," << comm_stext->green() << "," << comm_stext->blue() << endl;
-		str << "comment_td_color=" << comm_vtext->red() << "," << comm_vtext->green() << "," << comm_vtext->blue() << endl;
+		str << "comment_bg_color=" << comm_bg.red() << "," << comm_bg.green() << "," << comm_bg.blue() << endl;
+		str << "comment_fr_color=" << comm_fr.red() << "," << comm_fr.green() << "," << comm_fr.blue() << endl;
+		str << "comment_ts_color=" << comm_stext.red() << "," << comm_stext.green() << "," << comm_stext.blue() << endl;
+		str << "comment_td_color=" << comm_vtext.red() << "," << comm_vtext.green() << "," << comm_vtext.blue() << endl;
 		
 		if ( linkf )
 			str << "catalog_link_is_first=true" << endl;
@@ -1695,12 +1695,12 @@ void ConfigDialog::okExit() {
 	
 	p->cconfig->writeConfig();
 	
-	QFont *font = new QFont();
-	font->setPointSize ( p->cconfig->fsize );
+	QFont font;
+	font.setPointSize ( p->cconfig->fsize );
 	if ( p->cconfig->ownfont )
-		p->app->setFont ( *font );
+		p->app->setFont ( font );
 	else
-		p->app->setFont ( *p->cconfig->defaultfont );
+		p->app->setFont ( p->cconfig->defaultfont );
 	
 	close();
 }
