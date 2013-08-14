@@ -186,32 +186,32 @@ DirectoryView::DirectoryView ( QWidget *parent, const char * )
 	setHeaderLabels(labels);
 	//setIndentation ( 10 );
 
-	QFileInfoList *roots = new QFileInfoList ( QDir::drives() );
+	QFileInfoList roots( QDir::drives() );
 
-	for ( int ri = 0; ri < roots->size(); ++ri ) {
-		QFileInfo *fi = new QFileInfo ( roots->at ( ri ) );
-		//std::cerr << "DirView::DirView() root found: " << qPrintable(fi->filePath()) << std::endl;
+	for ( int ri = 0; ri < roots.size(); ++ri ) {
+		QFileInfo fi( roots.at ( ri ) );
+		//std::cerr << "DirView::DirView() root found: " << qPrintable(fi.filePath()) << std::endl;
 
-		Directory * root = new Directory ( this, fi->filePath() );
+		Directory * root = new Directory ( this, fi.filePath() );
 #if defined(_WIN32) || defined(_OS2) 
 		//Skip reading floppy drives on startup.
-		if ( roots->count() >= 1 && fi->filePath() != QString ( "A:/" ) && fi->filePath() != QString ( "B:/" ) ) {
+		if ( roots.count() >= 1 && fi.filePath() != QString ( "A:/" ) && fi.filePath() != QString ( "B:/" ) ) {
 #else
-		if ( roots->count() >= 1 ) {
+		if ( roots.count() >= 1 ) {
 #endif
 			root->setExpanded ( true );
 		}
 	}
 #ifdef Q_WS_MAC
 	//Directory * volume_dir = new Directory ( this, "/Volumes" );
-	QDir *volumedir = new QDir ( "/Volumes" );
-	QFileInfoList *volumes = new QFileInfoList ( volumedir->entryInfoList() );
-	for ( int ri = 0; ri < volumes->size(); ++ri ) {
-		QFileInfo *fi = new QFileInfo ( volumes->at ( ri ) );
-		if ( fi->fileName() == QString ( "." ) || fi->fileName() == QString ( ".." ) )
+	QDir volumedir( "/Volumes" );
+	QFileInfoList volumes( volumedir.entryInfoList() );
+	for ( int ri = 0; ri < volumes.size(); ++ri ) {
+		QFileInfo fi( volumes.at ( ri ) );
+		if ( fi.fileName() == QString ( "." ) || fi.fileName() == QString ( ".." ) )
 			continue;
-		Directory * root = new Directory ( this, fi->filePath() );
-		if ( volumes->count() >= 1 )
+		Directory root = new Directory ( this, fi.filePath() );
+		if ( volumes.count() >= 1 )
 			root->setExpanded ( true );
 	}
 	setDir ( "Volumes" );
@@ -222,6 +222,11 @@ DirectoryView::DirectoryView ( QWidget *parent, const char * )
 	sDir = "";
 
 }
+
+DirectoryView::~DirectoryView() {
+	clear();
+}
+
 
 void DirectoryView::slotFolderSelected ( QTreeWidgetItem *i, int ) {
 	if ( i == NULL )

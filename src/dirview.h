@@ -77,6 +77,7 @@ class DirectoryView : public QTreeWidget {
 
 public:
     DirectoryView ( QWidget *parent = 0, const char *name = 0 );
+    ~DirectoryView();
     QString sDir;
 
 public slots:
