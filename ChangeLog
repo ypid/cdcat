@@ -1,5 +1,6 @@
 14. Aug 2013 Christoph Thielecke <crissi99@gmx.de>
 	- memleak at dirview class fixed
+	- memleaks at recent menu fixed
 
 13. Aug 2013 Christoph Thielecke <crissi99@gmx.de>
 	- memleak on reading catalog at read content fixed

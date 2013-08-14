@@ -1246,7 +1246,9 @@ int GuiSlave::openEvent ( void ) {
 				( mainw->cconfig->hlist ).removeLast ( );
 				if ( *DEBUG_INFO_ENABLED )
 					cerr << "5" << endl;
-				mainw->historyMenu->removeAction ( mainw->historyMenu->actions().last() );
+				QAction *last_action = mainw->historyMenu->actions().last();
+				mainw->historyMenu->removeAction ( last_action );
+				delete last_action;
 			}
 		}
 	}
@@ -1370,7 +1372,9 @@ int GuiSlave::saveasEvent ( void ) {
 				( mainw->cconfig->hlist ).removeLast ( );
 				if ( *DEBUG_INFO_ENABLED )
 					cerr << "5" << endl;
-				mainw->historyMenu->removeAction ( mainw->historyMenu->actions().last() );
+				QAction *last_action = mainw->historyMenu->actions().last();
+				mainw->historyMenu->removeAction ( last_action );
+				delete last_action;
 			}
 		}
 		
@@ -2630,7 +2634,9 @@ int GuiSlave::openHistoryElementEvent ( QAction *action) {
 
 	if ( ( int ) mainw->cconfig->hlist.count() > ( int ) mainw->cconfig->historysize ) {
 		mainw->cconfig->hlist.removeLast ( );
-		mainw->historyMenu->removeAction ( mainw->historyMenu->actions().last() );
+		QAction *last_action = mainw->historyMenu->actions().last();
+		mainw->historyMenu->removeAction ( last_action );
+		delete last_action;
 	}
 
 	progress ( pww );
