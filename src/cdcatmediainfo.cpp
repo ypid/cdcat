@@ -39,7 +39,9 @@ static MediaInfoNameSpace::MediaInfo *MediaInfoHandler=NULL;
 void cleanupMediainfo() {
 	if (MediaInfoHandler != NULL) {
 		 delete MediaInfoHandler;
+		MediaInfoHandler = NULL;
 	}
+	mediaInfoLibInitDone = false;
 }
 
 /* convienent funcs for MediaInfo */
