@@ -3,6 +3,7 @@
 	- crash on reading file content fixed
 	- memleak at detecting cd/dvd type fixed
 	- memleak on open cd device fixed
+	- endless loop fixed on scanning avi info at file with broken avi header
 
 14. Aug 2013 Christoph Thielecke <crissi99@gmx.de>
 	- memleak at dirview class fixed

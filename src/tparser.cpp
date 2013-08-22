@@ -469,6 +469,8 @@ QString parseAviHeader ( FILE *file ) {
 	 *not protected against EOF and such (ie. Borken Files)
 	 */
 	listDW.hex = 0x0;
+	if ( *DEBUG_INFO_ENABLED )
+		std::cerr << "\t=> We'll chcek it if it's Junk or Something" << std::endl;
 	while ( listDW.hex != LIST ) {
 		fread ( ( void * ) &listDW.txt[0], sizeof ( char ), 1, file );
 		if ( ( int ) listDW.txt[0] == EOF )
@@ -495,9 +497,13 @@ QString parseAviHeader ( FILE *file ) {
 	 */
 	if ( listI.fType.hex == ODML ) {
 		listDW.hex = 0x00000000; /*clear data*/
+		if ( *DEBUG_INFO_ENABLED )
+			std::cerr << "\t=> skip ODML data for now" << std::endl;
 		while ( listDW.hex != LIST ) {
 			fread ( ( void * ) &listDW.txt[0], sizeof ( char ), 1, file );
-			if ( ( int ) listDW.txt[0] == EOF )
+			//if ( *DEBUG_INFO_ENABLED )
+			//	std::cerr << "\t=> ( int ) listDW.txt[0]: " << ( int ) listDW.txt[0] << std::endl;
+			if ( ( int ) listDW.txt[0] == EOF || ( int ) listDW.txt[0] == 0 )
 				return ReturnData;
 			if ( ( int ) listDW.txt[0] == 0x4c )
 				fread ( ( void * ) &listDW.txt[1], sizeof ( char ), 1, file );
@@ -520,6 +526,8 @@ QString parseAviHeader ( FILE *file ) {
 	}
 	fread ( ( void * ) &listI2.header.hex, 4, 3, file );
 	if ( listI2.fType.hex == INFO ) {
+		if ( *DEBUG_INFO_ENABLED )
+			std::cerr << "\t=> now we are somewhere around LIST/INFO" << std::endl;
 		while ( infoH.header.hex != JUNK && infoH.header.hex != LIST ) {
 			/*
 			 *Make it linear later
