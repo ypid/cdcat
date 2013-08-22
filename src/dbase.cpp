@@ -1336,7 +1336,7 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 		if ( match ) { // the file need to be read
 			FILE *f = NULL;
 			bool success = true;
-			unsigned long rsize = 0, rrsize;
+			unsigned long rsize = 0, rrsize = 0;
 			unsigned char *rdata = 0;
 			Node *tt = fc->prop;
 			
@@ -1357,7 +1357,8 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 				           .arg ( file_abspath );
 				fprintf ( stderr, "%s", errormsg.toLocal8Bit().constData() );
 				success = false;
-			
+			}
+			else {
 				rdata = new unsigned char[rsize + 1];
 				fseek ( f, 0, SEEK_SET );
 				rrsize = fread ( rdata, sizeof ( unsigned char ), rsize, f );
@@ -1370,14 +1371,12 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 					fprintf ( stderr, "%s", errormsg.toLocal8Bit().constData() );
 					success = false;
 				}
-				
+				rdata[rsize] = '\0';
 				fclose ( f );
 			}
 			
 			if(pww->appl->hasPendingEvents())
 				pww->appl->processEvents();
-			
-			rdata[rsize] = '\0';
 			
 			//make the node in the db
 			if ( success ) {
