@@ -29,12 +29,10 @@ using namespace std;
 //Linux:
 
 FILE *openDevice ( const char *CDpath ) {
-	char *devicename = new char[64];
+	QString devicename = "";
 	FILE *result;
 	QString cfgcdpath = QString ( CDpath ).replace ( QRegExp ( "/$" ), "" );
 	bool device_found = false;
-
-	strcpy ( devicename, "" );
 	
 	QFile f ( "/etc/fstab" );
 	QString line;
@@ -45,11 +43,11 @@ FILE *openDevice ( const char *CDpath ) {
 			
 			if ( !line.startsWith ( "#" ) && !line.isEmpty() ) {
 				if ( ( ( line.section ( "\t", 1, 1, QString::SectionSkipEmpty ) ).replace ( QRegExp ( "/$" ), "" ) ).compare ( cfgcdpath ) == 0 ) {
-					strcpy ( devicename, line.section ( "\t", 0, 0 ).toLocal8Bit().constData() );
+					devicename = line.section ( "\t", 0, 0 );
 					device_found = true;
 				}
 				if ( ( ( line.section ( " " , 1, 1, QString::SectionSkipEmpty ) ).replace ( QRegExp ( "/$" ), "" ) ).compare ( cfgcdpath ) == 0 ) {
-					strcpy ( devicename, line.section ( " " , 0, 0 ).toLocal8Bit().constData() );
+					devicename = line.section ( " " , 0, 0 );
 					device_found = true;
 				}
 			}
@@ -59,23 +57,23 @@ FILE *openDevice ( const char *CDpath ) {
 	
 	if (!device_found) {
 		// its the pure device name (e.g. /dev/sr0)
-		strcpy ( devicename, CDpath );
+		devicename = QString(CDpath );
 	}
 	
-	fprintf(stderr,"openDevice(): devicename: |%s|\n",devicename);
-	result = fopen ( devicename, "r" );
-	delete devicename;
+	fprintf(stderr,"openDevice(): devicename: |%s|\n",devicename.toLocal8Bit().constData());
+	result = fopen ( devicename.toLocal8Bit().constData(), "r" );
 	return result;
 }
 
 bool diskIsDVD ( const char *CDpath ) {
 	int size = 0;
-	char *field = new char[8];
 	FILE *deviceptr  = NULL;
+	char *field = NULL;
 	deviceptr = openDevice ( CDpath );
 	if ( !deviceptr )
 		return false;
 	fseek ( deviceptr, 32848, SEEK_SET );
+	field = new char(9);
 	fread ( field, sizeof ( char ), 8, deviceptr );
 	fclose ( deviceptr );
 
