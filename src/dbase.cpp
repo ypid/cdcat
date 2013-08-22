@@ -1334,7 +1334,7 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 		}
 		
 		if ( match ) { // the file need to be read
-			FILE *f;
+			FILE *f = NULL;
 			bool success = true;
 			unsigned long rsize = 0, rrsize;
 			unsigned char *rdata = 0;
@@ -1357,22 +1357,22 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 				           .arg ( file_abspath );
 				fprintf ( stderr, "%s", errormsg.toLocal8Bit().constData() );
 				success = false;
-			}
 			
-			rdata = new unsigned char[rsize + 1];
-			fseek ( f, 0, SEEK_SET );
-			rrsize = fread ( rdata, sizeof ( unsigned char ), rsize, f );
-			if ( rsize != rrsize ) {
-				errormsg = QString ( "I couldn't correctly read the content of file \"%1\" . (content read 2)\n"
-				                     "size difference %2 != %3\n" )
-				           .arg ( file_abspath )
-				           .arg ( rsize )
-				           .arg ( rrsize );
-				fprintf ( stderr, "%s", errormsg.toLocal8Bit().constData() );
-				success = false;
+				rdata = new unsigned char[rsize + 1];
+				fseek ( f, 0, SEEK_SET );
+				rrsize = fread ( rdata, sizeof ( unsigned char ), rsize, f );
+				if ( rsize != rrsize ) {
+					errormsg = QString ( "I couldn't correctly read the content of file \"%1\" . (content read 2)\n"
+							"size difference %2 != %3\n" )
+						.arg ( file_abspath )
+						.arg ( rsize )
+						.arg ( rrsize );
+					fprintf ( stderr, "%s", errormsg.toLocal8Bit().constData() );
+					success = false;
+				}
+				
+				fclose ( f );
 			}
-			
-			fclose ( f );
 			
 			if(pww->appl->hasPendingEvents())
 				pww->appl->processEvents();
