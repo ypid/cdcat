@@ -619,25 +619,21 @@ int  FileWriter::writeThumb ( Node *source ) {
 	buffer.close();
 	//std::cerr << "byteArray size: " << byteArray.size() << std::endl;
 
-	msg.sprintf("<![CDATA[" );
+	msg = "<![CDATA[";
 	real_write(msg);
 	char *bits = byteArray.data();
 	datasize = byteArray.size();
 	for ( i = 0; i < datasize; i++ ) {
 		c = bits[i];
-//        msg.sprintf(encodeHex[ ( c & 0xF0 ) >>4] );
-// 		real_write(msg);
-//         msg.sprintf(encodeHex[ c & 0x0F     ] );
-// 		real_write(msg);
+		msg = QString(encodeHex[ ( c & 0xF0 ) >>4]);
+		real_write(msg);
+		msg = QString(encodeHex[ c & 0x0F     ]);
+		real_write(msg);
 	}
-
-	QByteArray byteArray2 = byteArray.toHex();
-// 	datasize = strlen(imgdata);
-	msg.sprintf(byteArray2.constData(), byteArray2.size() );
+	
+	msg = "]]>";
 	real_write(msg);
-	msg.sprintf("]]>" );
-	real_write(msg);
-	msg.sprintf("</thumb>\n" );
+	msg = "</thumb>\n";
 	real_write(msg);
 
 
