@@ -1230,7 +1230,7 @@ int GuiSlave::openEvent ( void ) {
 
 
 		if ( mainw->cconfig->hlist.isEmpty() ||
-		                mainw->cconfig->hlist.filter ( "^" + QString ( fn ) + "$" ).isEmpty() ) {
+		                mainw->cconfig->hlist.filter ( QString ( fn ) ).isEmpty() ) {
 			if ( *DEBUG_INFO_ENABLED )
 				cerr << "1" << endl;
 			mainw->cconfig->hlist.insert ( 0, QString ( fn ) );
@@ -1356,7 +1356,7 @@ int GuiSlave::saveasEvent ( void ) {
 	}
 	else {
 		// add history item
-		if ( mainw->cconfig->hlist.isEmpty() || mainw->cconfig->hlist.filter ( "^" + QString ( fnc ) + "$" ).isEmpty() ) {
+		if ( mainw->cconfig->hlist.isEmpty() || mainw->cconfig->hlist.filter ( QString ( fnc ) ).isEmpty() ) {
 			if ( *DEBUG_INFO_ENABLED )
 				cerr << "1" << endl;
 			mainw->cconfig->hlist.insert ( 0, QString ( fnc ) );
