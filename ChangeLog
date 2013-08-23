@@ -1,6 +1,7 @@
 23. Aug 2013 Christoph Thielecke <crissi99@gmx.de>
 	- regression on saving thumbnail data to catalog file fixed
 	- dont add history item on save/save as if already in list
+	- add media fails after previous cancelled scan fixed
 
 22. Aug 2013 Christoph Thielecke <crissi99@gmx.de>
 	- crash on reading fileinfo in some cases fixed

@@ -647,7 +647,8 @@ int DataBase::addMedia ( QString what, QString name, int number, int type, QStri
 	int returnv = 0;
 	Node *tt = root->child;
 	this->pcategory = pcategory;
-	
+	pww->doCancel = false;
+	pww->show();
 	progress ( pww );
 	( ( DBCatalog * ) ( root->data ) )->touch();
 	if ( root->child == NULL )
