@@ -728,7 +728,7 @@ int findDialog::cancele ( void ) {
 int findDialog::seeke ( void ) {
 	seekEngine *se;
 	
-	if ( mainw == NULL && mainw->db == NULL )
+	if ( mainw == NULL || mainw->db == NULL )
 		return 0;
 
 	if ( !isFindDuplicates ) {
@@ -1015,7 +1015,11 @@ void findDialog::clearSearchResultClicked() {
 
 ***************************************************************************/
 
-seekEngine::seekEngine ( findDialog *fdp, bool isFindDuplicates ) {
+seekEngine::seekEngine ( findDialog *fdp, bool isFindDuplicates ) :
+founded(0), pww(NULL), error(NULL), errptr(0), dirname(false), filename(false), comment(false), find_category(false), 
+tartist(false), ttitle(false), talbum(false), tcomment(false), content(false), allmedia(false),
+allowner(false), dateStartChecked(false), dateEndChecked(false), sizeMinChecked(false), sizeMaxChecked(false),
+findInArchivesChecked(false), size_min(0), size_max(0) {
 	this->fd   = fdp;
 	patt = new char[2048];
 	re = new QRegExp();

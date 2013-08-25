@@ -11,6 +11,9 @@
 	- missing initalization of vars (length, last, alternate) at MString class on constructor added
 	- not nessary var errormsg removed
 	- missing initalization of vars (usefileinfo, useExternalContentViewer, storeExifData, commentDockPos_x, commentDockPos_y, commentWindowPos_x, commentWindowPos_y, commentDockSize_width, commentDockSize_height, contentWindowPos_x, contentWindowPos_y, contentWindowSize_width, contentWindowSize_height commentWindowSize_width, commentWindowSize_height) at CdcatConfig class on constructor added
+	- missing initalization of vars (founded, pww, error, errptr, dirname, filename, comment, find_category, tartist, ttitle, talbum, tcomment, content, allmedia,
+allowner, dateStartChecked, dateEndChecked, sizeMinChecked, sizeMaxChecked, findInArchivesChecked, size_min, size_max) at seekEngine class on constructor added
+	- typo at seeke on finddialog class fixed
 
 23. Aug 2013 Christoph Thielecke <crissi99@gmx.de>
 	- regression on saving thumbnail data to catalog file fixed
