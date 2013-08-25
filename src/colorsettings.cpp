@@ -30,8 +30,7 @@
 
 
 ColorPreview::ColorPreview ( QWidget *parent )
-        : QFrame ( parent ) {
-    c = QColor ( 0,0,0 );
+        : QFrame ( parent ), c( 0,0,0 ) {
 }
 
 ColorSchemePreview::ColorSchemePreview ( QWidget *parent )

@@ -2,6 +2,7 @@
 	- window title on borrow dialog fixed
 	- use initalization list for init local vars instead inside constructor on mediainfo dialog
 	- resource leak on insertDB at out of memory error fixed
+	- use initalization list for init local vars instead inside constructor on colorsettings dialog
 
 23. Aug 2013 Christoph Thielecke <crissi99@gmx.de>
 	- regression on saving thumbnail data to catalog file fixed
