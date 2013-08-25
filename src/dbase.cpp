@@ -820,7 +820,12 @@ int   DataBase::insertDB ( char *filename, bool skipDuplicatesOnInsert, bool isG
 	allocated_buffer = ( char * ) calloc ( filesize, sizeof ( QChar ) );
 	if ( allocated_buffer == NULL ) {
 		// fail => no enough memory
-		errormsg = tr ( "Not enough memory to open the file: %1" ).arg ( filename );
+		if (isGzFile) {
+			gzclose ( gf );
+		}
+		else {
+			fclose( f );
+		}
 		return 1;
 	}
 	else {
