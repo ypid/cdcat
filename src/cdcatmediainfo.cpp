@@ -68,9 +68,7 @@ MediaInfoNameSpace::String toMediaInfoString(const QString &str) {
 
 
 
-CdcatMediaInfo::CdcatMediaInfo ( void ) {
-	filename = "";
-	InfoText = "";
+CdcatMediaInfo::CdcatMediaInfo ( void ) : filename(""), InfoText("") {
 	if(!mediaInfoLibInitDone) {
 		detectSupportedExtensions();
 	}
