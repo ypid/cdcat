@@ -7,6 +7,7 @@
 	- missing initalization of etype var on constructors added
 	- code cleanup at getFullPath() on Node class
 	- missing initalization of information var at lineobject class on constructor added
+	- assignment of fileinfo var on DBFile constructor fixed
 
 23. Aug 2013 Christoph Thielecke <crissi99@gmx.de>
 	- regression on saving thumbnail data to catalog file fixed

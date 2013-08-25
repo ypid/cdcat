@@ -428,7 +428,7 @@ DBFile::DBFile ( QString n, QDateTime mod, QString c, double s, int st, QString 
 	comment = c;
 	category = pcategory;
 	archivecontent = parchivecontent;
-	fileinfo = fileinfo;
+	this->fileinfo = fileinfo;
 	size    = s;
 	sizeType = st;
 	prop    = NULL;
