@@ -6,6 +6,7 @@
 	- typo on commwidget contructor on init a var fixed
 	- missing initalization of etype var on constructors added
 	- code cleanup at getFullPath() on Node class
+	- missing initalization of information var at lineobject class on constructor added
 
 23. Aug 2013 Christoph Thielecke <crissi99@gmx.de>
 	- regression on saving thumbnail data to catalog file fixed

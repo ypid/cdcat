@@ -52,7 +52,7 @@ lineObject::lineObject ( QString medianame, QString path, QString filename,
 lineObject::~lineObject() {
 }
 
-lineObject::lineObject ( const lineObject& newobj ) : QObject() {
+lineObject::lineObject ( const lineObject& newobj ) : QObject(), information("") {
 	medianame = newobj.medianame;
 	path = newobj.path;
 	filename = newobj.filename;
