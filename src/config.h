@@ -42,8 +42,6 @@ class QColor;
 class CdCatConfig : public QObject {
 		Q_OBJECT
 	public:
-		char errormsg[512];
-		
 		CdCatConfig ( void );
 		~CdCatConfig ( void );
 		

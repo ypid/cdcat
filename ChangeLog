@@ -9,6 +9,8 @@
 	- missing initalization of information var at lineobject class on constructor added
 	- assignment of fileinfo var on DBFile constructor fixed
 	- missing initalization of vars (length, last, alternate) at MString class on constructor added
+	- not nessary var errormsg removed
+	- missing initalization of vars (usefileinfo, useExternalContentViewer, storeExifData, commentDockPos_x, commentDockPos_y, commentWindowPos_x, commentWindowPos_y, commentDockSize_width, commentDockSize_height, contentWindowPos_x, contentWindowPos_y, contentWindowSize_width, contentWindowSize_height commentWindowSize_width, commentWindowSize_height) at CdcatConfig class on constructor added
 
 23. Aug 2013 Christoph Thielecke <crissi99@gmx.de>
 	- regression on saving thumbnail data to catalog file fixed

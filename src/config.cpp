@@ -55,7 +55,9 @@
 
 using namespace std;
 
-CdCatConfig::CdCatConfig ( void ) {
+CdCatConfig::CdCatConfig ( void ) :
+	usefileinfo(false), useExternalContentViewer(false), storeExifData(false), commentDockPos_x(0), commentDockPos_y(0), commentWindowPos_x(0), commentWindowPos_y(0), commentDockSize_width(0), commentDockSize_height(0), contentWindowPos_x(0), contentWindowPos_y(0), contentWindowSize_width(0), contentWindowSize_height(0), 
+	commentWindowSize_width(0), commentWindowSize_height(0) {
 	
 	/* The default values of config.
 	 * If you delete the config file (or prats of file)
