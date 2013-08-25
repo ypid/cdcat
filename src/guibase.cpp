@@ -87,12 +87,12 @@ CdCatConfig *glob_conf;
 *****************************************************************************/
 
 HQListViewItem::HQListViewItem ( QTreeWidget *parent )
-	: QTreeWidgetItem ( parent ) {
+	: QTreeWidgetItem ( parent ), etype(HC_UNINITIALIZED) {
 	setChildIndicatorPolicy(QTreeWidgetItem::DontShowIndicator);
 }
 
 HQListViewItem::HQListViewItem ( QTreeWidget *parent, QString label1, QString label2, QString label3 )
-	: QTreeWidgetItem ( parent ) {
+	: QTreeWidgetItem ( parent ), etype(HC_UNINITIALIZED) {
 	setChildIndicatorPolicy(QTreeWidgetItem::DontShowIndicator);
 	setText(0, label1);
 	setText(1, label2);
