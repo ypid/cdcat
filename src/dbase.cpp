@@ -307,9 +307,8 @@ Node::~Node ( void ) {
 }
 
 QString Node::getFullPath ( void ) {
-	Node *up = parent;
-	QString a ( "" );
-	up = this;
+	Node *up = this;
+	QString a = "";
 	while ( up != NULL ) {
 		a.prepend ( up->getNameOf() );
 		a.prepend ( "/" );
