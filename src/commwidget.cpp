@@ -69,7 +69,7 @@ CommentWidget::CommentWidget ( CdCatConfig *cc, QApplication *appl, QWidget *par
 	cconfig = cc;
 	app  = appl;
 	ox   = mx = 0;
-	ox   = my = 0;
+	oy   = my = 0;
 	mode = 0;
 	act  = NULL;
 	sa = NULL;
