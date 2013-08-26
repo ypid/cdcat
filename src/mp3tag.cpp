@@ -35,7 +35,7 @@ char markers[][MAX] = {"TIT2","TPE1","TALB","TRCK","TCON","COMM","TCOP","TENC","
 unsigned char found_error;
 
 
-ReadMp3Tag::ReadMp3Tag ( void ) {
+ReadMp3Tag::ReadMp3Tag ( void ) : bTAGreaded(false), bTAGexist(false), tnumber(0) {
     mp3      = NULL;
     techinfo = NULL;
     Year     = NULL;
@@ -50,7 +50,7 @@ ReadMp3Tag::ReadMp3Tag ( void ) {
     v1_over_v2 = false;
 }
 
-ReadMp3Tag::ReadMp3Tag ( const char *fn,bool v1_over_v2p ) {
+ReadMp3Tag::ReadMp3Tag ( const char *fn,bool v1_over_v2p ) : bTAGreaded(false), bTAGexist(false), tnumber(0) {
     mp3      = NULL;
     techinfo = NULL;
     Year     = NULL;
@@ -59,7 +59,6 @@ ReadMp3Tag::ReadMp3Tag ( const char *fn,bool v1_over_v2p ) {
     Title    = NULL;
     Comment  = NULL;
     Track = NULL;
-    bTAGreaded = false;
     techinfo   = NULL;
     v1_over_v2 = false;
 
