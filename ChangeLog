@@ -1,3 +1,6 @@
+26. Aug 2013 Christoph Thielecke <crissi99@gmx.de>
+	- icons for encryption related buttons added
+
 25. Aug 2013 Christoph Thielecke <crissi99@gmx.de>
 	- window title on borrow dialog fixed
 	- use initalization list for init local vars instead inside constructor on mediainfo dialog

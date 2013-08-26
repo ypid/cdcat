@@ -156,21 +156,21 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	fileMenu->addAction ( saveas_action );
 	
 #ifdef CATALOG_ENCRYPTION
-	changepass_action = new QAction ( QIcon ( *get_t_info_icon() ), tr ( "Change password..." ), this );
+	changepass_action = new QAction ( QIcon ( *get_t_change_encryption_password_icon() ), tr ( "Change password..." ), this );
 	//changepass_action->setShortcuts ( QKeySequence::Open );
 	changepass_action->setStatusTip ( tr ( "Changes password for catalog encryption" ) );
 	connect ( changepass_action, SIGNAL ( triggered() ), guis, SLOT ( changePassEvent() ) );
 	fileMenu->addAction ( changepass_action );
 	changepass_action->setEnabled(false);
 	
-	disableencryption_action = new QAction ( QIcon ( *get_t_info_icon() ), tr ( "Disable encryption" ), this );
+	disableencryption_action = new QAction ( QIcon ( *get_t_remove_encryption_icon() ), tr ( "Disable encryption" ), this );
 	//disableencryption_action->setShortcuts ( QKeySequence::Open );
 	disableencryption_action->setStatusTip (  tr ( "Disables catalog encryption" ) );
 	connect ( disableencryption_action, SIGNAL ( triggered() ), guis, SLOT ( disableEncryptionEvent() ) );
 	fileMenu->addAction ( disableencryption_action );
 	disableencryption_action->setEnabled(false);
 
-	enableencryption_action = new QAction ( QIcon ( *get_t_info_icon() ), tr ( "Enable encryption" ), this );
+	enableencryption_action = new QAction ( QIcon ( *get_t_add_encryption_icon() ), tr ( "Enable encryption" ), this );
 // 	enableencryption_action->setShortcuts ( QKeySequence::Open );
 	enableencryption_action->setStatusTip (tr ( "Enables catalog encryption" ) );
 	connect ( enableencryption_action, SIGNAL ( triggered() ), guis, SLOT ( enableEncryptionEvent() ) );

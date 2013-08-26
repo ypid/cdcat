@@ -1051,12 +1051,12 @@ void GuiSlave::showTreeContextMenu ( const QPoint p2 ) {
 		bool isEncryptedCatalog = ( ( DBCatalog * ) ( (on )->data ) )->isEncryptedCatalog;
 		if (isEncryptedCatalog) {
 			mPopup->insertSeparator(NULL);
-			mPopup->addAction ( tr ( "Change password..." ), this, SLOT(changePassEvent()) );
-			mPopup->addAction ( tr ( "Disable encryption" ), this, SLOT(disableEncryptionEvent()) );
+			mPopup->addAction ( QIcon(*get_t_change_encryption_password_icon()), tr ( "Change password..." ), this, SLOT(changePassEvent()) );
+			mPopup->addAction ( QIcon(*get_t_remove_encryption_icon()), tr ( "Disable encryption" ), this, SLOT(disableEncryptionEvent()) );
 			mPopup->insertSeparator(NULL);
 		}
 		else {
-			mPopup->addAction ( tr ( "Enable encryption" ), this, SLOT(Event()) );
+			mPopup->addAction ( QIcon(*get_t_add_encryption_icon()), tr ( "Enable encryption" ), this, SLOT(Event()) );
 		}
 	}
 #endif
