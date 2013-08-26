@@ -1,5 +1,6 @@
 26. Aug 2013 Christoph Thielecke <crissi99@gmx.de>
 	- icons for encryption related buttons added
+	- compare on TestInStream constructor fixed
 
 25. Aug 2013 Christoph Thielecke <crissi99@gmx.de>
 	- window title on borrow dialog fixed

@@ -100,7 +100,7 @@ class TestInStream : public C7ZipInStream {
 
 				unsigned int pos = m_strFileName.find_last_of ( "." );
 
-				if ( pos != m_strFileName.npos ) {
+				if ( pos != (unsigned int)(m_strFileName.npos) ) {
 					QString ext = QString::fromStdString ( m_strFileName).split('.').last();
 					m_strFileExt = ext.toStdWString();
 				}
