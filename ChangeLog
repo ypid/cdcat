@@ -3,6 +3,7 @@
 	- compare on TestInStream constructor fixed
 	- missing initalization of vars (bTAGreaded, bTAGexist, tnumber) at ReadMp3Tag class on constructor added
 	- reading old catalog without sortedBy attribute fails fixed
+	- use qstring instead char * for what and err string at getStr2, getDouble2
 
 25. Aug 2013 Christoph Thielecke <crissi99@gmx.de>
 	- window title on borrow dialog fixed

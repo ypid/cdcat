@@ -867,38 +867,30 @@ unsigned char decodeHexa ( char a, char b ) {
 }
 
 
-QString FileReader::getStr2 ( const QXmlAttributes &atts, char *what, char *err ) {
+QString FileReader::getStr2 ( const QXmlAttributes &atts, QString what, QString err ) {
 	int i;
 	DEBUG_INFO_ENABLED = init_debug_info();
 	if ( atts.length() == 0 ) {
 		//errormsg = QString ( "Line %1: %2" ).arg ( XML_GetCurrentLineNumber ( *pp ) ).arg ( err );
-		errormsg = QString ( "%2" ).arg ( err );
+		errormsg = err;
 		error_found = 1;
 		cerr << "ERROR: " << qPrintable ( errormsg ) << endl;
-		return NULL;
+		return "";
 	}
-	QString what2(what);
-	bool attribute_found = false;
 	for ( i = 0; i < atts.length(); i++ ) {
-		if ( what2 == atts.qName ( i ) ) {
-			attribute_found = true;
-			return atts.value ( what2 );
+		if ( what == atts.qName ( i ) ) {
+			return atts.value ( what );
 		}
 	}
-	if ( !attribute_found ) {
-		//errormsg = QString ( "Line %1: %2:I can't find \"%3\" attribute." )
-		//	.arg ( XML_GetCurrentLineNumber ( *pp ) ).arg ( err ).arg ( what );
-		errormsg = QString ( "%1:I can't find \"%2\" attribute." ).arg ( err ).arg ( what );
-		cerr << "ERROR: " << qPrintable ( errormsg ) << endl;
-		error_found  = 1;
-		return   NULL;
-	}
-
-
-	return NULL;
+	//errormsg = QString ( "Line %1: %2:I can't find \"%3\" attribute." )
+	//	.arg ( XML_GetCurrentLineNumber ( *pp ) ).arg ( err ).arg ( what );
+	errormsg = QString ( "%1:I can't find \"%2\" attribute." ).arg ( err ).arg ( what );
+	cerr << "ERROR: " << qPrintable ( errormsg ) << endl;
+	error_found  = 1;
+	return "";
 }
 
-double FileReader::getDouble2 ( const QXmlAttributes &atts, char *what, char *err ) {
+double FileReader::getDouble2 ( const QXmlAttributes &atts, QString what, QString err ) {
 	double r;
 	int i;
 
@@ -909,32 +901,15 @@ double FileReader::getDouble2 ( const QXmlAttributes &atts, char *what, char *er
 		error_found = 1;
 		return 0;
 	}
-	bool attribute_found = false;
 	for ( i = 0; i < atts.length(); i++ ) {
-		if ( QString ( what ) == atts.qName ( i ) )
-			attribute_found = true;
-		return atts.value ( QString ( what ) ).toDouble();
+		if ( what == atts.qName ( i ) ) {
+			return atts.value ( what ).toDouble();
+		}
 	}
-	if ( !attribute_found ) {
-//             errormsg = QString ( "Line %1: %2,I can't find \"%3\" attribute" )
-//                        .arg ( XML_GetCurrentLineNumber ( *pp ) ).arg ( err ).arg ( what );
-		errormsg = QString ( "%1,I can't find \"%2\" attribute" )
-		           .arg ( err ).arg ( what );
-		cerr << "ERROR: " << qPrintable ( errormsg ) << endl;
-		error_found  = 1;
-		return   0;
-	}
-	if ( 1 != sscanf ( atts.value ( i ).toUtf8().constData(), "%lf", & r ) ) {
-//                 errormsg = QString ( "Line %1: %2:I can't understanding \"%3\" attribute." )
-//                            .arg ( XML_GetCurrentLineNumber ( *pp ) ).arg ( err ).arg ( what );
-		errormsg = QString ( "%1:I can't understanding \"%2\" attribute." )
-		           .arg ( err ).arg ( what );
-		cerr << "ERROR: " << qPrintable ( errormsg ) << endl;
-		error_found  = 1;
-		return   0;
-	}
-
-
+	
+	errormsg = QString ( "%1,I can't find \"%2\" attribute" ).arg ( err ).arg ( what );
+	cerr << "ERROR: " << qPrintable ( errormsg ) << endl;
+	error_found  = 1;
 	return 0;
 }
 
@@ -1244,14 +1219,12 @@ bool CdCatXmlHandler::startElement ( const QString &namespaceURI, const QString 
 			return true;
 		}
 		if ( onlyCatalog ) {
-			//catname = r->get_cutf8 ( r->getStr2 ( attr,"name","Error while parsing \"catalog\" node" ) );
-			r->catname = r->getStr2 ( attr, ( char * ) "name", ( char * ) "Error while parsing \"catalog\" node" );
+			r->catname = r->getStr2 ( attr, QString("name"), QString("Error while parsing \"catalog\" node") );
 			return true;
 		}
 
 		( ( DBCatalog * ) ( ( r->sp )->data ) ) ->name =
-		        //r->get_cutf8 ( r->getStr2 ( attr,"name","Error while parsing \"catalog\" node" ) );
-		        r->getStr2 ( attr, ( char * ) "name", ( char * ) "Error while parsing \"catalog\" node" );
+		        r->getStr2 ( attr, QString("name"), QString("Error while parsing \"catalog\" node") );
 		if ( r->error_found ) {
 			cerr << "Error while parsing \"catalog\" node, el: " << qPrintable ( el ) << endl;
 			return false;
@@ -1261,24 +1234,23 @@ bool CdCatXmlHandler::startElement ( const QString &namespaceURI, const QString 
 		r->catname = ( ( DBCatalog * ) ( ( r->sp )->data ) ) ->name;
 
 		( ( DBCatalog * ) ( ( r->sp )->data ) ) ->owner =
-		        //r->get_cutf8 ( r->getStr2 ( attr,"owner","Error while parsing \"catalog\" node" ));
-		        r->getStr2 ( attr, ( char * ) "owner", ( char * ) "Error while parsing \"catalog\" node" );
+		        r->getStr2 ( attr, QString("owner"), QString("Error while parsing \"catalog\" node") );
 		if ( r->error_found ) {
 			cerr << qPrintable ( r->errormsg ) << " el: " << qPrintable ( el ) << endl;
 			return false;
 		}
 
 		( ( DBCatalog * ) ( ( r->sp )->data ) ) ->modification =
-		        r->get_dcutf8 ( r->getStr2 ( attr, ( char * ) "time", ( char * ) "Error while parsing \"catalog\" node" ) );
+		        r->get_dcutf8 ( r->getStr2 ( attr, QString("time"), QString("Error while parsing \"catalog\" node") ) );
 		if ( r->error_found ) {
 			cerr << qPrintable ( r->errormsg ) << " el: " << qPrintable ( el ) << endl;
 			return false;
 		}
 
-		QString sortedByRaw = r->getStr2 ( attr, ( char * ) "sortedBy", ( char * ) "Error while parsing \"catalog\" node" );
+		QString sortedByRaw = r->getStr2 ( attr, QString("sortedBy"), QString("Error while parsing \"catalog\" node (harmless)") );
 		if ( r->error_found ) {
-			r->error_found = 0;
 			// this is not a error -> default
+			r->error_found = 0;
 			( ( DBCatalog * ) ( ( r->sp )->data ) ) ->sortedBy = 1; // NAME
 			if ( *DEBUG_INFO_ENABLED )
 				std::cerr << "sortedBy (default): " << ( ( DBCatalog * ) ( ( r->sp )->data ) ) ->sortedBy << std::endl;
@@ -1318,8 +1290,7 @@ bool CdCatXmlHandler::startElement ( const QString &namespaceURI, const QString 
 				tmp = tmp->parent;
 
 			( ( DBCatalog * ) ( tmp->data ) ) ->fileversion =
-			        //r->get_cutf8 ( r->getStr2 ( attr,"version","Error while parsing \"datafile\" node" ) );
-			        r->getStr2 ( attr, ( char * ) "version", ( char * ) "Error while parsing \"datafile\" node" );
+			        r->getStr2 ( attr, QString("version"), QString("Error while parsing \"datafile\" node") );
 			if ( r->error_found ) {
 				cerr << "Error while parsing \"datafile\" node, el: " << qPrintable ( el ) << endl;
 				return false;
@@ -1340,9 +1311,8 @@ bool CdCatXmlHandler::startElement ( const QString &namespaceURI, const QString 
 					int i, newnum, ser = 0;
 					Node *ch = tt->parent->child;
 					QString newname;
-
-					//newname = r->get_cutf8 ( r->getStr2 ( attr,"name"  ,"Error while parsing \"media\" node" ) );
-					newname = r->getStr2 ( attr, ( char * ) "name"  , ( char * ) "Error while parsing \"media\" node" );
+					
+					newname = r->getStr2 ( attr, QString("name"), QString("Error while parsing \"media\" node") );
 					if ( r->error_found ) {
 						cerr << qPrintable ( r->errormsg ) << " el: " << qPrintable ( el ) << endl;
 						return false;
@@ -1358,7 +1328,7 @@ Please change it with an older version or rewrite it in the xml file!" );
 						return false;
 					}
 
-					newnum = ( int ) r->getDouble2 ( attr, ( char * ) "number", ( char * ) "Error while parsing \"media\" node" );
+					newnum = ( int ) r->getDouble2 ( attr, QString("number"), QString("Error while parsing \"media\" node") );
 					if ( r->error_found ) {
 						cerr << qPrintable ( r->errormsg ) << " el: " << qPrintable ( el ) << endl;
 						return false;
@@ -1401,26 +1371,25 @@ Please change it with an older version or rewrite it in the xml file!" );
 					}
 
 					/*Fill data part:*/
-					//ts1 = r->get_cutf8 ( r->getStr2 ( attr,"owner" ,"Error while parsing \"media\" node" ) );
-					ts1 = r->getStr2 ( attr, ( char * ) "owner" , ( char * ) "Error while parsing \"media\" node" );
+					ts1 = r->getStr2 ( attr, QString("owner") , QString("Error while parsing \"media\" node") );
 					if ( r->error_found ) {
 						cerr << qPrintable ( r->errormsg ) << " el: " << qPrintable ( el ) << endl;
 						return false;
 					}
-					td1 = r->get_dcutf8 ( r->getStr2 ( attr, ( char * ) "time"  , ( char * ) "Error while parsing \"media\" node" ) );
+					td1 = r->get_dcutf8 ( r->getStr2 ( attr, QString("time"), QString("Error while parsing \"media\" node" )) );
 					if ( r->error_found ) {
 						cerr << qPrintable ( r->errormsg ) << " el: " << qPrintable ( el ) << endl;
 						return false;
 					}
 
-					ti1 = getTypeFS ( r->getStr2 ( attr, ( char * ) "type"  , ( char * ) "Error while parsing \"media\" node" ).toUtf8().constData() );
+					ti1 = getTypeFS ( r->getStr2 ( attr, QString("type"), QString("Error while parsing \"media\" node" )).toUtf8().constData() );
 					if ( r->error_found ) {
 						cerr << qPrintable ( r->errormsg ) << " el: " << qPrintable ( el ) << endl;
 						return false;
 					}
 					if ( ti1 == UNKNOWN ) {
 // 						r->errormsg = QString ( "Unknown media type in the file. (\"%1\")" )
-// 						                 .arg ( r->getStr2 ( attr, (char *)"type"  , (char *)"Error while parsing \"media\" node" ).toUtf8().constData() );
+// 						                 .arg ( r->getStr2 ( attr, QString("type"), QString("Error while parsing \"media\" node") ).toUtf8().constData() );
 //
 // 						r->error_found = 1;
 // 						cerr << qPrintable(r->errormsg) << " el: "<<qPrintable(el)<<endl;
@@ -1432,12 +1401,10 @@ Please change it with an older version or rewrite it in the xml file!" );
 					tt->data = ( void * ) new DBMedia ( newname, newnum, ts1, ti1, "", td1 );
 				} else {
 					/*Fill data part:*/
-					//ts1 = r->get_cutf8 ( r->getStr2 ( attr,"name"  ,"Error while parsing \"media\" node" ) );
-					ts1 = r->getStr2 ( attr, ( char * ) "name"  , ( char * ) "Error while parsing \"media\" node" );
-					//ts2 = r->get_cutf8 ( r->getStr2 ( attr,"owner" ,"Error while parsing \"media\" node" ) );
-					ts2 = r->getStr2 ( attr, ( char * ) "owner" , ( char * ) "Error while parsing \"media\" node" );
-					tf1 = r->getDouble2 ( attr, ( char * ) "number", ( char * ) "Error while parsing \"media\" node" );
-					td1 = r->get_dcutf8 ( r->getStr2 ( attr, ( char * ) "time"  , ( char * ) "Error while parsing \"media\" node" ) );
+					ts1 = r->getStr2 ( attr, QString("name"), QString("Error while parsing \"media\" node" ));
+					ts2 = r->getStr2 ( attr, QString("owner"), QString("Error while parsing \"media\" node") );
+					tf1 = r->getDouble2 ( attr, QString("number"), QString("Error while parsing \"media\" node") );
+					td1 = r->get_dcutf8 ( r->getStr2 ( attr, QString("time"), QString("Error while parsing \"media\" node" )) );
 					if ( r->error_found ) {
 						cerr << qPrintable ( r->errormsg ) << " el: " << qPrintable ( el ) << endl;
 						return false;
@@ -1450,14 +1417,14 @@ Please change it with an older version or rewrite it in the xml file!" );
 						return false;
 					}
 
-					ti1 = getTypeFS ( r->getStr2 ( attr, ( char * ) "type"  , ( char * ) "Error while parsing \"media\" node" ).toUtf8().constData() );
+					ti1 = getTypeFS ( r->getStr2 ( attr, QString("type"), QString("Error while parsing \"media\" node") ).toUtf8().constData() );
 					if ( r->error_found ) {
 						cerr << qPrintable ( r->errormsg ) << " el: " << qPrintable ( el ) << endl;
 						return false;
 					}
 					if ( ti1 == UNKNOWN ) {
 // 						r->errormsg = QString ( "Line %1: Unknown media type in the file. (\"%1\")" )
-// 						                 .arg ( r->getStr2 ( attr, (char *)"type"  , (char *)"Error while parsing \"media\" node" ).toUtf8().constData() );
+// 						                 .arg ( r->getStr2 ( attr, QString("type"), QString("Error while parsing \"media\" node" )) );
 // 						r->error_found = 1;
 // 						cerr << qPrintable(r->errormsg) << " el: "<<qPrintable(el)<<endl;
 // 						return false;
@@ -1482,9 +1449,8 @@ Please change it with an older version or rewrite it in the xml file!" );
 						tt = tt->next;
 					}
 					/*Fill data part:*/
-					//ts1 = r->get_cutf8 ( r->getStr2 ( attr,"name"  ,"Error while parsing \"directory\" node" ) );
-					ts1 = r->getStr2 ( attr, ( char * ) "name"  , ( char * ) "Error while parsing \"directory\" node" ) ;
-					td1 = r->get_dcutf8 ( r->getStr2 ( attr, ( char * ) "time" , ( char * ) "Error while parsing \"directory\" node" ) );
+					ts1 = r->getStr2 ( attr, QString("name"), QString("Error while parsing \"directory\" node") ) ;
+					td1 = r->get_dcutf8 ( r->getStr2 ( attr, QString("time"), QString("Error while parsing \"directory\" node" )) );
 					if ( r->error_found ) {
 						cerr << qPrintable ( r->errormsg ) << " el: " << qPrintable ( el ) << endl;
 						return false;
@@ -1508,8 +1474,7 @@ Please change it with an older version or rewrite it in the xml file!" );
 						/*Fill data part:*/
 						//if(*DEBUG_INFO_ENABLED)
 						//	cerr <<"1"<<endl;
-						//ts1 = r->get_cutf8 ( r->getStr2 ( attr,"name"  ,"Error while parsing \"file\" node" ) );
-						ts1 = r->getStr2 ( attr, ( char * ) "name"  , ( char * ) "Error while parsing \"file\" node" );
+						ts1 = r->getStr2 ( attr, QString("name"), QString("Error while parsing \"file\" node" ));
 						//if(*DEBUG_INFO_ENABLED)
 						//	cerr <<"2"<<endl;
 
@@ -1518,7 +1483,7 @@ Please change it with an older version or rewrite it in the xml file!" );
 							return false;
 						}
 
-						td1 = r->get_dcutf8 ( r->getStr2 ( attr, ( char * ) "time"  , ( char * ) "Error while parsing \"file\" node" ) );
+						td1 = r->get_dcutf8 ( r->getStr2 ( attr, QString("time"), QString("Error while parsing \"file\" node" )) );
 						//if(*DEBUG_INFO_ENABLED)
 						//	cerr <<"3"<<endl;
 
@@ -1529,7 +1494,7 @@ Please change it with an older version or rewrite it in the xml file!" );
 						//if(*DEBUG_INFO_ENABLED)
 						//	cerr <<"4"<<endl;
 
-						tf1 = getSizeFS ( r->getStr2 ( attr, ( char * ) "size", ( char * ) "Error while parsing \"file\" node" ).toUtf8().constData() );
+						tf1 = getSizeFS ( r->getStr2 ( attr, QString("size"), QString("Error while parsing \"file\" node") ).toUtf8().constData() );
 						//if(*DEBUG_INFO_ENABLED)
 						//	cerr <<"5"<<endl;
 
@@ -1539,20 +1504,20 @@ Please change it with an older version or rewrite it in the xml file!" );
 						}
 						if ( tf1 == -1 ) {
 							r->errormsg = QString ( "Unknown size data in file node. (\"%1\")" )
-							              .arg ( r->getStr2 ( attr, ( char * ) "size", ( char * ) "Error while parsing \"file\" node" ) );
+							              .arg ( r->getStr2 ( attr, QString("size"), QString("Error while parsing \"file\" node") ) );
 							r->error_found = 1;
 							cerr << qPrintable ( r->errormsg ) << " el: " << qPrintable ( el ) << endl;
 							return false;
 						}
 
-						ti1 = getSizetFS ( r->getStr2 ( attr, ( char * ) "size", ( char * ) "Error while parsing \"file\" node" ).toUtf8().constData() );
+						ti1 = getSizetFS ( r->getStr2 ( attr, QString("size"), QString("Error while parsing \"file\" node") ).toUtf8().constData() );
 						if ( r->error_found ) {
 							cerr << qPrintable ( r->errormsg ) << " el: " << qPrintable ( el ) << endl;
 							return false;
 						}
 						if ( ti1 == -1 ) {
 							r->errormsg = QString ( "Unknown size type in file node. (\"%1\")" )
-							              .arg ( r->getStr2 ( attr, ( char * ) "size", ( char * ) "Error while parsing \"file\" node" ).toUtf8().constData() );
+							              .arg ( r->getStr2 ( attr, QString("size"), QString("Error while parsing \"file\" node") ).toUtf8().constData() );
 							r->error_found = 1;
 							cerr << qPrintable ( r->errormsg ) << " el: " << qPrintable ( el ) << endl;
 							return false;
@@ -1589,24 +1554,19 @@ Please change it with an older version or rewrite it in the xml file!" );
 								tt = tt->next;
 							}
 							/*Fill data part:*/
-							//ts1 = r->get_cutf8 ( r->getStr2 ( attr,"artist"  ,"Error while parsing \"mp3tag\" node" ));
-							ts1 = r->getStr2 ( attr, ( char * ) "artist"  , ( char * ) "Error while parsing \"mp3tag\" node" );
-							//ts2 = r->get_cutf8 ( r->getStr2 ( attr,"title"   ,"Error while parsing \"mp3tag\" node" ) );
-							ts2 = r->getStr2 ( attr, ( char * ) "title"   , ( char * ) "Error while parsing \"mp3tag\" node" );
-							//ts3 = r->get_cutf8 ( r->getStr2 ( attr,"album"  ,"Error while parsing \"mp3tag\" node" ) );
-							ts3 = r->getStr2 ( attr, ( char * ) "album"  , ( char * ) "Error while parsing \"mp3tag\" node" );
-							//ts4 = r->get_cutf8 ( r->getStr2 ( attr,"year"   ,"Error while parsing \"mp3tag\" node" ) );
-							ts4 = r->getStr2 ( attr, ( char * ) "year"   , ( char * ) "Error while parsing \"mp3tag\" node" );
+							ts1 = r->getStr2 ( attr, QString("artist"), QString("Error while parsing \"mp3tag\" node") );
+							ts2 = r->getStr2 ( attr, QString("title"), QString("Error while parsing \"mp3tag\" node") );
+							ts3 = r->getStr2 ( attr, QString("album"), QString("Error while parsing \"mp3tag\" node") );
+							ts4 = r->getStr2 ( attr, QString("year"), QString("Error while parsing \"mp3tag\" node") );
 							if ( r->error_found ) {
 								cerr << qPrintable ( r->errormsg ) << " el: " << qPrintable ( el ) << endl;
 								return false;
 							}
 							ti1 = 0;
-							ti1 = r->getDouble2 ( attr, ( char * ) "tnum"   , ( char * ) "Error while parsing \"mp3tag\" node" );
-							// this is NO error
+							ti1 = r->getDouble2 ( attr, QString("tnum"), QString("Error while parsing \"mp3tag\" node (harmless)") );
+							// this is not a error -> default
 							r->error_found = 0;
-
-							tmp_tagp = new DBMp3Tag ( ts1, ts2, "no comment", ts3 , ts4, ti1 );
+							tmp_tagp = new DBMp3Tag ( ts1, ts2, QString("no comment"), ts3 , ts4, ti1 );
 
 							tt->data = ( void * ) tmp_tagp;
 							/*I don't make this node to the actual node because this won't be parent.*/
@@ -1624,10 +1584,9 @@ Please change it with an older version or rewrite it in the xml file!" );
 									tt = tt->next;
 								}
 								/*Fill data part:*/
-								//ts1 = r->get_cutf8 ( r->getStr2 ( attr,"name"  ,"Error while parsing \"catlnk\" node" ) );
-								ts1 = r->getStr2 ( attr, ( char * ) "name"  , ( char * ) "Error while parsing \"catlnk\" node" );
+								ts1 = r->getStr2 ( attr, QString("name"), QString("Error while parsing \"catlnk\" node") );
 
-								readed_loc = mstr ( r->getStr2 ( attr, ( char * ) "location" , ( char * ) "Error while parsing \"catlnk\" node" ).toUtf8().constData() );
+								readed_loc = mstr ( r->getStr2 ( attr, QString("location"), QString("Error while parsing \"catlnk\" node") ).toUtf8().constData() );
 								if ( r->error_found ) {
 									cerr << qPrintable ( r->errormsg ) << " el: " << qPrintable ( el ) << endl;
 									return false;

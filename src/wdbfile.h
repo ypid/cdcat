@@ -137,10 +137,10 @@ public:
     bool skipDuplicatesOnInsert;
     bool parseresult;
 
-    int      readFrom ( Node *source, bool skipDuplicatesOnInsert = false, bool only_name = false );
-    QString getStr2(const QXmlAttributes &atts,char *what,char *err );
-    double getDouble2 (const QXmlAttributes &atts,char *what,char *err );
-    int      isthere ( const char **from,char *what );
+    int readFrom ( Node *source, bool skipDuplicatesOnInsert = false, bool only_name = false );
+    QString getStr2(const QXmlAttributes &atts, QString what, QString err );
+    double getDouble2 (const QXmlAttributes &atts, QString what, QString err );
+    int isthere ( const char **from, char *what );
     FileReader ( gzFile ff, char *allocated_buffer, long long int allocated_buffer_len, int ins = 0 );
     FileReader ( FILE *f, char *allocated_buffer, long long int allocated_buffer_len, int ins = 0 );
     QXmlSimpleReader xmlReader;
