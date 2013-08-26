@@ -877,12 +877,13 @@ QString FileReader::getStr2 ( const QXmlAttributes &atts, char *what, char *err 
 		cerr << "ERROR: " << qPrintable ( errormsg ) << endl;
 		return NULL;
 	}
-
+	QString what2(what);
 	bool attribute_found = false;
 	for ( i = 0; i < atts.length(); i++ ) {
-		if ( QString ( what ) == atts.qName ( i ) )
+		if ( what2 == atts.qName ( i ) ) {
 			attribute_found = true;
-		return atts.value ( QString ( what ) );
+			return atts.value ( what2 );
+		}
 	}
 	if ( !attribute_found ) {
 		//errormsg = QString ( "Line %1: %2:I can't find \"%3\" attribute." )
@@ -1276,6 +1277,7 @@ bool CdCatXmlHandler::startElement ( const QString &namespaceURI, const QString 
 
 		QString sortedByRaw = r->getStr2 ( attr, ( char * ) "sortedBy", ( char * ) "Error while parsing \"catalog\" node" );
 		if ( r->error_found ) {
+			r->error_found = 0;
 			// this is not a error -> default
 			( ( DBCatalog * ) ( ( r->sp )->data ) ) ->sortedBy = 1; // NAME
 			if ( *DEBUG_INFO_ENABLED )
