@@ -3,6 +3,8 @@
 	- make read blocksize configurable by define
 	- update current node if no element (..) in content listview is selected fixed
 	- delete keyboard shortcut added (del key)
+	- display full path instead node name on delete confirmation dialog
+	- make delete confirmation question better
 
 26. Aug 2013 Christoph Thielecke <crissi99@gmx.de>
 	- icons for encryption related buttons added

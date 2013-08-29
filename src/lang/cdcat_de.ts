@@ -40,6 +40,10 @@
       <source>unknown</source>
       <translation>unbekannt</translation>
     </message>
+    <message>
+      <source></source>
+      <translation type="unfinished" />
+    </message>
   </context>
   <context>
     <name>CatalogTypeEditDialog</name>
@@ -1062,12 +1066,6 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
       <translation>Datenbankdatei einfügen...</translation>
     </message>
     <message>
-      <source>Do you really want to delete this?: 
-%1</source>
-      <translation>Soll dies wirklich gelöscht werden?:
-%1</translation>
-    </message>
-    <message>
       <source>The size of &quot;%1&quot; : 
  %2 
  %3 file /%4 directory</source>
@@ -1454,6 +1452,13 @@ die Datenbank wird unvollständig sein</translation>
     <message>
       <source>Passwords does not match</source>
       <translation>Passwörter stimmen nicht überein</translation>
+    </message>
+    <message>
+      <source>Do you really want to delete
+&quot;%1&quot;?</source>
+      <translation>Möchten Sie 
+&quot;%1&quot;
+wirklich löschen?</translation>
     </message>
   </context>
   <context>

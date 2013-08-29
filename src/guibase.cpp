@@ -1436,7 +1436,7 @@ int GuiSlave::deleteEvent ( void ) {
 		return 0;
 	}
 
-	o = tr ( "Do you really want to delete this?: \n%1" ).arg ( standON->getNameOf() );
+	o = tr ( "Do you really want to delete\n\"%1\"?" ).arg ( standON->getFullPath() );
 	if ( QMessageBox::warning ( mainw, tr ( "Confirmation" ), o,
 	                            tr ( "Yes" ), tr ( "No" ) ) == 0 ) {
 		panelsOFF();
