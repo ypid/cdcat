@@ -471,6 +471,8 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	exclude_model = new QStandardItemModel(0, 1, this);
 	for (int i = 0; i < excludeList.size(); i++) {
 		//std::cout << "insert rule: " << qPrintable(excludeList.at(i)) << std::endl;
+		if (QString(excludeList.at(i)).isEmpty())
+			continue;
 		QStandardItem *modelitem = new QStandardItem(QString(excludeList.at(i)));
 		exclude_model->appendRow(modelitem);
 	}
