@@ -269,7 +269,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	//editMenu->addAction(changemediatype_action);
 
 	delete_action = new QAction ( QIcon ( *get_t_delete_icon() ), tr ( "Delete node" ), this );
-	//delete_action->setShortcuts(QKeySequence::Delete);
+	delete_action->setShortcut ( QKeySequence ( Qt::Key_Delete ) );
 	delete_action->setStatusTip ( tr ( "Delete node" ) );
 	connect ( delete_action, SIGNAL ( triggered() ), guis, SLOT ( deleteEvent() ) );
 	editMenu->addAction ( delete_action );

@@ -2,6 +2,7 @@
 	- dont add empty exclude rule on rule list at selreadable dialog
 	- make read blocksize configurable by define
 	- update current node if no element (..) in content listview is selected fixed
+	- delete keyboard shortcut added (del key)
 
 26. Aug 2013 Christoph Thielecke <crissi99@gmx.de>
 	- icons for encryption related buttons added
