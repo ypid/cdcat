@@ -785,24 +785,24 @@ int   DataBase::insertDB ( char *filename, bool skipDuplicatesOnInsert, bool isG
 	}
 
 	// check free memory
-	char testbuffer[1024];
+	char testbuffer[READ_BLOCKSIZE+1];
 	long long int filesize = 0;
 	int readcount = 0;
 	if (isGzFile) {
-		readcount = gzread ( gf, testbuffer, 1024 );
+		readcount = gzread ( gf, testbuffer, READ_BLOCKSIZE );
 	}
 	else {
-		readcount = fread(testbuffer, 1, 1024, f);
+		readcount = fread(testbuffer, 1, READ_BLOCKSIZE, f);
 	}
 	while ( readcount != 0 ) {
 		filesize += readcount;
 		//if(*DEBUG_INFO_ENABLED)
 		//  cerr << "readcount: " << readcount << std::endl;
 		if (isGzFile) {
-			readcount = gzread ( gf, testbuffer, 1024 );
+			readcount = gzread ( gf, testbuffer, READ_BLOCKSIZE );
 		}
 		else {
-			readcount = fread(testbuffer, 1, 1024, f);
+			readcount = fread(testbuffer, 1, READ_BLOCKSIZE, f);
 		}
 		progress ( pww );
 	}
@@ -883,15 +883,15 @@ int   DataBase::openDB ( char *filename ) {
 	}
 
 	// check free memory
-	char testbuffer[1024];
+	char testbuffer[READ_BLOCKSIZE+1];
 	long long int filesize = 0;
 	int readcount = 0;
-	readcount = gzread ( f, testbuffer, 1024 );
+	readcount = gzread ( f, testbuffer, READ_BLOCKSIZE );
 	while ( readcount != 0 ) {
 		filesize += readcount;
 		//if(*DEBUG_INFO_ENABLED)
 		//  cerr << "readcount: " << readcount << std::endl;
-		readcount = gzread ( f, testbuffer, 1024 );
+		readcount = gzread ( f, testbuffer, READ_BLOCKSIZE );
 		progress ( pww );
 	}
 	gzrewind ( f );

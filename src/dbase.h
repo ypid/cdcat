@@ -80,6 +80,10 @@ typedef int gid_t;
 
 #define MAX_STORED_SIZE (128*1024)
 
+#ifndef READ_BLOCKSIZE
+#define READ_BLOCKSIZE 8192
+#endif
+
 class QFileInfo;
 class PWw;
 class ArchiveFile;

@@ -1,5 +1,6 @@
 29. Aug 2013 Christoph Thielecke <crissi99@gmx.de>
 	- dont add empty exclude rule on rule list at selreadable dialog
+	- make read blocksize configurable by define
 
 26. Aug 2013 Christoph Thielecke <crissi99@gmx.de>
 	- icons for encryption related buttons added

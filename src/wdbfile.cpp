@@ -949,7 +949,7 @@ int FileReader::readFrom ( Node *source, bool skipDuplicatesOnInsert, bool only_
 	int readcount = 0;
 	linecount = 0;
 	long long int offset = 0;
-	char tmpbuffer[4097];
+	char tmpbuffer[READ_BLOCKSIZE+1];
 
 	if ( *DEBUG_INFO_ENABLED )
 		std::cerr << "start reading file..." << endl;
@@ -960,16 +960,16 @@ int FileReader::readFrom ( Node *source, bool skipDuplicatesOnInsert, bool only_
 	pww->setCancel ( true );
 	while ( len != allocated_buffer_len ) {
 		if ( isGzFile ) {
-			readcount = gzread ( gf, tmpbuffer, 4096 );
+			readcount = gzread ( gf, tmpbuffer, READ_BLOCKSIZE );
 		} else {
-			readcount = fread ( tmpbuffer, 1, 1024, f );
+			readcount = fread ( tmpbuffer, 1, READ_BLOCKSIZE, f );
 		}
 		len += readcount;
 		if ( *DEBUG_INFO_ENABLED )
 			cerr << "readcount: " << readcount << endl;
 		for ( int i = 0; i < readcount; i++ )
 			dataBuffer[i + offset] = tmpbuffer[i];
-// 		strncat(dataBuffer, tmpbuffer, 4096);
+// 		strncat(dataBuffer, tmpbuffer, READ_BLOCKSIZE);
 		offset += readcount;
 		progress ( pww, len );
 		if ( pww->doCancel ) {

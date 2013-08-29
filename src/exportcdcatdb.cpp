@@ -638,7 +638,7 @@ void exportCdcatDB::ok() {
 								std::cerr << "open gz file failed!" << std::endl;
 							} else {
 								int readcount = 0;
-								readcount = gzread ( ff2, tmpbuffer, 4096 );
+								readcount = gzread ( ff2, tmpbuffer, READ_BLOCKSIZE );
 								
 								while ( readcount > 0 ) {
 // 							std::cerr << "read " << readcount << " bytes" << std::endl;
@@ -647,7 +647,7 @@ void exportCdcatDB::ok() {
 // 										std::cerr << "last read: " << readcount << " bytes" << std::endl;
 // 									}
 									progress ( pww );
-									readcount = gzread ( ff2, tmpbuffer, 4096 );
+									readcount = gzread ( ff2, tmpbuffer, READ_BLOCKSIZE );
 								}
 								//std::cerr << "before gzclose" << std::endl;
 								gzclose ( ff2 );
