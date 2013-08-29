@@ -778,6 +778,9 @@ int GuiSlave::updateListFromNode ( Node *pdir ) {
 		mainw->listView->setCurrentItem ( mainw->listView->topLevelItem(0) );
 	}
 	
+	//cerr << "current elem is \"..\", parent node path: " << qPrintable(pdir->getFullPath()) << endl;
+	standON = pdir;
+	
 	mainw->listView->resizeColumnToContents(0);
 	
 	if ( *DEBUG_INFO_ENABLED )
@@ -807,7 +810,8 @@ int GuiSlave::standOn ( QTreeWidgetItem *on, int ) {
 		mainw->commentWidget->showNode ( NodePwd, 1 );
 		mainw->commentWidget->updateContents();
 		updateStatusl ( NodePwd->parent );
-		standON = NULL;
+		//cerr << "current elem is \"..\", parent node path: " << qPrintable(NodePwd->getFullPath()) << endl;
+		standON = NodePwd;
 		return 0;
 	}
 
