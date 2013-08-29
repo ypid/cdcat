@@ -2356,7 +2356,7 @@ int GuiSlave::sizeEvent ( void ) {
 
 	sprintf ( text, "%.2f", s );
 	qtext = tr ( "The size of \"%1\" : \n %2 \n %3 file /%4 directory" )
-	        .arg ( standON->getNameOf() )
+	        .arg ( standON->getFullPath() )
 	        .arg ( QString ( text ) + " " + getSType ( st, true ) )
 	        .arg ( mainw->db->getCountFiles ( standON ) )
 	        .arg ( mainw->db->getCountDirs ( standON ) );

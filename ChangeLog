@@ -5,6 +5,7 @@
 	- delete keyboard shortcut added (del key)
 	- display full path instead node name on delete confirmation dialog
 	- make delete confirmation question better
+	- display full path instead node name on size dialog
 
 26. Aug 2013 Christoph Thielecke <crissi99@gmx.de>
 	- icons for encryption related buttons added
