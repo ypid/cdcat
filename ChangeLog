@@ -1,3 +1,6 @@
+30. Aug 2013 Christoph Thielecke <crissi99@gmx.de>
+	- click on result entry does not select corresponding entry tree fixed
+
 29. Aug 2013 Christoph Thielecke <crissi99@gmx.de>
 	- dont add empty exclude rule on rule list at selreadable dialog
 	- make read blocksize configurable by define

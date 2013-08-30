@@ -314,8 +314,7 @@ QString Node::getFullPath ( void ) {
 		a.prepend ( "/" );
 		up = up->parent;
 	}
-	if(!a.isEmpty() && a.at(0) != '/')
-		a.prepend ( "/" );
+	a.prepend ( "/" );
 	return a;
 }
 
