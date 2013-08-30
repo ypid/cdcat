@@ -31,6 +31,7 @@
 #include <QProcess>
 #include <QStatusBar>
 #include <QHeaderView>
+#include <QKeySequence>
 
 #ifndef _WIN32
 
@@ -285,6 +286,12 @@ void HQListView::keyPressEvent ( QKeyEvent *ke ) {
 		return;
 	
 	QTreeWidget::keyPressEvent ( ke );
+}
+
+CdcatKeyBinding::CdcatKeyBinding ( int eventDefine, QKeySequence eventSequence, QString description) {
+	this->eventDefine = eventDefine;
+	this->eventSequence = eventSequence;
+	this->description = description;
 }
 
 GuiSlave::GuiSlave ( CdCatMainWidget *p ) {
@@ -1110,6 +1117,13 @@ int GuiSlave::hotKeys ( QKeyEvent *ke ) {
 	return 0;
 }
 
+QKeySequence GuiSlave::getKeyBinding(int eventDefine) {
+	for (int i = 0; i < KeyShortCutList.size(); ++i) {
+		if (KeyShortCutList.at(i).eventDefine == eventDefine)
+			return KeyShortCutList.at(i).eventSequence;
+		}
+	return QKeySequence::UnknownKey;
+}
 
 /* Mainwindow buttons ***********************************/
 int GuiSlave::newEvent ( void ) {
@@ -2091,6 +2105,12 @@ int GuiSlave::configEvent ( void ) {
 int GuiSlave::aboutEvent ( void ) {
 	InfoDialog *di = new InfoDialog ( mainw, "infodialog", true );
 	di->exec();
+	return 0;
+}
+
+int GuiSlave::keyBindingsEvent ( void ) {
+	KeyBindingDialog kb( this, mainw, "Key bindings", true );
+	kb.exec();
 	return 0;
 }
 

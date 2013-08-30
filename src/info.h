@@ -18,12 +18,16 @@
 #include <QHBoxLayout>
 #include <QLabel>
 
+#include "guibase.h"
+
 class QGridLayout;
 class QPushButton;
 class QTabWidget;
 class QWidget;
 class QLabel;
 class QTextBrowser;
+class QListView;
+class QTableWidget;
 
 class InfoDialog : public QDialog {
     Q_OBJECT
@@ -53,6 +57,22 @@ protected:
 protected slots:
     virtual void languageChange();
 
+};
+
+class KeyBindingDialog : public QDialog {
+    Q_OBJECT
+
+public:
+    KeyBindingDialog ( GuiSlave *gs, QWidget* parent = 0, const char* name = 0, bool modal = FALSE, Qt::WFlags fl = 0 );
+    ~KeyBindingDialog();
+
+    QGridLayout* keyBindingDialogLayout;
+    QLabel* TitleLabel;
+    QPushButton* closeButton;
+    QTableWidget *KeyBindingsTableWidget;
+
+protected slots:
+    virtual void languageChange();
 };
 
 #endif // HELPDIALOG_H

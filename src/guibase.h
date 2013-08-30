@@ -10,13 +10,15 @@
 #ifndef GUIBASE_CDCAT
 #define GUIBASE_CDCAT
 
-
+#include <QList>
 #include <qobject.h>
 #include <qdialog.h>
 #include <QTreeWidget>
 #include <QTreeWidgetItem>
 #include <QMenu>
 #include <QKeyEvent>
+#include <QKeySequence>
+
 
 class Node;
 class CdCatMainWidget;
@@ -30,6 +32,8 @@ class QVBoxLayout;
 class QPainter;
 class DataBase;
 class HQListViewItem;
+class QKeySequence;
+
 
 /**********************************************************************/
 class HQListViewItem : public QTreeWidgetItem {
@@ -65,6 +69,15 @@ public:
     bool sasc;
 };
 
+class CdcatKeyBinding {
+public:
+	CdcatKeyBinding ( int eventDefine, QKeySequence eventSequence, QString description);
+	
+	int eventDefine;
+	QKeySequence eventSequence;
+	QString description;
+};
+
 class GuiSlave : public QObject {
     Q_OBJECT
 
@@ -86,6 +99,65 @@ public:
     void updateStatusl ( Node *n );
     void checkversion ( QWidget *p,DataBase *db );
     void setGuiMenuAndToolBarEnabled(bool enable=true);
+
+    enum CdcatKeyEventDefines {
+	key_quitEvent,
+	key_newEvent,
+	key_openEvent,
+	key_saveEvent,
+	key_saveasEvent,
+	key_closeEvent,
+	key_deleteEvent,
+	key_addEvent,
+	key_rescanEvent,
+	key_findEvent,
+	key_configEvent,
+	key_aboutEvent,
+	key_aboutQtEvent,
+	key_helpEvent,
+	key_insertcEvent,
+	key_insertCdcatXmlEvent,
+	key_insertcEventNoDup,
+	key_renameEvent,
+	key_typeChangeEvent,
+	key_sizeEvent,
+	key_importEvent,
+	key_exportEvent,
+	key_renumberEvent,
+	key_borrowingEvent,
+	key_sborrowEvent,
+	key_cborrowEvent,
+#ifdef CATALOG_ENCRYPTION
+	key_changePassEvent,
+	key_enableEncryptionEvent,
+	key_disableEncryptionEvent,
+#endif
+	key_sortNuEventAscending,
+	key_sortNuEventDescending,
+	key_sortNaEventAscending,
+	key_sortNaEventDescending,
+	key_sortTyEventAscending,
+	key_sortTyEventDescending,
+	key_sortTiEventAscending,
+	key_sortTiEventDescending,
+	key_closeBranch,
+	key_editComment,
+	key_showContent,
+	key_editCategory,
+	key_colorEvent,
+	key_followLnk,
+	key_addlnkEvent,
+	key_searchDuplicatesEvent,
+	key_posEvent,
+	key_openHistoryElementEvent,
+	key_dockEvent,
+	key_commentDockEvent,
+	key_statusBarEvent,
+	key_toolBarEvent,
+	key_keybindingEvent
+   };
+	QList<CdcatKeyBinding> KeyShortCutList;
+	QKeySequence getKeyBinding(int eventDefine);
 
 public slots:
 
@@ -114,6 +186,7 @@ public slots:
     int findEvent ( void );
     int configEvent ( void );
     int aboutEvent ( void );
+    int keyBindingsEvent ( void );
     int aboutQtEvent ( void );
     int helpEvent ( void );
     int insertcEvent ( void );

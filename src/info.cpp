@@ -18,6 +18,12 @@
 #include <qtooltip.h>
 #include <QGridLayout>
 #include <QLocale>
+#include <QTableWidget>
+#include <QTableWidgetItem>
+#include <QStandardItemModel>
+#include <QStandardItem>
+#include <QHeaderView>
+#include <iostream>
 
 #include "cdcat.h"
 #include "icons.h"
@@ -459,3 +465,80 @@ void InfoDialog::languageChange() {
 	tabWidget2->setTabText ( 2, tr ( "Thanks" ) );
 }
 
+KeyBindingDialog::KeyBindingDialog ( GuiSlave *gs, QWidget *parent, const char *name, bool modal, Qt::WFlags fl )
+	: QDialog ( parent, fl ) {
+	if ( !name )
+		setObjectName ( "Key bindings" );
+	
+	setModal ( modal );
+	setWindowIcon ( *get_t_about_icon() );
+	
+	keyBindingDialogLayout = new QGridLayout ( this );
+	
+	TitleLabel = new QLabel(this);
+	TitleLabel->setText("<h1>"+tr("Key bindings")+"</h1>");
+	keyBindingDialogLayout->addWidget ( TitleLabel, 0, 0 );
+	
+	KeyBindingsTableWidget = new QTableWidget (gs->KeyShortCutList.size(), 2,  this );
+	QTableWidgetItem *valuesHeaderItem1 = new QTableWidgetItem(tr("Action"));
+	KeyBindingsTableWidget->setHorizontalHeaderItem(0, valuesHeaderItem1);
+	QTableWidgetItem *valuesHeaderItem2 = new QTableWidgetItem(tr("Shortcut"));
+	KeyBindingsTableWidget->setHorizontalHeaderItem(1, valuesHeaderItem2);
+	
+	QStandardItemModel model(gs->KeyShortCutList.size(), 2);
+	for (int i=0;i< gs->KeyShortCutList.size();i++) {
+		QStandardItem *item1 = new QStandardItem(gs->KeyShortCutList.at(i).description);
+		model.setItem(i, 0, item1);
+		QStandardItem *item2 = new QStandardItem(gs->KeyShortCutList.at(i).eventSequence.toString());
+		model.setItem(i, 1, item2);
+		
+		QTableWidgetItem *newItem1 = new QTableWidgetItem(gs->KeyShortCutList.at(i).description);
+		newItem1->setFlags(newItem1->flags() & ~Qt::ItemIsEditable);
+		KeyBindingsTableWidget->setItem(i, 0, newItem1);
+		QTableWidgetItem *newItem2 = new QTableWidgetItem(gs->KeyShortCutList.at(i).eventSequence.toString());
+		newItem2->setFlags(newItem2->flags() & ~Qt::ItemIsEditable);
+		KeyBindingsTableWidget->setItem(i, 1, newItem2);
+	}
+	KeyBindingsTableWidget->resizeColumnsToContents();
+	KeyBindingsTableWidget->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+	KeyBindingsTableWidget->setSortingEnabled(true);
+	KeyBindingsTableWidget->sortByColumn(0, Qt::AscendingOrder);
+	KeyBindingsTableWidget->verticalHeader()->hide();
+	keyBindingDialogLayout->addWidget ( KeyBindingsTableWidget, 2, 0 );
+	
+// 	DEBUG_INFO_ENABLED = init_debug_info();
+// 	if ( *DEBUG_INFO_ENABLED ) {
+// 		std::cerr << "KeyShortCutList:" << std::endl;
+// 		for (int i=0; i< gs->KeyShortCutList.size(); i++) {
+// 			std::cerr << "\t" << qPrintable(gs->KeyShortCutList.at(i).description) << ": " << qPrintable(gs->KeyShortCutList.at(i).eventSequence.toString()) << std::endl;
+// 		}
+// 	}
+	
+	closeButton = new QPushButton ( this );
+	keyBindingDialogLayout->addWidget ( closeButton, 4, 0 );
+	
+	// force correct size of table view
+	//int width = (KeyBindingsTableWidget->model()->columnCount()) + KeyBindingsTableWidget->verticalHeader()->width() + 10;
+	int width = (KeyBindingsTableWidget->model()->columnCount()) + 20;
+	for(int column = 0; column < KeyBindingsTableWidget->model()->columnCount(); column++)
+		width = width + KeyBindingsTableWidget->columnWidth(column);
+	KeyBindingsTableWidget->setMinimumWidth(width);
+
+	int height = (KeyBindingsTableWidget->model()->rowCount()) + KeyBindingsTableWidget->verticalHeader()->height() + 10;
+	for(int row = 0; row < KeyBindingsTableWidget->model()->rowCount(); row++)
+		height = height + KeyBindingsTableWidget->rowHeight(row);
+	//KeyBindingsTableWidget->setMinimumHeight(height);
+	KeyBindingsTableWidget->setMinimumHeight(550);
+	resize(minimumSizeHint());
+	languageChange();
+	connect ( closeButton, SIGNAL ( clicked() ), this, SLOT ( close() ) );
+
+}
+
+ KeyBindingDialog::~KeyBindingDialog() {
+}
+
+void KeyBindingDialog::languageChange() {
+	setWindowTitle ( tr ( "Key bindings" ) );
+	closeButton->setText ( tr ( "close" ) );
+}

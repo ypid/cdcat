@@ -163,6 +163,7 @@ class CdCatMainWidget : public QMainWindow{
 		QAction *view_statusbar_action;
 		QAction *view_comment_widget_action;
 		QAction *view_tray_action;
+		QAction *keybindings_action;
 		QMenu *trayIconMenu;
 		void createTrayIcon();
 		void startTrayIconAnim();

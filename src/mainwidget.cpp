@@ -44,6 +44,7 @@
 #include "hdirview.h"
 #include "dbase.h"
 #include "guibase.h"
+#include "cdcat.h"
 #include "config.h"
 #include "icons.h"
 #include "adddialog.h"
@@ -200,7 +201,8 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	connect ( historyMenu, SIGNAL ( triggered ( QAction * ) ), guis, SLOT ( openHistoryElementEvent ( QAction * ) ) );
 
 	close_action = new QAction ( QIcon ( *get_t_close_icon() ), tr ( "Close catalog" ), this );
-	close_action->setShortcut ( QKeySequence ( Qt::CTRL + Qt::Key_W ) );
+	guis->KeyShortCutList.append(CdcatKeyBinding(guis->key_closeEvent, QKeySequence ( Qt::ControlModifier + Qt::Key_W ), tr("Close catalog")));
+	close_action->setShortcut ( guis->getKeyBinding(guis->key_closeEvent) );
 	close_action->setStatusTip ( tr ( "Close catalog" ) );
 	connect ( close_action, SIGNAL ( triggered() ), guis, SLOT ( closeEvent() ) );
 	fileMenu->addAction ( close_action );
@@ -208,27 +210,31 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	fileMenu->insertSeparator(NULL);
 
 	quit_action = new QAction ( QIcon ( *get_t_close_icon() ), tr ( "&Quit" ), this );
-	quit_action->setShortcuts ( QKeySequence::Close );
+	guis->KeyShortCutList.append(CdcatKeyBinding(guis->key_quitEvent, QKeySequence(Qt::ControlModifier + Qt::Key_Q), tr("Close program")));
+	quit_action->setShortcut ( guis->getKeyBinding(guis->key_quitEvent) );
 	quit_action->setStatusTip ( tr ( "Close program" ) );
 	connect ( quit_action, SIGNAL ( triggered() ), this, SLOT ( close() ) );
 	fileMenu->addAction ( quit_action );
 	Toolbar->addAction ( quit_action );
 
 	add_action = new QAction ( QIcon ( *get_t_add_icon() ), tr ( "Add media..." ), this );
-	add_action->setShortcut ( QKeySequence ( Qt::Key_A ) );
+	guis->KeyShortCutList.append(CdcatKeyBinding(guis->key_addEvent, QKeySequence ( Qt::Key_A ), tr("Add new media to catalog")));
+	add_action->setShortcut ( guis->getKeyBinding(guis->key_addEvent) );
 	add_action->setStatusTip ( tr ( "Add new media to catalog" ) );
 	connect ( add_action, SIGNAL ( triggered() ), guis, SLOT ( addEvent() ) );
 	editMenu->addAction ( add_action );
 	Toolbar->addAction ( add_action );
 
 	addlink_action = new QAction ( QIcon ( *get_p_icon() ), tr ( "Add a link to a CdCat Catalog..." ), this );
-	addlink_action->setShortcut ( QKeySequence ( Qt::CTRL + Qt::Key_L ) );
+	guis->KeyShortCutList.append(CdcatKeyBinding(guis->key_addlnkEvent, QKeySequence ( Qt::ControlModifier + Qt::Key_L ), tr("Add a link to a existing cdcat catalog")));
+	addlink_action->setShortcut ( guis->getKeyBinding(guis->key_addlnkEvent) );
 	addlink_action->setStatusTip ( tr ( "Add a link to a existing cdcat catalog" ) );
 	connect ( addlink_action, SIGNAL ( triggered() ), guis, SLOT ( addlnkEvent() ) );
 	editMenu->addAction ( addlink_action );
 
 	rescan_action = new QAction ( QIcon ( *get_t_rescan_icon() ), tr ( "Rescan media..." ), this );
-	rescan_action->setShortcut ( QKeySequence ( Qt::CTRL + Qt::Key_R ) );
+	guis->KeyShortCutList.append(CdcatKeyBinding(guis->key_rescanEvent, QKeySequence ( Qt::ControlModifier + Qt::Key_R ), tr("Rescan existing media")));
+	rescan_action->setShortcut ( guis->getKeyBinding(guis->key_rescanEvent) );
 	rescan_action->setStatusTip ( tr ( "Rescan existing media" ) );
 	connect ( rescan_action, SIGNAL ( triggered() ), guis, SLOT ( rescanEvent() ) );
 	editMenu->addAction ( rescan_action );
@@ -236,13 +242,15 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	editMenu->insertSeparator(NULL);
 
 	insert_action = new QAction ( QIcon ( *get_m_import_icon() ), tr ( "Insert Catalog..." ), this );
-	//insert_action->setShortcut(QKeySequence::Save);
+	guis->KeyShortCutList.append(CdcatKeyBinding(guis->key_insertcEvent, QKeySequence ( Qt::Key_I), tr("Insert catalog into database")));
+	insert_action->setShortcut ( guis->getKeyBinding(guis->key_insertcEvent) );
 	insert_action->setStatusTip ( tr ( "Insert catalog into database" ) );
 	connect ( insert_action, SIGNAL ( triggered() ), guis, SLOT ( insertcEvent() ) );
 	editMenu->addAction ( insert_action );
 	
 	insert_cdcat_xml_action = new QAction ( QIcon ( *get_m_import_icon() ), tr ( "Insert Cdcat export XML..." ), this );
-	//insert_cdcat_xml_action->setShortcut(QKeySequence::Save);
+	guis->KeyShortCutList.append(CdcatKeyBinding(guis->key_insertCdcatXmlEvent, QKeySequence ( Qt::Key_X), tr("Insert Cdcat exported XML into database")));
+	insert_cdcat_xml_action->setShortcut ( guis->getKeyBinding(guis->key_insertCdcatXmlEvent) );
 	insert_cdcat_xml_action->setStatusTip ( tr ( "Insert Cdcat exported XML into database" ) );
 	connect ( insert_cdcat_xml_action, SIGNAL ( triggered() ), guis, SLOT ( insertCdcatXmlEvent()) );
 	editMenu->addAction ( insert_cdcat_xml_action );
@@ -251,50 +259,58 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	editMenu->insertSeparator(NULL);
 
 	rename_action = new QAction ( QIcon ( *get_t_save_icon() ), tr ( "Rename node..." ), this );
-	rename_action->setShortcut ( QKeySequence ( Qt::CTRL + Qt::Key_E ) );
+	guis->KeyShortCutList.append(CdcatKeyBinding(guis->key_insertCdcatXmlEvent, QKeySequence ( Qt::ControlModifier + Qt::Key_E ), tr("Rename node")));
+	rename_action->setShortcut ( guis->getKeyBinding(guis->key_insertCdcatXmlEvent) );
 	rename_action->setStatusTip ( tr ( "Rename node" ) );
 	connect ( rename_action, SIGNAL ( triggered() ), guis, SLOT ( renameEvent() ) );
 	editMenu->addAction ( rename_action );
 
 	renumber_action = new QAction ( QIcon ( *get_t_save_icon() ), tr ( "Re-Number media node..." ), this );
-	//renumber_action->setShortcuts(QKeySequence::Save);
+	guis->KeyShortCutList.append(CdcatKeyBinding(guis->key_renumberEvent, QKeySequence ( Qt::ControlModifier + Qt::AltModifier + Qt::Key_R ), tr("Renumber node")));
+	renumber_action->setShortcut ( guis->getKeyBinding(guis->key_renumberEvent) );
 	renumber_action->setStatusTip ( tr ( "Renumber node" ) );
 	connect ( renumber_action, SIGNAL ( triggered() ), guis, SLOT ( renumberEvent() ) );
 	editMenu->addAction ( renumber_action );
 
 	//changemediatype_action = new QAction (QIcon(*get_t_save_icon()), tr ( "Change media type..." ), this);
-	////changemediatype_action->setShortcuts(QKeySequence::Save);
+	//guis->KeyShortCutList.append(CdcatKeyBinding(guis->key_typeChangeEvent, QKeySequence ( Qt::CTRL + Qt::Key_R ), tr("Change media type")));
+	//changemediatype_action->setShortcut ( guis->getKeyBinding(guis->key_typeChangeEvent) );
 	//changemediatype_action->setStatusTip(tr("Change media type"));
 	//connect(changemediatype_action, SIGNAL(triggered()), guis, SLOT(typeChangeEvent()));
 	//editMenu->addAction(changemediatype_action);
 
 	delete_action = new QAction ( QIcon ( *get_t_delete_icon() ), tr ( "Delete node" ), this );
-	delete_action->setShortcut ( QKeySequence ( Qt::Key_Delete ) );
+	guis->KeyShortCutList.append(CdcatKeyBinding(guis->key_deleteEvent, QKeySequence ( Qt::Key_Delete ), tr("Delete node")));
+	delete_action->setShortcut ( guis->getKeyBinding(guis->key_deleteEvent) );
 	delete_action->setStatusTip ( tr ( "Delete node" ) );
 	connect ( delete_action, SIGNAL ( triggered() ), guis, SLOT ( deleteEvent() ) );
 	editMenu->addAction ( delete_action );
 
 	editMenu->insertSeparator(NULL);
 	sortnu_ascending_action = new QAction ( QIcon ( *get_t_save_icon() ), tr ( "Sort media by number (ascending)" ), this );
-	//sortnu_ascending_action->setShortcuts(QKeySequence::Save);
+	guis->KeyShortCutList.append(CdcatKeyBinding(guis->key_sortNuEventAscending, QKeySequence ( Qt::ControlModifier + Qt::AltModifier + Qt::Key_Up), tr("Sort media by number (ascending)")));
+	sortnu_ascending_action->setShortcut ( guis->getKeyBinding(guis->key_sortNuEventAscending) );
 	sortnu_ascending_action->setStatusTip ( tr ( "Sort media by number (ascending)" ) );
 	connect ( sortnu_ascending_action, SIGNAL ( triggered() ), guis, SLOT ( sortNuEventAscending()) );
 	editMenu->addAction ( sortnu_ascending_action );
 	
 	sortnu_descending_action = new QAction ( QIcon ( *get_t_save_icon() ), tr ( "Sort media by number (descending)" ), this );
-	//sortnu_descending_action->setShortcuts(QKeySequence::Save);
+	guis->KeyShortCutList.append(CdcatKeyBinding(guis->key_sortNuEventDescending, QKeySequence ( Qt::ControlModifier + Qt::AltModifier + Qt::Key_Down ), tr("Sort media by number (descending)")));
+	sortnu_descending_action->setShortcut ( guis->getKeyBinding(guis->key_sortNuEventDescending) );
 	sortnu_descending_action->setStatusTip ( tr ( "Sort media by number (descending)" ) );
 	connect ( sortnu_descending_action, SIGNAL ( triggered() ), guis, SLOT ( sortNuEventDescending()) );
 	editMenu->addAction ( sortnu_descending_action );
 
 	sortna_ascending_action = new QAction ( QIcon ( *get_t_save_icon() ), tr ( "Sort media by name (ascending)" ), this );
-	//sortna_ascending_action->setShortcuts(QKeySequence::Save);
-	sortna_ascending_action->setStatusTip ( tr ( "Sort media by name" ) );
+	guis->KeyShortCutList.append(CdcatKeyBinding(guis->key_sortNaEventAscending, QKeySequence ( Qt::ControlModifier + Qt::Key_Up), tr("Sort media by number (ascending)")));
+	sortnu_ascending_action->setShortcut ( guis->getKeyBinding(guis->key_sortNaEventAscending) );
+	sortnu_ascending_action->setStatusTip ( tr ( "Sort media by name" ) );
 	connect ( sortna_ascending_action, SIGNAL ( triggered() ), guis, SLOT ( sortNaEventAscending()) );
 	editMenu->addAction ( sortna_ascending_action );
 
 	sortna_descending_action = new QAction ( QIcon ( *get_t_save_icon() ), tr ( "Sort media by name (descending)" ), this );
-	//sortna_descending_action->setShortcuts(QKeySequence::Save);
+	guis->KeyShortCutList.append(CdcatKeyBinding(guis->key_sortNaEventDescending, QKeySequence ( Qt::ControlModifier + Qt::Key_Down), tr("Sort media by name (descending)")));
+	sortna_descending_action->setShortcut ( guis->getKeyBinding(guis->key_sortNaEventDescending) );
 	sortna_descending_action->setStatusTip ( tr ( "Sort media by name (descending)" ) );
 	connect ( sortna_descending_action, SIGNAL ( triggered() ), guis, SLOT ( sortNaEventDescending()) );
 	editMenu->addAction ( sortna_descending_action );
@@ -324,7 +340,8 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	editMenu->addAction ( sortty_descending_action );
 	
 	view_toolbar_action = new QAction ( tr ( "view tool bar" ), this );
-	//view_toolbar_action->setShortcuts(QKeySequence::Save);
+	guis->KeyShortCutList.append(CdcatKeyBinding(guis->key_toolBarEvent, QKeySequence( Qt::ControlModifier + Qt::AltModifier + Qt::Key_T ), tr("View tool bar in main window")));
+	view_toolbar_action->setShortcut ( guis->getKeyBinding(guis->key_toolBarEvent) );
 	view_toolbar_action->setStatusTip ( tr ( "View tool bar in main window" ) );
 	view_toolbar_action->setCheckable(true);
 	view_toolbar_action->setChecked(cconfig->showToolBar);
@@ -332,7 +349,8 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	viewMenu->addAction ( view_toolbar_action );
 	
 	view_statusbar_action = new QAction ( tr ( "view status bar" ), this );
-	//view_statusbar_action->setShortcuts(QKeySequence::Save);
+	guis->KeyShortCutList.append(CdcatKeyBinding(guis->key_statusBarEvent, QKeySequence( Qt::ControlModifier + Qt::AltModifier + Qt::Key_S ), tr("View status bar in main window")));
+	view_statusbar_action->setShortcut ( guis->getKeyBinding(guis->key_statusBarEvent) );
 	view_statusbar_action->setStatusTip ( tr ( "View status bar in main window" ) );
 	view_statusbar_action->setCheckable(true);
 	view_statusbar_action->setChecked(cconfig->showStatusBar);
@@ -340,7 +358,8 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	viewMenu->addAction ( view_statusbar_action );
 	
 	view_comment_widget_action = new QAction ( tr ( "view comment dock" ), this );
-	//view_comment_widget_action->setShortcuts(QKeySequence::Save);
+	guis->KeyShortCutList.append(CdcatKeyBinding(guis->key_commentDockEvent, QKeySequence( Qt::ControlModifier + Qt::Key_D ), tr("show comment dock")));
+	view_comment_widget_action->setShortcut ( guis->getKeyBinding(guis->key_commentDockEvent) );
 	view_comment_widget_action->setStatusTip ( tr ( "show comment dock" ) );
 	view_comment_widget_action->setCheckable(true);
 	view_comment_widget_action->setChecked(cconfig->showCommentDock);
@@ -348,7 +367,8 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	viewMenu->addAction ( view_comment_widget_action );
 	
 	view_tray_action = new QAction ( tr ( "show systray icon" ), this );
-	//view_tray_action->setShortcuts(QKeySequence::Save);
+	guis->KeyShortCutList.append(CdcatKeyBinding(guis->key_dockEvent, QKeySequence( Qt::ControlModifier + Qt::AltModifier + Qt::Key_D ), tr("show systray icon")));
+	view_tray_action->setShortcut ( guis->getKeyBinding(guis->key_dockEvent) );
 	view_tray_action->setStatusTip ( tr ( "show systray icon" ) );
 	view_tray_action->setCheckable(true);
 	view_tray_action->setChecked(cconfig->showTrayIcon);
@@ -356,67 +376,85 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	viewMenu->addAction ( view_tray_action );
 	
 	find_action = new QAction ( QIcon ( *get_t_find_icon() ), tr ( "Seek in database..." ), this );
-	find_action->setShortcut ( QKeySequence ( Qt::CTRL + Qt::Key_F ) );
+	guis->KeyShortCutList.append(CdcatKeyBinding(guis->key_findEvent, QKeySequence( Qt::ControlModifier + Qt::Key_F ), tr("Seek in database for files and folders")));
+	find_action->setShortcut ( guis->getKeyBinding(guis->key_findEvent) );
 	find_action->setStatusTip ( tr ( "Seek in database for files and folders" ) );
 	connect ( find_action, SIGNAL ( triggered() ), guis, SLOT ( findEvent() ) );
 	findMenu->addAction ( find_action );
 
 	findpanel_action = new QAction ( QIcon ( *get_t_find_icon() ), tr ( "Seek in the panel" ), this );
-	findpanel_action->setShortcut ( QKeySequence ( Qt::ALT + Qt::Key_S ) );
+	guis->KeyShortCutList.append(CdcatKeyBinding(guis->key_posEvent, QKeySequence( Qt::AltModifier + Qt::Key_S ), tr("Seek in the panel")));
+	findpanel_action->setShortcut ( guis->getKeyBinding(guis->key_posEvent) );
 	findpanel_action->setStatusTip ( tr ( "Seek in the panel" ) );
 	connect ( findpanel_action, SIGNAL ( triggered() ), guis, SLOT ( posEvent() ) );
 	findMenu->addAction ( findpanel_action );
 
 	borrow_action = new QAction ( QIcon ( *get_m_borrow_icon() ), tr ( "Borrowing info..." ), this );
-	borrow_action->setShortcut ( QKeySequence ( Qt::CTRL + Qt::Key_B ) );
-	borrow_action->setStatusTip ( tr ( "Borrowing info..." ) );
+	guis->KeyShortCutList.append(CdcatKeyBinding(guis->key_borrowingEvent, QKeySequence( Qt::ControlModifier + Qt::Key_B ), tr("Borrowing info")));
+	borrow_action->setShortcut ( guis->getKeyBinding(guis->key_borrowingEvent) );
+	borrow_action->setStatusTip ( tr ( "Borrowing info" ) );
 	connect ( borrow_action, SIGNAL ( triggered() ), guis, SLOT ( borrowingEvent() ) );
 	othersMenu->addAction ( borrow_action );
 
 	size_action = new QAction ( QIcon ( *get_t_save_icon() ), tr ( "Node size" ), this );
-	size_action->setShortcut ( QKeySequence ( Qt::Key_Space ) );
+	guis->KeyShortCutList.append(CdcatKeyBinding(guis->key_sizeEvent, QKeySequence( Qt::Key_Space ), tr("Calculate node size")));
+	size_action->setShortcut ( guis->getKeyBinding(guis->key_sizeEvent) );
 	size_action->setStatusTip ( tr ( "Calculate node size" ) );
 	connect ( size_action, SIGNAL ( triggered() ), guis, SLOT ( sizeEvent() ) );
 	othersMenu->addAction ( size_action );
 
 	config_action = new QAction ( QIcon ( *get_t_config_icon() ), tr ( "Configuration..." ), this );
-	config_action->setShortcut ( QKeySequence ( Qt::CTRL + Qt::Key_G ) );
+	guis->KeyShortCutList.append(CdcatKeyBinding(guis->key_configEvent, QKeySequence(Qt::ControlModifier + Qt::Key_G), tr("Edit cdcat configuration")));
+	config_action->setShortcut ( guis->getKeyBinding(guis->key_configEvent) );
 	config_action->setStatusTip ( tr ( "Edit cdcat configuration" ) );
 	connect ( config_action, SIGNAL ( triggered() ), guis, SLOT ( configEvent() ) );
 	othersMenu->addAction ( config_action );
 
 	color_action = new QAction ( QIcon ( *get_t_colorconfig_icon() ), tr ( "Set Colors..." ), this );
-	//color_action->setShortcuts(QKeySequence::Save);
+	guis->KeyShortCutList.append(CdcatKeyBinding(guis->key_colorEvent, QKeySequence(Qt::ControlModifier + Qt::AltModifier + Qt::Key_C), tr("Set the colors for display")));
+	color_action->setShortcut ( guis->getKeyBinding(guis->key_colorEvent) );
 	color_action->setStatusTip ( tr ( "Set the colors for display" ) );
 	connect ( color_action, SIGNAL ( triggered() ), guis, SLOT ( colorEvent() ) );
 	othersMenu->addAction ( color_action );
 
 	import_action = new QAction ( QIcon ( *get_m_import_icon() ), tr ( "Import database (CSV/XML)" ), this );
-	//import_action->setShortcuts(QKeySequence::Save);
+	guis->KeyShortCutList.append(CdcatKeyBinding(guis->key_importEvent, QKeySequence(Qt::ControlModifier + Qt::AltModifier + Qt::Key_I), tr("Import database (CSV/XML) from various catalog programs")));
+	import_action->setShortcut ( guis->getKeyBinding(guis->key_importEvent) );
 	import_action->setStatusTip ( tr ( "Import database (CSV/XML) from various catalog programs" ) );
 	connect ( import_action, SIGNAL ( triggered() ), guis, SLOT ( importEvent() ) );
 	inoutMenu->addAction ( import_action );
 
 	export_action = new QAction ( QIcon ( *get_m_export_icon() ), tr ( "Export database (CSV/HTML/XML)" ), this );
-	//export_action->setShortcuts(QKeySequence::Save);
+	guis->KeyShortCutList.append(CdcatKeyBinding(guis->key_exportEvent, QKeySequence(Qt::ControlModifier + Qt::AltModifier + Qt::Key_E), tr("Export database (CSV/HTML/XML)")));
+	export_action->setShortcut ( guis->getKeyBinding(guis->key_exportEvent) );
 	export_action->setStatusTip ( tr ( "Export database (CSV/HTML/XML)" ) );
 	connect ( export_action, SIGNAL ( triggered() ), guis, SLOT ( exportEvent() ) );
 	inoutMenu->addAction ( export_action );
 
 	help_action = new QAction ( QIcon ( *get_t_help_icon() ), tr ( "Help" ), this );
-	help_action->setShortcut ( QKeySequence ( Qt::Key_F1 ) );
+	guis->KeyShortCutList.append(CdcatKeyBinding(guis->key_helpEvent, QKeySequence(Qt::Key_F1), tr("Help")));
+	help_action->setShortcut ( guis->getKeyBinding(guis->key_helpEvent) );
 	help_action->setStatusTip ( tr ( "Help" ) );
 	connect ( help_action, SIGNAL ( triggered() ), guis, SLOT ( helpEvent() ) );
 	helpMenu->addAction ( help_action );
 
+	keybindings_action = new QAction ( QIcon ( *get_t_help_icon() ), tr ( "Key bindings" ), this );
+	guis->KeyShortCutList.append(CdcatKeyBinding(guis->key_keybindingEvent, QKeySequence(Qt::ControlModifier + Qt::AltModifier + Qt::Key_K), tr("Key bindings")));
+	keybindings_action->setShortcut ( guis->getKeyBinding(guis->key_keybindingEvent) );
+	keybindings_action->setStatusTip ( tr ( "Key bindings" ) );
+	connect ( keybindings_action, SIGNAL ( triggered() ), guis, SLOT ( keyBindingsEvent() ) );
+	helpMenu->addAction ( keybindings_action );
+
 	about_action = new QAction ( QIcon ( *get_p_icon() ), tr ( "About Cdcat" ), this );
-	//about_action->setShortcuts(QKeySequence::Save);
+	guis->KeyShortCutList.append(CdcatKeyBinding(guis->key_aboutEvent, QKeySequence(Qt::ControlModifier + Qt::AltModifier + Qt::Key_A), tr("About Cdcat")));
+	about_action->setShortcut ( guis->getKeyBinding(guis->key_aboutEvent) );
 	about_action->setStatusTip ( tr ( "About Cdcat" ) );
 	connect ( about_action, SIGNAL ( triggered() ), guis, SLOT ( aboutEvent() ) );
 	helpMenu->addAction ( about_action );
 
 	aboutqt_action = new QAction ( QIcon ( *get_t_qtlogo_icon() ), tr ( "About Qt" ), this );
-	//aboutqt_action->setShortcuts(QKeySequence::Save);
+	guis->KeyShortCutList.append(CdcatKeyBinding(guis->key_aboutQtEvent, QKeySequence(Qt::ControlModifier + Qt::AltModifier + Qt::Key_Q), tr("About the Qt toolkit")));
+	aboutqt_action->setShortcut ( guis->getKeyBinding(guis->key_aboutQtEvent) );
 	aboutqt_action->setStatusTip ( tr ( "About the Qt toolkit" ) );
 	connect ( aboutqt_action, SIGNAL ( triggered() ), guis, SLOT ( aboutQtEvent() ) );
 	helpMenu->addAction ( aboutqt_action );
@@ -526,7 +564,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 		CommentDock->show();
 	else
 		CommentDock->hide();
-
+	
 	show();
 
 	listView ->setFocus();

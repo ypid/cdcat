@@ -40,10 +40,6 @@
       <source>unknown</source>
       <translation>unbekannt</translation>
     </message>
-    <message>
-      <source></source>
-      <translation type="unfinished" />
-    </message>
   </context>
   <context>
     <name>CatalogTypeEditDialog</name>
@@ -483,6 +479,14 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     <message>
       <source>Enables catalog encryption</source>
       <translation>Aktiviert Katalogverschlüsselung</translation>
+    </message>
+    <message>
+      <source>Borrowing info</source>
+      <translation>Ausleihinformationen</translation>
+    </message>
+    <message>
+      <source>Key bindings</source>
+      <translation>Kurzbefehle</translation>
     </message>
   </context>
   <context>
@@ -1775,6 +1779,25 @@ wird zu
     <message>
       <source>encrypted catalog support</source>
       <translation>Unterstützung für verschlüsselten Katalog</translation>
+    </message>
+  </context>
+  <context>
+    <name>KeyBindingDialog</name>
+    <message>
+      <source>Action</source>
+      <translation>Aktion</translation>
+    </message>
+    <message>
+      <source>Shortcut</source>
+      <translation>Tastenkürzel</translation>
+    </message>
+    <message>
+      <source>Key bindings</source>
+      <translation>Kurzbefehle</translation>
+    </message>
+    <message>
+      <source>close</source>
+      <translation>Schließen</translation>
     </message>
   </context>
   <context>
