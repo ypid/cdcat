@@ -210,7 +210,7 @@ DirectoryView::DirectoryView ( QWidget *parent, const char * )
 		QFileInfo fi( volumes.at ( ri ) );
 		if ( fi.fileName() == QString ( "." ) || fi.fileName() == QString ( ".." ) )
 			continue;
-		Directory root = new Directory ( this, fi.filePath() );
+		Directory *root = new Directory ( this, fi.filePath() );
 		if ( volumes.count() >= 1 )
 			root->setExpanded ( true );
 	}
