@@ -487,11 +487,6 @@ KeyBindingDialog::KeyBindingDialog ( GuiSlave *gs, QWidget *parent, const char *
 	
 	QStandardItemModel model(gs->KeyShortCutList.size(), 2);
 	for (int i=0;i< gs->KeyShortCutList.size();i++) {
-		QStandardItem *item1 = new QStandardItem(gs->KeyShortCutList.at(i).description);
-		model.setItem(i, 0, item1);
-		QStandardItem *item2 = new QStandardItem(gs->KeyShortCutList.at(i).eventSequence.toString());
-		model.setItem(i, 1, item2);
-		
 		QTableWidgetItem *newItem1 = new QTableWidgetItem(gs->KeyShortCutList.at(i).description);
 		newItem1->setFlags(newItem1->flags() & ~Qt::ItemIsEditable);
 		KeyBindingsTableWidget->setItem(i, 0, newItem1);
