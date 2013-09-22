@@ -8,12 +8,13 @@ TRANSLATIONS	= lang/cdcat_hu.ts \
 		  lang/cdcat_cz.ts \
 		  lang/cdcat_it.ts \
 		  lang/cdcat_pl.ts \
-	          lang/cdcat_sk.ts \
-	          lang/cdcat_sr.ts \
-	  	  lang/cdcat_el.ts \
+		  lang/cdcat_ru.ts \
+		  lang/cdcat_sk.ts \
+		  lang/cdcat_sr.ts \
+		  lang/cdcat_el.ts \
 	  	  lang/cdcat_id.ts \
 	  	  lang/cdcat_pt.ts \
-						lang/start/cdcat_nolang.ts
+		  lang/start/cdcat_nolang.ts
 
 translations.files += lang/cdcat_de.qm \
 			lang/cdcat_es.qm \
@@ -22,11 +23,13 @@ translations.files += lang/cdcat_de.qm \
 			lang/cdcat_pl.qm \
 			lang/cdcat_el.qm \
 			lang/cdcat_it.qm \
+			lang/cdcat_ru.qm \
 			lang/cdcat_sk.qm \
 			lang/cdcat_sr.qm \
 			lang/cdcat_pt.qm \
 			lang/cdcat_id.qm \
 			lang/cdcat_hu.qm
+
 HEADERS		=   adddialog.h\
 			cdcat.h \
 			commwidget.h \
@@ -100,6 +103,12 @@ win32 {
 	########## lib7zip
 	# use lib7zip?
 	DEFINES+=USE_LIB7ZIP
+	
+	###### encryption
+	DEFINES += CATALOG_ENCRYPTION
+	LIBS+= c:/libs/libcrypto++.a -lpthread
+	###### end encryption
+	
 	LIBS       += c:/zlib/lib/libz.a c:/libs/lib7zip.a c:/libs/bzip2.dll c:/libs/libtar.a  -loleaut32 -luuid
 	INCLUDEPATH   += c:/Expat/Source/lib c:/zlib/include c:/pcre/include C:/includes c:/mediainfo
 
@@ -113,6 +122,12 @@ win32 {
 	########## lib7zip
 	# use lib7zip?
 	DEFINES+=USE_LIB7ZIP
+	
+	###### encryption
+	DEFINES += CATALOG_ENCRYPTION
+	LIBS+= /usr/lib/libcrypto++.a -lpthread
+	###### end encryption
+	
 	LIBS       += -lz -ldl /usr/lib/libtar.a /usr/lib/libbz2.a /usr/lib/lib7zip.a
 } else:os2 {
 	# OS/2
@@ -154,6 +169,11 @@ win32 {
 	#DEFINES += USE_LIBEXIF
 	#LIBS += -lexif
 	######### end exif
+	
+	###### encryption
+	#DEFINES += CATALOG_ENCRYPTION
+	#LIBS+= -lcrypto++ -lpthread
+	###### end encryption
 	
 	CONFIG += console
 	LIBS       += -lz c:/usr/lib/libtar.a -lbz2 -ldl
