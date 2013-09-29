@@ -11,6 +11,7 @@ TRANSLATIONS	= lang/cdcat_hu.ts \
 	  	  lang/cdcat_el.ts \
 	  	  lang/cdcat_id.ts \
 	  	  lang/cdcat_pt.ts \
+		  lang/cdcat_ru.ts \
 						lang/start/cdcat_nolang.ts
 
 translations.files += lang/cdcat_de.qm \
@@ -23,6 +24,7 @@ translations.files += lang/cdcat_de.qm \
 		      lang/cdcat_sk.qm \
 		      lang/cdcat_sr.qm \
 	  	      lang/cdcat_pt.qm \
+	  	      lang/cdcat_ru.qm \
 	  	      lang/cdcat_id.qm \
 		      lang/cdcat_hu.qm
 HEADERS	    =   adddialog.h\
