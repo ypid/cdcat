@@ -30,6 +30,8 @@ class QLabel;
 class QLineEdit;
 class QPushButton;
 
+QList<QList<QString>> getImportPatternList();
+
 class ImportDialog : public QDialog {
     Q_OBJECT
 
@@ -41,12 +43,15 @@ public:
     QLabel* filename_lab;
     QLabel* separator_lab;
     QLabel* info_lab;
+    QLabel *genericRegexPattern_lab;
+    QLabel *genericRegexInfo;
 
     QPushButton* buttonCancel;
     QPushButton* buttonOK;
     QPushButton* buttonGetFile;
     QLineEdit* filename_lineedit;
     QLineEdit* separator_lineedit;
+    QLineEdit* genericRegex_lineedit;
     QCheckBox *newdatabase;
     QCheckBox *correctbadstyle;
     QRadioButton *importTypeCsvGtktalog;
@@ -60,6 +65,7 @@ public:
     QRadioButton *importTypeCsvWhereisit;
     QRadioButton *importTypeGtktalogXml;
     QRadioButton *importTypeWhereisitXml;
+    QRadioButton *importTypeGenericRegex;
     QGroupBox *importButtonBox;
 
 
@@ -69,6 +75,7 @@ protected:
     QVBoxLayout* type_layout;
     QHBoxLayout* csv_layout;
     QVBoxLayout* layoutGroupBox;
+    QHBoxLayout* layoutGenericRegex;
 
 protected slots:
     virtual void languageChange();

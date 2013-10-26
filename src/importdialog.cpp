@@ -21,7 +21,100 @@ Copyright : (C) 2003 Christoph Thielecke
 #include <stdio.h>
 #include <stdlib.h>
 #include <qvariant.h>
+#include <QLocale>
+#include "icons.h"
 
+QList<QList<QString>> getImportPatternList() {
+	/* extract special cdcat pattern
+		defined patterns:
+		%dirseparator%		directory separtor (unix: /, windows: \)
+		%filename%		filename
+		%fullpath%		full path (<dirpath><divider><file>)
+		%sizehuman%		size (1234,56[<unit>])
+						unit: ((empty) => B, k => kB, K => KiB, m => mb, M => MiB, g = gb, G => GB, t = tb, T => TiB)
+		%sizeb%			size in bytes (123456)
+		%sizekb%			size in kilobytes (123456) 
+		%YYMMDD%		date (2 letter year)
+		%YYYYMMDD%	date (4 letter year)
+		
+		
+		list elems: <pattern label><matching regex pattern><description>
+		*/
+	QList<QList<QString>> regex_pattern_list;
+	QList<QString> tmplist;
+	tmplist.append(QString("%dirseparator%"));
+	tmplist.append(QString(QDir::separator ()));
+	tmplist.append(QObject::tr("directory separator"));
+	regex_pattern_list.append(tmplist);
+	tmplist.clear();
+	
+	tmplist.append(QString("%tab%"));
+	tmplist.append(QString("	"));
+	tmplist.append(QObject::tr("tabulator"));
+	regex_pattern_list.append(tmplist);
+	tmplist.clear();
+	
+	tmplist.append(QString("%space%"));
+	tmplist.append(QString("\\ "));
+	tmplist.append(QObject::tr("space char"));
+	regex_pattern_list.append(tmplist);
+	tmplist.clear();
+	
+	tmplist.append(QString("%filename%"));
+	tmplist.append(QString("[0-9a-zA-Z\\_\\-\\.\\+\\=\ \\~]+"));
+	tmplist.append(QObject::tr("file name"));
+	regex_pattern_list.append(tmplist);
+	tmplist.clear();
+	
+	tmplist.append(QString("%fullpath%"));
+	tmplist.append(QString("(([\\/\\")+QDir::separator()+"]|)([0-9a-zA-Z\\_\\-\\.\\+\\=\ \\~]+))+");
+	tmplist.append(QObject::tr("full path (including directory name and file name)"));
+	regex_pattern_list.append(tmplist);
+	tmplist.clear();
+	
+	tmplist.append(QString("%size_human%"));
+	tmplist.append(QString("[0-9]+([\\,\\.0-9])*([kKmMgGtT]|)"));
+	tmplist.append(QObject::tr("File size with human unit (e.g. G for Gigabyte)"));
+	regex_pattern_list.append(tmplist);
+	tmplist.clear();
+	
+	tmplist.append(QString("%sizeb%"));
+	tmplist.append(QString("([0-9])+"));
+	tmplist.append(QObject::tr("File size (number only, in bytes)"));
+	regex_pattern_list.append(tmplist);
+	tmplist.clear();
+	
+	tmplist.append(QString("%sizekb%"));
+	tmplist.append(QString("([0-9])+"));
+	tmplist.append(QObject::tr("File size (number only, in kilobytes)"));
+	regex_pattern_list.append(tmplist);
+	tmplist.clear();
+	
+	tmplist.append(QString("%dateyear2%"));
+	tmplist.append(QString("[0-9][0-9]\-([0-9]|[0-9][0-9])\\-([0-9]|[0-9][0-9])"));
+	tmplist.append(QObject::tr("date with 2 year digit (e.g. 25th. may 2012: 12-05-25)"));
+	regex_pattern_list.append(tmplist);
+	tmplist.clear();
+	
+	tmplist.append(QString("%dateyear4%"));
+	tmplist.append(QString("[0-9][0-9][0-9][0-9]\\-([0-9]|[0-9][0-9])\\-([0-9]|[0-9][0-9])"));
+	tmplist.append(QObject::tr("date with 4 year digit (e.g. 25th. may 2012: 2012-05-25)"));
+	regex_pattern_list.append(tmplist);
+	tmplist.clear();
+	
+	tmplist.append(QString("%time_full%"));
+	tmplist.append(QString("([0-9]|[0-9][0-9])\\:([0-9]|[0-9][0-9])\\:([0-9]|[0-9][0-9])"));
+	tmplist.append(QObject::tr("time in full format (e.g. 07:28:13)"));
+	regex_pattern_list.append(tmplist);
+	tmplist.clear();
+	
+	tmplist.append(QString("%time_hm%"));
+	tmplist.append(QString("([0-9]|[0-9][0-9])\\:([0-9]|[0-9][0-9])"));
+	tmplist.append(QObject::tr("time with hour and minute only (e.g. 07:28)"));
+	regex_pattern_list.append(tmplist);
+	tmplist.clear();
+	return regex_pattern_list;
+}
 
 ImportDialog::ImportDialog ( QWidget *parent, const char *name, bool modal, Qt::WFlags fl )
 	: QDialog ( parent, fl ) {
@@ -50,17 +143,18 @@ ImportDialog::ImportDialog ( QWidget *parent, const char *name, bool modal, Qt::
 	importButtonBox = new QGroupBox ( tr ( "Type" ), this );
 	layoutGroupBox = new QVBoxLayout ( this );
 	importButtonBox->setLayout ( layoutGroupBox );
-	importTypeCsvGtktalog = new QRadioButton ( "&Gtktalog CSV", importButtonBox);
-	importTypeCsvKatCeDe = new QRadioButton ( "&Kat-DeCe CSV", importButtonBox );
-	importTypeCsvDisclib = new QRadioButton ( "&Disclib CSV", importButtonBox );
-	importTypeCsvVisualcd = new QRadioButton ( "&VisualCD CSV", importButtonBox );
-	importTypeCsvVvv = new QRadioButton ( "&VVV CSV", importButtonBox );
-	importTypeCsvAdvancedFileOrganizer = new QRadioButton ( "&Advanced file organizer CSV", importButtonBox );
-	importTypeCsvFileArchivist = new QRadioButton ( "&File Archivist", importButtonBox );
-	importTypeCsvAdvancedDiskCatalog = new QRadioButton ( "&Advanced Disk Catalog CSV", importButtonBox );
-	importTypeCsvWhereisit = new QRadioButton ( "&Advanced Disk Catalog CSV", importButtonBox );
-	importTypeGtktalogXml = new QRadioButton ( "Gtktalog &XML", importButtonBox );
-	importTypeWhereisitXml = new QRadioButton ( "&WhereIsIt XML (classic)", importButtonBox );
+	importTypeCsvGtktalog = new QRadioButton ( tr("&Gtktalog CSV"), importButtonBox);
+	importTypeCsvKatCeDe = new QRadioButton ( tr("&Kat-DeCe CSV"), importButtonBox );
+	importTypeCsvDisclib = new QRadioButton ( tr("&Disclib CSV"), importButtonBox );
+	importTypeCsvVisualcd = new QRadioButton ( tr("&VisualCD CSV"), importButtonBox );
+	importTypeCsvVvv = new QRadioButton ( tr("&VVV CSV"), importButtonBox );
+	importTypeCsvAdvancedFileOrganizer = new QRadioButton ( tr("&Advanced file organizer CSV"), importButtonBox );
+	importTypeCsvFileArchivist = new QRadioButton ( tr("&File Archivist CSV"), importButtonBox );
+	importTypeCsvAdvancedDiskCatalog = new QRadioButton ( tr("&Advanced Disk Catalog CSV"), importButtonBox );
+	importTypeCsvWhereisit = new QRadioButton ( tr("&Advanced Disk Catalog CSV"), importButtonBox );
+	importTypeGtktalogXml = new QRadioButton ( tr("Gtktalog &XML"), importButtonBox );
+	importTypeWhereisitXml = new QRadioButton ( tr("&WhereIsIt XML (classic)"), importButtonBox );
+	importTypeGenericRegex = new QRadioButton ( tr("&"), importButtonBox );
 
 	layoutGroupBox->addWidget ( importTypeCsvGtktalog );
 	layoutGroupBox->addWidget ( importTypeCsvKatCeDe );
@@ -73,6 +167,7 @@ ImportDialog::ImportDialog ( QWidget *parent, const char *name, bool modal, Qt::
 	layoutGroupBox->addWidget ( importTypeCsvWhereisit );
 	layoutGroupBox->addWidget ( importTypeGtktalogXml );
 	layoutGroupBox->addWidget ( importTypeWhereisitXml );
+	layoutGroupBox->addWidget ( importTypeGenericRegex );
 
 	layout4->addWidget ( importButtonBox, 3, 0, 1, 4 );
 
@@ -96,14 +191,25 @@ ImportDialog::ImportDialog ( QWidget *parent, const char *name, bool modal, Qt::
 	separator_lineedit->setMaxLength ( 1 );
 	layout4->addWidget ( separator_lineedit, 5, 2, 1, 4 );
 
+	layoutGenericRegex = new QHBoxLayout ( this );
+	genericRegexPattern_lab = new QLabel(this);
+	genericRegex_lineedit = new QLineEdit ( this );
+	genericRegexInfo = new QLabel(this);
+	genericRegexInfo->setPixmap(*get_t_info_icon());
+	layoutGenericRegex->addWidget(genericRegexPattern_lab);
+	layoutGenericRegex->addWidget(genericRegex_lineedit);
+	layoutGenericRegex->addWidget(genericRegexInfo);
+	
+	layout4->addLayout ( layoutGenericRegex, 6, 0, 1, 4 );
+
 	buttonOK = new QPushButton ( this );
 	buttonOK->setDefault ( true );
 	buttonOK-> setMinimumWidth ( 100 );
-	layout4->addWidget ( buttonOK, 7, 1, 1,1 );
+	layout4->addWidget ( buttonOK, 8, 1, 1,1 );
 
 	buttonCancel = new QPushButton ( this );
 	buttonCancel-> setMinimumWidth ( 100 );
-	layout4->addWidget ( buttonCancel, 7, 3, 1, 1 );
+	layout4->addWidget ( buttonCancel, 8, 3, 1, 1 );
 	/*
 		QSpacerItem* spacer = new QSpacerItem( 181, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 		layout4->addMultiCell( spacer, 5, 5, 0, 2 );
@@ -111,14 +217,16 @@ ImportDialog::ImportDialog ( QWidget *parent, const char *name, bool modal, Qt::
 		QSpacerItem* spacer_2 = new QSpacerItem( 291, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 		layout4->addMultiCell( spacer_2, 3, 3, 2, 5 );
 	*/
-	importTypeWhereisitXml->setChecked ( true );
+	//importTypeWhereisitXml->setChecked ( true );
+	importTypeGenericRegex->setChecked ( true );
+	
+
 	correctbadstyle->setEnabled ( false );
 	separator_lab->setEnabled ( false );
 	separator_lineedit->setEnabled ( false );
 
 
 	//	ImportDialogLayout->addLayout( layout4, 0, 0 );
-
 	languageChange();
 	resize ( QSize ( 500, 350 ).expandedTo ( minimumSizeHint() ) );
 
@@ -143,6 +251,7 @@ ImportDialog::ImportDialog ( QWidget *parent, const char *name, bool modal, Qt::
 	connect ( importTypeCsvWhereisit, SIGNAL ( clicked() ), this, SLOT ( typeChanged() ) );
 	connect ( importTypeGtktalogXml, SIGNAL ( clicked() ), this, SLOT ( typeChanged() ) );
 	connect ( importTypeWhereisitXml, SIGNAL ( clicked() ), this, SLOT ( typeChanged() ) );
+	connect ( importTypeGenericRegex, SIGNAL ( clicked() ), this, SLOT ( typeChanged() ) );
 	separator_lab->setEnabled ( false );
 	separator_lineedit->setEnabled ( false );
 
@@ -162,7 +271,8 @@ ImportDialog::ImportDialog ( QWidget *parent, const char *name, bool modal, Qt::
 	// tmp
 	//filename_lineedit->setText("/home/crissi/compile/cvs/CdCat-0.98pre_whereisit_xml_import/sample-export.xml");
 	filename_lineedit->setText ( "" );
-
+	//filename_lineedit->setText("/home/crissi/work/cdcat/features/import/generic_regex_du_human.txt");
+	//filename_lineedit->setText("/home/crissi/work/cdcat/features/import/generic_du_all_cdcat_dir.txt");
 }
 
 /*
@@ -199,6 +309,7 @@ void ImportDialog::languageChange() {
 	importTypeCsvWhereisit->setText ( tr ( "W&hereIsIt (csv)" ) );
 	importTypeGtktalogXml->setText ( tr ( "Gtktalog &XML" ) );
 	importTypeWhereisitXml->setText ( tr ( "&WhereIsIt XML (classic)" ) );
+	importTypeGenericRegex->setText ( tr ( "Generic &pattern" ) );
 
 	importButtonBox->setToolTip ( tr ( "Select the type of import here" ) );
 
@@ -224,12 +335,30 @@ void ImportDialog::languageChange() {
 
 	importTypeWhereisitXml->setToolTip ( tr ( "Select this for importing a xml report generated from WhereIsIt?" ) );
 
+	importTypeGenericRegex->setToolTip ( tr ( "Select this for importing a generic report (e.g. generated by <ul><li>Linux: <i>du --all --human-readable --time</i></li><li>rhash <i>rhash -r</i></li><li>Windows: <i>dir /S /B command output</i></li>" ) );
+
 	buttonGetFile->setToolTip ( tr ( "Open the file dialog for selecting file to import." ) );
 
 	correctbadstyle->setToolTip ( tr ( "Corrects bad output style from gtktalog.\n<media>SEPARATOR/<dir>/SEPARATOR/<dir>\n will be to\n<media>/<dir>/<dir>" ) );
 	info_lab->setText ( tr ( "<strong>Please read the README_IMPORT before you import!</strong>" ) );
-
-
+	
+	genericRegexPattern_lab->setText(tr("Pattern:"));
+	genericRegex_lineedit->setToolTip(tr("You can use pattern for data fields, hold mouse cursor over info symbol for info"));
+	genericRegexPattern_lab->setToolTip(tr("Pattern for data fields, hold mouse cursor over info symbol for info"));
+	QString genericRegexTipText = "<h1>" +  tr("Pattern for data fields") + "</h1>";
+	genericRegexTipText += tr("Valid pattern for data fields are:");
+	genericRegexTipText += "<table>";
+	genericRegexTipText += "<tr><th>" +  tr("Pattern") + "</th><th>" +  tr("Description") + "</th></tr>";
+	QList<QList<QString>> regex_pattern_list = getImportPatternList();
+	for (int i = 0; i < regex_pattern_list.size(); ++i) {
+		genericRegexTipText += "<tr><td>" +  regex_pattern_list.at(i).at(0) + "</td><td>" + regex_pattern_list.at(i).at(2) + "</td></tr>";
+	}
+	genericRegexTipText += "<tr><th></th><th></th></tr>";
+	
+	genericRegexTipText += "</table>";
+	genericRegexTipText += tr("Example:");
+	genericRegexTipText += "<br><i><b>du --all --human-readable --time<b/>: %size_human%%tab%%dateyear4%%space%%time_hm%%tab%%fullpath%<i>";
+	genericRegexInfo->setToolTip(genericRegexTipText);
 
 }
 
@@ -282,6 +411,9 @@ int ImportDialog::bOk ( void ) {
 											else
 												if ( importTypeWhereisitXml->isChecked() )
 													type = 2;
+											else
+												if ( importTypeGenericRegex->isChecked() )
+													type = 11;
 
 	OK = 1;
 
@@ -368,6 +500,14 @@ void ImportDialog::typeChanged() {
 		correctbadstyle->setEnabled ( false );
 		correctbadstyle->setChecked ( false );
 		separator_lineedit->setText ( ";" );
+	}
+	if ( importTypeGenericRegex->isChecked() ) {
+		genericRegex_lineedit->setEnabled(true);
+		genericRegexInfo->setEnabled(true);
+	}
+	else  {
+		genericRegex_lineedit->setEnabled(false);
+		genericRegexInfo->setEnabled(false);
 	}
 
 }

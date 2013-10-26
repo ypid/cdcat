@@ -77,11 +77,10 @@ public:
 	QList<ArchiveFile> archivecontent;
 };
 
-
 class importGtktalogCsv: public QObject {
     Q_OBJECT
 public:
-    importGtktalogCsv ( GuiSlave * parent, QString separator, QString filename, bool createdatabase, bool correctbadstyle, QString csvtype="gtktalog" );
+    importGtktalogCsv ( GuiSlave * parent, QString separator, QString filename, bool createdatabase, bool correctbadstyle, QString csvtype="gtktalog", QString cdcat_pattern = "", QString extra_media_name = "" );
     ~importGtktalogCsv();
 
     /*
@@ -248,6 +247,15 @@ public:
 
 protected:
 
+};
+
+class pattern_entry {
+public:
+	pattern_entry(int index, QString pattern_name, QString pattern) : index(index), pattern_name(pattern_name), pattern(pattern) {
+	};
+	int index;
+	QString pattern_name;
+	QString pattern;
 };
 
 #endif

@@ -25,6 +25,7 @@ using namespace std;
 #include <qtextcodec.h>
 #include <qstringlist.h>
 #include <QTextStream>
+#include <QLineEdit>
 
 #include "import.h"
 #include "importdialog.h"
@@ -131,6 +132,7 @@ void lineObject::appendArchiveFileContent ( ArchiveFile af ) {
 	archivecontent.append ( af );
 }
 
+
 /*
  * import a file with following format:
  * <media>/<path>/..../<file><separator><size><separator><day/month/year><space><hour>:<minute>:<second>
@@ -138,1242 +140,1526 @@ void lineObject::appendArchiveFileContent ( ArchiveFile af ) {
  *
  */
 
-importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QString filename, bool createdatabase, bool correctbadstyle, QString csvtype ) {
+importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QString filename, bool createdatabase, bool correctbadstyle, QString csvtype, QString cdcat_pattern, QString extra_media_name ) {
 	this->filename = filename;
 	this->correctbadstyle = correctbadstyle;
 	this->createdatabase = createdatabase;
 	this->separator = separator;
 	DEBUG_INFO_ENABLED = init_debug_info();
-
-	if ( !filename.isEmpty() ) {
-		if ( parent->mainw->db == NULL )
+	
+	if ( filename.isEmpty() ) {
+		// file dialog canceled
+		return;
+	}
+	if ( parent->mainw->db == NULL )
+		parent->newEvent();
+	else {
+		if ( createdatabase ) {
+			while ( parent->closeEvent() != 0 )
+				;
 			parent->newEvent();
-		else {
-			if ( createdatabase ) {
-				while ( parent->closeEvent() != 0 )
-					;
-				parent->newEvent();
+		}
+	}
+	
+	if ( parent->mainw->db == NULL ) {
+		return;
+	}
+	
+	guislave = parent;
+	db = parent->mainw->db;
+	mediacount = 0;
+	filecount = 0;
+	dircount = 0;
+	refreshcount = 0;
+	int linecount = 0;
+	int lines = 0;
+	
+	QApplication::setOverrideCursor ( Qt::WaitCursor );
+	guislave->panelsOFF();
+	
+	QFile f ( filename );
+	
+	if ( f.open ( QIODevice::ReadOnly ) ) {
+		QTextStream in ( &f );
+		while ( !in.atEnd() ) {
+			QString line = in.readLine();
+			lines ++;
+		}
+		f.close();
+		if ( *DEBUG_INFO_ENABLED )
+			cerr << "importGtktalogCsv:: " << lines << " lines found." << endl;
+	}
+	
+	if  ( !f.open ( QIODevice::ReadOnly ) ) {      // file open failed
+		if ( f.error() == QFile::ReadError)
+			QMessageBox::critical ( 0, tr ( "file read error" ), tr ( "Could not read file" ) );
+		
+		if ( f.error() == QFile::FatalError )
+			QMessageBox::critical ( 0, tr ( "Fatal error" ), tr ( "Fatal error occured." ) );
+		
+		if ( f.error() == QFile::OpenError )
+			QMessageBox::critical ( 0, tr ( "file open error" ), tr ( "Could not open file" ) );
+		return;
+	}
+	
+	QProgressDialog *progress = new QProgressDialog ( tr ( "Importing CSV..." ), tr ( "Cancel" ), 1, lines );
+	progress->setCancelButton ( 0 );
+	
+	QTextStream t ( &f );              // use a text stream
+	QString medianame = "";
+	QString comment = "";
+	QString category = "";
+	QDateTime datetime;
+	QString import_filename = filename;
+	
+	medialines = new QList < lineObject > ();
+	//medialines->setAutoDelete( TRUE );  // the list owns the objects
+	int sizefactor = 1; /* factor for file size, 1 = 1 byte, 1024 = 1 kilobyte)*/
+	
+	QRegExp regex_pattern;
+	QList<pattern_entry> pattern_list;
+	
+	if ( csvtype == "generic_plaintext_regex" ) {
+		QList<QList<QString>> regex_pattern_list = getImportPatternList();
+		
+		QString pattern = "";
+		int index = 0;
+		int last_index = 0;
+		for(int i=0;i< regex_pattern_list.size(); i++) {
+			index = 0;
+			while (index < cdcat_pattern.size()) {
+				//pattern = pattern.replace(0, regex_pattern_list.at(i)[1].size(), regex_pattern_list.at(i)[1]);
+				int new_index = cdcat_pattern.indexOf(regex_pattern_list.at(i).at(0), index, Qt::CaseInsensitive);
+				
+				if (new_index > -1) {
+					if ( *DEBUG_INFO_ENABLED )
+						std::cout << "pattern [" << qPrintable(regex_pattern_list.at(i).at(0)) << "] lookup result: " << new_index << std::endl;
+					
+					last_index = new_index;
+					index = new_index+ regex_pattern_list.at(i).at(0).size()+1;
+					bool inserted = false;
+					for(int j=0;j< pattern_list.size(); j++) {
+						if (!inserted) {
+							if (pattern_list.at(j).index > new_index) {
+								pattern_list.insert(j, pattern_entry(new_index, regex_pattern_list.at(i).at(0), regex_pattern_list.at(i).at(1)));
+								inserted = true;
+								//std::cout << "insert pattern [" << qPrintable(regex_pattern_list.at(i).at(0)) << "] at " << j << std::endl;
+							}
+						}
+					}
+					if (!inserted) {
+						pattern_list.append(pattern_entry(new_index, regex_pattern_list.at(i).at(0), regex_pattern_list.at(i).at(1)));
+						//std::cout << "append pattern [" << qPrintable(regex_pattern_list.at(i).at(0)) << "] at end" << std::endl;
+					}
+				}
+				else {
+					index = cdcat_pattern.size();
+				}
 			}
 		}
+		
+		if ( *DEBUG_INFO_ENABLED )
+			std::cout << "cdcat_pattern: " << qPrintable(cdcat_pattern) << std::endl;
+		for(int i=0;i< pattern_list.size(); i++) {
+			if ( *DEBUG_INFO_ENABLED )
+				std::cout << "regex_pattern[" << i  << "]: " << pattern_list.at(i).index << " / [" << qPrintable(pattern_list.at(i).pattern_name) << "] (" << qPrintable(pattern_list.at(i).pattern) << ")"<< std::endl;
+			pattern += pattern_list.at(i).pattern;
+		}
+		pattern = "^" + pattern + "$";
+		
+		if ( *DEBUG_INFO_ENABLED )
+			std::cout << "line pattern: " << qPrintable(pattern) << std::endl;
+		
+		regex_pattern = QRegExp(pattern, Qt::CaseInsensitive, QRegExp::RegExp2);
+		
+	}
+	
+	while ( !t.atEnd() ) {
+		QString line;
+		QString fullpath;
+		QString path;
+		QString dirpath;
+		double size = 0;
+		//QDate date;
 
-		if ( parent->mainw->db != NULL ) {
+		QString new_medianame;
+		QString datetimestring;
+		QString pathsep = "/";
+		bool line_ok = false;
 
-			guislave = parent;
-			db = parent->mainw->db;
-			mediacount = 0;
-			filecount = 0;
-			dircount = 0;
-			refreshcount = 0;
-			int linecount = 0;
-			int lines = 0;
+		line = t.readLine();  // line of text excluding '\n'
 
-			QApplication::setOverrideCursor ( Qt::WaitCursor );
-			guislave->panelsOFF();
-
-			QFile f ( filename );
-
-			if ( f.open ( QIODevice::ReadOnly ) ) {
-				QTextStream in ( &f );
-				while ( !in.atEnd() ) {
-					QString line = in.readLine();
-					lines ++;
-				}
-				f.close();
+		// check for multiple lines of a entry...
+		if ( csvtype == "whereisit" ) {
+			while ( line.right ( 1 ) != separator && !t.atEnd() ) {
 				if ( *DEBUG_INFO_ENABLED )
-					cerr << "importGtktalogCsv:: " << lines << " lines found." << endl;
+					cerr << "importGtktalogCsv:: multi line entry found" << endl;
+				line += '\n';
+				line += t.readLine();  // line of text excluding '\n'
 			}
-
-			if ( f.open ( QIODevice::ReadOnly ) ) {      // file opened successfully
-				QProgressDialog *progress = new QProgressDialog ( tr ( "Importing CSV..." ), tr ( "Cancel" ), 1, lines );
-				progress->setCancelButton ( 0 );
-
-				QTextStream t ( &f );              // use a text stream
-				QString medianame = "";
-				QString comment = "";
-				QString category = "";
-				QDateTime datetime;
-				QString import_filename = filename;
-
-				medialines = new QList < lineObject > ();
-				//medialines->setAutoDelete( TRUE );  // the list owns the objects
-
-				while ( !t.atEnd() ) {
-					QString line;
-					QString fullpath;
-					QString path;
-					QString dirpath;
-					double size = 0;
-					//QDate date;
-
-					QString new_medianame;
-					QString datetimestring;
-					QString pathsep = "/";
-					bool line_ok = false;
-
-					line = t.readLine();  // line of text excluding '\n'
-
-					// check for multiple lines of a entry...
-					if ( csvtype == "whereisit" ) {
-						while ( line.right ( 1 ) != separator && !t.atEnd() ) {
-							if ( *DEBUG_INFO_ENABLED )
-								cerr << "importGtktalogCsv:: multi line entry found" << endl;
-							line += '\n';
-							line += t.readLine();  // line of text excluding '\n'
-						}
+		}
+		
+		if ( !line.startsWith ( "#" ) && !line.isEmpty() ) {
+			line_ok = true;
+		}
+		
+		//if(*DEBUG_INFO_ENABLED) {
+		//	cerr << "line raw: " << qPrintable(line) << endl;
+		//}
+		
+		if ( line_ok ) {
+			if ( line.contains ( '\\' ) )
+				pathsep = "\\";
+			if ( correctbadstyle ) {
+				//if(*DEBUG_INFO_ENABLED) {
+				//	cerr << "correcting bad style"<< endl;
+				//}
+				//     QMessageBox::warning (0, "wrong", line);
+				int idx = 0;
+				while ( idx != -1 ) {
+					idx = line.indexOf ( QString ( separator + pathsep ), idx );
+					if ( idx != -1 ) {
+						line.replace ( idx, QString ( separator + pathsep ).length(), "/" );
 					}
-
-					if ( !line.startsWith ( "#" ) && !line.isEmpty() ) {
-						line_ok = true;
+				}
+				idx = 0;
+				while ( idx != -1 ) {
+					idx = line.indexOf ( QString ( pathsep + separator ), idx );
+					if ( idx != -1 ) {
+						line.replace ( idx, QString ( pathsep + separator ).length(), "/" );
 					}
+				}
+				//   QMessageBox::warning (0, "fine", line);
+			}
+			
+			if ( csvtype == "gtktalog" ) {
+				int mediaindex = line.indexOf ( pathsep, 0 );
+				int pathindex = line.indexOf ( separator, mediaindex + 1 );
+				fullpath = ( line.mid ( mediaindex, pathindex - mediaindex ) );
 
-					//if(*DEBUG_INFO_ENABLED) {
-					//	cerr << "line raw: " << qPrintable(line) << endl;
+				if ( pathsep == "\\" )
+					fullpath = fullpath.replace ( "\\", "/" );
+				if ( fullpath.at ( 0 ) != '/' )
+					fullpath = "/" + fullpath;
+				//if(*DEBUG_INFO_ENABLED)
+				//  cerr << "importGtktalogCsv fullpath: " << qPrintable(fullpath) << endl;
+				new_medianame = ( line.left ( mediaindex ) );
+				//if(*DEBUG_INFO_ENABLED)
+				//  cerr << "importGtktalogCsv new_medianame: " << qPrintable(new_medianame) << endl;
+
+				path = fullpath.mid ( mediaindex + 1, medianame.length() + 1 );
+				//if(*DEBUG_INFO_ENABLED)
+				//  cerr << "importGtktalogCsv path: " << qPrintable(path) << endl;
+
+				int sizeindex = line.indexOf ( separator, pathindex + 1 );
+				QString sizestring = line.mid ( pathindex + 1, sizeindex - pathindex - 1 ).trimmed();
+				//if(*DEBUG_INFO_ENABLED)
+				//  cerr << "importGtktalogCsv sizestring: " << qPrintable(sizestring) << endl;
+				size = ( ( line.mid ( pathindex + 1, sizeindex - pathindex - 1 ) ).trimmed() ).toDouble();
+
+				//if(*DEBUG_INFO_ENABLED)
+				//  cerr << "importGtktalogCsv size: " << size << endl;
+
+				datetimestring = ( line.mid ( sizeindex + 1, line.length() ) ).trimmed();
+				if ( *DEBUG_INFO_ENABLED )
+					cerr << "importGtktalogCsv datetimestring: " << qPrintable ( datetimestring ) << endl;
+
+				// date is normally day/month/year hour:minute:second
+				QString datesep = "/";
+
+				// date in other format: day.month.year hour:minute:second
+				if ( datetimestring.contains ( '.' ) )
+					datesep = ".";
+				int dayindex = datetimestring.indexOf ( datesep );
+				int monthindex = datetimestring.indexOf ( datesep, dayindex + 1 );
+				int yearindex = datetimestring.indexOf ( " ", monthindex + 1 );
+				int hourindex = datetimestring.indexOf ( ":", yearindex + 1 );
+				int minuteindex = datetimestring.indexOf ( ":", hourindex + 1 );
+
+				int day = ( datetimestring.mid ( 0, dayindex ) ).toInt();
+				QString day_ = ( datetimestring.mid ( 0, dayindex ) );
+				int month = ( datetimestring.mid ( dayindex + 1, monthindex - dayindex - 1 ) ).toInt();
+				int year = ( datetimestring.mid ( monthindex + 1, hourindex - monthindex - 4 ) ).toInt();
+				//bool validDate = date.setYMD( year, month, day );
+
+				int hour = ( datetimestring.mid ( yearindex + 1, minuteindex - hourindex - 1 ) ).toInt();
+				int minute = ( datetimestring.mid ( hourindex + 1, minuteindex - 1 - hourindex ) ).toInt();
+
+				int second = ( datetimestring.mid ( minuteindex + 1, datetimestring.length() - 1 ) ).toInt();
+				QDate date ( year, month, day );
+				QTime time ( hour, minute, second );
+
+				datetime = QDateTime ( date, time );
+
+				int fileindex = fullpath.lastIndexOf ( '/' );
+				//if(*DEBUG_INFO_ENABLED)
+				//  cerr << "importGtktalogCsv fileindex: " << fileindex << endl;
+
+				QString dirpath = "";
+				if ( fileindex != 0 )
+					dirpath = fullpath.mid ( 1, fileindex - 1 );
+				QString filename = fullpath.mid ( fileindex + 1, fullpath.length() - fileindex );
+
+				if ( *DEBUG_INFO_ENABLED )
+					//if (!validDate)
+				{
+					QString msg;
+					msg += "line: " + line + "\n";
+					msg += "path: " + path + "\n";
+					msg += "fullpath: " + fullpath + "\n";
+					msg += "sizestring: " + sizestring + "\n";
+					msg += "sizeindex: " + QString().setNum ( sizeindex ) + "\n";
+					msg += "size: " + QString().setNum ( size ) + "\n";
+					msg += "month: " + QString().setNum ( month ) + "\n";
+					msg += "hour: " + QString().setNum ( hour ) + "\n";
+					msg += "minute: " + QString().setNum ( minute ) + "\n";
+					msg += "second: " + QString().setNum ( second ) + "\n";
+					msg += "year: " + QString().setNum ( year ) + "\n";
+					msg += "day: " + QString().setNum ( day ) + "\n";
+					msg += "datetimestring: " + datetimestring + "\n";
+					msg += "new_medianame: " + new_medianame + "\n";
+					msg += "directory path: " + dirpath + "\n";
+					msg += "file name: " + filename + "\n";
+					//QMessageBox::warning(0, "line", msg);
+				}
+			}
+			else if ( csvtype == "kat-dece" ) {
+					/*
+						* format:
+						* "Number";"Location";"CD name";"CD category";"Name";"Extension";"Length";"Date";"Path";"Comment"
+						*
+						* sample line:
+						* "";"";"newiso";"! Alle Medien  ";"empire-efi-logo-alt256";".png";" 11,669";"2010.01.07  08:05";"Extra\Themes\Default\";""
+						*/
+					if ( linecount == 0 ) {
+						linecount++;
+						continue;
+					}
+					// FIXME
+					separator = ";";
+					QStringList csvList = line.split ( separator );
+					if ( csvList.count() != 10 ) {
+						if ( *DEBUG_INFO_ENABLED )
+							cerr << "importGtktalogCsv invalid line (not 9 fields): " << qPrintable ( line ) << endl;
+						continue;
+					}
+					filename = QString ( csvList.at ( 4 ) ).replace ( "\"", "" ) + QString ( csvList.at ( 5 ) ).replace ( "\"", "" );
+					QString sizestring = QString ( csvList.at ( 6 ) ).replace ( "\"", "" ).replace ( ",", "." ).replace ( ".", "" ).replace ( "#", "" ).trimmed();
+					// size is double and its kib!
+					size = uint ( QString ( csvList.at ( 6 ) ).replace ( "\"", "" ).replace ( ",", "." ).replace ( ".", "" ).replace ( "#", "" ).trimmed().toDouble() * 1024 );
+					//if(*DEBUG_INFO_ENABLED)
+					//	cerr << "importGtktalogCsv size: " << size << endl;
+					datetimestring = QString ( csvList.at ( 7 ) ).replace ( "\"", "" );
+					//if (*DEBUG_INFO_ENABLED)
+					//	cerr << "importGtktalogCsv datetimestring: " << qPrintable(datetimestring) << endl;
+
+					QString datesep = ".";
+					// date is in format: year.month.day hour:minute
+					if ( datetimestring.contains ( '.' ) )
+						datesep = ".";
+					int yearindex = datetimestring.indexOf ( datesep, 0 );
+					int monthindex = datetimestring.indexOf ( datesep, yearindex + 1 );
+					int dayindex = datetimestring.indexOf ( " ", monthindex + 1 );
+					int hourindex = datetimestring.indexOf ( " ", dayindex + 1 );
+					int minuteindex = datetimestring.indexOf ( ":", hourindex + 1 );
+					int year = ( datetimestring.mid ( 0, yearindex ) ).toInt();
+					QString monthstring = datetimestring.mid ( yearindex + 1, monthindex - yearindex - 1 );
+					int month = ( datetimestring.mid ( yearindex + 1, monthindex - yearindex - 1 ) ).toInt();
+					QString daystring = datetimestring.mid ( monthindex + 1, hourindex - dayindex + 1 );
+					int day = ( datetimestring.mid ( monthindex + 1, hourindex - dayindex + 1 ) ).toInt();
+					//bool validDate = date.setYMD( year, month, day );
+					QString hourstring = datetimestring.mid ( hourindex + 1, minuteindex - hourindex - 1 );
+					int hour = ( datetimestring.mid ( hourindex + 1, minuteindex - hourindex - 1 ) ).toInt();
+					int minute = ( datetimestring.mid ( dayindex + 1, minuteindex - 1 ) ).toInt();
+					int second = ( datetimestring.mid ( minuteindex + 1, datetimestring.length() - 1 ) ).toInt();
+					QDate date ( year, month, day );
+					QTime time ( hour, minute, second );
+					datetime = QDateTime ( date, time );
+
+					new_medianame = QString ( csvList.at ( 2 ) ).replace ( "\"", "" );
+					//if(*DEBUG_INFO_ENABLED)
+					//	cerr << "importGtktalogCsv new_medianame: " << qPrintable(new_medianame) << endl;
+
+					dirpath = QString ( csvList.at ( 8 ) ).replace ( "\"", "" );
+					dirpath = dirpath.mid ( 0, dirpath.length() - 1 );
+					if ( pathsep == "\\" )
+						dirpath = dirpath.replace ( "\\", "/" );
+					//if (!dirpath.isEmpty() && dirpath.at(0) != '/')
+					//	dirpath = "/"+dirpath;
+					path = dirpath + "/" + filename;
+					//if(*DEBUG_INFO_ENABLED)
+					//	cerr << "importGtktalogCsv path: " << qPrintable(path) << endl;
+
+					fullpath = path;
+					//if(*DEBUG_INFO_ENABLED)
+					//	cerr << "importGtktalogCsv fullpath: " << qPrintable(fullpath) << endl;
+
+					comment = QString ( csvList.at ( 9 ) ).replace ( "\"", "" );
+					//if(*DEBUG_INFO_ENABLED)
+					//	cerr << "importGtktalogCsv comment: " << qPrintable(comment) << endl;
+
+					category = QString ( csvList.at ( 3 ) ).replace ( "\"", "" );
+					//if(*DEBUG_INFO_ENABLED)
+					//	cerr << "importGtktalogCsv category: " << qPrintable(category) << endl;
+					if ( *DEBUG_INFO_ENABLED )
+						//if (!validDate)
+					{
+						QString msg;
+						msg += "line: " + line + "\n";
+						msg += "path: " + path + "\n";
+						msg += "fullpath: " + fullpath + "\n";
+						msg += "size: " + QString().setNum ( size ) + "\n";
+						msg += "sizestring: " + sizestring + "\n";
+						msg += "month: " + QString().setNum ( month ) + "\n";
+						msg += "hour: " + QString().setNum ( hour ) + "\n";
+						msg += "minute: " + QString().setNum ( minute ) + "\n";
+						msg += "year: " + QString().setNum ( year ) + "\n";
+						msg += "day: " + QString().setNum ( day ) + "\n";
+						msg += "datetimestring: " + datetimestring + "\n";
+						msg += "monthstring: " + monthstring + "\n";
+						msg += "hourstring: " + hourstring + "\n";
+						msg += "daystring: " + daystring + "\n";
+						msg += "new_medianame: " + new_medianame + "\n";
+						msg += "directory path: " + dirpath + "\n";
+						msg += "file name: " + filename + "\n";
+						//QMessageBox::warning(0, "line", msg);
+					}
+				}
+			else if ( csvtype == "disclib" ) {
+					/*
+						* format:
+						* name*"volume"*filepath*path*size*Volume serial*date*type*"category"*"comments"*"location"
+						*
+						* sample line:
+						* acc_dis.chm*"DISK_00001_HelpCD"*DISK_00001_HelpCD\acc_dis.chm*DISK_00001_HelpCD\*20 832*6C721915*23.08.2001 12:00:00*chm*""*""*""
+						*/
+					// FIXME
+					separator = "*";
+					QStringList csvList = line.split ( separator );
+					//if (csvList.count() < 10) {
+					//	if(*DEBUG_INFO_ENABLED)
+					//	cerr << "importGtktalogCsv invalid line (at least 10 fields): " << qPrintable(line) << endl;
+					//	continue;
 					//}
+					if ( *DEBUG_INFO_ENABLED ) {
+						cerr << "line: " << qPrintable ( line ) << endl;
+						for ( int i = 0; i < csvList.size(); ++i )
+							cout << "csvList[" << i << "]: " << csvList.at ( i ).toLocal8Bit().constData() << endl;
+					}
 
-					if ( line_ok ) {
-						if ( line.contains ( '\\' ) )
-							pathsep = "\\";
-						if ( correctbadstyle ) {
-							//if(*DEBUG_INFO_ENABLED) {
-							//	cerr << "correcting bad style"<< endl;
-							//}
-							//     QMessageBox::warning (0, "wrong", line);
-							int idx = 0;
-							while ( idx != -1 ) {
-								idx = line.indexOf ( QString ( separator + pathsep ), idx );
-								if ( idx != -1 ) {
-									line.replace ( idx, QString ( separator + pathsep ).length(), "/" );
-								}
-							}
-							idx = 0;
-							while ( idx != -1 ) {
-								idx = line.indexOf ( QString ( pathsep + separator ), idx );
-								if ( idx != -1 ) {
-									line.replace ( idx, QString ( pathsep + separator ).length(), "/" );
-								}
-							}
-							//   QMessageBox::warning (0, "fine", line);
-						}
+					filename = QString ( csvList.at ( 0 ) );
+					QString sizestring = QString ( csvList.at ( 3 ) ) ;
+					//if(*DEBUG_INFO_ENABLED)
+					//	cerr << "importGtktalogCsv sizestring raw: " <<qPrintable( sizestring) << endl;
+					if ( sizestring.contains ( "/" ) ) {
+						// DISK_00003_Downloads\hhcode_and_exe\TestCHM\Agent\images/5 720 => 5 720
+						sizestring = QString ( sizestring.split ( "/" ).at ( 1 ) ).replace ( " ", "" );
+						//if(*DEBUG_INFO_ENABLED)
+						//	cerr << "importGtktalogCsv sizestring raw2: " <<qPrintable( sizestring) << endl;
+					}
+					//QString(csvList.at(3)).stripWhiteSpace();
+					size = QString ( sizestring ).toInt();
 
-						if ( csvtype == "gtktalog" ) {
-							int mediaindex = line.indexOf ( pathsep, 0 );
-							int pathindex = line.indexOf ( separator, mediaindex + 1 );
-							fullpath = ( line.mid ( mediaindex, pathindex - mediaindex ) );
+					//if(*DEBUG_INFO_ENABLED)
+					//	cerr << "importGtktalogCsv size: " << size << endl;
+					datetimestring = QString ( csvList.at ( 5 ) );
+					//if (*DEBUG_INFO_ENABLED)
+					//	cerr << "importGtktalogCsv datetimestring: " << qPrintable(datetimestring) << endl;
 
-							if ( pathsep == "\\" )
-								fullpath = fullpath.replace ( "\\", "/" );
-							if ( fullpath.at ( 0 ) != '/' )
-								fullpath = "/" + fullpath;
-							//if(*DEBUG_INFO_ENABLED)
-							//  cerr << "importGtktalogCsv fullpath: " << qPrintable(fullpath) << endl;
-							new_medianame = ( line.left ( mediaindex ) );
-							//if(*DEBUG_INFO_ENABLED)
-							//  cerr << "importGtktalogCsv new_medianame: " << qPrintable(new_medianame) << endl;
+					// date is normally day/month/year hour:minute:second
+					QString datesep = "/";
 
-							path = fullpath.mid ( mediaindex + 1, medianame.length() + 1 );
-							//if(*DEBUG_INFO_ENABLED)
-							//  cerr << "importGtktalogCsv path: " << qPrintable(path) << endl;
+					// date in other format: day.month.year hour:minute:second
+					if ( datetimestring.contains ( '.' ) )
+						datesep = ".";
+					int dayindex = datetimestring.indexOf ( datesep );
+					int monthindex = datetimestring.indexOf ( datesep, dayindex + 1 );
+					int yearindex = datetimestring.indexOf ( " ", monthindex + 1 );
+					int hourindex = datetimestring.indexOf ( ":", yearindex + 1 );
+					int minuteindex = datetimestring.indexOf ( ":", hourindex + 1 );
 
-							int sizeindex = line.indexOf ( separator, pathindex + 1 );
-							QString sizestring = line.mid ( pathindex + 1, sizeindex - pathindex - 1 ).trimmed();
-							//if(*DEBUG_INFO_ENABLED)
-							//  cerr << "importGtktalogCsv sizestring: " << qPrintable(sizestring) << endl;
-							size = ( ( line.mid ( pathindex + 1, sizeindex - pathindex - 1 ) ).trimmed() ).toDouble();
+					int day = ( datetimestring.mid ( 0, dayindex ) ).toInt();
+					QString day_ = ( datetimestring.mid ( 0, dayindex ) );
+					int month = ( datetimestring.mid ( dayindex + 1, monthindex - dayindex - 1 ) ).toInt();
+					int year = ( datetimestring.mid ( monthindex + 1, hourindex - monthindex - 4 ) ).toInt();
+					//bool validDate = date.setYMD( year, month, day );
 
-							//if(*DEBUG_INFO_ENABLED)
-							//  cerr << "importGtktalogCsv size: " << size << endl;
+					int hour = ( datetimestring.mid ( yearindex + 1, minuteindex - hourindex - 1 ) ).toInt();
+					int minute = ( datetimestring.mid ( hourindex + 1, minuteindex - 1 - hourindex ) ).toInt();
+					int second = ( datetimestring.mid ( minuteindex + 1, datetimestring.length() - 1 ) ).toInt();
+					QDate date ( year, month, day );
+					QTime time ( hour, minute, second );
+					datetime = QDateTime ( date, time );
+					new_medianame = QString ( csvList.at ( 1 ) ).replace ( "\"", "" );
+					//if(*DEBUG_INFO_ENABLED)
+					//	cerr << "importGtktalogCsv new_medianame: " << qPrintable(new_medianame) << endl;
 
-							datetimestring = ( line.mid ( sizeindex + 1, line.length() ) ).trimmed();
-							if ( *DEBUG_INFO_ENABLED )
-								cerr << "importGtktalogCsv datetimestring: " << qPrintable ( datetimestring ) << endl;
+					dirpath = QString ( csvList.at ( 3 ) ).replace ( "\"", "" );
+					//	dirpath = dirpath.mid(0, dirpath.length()-1 );
+					dirpath = dirpath.replace ( new_medianame, "" );
+					if ( pathsep == "\\" )
+						dirpath = dirpath.replace ( "\\", "/" );
+				//if (!dirpath.isEmpty() && dirpath.at(0) != '/')
+					//	dirpath = "/"+dirpath;
+					if ( !dirpath.isEmpty() && dirpath.at ( 0 ) == '/' )
+						dirpath = dirpath.mid ( 1, dirpath.length() - 1 );
 
-							// date is normally day/month/year hour:minute:second
-							QString datesep = "/";
+					path = dirpath + "/" + filename;
+					//if(*DEBUG_INFO_ENABLED)
+					//	cerr << "importGtktalogCsv path: " << qPrintable(path) << endl;
 
-							// date in other format: day.month.year hour:minute:second
-							if ( datetimestring.contains ( '.' ) )
-								datesep = ".";
-							int dayindex = datetimestring.indexOf ( datesep );
-							int monthindex = datetimestring.indexOf ( datesep, dayindex + 1 );
-							int yearindex = datetimestring.indexOf ( " ", monthindex + 1 );
-							int hourindex = datetimestring.indexOf ( ":", yearindex + 1 );
-							int minuteindex = datetimestring.indexOf ( ":", hourindex + 1 );
+					fullpath = path;
+					//if(*DEBUG_INFO_ENABLED)
+					//	cerr << "importGtktalogCsv fullpath: " << qPrintable(fullpath) << endl;
 
-							int day = ( datetimestring.mid ( 0, dayindex ) ).toInt();
-							QString day_ = ( datetimestring.mid ( 0, dayindex ) );
-							int month = ( datetimestring.mid ( dayindex + 1, monthindex - dayindex - 1 ) ).toInt();
-							int year = ( datetimestring.mid ( monthindex + 1, hourindex - monthindex - 4 ) ).toInt();
-							//bool validDate = date.setYMD( year, month, day );
+					category = QString ( csvList.at ( 7 ) ).replace ( "\"", "" );
+					comment = QString ( csvList.at ( 8 ) ).replace ( "\"", "" );
 
-							int hour = ( datetimestring.mid ( yearindex + 1, minuteindex - hourindex - 1 ) ).toInt();
-							int minute = ( datetimestring.mid ( hourindex + 1, minuteindex - 1 - hourindex ) ).toInt();
+					if ( *DEBUG_INFO_ENABLED )
+						//if (!validDate)
+					{
+						QString msg;
+						//msg += "line: " + line + "\n";
+						msg += "path: " + path + "\n";
+						msg += "fullpath: " + fullpath + "\n";
+						msg += "size: " + QString().setNum ( size ) + "\n";
+						msg += "sizestring: " + sizestring + "\n";
+						msg += "month: " + QString().setNum ( month ) + "\n";
+						msg += "hour: " + QString().setNum ( hour ) + "\n";
+						msg += "minute: " + QString().setNum ( minute ) + "\n";
+						msg += "year: " + QString().setNum ( year ) + "\n";
+						msg += "day: " + QString().setNum ( day ) + "\n";
+						msg += "datetimestring: " + datetimestring + "\n";
+						//msg += "monthstring: " + monthstring + "\n";
+						//msg += "hourstring: " + hourstring + "\n";
+						//msg += "daystring: " + daystring + "\n";
+						msg += "new_medianame: " + new_medianame + "\n";
+						msg += "directory path: " + dirpath + "\n";
+						msg += "file name: " + filename + "\n";
+						msg += "comment: " + comment + "\n";
+						msg += "category: " + category + "\n";
 
-							int second = ( datetimestring.mid ( minuteindex + 1, datetimestring.length() - 1 ) ).toInt();
-							QDate date ( year, month, day );
-							QTime time ( hour, minute, second );
+						cerr << "msg: " << qPrintable ( msg ) << endl;
+						//QMessageBox::warning(0, "line", msg);
+					}
+				}
+			else if ( csvtype == "visualcd" ) {
+					/*
+						* format:
+						* name;path;size;date;comment;date picture;dimensions;duration;title;artist;album
+						*
+						* sample line:
+						* QtScriptTools4.dll;E:\Qt\4.7.1\bin\;744.448;06.11.2010 08:37:52;;;;;;;
+						*/
+					if ( linecount < 2 ) {
+						linecount++;
+						continue;
+					}
+					separator = ";";
+					QStringList csvList = line.split ( separator );
+					//if (csvList.count() < 10) {
+					//	if(*DEBUG_INFO_ENABLED)
+					//		cerr << "importGtktalogCsv invalid line (at least 10 fields): " << qPrintable(line) << endl;
+					//	continue;
+					//}
+					if ( *DEBUG_INFO_ENABLED ) {
+						cerr << "line: " << qPrintable ( line ) << endl;
+						for ( int i = 0; i < csvList.size(); ++i )
+							cout << "csvList[" << i << "]: " << csvList.at ( i ).toLocal8Bit().constData() << endl;
+					}
 
-							datetime = QDateTime ( date, time );
+					filename = QString ( csvList.at ( 0 ) );
+					QString sizestring = QString ( csvList.at ( 2 ) ).replace ( ".", "" );
+					//if(*DEBUG_INFO_ENABLED)
+					//	cerr << "importGtktalogCsv sizestring raw: " <<qPrintable( sizestring) << endl;
+					//QString(csvList.at(3)).stripWhiteSpace();
+					size = QString ( sizestring ).toInt();
+					//if(*DEBUG_INFO_ENABLED)
+					//	cerr << "importGtktalogCsv size: " << size << endl;
+					datetimestring = QString ( csvList.at ( 3 ) );
+					//if (*DEBUG_INFO_ENABLED)
+					//	cerr << "importGtktalogCsv datetimestring: " << qPrintable(datetimestring) << endl;
 
-							int fileindex = fullpath.lastIndexOf ( '/' );
-							//if(*DEBUG_INFO_ENABLED)
-							//  cerr << "importGtktalogCsv fileindex: " << fileindex << endl;
+					// date in format: day.month.year hour:minute:second
+					QString datesep = ".";
+					int dayindex = datetimestring.indexOf ( datesep );
+					int monthindex = datetimestring.indexOf ( datesep, dayindex + 1 );
+					int yearindex = datetimestring.indexOf ( " ", monthindex + 1 );
+					int hourindex = datetimestring.indexOf ( ":", yearindex + 1 );
+					int minuteindex = datetimestring.indexOf ( ":", hourindex + 1 );
+					int day = ( datetimestring.mid ( 0, dayindex ) ).toInt();
+					QString day_ = ( datetimestring.mid ( 0, dayindex ) );
+					int month = ( datetimestring.mid ( dayindex + 1, monthindex - dayindex - 1 ) ).toInt();
+					int year = ( datetimestring.mid ( monthindex + 1, hourindex - monthindex - 4 ) ).toInt();
+					//bool validDate = date.setYMD( year, month, day );
+					int hour = ( datetimestring.mid ( yearindex + 1, minuteindex - hourindex - 1 ) ).toInt();
+					int minute = ( datetimestring.mid ( hourindex + 1, minuteindex - 1 - hourindex ) ).toInt();
+					int second = ( datetimestring.mid ( minuteindex + 1, datetimestring.length() - 1 ) ).toInt();
+					QDate date ( year, month, day );
+					QTime time ( hour, minute, second );
+					datetime = QDateTime ( date, time );
+					int dotindex = import_filename.lastIndexOf ( '.' );
+					new_medianame = import_filename.mid ( 0, dotindex );
 
-							QString dirpath = "";
-							if ( fileindex != 0 )
-								dirpath = fullpath.mid ( 1, fileindex - 1 );
-							QString filename = fullpath.mid ( fileindex + 1, fullpath.length() - fileindex );
+					if ( new_medianame.contains ( '\\' ) )
+						new_medianame = new_medianame.replace ( '\\', "/" );
+					if ( new_medianame.contains ( '/' ) && new_medianame.split ( '/' ).size() > 1 ) {
+						int last_index = new_medianame.lastIndexOf ( '/' );
+						int first_index = new_medianame.indexOf ( '/', last_index );
+						new_medianame = new_medianame.mid ( first_index + 1, last_index );
+					}
+					//if(*DEBUG_INFO_ENABLED)
+					//	cerr << "importGtktalogCsv new_medianame: " << qPrintable(new_medianame) << endl;
 
-							if ( *DEBUG_INFO_ENABLED )
-								//if (!validDate)
-							{
-								QString msg;
-								msg += "line: " + line + "\n";
-								msg += "path: " + path + "\n";
-								msg += "fullpath: " + fullpath + "\n";
-								msg += "sizestring: " + sizestring + "\n";
-								msg += "sizeindex: " + QString().setNum ( sizeindex ) + "\n";
-								msg += "size: " + QString().setNum ( size ) + "\n";
-								msg += "month: " + QString().setNum ( month ) + "\n";
-								msg += "hour: " + QString().setNum ( hour ) + "\n";
-								msg += "minute: " + QString().setNum ( minute ) + "\n";
-								msg += "second: " + QString().setNum ( second ) + "\n";
-								msg += "year: " + QString().setNum ( year ) + "\n";
-								msg += "day: " + QString().setNum ( day ) + "\n";
-								msg += "datetimestring: " + datetimestring + "\n";
-								msg += "new_medianame: " + new_medianame + "\n";
-								msg += "directory path: " + dirpath + "\n";
-								msg += "file name: " + filename + "\n";
-								//QMessageBox::warning(0, "line", msg);
-							}
-						}
-						else {
-							if ( csvtype == "kat-dece" ) {
-								/*
-								 * format:
-								 * "Number";"Location";"CD name";"CD category";"Name";"Extension";"Length";"Date";"Path";"Comment"
-								 *
-								 * sample line:
-								 * "";"";"newiso";"! Alle Medien  ";"empire-efi-logo-alt256";".png";" 11,669";"2010.01.07  08:05";"Extra\Themes\Default\";""
-								 */
-								if ( linecount == 0 ) {
-									linecount++;
-									continue;
-								}
-								// FIXME
-								separator = ";";
-								QStringList csvList = line.split ( separator );
-								if ( csvList.count() != 10 ) {
-									if ( *DEBUG_INFO_ENABLED )
-										cerr << "importGtktalogCsv invalid line (not 9 fields): " << qPrintable ( line ) << endl;
-									continue;
-								}
-								filename = QString ( csvList.at ( 4 ) ).replace ( "\"", "" ) + QString ( csvList.at ( 5 ) ).replace ( "\"", "" );
-								QString sizestring = QString ( csvList.at ( 6 ) ).replace ( "\"", "" ).replace ( ",", "." ).replace ( ".", "" ).replace ( "#", "" ).trimmed();
-								// size is double and its kib!
-								size = uint ( QString ( csvList.at ( 6 ) ).replace ( "\"", "" ).replace ( ",", "." ).replace ( ".", "" ).replace ( "#", "" ).trimmed().toDouble() * 1024 );
-								//if(*DEBUG_INFO_ENABLED)
-								//	cerr << "importGtktalogCsv size: " << size << endl;
-								datetimestring = QString ( csvList.at ( 7 ) ).replace ( "\"", "" );
-								//if (*DEBUG_INFO_ENABLED)
-								//	cerr << "importGtktalogCsv datetimestring: " << qPrintable(datetimestring) << endl;
+					dirpath = QString ( csvList.at ( 1 ) ).replace ( "\"", "" );
+					dirpath = dirpath.mid ( 0, dirpath.length() - 1 );
+					dirpath = dirpath.replace ( new_medianame, "" );
+					if ( pathsep == "\\" )
+						dirpath = dirpath.replace ( "\\", "/" );
+					//if (!dirpath.isEmpty() && dirpath.at(0) != '/')
+					//        dirpath = "/"+dirpath;
+					if ( !dirpath.isEmpty() && dirpath.at ( 0 ) == '/' )
+						dirpath = dirpath.mid ( 1, dirpath.length() - 1 );
 
-								QString datesep = ".";
-								// date is in format: year.month.day hour:minute
-								if ( datetimestring.contains ( '.' ) )
-									datesep = ".";
-								int yearindex = datetimestring.indexOf ( datesep, 0 );
-								int monthindex = datetimestring.indexOf ( datesep, yearindex + 1 );
-								int dayindex = datetimestring.indexOf ( " ", monthindex + 1 );
-								int hourindex = datetimestring.indexOf ( " ", dayindex + 1 );
-								int minuteindex = datetimestring.indexOf ( ":", hourindex + 1 );
-								int year = ( datetimestring.mid ( 0, yearindex ) ).toInt();
-								QString monthstring = datetimestring.mid ( yearindex + 1, monthindex - yearindex - 1 );
-								int month = ( datetimestring.mid ( yearindex + 1, monthindex - yearindex - 1 ) ).toInt();
-								QString daystring = datetimestring.mid ( monthindex + 1, hourindex - dayindex + 1 );
-								int day = ( datetimestring.mid ( monthindex + 1, hourindex - dayindex + 1 ) ).toInt();
-								//bool validDate = date.setYMD( year, month, day );
-								QString hourstring = datetimestring.mid ( hourindex + 1, minuteindex - hourindex - 1 );
-								int hour = ( datetimestring.mid ( hourindex + 1, minuteindex - hourindex - 1 ) ).toInt();
-								int minute = ( datetimestring.mid ( dayindex + 1, minuteindex - 1 ) ).toInt();
-								int second = ( datetimestring.mid ( minuteindex + 1, datetimestring.length() - 1 ) ).toInt();
-								QDate date ( year, month, day );
-								QTime time ( hour, minute, second );
-								datetime = QDateTime ( date, time );
+					path = dirpath + "/" + filename;
+					//if(*DEBUG_INFO_ENABLED)
+					//     cerr << "importGtktalogCsv path: " << qPrintable(path) << endl;
 
-								new_medianame = QString ( csvList.at ( 2 ) ).replace ( "\"", "" );
-								//if(*DEBUG_INFO_ENABLED)
-								//	cerr << "importGtktalogCsv new_medianame: " << qPrintable(new_medianame) << endl;
+					fullpath = path;
+					//if(*DEBUG_INFO_ENABLED)
+					//     cerr << "importGtktalogCsv fullpath: " << qPrintable(fullpath) << endl;
+					category = "";
+					comment = QString ( csvList.at ( 4 ) ).replace ( "\"", "" );
+					if ( *DEBUG_INFO_ENABLED )
+						//if (!validDate)
+					{
+						QString msg;
+						//msg += "line: " + line + "\n";
+						msg += "path: " + path + "\n";
+						msg += "fullpath: " + fullpath + "\n";
+						msg += "size: " + QString().setNum ( size ) + "\n";
+						msg += "sizestring: " + sizestring + "\n";
+						msg += "month: " + QString().setNum ( month ) + "\n";
+						msg += "hour: " + QString().setNum ( hour ) + "\n";
+						msg += "minute: " + QString().setNum ( minute ) + "\n";
+						msg += "year: " + QString().setNum ( year ) + "\n";
+						msg += "day: " + QString().setNum ( day ) + "\n";
+						msg += "datetimestring: " + datetimestring + "\n";
+						//msg += "monthstring: " + monthstring + "\n";
+						//msg += "hourstring: " + hourstring + "\n";
+						//msg += "daystring: " + daystring + "\n";
+						msg += "new_medianame: " + new_medianame + "\n";
+						msg += "directory path: " + dirpath + "\n";
+						msg += "file name: " + filename + "\n";
+						msg += "comment: " + comment + "\n";
+						msg += "category: " + category + "\n";
+						cerr << "msg: " << qPrintable ( msg ) << endl;
+						//QMessageBox::warning(0, "line", msg);
+					}
+				}
+			else if ( csvtype == "vvv" ) {
+					/*
+						* format:
+						* "media","path","filename",size,"extension",date,"description"
+						*
+						* sample line:
+						* "winxp","/I386/LANG","PINTLPAD.CH_",65841,"CH_",23.08.2001 14:00:00,""
+						*/
+					if ( linecount < 1 ) {
+						linecount++;
+						continue;
+					}
+					separator = ",";
+					QStringList csvList = line.split ( separator );
+					//if (csvList.count() < 10) {
+					//	if(*DEBUG_INFO_ENABLED)
+					//		cerr << "importGtktalogCsv invalid line (at least 10 fields): " << qPrintable(line) << endl;
+					//	continue;
+					//}
+					if ( *DEBUG_INFO_ENABLED ) {
+						cerr << "line: " << qPrintable ( line ) << endl;
+						for ( int i = 0; i < csvList.size(); ++i )
+							cout << "csvList[" << i << "]: " << csvList.at ( i ).toLocal8Bit().constData() << endl;
+					}
 
-								dirpath = QString ( csvList.at ( 8 ) ).replace ( "\"", "" );
-								dirpath = dirpath.mid ( 0, dirpath.length() - 1 );
-								if ( pathsep == "\\" )
-									dirpath = dirpath.replace ( "\\", "/" );
-								//if (!dirpath.isEmpty() && dirpath.at(0) != '/')
-								//	dirpath = "/"+dirpath;
-								path = dirpath + "/" + filename;
-								//if(*DEBUG_INFO_ENABLED)
-								//	cerr << "importGtktalogCsv path: " << qPrintable(path) << endl;
+					filename = QString ( csvList.at ( 2 ) ).replace ( "\"", "" );
+					QString sizestring = QString ( csvList.at ( 3 ) ) ;
+					//if(*DEBUG_INFO_ENABLED)
+					//     cerr << "importGtktalogCsv sizestring raw: " <<qPrintable( sizestring) << endl;
+					//QString(csvList.at(3)).stripWhiteSpace();
+					size = QString ( sizestring ).toInt();
 
-								fullpath = path;
-								//if(*DEBUG_INFO_ENABLED)
-								//	cerr << "importGtktalogCsv fullpath: " << qPrintable(fullpath) << endl;
+					//if(*DEBUG_INFO_ENABLED)
+					//     cerr << "importGtktalogCsv size: " << size << endl;
 
-								comment = QString ( csvList.at ( 9 ) ).replace ( "\"", "" );
-								//if(*DEBUG_INFO_ENABLED)
-								//	cerr << "importGtktalogCsv comment: " << qPrintable(comment) << endl;
+					datetimestring = QString ( csvList.at ( 5 ) );
+					//if (*DEBUG_INFO_ENABLED)
+					//cerr << "importGtktalogCsv datetimestring: " << qPrintable(datetimestring) << endl;
 
-								category = QString ( csvList.at ( 3 ) ).replace ( "\"", "" );
-								//if(*DEBUG_INFO_ENABLED)
-								//	cerr << "importGtktalogCsv category: " << qPrintable(category) << endl;
-								if ( *DEBUG_INFO_ENABLED )
-									//if (!validDate)
-								{
-									QString msg;
-									msg += "line: " + line + "\n";
-									msg += "path: " + path + "\n";
-									msg += "fullpath: " + fullpath + "\n";
-									msg += "size: " + QString().setNum ( size ) + "\n";
-									msg += "sizestring: " + sizestring + "\n";
-									msg += "month: " + QString().setNum ( month ) + "\n";
-									msg += "hour: " + QString().setNum ( hour ) + "\n";
-									msg += "minute: " + QString().setNum ( minute ) + "\n";
-									msg += "year: " + QString().setNum ( year ) + "\n";
-									msg += "day: " + QString().setNum ( day ) + "\n";
-									msg += "datetimestring: " + datetimestring + "\n";
-									msg += "monthstring: " + monthstring + "\n";
-									msg += "hourstring: " + hourstring + "\n";
-									msg += "daystring: " + daystring + "\n";
-									msg += "new_medianame: " + new_medianame + "\n";
-									msg += "directory path: " + dirpath + "\n";
-									msg += "file name: " + filename + "\n";
-									//QMessageBox::warning(0, "line", msg);
-								}
+					// date in format: day.month.year hour:minute:second
+					QString datesep = ".";
+					int dayindex = datetimestring.indexOf ( datesep );
+					int monthindex = datetimestring.indexOf ( datesep, dayindex + 1 );
+					int yearindex = datetimestring.indexOf ( " ", monthindex + 1 );
+					int hourindex = datetimestring.indexOf ( ":", yearindex + 1 );
+					int minuteindex = datetimestring.indexOf ( ":", hourindex + 1 );
+					int day = ( datetimestring.mid ( 0, dayindex ) ).toInt();
+					QString day_ = ( datetimestring.mid ( 0, dayindex ) );
+					int month = ( datetimestring.mid ( dayindex + 1, monthindex - dayindex - 1 ) ).toInt();
+					int year = ( datetimestring.mid ( monthindex + 1, hourindex - monthindex - 4 ) ).toInt();
+					//bool validDate = date.setYMD( year, month, day );
+					int hour = ( datetimestring.mid ( yearindex + 1, minuteindex - hourindex - 1 ) ).toInt();
+					int minute = ( datetimestring.mid ( hourindex + 1, minuteindex - 1 - hourindex ) ).toInt();
+					int second = ( datetimestring.mid ( minuteindex + 1, datetimestring.length() - 1 ) ).toInt();
+					QDate date ( year, month, day );
+					QTime time ( hour, minute, second );
+					datetime = QDateTime ( date, time );
+
+					new_medianame = QString ( csvList.at ( 0 ) ).replace ( "\"", "" );
+					//if(*DEBUG_INFO_ENABLED)
+					//     cerr << "importGtktalogCsv new_medianame: " << qPrintable(new_medianame) << endl;
+
+					dirpath = QString ( csvList.at ( 1 ) ).replace ( "\"", "" );
+					//dirpath = dirpath.mid(0, dirpath.length()-1 );
+					dirpath = dirpath.replace ( new_medianame, "" );
+					if ( pathsep == "\\" )
+						dirpath = dirpath.replace ( "\\", "/" );
+					//if (!dirpath.isEmpty() && dirpath.at(0) != '/')
+					//        dirpath = "/"+dirpath;
+					if ( !dirpath.isEmpty() && dirpath.at ( 0 ) == '/' )
+						dirpath = dirpath.mid ( 1, dirpath.length() - 1 );
+
+					path = dirpath + "/" + filename;
+					//if(*DEBUG_INFO_ENABLED)
+					//     cerr << "importGtktalogCsv path: " << qPrintable(path) << endl;
+
+					fullpath = path;
+
+					//if(*DEBUG_INFO_ENABLED)
+					//     cerr << "importGtktalogCsv fullpath: " << qPrintable(fullpath) << endl;
+
+					category = "";
+					comment = QString ( csvList.at ( 6 ) ).replace ( "\"", "" );
+
+					if ( *DEBUG_INFO_ENABLED )
+						//if (!validDate)
+					{
+						QString msg;
+						//        msg += "line: " + line + "\n";
+						msg += "path: " + path + "\n";
+						msg += "fullpath: " + fullpath + "\n";
+						msg += "size: " + QString().setNum ( size ) + "\n";
+						msg += "sizestring: " + sizestring + "\n";
+						msg += "month: " + QString().setNum ( month ) + "\n";
+						msg += "hour: " + QString().setNum ( hour ) + "\n";
+						msg += "minute: " + QString().setNum ( minute ) + "\n";
+						msg += "year: " + QString().setNum ( year ) + "\n";
+						msg += "day: " + QString().setNum ( day ) + "\n";
+						msg += "datetimestring: " + datetimestring + "\n";
+						//        msg += "monthstring: " + monthstring + "\n";
+						//        msg += "hourstring: " + hourstring + "\n";
+						//        msg += "daystring: " + daystring + "\n";
+						msg += "new_medianame: " + new_medianame + "\n";
+						msg += "directory path: " + dirpath + "\n";
+						msg += "file name: " + filename + "\n";
+						msg += "comment: " + comment + "\n";
+						msg += "category: " + category + "\n";
+						cerr << "msg: " << qPrintable ( msg ) << endl;
+						//QMessageBox::warning(0, "line", msg);
+					}
+				}
+			else if ( csvtype == "afo" ) {
+					/*
+						* format:
+						* "name","size","modified","location","category","description","type"
+						*
+						* sample line:
+						* "intro.gif","308","16.09.2004 13:13:26","10_Jahre\c-compiler\l_cc_p_9.0.021\eclipse-platform-3.0.1-linux-gtk.zip\eclipse\plugins\org.eclipse.platform_3.0.1","","","GIF-Bild"
+					"introContent.xml","11479","16.09.2004
+						*/
+					if ( linecount < 1 ) {
+						linecount++;
+						continue;
+					}
+					separator = ",";
+					QStringList csvList = line.split ( separator );
+					if ( csvList.count() < 7 ) {
+						if ( *DEBUG_INFO_ENABLED )
+							cerr << "importGtktalogCsv invalid line (at least 10 fields): " << qPrintable ( line ) << endl;
+						continue;
+					}
+					if ( *DEBUG_INFO_ENABLED ) {
+						cerr << "line: " << qPrintable ( line ) << endl;
+						for ( int i = 0; i < csvList.size(); ++i )
+							cout << "csvList[" << i << "]: " << csvList.at ( i ).toLocal8Bit().constData() << endl;
+					}
+
+					QString type = QString ( csvList.at ( 6 ) ).replace ( "\"", "" );
+					if ( type == "Dateiordner" || type == "Folder" || type == "CD Disk" )
+						continue;
+
+					filename = QString ( csvList.at ( 0 ) ).replace ( "\"", "" );
+					QString sizestring = QString ( csvList.at ( 1 ) ).replace ( "\"", "" ) ;
+					//if(*DEBUG_INFO_ENABLED)
+					//     cerr << "importGtktalogCsv sizestring raw: " <<qPrintable( sizestring) << endl;
+					//QString(csvList.at(3)).stripWhiteSpace();
+					size = QString ( sizestring ).toInt();
+
+					//if(*DEBUG_INFO_ENABLED)
+					//     cerr << "importGtktalogCsv size: " << size << endl;
+					datetimestring = QString ( csvList.at ( 2 ) ).replace ( "\"", "" );
+					//if (*DEBUG_INFO_ENABLED)
+					//cerr << "importGtktalogCsv datetimestring: " << qPrintable(datetimestring) << endl;
+
+					// date in format: day.month.year hour:minute:second
+					QString datesep = ".";
+					int dayindex = datetimestring.indexOf ( datesep );
+					int monthindex = datetimestring.indexOf ( datesep, dayindex + 1 );
+					int yearindex = datetimestring.indexOf ( " ", monthindex + 1 );
+					int hourindex = datetimestring.indexOf ( ":", yearindex + 1 );
+					int minuteindex = datetimestring.indexOf ( ":", hourindex + 1 );
+					int day = ( datetimestring.mid ( 0, dayindex ) ).toInt();
+					QString day_ = ( datetimestring.mid ( 0, dayindex ) );
+					int month = ( datetimestring.mid ( dayindex + 1, monthindex - dayindex - 1 ) ).toInt();
+					int year = ( datetimestring.mid ( monthindex + 1, hourindex - monthindex - 4 ) ).toInt();
+					//bool validDate = date.setYMD( year, month, day );
+					int hour = ( datetimestring.mid ( yearindex + 1, minuteindex - hourindex - 1 ) ).toInt();
+					int minute = ( datetimestring.mid ( hourindex + 1, minuteindex - 1 - hourindex ) ).toInt();
+					int second = ( datetimestring.mid ( minuteindex + 1, datetimestring.length() - 1 ) ).toInt();
+					QDate date ( year, month, day );
+					QTime time ( hour, minute, second );
+					datetime = QDateTime ( date, time );
+					QString location = QString ( csvList.at ( 3 ) ).replace ( "\"", "" ).replace ( "\\", "/" );
+					if ( *DEBUG_INFO_ENABLED )
+						cerr << "importGtktalogCsv location: " << qPrintable ( location ) << endl;
+
+					if ( location.contains ( '/' ) ) {
+						new_medianame = location.split ( '/' ) [0];
+						dirpath = location.replace ( new_medianame + "/", "" );
+					}
+					else {
+						new_medianame = location;
+						dirpath = "";
+					}
+					if ( *DEBUG_INFO_ENABLED )
+						cerr << "importGtktalogCsv new_medianame: " << qPrintable ( new_medianame ) << endl;
+
+					//dirpath = dirpath.mid(0, dirpath.length()-1 );
+					dirpath = dirpath.replace ( new_medianame, "" );
+					if ( pathsep == "\\" )
+						dirpath = dirpath.replace ( "\\", "/" );
+					//if (!dirpath.isEmpty() && dirpath.at(0) != '/')
+					//	dirpath = "/"+dirpath;
+					if ( !dirpath.isEmpty() && dirpath.at ( 0 ) == '/' )
+						dirpath = dirpath.mid ( 1, dirpath.length() - 1 );
+
+					if ( *DEBUG_INFO_ENABLED )
+						cerr << "importGtktalogCsv dirpath: " << qPrintable ( dirpath ) << endl;
+
+					path = dirpath + "/" + filename;
+					//if(*DEBUG_INFO_ENABLED)
+					//	cerr << "importGtktalogCsv path: " << qPrintable(path) << endl;
+
+					fullpath = path;
+
+					//if(*DEBUG_INFO_ENABLED)
+					//	cerr << "importGtktalogCsv fullpath: " << qPrintable(fullpath) << endl;
+
+					category = QString ( csvList.at ( 4 ) ).replace ( "\"", "" );
+					comment = QString ( csvList.at ( 5 ) ).replace ( "\"", "" );
+
+					if ( *DEBUG_INFO_ENABLED )
+						//if (!validDate)
+					{
+						QString msg;
+						//msg += "line: " + line + "\n";
+						msg += "path: " + path + "\n";
+						msg += "fullpath: " + fullpath + "\n";
+						msg += "size: " + QString().setNum ( size ) + "\n";
+						msg += "sizestring: " + sizestring + "\n";
+						msg += "month: " + QString().setNum ( month ) + "\n";
+						msg += "hour: " + QString().setNum ( hour ) + "\n";
+						msg += "minute: " + QString().setNum ( minute ) + "\n";
+						msg += "year: " + QString().setNum ( year ) + "\n";
+						msg += "day: " + QString().setNum ( day ) + "\n";
+						msg += "datetimestring: " + datetimestring + "\n";
+						//msg += "monthstring: " + monthstring + "\n";
+						//msg += "hourstring: " + hourstring + "\n";
+						//msg += "daystring: " + daystring + "\n";
+						msg += "new_medianame: " + new_medianame + "\n";
+						msg += "directory path: " + dirpath + "\n";
+						msg += "file name: " + filename + "\n";
+						msg += "comment: " + comment + "\n";
+						msg += "category: " + category + "\n";
+						cerr << "msg: " << qPrintable ( msg ) << endl;
+						//QMessageBox::warning(0, "line", msg);
+					}
+				}
+			else if ( csvtype == "filearchivist" ) {
+					/*
+						* format:
+						* media|filename|path|date|open with
+						*
+						* sample line:
+						* kottan_1|next4.bmp|e:\divx player\vlc-0.7.2\skins\default\|21.05.2004 14:26|i_view32.exe
+						*/
+					if ( linecount < 1 ) {
+						linecount++;
+						continue;
+					}
+					separator = "|";
+					QStringList csvList = line.split ( separator );
+					//if (csvList.count() < 10) {
+					//	if(*DEBUG_INFO_ENABLED)
+					//		cerr << "importGtktalogCsv invalid line (at least 10 fields): " << qPrintable(line) << endl;
+					//	continue;
+					//}
+					if ( *DEBUG_INFO_ENABLED ) {
+						cerr << "line: " << qPrintable ( line ) << endl;
+						for ( int i = 0; i < csvList.size(); ++i )
+							cout << "csvList[" << i << "]: " << csvList.at ( i ).toLocal8Bit().constData() << endl;
+					}
+
+					filename = QString ( csvList.at ( 1 ) );
+					//QString sizestring = QString(csvList.at(3)) ;
+					//if(*DEBUG_INFO_ENABLED)
+					//	cerr << "importGtktalogCsv sizestring raw: " <<qPrintable( sizestring) << endl;
+					//QString(csvList.at(3)).stripWhiteSpace();
+					size = 0;
+
+					//if(*DEBUG_INFO_ENABLED)
+					//	cerr << "importGtktalogCsv size: " << size << endl;
+					datetimestring = QString ( csvList.at ( 3 ) );
+					//if (*DEBUG_INFO_ENABLED)
+					//	cerr << "importGtktalogCsv datetimestring: " << qPrintable(datetimestring) << endl;
+
+					// date in format: day.month.year hour:minute:second
+					QString datesep = ".";
+					int dayindex = datetimestring.indexOf ( datesep );
+					int monthindex = datetimestring.indexOf ( datesep, dayindex + 1 );
+					int yearindex = datetimestring.indexOf ( " ", monthindex + 1 );
+					int hourindex = datetimestring.indexOf ( ":", yearindex + 1 );
+					int minuteindex = datetimestring.indexOf ( ":", hourindex + 1 );
+					int day = ( datetimestring.mid ( 0, dayindex ) ).toInt();
+					QString day_ = ( datetimestring.mid ( 0, dayindex ) );
+					int month = ( datetimestring.mid ( dayindex + 1, monthindex - dayindex - 1 ) ).toInt();
+					int year = ( datetimestring.mid ( monthindex + 1, hourindex - monthindex - 4 ) ).toInt();
+					//bool validDate = date.setYMD( year, month, day );
+					int hour = ( datetimestring.mid ( yearindex + 1, minuteindex - hourindex - 1 ) ).toInt();
+					int minute = ( datetimestring.mid ( hourindex + 1, minuteindex - 1 - hourindex ) ).toInt();
+					int second = ( datetimestring.mid ( minuteindex + 1, datetimestring.length() - 1 ) ).toInt();
+					QDate date ( year, month, day );
+					QTime time ( hour, minute, second );
+					datetime = QDateTime ( date, time );
+					new_medianame = QString ( csvList.at ( 0 ) );
+					//if(*DEBUG_INFO_ENABLED)
+					//	cerr << "importGtktalogCsv new_medianame: " << qPrintable(new_medianame) << endl;
+					dirpath = QString ( csvList.at ( 2 ) );
+					dirpath = dirpath.mid ( 0, dirpath.length() - 1 );
+					if ( pathsep == "\\" )
+						dirpath = dirpath.replace ( "\\", "/" );
+					//if (!dirpath.isEmpty() && dirpath.at(0) != '/')
+					//	dirpath = "/"+dirpath;
+					if ( !dirpath.isEmpty() && dirpath.at ( 0 ) == '/' )
+						dirpath = dirpath.mid ( 1, dirpath.length() - 1 );
+
+					path = dirpath + "/" + filename;
+					//if(*DEBUG_INFO_ENABLED)
+					//	cerr << "importGtktalogCsv path: " << qPrintable(path) << endl;
+					fullpath = path;
+
+					//if(*DEBUG_INFO_ENABLED)
+					//	cerr << "importGtktalogCsv fullpath: " << qPrintable(fullpath) << endl;
+
+					category = "";
+					comment = QString ( csvList.at ( 4 ) );
+
+					if ( *DEBUG_INFO_ENABLED )
+						//if (!validDate)
+					{
+						QString msg;
+						//msg += "line: " + line + "\n";
+						msg += "path: " + path + "\n";
+						msg += "fullpath: " + fullpath + "\n";
+						msg += "size: " + QString().setNum ( size ) + "\n";
+						//msg += "sizestring: " + sizestring + "\n";
+						msg += "month: " + QString().setNum ( month ) + "\n";
+						msg += "hour: " + QString().setNum ( hour ) + "\n";
+						msg += "minute: " + QString().setNum ( minute ) + "\n";
+						msg += "year: " + QString().setNum ( year ) + "\n";
+						msg += "day: " + QString().setNum ( day ) + "\n";
+						msg += "datetimestring: " + datetimestring + "\n";
+						//msg += "monthstring: " + monthstring + "\n";
+						//msg += "hourstring: " + hourstring + "\n";
+						//msg += "daystring: " + daystring + "\n";
+						msg += "new_medianame: " + new_medianame + "\n";
+						msg += "directory path: " + dirpath + "\n";
+						msg += "file name: " + filename + "\n";
+						msg += "comment: " + comment + "\n";
+						msg += "category: " + category + "\n";
+						cerr << "msg: " << qPrintable ( msg ) << endl;
+						//QMessageBox::warning(0, "line", msg);
+					}
+				}
+			else if ( csvtype == "advanceddiskcatalog" ) {
+					/*
+						* format:
+						* "Disk", "Name", "Path", "Full path", "Size", "Date", "Time", "Category", "Level", "Comments", "Files inside", "Type"
+						* or
+						* "Disk", "Name", "Path", "Full path", "Size", "Date", "Time", "Category", "Level", "Comments", "Files inside"
+						*
+						* sample lines:
+						* "biexpp1210", "GDIPLUS.MAN", "\I386\ASMS\1000\MSFT\WINDOWS\GDIPLUS", "D:\I386\ASMS\1000\MSFT\WINDOWS\GDIPLUS\GDIPLUS.MAN", "391 bytes", "14.04.2008", "12:00:00", "None", 7, "", 0, "File"
+						"Vol 03", "chicagos_30.zip", "\C64\Games\c", "E:\C64\Games\c\chicagos_30.zip", 30 113, "12/23/1999", "7:14:48 AM", "None", 4, "", 0, "File"
+						*/
+					if ( linecount < 1 ) {
+						linecount++;
+						continue;
+					}
+
+					// skip comment line
+					if ( line == "\"Disk\", \"Name\", \"Path\", \"Full path\", \"Size\", \"Date\", \"Time\", \"Category\", \"Level\", \"Comments\", \"Files inside\"" || line == "\"Disk\", \"Name\", \"Path\", \"Full path\", \"Size\", \"Date\", \"Time\", \"Category\", \"Level\", \"Comments\", \"Files inside\", \"Type\"" ) {
+						continue;
+					}
+
+					//manually split line from csv file (because there may be commas in the file name)
+					QStringList csvList;
+					int linelen = line.length();
+					bool in_string = false;
+					QString buffer = "";
+					QChar ch;
+					QChar comma = ',';
+					QChar quote = '"';
+					for ( int i = 0; i < linelen; i++ ) {
+						ch = line.at ( i );
+						if ( ch == comma || i == linelen - 1 ) {
+							if ( in_string ) {
+								buffer += ch;
 							}
 							else {
-								if ( csvtype == "disclib" ) {
-									/*
-									 * format:
-									 * name*"volume"*filepath*path*size*Volume serial*date*type*"category"*"comments"*"location"
-									 *
-									 * sample line:
-									 * acc_dis.chm*"DISK_00001_HelpCD"*DISK_00001_HelpCD\acc_dis.chm*DISK_00001_HelpCD\*20 832*6C721915*23.08.2001 12:00:00*chm*""*""*""
-									 */
-									// FIXME
-									separator = "*";
-									QStringList csvList = line.split ( separator );
-									//if (csvList.count() < 10) {
-									//	if(*DEBUG_INFO_ENABLED)
-									//	cerr << "importGtktalogCsv invalid line (at least 10 fields): " << qPrintable(line) << endl;
-									//	continue;
-									//}
-									if ( *DEBUG_INFO_ENABLED ) {
-										cerr << "line: " << qPrintable ( line ) << endl;
-										for ( int i = 0; i < csvList.size(); ++i )
-											cout << "csvList[" << i << "]: " << csvList.at ( i ).toLocal8Bit().constData() << endl;
-									}
-
-									filename = QString ( csvList.at ( 0 ) );
-									QString sizestring = QString ( csvList.at ( 3 ) ) ;
-									//if(*DEBUG_INFO_ENABLED)
-									//	cerr << "importGtktalogCsv sizestring raw: " <<qPrintable( sizestring) << endl;
-									if ( sizestring.contains ( "/" ) ) {
-										// DISK_00003_Downloads\hhcode_and_exe\TestCHM\Agent\images/5 720 => 5 720
-										sizestring = QString ( sizestring.split ( "/" ).at ( 1 ) ).replace ( " ", "" );
-										//if(*DEBUG_INFO_ENABLED)
-										//	cerr << "importGtktalogCsv sizestring raw2: " <<qPrintable( sizestring) << endl;
-									}
-									//QString(csvList.at(3)).stripWhiteSpace();
-									size = QString ( sizestring ).toInt();
-
-									//if(*DEBUG_INFO_ENABLED)
-									//	cerr << "importGtktalogCsv size: " << size << endl;
-									datetimestring = QString ( csvList.at ( 5 ) );
-									//if (*DEBUG_INFO_ENABLED)
-									//	cerr << "importGtktalogCsv datetimestring: " << qPrintable(datetimestring) << endl;
-
-									// date is normally day/month/year hour:minute:second
-									QString datesep = "/";
-
-									// date in other format: day.month.year hour:minute:second
-									if ( datetimestring.contains ( '.' ) )
-										datesep = ".";
-									int dayindex = datetimestring.indexOf ( datesep );
-									int monthindex = datetimestring.indexOf ( datesep, dayindex + 1 );
-									int yearindex = datetimestring.indexOf ( " ", monthindex + 1 );
-									int hourindex = datetimestring.indexOf ( ":", yearindex + 1 );
-									int minuteindex = datetimestring.indexOf ( ":", hourindex + 1 );
-
-									int day = ( datetimestring.mid ( 0, dayindex ) ).toInt();
-									QString day_ = ( datetimestring.mid ( 0, dayindex ) );
-									int month = ( datetimestring.mid ( dayindex + 1, monthindex - dayindex - 1 ) ).toInt();
-									int year = ( datetimestring.mid ( monthindex + 1, hourindex - monthindex - 4 ) ).toInt();
-									//bool validDate = date.setYMD( year, month, day );
-
-									int hour = ( datetimestring.mid ( yearindex + 1, minuteindex - hourindex - 1 ) ).toInt();
-									int minute = ( datetimestring.mid ( hourindex + 1, minuteindex - 1 - hourindex ) ).toInt();
-									int second = ( datetimestring.mid ( minuteindex + 1, datetimestring.length() - 1 ) ).toInt();
-									QDate date ( year, month, day );
-									QTime time ( hour, minute, second );
-									datetime = QDateTime ( date, time );
-									new_medianame = QString ( csvList.at ( 1 ) ).replace ( "\"", "" );
-									//if(*DEBUG_INFO_ENABLED)
-									//	cerr << "importGtktalogCsv new_medianame: " << qPrintable(new_medianame) << endl;
-
-									dirpath = QString ( csvList.at ( 3 ) ).replace ( "\"", "" );
-									//	dirpath = dirpath.mid(0, dirpath.length()-1 );
-									dirpath = dirpath.replace ( new_medianame, "" );
-									if ( pathsep == "\\" )
-										dirpath = dirpath.replace ( "\\", "/" );
-									//if (!dirpath.isEmpty() && dirpath.at(0) != '/')
-									//	dirpath = "/"+dirpath;
-									if ( !dirpath.isEmpty() && dirpath.at ( 0 ) == '/' )
-										dirpath = dirpath.mid ( 1, dirpath.length() - 1 );
-
-									path = dirpath + "/" + filename;
-									//if(*DEBUG_INFO_ENABLED)
-									//	cerr << "importGtktalogCsv path: " << qPrintable(path) << endl;
-
-									fullpath = path;
-									//if(*DEBUG_INFO_ENABLED)
-									//	cerr << "importGtktalogCsv fullpath: " << qPrintable(fullpath) << endl;
-
-									category = QString ( csvList.at ( 7 ) ).replace ( "\"", "" );
-									comment = QString ( csvList.at ( 8 ) ).replace ( "\"", "" );
-
-									if ( *DEBUG_INFO_ENABLED )
-										//if (!validDate)
-									{
-										QString msg;
-										//msg += "line: " + line + "\n";
-										msg += "path: " + path + "\n";
-										msg += "fullpath: " + fullpath + "\n";
-										msg += "size: " + QString().setNum ( size ) + "\n";
-										msg += "sizestring: " + sizestring + "\n";
-										msg += "month: " + QString().setNum ( month ) + "\n";
-										msg += "hour: " + QString().setNum ( hour ) + "\n";
-										msg += "minute: " + QString().setNum ( minute ) + "\n";
-										msg += "year: " + QString().setNum ( year ) + "\n";
-										msg += "day: " + QString().setNum ( day ) + "\n";
-										msg += "datetimestring: " + datetimestring + "\n";
-										//msg += "monthstring: " + monthstring + "\n";
-										//msg += "hourstring: " + hourstring + "\n";
-										//msg += "daystring: " + daystring + "\n";
-										msg += "new_medianame: " + new_medianame + "\n";
-										msg += "directory path: " + dirpath + "\n";
-										msg += "file name: " + filename + "\n";
-										msg += "comment: " + comment + "\n";
-										msg += "category: " + category + "\n";
-
-										cerr << "msg: " << qPrintable ( msg ) << endl;
-										//QMessageBox::warning(0, "line", msg);
-									}
-								}
-								else {
-									if ( csvtype == "visualcd" ) {
-										/*
-										 * format:
-										 * name;path;size;date;comment;date picture;dimensions;duration;title;artist;album
-										 *
-										 * sample line:
-										 * QtScriptTools4.dll;E:\Qt\4.7.1\bin\;744.448;06.11.2010 08:37:52;;;;;;;
-										 */
-										if ( linecount < 2 ) {
-											linecount++;
-											continue;
-										}
-										separator = ";";
-										QStringList csvList = line.split ( separator );
-										//if (csvList.count() < 10) {
-										//	if(*DEBUG_INFO_ENABLED)
-										//		cerr << "importGtktalogCsv invalid line (at least 10 fields): " << qPrintable(line) << endl;
-										//	continue;
-										//}
-										if ( *DEBUG_INFO_ENABLED ) {
-											cerr << "line: " << qPrintable ( line ) << endl;
-											for ( int i = 0; i < csvList.size(); ++i )
-												cout << "csvList[" << i << "]: " << csvList.at ( i ).toLocal8Bit().constData() << endl;
-										}
-
-										filename = QString ( csvList.at ( 0 ) );
-										QString sizestring = QString ( csvList.at ( 2 ) ).replace ( ".", "" );
-										//if(*DEBUG_INFO_ENABLED)
-										//	cerr << "importGtktalogCsv sizestring raw: " <<qPrintable( sizestring) << endl;
-										//QString(csvList.at(3)).stripWhiteSpace();
-										size = QString ( sizestring ).toInt();
-										//if(*DEBUG_INFO_ENABLED)
-										//	cerr << "importGtktalogCsv size: " << size << endl;
-										datetimestring = QString ( csvList.at ( 3 ) );
-										//if (*DEBUG_INFO_ENABLED)
-										//	cerr << "importGtktalogCsv datetimestring: " << qPrintable(datetimestring) << endl;
-
-										// date in format: day.month.year hour:minute:second
-										QString datesep = ".";
-										int dayindex = datetimestring.indexOf ( datesep );
-										int monthindex = datetimestring.indexOf ( datesep, dayindex + 1 );
-										int yearindex = datetimestring.indexOf ( " ", monthindex + 1 );
-										int hourindex = datetimestring.indexOf ( ":", yearindex + 1 );
-										int minuteindex = datetimestring.indexOf ( ":", hourindex + 1 );
-										int day = ( datetimestring.mid ( 0, dayindex ) ).toInt();
-										QString day_ = ( datetimestring.mid ( 0, dayindex ) );
-										int month = ( datetimestring.mid ( dayindex + 1, monthindex - dayindex - 1 ) ).toInt();
-										int year = ( datetimestring.mid ( monthindex + 1, hourindex - monthindex - 4 ) ).toInt();
-										//bool validDate = date.setYMD( year, month, day );
-										int hour = ( datetimestring.mid ( yearindex + 1, minuteindex - hourindex - 1 ) ).toInt();
-										int minute = ( datetimestring.mid ( hourindex + 1, minuteindex - 1 - hourindex ) ).toInt();
-										int second = ( datetimestring.mid ( minuteindex + 1, datetimestring.length() - 1 ) ).toInt();
-										QDate date ( year, month, day );
-										QTime time ( hour, minute, second );
-										datetime = QDateTime ( date, time );
-										int dotindex = import_filename.lastIndexOf ( '.' );
-										new_medianame = import_filename.mid ( 0, dotindex );
-
-										if ( new_medianame.contains ( '\\' ) )
-											new_medianame = new_medianame.replace ( '\\', "/" );
-										if ( new_medianame.contains ( '/' ) && new_medianame.split ( '/' ).size() > 1 ) {
-											int last_index = new_medianame.lastIndexOf ( '/' );
-											int first_index = new_medianame.indexOf ( '/', last_index );
-											new_medianame = new_medianame.mid ( first_index + 1, last_index );
-										}
-										//if(*DEBUG_INFO_ENABLED)
-										//	cerr << "importGtktalogCsv new_medianame: " << qPrintable(new_medianame) << endl;
-
-										dirpath = QString ( csvList.at ( 1 ) ).replace ( "\"", "" );
-										dirpath = dirpath.mid ( 0, dirpath.length() - 1 );
-										dirpath = dirpath.replace ( new_medianame, "" );
-										if ( pathsep == "\\" )
-											dirpath = dirpath.replace ( "\\", "/" );
-										//if (!dirpath.isEmpty() && dirpath.at(0) != '/')
-										//        dirpath = "/"+dirpath;
-										if ( !dirpath.isEmpty() && dirpath.at ( 0 ) == '/' )
-											dirpath = dirpath.mid ( 1, dirpath.length() - 1 );
-
-										path = dirpath + "/" + filename;
-										//if(*DEBUG_INFO_ENABLED)
-										//     cerr << "importGtktalogCsv path: " << qPrintable(path) << endl;
-
-										fullpath = path;
-										//if(*DEBUG_INFO_ENABLED)
-										//     cerr << "importGtktalogCsv fullpath: " << qPrintable(fullpath) << endl;
-										category = "";
-										comment = QString ( csvList.at ( 4 ) ).replace ( "\"", "" );
-										if ( *DEBUG_INFO_ENABLED )
-											//if (!validDate)
-										{
-											QString msg;
-											//msg += "line: " + line + "\n";
-											msg += "path: " + path + "\n";
-											msg += "fullpath: " + fullpath + "\n";
-											msg += "size: " + QString().setNum ( size ) + "\n";
-											msg += "sizestring: " + sizestring + "\n";
-											msg += "month: " + QString().setNum ( month ) + "\n";
-											msg += "hour: " + QString().setNum ( hour ) + "\n";
-											msg += "minute: " + QString().setNum ( minute ) + "\n";
-											msg += "year: " + QString().setNum ( year ) + "\n";
-											msg += "day: " + QString().setNum ( day ) + "\n";
-											msg += "datetimestring: " + datetimestring + "\n";
-											//msg += "monthstring: " + monthstring + "\n";
-											//msg += "hourstring: " + hourstring + "\n";
-											//msg += "daystring: " + daystring + "\n";
-											msg += "new_medianame: " + new_medianame + "\n";
-											msg += "directory path: " + dirpath + "\n";
-											msg += "file name: " + filename + "\n";
-											msg += "comment: " + comment + "\n";
-											msg += "category: " + category + "\n";
-											cerr << "msg: " << qPrintable ( msg ) << endl;
-											//QMessageBox::warning(0, "line", msg);
-										}
-									}
-									else  {
-										if ( csvtype == "vvv" ) {
-											/*
-											 * format:
-											 * "media","path","filename",size,"extension",date,"description"
-											 *
-											 * sample line:
-											 * "winxp","/I386/LANG","PINTLPAD.CH_",65841,"CH_",23.08.2001 14:00:00,""
-											 */
-											if ( linecount < 1 ) {
-												linecount++;
-												continue;
-											}
-											separator = ",";
-											QStringList csvList = line.split ( separator );
-											//if (csvList.count() < 10) {
-											//	if(*DEBUG_INFO_ENABLED)
-											//		cerr << "importGtktalogCsv invalid line (at least 10 fields): " << qPrintable(line) << endl;
-											//	continue;
-											//}
-											if ( *DEBUG_INFO_ENABLED ) {
-												cerr << "line: " << qPrintable ( line ) << endl;
-												for ( int i = 0; i < csvList.size(); ++i )
-													cout << "csvList[" << i << "]: " << csvList.at ( i ).toLocal8Bit().constData() << endl;
-											}
-
-											filename = QString ( csvList.at ( 2 ) ).replace ( "\"", "" );
-											QString sizestring = QString ( csvList.at ( 3 ) ) ;
-											//if(*DEBUG_INFO_ENABLED)
-											//     cerr << "importGtktalogCsv sizestring raw: " <<qPrintable( sizestring) << endl;
-											//QString(csvList.at(3)).stripWhiteSpace();
-											size = QString ( sizestring ).toInt();
-
-											//if(*DEBUG_INFO_ENABLED)
-											//     cerr << "importGtktalogCsv size: " << size << endl;
-
-											datetimestring = QString ( csvList.at ( 5 ) );
-											//if (*DEBUG_INFO_ENABLED)
-											//cerr << "importGtktalogCsv datetimestring: " << qPrintable(datetimestring) << endl;
-
-											// date in format: day.month.year hour:minute:second
-											QString datesep = ".";
-											int dayindex = datetimestring.indexOf ( datesep );
-											int monthindex = datetimestring.indexOf ( datesep, dayindex + 1 );
-											int yearindex = datetimestring.indexOf ( " ", monthindex + 1 );
-											int hourindex = datetimestring.indexOf ( ":", yearindex + 1 );
-											int minuteindex = datetimestring.indexOf ( ":", hourindex + 1 );
-											int day = ( datetimestring.mid ( 0, dayindex ) ).toInt();
-											QString day_ = ( datetimestring.mid ( 0, dayindex ) );
-											int month = ( datetimestring.mid ( dayindex + 1, monthindex - dayindex - 1 ) ).toInt();
-											int year = ( datetimestring.mid ( monthindex + 1, hourindex - monthindex - 4 ) ).toInt();
-											//bool validDate = date.setYMD( year, month, day );
-											int hour = ( datetimestring.mid ( yearindex + 1, minuteindex - hourindex - 1 ) ).toInt();
-											int minute = ( datetimestring.mid ( hourindex + 1, minuteindex - 1 - hourindex ) ).toInt();
-											int second = ( datetimestring.mid ( minuteindex + 1, datetimestring.length() - 1 ) ).toInt();
-											QDate date ( year, month, day );
-											QTime time ( hour, minute, second );
-											datetime = QDateTime ( date, time );
-
-											new_medianame = QString ( csvList.at ( 0 ) ).replace ( "\"", "" );
-											//if(*DEBUG_INFO_ENABLED)
-											//     cerr << "importGtktalogCsv new_medianame: " << qPrintable(new_medianame) << endl;
-
-											dirpath = QString ( csvList.at ( 1 ) ).replace ( "\"", "" );
-											//dirpath = dirpath.mid(0, dirpath.length()-1 );
-											dirpath = dirpath.replace ( new_medianame, "" );
-											if ( pathsep == "\\" )
-												dirpath = dirpath.replace ( "\\", "/" );
-											//if (!dirpath.isEmpty() && dirpath.at(0) != '/')
-											//        dirpath = "/"+dirpath;
-											if ( !dirpath.isEmpty() && dirpath.at ( 0 ) == '/' )
-												dirpath = dirpath.mid ( 1, dirpath.length() - 1 );
-
-											path = dirpath + "/" + filename;
-											//if(*DEBUG_INFO_ENABLED)
-											//     cerr << "importGtktalogCsv path: " << qPrintable(path) << endl;
-
-											fullpath = path;
-
-											//if(*DEBUG_INFO_ENABLED)
-											//     cerr << "importGtktalogCsv fullpath: " << qPrintable(fullpath) << endl;
-
-											category = "";
-											comment = QString ( csvList.at ( 6 ) ).replace ( "\"", "" );
-
-											if ( *DEBUG_INFO_ENABLED )
-												//if (!validDate)
-											{
-												QString msg;
-												//        msg += "line: " + line + "\n";
-												msg += "path: " + path + "\n";
-												msg += "fullpath: " + fullpath + "\n";
-												msg += "size: " + QString().setNum ( size ) + "\n";
-												msg += "sizestring: " + sizestring + "\n";
-												msg += "month: " + QString().setNum ( month ) + "\n";
-												msg += "hour: " + QString().setNum ( hour ) + "\n";
-												msg += "minute: " + QString().setNum ( minute ) + "\n";
-												msg += "year: " + QString().setNum ( year ) + "\n";
-												msg += "day: " + QString().setNum ( day ) + "\n";
-												msg += "datetimestring: " + datetimestring + "\n";
-												//        msg += "monthstring: " + monthstring + "\n";
-												//        msg += "hourstring: " + hourstring + "\n";
-												//        msg += "daystring: " + daystring + "\n";
-												msg += "new_medianame: " + new_medianame + "\n";
-												msg += "directory path: " + dirpath + "\n";
-												msg += "file name: " + filename + "\n";
-												msg += "comment: " + comment + "\n";
-												msg += "category: " + category + "\n";
-												cerr << "msg: " << qPrintable ( msg ) << endl;
-												//QMessageBox::warning(0, "line", msg);
-											}
-										}
-										else {
-											if ( csvtype == "afo" ) {
-												/*
-												 * format:
-												 * "name","size","modified","location","category","description","type"
-												 *
-												 * sample line:
-												 * "intro.gif","308","16.09.2004 13:13:26","10_Jahre\c-compiler\l_cc_p_9.0.021\eclipse-platform-3.0.1-linux-gtk.zip\eclipse\plugins\org.eclipse.platform_3.0.1","","","GIF-Bild"
-												"introContent.xml","11479","16.09.2004
-												 */
-												if ( linecount < 1 ) {
-													linecount++;
-													continue;
-												}
-												separator = ",";
-												QStringList csvList = line.split ( separator );
-												if ( csvList.count() < 7 ) {
-													if ( *DEBUG_INFO_ENABLED )
-														cerr << "importGtktalogCsv invalid line (at least 10 fields): " << qPrintable ( line ) << endl;
-													continue;
-												}
-												if ( *DEBUG_INFO_ENABLED ) {
-													cerr << "line: " << qPrintable ( line ) << endl;
-													for ( int i = 0; i < csvList.size(); ++i )
-														cout << "csvList[" << i << "]: " << csvList.at ( i ).toLocal8Bit().constData() << endl;
-												}
-
-												QString type = QString ( csvList.at ( 6 ) ).replace ( "\"", "" );
-												if ( type == "Dateiordner" || type == "Folder" || type == "CD Disk" )
-													continue;
-
-												filename = QString ( csvList.at ( 0 ) ).replace ( "\"", "" );
-												QString sizestring = QString ( csvList.at ( 1 ) ).replace ( "\"", "" ) ;
-												//if(*DEBUG_INFO_ENABLED)
-												//     cerr << "importGtktalogCsv sizestring raw: " <<qPrintable( sizestring) << endl;
-												//QString(csvList.at(3)).stripWhiteSpace();
-												size = QString ( sizestring ).toInt();
-
-												//if(*DEBUG_INFO_ENABLED)
-												//     cerr << "importGtktalogCsv size: " << size << endl;
-												datetimestring = QString ( csvList.at ( 2 ) ).replace ( "\"", "" );
-												//if (*DEBUG_INFO_ENABLED)
-												//cerr << "importGtktalogCsv datetimestring: " << qPrintable(datetimestring) << endl;
-
-												// date in format: day.month.year hour:minute:second
-												QString datesep = ".";
-												int dayindex = datetimestring.indexOf ( datesep );
-												int monthindex = datetimestring.indexOf ( datesep, dayindex + 1 );
-												int yearindex = datetimestring.indexOf ( " ", monthindex + 1 );
-												int hourindex = datetimestring.indexOf ( ":", yearindex + 1 );
-												int minuteindex = datetimestring.indexOf ( ":", hourindex + 1 );
-												int day = ( datetimestring.mid ( 0, dayindex ) ).toInt();
-												QString day_ = ( datetimestring.mid ( 0, dayindex ) );
-												int month = ( datetimestring.mid ( dayindex + 1, monthindex - dayindex - 1 ) ).toInt();
-												int year = ( datetimestring.mid ( monthindex + 1, hourindex - monthindex - 4 ) ).toInt();
-												//bool validDate = date.setYMD( year, month, day );
-												int hour = ( datetimestring.mid ( yearindex + 1, minuteindex - hourindex - 1 ) ).toInt();
-												int minute = ( datetimestring.mid ( hourindex + 1, minuteindex - 1 - hourindex ) ).toInt();
-												int second = ( datetimestring.mid ( minuteindex + 1, datetimestring.length() - 1 ) ).toInt();
-												QDate date ( year, month, day );
-												QTime time ( hour, minute, second );
-												datetime = QDateTime ( date, time );
-												QString location = QString ( csvList.at ( 3 ) ).replace ( "\"", "" ).replace ( "\\", "/" );
-												if ( *DEBUG_INFO_ENABLED )
-													cerr << "importGtktalogCsv location: " << qPrintable ( location ) << endl;
-
-												if ( location.contains ( '/' ) ) {
-													new_medianame = location.split ( '/' ) [0];
-													dirpath = location.replace ( new_medianame + "/", "" );
-												}
-												else {
-													new_medianame = location;
-													dirpath = "";
-												}
-												if ( *DEBUG_INFO_ENABLED )
-													cerr << "importGtktalogCsv new_medianame: " << qPrintable ( new_medianame ) << endl;
-
-												//dirpath = dirpath.mid(0, dirpath.length()-1 );
-												dirpath = dirpath.replace ( new_medianame, "" );
-												if ( pathsep == "\\" )
-													dirpath = dirpath.replace ( "\\", "/" );
-												//if (!dirpath.isEmpty() && dirpath.at(0) != '/')
-												//	dirpath = "/"+dirpath;
-												if ( !dirpath.isEmpty() && dirpath.at ( 0 ) == '/' )
-													dirpath = dirpath.mid ( 1, dirpath.length() - 1 );
-
-												if ( *DEBUG_INFO_ENABLED )
-													cerr << "importGtktalogCsv dirpath: " << qPrintable ( dirpath ) << endl;
-
-												path = dirpath + "/" + filename;
-												//if(*DEBUG_INFO_ENABLED)
-												//	cerr << "importGtktalogCsv path: " << qPrintable(path) << endl;
-
-												fullpath = path;
-
-												//if(*DEBUG_INFO_ENABLED)
-												//	cerr << "importGtktalogCsv fullpath: " << qPrintable(fullpath) << endl;
-
-												category = QString ( csvList.at ( 4 ) ).replace ( "\"", "" );
-												comment = QString ( csvList.at ( 5 ) ).replace ( "\"", "" );
-
-												if ( *DEBUG_INFO_ENABLED )
-													//if (!validDate)
-												{
-													QString msg;
-													//msg += "line: " + line + "\n";
-													msg += "path: " + path + "\n";
-													msg += "fullpath: " + fullpath + "\n";
-													msg += "size: " + QString().setNum ( size ) + "\n";
-													msg += "sizestring: " + sizestring + "\n";
-													msg += "month: " + QString().setNum ( month ) + "\n";
-													msg += "hour: " + QString().setNum ( hour ) + "\n";
-													msg += "minute: " + QString().setNum ( minute ) + "\n";
-													msg += "year: " + QString().setNum ( year ) + "\n";
-													msg += "day: " + QString().setNum ( day ) + "\n";
-													msg += "datetimestring: " + datetimestring + "\n";
-													//msg += "monthstring: " + monthstring + "\n";
-													//msg += "hourstring: " + hourstring + "\n";
-													//msg += "daystring: " + daystring + "\n";
-													msg += "new_medianame: " + new_medianame + "\n";
-													msg += "directory path: " + dirpath + "\n";
-													msg += "file name: " + filename + "\n";
-													msg += "comment: " + comment + "\n";
-													msg += "category: " + category + "\n";
-													cerr << "msg: " << qPrintable ( msg ) << endl;
-													//QMessageBox::warning(0, "line", msg);
-												}
-											}
-											else {
-												if ( csvtype == "filearchivist" ) {
-													/*
-													 * format:
-													 * media|filename|path|date|open with
-													 *
-													 * sample line:
-													 * kottan_1|next4.bmp|e:\divx player\vlc-0.7.2\skins\default\|21.05.2004 14:26|i_view32.exe
-													 */
-													if ( linecount < 1 ) {
-														linecount++;
-														continue;
-													}
-													separator = "|";
-													QStringList csvList = line.split ( separator );
-													//if (csvList.count() < 10) {
-													//	if(*DEBUG_INFO_ENABLED)
-													//		cerr << "importGtktalogCsv invalid line (at least 10 fields): " << qPrintable(line) << endl;
-													//	continue;
-													//}
-													if ( *DEBUG_INFO_ENABLED ) {
-														cerr << "line: " << qPrintable ( line ) << endl;
-														for ( int i = 0; i < csvList.size(); ++i )
-															cout << "csvList[" << i << "]: " << csvList.at ( i ).toLocal8Bit().constData() << endl;
-													}
-
-													filename = QString ( csvList.at ( 1 ) );
-													//QString sizestring = QString(csvList.at(3)) ;
-													//if(*DEBUG_INFO_ENABLED)
-													//	cerr << "importGtktalogCsv sizestring raw: " <<qPrintable( sizestring) << endl;
-													//QString(csvList.at(3)).stripWhiteSpace();
-													size = 0;
-
-													//if(*DEBUG_INFO_ENABLED)
-													//	cerr << "importGtktalogCsv size: " << size << endl;
-													datetimestring = QString ( csvList.at ( 3 ) );
-													//if (*DEBUG_INFO_ENABLED)
-													//	cerr << "importGtktalogCsv datetimestring: " << qPrintable(datetimestring) << endl;
-
-													// date in format: day.month.year hour:minute:second
-													QString datesep = ".";
-													int dayindex = datetimestring.indexOf ( datesep );
-													int monthindex = datetimestring.indexOf ( datesep, dayindex + 1 );
-													int yearindex = datetimestring.indexOf ( " ", monthindex + 1 );
-													int hourindex = datetimestring.indexOf ( ":", yearindex + 1 );
-													int minuteindex = datetimestring.indexOf ( ":", hourindex + 1 );
-													int day = ( datetimestring.mid ( 0, dayindex ) ).toInt();
-													QString day_ = ( datetimestring.mid ( 0, dayindex ) );
-													int month = ( datetimestring.mid ( dayindex + 1, monthindex - dayindex - 1 ) ).toInt();
-													int year = ( datetimestring.mid ( monthindex + 1, hourindex - monthindex - 4 ) ).toInt();
-													//bool validDate = date.setYMD( year, month, day );
-													int hour = ( datetimestring.mid ( yearindex + 1, minuteindex - hourindex - 1 ) ).toInt();
-													int minute = ( datetimestring.mid ( hourindex + 1, minuteindex - 1 - hourindex ) ).toInt();
-													int second = ( datetimestring.mid ( minuteindex + 1, datetimestring.length() - 1 ) ).toInt();
-													QDate date ( year, month, day );
-													QTime time ( hour, minute, second );
-													datetime = QDateTime ( date, time );
-													new_medianame = QString ( csvList.at ( 0 ) );
-													//if(*DEBUG_INFO_ENABLED)
-													//	cerr << "importGtktalogCsv new_medianame: " << qPrintable(new_medianame) << endl;
-													dirpath = QString ( csvList.at ( 2 ) );
-													dirpath = dirpath.mid ( 0, dirpath.length() - 1 );
-													if ( pathsep == "\\" )
-														dirpath = dirpath.replace ( "\\", "/" );
-													//if (!dirpath.isEmpty() && dirpath.at(0) != '/')
-													//	dirpath = "/"+dirpath;
-													if ( !dirpath.isEmpty() && dirpath.at ( 0 ) == '/' )
-														dirpath = dirpath.mid ( 1, dirpath.length() - 1 );
-
-													path = dirpath + "/" + filename;
-													//if(*DEBUG_INFO_ENABLED)
-													//	cerr << "importGtktalogCsv path: " << qPrintable(path) << endl;
-													fullpath = path;
-
-													//if(*DEBUG_INFO_ENABLED)
-													//	cerr << "importGtktalogCsv fullpath: " << qPrintable(fullpath) << endl;
-
-													category = "";
-													comment = QString ( csvList.at ( 4 ) );
-
-													if ( *DEBUG_INFO_ENABLED )
-														//if (!validDate)
-													{
-														QString msg;
-														//msg += "line: " + line + "\n";
-														msg += "path: " + path + "\n";
-														msg += "fullpath: " + fullpath + "\n";
-														msg += "size: " + QString().setNum ( size ) + "\n";
-														//msg += "sizestring: " + sizestring + "\n";
-														msg += "month: " + QString().setNum ( month ) + "\n";
-														msg += "hour: " + QString().setNum ( hour ) + "\n";
-														msg += "minute: " + QString().setNum ( minute ) + "\n";
-														msg += "year: " + QString().setNum ( year ) + "\n";
-														msg += "day: " + QString().setNum ( day ) + "\n";
-														msg += "datetimestring: " + datetimestring + "\n";
-														//msg += "monthstring: " + monthstring + "\n";
-														//msg += "hourstring: " + hourstring + "\n";
-														//msg += "daystring: " + daystring + "\n";
-														msg += "new_medianame: " + new_medianame + "\n";
-														msg += "directory path: " + dirpath + "\n";
-														msg += "file name: " + filename + "\n";
-														msg += "comment: " + comment + "\n";
-														msg += "category: " + category + "\n";
-														cerr << "msg: " << qPrintable ( msg ) << endl;
-														//QMessageBox::warning(0, "line", msg);
-													}
-												}
-												else {
-													if ( csvtype == "advanceddiskcatalog" ) {
-														/*
-														 * format:
-														 * "Disk", "Name", "Path", "Full path", "Size", "Date", "Time", "Category", "Level", "Comments", "Files inside", "Type"
-														 * or
-														 * "Disk", "Name", "Path", "Full path", "Size", "Date", "Time", "Category", "Level", "Comments", "Files inside"
-														 *
-														 * sample lines:
-														 * "biexpp1210", "GDIPLUS.MAN", "\I386\ASMS\1000\MSFT\WINDOWS\GDIPLUS", "D:\I386\ASMS\1000\MSFT\WINDOWS\GDIPLUS\GDIPLUS.MAN", "391 bytes", "14.04.2008", "12:00:00", "None", 7, "", 0, "File"
-														   "Vol 03", "chicagos_30.zip", "\C64\Games\c", "E:\C64\Games\c\chicagos_30.zip", 30 113, "12/23/1999", "7:14:48 AM", "None", 4, "", 0, "File"
-														 */
-														if ( linecount < 1 ) {
-															linecount++;
-															continue;
-														}
-
-														// skip comment line
-														if ( line == "\"Disk\", \"Name\", \"Path\", \"Full path\", \"Size\", \"Date\", \"Time\", \"Category\", \"Level\", \"Comments\", \"Files inside\"" || line == "\"Disk\", \"Name\", \"Path\", \"Full path\", \"Size\", \"Date\", \"Time\", \"Category\", \"Level\", \"Comments\", \"Files inside\", \"Type\"" ) {
-															continue;
-														}
-
-														//manually split line from csv file (because there may be commas in the file name)
-														QStringList csvList;
-														int linelen = line.length();
-														bool in_string = false;
-														QString buffer = "";
-														QChar ch;
-														QChar comma = ',';
-														QChar quote = '"';
-														for ( int i = 0; i < linelen; i++ ) {
-															ch = line.at ( i );
-															if ( ch == comma || i == linelen - 1 ) {
-																if ( in_string ) {
-																	buffer += ch;
-																}
-																else {
-																	csvList.append ( buffer.trimmed() );
-																	//if(*DEBUG_INFO_ENABLED) {
-																	//	cout << "appending field" << endl;
-																	//}
-																	buffer = "";
-																}
-															}
-															else
-																if ( ch == quote ) {
-																	if ( in_string ) {
-																	}
-																	in_string = !in_string;
-																}
-																else {
-																	buffer.append ( ch );
-																	//if(*DEBUG_INFO_ENABLED) {
-																	//	cout << "appending field content to buffer" << endl;
-																	//}
-																}
-														}
-														if ( *DEBUG_INFO_ENABLED ) {
-															cerr << "line (fields " << csvList.size() << "): " << qPrintable ( line ) << endl;
-															for ( int i = 0; i < csvList.size(); ++i )
-																cout << "csvList[" << i << "]: " << csvList.at ( i ).toLocal8Bit().constData() << endl;
-														}
-
-														if ( csvList.count() != 11  && csvList.count() != 12 ) {
-															if ( *DEBUG_INFO_ENABLED )
-																cerr << "importGtktalogCsv invalid line (only " << csvList.count() << ") at least 11 or 12 fields): " << qPrintable ( line ) << endl;
-															continue;
-														}
-														//if (csvList.size() == 11 )
-														if ( QString ( csvList.at ( 5 ) ) == "Folder" && QString ( csvList.at ( 6 ) ) == "Folder" )
-															continue;
-														//if (csvList.size() > 11 )
-														//	if (QString(csvList.at(11)) == "Folder")
-														//		continue;
-														filename = QString ( csvList.at ( 1 ) );
-
-														//format of size string depends on ADC's Options/Preferences/Genral/Show sizes in KB
-														QString sizestring = QString ( csvList.at ( 4 ) );
-														if ( sizestring.right ( 1 ).at ( 0 ).isDigit() ) //1 234 567
-															size = sizestring.replace ( " ", "" ).toDouble();
-														else {  // 123.456 bytes/KB/MB/GB
-															QStringList sizestringlist = sizestring.split ( " " );
-															QString unit = sizestringlist.last();
-															sizestringlist.removeLast();
-															size = sizestringlist.join ( "" ).toDouble();
-															if ( unit == "KB" )
-																size = size * 1024.0;
-															if ( unit == "MB" )
-																size = size * 1024.0 * 1024.0;
-															if ( unit == "GB" )
-																size = size * 1024.0 * 1024.0 * 1024.0;
-															if ( unit == "TB" )
-																size = size * 1024.0 * 1024.0 * 1024.0 * 1024.0;
-														}
-
-														//FIXME - date and time depend on selected locale - this section may need fixing
-														QString datestring = QString ( csvList.at ( 5 ) );
-														QDate date = QDate::fromString ( datestring, "d.M.yyyy" );
-														if ( not date.isValid() )
-															date = QDate::fromString ( datestring, "M/d/yyyy" );
-														QString timestring = QString ( csvList.at ( 6 ) );
-														QTime time = QTime::fromString ( timestring, "h:mm:ss AP" );
-														if ( not time.isValid() )
-															time = QTime::fromString ( timestring, "h:mm:ss" );
-														datetime = QDateTime ( date, time );
-
-														new_medianame = QString ( csvList.at ( 0 ) );
-														//if(*DEBUG_INFO_ENABLED)
-														//	cerr << "importGtktalogCsv new_medianame: " << qPrintable(new_medianame) << endl;
-
-														dirpath = QString ( csvList.at ( 2 ) );
-														//dirpath = dirpath.mid(0, dirpath.length()-1 );
-														if ( pathsep == "\\" )
-															dirpath = dirpath.replace ( "\\", "/" );
-														//if (!dirpath.isEmpty() && dirpath.at(0) != '/')
-														//	dirpath = "/"+dirpath;
-														if ( !dirpath.isEmpty() && dirpath.at ( 0 ) == '/' )
-															dirpath = dirpath.mid ( 1, dirpath.length() - 1 );
-
-														path = dirpath + "/" + filename;
-														//if(*DEBUG_INFO_ENABLED)
-														//	cerr << "importGtktalogCsv path: " << qPrintable(path) << endl;
-														fullpath = path;
-														//if(*DEBUG_INFO_ENABLED)
-														//	cerr << "importGtktalogCsv fullpath: " << qPrintable(fullpath) << endl;
-
-														if ( csvList.size() > 6 )
-															category = QString ( csvList.at ( 7 ) );
-														else
-															category = "";
-														if ( csvList.size() > 9 )
-															comment = QString ( csvList.at ( 9 ) );
-														else
-															comment = QString ( "" );
-
-														if ( *DEBUG_INFO_ENABLED )
-															//if (!validDate)
-														{
-															QString msg;
-															//msg += "line: " + line + "\n";
-															msg += "path: " + path + "\n";
-															msg += "fullpath: " + fullpath + "\n";
-															msg += "size: " + QString().setNum ( size ) + "\n";
-															msg += "sizestring: " + sizestring + "\n";
-															msg += "datestring: " + datestring + "\n";
-															msg += "timestring: " + timestring + "\n";
-															msg += "new_medianame: " + new_medianame + "\n";
-															msg += "directory path: " + dirpath + "\n";
-															msg += "file name: " + filename + "\n";
-															msg += "comment: " + comment + "\n";
-															msg += "category: " + category + "\n";
-															cerr << "msg: \n" << qPrintable ( msg ) << endl;
-															//QMessageBox::warning(0, "line", msg);
-														}
-													}
-													else {
-														if ( csvtype == "whereisit" ) {
-															/*
-															 * format:
-															 * File, Folder or Disk;Ext;Item Size;Item Date;Location;Media Type;Folder;Category;Description;Disk #;Item Time;CRC;Tag;Disk Location;
-															 *
-															 * sample line:
-															 * REBOOTST;EXE;118784;2008-04-14;Biexpp1210;CD-ROM;\DOTNETFX;;Visual Studio RebootSt (7.00.9581);2;12:00:00;0;;;
-															 */
-															if ( linecount < 1 || line.startsWith ( "File, Folder or Disk;Ext;Item Size;Item Da" ) ) {
-																linecount++;
-																continue;
-															}
-															QStringList csvList = line.split ( separator );
-															if ( csvList.count() != 15 ) {
-																if ( *DEBUG_INFO_ENABLED )
-																	cerr << "importGtktalogCsv invalid line (only " << csvList.count() << ") at least 15 fields): " << qPrintable ( line ) << endl;
-																continue;
-															}
-															if ( *DEBUG_INFO_ENABLED ) {
-																cerr << "line: " << qPrintable ( line ) << endl;
-																for ( int i = 0; i < csvList.size(); ++i )
-																	cout << "csvList[" << i << "]: " << csvList.at ( i ).toLocal8Bit().constData() << endl;
-															}
-
-															new_medianame = QString ( csvList.at ( 4 ) );
-															//if(*DEBUG_INFO_ENABLED)
-															//	cerr << "importGtktalogCsv new_medianame: " << qPrintable(new_medianame) << endl;
-
-															filename = QString ( csvList.at ( 0 ) );
-															if ( !QString ( csvList.at ( 1 ) ).isEmpty() && !QString ( csvList.at ( 0 ) ).endsWith ( "." + csvList.at ( 1 ) ) )
-																filename += "." + QString ( csvList.at ( 1 ) );
-															QString sizestring = QString ( csvList.at ( 2 ) );
-															//if(*DEBUG_INFO_ENABLED)
-															//	cerr << "importGtktalogCsv sizestring raw: " <<qPrintable( sizestring) << endl;
-															//QString(csvList.at(3)).stripWhiteSpace();
-															size = QString ( sizestring ).toInt();
-
-															//if(*DEBUG_INFO_ENABLED)
-															//	cerr << "importGtktalogCsv size: " << size << endl;
-
-															QString datestring = QString ( csvList.at ( 3 ) );
-															QString timestring = QString ( csvList.at ( 10 ) );
-															//if (*DEBUG_INFO_ENABLED)
-															//	cerr << "importGtktalogCsv datetimestring: " << qPrintable(datetimestring) << endl;
-															datetimestring = datestring + " " + timestring;
-															// date in format: year-month-dayhour:minute:second
-															QString datesep = "-";
-															int yearindex = datetimestring.indexOf ( datesep );
-															int monthindex = datetimestring.indexOf ( datesep, yearindex + 1 );
-															int dayindex = datetimestring.indexOf ( " ", monthindex + 1 );
-															int hourindex = datetimestring.indexOf ( ":", dayindex + 1 );
-															int minuteindex = datetimestring.indexOf ( ":", hourindex + 1 );
-															int year = ( datetimestring.mid ( 0, yearindex ) ).toInt();
-															QString year_ = ( datetimestring.mid ( 0, yearindex ) );
-															int month = ( datetimestring.mid ( yearindex + 1, monthindex - yearindex - 1 ) ).toInt();
-															int day = ( datetimestring.mid ( monthindex + 1, hourindex - monthindex - 4 ) ).toInt();
-															//bool validDate = date.setYMD( year, month, day );
-															int hour = ( datetimestring.mid ( yearindex + 1, minuteindex - hourindex - 1 ) ).toInt();
-															int minute = ( datetimestring.mid ( hourindex + 1, minuteindex - 1 - hourindex ) ).toInt();
-															int second = ( datetimestring.mid ( minuteindex + 1, datetimestring.length() - 1 ) ).toInt();
-															QDate date ( year, month, day );
-															QTime time ( hour, minute, second );
-															datetime = QDateTime ( date, time );
-															//	int fileindex = fullpath.lastIndexOf ( '/' );
-															//if(*DEBUG_INFO_ENABLED)
-															//      cerr << "importGtktalogCsv fileindex: " << fileindex << endl;
-															dirpath = QString ( csvList.at ( 6 ) );
-															//dirpath = dirpath.mid(0, dirpath.length()-1 );
-															if ( pathsep == "\\" )
-																dirpath = dirpath.replace ( "\\", "/" );
-															//if (!dirpath.isEmpty() && dirpath.at(0) != '/')
-															//	dirpath = "/"+dirpath;
-															if ( !dirpath.isEmpty() && dirpath.at ( 0 ) == '/' )
-																dirpath = dirpath.mid ( 1, dirpath.length() - 1 );
-															path = dirpath + "/" + filename;
-															//if(*DEBUG_INFO_ENABLED)
-															//	cerr << "importGtktalogCsv path: " << qPrintable(path) << endl;
-															fullpath = path;
-															//if(*DEBUG_INFO_ENABLED)
-															//     cerr << "importGtktalogCsv fullpath: " << qPrintable(fullpath) << endl;
-
-															category = QString ( csvList.at ( 7 ) );
-															comment = QString ( csvList.at ( 8 ) );
-															QString tag = QString ( csvList.at ( 12 ) );
-															if ( tag.size() > 0 )
-																comment += tr ( "tag: " ) + tag;
-
-															if ( *DEBUG_INFO_ENABLED )
-																//if (!validDate)
-															{
-																QString msg;
-																//msg += "line: " + line + "\n";
-																msg += "path: " + path + "\n";
-																msg += "fullpath: " + fullpath + "\n";
-																msg += "size: " + QString().setNum ( size ) + "\n";
-																msg += "sizestring: " + sizestring + "\n";
-																msg += "month: " + QString().setNum ( month ) + "\n";
-																msg += "hour: " + QString().setNum ( hour ) + "\n";
-																msg += "minute: " + QString().setNum ( minute ) + "\n";
-																msg += "year: " + QString().setNum ( year ) + "\n";
-																msg += "day: " + QString().setNum ( day ) + "\n";
-																msg += "datetimestring: " + datetimestring + "\n";
-																//msg += "monthstring: " + monthstring + "\n";
-																//msg += "hourstring: " + hourstring + "\n";
-																//msg += "daystring: " + daystring + "\n";
-																msg += "new_medianame: " + new_medianame + "\n";
-																msg += "directory path: " + dirpath + "\n";
-																msg += "file name: " + filename + "\n";
-																msg += "comment: " + comment + "\n";
-																msg += "category: " + category + "\n";
-																msg += "tag: " + tag + "\n";
-																cerr << "msg: " << qPrintable ( msg ) << endl;
-																//QMessageBox::warning(0, "line", msg);
-															}
-														}
-													}
-												}
-											}
-										}
-									}
-								}
+								csvList.append ( buffer.trimmed() );
+								//if(*DEBUG_INFO_ENABLED) {
+								//	cout << "appending field" << endl;
+								//}
+								buffer = "";
 							}
 						}
-						if ( medianame == "" )
-							medianame = new_medianame;
+						else
+							if ( ch == quote ) {
+								if ( in_string ) {
+								}
+								in_string = !in_string;
+							}
+							else {
+								buffer.append ( ch );
+								//if(*DEBUG_INFO_ENABLED) {
+								//	cout << "appending field content to buffer" << endl;
+								//}
+							}
+					}
+					if ( *DEBUG_INFO_ENABLED ) {
+						cerr << "line (fields " << csvList.size() << "): " << qPrintable ( line ) << endl;
+						for ( int i = 0; i < csvList.size(); ++i )
+							cout << "csvList[" << i << "]: " << csvList.at ( i ).toLocal8Bit().constData() << endl;
+					}
 
-						if ( medianame != new_medianame ) {
-							//        QMessageBox::warning (0, "info", medianame);
-							addNewMedia ( medianame, datetime, comment, category, medialines );
-							medialines->clear();
-							medianame = new_medianame;
-							addNewItem ( new_medianame, dirpath, filename, size, datetime, comment, category );
-						}
-						else {
-							//        QMessageBox::warning (0, "info", "new item");
-							addNewItem ( new_medianame, dirpath, filename, size, datetime, comment, category );
-						}
-					}     // valid line
+					if ( csvList.count() != 11  && csvList.count() != 12 ) {
+						if ( *DEBUG_INFO_ENABLED )
+							cerr << "importGtktalogCsv invalid line (only " << csvList.count() << ") at least 11 or 12 fields): " << qPrintable ( line ) << endl;
+						continue;
+					}
+					//if (csvList.size() == 11 )
+					if ( QString ( csvList.at ( 5 ) ) == "Folder" && QString ( csvList.at ( 6 ) ) == "Folder" )
+						continue;
+					//if (csvList.size() > 11 )
+					//	if (QString(csvList.at(11)) == "Folder")
+					//		continue;
+					filename = QString ( csvList.at ( 1 ) );
+
+					//format of size string depends on ADC's Options/Preferences/Genral/Show sizes in KB
+					QString sizestring = QString ( csvList.at ( 4 ) );
+					if ( sizestring.right ( 1 ).at ( 0 ).isDigit() ) //1 234 567
+						size = sizestring.replace ( " ", "" ).toDouble();
+					else {  // 123.456 bytes/KB/MB/GB
+						QStringList sizestringlist = sizestring.split ( " " );
+						QString unit = sizestringlist.last();
+						sizestringlist.removeLast();
+						size = sizestringlist.join ( "" ).toDouble();
+						if ( unit == "KB" )
+							size = size * 1024.0;
+						if ( unit == "MB" )
+							size = size * 1024.0 * 1024.0;
+						if ( unit == "GB" )
+							size = size * 1024.0 * 1024.0 * 1024.0;
+						if ( unit == "TB" )
+							size = size * 1024.0 * 1024.0 * 1024.0 * 1024.0;
+					}
+
+					//FIXME - date and time depend on selected locale - this section may need fixing
+					QString datestring = QString ( csvList.at ( 5 ) );
+					QDate date = QDate::fromString ( datestring, "d.M.yyyy" );
+					if ( not date.isValid() )
+						date = QDate::fromString ( datestring, "M/d/yyyy" );
+					QString timestring = QString ( csvList.at ( 6 ) );
+					QTime time = QTime::fromString ( timestring, "h:mm:ss AP" );
+					if ( not time.isValid() )
+						time = QTime::fromString ( timestring, "h:mm:ss" );
+					datetime = QDateTime ( date, time );
+
+					new_medianame = QString ( csvList.at ( 0 ) );
+					//if(*DEBUG_INFO_ENABLED)
+					//	cerr << "importGtktalogCsv new_medianame: " << qPrintable(new_medianame) << endl;
+
+					dirpath = QString ( csvList.at ( 2 ) );
+					//dirpath = dirpath.mid(0, dirpath.length()-1 );
+					if ( pathsep == "\\" )
+						dirpath = dirpath.replace ( "\\", "/" );
+					//if (!dirpath.isEmpty() && dirpath.at(0) != '/')
+					//	dirpath = "/"+dirpath;
+					if ( !dirpath.isEmpty() && dirpath.at ( 0 ) == '/' )
+						dirpath = dirpath.mid ( 1, dirpath.length() - 1 );
+
+					path = dirpath + "/" + filename;
+					//if(*DEBUG_INFO_ENABLED)
+					//	cerr << "importGtktalogCsv path: " << qPrintable(path) << endl;
+					fullpath = path;
+					//if(*DEBUG_INFO_ENABLED)
+					//	cerr << "importGtktalogCsv fullpath: " << qPrintable(fullpath) << endl;
+
+					if ( csvList.size() > 6 )
+						category = QString ( csvList.at ( 7 ) );
+					else
+						category = "";
+					if ( csvList.size() > 9 )
+						comment = QString ( csvList.at ( 9 ) );
+					else
+						comment = QString ( "" );
+
+					if ( *DEBUG_INFO_ENABLED )
+						//if (!validDate)
+					{
+						QString msg;
+						//msg += "line: " + line + "\n";
+						msg += "path: " + path + "\n";
+						msg += "fullpath: " + fullpath + "\n";
+						msg += "size: " + QString().setNum ( size ) + "\n";
+						msg += "sizestring: " + sizestring + "\n";
+						msg += "datestring: " + datestring + "\n";
+						msg += "timestring: " + timestring + "\n";
+						msg += "new_medianame: " + new_medianame + "\n";
+						msg += "directory path: " + dirpath + "\n";
+						msg += "file name: " + filename + "\n";
+						msg += "comment: " + comment + "\n";
+						msg += "category: " + category + "\n";
+						cerr << "msg: \n" << qPrintable ( msg ) << endl;
+						//QMessageBox::warning(0, "line", msg);
+					}
+				}
+			else if ( csvtype == "whereisit" ) {
+				/*
+					* format:
+					* File, Folder or Disk;Ext;Item Size;Item Date;Location;Media Type;Folder;Category;Description;Disk #;Item Time;CRC;Tag;Disk Location;
+					*
+					* sample line:
+					* REBOOTST;EXE;118784;2008-04-14;Biexpp1210;CD-ROM;\DOTNETFX;;Visual Studio RebootSt (7.00.9581);2;12:00:00;0;;;
+				*/
+				if ( linecount < 1 || line.startsWith ( "File, Folder or Disk;Ext;Item Size;Item Da" ) ) {
 					linecount++;
-					progress->setValue ( linecount );
-					if ( parent->mainw->app->hasPendingEvents() )
-						parent->mainw->app->processEvents();
+					continue;
 				}
-				delete progress;
-				f.close();
-				if ( !medialines->isEmpty() ) {
-					addNewMedia ( medianame, datetime, comment, category, medialines );
-					medialines->clear();
+				QStringList csvList = line.split ( separator );
+				if ( csvList.count() != 15 ) {
+					if ( *DEBUG_INFO_ENABLED )
+						cerr << "importGtktalogCsv invalid line (only " << csvList.count() << ") at least 15 fields): " << qPrintable ( line ) << endl;
+					continue;
+				}
+				if ( *DEBUG_INFO_ENABLED ) {
+					cerr << "line: " << qPrintable ( line ) << endl;
+					for ( int i = 0; i < csvList.size(); ++i )
+						cout << "csvList[" << i << "]: " << csvList.at ( i ).toLocal8Bit().constData() << endl;
 				}
 
-				delete medialines;
-				( db->getRootNode() ) ->touchDB();
-				guislave->panelsON();
-				QApplication::restoreOverrideCursor();
-				QString msg;
-				msg += tr ( "Import was successful." );
-				msg += "\n";
-				if ( mediacount < 2 )
-					msg += tr ( "1 media" ) + ",\n";
-				else
-					msg += QString().setNum ( mediacount ) + " " + QString ( tr ( "media" ) ) + ",\n";
+				new_medianame = QString ( csvList.at ( 4 ) );
+				//if(*DEBUG_INFO_ENABLED)
+				//	cerr << "importGtktalogCsv new_medianame: " << qPrintable(new_medianame) << endl;
 
-				if ( dircount < 2 )
-					msg += QString ( tr ( "1 directory:,\n" ) );
-				else
-					msg += QString().setNum ( dircount ) + " " + QString ( tr ( "directories" ) ) + ",\n";
+				filename = QString ( csvList.at ( 0 ) );
+				if ( !QString ( csvList.at ( 1 ) ).isEmpty() && !QString ( csvList.at ( 0 ) ).endsWith ( "." + csvList.at ( 1 ) ) )
+					filename += "." + QString ( csvList.at ( 1 ) );
+				QString sizestring = QString ( csvList.at ( 2 ) );
+				//if(*DEBUG_INFO_ENABLED)
+				//	cerr << "importGtktalogCsv sizestring raw: " <<qPrintable( sizestring) << endl;
+				//QString(csvList.at(3)).stripWhiteSpace();
+				size = QString ( sizestring ).toInt();
 
-				if ( filecount < 2 )
-					msg += tr ( "1 File" ) + ",\n";
-				else
-					msg += QString().setNum ( filecount ) + " " + QString ( tr ( "files" ) ) + "\n";
+				//if(*DEBUG_INFO_ENABLED)
+				//	cerr << "importGtktalogCsv size: " << size << endl;
 
-				msg += tr ( "are imported." );
+				QString datestring = QString ( csvList.at ( 3 ) );
+				QString timestring = QString ( csvList.at ( 10 ) );
+				//if (*DEBUG_INFO_ENABLED)
+				//	cerr << "importGtktalogCsv datetimestring: " << qPrintable(datetimestring) << endl;
+				datetimestring = datestring + " " + timestring;
+				// date in format: year-month-dayhour:minute:second
+				QString datesep = "-";
+				int yearindex = datetimestring.indexOf ( datesep );
+				int monthindex = datetimestring.indexOf ( datesep, yearindex + 1 );
+				int dayindex = datetimestring.indexOf ( " ", monthindex + 1 );
+				int hourindex = datetimestring.indexOf ( ":", dayindex + 1 );
+				int minuteindex = datetimestring.indexOf ( ":", hourindex + 1 );
+				int year = ( datetimestring.mid ( 0, yearindex ) ).toInt();
+				QString year_ = ( datetimestring.mid ( 0, yearindex ) );
+				int month = ( datetimestring.mid ( yearindex + 1, monthindex - yearindex - 1 ) ).toInt();
+				int day = ( datetimestring.mid ( monthindex + 1, hourindex - monthindex - 4 ) ).toInt();
+				//bool validDate = date.setYMD( year, month, day );
+				int hour = ( datetimestring.mid ( yearindex + 1, minuteindex - hourindex - 1 ) ).toInt();
+				int minute = ( datetimestring.mid ( hourindex + 1, minuteindex - 1 - hourindex ) ).toInt();
+				int second = ( datetimestring.mid ( minuteindex + 1, datetimestring.length() - 1 ) ).toInt();
+				QDate date ( year, month, day );
+				QTime time ( hour, minute, second );
+				datetime = QDateTime ( date, time );
+				//	int fileindex = fullpath.lastIndexOf ( '/' );
+				//if(*DEBUG_INFO_ENABLED)
+				//      cerr << "importGtktalogCsv fileindex: " << fileindex << endl;
+				dirpath = QString ( csvList.at ( 6 ) );
+				//dirpath = dirpath.mid(0, dirpath.length()-1 );
+				if ( pathsep == "\\" )
+					dirpath = dirpath.replace ( "\\", "/" );
+				//if (!dirpath.isEmpty() && dirpath.at(0) != '/')
+				//	dirpath = "/"+dirpath;
+				if ( !dirpath.isEmpty() && dirpath.at ( 0 ) == '/' )
+					dirpath = dirpath.mid ( 1, dirpath.length() - 1 );
+				path = dirpath + "/" + filename;
+				//if(*DEBUG_INFO_ENABLED)
+				//	cerr << "importGtktalogCsv path: " << qPrintable(path) << endl;
+				fullpath = path;
+				//if(*DEBUG_INFO_ENABLED)
+				//     cerr << "importGtktalogCsv fullpath: " << qPrintable(fullpath) << endl;
 
-				QMessageBox::information ( 0, tr ( "Import successful" ), msg );
+				category = QString ( csvList.at ( 7 ) );
+				comment = QString ( csvList.at ( 8 ) );
+				QString tag = QString ( csvList.at ( 12 ) );
+				if ( tag.size() > 0 )
+					comment += tr ( "tag: " ) + tag;
+
+				if ( *DEBUG_INFO_ENABLED )
+					//if (!validDate)
+				{
+					QString msg;
+					//msg += "line: " + line + "\n";
+					msg += "path: " + path + "\n";
+					msg += "fullpath: " + fullpath + "\n";
+					msg += "size: " + QString().setNum ( size ) + "\n";
+					msg += "sizestring: " + sizestring + "\n";
+					msg += "month: " + QString().setNum ( month ) + "\n";
+					msg += "hour: " + QString().setNum ( hour ) + "\n";
+					msg += "minute: " + QString().setNum ( minute ) + "\n";
+					msg += "year: " + QString().setNum ( year ) + "\n";
+					msg += "day: " + QString().setNum ( day ) + "\n";
+					msg += "datetimestring: " + datetimestring + "\n";
+					//msg += "monthstring: " + monthstring + "\n";
+					//msg += "hourstring: " + hourstring + "\n";
+					//msg += "daystring: " + daystring + "\n";
+					msg += "new_medianame: " + new_medianame + "\n";
+					msg += "directory path: " + dirpath + "\n";
+					msg += "file name: " + filename + "\n";
+					msg += "comment: " + comment + "\n";
+					msg += "category: " + category + "\n";
+					msg += "tag: " + tag + "\n";
+					cerr << "msg: " << qPrintable ( msg ) << endl;
+					//QMessageBox::warning(0, "line", msg);
+				}
+			}
+			else if ( csvtype == "generic_plaintext_regex" ) {
+				/*
+				* format (generic):
+				* 
+				* du --all --human-readable --time
+				* 4,0K    2012-11-04 11:00        /etc/sysconfig/lm_sensors
+				* <size>[<unit>]<tab><yyyy-mm-dd><space><hh:ss><tab><path>
+				*
+				* dir /S /B
+				* <path>
+				* 
+				*/
+				if ( linecount < 1 ) {
+					linecount++;
+					continue;
+				}
+				
+				if ( *DEBUG_INFO_ENABLED ) {
+					cerr << "line: " << qPrintable ( line ) << endl;
+				}
+				
+				if (!regex_pattern.exactMatch(line)) {
+					linecount++;
+					if ( *DEBUG_INFO_ENABLED )
+						cerr << "importGtktalogCsv:: invalid line entry found" << endl;
+					continue;
+				}
+				
+				
+				
+				int day =  0;
+				int month =  0;
+				int year =  0;
+				int hour =  0;
+				int minute = 0;
+				int second = 0;
+				QString sizestring;
+				pathsep = QString(QDir::separator ());
+				filename = "";
+				dirpath = "";
+				
+				for(int i=0;i< pattern_list.size(); i++) {
+					QRegExp test_pattern(pattern_list.at(i).pattern);
+					int pattern_index = test_pattern.indexIn(line);
+					int pattern_length = test_pattern.matchedLength();
+					
+					if (pattern_length > 0) {
+						if ( *DEBUG_INFO_ENABLED )
+							cerr << "pattern matched: " << qPrintable(pattern_list.at(i).pattern_name) << " (" << qPrintable(pattern_list.at(i).pattern) << " at " << pattern_index << ", length: " << pattern_length << endl;
+						
+						if (pattern_list.at(i).pattern_name == "%dirseparator%") {
+						}
+						
+						else if (pattern_list.at(i).pattern_name == "%tab%") {
+						}
+						
+						else if (pattern_list.at(i).pattern_name == "%space%") {
+						}
+						
+						else if (pattern_list.at(i).pattern_name == "%filename%") {
+							filename = line.mid(pattern_index, pattern_length);
+							if ( *DEBUG_INFO_ENABLED )
+								cerr << " => filename: " << qPrintable(line.mid(pattern_index, pattern_length)) << endl;
+						}
+						
+						else if (pattern_list.at(i).pattern_name == "%fullpath%") {
+							fullpath = line.mid(pattern_index, pattern_length);
+							QStringList path_split = fullpath.split(pathsep);
+							filename = path_split.last();
+							path_split.removeLast();
+							dirpath = path_split.join(pathsep);
+							if ( *DEBUG_INFO_ENABLED ) {
+								cerr << " => fullpath: " << qPrintable(line.mid(pattern_index, pattern_length)) << endl;
+								cerr << " => filename: " << qPrintable(filename) << endl;
+								cerr << " => dirpath: " << qPrintable(dirpath) << endl;
+							}
+						}
+						else if (pattern_list.at(i).pattern_name == "%size_human%") {
+							sizestring = line.mid(pattern_index, pattern_length);
+							QRegExp unit_test_pattern("[bBkKmMgGtT]");
+							int unit_pattern_index = unit_test_pattern.indexIn(sizestring.right(1));
+							int unit_pattern_length = unit_test_pattern.matchedLength();
+							if (unit_pattern_length > 0) {
+								
+								size = line.mid(pattern_index, pattern_length-1).replace(",", ".").toFloat();
+								if ( *DEBUG_INFO_ENABLED )
+									cerr << "size with unit sizestring size: " << qPrintable(line.mid(pattern_index, pattern_length-1)) << endl;
+								QString unit_string = sizestring.right(1);
+								
+								if ( *DEBUG_INFO_ENABLED )
+									cerr << "size with unit sizestring unit: " << qPrintable(unit_string) << endl;
+								
+								if (unit_string.toLower() == "b")
+									sizefactor = 1;
+								else if (unit_string.toLower() == "k")
+									sizefactor = SIZE_ONE_KBYTE;
+								else if (unit_string.toLower() == "M")
+									sizefactor = SIZE_ONE_MBYTE;
+								else if (unit_string.toLower() == "G")
+									sizefactor = SIZE_ONE_GBYTE;
+								else if (unit_string.toLower() == "T")
+									sizefactor = SIZE_ONE_TBYTE;
+								
+								size = size * sizefactor;
+							}
+							else {
+								
+								size = line.mid(pattern_index, pattern_length).toInt();
+								//cerr << "sizestring size: " << qPrintable(line.mid(pattern_index, pattern_length)) << endl;
+							}
+						}
+						
+						else if (pattern_list.at(i).pattern_name == "%sizeb%") {
+							sizestring = line.mid(pattern_index, pattern_length);
+							size = line.mid(pattern_index, pattern_length).toInt();
+						}
+						
+						else if (pattern_list.at(i).pattern_name == "%sizekb%") {
+							sizefactor = 1024;
+							sizestring = line.mid(pattern_index, pattern_length);
+							size = line.mid(pattern_index, pattern_length).replace(",", ".").toFloat();
+							size = size * sizefactor;
+						}
+						
+						else if (pattern_list.at(i).pattern_name == "%dateyear2%") {
+							// 12-05-13
+							QString datestring = line.mid(pattern_index, pattern_length);
+							QStringList datestring_split = datestring.split("-");
+							if (datestring_split.size() == 3) {
+								year = ( datestring_split.at(0) ).toInt();
+								month = ( datestring_split.at(1) ).toInt();
+								day = ( datestring_split.at(2) ).toInt();
+							}
+						}
+						
+						else if (pattern_list.at(i).pattern_name == "%dateyear4%") {
+							// 2012-05-13
+							QString datestring = line.mid(pattern_index, pattern_length);
+							QStringList datestring_split = datestring.split("-");
+							if (datestring_split.size() == 3) {
+								year = ( datestring_split.at(0) ).toInt();
+								month = ( datestring_split.at(1) ).toInt();
+								day = ( datestring_split.at(2) ).toInt();
+							}
+						}
+						
+						else if (pattern_list.at(i).pattern_name == "%time_full%") {
+							// 23:27:13
+							QString timestring = line.mid(pattern_index, pattern_length);
+							QStringList timestring_split = timestring.split(":");
+							if (timestring_split.size() == 3) {
+								hour = ( timestring_split.at(0) ).toInt();
+								minute = ( timestring_split.at(1) ).toInt();
+								second = ( timestring_split.at(2) ).toInt();
+							}
+						}
+						
+						else if (pattern_list.at(i).pattern_name == "%time_hm%") {
+							// 23:27
+							QString timestring = line.mid(pattern_index, pattern_length);
+							QStringList timestring_split = timestring.split(":");
+							if (timestring_split.size() == 2) {
+								hour = ( timestring_split.at(0) ).toInt();
+								minute = ( timestring_split.at(1) ).toInt();
+								second = 0;
+							}
+						}
+						
+					// strip already processed
+						line = line.right(line.size()-pattern_length);
+						//cerr << "line mod " << qPrintable( line ) << endl;
+					}
+				}
+				
+
+
+				//if(*DEBUG_INFO_ENABLED)
+				//     cerr << "importGtktalogCsv size: " << size << endl;
+
+				
+				QDate date ( year, month, day );
+				QTime time ( hour, minute, second );
+				datetime = QDateTime ( date, time );
+				
+				if(extra_media_name.isEmpty())
+					extra_media_name = tr("importedMedia_")+QDateTime::currentDateTimeUtc().toString().replace(":", "").replace(" ", "_");
+				new_medianame = QString ( extra_media_name );
+				
+				//if(*DEBUG_INFO_ENABLED)
+				//     cerr << "importGtktalogCsv new_medianame: " << qPrintable(new_medianame) << endl;
+				
+				
+				if ( pathsep == "\\" )
+					dirpath = dirpath.replace ( "\\", "/" );
+				
+				
+				//if(*DEBUG_INFO_ENABLED)
+				//     cerr << "importGtktalogCsv path: " << qPrintable(fullpath) << endl;
+
+				//if(*DEBUG_INFO_ENABLED)
+				//     cerr << "importGtktalogCsv fullpath: " << qPrintable(fullpath) << endl;
+
+				category = "";
+				comment = "";
+
+				if ( *DEBUG_INFO_ENABLED )
+					//if (!validDate)
+				{
+					QString msg;
+					//        msg += "line: " + line + "\n";
+					msg += "path: " + path + "\n";
+					msg += "fullpath: " + fullpath + "\n";
+					msg += "size: " + QString().setNum ( size ) + "\n";
+					msg += "sizestring: " + sizestring + "\n";
+					msg += "month: " + QString().setNum ( month ) + "\n";
+					msg += "hour: " + QString().setNum ( hour ) + "\n";
+					msg += "minute: " + QString().setNum ( minute ) + "\n";
+					msg += "year: " + QString().setNum ( year ) + "\n";
+					msg += "day: " + QString().setNum ( day ) + "\n";
+					msg += "datetimestring: " + datetimestring + "\n";
+					//        msg += "monthstring: " + monthstring + "\n";
+					//        msg += "hourstring: " + hourstring + "\n";
+					//        msg += "daystring: " + daystring + "\n";
+					msg += "new_medianame: " + new_medianame + "\n";
+					msg += "directory path: " + dirpath + "\n";
+					msg += "file name: " + filename + "\n";
+					msg += "comment: " + comment + "\n";
+					msg += "category: " + category + "\n";
+					cerr << "msg: " << qPrintable ( msg ) << endl;
+					//QMessageBox::warning(0, "line", msg);
+				}
 			}
 			else {
-				if ( f.error() == QFile::ReadError)
-					QMessageBox::critical ( 0, tr ( "file read error" ), tr ( "Could not read file" ) );
-
-				if ( f.error() == QFile::FatalError )
-					QMessageBox::critical ( 0, tr ( "Fatal error" ), tr ( "Fatal error occured." ) );
-
-				if ( f.error() == QFile::OpenError )
-					QMessageBox::critical ( 0, tr ( "file open error" ), tr ( "Could not open file" ) );
+				QMessageBox::warning (0, tr("unknown import type"), tr("unknown import type: %1").arg(csvtype));
+				return;
 			}
-		} // file dialog canceled
+			
+			if ( medianame == "" )
+				medianame = new_medianame;
+			
+			if ( medianame != new_medianame ) {
+				//        QMessageBox::warning (0, "info", medianame);
+				addNewMedia ( medianame, datetime, comment, category, medialines );
+				medialines->clear();
+				medianame = new_medianame;
+				addNewItem ( new_medianame, dirpath, filename, size, datetime, comment, category );
+			}
+			else {
+				//        QMessageBox::warning (0, "info", "new item");
+				addNewItem ( new_medianame, dirpath, filename, size, datetime, comment, category );
+			}
+		}     // valid line
+		linecount++;
+		progress->setValue ( linecount );
+		if ( parent->mainw->app->hasPendingEvents() )
+			parent->mainw->app->processEvents();
 	}
+	delete progress;
+	f.close();
+	if ( !medialines->isEmpty() ) {
+		comment = tr("Imported from %1 (CSV import).").arg(import_filename);
+		addNewMedia ( medianame, datetime, comment, category, medialines );
+		medialines->clear();
+	}
+
+	delete medialines;
+	( db->getRootNode() ) ->touchDB();
+	guislave->panelsON();
+	QApplication::restoreOverrideCursor();
+	QString msg;
+	msg += tr ( "Import was successful." );
+	msg += "\n";
+	if ( mediacount < 2 )
+		msg += tr ( "1 media" ) + ",\n";
+	else
+		msg += QString().setNum ( mediacount ) + " " + QString ( tr ( "media" ) ) + ",\n";
+
+	if ( dircount < 2 )
+		msg += QString ( tr ( "1 directory:,\n" ) );
+	else
+		msg += QString().setNum ( dircount ) + " " + QString ( tr ( "directories" ) ) + ",\n";
+
+	if ( filecount < 2 )
+		msg += tr ( "1 File" ) + ",\n";
+	else
+		msg += QString().setNum ( filecount ) + " " + QString ( tr ( "files" ) ) + "\n";
+
+	msg += tr ( "are imported." );
+
+	QMessageBox::information ( 0, tr ( "Import successful" ), msg );
 }
 
 importGtktalogCsv::~importGtktalogCsv() {}
@@ -1427,7 +1713,11 @@ int importGtktalogCsv::addNewMedia ( QString new_medianame, QDateTime media_modi
 
 		if ( !obj.getPath().isEmpty() ) {
 			path += "/";
-			dirindex = path.indexOf ( "/" );
+			
+			//if(*DEBUG_INFO_ENABLED)
+			//	cerr << "importGtktalogCsv::addNewMedia medialine: " << i << endl;
+			
+			dirindex = path.indexOf ( "/", 1 );
 			while ( dirindex != -1 ) {
 
 				QString dir = path.mid ( startindex, dirindex - startindex );
@@ -2745,6 +3035,8 @@ import::import ( GuiSlave * parent ) {
 	int type = -1;
 	ImportDialog *d = new ImportDialog ( 0 );
 	d->setLastDir ( parent->mainw->cconfig->lastDir );
+	QString mypattern = "%size_human%%tab%%dateyear4%%space%%time_hm%%tab%%fullpath%";
+	d->genericRegex_lineedit->setText(mypattern);
 	d->exec();
 
 	if ( d->OK == 1 ) {
@@ -2756,7 +3048,7 @@ import::import ( GuiSlave * parent ) {
 		correctbadstyle = d->correctbadstyle;
 		separator = d->separator;
 		type = d->type;
-
+		mypattern = d->genericRegex_lineedit->text();
 		delete d;
 
 		if ( type == 0 )
@@ -2792,7 +3084,12 @@ import::import ( GuiSlave * parent ) {
 												if ( type == 10 )
 													importGtktalogCsv import ( parent, separator, filename, createdatabase, false, "whereisit" );
 												else {
-													//    cerr << "wrong type!!!" << endl;
+													if ( type == 11 ) {
+														importGtktalogCsv import ( parent, separator, filename, createdatabase, false, "generic_plaintext_regex", mypattern);
+													}
+													else {
+														//    cerr << "wrong type!!!" << endl;
+													}
 												}
 	}
 }

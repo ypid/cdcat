@@ -1,42 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1">
-<context>
-    <name></name>
-    <message>
-        <location filename="../dbase.cpp" line="185"/>
-        <source>Not available</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
+<!DOCTYPE TS>
+<TS version="2.0">
 <context>
     <name>AddLnk</name>
     <message>
-        <location filename="../adddialog.cpp" line="766"/>
+        <location filename="../adddialog.cpp" line="+766"/>
         <source>Cancel</source>
         <translation type="unfinished">Ακύρωση</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="767"/>
+        <location line="+1"/>
         <source>Ok</source>
         <translation type="unfinished">Ok</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="784"/>
+        <location line="+17"/>
         <source>CdCat databases (*.hcf )</source>
         <translation type="unfinished">Βάσεις CdCat (*.hcf)</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="784"/>
+        <location line="+0"/>
         <source>Open a file...</source>
         <translation type="unfinished">Άνοιγμα αρχείου...</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="763"/>
+        <location line="-21"/>
         <source>Add a &quot;Catalog Link&quot; to the database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="764"/>
+        <location line="+1"/>
         <source>Location of the .hcf file:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -44,70 +37,70 @@
 <context>
     <name>ArchiveFile</name>
     <message>
-        <location filename="../dbase.h" line="283"/>
+        <location filename="../dbase.h" line="+283"/>
         <source>unknown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.h" line="283"/>
+        <location line="+0"/>
         <source></source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
     <name>CatalogTypeEditDialog</name>
     <message>
-        <location filename="../guibase.cpp" line="3138"/>
+        <location filename="../guibase.cpp" line="+3138"/>
         <source>Change media type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="3139"/>
+        <location line="+1"/>
         <source>Change type of media</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="3141"/>
+        <location line="+2"/>
         <source>CD</source>
         <translation type="unfinished">CD</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="3142"/>
+        <location line="+1"/>
         <source>DVD</source>
         <translation type="unfinished">DVD</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="3143"/>
+        <location line="+1"/>
         <source>HardDisc</source>
         <translation type="unfinished">Σκληρός δίσκος</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="3144"/>
+        <location line="+1"/>
         <source>Floppy</source>
         <translation type="unfinished">Δισκέτα</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="3145"/>
+        <location line="+1"/>
         <source>NetworkPlace</source>
         <translation type="unfinished">Περιοχή δικτύου</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="3146"/>
+        <location line="+1"/>
         <source>FlashDrive</source>
         <translation type="unfinished">Δίσκος Flash</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="3147"/>
+        <location line="+1"/>
         <source>OtherDevice</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="3150"/>
+        <location line="+3"/>
         <source>Cancel</source>
         <translation type="unfinished">Ακύρωση</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="3151"/>
+        <location line="+1"/>
         <source>OK</source>
         <translation type="unfinished">Ok</translation>
     </message>
@@ -115,12 +108,12 @@
 <context>
     <name>CdCatConfig</name>
     <message>
-        <location filename="../config.cpp" line="213"/>
+        <location filename="../config.cpp" line="+212"/>
         <source>Error during autoload...</source>
         <translation>Σφάλμα κατά την φόρτωση...</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="215"/>
+        <location line="+2"/>
         <source>I can&apos;t open the autoload catalog.
 Check the file, or change the autoload option in the config dialog!
 </source>
@@ -128,56 +121,53 @@ Check the file, or change the autoload option in the config dialog!
 Ελέγχεστε το αρχείο ή αλλάξτε την επιλόγη φόρτωσης στο πλαίσιο ρυθμίσεων!</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Ok</source>
         <translation type="obsolete">Ok</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Error during write config...</source>
         <translation type="obsolete">Σφάλμα κατά την ρύθμιση εγγραφής...</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>I can&apos;t get the HOME environment variable.
 It is necessary couse I&apos;d like to save the config file into your home directory.</source>
         <translation type="obsolete">Αδυναμία της μεταβλητής HOME.
 Απαραίτητο για την αποθήκευση του αρχείου ρυθμίσεων στον κατάλογο home.</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>I can&apos;t create or rewrite the ./cdcat.cfg                      </source>
         <translation type="obsolete">Αδυναμία στη δημιουργία ή στην επανεγγραφή του ./cdcat.cfg</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>I can&apos;t create or rewrite the $(HOME)/.cdcatconfig                      </source>
         <translation type="obsolete">Αδυναμία στη δημιουργία ή στην επανεγγραφή του $(HOME)/.cdcatconfig</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="215"/>
+        <location line="-1"/>
         <source>I can&apos;t open the autoload catalog according the first command line parameter.
 Check the file!
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1347"/>
+        <location line="+1133"/>
         <source>I can&apos;t create or rewrite the ./cdcat.cfg file </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1349"/>
+        <location line="+2"/>
         <source>I can&apos;t create or rewrite the $(HOME)/.cdcatconfig file </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1349"/>
+        <location line="-378"/>
+        <location line="+376"/>
+        <location line="+2"/>
         <source>Error while saving config file...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="972"/>
+        <location line="-377"/>
         <source>I can&apos;t get the $HOME environment variable.
 It is necessary because I&apos;d like to save the config file into your home directory.</source>
         <translation type="unfinished"></translation>
@@ -186,572 +176,690 @@ It is necessary because I&apos;d like to save the config file into your home dir
 <context>
     <name>CdCatMainWidget</name>
     <message>
-        <location filename="" line="0"/>
         <source>No selected item</source>
         <translation type="obsolete">Μη επιλέγμενο αντικείμενο</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="646"/>
+        <location filename="../mainwidget.cpp" line="+89"/>
+        <location line="+557"/>
         <source>Directory Tree</source>
         <translation>Directory Tree</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="649"/>
+        <location line="-551"/>
+        <location line="+554"/>
         <source>Name</source>
         <translation>Όνομα</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="650"/>
+        <location line="-553"/>
+        <location line="+554"/>
         <source>Size</source>
         <translation>Μέγεθος</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="171"/>
         <source>New...</source>
         <translation type="obsolete">Νέο...</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="172"/>
         <source>Open...</source>
         <translation type="obsolete">Άνοιγμα...</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="173"/>
         <source>Save</source>
         <translation type="obsolete">Αποθήκευση</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="174"/>
         <source>Save As...</source>
         <translation type="obsolete">Αποθήκευση ως...</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="177"/>
         <source>Close</source>
         <translation type="obsolete">Κλείσιμο</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="187"/>
         <source>Quit</source>
         <translation type="obsolete">Έξοδος</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="677"/>
+        <location line="-430"/>
+        <location line="+457"/>
         <source>Add media...</source>
         <translation>Προσθήκη μέσου...</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="681"/>
+        <location line="-442"/>
+        <location line="+446"/>
         <source>Rescan media...</source>
         <translation>Επανανίχνευση μέσου...</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="683"/>
+        <location line="-437"/>
+        <location line="+439"/>
         <source>Insert Catalog...</source>
         <translation>Εισαγωγή καταλόγου...</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="687"/>
+        <location line="-422"/>
+        <location line="+426"/>
         <source>Rename node...</source>
         <translation>Μετονομασία node...</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="693"/>
+        <location line="-405"/>
+        <location line="+1"/>
+        <location line="+2"/>
+        <location line="+407"/>
+        <location line="+1"/>
         <source>Delete node</source>
         <translation>Διαγραφή node</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="578"/>
         <source>Sort media by number</source>
         <translation type="obsolete">Ταξινόμηση μέσου κατά αριθμό</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="307"/>
+        <location line="-386"/>
         <source>Sort media by name</source>
         <translation>Ταξινόμηση μέσου κατά όνομα</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="202"/>
         <source>Sort media by type</source>
         <translation type="obsolete">Ταξινόμηση μέσου κατά τύπο</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="582"/>
         <source>Sort media by time</source>
         <translation type="obsolete">Ταξινόμηση μέσου χρονικά</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="718"/>
+        <location line="+71"/>
+        <location line="+340"/>
         <source>Seek in database...</source>
         <translation>Αναζήτηση στη βάση...</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="724"/>
+        <location line="-319"/>
+        <location line="+325"/>
         <source>Node size</source>
         <translation>Μέγεθος node</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="726"/>
+        <location line="-318"/>
+        <location line="+320"/>
         <source>Configuration...</source>
         <translation>Ρυθμίσεις...</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="735"/>
+        <location line="-593"/>
+        <location line="+301"/>
+        <location line="+1"/>
+        <location line="+2"/>
+        <location line="+206"/>
+        <location line="+91"/>
+        <location line="+1"/>
         <source>Help</source>
         <translation>Βοήθεια</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="514"/>
         <source>About</source>
         <translation type="obsolete">Σχετικά</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="350"/>
         <source>Catalog</source>
         <translation type="obsolete">Κατάλογος</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="638"/>
+        <location line="-612"/>
+        <location line="+515"/>
         <source>Edit</source>
         <translation>Επεξεργασία</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="642"/>
+        <location line="-507"/>
+        <location line="+511"/>
         <source>Others</source>
         <translation>Άλλα</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="747"/>
+        <location line="-8"/>
+        <location line="+113"/>
         <source>Hyper&apos;s CD Catalogizer</source>
         <translation>Hyper&apos;s CD Catalogizer</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="493"/>
         <source>Open a catalog from a file.</source>
         <translation type="obsolete">Άνοιγμα καταλόγου από αρχείο.</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Save all modification to the disc.</source>
         <translation type="obsolete">Αποθήκευση όλων των τροποποίησεων στο δίσκο.</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Save the full catalog to file.</source>
         <translation type="obsolete">Αποθήκευση όλου του καταλόγου στο δίσκο.</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="499"/>
         <source>Close the actual catalog.</source>
         <translation type="obsolete">Κλείσιμο του παρόντος καταλόγου.</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="501"/>
         <source>Add a new media to the catalog.</source>
         <translation type="obsolete">Προσθήκη νέου μέσου στον κατάλογο.</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Rescan the selected media from the disk.</source>
         <translation type="obsolete">Επανανίχνευση επιλεγμένων μέσων από το δίσκο.</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Delete the selected media from the catalog.</source>
         <translation type="obsolete">Διαγραφή του επιλέγμενου μέσου από τον κατάλογο.</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="507"/>
         <source>Configuration of the program.</source>
         <translation type="obsolete">Ρυθμίσεις του προγράμματος.</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="511"/>
         <source>Create a new, empty catalog and close the previous.</source>
         <translation type="obsolete">Δημιουργία νέου,κενού καταλόγου και κλείσιμο προηγούμενου.</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="513"/>
         <source>Search an element in the database(catalog).You can search filenames, directory names, name parts or mp3 tags etc...</source>
         <translation type="obsolete">Αναζήτηση στοιχείου στη βάση(κατάλογο).Δυνατότητα αναζήτησης βάσει ονομάτων αρχείων,ονομάτων καταλόγων ή ετικέτες mp3 κτλ...</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="369"/>
         <source>Search an element.</source>
         <translation type="obsolete">Αναζήτηση στοιχείου.</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Import from csv</source>
         <translation type="obsolete">Εισαγωγή από csv</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="672"/>
+        <location line="-557"/>
+        <location line="+482"/>
         <source>Recent files...</source>
         <translation>Πρόσφατα αρχεία...</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Export database</source>
         <translation type="obsolete">Εξάγωγή βάσης</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="641"/>
+        <location line="-543"/>
+        <location line="+512"/>
         <source>Import/Export</source>
         <translation>Εισαγωγή/Εξάγωγή</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="689"/>
+        <location line="-373"/>
+        <location line="+421"/>
         <source>Re-Number media node...</source>
         <translation>Επαναρίθμηση node...</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="723"/>
+        <location line="-297"/>
+        <location line="+330"/>
+        <location line="+1"/>
         <source>Borrowing info...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="728"/>
+        <location line="-310"/>
+        <location line="+315"/>
         <source>Set Colors...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="721"/>
+        <location line="-343"/>
+        <location line="+1"/>
+        <location line="+2"/>
+        <location line="+332"/>
+        <location line="+1"/>
         <source>Seek in the panel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="738"/>
+        <location line="-266"/>
+        <location line="+283"/>
         <source>About Qt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="679"/>
+        <location line="-510"/>
+        <location line="+451"/>
         <source>Add a link to a CdCat Catalog...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="799"/>
+        <location line="+120"/>
         <source>Scanning:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="730"/>
+        <location line="-379"/>
+        <location line="+310"/>
         <source>Import database (CSV/XML)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="733"/>
+        <location line="-303"/>
+        <location line="+1"/>
+        <location line="+2"/>
+        <location line="+302"/>
+        <location line="+1"/>
         <source>Export database (CSV/HTML/XML)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="640"/>
+        <location line="-606"/>
+        <location line="+513"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="655"/>
+        <location line="-505"/>
+        <location line="+520"/>
         <source>&amp;New...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="656"/>
+        <location line="-518"/>
+        <location line="+519"/>
         <source>Create a new catalog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="657"/>
+        <location line="-515"/>
+        <location line="+516"/>
         <source>&amp;Open...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="658"/>
+        <location line="-514"/>
+        <location line="+515"/>
         <source>Open a existing catalog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="659"/>
+        <location line="-511"/>
+        <location line="+512"/>
         <source>&amp;Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="660"/>
+        <location line="-510"/>
+        <location line="+511"/>
         <source>Save catalog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="661"/>
+        <location line="-507"/>
+        <location line="+508"/>
         <source>&amp;Save as...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="662"/>
+        <location line="-506"/>
+        <location line="+507"/>
         <source>save catalog with new name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="674"/>
+        <location line="-459"/>
+        <location line="+1"/>
+        <location line="+2"/>
+        <location line="+467"/>
+        <location line="+1"/>
         <source>Close catalog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="821"/>
+        <location line="-462"/>
+        <location line="+463"/>
+        <location line="+70"/>
+        <location line="+76"/>
         <source>&amp;Quit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="676"/>
+        <location line="-608"/>
+        <location line="+2"/>
+        <location line="+461"/>
         <source>Close program</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="678"/>
+        <location line="-455"/>
+        <location line="+2"/>
+        <location line="+455"/>
         <source>Add new media to catalog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="680"/>
+        <location line="-449"/>
+        <location line="+2"/>
+        <location line="+449"/>
         <source>Add a link to a existing cdcat catalog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="682"/>
+        <location line="-444"/>
+        <location line="+2"/>
+        <location line="+444"/>
         <source>Rescan existing media</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="684"/>
+        <location line="-437"/>
+        <location line="+2"/>
+        <location line="+437"/>
         <source>Insert catalog into database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="688"/>
+        <location line="-422"/>
+        <location line="+2"/>
+        <location line="+424"/>
         <source>Rename node</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="690"/>
+        <location line="-419"/>
+        <location line="+2"/>
+        <location line="+419"/>
         <source>Renumber node</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="719"/>
+        <location line="-311"/>
+        <location line="+2"/>
+        <location line="+338"/>
         <source>Seek in database for files and folders</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="725"/>
+        <location line="-319"/>
+        <location line="+2"/>
+        <location line="+323"/>
         <source>Calculate node size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="727"/>
+        <location line="-318"/>
+        <location line="+2"/>
+        <location line="+318"/>
         <source>Edit cdcat configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="729"/>
+        <location line="-313"/>
+        <location line="+2"/>
+        <location line="+313"/>
         <source>Set the colors for display</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="731"/>
+        <location line="-308"/>
+        <location line="+2"/>
+        <location line="+308"/>
         <source>Import database (CSV/XML) from various catalog programs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="737"/>
+        <location line="-283"/>
+        <location line="+1"/>
+        <location line="+2"/>
+        <location line="+285"/>
+        <location line="+1"/>
         <source>About Cdcat</source>
         <translation type="unfinished">Σχετικά με το CdCat</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="739"/>
+        <location line="-281"/>
+        <location line="+2"/>
+        <location line="+281"/>
         <source>About the Qt toolkit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="812"/>
+        <location line="+3"/>
+        <location line="+70"/>
         <source>Mi&amp;nimize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="815"/>
+        <location line="-69"/>
+        <location line="+72"/>
         <source>Ma&amp;ximize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="818"/>
+        <location line="-71"/>
+        <location line="+74"/>
         <source>&amp;Restore</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="920"/>
+        <location line="-340"/>
+        <location line="+263"/>
+        <location line="+179"/>
         <source>Cdcat - idle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="81"/>
+        <location line="-839"/>
         <source>Main toolbar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="109"/>
+        <location line="+28"/>
         <source>Comment dock</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="710"/>
+        <location line="+233"/>
+        <location line="+368"/>
         <source>view tool bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="711"/>
+        <location line="-367"/>
+        <location line="+2"/>
+        <location line="+366"/>
         <source>View tool bar in main window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="712"/>
+        <location line="-360"/>
+        <location line="+361"/>
         <source>view status bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="713"/>
+        <location line="-360"/>
+        <location line="+2"/>
+        <location line="+359"/>
         <source>View status bar in main window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="714"/>
+        <location line="-353"/>
+        <location line="+354"/>
         <source>view comment dock</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="715"/>
+        <location line="-353"/>
+        <location line="+2"/>
+        <location line="+352"/>
         <source>show comment dock</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="639"/>
+        <location line="-590"/>
+        <location line="+514"/>
         <source>View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="717"/>
+        <location line="-270"/>
+        <location line="+1"/>
+        <location line="+2"/>
+        <location line="+344"/>
+        <location line="+1"/>
         <source>show systray icon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="637"/>
+        <location line="-596"/>
+        <location line="+516"/>
         <source>File</source>
         <translation type="unfinished">Αρχείο</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="651"/>
+        <location line="+14"/>
         <source>Type</source>
         <translation type="unfinished">Τύπος</translation>
     </message>
     <message>
-        <location filename="../mainwidget.h" line="94"/>
+        <location filename="../mainwidget.h" line="+94"/>
         <source>processing file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="695"/>
+        <location filename="../mainwidget.cpp" line="-361"/>
+        <location line="+1"/>
+        <location line="+2"/>
+        <location line="+12"/>
+        <location line="+389"/>
+        <location line="+1"/>
         <source>Sort media by number (ascending)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="697"/>
+        <location line="-398"/>
+        <location line="+1"/>
+        <location line="+2"/>
+        <location line="+396"/>
+        <location line="+1"/>
         <source>Sort media by number (descending)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="703"/>
+        <location line="-379"/>
+        <location line="+2"/>
+        <location line="+382"/>
+        <location line="+1"/>
         <source>Sort media by time (ascending)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="705"/>
+        <location line="-379"/>
+        <location line="+2"/>
+        <location line="+378"/>
+        <location line="+1"/>
         <source>Sort media by time (descending)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="699"/>
+        <location line="-401"/>
+        <location line="+394"/>
+        <location line="+1"/>
         <source>Sort media by name (ascending)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="701"/>
+        <location line="-388"/>
+        <location line="+1"/>
+        <location line="+2"/>
+        <location line="+386"/>
+        <location line="+1"/>
         <source>Sort media by name (descending)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="707"/>
+        <location line="-371"/>
+        <location line="+2"/>
+        <location line="+374"/>
+        <location line="+1"/>
         <source>Sort media by type (ascending)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="709"/>
+        <location line="-371"/>
+        <location line="+2"/>
+        <location line="+370"/>
+        <location line="+1"/>
         <source>Sort media by type (descending)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="685"/>
+        <location line="-24"/>
         <source>Insert Cdcat XML export...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="686"/>
+        <location line="+1"/>
         <source>Insert Cdcat XML export</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="251"/>
+        <location line="-435"/>
         <source>Insert Cdcat export XML...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="254"/>
+        <location line="+1"/>
+        <location line="+2"/>
         <source>Insert Cdcat exported XML into database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="664"/>
+        <location line="-94"/>
+        <location line="+504"/>
         <source>Change password...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="665"/>
+        <location line="-502"/>
+        <location line="+503"/>
         <source>Changes password for catalog encryption</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="666"/>
+        <location line="-498"/>
+        <location line="+499"/>
         <source>Disable encryption</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="667"/>
+        <location line="-497"/>
+        <location line="+498"/>
         <source>Disables catalog encryption</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="668"/>
+        <location line="-493"/>
+        <location line="+494"/>
         <source>Enable encryption</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="669"/>
+        <location line="-492"/>
+        <location line="+493"/>
         <source>Enables catalog encryption</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="395"/>
+        <location line="-276"/>
+        <location line="+2"/>
         <source>Borrowing info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="444"/>
+        <location line="+46"/>
+        <location line="+1"/>
+        <location line="+2"/>
         <source>Key bindings</source>
         <translation type="unfinished"></translation>
     </message>
@@ -759,12 +867,12 @@ It is necessary because I&apos;d like to save the config file into your home dir
 <context>
     <name>ColorSchemePreview</name>
     <message>
-        <location filename="../colorsettings.cpp" line="71"/>
+        <location filename="../colorsettings.cpp" line="+71"/>
         <source>Title:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../colorsettings.cpp" line="73"/>
+        <location line="+2"/>
         <source>Road To Hell</source>
         <translation type="unfinished"></translation>
     </message>
@@ -772,57 +880,57 @@ It is necessary because I&apos;d like to save the config file into your home dir
 <context>
     <name>ColorSettings</name>
     <message>
-        <location filename="../colorsettings.cpp" line="221"/>
+        <location line="+148"/>
         <source>ColorSettings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../colorsettings.cpp" line="223"/>
+        <location line="+2"/>
         <source>Comment area background and the file higlighting line</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../colorsettings.cpp" line="224"/>
+        <location line="+1"/>
         <source>Frame of comment area</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../colorsettings.cpp" line="225"/>
+        <location line="+1"/>
         <source>Comment window static text (Program text)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../colorsettings.cpp" line="226"/>
+        <location line="+1"/>
         <source>Comment window variable text (Data)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../colorsettings.cpp" line="227"/>
+        <location line="+1"/>
         <source>color</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../colorsettings.cpp" line="228"/>
+        <location line="+1"/>
         <source>Red:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../colorsettings.cpp" line="229"/>
+        <location line="+1"/>
         <source>Green:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../colorsettings.cpp" line="230"/>
+        <location line="+1"/>
         <source>Blue:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../colorsettings.cpp" line="231"/>
+        <location line="+1"/>
         <source>Ok</source>
         <translation type="unfinished">Ok</translation>
     </message>
     <message>
-        <location filename="../colorsettings.cpp" line="232"/>
+        <location line="+1"/>
         <source>Cancel</source>
         <translation type="unfinished">Ακύρωση</translation>
     </message>
@@ -830,252 +938,265 @@ It is necessary because I&apos;d like to save the config file into your home dir
 <context>
     <name>CommentWidget</name>
     <message>
-        <location filename="../commwidget.cpp" line="88"/>
+        <location filename="../commwidget.cpp" line="+88"/>
         <source>Edit and refresh the actual comment page.</source>
         <translation>Επεξεργασία και ανανεώση της παρούσης σελίδας σχολίων.</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="182"/>
+        <location line="+93"/>
+        <location line="+1"/>
         <source>Upper container! (..)</source>
         <translation>Upper container! (..)</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>name:</source>
         <translation type="obsolete">όνομα:</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>type:</source>
         <translation type="obsolete">τύπος:</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="239"/>
+        <location line="+57"/>
         <source> CdCat Catalog root</source>
         <translation>Βασικός Κατάλογος CdCat</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="245"/>
+        <location line="+6"/>
         <source> Directory</source>
         <translation>Κατάλογος</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="248"/>
+        <location line="+3"/>
         <source> File</source>
         <translation>Αρχείο</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="251"/>
+        <location line="+3"/>
         <source>Media</source>
         <translation>Μέσο</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="265"/>
+        <location line="+13"/>
+        <location line="+1"/>
         <source>Size:</source>
         <translation>Μέγεθος:</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Last moification:</source>
         <translation type="obsolete">Τελευταία τροποποιήση:</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="328"/>
+        <location line="+62"/>
+        <location line="+1"/>
         <source>Owner:</source>
         <translation>Ιδιοκτήτης:</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="336"/>
+        <location line="-116"/>
+        <location line="+124"/>
         <source>Unknown</source>
         <translation>Άγνωστο</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Media (number/name):</source>
         <translation type="obsolete">Μέσο (αριθμός/όνομα):</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="386"/>
+        <location line="+49"/>
+        <location line="+1"/>
         <source>Mp3-Tag:</source>
         <translation>Ετικέτα mp3:</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="313"/>
         <source>(Art/Tit/Alb/Year/Comm)</source>
         <translation type="obsolete">Καλλιτέχνης/Τίτλος/Album/Έτος/Σχόλιο</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="495"/>
+        <location line="+31"/>
+        <location line="+77"/>
+        <location line="+1"/>
         <source>Comment:</source>
         <translation>Σχόλιο:</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="83"/>
+        <location line="-412"/>
         <source>Shows the content of the file.</source>
         <translation>Εμφανίζει το περιεχόμενο του αρχείου.</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>There is not selected element.</source>
         <translation type="obsolete">Δεν έχει επιλέχθει στοιχείο.</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="191"/>
+        <location line="+107"/>
+        <location line="+1"/>
         <source>Name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="234"/>
+        <location line="+42"/>
+        <location line="+1"/>
         <source>Type:</source>
         <translation type="unfinished">Τύπος:</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="242"/>
+        <location line="+8"/>
         <source> Link to a CdCat catalog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="283"/>
+        <location line="+40"/>
+        <location line="+1"/>
         <source>Location:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="844"/>
+        <location line="+561"/>
         <source>There is no selected element.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="297"/>
+        <location line="-548"/>
+        <location line="+1"/>
         <source>Last modification:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="204"/>
+        <location line="-94"/>
+        <location line="+1"/>
         <source>At media (number/name):</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="98"/>
+        <location line="-106"/>
         <source>Edit and refresh the actual category page.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="560"/>
+        <location line="+461"/>
+        <location line="+1"/>
         <source>Category:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="615"/>
+        <location line="+54"/>
+        <location line="+1"/>
         <source>Archive contents:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="393"/>
+        <location line="-222"/>
         <source>Artist:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="399"/>
+        <location line="+6"/>
         <source>Title:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="399"/>
+        <location line="+0"/>
         <source>track:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="405"/>
+        <location line="+6"/>
         <source>Album:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="411"/>
+        <location line="+6"/>
         <source>Year:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="730"/>
+        <location line="+318"/>
+        <location line="+1"/>
         <source>File info:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="636"/>
+        <location line="-94"/>
         <source>Rights</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="641"/>
+        <location line="+5"/>
         <source>Owner</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="646"/>
+        <location line="+5"/>
         <source>Group</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="651"/>
+        <location line="+5"/>
         <source>Size</source>
         <translation type="unfinished">Μέγεθος</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="656"/>
+        <location line="+5"/>
         <source>Changed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="666"/>
+        <location line="+10"/>
         <source>Comment</source>
         <translation type="unfinished">Σχόλιο</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="661"/>
+        <location line="-5"/>
         <source>Path</source>
         <translation type="unfinished">Τοποθεσία</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="431"/>
+        <location line="-231"/>
+        <location line="+1"/>
         <source>Exif data:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="457"/>
+        <location line="+25"/>
+        <location line="+1"/>
         <source>Thumbnail:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="825"/>
+        <location line="+367"/>
+        <location line="+1"/>
         <source>Stored size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="845"/>
+        <location line="+20"/>
         <source>There is no selected element:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="353"/>
+        <location line="-492"/>
         <source>Number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="356"/>
+        <location line="+3"/>
         <source>Name</source>
         <translation type="unfinished">Όνομα</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="359"/>
+        <location line="+3"/>
         <source>Type</source>
         <translation type="unfinished">Τύπος</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="362"/>
+        <location line="+3"/>
         <source>Time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="367"/>
+        <location line="+4"/>
+        <location line="+1"/>
         <source>sorted by:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1083,147 +1204,145 @@ It is necessary because I&apos;d like to save the config file into your home dir
 <context>
     <name>ConfigDialog</name>
     <message>
-        <location filename="../config.cpp" line="1609"/>
+        <location filename="../config.cpp" line="+637"/>
         <source>Configure  CdCat...</source>
         <translation>Ρύθμιση CdCat...</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1613"/>
+        <location line="+4"/>
         <source>Autoload DataBase on startup</source>
         <translation>Φόρτωση βάσης κατά την εκκίνηση</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1615"/>
+        <location line="+2"/>
         <source>Save the XML-db.file nicer format(needs more space)</source>
         <translation>Αποθήκευση σε μορφή XML-db(απαιτήται περισσότερος χώρος)</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1616"/>
+        <location line="+1"/>
         <source>Cancel</source>
         <translation>Ακύρωση</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1617"/>
+        <location line="+1"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1621"/>
+        <location line="+4"/>
         <source>Application font size.(must restart cdcat!) </source>
         <translation>Μέγεθος γραμματοσειράς εφαρμογής.(απαραίτητη η επανεκκίνηση του cdcat!)</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>CdCat Databases (*.hcf)</source>
         <translation type="obsolete">Βάσεις CdCat (*.hcf)</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Choose a file to automatically load!</source>
         <translation type="obsolete">Επιλέξτε αρχείο για αυτόματη φόρτωση!</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1612"/>
         <source>Path to cdrom device</source>
         <translation type="obsolete">Τοποθεσία συσκεύης cdrom</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1627"/>
+        <location line="+6"/>
         <source>Scanning: mount cdrom at start / eject when finish</source>
         <translation>Ανίχνευση: mount cdrom κατά την εκκίνηση / eject στο τέλος</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1619"/>
+        <location line="-241"/>
+        <location line="+233"/>
         <source>Use own font size</source>
         <translation>Χρήση προσωπικού μεγέθους γραμματοσειράς</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1622"/>
+        <location line="+3"/>
         <source>Number of history entries</source>
         <translation>Αριθμός εισαγωγών ιστορικού</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1646"/>
+        <location line="+24"/>
         <source>Choose path to cdrom!</source>
         <translation>Επιλέξτε τοποθέσια του cdrom!</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1631"/>
+        <location line="-15"/>
         <source>The language of CdCat interface</source>
         <translation>Γλώσσα του interface του CdCat</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Select readable items</source>
         <translation type="obsolete">Επιλογή αναγνώσιμων αντικειμένων</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1640"/>
+        <location line="+9"/>
         <source>Choose a file to load automatically!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1618"/>
+        <location line="-22"/>
         <source>Select additional items to read</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1614"/>
+        <location line="-4"/>
         <source>Automatically save the database after every scan (for safety sake)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1634"/>
+        <location line="+20"/>
         <source>Display debug info on console</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1640"/>
+        <location line="+6"/>
         <source>CdCat databases (*.hcf )</source>
         <translation type="unfinished">Βάσεις CdCat (*.hcf)</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1635"/>
+        <location line="-5"/>
         <source>Save catalogs always as UTF8</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1636"/>
+        <location line="+1"/>
         <source>Show progressed file at scanning in status label</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1620"/>
+        <location line="-16"/>
         <source>font size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1494"/>
+        <location line="-126"/>
         <source>show systray icon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1610"/>
+        <location line="+116"/>
         <source>Show systray icon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1611"/>
+        <location line="-115"/>
+        <location line="+116"/>
         <source>display current scanned file in tray</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1612"/>
+        <location line="+1"/>
         <source>display current scanned file in tray (mediainfo / archive scan)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1623"/>
+        <location line="+11"/>
         <source>Path to cdrom device / mount dir</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="1624"/>
+        <location line="+1"/>
         <source>This is the path to the cdrom/dvd device or the path where its mounted</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1231,177 +1350,185 @@ It is necessary because I&apos;d like to save the config file into your home dir
 <context>
     <name>DataBase</name>
     <message>
-        <location filename="../dbase.cpp" line="719"/>
+        <location filename="../dbase.cpp" line="+718"/>
         <source>I can&apos;t rewrite the file: %1</source>
         <translation>Αδυναμία επανεγγραφής αρχείου: %1</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="744"/>
+        <location line="+25"/>
         <source>I can&apos;t create the file: %1</source>
         <translation>Αδυναμία δημιουργίας αρχείου: %1</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>There is not opened database!</source>
         <translation type="obsolete">Δεν υπάρχει ανοιχτή βάση!</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="2091"/>
+        <location line="+32"/>
+        <location line="+7"/>
+        <location line="+99"/>
+        <location line="+1209"/>
         <source>I can&apos;t open the file: %1</source>
         <translation>Αδυναμία ανοίγματος αρχείου: %1</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="990"/>
+        <location line="-1101"/>
         <source>Cannot read directory: %1</source>
         <translation>Αδυναμία ανάγνωσης καταλόγου:%1</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="2127"/>
+        <location line="+4"/>
+        <location line="+1097"/>
+        <location line="+24"/>
+        <location line="+12"/>
         <source>Error</source>
         <translation>Σφάλμα</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Ignore directory</source>
         <translation type="obsolete">Παράλειψη καταλόγου</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="994"/>
+        <location line="-1133"/>
         <source>Cancel scanning</source>
         <translation>Ακύρωση ανίχνευσης</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Symbolic link#Points to:</source>
         <translation type="obsolete">Σύνδεσμος αναφέρετε σε:</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="2127"/>
+        <location line="+1133"/>
         <source>Error while parsing file: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="769"/>
+        <location line="-1358"/>
         <source>No database opened!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="992"/>
+        <location line="+223"/>
         <source>Cannot read file: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="994"/>
+        <location line="+2"/>
         <source>Ignore</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1091"/>
+        <location line="+96"/>
         <source>Symbolic link to file:#</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1143"/>
+        <location line="+52"/>
         <source>Symbolic link to directory:#</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1172"/>
+        <location line="+29"/>
         <source>DEAD Symbolic link to:#</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1182"/>
+        <location line="+11"/>
         <source>System file (e.g. FIFO, socket or device file)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="2115"/>
+        <location line="-276"/>
+        <location line="+1209"/>
         <source>Not enough memory to open the file: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../wdbfile.cpp" line="959"/>
+        <location filename="../wdbfile.cpp" line="+959"/>
         <source>Reading file, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../wdbfile.cpp" line="1087"/>
+        <location line="+128"/>
         <source>Parsing file, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../wdbfile.cpp" line="1080"/>
+        <location line="-7"/>
         <source>Converting to unicode, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="422"/>
         <source>Please Wait...</source>
         <translation type="obsolete">Παρακαλώ περιμένετε...</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="588"/>
         <source>Cancel</source>
         <translation type="obsolete">Ακύρωση</translation>
     </message>
     <message>
-        <location filename="../wdbfile.cpp" line="1094"/>
+        <location line="-104"/>
+        <location line="+118"/>
         <source>You have cancelled catalog reading.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1876"/>
+        <location filename="../dbase.cpp" line="-239"/>
         <source>device </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1892"/>
+        <location line="+16"/>
         <source> link to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1208"/>
+        <location line="-684"/>
         <source>reading mp3 info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1262"/>
+        <location line="+49"/>
+        <location line="+5"/>
         <source>reading media info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1279"/>
+        <location line="+17"/>
         <source>reading avi info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1353"/>
+        <location line="+74"/>
         <source>reading file content</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1407"/>
+        <location line="+54"/>
         <source>reading exif data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1436"/>
+        <location line="+29"/>
         <source>reading thumbnail data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="1948"/>
+        <location line="+361"/>
+        <location line="+3"/>
+        <location line="+145"/>
+        <location line="+3"/>
         <source>scanning archive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="2044"/>
+        <location line="-113"/>
+        <location line="+209"/>
         <source>scanning archive, file:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="571"/>
+        <location line="-1473"/>
         <source>unknown</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1409,7 +1536,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
 <context>
     <name>DirectoryView</name>
     <message>
-        <location filename="../dirview.cpp" line="185"/>
+        <location filename="../dirview.cpp" line="+185"/>
         <source>Name</source>
         <translation>Όνομα</translation>
     </message>
@@ -1417,193 +1544,218 @@ It is necessary because I&apos;d like to save the config file into your home dir
 <context>
     <name>GuiSlave</name>
     <message>
-        <location filename="" line="0"/>
         <source>No opened database.</source>
         <translation type="obsolete">Καμία βάση ανοιχτή.</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>No selected item.</source>
         <translation type="obsolete">Μη επιλέγμενο αντικείμενο.</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="622"/>
+        <location filename="../guibase.cpp" line="-2549"/>
+        <location line="+20"/>
         <source>Directory</source>
         <translation>Κατάλογος</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="679"/>
+        <location line="+57"/>
         <source>Catalog</source>
         <translation>Κατάλογος</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2274"/>
+        <location line="+5"/>
+        <location line="+1590"/>
         <source>Unknown(DB)</source>
         <translation>Άγνωστη βάση</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2278"/>
+        <location line="-1587"/>
+        <location line="+1591"/>
         <source>CD</source>
         <translation>CD</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2282"/>
+        <location line="-1588"/>
+        <location line="+1592"/>
         <source>DVD</source>
         <translation>DVD</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2286"/>
+        <location line="-1589"/>
+        <location line="+1593"/>
         <source>HardDisc</source>
         <translation>Σκληρός δίσκος</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2290"/>
+        <location line="-1590"/>
+        <location line="+1594"/>
         <source>Floppy</source>
         <translation>Δισκέτα</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2294"/>
+        <location line="-1591"/>
+        <location line="+1595"/>
         <source>NetworkDrv</source>
         <translation>Δίσκος Δικτύου</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2298"/>
+        <location line="-1592"/>
+        <location line="+1596"/>
         <source>FlashDrv</source>
         <translation>Δίσκος Flash</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2302"/>
+        <location line="-1593"/>
+        <location line="+1597"/>
         <source>OtherDevice</source>
         <translation>Άλλη Συσκευή</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="710"/>
+        <location line="-1592"/>
         <source>File</source>
         <translation>Αρχείο</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="926"/>
+        <location line="+216"/>
         <source>Hyper&apos;s CD Catalogizer (modified)</source>
         <translation>Hyper&apos;s CD Catalogizer (τροποποιημένος)</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="932"/>
+        <location line="+6"/>
         <source>Hyper&apos;s CD Catalogizer</source>
         <translation>Hyper&apos;s CD Catalogizer</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2198"/>
+        <location line="+244"/>
+        <location line="+169"/>
+        <location line="+785"/>
+        <location line="+68"/>
         <source>CdCat databases (*.hcf )</source>
         <translation>Βάσεις CdCat (*.hcf)</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1176"/>
+        <location line="-1022"/>
         <source>Open a file...</source>
         <translation>Άνοιγμα αρχείου...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2847"/>
+        <location line="+38"/>
+        <location line="+929"/>
+        <location line="+34"/>
+        <location line="+34"/>
+        <location line="+432"/>
+        <location line="+163"/>
+        <location line="+41"/>
         <source>Error while opening...</source>
         <translation>Σφάλμα κατά το άνοιγμα...</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Ok</source>
         <translation type="obsolete">Ok</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1345"/>
+        <location line="-1502"/>
         <source>Save to file...</source>
         <translation>Αποθήκευση σε αρχείο...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1370"/>
+        <location line="+25"/>
         <source>Error while saving...</source>
         <translation>Σφάλμα κατά την αποθήκευση...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1418"/>
+        <location line="+48"/>
         <source>Closing previous database...</source>
         <translation>Κλείσιμο προηγούμενης βάσης...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1418"/>
+        <location line="+0"/>
         <source>Do you want to save the changes?</source>
         <translation>Θέλετε να αποθηκεύσετε τις αλλαγές?</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2914"/>
+        <location line="+1"/>
+        <location line="+36"/>
+        <location line="+1459"/>
         <source>Yes</source>
         <translation>Ναι</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2914"/>
+        <location line="-1495"/>
+        <location line="+36"/>
+        <location line="+1459"/>
         <source>No</source>
         <translation>Όχι</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2930"/>
+        <location line="-1465"/>
+        <location line="+504"/>
+        <location line="+4"/>
+        <location line="+76"/>
+        <location line="+196"/>
+        <location line="+88"/>
+        <location line="+5"/>
+        <location line="+16"/>
+        <location line="+592"/>
         <source>Error:</source>
         <translation>Σφάλμα:</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>There is no selected item on the middle list box!</source>
         <translation type="obsolete">Δεν υπάρχει επιλεγμένο αντικείμενο στη μέση του πλαισίου λίστας!</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1434"/>
         <source>Do you really want to delete this?: 
 %1</source>
         <translation type="obsolete">Είστε σίγουροι για την διαγραφή του?:
 %1</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2912"/>
+        <location line="-1476"/>
+        <location line="+1458"/>
         <source>Confirmation</source>
         <translation>Επιβεβαίωση</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1811"/>
+        <location line="-2574"/>
+        <location line="+1432"/>
+        <location line="+41"/>
         <source>Warning...</source>
         <translation>Προειδοποίηση...</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>There was some error during the scanning,
 the DataBase may be incomplete</source>
         <translation type="obsolete">Εντοπίστηκε σφάλμα κατά την ανίχνευση,
 πιθανώς η βάση να έχει ολοκληρωθεί</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>There is no selected Media on the middle list box!</source>
         <translation type="obsolete">Δεν υπάρχει επιλεγμένο μέσο στη μέση του πλαισίου λίστας!</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1957"/>
+        <location line="+146"/>
         <source>You can refresh ONLY a MEDIA node!</source>
         <translation>Μπορεί να ανανεωθεί μόνο ένα node μέσο!</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>An error occured while scanning, the rescan operation cancelled: 
 %1</source>
         <translation type="obsolete">Εντοπίστηκε σφάλμα κατά την ανίχνευση,η αίτηση ανίχνευσης ακυρώθηκε:
 %1</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2198"/>
+        <location line="+173"/>
+        <location line="+68"/>
         <source>Insert a database file...</source>
         <translation>Εισαγωγή αρχείου βάσης...</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>The Resoult:</source>
         <translation type="obsolete">Αποτέλεσμα:</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2379"/>
+        <location line="+180"/>
         <source>The size of &quot;%1&quot; : 
  %2 
  %3 file /%4 directory</source>
@@ -1612,160 +1764,175 @@ the DataBase may be incomplete</source>
 %3 αρχείου /%4 καταλόγου</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1541"/>
+        <location line="-837"/>
         <source>Cannot mount CD</source>
         <translation>Αδυναμία mount CD</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1887"/>
+        <location line="+346"/>
         <source>Cannot eject CD!</source>
         <translation>Αδυναμία eject CD!</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1541"/>
+        <location line="-346"/>
         <source>I can&apos;t find the &quot;mount&quot; program</source>
         <translation>Αδυναμία εύρεσης προγράμματος &quot;mount&quot;</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1905"/>
+        <location line="+87"/>
+        <location line="+277"/>
         <source>Cannot mount CD!</source>
         <translation>Αδυναμία mount CD!</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1853"/>
+        <location line="-52"/>
         <source>Cannot eject CD</source>
         <translation>Αδυναμία eject CD</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1853"/>
+        <location line="+0"/>
         <source>I can&apos;t find the &quot;eject&quot; program</source>
         <translation>Αδυναμία εύρεσης προγράμματος &quot;eject&quot;</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1042"/>
+        <location line="-860"/>
+        <location line="+49"/>
         <source>Rename node...</source>
         <translation>Μετονομασία node...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1043"/>
+        <location line="-48"/>
+        <location line="+49"/>
         <source>Delete node</source>
         <translation>Διαγραφή node</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1052"/>
+        <location line="-39"/>
+        <location line="+48"/>
         <source>Rescan media...</source>
         <translation>Επανανίχνευση μέσου...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2542"/>
+        <location line="-39"/>
+        <location line="+62"/>
+        <location line="+1467"/>
         <source>Add media...</source>
         <translation>Προσθήκη μέσου...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1077"/>
+        <location line="-1527"/>
+        <location line="+62"/>
         <source>Insert Catalog...</source>
         <translation>Εισαγωγή καταλόγου...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1961"/>
+        <location line="+884"/>
         <source>Rescan %1</source>
         <translation>Επανανίχνευση %1</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1053"/>
+        <location line="-956"/>
+        <location line="+48"/>
         <source>Re-Number media...</source>
         <translation>Επαναρίθμηση μέσου...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2322"/>
+        <location line="+1269"/>
         <source>It is NOT a media node!</source>
         <translation>Δεν είναι μέσο node!</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1037"/>
+        <location line="-1344"/>
+        <location line="+59"/>
         <source>Node size</source>
         <translation>Μέγεθος node</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1034"/>
+        <location line="-62"/>
+        <location line="+59"/>
         <source>View/Edit Comment...</source>
         <translation>Προβόλη/Επεξεργασία σχολίου...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1081"/>
+        <location line="+47"/>
         <source>Close all branch</source>
         <translation>Κλείσιμο όλων των κλαδιών</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="605"/>
         <source>Show/Remove Content...</source>
         <translation type="obsolete">Προβολή/Αφαίρεση Περιεχομένου...</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="595"/>
+        <location line="-486"/>
         <source>Number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="598"/>
+        <location line="+3"/>
         <source>Size</source>
         <translation type="unfinished">Μέγεθος</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="713"/>
+        <location line="+115"/>
         <source>Catalog Link</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="991"/>
+        <location line="+278"/>
         <source>Follow the link (Open it) !</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1048"/>
+        <location line="+8"/>
+        <location line="+49"/>
         <source>Borrow this media to...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1050"/>
+        <location line="-47"/>
+        <location line="+49"/>
         <source>I got it back! (clear borrowing mark)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2930"/>
+        <location line="+399"/>
+        <location line="+780"/>
+        <location line="+88"/>
+        <location line="+21"/>
+        <location line="+592"/>
         <source>There is no selected item in the middle list box!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1811"/>
+        <location line="-1119"/>
         <source>An error occured while scanning,
 the DataBase may be incomplete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1953"/>
+        <location line="+142"/>
         <source>There is no selected Media in the middle list box!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2027"/>
+        <location line="+73"/>
         <source>An error occured while scanning, the rescan operation was cancelled: 
 %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2807"/>
+        <location line="+781"/>
         <source>The link is empty.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2913"/>
+        <location line="+106"/>
         <source>Do you want to clear the borrowing mark from media &quot;%1&quot;?
 (Say yes if you got it back.)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="343"/>
+        <location line="-2574"/>
         <source>The database file has newer version than this version of cdcat can work with:
 I understand maximum %1 datafile version but readed %2
 
@@ -1774,313 +1941,336 @@ Homepage: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="354"/>
+        <location line="+15"/>
         <source>No database opened.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="356"/>
+        <location line="+2"/>
         <source>No item selected.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1962"/>
+        <location line="+1606"/>
         <source>Select directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2384"/>
+        <location line="+422"/>
         <source>The result:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1985"/>
+        <location line="-878"/>
+        <location line="+248"/>
+        <location line="+214"/>
+        <location line="+2"/>
+        <location line="+15"/>
         <source>Scanning directory tree, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1035"/>
+        <location line="-1009"/>
+        <location line="+59"/>
         <source>View/Edit Category...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1057"/>
+        <location line="+22"/>
         <source>Change media type...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1718"/>
+        <location line="+661"/>
         <source>Enter media name...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1719"/>
+        <location line="+1"/>
         <source>Media name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1720"/>
+        <location line="+1"/>
         <source>Media</source>
         <translation type="unfinished">Μέσο</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1009"/>
+        <location line="-711"/>
         <source>search for duplicates...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="983"/>
+        <location line="-26"/>
         <source>Show content...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="986"/>
+        <location line="+3"/>
         <source>Show/Remove content...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1014"/>
+        <location line="+28"/>
         <source>Add a link to a CdCat Catalog...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1076"/>
+        <location line="+62"/>
         <source>Add a link to a Cdcat catalog...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1770"/>
+        <location line="+694"/>
         <source>You have cancelled catalog scanning,
 the DataBase may be incomplete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1988"/>
+        <location line="-13"/>
+        <location line="+231"/>
         <source>Scan started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1988"/>
+        <location line="-231"/>
+        <location line="+231"/>
         <source>Scanning %1 into %2 has been started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2003"/>
+        <location line="-210"/>
+        <location line="+225"/>
         <source>Scanning %1 into %2 has been finished</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2007"/>
+        <location line="-225"/>
+        <location line="+4"/>
+        <location line="+221"/>
+        <location line="+4"/>
         <source>Scan finished</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2007"/>
+        <location line="-225"/>
+        <location line="+225"/>
         <source>Scanning %1 into %2 has been finished (NOT complete)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2095"/>
+        <location line="-222"/>
+        <location line="+225"/>
+        <location line="+85"/>
         <source>Cdcat - idle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2514"/>
+        <location line="+419"/>
         <source>Help</source>
         <translation type="unfinished">Βοήθεια</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2516"/>
+        <location line="+2"/>
         <source>Whats this?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2519"/>
+        <location line="+3"/>
         <source>The cdcat is graphical (QT based) multiplatform (Linux/Windows) catalog program which scans the directories/drives you want and memorize the filesystem including the tags of mp3&apos;s and other data and store it in a small file. The database is stored in a gzipped XML format, so you can hack it, or use it if necessary :-).)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2521"/>
+        <location line="+2"/>
         <source>The program can store the content of some specified files up to a limit size if you want. (for example: *.nfo)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2524"/>
+        <location line="+3"/>
         <source>Usage:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2527"/>
+        <location line="+3"/>
         <source>Before the scanning select the necessary readable components in the config dialog, which can be mp3 tags content of some files or etc.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2531"/>
+        <location line="+4"/>
         <source>Create a new catalog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2534"/>
+        <location line="+3"/>
         <source>Run the %1 command in the catalog menu. You have to type the name of the new catalog. You can specify the default username of the media(which you scan later), and add a comment to the catalog.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2534"/>
+        <location line="+0"/>
         <source>New</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2538"/>
+        <location line="+4"/>
         <source>Add media</source>
         <translation type="unfinished">Προσθήκη μέσου</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2542"/>
+        <location line="+4"/>
         <source>Run the %1 command in the edit menu. In that dialog you have to specify the directory/or drive the media you want to add. It&apos;s recommended to specify the name and the number of the media which has to be unique. (The program always generate one identical name and number). You can label the media to a owner, if necessary.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2547"/>
+        <location line="+5"/>
         <source>save as</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2551"/>
+        <location line="+4"/>
         <source>Open an existing catalog:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2553"/>
+        <location line="+2"/>
         <source>open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2557"/>
+        <location line="+4"/>
         <source>Author:</source>
         <translation type="unfinished">Συγγραφέας:</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2560"/>
+        <location line="+3"/>
         <source>The program was written by Peter Deak (hungary)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2563"/>
+        <location line="+3"/>
         <source>The current maintainer is %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2567"/>
+        <location line="+4"/>
         <source>License:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2571"/>
+        <location line="+4"/>
         <source>General Public License (GPL)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2575"/>
+        <location line="+4"/>
         <source>Homepage:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2579"/>
+        <location line="+4"/>
         <source>You can read about the program and get new versions, sources etc, in the hompage of cdcat:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2553"/>
+        <location line="-26"/>
         <source>Run the %1 command in the file menu, and choice the file of the catalog. (*.hcf). After the opening you will be able browse the catalog or search in it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2547"/>
+        <location line="-6"/>
         <source>If you scanned your media, you will be able to browse in it with the browser window (like mc) , or search in it. You can save the catalog with %1 command in the file menu.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1352"/>
+        <location line="-1239"/>
+        <location line="+44"/>
         <source>Saving catalog, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2164"/>
+        <location line="+812"/>
         <source>Insert a cdcat exported xml file...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2164"/>
+        <location line="+0"/>
         <source>CdCat xml export (*.xml )</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1065"/>
+        <location line="-1099"/>
         <source>Change password...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2955"/>
+        <location line="+1890"/>
         <source>Password has been successfully changed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="3007"/>
+        <location line="+0"/>
+        <location line="+31"/>
+        <location line="+21"/>
         <source>Password changed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2994"/>
+        <location line="-46"/>
+        <location line="+33"/>
         <source>Password length is too short, must be minimum 4 chars</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2994"/>
+        <location line="-33"/>
+        <location line="+33"/>
         <source>Password too short</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2981"/>
+        <location line="-43"/>
+        <location line="+30"/>
         <source>Password length is too big, must be maximal %1 chars</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2981"/>
+        <location line="-30"/>
+        <location line="+30"/>
         <source>Password too big</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1066"/>
+        <location line="-1915"/>
         <source>Disable encryption</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1070"/>
+        <location line="+4"/>
         <source>Enable encryption</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2986"/>
+        <location line="+1916"/>
         <source>Encryption has been successfully enabled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="3007"/>
+        <location line="+21"/>
         <source>Encryption has been successfully disabled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2998"/>
+        <location line="-42"/>
+        <location line="+33"/>
         <source>Passwords not match</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2998"/>
+        <location line="-33"/>
+        <location line="+33"/>
         <source>Passwords does not match</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="1453"/>
+        <location line="-1545"/>
         <source>Do you really want to delete
 &quot;%1&quot;?</source>
         <translation type="unfinished"></translation>
@@ -2089,52 +2279,44 @@ the DataBase may be incomplete</source>
 <context>
     <name>HDirectoryView</name>
     <message>
-        <location filename="../hdirview.cpp" line="322"/>
+        <location filename="../hdirview.cpp" line="+322"/>
         <source>Directory Tree</source>
         <translation>Directory Tree</translation>
     </message>
     <message>
-        <location filename="../hdirview.cpp" line="323"/>
+        <location line="+1"/>
         <source>Type</source>
         <translation>Τύπος</translation>
     </message>
     <message>
-        <location filename="../hdirview.cpp" line="362"/>
         <source>Copy</source>
         <translation type="obsolete">Αντιγραφή</translation>
     </message>
     <message>
-        <location filename="../hdirview.cpp" line="365"/>
         <source>Move</source>
         <translation type="obsolete">Μετακίνηση</translation>
     </message>
     <message>
-        <location filename="../hdirview.cpp" line="369"/>
         <source>Link</source>
         <translation type="obsolete">Σύνδεσμος</translation>
     </message>
     <message>
-        <location filename="../hdirview.cpp" line="373"/>
         <source>Unknown</source>
         <translation type="obsolete">Άγνωστο</translation>
     </message>
     <message>
-        <location filename="../hdirview.cpp" line="387"/>
         <source>Drop target</source>
         <translation type="obsolete">Drop target</translation>
     </message>
     <message>
-        <location filename="../hdirview.cpp" line="431"/>
         <source>Not implemented</source>
         <translation type="obsolete">Ανεφάρμοστο</translation>
     </message>
     <message>
-        <location filename="../hdirview.cpp" line="430"/>
         <source>Drag source</source>
         <translation type="obsolete">Drag source</translation>
     </message>
     <message>
-        <location filename="../hdirview.cpp" line="431"/>
         <source>Delete </source>
         <translation type="obsolete">Διαγραφή</translation>
     </message>
@@ -2142,17 +2324,17 @@ the DataBase may be incomplete</source>
 <context>
     <name>HQListView</name>
     <message>
-        <location filename="../guibase.cpp" line="198"/>
+        <location filename="../guibase.cpp" line="-1255"/>
         <source>Name</source>
         <translation>Όνομα</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="199"/>
+        <location line="+1"/>
         <source>Size</source>
         <translation>Μέγεθος</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="200"/>
+        <location line="+1"/>
         <source>Type</source>
         <translation>Τύπος</translation>
     </message>
@@ -2160,69 +2342,62 @@ the DataBase may be incomplete</source>
 <context>
     <name>ImportDialog</name>
     <message>
-        <location filename="../importdialog.cpp" line="87"/>
+        <location filename="../importdialog.cpp" line="+182"/>
         <source>Correct bad style from gtktalog export</source>
         <translation type="unfinished">Διόρθωση στυλ απο την εξαγωγή gtkatalog</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="80"/>
+        <location line="-7"/>
         <source>Create new Database</source>
         <translation>Δημιουργία νέας Βάσης</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="180"/>
+        <location line="+115"/>
         <source>Import CSV file</source>
         <translation>Εισαγωγή αρχείου CSV </translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Choose a file to import:</source>
         <translation type="obsolete">Επιλέξτε αρχείο για εισαγωγή:</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Seperator:</source>
         <translation type="obsolete">Seperator:</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>This is the seperator in dataline
 &lt;path&gt;SEPERATOR&lt;size&gt;SEPERATOR&lt;date&gt;&lt;space&gt;&lt;time&gt;</source>
         <translation type="obsolete">Υπάρχει separator στη γράμμη δεδομένων
 &lt;path&gt;SEPERATOR&lt;size&gt;SEPERATOR&lt;date&gt;&lt;space&gt;&lt;time&gt;</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Seperator in data line</source>
         <translation type="obsolete">Separator στη γράμμη δεδομένων</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="186"/>
+        <location line="+6"/>
         <source>Cancel</source>
         <translation>Ακύρωση</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="187"/>
+        <location line="+1"/>
         <source>Import</source>
         <translation>Εισαγωγή</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="188"/>
+        <location line="+1"/>
         <source>...</source>
         <translation type="unfinished">...</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Open the fle dialog for selecting file to import.</source>
         <translation type="obsolete">Άνοιγμα του πλαισίου για επιλογή αρχείου προς εισαγώγη.</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="230"/>
         <source>Open file dialog</source>
         <translation type="obsolete">Άνοιγμα πλαισίου αρχείου</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Corrects bad output style from gtktalog.
 &lt;media&gt;SEPERATOR/&lt;dir&gt;/SEPERATOR/&lt;dir&gt;SEPERATOR&lt;
  will be to
@@ -2233,103 +2408,154 @@ will be to
 &lt;media&gt;/&lt;dir&gt;/&lt;dir&gt;</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="234"/>
         <source>Corrects bad output style (gtktalog)</source>
         <translation type="obsolete">Διόρθωση στυλ απο την εξαγωγή gtkatalog</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>&lt;strong&gt;Attention! Please read README_CSV_IMPORT before you import!&lt;/strong&gt;</source>
         <translation type="obsolete">&lt;strong&gt;Προσοχή! Παρακαλώ διαβάστε το README_CSV_IMPORT πριν τη εισαγωγή! &lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="243"/>
+        <location line="+69"/>
+        <location line="+5"/>
         <source>Error:</source>
         <translation>Σφάλμα:</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="238"/>
+        <location line="-5"/>
         <source>You must be fill the &quot;Filename&quot; field!</source>
         <translation type="unfinished">Πρέπει να συμπληρωθεί το πεδίο &quot;Όνομα αρχείου&quot;!</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Ok</source>
         <translation type="obsolete">Ok</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>You must be fill the &quot;Seperator&quot; field!</source>
         <translation type="obsolete">Πρέπει να συμπληρωθεί το πεδίο &quot;Separator&quot;!</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="304"/>
+        <location line="+69"/>
         <source>csv files(*.csv)</source>
         <translation>αρχεία csv(*.csv)</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>open file dialog</source>
         <translation type="obsolete">άνοιγμα πλαισίου αρχείου</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="327"/>
+        <location line="+23"/>
         <source>Choose a file for import</source>
         <translation>Επιλέξτε αρχείο για εισαγωγή</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="190"/>
+        <location line="-316"/>
+        <location line="+157"/>
         <source>Type</source>
         <translation type="unfinished">Τύπος</translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="181"/>
+        <location line="-9"/>
         <source>File:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="230"/>
+        <location line="+52"/>
         <source>&lt;strong&gt;Please read the README_IMPORT before you import!&lt;/strong&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="310"/>
+        <location line="+4"/>
+        <source>Pattern for data fields, hold mouse cursor over info symbol for info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+92"/>
+        <location line="+3"/>
         <source>xml files(*.xml)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="184"/>
+        <location line="-148"/>
         <source>Separator:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="185"/>
+        <location line="+1"/>
         <source>This is the separator in dataline
 &lt;path&gt;SEPARATOR&lt;size&gt;SEPARATOR&lt;date&gt;&lt;space&gt;&lt;time&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="200"/>
+        <location line="-140"/>
+        <location line="+155"/>
         <source>Gtktalog &amp;XML</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="201"/>
+        <location line="-164"/>
+        <source>&amp;Gtktalog CSV</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>&amp;Kat-DeCe CSV</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>&amp;Disclib CSV</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>&amp;VisualCD CSV</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>&amp;VVV CSV</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>&amp;Advanced file organizer CSV</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>&amp;File Archivist CSV</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location line="+1"/>
+        <source>&amp;Advanced Disk Catalog CSV</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <location line="+155"/>
         <source>&amp;WhereIsIt XML (classic)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="203"/>
+        <location line="+3"/>
         <source>Select the type of import here</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="227"/>
+        <location line="+24"/>
+        <source>Select this for importing a generic report (e.g. generated by &lt;ul&gt;&lt;li&gt;Linux: &lt;i&gt;du --all --human-readable --time&lt;/i&gt;&lt;/li&gt;&lt;li&gt;rhash &lt;i&gt;rhash -r&lt;/i&gt;&lt;/li&gt;&lt;li&gt;Windows: &lt;i&gt;dir /S /B command output&lt;/i&gt;&lt;/li&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
         <source>Open the file dialog for selecting file to import.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="229"/>
+        <location line="+2"/>
         <source>Corrects bad output style from gtktalog.
 &lt;media&gt;SEPARATOR/&lt;dir&gt;/SEPARATOR/&lt;dir&gt;
  will be to
@@ -2337,117 +2563,162 @@ will be to
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="243"/>
+        <location line="+3"/>
+        <source>Pattern:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>You can use pattern for data fields, hold mouse cursor over info symbol for info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Pattern for data fields</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Valid pattern for data fields are:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Pattern</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <source>Description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>Example:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+13"/>
         <source>You must be fill the &quot;Separator&quot; field!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="315"/>
+        <location line="+75"/>
         <source>all files(*.*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="191"/>
+        <location line="-146"/>
         <source>&amp;Gtktalog (csv)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="205"/>
+        <location line="+15"/>
         <source>Select this for importing a text import (csv) generated from Gtktalog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="192"/>
+        <location line="-14"/>
         <source>&amp;Kat-CeDe (csv)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="207"/>
+        <location line="-145"/>
+        <source>&amp;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+155"/>
+        <source>Generic &amp;pattern</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
         <source>Select this for importing a text import (csv) generated from Kat-CeDe.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="223"/>
+        <location line="+16"/>
         <source>Select this for importing a xml report generated from gtktalog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="225"/>
+        <location line="+2"/>
         <source>Select this for importing a xml report generated from WhereIsIt?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="193"/>
+        <location line="-33"/>
         <source>&amp;Disclib (csv)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="209"/>
+        <location line="+17"/>
         <source>Select this for importing a text import (csv) generated from Disclib.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="194"/>
+        <location line="-16"/>
         <source>&amp;VisualCD (csv)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="211"/>
+        <location line="+18"/>
         <source>Select this for importing a text import (csv) generated from VisualCD.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="195"/>
+        <location line="-17"/>
         <source>&amp;VVV (csv)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="213"/>
+        <location line="+19"/>
         <source>Select this for importing a text import (csv) generated from VVV.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="196"/>
+        <location line="-18"/>
         <source>&amp;Advanced File Organizer (csv)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="215"/>
+        <location line="+20"/>
         <source>Select this for importing a text import (csv) generated from Advanced File Organizer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="197"/>
+        <location line="-19"/>
         <source>&amp;File Archivist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="217"/>
+        <location line="+21"/>
         <source>Select this for importing a File Archivist catalog.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="313"/>
+        <location line="+117"/>
         <source>File Archivist files(*.arch)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="198"/>
+        <location line="-137"/>
         <source>&amp;Advanced Disk Catalog (csv)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="219"/>
+        <location line="+22"/>
         <source>Select this for importing a text import (csv) generated from Advanced Disk Catalog.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="199"/>
+        <location line="-21"/>
         <source>W&amp;hereIsIt (csv)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="221"/>
+        <location line="+23"/>
         <source>Select this for importing a text import (csv) generated from WhereIsIt.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2455,127 +2726,127 @@ will be to
 <context>
     <name>InfoDialog</name>
     <message>
-        <location filename="../info.cpp" line="143"/>
+        <location filename="../info.cpp" line="+143"/>
         <source>German translation &amp; additional programming</source>
         <translation>Μετάφραση στα Γερμανικά &amp; πρόσθετος προγραμματισμός</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="157"/>
+        <location line="+14"/>
         <source>Spanish translation</source>
         <translation>Μετάφραση στα Ισπανικά</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="163"/>
+        <location line="+6"/>
         <source>Czech translation</source>
         <translation>Μετάφραση στα Τσέχικα</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="456"/>
+        <location line="+293"/>
         <source>About cdcat</source>
         <translation>Σχετικά με το cdcat</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="457"/>
+        <location line="+1"/>
         <source>close</source>
         <translation>κλείσιμο</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="460"/>
+        <location line="+3"/>
         <source>About Cdcat</source>
         <translation>Σχετικά με το CdCat</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="463"/>
+        <location line="+3"/>
         <source>License</source>
         <translation>Άδεια</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="465"/>
+        <location line="+2"/>
         <source>Thanks</source>
         <translation>Ευχαριστίες</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="83"/>
+        <location line="-382"/>
         <source>-= CdCatalog by Hyper =-</source>
         <translation>-= CdCatalog by Hyper =-</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="87"/>
+        <location line="+4"/>
         <source>Version:</source>
         <translation>Έκδοση:</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="132"/>
+        <location line="+45"/>
         <source>Author:</source>
         <translation>Συγγραφέας:</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="134"/>
+        <location line="+2"/>
         <source>Copyright (C) 2003 Peter Deak (GPL)</source>
         <translation>Copyright (C) 2003 Peter Deak (GPL)</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="151"/>
+        <location line="+17"/>
         <source>AVI reader plugin &amp; Polish translation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="136"/>
+        <location line="-15"/>
         <source>Copyright (C) 2010 Christoph Thielecke (GPL)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="145"/>
+        <location line="+9"/>
         <source>Ported to Qt4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="89"/>
+        <location line="-56"/>
         <source> (with debug)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="103"/>
+        <location line="+14"/>
         <source>Development version build at</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="170"/>
+        <location line="+67"/>
         <source>For more details about the GPL license and to read in other languages, visit %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="170"/>
+        <location line="+0"/>
         <source>GPL page on GNU website</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="107"/>
+        <location line="-63"/>
         <source>Features:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="111"/>
+        <location line="+4"/>
         <source>archive read support using lib7zip</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="115"/>
+        <location line="+4"/>
         <source>mediainfo (compiled in)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="119"/>
+        <location line="+4"/>
         <source>mediainfo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="123"/>
+        <location line="+4"/>
         <source>exif data read support</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="127"/>
+        <location line="+4"/>
         <source>encrypted catalog support</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2583,22 +2854,23 @@ will be to
 <context>
     <name>KeyBindingDialog</name>
     <message>
-        <location filename="../info.cpp" line="479"/>
+        <location line="+356"/>
         <source>Action</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="481"/>
+        <location line="+2"/>
         <source>Shortcut</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="535"/>
+        <location line="-6"/>
+        <location line="+58"/>
         <source>Key bindings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="536"/>
+        <location line="+1"/>
         <source>close</source>
         <translation type="unfinished">κλείσιμο</translation>
     </message>
@@ -2606,17 +2878,17 @@ will be to
 <context>
     <name>PWw</name>
     <message>
-        <location filename="../adddialog.cpp" line="488"/>
+        <location filename="../adddialog.cpp" line="-276"/>
         <source>Please Wait...</source>
         <translation type="unfinished">Παρακαλώ περιμένετε...</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="514"/>
         <source>Cancel</source>
         <translation type="obsolete">Ακύρωση</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="588"/>
+        <location line="-7"/>
+        <location line="+107"/>
         <source>&amp;Cancel</source>
         <translation type="unfinished">&amp;Ακύρωση</translation>
     </message>
@@ -2624,679 +2896,777 @@ will be to
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../hdirview.cpp" line="254"/>
+        <location filename="../dirview.cpp" line="-39"/>
+        <location filename="../hdirview.cpp" line="-132"/>
+        <location line="+63"/>
         <source>Directory</source>
         <translation>Κατάλογος</translation>
     </message>
     <message>
-        <location filename="../dirview.cpp" line="148"/>
+        <location line="+2"/>
         <source>Unreadable Directory</source>
         <translation>Μη αναγνώσιμος Κατάλογος</translation>
     </message>
     <message>
-        <location filename="../hdirview.cpp" line="232"/>
+        <location filename="../hdirview.cpp" line="-105"/>
+        <location line="+83"/>
         <source>Catalog</source>
         <translation>Κατάλογος</translation>
     </message>
     <message>
-        <location filename="../hdirview.cpp" line="236"/>
+        <location line="-75"/>
+        <location line="+79"/>
         <source>Unknown(DB)</source>
         <translation>Άγνωστη βάση</translation>
     </message>
     <message>
-        <location filename="../hdirview.cpp" line="238"/>
+        <location line="-75"/>
+        <location line="+77"/>
         <source>CD</source>
         <translation>CD</translation>
     </message>
     <message>
-        <location filename="../hdirview.cpp" line="240"/>
+        <location line="-73"/>
+        <location line="+75"/>
         <source>DVD</source>
         <translation>DVD</translation>
     </message>
     <message>
-        <location filename="../hdirview.cpp" line="242"/>
+        <location line="-71"/>
+        <location line="+73"/>
         <source>HardDisc</source>
         <translation>Σκληρός δίσκος</translation>
     </message>
     <message>
-        <location filename="../hdirview.cpp" line="244"/>
+        <location line="-69"/>
+        <location line="+71"/>
         <source>Floppy</source>
         <translation>Δισκέτα</translation>
     </message>
     <message>
-        <location filename="../hdirview.cpp" line="246"/>
+        <location line="-67"/>
+        <location line="+69"/>
         <source>NetworkDrv</source>
         <translation>Δίσκος Δικτύου</translation>
     </message>
     <message>
-        <location filename="../hdirview.cpp" line="248"/>
+        <location line="-65"/>
+        <location line="+67"/>
         <source>FlashDrv</source>
         <translation>Δίσκος Flash</translation>
     </message>
     <message>
-        <location filename="../hdirview.cpp" line="250"/>
+        <location line="-63"/>
+        <location line="+65"/>
         <source>OtherDevice</source>
         <translation>Άλλη Συσκευή</translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="492"/>
+        <location filename="../tparser.cpp" line="+296"/>
+        <location line="+8"/>
+        <location line="+19"/>
+        <location line="+20"/>
+        <location line="+24"/>
+        <location line="+25"/>
+        <location line="+15"/>
+        <location line="+9"/>
+        <location line="+24"/>
+        <location line="+8"/>
+        <location line="+44"/>
         <source>Not a RIFF/AVI file OR header broken!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="640"/>
+        <location line="+148"/>
         <source>Video:
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="642"/>
+        <location line="+2"/>
         <source>Total Time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="643"/>
+        <location line="+1"/>
         <source>Framerate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="644"/>
+        <location line="+1"/>
         <source>Resolution</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="648"/>
+        <location line="+4"/>
         <source>Channels</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="650"/>
+        <location line="+2"/>
         <source>Bitrate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="656"/>
+        <location line="+6"/>
         <source>Artist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="658"/>
+        <location line="+2"/>
         <source>Comments</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="660"/>
+        <location line="+2"/>
         <source>Copyright</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="662"/>
+        <location line="+2"/>
         <source>Creation Date</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="664"/>
+        <location line="+2"/>
         <source>Engineer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="666"/>
+        <location line="+2"/>
         <source>Genre</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="668"/>
+        <location line="+2"/>
         <source>Name</source>
         <translation type="unfinished">Όνομα</translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="670"/>
+        <location line="+2"/>
         <source>Product</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="672"/>
+        <location line="+2"/>
         <source>Software</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="674"/>
+        <location line="+2"/>
         <source>Source</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="676"/>
+        <location line="+2"/>
         <source>Subject</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="678"/>
+        <location line="+2"/>
         <source>Technician</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="763"/>
+        <location line="+85"/>
         <source>Unknown/not implemented/broken header
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="649"/>
+        <location line="-114"/>
         <source>Sample/s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2411"/>
+        <location filename="../import.cpp" line="+2701"/>
         <source>importuser</source>
         <translation type="unfinished">εισαγωγή χρήστη</translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="646"/>
+        <location filename="../tparser.cpp" line="-3"/>
         <source>Audio:
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="653"/>
+        <location line="+7"/>
         <source>More Data:
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../wdbfile.cpp" line="1004"/>
+        <location filename="../guibase.cpp" line="+2745"/>
+        <location line="+1"/>
+        <location line="+29"/>
+        <location line="+1"/>
+        <location filename="../wdbfile.cpp" line="-90"/>
         <source>Enter password...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../wdbfile.cpp" line="1004"/>
+        <location line="-31"/>
+        <location line="+30"/>
+        <location filename="../wdbfile.cpp" line="+0"/>
         <source>Enter password for catalog:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../hdirview.cpp" line="230"/>
+        <location filename="../hdirview.cpp" line="-99"/>
+        <location line="+79"/>
         <source>Catalog (encrypted)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../wdbfile.cpp" line="1008"/>
+        <location filename="../wdbfile.cpp" line="+4"/>
         <source>password empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../wdbfile.cpp" line="1014"/>
+        <location line="+6"/>
         <source>cant set password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../wdbfile.cpp" line="1034"/>
+        <location line="+20"/>
         <source>decrypt failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../wdbfile.cpp" line="1047"/>
+        <location line="+13"/>
         <source>cant load catalog: encrypted catalog support not available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="2976"/>
+        <location filename="../guibase.cpp" line="-29"/>
+        <location line="+30"/>
         <source>Enter password for catalog (again):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../importdialog.cpp" line="-285"/>
+        <source>directory separator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>tabulator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>space char</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>file name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>full path (including directory name and file name)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>File size with human unit (e.g. G for Gigabyte)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>File size (number only, in bytes)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>File size (number only, in kilobytes)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>date with 2 year digit (e.g. 25th. may 2012: 12-05-25)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>date with 4 year digit (e.g. 25th. may 2012: 2012-05-25)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>time in full format (e.g. 07:28:13)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>time with hour and minute only (e.g. 07:28)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SelReadable</name>
     <message>
-        <location filename="../selreadable.cpp" line="836"/>
+        <location filename="../selreadable.cpp" line="+836"/>
         <source>Select readable items</source>
         <translation>Επιλογή αναγνώσιμων αντικειμένων</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="848"/>
+        <location line="+12"/>
         <source>Read mp3 tags</source>
         <translation>Ανάγνωση ετικέτας mp3</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="864"/>
+        <location line="+16"/>
         <source>Store content of some files</source>
         <translation>Αποθήκευση περιεχομένου αρχείων</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="885"/>
+        <location line="+21"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="886"/>
+        <location line="+1"/>
         <source>Cancel</source>
         <translation>Ακύρωση</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="875"/>
+        <location line="-11"/>
         <source>content size limit in kByte</source>
         <translation>όριο μεγέθους περιεχομένου σε kByte</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="870"/>
+        <location line="-5"/>
         <source>; separated list of readable file patterns</source>
         <translation>; separated list of readable file patterns</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="859"/>
+        <location line="-11"/>
         <source>Default tag</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="120"/>
+        <location line="-740"/>
+        <location line="+1"/>
         <source>version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="861"/>
+        <location line="+741"/>
         <source>Read mp3 technical info as comment (bitrate,freq,length...)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="863"/>
+        <location line="+2"/>
         <source>Read avi technical info as comment (codecs,length,...)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="841"/>
+        <location line="-442"/>
+        <location line="+32"/>
+        <location line="+388"/>
         <source>Supported extensions:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="837"/>
+        <location line="-4"/>
         <source>Archive file display options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="838"/>
+        <location line="+1"/>
         <source>Scan for archive file list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="868"/>
+        <location line="+30"/>
         <source>Read some technical info using mediainfo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="850"/>
+        <location line="-18"/>
         <source>Read thumbnails from pictures</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="856"/>
+        <location line="+6"/>
         <source>Read EXIF data from pictures</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="854"/>
+        <location line="-2"/>
         <source>x</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="872"/>
+        <location line="+18"/>
         <source>; separated list of image file extensions, e.g. png;jpg;gif</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="622"/>
+        <location line="-542"/>
+        <location line="+292"/>
         <source>Path to external content viewer (found)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="629"/>
+        <location line="-286"/>
+        <location line="+293"/>
         <source>Path to external content viewer (not found)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="606"/>
+        <location line="-23"/>
         <source>Choose path to external context viewer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="866"/>
+        <location line="+260"/>
         <source>...</source>
         <translation type="unfinished">...</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="867"/>
+        <location line="+1"/>
         <source>Select external viewer...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="175"/>
+        <location line="-692"/>
         <source>KiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="413"/>
+        <location line="+238"/>
         <source>lib7zip found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="417"/>
+        <location line="+4"/>
         <source>lib7zip not supported</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="420"/>
+        <location line="+3"/>
         <source>Archive support:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="449"/>
+        <location line="+29"/>
         <source>mediainfo not found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="451"/>
+        <location line="+2"/>
         <source>mediainfo found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="456"/>
+        <location line="+1"/>
+        <location line="+4"/>
         <source>mediainfo status:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="842"/>
+        <location line="+386"/>
         <source>Permission</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="843"/>
+        <location line="+1"/>
         <source>User</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="844"/>
+        <location line="+1"/>
         <source>Group</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="845"/>
+        <location line="+1"/>
         <source>Size</source>
         <translation type="unfinished">Μέγεθος</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="846"/>
+        <location line="+1"/>
         <source>Date</source>
         <translation type="unfinished">Ημερομηνία</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="847"/>
+        <location line="+1"/>
         <source>Comment</source>
         <translation type="unfinished">Σχόλιο</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="849"/>
+        <location line="+2"/>
         <source>Read thumbnails</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="851"/>
+        <location line="+2"/>
         <source>Size:</source>
         <translation type="unfinished">Μέγεθος:</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="852"/>
+        <location line="+1"/>
         <source>Thumbnail size (width) in pixels</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="853"/>
+        <location line="+1"/>
         <source>Thumbnail size (height) in pixels</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="865"/>
+        <location line="+12"/>
         <source>Use external file content viewer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="869"/>
+        <location line="+4"/>
         <source>file patterns:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="871"/>
+        <location line="+2"/>
         <source>File extensions:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="874"/>
+        <location line="+3"/>
         <source>max size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="860"/>
+        <location line="-14"/>
         <source>Read mp3 info as comment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="862"/>
+        <location line="+2"/>
         <source>Read avi info as comment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="667"/>
+        <location line="-227"/>
+        <location line="+32"/>
         <source>Add exclude rule...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="667"/>
+        <location line="-32"/>
+        <location line="+32"/>
         <source>Enter regular expression for exclude:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="651"/>
+        <location line="-16"/>
         <source>edit rule...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="655"/>
+        <location line="+4"/>
         <source>delete rule...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="876"/>
+        <location line="+221"/>
         <source>exclude files/directories</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="883"/>
+        <location line="+7"/>
         <source>add exclude rule...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="884"/>
+        <location line="+1"/>
         <source>list of patterns (regular expression) for files/directories to skip on reading from filesystem</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="695"/>
+        <location line="-189"/>
         <source>regular expression is invalid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="699"/>
+        <location line="+4"/>
         <source>regular expression is valid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="840"/>
+        <location line="+141"/>
         <source>show archive file at scanning in status</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="839"/>
+        <location line="-1"/>
         <source>show archive file in status</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="804"/>
+        <location line="-35"/>
         <source>About regular expressions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="806"/>
+        <location line="+2"/>
         <source>close</source>
         <translation type="unfinished">κλείσιμο</translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="879"/>
+        <location line="+73"/>
         <source>About regex:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="880"/>
+        <location line="+1"/>
         <source>Information about regular expressions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="881"/>
+        <location line="+1"/>
         <source>About regular expressions....</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="882"/>
+        <location line="+1"/>
         <source>Show introduction into regular expressions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="744"/>
+        <location line="-138"/>
         <source>Metacharacter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="745"/>
+        <location line="+1"/>
         <source>Description</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="753"/>
+        <location line="+8"/>
         <source>A bracket expression. Matches a single character that is contained within the brackets. For example, &lt;code&gt;[abc]&lt;/code&gt; matches &quot;&lt;i&gt;a&lt;/i&gt;&quot;, &quot;&lt;i&gt;b&lt;/i&gt;&quot;, or &quot;&lt;i&gt;c&lt;/i&gt;&quot;. &lt;code&gt;[a-z]&lt;/code&gt; specifies a range which matches any lowercase letter from &quot;&lt;i&gt;a&lt;/i&gt;&quot; to &quot;&lt;i&gt;z&lt;/i&gt;&quot;. These forms can be mixed: &lt;code&gt;[abcx-z]&lt;/code&gt; matches &quot;&lt;i&gt;a&lt;/i&gt;&quot;, &quot;&lt;i&gt;b&lt;/i&gt;&quot;, &quot;&lt;i&gt;c&lt;/i&gt;&quot;, &quot;&lt;i&gt;x&lt;/i&gt;&quot;, &quot;&lt;i&gt;y&lt;/i&gt;&quot;, or &quot;&lt;i&gt;z&lt;/i&gt;&quot;, as does &lt;code&gt;[a-cx-z]&lt;/code&gt;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="754"/>
+        <location line="+1"/>
         <source>The &lt;code&gt;-&lt;/code&gt; character is treated as a literal character if it is the last or the first (after the &lt;code&gt;^&lt;/code&gt;) character within the brackets: &lt;code&gt;[abc-]&lt;/code&gt;, &lt;code&gt;[-abc]&lt;/code&gt;. Note that backslash escapes are not allowed. The &lt;code&gt;]&lt;/code&gt; character can be included in a bracket expression if it is the first (after the &lt;code&gt;^&lt;/code&gt;) character: &lt;code&gt;[]abc]&lt;/code&gt;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="759"/>
+        <location line="+5"/>
         <source>Matches a single character that is not contained within the brackets. For example, &lt;code&gt;[^abc]&lt;/code&gt; matches any character other than &quot;&lt;i&gt;a&lt;/i&gt;&quot;, &quot;&lt;i&gt;b&lt;/i&gt;&quot;, or &quot;&lt;i&gt;c&lt;/i&gt;&quot;. &lt;code&gt;[^a-z]&lt;/code&gt; matches any single character that is not a lowercase letter from &quot;&lt;i&gt;a&lt;/i&gt;&quot; to &quot;&lt;i&gt;z&lt;/i&gt;&quot;. Likewise, literal characters and ranges can be mixed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="763"/>
+        <location line="+4"/>
         <source>Matches the starting position within the string. In line-based tools, it matches the starting position of any line.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="776"/>
+        <location line="+13"/>
         <source>Matches what the &lt;i&gt;n&lt;/i&gt;th marked subexpression matched, where &lt;i&gt;n&lt;/i&gt; is a digit from 1 to 9. This construct is theoretically &lt;b&gt;irregular&lt;/b&gt; and was not adopted in the POSIX ERE syntax. Some tools allow referencing more than nine capturing groups.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="780"/>
+        <location line="+4"/>
         <source>Matches the preceding element zero or more times. For example, &lt;code&gt;ab*c&lt;/code&gt; matches &quot;&lt;i&gt;ac&lt;/i&gt;&quot;, &quot;&lt;i&gt;abc&lt;/i&gt;&quot;, &quot;&lt;i&gt;abbbc&lt;/i&gt;&quot;, etc. &lt;code&gt;[xyz]*&lt;/code&gt; matches &quot;&quot;, &quot;&lt;i&gt;x&lt;/i&gt;&quot;, &quot;&lt;i&gt;y&lt;/i&gt;&quot;, &quot;&lt;i&gt;z&lt;/i&gt;&quot;, &quot;&lt;i&gt;zx&lt;/i&gt;&quot;, &quot;&lt;i&gt;zyx&lt;/i&gt;&quot;, &quot;&lt;i&gt;xyzzy&lt;/i&gt;&quot;, and so on. &lt;code&gt;\(ab\)*&lt;/code&gt; matches &quot;&quot;, &quot;&lt;i&gt;ab&lt;/i&gt;&quot;, &quot;&lt;i&gt;abab&lt;/i&gt;&quot;, &quot;&lt;i&gt;ababab&lt;/i&gt;&quot;, and so on.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="788"/>
+        <location line="+8"/>
         <source>Examples:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="790"/>
+        <location line="+2"/>
         <source>matches any three-character string ending with &quot;at&quot;, including &quot;&lt;i&gt;hat&lt;/i&gt;&quot;, &quot;&lt;i&gt;cat&lt;/i&gt;&quot;, and &quot;&lt;i&gt;bat&lt;/i&gt;&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="791"/>
+        <location line="+1"/>
         <source>matches &quot;&lt;i&gt;hat&lt;/i&gt;&quot; and &quot;&lt;i&gt;cat&lt;/i&gt;&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="792"/>
+        <location line="+1"/>
         <source>matches all strings matched by &lt;code&gt;.at&lt;/code&gt; except &quot;&lt;i&gt;bat&lt;/i&gt;&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="793"/>
+        <location line="+1"/>
         <source>matches &quot;&lt;i&gt;hat&lt;/i&gt;&quot; and &quot;&lt;i&gt;cat&lt;/i&gt;&quot;, but only at the beginning of the string or line.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="794"/>
+        <location line="+1"/>
         <source>matches &quot;&lt;i&gt;hat&lt;/i&gt;&quot; and &quot;&lt;i&gt;cat&lt;/i&gt;&quot;, but only at the end of the string or line.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="798"/>
+        <location line="+4"/>
         <source>Source:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="795"/>
+        <location line="-3"/>
         <source>matches any single character surrounded by &quot;[&quot; and &quot;]&quot; since the brackets are escaped, for example: &quot;&lt;i&gt;[a]&lt;/i&gt;&quot; and &quot;&lt;i&gt;[b]&lt;/i&gt;&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="707"/>
+        <location line="-88"/>
         <source>POSIX Basic Regular Expressions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="877"/>
+        <location line="+170"/>
         <source>Use wildcard instead regex</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="878"/>
+        <location line="+1"/>
         <source>Use wildcard expression instead regular expression</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="406"/>
+        <location line="-472"/>
         <source>lib7zip not found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="411"/>
+        <location line="+5"/>
         <source>unknown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="457"/>
+        <location line="+7"/>
+        <location line="+39"/>
         <source>support not compiled in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="455"/>
+        <location line="-2"/>
         <source>mediainfo not supported</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="873"/>
+        <location line="+418"/>
         <source>Supported image extensions found: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="749"/>
+        <location line="-124"/>
         <source>Matches any single character (many applications exclude &lt;a href=&quot;http://en.wikipedia.org/wiki/Newline&quot; title=&quot;Newline&quot;&gt;newlines&lt;/a&gt;, and exactly which characters are considered newlines is flavor-, character-encoding-, and platform-specific, but it is safe to assume that the line feed character is included). Within POSIX bracket expressions, the dot character matches a literal dot. For example, &lt;code&gt;a.c&lt;/code&gt; matches &quot;&lt;i&gt;abc&lt;/i&gt;&quot;, etc., but &lt;code&gt;[a.c]&lt;/code&gt; matches only &quot;&lt;i&gt;a&lt;/i&gt;&quot;, &quot;&lt;i&gt;.&lt;/i&gt;&quot;, or &quot;&lt;i&gt;c&lt;/i&gt;&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="798"/>
+        <location line="+49"/>
         <source>&lt;a href=&quot;http://en.wikipedia.org/wiki/Regex&quot;&gt;regular expressions&lt;/a&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../selreadable.cpp" line="800"/>
+        <location line="+2"/>
         <source>From</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3304,102 +3674,99 @@ will be to
 <context>
     <name>ShowContent</name>
     <message>
-        <location filename="../showcontent.cpp" line="116"/>
+        <location filename="../showcontent.cpp" line="+116"/>
         <source>Content of %1</source>
         <translation>Περιεχόμενο του %1</translation>
     </message>
     <message>
-        <location filename="../showcontent.cpp" line="206"/>
+        <location line="+90"/>
         <source>Close</source>
         <translation>Κλείσιμο</translation>
     </message>
     <message>
-        <location filename="../showcontent.cpp" line="252"/>
+        <location line="+46"/>
         <source>Confirmation</source>
         <translation>Επιβεβαίωση</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Are you sure want to delete this file&apos;s content from the database?</source>
         <translation type="obsolete">Είστε σίγουρος για τη διαγραφή του περιεχομένου του αρχείου από τη βάση?</translation>
     </message>
     <message>
-        <location filename="../showcontent.cpp" line="255"/>
+        <location line="+3"/>
         <source>Yes</source>
         <translation>Ναι</translation>
     </message>
     <message>
-        <location filename="../showcontent.cpp" line="255"/>
+        <location line="+0"/>
         <source>No</source>
         <translation>Όχι</translation>
     </message>
     <message>
-        <location filename="../showcontent.cpp" line="71"/>
+        <location line="-184"/>
         <source>Remove the file content from the database. (Warning: Unrecoverable!)</source>
         <translation>Αφαίρεση περιέχομενου αρχείου από τη βάση. (Προειδοποίηση: Μη ανακτήσιμο!)</translation>
     </message>
     <message>
-        <location filename="../showcontent.cpp" line="61"/>
+        <location line="-10"/>
         <source>%1 kByte</source>
         <translation>%1 kByte</translation>
     </message>
     <message>
-        <location filename="../showcontent.cpp" line="75"/>
+        <location line="+14"/>
         <source>Save this content to a new file</source>
         <translation>Αποθήκευση περιεχομένου σε νέο αρχείο</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Save content...</source>
         <translation type="obsolete">Αποθήκευση περιεχομένου...</translation>
     </message>
     <message>
-        <location filename="../showcontent.cpp" line="229"/>
+        <location line="+154"/>
         <source>Select a filename below</source>
         <translation>Επιλογή ονόματος αρχείου</translation>
     </message>
     <message>
-        <location filename="../showcontent.cpp" line="233"/>
+        <location line="+4"/>
         <source>I can&apos;t rewrite the file: %1</source>
         <translation>Αδυναμία επανεγγραφής αρχείου: %1</translation>
     </message>
     <message>
-        <location filename="../showcontent.cpp" line="234"/>
+        <location line="+1"/>
         <source>Error while saving...</source>
         <translation>Σφάλμα κατά την αποθήκευση...</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Ok</source>
         <translation type="obsolete">Ok</translation>
     </message>
     <message>
-        <location filename="../showcontent.cpp" line="254"/>
+        <location line="+20"/>
         <source>Sure to delete this file&apos;s content from the database?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../showcontent.cpp" line="229"/>
+        <location line="-25"/>
         <source>CdCat databases (*.hcf )</source>
         <translation type="unfinished">Βάσεις CdCat (*.hcf)</translation>
     </message>
     <message>
-        <location filename="../showcontent.cpp" line="92"/>
+        <location line="-137"/>
         <source>Category of %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../showcontent.cpp" line="202"/>
+        <location line="+110"/>
         <source>Set category</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../showcontent.cpp" line="204"/>
+        <location line="+2"/>
         <source>Set content</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../showcontent.cpp" line="205"/>
+        <location line="+1"/>
         <source>select font for display</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3407,222 +3774,212 @@ will be to
 <context>
     <name>addDialog</name>
     <message>
-        <location filename="../adddialog.cpp" line="77"/>
+        <location filename="../adddialog.cpp" line="-511"/>
         <source>Directory Browser</source>
         <translation>Περιηγητής καταλόγων</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="323"/>
+        <location line="+246"/>
         <source>New Disk %1</source>
         <translation>Νέος Δίσκος %1</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="245"/>
+        <location line="-78"/>
         <source>Add Media to the Database</source>
         <translation>Προσθήκη Μέσου στη Βάση</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="246"/>
+        <location line="+1"/>
         <source>Choose a directory to scan:</source>
         <translation>Επιλέξτε κατάλογο για ανίχνευση:</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Media Name:</source>
         <translation type="obsolete">Όνομα Μέσου:</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Serial number of Media:</source>
         <translation type="obsolete">Serial number του Μέσου:</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Owner:</source>
         <translation type="obsolete">Ιδιοκτήτης:</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Type:</source>
         <translation type="obsolete">Τύπος:</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Comment:</source>
         <translation type="obsolete">Σχόλιο:</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="656"/>
         <source>Cancel</source>
         <translation type="obsolete">Ακύρωση</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>OK / Scan</source>
         <translation type="obsolete">ΟΚ / Ανίχνευση</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="261"/>
+        <location line="+15"/>
         <source>CD</source>
         <translation>CD</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="262"/>
+        <location line="+1"/>
         <source>DVD</source>
         <translation>DVD</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="263"/>
+        <location line="+1"/>
         <source>HardDisc</source>
         <translation>Σκληρός δίσκος</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="264"/>
+        <location line="+1"/>
         <source>Floppy</source>
         <translation>Δισκέτα</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="265"/>
+        <location line="+1"/>
         <source>NetworkPlace</source>
         <translation>Περιοχή δικτύου</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="266"/>
+        <location line="+1"/>
         <source>FlashDrive</source>
         <translation>Δίσκος Flash</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="267"/>
+        <location line="+1"/>
         <source>OtherDevice</source>
         <translation>Άλλη Συσκευή </translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="398"/>
+        <location line="+100"/>
+        <location line="+5"/>
+        <location line="+21"/>
+        <location line="+5"/>
         <source>Error:</source>
         <translation>Σφάλμα:</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="367"/>
+        <location line="-31"/>
         <source>You must be fill the &quot;Name&quot; field!</source>
         <translation>Πρέπει να συμπληρωθεί το πεδίο &quot;Όνομα&quot;!</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="657"/>
         <source>Ok</source>
         <translation type="obsolete">Ok</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>You aren&apos;t selected a directory! Please select one!</source>
         <translation type="obsolete">Δεν έχετε επιλέξει κατάλογο! Παρακαλώ επιλέξτε έναν!</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="343"/>
         <source>The Media Name must be unique! Please change it!</source>
         <translation type="obsolete">Το όνομα του Μέσου πρέπει να είναι μοναδικό! Παρακαλώ αλλάξτε το!</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>The Value of Serial Number must be unique! Please change the value!</source>
         <translation type="obsolete">Η τιμή του Serial number πρέπει να είναι μοναδική! Παρακαλώ αλλάξτε την!</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Select readable items</source>
         <translation type="obsolete">Επιλογή αναγνώσιμων αντικειμένων</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="372"/>
+        <location line="+5"/>
         <source>The media name can&apos;t begin with the &quot;@&quot; character!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="393"/>
+        <location line="+21"/>
         <source>The Value of Serial Number must be unique! Please change it!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="398"/>
+        <location line="+5"/>
         <source>You haven&apos;t selected a directory! Please select one!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Please Wait...</source>
         <translation type="obsolete">Παρακαλώ περιμένετε...</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="674"/>
         <source>Open a file...</source>
         <translation type="obsolete">Άνοιγμα αρχείου...</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="674"/>
         <source>CdCat databases (*.hcf )</source>
         <translation type="obsolete">Βάσεις CdCat (*.hcf)</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="247"/>
+        <location line="-151"/>
         <source>Media &amp;Name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="248"/>
+        <location line="+1"/>
         <source>S&amp;erial number of Media:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="249"/>
+        <location line="+1"/>
         <source>&amp;Owner:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="250"/>
+        <location line="+1"/>
         <source>C&amp;ategory:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="251"/>
+        <location line="+1"/>
         <source>&amp;Type:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="252"/>
+        <location line="+1"/>
         <source>Co&amp;mment:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="253"/>
+        <location line="+1"/>
         <source>&amp;Cancel</source>
         <translation type="unfinished">&amp;Ακύρωση</translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="254"/>
+        <location line="+1"/>
         <source>&amp;Scan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="255"/>
+        <location line="+1"/>
         <source>Select &amp;readable items</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="257"/>
+        <location line="+2"/>
         <source>detect CDROM/DVD med&amp;ia name after mount</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="383"/>
+        <location line="+90"/>
+        <location line="+36"/>
         <source>Enter media name...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="383"/>
+        <location line="-36"/>
+        <location line="+36"/>
         <source>The Media Name must be unique! Enter new media name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../adddialog.cpp" line="260"/>
+        <location line="-123"/>
         <source>unknown</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3630,32 +3987,33 @@ will be to
 <context>
     <name>borrowDialog</name>
     <message>
-        <location filename="../borrow.cpp" line="75"/>
+        <location filename="../borrow.cpp" line="+75"/>
         <source>I borrow the &quot;%1&quot; named media to:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../borrow.cpp" line="87"/>
+        <location line="+12"/>
         <source>unknown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../borrow.cpp" line="114"/>
+        <location line="-44"/>
+        <location line="+71"/>
         <source>Borrowing...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../borrow.cpp" line="115"/>
+        <location line="+1"/>
         <source>I borrow the &quot;&quot; named media to:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../borrow.cpp" line="116"/>
+        <location line="+1"/>
         <source>Ok</source>
         <translation type="unfinished">Ok</translation>
     </message>
     <message>
-        <location filename="../borrow.cpp" line="117"/>
+        <location line="+1"/>
         <source>Cancel</source>
         <translation type="unfinished">Ακύρωση</translation>
     </message>
@@ -3663,92 +4021,112 @@ will be to
 <context>
     <name>borrowingDialog</name>
     <message>
-        <location filename="../borrow.cpp" line="211"/>
+        <location line="+94"/>
         <source>Media borrowing info:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../borrow.cpp" line="248"/>
+        <location line="+4"/>
+        <location line="+33"/>
         <source>Media</source>
         <translation type="unfinished">Μέσο</translation>
     </message>
     <message>
-        <location filename="../borrow.cpp" line="249"/>
+        <location line="-32"/>
+        <location line="+33"/>
         <source>Borrowed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../borrow.cpp" line="250"/>
+        <location line="-32"/>
+        <location line="+33"/>
         <source>where is it now?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../borrow.cpp" line="220"/>
+        <location line="-30"/>
         <source>Ok</source>
         <translation type="unfinished">Ok</translation>
     </message>
     <message>
-        <location filename="../borrow.cpp" line="456"/>
+        <location line="+57"/>
+        <location line="+38"/>
+        <location line="+1"/>
+        <location line="+1"/>
+        <location line="+15"/>
+        <location line="+9"/>
+        <location line="+11"/>
+        <location line="+39"/>
+        <location line="+65"/>
         <source>No</source>
         <translation type="unfinished">Όχι</translation>
     </message>
     <message>
-        <location filename="../borrow.cpp" line="463"/>
+        <location line="-179"/>
+        <location line="+38"/>
+        <location line="+7"/>
+        <location line="+12"/>
+        <location line="+9"/>
+        <location line="+9"/>
+        <location line="+22"/>
+        <location line="+17"/>
+        <location line="+72"/>
         <source>Yes</source>
         <translation type="unfinished">Ναι</translation>
     </message>
     <message>
-        <location filename="../borrow.cpp" line="325"/>
+        <location line="-138"/>
         <source>unknown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../borrow.cpp" line="329"/>
+        <location line="+4"/>
         <source>Error</source>
         <translation type="unfinished">Σφάλμα</translation>
     </message>
     <message>
-        <location filename="../borrow.cpp" line="329"/>
+        <location line="+0"/>
         <source>Set &quot;Yes&quot; or &quot;No&quot; !</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../borrow.cpp" line="391"/>
+        <location line="+23"/>
+        <location line="+39"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../borrow.cpp" line="352"/>
+        <location line="-39"/>
         <source>Do you save the changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../borrow.cpp" line="391"/>
+        <location line="+39"/>
         <source>Are you sure want to clear all borrow?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../borrow.cpp" line="422"/>
+        <location line="+31"/>
         <source>I got it back!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../borrow.cpp" line="427"/>
+        <location line="+5"/>
         <source>&lt;&lt; </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../borrow.cpp" line="210"/>
+        <location line="-217"/>
         <source>Borrowing info...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../borrow.cpp" line="212"/>
+        <location line="+2"/>
         <source>Show only borrowed items</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../borrow.cpp" line="213"/>
+        <location line="+1"/>
         <source>Clear all borrowing info</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3756,27 +4134,26 @@ will be to
 <context>
     <name>commentEdit</name>
     <message>
-        <location filename="" line="0"/>
         <source>Edit Comment</source>
         <translation type="obsolete">Επεξεργάσια σχόλιου</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="1059"/>
+        <location filename="../commwidget.cpp" line="+692"/>
         <source>Cancel</source>
         <translation>Ακύρωση</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="1060"/>
+        <location line="+1"/>
         <source>OK</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="1056"/>
+        <location line="-4"/>
         <source>Edit comment of</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="1058"/>
+        <location line="+2"/>
         <source>Edit category of</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3784,302 +4161,329 @@ will be to
 <context>
     <name>exportCdcatDB</name>
     <message>
-        <location filename="" line="0"/>
         <source>exportCdcatDB database</source>
         <translation type="obsolete">εξαγώγη βάσης CdcatDB</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="310"/>
+        <location filename="../exportcdcatdb.cpp" line="+310"/>
         <source>Availiable media</source>
         <translation>Διαθέσιμα μέσα</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="317"/>
+        <location line="+6"/>
+        <location line="+1"/>
         <source>Media to export</source>
         <translation>Μέσο για εξαγωγή</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="318"/>
+        <location line="+1"/>
         <source>All media</source>
         <translation>Όλα τα μέσα</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="326"/>
+        <location line="+8"/>
         <source>separator:</source>
         <translation>separator:</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="327"/>
+        <location line="+1"/>
         <source>File to export:</source>
         <translation>Αρχείο για εξαγωγή:</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="328"/>
+        <location line="+1"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="329"/>
+        <location line="+1"/>
         <source>&amp;OK</source>
         <translation>&amp;Ok</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="330"/>
+        <location line="+1"/>
         <source>&amp;Cancel</source>
         <translation type="unfinished">&amp;Ακύρωση</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>exportCdcatDB database: </source>
         <translation type="obsolete">εξαγώγη βάσης CdcatDB:</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="398"/>
+        <location line="+68"/>
         <source>Filename missing</source>
         <translation>Όνομα αρχείου  απουσιάζει</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="398"/>
+        <location line="+0"/>
         <source>Please enter a filename!</source>
         <translation>Παρακαλώ εισάγετε όνομα αρχείου!</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="401"/>
+        <location line="+3"/>
         <source>Separator missing</source>
         <translation>Separator απουσιάζει</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="401"/>
+        <location line="+0"/>
         <source>Please enter a separator!</source>
         <translation>Παρακαλώ εισάγετε separator!</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Error during write config...</source>
         <translation type="obsolete">Σφάλμα κατά την εγγραφή ρύθμισης...</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Ok</source>
         <translation type="obsolete">Ok</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="713"/>
+        <location line="+312"/>
         <source>All files (*.*)</source>
         <translation>Όλα τα αρχεία  (*.*)</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>file chooser</source>
         <translation type="obsolete">επιλογέας αρχείου</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="713"/>
+        <location line="+0"/>
         <source>Choose a file!</source>
         <translation>Επιλέξτε ένα αρχείο!</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="315"/>
+        <location line="-402"/>
+        <location line="+4"/>
         <source>Add media</source>
         <translation>Προσθήκη μέσου</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="313"/>
+        <location line="-2"/>
         <source>Remove media</source>
         <translation>Αφαίρεση μέσου</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="321"/>
+        <location line="-184"/>
+        <location line="+192"/>
         <source>Type</source>
         <translation>Τύπος</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="322"/>
+        <location line="+1"/>
         <source>export as HTML</source>
         <translation>εξαγωγή ως HTML</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="323"/>
+        <location line="+1"/>
         <source>export as CSV</source>
         <translation>εξαγωγή ως CSV</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="482"/>
+        <location line="+140"/>
+        <location line="+19"/>
         <source>Media</source>
         <translation>Μέσο</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="467"/>
+        <location line="-15"/>
         <source>File</source>
         <translation>Αρχείο</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="509"/>
+        <location line="-286"/>
+        <location line="+154"/>
+        <location line="+134"/>
+        <location line="+40"/>
         <source>Size</source>
         <translation>Μέγεθος</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="514"/>
+        <location line="-325"/>
+        <location line="+152"/>
+        <location line="+135"/>
+        <location line="+43"/>
         <source>Date</source>
         <translation>Ημερομηνία</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="610"/>
+        <location line="+71"/>
+        <location line="+25"/>
         <source>I can&apos;t create or rewrite the file</source>
         <translation>Αδυναμία δημιουργίασς ή επανεγγραφής αρχείου</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="441"/>
+        <location line="-169"/>
         <source>Export from cdcat:</source>
         <translation>Εξαγωγή από το cdcat:</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="60"/>
+        <location line="-381"/>
         <source>Export database...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="163"/>
+        <location line="+103"/>
         <source>What to export</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="494"/>
+        <location line="+9"/>
+        <location line="+159"/>
+        <location line="+163"/>
         <source>Media name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="504"/>
+        <location line="-316"/>
+        <location line="+155"/>
+        <location line="+171"/>
         <source>Path</source>
         <translation type="unfinished">Τοποθεσία</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="519"/>
+        <location line="-317"/>
+        <location line="+150"/>
+        <location line="+136"/>
+        <location line="+46"/>
         <source>Comment</source>
         <translation type="unfinished">Σχόλιο</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="341"/>
+        <location line="-353"/>
+        <location line="+175"/>
         <source>HTML headline</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="369"/>
+        <location line="+28"/>
         <source>Export CdCat database: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="549"/>
+        <location line="+180"/>
         <source>Overwrite?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="550"/>
+        <location line="+1"/>
         <source>Do you want overwrite this file?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="555"/>
+        <location line="+5"/>
         <source>Yes</source>
         <translation type="unfinished">Ναι</translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="556"/>
+        <location line="+1"/>
         <source>Discard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="489"/>
+        <location line="-100"/>
+        <location line="+33"/>
         <source>Export from cdcat, catalog:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="490"/>
+        <location line="-32"/>
+        <location line="+33"/>
         <source>Generated at:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="499"/>
+        <location line="-315"/>
+        <location line="+157"/>
+        <location line="+167"/>
         <source>Media number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="339"/>
+        <location line="-306"/>
+        <location line="+146"/>
         <source>export mp3 tag</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="340"/>
+        <location line="-143"/>
+        <location line="+144"/>
         <source>export borrow information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="465"/>
+        <location line="+125"/>
         <source>#</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="524"/>
+        <location line="+10"/>
+        <location line="+49"/>
         <source>MP3 tag</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="528"/>
+        <location line="-47"/>
+        <location line="+51"/>
         <source>Borrow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="1043"/>
+        <location line="+515"/>
         <source>Artist:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="1044"/>
+        <location line="+1"/>
         <source>Title:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="1045"/>
+        <location line="+1"/>
         <source>Album:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="1046"/>
+        <location line="+1"/>
         <source>Year:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="342"/>
+        <location line="-877"/>
+        <location line="+173"/>
         <source>table header/comment line</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="491"/>
+        <location line="+149"/>
         <source>field list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="324"/>
+        <location line="-167"/>
         <source>export as XML</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="561"/>
+        <location line="+237"/>
         <source>Exporting, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="610"/>
+        <location line="+24"/>
+        <location line="+25"/>
         <source>Error during write export...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="532"/>
+        <location line="-420"/>
+        <location line="+148"/>
+        <location line="+141"/>
+        <location line="+53"/>
         <source>Category</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="319"/>
+        <location line="-213"/>
         <source>Only media</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4087,337 +4491,399 @@ will be to
 <context>
     <name>findDialog</name>
     <message>
-        <location filename="../find.cpp" line="927"/>
+        <location filename="../find.cpp" line="+182"/>
+        <location line="+242"/>
+        <location line="+75"/>
+        <location line="+30"/>
+        <location line="+398"/>
         <source>Name</source>
         <translation>Όνομα</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="928"/>
+        <location line="-744"/>
+        <location line="+242"/>
+        <location line="+75"/>
+        <location line="+30"/>
+        <location line="+398"/>
         <source>Type</source>
         <translation>Τύπος</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="930"/>
+        <location line="-743"/>
+        <location line="+242"/>
+        <location line="+75"/>
+        <location line="+30"/>
+        <location line="+398"/>
         <source>Media</source>
         <translation>Μέσο</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="931"/>
+        <location line="-744"/>
+        <location line="+242"/>
+        <location line="+75"/>
+        <location line="+30"/>
+        <location line="+398"/>
         <source>Path</source>
         <translation>Τοποθεσία</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="932"/>
+        <location line="-744"/>
+        <location line="+242"/>
+        <location line="+75"/>
+        <location line="+30"/>
+        <location line="+398"/>
         <source>Modification</source>
         <translation>Τροποποιήση</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="525"/>
+        <location line="-407"/>
         <source>Search in the database...</source>
         <translation>Αναζήτηση στη βάση...</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="567"/>
+        <location line="+42"/>
         <source>Close / Go to selected</source>
         <translation>Κλείσιμο / Μετάβαση στα επιλεγμένα</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="539"/>
+        <location line="-28"/>
         <source>Find:</source>
         <translation>Αναζήτηση:</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="526"/>
+        <location line="-13"/>
         <source>Seek in:</source>
         <translation>Αναζήτηση σε:</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="527"/>
+        <location line="+1"/>
         <source>Owner:</source>
         <translation>Ιδιοκτήτης:</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="933"/>
+        <location line="-339"/>
+        <location line="+242"/>
+        <location line="+75"/>
+        <location line="+30"/>
+        <location line="+12"/>
+        <location line="+329"/>
+        <location line="+57"/>
         <source>Comment</source>
         <translation>Σχόλιο</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="874"/>
+        <location line="-392"/>
+        <location line="+333"/>
         <source>File name</source>
         <translation>Όνομα αρχείου</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Directory name</source>
         <translation type="obsolete">Όνομα καταλόγου</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="886"/>
+        <location line="-330"/>
+        <location line="+342"/>
         <source>mp3-tag Comment</source>
         <translation>Σχόλιο ετικέτας mp3</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="884"/>
+        <location line="-344"/>
+        <location line="+342"/>
         <source>mp3-tag Album</source>
         <translation>Album ετικέτας mp3</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="882"/>
+        <location line="-338"/>
+        <location line="+336"/>
         <source>mp3-tag Title</source>
         <translation>Τίτλος ετικέτας mp3</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="880"/>
+        <location line="-339"/>
+        <location line="+337"/>
         <source>mp3-tag Artist</source>
         <translation>Καλλιτέχνης ετικέτας mp3</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="859"/>
+        <location line="-310"/>
+        <location line="+289"/>
         <source>Case sensitive</source>
         <translation>Διάκριση πεζών-κεφαλαίων</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="851"/>
+        <location line="-288"/>
+        <location line="+280"/>
         <source>Use easy matching instead regex</source>
         <translation>Use easy matching instead regex</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="652"/>
+        <location line="-199"/>
         <source>All/Everybody</source>
         <translation>Όλοι</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="656"/>
+        <location line="+4"/>
         <source>All media</source>
         <translation>Όλα τα μέσα</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>&amp;OK</source>
         <translation type="obsolete">&amp;Ok</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="562"/>
+        <location line="-142"/>
+        <location line="+48"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Ακύρωση</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="518"/>
         <source>Results</source>
         <translation type="obsolete">Αποτελέσματα</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="878"/>
+        <location line="-13"/>
+        <location line="+329"/>
         <source>Content</source>
         <translation>Περιεχόμενο</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="872"/>
+        <location line="-333"/>
+        <location line="+327"/>
         <source>Media / Directory name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="905"/>
+        <location line="-322"/>
+        <location line="+355"/>
         <source>Date start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="909"/>
+        <location line="-354"/>
+        <location line="+358"/>
         <source>Date end</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="155"/>
+        <location line="-761"/>
+        <location line="+7"/>
         <source>Byte</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="156"/>
+        <location line="-6"/>
+        <location line="+7"/>
         <source>KiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="157"/>
+        <location line="-6"/>
+        <location line="+7"/>
         <source>MiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="158"/>
+        <location line="-6"/>
+        <location line="+7"/>
         <source>GiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="913"/>
+        <location line="+394"/>
+        <location line="+361"/>
         <source>Min size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="917"/>
+        <location line="-360"/>
+        <location line="+364"/>
         <source>Max size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="557"/>
+        <location line="-407"/>
+        <location line="+47"/>
         <source>&amp;Start search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="929"/>
+        <location line="-373"/>
+        <location line="+242"/>
+        <location line="+75"/>
+        <location line="+30"/>
+        <location line="+398"/>
         <source>Size</source>
         <translation type="unfinished">Μέγεθος</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="893"/>
+        <location line="-375"/>
+        <location line="+339"/>
         <source>Unsharp search (slow)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="555"/>
+        <location line="-338"/>
         <source>Find in archives too</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="568"/>
+        <location line="+13"/>
         <source>Print result...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="569"/>
+        <location line="+1"/>
         <source>Export result to HTML...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="815"/>
+        <location line="+246"/>
         <source>Print cdcat result</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="820"/>
+        <location line="+5"/>
         <source>Result file name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="822"/>
+        <location line="+2"/>
         <source>Filename missing</source>
         <translation type="unfinished">Όνομα αρχείου  απουσιάζει</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="822"/>
+        <location line="+0"/>
         <source>Please enter a filename!</source>
         <translation type="unfinished">Παρακαλώ εισάγετε όνομα αρχείου!</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="839"/>
+        <location line="+14"/>
+        <location line="+3"/>
         <source>Cdcat search result</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="840"/>
+        <location line="+1"/>
         <source>catalog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="840"/>
+        <location line="+0"/>
         <source>created at:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="843"/>
+        <location line="+3"/>
         <source>used search options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="847"/>
+        <location line="+4"/>
         <source>search pattern:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="895"/>
+        <location line="+6"/>
+        <location line="+8"/>
+        <location line="+34"/>
         <source>on</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="897"/>
+        <location line="-40"/>
+        <location line="+8"/>
+        <location line="+34"/>
         <source>off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="869"/>
+        <location line="-28"/>
         <source>Search in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="889"/>
+        <location line="+20"/>
         <source>archives</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="903"/>
+        <location line="+14"/>
         <source>other options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="993"/>
+        <location line="+90"/>
         <source>File cant open: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="993"/>
+        <location line="+0"/>
         <source>Cant open file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="497"/>
+        <location line="-496"/>
         <source>Search for duplicates in the database...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="518"/>
+        <location line="+21"/>
         <source>Duplicates for:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="519"/>
+        <location line="+1"/>
         <source>Close</source>
         <translation type="unfinished">Κλείσιμο</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="566"/>
+        <location line="+47"/>
         <source>Results: search not started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="537"/>
+        <location line="-376"/>
+        <location line="+242"/>
+        <location line="+75"/>
+        <location line="+30"/>
         <source>Extension</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="159"/>
+        <location line="-385"/>
+        <location line="+7"/>
         <source>TiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="540"/>
+        <location line="+381"/>
         <source>Keep search result</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="556"/>
+        <location line="-20"/>
+        <location line="+36"/>
         <source>Clear search results</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="934"/>
+        <location line="-367"/>
+        <location line="+242"/>
+        <location line="+75"/>
+        <location line="+30"/>
+        <location line="+12"/>
+        <location line="+386"/>
         <source>Category</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="558"/>
+        <location line="-376"/>
         <source>Category for find</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="704"/>
+        <location line="+146"/>
         <source>Selected dir: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -4425,47 +4891,38 @@ will be to
 <context>
     <name>findDuplicatesDialog</name>
     <message>
-        <location filename="../find.cpp" line="897"/>
         <source>Name</source>
         <translation type="obsolete">Όνομα</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="898"/>
         <source>Type</source>
         <translation type="obsolete">Τύπος</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="899"/>
         <source>Size</source>
         <translation type="obsolete">Μέγεθος</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="900"/>
         <source>Media</source>
         <translation type="obsolete">Μέσο</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="901"/>
         <source>Path</source>
         <translation type="obsolete">Τοποθεσία</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="902"/>
         <source>Modification</source>
         <translation type="obsolete">Τροποποιήση</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="903"/>
         <source>Comment</source>
         <translation type="obsolete">Σχόλιο</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="909"/>
         <source>&amp;Cancel</source>
         <translation type="obsolete">&amp;Ακύρωση</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="914"/>
         <source>Close</source>
         <translation type="obsolete">Κλείσιμο</translation>
     </message>
@@ -4473,17 +4930,17 @@ will be to
 <context>
     <name>helpDialog</name>
     <message>
-        <location filename="../help.ui" line="13"/>
+        <location filename="../help.ui" line="+13"/>
         <source>help</source>
         <translation>βοήθεια</translation>
     </message>
     <message>
-        <location filename="../help.ui" line="65"/>
+        <location line="+52"/>
         <source>close</source>
         <translation>κλείσιμο</translation>
     </message>
     <message>
-        <location filename="../help.ui" line="29"/>
+        <location line="-36"/>
         <source>&lt;p align=&quot;center&quot;&gt;&lt;font size=&quot;+1&quot;&gt;&lt;b&gt;Help&lt;/b&gt;&lt;/font&gt;&lt;/p&gt;&lt;br&gt;
 
 &lt;b&gt;What&apos;s this?&lt;/b&gt;&lt;br&gt;
@@ -4517,7 +4974,7 @@ E-mail: hyperr@freemail.hu
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../help.ui" line="22"/>
+        <location line="-7"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -4529,89 +4986,72 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>importCsv</name>
     <message>
-        <location filename="" line="0"/>
         <source>Importing csv...</source>
         <translation type="obsolete">Εισαγωγή csv...</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Import was successful.</source>
         <translation type="obsolete">Εισαγωγή επιτυχής.</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>1 media</source>
         <translation type="obsolete">μέσο</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>media</source>
         <translation type="obsolete">μέσα</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>1 directory:,
 </source>
         <translation type="obsolete">κατάλογος:,
 </translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>directories</source>
         <translation type="obsolete">κατάλογοι</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>1 File</source>
         <translation type="obsolete">αρχείο</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>files</source>
         <translation type="obsolete">αρχεία</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>are imported.</source>
         <translation type="obsolete">εισήχθησαν.</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Import successful</source>
         <translation type="obsolete">Εισαγωγή επιτυχής</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>file read error</source>
         <translation type="obsolete">σφάλμα κατά την ανάγνωση του αρχείου</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Could not read file</source>
         <translation type="obsolete">Αδυναμία ανάγνωσης αρχείου</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Fatal error</source>
         <translation type="obsolete">Όλεθριο σφάλμα</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Fatal error occured.</source>
         <translation type="obsolete">Υπήρξε όλεθριο σφάλμα.</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>file open error</source>
         <translation type="obsolete">σφάλμα κατά το άνοιγμα του αρχείου</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Could not open file</source>
         <translation type="obsolete">Αδυναμία ανοίγματος αρχείου</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>importuser</source>
         <translation type="obsolete">εισαγωγή χρήστη</translation>
     </message>
@@ -4619,104 +5059,123 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>importGtktalogCsv</name>
     <message>
-        <location filename="../import.cpp" line="1344"/>
+        <location filename="../import.cpp" line="-1068"/>
+        <source>Imported from %1 (CSV import).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+10"/>
         <source>Import was successful.</source>
         <translation type="unfinished">Εισαγωγή επιτυχής.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1347"/>
+        <location line="+3"/>
         <source>1 media</source>
         <translation type="unfinished">μέσο</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1349"/>
+        <location line="+2"/>
         <source>media</source>
         <translation type="unfinished">μέσα</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1352"/>
+        <location line="+3"/>
         <source>1 directory:,
 </source>
         <translation type="unfinished">κατάλογος:,
 </translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1354"/>
+        <location line="+2"/>
         <source>directories</source>
         <translation type="unfinished">κατάλογοι</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1357"/>
+        <location line="+3"/>
         <source>1 File</source>
         <translation type="unfinished">αρχείο</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1359"/>
+        <location line="+2"/>
         <source>files</source>
         <translation type="unfinished">αρχεία</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1361"/>
+        <location line="+2"/>
         <source>are imported.</source>
         <translation type="unfinished">εισήχθησαν.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1363"/>
+        <location line="+2"/>
         <source>Import successful</source>
         <translation type="unfinished">Εισαγωγή επιτυχής</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1367"/>
+        <location line="-1467"/>
         <source>file read error</source>
         <translation type="unfinished">σφάλμα κατά την ανάγνωση του αρχείου</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1367"/>
+        <location line="+0"/>
         <source>Could not read file</source>
         <translation type="unfinished">Αδυναμία ανάγνωσης αρχείου</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1370"/>
+        <location line="+3"/>
         <source>Fatal error</source>
         <translation type="unfinished">Όλεθριο σφάλμα</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1370"/>
+        <location line="+0"/>
         <source>Fatal error occured.</source>
         <translation type="unfinished">Υπήρξε όλεθριο σφάλμα.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1373"/>
+        <location line="+3"/>
         <source>file open error</source>
         <translation type="unfinished">σφάλμα κατά το άνοιγμα του αρχείου</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1373"/>
+        <location line="+0"/>
         <source>Could not open file</source>
         <translation type="unfinished">Αδυναμία ανοίγματος αρχείου</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1411"/>
+        <location line="+1357"/>
+        <source>importedMedia_</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+48"/>
+        <source>unknown import type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <source>unknown import type: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+91"/>
         <source>importuser</source>
         <translation type="unfinished">εισαγωγή χρήστη</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Importing csv...</source>
         <translation type="obsolete">Εισαγωγή csv...</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="187"/>
+        <location line="-1492"/>
         <source>Importing CSV...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="187"/>
+        <location line="+0"/>
         <source>Cancel</source>
         <translation type="unfinished">Ακύρωση</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1274"/>
+        <location line="+1138"/>
         <source>tag: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -4724,74 +5183,74 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>importGtktalogXml</name>
     <message>
-        <location filename="../import.cpp" line="1814"/>
+        <location line="+761"/>
         <source>Importing XML...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1851"/>
+        <location line="+37"/>
         <source>XML import was successful.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1854"/>
+        <location line="+3"/>
         <source>1 media</source>
         <translation type="unfinished">μέσο</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1856"/>
+        <location line="+2"/>
         <source>media</source>
         <translation type="unfinished">μέσα</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1859"/>
+        <location line="+3"/>
         <source>1 directory:,
 </source>
         <translation type="unfinished">κατάλογος:,
 </translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1861"/>
+        <location line="+2"/>
         <source>directories</source>
         <translation type="unfinished">κατάλογοι</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1864"/>
+        <location line="+3"/>
         <source>1 File</source>
         <translation type="unfinished">αρχείο</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1866"/>
+        <location line="+2"/>
         <source>files</source>
         <translation type="unfinished">αρχεία</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1868"/>
+        <location line="+2"/>
         <source>are imported.</source>
         <translation type="unfinished">εισήχθησαν.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1870"/>
+        <location line="+2"/>
         <source>Import successful</source>
         <translation type="unfinished">Εισαγωγή επιτυχής</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1875"/>
+        <location line="+5"/>
         <source>parse error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1875"/>
+        <location line="+0"/>
         <source>error during parsing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1989"/>
+        <location line="+114"/>
         <source>importuser</source>
         <translation type="unfinished">εισαγωγή χρήστη</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="1814"/>
+        <location line="-175"/>
         <source>Cancel</source>
         <translation type="unfinished">Ακύρωση</translation>
     </message>
@@ -4799,74 +5258,74 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>importWhereIsItXml</name>
     <message>
-        <location filename="../import.cpp" line="2658"/>
+        <location line="+844"/>
         <source>Importing XML...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2694"/>
+        <location line="+36"/>
         <source>Importing XML from WhereIsIt was successful.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2697"/>
+        <location line="+3"/>
         <source>1 media</source>
         <translation type="unfinished">μέσο</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2699"/>
+        <location line="+2"/>
         <source>media</source>
         <translation type="unfinished">μέσα</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2702"/>
+        <location line="+3"/>
         <source>1 directory:,
 </source>
         <translation type="unfinished">κατάλογος:,
 </translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2704"/>
+        <location line="+2"/>
         <source>directories</source>
         <translation type="unfinished">κατάλογοι</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2707"/>
+        <location line="+3"/>
         <source>1 File</source>
         <translation type="unfinished">αρχείο</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2709"/>
+        <location line="+2"/>
         <source>files</source>
         <translation type="unfinished">αρχεία</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2711"/>
+        <location line="+2"/>
         <source>are imported.</source>
         <translation type="unfinished">εισήχθησαν.</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2713"/>
+        <location line="+2"/>
         <source>Import successful</source>
         <translation type="unfinished">Εισαγωγή επιτυχής</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2718"/>
+        <location line="+5"/>
         <source>parse error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2718"/>
+        <location line="+0"/>
         <source>error during parsing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2658"/>
+        <location line="-60"/>
         <source>Cancel</source>
         <translation type="unfinished">Ακύρωση</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="2390"/>
+        <location line="-268"/>
         <source>tag:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4874,49 +5333,40 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>importXml</name>
     <message>
-        <location filename="" line="0"/>
         <source>1 media</source>
         <translation type="obsolete">μέσο</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>media</source>
         <translation type="obsolete">μέσα</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>1 directory:,
 </source>
         <translation type="obsolete">κατάλογος:,
 </translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>directories</source>
         <translation type="obsolete">κατάλογοι</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>1 File</source>
         <translation type="obsolete">αρχείο</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>files</source>
         <translation type="obsolete">αρχεία</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>are imported.</source>
         <translation type="obsolete">εισήχθησαν.</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Import successful</source>
         <translation type="obsolete">Εισαγωγή επιτυχής</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>importuser</source>
         <translation type="obsolete">εισαγωγή χρήστη</translation>
     </message>
@@ -4924,82 +5374,82 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>newdbdialog</name>
     <message>
-        <location filename="../newdbdialog.cpp" line="133"/>
+        <location filename="../newdbdialog.cpp" line="+133"/>
         <source>DataBase&apos;s Properties</source>
         <translation>Ιδιότητες βάσης</translation>
     </message>
     <message>
-        <location filename="../newdbdialog.cpp" line="134"/>
+        <location line="+1"/>
         <source>DataBase Name:</source>
         <translation>Όνομα Βάσης:</translation>
     </message>
     <message>
-        <location filename="../newdbdialog.cpp" line="135"/>
+        <location line="+1"/>
         <source>DataBase Owner:</source>
         <translation>Ιδιοκτήτης Βάσης:</translation>
     </message>
     <message>
-        <location filename="../newdbdialog.cpp" line="136"/>
+        <location line="+1"/>
         <source>Comment:</source>
         <translation>Σχόλιο:</translation>
     </message>
     <message>
-        <location filename="../newdbdialog.cpp" line="138"/>
+        <location line="+2"/>
         <source>Catalog</source>
         <translation>Κατάλογος</translation>
     </message>
     <message>
-        <location filename="../newdbdialog.cpp" line="139"/>
+        <location line="+1"/>
         <source>hcat-user</source>
         <translation>Χρήστης hcat</translation>
     </message>
     <message>
-        <location filename="../newdbdialog.cpp" line="140"/>
+        <location line="+1"/>
         <source>OK</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="../newdbdialog.cpp" line="141"/>
+        <location line="+1"/>
         <source>Cancel</source>
         <translation>Ακύρωση</translation>
     </message>
     <message>
-        <location filename="../newdbdialog.cpp" line="142"/>
+        <location line="+1"/>
         <source> </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../newdbdialog.cpp" line="137"/>
+        <location line="-5"/>
         <source>Category:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../newdbdialog.cpp" line="144"/>
+        <location line="+7"/>
         <source>encrypt catalog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../newdbdialog.cpp" line="145"/>
+        <location line="+1"/>
         <source>password for catalog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../newdbdialog.cpp" line="159"/>
+        <location line="+14"/>
         <source>Password length is too short, must be minimum 4 chars</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../newdbdialog.cpp" line="159"/>
+        <location line="+0"/>
         <source>Password too short</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../newdbdialog.cpp" line="163"/>
+        <location line="+4"/>
         <source>Password length is too big, must be maximal %1 chars</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../newdbdialog.cpp" line="163"/>
+        <location line="+0"/>
         <source>Password too big</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5007,47 +5457,46 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>renamedialog</name>
     <message>
-        <location filename="../newdbdialog.cpp" line="227"/>
+        <location line="+64"/>
         <source>Rename node...</source>
         <translation>Μετονομασία node...</translation>
     </message>
     <message>
-        <location filename="../newdbdialog.cpp" line="228"/>
+        <location line="+1"/>
         <source>Give the new name:</source>
         <translation>Δώστε νέο όνομα:</translation>
     </message>
     <message>
-        <location filename="../newdbdialog.cpp" line="229"/>
+        <location line="+1"/>
         <source>OK</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="../newdbdialog.cpp" line="230"/>
+        <location line="+1"/>
         <source>Cancel</source>
         <translation>Ακύρωση</translation>
     </message>
     <message>
-        <location filename="../newdbdialog.cpp" line="254"/>
+        <location line="+19"/>
+        <location line="+5"/>
         <source>Error:</source>
         <translation>Σφάλμα:</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Ok</source>
         <translation type="obsolete">Ok</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>The new (media)name must be unique!</source>
         <translation type="obsolete">Το νέο όνομα πρέπει να είναι μοναδικό!</translation>
     </message>
     <message>
-        <location filename="../newdbdialog.cpp" line="249"/>
+        <location line="-5"/>
         <source>The new (media) name must be unique!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../newdbdialog.cpp" line="254"/>
+        <location line="+5"/>
         <source>The new media name can&apos;t starts with &quot;@&quot; !</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5055,52 +5504,52 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>renumberdialog</name>
     <message>
-        <location filename="../newdbdialog.cpp" line="372"/>
+        <location line="+47"/>
+        <location line="+61"/>
+        <location line="+10"/>
         <source>Error:</source>
         <translation>Σφάλμα:</translation>
     </message>
     <message>
-        <location filename="../newdbdialog.cpp" line="301"/>
+        <location line="-71"/>
         <source>The element is NOT a Media!</source>
         <translation>Αυτό το στοιχείο δεν είναι μέσο!</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Ok</source>
         <translation type="obsolete">Ok</translation>
     </message>
     <message>
-        <location filename="../newdbdialog.cpp" line="338"/>
+        <location line="+37"/>
         <source>Re-Number media...</source>
         <translation>Επαναρίθμηση μέσου...</translation>
     </message>
     <message>
-        <location filename="../newdbdialog.cpp" line="339"/>
+        <location line="+1"/>
         <source>Give the new serial number:</source>
         <translation>Δώστε το νέο serial number:</translation>
     </message>
     <message>
-        <location filename="../newdbdialog.cpp" line="340"/>
+        <location line="+1"/>
         <source>OK</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="../newdbdialog.cpp" line="341"/>
+        <location line="+1"/>
         <source>Cancel</source>
         <translation>Ακύρωση</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>I Cannot understand the text as number!</source>
         <translation type="obsolete">Δεν μπορώ να καταχωρίσω το κείμενο ως αριθμό!</translation>
     </message>
     <message>
-        <location filename="../newdbdialog.cpp" line="372"/>
+        <location line="+31"/>
         <source>The new media-number must be unique!</source>
         <translation>Ο νέος αριθμός του μέσου πρέπει να είναι μοναδικό! Παρακαλώ αλλάξτε το!</translation>
     </message>
     <message>
-        <location filename="../newdbdialog.cpp" line="362"/>
+        <location line="-10"/>
         <source>Please enter number value!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5108,72 +5557,74 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>seekEngine</name>
     <message>
-        <location filename="../find.cpp" line="1077"/>
+        <location filename="../find.cpp" line="+373"/>
         <source>Error in the pattern:</source>
         <translation>Σφάλμα στη φράση αναζήτησης:</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
         <source>Ok</source>
         <translation type="obsolete">Ok</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1163"/>
+        <location line="+86"/>
         <source>There is no matching.</source>
         <translation>Δεν υπάρχει ταυτοποιήση.</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1652"/>
+        <location line="+489"/>
         <source>dir</source>
         <translation>dir</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1658"/>
+        <location line="+6"/>
         <source>file</source>
         <translation>αρχείο</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1669"/>
+        <location line="+11"/>
         <source>error</source>
         <translation>σφάλμα</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1646"/>
+        <location line="-23"/>
         <source>media</source>
         <translation type="unfinished">μέσα</translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1041"/>
+        <location line="-605"/>
         <source>Searching, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1158"/>
+        <location line="+117"/>
         <source>Search cancelled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1158"/>
+        <location line="+0"/>
         <source>You have cancelled searching.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1505"/>
+        <location line="+317"/>
+        <location line="+8"/>
+        <location line="+11"/>
+        <location line="+11"/>
         <source>File in archive: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1154"/>
+        <location line="-351"/>
         <source>Results:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1154"/>
+        <location line="+0"/>
         <source>searching is in progress</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../find.cpp" line="1160"/>
+        <location line="+6"/>
         <source>Last search results:</source>
         <translation type="unfinished"></translation>
     </message>
