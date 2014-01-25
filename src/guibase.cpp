@@ -1512,7 +1512,7 @@ int GuiSlave::addEvent ( void ) {
 
 #if !defined(_WIN32) && !defined(_OS2) 
 	if ( ( d->type == CD || d->type == DVD ) ) {
-		d->dDir == mainw->cconfig->cdrompath;
+		d->dDir = mainw->cconfig->cdrompath;
 		int pid;
 		char **arg = new char*[3];
 		char **env = new char*[2];
@@ -1824,7 +1824,7 @@ int GuiSlave::addEvent ( void ) {
 #if !defined(_WIN32) && !defined(_OS2) 
 		if ( mainw->cconfig->mounteject ) {
 			if ( ( d->type == CD || d->type == DVD )  ) {
-				d->dDir == mainw->cconfig->cdrompath;
+				d->dDir = mainw->cconfig->cdrompath;
 				int pid;
 
 				char **arg = new char*[3];
