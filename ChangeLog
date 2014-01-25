@@ -1,5 +1,6 @@
 25. Jan 2014 Christoph Thielecke <crissi99@gmx.de>
 	- typo on assiging cdrom path on unix fixed
+	- stripping white spaces on date at whereisit xml import fixed 
 
 26. Oct 2013 Christoph Thielecke <crissi99@gmx.de>
 	- csv import using pattern added (feature request #31)

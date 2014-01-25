@@ -2468,7 +2468,7 @@ bool importWhereIsItXml::endElement ( const QString&, const QString & tag, const
 		else
 			if ( tag == "DATE" ) {
 
-				currentText.trimmed();
+				currentText = currentText.trimmed();
 
 				int index0 = currentText.indexOf ( "-", 0 );
 				int index1 = currentText.indexOf ( "-", index0 - 1 );
