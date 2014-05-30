@@ -33,7 +33,7 @@ static CryptoPP::SecByteBlock crypto_key(CryptoPP::Blowfish::BLOCKSIZE);
 
 static byte iv[CryptoPP::Blowfish::BLOCKSIZE];
 
-
+void init_iv();
 int generate_cryptokey(QString password);
 int decrypt ( std::string &encrypted_data, std::string &decrypted_data);
 int encrypt ( std::string &decrypted_data, std::string &encrypted_data);

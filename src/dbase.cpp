@@ -369,6 +369,7 @@ DBCatalog::DBCatalog ( void ) {
 	modification = QDateTime::currentDateTime();
 	fileversion  = "";
 	sortedBy = NAME;
+	isEncryptedCatalog = false;
 }
 
 DBCatalog::~DBCatalog ( void ) {

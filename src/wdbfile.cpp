@@ -1026,6 +1026,9 @@ int FileReader::readFrom ( Node *source, bool skipDuplicatesOnInsert, bool only_
 			inbuff_str.resize(len-strlen(enc_hcf_header));
 			free(dataBuffer);
 			dataBuffer = NULL;
+			
+			pww->setProgressText ( DataBase::tr ( "decrypting file, please wait..." ) );
+			
 			int decrypt_ret = decrypt ( inbuff_str, outbuff_str);
 			
 			if ( decrypt_ret == 0 ) {
@@ -2014,6 +2017,9 @@ int  CdCatXmlHandler::analyzeNodeIsFileinDB ( Node *n, Node *pa ) {
 }
 
 #ifdef CATALOG_ENCRYPTION
+void init_iv() {
+	memset(iv,0,sizeof(iv));
+}
 
 int generate_cryptokey ( QString password ) {
 	int i, passlen;
@@ -2059,6 +2065,7 @@ int decrypt ( std::string &encrypted_data, std::string &decrypted_data ) {
 
 	try {
 		CryptoPP::CBC_Mode< CryptoPP::Blowfish >::Decryption d;
+		init_iv();
 		d.SetKeyWithIV ( crypto_key, crypto_key.size(), iv );
 
 		// The StreamTransformationFilter removes
@@ -2086,6 +2093,7 @@ int encrypt ( std::string &decrypted_data, std::string &encrypted_data ) {
 // 		std::cout << "plain text: " << decrypted_data << std::endl;
 
 		CryptoPP::CBC_Mode< CryptoPP::Blowfish >::Encryption e;
+		init_iv();
 		e.SetKeyWithIV ( crypto_key, crypto_key.size(), iv );
 
 		// The StreamTransformationFilter adds padding

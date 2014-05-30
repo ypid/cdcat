@@ -1,3 +1,8 @@
+30. May 2014 Christoph Thielecke <crissi99@gmx.de>
+	- proper initalization of iv
+	- set catalog encryption to false on every DBCatalog constructor
+	- change busy text for encryption
+
 25. Jan 2014 Christoph Thielecke <crissi99@gmx.de>
 	- typo on assiging cdrom path on unix fixed
 	- stripping white spaces on date at whereisit xml import fixed 
