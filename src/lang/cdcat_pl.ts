@@ -5290,7 +5290,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">nośnik</translation>
     </message>
     <message>
-        <source>1 directory:,
+        <source>1 directory,
 </source>
         <translation type="obsolete">1 katalog:,
 </translation>
@@ -5395,7 +5395,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location line="+3"/>
-        <source>1 directory:,
+        <source>1 directory,
 </source>
         <translation>1 katalog:,
 </translation>
@@ -5500,7 +5500,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location line="+3"/>
-        <source>1 directory:,
+        <source>1 directory,
 </source>
         <translation>1 katalog:,
 </translation>
@@ -5575,7 +5575,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location line="+3"/>
-        <source>1 directory:,
+        <source>1 directory,
 </source>
         <translation>1 katalog:,
 </translation>
@@ -5645,7 +5645,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">nośniki</translation>
     </message>
     <message>
-        <source>1 directory:,
+        <source>1 directory,
 </source>
         <translation type="obsolete">1 katalog:,
 </translation>

@@ -3400,7 +3400,7 @@ p, li { white-space: pre-wrap; }
         <translation>Medien</translation>
     </message>
     <message>
-        <source>1 directory:,
+        <source>1 directory,
 </source>
         <translation>1 Verzeichnis:,
 </translation>
@@ -3501,7 +3501,7 @@ p, li { white-space: pre-wrap; }
         <translation>Medien</translation>
     </message>
     <message>
-        <source>1 directory:,
+        <source>1 directory,
 </source>
         <translation>1 Verzeichnis:,
 </translation>
@@ -3562,7 +3562,7 @@ p, li { white-space: pre-wrap; }
         <translation>Medien</translation>
     </message>
     <message>
-        <source>1 directory:,
+        <source>1 directory,
 </source>
         <translation>1 Verzeichnis:,
 </translation>

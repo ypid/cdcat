@@ -5102,7 +5102,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">médium</translation>
     </message>
     <message>
-        <source>1 directory:,
+        <source>1 directory,
 </source>
         <translation type="obsolete">1 adresár</translation>
     </message>
@@ -5198,7 +5198,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location line="+3"/>
-        <source>1 directory:,
+        <source>1 directory,
 </source>
         <translation>1 adresár</translation>
     </message>
@@ -5302,7 +5302,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location line="+3"/>
-        <source>1 directory:,
+        <source>1 directory,
 </source>
         <translation>1 adresár</translation>
     </message>
@@ -5376,7 +5376,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location line="+3"/>
-        <source>1 directory:,
+        <source>1 directory,
 </source>
         <translation>1 adresár</translation>
     </message>
@@ -5445,7 +5445,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">médium</translation>
     </message>
     <message>
-        <source>1 directory:,
+        <source>1 directory,
 </source>
         <translation type="obsolete">1 adresár</translation>
     </message>

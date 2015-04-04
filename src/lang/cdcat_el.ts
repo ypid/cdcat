@@ -5002,7 +5002,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">μέσα</translation>
     </message>
     <message>
-        <source>1 directory:,
+        <source>1 directory,
 </source>
         <translation type="obsolete">κατάλογος:,
 </translation>
@@ -5080,7 +5080,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location line="+3"/>
-        <source>1 directory:,
+        <source>1 directory,
 </source>
         <translation type="unfinished">κατάλογος:,
 </translation>
@@ -5204,7 +5204,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location line="+3"/>
-        <source>1 directory:,
+        <source>1 directory,
 </source>
         <translation type="unfinished">κατάλογος:,
 </translation>
@@ -5279,7 +5279,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location line="+3"/>
-        <source>1 directory:,
+        <source>1 directory,
 </source>
         <translation type="unfinished">κατάλογος:,
 </translation>
@@ -5341,7 +5341,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">μέσα</translation>
     </message>
     <message>
-        <source>1 directory:,
+        <source>1 directory,
 </source>
         <translation type="obsolete">κατάλογος:,
 </translation>

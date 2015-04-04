@@ -1650,7 +1650,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 		msg += QString().setNum ( mediacount ) + " " + QString ( tr ( "media" ) ) + ",\n";
 
 	if ( dircount < 2 )
-		msg += QString ( tr ( "1 directory:,\n" ) );
+		msg += QString ( tr ( "1 directory,\n" ) );
 	else
 		msg += QString().setNum ( dircount ) + " " + QString ( tr ( "directories" ) ) + ",\n";
 
@@ -2148,7 +2148,7 @@ importGtktalogXml::importGtktalogXml ( GuiSlave * parent, QString filename, bool
 			msg += QString().setNum ( mediacount ) + " " + QString ( tr ( "media" ) ) + ",\n";
 
 		if ( dircount == 1 )
-			msg += QString ( tr ( "1 directory:,\n" ) );
+			msg += QString ( tr ( "1 directory,\n" ) );
 		else
 			msg += QString().setNum ( dircount ) + " " + QString ( tr ( "directories" ) ) + ",\n";
 
@@ -2991,7 +2991,7 @@ importWhereIsItXml::importWhereIsItXml ( GuiSlave * parent, QString filename, bo
 			msg += QString().setNum ( mediacount ) + " " + QString ( tr ( "media" ) ) + ",\n";
 
 		if ( dircount == 1 )
-			msg += QString ( tr ( "1 directory:,\n" ) );
+			msg += QString ( tr ( "1 directory,\n" ) );
 		else
 			msg += QString().setNum ( dircount ) + " " + QString ( tr ( "directories" ) ) + ",\n";
 

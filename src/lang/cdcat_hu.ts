@@ -5830,7 +5830,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">média</translation>
     </message>
     <message>
-        <source>1 directory:,
+        <source>1 directory,
 </source>
         <translation type="obsolete">1 könyvtár;,
 </translation>
@@ -5935,7 +5935,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location line="+3"/>
-        <source>1 directory:,
+        <source>1 directory,
 </source>
         <translation>1 könyvtár;,
 </translation>
@@ -6044,7 +6044,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location line="+3"/>
-        <source>1 directory:,
+        <source>1 directory,
 </source>
         <translation>1 könyvtár;,
 </translation>
@@ -6119,7 +6119,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location line="+3"/>
-        <source>1 directory:,
+        <source>1 directory,
 </source>
         <translation>1 könyvtár;,
 </translation>
@@ -6189,7 +6189,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">média</translation>
     </message>
     <message>
-        <source>1 directory:,
+        <source>1 directory,
 </source>
         <translation type="obsolete">1 könyvtár;,
 </translation>

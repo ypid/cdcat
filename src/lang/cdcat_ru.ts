@@ -4606,7 +4606,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../import.cpp" line="1651"/>
-        <source>1 directory:,
+        <source>1 directory,
 </source>
         <translation>1 папка:,
 </translation>
@@ -4726,7 +4726,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../import.cpp" line="2149"/>
-        <source>1 directory:,
+        <source>1 directory,
 </source>
         <translation>1 папка:,
 </translation>
@@ -4801,7 +4801,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../import.cpp" line="2992"/>
-        <source>1 directory:,
+        <source>1 directory,
 </source>
         <translation>1 папка:,
 </translation>

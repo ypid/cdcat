@@ -4959,7 +4959,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location line="+3"/>
-        <source>1 directory:,
+        <source>1 directory,
 </source>
         <translation>1 direktorijum:,
 </translation>
@@ -5079,7 +5079,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location line="+3"/>
-        <source>1 directory:,
+        <source>1 directory,
 </source>
         <translation>1 direktorijum:,
 </translation>
@@ -5154,7 +5154,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location line="+3"/>
-        <source>1 directory:,
+        <source>1 directory,
 </source>
         <translation>1 direktorijum:,
 </translation>
