@@ -4548,7 +4548,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../import.cpp" line="1656"/>
-        <source>1 File</source>
+        <source>1 file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4667,7 +4667,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../import.cpp" line="2154"/>
-        <source>1 File</source>
+        <source>1 file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4741,7 +4741,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../import.cpp" line="2997"/>
-        <source>1 File</source>
+        <source>1 file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

@@ -3410,7 +3410,7 @@ p, li { white-space: pre-wrap; }
         <translation>Verzeichnisse</translation>
     </message>
     <message>
-        <source>1 File</source>
+        <source>1 file</source>
         <translation>1 Datei</translation>
     </message>
     <message>
@@ -3511,7 +3511,7 @@ p, li { white-space: pre-wrap; }
         <translation>Verzeichnisse</translation>
     </message>
     <message>
-        <source>1 File</source>
+        <source>1 file</source>
         <translation>1 Datei</translation>
     </message>
     <message>
@@ -3572,7 +3572,7 @@ p, li { white-space: pre-wrap; }
         <translation>Verzeichnisse</translation>
     </message>
     <message>
-        <source>1 File</source>
+        <source>1 file</source>
         <translation>1 Datei</translation>
     </message>
     <message>

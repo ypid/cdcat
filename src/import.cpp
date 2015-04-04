@@ -1655,7 +1655,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 		msg += QString().setNum ( dircount ) + " " + QString ( tr ( "directories" ) ) + ",\n";
 
 	if ( filecount < 2 )
-		msg += tr ( "1 File" ) + ",\n";
+		msg += tr ( "1 file" ) + ",\n";
 	else
 		msg += QString().setNum ( filecount ) + " " + QString ( tr ( "files" ) ) + "\n";
 
@@ -2153,7 +2153,7 @@ importGtktalogXml::importGtktalogXml ( GuiSlave * parent, QString filename, bool
 			msg += QString().setNum ( dircount ) + " " + QString ( tr ( "directories" ) ) + ",\n";
 
 		if ( filecount == 1 )
-			msg += tr ( "1 File" ) + ",\n";
+			msg += tr ( "1 file" ) + ",\n";
 		else
 			msg += QString().setNum ( filecount ) + " " + QString ( tr ( "files" ) ) + "\n";
 
@@ -2996,7 +2996,7 @@ importWhereIsItXml::importWhereIsItXml ( GuiSlave * parent, QString filename, bo
 			msg += QString().setNum ( dircount ) + " " + QString ( tr ( "directories" ) ) + ",\n";
 
 		if ( filecount == 1 )
-			msg += tr ( "1 File" ) + ",\n";
+			msg += tr ( "1 file" ) + ",\n";
 		else
 			msg += QString().setNum ( filecount ) + " " + QString ( tr ( "files" ) ) + "\n";
 

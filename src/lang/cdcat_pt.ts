@@ -4955,7 +4955,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location line="+3"/>
-        <source>1 File</source>
+        <source>1 file</source>
         <translation>1 Ficheiro</translation>
     </message>
     <message>
@@ -5074,7 +5074,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location line="+3"/>
-        <source>1 File</source>
+        <source>1 file</source>
         <translation>1 Ficheiro</translation>
     </message>
     <message>
@@ -5148,7 +5148,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location line="+3"/>
-        <source>1 File</source>
+        <source>1 file</source>
         <translation>1 Ficheiro</translation>
     </message>
     <message>

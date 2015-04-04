@@ -5840,7 +5840,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">könyvtár</translation>
     </message>
     <message>
-        <source>1 File</source>
+        <source>1 file</source>
         <translation type="obsolete">1 Fájl</translation>
     </message>
     <message>
@@ -5947,7 +5947,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location line="+3"/>
-        <source>1 File</source>
+        <source>1 file</source>
         <translation>1 Fájl</translation>
     </message>
     <message>
@@ -6056,7 +6056,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location line="+3"/>
-        <source>1 File</source>
+        <source>1 file</source>
         <translation>1 Fájl</translation>
     </message>
     <message>
@@ -6131,7 +6131,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location line="+3"/>
-        <source>1 File</source>
+        <source>1 file</source>
         <translation>1 Fájl</translation>
     </message>
     <message>
@@ -6199,7 +6199,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">könyvtár</translation>
     </message>
     <message>
-        <source>1 File</source>
+        <source>1 file</source>
         <translation type="obsolete">1 Fájl</translation>
     </message>
     <message>
