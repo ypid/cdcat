@@ -624,11 +624,11 @@ void exportCdcatDB::ok() {
 								//fw->writeCatalog ( p->getRootNode() );
 								writeDown ( p->getRootNode() );
 								gzwrite(ff, "</xml>\n", QString("</xml>\n").size());
-								
+
 								delete ( fw );
 								gzflush(ff, 1);
 								gzclose ( ff );
-								
+
 							}
 						}
 						if ( save_hcf_ok ) {
@@ -639,7 +639,7 @@ void exportCdcatDB::ok() {
 							} else {
 								int readcount = 0;
 								readcount = gzread ( ff2, tmpbuffer, READ_BLOCKSIZE );
-								
+
 								while ( readcount > 0 ) {
 // 							std::cerr << "read " << readcount << " bytes" << std::endl;
 									f.write ( tmpbuffer, readcount );
@@ -1069,7 +1069,7 @@ int exportCdcatDB::writeFile ( Node *source ) {
 
 	if ( source->child != NULL )
 		writeDown ( source->child );
-	
+
 	if ( !radioXml->isChecked() ) {
 		if ( ( ( DBFile * ) ( source->data ) ) ->prop != NULL )
 		writeDown ( ( ( DBFile * ) ( source->data ) ) ->prop );

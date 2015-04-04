@@ -5,7 +5,7 @@
 
 25. Jan 2014 Christoph Thielecke <crissi99@gmx.de>
 	- typo on assiging cdrom path on unix fixed
-	- stripping white spaces on date at whereisit xml import fixed 
+	- stripping white spaces on date at whereisit xml import fixed
 
 26. Oct 2013 Christoph Thielecke <crissi99@gmx.de>
 	- csv import using pattern added (feature request #31)
@@ -85,7 +85,7 @@ allowner, dateStartChecked, dateEndChecked, sizeMinChecked, sizeMaxChecked, find
 
 08. Aug 2013 Christoph Thielecke <crissi99@gmx.de>
 	- displaying nfo pattern on debug info disabled
-	- return type of isIdentical changed from int to bool 
+	- return type of isIdentical changed from int to bool
 	- media name not changed after dialog on add media fixed (#53)
 	- check for existing media name not only for cd/dvd added
 	- missing initialisation of QTextCodec resulting in unability to run mediainfo on accentuated filenames fixed (#55)
@@ -99,7 +99,7 @@ allowner, dateStartChecked, dateEndChecked, sizeMinChecked, sizeMaxChecked, find
 11. Jan 2012 Christoph Thielecke <crissi99@gmx.de>
 	- display compiled in features in about dialog added
 	- support for encrypted catalog added (requires libcrypto++, can be disabled on compile time)
-	
+
 03. Jan 2012 Christoph Thielecke <crissi99@gmx.de>
 	- Q_OBJECT macro on ArchiveFile class added
 	- cdcat homepage link at info dialog fixed
@@ -160,7 +160,7 @@ allowner, dateStartChecked, dateEndChecked, sizeMinChecked, sizeMaxChecked, find
 	- set medianame on adding new media at cd/dvd type fixed
 	- use cdrom path for cd/dvd instead of selected path in tree
 	- menu entries for resort catalog in descending order (number, time) added
-	- loading some settings fixed (content, date start, start end at find dialog) 
+	- loading some settings fixed (content, date start, start end at find dialog)
 
 17. May 2012 Christoph Thielecke <crissi99@gmx.de>
 	- sort by number, time and type fixed
@@ -541,7 +541,7 @@ allowner, dateStartChecked, dateEndChecked, sizeMinChecked, sizeMaxChecked, find
 	- archivecontent is now imported at gtktalog xml import
 
 14. Aug 2011 Christoph Thielecke <crissi99@gmx.de>
-	- position of filelist extensions and max size for filecontent corrected 
+	- position of filelist extensions and max size for filecontent corrected
 
 11. Aug 2011 Christoph Thielecke <crissi99@gmx.de>
 	- version changed to 1.5
@@ -555,7 +555,7 @@ allowner, dateStartChecked, dateEndChecked, sizeMinChecked, sizeMaxChecked, find
 	- mediainfo for getting additional info about file types added
 	- tbyte unit type added
 	- size detection fixed
-	- adding history entry name at saveas event fixed 
+	- adding history entry name at saveas event fixed
 
 07. Aug 2011 Christoph Thielecke <crissi99@gmx.de>
 	- display 7zip lib found state in selreadable dialog added
@@ -566,7 +566,7 @@ allowner, dateStartChecked, dateEndChecked, sizeMinChecked, sizeMaxChecked, find
 	- archive scan options moved from config dialog to selreadable dialog
 
 04. Aug 2011 Christoph Thielecke <crissi99@gmx.de>
-	- comment widget now expands if the text inside is larger than viewport 
+	- comment widget now expands if the text inside is larger than viewport
 	- archive scanning added (needs libtar, libbzip2, lib7zip)
 	- recent catalog menu reversed (last used now on top)
 	- config dialog size optimizions
@@ -687,7 +687,7 @@ allowner, dateStartChecked, dateEndChecked, sizeMinChecked, sizeMaxChecked, find
 
 29. Jan 2011 Christoph Thielecke <crissi99@gmx.de>
 	- remember last search pattern added
-	- searching min size/max size added 
+	- searching min size/max size added
 
 28. Jan 2011 Christoph Thielecke <crissi99@gmx.de>
 	- option for displaying progressed file at scanning directory tree added
@@ -720,7 +720,7 @@ allowner, dateStartChecked, dateEndChecked, sizeMinChecked, sizeMaxChecked, find
 	- dont give a error message if same number at renumber dialog
 	- use last used path for directory at export
 	- generate standard html header
-	- us utf8 as encoding at html export 
+	- us utf8 as encoding at html export
 	- display export date in report
 	- media number, mp3tag and borrow information can be exported now
 	- csv export allows now to select fields for export
@@ -800,4 +800,4 @@ allowner, dateStartChecked, dateEndChecked, sizeMinChecked, sizeMaxChecked, find
 	- patch for fixing gzip -> xml conversion applied (based on patch from gentoo (http://bugs.gentoo.org/show_bug.cgi?id=48826))
 	- help dialog converted to qt4 ui
 	- patch for import old date-format added (thanks to Niels Horn)
-  
+

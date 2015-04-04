@@ -102,7 +102,7 @@ InfoDialog::InfoDialog ( QWidget *parent, const char *name, bool modal, Qt::WFla
 #else
 	infotext += "<b>(" + tr ( "Development version build at" ) + " " + __DATE__ + " " + __TIME__ + ", Qt " + QString ( QT_VERSION_STR ) + ")" + DEBUG_INFO + "</b>";
 #endif
-	
+
 	infotext += "<b>";
 	infotext += tr ( "Features:" );
 	infotext += "</b><br>\n";
@@ -469,22 +469,22 @@ KeyBindingDialog::KeyBindingDialog ( GuiSlave *gs, QWidget *parent, const char *
 	: QDialog ( parent, fl ) {
 	if ( !name )
 		setObjectName ( "Key bindings" );
-	
+
 	setModal ( modal );
 	setWindowIcon ( *get_t_about_icon() );
-	
+
 	keyBindingDialogLayout = new QGridLayout ( this );
-	
+
 	TitleLabel = new QLabel(this);
 	TitleLabel->setText("<h1>"+tr("Key bindings")+"</h1>");
 	keyBindingDialogLayout->addWidget ( TitleLabel, 0, 0 );
-	
+
 	KeyBindingsTableWidget = new QTableWidget (gs->KeyShortCutList.size(), 2,  this );
 	QTableWidgetItem *valuesHeaderItem1 = new QTableWidgetItem(tr("Action"));
 	KeyBindingsTableWidget->setHorizontalHeaderItem(0, valuesHeaderItem1);
 	QTableWidgetItem *valuesHeaderItem2 = new QTableWidgetItem(tr("Shortcut"));
 	KeyBindingsTableWidget->setHorizontalHeaderItem(1, valuesHeaderItem2);
-	
+
 	QStandardItemModel model(gs->KeyShortCutList.size(), 2);
 	for (int i=0;i< gs->KeyShortCutList.size();i++) {
 		QTableWidgetItem *newItem1 = new QTableWidgetItem(gs->KeyShortCutList.at(i).description);
@@ -500,7 +500,7 @@ KeyBindingDialog::KeyBindingDialog ( GuiSlave *gs, QWidget *parent, const char *
 	KeyBindingsTableWidget->sortByColumn(0, Qt::AscendingOrder);
 	KeyBindingsTableWidget->verticalHeader()->hide();
 	keyBindingDialogLayout->addWidget ( KeyBindingsTableWidget, 2, 0 );
-	
+
 // 	DEBUG_INFO_ENABLED = init_debug_info();
 // 	if ( *DEBUG_INFO_ENABLED ) {
 // 		std::cerr << "KeyShortCutList:" << std::endl;
@@ -508,10 +508,10 @@ KeyBindingDialog::KeyBindingDialog ( GuiSlave *gs, QWidget *parent, const char *
 // 			std::cerr << "\t" << qPrintable(gs->KeyShortCutList.at(i).description) << ": " << qPrintable(gs->KeyShortCutList.at(i).eventSequence.toString()) << std::endl;
 // 		}
 // 	}
-	
+
 	closeButton = new QPushButton ( this );
 	keyBindingDialogLayout->addWidget ( closeButton, 4, 0 );
-	
+
 	// force correct size of table view
 	//int width = (KeyBindingsTableWidget->model()->columnCount()) + KeyBindingsTableWidget->verticalHeader()->width() + 10;
 	int width = (KeyBindingsTableWidget->model()->columnCount()) + 20;

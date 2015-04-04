@@ -120,7 +120,7 @@ bool HQListViewItem::operator < (const QTreeWidgetItem &other) const {
 			else
 				return text(0) < other.text(0);
 		}
-		
+
 		return text(0) < other.text(0);
 	}
 }
@@ -204,7 +204,7 @@ HQListView::HQListView ( CdCatMainWidget *mw, QWidget *parent, const char *, Qt:
 	setContextMenuPolicy(Qt::CustomContextMenu);
 	setSorting(0, true);
 	sortByColumn(0, Qt::AscendingOrder);
-	
+
 	/*
 	setSelectionMode ( Single );
 	setAllColumnsShowFocus ( true );
@@ -221,7 +221,7 @@ void HQListView::setCurrentVisible ( void ) {
 void HQListView::setSorting ( int column, bool increasing ) {
 	scol = column;
 	sasc = increasing;
-	
+
 	if ( scol < 0 || scol > 3 )
 		scol = 0;
 	if (increasing)
@@ -284,7 +284,7 @@ void HQListView::keyPressEvent ( QKeyEvent *ke ) {
 	setCurrentVisible();
 	if ( ke->key() == Qt::Key_Left || ke->key() == Qt::Key_Right )
 		return;
-	
+
 	QTreeWidget::keyPressEvent ( ke );
 }
 
@@ -562,13 +562,13 @@ int GuiSlave::updateListFromNode ( Node *pdir ) {
 	HQListViewItem *lvi = NULL;
 	QString qstr1;
 	QString qstr2;
-	
+
 	if ( pdir == NULL )  {
 		if ( *DEBUG_INFO_ENABLED )
 			cerr << "F-updateListFromNode: pdir is null" << endl;
 		pdir = NodePwd;
 	}
-	
+
 	if ( pdir == NULL ) {
 		mainw->listView->clear();
 		return 0;
@@ -589,7 +589,7 @@ int GuiSlave::updateListFromNode ( Node *pdir ) {
 				break;
 	}
 	//mainw->listView->setSorting ( mainw->listView->scol, mainw->listView->sasc );
-	
+
 	//Set column text:
 	if ( pdir != NULL && pdir->type == HC_CATALOG ) {
 		mainw->listView->model()->setHeaderData( 1,Qt::Horizontal, tr ( "Number" ) );
@@ -597,44 +597,44 @@ int GuiSlave::updateListFromNode ( Node *pdir ) {
 	else {
 		mainw->listView->model()->setHeaderData( 1,Qt::Horizontal, tr ( "Size" ) );
 	}
-	
+
 	if ( pdir->parent != NULL ) {
 		lvi = new HQListViewItem ( mainw->listView, "..", "", tr ( "Directory" ) );
 		lvi->setIcon ( 0, QIcon(*get_v_back_icon() ));
 		lvi->etype = HC_DIRECTORY;
 	}
-	
+
 	NodePwd = pdir;
 	tmp = pdir->child;
-	
+
 	/*List everything*/
-	
+
 	// step 1: list dirs
 	while ( tmp != NULL ) {
 		if ( tmp->type == HC_MP3TAG )
 			return 1; //Error
-		
+
 		if (tmp->type == HC_DIRECTORY) {
 			// 2.(size) Column name:
 			qstr1 = " ";
-			
+
 			// 3. Column name:
 			qstr2 = tr ( "Directory" );
-			
+
 			//if(*DEBUG_INFO_ENABLED)
 			//	cerr <<"GETNAMEOF-----------"<<qPrintable ( tmp->getNameOf() ) <<endl;
 			QString valami;
 			valami = tmp->getNameOf();
-			
+
 			//!!!
 			//valami.append("---1");
 			//if(*DEBUG_INFO_ENABLED)
 			//	cerr <<"GETNAMEOF-----------"<<qPrintable ( valami ) <<endl;
-			
+
 			lvi = new HQListViewItem ( mainw->listView, valami, qstr1, qstr2 );
 			lvi->etype = HC_DIRECTORY;
 			lvi->setIcon ( 0, QIcon(*get_v_folderclosed_icon() ));
-			
+
 			if ( tmpParent != NULL ) { /*Return to previous parent*/
 				if ( tmp->getNameOf() == tmpParent->getNameOf() ) {
 					mainw->listView->setCurrentItem ( lvi );
@@ -649,7 +649,7 @@ int GuiSlave::updateListFromNode ( Node *pdir ) {
 		}
 		tmp = tmp->next;
 	}
-	
+
 	tmp = pdir->child;
 	// step 2: list other
 	while ( tmp != NULL ) {
@@ -658,7 +658,7 @@ int GuiSlave::updateListFromNode ( Node *pdir ) {
 		if (tmp->type != HC_DIRECTORY) {
 
 			// 2.(size) Column name:
-			
+
 			if ( tmp->type == HC_FILE ) {
 				QString filetype = QString(" ") + tr ( getSType ( ( ( DBFile * ) ( tmp->data ) )->sizeType, true ).toUtf8().constData() );
 			//cerr << "file type " << qPrintable(filetype) << endl;
@@ -718,12 +718,12 @@ int GuiSlave::updateListFromNode ( Node *pdir ) {
 			//	cerr <<"GETNAMEOF-----------"<<qPrintable ( tmp->getNameOf() ) <<endl;
 			QString valami;
 			valami = tmp->getNameOf();
-			
+
 			//!!!
 			//valami.append("---1");
 			//if(*DEBUG_INFO_ENABLED)
 			//	cerr <<"GETNAMEOF-----------"<<qPrintable ( valami ) <<endl;
-			
+
 			lvi = new HQListViewItem ( mainw->listView, valami, qstr1, qstr2 );
 			switch ( tmp->type ) {
 				case HC_CATALOG :
@@ -767,7 +767,7 @@ int GuiSlave::updateListFromNode ( Node *pdir ) {
 					lvi->setIcon ( 0, QIcon(*get_p_icon() ));
 					break;
 			}
-			
+
 			if ( tmpParent != NULL ) { /*Return to previous parent*/
 				if ( tmp->getNameOf() == tmpParent->getNameOf() ) {
 					mainw->listView->setCurrentItem ( lvi );
@@ -778,18 +778,18 @@ int GuiSlave::updateListFromNode ( Node *pdir ) {
 		}
 		tmp = tmp->next;
 	}
-	
+
 	//mainw->listView->setSorting ( mainw->listView->scol, mainw->listView->sasc );
 
 	if ( !fflag ) {
 		mainw->listView->setCurrentItem ( mainw->listView->topLevelItem(0) );
 	}
-	
+
 	//cerr << "current elem is \"..\", parent node path: " << qPrintable(pdir->getFullPath()) << endl;
 	standON = pdir;
-	
+
 	mainw->listView->resizeColumnToContents(0);
-	
+
 	if ( *DEBUG_INFO_ENABLED )
 		cerr << "BEACON-1" << endl;
 	mainw->listView->changed();
@@ -970,14 +970,14 @@ void GuiSlave::showListviewContextMenu ( QPoint p ) {
 	if(on != last_dirview_item) {
 		standOn(on, 0);
 	}
-	
+
 	if ( standON != NULL ) {
 		mPopup->addAction ( QIcon(*get_t_comment_icon()), tr ( "View/Edit Comment..." ), this, SLOT(editComment()) );
 		mPopup->addAction ( QIcon(*get_t_comment_icon()), tr ( "View/Edit Category..." ), this, SLOT(editCategory()) );
 		mPopup->insertSeparator(NULL);
 		mPopup->addAction ( tr ( "Node size" ), this, SLOT(sizeEvent()) );
 		mPopup->insertSeparator(NULL);
-		
+
 		if ( haveContent ( standON ) ) {
 			if ( mainw->cconfig->useExternalContentViewer && QFileInfo ( mainw->cconfig->ExternalContentViewerPath ).exists() ) {
 				mPopup->addAction ( QIcon(*get_t_showc_icon()), tr ( "Show content..." ), this, SLOT(showContent()) );
@@ -986,20 +986,20 @@ void GuiSlave::showListviewContextMenu ( QPoint p ) {
 				mPopup->addAction ( QIcon(*get_t_showc_icon()), tr ( "Show/Remove content..." ), this, SLOT(showContent()) );
 			}
 		}
-		
+
 		if ( standON->type == HC_CATLNK )
 			mPopup->addAction ( QIcon(*get_p_icon()), tr ( "Follow the link (Open it) !" ), this, SLOT(followLnk()) );
-		
+
 		mPopup->addAction (tr ( "Rename node..." ), this, SLOT(renameEvent()) );
 		mPopup->addAction ( QIcon(*get_t_delete_icon()), tr ( "Delete node" ), this, SLOT(deleteEvent()) );
-		
+
 		if ( standON->type == HC_MEDIA ) {
 			mPopup->insertSeparator(NULL);
 			if ( ( ( DBMedia * ) ( standON->data ) )->borrowing == "" )
 				mPopup->addAction ( QIcon(*get_t_sborrow_icon()), tr ( "Borrow this media to..." ), this, SLOT(sborrowEvent()) );
 			else
 				mPopup->addAction ( QIcon(*get_t_cborrow_icon()), tr ( "I got it back! (clear borrowing mark)" ), this, SLOT(cborrowEvent()) );
-			
+
 			mPopup->insertSeparator(NULL);
 			mPopup->addAction ( QIcon(*get_t_rescan_icon()), tr ( "Rescan media..." ), this, SLOT(rescanEvent()) );
 			mPopup->addAction ( tr ( "Re-Number media..." ), this, SLOT(renumberEvent()) );
@@ -1028,7 +1028,7 @@ void GuiSlave::showTreeContextMenu ( const QPoint p2 ) {
 		             ( ( LNode * ) mainw->DirView->currentItem() )->fullName()
 		     );
 	}
-	
+
 	mPopup = new QMenu (mainw);
 	if ( on != NULL ) {
 		mPopup->addAction ( QIcon(*get_t_comment_icon()), tr ( "View/Edit Comment..." ), this, SLOT(editComment()) );
@@ -1051,7 +1051,7 @@ void GuiSlave::showTreeContextMenu ( const QPoint p2 ) {
 
 			mPopup->addAction ( QIcon(*get_t_rescan_icon()), tr ( "Rescan media..." ), this, SLOT(rescanEvent()) );
 			mPopup->addAction ( tr ( "Re-Number media..." ), this, SLOT(renumberEvent()) );
-			
+
 			mPopup->insertSeparator(NULL);
 			context_item = mainw->DirView->itemAt(p2) ;
 			mPopup->addAction ( QIcon(*get_t_add_icon()), tr ( "Change media type..." ), this, SLOT(typeChangeEvent()) );
@@ -1071,7 +1071,7 @@ void GuiSlave::showTreeContextMenu ( const QPoint p2 ) {
 		}
 	}
 #endif
-	
+
 	mPopup->addAction ( QIcon(*get_t_add_icon()), tr ( "Add media..." ), this, SLOT(addEvent()) );
 	mPopup->addAction ( QIcon(*get_p_icon()), tr ( "Add a link to a Cdcat catalog..." ), this, SLOT(addlnkEvent()) );
 	mPopup->addAction ( tr ( "Insert Catalog..." ), this, SLOT(insertcEvent()) );
@@ -1080,7 +1080,7 @@ void GuiSlave::showTreeContextMenu ( const QPoint p2 ) {
 		mPopup->insertSeparator(NULL);
 		mPopup->addAction ( tr ( "Close all branch" ), this, SLOT(closeBranch()) );
 	}
-	
+
 	save = standON;
 	standON = on;
 	mPopup->exec ( mainw->DirView->viewport()->mapToGlobal (p2) );
@@ -1157,7 +1157,7 @@ int GuiSlave::newEvent ( void ) {
 		mainw->db->doExcludeFiles = mainw->cconfig->doExcludeFiles;
 		mainw->db->ExcludeFileList = mainw->cconfig->ExcludeFileList;
 		mainw->db->useWildcardInsteadRegexForExclude = mainw->cconfig->useWildcardInsteadRegexForExclude;
-		
+
 #ifdef CATALOG_ENCRYPTION
 		( ( DBCatalog * ) ( (mainw->db->getRootNode() )->data ) )->isEncryptedCatalog = d->catalogEncrypted;
 		generate_cryptokey ( d->encryptionPassword );
@@ -1279,7 +1279,7 @@ int GuiSlave::openEvent ( void ) {
 	if ( mainw->db != NULL )
 		mainw->db->pww = NULL;
 	delete pww;
-	
+
 #ifdef CATALOG_ENCRYPTION
 	if ( mainw->db != NULL ) {
 		Node *root = mainw->db->getRootNode();
@@ -1294,7 +1294,7 @@ int GuiSlave::openEvent ( void ) {
 		}
 	}
 #endif
-	
+
 	QApplication::restoreOverrideCursor();
 	return 0;
 }
@@ -1308,7 +1308,7 @@ int GuiSlave::saveEvent ( void ) {
 	pww->setProgressText(tr("Saving catalog, please wait..."));
 	pww->show();
 	progress ( pww );
-	
+
 	QApplication::setOverrideCursor ( Qt::WaitCursor );
 	mainw->db->setNice ( mainw->cconfig->nice );
 	if ( mainw->cconfig->saveAlwaysCatalogInUtf8 )
@@ -1323,7 +1323,7 @@ int GuiSlave::saveEvent ( void ) {
 		QApplication::restoreOverrideCursor();
 		return 0;
 	}
-	
+
 	panelsOFF();
 	panelsON();
 
@@ -1351,7 +1351,7 @@ int GuiSlave::saveasEvent ( void ) {
 	mainw->db->pww = pww;
 	pww->setProgressText(tr("Saving catalog, please wait..."));
 	pww->show();
-	
+
 	progress ( pww );
 	QApplication::setOverrideCursor ( Qt::WaitCursor );
 
@@ -1395,7 +1395,7 @@ int GuiSlave::saveasEvent ( void ) {
 				delete last_action;
 			}
 		}
-		
+
 	}
 	panelsOFF();
 	progress ( pww );
@@ -1429,9 +1429,9 @@ int GuiSlave::closeEvent ( void ) {
 			}
 	}
 	panelsOFF();
-	
+
 	mainw->db->doWork = false;
-	
+
 	/* Freeing database object */
 	if ( retv == 0 ) {
 		delete mainw->db;
@@ -1463,7 +1463,7 @@ int GuiSlave::deleteEvent ( void ) {
 
 int GuiSlave::addEvent ( void ) {
 	int i;
-#if !defined(_WIN32) && !defined(_OS2) 
+#if !defined(_WIN32) && !defined(_OS2)
 	bool mount_successful = false;
 #endif
 	QString cdrom_mountpath = mainw->cconfig->cdrompath;
@@ -1496,9 +1496,9 @@ int GuiSlave::addEvent ( void ) {
 	mainw->db->ExcludeFileList = mainw->cconfig->ExcludeFileList;
 	mainw->db->useWildcardInsteadRegexForExclude = mainw->cconfig->useWildcardInsteadRegexForExclude;
 	mainw->db->displayCurrentScannedFileInTray = mainw->cconfig->displayCurrentScannedFileInTray;
-	
+
 	panelsOFF();
-	
+
 	if ( *DEBUG_INFO_ENABLED )
 		cerr << "ADDEVENT-1" << endl;
 	PWw *pww = mainw->pww;
@@ -1508,9 +1508,9 @@ int GuiSlave::addEvent ( void ) {
 	mainw->db->pww = pww;
 	QApplication::setOverrideCursor ( Qt::WaitCursor );
 	d->type = mainw->cconfig->lastMediaType;
-	
 
-#if !defined(_WIN32) && !defined(_OS2) 
+
+#if !defined(_WIN32) && !defined(_OS2)
 	if ( ( d->type == CD || d->type == DVD ) ) {
 		d->dDir = mainw->cconfig->cdrompath;
 		int pid;
@@ -1555,7 +1555,7 @@ int GuiSlave::addEvent ( void ) {
 			if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
 				//if ( *DEBUG_INFO_ENABLED )
 				//	std::cout << "/etc/mtab opened" << std::endl;
-				
+
 				QString line = file.readLine();
 				while (line.length() > 0) {
 					line = file.readLine();
@@ -1607,7 +1607,7 @@ int GuiSlave::addEvent ( void ) {
 			arg[2] = 0;
 			env[0] = mstr ( "PATH=/usr/local/bin:/usr/bin:/bin" );
 			env[1] = 0;
-			
+
 			pid = fork();
 			if ( pid == 0 ) { //mount process
 				if ( execve ( arg[0], ( char * const* ) arg, ( char * const* ) env ) == -1 )
@@ -1642,14 +1642,14 @@ int GuiSlave::addEvent ( void ) {
 		}
 		delete []env;
 		delete []arg;
-		
+
 		if ( QFile ( "/etc/mtab" ).exists() ) {
 			// check if already mounted
 			QFile file("/etc/mtab");
 			if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
 				//if ( *DEBUG_INFO_ENABLED )
 				//	std::cout << "/etc/mtab opened" << std::endl;
-				
+
 				QString line = file.readLine();
 				while (line.length() > 0) {
 					line = file.readLine();
@@ -1699,7 +1699,7 @@ int GuiSlave::addEvent ( void ) {
 	}
 #endif
 
-#if !defined(_WIN32) && !defined(_OS2) 
+#if !defined(_WIN32) && !defined(_OS2)
 	if ( ( ( d->type == CD || d->type == DVD ) && ( ( mainw->cconfig->mounteject && mount_successful ) || ( !mainw->cconfig->mounteject ) ) )  || ( d->type != CD && d->type != DVD ) ) {
 #endif
 // 	if(*DEBUG_INFO_ENABLED)
@@ -1756,20 +1756,20 @@ int GuiSlave::addEvent ( void ) {
 				mainw->startTrayIconAnim();
 				mainw->trayIcon->showMessage(tr("Scan started"), tr("Scanning %1 into %2 has been started").arg(d->dDir, d->dName),   icon, 3 * 1000);
 			}
-			
+
 			if ( *DEBUG_INFO_ENABLED )
 				std::cerr << "Scanning " << qPrintable(d->dDir) << " into " << qPrintable(d->dName) << std::endl;
-			
+
 			i =  mainw->db->addMedia ( d->dDir, d->dName, d->serial, d->type,
 			                           ( d->dOwner.isEmpty() ? QString ( "" ) : d->dOwner ), ( d->dCategory.isEmpty() ? QString ( "" ) : d->dCategory ) );
-			
+
 			if ( *DEBUG_INFO_ENABLED )
 				std::cerr << "ret addMedia: " << i << std::endl;
 			if ( i == 2 ) {
 				QMessageBox::warning ( mainw,
 				                       tr ( "Warning..." ), tr ( "You have cancelled catalog scanning,\nthe DataBase may be incomplete" ));
 			}
-			
+
 			if(mainw->cconfig->showTrayIcon) {
 				disconnect ( mainw, SIGNAL ( minimizedToTray()), pww , SLOT(hide()));
 				disconnect ( mainw, SIGNAL ( restoredFromTray()), pww , SLOT(show()));
@@ -1784,17 +1784,17 @@ int GuiSlave::addEvent ( void ) {
 				mainw->stopTrayIconAnim();
 				mainw->trayIcon->setToolTip(tr("Cdcat - idle"));
 			}
-			
+
 			if ( mainw->cconfig->showProgressedFileInStatus ) {
 				disconnect ( mainw->db, SIGNAL ( pathScanned ( QString ) ), mainw, SLOT ( pathScanned ( QString ) ) );
 				disconnect ( mainw->db, SIGNAL ( pathExtraInfoAppend( QString ) ), mainw, SLOT ( extraInfoAppend(QString)) );
 			}
-			
+
 			if (mainw->cconfig->displayCurrentScannedFileInTray) {
 				//disconnect ( mainw->db, SIGNAL ( fileScanned(QString)), mainw, SLOT ( setTrayText ( QString ) ) );
 				disconnect ( mainw->db, SIGNAL ( fileScanned(QString)), mainw, SLOT ( setTrayToolTipInfo ( QString ) ) );
 			}
-			
+
 			//Do autosave if the user ask it in the config
 			if ( mainw->cconfig->autosave ) {
 				int retv = 0;
@@ -1810,7 +1810,7 @@ int GuiSlave::addEvent ( void ) {
 				QMessageBox::warning ( mainw,
 				                       tr ( "Warning..." ), tr ( "An error occured while scanning,\nthe DataBase may be incomplete" ) );
 			}
-			
+
 			if ( ! ( d->dComm ).isEmpty() ) {
 				Node *tn = ( mainw->db->getRootNode() )->child;
 				while ( tn->getNameOf() != d->dName )
@@ -1821,7 +1821,7 @@ int GuiSlave::addEvent ( void ) {
 		progress ( pww );
 		if ( *DEBUG_INFO_ENABLED )
 			cerr << "ADDEVENT-4" << endl;
-#if !defined(_WIN32) && !defined(_OS2) 
+#if !defined(_WIN32) && !defined(_OS2)
 		if ( mainw->cconfig->mounteject ) {
 			if ( ( d->type == CD || d->type == DVD )  ) {
 				d->dDir = mainw->cconfig->cdrompath;
@@ -1858,7 +1858,7 @@ int GuiSlave::addEvent ( void ) {
 						}
 					}
 				}
-				
+
 				if ( *DEBUG_INFO_ENABLED )
 					fprintf ( stderr, "Call:%s %s...", arg[0], ( const char * ) mainw->cconfig->cdrompath.toUtf8().constData() );
 				arg[1] = mstr ( cdrom_mountpath.toUtf8().constData() );
@@ -1896,7 +1896,7 @@ int GuiSlave::addEvent ( void ) {
 		}
 #endif
 
-#if !defined(_WIN32) && !defined(_OS2) 
+#if !defined(_WIN32) && !defined(_OS2)
 		// mount_successful
 	}
 	if ( ( d->type == CD || d->type == DVD ) && mainw->cconfig->mounteject && !mount_successful ) {
@@ -1972,7 +1972,7 @@ int GuiSlave::rescanEvent ( void ) {
 	progress ( pww );
 
 	panelsOFF();
-	
+
 	if ( mainw->cconfig->showProgressedFileInStatus ) {
 		mainw->db->setShowProgressedFileInStatus ( mainw->cconfig->showProgressedFileInStatus );
 		mainw->db->setShowProgressedArchiveFileInStatus ( mainw->cconfig->showProgressedArchiveFileInStatus );
@@ -1987,14 +1987,14 @@ int GuiSlave::rescanEvent ( void ) {
 		mainw->startTrayIconAnim();
 		mainw->trayIcon->showMessage(tr("Scan started"), tr("Scanning %1 into %2 has been started").arg(rfd, "__rescanned__"),   icon, 3 * 1000);
 	}
-	
+
 	if (mainw->cconfig->displayCurrentScannedFileInTray) {
 		//connect ( mainw->db, SIGNAL ( fileScanned(QString)), mainw, SLOT ( setTrayText ( QString ) ) );
 		connect ( mainw->db, SIGNAL ( fileScanned(QString)), mainw, SLOT ( setTrayToolTipInfo ( QString ) ) );
 	}
-	
+
 	int rescan_ret = mainw->db->addMedia ( rfd, "__rescanned__", -1, UNKNOWN, "system");
-	
+
 	if(mainw->cconfig->showTrayIcon) {
 		disconnect ( mainw, SIGNAL ( minimizedToTray()), pww , SLOT(hide()));
 		disconnect ( mainw, SIGNAL ( restoredFromTray()), pww , SLOT(show()));
@@ -2014,13 +2014,13 @@ int GuiSlave::rescanEvent ( void ) {
 		disconnect ( mainw->db, SIGNAL ( pathScanned ( QString ) ), mainw, SLOT ( pathScanned ( QString ) ) );
 		disconnect ( mainw->db, SIGNAL ( pathExtraInfoAppend( QString ) ), mainw, SLOT ( extraInfoAppend(QString)) );
 	}
-	
+
 	if (mainw->cconfig->displayCurrentScannedFileInTray) {
 		//disconnect ( mainw->db, SIGNAL ( fileScanned(QString)), mainw, SLOT ( setTrayText ( QString ) ) );
 		disconnect ( mainw->db, SIGNAL ( fileScanned(QString)), mainw, SLOT ( setTrayToolTipInfo ( QString ) ) );
 	}
-	
-	
+
+
 	if ( rescan_ret != 0 )  {
 		Node *d;
 		o = tr ( "An error occured while scanning, the rescan operation was cancelled: \n%1" )
@@ -2052,8 +2052,8 @@ int GuiSlave::rescanEvent ( void ) {
 
 		mainw->db->deleteNode ( standON );
 	}
-	
-	
+
+
 	standON = NULL;
 	QApplication::restoreOverrideCursor();
 	//Do autosave if the user ask it in the config !
@@ -2501,87 +2501,87 @@ int GuiSlave::helpEvent ( void ) {
 	QDialog dh;
 	Ui_helpDialog *ui_dh = new  Ui_helpDialog();
 	ui_dh->setupUi ( ( &dh ) );
-	
+
 	dh.resize(750, 550);
-	
+
 	QString helptext = "";
 	helptext += "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">";
 	helptext += "<html><head><meta name=\"qrichtext\" content=\"1\" />";
 	helptext += "<style type=\"text/css\">; p, li { white-space: pre-wrap; }</style>";
 	helptext += "</head>";
 	helptext += "<body style=\" font-family:'DejaVu Sans'; font-size:9pt; font-weight:400; font-style:normal;\">";
-	
+
 	helptext += "<h1>"+tr("Help")+"</h1>";
-	
+
 	helptext += "<h2>"+tr("Whats this?")+"</h2>";
 	helptext += " <p>";
-	
+
 	helptext += tr("The cdcat is graphical (QT based) multiplatform (Linux/Windows) catalog program which scans the directories/drives you want and memorize the filesystem including the tags of mp3's and other data and store it in a small file. The database is stored in a gzipped XML format, so you can hack it, or use it if necessary :-).)");
-	
+
 	helptext += tr("The program can store the content of some specified files up to a limit size if you want. (for example: *.nfo)");
-	
+
 	helptext += " </p>";
 	helptext += "<h2>"+tr("Usage:")+"</h2>";
 	helptext += " <p>";
-	
+
 	helptext += tr("Before the scanning select the necessary readable components in the config dialog, which can be mp3 tags content of some files or etc.");
-	
+
 	helptext += "</p>";
-	
+
 	helptext += "<h2>"+tr("Create a new catalog")+"</h2>";
 	helptext += "<p>";
-	
+
 	helptext += tr("Run the %1 command in the catalog menu. You have to type the name of the new catalog. You can specify the default username of the media(which you scan later), and add a comment to the catalog.").arg("<i>"+tr("New")+"</i>");
-	
+
 	helptext += "</p>";
-	
+
 	helptext += "<h2>"+tr("Add media")+"</h2>";
-	
+
 	helptext += "<p>";
-	
+
 	helptext += tr("Run the %1 command in the edit menu. In that dialog you have to specify the directory/or drive the media you want to add. It's recommended to specify the name and the number of the media which has to be unique. (The program always generate one identical name and number). You can label the media to a owner, if necessary.").arg(+"<i>"+tr("Add media...")+"</i>");
-	
-	
+
+
 	helptext += " <br />";
-	
+
 	helptext += tr("If you scanned your media, you will be able to browse in it with the browser window (like mc) , or search in it. You can save the catalog with %1 command in the file menu.").arg(" <i>"+tr("save as")+"</i>");
-	
+
 	helptext += "</p>";
-	
+
 	helptext += "<h2>"+tr("Open an existing catalog:")+"</h2>";
-	
+
 	helptext += tr("Run the %1 command in the file menu, and choice the file of the catalog. (*.hcf). After the opening you will be able browse the catalog or search in it.").arg("<i>"+tr("open")+"</i>");
-	
+
 	helptext += "</p>";
-	
+
 	helptext += "<h2>"+tr("Author:")+"</h2>";
 	helptext += "<p>";
-	
+
 	helptext += tr("The program was written by Peter Deak (hungary)");
-	
+
 	helptext += "<br />";
 	helptext += tr("The current maintainer is %1.").arg("Christoph Thielecke");
-	
+
 	helptext += "</p>";
-	
+
 	helptext += "<h2>"+tr("License:")+"</h2>";
-	
+
 	helptext += "<p>";
-	
+
 	helptext += tr("General Public License (GPL)");
-	
+
 	helptext += "</p>";
-	
+
 	helptext += "<h2>"+tr("Homepage:")+"</h2>";
-	
+
 	helptext += "<p>";
-	
+
 	helptext += tr("You can read about the program and get new versions, sources etc, in the hompage of cdcat:")+" ";
-	
+
 	helptext += "<a href=\"http://cdcat.sourceforge.net/\">http://cdcat.sourceforge.net</a>";
 	helptext += "</p></body></html>";
-	
-	
+
+
 	ui_dh->textBrowser1->setHtml(helptext);
 	dh.exec();
 	delete ui_dh;
@@ -2945,7 +2945,7 @@ int GuiSlave::changePassEvent ( void ) {
 	QString Password = QInputDialog::getText ( 0, QObject::tr ( "Enter password..." ), QObject::tr ( "Enter password for catalog:" ), QLineEdit::Password, "", &ok );
 	QString PasswordAgain = QInputDialog::getText ( 0, QObject::tr ( "Enter password..." ), QObject::tr ( "Enter password for catalog (again):" ), QLineEdit::Password, "", &ok_again );
 	if ( ok && ok_again ) {
-		if ( Password == PasswordAgain) { 
+		if ( Password == PasswordAgain) {
 			if(Password.size() >= 4) {
 				if (Password.size() > CryptoPP::Blowfish::BLOCKSIZE) {
 					QMessageBox::critical ( 0,  tr("Password too big"), tr ( "Password length is too big, must be maximal %1 chars" ).arg(QString().setNum(CryptoPP::Blowfish::BLOCKSIZE)) );
@@ -2975,7 +2975,7 @@ int GuiSlave::enableEncryptionEvent ( void ) {
 	QString Password = QInputDialog::getText ( 0, QObject::tr ( "Enter password..." ), QObject::tr ( "Enter password for catalog:" ), QLineEdit::Password, "", &ok );
 	QString PasswordAgain = QInputDialog::getText ( 0, QObject::tr ( "Enter password..." ), QObject::tr ( "Enter password for catalog (again):" ), QLineEdit::Password, "", &ok_again );
 	if ( ok && ok_again ) {
-		if ( Password == PasswordAgain) { 
+		if ( Password == PasswordAgain) {
 			if(Password.size() >= 4) {
 				if (Password.size() > CryptoPP::Blowfish::BLOCKSIZE) {
 					QMessageBox::critical ( 0,  tr("Password too big"), tr ( "Password length is too big, must be maximal %1 chars" ).arg(QString().setNum(CryptoPP::Blowfish::BLOCKSIZE)) );
@@ -3026,7 +3026,7 @@ QPosDialog::QPosDialog ( CdCatMainWidget *parent )
 	setModal(true);
 	p = parent;
 	le = new QLineEdit ( this );
-	
+
 	l2 = new QVBoxLayout();
 	l2->addSpacing ( 2 );
 	l2->addWidget ( le );
@@ -3055,7 +3055,7 @@ int QPosDialog::pos ( const QString & str ) {
 	if ( *DEBUG_INFO_ENABLED )
 		cerr << "QPosDialog::pos() str: " << qPrintable ( str ) << endl;
 	QTreeWidgetItemIterator it(p->listView);
-	
+
 	while (*it) {
 		if ( (*it)->text ( 0 ) == str ) {
 			p->listView->setCurrentItem ( (*it) );
@@ -3145,7 +3145,7 @@ void CatalogTypeEditDialog::languageChange() {
 	cbType->insertItem ( NETPLACE, *get_m_net_icon(), tr ( "NetworkPlace" ) );
 	cbType->insertItem ( FLASHDRV, *get_m_flash_icon(), tr ( "FlashDrive" ) );
 	cbType->insertItem ( OTHERD, *get_m_other_icon(), tr ( "OtherDevice" ) );
-	
+
 	//cbType->setCurrentText(tr( "CD" )); // default
 	buttonCancel->setText ( tr ( "Cancel" ) );
 	buttonOK->setText ( tr ( "OK" ) );
@@ -3175,4 +3175,4 @@ void CatalogTypeEditDialog::cbTypeToggeled ( int ) {
 
 
 
-// kate: indent-mode cstyle; replace-tabs off; tab-width 8; 
+// kate: indent-mode cstyle; replace-tabs off; tab-width 8;

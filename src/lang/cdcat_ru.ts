@@ -1518,7 +1518,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Ошибка:</translation>
     </message>
     <message>
-        <source>Do you really want to delete this?: 
+        <source>Do you really want to delete this?:
 %1</source>
         <translation type="obsolete">Вы действительно хотите удалить это?:
 %1</translation>
@@ -1549,11 +1549,11 @@ It is necessary because I&apos;d like to save the config file into your home dir
     </message>
     <message>
         <location filename="../guibase.cpp" line="2378"/>
-        <source>The size of &quot;%1&quot; : 
- %2 
+        <source>The size of &quot;%1&quot; :
+ %2
  %3 file /%4 directory</source>
         <translation>Размер %1 :
-%2 
+%2
 %3 файлов /%4 папок</translation>
     </message>
     <message>
@@ -1674,9 +1674,9 @@ the DataBase may be incomplete</source>
     </message>
     <message>
         <location filename="../guibase.cpp" line="2026"/>
-        <source>An error occured while scanning, the rescan operation was cancelled: 
+        <source>An error occured while scanning, the rescan operation was cancelled:
 %1</source>
-        <translation>При сканировании возникла ошибка, операция повторного сканирования была отменена: 
+        <translation>При сканировании возникла ошибка, операция повторного сканирования была отменена:
 %1</translation>
     </message>
     <message>
@@ -4608,7 +4608,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../import.cpp" line="1651"/>
         <source>1 directory:,
 </source>
-        <translation>1 папка:, 
+        <translation>1 папка:,
 </translation>
     </message>
     <message>
@@ -4728,7 +4728,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../import.cpp" line="2149"/>
         <source>1 directory:,
 </source>
-        <translation>1 папка:, 
+        <translation>1 папка:,
 </translation>
     </message>
     <message>
@@ -4803,7 +4803,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../import.cpp" line="2992"/>
         <source>1 directory:,
 </source>
-        <translation>1 папка:, 
+        <translation>1 папка:,
 </translation>
     </message>
     <message>

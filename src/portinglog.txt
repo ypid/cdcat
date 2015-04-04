@@ -29,10 +29,10 @@ In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/adddialog.cpp at li
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/adddialog.cpp at line 426 column 27: QHBoxLayout -> Q3HBoxLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/adddialog.cpp at line 489 column 18: QFileDialog -> Q3FileDialog
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/adddialog.cpp: Added the following include directives:
-	#include <Q3HBoxLayout> 	#include <QPaintEvent> 	#include <Q3GridLayout> 	#include <QMouseEvent> 	#include <Q3VBoxLayout> 
+	#include <Q3HBoxLayout> 	#include <QPaintEvent> 	#include <Q3GridLayout> 	#include <QMouseEvent> 	#include <Q3VBoxLayout>
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/cdcat.cpp at line 60 column 9: QPtrList -> Q3PtrList
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/cdcat.cpp: Added the following include directives:
-	#include <Q3PtrList> 
+	#include <Q3PtrList>
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/commwidget.cpp at line 27 column 24: qmultilineedit.h -> q3multilineedit.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/commwidget.cpp at line 30 column 20: qwhatsthis.h -> q3whatsthis.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/commwidget.cpp at line 60 column 49: arrowCursor -> Qt::arrowCursor
@@ -47,7 +47,7 @@ In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/commwidget.cpp at l
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/commwidget.cpp at line 402 column 31: QMultiLineEdit -> Q3MultiLineEdit
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/commwidget.cpp at line 405 column 29: QHBoxLayout -> Q3HBoxLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/commwidget.cpp: Added the following include directives:
-	#include <Q3HBoxLayout> 	#include <QPaintEvent> 	#include <QResizeEvent> 	#include <Q3GridLayout> 	#include <QMouseEvent> 	#include <QEvent> 	#include <Q3VBoxLayout> 
+	#include <Q3HBoxLayout> 	#include <QPaintEvent> 	#include <QResizeEvent> 	#include <Q3GridLayout> 	#include <QMouseEvent> 	#include <QEvent> 	#include <Q3VBoxLayout>
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/config.cpp at line 20 column 21: qfiledialog.h -> q3filedialog.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/config.cpp at line 27 column 20: qwhatsthis.h -> q3whatsthis.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/config.cpp at line 31 column 16: qframe.h -> q3frame.h
@@ -102,7 +102,7 @@ In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/config.cpp at line 
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/config.cpp at line 1061 column 18: QFileDialog -> Q3FileDialog
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/config.cpp at line 1071 column 18: QFileDialog -> Q3FileDialog
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/config.cpp: Added the following include directives:
-	#include <Q3HBoxLayout> 	#include <Q3GridLayout> 
+	#include <Q3HBoxLayout> 	#include <Q3GridLayout>
 No changes made to file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/dbase.cpp
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/dirview.cpp at line 19 column 21: qdragobject.h -> q3dragobject.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/dirview.cpp at line 21 column 18: qstrlist.h -> q3strlist.h
@@ -127,7 +127,7 @@ In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/dirview.cpp at line
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/dirview.cpp at line 248 column 25: QListViewItemIterator -> Q3ListViewItemIterator
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/dirview.cpp at line 262 column 17: QListViewItem -> Q3ListViewItem
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/dirview.cpp: Added the following include directives:
-	#include <QMouseEvent> 
+	#include <QMouseEvent>
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/find.cpp at line 20 column 16: qframe.h -> q3frame.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/find.cpp at line 21 column 17: qheader.h -> q3header.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/find.cpp at line 25 column 19: qlistview.h -> q3listview.h
@@ -153,7 +153,7 @@ In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/find.cpp at line 31
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/find.cpp at line 428 column 44: QListViewItem -> Q3ListViewItem
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/find.cpp at line 605 column 44: QListViewItem -> Q3ListViewItem
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/find.cpp: Added the following include directives:
-	#include <Q3HBoxLayout> 	#include <Q3GridLayout> 	#include <Q3VBoxLayout> 	#include <QCloseEvent> 
+	#include <Q3HBoxLayout> 	#include <Q3GridLayout> 	#include <Q3VBoxLayout> 	#include <QCloseEvent>
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/guibase.cpp at line 17 column 19: qlistview.h -> q3listview.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/guibase.cpp at line 20 column 17: qheader.h -> q3header.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/guibase.cpp at line 26 column 21: qfiledialog.h -> q3filedialog.h
@@ -192,7 +192,7 @@ In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/guibase.cpp at line
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/guibase.cpp at line 1727 column 22: QHBoxLayout -> Q3HBoxLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/guibase.cpp at line 1753 column 22: QListViewItemIterator -> Q3ListViewItemIterator
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/guibase.cpp: Added the following include directives:
-	#include <Q3HBoxLayout> 	#include <QKeyEvent> 	#include <Q3PopupMenu> 	#include <Q3VBoxLayout> 
+	#include <Q3HBoxLayout> 	#include <QKeyEvent> 	#include <Q3PopupMenu> 	#include <Q3VBoxLayout>
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/hdirview.cpp at line 26 column 21: qdragobject.h -> q3dragobject.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/hdirview.cpp at line 28 column 18: qstrlist.h -> q3strlist.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/hdirview.cpp at line 32 column 17: qheader.h -> q3header.h
@@ -230,7 +230,7 @@ In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/hdirview.cpp at lin
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/hdirview.cpp at line 470 column 18: QListViewItem -> Q3ListViewItem
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/hdirview.cpp at line 493 column 24: QListViewItemIterator -> Q3ListViewItemIterator
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/hdirview.cpp: Added the following include directives:
-	#include <QDragMoveEvent> 	#include <QDropEvent> 	#include <QDragLeaveEvent> 	#include <QMouseEvent> 	#include <QKeyEvent> 	#include <QDragEnterEvent> 
+	#include <QDragMoveEvent> 	#include <QDropEvent> 	#include <QDragLeaveEvent> 	#include <QMouseEvent> 	#include <QKeyEvent> 	#include <QDragEnterEvent>
 No changes made to file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/icons.cpp
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/import.cpp at line 14 column 21: qtextstream.h -> q3textstream.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/import.cpp at line 16 column 25: qprogressdialog.h -> q3progressdialog.h
@@ -252,7 +252,7 @@ In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/import.cpp at line 
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/import.cpp at line 1288 column 26: IO_ReadOnly -> QIODevice::ReadOnly
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/import.cpp at line 1291 column 18: QProgressDialog -> Q3ProgressDialog
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/import.cpp: Added the following include directives:
-	#include <Q3PtrList> 
+	#include <Q3PtrList>
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/importdialog.cpp at line 20 column 20: qwhatsthis.h -> q3whatsthis.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/importdialog.cpp at line 22 column 21: qfiledialog.h -> q3filedialog.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/importdialog.cpp at line 28 column 81: WFlags -> Qt::WFlags
@@ -263,7 +263,7 @@ In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/importdialog.cpp at
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/importdialog.cpp at line 162 column 11: QWhatsThis -> Q3WhatsThis
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/importdialog.cpp at line 215 column 40: QFileDialog -> Q3FileDialog
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/importdialog.cpp: Added the following include directives:
-	#include <Q3GridLayout> 
+	#include <Q3GridLayout>
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/mainwidget.cpp at line 21 column 16: qframe.h -> q3frame.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/mainwidget.cpp at line 22 column 17: qheader.h -> q3header.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/mainwidget.cpp at line 23 column 19: qlistview.h -> q3listview.h
@@ -326,7 +326,7 @@ In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/mainwidget.cpp at l
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/mainwidget.cpp at line 307 column 14: QWhatsThis -> Q3WhatsThis
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/mainwidget.cpp at line 322 column 14: QWhatsThis -> Q3WhatsThis
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/mainwidget.cpp: Added the following include directives:
-	#include <Q3HBoxLayout> 	#include <QCloseEvent> 	#include <Q3ValueList> 	#include <Q3PopupMenu> 	#include <QKeyEvent> 	#include <Q3VBoxLayout> 
+	#include <Q3HBoxLayout> 	#include <QCloseEvent> 	#include <Q3ValueList> 	#include <Q3PopupMenu> 	#include <QKeyEvent> 	#include <Q3VBoxLayout>
 No changes made to file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/mp3tag.cpp
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/newdbdialog.cpp at line 22 column 24: qmultilineedit.h -> q3multilineedit.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/newdbdialog.cpp at line 25 column 20: qwhatsthis.h -> q3whatsthis.h
@@ -335,7 +335,7 @@ In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/newdbdialog.cpp at 
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/newdbdialog.cpp at line 52 column 31: QMultiLineEdit -> Q3MultiLineEdit
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/newdbdialog.cpp at line 68 column 30: QHBoxLayout -> Q3HBoxLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/newdbdialog.cpp: Added the following include directives:
-	#include <Q3GridLayout> 	#include <Q3HBoxLayout> 
+	#include <Q3GridLayout> 	#include <Q3HBoxLayout>
 No changes made to file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/wdbfile.cpp
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/info.cpp at line 18 column 22: qtextbrowser.h -> q3textbrowser.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/info.cpp at line 21 column 20: qwhatsthis.h -> q3whatsthis.h
@@ -347,7 +347,7 @@ In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/info.cpp at line 53
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/info.cpp at line 59 column 35: QGridLayout -> Q3GridLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/info.cpp at line 61 column 32: QTextBrowser -> Q3TextBrowser
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/info.cpp: Added the following include directives:
-	#include <Q3GridLayout> 
+	#include <Q3GridLayout>
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/exportcdcatdb.cpp at line 18 column 18: qlistbox.h -> q3listbox.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/exportcdcatdb.cpp at line 20 column 22: qbuttongroup.h -> q3buttongroup.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/exportcdcatdb.cpp at line 27 column 21: qtextstream.h -> q3textstream.h
@@ -374,7 +374,7 @@ In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/exportcdcatdb.cpp a
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/exportcdcatdb.cpp at line 433 column 32: QTextStream -> Q3TextStream
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/exportcdcatdb.cpp at line 502 column 16: QFileDialog -> Q3FileDialog
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/exportcdcatdb.cpp: Added the following include directives:
-	#include <Q3HBoxLayout> 	#include <Q3GridLayout> 	#include <Q3VBoxLayout> 
+	#include <Q3HBoxLayout> 	#include <Q3GridLayout> 	#include <Q3VBoxLayout>
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/showcontent.cpp at line 16 column 22: qtextbrowser.h -> q3textbrowser.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/showcontent.cpp at line 20 column 20: qwhatsthis.h -> q3whatsthis.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/showcontent.cpp at line 25 column 21: qfiledialog.h -> q3filedialog.h
@@ -384,7 +384,7 @@ In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/showcontent.cpp at 
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/showcontent.cpp at line 71 column 34: QTextBrowser -> Q3TextBrowser
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/showcontent.cpp at line 131 column 14: QFileDialog -> Q3FileDialog
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/showcontent.cpp: Added the following include directives:
-	#include <Q3GridLayout> 	#include <Q3HBoxLayout> 
+	#include <Q3GridLayout> 	#include <Q3HBoxLayout>
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/selreadable.cpp at line 16 column 16: qframe.h -> q3frame.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/selreadable.cpp at line 21 column 22: qbuttongroup.h -> q3buttongroup.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/selreadable.cpp at line 25 column 20: qwhatsthis.h -> q3whatsthis.h
@@ -410,7 +410,7 @@ In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/selreadable.cpp at 
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/selreadable.cpp at line 110 column 32: QFrame -> Q3Frame
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/selreadable.cpp at line 113 column 29: QHBoxLayout -> Q3HBoxLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/selreadable.cpp: Added the following include directives:
-	#include <Q3HBoxLayout> 	#include <Q3VBoxLayout> 
+	#include <Q3HBoxLayout> 	#include <Q3VBoxLayout>
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/colorsettings.cpp at line 18 column 16: qframe.h -> q3frame.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/colorsettings.cpp at line 19 column 19: qgroupbox.h -> q3groupbox.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/colorsettings.cpp at line 25 column 20: qwhatsthis.h -> q3whatsthis.h
@@ -433,7 +433,7 @@ In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/colorsettings.cpp a
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/colorsettings.cpp at line 161 column 30: QHBoxLayout -> Q3HBoxLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/colorsettings.cpp at line 165 column 29: QVBoxLayout -> Q3VBoxLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/colorsettings.cpp: Added the following include directives:
-	#include <Q3HBoxLayout> 	#include <QPaintEvent> 	#include <Q3VBoxLayout> 
+	#include <Q3HBoxLayout> 	#include <QPaintEvent> 	#include <Q3VBoxLayout>
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/borrow.cpp at line 21 column 20: qpopupmenu.h -> q3popupmenu.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/borrow.cpp at line 26 column 20: qwhatsthis.h -> q3whatsthis.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/borrow.cpp at line 28 column 16: qtable.h -> q3table.h
@@ -462,7 +462,7 @@ In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/borrow.cpp at line 
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/borrow.cpp at line 409 column 12: QPopupMenu -> Q3PopupMenu
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/borrow.cpp at line 409 column 34: QPopupMenu -> Q3PopupMenu
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/borrow.cpp: Added the following include directives:
-	#include <Q3HBoxLayout> 	#include <Q3VBoxLayout> 
+	#include <Q3HBoxLayout> 	#include <Q3VBoxLayout>
 No changes made to file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/tparser.cpp
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/misc.cpp at line 13 column 21: qtextstream.h -> q3textstream.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/misc.cpp at line 36 column 25: IO_ReadOnly -> QIODevice::ReadOnly
@@ -489,7 +489,7 @@ In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/adddialog.h at line
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/adddialog.h at line 147 column 14: QHBoxLayout -> Q3HBoxLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/adddialog.h at line 148 column 14: QHBoxLayout -> Q3HBoxLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/adddialog.h: Added the following include directives:
-	#include <Q3GridLayout> 	#include <Q3HBoxLayout> 	#include <Q3VBoxLayout> 	#include <QLabel> 	#include <QMouseEvent> 	#include <QPaintEvent> 
+	#include <Q3GridLayout> 	#include <Q3HBoxLayout> 	#include <Q3VBoxLayout> 	#include <QLabel> 	#include <QMouseEvent> 	#include <QPaintEvent>
 No changes made to file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/cdcat.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/commwidget.h at line 28 column 17: QVBoxLayout -> Q3VBoxLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/commwidget.h at line 29 column 17: QHBoxLayout -> Q3HBoxLayout
@@ -502,7 +502,7 @@ In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/commwidget.h at lin
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/commwidget.h at line 106 column 15: QVBoxLayout -> Q3VBoxLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/commwidget.h at line 107 column 15: QHBoxLayout -> Q3HBoxLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/commwidget.h: Added the following include directives:
-	#include <QPixmap> 	#include <QResizeEvent> 	#include <Q3GridLayout> 	#include <QEvent> 	#include <Q3HBoxLayout> 	#include <Q3VBoxLayout> 	#include <QMouseEvent> 	#include <QPaintEvent> 
+	#include <QPixmap> 	#include <QResizeEvent> 	#include <Q3GridLayout> 	#include <QEvent> 	#include <Q3HBoxLayout> 	#include <Q3VBoxLayout> 	#include <QMouseEvent> 	#include <QPaintEvent>
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/config.h at line 25 column 17: QVBoxLayout -> Q3VBoxLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/config.h at line 26 column 17: QHBoxLayout -> Q3HBoxLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/config.h at line 27 column 17: QGridLayout -> Q3GridLayout
@@ -527,7 +527,7 @@ In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/config.h at line 16
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/config.h at line 162 column 15: QHBoxLayout -> Q3HBoxLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/config.h at line 168 column 15: QHBoxLayout -> Q3HBoxLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/config.h: Added the following include directives:
-	#include <Q3HBoxLayout> 	#include <Q3GridLayout> 	#include <Q3Frame> 	#include <QLabel> 	#include <Q3VBoxLayout> 
+	#include <Q3HBoxLayout> 	#include <Q3GridLayout> 	#include <Q3Frame> 	#include <QLabel> 	#include <Q3VBoxLayout>
 No changes made to file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/dbase.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/dirview.h at line 21 column 19: qlistview.h -> q3listview.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/dirview.h at line 34 column 37: QListViewItem -> Q3ListViewItem
@@ -543,7 +543,7 @@ In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/dirview.h at line 9
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/dirview.h at line 99 column 17: QListViewItem -> Q3ListViewItem
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/dirview.h at line 100 column 17: QListViewItem -> Q3ListViewItem
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/dirview.h: Added the following include directives:
-	#include <QMouseEvent> 	#include <QDragMoveEvent> 	#include <QDragLeaveEvent> 	#include <QDropEvent> 	#include <QDragEnterEvent> 	#include <QPixmap> 
+	#include <QMouseEvent> 	#include <QDragMoveEvent> 	#include <QDragLeaveEvent> 	#include <QDropEvent> 	#include <QDragEnterEvent> 	#include <QPixmap>
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/find.h at line 25 column 17: QVBoxLayout -> Q3VBoxLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/find.h at line 26 column 17: QHBoxLayout -> Q3HBoxLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/find.h at line 27 column 17: QGridLayout -> Q3GridLayout
@@ -571,7 +571,7 @@ In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/find.h at line 136 
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/find.h at line 137 column 15: QGridLayout -> Q3GridLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/find.h at line 141 column 29: QListViewItem -> Q3ListViewItem
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/find.h: Added the following include directives:
-	#include <Q3GridLayout> 	#include <Q3HBoxLayout> 	#include <Q3VBoxLayout> 	#include <QLabel> 	#include <Q3Frame> 	#include <QCloseEvent> 
+	#include <Q3GridLayout> 	#include <Q3HBoxLayout> 	#include <Q3VBoxLayout> 	#include <QLabel> 	#include <Q3Frame> 	#include <QCloseEvent>
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/guibase.h at line 18 column 19: qlistview.h -> q3listview.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/guibase.h at line 19 column 20: qpopupmenu.h -> q3popupmenu.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/guibase.h at line 40 column 12: QPopupMenu -> Q3PopupMenu
@@ -587,7 +587,7 @@ In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/guibase.h at line 1
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/guibase.h at line 120 column 35: QListView -> Q3ListView
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/guibase.h at line 125 column 77: WFlags -> Qt::WFlags
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/guibase.h: Added the following include directives:
-	#include <QKeyEvent> 
+	#include <QKeyEvent>
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/hdirview.h at line 21 column 19: qlistview.h -> q3listview.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/hdirview.h at line 39 column 34: QListViewItem -> Q3ListViewItem
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/hdirview.h at line 43 column 20: QListView -> Q3ListView
@@ -600,7 +600,7 @@ In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/hdirview.h at line 
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/hdirview.h at line 108 column 17: QListViewItem -> Q3ListViewItem
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/hdirview.h at line 109 column 17: QListViewItem -> Q3ListViewItem
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/hdirview.h: Added the following include directives:
-	#include <QPixmap> 	#include <QDragEnterEvent> 	#include <QDropEvent> 	#include <QMouseEvent> 	#include <QDragMoveEvent> 	#include <QKeyEvent> 	#include <QDragLeaveEvent> 
+	#include <QPixmap> 	#include <QDragEnterEvent> 	#include <QDropEvent> 	#include <QMouseEvent> 	#include <QDragMoveEvent> 	#include <QKeyEvent> 	#include <QDragLeaveEvent>
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/mainwidget.h at line 24 column 20: qpopupmenu.h -> q3popupmenu.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/mainwidget.h at line 28 column 17: QVBoxLayout -> Q3VBoxLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/mainwidget.h at line 29 column 17: QHBoxLayout -> Q3HBoxLayout
@@ -614,7 +614,7 @@ In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/mainwidget.h at lin
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/mainwidget.h at line 78 column 15: QHBoxLayout -> Q3HBoxLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/mainwidget.h at line 79 column 15: QVBoxLayout -> Q3VBoxLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/mainwidget.h: Added the following include directives:
-	#include <Q3GridLayout> 	#include <Q3HBoxLayout> 	#include <Q3VBoxLayout> 	#include <QLabel> 	#include <Q3Frame> 	#include <QCloseEvent> 
+	#include <Q3GridLayout> 	#include <Q3HBoxLayout> 	#include <Q3VBoxLayout> 	#include <QLabel> 	#include <Q3Frame> 	#include <QCloseEvent>
 No changes made to file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/mp3tag.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/newdbdialog.h at line 22 column 17: QVBoxLayout -> Q3VBoxLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/newdbdialog.h at line 23 column 17: QHBoxLayout -> Q3HBoxLayout
@@ -625,7 +625,7 @@ In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/newdbdialog.h at li
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/newdbdialog.h at line 56 column 15: QGridLayout -> Q3GridLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/newdbdialog.h at line 57 column 15: QHBoxLayout -> Q3HBoxLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/newdbdialog.h: Added the following include directives:
-	#include <Q3VBoxLayout> 	#include <Q3GridLayout> 	#include <Q3HBoxLayout> 	#include <QLabel> 
+	#include <Q3VBoxLayout> 	#include <Q3GridLayout> 	#include <Q3HBoxLayout> 	#include <QLabel>
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/import.h at line 15 column 19: qlistview.h -> q3listview.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/import.h at line 16 column 21: qfiledialog.h -> q3filedialog.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/import.h at line 20 column 25: qprogressdialog.h -> q3progressdialog.h
@@ -642,12 +642,12 @@ In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/importdialog.h at l
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/importdialog.h at line 63 column 12: QVBoxLayout -> Q3VBoxLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/importdialog.h at line 64 column 12: QHBoxLayout -> Q3HBoxLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/importdialog.h: Added the following include directives:
-	#include <Q3VBoxLayout> 	#include <Q3GridLayout> 	#include <Q3HBoxLayout> 	#include <QLabel> 
+	#include <Q3VBoxLayout> 	#include <Q3GridLayout> 	#include <Q3HBoxLayout> 	#include <QLabel>
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/wdbfile.h at line 22 column 14: QCString -> Q3CString
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/wdbfile.h: Added the following include directives:
-	#include <Q3CString> 
+	#include <Q3CString>
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/icons.h: Added the following include directives:
-	#include <QPixmap> 
+	#include <QPixmap>
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/info.h at line 22 column 17: QVBoxLayout -> Q3VBoxLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/info.h at line 23 column 17: QHBoxLayout -> Q3HBoxLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/info.h at line 24 column 17: QGridLayout -> Q3GridLayout
@@ -660,7 +660,7 @@ In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/info.h at line 50 c
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/info.h at line 51 column 15: QGridLayout -> Q3GridLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/info.h at line 52 column 15: QGridLayout -> Q3GridLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/info.h: Added the following include directives:
-	#include <Q3VBoxLayout> 	#include <Q3GridLayout> 	#include <Q3HBoxLayout> 	#include <QLabel> 
+	#include <Q3VBoxLayout> 	#include <Q3GridLayout> 	#include <Q3HBoxLayout> 	#include <QLabel>
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/exportcdcatdb.h at line 23 column 19: qlistview.h -> q3listview.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/exportcdcatdb.h at line 24 column 21: qfiledialog.h -> q3filedialog.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/exportcdcatdb.h at line 35 column 18: qlistbox.h -> q3listbox.h
@@ -686,7 +686,7 @@ In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/exportcdcatdb.h at 
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/exportcdcatdb.h at line 119 column 12: QVBoxLayout -> Q3VBoxLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/exportcdcatdb.h at line 120 column 12: QVBoxLayout -> Q3VBoxLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/exportcdcatdb.h: Added the following include directives:
-	#include <Q3GridLayout> 	#include <Q3HBoxLayout> 	#include <Q3VBoxLayout> 
+	#include <Q3GridLayout> 	#include <Q3HBoxLayout> 	#include <Q3VBoxLayout>
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/showcontent.h at line 21 column 17: QVBoxLayout -> Q3VBoxLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/showcontent.h at line 22 column 17: QHBoxLayout -> Q3HBoxLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/showcontent.h at line 23 column 17: QGridLayout -> Q3GridLayout
@@ -696,7 +696,7 @@ In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/showcontent.h at li
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/showcontent.h at line 49 column 15: QGridLayout -> Q3GridLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/showcontent.h at line 50 column 15: QHBoxLayout -> Q3HBoxLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/showcontent.h: Added the following include directives:
-	#include <Q3VBoxLayout> 	#include <Q3GridLayout> 	#include <Q3HBoxLayout> 	#include <QLabel> 
+	#include <Q3VBoxLayout> 	#include <Q3GridLayout> 	#include <Q3HBoxLayout> 	#include <QLabel>
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/selreadable.h at line 22 column 17: QVBoxLayout -> Q3VBoxLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/selreadable.h at line 23 column 17: QHBoxLayout -> Q3HBoxLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/selreadable.h at line 24 column 17: QGridLayout -> Q3GridLayout
@@ -715,7 +715,7 @@ In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/selreadable.h at li
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/selreadable.h at line 72 column 15: QHBoxLayout -> Q3HBoxLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/selreadable.h at line 73 column 15: QHBoxLayout -> Q3HBoxLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/selreadable.h: Added the following include directives:
-	#include <Q3VBoxLayout> 	#include <Q3Frame> 	#include <Q3GridLayout> 	#include <Q3HBoxLayout> 	#include <QLabel> 
+	#include <Q3VBoxLayout> 	#include <Q3Frame> 	#include <Q3GridLayout> 	#include <Q3HBoxLayout> 	#include <QLabel>
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/borrow.h at line 23 column 12: QTable -> Q3Table
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/borrow.h at line 24 column 17: QVBoxLayout -> Q3VBoxLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/borrow.h at line 25 column 17: QHBoxLayout -> Q3HBoxLayout
@@ -730,7 +730,7 @@ In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/borrow.h at line 97
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/borrow.h at line 98 column 15: QHBoxLayout -> Q3HBoxLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/borrow.h at line 99 column 15: QHBoxLayout -> Q3HBoxLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/borrow.h: Added the following include directives:
-	#include <Q3VBoxLayout> 	#include <Q3GridLayout> 	#include <Q3HBoxLayout> 	#include <QLabel> 
+	#include <Q3VBoxLayout> 	#include <Q3GridLayout> 	#include <Q3HBoxLayout> 	#include <QLabel>
 No changes made to file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/tparser.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/colorsettings.h at line 22 column 16: qframe.h -> q3frame.h
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/colorsettings.h at line 26 column 17: QVBoxLayout -> Q3VBoxLayout
@@ -752,9 +752,9 @@ In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/colorsettings.h at 
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/colorsettings.h at line 101 column 15: QHBoxLayout -> Q3HBoxLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/colorsettings.h at line 102 column 15: QVBoxLayout -> Q3VBoxLayout
 In file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/colorsettings.h: Added the following include directives:
-	#include <Q3GridLayout> 	#include <Q3HBoxLayout> 	#include <Q3VBoxLayout> 	#include <QLabel> 	#include <QPaintEvent> 
+	#include <Q3GridLayout> 	#include <Q3HBoxLayout> 	#include <Q3VBoxLayout> 	#include <QLabel> 	#include <QPaintEvent>
 No changes made to file /home/kde-devel/work/CdCat-Unicode-Alpha/unicode-src/misc.h
-In file cdcat.pro: Added entry QT +=  qt3support 
+In file cdcat.pro: Added entry QT +=  qt3support
 In file cdcat.pro: Added entry CONFIG += uic3
 
 In file cdcat.pro: Renamed INTERFACES to FORMS3

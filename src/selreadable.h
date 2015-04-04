@@ -40,12 +40,12 @@ class QModelIndex;
 
 class SelReadable : public QDialog {
 		Q_OBJECT
-	
+
 	public:
 		SelReadable ( CdCatConfig *confp, QWidget* parent = 0, const char* name = 0, bool modal = FALSE, Qt::WFlags fl = 0 );
 		~SelReadable();
 		void checkExcludeRules();
-		
+
 		CdCatConfig *conf;
 		QCheckBox* cbTag;
 		QCheckBox* cbInfo;
@@ -69,7 +69,7 @@ class SelReadable : public QDialog {
 		QLineEdit *lineeditPathExternalContentViewer;
 		QListView *listviewExcludeFiles;
 		QStandardItemModel *exclude_model;
-		
+
 		QFrame* line6;
 		QFrame* line7;
 		QPushButton* buttonOK;
@@ -78,7 +78,7 @@ class SelReadable : public QDialog {
 		QPushButton* buttonAddExcludeRule;
 		QPushButton *labExcludeRexexInfoButton;
 		QComboBox *cbDefaultMp3TagVersion;
-		
+
 		QLabel* labelContentSize;
 		QLabel* labelContentSizeUnit;
 		QLabel* labelContent;
@@ -96,7 +96,7 @@ class SelReadable : public QDialog {
 		QLabel *labelDefaultMp3TagVersion;
 		QLabel *labelExcludeFiles;
 		QLabel *labExcludeRexexInfo;
-		
+
 		QGroupBox *groupBoxShowArchiveFileOpts;
 		QCheckBox* cbScanArchive;
 		QCheckBox* cbShowProgressedArchiveFileInStatus;
@@ -106,7 +106,7 @@ class SelReadable : public QDialog {
 		QCheckBox* cbShowArchiveFileSize;
 		QCheckBox* cbShowArchiveFileDate;
 		QCheckBox* cbShowArchiveFileComment;
-	
+
 	public slots:
 		int schanged ( int state );
 		int sok ( void );
@@ -119,7 +119,7 @@ class SelReadable : public QDialog {
 		void excludeContextMenuRequested(const QPoint &);
 		void labExcludeRexexInfoButtonClicked();
 		void excludeDataChanged ( QStandardItem * item );
-	
+
 	protected:
 		QVBoxLayout* SelReadableLayout;
 		QHBoxLayout* layoutInfo;
@@ -143,9 +143,9 @@ class SelReadable : public QDialog {
 
 		QString SupportedExtensions;
 		QString RegexInfoHtml;
-		
+
 		QModelIndex contextmenu_modelindex;
-		
+
 		QString sevenzip_libfound_text;
 		QString thumb_supported_ext_text;
 
@@ -154,4 +154,4 @@ class SelReadable : public QDialog {
 };
 
 #endif // SELREADABLE_H
-// kate: indent-mode cstyle; replace-tabs off; tab-width 8; 
+// kate: indent-mode cstyle; replace-tabs off; tab-width 8;

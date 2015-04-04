@@ -48,4 +48,4 @@ class CdcatExifData : public QObject {
 #endif
 #endif
 
-// kate: indent-mode cstyle; replace-tabs off; tab-width 8; 
+// kate: indent-mode cstyle; replace-tabs off; tab-width 8;

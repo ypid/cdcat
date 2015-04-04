@@ -61,7 +61,7 @@ LNode::LNode ( QTreeWidget *parent, Node *dbnodep )
 
 LNode::LNode ( LNode * parent,LNode *after,Node* dbnodep, const QString &col2 )
             : QTreeWidgetItem ( parent, QTreeWidgetItem::UserType ), pix ( 0 ) {
-	node=dbnodep; 
+	node=dbnodep;
 	setText(0, col2);
 	childsCollected = false;
 	setChildIndicatorPolicy(QTreeWidgetItem::ShowIndicator);
@@ -126,9 +126,9 @@ void LNode::setExpanded ( bool o ) {
 				setIcon ( 0, QIcon(*get_v_folderclosed_icon() ));
 			break;
 	}
-	
+
 	if ( o && !childsCollected) {
-		
+
 		Node *tmp = node->child;
 		if(tmp != NULL)
 			setChildIndicatorPolicy(QTreeWidgetItem::ShowIndicator);
@@ -139,10 +139,10 @@ void LNode::setExpanded ( bool o ) {
 				tmp = tmp->next;
 				continue;
 			}
-			
+
 			newnode = new LNode ( this, last, tmp, tmp->getNameOf() );
 			last    = newnode;
-			
+
 			switch ( tmp->type ) {
 				case HC_CATALOG :
 					newnode->setIcon ( 0, QIcon(*get_p_icon() ));
@@ -191,7 +191,7 @@ void LNode::setExpanded ( bool o ) {
 					newnode->setText(1,  QObject::tr ( "Directory" ));
 					break;
 			}
-			
+
 			tmp = tmp->next;
 		}
 		childsCollected = true;
@@ -346,7 +346,7 @@ void HDirectoryView::slotFolderSelected ( QTreeWidgetItem *i, int col ) {
 	DEBUG_INFO_ENABLED = init_debug_info();
 	if ( *DEBUG_INFO_ENABLED )
 		std::cerr << "HDirectoryView::slotFolderSelected item path: " << qPrintable ( ( ( LNode * )i)->fullName( )) << std::endl;
-	
+
 	emit folderSelected ( ( ( LNode * )i)->fullName() );
 }
 
@@ -356,7 +356,7 @@ void HDirectoryView::slotFolderSelectedR ( QTreeWidgetItem *i, int col ) {
 	DEBUG_INFO_ENABLED = init_debug_info();
 	if ( *DEBUG_INFO_ENABLED )
 		std::cerr << "HDirectoryView::slotFolderSelectedR item path: " << qPrintable ( ( ( LNode * )i)->fullName( )) << std::endl;
-	
+
 	LNode *lnode = ( LNode * ) i;
 	if ( *DEBUG_INFO_ENABLED ) {
 		//cerr << lnode->fullName()<<endl;
@@ -452,7 +452,7 @@ void HDirectoryView::setDir ( Node *node ) {
 				++it;
 			}
 		}
-		
+
 		if ( ( *it ) ) {
 			setCurrentItem ( ( *it ) );
 			setAllColumnsShowFocus ( true );

@@ -59,14 +59,14 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 		setObjectName ( "SelReadable" );
 	setModal(modal);
 	setWindowIcon ( *get_t_config_icon() );
-	
+
 	SelReadableLayout = new QVBoxLayout ( this );
 	setSizeGripEnabled ( TRUE );
-	
+
 	layoutArchiveScan= new QHBoxLayout ( this );
 	cbScanArchive = new QCheckBox ( this );
 //     cbScanArchive->setMaximumWidth ( 80 );
-	
+
 	QSpacerItem* archiveInfospacer1 = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	labArchiveExtensions = new QLabel ( this );
 	labArchiveExtensionsStatusIcon = new QLabel ( this );
@@ -77,11 +77,11 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	layoutArchiveScan->addWidget ( labArchiveExtensions );
 	layoutArchiveScan->addWidget ( labArchiveExtensionsStatusIcon );
 	layoutArchiveScan->addItem ( archiveInfospacer2 );
-	
+
 	SelReadableLayout->addLayout(layoutArchiveScan);
-	
-	
-	
+
+
+
 	layoutShowArchiveFileOptions = new QHBoxLayout ( this );
 	layoutShowArchiveFileOptions->addSpacing ( 25 );
 	groupBoxShowArchiveFileOpts = new QGroupBox ( this);
@@ -100,14 +100,14 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	layoutShowArchiveFileOptionsGroup->addWidget ( cbShowArchiveFileSize, 1, 0 );
 	layoutShowArchiveFileOptionsGroup->addWidget ( cbShowArchiveFileDate, 1, 1 );
 	layoutShowArchiveFileOptionsGroup->addWidget ( cbShowArchiveFileComment, 1, 2 );
-	
+
 	SelReadableLayout->addLayout ( layoutShowArchiveFileOptions );
 	layoutShowProgressedArchiveFileInStatus = new QHBoxLayout ( this );
 	layoutShowArchiveFileOptions->addSpacing ( 25 );
 	cbShowProgressedArchiveFileInStatus = new QCheckBox ( this );
 	layoutShowArchiveFileOptions->addWidget(cbShowProgressedArchiveFileInStatus);
 	SelReadableLayout->addLayout ( layoutShowProgressedArchiveFileInStatus);
-	
+
 	line6 = new QFrame ( this );
 	line6->setFrameShape ( QFrame::HLine );
 	line6->setFrameShadow ( QFrame::Sunken );
@@ -120,7 +120,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	cbDefaultMp3TagVersion->addItem(tr ( "version" ) + " 2");
 	labelDefaultMp3TagVersion = new QLabel(this);
 	QSpacerItem* mp3tagspacer = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
-	
+
 	layout1 = new QHBoxLayout ( this );
 	layout1->addSpacing ( 25 );
 	layout1->addWidget ( cbTag );
@@ -128,9 +128,9 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	layout1->addWidget ( labelDefaultMp3TagVersion );
 	layout1->addWidget ( cbDefaultMp3TagVersion );
 	layout1->addSpacing ( 25 );
-	
+
 	SelReadableLayout->addLayout ( layout1 );
-	
+
 	layoutInfo = new QHBoxLayout ( this );
 	cbInfo = new QCheckBox ( this );
 	cbaInfo = new QCheckBox ( this );
@@ -153,19 +153,19 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 //     layout12->addItem ( spacer );
 
 	layout11 = new QVBoxLayout ( this );
-	
+
 	layout9 = new QHBoxLayout ( this );
-	
+
 	labelContent = new QLabel ( this );
 	lineFiles = new QLineEdit ( this );
 	lineFiles->setMinimumWidth ( 150 );
-	
-	
+
+
 	QSpacerItem* contentspacer = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	layout9->addWidget ( labelContent );
 	layout9->addWidget ( lineFiles );
 	layout9->addItem (contentspacer);
-	
+
 	maxSpinBox = new QSpinBox ( this );
 	maxSpinBox->setMinimum(1);
 	maxSpinBox->setMaximum(MAX_STORED_SIZE/1024);
@@ -174,16 +174,16 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	labelContentSizeUnit = new QLabel ( this );
 	labelContentSizeUnit->setText(tr("KiB"));
 	QSpacerItem* contentSizeSpacer = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
-	
+
 	layout9->addItem(contentSizeSpacer);
 	layout9->addWidget ( labelContentSize );
 	layout9->addWidget ( maxSpinBox );
 	layout9->addWidget ( labelContentSizeUnit );
-	
+
 	layout11->addLayout ( layout9 );
 	layout12->addLayout ( layout11 );
 	SelReadableLayout->addLayout ( layout12 );
-	
+
 	layoutExternalContentViewer = new QHBoxLayout ( this );
 	cbUseExternalContentViewer = new QCheckBox ( this );
 // 	labelExternalContentViewer = new QLabel ( this );
@@ -195,10 +195,10 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	layoutExternalContentViewer->addWidget( lineeditPathExternalContentViewer );
 	layoutExternalContentViewer->addWidget( buttonUseExternalContentViewer );
 	SelReadableLayout->addLayout ( layoutExternalContentViewer );
-	
+
 	cbFileInfo = new QCheckBox ( this );
 	SelReadableLayout->addWidget ( cbFileInfo );
-	
+
 	layoutFileInfo = new QHBoxLayout ( this );
 	labFileInfoExtensions = new QLabel ( this );
 	labFileInfoExtensionsStatusIcon = new QLabel ( this );
@@ -209,7 +209,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	layoutFileInfo->addWidget ( labFileInfoExtensionsStatusIcon );
 	layoutFileInfo->addItem ( fileInfospacer );
 	SelReadableLayout->addLayout ( layoutFileInfo );
-	
+
 	layoutThumbGeneral = new QHBoxLayout ( this );
 	cbThumb = new QCheckBox ( this );
 	layoutThumbGeneral->addWidget ( cbThumb );
@@ -218,7 +218,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	layoutThumbGeneral->addWidget ( cbExif );
 #endif
 	SelReadableLayout->addLayout(layoutThumbGeneral);
-	
+
 	layoutThumbExts = new QHBoxLayout ( this );
 	labThumbExts = new QLabel ( this );
 	thumbLineExts = new QLineEdit ( this );
@@ -230,14 +230,14 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	thumbWidthSpinBox->setMinimum(20);
 	thumbWidthSpinBox->setMaximum(400);
 	thumbWidthSpinBox->setSingleStep(150);
-	
+
 	labThumbXSize = new QLabel ( this );
 	thumbHeightSpinBox = new QSpinBox ( this );
 	thumbHeightSpinBox->setMinimum(20);
 	thumbHeightSpinBox->setMaximum(400);
 	thumbHeightSpinBox->setSingleStep(150);
 	labThumbSize = new QLabel ( this );
-	
+
 	layoutThumbExts->addSpacing ( 25 );
 	layoutThumbExts->addWidget ( labThumbExts );
 	layoutThumbExts->addWidget ( thumbLineExts );
@@ -248,7 +248,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	layoutThumbExts->addWidget(labThumbXSize);
 	layoutThumbExts->addWidget(thumbHeightSpinBox);
 	SelReadableLayout->addLayout ( layoutThumbExts );
-	
+
 	layoutExcludeMain = new QHBoxLayout ( this );
 	layoutExcludeLeft = new QVBoxLayout ( this );
 	cbDoExcludeFiles = new QCheckBox ( this );
@@ -258,42 +258,42 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	labExcludeRexexInfoButton = new QPushButton ( this );
 	connect ( labExcludeRexexInfoButton, SIGNAL(clicked()), this, SLOT(labExcludeRexexInfoButtonClicked()));
 	QSpacerItem* excludeRegexspacer = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
-	
+
 	buttonAddExcludeRule = new QPushButton( this);
 	listviewExcludeFiles = new QListView (this);
 	layoutExcludeLeft->addWidget ( cbDoExcludeFiles );
 	layoutExcludeLeft->addWidget ( cbUseWildcardInsteadRegexForExclude );
-	
+
 	layoutExcludeRegexInfo = new QHBoxLayout ( this );
 	layoutExcludeRegexInfo->addWidget ( labExcludeRexexInfo );
 	layoutExcludeRegexInfo->addWidget ( labExcludeRexexInfoButton );
-	
+
 	layoutExcludeRegexInfo->addItem ( excludeRegexspacer );
 	layoutExcludeLeft->addLayout(layoutExcludeRegexInfo);
-	
+
 	layoutExcludeLeft->addWidget ( buttonAddExcludeRule );
 	layoutExcludeMain->addLayout(layoutExcludeLeft);
 	layoutExcludeMain->addWidget (listviewExcludeFiles);
-	
+
 	SelReadableLayout->addLayout ( layoutExcludeMain );
-	
+
 	layoutButtons = new QHBoxLayout ( this );
 	QSpacerItem* spacer_2 = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	layoutButtons->addItem ( spacer_2 );
-	
+
 	buttonOK = new QPushButton ( this );
 	buttonOK->setMinimumSize ( QSize ( 80, 0 ) );
 	layoutButtons->addWidget ( buttonOK );
-	
+
 	buttonCancel = new QPushButton ( this );
 	buttonCancel->setMinimumSize ( QSize ( 80, 0 ) );
 	layoutButtons->addWidget ( buttonCancel );
 	QSpacerItem* spacer_3 = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	layoutButtons->addItem ( spacer_3 );
 	SelReadableLayout->addLayout ( layoutButtons );
-	
+
 	resize ( QSize ( 350, 216 ).expandedTo ( minimumSizeHint() ) );
-	
+
 	connect ( cbTag, SIGNAL ( stateChanged ( int ) ), this, SLOT ( schanged ( int ) ) );
 	connect ( cbCont, SIGNAL ( stateChanged ( int ) ), this, SLOT ( schanged ( int ) ) );
 	connect ( cbThumb, SIGNAL ( stateChanged ( int ) ), this, SLOT ( schanged ( int ) ) );
@@ -305,10 +305,10 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	connect ( buttonUseExternalContentViewer, SIGNAL ( clicked() ), this, SLOT ( selectExternalContentViewer() ) );
 	connect ( lineeditPathExternalContentViewer, SIGNAL ( textEdited ( const QString & ) ), this, SLOT ( selectExternalContentViewerString( const QString & ) ) );
 	connect ( buttonAddExcludeRule, SIGNAL( clicked()), this, SLOT( addExcludeRulesClicked()) );
-	
+
 	listviewExcludeFiles->setContextMenuPolicy(Qt::CustomContextMenu);
 	connect(listviewExcludeFiles, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(excludeContextMenuRequested(const QPoint &)));
-	
+
 	cbScanArchive->setChecked ( conf->doScanArchive );
 	cbShowProgressedArchiveFileInStatus->setChecked( conf->showProgressedArchiveFileInStatus );
 	if(!conf->showProgressedFileInStatus)
@@ -351,7 +351,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 		cbDefaultMp3TagVersion->setCurrentIndex(0);
 	else
 		cbDefaultMp3TagVersion->setCurrentIndex(1);
-	
+
 	if ( conf->doScanArchive ) {
 #ifdef USE_LIB7ZIP
 		C7ZipLibrary lib;
@@ -360,7 +360,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 		SupportedExtensions = "";
 		QStringList SupportedExtensionsList;
 		// libtar
-		
+
 		SupportedExtensionsList.append ( "tar" );
 		SupportedExtensionsList.append ( "tar.gz" );
 		SupportedExtensionsList.append ( "tar.bz2" );
@@ -412,7 +412,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 #endif
 			sevenzip_libfound_text = "<font color=\"green\">" + tr ( "lib7zip found" ) + ": " + Lib7ZipVersion  + "</font>";
 		}
-		
+
 #else
 		sevenzip_libfound_text = "<font color=\"red\">" + tr ( "lib7zip not supported" ) + "</font>";
 		labArchiveExtensionsStatusIcon->setToolTip ( tr ( "support not compiled in" ) );
@@ -420,15 +420,15 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
  		labArchiveExtensions->setText(  tr ( "Archive support:" )+ " "+sevenzip_libfound_text );
 		labArchiveExtensionsStatusIcon->setToolTip ( tr ( "Supported extensions:" ) + "&nbsp;" + SupportedExtensions );
 	}
-	
-	
+
+
 #ifndef NO_MEDIAINFO
 	// FIXME: get from fileinfo
 	CdcatMediaInfo me;
-	
+
 	bool fileinfo_libfound = me.getMediaInfoLibFound();
 	QStringList SupportedFileInfoExtensionsList = me.getSupportedExtensions();
-	
+
 	SupportedFileInfoExtensionsList.sort();
 	QString SupportedFileInfoExtensions = "";
 	int linelen = 0;
@@ -456,17 +456,17 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	labFileInfoExtensions->setText ( tr ( "mediainfo status:" )+ " "+fileinfo_libfound_text);
 	labFileInfoExtensionsStatusIcon->setToolTip ( tr ( "support not compiled in" ) );
 #endif
-	
+
 	thumb_supported_ext_text = "";
 	QList<QByteArray> supportedFormats = QImageReader::supportedImageFormats();
 	for (int i = 0; i < supportedFormats.size(); ++i) {
 		thumb_supported_ext_text += " ";
 		thumb_supported_ext_text += QString(supportedFormats.at(i));
 	}
-	
+
 	cbDoExcludeFiles->setChecked(conf->doExcludeFiles);
 	cbUseWildcardInsteadRegexForExclude->setChecked(conf->useWildcardInsteadRegexForExclude);
-	
+
 	QStringList excludeList = conf->ExcludeFileList;
 	exclude_model = new QStandardItemModel(0, 1, this);
 	for (int i = 0; i < excludeList.size(); i++) {
@@ -511,14 +511,14 @@ int SelReadable::schanged ( int ) {
 		lineeditPathExternalContentViewer->setEnabled ( false );
 		buttonUseExternalContentViewer->setEnabled ( false );
 	}
-	
+
 	if ( cbTag->isChecked() ) {
 		cbDefaultMp3TagVersion->setEnabled ( true );
 	}
 	else {
 		cbDefaultMp3TagVersion->setEnabled ( false );
 	}
-	
+
 	if ( cbThumb->isChecked() ) {
 		labThumbExts->setEnabled ( true );
 		labThumbXSize->setEnabled ( true );
@@ -546,7 +546,7 @@ int SelReadable::schanged ( int ) {
 		labArchiveExtensions->setEnabled(false);
 		labArchiveExtensionsStatusIcon->setEnabled(false);
 	}
-	
+
 	if(cbDoExcludeFiles->isChecked()) {
 		listviewExcludeFiles->setEnabled(true);
 	}
@@ -622,7 +622,7 @@ void SelReadable::selectExternalContentViewerString(const QString &s ) {
 			lineeditPathExternalContentViewer->setToolTip( tr("Path to external content viewer (found)"));
 			return;
 	}
-	
+
 	QPalette palette;
 	palette.setColor(lineeditPathExternalContentViewer->backgroundRole(), QColor("#FF9999"));
 	lineeditPathExternalContentViewer->setPalette(palette);
@@ -651,11 +651,11 @@ void SelReadable::excludeContextMenuRequested(const QPoint& pos) {
 	QAction EditRuleAction(tr("edit rule..."), this);
 	excludeContextMenu.addAction(&EditRuleAction);
 	connect(&EditRuleAction, SIGNAL(triggered()), this, SLOT(editExcludeRuleClicked()));
-	
+
 	QAction DeleteRuleAction(tr("delete rule..."), this);
 	excludeContextMenu.addAction(&DeleteRuleAction);
 	connect(&DeleteRuleAction, SIGNAL(triggered()), this, SLOT(deleteExcludeRuleClicked()));
-	
+
 	excludeContextMenu.exec(QCursor::pos());
 }
 
@@ -706,11 +706,11 @@ void SelReadable::labExcludeRexexInfoButtonClicked()
 	RegexInfoHtml = "";
 	RegexInfoHtml += "<h4><span class=\"mw-headline\" id=\"POSIX_Basic_Regular_Expressions\">+"+tr("POSIX Basic Regular Expressions")+"</span></h4>";
 	//RegexInfoHtml += "<p>"+tr("Traditional <a href=\"/wiki/Unix\" title=\"Unix\">Unix</a> regular expression syntax followed common conventions but often differed from tool to tool. The <a href=\"/wiki/Institute_of_Electrical_and_Electronics_Engineers\" title=\"Institute of Electrical and Electronics Engineers\">IEEE</a> ";
-	//RegexInfoHtml += "<a href=\"/wiki/POSIX\" title=\"POSIX\">POSIX</a> Basic Regular Expressions (BRE) standard (ISO/IEC 9945-2:1993 <i>Information technology -- Portable Operating System Interface (POSIX) -- Part 2: Shell and Utilities</i>, successively revised as ISO/IEC 9945-2:2002 <i>Information technology -- Portable Operating System Interface (POSIX) -- Part 2: System Interfaces</i>, ISO/IEC 9945-2:2003, and currently ISO/IEC/IEEE 9945:2009 <i>Information technology -- Portable Operating System Interface (POSIX®) Base Specifications, Issue 7</i>) was designed mostly for backward compatibility with the traditional (Simple Regular Expression) syntax but provided a common standard which has since been adopted as the default syntax of many Unix regular expression tools, though there is often some variation or additional features.")+"</p>"; 
-	
+	//RegexInfoHtml += "<a href=\"/wiki/POSIX\" title=\"POSIX\">POSIX</a> Basic Regular Expressions (BRE) standard (ISO/IEC 9945-2:1993 <i>Information technology -- Portable Operating System Interface (POSIX) -- Part 2: Shell and Utilities</i>, successively revised as ISO/IEC 9945-2:2002 <i>Information technology -- Portable Operating System Interface (POSIX) -- Part 2: System Interfaces</i>, ISO/IEC 9945-2:2003, and currently ISO/IEC/IEEE 9945:2009 <i>Information technology -- Portable Operating System Interface (POSIX®) Base Specifications, Issue 7</i>) was designed mostly for backward compatibility with the traditional (Simple Regular Expression) syntax but provided a common standard which has since been adopted as the default syntax of many Unix regular expression tools, though there is often some variation or additional features.")+"</p>";
+
 	//RegexInfoHtml += "<p>"+tr("BRE was released alongside an alternative flavor called Extended Regular Expressions or ERE. Many Unix tools also provide support for ERE syntax with <a href=\"/wiki/Command_line_argument\" title=\"Command line argument\" class=\"mw-redirect\">command line arguments</a>.")+"</p>";
 	//RegexInfoHtml += "<p>"+tr("In the BRE syntax, most characters are treated as <a href=\"/wiki/Literal_(computer_science)\" title=\"Literal (computer science)\" class=\"mw-redirect\">literals</a>&#160;— they match only themselves (e.g., <code>a</code> matches \"<i>a</i>\"). The exceptions, listed below, are called <a href=\"/wiki/Metacharacter\" title=\"Metacharacter\">metacharacters</a> or metasequences.")+"</p>";
-	
+
 	//RegexInfoHtml += "<table class=\"wikitable\">";
 	//RegexInfoHtml += "<caption>"+tr("Examples for char selection")+"</caption>";
 	//RegexInfoHtml += "<tr>";
@@ -798,7 +798,7 @@ void SelReadable::labExcludeRexexInfoButtonClicked()
 	RegexInfoHtml += tr("Source:")+" "+tr("<a href=\"http://en.wikipedia.org/wiki/Regex\">regular expressions</a>");
 	RegexInfoHtml += "<br>";
 	RegexInfoHtml += tr("From")+" <a href=\"http://www.wikipedia.org\">http://www.wikipedia.org</a>";
-	
+
 	QDialog di( this);
 	di.setModal(true);
 	di.setWindowTitle ( tr ( "About regular expressions" ) );
@@ -855,7 +855,7 @@ void SelReadable::languageChange() {
 #ifdef USE_LIBEXIF
 	cbExif->setText( tr("Read EXIF data from pictures") );
 #endif
-	
+
 	labelDefaultMp3TagVersion->setText ( tr ( "Default tag" ) );
 	cbInfo->setText ( tr ( "Read mp3 info as comment" ) );
 	cbInfo->setToolTip( tr ( "Read mp3 technical info as comment (bitrate,freq,length...)" ) );
@@ -886,5 +886,5 @@ void SelReadable::languageChange() {
 	buttonCancel->setText ( tr ( "Cancel" ) );
 }
 
-// kate: indent-mode cstyle; replace-tabs off; tab-width 8; 
+// kate: indent-mode cstyle; replace-tabs off; tab-width 8;
 

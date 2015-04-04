@@ -98,7 +98,7 @@ win32 {
 	DEFINES+=USE_LIB7ZIP
 	LIBS       += c:/zlib/lib/libz.a c:/libs/lib7zip.a c:/libs/bzip2.dll c:/libs/libtar.a  -loleaut32 -luuid
 	INCLUDEPATH   += c:/Expat/Source/lib c:/zlib/include c:/pcre/include C:/includes c:/mediainfo
-	
+
 	###### encryption
 	DEFINES += CATALOG_ENCRYPTION
 	LIBS+= c:/libs/libcrypto++.a -lpthread
@@ -122,7 +122,7 @@ win32 {
 	########## lib7zip
 	# use lib7zip?
 	DEFINES+=USE_LIB7ZIP
-	
+
 	# STATIC
 	LIBS+=c:/usr/lib/lib7zip.a
 
@@ -135,19 +135,19 @@ win32 {
 	# STATIC
 	#DEFINES += MEDIAINFO_STATIC
 	#LIBS+=c:/usr/lib/mediainfo.a c:/usr/lib/zen.a c:/usr/lib/pthread.a
-	
+
 	# DYNAMIC. no pkgconfig
 	#LIBS+= -lmediainfo
-	
+
 	# temporary kluge until it's decided how to get char type from libmediainfo,
 	# maybe also via pkgconfig (Debian Bug #656929, could remove the extra
 	# hack in cdcatmediainfo.h when it's ready)
 	#DEFINES += MEDIAINFO_UNICODE
-	
+
 	# disable mediainfo
 	DEFINES += NO_MEDIAINFO
-	
-	
+
+
 	########## exif
 	# use exif?
 	#DEFINES += USE_LIBEXIF
@@ -173,23 +173,23 @@ win32 {
 
 	# STATIC
 	#LIBS+=/usr/local/lib/lib7zip.a
-	
+
 	# DYNAMIC
 	LIBS+= -l7zip
 	######### end lib7zip
-	
+
 	######### mediainfo
 	# use libmediainfo as static library?
 	# STATIC
 	#DEFINES += MEDIAINFO_STATIC
 	#LIBS+=/usr/local/lib/libmediainfo.a
-	
+
 	# DYNAMIC. no pkgconfig
 	#LIBS+= -lmediainfo
-	
+
 	# disable mediainfo
 	#DEFINES += NO_MEDIAINFO
-	
+
 	# libmediainfo ships API info via pkgconfig so use it!
 	#CONFIG += link_pkgconfig
 	#PKGCONFIG += libmediainfo
@@ -214,7 +214,7 @@ win32 {
 	# maybe also via pkgconfig (Debian Bug #656929, could remove the extra
 	# hack in cdcatmediainfo.h when it's ready)
 	#DEFINES += MEDIAINFO_UNICODE
-	
+
 	###### libtar
 	# STATIC
 	#LIBS += /usr/local/lib/libtar.a
@@ -223,7 +223,7 @@ win32 {
 	LIBS += -ltar
 	###### end libtar
 
-	
+
 	###### encryption
 	DEFINES += CATALOG_ENCRYPTION
 	LIBS+= -lcrypto++ -lpthread

@@ -77,11 +77,11 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 	mainw = parent;
 	use_unsharpsearch = false;
 	this->isFindDuplicates = isFindDuplicates;
-	
+
 	setSizeGripEnabled ( TRUE );
 	if ( !isFindDuplicates ) {
 		FindDialogBaseLayout = new QGridLayout ( this );
-		
+
 		//    QSpacerItem* spacer = new QSpacerItem( 210, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 		QSpacerItem* spacer_2 = new QSpacerItem ( 240, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 		QSpacerItem* spacer_3 = new QSpacerItem ( 240, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
@@ -95,7 +95,7 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		QSpacerItem* spacer_10 = new QSpacerItem ( 200, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 		QSpacerItem* spacer_11 = new QSpacerItem ( 200, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 		QSpacerItem* spacer_12 = new QSpacerItem ( 200, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
-		
+
 		layout40 = new QVBoxLayout ( this );
 		layout39 = new QGridLayout ( this );
 		findLineLayout = new QHBoxLayout ( this );
@@ -110,24 +110,24 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		layout_size_min = new QHBoxLayout ( this );
 		layout_size_max = new QHBoxLayout ( this );
 		layout_find_in_archive = new QHBoxLayout ( this );
-		
+
 		leText = new QLineEdit ( this );
 		leCategory = new QLineEdit ( this );
-		
+
 		deDateStart = new QDateTimeEdit ( QDateTime ( QDate ( 1, 1, 1900 ) ) , this );
 		deDateEnd = new QDateTimeEdit ( QDateTime ( QDate().currentDate() ), this );
-		
+
 		cbCasesens = new QCheckBox ( this );
 		cbEasy = new QCheckBox ( this );
-		
+
 		cbKeepSearchResult = new QCheckBox ( this );
-		
+
 		cbFilename = new QCheckBox ( this );
 		cbDirname  = new QCheckBox ( this );
 		cbComment  = new QCheckBox ( this );
 		cbCategory  = new QCheckBox ( this );
 		cbContent  = new QCheckBox ( this );
-		
+
 		cbArtist = new QCheckBox ( this );
 		cbTitle = new QCheckBox ( this );
 		cbAlbum = new QCheckBox ( this );
@@ -138,45 +138,45 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		cbSizeMax = new QCheckBox ( this );
 		cbUnsharpSearch = new QCheckBox ( this );
 		cbFindInArchive = new QCheckBox ( this );
-		
+
 		cbOwner = new QComboBox ( this );
 		cbOwner->setMinimumSize ( QSize ( 0, 0 ) );
-		
+
 		cbSin = new QComboBox ( this );
-		
+
 		cbSizeUnitMin = new QComboBox ( this );
 		cbSizeUnitMin->addItem ( tr ( "Byte" ) );
 		cbSizeUnitMin->addItem ( tr ( "KiB" ) );
 		cbSizeUnitMin->addItem ( tr ( "MiB" ) );
 		cbSizeUnitMin->addItem ( tr ( "GiB" ) );
 		cbSizeUnitMin->addItem ( tr ( "TiB" ) );
-		
+
 		cbSizeUnitMax = new QComboBox ( this );
 		cbSizeUnitMax->addItem ( tr ( "Byte" ) );
 		cbSizeUnitMax->addItem ( tr ( "KiB" ) );
 		cbSizeUnitMax->addItem ( tr ( "MiB" ) );
 		cbSizeUnitMax->addItem ( tr ( "GiB" ) );
 		cbSizeUnitMax->addItem ( tr ( "TiB" ) );
-		
+
 		spSizeMin = new QSpinBox ( this );
 		spSizeMin->setMinimum ( 1 );
 		spSizeMin->setMaximum ( 10000000 );
-		
+
 		spSizeMax = new QSpinBox ( this );
 		spSizeMax->setMinimum ( 1 );
 		spSizeMax->setMaximum ( 10000000 );
-		
+
 		buttonClearSearchResult = new QPushButton ( this );
-		
+
 		buttonOk = new QPushButton ( this );
 		buttonOk->setAutoDefault ( TRUE );
 		buttonOk->setDefault ( TRUE );
 		buttonOk->setMinimumWidth ( 80 );
-		
+
 		buttonCancel = new QPushButton ( this );
 		buttonCancel->setAutoDefault ( TRUE );
 		buttonCancel->setMinimumWidth ( 80 );
-		
+
 		resultsl = new QTreeWidget ( this );
 		QStringList labels;
 		labels.append ( tr ( "Name" ) );
@@ -191,13 +191,13 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		resultsl->setHeaderLabels(labels);
 		resultsl->setIndentation(0); // remove the indention (|_ sign)
 		resultsl->setSortingEnabled(true);
-		
+
 		//resultsl->setColumnAlignment ( 2, Qt::AlignRight ); // FIXME
-		
+
 		buttonClose = new QPushButton ( this );
 		buttonPrintResult = new QPushButton ( this );
 		buttonExportResult = new QPushButton ( this );
-		
+
 		findTextLabel = new QLabel ( this );
 		textLabel1 = new QLabel ( this );
 		textLabel2 = new QLabel ( this );
@@ -205,9 +205,9 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		textLabel6 = new QLabel ( this );
 		textLabel7 = new QLabel ( this );
 		textLabelFindInArchive = new QLabel ( this );
-		
+
 		/* saved ops: */
-		
+
 		cbTcomm    -> setChecked ( mainw->cconfig->find_mco );
 		cbCasesens -> setChecked ( mainw->cconfig->find_cs );
 		cbArtist   -> setChecked ( mainw->cconfig->find_mar );
@@ -225,10 +225,10 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		cbSizeMax -> setChecked ( mainw->cconfig->find_size_max );
 		cbUnsharpSearch -> setChecked ( mainw->cconfig->find_unsharp_search );
 		cbFindInArchive -> setChecked ( mainw->cconfig->find_in_archive );
-		
-		
+
+
 		/* layouts:   */
-		
+
 		findLineLayout->addWidget ( findTextLabel);
 		findLineLayout->addWidget ( leText );
 		findLineLayout->addWidget ( cbKeepSearchResult );
@@ -251,47 +251,47 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		layout37->addWidget ( cbSizeMin, 8, 0 );
 		layout37->addWidget ( cbSizeMax, 9, 0 );
 		layout37->addWidget ( cbUnsharpSearch, 10, 0 );
-		
+
 		layout37->addWidget ( cbOwner, 3, 1 );
 		layout37->addWidget ( cbSin, 2, 1 );
 		layout37->addWidget ( textLabel1, 2, 0 );
 		layout37->addWidget ( textLabel2, 3, 0 );
 		layout37->addItem ( spacer_3, 1, 1, 0, 1 );
-		
+
 		layout_size_min->addWidget ( spSizeMin );
 		layout_size_min->addWidget ( cbSizeUnitMin );
 		cbSizeUnitMin->setSizePolicy ( QSizePolicy::Minimum, QSizePolicy::Minimum );
 		layout37->addItem ( layout_size_min, 8, 1 );
-		
+
 		layout_size_max->addWidget ( spSizeMax );
 		layout_size_max->addWidget ( cbSizeUnitMax );
 		cbSizeUnitMin->setSizePolicy ( QSizePolicy::Minimum, QSizePolicy::Minimum );
 		layout37->addItem ( layout_size_max, 9, 1 );
-		
+
 		layout_find_in_archive->addWidget ( cbFindInArchive );
 		layout_find_in_archive->addWidget ( textLabelFindInArchive );
 		cbFindInArchive->setSizePolicy ( QSizePolicy::Minimum, QSizePolicy::Minimum );
 		layout37->addItem ( layout_find_in_archive, 10, 1 );
-		
+
 		layout39->addLayout ( findLineLayout, 0, 0 );
 		layout39->addLayout ( layout36, 1, 1 );
 		layout39->addItem ( spacer_2, 1, 0 );
 		layout39->addLayout ( layout37, 1, 0 );
-		
+
 		layout15->addWidget ( buttonOk, 0, 0 );
 		layout15->addItem ( spacer_5, 0, 1 );
 		layout15->addWidget ( buttonCancel, 0, 2 );
 		layout15->addItem ( spacer_5_1, 0, 3 );
 		layout15->addWidget ( buttonClearSearchResult, 0, 4 );
-		
+
 		layout17->addItem ( spacer_6 );
 		layout17->addLayout ( layout15 );
 		layout17->addItem ( spacer_4 );
-		
+
 		layout30->addItem ( spacer_7 );
 		layout30->addWidget ( textLabel5 );
 		layout30->addItem ( spacer_8 );
-		
+
 		layout16->addItem ( spacer_9, 0, 2 );
 		layout16->addWidget ( buttonClose, 0, 1 );
 		layout16->addWidget ( buttonPrintResult, 0,  3 );
@@ -299,22 +299,22 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		layout16->addItem ( spacer_10, 0, 0 );
 		layout16->addItem ( spacer_11, 0, 2 );
 		layout16->addItem ( spacer_12, 0, 5 );
-		
+
 		layout31->addLayout ( layout17 );
 		layout31->addLayout ( layout30 );
 		layout31->addWidget ( resultsl );
 		layout31->addLayout ( layout16 );
-		
+
 		layout40->addLayout ( layout39 );
 		layout40->addLayout ( layout31 );
-		
+
 		FindDialogBaseLayout->addLayout ( layout40, 0, 0 );
-		
+
 		resize ( QSize ( mainw->cconfig->findWidth, mainw->cconfig->findHeight ).expandedTo ( minimumSizeHint() ) );
 		move ( mainw->cconfig->findX, mainw->cconfig->findY );
-		
+
 		languageChange();
-		
+
 		fillCBox();
 		connect ( buttonCancel, SIGNAL ( clicked() ), this, SLOT ( cancele() ) );
 		connect ( buttonOk, SIGNAL ( clicked() ), this, SLOT ( seeke() ) );
@@ -331,43 +331,43 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		connect ( cbSizeMin, SIGNAL ( clicked() ), this, SLOT ( sizeMinClicked() ) );
 		connect ( cbSizeMax, SIGNAL ( clicked() ), this, SLOT ( sizeMaxClicked() ) );
 		connect ( cbCategory, SIGNAL ( clicked() ), this, SLOT ( categoryClicked()) );
-		
+
 		deDateStart->setEnabled ( false );
 		deDateEnd->setEnabled ( false );
 		cbSizeUnitMin->setEnabled ( false );
 		spSizeMin->setEnabled ( false );
-		
+
 		cbSizeUnitMax->setEnabled ( false );
 		spSizeMax->setEnabled ( false );
-		
+
 		deDateStart->setDateTime ( mainw->cconfig->find_date_start_val );
 		deDateEnd->setDateTime ( mainw->cconfig->find_date_end_val );
-		
+
 		deDateStart->setDisplayFormat ( "dd.MM.yyyy hh:mm" );
 		deDateEnd->setDisplayFormat ( "dd.MM.yyyy hh:mm" );
-		
+
 		cbKeepSearchResult->setChecked( mainw->cconfig->keep_search_result );
 		cbSizeMin->setChecked ( mainw->cconfig->find_size_min );
 		cbSizeMax->setChecked ( mainw->cconfig->find_size_max );
 		spSizeMin->setValue ( mainw->cconfig->find_size_min_val );
 		spSizeMax->setValue ( mainw->cconfig->find_size_max_val );
-		
+
 		spSizeMin->setEnabled ( mainw->cconfig->find_size_min );
 		spSizeMax->setEnabled ( mainw->cconfig->find_size_max );
-		
+
 		cbSizeUnitMin->setEnabled ( mainw->cconfig->find_size_min );
 		cbSizeUnitMax->setEnabled ( mainw->cconfig->find_size_max );
-		
+
 		cbSizeUnitMin->setCurrentIndex ( mainw->cconfig->find_size_unit_min_val );
 		cbSizeUnitMax->setCurrentIndex ( mainw->cconfig->find_size_unit_max_val );
-		
-		
+
+
 		leText->setText ( mainw->cconfig->lastSearchPattern );
 		leCategory->setText ( mainw->cconfig->lastFindCategory );
-		
+
 		dateStartChanged ( 0 );
 		dateEndChanged ( 0 );
-		
+
 		setTabOrder ( leText, buttonOk );
 		buttonPrintResult->setEnabled ( false );
 		buttonExportResult->setEnabled ( false );
@@ -378,15 +378,15 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		if ( !name )
 			setObjectName ( "findDuplicatesDialog" );
 		setWindowIcon ( *get_t_find_icon() );
-		
+
 		mainw = parent;
 		searchFilepath = "";
 		if ( mainw->guis->standON != NULL )
 			searchFilepath = mainw->guis->standON->getFullPath();
-		
+
 		setSizeGripEnabled ( TRUE );
 		FindDialogBaseLayout = new QGridLayout ( this );
-		
+
 		QSpacerItem* spacer_4 = new QSpacerItem ( 200, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 		QSpacerItem* spacer_5 = new QSpacerItem ( 36, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 		QSpacerItem* spacer_5_1 = new QSpacerItem ( 36, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
@@ -397,7 +397,7 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		QSpacerItem* spacer_10 = new QSpacerItem ( 200, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 		QSpacerItem* spacer_11 = new QSpacerItem ( 200, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 		QSpacerItem* spacer_12 = new QSpacerItem ( 200, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
-		
+
 		layout40 = new QVBoxLayout ( this );
 		layout39 = new QGridLayout ( this );
 		//layout36 = new QGridLayout ( this, 1, 1, 0, 6, "layout36" );
@@ -407,18 +407,18 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		layout15 = new QGridLayout ( this );
 		layout30 = new QHBoxLayout ( this );
 		layout16 = new QGridLayout ( this );
-		
+
 		buttonOk = new QPushButton ( this );
 		buttonOk->setAutoDefault ( TRUE );
 		buttonOk->setDefault ( TRUE );
 		buttonOk->setMinimumWidth ( 80 );
-		
+
 		buttonCancel = new QPushButton ( this );
 		buttonCancel->setAutoDefault ( TRUE );
 		buttonCancel->setMinimumWidth ( 80 );
-		
+
 		textLabel5 = new QLabel ( this );
-		
+
 		resultsl = new QTreeWidget ( this );
 		QStringList labels;
 		labels.append ( tr ( "Name" ) );
@@ -433,55 +433,55 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		resultsl->setHeaderLabels(labels);
 		resultsl->setIndentation(0); // remove the indention (|_ sign)
 		resultsl->setSortingEnabled(true);
-		
+
 		//resultsl->setColumnAlignment ( 2, Qt::AlignRight ); // FIXME
-		
+
 		buttonClearSearchResult = new QPushButton ( this );
-		
+
 		buttonClose = new QPushButton ( this );
-		
+
 		layout30->addItem ( spacer_7 );
 		layout30->addWidget ( textLabel5 );
 		layout30->addItem ( spacer_8 );
-		
+
 		layout15->addWidget ( buttonOk, 0, 0 );
 		layout15->addItem ( spacer_5, 0, 1 );
 		layout15->addWidget ( buttonCancel, 0, 2 );
 		layout15->addItem ( spacer_5_1, 0, 3 );
 		layout15->addWidget ( buttonClearSearchResult, 0, 4 );
-		
+
 		layout16->addItem ( spacer_9, 0, 2 );
 		layout16->addWidget ( buttonClose, 0, 1 );
 		layout16->addItem ( spacer_10, 0, 0 );
 		layout16->addItem ( spacer_11, 0, 2 );
 		layout16->addItem ( spacer_12, 0, 5 );
-		
+
 		layout17->addItem ( spacer_6 );
 		layout17->addLayout ( layout15 );
 		layout17->addItem ( spacer_4 );
-		
+
 		layout31->addLayout ( layout17 );
 		layout31->addLayout ( layout30 );
 		layout31->addWidget ( resultsl );
 		layout31->addLayout ( layout16 );
-		
+
 		layout40->addLayout ( layout39 );
 		layout40->addLayout ( layout31 );
-		
+
 		FindDialogBaseLayout->addLayout ( layout40, 0, 0 );
-		
+
 		resize ( QSize ( mainw->cconfig->findWidth, mainw->cconfig->findHeight ).expandedTo ( minimumSizeHint() ) );
 		move ( mainw->cconfig->findX, mainw->cconfig->findY );
-		
+
 		languageChange();
-		
+
 		connect ( resultsl, SIGNAL (    currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), this, SLOT ( select ( QTreeWidgetItem*,QTreeWidgetItem* ) ) );
 		connect ( resultsl, SIGNAL ( itemClicked ( QTreeWidgetItem *, int ) ), this, SLOT ( select ( QTreeWidgetItem *, int ) ) );
 		connect ( buttonCancel, SIGNAL ( clicked() ), this, SLOT ( cancele() ) );
 		connect ( buttonOk, SIGNAL ( clicked() ), this, SLOT ( seeke() ) );
 		connect ( buttonClose, SIGNAL ( clicked() ), this, SLOT ( closee() ) );
 		connect ( buttonClearSearchResult, SIGNAL ( clicked() ), this, SLOT ( clearSearchResultClicked()) );
-		
+
 	}
 }
 
@@ -506,7 +506,7 @@ void findDialog::languageChange() {
 		labels.append ( tr ( "Category" ) );
 		labels.append ( tr ( "Extension" ) );
 		resultsl->setHeaderLabels(labels);
-		
+
 		buttonOk->setText ( tr ( "&Start search" ) );
 #ifndef _WIN32
 // 		buttonOk->setAccel ( QKeySequence ( QString::null ) );
@@ -518,7 +518,7 @@ void findDialog::languageChange() {
 		textLabel5->setText ( tr ( "Duplicates for:" ) + " " + searchFilepath );
 		buttonClose->setText ( tr ( "Close" ) );
 		buttonClearSearchResult->setText ( tr ( "Clear search results" ) );
-		
+
 		resultsl->clear();
 	}
 	else {
@@ -570,7 +570,7 @@ void findDialog::languageChange() {
 		cbCasesens->setText ( tr ( "Case sensitive" ) );
 		cbEasy->setText ( tr ( "Use easy matching instead regex" ) );
 		resultsl->clear();
-		
+
 	}
 
 }
@@ -644,24 +644,24 @@ int findDialog::saveState ( void ) {
 int findDialog::fillCBox ( void ) {
 	int  i, f, c;
 	Node *tmp = mainw->db->getRootNode();
-	
+
 	if ( tmp == NULL )
 		return 0;
-	
+
 	cbOwner->clear();
 	cbOwner->insertItem (0,  tr ( "All/Everybody" ) );
 	cbOwner->insertItem (0, ( ( DBCatalog * ) ( tmp->data ) )->owner );
-	
+
 	cbSin  ->clear();
 	cbSin  ->insertItem ( 0, tr ( "All media" ) );
-	
+
 	tmp = tmp->child; //Jump to the first media
 	while ( tmp != NULL ) {
 		if ( tmp->type != HC_MEDIA ) {
 			tmp = tmp->next;
 			continue;
 		}
-		
+
 		cbSin  ->insertItem (0,  tmp->getNameOf() );
 		c = cbOwner->count();
 		for ( i = 0, f = 1; c > i; i++ )
@@ -684,13 +684,13 @@ int findDialog::select ( QTreeWidgetItem *i, int ) {
 int findDialog::select ( QTreeWidgetItem *i, QTreeWidgetItem * ) {
 	if ( i == NULL )
 		return 0;
-	
+
 	if ( i->text ( 3 ).isEmpty() ) //Not a real result ("There is no matching" label)
 		return 0;
 
 	QString nodepath = i->text ( 4 ).mid ( 2, i->text ( 4 ).length() - 1 );
 	//std::cerr << "select: nodepath " << qPrintable(nodepath) << std::endl;
-	
+
 	mainw->guis->updateListFromNode (
 	        ( mainw->guis->getNodeFromFullName ( mainw->db->getRootNode(), nodepath ) ) );
 	QTreeWidgetItemIterator it(mainw->listView);
@@ -727,7 +727,7 @@ int findDialog::cancele ( void ) {
 
 int findDialog::seeke ( void ) {
 	seekEngine *se;
-	
+
 	if ( mainw == NULL || mainw->db == NULL )
 		return 0;
 
@@ -735,7 +735,7 @@ int findDialog::seeke ( void ) {
 		if ( ( leText->text() ).isEmpty() && !cbDateStart->isChecked() && !cbDateEnd->isChecked() && !cbSizeMin->isChecked() && !cbSizeMax->isChecked() )
 			return 0;
 	}
-	
+
 	se = new seekEngine ( this, isFindDuplicates );
 	se->start_seek();
 	delete se;
@@ -807,7 +807,7 @@ void findDialog::exportResult ( bool isPrint ) {
 	/* get info from results listview
 		TODO rework as model/view and implement as print view
 	*/
-	
+
 	QPrinter printer;
 	QString output_filename = "cdcat_result.html";
 	if ( isPrint ) {
@@ -838,7 +838,7 @@ void findDialog::exportResult ( bool isPrint ) {
 	result_str += "<body>\n";
 	result_str += "<h1>" + tr ( "Cdcat search result" ) + "</h1>\n";
 	result_str += tr ( "catalog" ) + ": " + mainw->db->getRootNode()->getNameOf() + ", " + tr ( "created at:" ) + " " + QDateTime::currentDateTime().toLocalTime().toString() + "\n";
-	
+
 	// TODO: include search options in result
 	result_str += "<table border=\"1\" title=\"" + tr ( "used search options" ) + "\">\n";
 	result_str += "<tr>";
@@ -867,7 +867,7 @@ void findDialog::exportResult ( bool isPrint ) {
 	result_str += "<tr>";
 	result_str += "<td>";
 	result_str += tr ( "Search in" ) + ": ";
-	
+
 	if ( cbDirname->isChecked() )
 		result_str += " " + tr ( "Media / Directory name" );
 	if ( cbFilename->isChecked() )
@@ -884,11 +884,11 @@ void findDialog::exportResult ( bool isPrint ) {
 		result_str += " " + tr ( "mp3-tag Album" );
 	if ( cbTcomm->isChecked() )
 		result_str += " " + tr ( "mp3-tag Comment" ) ;
-	
+
 	if ( cbFindInArchive->isChecked() )
 		result_str += " " + tr ( "archives" );
 	result_str += "</td>";
-	
+
 	result_str += "<td>";
 	result_str +=  tr ( "Unsharp search (slow)" ) + ": ";
 	if ( cbUnsharpSearch->isChecked() )
@@ -896,7 +896,7 @@ void findDialog::exportResult ( bool isPrint ) {
 	else
 		result_str += tr ( "off" );
 	result_str += "</td>";
-	
+
 	if ( cbDateStart->isChecked() || cbDateEnd->isChecked() || cbSizeMin->isChecked() || cbSizeMax->isChecked() ) {
 		result_str += "<tr>";
 		result_str += "<td>";
@@ -919,9 +919,9 @@ void findDialog::exportResult ( bool isPrint ) {
 		result_str += "</td>";
 		result_str += "</tr>\n";
 	}
-	
+
 	result_str += "</table>\n";
-	
+
 	result_str += "<table border=\"1\">\n";
 	result_str += "<tr>";
 	result_str += "<th>#</th><th>" + tr ( "Name" ) + "</th>";
@@ -950,7 +950,7 @@ void findDialog::exportResult ( bool isPrint ) {
 			for ( int j = 0; j <= 6; j++ )
 				cerr << "result[" << i << "][" << j << "]: " << qPrintable ( (*lastChild)->text ( j ) ) << endl;
 		}
-		
+
 		result_str += "<tr>";
 		result_str += "<td align=\"right\" style=\"font-size:-2;\">" + QString().setNum ( i + 1 ) + "</td>";
 		result_str += "<td style=\"font-size:-2;\">" + (*lastChild)->text ( 0 ) + "</td>";
@@ -978,8 +978,8 @@ void findDialog::exportResult ( bool isPrint ) {
 	//                             printer.paperRect().y() + printer.pageRect().height()/2);
 	//          painter.scale(scale, scale);
 	//          painter.translate(-width()/2, -height()/2);
-	
-	
+
+
 	mydoc.setHtml ( result_str );
 	if ( isPrint )
 		mydoc.print ( &printer );
@@ -1016,7 +1016,7 @@ void findDialog::clearSearchResultClicked() {
 ***************************************************************************/
 
 seekEngine::seekEngine ( findDialog *fdp, bool isFindDuplicates ) :
-founded(0), pww(NULL), error(NULL), errptr(0), dirname(false), filename(false), comment(false), find_category(false), 
+founded(0), pww(NULL), error(NULL), errptr(0), dirname(false), filename(false), comment(false), find_category(false),
 tartist(false), ttitle(false), talbum(false), tcomment(false), content(false), allmedia(false),
 allowner(false), dateStartChecked(false), dateEndChecked(false), sizeMinChecked(false), sizeMaxChecked(false),
 findInArchivesChecked(false), size_min(0), size_max(0) {
@@ -1040,26 +1040,26 @@ int seekEngine::start_seek ( void ) {
 	pww->refreshTime = 200;
 	pww->setProgressText ( tr ( "Searching, please wait..." ) );
 	pww->show();
-	
+
 	QObject::connect ( pww, SIGNAL ( cancelReceivedByUser ( bool ) ), pww, SLOT ( doCancelReceived ( bool ) ) );
 	progress ( pww );
-	
+
 	founded = 0;
-	
+
 	if ( !searchForDuplicates ) {
 		if(!fd->cbKeepSearchResult->isChecked())
 			fd->resultsl->clear();
-		
+
 		//get the pattern
 		if ( fd->cbEasy->isChecked() )
 			strncpy ( patt, ( const char * ) ( ( QTextCodec::codecForLocale() )->fromUnicode ( "*" + fd->leText->text() + "*" ) ), 2047 );
 		else
 			strncpy ( patt, ( const char * ) ( ( QTextCodec::codecForLocale() )->fromUnicode ( fd->leText->text() ) ), 2047 );
-		
+
 		//recode the pattern /easy/  put ^$ and ? -> .  * -> .*
 		if ( fd->cbEasy->isChecked() )
 			easyFormConversion ( patt );
-		
+
 		//recode the pattern /Case sens/ lok -> [l|L][o|O][k|K]
 		if ( !fd->cbCasesens->isChecked() )
 			caseSensConversion ( patt );
@@ -1071,13 +1071,13 @@ int seekEngine::start_seek ( void ) {
 		// 	re->setPatternSyntax(QRegExp::Wildcard);
 		//     else
 		re->setPatternSyntax ( QRegExp::RegExp2 );
-		
+
 		//     if ( re == NULL ) {
 		if ( !re->isValid() ) {
 			QMessageBox::warning ( fd, tr ( "Error in the pattern:" ), QString ( patt ) );
 			return 1;
 		}
-		
+
 		//// this tries to opimize pattern
 		//     hints = pcre_study ( re,0,&error );
 		//
@@ -1086,7 +1086,7 @@ int seekEngine::start_seek ( void ) {
 		//         return 1;
 		//     }
 		fd->use_unsharpsearch = fd->cbUnsharpSearch->isChecked();
-		
+
 		dirname  = fd->cbDirname ->isChecked();
 		filename = fd->cbFilename->isChecked();
 		comment  = fd->cbComment ->isChecked();
@@ -1095,7 +1095,7 @@ int seekEngine::start_seek ( void ) {
 		if(find_category && category.isEmpty()) {
 			find_category = false;
 		}
-		
+
 		tartist  = fd->cbArtist  ->isChecked();
 		ttitle   = fd->cbTitle   ->isChecked();
 		tcomment = fd->cbTcomm   ->isChecked();
@@ -1108,8 +1108,8 @@ int seekEngine::start_seek ( void ) {
 		sizeMinChecked = fd->cbSizeMin->isChecked();
 		sizeMaxChecked = fd->cbSizeMax->isChecked();
 		findInArchivesChecked = fd->cbFindInArchive->isChecked();
-		
-		
+
+
 		if ( sizeMinChecked ) {
 			if ( fd->cbSizeUnitMin->currentIndex() == 0 )
 				size_min = fd->spSizeMin->value(); // Byte
@@ -1123,7 +1123,7 @@ int seekEngine::start_seek ( void ) {
 				size_min = fd->spSizeMin->value() * 1024.0 * 1024.0 * 1024.0 * 1024.0; // TByte
 			// 	std::cerr << "minsize checked, type "<< fd->cbSizeUnitMin->currentIndex() <<", min size " << size_min << endl;
 		}
-		
+
 		if ( sizeMaxChecked ) {
 			if ( fd->cbSizeUnitMax->currentIndex() == 0 )
 				size_max = fd->spSizeMax->value(); // Byte
@@ -1137,19 +1137,19 @@ int seekEngine::start_seek ( void ) {
 				size_max = fd->spSizeMax->value() * 1024.0 * 1024.0 * 1024.0 * 1024.0; // TByte
 			// 	std::cerr << "maxsize checked, type "<< fd->cbSizeUnitMax->currentIndex() <<", max size " << size_max << endl;
 		}
-		
+
 		allmedia = false;
 		allowner = false;
 
 		media = fd->cbSin->currentText();
 		owner = fd->cbOwner->currentText();
-		
+
 		if ( 0 == fd->cbOwner->currentIndex() )
 			allowner = true;
 		if ( 0 == fd->cbSin->currentIndex() )
 			allmedia = true;
 	}
-	
+
 	progress ( pww );
 	fd->textLabel5->setText ( tr ( "Results:" ) + " " + tr ( "searching is in progress" ) );
 	/*seek...*/
@@ -1165,28 +1165,28 @@ int seekEngine::start_seek ( void ) {
 		newitem->setChildIndicatorPolicy(QTreeWidgetItem::DontShowIndicator);
 		fd->resultsl->addTopLevelItem( newitem );
 	}
-	
+
 	QObject::disconnect ( pww, SIGNAL ( cancelReceivedByUser ( bool ) ), pww, SLOT ( doCancelReceived ( bool ) ) );
 	progress ( pww );
 	pww->end();
-	
+
 	delete pww;
-	
+
 	QApplication::restoreOverrideCursor();
 	return 0;
 }
 /***************************************************************************/
 int seekEngine::analyzeNode ( PWw *pww,  Node *n, Node *pa ) {
 	DEBUG_INFO_ENABLED = init_debug_info();
-	
+
 	if ( fd->mainw->app->hasPendingEvents() )
 		fd->mainw->app->processEvents();
-	
+
 	progress ( pww );
-	
+
 	if ( n == NULL || pww->doCancel )
 		return 0;
-	
+
 	if ( searchForDuplicates ) {
 		if ( fd->mainw->guis->standON == NULL ) {
 			if ( *DEBUG_INFO_ENABLED )
@@ -1194,7 +1194,7 @@ int seekEngine::analyzeNode ( PWw *pww,  Node *n, Node *pa ) {
 		}
 		return 0;
 	}
-	
+
 	if ( searchForDuplicates ) {
 		switch ( n->type ) {
 			case HC_CATALOG:
@@ -1257,7 +1257,7 @@ int seekEngine::analyzeNode ( PWw *pww,  Node *n, Node *pa ) {
 				return 0;
 			case HC_MEDIA:
 				progress ( pww );
-				
+
 				//It is necessary to analyze this media node? /Owner/Media/
 				if ( ( allmedia || ( media == n->getNameOf() ) ) &&
 				                ( allowner || ( owner == ( ( DBMedia * ) ( n->data ) )->owner ) ) ) {
@@ -1282,7 +1282,7 @@ int seekEngine::analyzeNode ( PWw *pww,  Node *n, Node *pa ) {
 										isOk = true;
 									}
 								}
-								
+
 						if ( isOk ) {
 							putNodeToList ( n );
 							analyzeNode ( pww, n->child );
@@ -1290,22 +1290,22 @@ int seekEngine::analyzeNode ( PWw *pww,  Node *n, Node *pa ) {
 							return 0;
 						}
 					}
-					
+
 					if ( comment )
 						if ( matchIt ( ( ( DBMedia * ) ( n->data ) )->comment ) )
 							putNodeToList ( n );
-					
+
 					analyzeNode ( pww, n->child );
 				}
 				analyzeNode ( pww, n->child );
 				progress ( pww );
 				analyzeNode ( pww, n->next );
 				return 0;
-			
+
 			case HC_CATLNK:
 				analyzeNode ( pww, n->next );
 				return 0;
-			
+
 			case HC_DIRECTORY:
 				progress ( pww );
 				isOk = true;
@@ -1330,7 +1330,7 @@ int seekEngine::analyzeNode ( PWw *pww,  Node *n, Node *pa ) {
 									isOk = false;
 								}
 							}
-							
+
 					if ( isOk ) {
 						putNodeToList ( n );
 						analyzeNode ( pww, n->child );
@@ -1338,18 +1338,18 @@ int seekEngine::analyzeNode ( PWw *pww,  Node *n, Node *pa ) {
 						return 0;
 					}
 				}
-				
+
 				if ( comment ) {
 					if ( matchIt ( ( ( DBDirectory * ) ( n->data ) )->comment ) ) {
 						putNodeToList ( n );
 					}
 				}
-				
+
 				analyzeNode ( pww, n->child );
 				progress ( pww );
 				analyzeNode ( pww, n->next );
 				return 0;
-			
+
 			case HC_FILE:
 				isOk = true;
 				filecomment = "";
@@ -1375,7 +1375,7 @@ int seekEngine::analyzeNode ( PWw *pww,  Node *n, Node *pa ) {
 								isOk = false;
 							}
 						}
-				
+
 				if ( isOk && sizeMinChecked && !sizeMaxChecked ) {
 					double real_size = 0.0;
 					double real_size_min = size_min;
@@ -1468,7 +1468,7 @@ int seekEngine::analyzeNode ( PWw *pww,  Node *n, Node *pa ) {
 							QString filepath = af.path.section ( '/', -1, -1 );
 							if ( *DEBUG_INFO_ENABLED )
 								std::cout << "testing file inside archive: " << qPrintable ( filepath ) << std::endl;
-							
+
 							if ( filename ) {
 								if ( matchIt ( filepath ) ) {
 									archiveMatches = true;
@@ -1534,7 +1534,7 @@ int seekEngine::analyzeNode ( PWw *pww,  Node *n, Node *pa ) {
 				analyzeNode ( pww, ( ( DBFile * ) ( n->data ) )->prop, n );
 				analyzeNode ( pww,  n->next );
 				return 0;
-			
+
 			case HC_MP3TAG:
 				if ( tartist )
 					if ( matchIt ( ( ( DBMp3Tag * ) ( n->data ) )->artist ) ) {
@@ -1585,7 +1585,7 @@ int seekEngine::matchIt ( QString txt ) {
 		//match = re->exactMatch (QString( encoded));
 		match = re->exactMatch ( QString ( txt ) );
 		//cerr << "matchit: " << qPrintable(txt) << " <==> " << qPrintable(re->pattern()) <<" result: " << match << endl;
-		
+
 		if ( match == 1 )
 			return 1;
 	}
@@ -1606,22 +1606,22 @@ bool seekEngine::matchUnsharp ( char* matchpattern, char* str ) {
 	DEBUG_INFO_ENABLED = init_debug_info();
 	if ( matchpattern == NULL || str == NULL )
 		return false;
-	
+
 	int match = -1;
 	int matchpattern_len = strlen ( matchpattern );
 	MString m_matchpattern ( matchpattern, matchpattern_len );
 	QString res_matchpattern_str1, res_matchpattern_str2;
 	m_matchpattern.DoubleMetaphone ( res_matchpattern_str1, res_matchpattern_str2 );
-	
+
 	MString m_str ( str, matchpattern_len );
 	QString res_str_str1, res_str_str2;
 	m_str.DoubleMetaphone ( res_str_str1, res_str_str2 );
-	
+
 	match = res_str_str1.indexOf ( res_matchpattern_str1 );
-	
+
 	if ( *DEBUG_INFO_ENABLED )
 		cerr << "matchUnsharp: " << matchpattern << " (" << qPrintable ( res_matchpattern_str1 ) << ") <=> " << str << " (" << qPrintable ( res_str_str1 ) << ")  ===> " << match << endl;
-	
+
 	if ( match > -1 )
 		return true;
 	else
@@ -1638,9 +1638,9 @@ void seekEngine::putNodeToList ( Node *n, QString comment ) {
 	QDateTime mod;
 	if ( n == NULL )
 		return;
-	
+
 	DEBUG_INFO_ENABLED = init_debug_info();
-	
+
 	switch ( n->type ) {
 		case HC_MEDIA:
 			type = tr ( "media" );
@@ -1678,7 +1678,7 @@ void seekEngine::putNodeToList ( Node *n, QString comment ) {
 			fd->mainw->app->processEvents();
 		progress ( pww );
 	}
-	
+
 	media = tmp->getNameOf() + "/" + QString().setNum ( ( ( DBMedia * ) ( tmp->data ) )->number );
 	QTreeWidgetItem *newitem;
 	newitem = new QTreeWidgetItem ( fd->resultsl);
@@ -1692,7 +1692,7 @@ void seekEngine::putNodeToList ( Node *n, QString comment ) {
 	newitem->setText (7, tmp_category);
 	newitem->setText (8, extension);
 	newitem->setChildIndicatorPolicy(QTreeWidgetItem::DontShowIndicator);
-	
+
 	//newitem->setMultiLinesEnabled ( true ); // FIXME
 	fd->resultsl->addTopLevelItem ( newitem );
 	fd->buttonClearSearchResult->setEnabled(true);
@@ -1701,4 +1701,4 @@ void seekEngine::putNodeToList ( Node *n, QString comment ) {
 }
 
 
-// kate: indent-mode cstyle; replace-tabs off; tab-width 8; 
+// kate: indent-mode cstyle; replace-tabs off; tab-width 8;

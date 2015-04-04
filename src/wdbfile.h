@@ -81,7 +81,7 @@ public:
 private:
 
     /* write to gzFile or unencryptedBuffer */
-    void real_write(QString msg); 
+    void real_write(QString msg);
 
 public:
 //private:
@@ -128,12 +128,12 @@ public:
     int  insert;
     int linecount;
     long long int allocated_buffer_len;
-    
+
 
     Node *sp;
     Node *sb_backup;
     char *dataBuffer;
-    
+
     bool skipDuplicatesOnInsert;
     bool parseresult;
 

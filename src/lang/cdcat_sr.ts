@@ -1655,7 +1655,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Greška:</translation>
     </message>
     <message>
-        <source>Do you really want to delete this?: 
+        <source>Do you really want to delete this?:
 %1</source>
         <translation type="obsolete">Da li zaista želiš da obrišep ovo?:
 %1</translation>
@@ -1686,11 +1686,11 @@ It is necessary because I&apos;d like to save the config file into your home dir
     </message>
     <message>
         <location line="+180"/>
-        <source>The size of &quot;%1&quot; : 
- %2 
+        <source>The size of &quot;%1&quot; :
+ %2
  %3 file /%4 directory</source>
-        <translation>Veličina &quot;%1&quot; : 
- %2 
+        <translation>Veličina &quot;%1&quot; :
+ %2
  %3 fajl /%4 direktorijum</translation>
     </message>
     <message>
@@ -1815,7 +1815,7 @@ moguće da je baza nepotpuna</translation>
     </message>
     <message>
         <location line="+73"/>
-        <source>An error occured while scanning, the rescan operation was cancelled: 
+        <source>An error occured while scanning, the rescan operation was cancelled:
 %1</source>
         <translation>Prilikom skeniranja je došlo do greške, opcija ponovnog skeniranje je poništena:
 %1</translation>

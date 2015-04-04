@@ -1712,7 +1712,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Erreur :</translation>
     </message>
     <message>
-        <source>Do you really want to delete this?: 
+        <source>Do you really want to delete this?:
 %1</source>
         <translation type="obsolete">Faut-il vraiment supprimer : %1</translation>
     </message>
@@ -1742,8 +1742,8 @@ It is necessary because I&apos;d like to save the config file into your home dir
     </message>
     <message>
         <location filename="../guibase.cpp" line="2378"/>
-        <source>The size of &quot;%1&quot; : 
- %2 
+        <source>The size of &quot;%1&quot; :
+ %2
  %3 file /%4 directory</source>
         <translation>La taille de &quot;%1&quot; :
 %2
@@ -1870,7 +1870,7 @@ the DataBase may be incomplete</source>
     </message>
     <message>
         <location filename="../guibase.cpp" line="2026"/>
-        <source>An error occured while scanning, the rescan operation was cancelled: 
+        <source>An error occured while scanning, the rescan operation was cancelled:
 %1</source>
         <translation>unne erreur est survenue pendant le scan, l&apos;opération de scan a été annulée :
 %1</translation>

@@ -52,26 +52,26 @@ class seekEngine : public QObject {
 		PWw *pww;
 		//pcre *re;
 		QRegExp *re;
-		
+
 		char *patt;
 		int  offsets[99];
 		//pcre_extra *hints;
 		const char *error;
 		int errptr;
-		
+
 		findDialog *fd;
-		
+
 		int  analyzeNode ( PWw *pww, Node *n, Node *pa = NULL );
 		void putNodeToList ( Node *n, QString comment = "" );
 		int  matchIt ( QString txt );
 		bool matchUnsharp ( char *a, char *b );
-	
+
 	public:
 		seekEngine ( findDialog *fdp, bool isFindDuplicates = false );
 		~seekEngine ( void );
-		
+
 		int start_seek ( void );
-	
+
 	private:
 		bool dirname;
 		bool filename;
@@ -90,14 +90,14 @@ class seekEngine : public QObject {
 		bool sizeMaxChecked;
 		bool findInArchivesChecked;
 		bool searchForDuplicates;
-		
+
 		QString  media;
 		QString  owner;
 		QString category;
-		
+
 		QDateTime dateStart;
 		QDateTime dateEnd;
-		
+
 		double size_min;
 		double size_max;
 };
@@ -110,8 +110,8 @@ class findDialog : public QDialog {
 	public:
 		findDialog ( CdCatMainWidget* parent = 0, const char* name = 0, bool isFindDuplicates = false, bool modal = FALSE, Qt::WFlags fl = Qt::WindowMinMaxButtonsHint );
 		~findDialog();
-		
-		
+
+
 		QFrame *input;
 		QHBoxLayout *h1, *h2, *h3, *h4;
 		QVBoxLayout *v1;
@@ -141,7 +141,7 @@ class findDialog : public QDialog {
 		QSpinBox* spSizeMax;
 		QComboBox *cbSizeUnitMin;
 		QComboBox *cbSizeUnitMax;
-		
+
 		QDateTimeEdit* deDateStart;
 		QDateTimeEdit* deDateEnd;
 		QCheckBox* cbComment;
@@ -165,12 +165,12 @@ class findDialog : public QDialog {
 
 		bool use_unsharpsearch; // if unsharp match should be used
 		bool isFindDuplicates;
-	
+
 	protected:
 		int fillCBox ( void );
 		void closeEvent ( QCloseEvent *ce );
 		void exportResult ( bool isPrint );
-		
+
 		QGridLayout* FindDialogBaseLayout;
 		QVBoxLayout* layout40;
 		QGridLayout* layout39;
@@ -185,9 +185,9 @@ class findDialog : public QDialog {
 		QHBoxLayout* layout_size_min;
 		QHBoxLayout* layout_size_max;
 		QHBoxLayout* layout_find_in_archive;
-		
+
 		QString searchFilepath;
-	
+
 	protected slots:
 		virtual void languageChange();
 		int select ( QTreeWidgetItem *after, QTreeWidgetItem *before );
@@ -210,4 +210,4 @@ class findDialog : public QDialog {
 };
 
 #endif // FINDDIALOG_H
-// kate: indent-mode cstyle; replace-tabs off; tab-width 4; 
+// kate: indent-mode cstyle; replace-tabs off; tab-width 4;

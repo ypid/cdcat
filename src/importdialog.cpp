@@ -33,11 +33,11 @@ QList<QList<QString>> getImportPatternList() {
 		%sizehuman%		size (1234,56[<unit>])
 						unit: ((empty) => B, k => kB, K => KiB, m => mb, M => MiB, g = gb, G => GB, t = tb, T => TiB)
 		%sizeb%			size in bytes (123456)
-		%sizekb%			size in kilobytes (123456) 
+		%sizekb%			size in kilobytes (123456)
 		%YYMMDD%		date (2 letter year)
 		%YYYYMMDD%	date (4 letter year)
-		
-		
+
+
 		list elems: <pattern label><matching regex pattern><description>
 		*/
 	QList<QList<QString>> regex_pattern_list;
@@ -47,67 +47,67 @@ QList<QList<QString>> getImportPatternList() {
 	tmplist.append(QObject::tr("directory separator"));
 	regex_pattern_list.append(tmplist);
 	tmplist.clear();
-	
+
 	tmplist.append(QString("%tab%"));
 	tmplist.append(QString("	"));
 	tmplist.append(QObject::tr("tabulator"));
 	regex_pattern_list.append(tmplist);
 	tmplist.clear();
-	
+
 	tmplist.append(QString("%space%"));
 	tmplist.append(QString("\\ "));
 	tmplist.append(QObject::tr("space char"));
 	regex_pattern_list.append(tmplist);
 	tmplist.clear();
-	
+
 	tmplist.append(QString("%filename%"));
 	tmplist.append(QString("[0-9a-zA-Z\\_\\-\\.\\+\\=\ \\~]+"));
 	tmplist.append(QObject::tr("file name"));
 	regex_pattern_list.append(tmplist);
 	tmplist.clear();
-	
+
 	tmplist.append(QString("%fullpath%"));
 	tmplist.append(QString("(([\\/\\")+QDir::separator()+"]|)([0-9a-zA-Z\\_\\-\\.\\+\\=\ \\~]+))+");
 	tmplist.append(QObject::tr("full path (including directory name and file name)"));
 	regex_pattern_list.append(tmplist);
 	tmplist.clear();
-	
+
 	tmplist.append(QString("%size_human%"));
 	tmplist.append(QString("[0-9]+([\\,\\.0-9])*([kKmMgGtT]|)"));
 	tmplist.append(QObject::tr("File size with human unit (e.g. G for Gigabyte)"));
 	regex_pattern_list.append(tmplist);
 	tmplist.clear();
-	
+
 	tmplist.append(QString("%sizeb%"));
 	tmplist.append(QString("([0-9])+"));
 	tmplist.append(QObject::tr("File size (number only, in bytes)"));
 	regex_pattern_list.append(tmplist);
 	tmplist.clear();
-	
+
 	tmplist.append(QString("%sizekb%"));
 	tmplist.append(QString("([0-9])+"));
 	tmplist.append(QObject::tr("File size (number only, in kilobytes)"));
 	regex_pattern_list.append(tmplist);
 	tmplist.clear();
-	
+
 	tmplist.append(QString("%dateyear2%"));
 	tmplist.append(QString("[0-9][0-9]\-([0-9]|[0-9][0-9])\\-([0-9]|[0-9][0-9])"));
 	tmplist.append(QObject::tr("date with 2 year digit (e.g. 25th. may 2012: 12-05-25)"));
 	regex_pattern_list.append(tmplist);
 	tmplist.clear();
-	
+
 	tmplist.append(QString("%dateyear4%"));
 	tmplist.append(QString("[0-9][0-9][0-9][0-9]\\-([0-9]|[0-9][0-9])\\-([0-9]|[0-9][0-9])"));
 	tmplist.append(QObject::tr("date with 4 year digit (e.g. 25th. may 2012: 2012-05-25)"));
 	regex_pattern_list.append(tmplist);
 	tmplist.clear();
-	
+
 	tmplist.append(QString("%time_full%"));
 	tmplist.append(QString("([0-9]|[0-9][0-9])\\:([0-9]|[0-9][0-9])\\:([0-9]|[0-9][0-9])"));
 	tmplist.append(QObject::tr("time in full format (e.g. 07:28:13)"));
 	regex_pattern_list.append(tmplist);
 	tmplist.clear();
-	
+
 	tmplist.append(QString("%time_hm%"));
 	tmplist.append(QString("([0-9]|[0-9][0-9])\\:([0-9]|[0-9][0-9])"));
 	tmplist.append(QObject::tr("time with hour and minute only (e.g. 07:28)"));
@@ -199,7 +199,7 @@ ImportDialog::ImportDialog ( QWidget *parent, const char *name, bool modal, Qt::
 	layoutGenericRegex->addWidget(genericRegexPattern_lab);
 	layoutGenericRegex->addWidget(genericRegex_lineedit);
 	layoutGenericRegex->addWidget(genericRegexInfo);
-	
+
 	layout4->addLayout ( layoutGenericRegex, 6, 0, 1, 4 );
 
 	buttonOK = new QPushButton ( this );
@@ -219,7 +219,7 @@ ImportDialog::ImportDialog ( QWidget *parent, const char *name, bool modal, Qt::
 	*/
 	//importTypeWhereisitXml->setChecked ( true );
 	importTypeGenericRegex->setChecked ( true );
-	
+
 
 	correctbadstyle->setEnabled ( false );
 	separator_lab->setEnabled ( false );
@@ -341,7 +341,7 @@ void ImportDialog::languageChange() {
 
 	correctbadstyle->setToolTip ( tr ( "Corrects bad output style from gtktalog.\n<media>SEPARATOR/<dir>/SEPARATOR/<dir>\n will be to\n<media>/<dir>/<dir>" ) );
 	info_lab->setText ( tr ( "<strong>Please read the README_IMPORT before you import!</strong>" ) );
-	
+
 	genericRegexPattern_lab->setText(tr("Pattern:"));
 	genericRegex_lineedit->setToolTip(tr("You can use pattern for data fields, hold mouse cursor over info symbol for info"));
 	genericRegexPattern_lab->setToolTip(tr("Pattern for data fields, hold mouse cursor over info symbol for info"));
@@ -354,7 +354,7 @@ void ImportDialog::languageChange() {
 		genericRegexTipText += "<tr><td>" +  regex_pattern_list.at(i).at(0) + "</td><td>" + regex_pattern_list.at(i).at(2) + "</td></tr>";
 	}
 	genericRegexTipText += "<tr><th></th><th></th></tr>";
-	
+
 	genericRegexTipText += "</table>";
 	genericRegexTipText += tr("Example:");
 	genericRegexTipText += "<br><i><b>du --all --human-readable --time<b/>: %size_human%%tab%%dateyear4%%space%%time_hm%%tab%%fullpath%<i>";

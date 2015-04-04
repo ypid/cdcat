@@ -60,32 +60,32 @@ int main ( int argi, char **argc ) {
 #warning ====> installing own message handler
 	qInstallMsgHandler(myMessageOutput);
 #endif
-	
+
 	QTextCodec::setCodecForCStrings ( QTextCodec::codecForName ( "UTF-8" ) );
 	QTextCodec::setCodecForLocale ( QTextCodec::codecForName ( "UTF-8" ) );
 	QTextCodec::setCodecForTr ( QTextCodec::codecForName ( "UTF-8" ) );
-	
+
 	QApplication app ( argi, argc );
-	
+
 	CdCatConfig *cconfig = new CdCatConfig();
 	translator = 0;
 	int font_size = 8;
-	
+
 	if ( argi > 1 )
 		cconfig->setParameter ( argc[1] );
-	
+
 	if ( cconfig->readConfig() == 0 )
 		font_size = cconfig->fsize;
 	else
 		cconfig->writeConfig();
-	
+
 	DEBUG_INFO_ENABLED = init_debug_info();
 	*DEBUG_INFO_ENABLED = cconfig->debug_info_enabled;
 	if ( *DEBUG_INFO_ENABLED )
 		cerr << qPrintable ( QString ( "DEBUG_INFO_ENABLED: true" ) ) << endl;
 	else
 		cerr << qPrintable ( QString ( "DEBUG_INFO_ENABLED: false" ) ) << endl;
-	
+
 #if defined(_WIN32) || defined(Q_WS_MAC) || defined(_OS2)
 	QString langpath ( applicationDirPath ( argc ) + "/lang/cdcat_" );
 	langpath += cconfig->lang;
@@ -103,9 +103,9 @@ int main ( int argi, char **argc ) {
 	translation_paths.append ( QString ( applicationDirPath ( argc ) + "/lang" ) );
 	translation_paths.append ( QString ( prefix + "share/locale/" + locale + "/LC_MESSAGES" ) );
 	translation_paths.append ( QString ( prefix + "share/locale/" + locale2 + "/LC_MESSAGES" ) );
-	
+
 	QString langpath;
-	
+
 	for ( int i = 0; i < translation_paths.count(); ++i ) {
 		//cerr <<"path: " << qPrintable(translation_paths.at(i)) << endl;
 		QFileInfo info ( translation_paths.at ( i ) + "/cdcat_" + locale + ".qm" );
@@ -123,31 +123,31 @@ int main ( int argi, char **argc ) {
 	}
 #endif
 #endif
-	
+
 	if ( translator ) {
 		app.removeTranslator ( translator );
 		delete translator;
 	}
-	
+
 	translator = new QTranslator ( 0 );
-	
+
 	if ( !langpath.isEmpty() ) {
 		//cerr << "using language file " << langpath << endl;
 		translator->load ( langpath, "." );
 		app.installTranslator ( translator );
 	}
-	
+
 	init_icon_base();
-	
+
 	CdCatMainWidget mw( cconfig, &app, 0, "MainWindow" );
-	
+
 	cconfig->defaultfont = app.font();
 	if ( cconfig->ownfont ) {
 		QFont font;
 		font.setPointSize ( font_size );
 		app.setFont ( font );
 	}
-	
+
 	mw.show();
 
 	int ret_val = app.exec();

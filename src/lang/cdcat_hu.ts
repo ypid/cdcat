@@ -1983,7 +1983,7 @@ Copyright (C) 2003 Peter Deak (GPL)</translation>
     </message>
     <message>
         <source> - = CdCatalog by Hyper = -
-Version: %1 
+Version: %1
 Author: Peter Deak (hyperr@freemail.hu)
  Copyright (C) 2003 Peter Deak (GPL)</source>
         <translation type="obsolete">- = CdCatalog by Hyper = -
@@ -1992,21 +1992,21 @@ Szerző: Deák Péter (hyperr@freemail.hu)
 Copyright (C) 2003 Deák Péter (GPL)</translation>
     </message>
     <message>
-        <source>Do you really want to delete this?: 
+        <source>Do you really want to delete this?:
 %1</source>
         <translation type="obsolete">Biztos hogy le akarod törölni ezt?:
 %1</translation>
     </message>
     <message>
-        <source>An error occured while scanning, the rescan operation cancelled: 
+        <source>An error occured while scanning, the rescan operation cancelled:
 %1</source>
         <translation type="obsolete">Hiba történt felolvasás alatt, a művelet visszavonásra került:
 %1</translation>
     </message>
     <message>
         <location line="+180"/>
-        <source>The size of &quot;%1&quot; : 
- %2 
+        <source>The size of &quot;%1&quot; :
+ %2
  %3 file /%4 directory</source>
         <translation>A következő elem helyfoglalása &quot;%1&quot; :
 %2
@@ -2134,7 +2134,7 @@ az adatbázis lehet hogy nem teljes</translation>
     </message>
     <message>
         <location line="+73"/>
-        <source>An error occured while scanning, the rescan operation was cancelled: 
+        <source>An error occured while scanning, the rescan operation was cancelled:
 %1</source>
         <translation>Hiba történt felolvasás közben, a müvelet meg lett szakítva:
 %1</translation>
@@ -2907,7 +2907,7 @@ konvertálja
         <location line="+1"/>
         <source>This is the separator in dataline
 &lt;path&gt;SEPARATOR&lt;size&gt;SEPARATOR&lt;date&gt;&lt;space&gt;&lt;time&gt;</source>
-        <translation>Ez a szeparátor az adatelemek között 
+        <translation>Ez a szeparátor az adatelemek között
 &lt;path&gt;SEPARATOR&lt;size&gt;SEPARATOR&lt;date&gt;&lt;space&gt;&lt;time&gt;</translation>
     </message>
     <message>
@@ -5464,7 +5464,7 @@ Létreh. dátuma</translation>
 &lt;blockquote&gt;The program was written by  Peter Deak  (hungary)&lt;br&gt;
 E-mail: hyperr@freemail.hu
 &lt;br&gt;
-&lt;br&gt;Thanks for my girlfriend Ani who was my fist beta tester, and she encurage me to write this program. 
+&lt;br&gt;Thanks for my girlfriend Ani who was my fist beta tester, and she encurage me to write this program.
 &lt;/blockquote&gt;
 &lt;br&gt;
 &lt;b&gt;License:&lt;/b&gt;
@@ -5527,7 +5527,7 @@ E-mail: hyperr@freemail.hu
 &lt;blockquote&gt;The program was written by  Peter Deak  (hungary)&lt;br&gt;
 E-mail: hyperr@freemail.hu
 &lt;br&gt;
-&lt;br&gt;Thanks for my girlfriend Ani who was my fist beta tester, and she encuraged me to write this program. 
+&lt;br&gt;Thanks for my girlfriend Ani who was my fist beta tester, and she encuraged me to write this program.
 &lt;/blockquote&gt;
 &lt;br&gt;
 &lt;b&gt;License:&lt;/b&gt;
@@ -5585,7 +5585,7 @@ E-mail: hyperr@freemail.hu
 &lt;blockquote&gt;The program was written by  Peter Deak  (hungary)&lt;br&gt;
 E-mail: hyperr@freemail.hu
 &lt;br&gt;
-&lt;br&gt;Thanks for my girlfriend Ani who was my fist beta tester, and she encuraged me to write this program. 
+&lt;br&gt;Thanks for my girlfriend Ani who was my fist beta tester, and she encuraged me to write this program.
 &lt;/blockquote&gt;
 &lt;br&gt;
 &lt;b&gt;License:&lt;/b&gt;
@@ -5643,7 +5643,7 @@ E-mail: hyperr@freemail.hu
 &lt;blockquote&gt;The program was written by  Peter Deak  (hungary)&lt;br&gt;
 E-mail: hyperr@freemail.hu
 &lt;br&gt;
-&lt;br&gt;Thanks for my girlfriend Ani who was my fist beta tester, and she encuraged me to write this program. 
+&lt;br&gt;Thanks for my girlfriend Ani who was my fist beta tester, and she encuraged me to write this program.
 &lt;/blockquote&gt;
 &lt;br&gt;
 &lt;b&gt;License:&lt;/b&gt;
@@ -5704,7 +5704,7 @@ And the program can store the content of some specified files up to a limit size
 &lt;blockquote&gt;The program was written by  Peter Deak  (hungary)&lt;br&gt;
 E-mail: hyperr@freemail.hu
 &lt;br&gt;
-&lt;br&gt;Thanks for my girlfriend Ani who was my fist beta tester, and she encuraged me to write this program. 
+&lt;br&gt;Thanks for my girlfriend Ani who was my fist beta tester, and she encuraged me to write this program.
 &lt;/blockquote&gt;
 &lt;br&gt;
 &lt;b&gt;License:&lt;/b&gt;

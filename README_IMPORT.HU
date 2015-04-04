@@ -1,7 +1,7 @@
 Ez a dokumentum leírja, hogy importálhatsz gtktalog -ból a cdcat-ba.
 
 Most sokkal könnyebben importálhatsz mint régebben!
-Egyszerüen készíts egy report-ot gtktalog-ban 
+Egyszerüen készíts egy report-ot gtktalog-ban
 (Válszd ki az xml -t típusként és catalog.xml -t fájlnévként)
 
 Es most importáljuk be a fájlt:

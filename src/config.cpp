@@ -56,17 +56,17 @@
 using namespace std;
 
 CdCatConfig::CdCatConfig ( void ) :
-	usefileinfo(false), useExternalContentViewer(false), storeExifData(false), commentDockPos_x(0), commentDockPos_y(0), commentWindowPos_x(0), commentWindowPos_y(0), commentDockSize_width(0), commentDockSize_height(0), contentWindowPos_x(0), contentWindowPos_y(0), contentWindowSize_width(0), contentWindowSize_height(0), 
+	usefileinfo(false), useExternalContentViewer(false), storeExifData(false), commentDockPos_x(0), commentDockPos_y(0), commentWindowPos_x(0), commentWindowPos_y(0), commentDockSize_width(0), commentDockSize_height(0), contentWindowPos_x(0), contentWindowPos_y(0), contentWindowSize_width(0), contentWindowSize_height(0),
 	commentWindowSize_width(0), commentWindowSize_height(0) {
-	
+
 	/* The default values of config.
 	 * If you delete the config file (or prats of file)
 	 * the values will be set to these:
 	*/
-	
+
 	startpar   = false;
 	startfn    = "";
-	
+
 	ownfont    = false;
 	fsize      = 8;
 	historysize = 10;
@@ -114,7 +114,7 @@ CdCatConfig::CdCatConfig ( void ) :
 	storeThumb = true;
 	keep_search_result = false;
 	readavii   = true;
-	
+
 	find_cs    = false;
 	find_em    = true;
 	find_di    = true;
@@ -152,29 +152,29 @@ CdCatConfig::CdCatConfig ( void ) :
 	addHeight = 500;
 	thumbHeight = 150;
 	thumbWidth = 150;
-	
+
 	mainP1     = 200;
 	mainP2     = 270;
 	mainP3     = 170;
-	
+
 	windowSize.setWidth ( windowSize_width = 640 );
 	windowSize.setHeight ( windowSize_height = 480 );
 	windowPos.setX ( 5 );
 	windowPos.setY ( 5 );
-	
+
 	commentDockSize_dockarea = Qt::RightDockWidgetArea;
-	
+
 	comm_bg    = QColor ( 255, 225, 0 );
 	comm_stext = QColor ( 0, 0, 0 );
 	comm_vtext = QColor ( 10, 10, 255 );
 	comm_fr    = QColor ( 0, 0, 0 );
-	
+
 	linkf      = true;
-	
+
 #ifndef _WIN32
 	mounteject = false;
 #endif
-	
+
 #if defined(_WIN32) || defined(Q_WS_MAC) || defined(_OS2)
 	lang       = "eng";
 #endif
@@ -199,11 +199,11 @@ int CdCatConfig::startProgram ( DataBase **dbp, QWidget *mw ) {
 		loadablefile = autoloadfn;
 	if ( startpar )
 		loadablefile = startfn;
-	
+
 	if ( autoload || startpar ) {
 		if ( ( *dbp ) == NULL )
 			( *dbp ) = new DataBase();
-		
+
 		PWw *pww = new PWw ( mw );
 		( *dbp )->pww = pww;
 		progress ( pww );
@@ -245,9 +245,9 @@ int CdCatConfig::startProgram ( DataBase **dbp, QWidget *mw ) {
 
 int secv ( const char *s, int i ) {
 	int v1, v2, v3;
-	
+
 	sscanf ( s, "%d,%d,%d", &v1, &v2, &v3 );
-	
+
 	if ( i == 0 )
 		return v1;
 	if ( i == 1 )
@@ -262,7 +262,7 @@ int CdCatConfig::readConfig ( void ) {
 #if defined(_WIN32) || defined(_OS2)
 	QFile f ( CONFIGFILE );
 #else
-	
+
 	if ( getenv ( "HOME" ) == NULL )
 		return 1;
 	QString tmp;
@@ -271,25 +271,25 @@ int CdCatConfig::readConfig ( void ) {
 	tmp += QString ( CONFIGFILE );
 	QFile f ( tmp );
 #endif
-	
+
 	QString msg;
 	if ( f.open ( QIODevice::ReadOnly ) ) {   // file opened successfully
 		QTextStream t ( &f );     // use a text stream
-		
+
 		while ( !t.atEnd() ) {
 			QString line;
 			line = t.readLine();      // line of text excluding '\n'
 			msg += line;
 			msg += "\n";
-			
+
 			if ( !line.startsWith ( "#" ) && !line.isEmpty() && line.contains ( "=" ) ) {
 				int index = line.indexOf ( '=' );
 				QString var = ( line.left ( index ) ).simplified();
 				QString val = ( line.mid ( index + 1, line.length() - index ) ).simplified();
-				
+
 				//   QString info = "variable: "+var+", val: "+val;
 				//   QMessageBox::information(0,"found",info);
-				
+
 				if ( var == "font_size" ) {
 					fsize = val.toInt();
 					continue;
@@ -316,8 +316,8 @@ int CdCatConfig::readConfig ( void ) {
 					}
 					continue;
 				} // history
-				
-				
+
+
 				if ( var == "showTrayIcon" ) {
 					if ( val == "true" )
 						showTrayIcon = true;
@@ -346,7 +346,7 @@ int CdCatConfig::readConfig ( void ) {
 						showCommentDock = false;
 					continue;
 				}
-				
+
 				if ( var == "autoload" ) {
 					if ( val == "true" )
 						autoload = true;
@@ -354,7 +354,7 @@ int CdCatConfig::readConfig ( void ) {
 						autoload = false;
 					continue;
 				}
-				
+
 				if ( var == "autosave" ) {
 					if ( val == "true" )
 						autosave = true;
@@ -394,7 +394,7 @@ int CdCatConfig::readConfig ( void ) {
 					continue;
 				}
 #endif
-				
+
 #if defined(_WIN32) || defined(Q_WS_MAC) || defined(_OS2)
 				if ( var == "lang" ) {
 					lang = val;
@@ -488,7 +488,7 @@ int CdCatConfig::readConfig ( void ) {
 					mainP3 = val.toInt();
 					continue;
 				}
-				
+
 				// Read the options of find dialog
 				if ( var == "find_checkbox_casesens" ) {
 					if ( val == "true" )
@@ -543,7 +543,7 @@ int CdCatConfig::readConfig ( void ) {
 					lastFindCategory = val;
 					continue;
 				}
-				
+
 				if ( var == "find_checkbox_content" ) {
 					if ( val == "true" )
 						find_ct = true;
@@ -845,7 +845,7 @@ int CdCatConfig::readConfig ( void ) {
 						displayCurrentScannedFileInTray = false;
 					continue;
 				}
-				
+
 				if ( var == "find_in_archive" ) {
 					if ( val == "true" )
 						find_in_archive = true;
@@ -946,8 +946,8 @@ int CdCatConfig::readConfig ( void ) {
 						keep_search_result = false;
 					continue;
 				}
-				
-				
+
+
 				std::cerr << "Unknown key found: " << qPrintable(var) << std::endl;
 				error = 1;
 			} // no comment
@@ -976,7 +976,7 @@ int CdCatConfig::writeConfig ( void ) {
 	filepath += CONFIGFILE;
 	QFile f ( filepath );
 #endif
-	
+
 	if ( f.open ( QIODevice::WriteOnly ) ) {
 		QTextStream str ( &f ); // we will serialize the data into file f
 		str.setCodec(QTextCodec::codecForName("ISO-8859-1"));
@@ -988,18 +988,18 @@ int CdCatConfig::writeConfig ( void ) {
 		str << "#  Do not edit directly!" << endl;
 		str << "#  Version: " << VERSION << endl;
 		str << "# " << endl;
-		
+
 		if ( ownfont )
 			str << "ownfont=true"  << endl;
 		else
 			str << "ownfont=false" << endl;
-		
+
 		fsize_str.setNum ( fsize );
 		str << "font_size=" +  fsize_str << endl;
-		
+
 		historysize_str.setNum ( historysize );
 		str << "history_size=" +  historysize_str << endl;
-		
+
 		for ( QStringList::Iterator it = hlist.begin(); it != hlist.end(); ++it ) {
 			if ( ! ( *it ).isEmpty() ) {
 				history_str += *it;
@@ -1007,9 +1007,9 @@ int CdCatConfig::writeConfig ( void ) {
 				//QMessageBox::information(0,"new history element",*it);
 			}
 		}
-		
+
 		str << "history=" +  history_str << endl;
-		
+
 		if ( showTrayIcon )
 			str << "showTrayIcon=true"  << endl;
 		else
@@ -1030,42 +1030,42 @@ int CdCatConfig::writeConfig ( void ) {
 			str << "autoload=true"  << endl;
 		else
 			str << "autoload=false" << endl;
-		
+
 		if ( autoloadfn.isEmpty() )
 			str << "autoload_file=empty" << endl;
 		else
 			str << "autoload_file=" + autoloadfn << endl;
-		
+
 		if ( autosave )
 			str << "autosave=true" << endl;
 		else
 			str << "autosave=false" << endl;
-		
+
 		if ( nice )
 			str << "niceformat=true" << endl;
 		else
 			str << "niceformat=false" << endl;
 
 		str << "cdrompath=" + cdrompath << endl;
-		
+
 #ifndef _WIN32
-		
+
 		if ( mounteject )
 			str << "mounteject=true" << endl;
 		else
 			str << "mounteject=false" << endl;
 #endif
-		
+
 #if defined(_WIN32) || defined(Q_WS_MAC) || defined(_OS2)
 		str << "lang=" + lang << endl;
 #endif
 
 		str << "windowSize_height=" << windowSize.height() << endl;
 		str << "windowSize_width=" << windowSize.width() << endl;
-		
+
 		str << "windowPos_x=" << windowPos.x() << endl;
 		str << "windowPos_y=" << windowPos.y() << endl;
-		
+
 		str << "commentDockSize_width=" << commentDockSize_width << endl;
 		str << "commentDockSize_height=" << commentDockSize_height << endl;
 		str << "commentDockPos_x=" << commentDockPos_x << endl;
@@ -1075,214 +1075,214 @@ int CdCatConfig::writeConfig ( void ) {
 			str << "commentDockIsFloating=true" << endl;
 		else
 			str << "commentDockIsFloating=false" << endl;
-		
+
 		str << "contentWindowSize_height=" << contentWindowSize_height << endl;
 		str << "contentWindowSize_width=" << contentWindowSize_width << endl;
-		
+
 		str << "contentWindowPos_x=" << contentWindowPos_x << endl;
 		str << "contentWindowPos_y=" << contentWindowPos_y << endl;
-		
+
 		str << "commentWindowSize_height=" << commentWindowSize_height << endl;
 		str << "commentWindowSize_width=" << commentWindowSize_width << endl;
-		
+
 		str << "commentWindowPos_x=" << commentWindowPos_x << endl;
 		str << "commentWindowPos_y=" << commentWindowPos_y << endl;
-		
+
 		str << "dirview_size=" << mainP1 << endl;
 		str << "listview_size=" << mainP2 << endl;
 		str << "commentview_size=" << mainP3 << endl;
-		
+
 		/* Write the state of find dialog */
 		if ( find_cs )
 			str << "find_checkbox_casesens=true" << endl;
 		else
 			str << "find_checkbox_casesens=false" << endl;
-		
+
 		if ( find_em )
 			str << "find_checkbox_easymatch=true" << endl;
 		else
 			str << "find_checkbox_easymatch=false" << endl;
-		
+
 		if ( find_di )
 			str << "find_checkbox_directory=true" << endl;
 		else
 			str << "find_checkbox_directory=false" << endl;
-		
+
 		if ( find_fi )
 			str << "find_checkbox_file=true" << endl;
 		else
 			str << "find_checkbox_file=false" << endl;
-		
+
 		if ( find_co )
 			str << "find_checkbox_comment=true" << endl;
 		else
 			str << "find_checkbox_comment=false" << endl;
-		
+
 		if ( find_category )
 			str << "find_category=true" << endl;
 		else
 			str << "find_category=false" << endl;
-		
+
 		str << "lastFindCategory=" << lastFindCategory << endl;
-		
+
 		if ( find_ct )
 			str << "find_checkbox_content=true" << endl;
 		else
 			str << "find_checkbox_content=false" << endl;
-		
+
 		if ( find_mar )
 			str << "find_checkbox_mp3artist=true" << endl;
 		else
 			str << "find_checkbox_mp3artist=false" << endl;
-		
+
 		if ( find_mti )
 			str << "find_checkbox_mp3title=true" << endl;
 		else
 			str << "find_checkbox_mp3title=false" << endl;
-		
+
 		if ( find_mal )
 			str << "find_checkbox_mp3album=true" << endl;
 		else
 			str << "find_checkbox_mp3album=false" << endl;
-		
+
 		if ( find_mco )
 			str << "find_checkbox_mp3comment=true" << endl;
 		else
 			str << "find_checkbox_mp3comment=false" << endl;
-		
+
 		if ( find_date_start )
 			str << "find_checkbox_date_start=true" << endl;
 		else
 			str << "find_checkbox_date_start=false" << endl;
-		
+
 		if ( find_date_end )
 			str << "find_checkbox_date_end=true" << endl;
 		else
 			str << "find_checkbox_date_end=false" << endl;
-		
+
 		str << "find_date_start_val=" << find_date_start_val.toString() << endl;
 		str << "find_date_end_val=" << find_date_end_val.toString() << endl;
-		
+
 		if ( find_size_min )
 			str << "find_size_min=true" << endl;
 		else
 			str << "find_size_min=false" << endl;
-		
+
 		if ( find_size_max )
 			str << "find_size_max=true" << endl;
 		else
 			str << "find_size_max=false" << endl;
-		
+
 		str << "find_size_min_val=" << find_size_min_val << endl;
 		str << "find_size_max_val=" << find_size_max_val << endl;
 		str << "find_size_unit_min_val=" << find_size_unit_min_val << endl;
 		str << "find_size_unit_max_val=" << find_size_unit_max_val << endl;
-		
+
 		str << "findPos_x=" << findX << endl;
 		str << "findPos_y=" << findY << endl;
 		str << "findSize_width=" << findWidth << endl;
 		str << "findSize_height=" << findHeight << endl;
-		
+
 		str << "addPos_x=" << addX << endl;
 		str << "addPos_y=" << addY << endl;
 		str << "addSize_width=" << addWidth << endl;
 		str << "addSize_height=" << addHeight << endl;
-		
+
 		if ( readavii )
 			str << "read_avi_techinfo=true" << endl;
 		else
 			str << "read_avi_techinfo=false" << endl;
-		
+
 		if ( readtag )
 			str << "read_mp3tag=true" << endl;
 		else
 			str << "read_mp3tag=false" << endl;
-		
+
 		if ( v1_over_v2 )
 			str << "mp3tag_default_v1=true" << endl;
 		else
 			str << "mp3tag_default_v1=false" << endl;
-		
+
 		if ( readinfo )
 			str << "read_mp3techinfo=true" << endl;
 		else
 			str << "read_mp3techinfo=false" << endl;
-		
+
 		if ( readcontent )
 			str << "read_content=true" << endl;
 		else
 			str << "read_content=false" << endl;
-		
+
 		if ( useExternalContentViewer )
 			str << "use_ext_content_viewer=true" << endl;
 		else
 			str << "use_ext_content_viewer=false" << endl;
-		
+
 		str << "ext_content_viewer_path=" << ExternalContentViewerPath << endl;
 		str << "ContentViewerFont=" << ContentViewerFont << endl;
-		
+
 		if ( usefileinfo )
 			str << "use_fileinfo=true" << endl;
 		else
 			str << "use_fileinfo=false" << endl;
-		
+
 		str << "read_content_files=" << readcfiles << endl;
 		str << "read_content_limit=" << readclimit << endl;
-		
+
 		str << "comment_bg_color=" << comm_bg.red() << "," << comm_bg.green() << "," << comm_bg.blue() << endl;
 		str << "comment_fr_color=" << comm_fr.red() << "," << comm_fr.green() << "," << comm_fr.blue() << endl;
 		str << "comment_ts_color=" << comm_stext.red() << "," << comm_stext.green() << "," << comm_stext.blue() << endl;
 		str << "comment_td_color=" << comm_vtext.red() << "," << comm_vtext.green() << "," << comm_vtext.blue() << endl;
-		
+
 		if ( linkf )
 			str << "catalog_link_is_first=true" << endl;
 		else
 			str << "catalog_link_is_first=false" << endl;
-		
+
 		if ( debug_info_enabled )
 			str << "debug_info_enabled=true" << endl;
 		else
 			str << "debug_info_enabled=false" << endl;
-		
+
 		if ( saveAlwaysCatalogInUtf8 )
 			str << "saveAlwaysCatalogInUtf8=true" << endl;
 		else
 			str << "saveAlwaysCatalogInUtf8=false" << endl;
-		
+
 		if ( showProgressedFileInStatus )
 			str << "showProgressedFileInStatus=true" << endl;
 		else
 			str << "showProgressedFileInStatus=false" << endl;
-		
+
 		if ( find_unsharp_search )
 			str << "find_unsharp_search=true" << endl;
 		else
 			str << "find_unsharp_search=false" << endl;
-		
+
 		str << "last_dir=" + lastDir << endl;
 		str << "lastMediaType=" + QString().setNum ( lastMediaType ) << endl;
 		str << "lastSearchPattern=" + lastSearchPattern << endl;
-		
+
 		if ( doScanArchive )
 			str << "do_scan_archive=true" << endl;
 		else
 			str << "do_scan_archive=false" << endl;
-		
+
 		if(showProgressedArchiveFileInStatus)
 			str << "showProgressedArchiveFileInStatus=true" << endl;
 		else
 			str << "showProgressedArchiveFileInStatus=false" << endl;
-		
+
 		if(displayCurrentScannedFileInTray)
 			str << "displayCurrentScannedFileInTray=true" << endl;
 		else
 			str << "displayCurrentScannedFileInTray=false" << endl;
-		
+
 		if ( find_in_archive )
 			str << "find_in_archive=true" << endl;
 		else
 			str << "find_in_archive=false" << endl;
-		
+
 		if ( show_archive_file_perms )
 			str << "show_archive_file_perms=true" << endl;
 		else
@@ -1311,24 +1311,24 @@ int CdCatConfig::writeConfig ( void ) {
 			str << "store_thumb=true" << endl;
 		else
 			str << "store_thumb=false" << endl;
-		
+
 		str << "thumb_width=" << thumbWidth << endl;
 		str << "thumb_height=" << thumbHeight << endl;
-		
+
 		str << "thumb_exts=" << ThumbExtsList.join(";") << endl;
-		
+
 		if ( storeExifData )
 			str << "store_exif_data=true" << endl;
 		else
 			str << "store_exif_data=false" << endl;
-		
+
 		if (doExcludeFiles )
 			str << "do_exclude_files=true" << endl;
 		else
 			str << "do_exclude_files=false" << endl;
-		
+
 		str << "exclude_file_list=" << ExcludeFileList.join(";") << endl;
-		
+
 		if(useWildcardInsteadRegexForExclude)
 			str << "useWildcardInsteadRegexForExclude=true" << endl;
 		else
@@ -1337,7 +1337,7 @@ int CdCatConfig::writeConfig ( void ) {
 			str << "keep_search_result=true" << endl;
 		else
 			str << "keep_search_result=false" << endl;
-		
+
 		f.close();
 		return 0;
 	}
@@ -1359,72 +1359,72 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	setWindowIcon ( *get_t_config_icon() );
 	setModal(modal);
 	p = parent;
-	
+
 	setSizeGripEnabled ( TRUE );
 	ConfigDialogBaseLayout = new QGridLayout ( this );
-	
+
 	layout1 = new QHBoxLayout ( this );
 	cbAutoload = new QCheckBox ( this );
 	filename = new QLineEdit ( this );
 	searchButton = new QPushButton ( this );
 	searchButton->setText ( "..." );
 	searchButton->setFlat ( FALSE );
-	
+
 	layout1->addWidget ( cbAutoload );
-	
+
 	layout1->addWidget ( filename );
 	layout1->addWidget ( searchButton );
 	ConfigDialogBaseLayout->addLayout ( layout1, 0, 0 );
-	
+
 	line1 = new QFrame ( this );
 	line1->setFrameShape ( QFrame::HLine );
 	line1->setFrameShadow ( QFrame::Sunken );
 	line1->setFrameShape ( QFrame::HLine );
 	ConfigDialogBaseLayout->addWidget ( line1, 2, 0 );
-	
+
 	cbOwnFont = new QCheckBox ( tr("Use own font size"), this );
-	
-	
+
+
 	layout4 = new QHBoxLayout ( this );
 	spinFontSize = new QSpinBox ( this );
 	spinFontSize->setMaximumWidth ( 80 );
 	QSpacerItem* fontspacer = new QSpacerItem ( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
-	
+
 	lab = new QLabel ( this );
 	layout4->addWidget ( cbOwnFont, 0 );
 	layout1->addItem(fontspacer);
 	layout4->addWidget ( spinFontSize );
 	layout4->addWidget ( lab );
 	ConfigDialogBaseLayout->addLayout ( layout4, 4, 0 );
-	
+
 	line2 = new QFrame ( this );
 	line2->setFrameShape ( QFrame::HLine );
 	line2->setFrameShadow ( QFrame::Sunken );
 	line2->setFrameShape ( QFrame::HLine );
 	ConfigDialogBaseLayout->addWidget ( line2, 5, 0 );
-	
+
 	cbAutosave = new QCheckBox ( this );
 	ConfigDialogBaseLayout->addWidget ( cbAutosave, 6, 0 );
-	
+
 	line8 = new QFrame ( this );
 	line8->setFrameShape ( QFrame::HLine );
 	line8->setFrameShadow ( QFrame::Sunken );
 	line8->setFrameShape ( QFrame::HLine );
 	ConfigDialogBaseLayout->addWidget ( line8, 7, 0 );
-	
+
 	layoutSave = new QHBoxLayout ( this );
 	cbNice = new QCheckBox ( this );
 	cbSaveCatalogAlwaysInUtf8 = new QCheckBox ( this );
 	layoutSave->addWidget ( cbNice );
 	layoutSave->addWidget ( cbSaveCatalogAlwaysInUtf8 );
 	ConfigDialogBaseLayout->addLayout ( layoutSave, 8, 0 );
-	
+
 	line3 = new QFrame ( this );
 	line3->setFrameShape ( QFrame::HLine );
 	line3->setFrameShadow ( QFrame::Sunken );
 	line3->setFrameShape ( QFrame::HLine );
 	ConfigDialogBaseLayout->addWidget ( line3, 9, 0 );
-	
+
 	layout5 = new QHBoxLayout ( this );
 	cdrompath_lineedit = new QLineEdit ( this );
 	layout5->addWidget ( cdrompath_lineedit );
@@ -1435,12 +1435,12 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	searchButton2->setFlat ( FALSE );
 	layout5->addWidget ( searchButton2 );
 	ConfigDialogBaseLayout->addLayout ( layout5, 10, 0 );
-	
+
 #ifndef _WIN32
 	cbMoEj = new QCheckBox ( this );
 	ConfigDialogBaseLayout->addWidget ( cbMoEj, 12, 0 );
 #endif
-	
+
 #if defined(_WIN32) || defined(Q_WS_MAC) || defined(_OS2)
 	layout9   = new QHBoxLayout ( this );
 	cbLang    = new QComboBox ( this );
@@ -1450,7 +1450,7 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	layout9->insertWidget ( 2, langLabel );
 	layout9->insertSpacing ( 3, 5 );
 	ConfigDialogBaseLayout->addLayout ( layout9, 13, 0 );
-	
+
 	/*scanning existing languages:*/
 	QDir d ( "./lang" );
 	cbLang->insertItem ( 0, QString("eng") );
@@ -1474,13 +1474,13 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 		cbLang->setEnabled ( false );
 	}
 #endif
-	
+
 	line5 = new QFrame ( this );
 	line5->setFrameShape ( QFrame::HLine );
 	line5->setFrameShadow ( QFrame::Sunken );
 	line5->setFrameShape ( QFrame::HLine );
 	ConfigDialogBaseLayout->addWidget ( line5, 14, 0 );
-	
+
 	layout6 = new QHBoxLayout ( this );
 	spinHistorySize = new QSpinBox ( this );
 	spinHistorySize->setMaximumWidth ( 80 );
@@ -1488,7 +1488,7 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	labHistorySize = new QLabel ( this );
 	layout6->addWidget ( labHistorySize );
 	ConfigDialogBaseLayout->addLayout ( layout6, 15, 0 );
-	
+
 	layoutDock = new QHBoxLayout ( this );
 	cbShowTrayIcon = new QCheckBox(tr( "show systray icon" ), this );
 	cbShowCurrentScannedFileInTrayIcon = new QCheckBox(tr( "display current scanned file in tray" ), this );
@@ -1496,57 +1496,57 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	//layoutDock->addItem(systrayspacer1);
 	layoutDock->addWidget(cbShowTrayIcon);
 	layoutDock->addWidget(cbShowCurrentScannedFileInTrayIcon);
-	
-	
+
+
 	ConfigDialogBaseLayout->addLayout ( layoutDock, 16, 0 );
-	
-	
+
+
 	line6 = new QFrame ( this );
 	line6->setFrameShape ( QFrame::HLine );
 	line6->setFrameShadow ( QFrame::Sunken );
 	line6->setFrameShape ( QFrame::HLine );
 	ConfigDialogBaseLayout->addWidget ( line6, 17, 0 );
-	
+
 	riButton = new QPushButton ( this );
 	ConfigDialogBaseLayout->addWidget ( riButton, 18, 0 );
-	
+
 	line7 = new QFrame ( this );
 	line7->setFrameShape ( QFrame::HLine );
 	line7->setFrameShadow ( QFrame::Sunken );
 	line7->setFrameShape ( QFrame::HLine );
 	ConfigDialogBaseLayout->addWidget ( line7, 19, 0 );
-	
+
 	layoutStatus = new QHBoxLayout (this );
 	cbEnableDebugInfo = new QCheckBox ( this );
 	cbShowProgressedFileInStatus = new QCheckBox ( this );
 	layoutStatus->addWidget ( cbEnableDebugInfo );
 	layoutStatus->addWidget ( cbShowProgressedFileInStatus );
 	ConfigDialogBaseLayout->addLayout ( layoutStatus, 20, 0 );
-	
+
 	layout7 = new QHBoxLayout ( this );
 	QSpacerItem* spacer = new QSpacerItem ( 110, 21, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	layout7->addItem ( spacer );
-	
+
 	okButton = new QPushButton ( this );
 	okButton->setMinimumSize ( QSize ( 100, 0 ) );
 	okButton->setAutoDefault ( TRUE );
 	okButton->setDefault ( TRUE );
 	layout7->addWidget ( okButton );
-	
+
 	cancelButton = new QPushButton ( this );
 	cancelButton->setMinimumSize ( QSize ( 100, 0 ) );
 	cancelButton->setAutoDefault ( TRUE );
 	layout7->addWidget ( cancelButton );
 	QSpacerItem* spacer_2 = new QSpacerItem ( 130, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	layout7->addItem ( spacer_2 );
-	
+
 	ConfigDialogBaseLayout->addLayout ( layout7, 22, 0 );
-	
+
 	connect ( searchButton2, SIGNAL ( clicked() ), this, SLOT ( cdrombutton() ) );
-	
+
 	languageChange();
 	resize ( QSize ( 506, 309 ).expandedTo ( minimumSizeHint() ) );
-	
+
 	// signals and slots connections
 	connect ( cancelButton, SIGNAL ( clicked() ), this, SLOT ( close() ) );
 	connect ( okButton, SIGNAL ( clicked() ), this, SLOT ( okExit() ) );
@@ -1554,7 +1554,7 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	connect ( cbOwnFont, SIGNAL ( clicked() ), this, SLOT ( ownFontToggled() ) );
 	connect ( riButton, SIGNAL ( clicked() ), this, SLOT ( runri() ) );
 	connect ( cbShowTrayIcon, SIGNAL ( clicked() ), this, SLOT ( showDockToggled()) );
-	
+
 	if ( p->cconfig->ownfont ) {
 		spinFontSize->setEnabled ( true );
 		lab->setEnabled ( true );
@@ -1563,12 +1563,12 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 		spinFontSize->setEnabled ( false );
 		lab->setEnabled ( false );
 	}
-	
+
 	if ( p->cconfig->ownfont )
 		cbOwnFont->setChecked ( true );
 	else
 		cbOwnFont->setChecked ( false );
-	
+
 	cbNice->setChecked ( p->cconfig->nice );
 	cbShowTrayIcon->setChecked( p->cconfig->showTrayIcon );
 	cbShowCurrentScannedFileInTrayIcon->setChecked( p->cconfig->displayCurrentScannedFileInTray );
@@ -1578,12 +1578,12 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 		filename->setText ( p->cconfig->autoloadfn );
 	spinFontSize->setValue ( p->cconfig->fsize );
 	spinHistorySize->setValue ( p->cconfig->historysize );
-	
+
 	cdrompath_lineedit->setText ( p->cconfig->cdrompath );
 #ifndef _WIN32
 	cbMoEj ->setChecked ( p->cconfig->mounteject );
 #endif
-	
+
 #if defined(_WIN32) || defined(Q_WS_MAC) || defined(_OS2)
 	cbLang->setCurrentIndex ( 0 );
 	int index = cbLang->findText( p->cconfig->lang );
@@ -1591,7 +1591,7 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 		cbLang->setCurrentIndex ( index );
 	}
 #endif
-	
+
 	cbEnableDebugInfo->setChecked ( p->cconfig->debug_info_enabled );
 	cbSaveCatalogAlwaysInUtf8->setChecked ( p->cconfig->saveAlwaysCatalogInUtf8 );
 	cbShowProgressedFileInStatus->setChecked ( p->cconfig->showProgressedFileInStatus );
@@ -1621,15 +1621,15 @@ void ConfigDialog::languageChange() {
 	labHistorySize->setText ( tr ( "Number of history entries" ) );
 	cdrom_lab->setText ( tr ( "Path to cdrom device / mount dir" ) );
 	cdrompath_lineedit->setToolTip( tr("This is the path to the cdrom/dvd device or the path where its mounted"));
-	
+
 #ifndef _WIN32
 	cbMoEj->setText ( tr ( "Scanning: mount cdrom at start / eject when finish" ) );
 #endif
-	
+
 #if defined(_WIN32) || defined(Q_WS_MAC) || defined(_OS2)
 	langLabel->setText ( tr ( "The language of CdCat interface" ) );
 #endif
-	
+
 	cbEnableDebugInfo->setText ( tr ( "Display debug info on console" ) );
 	cbSaveCatalogAlwaysInUtf8->setText ( tr ( "Save catalogs always as UTF8" ) );
 	cbShowProgressedFileInStatus->setText ( tr ( "Show progressed file at scanning in status label" ) );
@@ -1643,7 +1643,7 @@ void ConfigDialog::ffdbutton() {
 
 void ConfigDialog::cdrombutton() {
 	QString s = QFileDialog::getExistingDirectory ( 0, tr ( "Choose path to cdrom!" ), p->cconfig->lastDir );
-	
+
 	if ( !s.isEmpty() )
 		cdrompath_lineedit->setText ( s );
 }
@@ -1661,49 +1661,49 @@ void ConfigDialog::okExit() {
 #ifndef _WIN32
 	p->cconfig->mounteject  = cbMoEj->isChecked();
 #endif
-	
+
 #if defined(_WIN32) || defined(Q_WS_MAC) || defined(_OS2)
 	QString langfile ( "./lang/cdcat_" );
 	langfile += p->cconfig->lang;
 	langfile += ".qm";
-	
-	
+
+
 	p->app->removeTranslator ( translator );
 	delete(translator);
-	
+
 	translator = new QTranslator ( 0 );
 	translator->load ( langfile, "." );
-	
-	
+
+
 	//read the value
 	p->cconfig->lang        = cbLang->currentText();
-	
+
 	translator = 0;
 	langfile = "./lang/cdcat_";
 	langfile += p->cconfig->lang;
 	langfile += ".qm";
-	
+
 	translator = new QTranslator ( 0 );
 	translator->load ( langfile, "." );
 	p->app->installTranslator ( translator );
 #endif
-	
+
 	p->cconfig->debug_info_enabled = cbEnableDebugInfo->isChecked();
 	DEBUG_INFO_ENABLED = init_debug_info();
 	*DEBUG_INFO_ENABLED = cbEnableDebugInfo->isChecked();
 	p->cconfig->saveAlwaysCatalogInUtf8 = cbSaveCatalogAlwaysInUtf8->isChecked();
 	p->cconfig->showProgressedFileInStatus = cbShowProgressedFileInStatus->isChecked();
 	p->cconfig->displayCurrentScannedFileInTray = cbShowCurrentScannedFileInTrayIcon->isChecked();
-	
+
 	p->cconfig->writeConfig();
-	
+
 	QFont font;
 	font.setPointSize ( p->cconfig->fsize );
 	if ( p->cconfig->ownfont )
 		p->app->setFont ( font );
 	else
 		p->app->setFont ( p->cconfig->defaultfont );
-	
+
 	close();
 }
 
@@ -1734,4 +1734,4 @@ void ConfigDialog::runri() {
 	delete sr;
 }
 
-// kate: indent-mode cstyle; replace-tabs off; tab-width 8; 
+// kate: indent-mode cstyle; replace-tabs off; tab-width 8;

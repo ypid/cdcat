@@ -182,15 +182,15 @@ addDialog::addDialog ( GuiSlave *c, QWidget* parent, const char* name, bool moda
 	connect ( dirView, SIGNAL ( folderSelected ( const QString & ) ), this, SLOT ( setMediaName ( const QString & ) ) );
 	connect ( dirView, SIGNAL ( setExpandedInProgress(bool)), this, SLOT ( setBusyState (bool ) ) );
 	connect ( cbType, SIGNAL ( activated ( int ) ), this, SLOT ( cbTypeToggeled ( int ) ) );
-	
-	
-	
+
+
+
 #if !defined(_WIN32) && !defined(_OS2)
 	connect ( cbAutoDetectAtMount, SIGNAL ( clicked() ), this, SLOT ( autoDetectAtMountToggled() ) );
 	cbAutoDetectAtMount->setChecked ( true );
 #endif
-	
-	
+
+
 	for ( i = 1; caller->isIdentical ( i ); i++ )
 		{ };
 	sbNumber->setValue ( i );
@@ -285,7 +285,7 @@ int addDialog::setMediaName ( const QString & ds ) {
 		//std::cerr << "setMediaName(): mediatype is cd/dvd"<< std::endl;
 		if ( cbType->currentIndex() == CD &&  cbType->currentIndex() == DVD ) {
 #if defined(_WIN32) || defined(_OS2)
-			
+
 			if ( !ds2.replace ( "/", "\\" ).isEmpty() ) {
 				tm = getCDName ( ds2.replace ( "/", "\\" ).toUtf8().constData() );
 			}
@@ -332,13 +332,13 @@ int addDialog::setMediaName ( const QString & ds ) {
 		tm = dirView->sDir.split ( '/' ).at ( dirView->sDir.split ( '/' ).size() - 2 );
 #endif
 		leName->setText ( tm );
-		
+
 		if (dirView->sDir == "/" && leName->text().isEmpty()) {
 			leName->setText("root");
 			dName = "root";
 		}
 	}
-	
+
 	bool ok=false;
 	QString medianame_tmp = tm;
 	medianame_tmp+=".1";
@@ -353,11 +353,11 @@ int addDialog::setMediaName ( const QString & ds ) {
 			break;
 		}
 	}
-	
-	
+
+
 	//std::cerr << "setMediaName: sDir: " << qPrintable(dirView->sDir)<< std::endl;
 	caller->mainw->cconfig->lastDir = dirView->sDir;
-	
+
 	QApplication::restoreOverrideCursor();
 	return 0;
 }
@@ -372,7 +372,7 @@ int addDialog::bOk ( void ) {
 		QMessageBox::warning ( ( QWidget * ) this, tr ( "Error:" ), tr ( "The media name can't begin with the \"@\" character!" ) );
 		return 0;
 	}
-	
+
 	if ( caller->isIdentical ( leName->text() ) ) {
 		//QMessageBox::warning ( ( QWidget * ) this, tr ( "Error:" ), tr ( "The Media Name must be unique! Please change it!" ) );
 		bool ok=false;
@@ -407,7 +407,7 @@ int addDialog::bOk ( void ) {
 	dComm  = teComm->toPlainText();
 	dCategory = leCategory->text();
 	dDir   = dirView->sDir;
-	
+
 	std::cout << "dDir: " << qPrintable(dDir) << std::endl;
 	caller->mainw->cconfig->addX      = x();
 	caller->mainw->cconfig->addY      = y();
@@ -464,7 +464,7 @@ PWw::PWw ( QWidget *parent, QApplication *qapp, bool showProgress, long long int
 #else
 	                /*, Qt::FramelessWindowHint*/
 #endif
-	               
+
 ) {
 	int i=0;
 	QFont ownf;
@@ -486,17 +486,17 @@ PWw::PWw ( QWidget *parent, QApplication *qapp, bool showProgress, long long int
 		this->progresstext = progresstext;
 	else
 		this->progresstext = tr ( "Please Wait..." );
-	
+
 	baseheight = 120;
 	if ( showProgress )
 		baseheight += 40;
-	
+
 	if ( showCancel )
 		baseheight += 50;
-	
+
 	mywidth = 160;
 	myheight = baseheight;
-	
+
 	/* Calculate the necesary font size*/
 	ownf = font();
 
@@ -553,19 +553,19 @@ void PWw::setProgressText ( QString progresstext ) {
 	int i;
 	QFont ownf;
 	this->progresstext = progresstext;
-	
+
 	/* Calculate the necesary font size*/
 	ownf = font();
 	i = 10;
-	
+
 	ownf.setPointSize ( i );
 	QFontMetrics fm ( ownf );
-	
+
  	mywidth = ( fm.width ( this->progresstext ) ) + 10;
 	begintext = 5;
-	
+
 	setFont ( ownf );
-	
+
 	if ( width() != mywidth ) {
 		hide();
 		setMinimumSize ( mywidth, myheight );
@@ -579,7 +579,7 @@ void PWw::setCancel ( bool showCancel ) {
 	bool cancel_was_set_before=false;
 	if(this->showCancel)
 		cancel_was_set_before = true;
-	
+
 	this->showCancel = showCancel;
 	setProgressText ( this->progresstext );
 	if(showCancel) {
@@ -602,7 +602,7 @@ void PWw::setCancel ( bool showCancel ) {
 }
 
 void PWw::step ( long long int progress_step ) {
-	
+
 	if ( appl != NULL ) {
 		if ( appl->hasPendingEvents() ) {
 			appl->processEvents();
@@ -611,14 +611,14 @@ void PWw::step ( long long int progress_step ) {
 	else {
 		return;
 	}
-	
+
 	QTime tt = QTime::currentTime();
-	
+
 	if ( t.msecsTo ( tt ) < refreshTime )
 		return;
-	
+
 	t = tt;
-	
+
 	if ( showProgress )
 		this->progress_step = progress_step;
 
@@ -633,7 +633,7 @@ void PWw::paintEvent ( QPaintEvent * ) {
 	QPainter p ( this );
 	p.setClipping ( true );
 	p.fillRect(QRect(0, 0, width(), height()), palette().background());
-	
+
 	int borderless_width = mywidth - 4;
 #if (QT_VERSION >= QT_VERSION_CHECK(4, 6, 0)) // needs Qt 4.6.0 or better
 	p.beginNativePainting();
@@ -644,7 +644,7 @@ void PWw::paintEvent ( QPaintEvent * ) {
 	QPixmap pm = anim_list.at ( s );
 	p.drawPixmap ( ( mywidth / 2 ) - ( pm.width() / 2 ), 25, pm );
 	int buttom_offset = fontheight + pm.height() + 25;
-	
+
 	if ( showProgress ) {
 		p.setPen ( QPen ( QColor().black() ) );
 		p.drawRect ( 1, buttom_offset - 1, mywidth - 4, 15 );
@@ -666,9 +666,9 @@ void PWw::paintEvent ( QPaintEvent * ) {
 		cancelButton->move(10, buttom_offset+14 + 2);
 		cancelButton->resize(width()-20, cancelButton->height());
 	}
-	
-	
-	
+
+
+
 
 
 #if (QT_VERSION >= QT_VERSION_CHECK(4, 6, 0)) // needs Qt 4.6.0 or better
@@ -710,7 +710,7 @@ void progress ( PWw *p, long long int progress_step ) {
 
 AddLnk::AddLnk ( GuiSlave *c, QWidget *parent )
 	: QDialog ( parent) {
-		
+
 	setModal(true);
 
 	caller = c;
@@ -789,4 +789,4 @@ int AddLnk::sselect ( void ) {
 	return 0;
 }
 
-// kate: indent-mode cstyle; replace-tabs off; tab-width 8; 
+// kate: indent-mode cstyle; replace-tabs off; tab-width 8;

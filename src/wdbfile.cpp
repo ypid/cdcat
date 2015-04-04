@@ -179,7 +179,7 @@ FileWriter::FileWriter ( gzFile ff, bool nicefp, QString encoding ) {
 	nicef = nicefp;
 	level = 0;
 	f = ff;
-	
+
 #ifdef CATALOG_ENCRYPTION
 	unencryptedBuffer = "";
 	isEncryptedCatalog = false;
@@ -188,7 +188,7 @@ FileWriter::FileWriter ( gzFile ff, bool nicefp, QString encoding ) {
 	spgtable = ( char ** ) malloc ( 50 * sizeof ( char * ) );
 	for ( i = 0; i < 50; i++ )
 		spgtable[i] = strdup ( QString().fill ( ' ', i ).toUtf8().constData() );
-	
+
 }
 
 FileWriter::~FileWriter() {
@@ -199,7 +199,7 @@ FileWriter::~FileWriter() {
 }
 
 void FileWriter::real_write ( QString msg ) {
-	
+
 #ifdef CATALOG_ENCRYPTION
 	if(!isEncryptedCatalog) {
 		gzprintf (f, msg.toLocal8Bit().constData());
@@ -277,7 +277,7 @@ void FileWriter::categoryWriter ( QString &c ) {
 	real_write(msg);
 	msg.sprintf("%s</category>\n", spg ( level ) );
 	real_write(msg);
-	
+
 	level--;
 }
 
@@ -287,7 +287,7 @@ void FileWriter::archivecontentWriter ( QList<ArchiveFile>& archivecontent ) {
 		return;
 	level++;
 	QString msg;
-	
+
 	msg.sprintf("%s<archivecontent>", spg ( level ) );
 	real_write(msg);
 	QString c;
@@ -377,7 +377,7 @@ int  FileWriter::writeHeader ( void ) {
 	real_write(msg);
 	msg.sprintf("\n     Program-Version: %s, Database-Version: %s  -->\n\n", VERSION, DVERS );
 	real_write(msg);
-	
+
 	return 0;
 }
 
@@ -392,7 +392,7 @@ int  FileWriter::writeCatalog ( Node *source ) {
 
 	progress ( pww );
 	QString msg;
-	
+
 	msg.sprintf("<catalog name=\"%s\" owner=\"%s\" time=\"%s\" sortedBy=\"%s\">\n",
 		c1.toUtf8().data(), c2.toUtf8().data(), c3.toUtf8().data(), QString().setNum ( c4 ).toUtf8().data() );
 	real_write(msg);
@@ -407,17 +407,17 @@ int  FileWriter::writeCatalog ( Node *source ) {
 	level--;
 	msg.sprintf("</catalog>\n" );
 	real_write(msg);
-	
+
 	if ( source->next  != NULL )
 		writeDown ( source->next );
-	
+
 #ifdef CATALOG_ENCRYPTION
 	if(isEncryptedCatalog) {
 		DEBUG_INFO_ENABLED = init_debug_info();
 // 		if ( *DEBUG_INFO_ENABLED )
 // 			std::cerr << "unencryptedBuffer:\n=====\n" << qPrintable(unencryptedBuffer)<< "\n====\n" << endl;
 		gzwrite(f, enc_hcf_header, strlen(enc_hcf_header));
-		
+
 		std::string inbuff_str(unencryptedBuffer.toLocal8Bit().constData());
 		std::string outbuff_str;
 		int encrypt_ret = encrypt ( inbuff_str, outbuff_str);
@@ -429,7 +429,7 @@ int  FileWriter::writeCatalog ( Node *source ) {
 				printf ("encrypt successful\n");
 			gzwrite(f, outbuff_str.c_str(), outbuff_str.size());
 		}
-		
+
 		unencryptedBuffer.clear();
 	}
 #endif
@@ -630,7 +630,7 @@ int  FileWriter::writeThumb ( Node *source ) {
 		msg = QString(encodeHex[ c & 0x0F     ]);
 		real_write(msg);
 	}
-	
+
 	msg = "]]>";
 	real_write(msg);
 	msg = "</thumb>\n";
@@ -906,7 +906,7 @@ double FileReader::getDouble2 ( const QXmlAttributes &atts, QString what, QStrin
 			return atts.value ( what ).toDouble();
 		}
 	}
-	
+
 	errormsg = QString ( "%1,I can't find \"%2\" attribute" ).arg ( err ).arg ( what );
 	cerr << "ERROR: " << qPrintable ( errormsg ) << endl;
 	error_found  = 1;
@@ -980,14 +980,14 @@ int FileReader::readFrom ( Node *source, bool skipDuplicatesOnInsert, bool only_
 
 	if ( *DEBUG_INFO_ENABLED )
 		std::cerr << "read done: " << len << " of " << allocated_buffer_len << " bytes" << endl;
-	
+
 	linecount += QString ( dataBuffer ).count ( '\n' );
 	if ( *DEBUG_INFO_ENABLED )
 		cerr << "linecount: " << linecount << endl;
-	
+
 	bool isEncryptedCatalog = false;
-	
-	
+
+
 	QByteArray databufferByteArray = "";
 	if ( len > 20 ) {
 		char headline[20];
@@ -1014,7 +1014,7 @@ int FileReader::readFrom ( Node *source, bool skipDuplicatesOnInsert, bool only_
 				errormsg = QObject::tr("cant set password");
 				return 1;
 			}
-			
+
 			std::string outbuff_str;
 			std::string inbuff_str;
 			char *inbuff2_ptr = NULL;
@@ -1026,11 +1026,11 @@ int FileReader::readFrom ( Node *source, bool skipDuplicatesOnInsert, bool only_
 			inbuff_str.resize(len-strlen(enc_hcf_header));
 			free(dataBuffer);
 			dataBuffer = NULL;
-			
+
 			pww->setProgressText ( DataBase::tr ( "decrypting file, please wait..." ) );
-			
+
 			int decrypt_ret = decrypt ( inbuff_str, outbuff_str);
-			
+
 			if ( decrypt_ret == 0 ) {
 				if ( *DEBUG_INFO_ENABLED )
 					std::cerr << "decrypt failed, cancelled" << std::endl;
@@ -1039,7 +1039,7 @@ int FileReader::readFrom ( Node *source, bool skipDuplicatesOnInsert, bool only_
 			} else {
 				if ( *DEBUG_INFO_ENABLED )
 					std::cerr << "decrypt successful" << std::endl;
-				
+
 				databufferByteArray.append(outbuff_str.c_str());
 // 				std::cerr << "databufferByteArray " << databufferByteArray.data() << std::endl;
 			}
@@ -1066,7 +1066,7 @@ int FileReader::readFrom ( Node *source, bool skipDuplicatesOnInsert, bool only_
 		if ( *DEBUG_INFO_ENABLED )
 			std::cerr << "detected encoding: " << XML_ENCODING.toAscii().constData() << endl;
 	}
-	
+
 	CdCatXmlHandler *handler = new CdCatXmlHandler ( this, only_name );
 	pww->steps = linecount;
 
@@ -1100,7 +1100,7 @@ int FileReader::readFrom ( Node *source, bool skipDuplicatesOnInsert, bool only_
 		//	errormsg = DataBase::tr ( "Parse error" ) + "\n";
 		//}
 	} else {
-		( ( DBCatalog * ) ( (sp )->data ) )->isEncryptedCatalog = isEncryptedCatalog; 
+		( ( DBCatalog * ) ( (sp )->data ) )->isEncryptedCatalog = isEncryptedCatalog;
 		if ( *DEBUG_INFO_ENABLED )
 			std::cerr << "parsing was successful" << endl;
 	}
@@ -1112,7 +1112,7 @@ int FileReader::readFrom ( Node *source, bool skipDuplicatesOnInsert, bool only_
 
 	if ( *DEBUG_INFO_ENABLED )
 		std::cerr << "End Cycle" << endl;
-	
+
 	if (!isEncryptedCatalog)
 		free(dataBuffer);
 	dataBuffer = NULL;
@@ -1314,7 +1314,7 @@ bool CdCatXmlHandler::startElement ( const QString &namespaceURI, const QString 
 					int i, newnum, ser = 0;
 					Node *ch = tt->parent->child;
 					QString newname;
-					
+
 					newname = r->getStr2 ( attr, QString("name"), QString("Error while parsing \"media\" node") );
 					if ( r->error_found ) {
 						cerr << qPrintable ( r->errormsg ) << " el: " << qPrintable ( el ) << endl;
@@ -2127,4 +2127,4 @@ int encrypt ( std::string &decrypted_data, std::string &encrypted_data ) {
 #endif
 
 
-// kate: indent-mode cstyle; indent-width 8; replace-tabs off; tab-width 8; 
+// kate: indent-mode cstyle; indent-width 8; replace-tabs off; tab-width 8;

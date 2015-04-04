@@ -1071,11 +1071,11 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
         <translation>Datenbankdatei einfügen...</translation>
     </message>
     <message>
-        <source>The size of &quot;%1&quot; : 
- %2 
+        <source>The size of &quot;%1&quot; :
+ %2
  %3 file /%4 directory</source>
-        <translation>Die Grösse von &quot;%1&quot;: 
-%2 
+        <translation>Die Grösse von &quot;%1&quot;:
+%2
 %3 Datei(en) / %4 Verzeichnis(se)</translation>
     </message>
     <message>
@@ -1161,7 +1161,7 @@ Datenbank kann unvollständig sein</translation>
         <translation>Es ist kein Medium in der mittleren Auswahlbox ausgewählt!</translation>
     </message>
     <message>
-        <source>An error occured while scanning, the rescan operation was cancelled: 
+        <source>An error occured while scanning, the rescan operation was cancelled:
 %1</source>
         <translation>Es trat ein Fehler während des Durchsuchens auf, Aktualisierenoperation abgebrochen:
 %1</translation>
@@ -1206,10 +1206,10 @@ I understand maximum %1 datafile version but readed %2
 
 Strongly recommended to upgrade your cdcat!!!
 Homepage: %3</source>
-        <translation>Die Datenbankdatei hat eine neuere Version als diese Version von Cdcat verarbeiten kann: 
-Es wird nur bis Version %1 unterstützt, aber Version %2 wurde gelesen 
+        <translation>Die Datenbankdatei hat eine neuere Version als diese Version von Cdcat verarbeiten kann:
+Es wird nur bis Version %1 unterstützt, aber Version %2 wurde gelesen
 
-Es wird dringend empfohlen, Cdcat zu aktualisieren! 
+Es wird dringend empfohlen, Cdcat zu aktualisieren!
 Homepage: %3</translation>
     </message>
     <message>
@@ -1275,7 +1275,7 @@ Homepage: %3</translation>
     <message>
         <source>You have cancelled catalog scanning,
 the DataBase may be incomplete</source>
-        <translation>Sie haben das Durchsuchen für den Katalog abgebrochen, 
+        <translation>Sie haben das Durchsuchen für den Katalog abgebrochen,
 die Datenbank wird unvollständig sein</translation>
     </message>
     <message>
@@ -1461,7 +1461,7 @@ die Datenbank wird unvollständig sein</translation>
     <message>
         <source>Do you really want to delete
 &quot;%1&quot;?</source>
-        <translation>Möchten Sie 
+        <translation>Möchten Sie
 &quot;%1&quot;
 wirklich löschen?</translation>
     </message>
@@ -1553,7 +1553,7 @@ wirklich löschen?</translation>
     <message>
         <source>This is the separator in dataline
 &lt;path&gt;SEPARATOR&lt;size&gt;SEPARATOR&lt;date&gt;&lt;space&gt;&lt;time&gt;</source>
-        <translation>Dies ist das Trennzeiche in Datenzeile 
+        <translation>Dies ist das Trennzeiche in Datenzeile
 &lt;pfad&gt;TRENNZEICHEN&lt;größe&gt;TRENNZEICHEN&lt;datum&gt;&lt;leerzeichen&gt;&lt;zeit&gt;</translation>
     </message>
     <message>
@@ -1581,9 +1581,9 @@ wirklich löschen?</translation>
 &lt;media&gt;SEPARATOR/&lt;dir&gt;/SEPARATOR/&lt;dir&gt;
  will be to
 &lt;media&gt;/&lt;dir&gt;/&lt;dir&gt;</source>
-        <translation>Korrigiert schlechten Stil von gtktalog. 
-&lt;medium&gt;TRENNZEICHEN/&lt;verzeichnis&gt;/TRENNZEICHEN/&lt;verzeichnis&gt; 
-wird zu 
+        <translation>Korrigiert schlechten Stil von gtktalog.
+&lt;medium&gt;TRENNZEICHEN/&lt;verzeichnis&gt;/TRENNZEICHEN/&lt;verzeichnis&gt;
+wird zu
 &lt;medium&gt;/&lt;verzeichnis&gt;/&lt;verzeichnis&gt;</translation>
     </message>
     <message>
@@ -3365,7 +3365,7 @@ E-mail: hyperr@freemail.hu
 &lt;blockquote&gt;General Public License (GPL)&lt;/blockquote&gt;
 &lt;br&gt;
 &lt;b&gt;Homepage:&lt;/b&gt;
-&lt;blockquote&gt;Mehr Infos über das Programm und neue Versionen können von der Homepage von 
+&lt;blockquote&gt;Mehr Infos über das Programm und neue Versionen können von der Homepage von
  cdcat:&lt;br&gt;&lt;tt&gt;http://cdcat.sourceforge.net&lt;/tt&gt; bekommen werden. &lt;/blockquote&gt;</translation>
     </message>
     <message>

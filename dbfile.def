@@ -5,43 +5,43 @@
 
 <catalog name="Box of Hyper" owner="The default owner">
 
-   <datafile version="1.4"/>   
+   <datafile version="1.4"/>
 
    <comment> Anything you want... </comment>
 
    <catlnk name="My DVD Films" location="/home/hyper/CATALOG_FILES/dvdflm.hcf">
      <comment> Anything you want... </comment>
    </catlnk>
-   
+
    <media name="Little box cd 1" number="22" owner="Optional owner" type="CD"  time="2003.06.22 12:35">
       <comment> Anything you want... </comment>
-      
+
       <borrow>The neighbour boy</borrow>
-   
+
       <directory name="My Music" time="2003.06.22 12:35">
         <comment> Anything you want... </comment>
-      
+
         <file name="music.mp3" size="1.1 Mb" time="2003.06.22 12:36">
             <!-- optional properties of file -->
 	      <comment> Anything you want... </comment>
-	    
+
 	      <mp3tag artist="Roxette" title="The look" album="Unknown" year="Unknown">
 	         This is the mp3 tag comment.
 	      </mp3tag>
-	      
-	      <!--  Content in hexadecimal numbers 
+
+	      <!--  Content in hexadecimal numbers
 	            (without whitespaces and other characters!) -->
 	      <content>324687AB345B34...</content>
- 
+
               <!-- unimplemented yet -->
 	      <archived type="tar.bz">
 	          <dir...
 	      </archived>
 
 	</file>
-      
+
       </directory>
-   
+
    </media>
-  
+
 </catalog>

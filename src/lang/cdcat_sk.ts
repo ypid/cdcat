@@ -1696,9 +1696,9 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Chyba:</translation>
     </message>
     <message>
-        <source>Do you really want to delete this?: 
+        <source>Do you really want to delete this?:
 %1</source>
-        <translation type="obsolete">Naozaj zmazať nasledovnú položku?: 
+        <translation type="obsolete">Naozaj zmazať nasledovnú položku?:
 %1</translation>
     </message>
     <message>
@@ -1731,8 +1731,8 @@ It is necessary because I&apos;d like to save the config file into your home dir
     </message>
     <message>
         <location line="+180"/>
-        <source>The size of &quot;%1&quot; : 
- %2 
+        <source>The size of &quot;%1&quot; :
+ %2
  %3 file /%4 directory</source>
         <translation>Veľkosť položky &quot;%1&quot; :
 %2
@@ -1860,7 +1860,7 @@ databáza pravdepodobne nebude kompletná</translation>
     </message>
     <message>
         <location line="+73"/>
-        <source>An error occured while scanning, the rescan operation was cancelled: 
+        <source>An error occured while scanning, the rescan operation was cancelled:
 %1</source>
         <translation>Nastala chyba pri skenovaní, aktualizácia bola zrušená:
 %1</translation>

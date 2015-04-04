@@ -42,7 +42,7 @@ public:
     LNode ( QTreeWidget * parent, Node * dbnodep );
     LNode ( LNode * parent, Node* dbnodep, const QString &col2="" );
     LNode ( LNode * parent,LNode *after,Node* dbnodep, const QString &col2 );
- 
+
     QString text ( int column ) const;
 
     QString fullName();

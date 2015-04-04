@@ -35,50 +35,50 @@
  */
 ShowContent::ShowContent ( Node *node, bool isCategory, CdCatConfig *cconfig, QWidget *parent, const char *name, bool modal, Qt::WFlags fl )
 	: QDialog ( parent, fl ) {
-	
+
 	this->cconfig = cconfig;
 	mynode = NULL;
 	parentnode = node;
 	this->isCategory = isCategory;
-	
+
 	if ( !name )
 		setObjectName ( "ShowContent" );
 	setModal(modal);
 	setWindowIcon ( *get_t_showc_icon() );
-	
+
 	ShowContentLayout = new QGridLayout ( this );
-	
+
 	layout1 = new QHBoxLayout ( this );
-	
+
 	closeButton = new QPushButton ( this );
 	layout1->addWidget ( closeButton );
 	QSpacerItem *spacer1 = new QSpacerItem ( 240, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	QSpacerItem *spacer2 = new QSpacerItem ( 240, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
-	
+
 	layout1->addItem ( spacer1 );
-	
+
 	QLabel *sizel = new QLabel ( this );
 	sizel->setText ( tr ( "%1 kByte" ).arg ( 0 ) );
-	
+
 	layout1->addWidget ( sizel );
 	layout1->addItem ( spacer2 );
-	
+
 	comboFont = new QFontComboBox ( this );
 	layout1->addWidget ( comboFont );
-	
+
 	deleteButton = new QToolButton ( this );
 	deleteButton->setIcon ( QIcon(*get_t_deletec_icon()) );
 	deleteButton->setToolTip( tr ( "Remove the file content from the database. (Warning: Unrecoverable!)" ) );
-	
+
 	saveButton = new QToolButton ( this );
 	saveButton->setIcon ( QIcon(*get_t_save_icon()) );
 	saveButton->setToolTip( tr ( "Save this content to a new file" ) );
-	
+
 	layout1->addWidget ( saveButton );
 	layout1->addWidget ( deleteButton );
-	
+
 	ShowContentLayout->addLayout ( layout1, 0, 0 );
-	
+
 	textBrowser = new QTextBrowser ( this );
 	if(!cconfig->ContentViewerFont.isEmpty()) {
 		QFont contentFont = QFont();
@@ -86,11 +86,11 @@ ShowContent::ShowContent ( Node *node, bool isCategory, CdCatConfig *cconfig, QW
 		textBrowser->setCurrentFont(contentFont);
 		comboFont->setCurrentFont(contentFont);
 	}
-	
+
 	if ( isCategory ) {
 		if ( node != NULL ) {
 			setWindowTitle ( tr ( "Category of %1" ).arg ( node->getNameOf() ) );
-			
+
 			QString o;
 			switch ( node->type ) {
 				case HC_CATALOG  :
@@ -125,10 +125,10 @@ ShowContent::ShowContent ( Node *node, bool isCategory, CdCatConfig *cconfig, QW
 			textBrowser->setPlainText ( QString ( ( const char * ) ( ( DBContent * ) ( mynode->data ) )->bytes ) );
 			QString sizestr = "";
 			double size = ( ( DBContent * ) ( mynode->data ) )->storedSize;
-			
+
 			float s;
 			int   st = UNIT_BYTE;
-			
+
 			if ( size >= SIZE_ONE_GBYTE * 1024 ) {
 				s  = size / SIZE_ONE_GBYTE / 1024;
 				st = UNIT_TBYTE;

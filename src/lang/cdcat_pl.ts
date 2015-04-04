@@ -1741,7 +1741,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Nie zaznaczono zdnego elementu na środkowej listcie!</translation>
     </message>
     <message>
-        <source>Do you really want to delete this?: 
+        <source>Do you really want to delete this?:
 %1</source>
         <translation type="obsolete">Czy napewno chcesz to skasować?:
 %1</translation>
@@ -1762,7 +1762,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <source>There was some error during the scanning,
 the DataBase may be incomplete</source>
-        <translation type="obsolete">Wystąpił błąd podczas skanowania, 
+        <translation type="obsolete">Wystąpił błąd podczas skanowania,
 baza danych może być niekompletna</translation>
     </message>
     <message>
@@ -1775,7 +1775,7 @@ baza danych może być niekompletna</translation>
         <translation>Możesz odświeżyć TYLKO wpisy o NOŚNIKACH!</translation>
     </message>
     <message>
-        <source>An error occured while scanning, the rescan operation cancelled: 
+        <source>An error occured while scanning, the rescan operation cancelled:
 %1</source>
         <translation type="obsolete">Wystąpił błąd podczas skanowania, opercja ponowenego skanowania anulowana:
 %1</translation>
@@ -1792,8 +1792,8 @@ baza danych może być niekompletna</translation>
     </message>
     <message>
         <location line="+180"/>
-        <source>The size of &quot;%1&quot; : 
- %2 
+        <source>The size of &quot;%1&quot; :
+ %2
  %3 file /%4 directory</source>
         <translation>Rozmiar &quot;%1&quot; :
 %2
@@ -1911,7 +1911,7 @@ baza danych może być niekompletna</translation>
         <location line="-1119"/>
         <source>An error occured while scanning,
 the DataBase may be incomplete</source>
-        <translation>Wystąpił błąd podczas skanowania, 
+        <translation>Wystąpił błąd podczas skanowania,
 baza danych może być niekompletna</translation>
     </message>
     <message>
@@ -1921,7 +1921,7 @@ baza danych może być niekompletna</translation>
     </message>
     <message>
         <location line="+73"/>
-        <source>An error occured while scanning, the rescan operation was cancelled: 
+        <source>An error occured while scanning, the rescan operation was cancelled:
 %1</source>
         <translation>Wystąpił błąd podczas skanowania, opercja ponowenego skanowania anulowana:
 %1</translation>
@@ -5157,7 +5157,7 @@ And the program can store the content of some specified files up to a limit size
 &lt;blockquote&gt;The program was written by  Peter Deak  (hungary)&lt;br&gt;
 E-mail: hyperr@freemail.hu
 &lt;br&gt;
-&lt;br&gt;Thanks for my girlfriend Ani who was my fist beta tester, and she encuraged me to write this program. 
+&lt;br&gt;Thanks for my girlfriend Ani who was my fist beta tester, and she encuraged me to write this program.
 &lt;/blockquote&gt;
 &lt;br&gt;
 &lt;b&gt;License:&lt;/b&gt;
@@ -5176,11 +5176,11 @@ Na żądanie program może także zapisać zawartość odpowiednio małych plik�
 &lt;br&gt;
 &lt;b&gt;Użycie:&lt;/b&gt;&lt;br&gt;
 &lt;blockquote&gt;
-&lt;i&gt;Utwórz nowy katalog&lt;/i&gt;: Wybierz polecenie &lt;tt&gt;Nowy&lt;/tt&gt; z menu Katalog. Musisz podać nazwe nowego katalogu. Możesz podać nazwe domyślnego właściciela nośnika(który bedzie potem skanowany), oraz dodać komentarz do katalogu.&lt;br&gt;Przed rozpoczęciem skanowania, z menu konfigracji, wybierz dane które także mają być zapisywane, mogą to być tagi mp3, zawartoś określonych plików itp. Po tym, możesz rozpocząć skanowanie poleceniem &lt;tt&gt;Dodaj nośnik&lt;/tt&gt; z menu Edycji. W nowym okienku musisz wybrać katalog/dysk który chcesz dodać. Zaleca się podanie nazwy oraz numeru nośnika która muśi być unikatowa. (Program sam generuje nazwe i numer) Możesz przypisać nośnik danemu użytkownikowi w razie potrzeby. 
+&lt;i&gt;Utwórz nowy katalog&lt;/i&gt;: Wybierz polecenie &lt;tt&gt;Nowy&lt;/tt&gt; z menu Katalog. Musisz podać nazwe nowego katalogu. Możesz podać nazwe domyślnego właściciela nośnika(który bedzie potem skanowany), oraz dodać komentarz do katalogu.&lt;br&gt;Przed rozpoczęciem skanowania, z menu konfigracji, wybierz dane które także mają być zapisywane, mogą to być tagi mp3, zawartoś określonych plików itp. Po tym, możesz rozpocząć skanowanie poleceniem &lt;tt&gt;Dodaj nośnik&lt;/tt&gt; z menu Edycji. W nowym okienku musisz wybrać katalog/dysk który chcesz dodać. Zaleca się podanie nazwy oraz numeru nośnika która muśi być unikatowa. (Program sam generuje nazwe i numer) Możesz przypisać nośnik danemu użytkownikowi w razie potrzeby.
 &lt;br&gt;Jeśli juz zeskanowałeś nośniki, możesz je przeglądać w oknie przeglądarki (tak jak w mc), albo czegoś poszukać. Możesz zapisać katalog poleceniem &lt;tt&gt;Zapisz jako&lt;/tt&gt; z menu Katalog.
 &lt;br&gt;
 &lt;br&gt;
-&lt;i&gt;Otwórz istniejący katalog:&lt;/i&gt; Wybierz polecenie &lt;tt&gt;otwórz&lt;/tt&gt; z menu Katalog, a następnie otwórz plik z katalogiem. (*.hcf) Następnie możesz normalnie przeglądać katalog i go przeszukiwać. 
+&lt;i&gt;Otwórz istniejący katalog:&lt;/i&gt; Wybierz polecenie &lt;tt&gt;otwórz&lt;/tt&gt; z menu Katalog, a następnie otwórz plik z katalogiem. (*.hcf) Następnie możesz normalnie przeglądać katalog i go przeszukiwać.
 &lt;br&gt;
 &lt;/blockquote&gt;
 &lt;br&gt;
@@ -5240,11 +5240,11 @@ Na żądanie program może także zapisać zawartość odpowiednio małych plik�
 &lt;br&gt;
 &lt;b&gt;Użycie:&lt;/b&gt;&lt;br&gt;
 &lt;blockquote&gt;
-&lt;i&gt;Utwórz nowy katalog&lt;/i&gt;: Wybierz polecenie &lt;tt&gt;Nowy&lt;/tt&gt; z menu Katalog. Musisz podać nazwe nowego katalogu. Możesz podać nazwe domyślnego właściciela nośnika(który bedzie potem skanowany), oraz dodać komentarz do katalogu.&lt;br&gt;Przed rozpoczęciem skanowania, z menu konfigracji, wybierz dane które także mają być zapisywane, mogą to być tagi mp3, zawartoś określonych plików itp. Po tym, możesz rozpocząć skanowanie poleceniem &lt;tt&gt;Dodaj nośnik&lt;/tt&gt; z menu Edycji. W nowym okienku musisz wybrać katalog/dysk który chcesz dodać. Zaleca się podanie nazwy oraz numeru nośnika która muśi być unikatowa. (Program sam generuje nazwe i numer) Możesz przypisać nośnik danemu użytkownikowi w razie potrzeby. 
+&lt;i&gt;Utwórz nowy katalog&lt;/i&gt;: Wybierz polecenie &lt;tt&gt;Nowy&lt;/tt&gt; z menu Katalog. Musisz podać nazwe nowego katalogu. Możesz podać nazwe domyślnego właściciela nośnika(który bedzie potem skanowany), oraz dodać komentarz do katalogu.&lt;br&gt;Przed rozpoczęciem skanowania, z menu konfigracji, wybierz dane które także mają być zapisywane, mogą to być tagi mp3, zawartoś określonych plików itp. Po tym, możesz rozpocząć skanowanie poleceniem &lt;tt&gt;Dodaj nośnik&lt;/tt&gt; z menu Edycji. W nowym okienku musisz wybrać katalog/dysk który chcesz dodać. Zaleca się podanie nazwy oraz numeru nośnika która muśi być unikatowa. (Program sam generuje nazwe i numer) Możesz przypisać nośnik danemu użytkownikowi w razie potrzeby.
 &lt;br&gt;Jeśli juz zeskanowałeś nośniki, możesz je przeglądać w oknie przeglądarki (tak jak w mc), albo czegoś poszukać. Możesz zapisać katalog poleceniem &lt;tt&gt;Zapisz jako&lt;/tt&gt; z menu Katalog.
 &lt;br&gt;
 &lt;br&gt;
-&lt;i&gt;Otwórz istniejący katalog:&lt;/i&gt; Wybierz polecenie &lt;tt&gt;otwórz&lt;/tt&gt; z menu Katalog, a następnie otwórz plik z katalogiem. (*.hcf) Następnie możesz normalnie przeglądać katalog i go przeszukiwać. 
+&lt;i&gt;Otwórz istniejący katalog:&lt;/i&gt; Wybierz polecenie &lt;tt&gt;otwórz&lt;/tt&gt; z menu Katalog, a następnie otwórz plik z katalogiem. (*.hcf) Następnie możesz normalnie przeglądać katalog i go przeszukiwać.
 &lt;br&gt;
 &lt;/blockquote&gt;
 &lt;br&gt;

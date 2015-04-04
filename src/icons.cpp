@@ -8747,7 +8747,7 @@ void init_icon_base ( void ) {
 
     if ( p_icon_big == NULL )
         p_icon_big = new QPixmap ( ( const char ** ) p_icon_data_big);
-    
+
     if ( t_open_icon == NULL )
         t_open_icon = new QPixmap ( ( const char ** ) t_open_icon_data );
 
@@ -8822,15 +8822,15 @@ void init_icon_base ( void ) {
 
     if ( t_info_icon == NULL )
         t_info_icon = new QPixmap ( ( const char ** ) t_info_icon_data );
-    
-    
+
+
 #ifdef CATALOG_ENCRYPTION
     if ( t_add_encryption_icon == NULL )
         t_add_encryption_icon = new QPixmap ( ( const char ** ) t_add_encryption_icon_data );
-    
+
     if ( t_remove_encryption_icon == NULL )
         t_remove_encryption_icon = new QPixmap ( ( const char ** ) t_remove_encryption_icon_data );
-    
+
     if ( t_change_encryption_password_icon == NULL )
         t_change_encryption_password_icon = new QPixmap ( ( const char ** ) t_change_encryption_password_icon_data );
 #endif
@@ -9098,4 +9098,4 @@ QList<QPixmap> get_anim_list() {
 
 
 
-// kate: indent-mode cstyle; replace-tabs on; 
+// kate: indent-mode cstyle; replace-tabs on;

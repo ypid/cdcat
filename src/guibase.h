@@ -72,7 +72,7 @@ public:
 class CdcatKeyBinding {
 public:
 	CdcatKeyBinding ( int eventDefine, QKeySequence eventSequence, QString description);
-	
+
 	int eventDefine;
 	QKeySequence eventSequence;
 	QString description;

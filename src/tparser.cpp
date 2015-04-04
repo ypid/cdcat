@@ -267,7 +267,7 @@ using namespace std;
 QString parseAviHeader ( FILE *file ) {
 	long filelength = 0;
 	DEBUG_INFO_ENABLED = init_debug_info();
-	
+
 	infoList.IART = NULL;
 	infoList.ICMT = NULL;
 	infoList.ICOP = NULL;
@@ -280,7 +280,7 @@ QString parseAviHeader ( FILE *file ) {
 	infoList.ISRC = NULL;
 	infoList.ISBJ = NULL;
 	infoList.ITHC = NULL;
-	
+
 	fseek ( file, 0L, SEEK_END );
 	filelength = ftell ( file );
 	rewind ( file ); /*fseek(stream, 0L, SEEK_SET);*/

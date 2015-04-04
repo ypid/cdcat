@@ -1659,7 +1659,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Errore:</translation>
     </message>
     <message>
-        <source>Do you really want to delete this?: 
+        <source>Do you really want to delete this?:
 %1</source>
         <translation type="obsolete">Vuoi veramente che sia eliminato?:
 %1</translation>
@@ -1690,10 +1690,10 @@ It is necessary because I&apos;d like to save the config file into your home dir
     </message>
     <message>
         <location line="+180"/>
-        <source>The size of &quot;%1&quot; : 
- %2 
+        <source>The size of &quot;%1&quot; :
+ %2
  %3 file /%4 directory</source>
-        <translation>La dimensione di &quot;%1&quot;: 
+        <translation>La dimensione di &quot;%1&quot;:
 %2
 %3 file /%4 directory</translation>
     </message>
@@ -1819,7 +1819,7 @@ il DataBase potrebbe essere incompleto</translation>
     </message>
     <message>
         <location line="+73"/>
-        <source>An error occured while scanning, the rescan operation was cancelled: 
+        <source>An error occured while scanning, the rescan operation was cancelled:
 %1</source>
         <translation>E&apos; avvenuto un errore durante la scansione, l&apos;operazione di controllo è stata annullata:
 %1</translation>

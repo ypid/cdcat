@@ -70,7 +70,7 @@ protected:
     QString comment;
     QString information;
     QString category;
-    
+
     double size;
     bool is_archive;
 public:
@@ -232,7 +232,7 @@ protected:
 		void setDocumentLocator ( QXmlLocator * locator );
 		QXmlLocator *locator;
 		QXmlAttributes attr;
-	
+
 	protected:
 		bool createdatabase;
 		QString currentText;

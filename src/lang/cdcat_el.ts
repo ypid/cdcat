@@ -1705,7 +1705,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Δεν υπάρχει επιλεγμένο αντικείμενο στη μέση του πλαισίου λίστας!</translation>
     </message>
     <message>
-        <source>Do you really want to delete this?: 
+        <source>Do you really want to delete this?:
 %1</source>
         <translation type="obsolete">Είστε σίγουροι για την διαγραφή του?:
 %1</translation>
@@ -1739,7 +1739,7 @@ the DataBase may be incomplete</source>
         <translation>Μπορεί να ανανεωθεί μόνο ένα node μέσο!</translation>
     </message>
     <message>
-        <source>An error occured while scanning, the rescan operation cancelled: 
+        <source>An error occured while scanning, the rescan operation cancelled:
 %1</source>
         <translation type="obsolete">Εντοπίστηκε σφάλμα κατά την ανίχνευση,η αίτηση ανίχνευσης ακυρώθηκε:
 %1</translation>
@@ -1756,8 +1756,8 @@ the DataBase may be incomplete</source>
     </message>
     <message>
         <location line="+180"/>
-        <source>The size of &quot;%1&quot; : 
- %2 
+        <source>The size of &quot;%1&quot; :
+ %2
  %3 file /%4 directory</source>
         <translation>Μέγεθος του &quot;%1&quot; :
 %2
@@ -1916,7 +1916,7 @@ the DataBase may be incomplete</source>
     </message>
     <message>
         <location line="+73"/>
-        <source>An error occured while scanning, the rescan operation was cancelled: 
+        <source>An error occured while scanning, the rescan operation was cancelled:
 %1</source>
         <translation type="unfinished"></translation>
     </message>

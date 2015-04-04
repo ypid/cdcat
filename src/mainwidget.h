@@ -92,7 +92,7 @@ class CdCatMainWidget : public QMainWindow{
 		void extraInfoAppend ( QString extraInfo );
 		void setTrayToolTipInfo ( QString tooltipinfo );
 		void setTrayText ( QString text, QString header = tr("processing file") );
-	
+
 	private:
 		QPixmap image0;
 		QPixmap image1;
@@ -168,14 +168,14 @@ class CdCatMainWidget : public QMainWindow{
 		void createTrayIcon();
 		void startTrayIconAnim();
 		void stopTrayIconAnim();
-	
+
 	private slots:
 		void trayIconActivated(QSystemTrayIcon::ActivationReason reason);
 		void showTrayMessage();
 		void trayIconMessageClicked();
 		void trayIconAnimateTimerSlot();
 		void returnToOldMaxMinSizes();
-	
+
 	signals:
 		void minimizedToTray();
 		void restoredFromTray();

@@ -44,16 +44,16 @@ class CdCatConfig : public QObject {
 	public:
 		CdCatConfig ( void );
 		~CdCatConfig ( void );
-		
+
 		int startProgram ( DataBase **dbp, QWidget *mw );
 		int writeConfig();
 		int readConfig ();
 		void setParameter ( char *par );
-	
+
 	public:
 		bool    startpar;
 		QString startfn;
-		
+
 		//Configureable items:
 		int fsize;
 		int historysize;
@@ -82,13 +82,13 @@ class CdCatConfig : public QObject {
 		bool useWildcardInsteadRegexForExclude;
 		bool useExternalContentViewer;
 		bool displayCurrentScannedFileInTray;
-		
-		
+
+
 		//bool doScanArchiveTar;
 		//bool doScanArchiveLib7zip;
 		bool storeExifData;
 		bool storeThumb;
-		
+
 		unsigned long readclimit;
 
 		QStringList hlist;
@@ -122,16 +122,16 @@ class CdCatConfig : public QObject {
 		int  mainP2;
 		int  mainP3;
 		int lastMediaType;
-		
+
 		int find_size_unit_min_val;
 		int find_size_unit_max_val;
-		
+
 		int find_size_min_val;
 		int find_size_max_val;
-		
+
 		int thumbWidth;
 		int thumbHeight;
-		
+
 		bool find_cs;
 		bool find_em;
 		bool find_di;
@@ -156,7 +156,7 @@ class CdCatConfig : public QObject {
 		bool show_archive_file_date;
 		bool show_archive_file_comment;
 		bool keep_search_result;
-		
+
 		int  findX;
 		int  findY;
 		int  findWidth;
@@ -165,23 +165,23 @@ class CdCatConfig : public QObject {
 		int  addY;
 		int  addWidth;
 		int  addHeight;
-		
+
 		QDateTime find_date_start_val;
 		QDateTime find_date_end_val;
-		
+
 		QColor comm_bg, comm_stext, comm_vtext, comm_fr;
 		QFont defaultfont;
 #ifndef _WIN32
 		bool    mounteject;
 #endif
-		
+
 #if defined(_WIN32) || defined(_OS2)
 		QString lang;
 #endif
 #ifdef Q_WS_MAC
 		QString lang;
 #endif
-		
+
 		bool linkf;
 
 
@@ -197,7 +197,7 @@ class ConfigDialog : public QDialog {
 	public:
 		ConfigDialog ( CdCatMainWidget* parent = 0, const char* name = 0, bool modal = FALSE, Qt::WFlags fl = 0 );
 		~ConfigDialog();
-		
+
 		CdCatMainWidget *p;
 		QLineEdit* filename;
 		QPushButton* searchButton;
@@ -228,7 +228,7 @@ class ConfigDialog : public QDialog {
 		QCheckBox* cbAutoload;
 		QCheckBox* cbAutosave;
 		QCheckBox* cbOwnFont;
-	
+
 	protected:
 		QGridLayout* ConfigDialogBaseLayout;
 		QHBoxLayout* layout1;
@@ -242,30 +242,30 @@ class ConfigDialog : public QDialog {
 		QHBoxLayout* layoutSave;
 		QHBoxLayout* layoutStatus;
 		QHBoxLayout* layoutDock;
-		
+
 #ifndef _WIN32
 		QCheckBox* cbMoEj;
 #endif
-		
+
 #if defined(_WIN32) || defined(_OS2)
 		QHBoxLayout* layout9;
 		QComboBox  * cbLang;
 		QLabel     * langLabel;
 #endif
-		
+
 #ifdef Q_WS_MAC
 		QHBoxLayout* layout9;
 		QComboBox  * cbLang;
 		QLabel     * langLabel;
 #endif
-		
+
 		QPushButton* searchButton2; // maybe problem for moc
-	
+
 	public slots:
 		virtual void okExit();
 		virtual void ffdbutton();
 		virtual void runri();
-	
+
 	protected slots:
 		virtual void languageChange();
 		void ownFontToggled();
@@ -280,4 +280,4 @@ class ConfigDialog : public QDialog {
 static bool *DEBUG_INFO_ENABLED;
 #endif
 
-// kate: indent-mode cstyle; replace-tabs off; tab-width 8; 
+// kate: indent-mode cstyle; replace-tabs off; tab-width 8;

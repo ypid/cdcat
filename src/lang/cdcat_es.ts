@@ -1782,7 +1782,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">¡No hay ningún elemento seleccionado en la lista de elementos central!</translation>
     </message>
     <message>
-        <source>Do you really want to delete this?: 
+        <source>Do you really want to delete this?:
 %1</source>
         <translation type="obsolete">¿Seguro que desea borrar esto?:
 %1</translation>
@@ -1820,7 +1820,7 @@ la base de datos puede estar incompleta</translation>
         <translation type="obsolete">Reescanear</translation>
     </message>
     <message>
-        <source>An error occured while scanning, the rescan operation cancelled: 
+        <source>An error occured while scanning, the rescan operation cancelled:
 %1</source>
         <translation type="obsolete">Se produjeron errores durante el escaneo, se canceló la operación de reescaneo:
 %1</translation>
@@ -1831,11 +1831,11 @@ la base de datos puede estar incompleta</translation>
     </message>
     <message>
         <source> - = CdCatalog by Hyper = -
-Version: %1 
+Version: %1
 Author: Peter Deak (hyperr@freemail.hu)
  Copyright (C) 2003 Peter Deak (GPL)</source>
         <translation type="obsolete">- = CdCatalog by Hyper = -
-Versión: %1 
+Versión: %1
 Autor: Peter Deak (hyperr@freemail.hu)
 Copyright (C) 2003 Peter Deak (GPL)</translation>
     </message>
@@ -1851,11 +1851,11 @@ Copyright (C) 2003 Peter Deak (GPL)</translation>
     </message>
     <message>
         <location line="+180"/>
-        <source>The size of &quot;%1&quot; : 
- %2 
+        <source>The size of &quot;%1&quot; :
+ %2
  %3 file /%4 directory</source>
-        <translation>Tamaño de &quot;%1&quot; : 
- %2 
+        <translation>Tamaño de &quot;%1&quot; :
+ %2
  %3 archivos /%4 directorios</translation>
     </message>
     <message>
@@ -1980,7 +1980,7 @@ la base de datos puede estar incompleta</translation>
     </message>
     <message>
         <location line="+73"/>
-        <source>An error occured while scanning, the rescan operation was cancelled: 
+        <source>An error occured while scanning, the rescan operation was cancelled:
 %1</source>
         <translation>Se produjeron errores durante el escaneo, se canceló la operación de reescaneo:
 %1</translation>
@@ -5253,7 +5253,7 @@ debe ser
 &lt;blockquote&gt;The program was written by  Peter Deak  (hungary)&lt;br&gt;
 E-mail: hyperr@freemail.hu
 &lt;br&gt;
-&lt;br&gt;Thanks for my girlfriend Ani who was my fist beta tester, and she encuraged me to write this program. 
+&lt;br&gt;Thanks for my girlfriend Ani who was my fist beta tester, and she encuraged me to write this program.
 &lt;/blockquote&gt;
 &lt;br&gt;
 &lt;b&gt;License:&lt;/b&gt;
@@ -5269,7 +5269,7 @@ E-mail: hyperr@freemail.hu
 &lt;br&gt;
 &lt;b&gt;Usage:&lt;/b&gt;&lt;br&gt;
 &lt;blockquote&gt;
-&lt;i&gt;Crear un nuevo catálogo&lt;/i&gt;: Ejecute elcomando &lt;tt&gt;Nuevo&lt;/tt&gt; del menú catñalogo. Tiene que escribir el nombre del catálogo. Puede especificar el usuario por defecto del medio (que escaneará después), y añadir un comentario al catálogo.&lt;br&gt; Una vez hecho esto puede escanear el medio con el comando &lt;tt&gt;Añadir medio&lt;/tt&gt; del menú editar. En ese diálogo debe especificar el directorio o la unidad que desea añadir. Es recomendable especificar un nombre y numero de media que debe ser único (el programa siempre genera un nombre y número 
+&lt;i&gt;Crear un nuevo catálogo&lt;/i&gt;: Ejecute elcomando &lt;tt&gt;Nuevo&lt;/tt&gt; del menú catñalogo. Tiene que escribir el nombre del catálogo. Puede especificar el usuario por defecto del medio (que escaneará después), y añadir un comentario al catálogo.&lt;br&gt; Una vez hecho esto puede escanear el medio con el comando &lt;tt&gt;Añadir medio&lt;/tt&gt; del menú editar. En ese diálogo debe especificar el directorio o la unidad que desea añadir. Es recomendable especificar un nombre y numero de media que debe ser único (el programa siempre genera un nombre y número
 únicos) . Puede asociar un medio con su duelo si es necesario.
 &lt;br&gt;Si ha escaneado el medio, podrá explorar el sistema de archivos o buscar en éI. Puede guardar el catálogo con el comando &lt;tt&gt;guardar como&lt;/tt&gt; del menú catálogo.
 &lt;br&gt;
@@ -5282,7 +5282,7 @@ E-mail: hyperr@freemail.hu
 &lt;blockquote&gt;Este programa fue escrito pot Peter Deak  (Hungría)&lt;br&gt;
 E-mail: hyperr@freemail.hu
 &lt;br&gt;
-&lt;br&gt;Gracias a mi novia Ani, quien fue mi primer bate-tester y me animó para escribir este programa. 
+&lt;br&gt;Gracias a mi novia Ani, quien fue mi primer bate-tester y me animó para escribir este programa.
 &lt;/blockquote&gt;
 &lt;br&gt;
 &lt;b&gt;Licencia:&lt;/b&gt;
@@ -5317,7 +5317,7 @@ E-mail: hyperr@freemail.hu
 &lt;blockquote&gt;The program was written by  Peter Deak  (hungary)&lt;br&gt;
 E-mail: hyperr@freemail.hu
 &lt;br&gt;
-&lt;br&gt;Thanks for my girlfriend Ani who was my fist beta tester, and she encuraged me to write this program. 
+&lt;br&gt;Thanks for my girlfriend Ani who was my fist beta tester, and she encuraged me to write this program.
 &lt;/blockquote&gt;
 &lt;br&gt;
 &lt;b&gt;License:&lt;/b&gt;
@@ -5333,7 +5333,7 @@ E-mail: hyperr@freemail.hu
 &lt;br&gt;
 &lt;b&gt;Usage:&lt;/b&gt;&lt;br&gt;
 &lt;blockquote&gt;
-&lt;i&gt;Crear un nuevo catálogo&lt;/i&gt;: Ejecute elcomando &lt;tt&gt;Nuevo&lt;/tt&gt; del menú catñalogo. Tiene que escribir el nombre del catálogo. Puede especificar el usuario por defecto del medio (que escaneará después), y añadir un comentario al catálogo.&lt;br&gt; Una vez hecho esto puede escanear el medio con el comando &lt;tt&gt;Añadir medio&lt;/tt&gt; del menú editar. En ese diálogo debe especificar el directorio o la unidad que desea añadir. Es recomendable especificar un nombre y numero de media que debe ser único (el programa siempre genera un nombre y número 
+&lt;i&gt;Crear un nuevo catálogo&lt;/i&gt;: Ejecute elcomando &lt;tt&gt;Nuevo&lt;/tt&gt; del menú catñalogo. Tiene que escribir el nombre del catálogo. Puede especificar el usuario por defecto del medio (que escaneará después), y añadir un comentario al catálogo.&lt;br&gt; Una vez hecho esto puede escanear el medio con el comando &lt;tt&gt;Añadir medio&lt;/tt&gt; del menú editar. En ese diálogo debe especificar el directorio o la unidad que desea añadir. Es recomendable especificar un nombre y numero de media que debe ser único (el programa siempre genera un nombre y número
 únicos) . Puede asociar un medio con su duelo si es necesario.
 &lt;br&gt;Si ha escaneado el medio, podrá explorar el sistema de archivos o buscar en éI. Puede guardar el catálogo con el comando &lt;tt&gt;guardar como&lt;/tt&gt; del menú catálogo.
 &lt;br&gt;
@@ -5346,7 +5346,7 @@ E-mail: hyperr@freemail.hu
 &lt;blockquote&gt;Este programa fue escrito pot Peter Deak  (Hungría)&lt;br&gt;
 E-mail: hyperr@freemail.hu
 &lt;br&gt;
-&lt;br&gt;Gracias a mi novia Ani, quien fue mi primer bate-tester y me animó para escribir este programa. 
+&lt;br&gt;Gracias a mi novia Ani, quien fue mi primer bate-tester y me animó para escribir este programa.
 &lt;/blockquote&gt;
 &lt;br&gt;
 &lt;b&gt;Licencia:&lt;/b&gt;
@@ -5379,7 +5379,7 @@ And the program can store the content of some specified files up to a limit size
 &lt;blockquote&gt;The program was written by  Peter Deak  (hungary)&lt;br&gt;
 E-mail: hyperr@freemail.hu
 &lt;br&gt;
-&lt;br&gt;Thanks for my girlfriend Ani who was my fist beta tester, and she encuraged me to write this program. 
+&lt;br&gt;Thanks for my girlfriend Ani who was my fist beta tester, and she encuraged me to write this program.
 &lt;/blockquote&gt;
 &lt;br&gt;
 &lt;b&gt;License:&lt;/b&gt;
@@ -5395,7 +5395,7 @@ E-mail: hyperr@freemail.hu
 &lt;br&gt;
 &lt;b&gt;Usage:&lt;/b&gt;&lt;br&gt;
 &lt;blockquote&gt;
-&lt;i&gt;Crear un nuevo catálogo&lt;/i&gt;: Ejecute el comando &lt;tt&gt;Nuevo&lt;/tt&gt; del menú catálogo. Tiene que escribir el nombre del catálogo. Puede especificar el usuario por defecto del medio (que escaneará después), y añadir un comentario al catálogo.&lt;br&gt; Una vez hecho esto puede escanear el medio con el comando &lt;tt&gt;Añadir medio&lt;/tt&gt; del menú editar. En ese diálogo debe especificar el directorio o la unidad que desea añadir. Es recomendable especificar un nombre y numero de media que debe ser único (el programa siempre genera un nombre y número 
+&lt;i&gt;Crear un nuevo catálogo&lt;/i&gt;: Ejecute el comando &lt;tt&gt;Nuevo&lt;/tt&gt; del menú catálogo. Tiene que escribir el nombre del catálogo. Puede especificar el usuario por defecto del medio (que escaneará después), y añadir un comentario al catálogo.&lt;br&gt; Una vez hecho esto puede escanear el medio con el comando &lt;tt&gt;Añadir medio&lt;/tt&gt; del menú editar. En ese diálogo debe especificar el directorio o la unidad que desea añadir. Es recomendable especificar un nombre y numero de media que debe ser único (el programa siempre genera un nombre y número
 únicos) . Puede asociar un medio con su dueño si es necesario.
 &lt;br&gt;Si ha escaneado el medio, podrá explorar el sistema de archivos o buscar en él. Puede guardar el catálogo con el comando &lt;tt&gt;guardar como&lt;/tt&gt; del menú catálogo.
 &lt;br&gt;
@@ -5408,7 +5408,7 @@ E-mail: hyperr@freemail.hu
 &lt;blockquote&gt;Este programa fue escrito pot Peter Deak  (Hungría)&lt;br&gt;
 E-mail: hyperr@freemail.hu
 &lt;br&gt;
-&lt;br&gt;Gracias a mi novia Ani, quien fue mi primer bate-tester y me animó para escribir este programa. 
+&lt;br&gt;Gracias a mi novia Ani, quien fue mi primer bate-tester y me animó para escribir este programa.
 &lt;/blockquote&gt;
 &lt;br&gt;
 &lt;b&gt;Licencia:&lt;/b&gt;
@@ -5460,11 +5460,11 @@ Na żądanie program może także zapisać zawartość odpowiednio małych plik�
 &lt;br&gt;
 &lt;b&gt;Użycie:&lt;/b&gt;&lt;br&gt;
 &lt;blockquote&gt;
-&lt;i&gt;Utwórz nowy katalog&lt;/i&gt;: Wybierz polecenie &lt;tt&gt;Nowy&lt;/tt&gt; z menu Katalog. Musisz podać nazwe nowego katalogu. Możesz podać nazwe domyślnego właściciela nośnika(który bedzie potem skanowany), oraz dodać komentarz do katalogu.&lt;br&gt;Przed rozpoczęciem skanowania, z menu konfigracji, wybierz dane które także mają być zapisywane, mogą to być tagi mp3, zawartoś określonych plików itp. Po tym, możesz rozpocząć skanowanie poleceniem &lt;tt&gt;Dodaj nośnik&lt;/tt&gt; z menu Edycji. W nowym okienku musisz wybrać katalog/dysk który chcesz dodać. Zaleca się podanie nazwy oraz numeru nośnika która muśi być unikatowa. (Program sam generuje nazwe i numer) Możesz przypisać nośnik danemu użytkownikowi w razie potrzeby. 
+&lt;i&gt;Utwórz nowy katalog&lt;/i&gt;: Wybierz polecenie &lt;tt&gt;Nowy&lt;/tt&gt; z menu Katalog. Musisz podać nazwe nowego katalogu. Możesz podać nazwe domyślnego właściciela nośnika(który bedzie potem skanowany), oraz dodać komentarz do katalogu.&lt;br&gt;Przed rozpoczęciem skanowania, z menu konfigracji, wybierz dane które także mają być zapisywane, mogą to być tagi mp3, zawartoś określonych plików itp. Po tym, możesz rozpocząć skanowanie poleceniem &lt;tt&gt;Dodaj nośnik&lt;/tt&gt; z menu Edycji. W nowym okienku musisz wybrać katalog/dysk który chcesz dodać. Zaleca się podanie nazwy oraz numeru nośnika która muśi być unikatowa. (Program sam generuje nazwe i numer) Możesz przypisać nośnik danemu użytkownikowi w razie potrzeby.
 &lt;br&gt;Jeśli juz zeskanowałeś nośniki, możesz je przeglądać w oknie przeglądarki (tak jak w mc), albo czegoś poszukać. Możesz zapisać katalog poleceniem &lt;tt&gt;Zapisz jako&lt;/tt&gt; z menu Katalog.
 &lt;br&gt;
 &lt;br&gt;
-&lt;i&gt;Otwórz istniejący katalog:&lt;/i&gt; Wybierz polecenie &lt;tt&gt;otwórz&lt;/tt&gt; z menu Katalog, a następnie otwórz plik z katalogiem. (*.hcf) Następnie możesz normalnie przeglądać katalog i go przeszukiwać. 
+&lt;i&gt;Otwórz istniejący katalog:&lt;/i&gt; Wybierz polecenie &lt;tt&gt;otwórz&lt;/tt&gt; z menu Katalog, a następnie otwórz plik z katalogiem. (*.hcf) Następnie możesz normalnie przeglądać katalog i go przeszukiwać.
 &lt;br&gt;
 &lt;/blockquote&gt;
 &lt;br&gt;

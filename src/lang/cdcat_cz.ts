@@ -1780,9 +1780,9 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">V prostředním panelu není vybraná žádná položka!</translation>
     </message>
     <message>
-        <source>Do you really want to delete this?: 
+        <source>Do you really want to delete this?:
 %1</source>
-        <translation type="obsolete">Chcete toto opravdu smazat?: 
+        <translation type="obsolete">Chcete toto opravdu smazat?:
 %1</translation>
     </message>
     <message>
@@ -1818,7 +1818,7 @@ databáze nebude pravděpodobně kompletní</translation>
         <translation type="obsolete">Aktualizovat</translation>
     </message>
     <message>
-        <source>An error occured while scanning, the rescan operation cancelled: 
+        <source>An error occured while scanning, the rescan operation cancelled:
 %1</source>
         <translation type="obsolete">Nastala chyba při pro prohledávání, aktualizace je zrušena:
 %1</translation>
@@ -1829,7 +1829,7 @@ databáze nebude pravděpodobně kompletní</translation>
     </message>
     <message>
         <source> - = CdCatalog by Hyper = -
-Version: %1 
+Version: %1
 Author: Peter Deak (hyperr@freemail.hu)
  Copyright (C) 2003 Peter Deak (GPL)</source>
         <translation type="obsolete">- = CdCatalog od Hypera = -
@@ -1849,8 +1849,8 @@ Copyright (C) 2003 Peter Deak (GPL)</translation>
     </message>
     <message>
         <location line="+180"/>
-        <source>The size of &quot;%1&quot; : 
- %2 
+        <source>The size of &quot;%1&quot; :
+ %2
  %3 file /%4 directory</source>
         <translation>Velikost položky &quot;%1&quot; :
 %2
@@ -1978,7 +1978,7 @@ databáze nebude pravděpodobně kompletní</translation>
     </message>
     <message>
         <location line="+73"/>
-        <source>An error occured while scanning, the rescan operation was cancelled: 
+        <source>An error occured while scanning, the rescan operation was cancelled:
 %1</source>
         <translation>Nastala chyba při pro prohledávání, aktualizace je zrušena:
 %1</translation>
@@ -3166,7 +3166,7 @@ bude změněno na
         <location filename="../tparser.cpp" line="+640"/>
         <source>Video:
 </source>
-        <translation>Video: 
+        <translation>Video:
 </translation>
     </message>
     <message>
@@ -5230,7 +5230,7 @@ bude změněno na
 &lt;blockquote&gt;The program was written by  Peter Deak  (hungary)&lt;br&gt;
 E-mail: hyperr@freemail.hu
 &lt;br&gt;
-&lt;br&gt;Thanks for my girlfriend Ani who was my fist beta tester, and she encuraged me to write this program. 
+&lt;br&gt;Thanks for my girlfriend Ani who was my fist beta tester, and she encuraged me to write this program.
 &lt;/blockquote&gt;
 &lt;br&gt;
 &lt;b&gt;License:&lt;/b&gt;
@@ -5306,7 +5306,7 @@ naleznete na domovské stránce programu CdCat:&lt;br&gt;&lt;tt&gt;http://cdcat.
 &lt;blockquote&gt;The program was written by  Peter Deak  (hungary)&lt;br&gt;
 E-mail: hyperr@freemail.hu
 &lt;br&gt;
-&lt;br&gt;Thanks for my girlfriend Ani who was my fist beta tester, and she encuraged me to write this program. 
+&lt;br&gt;Thanks for my girlfriend Ani who was my fist beta tester, and she encuraged me to write this program.
 &lt;/blockquote&gt;
 &lt;br&gt;
 &lt;b&gt;License:&lt;/b&gt;
@@ -5380,7 +5380,7 @@ And the program can store the content of some specified files up to a limit size
 &lt;blockquote&gt;The program was written by  Peter Deak  (hungary)&lt;br&gt;
 E-mail: hyperr@freemail.hu
 &lt;br&gt;
-&lt;br&gt;Thanks for my girlfriend Ani who was my fist beta tester, and she encuraged me to write this program. 
+&lt;br&gt;Thanks for my girlfriend Ani who was my fist beta tester, and she encuraged me to write this program.
 &lt;/blockquote&gt;
 &lt;br&gt;
 &lt;b&gt;License:&lt;/b&gt;

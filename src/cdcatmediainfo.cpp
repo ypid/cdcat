@@ -87,7 +87,7 @@ CdcatMediaInfo::CdcatMediaInfo ( QString filename ) {
 }
 
 bool CdcatMediaInfo::readCdcatMediaInfo(){
-	
+
 	// read data
 	DEBUG_INFO_ENABLED = init_debug_info();
 	if (MediaInfoHandler == NULL) {
@@ -95,7 +95,7 @@ bool CdcatMediaInfo::readCdcatMediaInfo(){
 			cout << "readCdcatMediaInfo() MediaInfoHandler is invalid" << endl;
 		return false;
 	}
-	
+
 	if (filename == "") {
 		if(*DEBUG_INFO_ENABLED)
 			cout << "readCdcatMediaInfo() no filename set" << endl;
@@ -107,7 +107,7 @@ bool CdcatMediaInfo::readCdcatMediaInfo(){
 		//MediaInfoHandler->Option("Language", "German;German" );
 		//if(*DEBUG_INFO_ENABLED)
 		//	cout << "langs of mediainfo: " << MediaInfoHandler.Option("Language_Get").c_str() << endl;
-		
+
 		// 	MediaInfoHandler.Option("Language", QString(QString("Image")+QString(";")+tr("Image")).toLocal8Bit().constData());
 		// 	MediaInfoHandler.Option("Language", "Image;Bild");
 		String info = MediaInfoHandler->Inform();
@@ -119,7 +119,7 @@ bool CdcatMediaInfo::readCdcatMediaInfo(){
 		// 	cout << "mediainfo codecs: " << MediaInfoHandler.Option("Info_Codecs").c_str() << endl;
 		}
 		InfoText = fromMediaInfoStrtoQString(info);
-		
+
 		// 	size_t Stream_General_Number;
 		// 	size_t GeneralCount =  MediaInfoHandler.Count_Get (Stream_General, Stream_General_Number);
 		// 	size_t Stream_Video_Number;
@@ -132,16 +132,16 @@ bool CdcatMediaInfo::readCdcatMediaInfo(){
 		// 	size_t ChaptersCount =  MediaInfoHandler.Count_Get (Stream_General, Stream_Chapters_Number);
 		// 	size_t Stream_Menu_Number;
 		// 	size_t MenuCount =  MediaInfoHandler.Count_Get (Stream_General, Stream_Menu_Number);
-		// 
+		//
 		// 	if(*DEBUG_INFO_ENABLED)
 		// 		cout << "general: " << GeneralCount << ", video: " << VideoCount << ", audio: " << AudioCount << ", text: " << TextCount << ", chapters: " << ChaptersCount << ", menu: " << MenuCount << endl;
-		// 
-		// //   Stream_General    StreamKind = General. 
-		// //   Stream_Video    StreamKind = Video. 
-		// //   Stream_Audio    StreamKind = Audio. 
-		// //   Stream_Text    StreamKind = Text. 
-		// //   Stream_Chapters    StreamKind = Chapters. 
-		// //   Stream_Image    StreamKind = Image. 
+		//
+		// //   Stream_General    StreamKind = General.
+		// //   Stream_Video    StreamKind = Video.
+		// //   Stream_Audio    StreamKind = Audio.
+		// //   Stream_Text    StreamKind = Text.
+		// //   Stream_Chapters    StreamKind = Chapters.
+		// //   Stream_Image    StreamKind = Image.
 		// //   Stream_Menu
 		MediaInfoHandler->Close();
 		return true;
@@ -208,7 +208,7 @@ bool CdcatMediaInfo::detectSupportedExtensions() {
 		// init lib
 		success = mediaInfoLibFound = initMediaInfoLib();
 	}
-	
+
 	if ( success && mediaInfoLibFound) {
 		MediaInfoSupportedFileExtensions.append("mkv");
 		MediaInfoSupportedFileExtensions.append("mka");

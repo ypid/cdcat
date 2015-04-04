@@ -65,7 +65,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	setCentralWidget ( main );
 	app = appp;
 	QFontMetrics fm = app->font();
-	
+
 	if ( !name )
 		setObjectName ( "CdCatMainWidget" );
 	setWindowIcon ( *get_p_icon_big() );
@@ -83,7 +83,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	//Toolbar->setFrameShadow ( QFrame::Raised );
 	//Toolbar->setMaximumHeight ( 36 );
 	//Toolbar->setMinimumHeight ( 36 );
-	
+
 	DirView = new HDirectoryView ( &db, splitMain, "DirView" );
 	QStringList labels;
 	labels.append(tr ( "Directory Tree" ) );
@@ -155,7 +155,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	saveas_action->setStatusTip ( tr ( "save catalog with new name" ) );
 	connect ( saveas_action, SIGNAL ( triggered() ), guis, SLOT ( saveasEvent() ) );
 	fileMenu->addAction ( saveas_action );
-	
+
 #ifdef CATALOG_ENCRYPTION
 	changepass_action = new QAction ( QIcon ( *get_t_change_encryption_password_icon() ), tr ( "Change password..." ), this );
 	//changepass_action->setShortcuts ( QKeySequence::Open );
@@ -163,7 +163,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	connect ( changepass_action, SIGNAL ( triggered() ), guis, SLOT ( changePassEvent() ) );
 	fileMenu->addAction ( changepass_action );
 	changepass_action->setEnabled(false);
-	
+
 	disableencryption_action = new QAction ( QIcon ( *get_t_remove_encryption_icon() ), tr ( "Disable encryption" ), this );
 	//disableencryption_action->setShortcuts ( QKeySequence::Open );
 	disableencryption_action->setStatusTip (  tr ( "Disables catalog encryption" ) );
@@ -178,7 +178,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	fileMenu->addAction ( enableencryption_action );
 	enableencryption_action->setEnabled(false);
 #endif
-	
+
 	fileMenu->insertSeparator (NULL);
 	historyMenu = new QMenu(this);
 
@@ -247,15 +247,15 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	insert_action->setStatusTip ( tr ( "Insert catalog into database" ) );
 	connect ( insert_action, SIGNAL ( triggered() ), guis, SLOT ( insertcEvent() ) );
 	editMenu->addAction ( insert_action );
-	
+
 	insert_cdcat_xml_action = new QAction ( QIcon ( *get_m_import_icon() ), tr ( "Insert Cdcat export XML..." ), this );
 	guis->KeyShortCutList.append(CdcatKeyBinding(guis->key_insertCdcatXmlEvent, QKeySequence ( Qt::Key_X), tr("Insert Cdcat exported XML into database")));
 	insert_cdcat_xml_action->setShortcut ( guis->getKeyBinding(guis->key_insertCdcatXmlEvent) );
 	insert_cdcat_xml_action->setStatusTip ( tr ( "Insert Cdcat exported XML into database" ) );
 	connect ( insert_cdcat_xml_action, SIGNAL ( triggered() ), guis, SLOT ( insertCdcatXmlEvent()) );
 	editMenu->addAction ( insert_cdcat_xml_action );
-	
-	
+
+
 	editMenu->insertSeparator(NULL);
 
 	rename_action = new QAction ( QIcon ( *get_t_save_icon() ), tr ( "Rename node..." ), this );
@@ -293,7 +293,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	sortnu_ascending_action->setStatusTip ( tr ( "Sort media by number (ascending)" ) );
 	connect ( sortnu_ascending_action, SIGNAL ( triggered() ), guis, SLOT ( sortNuEventAscending()) );
 	editMenu->addAction ( sortnu_ascending_action );
-	
+
 	sortnu_descending_action = new QAction ( QIcon ( *get_t_save_icon() ), tr ( "Sort media by number (descending)" ), this );
 	guis->KeyShortCutList.append(CdcatKeyBinding(guis->key_sortNuEventDescending, QKeySequence ( Qt::ControlModifier + Qt::AltModifier + Qt::Key_Down ), tr("Sort media by number (descending)")));
 	sortnu_descending_action->setShortcut ( guis->getKeyBinding(guis->key_sortNuEventDescending) );
@@ -320,25 +320,25 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	sortti_ascending_action->setStatusTip ( tr ( "Sort media by time (ascending)" ) );
 	connect ( sortti_ascending_action, SIGNAL ( triggered() ), guis, SLOT ( sortTiEventAscending()) );
 	editMenu->addAction ( sortti_ascending_action );
-	
+
 	sortti_descending_action = new QAction ( QIcon ( *get_t_save_icon() ), tr ( "Sort media by time (descending)" ), this );
 	//sortti_descending_action->setShortcuts(QKeySequence::Save);
 	sortti_descending_action->setStatusTip ( tr ( "Sort media by time (descending)" ) );
 	connect ( sortti_descending_action, SIGNAL ( triggered() ), guis, SLOT ( sortTiEventDescending()) );
 	editMenu->addAction ( sortti_descending_action );
-	
+
 	sortty_ascending_action = new QAction ( QIcon ( *get_t_save_icon() ), tr ( "Sort media by type (ascending)" ), this );
 	//sortty_ascending_action->setShortcuts(QKeySequence::Save);
 	sortty_ascending_action->setStatusTip ( tr ( "Sort media by type (ascending)" ) );
 	connect ( sortty_ascending_action, SIGNAL ( triggered() ), guis, SLOT ( sortTyEventAscending()) );
 	editMenu->addAction ( sortty_ascending_action );
-	
+
 	sortty_descending_action = new QAction ( QIcon ( *get_t_save_icon() ), tr ( "Sort media by type (descending)" ), this );
 	//sortty_descending_action->setShortcuts(QKeySequence::Save);
 	sortty_descending_action->setStatusTip ( tr ( "Sort media by type (descending)" ) );
 	connect ( sortty_descending_action, SIGNAL ( triggered() ), guis, SLOT ( sortTyEventDescending()) );
 	editMenu->addAction ( sortty_descending_action );
-	
+
 	view_toolbar_action = new QAction ( tr ( "view tool bar" ), this );
 	guis->KeyShortCutList.append(CdcatKeyBinding(guis->key_toolBarEvent, QKeySequence( Qt::ControlModifier + Qt::AltModifier + Qt::Key_T ), tr("View tool bar in main window")));
 	view_toolbar_action->setShortcut ( guis->getKeyBinding(guis->key_toolBarEvent) );
@@ -347,7 +347,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	view_toolbar_action->setChecked(cconfig->showToolBar);
 	connect ( view_toolbar_action, SIGNAL ( triggered() ), this, SLOT ( toolBarToogled() ) );
 	viewMenu->addAction ( view_toolbar_action );
-	
+
 	view_statusbar_action = new QAction ( tr ( "view status bar" ), this );
 	guis->KeyShortCutList.append(CdcatKeyBinding(guis->key_statusBarEvent, QKeySequence( Qt::ControlModifier + Qt::AltModifier + Qt::Key_S ), tr("View status bar in main window")));
 	view_statusbar_action->setShortcut ( guis->getKeyBinding(guis->key_statusBarEvent) );
@@ -356,7 +356,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	view_statusbar_action->setChecked(cconfig->showStatusBar);
 	connect ( view_statusbar_action, SIGNAL ( triggered() ), this, SLOT ( statusBarToogled() ) );
 	viewMenu->addAction ( view_statusbar_action );
-	
+
 	view_comment_widget_action = new QAction ( tr ( "view comment dock" ), this );
 	guis->KeyShortCutList.append(CdcatKeyBinding(guis->key_commentDockEvent, QKeySequence( Qt::ControlModifier + Qt::Key_D ), tr("show comment dock")));
 	view_comment_widget_action->setShortcut ( guis->getKeyBinding(guis->key_commentDockEvent) );
@@ -365,7 +365,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	view_comment_widget_action->setChecked(cconfig->showCommentDock);
 	connect ( view_comment_widget_action, SIGNAL ( triggered() ), this, SLOT ( commentWidgetToogled()));
 	viewMenu->addAction ( view_comment_widget_action );
-	
+
 	view_tray_action = new QAction ( tr ( "show systray icon" ), this );
 	guis->KeyShortCutList.append(CdcatKeyBinding(guis->key_dockEvent, QKeySequence( Qt::ControlModifier + Qt::AltModifier + Qt::Key_D ), tr("show systray icon")));
 	view_tray_action->setShortcut ( guis->getKeyBinding(guis->key_dockEvent) );
@@ -374,7 +374,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	view_tray_action->setChecked(cconfig->showTrayIcon);
 	connect ( view_tray_action, SIGNAL ( triggered() ), this, SLOT ( dockToogled()));
 	viewMenu->addAction ( view_tray_action );
-	
+
 	find_action = new QAction ( QIcon ( *get_t_find_icon() ), tr ( "Seek in database..." ), this );
 	guis->KeyShortCutList.append(CdcatKeyBinding(guis->key_findEvent, QKeySequence( Qt::ControlModifier + Qt::Key_F ), tr("Seek in database for files and folders")));
 	find_action->setShortcut ( guis->getKeyBinding(guis->key_findEvent) );
@@ -484,7 +484,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	lvMain->insertSpacing ( 2, 4 );
 	lvMain->insertWidget ( 3, splitMain, 8 );
 	lvMain->insertSpacing ( 4, 4 );
-	
+
 	Toolbar->addAction ( new_action );
 	Toolbar->addAction ( open_action );
 	Toolbar->addAction ( save_action );
@@ -511,10 +511,10 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 	splitterSizesList.append ( cconfig->mainP1 );
 	splitterSizesList.append ( cconfig->mainP2 ); // remaining space for listView
 	//splitterSizesList.append ( cconfig->mainP3 );
-	
+
 	if(!cconfig->commentDockIsFloating)
 		setDockSize ( CommentDock, cconfig->mainP3, 0 );
-	
+
 	CommentDock->setFloating(cconfig->commentDockIsFloating);
 	if(cconfig->commentDockIsFloating) {
 		CommentDock->show();
@@ -523,7 +523,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 		CommentDock->resize(cconfig->commentDockSize_width, cconfig->commentDockSize_height);
 		CommentDock->move(cconfig->commentDockPos_x, cconfig->commentDockPos_y);
 	}
-	
+
 	splitMain->setSizes ( splitterSizesList );
 	splitMain->setStretchFactor(splitMain->indexOf(DirView), 1);
 	splitMain->setStretchFactor(splitMain->indexOf(listView), 1);
@@ -532,7 +532,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 
 	if(!cconfig->commentDockIsFloating)
 		CommentDock->resize(QSize(cconfig->mainP3, CommentDock->height()));
-	
+
 	connect ( DirView , SIGNAL ( folderSelected ( const QString & ) ), guis, SLOT ( listUpdate ( const QString & ) ) );
 	connect ( DirView , SIGNAL ( hitkey ( QKeyEvent * ) ), guis, SLOT ( hotKeys ( QKeyEvent * ) ) );
 	connect ( DirView, SIGNAL ( customContextMenuRequested ( const QPoint  ) ),
@@ -549,22 +549,22 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 // 	connect ( ButtonConfig, SIGNAL ( clicked() ), guis, SLOT ( configEvent() ) );
 
 	connect ( commentWidget , SIGNAL ( touchdb() ), guis, SLOT ( cHcaption() ) );
-	
+
 	if(cconfig->showToolBar)
 		Toolbar->show();
 	else
 		Toolbar->hide();
-	
+
 	if(cconfig->showStatusBar)
 		statusBar()->show();
 	else
 		statusBar()->hide();
-	
+
 	if(cconfig->showCommentDock)
 		CommentDock->show();
 	else
 		CommentDock->hide();
-	
+
 	show();
 
 	listView ->setFocus();
@@ -606,7 +606,7 @@ void CdCatMainWidget::setDockSize ( QDockWidget *dock, int setWidth, int setHeig
 			dock->setMaximumHeight ( setHeight );
 		}
 	}
-	
+
 	QTimer::singleShot ( 1, this, SLOT ( returnToOldMaxMinSizes() ) );
 }
 
@@ -633,7 +633,7 @@ CdCatMainWidget::~CdCatMainWidget() {
 void CdCatMainWidget::languageChange() {
 	setWindowTitle ( tr ( "Hyper's CD Catalogizer" ) );
         //Toolbar->setTitle (tr ( "Main toolbar" ) );
-	
+
 	fileMenu->setTitle(tr("File"));
 	editMenu->setTitle(tr("Edit"));
 	viewMenu->setTitle(tr("View"));
@@ -641,7 +641,7 @@ void CdCatMainWidget::languageChange() {
 	inoutMenu->setTitle(tr("Import/Export"));
 	othersMenu->setTitle(tr("Others"));
 	helpMenu->setTitle(tr("Help"));
-	
+
 	QStringList labels;
 	labels.append(tr ( "Directory Tree" ) );
 	DirView->setHeaderLabels(labels);
@@ -769,8 +769,8 @@ void CdCatMainWidget::closeEvent ( QCloseEvent *e ) {
 		cconfig->mainP1 = ( splitMain->sizes() ) [0];
 		cconfig->mainP2 = ( splitMain->sizes() ) [1];
 		//cconfig->mainP3 = ( splitMain->sizes() ) [2];
-		
-		
+
+
 		cconfig->mainP3 = CommentDock->width();
 		if(CommentDock->isFloating()) {
 			cconfig->commentDockSize_width = CommentDock->width();
@@ -780,12 +780,12 @@ void CdCatMainWidget::closeEvent ( QCloseEvent *e ) {
 		}
 		cconfig->commentDockSize_dockarea = dockWidgetArea(CommentDock);
 		cconfig->commentDockIsFloating = CommentDock->isFloating();
-		
+
 		cconfig->showStatusBar = view_statusbar_action->isChecked();
 		cconfig->showToolBar = view_toolbar_action->isChecked();
 		cconfig->showCommentDock = view_comment_widget_action->isChecked();
 		cconfig->showTrayIcon = view_tray_action->isChecked();
-		
+
 		cconfig->writeConfig();
 		if ( cconfig->showTrayIcon && trayIcon != NULL && trayIcon->isVisible() )
 			trayIcon->hide();
@@ -941,4 +941,4 @@ void CdCatMainWidget::setTrayText ( QString text, QString header ) {
 
 
 
-// kate: indent-mode cstyle; indent-width 8; replace-tabs off; tab-width 8; 
+// kate: indent-mode cstyle; indent-width 8; replace-tabs off; tab-width 8;

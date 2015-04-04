@@ -117,7 +117,7 @@
         <source>I can&apos;t open the autoload catalog.
 Check the file, or change the autoload option in the config dialog!
 </source>
-        <translation>Não consigo abrir o catálogo de carregamento autmomático. 
+        <translation>Não consigo abrir o catálogo de carregamento autmomático.
 Verifique o ficheiro, ou mude a opção de carregamento automático na janela de configurações!</translation>
     </message>
     <message>
@@ -129,13 +129,13 @@ Verifique o ficheiro, ou mude a opção de carregamento automático na janela de
         <source>I can&apos;t open the autoload catalog according the first command line parameter.
 Check the file!
 </source>
-        <translation>Impossível abrir o catálogo de carregamento automático de acordo com o parâmetro da primeira linha de comando. 
+        <translation>Impossível abrir o catálogo de carregamento automático de acordo com o parâmetro da primeira linha de comando.
 Verifique o ficheiro!</translation>
     </message>
     <message>
         <source>I can&apos;t get the $HOME environment variable.
 It is necessary couse I&apos;d like to save the config file into your home directory.</source>
-        <translation type="obsolete">Impossível obter a variável de ambiente $HOME. 
+        <translation type="obsolete">Impossível obter a variável de ambiente $HOME.
 Ele é necessária para guardar o ficheiro de configuração na sua directoria pessoal.</translation>
     </message>
     <message>
@@ -1662,7 +1662,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Erro:</translation>
     </message>
     <message>
-        <source>Do you really want to delete this?: 
+        <source>Do you really want to delete this?:
 %1</source>
         <translation type="obsolete">Deseja eleminar isto?:
 %1</translation>
@@ -1693,8 +1693,8 @@ It is necessary because I&apos;d like to save the config file into your home dir
     </message>
     <message>
         <location line="+180"/>
-        <source>The size of &quot;%1&quot; : 
- %2 
+        <source>The size of &quot;%1&quot; :
+ %2
  %3 file /%4 directory</source>
         <translation>O tamanho de &quot;%1&quot; :
 %2
@@ -1822,7 +1822,7 @@ a base de dados pode estar imcompleta</translation>
     </message>
     <message>
         <location line="+73"/>
-        <source>An error occured while scanning, the rescan operation was cancelled: 
+        <source>An error occured while scanning, the rescan operation was cancelled:
 %1</source>
         <translation>Ocorreu um erro durante a varrimento, a operação foi cancelada:
 %1</translation>

@@ -159,7 +159,7 @@ DirectoryView::DirectoryView ( QWidget *parent, const char * )
 	: QTreeWidget ( parent ),  oldCurrent ( 0 ), dropItem ( 0 ), mousePressed ( FALSE ) {
 
 // 	autoopen_timer = new QTimer ( this );
-	
+
 	setSortingEnabled(true);
 	sortByColumn ( 0, Qt::AscendingOrder );
 	setItemsExpandable(true);
@@ -171,7 +171,7 @@ DirectoryView::DirectoryView ( QWidget *parent, const char * )
 
 	connect ( this, SIGNAL ( itemClicked ( QTreeWidgetItem *, int ) ),
 	          this, SLOT ( slotFolderSelectedR ( QTreeWidgetItem *, int ) ) );
-	
+
 	connect (this, SIGNAL( itemExpanded(QTreeWidgetItem*)), this, SLOT(itemExpanded(QTreeWidgetItem*)));
 	connect (this, SIGNAL( itemCollapsed(QTreeWidgetItem*)), this, SLOT(itemCollapsed(QTreeWidgetItem*)));
 
@@ -193,7 +193,7 @@ DirectoryView::DirectoryView ( QWidget *parent, const char * )
 		//std::cerr << "DirView::DirView() root found: " << qPrintable(fi.filePath()) << std::endl;
 
 		Directory * root = new Directory ( this, fi.filePath() );
-#if defined(_WIN32) || defined(_OS2) 
+#if defined(_WIN32) || defined(_OS2)
 		//Skip reading floppy drives on startup.
 		if ( roots.count() >= 1 && fi.filePath() != QString ( "A:/" ) && fi.filePath() != QString ( "B:/" ) ) {
 #else
@@ -328,7 +328,7 @@ void DirectoryView::setDir ( const QString &s ) {
 			if ( (*it3)->text ( 0 ) == lst.at(i) ) {
 				(*it3)->setExpanded(true);
 				setCurrentItem ( (*it3) );
-				
+
 // 				//ensureItemVisible ( item ); //FIXME
 // 				QTreeWidgetItem * item2 = item->itemAbove();
 // 				if ( item2 != NULL ) {
@@ -367,4 +367,4 @@ const QPixmap *FileItem::pixmap ( int i ) const {
 		return 0;
 	return pix;
 }
-// kate: indent-mode cstyle; replace-tabs off; tab-width 8; 
+// kate: indent-mode cstyle; replace-tabs off; tab-width 8;

@@ -53,7 +53,7 @@ newdbdialog::newdbdialog ( QWidget *parent, const char *name, bool modal, Qt::WF
 	leOwner = new QLineEdit ( this );
 	NewDBDialogBaseLayout->addWidget ( textLabelOwner, 1, 0, 1, 1 );
 	NewDBDialogBaseLayout->addWidget ( leOwner, 1, 1, 1,1 );
-	
+
 	textLabelCategory = new QLabel ( this );
 	leCategory = new QLineEdit ( this );
 	NewDBDialogBaseLayout->addWidget ( textLabelCategory, 2, 0, 1, 1 );
@@ -85,7 +85,7 @@ newdbdialog::newdbdialog ( QWidget *parent, const char *name, bool modal, Qt::WF
 	leEncryptionPassword->setEchoMode(QLineEdit::Password);
 	NewDBDialogBaseLayout->addWidget ( textLabelEncryptionPassword, 6, 0,1 ,1 );
 	NewDBDialogBaseLayout->addWidget ( leEncryptionPassword, 6, 1, 1, 1 );
-	
+
 	catalogEncrypted = false;
 	encryptionPassword ="";
 #endif

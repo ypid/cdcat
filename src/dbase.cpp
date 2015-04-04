@@ -558,7 +558,7 @@ DataBase::DataBase ( void ) {
 #ifdef USE_LIB7ZIP
 	C7ZipLibrary lib;
 	WStringArray exts;
-	
+
 	if ( !lib.Initialize() ) {
 		fprintf ( stderr, "lib7zip initialize failed, lib7zip scanning disabled\n" );
 		doScanArchiveLib7zip = false;
@@ -674,7 +674,7 @@ int DataBase::addMedia ( QString what, QString name, int number, int type, QStri
 
 	progress ( pww );
 	pattern = new char[1024];
-	
+
 	if(doExcludeFiles && !ExcludeFileList.isEmpty() ) {
 		excludeFileRegExList.clear();
 		 for (int i = 0; i < ExcludeFileList.size(); ++i) {
@@ -694,12 +694,12 @@ int DataBase::addMedia ( QString what, QString name, int number, int type, QStri
 			}
 		}
 	}
-	
+
 #ifndef NO_MEDIAINFO
 	SupportedFileInfoExtensionsList.clear();
 	SupportedFileInfoExtensionsList = me.getSupportedExtensions();
 #endif
-	
+
 	returnv = scanFsToNode ( what, tt );
 	delete [] pattern;
 	return returnv;
@@ -915,7 +915,7 @@ int   DataBase::openDB ( char *filename ) {
 
 	fw->pww = pww;
 	progress ( pww );
-	
+
 	if(!doWork) {
 		gzclose ( f );
 		delete fw;
@@ -932,19 +932,19 @@ int   DataBase::openDB ( char *filename ) {
 	progress ( pww );
 	parsingSuccess = fw->readFrom ( root );
 	this->XML_ENCODING = fw->XML_ENCODING;
-	
+
 	if ( parsingSuccess == 1 || pww->doCancel ) {
 		progress ( pww );
 		errormsg = fw->errormsg;
 		if ( *DEBUG_INFO_ENABLED )
 			std::cerr << "filereader reported error:" << qPrintable ( fw->errormsg ) << std::endl;
-		
+
 		if(!doWork) {
 			gzclose ( f );
 			delete fw;
 			return 1;
 		}
-		
+
 		delete root;
 		root = NULL;
 		delete fw;
@@ -969,11 +969,11 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 	if ( pww->doCancel ) {
 		return 2;
 	}
-	
+
 	DEBUG_INFO_ENABLED = init_debug_info();
 	if ( *DEBUG_INFO_ENABLED )
 		std::cerr << "Loading node:" << qPrintable ( what ) << std::endl;
-	
+
 	int ret;
 	QString comm = NULL;
 	QList<ArchiveFile> archivecontent = QList<ArchiveFile>();
@@ -982,21 +982,21 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 	if ( !dir.isReadable() ) {
 		if ( *DEBUG_INFO_ENABLED )
 			std::cerr << "dir " << qPrintable ( what ) << " is not readable";
-		
+
 		int i=0;
 		if(!ignoreReadErrors) {
-			
+
 			if ( QFileInfo ( what ).isDir() )
 				errormsg = tr ( "Cannot read directory: %1" ).arg ( what );
 			else
 				errormsg = tr ( "Cannot read file: %1" ).arg ( what ); /* socket files and dead symbolic links end here */
-		
+
 			i = 1 + ( QMessageBox::warning ( NULL, tr ( "Error" ), errormsg, tr ( "Ignore" ), tr ( "Cancel scanning" ) ) );
 		}
 		return i;
 	}
 	QFileInfoList dirlist( dir.entryInfoList ( QStringList(QString ( "*" )), QDir::Dirs | QDir::Files | QDir::Hidden | QDir::System ) );
-	
+
 	for ( int fi = 0; fi < dirlist.size(); ++fi ) {
 		if ( pww->doCancel ) {
 			return 2;
@@ -1005,13 +1005,13 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 		if ( fileInfo.fileName() == "." || fileInfo.fileName() == ".." ) {
 			continue;
 		}
-		
+
 		if ( *DEBUG_INFO_ENABLED )
 			std::cerr << "processing in dir " << qPrintable ( what ) << " node: " << qPrintable ( fileInfo.fileName() ) << std::endl;
-		
+
 		if ( showProgressedFileInStatus )
 			emit pathScanned ( fileInfo.filePath() );
-		
+
 		if (doExcludeFiles) {
 			bool exclude_path_matched = false;
 			for (int i = 0; i < excludeFileRegExList.size(); i++) {
@@ -1027,7 +1027,7 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 			if ( exclude_path_matched )
 				continue;
 		}
-		
+
 		/* Make a new node */
 		Node *tt = to->child;
 		if ( to->child == NULL )
@@ -1043,17 +1043,17 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 		if ( fileInfo.isFile() ) { /* FILE */
 			if ( *DEBUG_INFO_ENABLED )
 				std::cerr << "adding file: " << qPrintable ( fileInfo.fileName() ) << std::endl;
-			
+
 			//if ( displayCurrentScannedFileInTray ) {
 			//	emit fileScanned ( fileInfo->filePath() );
 			//}
-			
+
 			double size = fileInfo.size();
 			double s = size;
 			int   st = UNIT_BYTE;
 // 			if ( *DEBUG_INFO_ENABLED )
 // 				std::cerr << "adding file size: " << s << std::endl;
-			
+
 			if ( size >= ( double ) SIZE_ONE_GBYTE * 1024.0 ) {
 				s  = size / SIZE_ONE_GBYTE / 1024.0;
 				st = UNIT_TBYTE;
@@ -1080,12 +1080,12 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 					}
 				}
 			}
-			
+
 // 			if ( *DEBUG_INFO_ENABLED )
 // 				std::cerr << "adding file size 2: " << qPrintable ( QString().setNum ( s ) ) << qPrintable ( getSType ( st ) ) << std::endl;
-			
+
 			progress ( pww );
-			
+
 			if ( fileInfo.isSymLink() ) { /* SYMBOLIC LINK to a FILE */
 				comm = tr ( "Symbolic link to file:#" )
 				       + dir.relativeFilePath ( fileInfo.symLinkTarget() );
@@ -1131,9 +1131,9 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 			if ( fileInfo.isDir() ) { /* DIRECTORY */
 				if ( *DEBUG_INFO_ENABLED )
 					std::cerr << "adding dir: " << qPrintable ( fileInfo.fileName() ) << std::endl;
-				
+
 				progress ( pww );
-				
+
 				if ( fileInfo.isSymLink() ) { /* SYMBOLIC LINK to a DIRECTORY */
 					/* These links appear as empty directories in the GUI */
 					/* Change to DBFile for show them as files */
@@ -1147,13 +1147,13 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 					tt->data = ( void * ) new DBDirectory (
 					                   fileInfo.fileName(), fileInfo.lastModified(), ( char* ) NULL, this->pcategory );
 				}
-				
+
 				/* Start recursion: */
 				QString thr ( what );
 				thr = thr.append ( "/" );
 				thr = thr.append ( fileInfo.fileName() );
-				
-				
+
+
 				if ( pww->doCancel ) {
 					return 2;
 				}
@@ -1165,9 +1165,9 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 				if ( fileInfo.isSymLink() ) { /* DEAD SYMBOLIC LINK */
 					if ( *DEBUG_INFO_ENABLED )
 						std::cerr << "adding dead symlink: " << qPrintable ( fileInfo.fileName() ) << std::endl;
-					
+
 					progress ( pww );
-					
+
 					comm = tr ( "DEAD Symbolic link to:#" )
 					       + dir.relativeFilePath ( fileInfo.symLinkTarget() );
 					tt->data = ( void * ) new DBFile ( fileInfo.fileName(), QDateTime(),
@@ -1176,9 +1176,9 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 				else {   /* SYSTEM FILE (e.g. FIFO, socket or device file) */
 					if ( *DEBUG_INFO_ENABLED )
 						std::cerr << "adding system file: " << qPrintable ( fileInfo.fileName() ) << std::endl;
-					
+
 					progress ( pww );
-					
+
 					comm = tr ( "System file (e.g. FIFO, socket or device file)" );
 					tt->data = ( void * ) new DBFile ( fileInfo.fileName(), fileInfo.lastModified(),
 					                                   comm, 0, UNIT_BYTE, this->pcategory );
@@ -1193,22 +1193,22 @@ int DataBase::scanFsToNode ( QString what, Node *to ) {
 
 int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 	DEBUG_INFO_ENABLED = init_debug_info();
-	
+
 	QString file_suffix = fi->suffix();
 	QString file_abspath = fi->absoluteFilePath();
 	QString file_path = fi->filePath();
 	QString file_name = fi->fileName();
 	qint64 file_size = fi->size();
-	
+
 	/***MP3 tag scanning */
 	if ( storeMp3tags || storeMp3techinfo ) {
 		if ( file_suffix.toLower() ==  "mp3" || file_suffix.toLower() ==  "mp2" ) {
-			
+
 			if ( showProgressedFileInStatus )
 				emit pathExtraInfoAppend ( tr("reading mp3 info") );
 			if ( *DEBUG_INFO_ENABLED )
 				std::cerr << "reading mp3 info for " << qPrintable ( file_path ) << std::endl;
-			
+
 			ReadMp3Tag *reader = new ReadMp3Tag ( ( const char * ) QFile::encodeName ( file_abspath ), v1_over_v2 );
 			if(pww->appl->hasPendingEvents())
 				pww->appl->processEvents();
@@ -1248,7 +1248,7 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 			}
 		}
 	}
-	
+
 #ifndef NO_MEDIAINFO
 	/* using fileinfo */
 	if ( storeFileInfo && me.getMediaInfoLibFound() ) {
@@ -1257,13 +1257,13 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 				emit pathExtraInfoAppend ( tr("reading media info") );
 			if ( *DEBUG_INFO_ENABLED )
 				std::cerr << "reading media info for " << qPrintable ( file_path ) << std::endl;
-			
+
 			if ( displayCurrentScannedFileInTray ) {
 				emit fileScanned ( tr("reading media info")+ ": "+file_path );
 			}
-			
+
 			QString info = CdcatMediaInfo ( file_abspath ).getInfo();
-			
+
 			if ( !info.isEmpty() )
 				fc->fileinfo = info;
 			if(pww->appl->hasPendingEvents())
@@ -1271,7 +1271,7 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 		}
 	}
 #endif
-	
+
 	/***Experimental AVI Header Scanning  */
 	if ( storeAvitechinfo ) {
 		if ( ( file_suffix ).toLower() == "avi" ) {
@@ -1284,13 +1284,13 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 			if ( filePTR != NULL ) {
 				QString got = parseAviHeader ( filePTR ).replace ( QRegExp ( "\n" ), "#" );
 				fclose ( filePTR );
-				
+
 				if ( *DEBUG_INFO_ENABLED )
 					std::cerr << "avi info for " << qPrintable ( file_path ) << ": " << qPrintable(got) << std::endl;
-				
+
 				if(pww->appl->hasPendingEvents())
 					pww->appl->processEvents();
-				
+
 				//store it as comment
 				if ( !got.isEmpty() ) {
 					if ( !fc->comment.isEmpty() )
@@ -1304,7 +1304,7 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 			}
 		}
 	}
-	
+
 	/***File content scanning */
 	if ( storeContent ) {
 	//         pcre       *pcc = NULL;
@@ -1312,10 +1312,10 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 	//         int         erroroffset;
 	//         int         ovector[30];
 		bool match = false;
-		
+
 		QStringList exts = storedFiles.split ( ";" );
 		QStringList::Iterator it = exts.begin();
-		
+
 		for ( ; it != exts.end(); ++it ) { // stepping on the ; separated patterns
 			strcpy ( pattern, ( ( *it ).toLocal8Bit().constData() ));
 			easyFormConversion ( pattern );
@@ -1338,20 +1338,20 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 				break;
 			}
 		}
-		
+
 		if ( match ) { // the file need to be read
 			FILE *f = NULL;
 			bool success = true;
 			unsigned long rsize = 0, rrsize = 0;
 			unsigned char *rdata = 0;
 			Node *tt = fc->prop;
-			
+
 			if(*DEBUG_INFO_ENABLED)
 				std::cerr << "pattern " << pattern << ", matched for file " << ( const char * ) QFile::encodeName ( file_name ) << ", reading content"<< std::endl;
-			
+
 			if ( showProgressedFileInStatus )
 				emit pathExtraInfoAppend ( tr("reading file content") );
-			
+
 			if ( storeLimit > MAX_STORED_SIZE )
 				storeLimit = MAX_STORED_SIZE;
 			//read the file
@@ -1380,10 +1380,10 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 				rdata[rsize] = '\0';
 				fclose ( f );
 			}
-			
+
 			if(pww->appl->hasPendingEvents())
 				pww->appl->processEvents();
-			
+
 			//make the node in the db
 			if ( success ) {
 				if ( tt == NULL )
@@ -1399,20 +1399,20 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 			}
 		}//end of if(match)
 	}//end of if(storeContent)
-	
+
 #ifdef USE_LIBEXIF
 	if (storeExifData){
 		if(getExifSupportedExtensions().contains(file_suffix)) {
 			if ( showProgressedFileInStatus )
 				emit pathExtraInfoAppend ( tr("reading exif data") );
-			
+
 			Node *tt = fc->prop;
 			CdcatExifData *ed = new CdcatExifData(file_abspath);
 	 		ed->readCdcatExifData();
-			
+
 			if(pww->appl->hasPendingEvents())
 				pww->appl->processEvents();
-			
+
 			QStringList ExifData = ed->getExifData();
 			if ( tt == NULL )
 				fc->prop = tt = new Node ( HC_EXIF, NULL );
@@ -1426,20 +1426,20 @@ int DataBase::scanFileProp ( QFileInfo *fi, DBFile *fc ) {
 			tt->data = ( void * ) new DBExifData ( ExifData );
 			delete(ed);
 		}
-		
+
 	}
 #endif
-	if(storeThumb) 
+	if(storeThumb)
 	{
 		if (ThumbExtsList.contains(file_suffix)) {
 			if ( showProgressedFileInStatus )
 				emit pathExtraInfoAppend ( tr("reading thumbnail data") );
-			
+
 			QImage thumbImage(file_abspath);
-			
+
 			if(pww->appl->hasPendingEvents())
 				pww->appl->processEvents();
-			
+
 			if (!thumbImage.isNull()) {
 				Node *tt = fc->prop;
 				thumbImage = thumbImage.scaled(QSize(thumbWidth, thumbHeight), Qt::KeepAspectRatio);
@@ -1792,14 +1792,14 @@ QList<ArchiveFile> DataBase::scanArchive ( QString path, ArchiveType type ) {
 		}
 		if ( *DEBUG_INFO_ENABLED )
 			std::cerr << "scanning archive " << qPrintable ( path ) << ",  type: " << type << std::endl;
-		
+
 		if ( showProgressedFileInStatus )
 			emit pathExtraInfoAppend ( tr("scanning archive") );
-		
+
 		if ( displayCurrentScannedFileInTray ) {
 			emit fileScanned ( tr("scanning archive")+ ": "+path );
 		}
-		
+
 		int i = 0;
 		TAR *t = NULL;
 		int tar_open_ret = -1;
@@ -1833,7 +1833,7 @@ QList<ArchiveFile> DataBase::scanArchive ( QString path, ArchiveType type ) {
 				}
 				if ( showProgressedArchiveFileInStatus )
 					emit pathExtraInfoAppend ( tr("scanning archive, file:")+ " "+QString(t->th_buf.name) );
-				
+
 				char modestring[20];
 				struct passwd *pw;
 				struct group *gr;
@@ -1884,7 +1884,7 @@ QList<ArchiveFile> DataBase::scanArchive ( QString path, ArchiveType type ) {
 				af.date.setTime_t ( mtime );
 				af.path = QString().sprintf ( "%s", th_get_pathname ( t ) );
 
-#if !defined(_WIN32) 
+#if !defined(_WIN32)
 				if ( TH_ISSYM ( t ) || TH_ISLNK ( t ) ) {
 					if ( TH_ISSYM ( t ) )
 						af.filetype = QString().sprintf ( " -> " );
@@ -1896,8 +1896,8 @@ QList<ArchiveFile> DataBase::scanArchive ( QString path, ArchiveType type ) {
 						af.filetype += QString().sprintf ( "%.100s", t->th_buf.linkname );
 				}
 #endif
-				
-				
+
+
 				filelist.append ( af );
 				progress ( pww );
 
@@ -1937,24 +1937,24 @@ QList<ArchiveFile> DataBase::scanArchive ( QString path, ArchiveType type ) {
 				Lib7zipTypes.append ( QString().fromWCharArray ( ( *extIt ).c_str() ) );
 			//std::cerr << "lib7zip supported extensions: " << qPrintable(Lib7zipTypes.join(" ")) << std::endl;
 		}
-		
+
 		if ( *DEBUG_INFO_ENABLED )
 			std::cerr << "scanning archive " << qPrintable ( path ) << ",  type: " << type << std::endl;
-		
+
 		if ( showProgressedFileInStatus )
 			emit pathExtraInfoAppend ( tr("scanning archive") );
-		
+
 		if ( displayCurrentScannedFileInTray ) {
 			emit fileScanned ( tr("scanning archive")+ ": "+path );
 		}
-		
+
 		TestInStream stream ( path.toLocal8Bit().data(), path.toLower().section ( '.', -1 ).toStdWString() );
 		if ( lib.OpenArchive ( &stream, &pArchive ) ) {
 			unsigned int numItems = 0;
 			pArchive->GetItemCount ( &numItems );
 			printf ( "" ); // important!!!
 			//printf("items found: %d\n", numItems);
-			
+
 			for ( unsigned int i = 0; i < numItems; i++ ) {
 				C7ZipArchiveItem * pArchiveItem = NULL;
 				if ( pArchive->GetItemInfo ( i, &pArchiveItem ) ) {
@@ -2039,10 +2039,10 @@ QList<ArchiveFile> DataBase::scanArchive ( QString path, ArchiveType type ) {
 					if ( *DEBUG_INFO_ENABLED ) {
 						std::cerr << "file inside archive: " << qPrintable ( path ) << std::endl;
 					}
-					
+
 					if ( showProgressedArchiveFileInStatus )
 						emit pathExtraInfoAppend ( tr("scanning archive, file:")+ " "+QString( path ));
-					
+
 
 					//  -rw-r--r-- crissi   crissi       29656 Mar 17  8:33 2009 home/crissi/Desktop/file.gif
 					//QString line = QString().sprintf("%s %s %s    %ld %s %s", file_attr, user2.toLocal8Bit().data(), group2.toLocal8Bit().data(), size, mtime2.toString("MMM d h:s yyyy").toLocal8Bit().data(), path.toLocal8Bit().data() );
@@ -2131,7 +2131,7 @@ void DataBase::addLnk ( const char *loc ) {
 	}
 	gzclose ( f );
 	delete fw;
-	
+
 	/* end reading from the file */
 
 	catname.prepend ( "@" );
@@ -2199,7 +2199,7 @@ double DataBase::getSize ( Node *s, int level ) {
 	if ( level != 0 )
 		if ( s->next  != NULL )
 			v += getSize ( s->next, level + 1 );
-	
+
 	return v;
 }
 
@@ -2261,7 +2261,7 @@ void DataBase::sortM ( int mode, bool ascending ) {
 	int length;
 	int type;
 	int i, j;
-	
+
 	if ( root == NULL )
 		return;
 	length = 0;
@@ -2270,7 +2270,7 @@ void DataBase::sortM ( int mode, bool ascending ) {
 		length++;
 		step = step->next;
 	}
-	
+
 	for ( i = 0; i < length; i++ ) {
 		for ( j = i; j < length; j++ ) {
 			if ( getMOnPos ( i )->type == HC_CATLNK )
@@ -2323,15 +2323,15 @@ void DataBase::sortM ( int mode, bool ascending ) {
 			step = getMOnPos ( i )->child;
 			data = getMOnPos ( i )->data ;
 			type = getMOnPos ( i )->type;
-			
+
 			getMOnPos ( i )->child = getMOnPos ( j )->child;
 			getMOnPos ( i )->data  = getMOnPos ( j )->data;
 			getMOnPos ( i )->type  = getMOnPos ( j )->type;
-			
+
 			getMOnPos ( j )->child = step;
 			getMOnPos ( j )->data  = data;
 			getMOnPos ( j )->type  = type;
-			
+
 		}
 	}
 	((DBCatalog *)root->data)->sortedBy = mode;
@@ -2741,4 +2741,4 @@ QString ArchiveFile::toDbString() {
 }
 
 
-// kate: indent-mode cstyle; replace-tabs off; tab-width 8; 
+// kate: indent-mode cstyle; replace-tabs off; tab-width 8;
