@@ -190,6 +190,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 			cerr << "importGtktalogCsv:: " << lines << " lines found." << endl;
 	}
 
+    // FIXME: Why not use else?
 	if  ( !f.open ( QIODevice::ReadOnly ) ) {      // file open failed
 		if ( f.error() == QFile::ReadError)
 			QMessageBox::critical ( 0, tr ( "file read error" ), tr ( "Could not read file" ) );
@@ -1117,12 +1118,12 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 						continue;
 					}
 
-					// skip comment line
+					// skip description line
 					if ( line == "\"Disk\", \"Name\", \"Path\", \"Full path\", \"Size\", \"Date\", \"Time\", \"Category\", \"Level\", \"Comments\", \"Files inside\"" || line == "\"Disk\", \"Name\", \"Path\", \"Full path\", \"Size\", \"Date\", \"Time\", \"Category\", \"Level\", \"Comments\", \"Files inside\", \"Type\"" ) {
 						continue;
 					}
 
-					//manually split line from csv file (because there may be commas in the file name)
+					// manually split line from csv file (because there may be commas in the file name)
 					QStringList csvList;
 					int linelen = line.length();
 					bool in_string = false;
@@ -1176,10 +1177,11 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 					//		continue;
 					filename = QString ( csvList.at ( 1 ) );
 
-					//format of size string depends on ADC's Options/Preferences/Genral/Show sizes in KB
+					// format of size string depends on ADC's Options/Preferences/Genral/Show sizes in KB
 					QString sizestring = QString ( csvList.at ( 4 ) );
-					if ( sizestring.right ( 1 ).at ( 0 ).isDigit() ) //1 234 567
+					if ( sizestring.right ( 1 ).at ( 0 ).isDigit() ) { //1 234 567
 						size = sizestring.replace ( " ", "" ).toDouble();
+                    }
 					else {  // 123.456 bytes/KB/MB/GB
 						QStringList sizestringlist = sizestring.split ( " " );
 						QString unit = sizestringlist.last();
@@ -1195,7 +1197,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 							size = size * 1024.0 * 1024.0 * 1024.0 * 1024.0;
 					}
 
-					//FIXME - date and time depend on selected locale - this section may need fixing
+					// FIXME - date and time depend on selected locale - this section may need fixing
 					QString datestring = QString ( csvList.at ( 5 ) );
 					QDate date = QDate::fromString ( datestring, "d.M.yyyy" );
 					if ( not date.isValid() )
