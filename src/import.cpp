@@ -195,7 +195,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 			QMessageBox::critical ( 0, tr ( "file read error" ), tr ( "Could not read file" ) );
 
 		if ( f.error() == QFile::FatalError )
-			QMessageBox::critical ( 0, tr ( "Fatal error" ), tr ( "Fatal error occured." ) );
+			QMessageBox::critical ( 0, tr ( "Fatal error" ), tr ( "Fatal error occurred." ) );
 
 		if ( f.error() == QFile::OpenError )
 			QMessageBox::critical ( 0, tr ( "file open error" ), tr ( "Could not open file" ) );

@@ -1886,7 +1886,7 @@ az adatbázis lehet hogy nem teljes</translation>
         <translation type="obsolete">Ujraolvasás</translation>
     </message>
     <message>
-        <source>An error occured while scanning, the rescan operation cancelled</source>
+        <source>An error occurred while scanning, the rescan operation cancelled</source>
         <translation type="obsolete">Hiba történt felolvasás közben, a müvelet meg lett szakítva</translation>
     </message>
     <message>
@@ -1998,7 +1998,7 @@ Copyright (C) 2003 Deák Péter (GPL)</translation>
 %1</translation>
     </message>
     <message>
-        <source>An error occured while scanning, the rescan operation cancelled:
+        <source>An error occurred while scanning, the rescan operation cancelled:
 %1</source>
         <translation type="obsolete">Hiba történt felolvasás alatt, a művelet visszavonásra került:
 %1</translation>
@@ -2122,7 +2122,7 @@ Copyright (C) 2003 Deák Péter (GPL)</translation>
     </message>
     <message>
         <location line="-1119"/>
-        <source>An error occured while scanning,
+        <source>An error occurred while scanning,
 the DataBase may be incomplete</source>
         <translation>Volt pár hiba felolvasás közben,
 az adatbázis lehet hogy nem teljes</translation>
@@ -2134,7 +2134,7 @@ az adatbázis lehet hogy nem teljes</translation>
     </message>
     <message>
         <location line="+73"/>
-        <source>An error occured while scanning, the rescan operation was cancelled:
+        <source>An error occurred while scanning, the rescan operation was cancelled:
 %1</source>
         <translation>Hiba történt felolvasás közben, a müvelet meg lett szakítva:
 %1</translation>
@@ -5868,7 +5868,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Végzetes hiba</translation>
     </message>
     <message>
-        <source>Fatal error occured.</source>
+        <source>Fatal error occurred.</source>
         <translation type="obsolete">Végzetes hiba történt.</translation>
     </message>
     <message>
@@ -5982,7 +5982,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location line="+0"/>
-        <source>Fatal error occured.</source>
+        <source>Fatal error occurred.</source>
         <translation>Végzetes hiba történt.</translation>
     </message>
     <message>

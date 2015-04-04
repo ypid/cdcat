@@ -1848,7 +1848,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     </message>
     <message>
         <location line="-1119"/>
-        <source>An error occured while scanning,
+        <source>An error occurred while scanning,
 the DataBase may be incomplete</source>
         <translation>Nastala chyba pri skenovaní,
 databáza pravdepodobne nebude kompletná</translation>
@@ -1860,7 +1860,7 @@ databáza pravdepodobne nebude kompletná</translation>
     </message>
     <message>
         <location line="+73"/>
-        <source>An error occured while scanning, the rescan operation was cancelled:
+        <source>An error occurred while scanning, the rescan operation was cancelled:
 %1</source>
         <translation>Nastala chyba pri skenovaní, aktualizácia bola zrušená:
 %1</translation>
@@ -5135,7 +5135,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Fatálna chyba</translation>
     </message>
     <message>
-        <source>Fatal error occured.</source>
+        <source>Fatal error occurred.</source>
         <translation type="obsolete">Vyskytla sa fatálna chyba.</translation>
     </message>
     <message>
@@ -5244,7 +5244,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location line="+0"/>
-        <source>Fatal error occured.</source>
+        <source>Fatal error occurred.</source>
         <translation>Vyskytla sa fatálna chyba.</translation>
     </message>
     <message>

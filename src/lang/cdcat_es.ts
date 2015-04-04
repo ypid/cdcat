@@ -1820,7 +1820,7 @@ la base de datos puede estar incompleta</translation>
         <translation type="obsolete">Reescanear</translation>
     </message>
     <message>
-        <source>An error occured while scanning, the rescan operation cancelled:
+        <source>An error occurred while scanning, the rescan operation cancelled:
 %1</source>
         <translation type="obsolete">Se produjeron errores durante el escaneo, se canceló la operación de reescaneo:
 %1</translation>
@@ -1968,7 +1968,7 @@ Copyright (C) 2003 Peter Deak (GPL)</translation>
     </message>
     <message>
         <location line="-1119"/>
-        <source>An error occured while scanning,
+        <source>An error occurred while scanning,
 the DataBase may be incomplete</source>
         <translation>Se produjeron errores durante el escaneo,
 la base de datos puede estar incompleta</translation>
@@ -1980,7 +1980,7 @@ la base de datos puede estar incompleta</translation>
     </message>
     <message>
         <location line="+73"/>
-        <source>An error occured while scanning, the rescan operation was cancelled:
+        <source>An error occurred while scanning, the rescan operation was cancelled:
 %1</source>
         <translation>Se produjeron errores durante el escaneo, se canceló la operación de reescaneo:
 %1</translation>
@@ -5547,7 +5547,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Error fatal</translation>
     </message>
     <message>
-        <source>Fatal error occured.</source>
+        <source>Fatal error occurred.</source>
         <translation type="obsolete">Ocurrió un error fatal.</translation>
     </message>
     <message>
@@ -5661,7 +5661,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location line="+0"/>
-        <source>Fatal error occured.</source>
+        <source>Fatal error occurred.</source>
         <translation>Ocurrió un error fatal.</translation>
     </message>
     <message>

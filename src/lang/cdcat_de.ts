@@ -1151,7 +1151,7 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
         <translation>Es ist kein Element im mittleren Ansichtsfenster ausgewählt!</translation>
     </message>
     <message>
-        <source>An error occured while scanning,
+        <source>An error occurred while scanning,
 the DataBase may be incomplete</source>
         <translation>Es trat ein Fehler während des Durchsuchens auf,
 Datenbank kann unvollständig sein</translation>
@@ -1161,7 +1161,7 @@ Datenbank kann unvollständig sein</translation>
         <translation>Es ist kein Medium in der mittleren Auswahlbox ausgewählt!</translation>
     </message>
     <message>
-        <source>An error occured while scanning, the rescan operation was cancelled:
+        <source>An error occurred while scanning, the rescan operation was cancelled:
 %1</source>
         <translation>Es trat ein Fehler während des Durchsuchens auf, Aktualisierenoperation abgebrochen:
 %1</translation>
@@ -3438,7 +3438,7 @@ p, li { white-space: pre-wrap; }
         <translation>Fataler Fehler</translation>
     </message>
     <message>
-        <source>Fatal error occured.</source>
+        <source>Fatal error occurred.</source>
         <translation>Es ist ein fataler Fehler aufgetreten.</translation>
     </message>
     <message>

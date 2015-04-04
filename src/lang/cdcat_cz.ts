@@ -1818,7 +1818,7 @@ databáze nebude pravděpodobně kompletní</translation>
         <translation type="obsolete">Aktualizovat</translation>
     </message>
     <message>
-        <source>An error occured while scanning, the rescan operation cancelled:
+        <source>An error occurred while scanning, the rescan operation cancelled:
 %1</source>
         <translation type="obsolete">Nastala chyba při pro prohledávání, aktualizace je zrušena:
 %1</translation>
@@ -1966,7 +1966,7 @@ Copyright (C) 2003 Peter Deak (GPL)</translation>
     </message>
     <message>
         <location line="-1119"/>
-        <source>An error occured while scanning,
+        <source>An error occurred while scanning,
 the DataBase may be incomplete</source>
         <translation>Nastala chyba při prohledávání,
 databáze nebude pravděpodobně kompletní</translation>
@@ -1978,7 +1978,7 @@ databáze nebude pravděpodobně kompletní</translation>
     </message>
     <message>
         <location line="+73"/>
-        <source>An error occured while scanning, the rescan operation was cancelled:
+        <source>An error occurred while scanning, the rescan operation was cancelled:
 %1</source>
         <translation>Nastala chyba při pro prohledávání, aktualizace je zrušena:
 %1</translation>
@@ -5570,7 +5570,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Fatální chyba</translation>
     </message>
     <message>
-        <source>Fatal error occured.</source>
+        <source>Fatal error occurred.</source>
         <translation type="obsolete">Nastala fatální chyba.</translation>
     </message>
     <message>
@@ -5683,7 +5683,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location line="+0"/>
-        <source>Fatal error occured.</source>
+        <source>Fatal error occurred.</source>
         <translation>Nastala fatální chyba.</translation>
     </message>
     <message>

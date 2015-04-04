@@ -1775,7 +1775,7 @@ baza danych może być niekompletna</translation>
         <translation>Możesz odświeżyć TYLKO wpisy o NOŚNIKACH!</translation>
     </message>
     <message>
-        <source>An error occured while scanning, the rescan operation cancelled:
+        <source>An error occurred while scanning, the rescan operation cancelled:
 %1</source>
         <translation type="obsolete">Wystąpił błąd podczas skanowania, opercja ponowenego skanowania anulowana:
 %1</translation>
@@ -1909,7 +1909,7 @@ baza danych może być niekompletna</translation>
     </message>
     <message>
         <location line="-1119"/>
-        <source>An error occured while scanning,
+        <source>An error occurred while scanning,
 the DataBase may be incomplete</source>
         <translation>Wystąpił błąd podczas skanowania,
 baza danych może być niekompletna</translation>
@@ -1921,7 +1921,7 @@ baza danych może być niekompletna</translation>
     </message>
     <message>
         <location line="+73"/>
-        <source>An error occured while scanning, the rescan operation was cancelled:
+        <source>An error occurred while scanning, the rescan operation was cancelled:
 %1</source>
         <translation>Wystąpił błąd podczas skanowania, opercja ponowenego skanowania anulowana:
 %1</translation>
@@ -5324,7 +5324,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Błąd krytyczny</translation>
     </message>
     <message>
-        <source>Fatal error occured.</source>
+        <source>Fatal error occurred.</source>
         <translation type="obsolete">Nastąpił błąd krytyczny.</translation>
     </message>
     <message>
@@ -5442,7 +5442,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location line="+0"/>
-        <source>Fatal error occured.</source>
+        <source>Fatal error occurred.</source>
         <translation>Nastąpił błąd krytyczny.</translation>
     </message>
     <message>

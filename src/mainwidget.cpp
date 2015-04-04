@@ -759,7 +759,7 @@ void CdCatMainWidget::closeEvent ( QCloseEvent *e ) {
 	//}
 	//else
 	{
-		// An error occured during the REQUISTED saving of the database
+		// An error occurred during the REQUISTED saving of the database
 		// (eg: access denied for writing...)
 		if ( guis->closeEvent() != 0 )
 			return;

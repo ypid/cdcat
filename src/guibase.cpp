@@ -1210,7 +1210,7 @@ int GuiSlave::openEvent ( void ) {
 	progress ( pww );
 
 
-	if ( ( ret_val = mainw->db->openDB ( fnc ) ) != 0 ) { // An error occured
+	if ( ( ret_val = mainw->db->openDB ( fnc ) ) != 0 ) { // An error occurred
 		QMessageBox::warning ( mainw, tr ( "Error while opening..." ),
 		                       mainw->db->errormsg );
 		mainw->db = NULL;
@@ -1366,7 +1366,7 @@ int GuiSlave::saveasEvent ( void ) {
 	mainw->db->setNice ( mainw->cconfig->nice );
 	if ( mainw->cconfig->saveAlwaysCatalogInUtf8 )
 		mainw->db->XML_ENCODING = "UTF-8";
-	if ( mainw->db->saveAsDB ( fnc ) != 0 ) { // An error occured
+	if ( mainw->db->saveAsDB ( fnc ) != 0 ) { // An error occurred
 		QMessageBox::warning ( mainw, tr ( "Error while saving..." ), mainw->db->errormsg );
 		retv = 2;
 		//The file cannot be writed
@@ -1808,7 +1808,7 @@ int GuiSlave::addEvent ( void ) {
 			panelsON();
 			if ( i != 0 && !pww->doCancel) {
 				QMessageBox::warning ( mainw,
-				                       tr ( "Warning..." ), tr ( "An error occured while scanning,\nthe DataBase may be incomplete" ) );
+				                       tr ( "Warning..." ), tr ( "An error occurred while scanning,\nthe DataBase may be incomplete" ) );
 			}
 
 			if ( ! ( d->dComm ).isEmpty() ) {
@@ -2023,7 +2023,7 @@ int GuiSlave::rescanEvent ( void ) {
 
 	if ( rescan_ret != 0 )  {
 		Node *d;
-		o = tr ( "An error occured while scanning, the rescan operation was cancelled: \n%1" )
+		o = tr ( "An error occurred while scanning, the rescan operation was cancelled: \n%1" )
 		    .arg ( mainw->db->errormsg );
 
 		d = ( mainw->db->getRootNode() )->child;
@@ -2139,7 +2139,7 @@ int GuiSlave::insertcEvent ( void ) {
 	mainw->db->pww = pww;
 	progress ( pww );
 
-	if ( mainw->db->insertDB ( fnc, false ) != 0 ) { // An error occured
+	if ( mainw->db->insertDB ( fnc, false ) != 0 ) { // An error occurred
 		QMessageBox::warning ( mainw, tr ( "Error while opening..." ),
 		                       mainw->db->errormsg );
 	}
@@ -2173,7 +2173,7 @@ int GuiSlave::insertCdcatXmlEvent ( void ) {
 	mainw->db->pww = pww;
 	progress ( pww );
 
-	if ( mainw->db->insertDB ( fnc, false, true ) != 0 ) { // An error occured
+	if ( mainw->db->insertDB ( fnc, false, true ) != 0 ) { // An error occurred
 		QMessageBox::warning ( mainw, tr ( "Error while opening..." ),
 		                       mainw->db->errormsg );
 	}
@@ -2207,7 +2207,7 @@ int GuiSlave::insertcEventNoDup ( void ) {
 	mainw->db->pww = pww;
 	progress ( pww );
 
-	if ( mainw->db->insertDB ( fnc, true ) != 0 ) { // An error occured
+	if ( mainw->db->insertDB ( fnc, true ) != 0 ) { // An error occurred
 		QMessageBox::warning ( mainw, tr ( "Error while opening..." ),
 		                       mainw->db->errormsg );
 	}
@@ -2639,7 +2639,7 @@ int GuiSlave::openHistoryElementEvent ( QAction *action) {
 	mainw->db->pww = pww;
 	progress ( pww );
 
-	if ( mainw->db->openDB ( fnc ) != 0 ) { // An error occured
+	if ( mainw->db->openDB ( fnc ) != 0 ) { // An error occurred
 		QMessageBox::warning ( mainw, tr ( "Error while opening..." ),
 		                       mainw->db->errormsg );
 		mainw->db = NULL;
@@ -2843,7 +2843,7 @@ int GuiSlave::followLnk ( void ) {
 		mainw->db->pww = pww;
 		progress ( pww );
 
-		if ( ( ret_val = mainw->db->openDB ( fnc ) ) != 0 ) { // An error occured
+		if ( ( ret_val = mainw->db->openDB ( fnc ) ) != 0 ) { // An error occurred
 			QMessageBox::warning ( mainw, tr ( "Error while opening..." ),
 			                       mainw->db->errormsg );
 			mainw->db = NULL;

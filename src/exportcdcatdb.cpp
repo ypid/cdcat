@@ -606,7 +606,7 @@ void exportCdcatDB::ok() {
 						bool save_hcf_ok = true;
 						if ( checkAllMedia->isChecked() ) {
 							//std::cerr << "xml export: all media!"  << std::endl;
-							if ( mainw->db->saveAsDB ( fnc ) != 0 ) { // An error occured
+							if ( mainw->db->saveAsDB ( fnc ) != 0 ) { // An error occurred
 								QMessageBox::critical ( 0, tr ( "Error during write export..." ), tr ( "I can't create or rewrite the file" ) );
 								save_hcf_ok = false;
 							}

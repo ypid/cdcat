@@ -1739,7 +1739,7 @@ the DataBase may be incomplete</source>
         <translation>Μπορεί να ανανεωθεί μόνο ένα node μέσο!</translation>
     </message>
     <message>
-        <source>An error occured while scanning, the rescan operation cancelled:
+        <source>An error occurred while scanning, the rescan operation cancelled:
 %1</source>
         <translation type="obsolete">Εντοπίστηκε σφάλμα κατά την ανίχνευση,η αίτηση ανίχνευσης ακυρώθηκε:
 %1</translation>
@@ -1905,7 +1905,7 @@ the DataBase may be incomplete</source>
     </message>
     <message>
         <location line="-1119"/>
-        <source>An error occured while scanning,
+        <source>An error occurred while scanning,
 the DataBase may be incomplete</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1916,7 +1916,7 @@ the DataBase may be incomplete</source>
     </message>
     <message>
         <location line="+73"/>
-        <source>An error occured while scanning, the rescan operation was cancelled:
+        <source>An error occurred while scanning, the rescan operation was cancelled:
 %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5040,7 +5040,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Όλεθριο σφάλμα</translation>
     </message>
     <message>
-        <source>Fatal error occured.</source>
+        <source>Fatal error occurred.</source>
         <translation type="obsolete">Υπήρξε όλεθριο σφάλμα.</translation>
     </message>
     <message>
@@ -5127,7 +5127,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location line="+0"/>
-        <source>Fatal error occured.</source>
+        <source>Fatal error occurred.</source>
         <translation type="unfinished">Υπήρξε όλεθριο σφάλμα.</translation>
     </message>
     <message>

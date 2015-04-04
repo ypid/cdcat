@@ -1662,7 +1662,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     </message>
     <message>
         <location filename="../guibase.cpp" line="1811"/>
-        <source>An error occured while scanning,
+        <source>An error occurred while scanning,
 the DataBase may be incomplete</source>
         <translation>При сканировании возникла ошибка,
 База данных может быть неполной</translation>
@@ -1674,7 +1674,7 @@ the DataBase may be incomplete</source>
     </message>
     <message>
         <location filename="../guibase.cpp" line="2026"/>
-        <source>An error occured while scanning, the rescan operation was cancelled:
+        <source>An error occurred while scanning, the rescan operation was cancelled:
 %1</source>
         <translation>При сканировании возникла ошибка, операция повторного сканирования была отменена:
 %1</translation>
@@ -4653,7 +4653,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../import.cpp" line="198"/>
-        <source>Fatal error occured.</source>
+        <source>Fatal error occurred.</source>
         <translation>Появилась фатальная ошибка.</translation>
     </message>
     <message>
