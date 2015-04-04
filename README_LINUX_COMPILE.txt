@@ -4,7 +4,7 @@ requirements:
 zlib, bzip2, libtar, qt4
 
 Most modern Linux distros have packages:
-install zlib1g-dev, libtar-dev, libzip2-dev, p7zip-full, libqt4-dev, qt4-dev-tools,
+install zlib1g-dev libtar-dev libzip2-dev p7zip-full libqt4-dev qt4-dev-tools
 
 p7zip (optional) source: http://dfn.dl.sourceforge.net/project/p7zip/p7zip/9.20.1/p7zip_9.20.1_src_all.tar.bz2
 		1. unpack p7zip source

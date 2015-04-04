@@ -2,7 +2,7 @@ Hi!
 
 If you would like to do the translation of your language follow these steps:
 
-(the LC symbols alwais mean you language code, eg: EN,HU,DE... )
+(the LC symbols always mean you language code, eg: EN,HU,DE... )
 
 1)
   Download the latest source package, and copy the src/lang/start/cdcat_nolang.ts file
@@ -29,7 +29,7 @@ If you would like to do the translation of your language follow these steps:
 
 5)
  Open the src/cdcat.pro and append your language file to the necessary place.
- You will find it next to the other translastions. (Find "cdcat_de.ts")
+ You will find it next to the other translations. (Find "cdcat_de.ts")
 
 6)
  Run "lrelease cdcat.pro"  The lrelease program is part of the Qt.
@@ -46,6 +46,3 @@ If you would like to do the translation of your language follow these steps:
 
 
   Hyper
-
-
-
