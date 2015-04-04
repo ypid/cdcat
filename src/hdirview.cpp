@@ -195,7 +195,7 @@ void LNode::setExpanded ( bool o ) {
 			tmp = tmp->next;
 		}
 		childsCollected = true;
-		treeWidget()->setUpdatesEnabled ( TRUE ); //FIXME
+		treeWidget()->setUpdatesEnabled ( true ); //FIXME
 	}
 	QTreeWidgetItem::setExpanded ( o );
 	treeWidget()->resizeColumnToContents(0);
@@ -203,7 +203,7 @@ void LNode::setExpanded ( bool o ) {
 
 
 void LNode::setup() {
-	//setExpandable ( TRUE ); //FIXME
+	//setExpandable ( true ); //FIXME
 	// QTreeWidgetItem::setup(); // FIXME
 }
 
@@ -307,8 +307,8 @@ HDirectoryView::HDirectoryView ( DataBase **dbp, QWidget *parent, const char *na
 	connect (this, SIGNAL( itemExpanded(QTreeWidgetItem*)), this, SLOT(itemExpanded(QTreeWidgetItem*)));
 	connect (this, SIGNAL( itemCollapsed(QTreeWidgetItem*)), this, SLOT(itemCollapsed(QTreeWidgetItem*)));
 
-	setAcceptDrops ( TRUE );
-	viewport()->setAcceptDrops ( TRUE );
+	setAcceptDrops ( true );
+	viewport()->setAcceptDrops ( true );
 
 // 	connect ( autoopen_timer, SIGNAL ( timeout() ),
 // 	          this, SLOT ( openFolder() ) );
@@ -373,7 +373,7 @@ void HDirectoryView::slotFolderSelectedR ( QTreeWidgetItem *i, int col ) {
 // 	autoopen_timer->stop();
 // 	if ( dropItem ) {
 // 		if( !dropItem->isExpanded() ) {
-// 		dropItem->setExpanded ( TRUE );
+// 		dropItem->setExpanded ( true );
 // 		//dropItem->repaint();
 // 		} else {
 // 		dropItem->setExpanded ( FALSE );
@@ -419,7 +419,7 @@ void HDirectoryView::contentsMousePressEvent ( QMouseEvent *e ) {
 //                 indentation() * ( i->depth() + ( rootIsDecorated() ? 1 : 0 ) ) + itemMargin() ||
 //                 p.x() < header()->pos ( ))  {
 //             presspos = e->pos();
-//             mousePressed = TRUE;
+//             mousePressed = true;
 //         }
 //     } // FIXME
 }

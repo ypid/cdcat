@@ -61,7 +61,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget* parent, const char* name
 	setWindowIcon ( *get_t_config_icon() );
 
 	SelReadableLayout = new QVBoxLayout ( this );
-	setSizeGripEnabled ( TRUE );
+	setSizeGripEnabled ( true );
 
 	layoutArchiveScan= new QHBoxLayout ( this );
 	cbScanArchive = new QCheckBox ( this );

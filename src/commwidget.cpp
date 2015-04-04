@@ -993,7 +993,7 @@ commentEdit::commentEdit ( QString cc, CdCatConfig *cconfig, QWidget *parent, co
 	setWindowIcon ( *get_t_comment_icon() );
 
 	setBaseSize ( QSize ( 300, 150 ) );
-	setSizeGripEnabled ( TRUE );
+	setSizeGripEnabled ( true );
 	CommentEditBaseLayout = new QGridLayout ( this );
 
 	layout5 = new QVBoxLayout (this);
@@ -1007,13 +1007,13 @@ commentEdit::commentEdit ( QString cc, CdCatConfig *cconfig, QWidget *parent, co
 
 	buttonOk = new QPushButton ( this );
 	buttonOk->setMinimumSize ( QSize ( 80, 0 ) );
-	buttonOk->setAutoDefault ( TRUE );
-	buttonOk->setDefault ( TRUE );
+	buttonOk->setAutoDefault ( true );
+	buttonOk->setDefault ( true );
 	layout4->addWidget ( buttonOk );
 
 	buttonCancel = new QPushButton ( this );
 	buttonCancel->setMinimumSize ( QSize ( 80, 0 ) );
-	buttonCancel->setAutoDefault ( TRUE );
+	buttonCancel->setAutoDefault ( true );
 	layout4->addWidget ( buttonCancel );
 	QSpacerItem *spacer_2 = new QSpacerItem ( 120, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	layout4->addItem ( spacer_2 );

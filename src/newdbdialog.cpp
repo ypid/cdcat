@@ -36,7 +36,7 @@
  *  name 'name' and widget flags set to 'f'.
  *
  *  The dialog will by default be modeless, unless you set 'modal' to
- *  TRUE to construct a modal dialog.
+ *  true to construct a modal dialog.
  */
 newdbdialog::newdbdialog ( QWidget *parent, const char *name, bool modal, Qt::WFlags fl )
 	: QDialog ( parent, fl )
@@ -47,7 +47,7 @@ newdbdialog::newdbdialog ( QWidget *parent, const char *name, bool modal, Qt::WF
 		setObjectName ( "NewDBDialogBase" );
 	setWindowIcon ( *get_t_new_icon() );
 
-	setSizeGripEnabled ( TRUE );
+	setSizeGripEnabled ( true );
 	NewDBDialogBaseLayout = new QGridLayout ( this );
 	 textLabelOwner = new QLabel ( this );
 	leOwner = new QLineEdit ( this );
@@ -96,13 +96,13 @@ newdbdialog::newdbdialog ( QWidget *parent, const char *name, bool modal, Qt::WF
 
 	buttonOK = new QPushButton ( this );
 	buttonOK->setMinimumSize ( QSize ( 100, 0 ) );
-	buttonOK->setAutoDefault ( TRUE );
-	buttonOK->setDefault ( TRUE );
+	buttonOK->setAutoDefault ( true );
+	buttonOK->setDefault ( true );
 	layout12->addWidget ( buttonOK );
 
 	buttonCancel = new QPushButton ( this );
 	buttonCancel->setMinimumSize ( QSize ( 100, 0 ) );
-	buttonCancel->setAutoDefault ( TRUE );
+	buttonCancel->setAutoDefault ( true );
 	layout12->addWidget ( buttonCancel );
 	QSpacerItem *spacer_4 = new QSpacerItem ( 170, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	layout12->addItem ( spacer_4 );

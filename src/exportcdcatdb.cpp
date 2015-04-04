@@ -43,7 +43,7 @@ using namespace std;
  *  name 'name' and widget flags set to 'f'.
  *
  *  The dialog will by default be modeless, unless you set 'modal' to
- *  TRUE to construct a modal dialog.
+ *  true to construct a modal dialog.
  */
 exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget *parent, const char *name, bool modal, Qt::WFlags fl ) : QDialog ( parent, fl ) {
 	this->mainw = mainw;
@@ -55,7 +55,7 @@ exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget *parent, const ch
 	setModal ( modal );
 	if ( !name )
 		setObjectName ( "exportCdcatDB" );
-	setSizeGripEnabled ( TRUE );
+	setSizeGripEnabled ( true );
 
 	setWindowTitle ( tr ( "Export database..." ) );
 
@@ -217,12 +217,12 @@ exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget *parent, const ch
 	layout4->addItem ( spacer_6 );
 
 	buttonOk = new QPushButton ( this );
-	buttonOk->setAutoDefault ( TRUE );
-	buttonOk->setDefault ( TRUE );
+	buttonOk->setAutoDefault ( true );
+	buttonOk->setDefault ( true );
 	layout4->addWidget ( buttonOk );
 
 	buttonCancel = new QPushButton ( this );
-	buttonCancel->setAutoDefault ( TRUE );
+	buttonCancel->setAutoDefault ( true );
 	layout4->addWidget ( buttonCancel );
 	QSpacerItem *spacer_5 = new QSpacerItem ( 163, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	layout4->addItem ( spacer_5 );

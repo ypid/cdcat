@@ -78,7 +78,7 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 	use_unsharpsearch = false;
 	this->isFindDuplicates = isFindDuplicates;
 
-	setSizeGripEnabled ( TRUE );
+	setSizeGripEnabled ( true );
 	if ( !isFindDuplicates ) {
 		FindDialogBaseLayout = new QGridLayout ( this );
 
@@ -169,12 +169,12 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		buttonClearSearchResult = new QPushButton ( this );
 
 		buttonOk = new QPushButton ( this );
-		buttonOk->setAutoDefault ( TRUE );
-		buttonOk->setDefault ( TRUE );
+		buttonOk->setAutoDefault ( true );
+		buttonOk->setDefault ( true );
 		buttonOk->setMinimumWidth ( 80 );
 
 		buttonCancel = new QPushButton ( this );
-		buttonCancel->setAutoDefault ( TRUE );
+		buttonCancel->setAutoDefault ( true );
 		buttonCancel->setMinimumWidth ( 80 );
 
 		resultsl = new QTreeWidget ( this );
@@ -384,7 +384,7 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		if ( mainw->guis->standON != NULL )
 			searchFilepath = mainw->guis->standON->getFullPath();
 
-		setSizeGripEnabled ( TRUE );
+		setSizeGripEnabled ( true );
 		FindDialogBaseLayout = new QGridLayout ( this );
 
 		QSpacerItem* spacer_4 = new QSpacerItem ( 200, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
@@ -409,12 +409,12 @@ findDialog::findDialog ( CdCatMainWidget* parent, const char* name, bool isFindD
 		layout16 = new QGridLayout ( this );
 
 		buttonOk = new QPushButton ( this );
-		buttonOk->setAutoDefault ( TRUE );
-		buttonOk->setDefault ( TRUE );
+		buttonOk->setAutoDefault ( true );
+		buttonOk->setDefault ( true );
 		buttonOk->setMinimumWidth ( 80 );
 
 		buttonCancel = new QPushButton ( this );
-		buttonCancel->setAutoDefault ( TRUE );
+		buttonCancel->setAutoDefault ( true );
 		buttonCancel->setMinimumWidth ( 80 );
 
 		textLabel5 = new QLabel ( this );

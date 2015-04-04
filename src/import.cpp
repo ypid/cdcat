@@ -214,7 +214,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave * parent, QString separator, QSt
 	QString import_filename = filename;
 
 	medialines = new QList < lineObject > ();
-	//medialines->setAutoDelete( TRUE );  // the list owns the objects
+	//medialines->setAutoDelete( true );  // the list owns the objects
 	int sizefactor = 1; /* factor for file size, 1 = 1 byte, 1024 = 1 kilobyte)*/
 
 	QRegExp regex_pattern;
@@ -1826,7 +1826,7 @@ int importGtktalogCsv::addNewMedia ( QString new_medianame, QDateTime media_modi
 QString tmpdirname;
 bool importGtktalogXml::startDocument() {
 	//cout << "startDocument: " << endl;
-	return TRUE;
+	return true;
 }
 
 bool importGtktalogXml::startElement ( const QString&, const QString&,
@@ -1840,7 +1840,7 @@ bool importGtktalogXml::startElement ( const QString&, const QString&,
 
 	tag_content = "";
 
-	return TRUE;
+	return true;
 }
 
 bool importGtktalogXml::endElement ( const QString&, const QString & tag, const QString& ) {
@@ -2043,7 +2043,7 @@ bool importGtktalogXml::endElement ( const QString&, const QString & tag, const 
 												progress->setValue ( linecount );
 											}
 
-	return TRUE;
+	return true;
 }
 
 bool importGtktalogXml::characters ( const QString & ch ) {
@@ -2051,7 +2051,7 @@ bool importGtktalogXml::characters ( const QString & ch ) {
 	progress->setValue ( locator->lineNumber() );
 	if ( guislave->mainw->app->hasPendingEvents() )
 		guislave->mainw->app->processEvents();
-	return TRUE;
+	return true;
 }
 
 void importGtktalogXml::setDocumentLocator ( QXmlLocator * locator ) {
@@ -2389,7 +2389,7 @@ int lines;
 bool importWhereIsItXml::startDocument() {
 
 	//cout << "startDocument: " << endl;
-	return TRUE;
+	return true;
 }
 
 bool importWhereIsItXml::startElement ( const QString&, const QString&,
@@ -2439,7 +2439,7 @@ bool importWhereIsItXml::startElement ( const QString&, const QString&,
 	}
 
 
-	return TRUE;
+	return true;
 }
 
 bool importWhereIsItXml::endElement ( const QString&, const QString & tag, const QString& ) {
@@ -2852,7 +2852,7 @@ bool importWhereIsItXml::endElement ( const QString&, const QString & tag, const
 													comment = "";
 												} // ITEM
 	currentText = "";
-	return TRUE;
+	return true;
 }
 
 bool importWhereIsItXml::characters ( const QString & ch ) {

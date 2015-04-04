@@ -112,14 +112,14 @@ void Directory::setExpanded ( bool o ) {
 		else {
 			setChildIndicatorPolicy(QTreeWidgetItem::DontShowIndicator);
 		}
-		//listView()->setUpdatesEnabled ( TRUE ); //FIXME
+		//listView()->setUpdatesEnabled ( true ); //FIXME
 	}
 	QTreeWidgetItem::setExpanded ( o );
 }
 
 
 void Directory::setup() {
-	//setExpandable ( TRUE );
+	//setExpandable ( true );
 	//QTreeWidgetItem::setup();
 }
 
@@ -175,8 +175,8 @@ DirectoryView::DirectoryView ( QWidget *parent, const char * )
 	connect (this, SIGNAL( itemExpanded(QTreeWidgetItem*)), this, SLOT(itemExpanded(QTreeWidgetItem*)));
 	connect (this, SIGNAL( itemCollapsed(QTreeWidgetItem*)), this, SLOT(itemCollapsed(QTreeWidgetItem*)));
 
-	setAcceptDrops ( TRUE );
-	viewport()->setAcceptDrops ( TRUE );
+	setAcceptDrops ( true );
+	viewport()->setAcceptDrops ( true );
 
 // 	connect ( autoopen_timer, SIGNAL ( timeout() ),
 // 	          this, SLOT ( openFolder() ) );
@@ -294,7 +294,7 @@ void DirectoryView::contentsMousePressEvent ( QMouseEvent*  ) {
 // 		                treeStepSize() * ( i->depth() + ( rootIsDecorated() ? 1 : 0 ) ) + itemMargin() ||
 // 		                p.x() < header()->cellPos ( header()->mapToActual ( 0 ) ) ) {
 // 			presspos = e->pos();
-// 			mousePressed = TRUE;
+// 			mousePressed = true;
 // 		}
 // 	} // FIXME
 

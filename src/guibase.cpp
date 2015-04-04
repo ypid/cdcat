@@ -3111,7 +3111,7 @@ CatalogTypeEditDialog::CatalogTypeEditDialog ( CdCatMainWidget *parent, Node *n 
 	this->n = n;
 	changeOk = false;
 
-	setSizeGripEnabled ( TRUE );
+	setSizeGripEnabled ( true );
 	layout1 = new QVBoxLayout ( this );
 	TextLabel = new QLabel ( this );
 	layout1->addWidget ( TextLabel );

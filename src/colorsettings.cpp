@@ -91,7 +91,7 @@ ColorSettings::ColorSettings ( CdCatConfig *cfgp, QWidget* parent, const char* n
 
     cfg=cfgp;
     setWindowIcon ( *get_t_colorconfig_icon() );
-    setSizeGripEnabled ( TRUE );
+    setSizeGripEnabled ( true );
     ColorSettingsLayout = new QVBoxLayout (this );
 
     preview = new ColorSchemePreview ( this );

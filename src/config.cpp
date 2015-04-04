@@ -1360,7 +1360,7 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 	setModal(modal);
 	p = parent;
 
-	setSizeGripEnabled ( TRUE );
+	setSizeGripEnabled ( true );
 	ConfigDialogBaseLayout = new QGridLayout ( this );
 
 	layout1 = new QHBoxLayout ( this );
@@ -1529,13 +1529,13 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget* parent, const char* name, bool mod
 
 	okButton = new QPushButton ( this );
 	okButton->setMinimumSize ( QSize ( 100, 0 ) );
-	okButton->setAutoDefault ( TRUE );
-	okButton->setDefault ( TRUE );
+	okButton->setAutoDefault ( true );
+	okButton->setDefault ( true );
 	layout7->addWidget ( okButton );
 
 	cancelButton = new QPushButton ( this );
 	cancelButton->setMinimumSize ( QSize ( 100, 0 ) );
-	cancelButton->setAutoDefault ( TRUE );
+	cancelButton->setAutoDefault ( true );
 	layout7->addWidget ( cancelButton );
 	QSpacerItem* spacer_2 = new QSpacerItem ( 130, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	layout7->addItem ( spacer_2 );

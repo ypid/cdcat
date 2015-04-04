@@ -64,7 +64,7 @@ protected:
     //It is'nt necessary under QT 3.X becouse there is sorting query function,
     //but I didn't found it in QT 2.3.0 (Non-Commercial for Win)
 public:
-    void setSorting ( int column, bool increasing = TRUE );
+    void setSorting ( int column, bool increasing = true );
     int  scol;
     bool sasc;
 };

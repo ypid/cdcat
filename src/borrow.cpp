@@ -41,7 +41,7 @@ borrowDialog::borrowDialog ( QString mname, QWidget* parent, const char* name, b
 	ok = 0;
 	setModal(modal);
 	setWindowTitle ( tr ( "Borrowing..." ) );
-	setSizeGripEnabled ( TRUE );
+	setSizeGripEnabled ( true );
 	setWindowIcon ( *get_t_sborrow_icon() );
 
 	borrowDialogLayout = new QVBoxLayout ( this );
@@ -133,7 +133,7 @@ borrowingDialog::borrowingDialog ( DataBase *dbp, QWidget* parent, const char* n
 	this->parent = parent;
 	if ( !name )
 		 setWindowTitle( "borrowingDialog" );
-	setSizeGripEnabled ( TRUE );
+	setSizeGripEnabled ( true );
 	setWindowIcon ( *get_m_borrow_icon() );
 	borrowingDialogLayout = new QVBoxLayout ( this );
 

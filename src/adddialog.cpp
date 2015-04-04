@@ -59,7 +59,7 @@ addDialog::addDialog ( GuiSlave *c, QWidget* parent, const char* name, bool moda
 		setObjectName ( "addDialog" );
 	setWindowIcon ( *get_t_add_icon() );
 
-	setSizeGripEnabled ( TRUE );
+	setSizeGripEnabled ( true );
 	addDialogLayout = new QGridLayout ( this );
 
 	layout10 = new QVBoxLayout ( this );
@@ -717,7 +717,7 @@ AddLnk::AddLnk ( GuiSlave *c, QWidget *parent )
 	setObjectName ( "addlnkdialog" );
 	setWindowIcon ( *get_p_icon_big() );
 
-	setSizeGripEnabled ( TRUE );
+	setSizeGripEnabled ( true );
 
 	vbox  = new QVBoxLayout ( this );
 

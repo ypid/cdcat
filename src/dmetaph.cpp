@@ -33,7 +33,7 @@ MString::MString ( const QString &in, const int max ) : QString ( in ), maxlengt
 bool MString::SlavoGermanic() {
 
 	if ( ( indexOf ( 'W' ) > -1 ) OR ( indexOf ( 'K' ) > -1 ) OR ( indexOf ( "CZ" ) > -1 ) OR ( indexOf ( "WITZ" ) > -1 ) )
-		return TRUE;
+		return true;
 
 	return FALSE;
 }
@@ -72,7 +72,7 @@ inline void MString::MetaphAdd ( const char *main, const char *alt ) {
 	if ( *main )
 		primary += main;
 	if ( *alt ) {
-		alternate = TRUE;
+		alternate = true;
 		if ( alt[0] != ' ' )
 			secondary += alt;
 	} else {
