@@ -171,17 +171,17 @@ QString applicationFilePath ( char **argc ) {
 #else
 
 	QString absPath;
-	QString tmp ( argc[ 0 ] );
+	QString tmp ( argc[0] );
 	if ( tmp.startsWith ( "/" ) ) {
 		/*
-		If argv0 starts with a slash, it is already an absolute
+		If argc[0] starts with a slash, it is already an absolute
 		file path.
 		*/
 		absPath = tmp;
 	} else
 		if ( tmp.indexOf ( '/' ) != -1 ) {
 			/*
-			If argv0 contains one or more slashes, it is a file path
+			If argc[0] contains one or more slashes, it is a file path
 			relative to the current directory.
 			*/
  			absPath = QDir::current().absoluteFilePath ( tmp );
