@@ -63,7 +63,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
     main = new QWidget( this );
     setCentralWidget( main );
     app = appp;
-    QFontMetrics fm = app->font();
+    QFontMetrics fm(app->font());
 
     if (!name) {
         setObjectName( "CdCatMainWidget" );

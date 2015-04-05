@@ -243,5 +243,5 @@ win32 {
 FORMS     =  help.ui
 TARGET    =  cdcat
 INSTALLS += target translations distfiles
-QT       += xml widgets
+QT       += xml widgets printsupport
 CONFIG   += uic

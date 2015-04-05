@@ -162,7 +162,8 @@ void MString::DoubleMetaphone( QString &metaph, QString &metaph2 ) {
             break;
         }
 
-        switch (at( current ).toAscii()) {
+        // FIXME: Check if it works as expected.
+        switch (at( current ).digitValue()) {
         case 'A':
         case 'E':
         case 'I':

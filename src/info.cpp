@@ -496,7 +496,7 @@ KeyBindingDialog::KeyBindingDialog ( GuiSlave *gs, QWidget *parent, const char *
         KeyBindingsTableWidget->setItem( i, 1, newItem2 );
     }
     KeyBindingsTableWidget->resizeColumnsToContents();
-    KeyBindingsTableWidget->horizontalHeader()->setResizeMode( QHeaderView::ResizeToContents );
+    KeyBindingsTableWidget->horizontalHeader()->setSectionResizeMode( QHeaderView::ResizeToContents );
     KeyBindingsTableWidget->setSortingEnabled( true );
     KeyBindingsTableWidget->sortByColumn( 0, Qt::AscendingOrder );
     KeyBindingsTableWidget->verticalHeader()->hide();

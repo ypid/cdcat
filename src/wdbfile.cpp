@@ -1151,7 +1151,7 @@ int FileReader::readFrom( Node *source, bool skipDuplicatesOnInsert, bool only_n
         }
 
         if (*DEBUG_INFO_ENABLED) {
-            std::cerr << "detected encoding: " << XML_ENCODING.toAscii().constData() << endl;
+            std::cerr << "detected encoding: " << XML_ENCODING.constData() << endl;
         }
     }
 
