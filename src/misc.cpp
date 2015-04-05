@@ -8,9 +8,9 @@
 ****************************************************************************/
 #include <stdio.h>
 #include <string.h>
-#include <qregexp.h>
+#include <QRegExp>
 #include <QFile>
-#include <qtextstream.h>
+#include <QTextStream>
 
 #include "config.h"
 #include "cdcat.h"

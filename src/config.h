@@ -10,11 +10,11 @@
 #ifndef CONFIGDIALOG_H
 #define CONFIGDIALOG_H
 
-#include <qstring.h>
+#include <QString>
 #include <QVariant>
 #include <qobject.h>
 #include <QDialog>
-#include <qstringlist.h>
+#include <QStringList>
 #include <QHBoxLayout>
 #include <QGridLayout>
 #include <QFrame>

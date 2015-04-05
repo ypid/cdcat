@@ -10,7 +10,7 @@
 #ifndef CDCAT_CDCAT
 #define CDCAT_CDCAT
 
-#include <qtranslator.h>
+#include <QTranslator>
 #include "config.h"
 
 // #define IS_RELEASE

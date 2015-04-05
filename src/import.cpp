@@ -7,25 +7,23 @@
 *  Copyright : (C) 2003 Christoph Thielecke
 ****************************************************************************/
 
-#include <qmessagebox.h>
+#include <QMessageBox>
 #include <QFile>
 #include <QTextStream>
-#include <qdatetime.h>
+#include <QDateTime>
 #include <QProgressDialog>
 #include <QList>
 #include <QtXml/QXmlInputSource>
 #include <QtXml/QXmlAttributes>
-#include <iostream>
-#include <stdio.h>
-
-using namespace std;
-
 #include <QFileInfo>
-#include <qregexp.h>
-#include <qtextcodec.h>
-#include <qstringlist.h>
+#include <QRegExp>
+#include <QTextCodec>
+#include <QStringList>
 #include <QTextStream>
 #include <QLineEdit>
+
+#include <iostream>
+#include <stdio.h>
 
 #include "import.h"
 #include "importdialog.h"
@@ -33,6 +31,8 @@ using namespace std;
 #include "dbase.h"
 #include "cdcat.h"
 #include "config.h"
+
+using namespace std;
 
 lineObject::lineObject ( QString medianame, QString path, QString filename,
                          double size, QDateTime datetime, QString comment, QString information, QString category, QList<ArchiveFile> archivecontent, bool is_archive ) {

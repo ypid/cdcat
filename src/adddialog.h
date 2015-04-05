@@ -13,7 +13,7 @@
 #include <QVariant>
 #include <QPixmap>
 #include <QDialog>
-#include <qdatetime.h>
+#include <QDateTime>
 #include <QList>
 #include <QGridLayout>
 #include <QHBoxLayout>

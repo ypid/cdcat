@@ -27,7 +27,7 @@
  */
 #include <iostream>
 #include <stdio.h>
-#include <qstring.h>
+#include <QString>
 
 #include "tparser.h"
 #include "config.h"

@@ -12,9 +12,9 @@
 #define CDCAT_DBASE
 
 #include <qobject.h>
-#include <qstring.h>
-#include <qstringlist.h>
-#include <qdatetime.h>
+#include <QString>
+#include <QStringList>
+#include <QDateTime>
 #include <QLocale>
 #include <QImage>
 

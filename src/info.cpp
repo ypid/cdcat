@@ -9,9 +9,9 @@
 #include "info.h"
 
 #include <QVariant>
-#include <qpushbutton.h>
-#include <qtabwidget.h>
-#include <qwidget.h>
+#include <QPushButton>
+#include <QTabWidget>
+#include <QWidget>
 #include <QLabel>
 #include <QTextBrowser>
 #include <QLayout>
@@ -39,6 +39,7 @@
  */
 InfoDialog::InfoDialog ( QWidget *parent, const char *name, bool modal, Qt::WindowFlags fl )
     : QDialog( parent, fl ) {
+
     if (!name) {
         setObjectName( "helpDialog" );
     }
@@ -467,6 +468,7 @@ void InfoDialog::languageChange() {
 
 KeyBindingDialog::KeyBindingDialog ( GuiSlave *gs, QWidget *parent, const char *name, bool modal, Qt::WindowFlags fl )
     : QDialog( parent, fl ) {
+
     if (!name) {
         setObjectName( "Key bindings" );
     }

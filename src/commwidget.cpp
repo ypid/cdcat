@@ -10,17 +10,17 @@
 #include "commwidget.h"
 
 #include <QImage>
-#include <qwidget.h>
-#include <qpainter.h>
+#include <QWidget>
+#include <QPainter>
 #include <QImage>
 #include <QToolButton>
 #include <QVariant>
-#include <qpushbutton.h>
+#include <QPushButton>
 #include <QTextEdit>
 #include <QLayout>
 #include <QToolTip>
-#include <qstringlist.h>
-#include <qregexp.h>
+#include <QStringList>
+#include <QRegExp>
 #include <QHBoxLayout>
 #include <QPaintEvent>
 #include <QResizeEvent>

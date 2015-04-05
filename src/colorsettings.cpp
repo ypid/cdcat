@@ -14,14 +14,14 @@
 #include <QFrame>
 #include <QGroupBox>
 #include <QLabel>
-#include <qpushbutton.h>
+#include <QPushButton>
 #include <qspinbox.h>
 #include <QLayout>
 #include <QToolTip>
 #include <QImage>
 #include <QPixmap>
 #include <qevent.h>
-#include <qpainter.h>
+#include <QPainter>
 #include <QHBoxLayout>
 #include <QPaintEvent>
 #include <QVBoxLayout>

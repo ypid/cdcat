@@ -19,14 +19,14 @@
 #include <qpoint.h>
 #include <QMenu>
 #include <qlineedit.h>
-#include <qpushbutton.h>
+#include <QPushButton>
 #include <QLayout>
 #include <QToolTip>
-#include <qcheckbox.h>
+#include <QCheckBox>
 #include <QTableWidget>
 #include <QTableWidgetItem>
 #include <QHeaderView>
-#include <qmessagebox.h>
+#include <QMessageBox>
 #include <QImage>
 #include <QPixmap>
 #include <QHBoxLayout>

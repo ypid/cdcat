@@ -9,22 +9,22 @@
 
 
 #include <QVariant>
-#include <qpushbutton.h>
+#include <QPushButton>
 #include <QLabel>
 #include <QListWidget>
 #include <QListWidgetItem>
-#include <qcheckbox.h>
+#include <QCheckBox>
 #include <QGroupBox>
-#include <qradiobutton.h>
+#include <QRadioButton>
 #include <qlineedit.h>
 #include <QLayout>
 #include <QPixmap>
 #include <QToolTip>
-#include <qmessagebox.h>
-#include <qtextstream.h>
+#include <QMessageBox>
+#include <QTextStream>
 #include <QApplication>
-#include <qstring.h>
-#include <qregexp.h>
+#include <QString>
+#include <QRegExp>
 #include <QTextCodec>
 #include <QHBoxLayout>
 #include <QGridLayout>

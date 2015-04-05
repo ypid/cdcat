@@ -12,9 +12,9 @@
 
 
 #include <qobject.h>
-#include <qfiledialog.h>
-#include <qwidget.h>
-#include <qdatetime.h>
+#include <QFileDialog>
+#include <QWidget>
+#include <QDateTime>
 
 #include <qprogressdialog.h>
 

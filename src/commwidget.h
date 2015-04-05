@@ -10,7 +10,7 @@
 #ifndef COMMENTWIDGET_H
 #define COMMENTWIDGET_H
 
-#include <qwidget.h>
+#include <QWidget>
 #include <QImage>
 #include <QVariant>
 #include <QDialog>

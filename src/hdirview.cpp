@@ -15,14 +15,14 @@
 #include <QPixmap>
 #include <qevent.h>
 #include <qpoint.h>
-#include <qmessagebox.h>
+#include <QMessageBox>
 // #include <qmime.h>
 #include <QStringList>
-#include <qstringlist.h>
+#include <QStringList>
 #include <QApplication>
 #include <qevent.h>
 #include <QHeaderView>
-#include <qpainter.h>
+#include <QPainter>
 #include <qpalette.h>
 #include <QDragMoveEvent>
 #include <QDropEvent>

@@ -13,11 +13,11 @@
 #include <QVariant>
 #include <QPixmap>
 #include <QDialog>
-#include <qdatetime.h>
-#include <qcheckbox.h>
+#include <QDateTime>
+#include <QCheckBox>
 #include <QLayout>
-#include <qcheckbox.h>
-#include <qradiobutton.h>
+#include <QCheckBox>
+#include <QRadioButton>
 #include <QGroupBox>
 #include <QVBoxLayout>
 #include <QGridLayout>

@@ -14,11 +14,11 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-#include <qcheckbox.h>
-#include <qdatetime.h>
+#include <QCheckBox>
+#include <QDateTime>
 #include <QDialog>
 #include <QFile>
-#include <qfiledialog.h>
+#include <QFileDialog>
 #include <QGridLayout>
 #include <QGroupBox>
 #include <QHBoxLayout>
@@ -28,13 +28,13 @@
 #include <QListWidget>
 #include <qobject.h>
 #include <QPixmap>
-#include <qpushbutton.h>
-#include <qradiobutton.h>
+#include <QPushButton>
+#include <QRadioButton>
 #include <qspinbox.h>
 #include <QStandardItemModel>
 #include <QVariant>
 #include <QVBoxLayout>
-#include <qwidget.h>
+#include <QWidget>
 
 #include "guibase.h"
 #include "dbase.h"

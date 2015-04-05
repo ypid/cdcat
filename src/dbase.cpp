@@ -7,13 +7,6 @@
 *  Copyright : (C) 2003 Peter Deak
 ****************************************************************************/
 
-#include <qdatetime.h>
-#include <QFileInfo>
-#include <qmessagebox.h>
-#include <QDir>
-#include <QFile>
-#include <qregexp.h>
-
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
@@ -63,11 +56,15 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
+#include <QDateTime>
+#include <QMessageBox>
 #include <QString>
 #include <QStringList>
 #include <QDateTime>
 #include <QObject>
+#include <QFileInfo>
 #include <QFile>
+#include <QDir>
 #include <QApplication>
 
 #include <QImageReader>

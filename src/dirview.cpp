@@ -13,9 +13,9 @@
 #include <QPixmap>
 #include <qevent.h>
 #include <qpoint.h>
-#include <qmessagebox.h>
+#include <QMessageBox>
 // #include <qmime.h>
-#include <qstringlist.h>
+#include <QStringList>
 #include <QApplication>
 #include <qobject.h>
 #include <QMouseEvent>

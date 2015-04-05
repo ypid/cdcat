@@ -12,7 +12,7 @@
 
 #include <QVariant>
 #include <QDialog>
-#include <qstring.h>
+#include <QString>
 #include <QVBoxLayout>
 #include <QGridLayout>
 #include <QHBoxLayout>

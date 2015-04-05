@@ -1,5 +1,5 @@
 // #define DoAviDebug
-#include <qstring.h>
+#include <QString>
 #include  <stdio.h>
 
 

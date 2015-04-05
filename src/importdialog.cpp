@@ -12,11 +12,11 @@
 
 #include <QLabel>
 #include <qlineedit.h>
-#include <qpushbutton.h>
-#include <qmessagebox.h>
+#include <QPushButton>
+#include <QMessageBox>
 #include <QToolTip>
 #include <QFile>
-#include <qfiledialog.h>
+#include <QFileDialog>
 #include <QGridLayout>
 #include <stdio.h>
 #include <stdlib.h>

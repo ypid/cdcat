@@ -10,21 +10,21 @@
 #include "find.h"
 
 #include <QVariant>
-#include <qcheckbox.h>
+#include <QCheckBox>
 #include <qcombobox.h>
 #include <QFrame>
 #include <QLayout>
 #include <QLabel>
 #include <qlineedit.h>
 #include <QHeaderView>
-#include <qpushbutton.h>
+#include <QPushButton>
 #include <QLayout>
 #include <QToolTip>
 #include <QImage>
 #include <QPixmap>
-#include <qmessagebox.h>
+#include <QMessageBox>
 #include <QSpinBox>
-#include <qtextcodec.h>
+#include <QTextCodec>
 #include <QHBoxLayout>
 #include <QGridLayout>
 #include <QVBoxLayout>

@@ -7,11 +7,9 @@
 *  Copyright : (C) 2003 Peter Deak
 ****************************************************************************/
 
-#include <string.h>
 #include <QImage>
 #include <QLabel>
-#include <qpainter.h>
-
+#include <QPainter>
 #include <QRegExp>
 #include <QPixmap>
 #include <QMessageBox>
@@ -33,11 +31,10 @@
 #include <QHeaderView>
 #include <QKeySequence>
 
+#include <string.h>
 #ifndef _WIN32
-
-#include <unistd.h>
-#include <sys/wait.h>
-
+    #include <unistd.h>
+    #include <sys/wait.h>
 #endif
 
 #include "cdcat.h"
@@ -65,11 +62,11 @@
 #include "misc.h"
 
 #ifndef NO_MEDIAINFO
-#include "cdcatmediainfo.h"
+    #include "cdcatmediainfo.h"
 #endif
 
 #ifdef USE_LIBEXIF
-#include "cdcatexif.h"
+    #include "cdcatexif.h"
 #endif
 
 

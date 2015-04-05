@@ -13,10 +13,10 @@
 
 #include <QTreeWidget>
 #include <QTreeWidgetItem>
-#include <qstring.h>
+#include <QString>
 #include <QFile>
 #include <QFileInfo>
-#include <qtimer.h>
+#include <QTimer>
 #include <QMouseEvent>
 #include <QDragMoveEvent>
 #include <QDragLeaveEvent>

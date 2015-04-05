@@ -12,10 +12,10 @@
 
 #include <QTreeWidget>
 #include <QTreeWidgetItem>
-#include <qstring.h>
+#include <QString>
 #include <QFile>
 #include <QFileInfo>
-#include <qtimer.h>
+#include <QTimer>
 #include <QPixmap>
 #include <QDragEnterEvent>
 #include <QDropEvent>

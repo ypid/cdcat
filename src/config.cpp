@@ -9,14 +9,14 @@
 
 #include "config.h"
 
-#include <qstring.h>
-#include <qmessagebox.h>
-#include <qwidget.h>
+#include <QString>
+#include <QMessageBox>
+#include <QWidget>
 #include <QVariant>
-#include <qcheckbox.h>
-#include <qfiledialog.h>
+#include <QCheckBox>
+#include <QFileDialog>
 #include <qlineedit.h>
-#include <qpushbutton.h>
+#include <QPushButton>
 #include <QLayout>
 #include <QToolTip>
 #include <QLabel>
@@ -25,7 +25,7 @@
 #include <QFont>
 #include <qcolor.h>
 #include <QFrame>
-#include <qtextstream.h>
+#include <QTextStream>
 #include <qcombobox.h>
 #include <qgroupbox.h>
 #include <QHBoxLayout>
@@ -37,8 +37,8 @@
 #include <stdlib.h>
 #include <iostream>
 
-#include <qtranslator.h>
-#include <qtextcodec.h>
+#include <QTranslator>
+#include <QTextCodec>
 
 #include "dbase.h"
 #include "icons.h"

@@ -12,7 +12,7 @@
 
 #include <QVariant>
 #include <QPixmap>
-#include <qwidget.h>
+#include <QWidget>
 #include <QApplication>
 #include <QMenu>
 #include <QGridLayout>

@@ -15,11 +15,11 @@
 #include <QVariant>
 #include <QLabel>
 #include <qlineedit.h>
-#include <qpushbutton.h>
+#include <QPushButton>
 #include <QTextEdit>
 #include <QLayout>
 #include <QToolTip>
-#include <qmessagebox.h>
+#include <QMessageBox>
 #include <QGridLayout>
 #include <QHBoxLayout>
 

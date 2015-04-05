@@ -12,9 +12,9 @@
 
 #include <QtXml/QXmlInputSource>
 #include <zlib.h>
-#include <qstring.h>
-#include <qdatetime.h>
-#include <qregexp.h>
+#include <QString>
+#include <QDateTime>
+#include <QRegExp>
 
 
 #include <QStringList>
@@ -23,7 +23,7 @@
 #include <QVariant>
 #include <QMessageBox>
 #include <QInputDialog>
-#include <qtextcodec.h>
+#include <QTextCodec>
 #include "wdbfile.h"
 #include "adddialog.h"
 #include "dbase.h"

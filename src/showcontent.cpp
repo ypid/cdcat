@@ -9,7 +9,7 @@
 #include "showcontent.h"
 
 #include <QVariant>
-#include <qpushbutton.h>
+#include <QPushButton>
 #include <qtextbrowser.h>
 #include <QToolButton>
 #include <QLayout>
@@ -17,8 +17,8 @@
 #include <QImage>
 #include <QPixmap>
 #include <QLabel>
-#include <qmessagebox.h>
-#include <qfiledialog.h>
+#include <QMessageBox>
+#include <QFileDialog>
 #include <QGridLayout>
 #include <QHBoxLayout>
 
