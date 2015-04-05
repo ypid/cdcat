@@ -10,7 +10,7 @@
 #ifndef SELREADABLE_H
 #define SELREADABLE_H
 
-#include <qvariant.h>
+#include <QVariant>
 #include <qdialog.h>
 #include <QVBoxLayout>
 #include <QFrame>

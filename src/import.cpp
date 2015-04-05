@@ -8,7 +8,7 @@
 ****************************************************************************/
 
 #include <qmessagebox.h>
-#include <qfile.h>
+#include <QFile>
 #include <QTextStream>
 #include <qdatetime.h>
 #include <QProgressDialog>

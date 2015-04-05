@@ -9,8 +9,8 @@
 #ifndef SHOWCONTENT_H
 #define SHOWCONTENT_H
 
-#include <qvariant.h>
-#include <qpixmap.h>
+#include <QVariant>
+#include <QPixmap>
 #include <qdialog.h>
 #include <QVBoxLayout>
 #include <QGridLayout>

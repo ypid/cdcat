@@ -8,14 +8,14 @@
 ****************************************************************************/
 #include "info.h"
 
-#include <qvariant.h>
+#include <QVariant>
 #include <qpushbutton.h>
 #include <qtabwidget.h>
 #include <qwidget.h>
-#include <qlabel.h>
+#include <QLabel>
 #include <QTextBrowser>
-#include <qlayout.h>
-#include <qtooltip.h>
+#include <QLayout>
+#include <QToolTip>
 #include <QGridLayout>
 #include <QLocale>
 #include <QTableWidget>

@@ -9,12 +9,12 @@
 *  Copyright : (C) 2003 Christoph Thielecke
 ****************************************************************************/
 
-#include <qvariant.h>
-#include <qpixmap.h>
+#include <QVariant>
+#include <QPixmap>
 #include <qdialog.h>
 #include <qdatetime.h>
 #include <qcheckbox.h>
-#include <qlayout.h>
+#include <QLayout>
 #include <qobject.h>
 #include <qfiledialog.h>
 #include <qwidget.h>
@@ -26,10 +26,10 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <qvariant.h>
-#include <qpixmap.h>
-#include <qlayout.h>
-#include <qlabel.h>
+#include <QVariant>
+#include <QPixmap>
+#include <QLayout>
+#include <QLabel>
 #include <QListWidget>
 #include <qpushbutton.h>
 #include <qcheckbox.h>
@@ -38,10 +38,10 @@
 #include <qspinbox.h>
 #include <qlineedit.h>
 #include <qdialog.h>
-#include <qlabel.h>
+#include <QLabel>
 #include <stdio.h>
 #include <ctype.h>
-#include <qfile.h>
+#include <QFile>
 #include <QLayout>
 #include <QGridLayout>
 #include <QVBoxLayout>

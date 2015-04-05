@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <qregexp.h>
-#include <qfile.h>
+#include <QFile>
 #include <qtextstream.h>
 
 #include "config.h"

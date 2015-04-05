@@ -9,22 +9,22 @@
 
 #include "mainwidget.h"
 
-#include <qvariant.h>
-#include <qmenubar.h>
+#include <QVariant>
+#include <QMenuBar>
 #include <QFrame>
 #include <QTreeWidget>
 #include <QHeaderView>
-#include <qtoolbutton.h>
-#include <qlayout.h>
-#include <qtooltip.h>
-#include <qimage.h>
-#include <qpixmap.h>
+#include <QToolButton>
+#include <QLayout>
+#include <QToolTip>
+#include <QImage>
+#include <QPixmap>
 #include <QDir>
-#include <qfile.h>
+#include <QFile>
 #include <QFileInfo>
-#include <qlabel.h>
-#include <qfontmetrics.h>
-#include <qsplitter.h>
+#include <QLabel>
+#include <QFontMetrics>
+#include <QSplitter>
 #include <QHBoxLayout>
 #include <QCloseEvent>
 #include <QList>

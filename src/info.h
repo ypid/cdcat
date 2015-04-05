@@ -10,7 +10,7 @@
 #ifndef __HELPDIALOG_H__
 #define __HELPDIALOG_H__
 
-#include <qvariant.h>
+#include <QVariant>
 #include <qdialog.h>
 #include <qstring.h>
 #include <QVBoxLayout>

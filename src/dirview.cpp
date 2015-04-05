@@ -8,9 +8,9 @@
 ****************************************************************************/
 
 #include <QDir>
-#include <qfile.h>
+#include <QFile>
 #include <QFileInfo>
-#include <qpixmap.h>
+#include <QPixmap>
 #include <qevent.h>
 #include <qpoint.h>
 #include <qmessagebox.h>

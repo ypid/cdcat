@@ -10,7 +10,7 @@
 #ifndef BORROW_H
 #define BORROW_H
 
-#include <qvariant.h>
+#include <QVariant>
 #include <qdialog.h>
 #include <QVBoxLayout>
 #include <QGridLayout>

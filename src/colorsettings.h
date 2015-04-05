@@ -10,8 +10,8 @@
 #ifndef COLORSETTINGS_H
 #define COLORSETTINGS_H
 
-#include <qvariant.h>
-#include <qpixmap.h>
+#include <QVariant>
+#include <QPixmap>
 #include <qdialog.h>
 #include <QFrame>
 #include <QGridLayout>

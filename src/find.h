@@ -10,7 +10,7 @@
 #ifndef FINDDIALOG_H
 #define FINDDIALOG_H
 
-#include <qvariant.h>
+#include <QVariant>
 #include <qdialog.h>
 #include <qobject.h>
 #include <QGridLayout>

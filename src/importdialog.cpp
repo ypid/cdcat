@@ -10,17 +10,17 @@
 
 #include "importdialog.h"
 
-#include <qlabel.h>
+#include <QLabel>
 #include <qlineedit.h>
 #include <qpushbutton.h>
 #include <qmessagebox.h>
-#include <qtooltip.h>
-#include <qfile.h>
+#include <QToolTip>
+#include <QFile>
 #include <qfiledialog.h>
 #include <QGridLayout>
 #include <stdio.h>
 #include <stdlib.h>
-#include <qvariant.h>
+#include <QVariant>
 #include <QLocale>
 #include "icons.h"
 

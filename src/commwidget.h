@@ -11,10 +11,10 @@
 #define COMMENTWIDGET_H
 
 #include <qwidget.h>
-#include <qimage.h>
-#include <qvariant.h>
+#include <QImage>
+#include <QVariant>
 #include <qdialog.h>
-#include <qtoolbutton.h>
+#include <QToolButton>
 #include <QPixmap>
 #include <QResizeEvent>
 #include <QGridLayout>

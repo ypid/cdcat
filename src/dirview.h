@@ -14,7 +14,7 @@
 #include <QTreeWidget>
 #include <QTreeWidgetItem>
 #include <qstring.h>
-#include <qfile.h>
+#include <QFile>
 #include <QFileInfo>
 #include <qtimer.h>
 #include <QMouseEvent>

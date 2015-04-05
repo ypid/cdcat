@@ -8,7 +8,7 @@
 ****************************************************************************/
 
 #include "icons.h"
-#include <qpixmap.h>
+#include <QPixmap>
 
 static const char *const m_catalog_icon_data[] = {
     "16 16 111 2",

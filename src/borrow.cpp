@@ -14,21 +14,21 @@
 #include "dbase.h"
 #include "cdcat.h"
 
-#include <qvariant.h>
-#include <qlabel.h>
+#include <QVariant>
+#include <QLabel>
 #include <qpoint.h>
 #include <QMenu>
 #include <qlineedit.h>
 #include <qpushbutton.h>
-#include <qlayout.h>
-#include <qtooltip.h>
+#include <QLayout>
+#include <QToolTip>
 #include <qcheckbox.h>
 #include <QTableWidget>
 #include <QTableWidgetItem>
 #include <QHeaderView>
 #include <qmessagebox.h>
-#include <qimage.h>
-#include <qpixmap.h>
+#include <QImage>
+#include <QPixmap>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 

@@ -9,17 +9,17 @@
 
 #include "colorsettings.h"
 
-#include <qvariant.h>
+#include <QVariant>
 #include <qcombobox.h>
 #include <QFrame>
 #include <QGroupBox>
-#include <qlabel.h>
+#include <QLabel>
 #include <qpushbutton.h>
 #include <qspinbox.h>
-#include <qlayout.h>
-#include <qtooltip.h>
-#include <qimage.h>
-#include <qpixmap.h>
+#include <QLayout>
+#include <QToolTip>
+#include <QImage>
+#include <QPixmap>
 #include <qevent.h>
 #include <qpainter.h>
 #include <QHBoxLayout>

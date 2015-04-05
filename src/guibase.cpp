@@ -8,8 +8,8 @@
 ****************************************************************************/
 
 #include <string.h>
-#include <qimage.h>
-#include <qlabel.h>
+#include <QImage>
+#include <QLabel>
 #include <qpainter.h>
 
 #include <QRegExp>

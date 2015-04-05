@@ -11,7 +11,7 @@
 #define CONFIGDIALOG_H
 
 #include <qstring.h>
-#include <qvariant.h>
+#include <QVariant>
 #include <qobject.h>
 #include <qdialog.h>
 #include <qstringlist.h>

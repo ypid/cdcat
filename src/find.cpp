@@ -9,19 +9,19 @@
 
 #include "find.h"
 
-#include <qvariant.h>
+#include <QVariant>
 #include <qcheckbox.h>
 #include <qcombobox.h>
 #include <QFrame>
-#include <qlayout.h>
-#include <qlabel.h>
+#include <QLayout>
+#include <QLabel>
 #include <qlineedit.h>
 #include <QHeaderView>
 #include <qpushbutton.h>
-#include <qlayout.h>
-#include <qtooltip.h>
-#include <qimage.h>
-#include <qpixmap.h>
+#include <QLayout>
+#include <QToolTip>
+#include <QImage>
+#include <QPixmap>
 #include <qmessagebox.h>
 #include <QSpinBox>
 #include <qtextcodec.h>

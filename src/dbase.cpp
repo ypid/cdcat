@@ -11,7 +11,7 @@
 #include <QFileInfo>
 #include <qmessagebox.h>
 #include <QDir>
-#include <qfile.h>
+#include <QFile>
 #include <qregexp.h>
 
 #include <stdio.h>

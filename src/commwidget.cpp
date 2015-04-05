@@ -9,16 +9,16 @@
 
 #include "commwidget.h"
 
-#include <qimage.h>
+#include <QImage>
 #include <qwidget.h>
 #include <qpainter.h>
-#include <qimage.h>
-#include <qtoolbutton.h>
-#include <qvariant.h>
+#include <QImage>
+#include <QToolButton>
+#include <QVariant>
 #include <qpushbutton.h>
 #include <QTextEdit>
-#include <qlayout.h>
-#include <qtooltip.h>
+#include <QLayout>
+#include <QToolTip>
 #include <qstringlist.h>
 #include <qregexp.h>
 #include <QHBoxLayout>

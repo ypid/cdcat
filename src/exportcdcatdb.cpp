@@ -8,18 +8,18 @@
 ****************************************************************************/
 
 
-#include <qvariant.h>
+#include <QVariant>
 #include <qpushbutton.h>
-#include <qlabel.h>
+#include <QLabel>
 #include <QListWidget>
 #include <QListWidgetItem>
 #include <qcheckbox.h>
 #include <QGroupBox>
 #include <qradiobutton.h>
 #include <qlineedit.h>
-#include <qlayout.h>
-#include <qpixmap.h>
-#include <qtooltip.h>
+#include <QLayout>
+#include <QPixmap>
+#include <QToolTip>
 #include <qmessagebox.h>
 #include <qtextstream.h>
 #include <QApplication>

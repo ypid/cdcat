@@ -10,7 +10,7 @@
 #ifndef NEWDBDIALOG_H
 #define NEWDBDIALOG_H
 
-#include <qvariant.h>
+#include <QVariant>
 #include <qdialog.h>
 #include <qstring.h>
 #include <QVBoxLayout>

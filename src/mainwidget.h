@@ -10,8 +10,8 @@
 #ifndef CDCATMAINWIDGET_H
 #define CDCATMAINWIDGET_H
 
-#include <qvariant.h>
-#include <qpixmap.h>
+#include <QVariant>
+#include <QPixmap>
 #include <qwidget.h>
 #include <QApplication>
 #include <QMenu>

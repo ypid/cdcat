@@ -10,8 +10,8 @@
 #ifndef ADDDIALOG_H
 #define ADDDIALOG_H
 
-#include <qvariant.h>
-#include <qpixmap.h>
+#include <QVariant>
+#include <QPixmap>
 #include <qdialog.h>
 #include <qdatetime.h>
 #include <QList>

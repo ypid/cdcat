@@ -8,15 +8,15 @@
 ****************************************************************************/
 #include "showcontent.h"
 
-#include <qvariant.h>
+#include <QVariant>
 #include <qpushbutton.h>
 #include <qtextbrowser.h>
-#include <qtoolbutton.h>
-#include <qlayout.h>
-#include <qtooltip.h>
-#include <qimage.h>
-#include <qpixmap.h>
-#include <qlabel.h>
+#include <QToolButton>
+#include <QLayout>
+#include <QToolTip>
+#include <QImage>
+#include <QPixmap>
+#include <QLabel>
 #include <qmessagebox.h>
 #include <qfiledialog.h>
 #include <QGridLayout>

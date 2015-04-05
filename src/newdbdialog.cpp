@@ -12,13 +12,13 @@
 #include "cdcat.h"
 #include "guibase.h"
 
-#include <qvariant.h>
-#include <qlabel.h>
+#include <QVariant>
+#include <QLabel>
 #include <qlineedit.h>
 #include <qpushbutton.h>
 #include <QTextEdit>
-#include <qlayout.h>
-#include <qtooltip.h>
+#include <QLayout>
+#include <QToolTip>
 #include <qmessagebox.h>
 #include <QGridLayout>
 #include <QHBoxLayout>

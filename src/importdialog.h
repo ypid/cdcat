@@ -10,12 +10,12 @@
 #ifndef IMPORTDIALOG_H
 #define IMPORTDIALOG_H
 
-#include <qvariant.h>
-#include <qpixmap.h>
+#include <QVariant>
+#include <QPixmap>
 #include <qdialog.h>
 #include <qdatetime.h>
 #include <qcheckbox.h>
-#include <qlayout.h>
+#include <QLayout>
 #include <qcheckbox.h>
 #include <qradiobutton.h>
 #include <QGroupBox>
