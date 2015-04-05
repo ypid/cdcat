@@ -21,7 +21,7 @@
 #include <QCloseEvent>
 // #include <pcre.h>
 #include <QRegExp>
-#include <QtGui/QDateTimeEdit>
+#include <QtWidgets/QDateTimeEdit>
 #include <QTreeWidget>
 #include <QTreeWidgetItem>
 

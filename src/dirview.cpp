@@ -14,7 +14,7 @@
 #include <qevent.h>
 #include <qpoint.h>
 #include <qmessagebox.h>
-#include <qmime.h>
+// #include <qmime.h>
 #include <qstringlist.h>
 #include <QApplication>
 #include <qobject.h>

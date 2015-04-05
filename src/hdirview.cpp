@@ -16,7 +16,7 @@
 #include <qevent.h>
 #include <qpoint.h>
 #include <qmessagebox.h>
-#include <qmime.h>
+// #include <qmime.h>
 #include <QStringList>
 #include <qstringlist.h>
 #include <QApplication>

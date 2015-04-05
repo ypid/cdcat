@@ -57,7 +57,7 @@
 #include <QMenuBar>
 #include <QMessageBox>
 #include <qmessagebox.h>
-#include <qmime.h>
+// #include <qmime.h>
 #include <QMouseEvent>
 #include <qobject.h>
 #include <qpainter.h>
@@ -91,13 +91,13 @@
 #include <qtextcodec.h>
 #include <QTextStream>
 #include <qtextstream.h>
-#include <QtGui/QAction>
-#include <QtGui/QApplication>
-#include <QtGui/QButtonGroup>
-#include <QtGui/QDateTimeEdit>
-#include <QtGui/QDialog>
-#include <QtGui/QPushButton>
-#include <QtGui/QVBoxLayout>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QDateTimeEdit>
+#include <QtWidgets/QDialog>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QVBoxLayout>
 #include <qtimer.h>
 #include <QToolButton>
 #include <QToolTip>

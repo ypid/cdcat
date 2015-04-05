@@ -825,9 +825,7 @@ void findDialog::exportResult( bool isPrint ) {
         }
     }
     QTextDocument mydoc;
-    QTextCodec::setCodecForCStrings( QTextCodec::codecForName( "UTF-8" ));
     QTextCodec::setCodecForLocale( QTextCodec::codecForName( "UTF-8" ));
-    QTextCodec::setCodecForTr( QTextCodec::codecForName( "UTF-8" ));
     QString result_str;
     if (*DEBUG_INFO_ENABLED) {
         cerr << "result (childCount: " << resultsl->children().count() << "): " << endl;

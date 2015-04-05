@@ -60,9 +60,7 @@ int main( int argi, char **argc ) {
     qInstallMsgHandler( myMessageOutput );
 #endif
 
-    QTextCodec::setCodecForCStrings( QTextCodec::codecForName( "UTF-8" ));
     QTextCodec::setCodecForLocale( QTextCodec::codecForName( "UTF-8" ));
-    QTextCodec::setCodecForTr( QTextCodec::codecForName( "UTF-8" ));
 
     QApplication app( argi, argc );
 
