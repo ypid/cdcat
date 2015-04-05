@@ -1,4 +1,5 @@
 src/Makefile
 src/cdcat
+src/cdcat.pro.user
 src/ui_help.h
 src/moc_files/
