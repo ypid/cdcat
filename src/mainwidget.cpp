@@ -36,7 +36,7 @@
 
 #include <iostream>
 
-#include <QPlastiqueStyle>
+// #include <QPlastiqueStyle>
 
 #include <QDockWidget>
 
@@ -528,8 +528,8 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
     splitMain->setSizes( splitterSizesList );
     splitMain->setStretchFactor( splitMain->indexOf( DirView ), 1 );
     splitMain->setStretchFactor( splitMain->indexOf( listView ), 1 );
-    QPlastiqueStyle plastic_style;
-    splitMain->setStyle( &plastic_style );
+    // QPlastiqueStyle plastic_style;
+    // splitMain->setStyle( &plastic_style );
 
     if (!cconfig->commentDockIsFloating) {
         CommentDock->resize( QSize( cconfig->mainP3, CommentDock->height()));

@@ -65,7 +65,7 @@
 #include <qpalette.h>
 #include <QPixmap>
 #include <QPixmap>
-#include <QPlastiqueStyle>
+// #include <QPlastiqueStyle>
 #include <qpoint.h>
 #include <QProgressDialog>
 #include <qprogressdialog.h>

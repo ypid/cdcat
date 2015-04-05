@@ -34,8 +34,8 @@
 #include <QDate>
 #include <QCalendarWidget>
 #include <QMouseEvent>
-#include <QPrintDialog>
-#include <QPrinter>
+#include <QtPrintSupport/QPrintDialog>
+#include <QtPrintSupport/QPrinter>
 #include <QPainter>
 #include <QTextDocument>
 #include <QTextCodec>
