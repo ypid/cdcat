@@ -1,7 +1,7 @@
- // Add C includes here
+// Add C includes here
 
 #if defined __cplusplus
- // Add C++ includes here
+// Add C++ includes here
 #include <iostream>
 #include <QGroupBox>
 #include <QFrame>

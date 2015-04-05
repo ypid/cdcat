@@ -1,10 +1,10 @@
 /****************************************************************************
-                             Hyper's CD Catalog
-                A multiplatform qt and xml based catalog program
-
- Author    : Peter Deak (hyperr@freemail.hu)
- License   : GPL
- Copyright : (C) 2003 Peter Deak
+*                            Hyper's CD Catalog
+*               A multiplatform qt and xml based catalog program
+*
+*  Author    : Peter Deak (hyperr@freemail.hu)
+*  License   : GPL
+*  Copyright : (C) 2003 Peter Deak
 ****************************************************************************/
 #ifndef SHOWCONTENT_H
 #define SHOWCONTENT_H
@@ -17,7 +17,7 @@
 #include <QHBoxLayout>
 #include <QTextBrowser>
 #include <QLabel>
- #include <QFontComboBox>
+#include <QFontComboBox>
 
 #include "config.h"
 
@@ -34,33 +34,32 @@ class ShowContent : public QDialog {
     Q_OBJECT
 
 public:
-    ShowContent ( Node *node, bool isCategory=false, CdCatConfig *cconfig=NULL, QWidget* parent = 0, const char* name = 0, bool modal = FALSE, Qt::WFlags fl = 0 );
+    ShowContent ( Node *node, bool isCategory = false, CdCatConfig *cconfig = NULL, QWidget *parent = 0, const char *name = 0, bool modal = FALSE, Qt::WFlags fl = 0 );
     ~ShowContent();
 
-    QPushButton* closeButton;
-    QToolButton* deleteButton;
-    QToolButton* saveButton;
-    QTextBrowser* textBrowser;
-    QLabel* sizel;
+    QPushButton *closeButton;
+    QToolButton *deleteButton;
+    QToolButton *saveButton;
+    QTextBrowser *textBrowser;
+    QLabel *sizel;
     QFontComboBox *comboFont;
 
 public slots:
-    int deletenode ( void );
-    int savenode ( void );
+    int deletenode( void );
+    int savenode( void );
 
 protected:
-    QGridLayout* ShowContentLayout;
-    QHBoxLayout* layout1;
+    QGridLayout *ShowContentLayout;
+    QHBoxLayout *layout1;
 
 protected slots:
     void languageChange();
-    void setCurrentFont(const QFont &);
+    void setCurrentFont( const QFont & );
 
 private:
-    Node *parentnode,*mynode;
+    Node *parentnode, *mynode;
     bool isCategory;
     CdCatConfig *cconfig;
-
 };
 
 #endif // SHOWCONTENT_H

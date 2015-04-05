@@ -1,10 +1,10 @@
 /****************************************************************************
-                             Hyper's CD Catalog
-		A multiplatform qt and xml based catalog program
-
- Author    : Peter Deak (hyperr@freemail.hu)
- License   : GPL
- Copyright : (C) 2003 Peter Deak
+*                            Hyper's CD Catalog
+*               A multiplatform qt and xml based catalog program
+*
+*  Author    : Peter Deak (hyperr@freemail.hu)
+*  License   : GPL
+*  Copyright : (C) 2003 Peter Deak
 ****************************************************************************/
 
 #ifndef ADDDIALOG_H
@@ -44,46 +44,46 @@ class addDialog : public QDialog {
 
 public:
 
-    addDialog ( GuiSlave *c,QWidget* parent = 0, const char* name = 0, bool modal = FALSE, Qt::WFlags fl = 0 );
+    addDialog ( GuiSlave *c, QWidget *parent = 0, const char *name = 0, bool modal = FALSE, Qt::WFlags fl = 0 );
     ~addDialog();
 
     int volumename;
     GuiSlave *caller;
 
-    QLabel* textLabel6;
-    QLabel* textLabel1;
-    QLabel* textLabel2;
-    QLabel* textLabel5;
-    QLabel* textLabel4;
-    QLabel* textLabel3;
-    QLabel* textLabelCategory;
-    QPushButton* buttonCancel;
-    QPushButton* buttonOK;
-    QPushButton* buttonPli;
+    QLabel *textLabel6;
+    QLabel *textLabel1;
+    QLabel *textLabel2;
+    QLabel *textLabel5;
+    QLabel *textLabel4;
+    QLabel *textLabel3;
+    QLabel *textLabelCategory;
+    QPushButton *buttonCancel;
+    QPushButton *buttonOK;
+    QPushButton *buttonPli;
     QTextEdit *teComm;
-    QLineEdit* leOwner;
-    QLineEdit* leCategory;
-    QComboBox* cbType;
-    QSpinBox* sbNumber;
-    QLineEdit* leName;
-    DirectoryView* dirView;
+    QLineEdit *leOwner;
+    QLineEdit *leCategory;
+    QComboBox *cbType;
+    QSpinBox *sbNumber;
+    QLineEdit *leName;
+    DirectoryView *dirView;
 #if !defined(_WIN32) && !defined(_OS2)
     QCheckBox *cbAutoDetectAtMount;
 #endif
 
 protected:
-    QGridLayout* addDialogLayout;
-    QVBoxLayout* layout10;
-    QHBoxLayout* layout11;
-    QVBoxLayout* layout12;
-    QHBoxLayout* layout9;
-    QVBoxLayout* layout8;
-    QVBoxLayout* layout7;
-    QHBoxLayout* layout2;
-    QHBoxLayout* layout3;
-    QHBoxLayout* layout4;
-    QGridLayout* layout5;
-    QHBoxLayout* layout1;
+    QGridLayout *addDialogLayout;
+    QVBoxLayout *layout10;
+    QHBoxLayout *layout11;
+    QVBoxLayout *layout12;
+    QHBoxLayout *layout9;
+    QVBoxLayout *layout8;
+    QVBoxLayout *layout7;
+    QHBoxLayout *layout2;
+    QHBoxLayout *layout3;
+    QHBoxLayout *layout4;
+    QGridLayout *layout5;
+    QHBoxLayout *layout1;
 
 protected slots:
     virtual void languageChange();
@@ -91,11 +91,11 @@ protected slots:
     int bCan();
     int sread();
     void autoDetectAtMountToggled();
-    void cbTypeToggeled(int type);
-   void setBusyState(bool);
+    void cbTypeToggeled( int type );
+    void setBusyState( bool );
 
 public slots:
-	int setMediaName ( const QString & ds );
+    int setMediaName( const QString & ds );
 
 private:
     QPixmap image0;
@@ -110,19 +110,18 @@ public:
     int OK;
     int type;
     int serial;
-    QString dComm,dName,dOwner,dDir, dCategory;
-
+    QString dComm, dName, dOwner, dDir, dCategory;
 };
 
 
 class PWw : public QWidget {
-Q_OBJECT
+    Q_OBJECT
 public:
-    int lastx,lasty;
+    int lastx, lasty;
     int s;
     int refreshTime;
     QApplication *appl;
-    PWw ( QWidget *parent,QApplication *qapp = NULL, bool showProgress=false, long long int steps=0, QString progresstext="", bool showCancel=false );
+    PWw ( QWidget *parent, QApplication *qapp = NULL, bool showProgress = false, long long int steps = 0, QString progresstext = "", bool showCancel = false );
     ~PWw();
     int begintext;
     int begincanceltext;
@@ -137,30 +136,30 @@ public:
     QString progresstext;
     QPushButton *cancelButton;
 
-    void setProgressText ( QString progresstext );
-    void setCancel(bool showCancel);
-    void step ( long long int progress_step=0 );
-    void end ( void );
+    void setProgressText( QString progresstext );
+    void setCancel( bool showCancel );
+    void step( long long int progress_step = 0 );
+    void end( void );
 
 signals:
-	void cancelReceivedByUser(bool state);
+    void cancelReceivedByUser( bool state );
 
 protected:
     QTime t;
     QList<QPixmap> anim_list;
-    void paintEvent ( QPaintEvent *pe );
-    void mouseMoveEvent ( QMouseEvent *me );
-    void mousePressEvent ( QMouseEvent *me );
+    void paintEvent( QPaintEvent *pe );
+    void mouseMoveEvent( QMouseEvent *me );
+    void mousePressEvent( QMouseEvent *me );
 
 private:
-	bool showCancel;
+    bool showCancel;
 
 
 public slots:
-	void doCancelReceived(bool);
+    void doCancelReceived( bool );
 };
 
-void progress ( PWw *p, long long int progress_step=0 );
+void progress( PWw *p, long long int progress_step = 0 );
 
 
 class AddLnk : public QDialog {
@@ -176,23 +175,22 @@ public:
     QPushButton *buttonCancel;
     QLabel *label;
 
-    QVBoxLayout*vbox;
+    QVBoxLayout *vbox;
 
     QHBoxLayout *hbox1;
     QHBoxLayout *hbox2;
 
 public slots:
 
-    int sselect ( void );
-    int sok ( void );
-    int scancel ( void );
+    int sselect( void );
+    int sok( void );
+    int scancel( void );
 
 protected slots:
     virtual void languageChange();
 
 protected:
     GuiSlave *caller;
-
 };
 
 #endif // ADDDIALOG_H

@@ -1,10 +1,10 @@
 /****************************************************************************
-                             Hyper's CD Catalog
-		A multiplatform qt and xml based catalog program
-
- Author    : Peter Deak (hyperr@freemail.hu)
- License   : GPL
- Copyright : (C) 2003 Peter Deak
+*                            Hyper's CD Catalog
+*               A multiplatform qt and xml based catalog program
+*
+*  Author    : Peter Deak (hyperr@freemail.hu)
+*  License   : GPL
+*  Copyright : (C) 2003 Peter Deak
 ****************************************************************************/
 
 #ifndef COMMENTWIDGET_H
@@ -38,14 +38,14 @@ class QEvent;
 class CdCatConfig;
 class QScrollArea;
 
-int editNodeComment ( Node *node, QWidget *parent, CdCatConfig *cconfig, bool isCommentEdit=true );
+int editNodeComment( Node *node, QWidget *parent, CdCatConfig *cconfig, bool isCommentEdit = true );
 
 class HQToolButton : public QToolButton {
 public:
     HQToolButton ( QWidget *parent = 0 );
 protected:
-    void enterEvent ( QEvent *e );
-    void leaveEvent ( QEvent *e );
+    void enterEvent( QEvent *e );
+    void leaveEvent( QEvent *e );
 };
 
 class CommentWidget : public QWidget {
@@ -53,34 +53,34 @@ class CommentWidget : public QWidget {
 
 public:
 
-    CommentWidget ( CdCatConfig * cc,QApplication *appl, QWidget *parent=0, const char *name=0, Qt::WFlags fl=0 );
+    CommentWidget ( CdCatConfig *cc, QApplication *appl, QWidget *parent = 0, const char *name = 0, Qt::WFlags fl = 0 );
 
-    CdCatConfig * cconfig;
-    HQToolButton* ButtonEdit;
-    HQToolButton* ButtonCategory;
-    HQToolButton* ButtonCategoryEdit;
-    HQToolButton* ButtonContent;
+    CdCatConfig *cconfig;
+    HQToolButton *ButtonEdit;
+    HQToolButton *ButtonCategory;
+    HQToolButton *ButtonCategoryEdit;
+    HQToolButton *ButtonContent;
     QScrollArea *sa;
-    void showNode ( Node *node,int mod );
-    void setScrollArea(QScrollArea *sa);
+    void showNode( Node *node, int mod );
+    void setScrollArea( QScrollArea *sa );
     void updateContents();
 
     Node *act;
-    int  mode;
+    int mode;
     bool noRepaint;
 signals:
     void touchdb();
 protected:
-    void enterEvent ( QEvent *e );
-    void leaveEvent ( QEvent *e );
-    void paintEvent ( QPaintEvent *pe );
-    void resizeEvent ( QResizeEvent *re );
-    void mouseMoveEvent ( QMouseEvent *me );
-    void mousePressEvent ( QMouseEvent *me );
-    void mouseReleaseEvent ( QMouseEvent *me );
+    void enterEvent( QEvent *e );
+    void leaveEvent( QEvent *e );
+    void paintEvent( QPaintEvent *pe );
+    void resizeEvent( QResizeEvent *re );
+    void mouseMoveEvent( QMouseEvent *me );
+    void mousePressEvent( QMouseEvent *me );
+    void mouseReleaseEvent( QMouseEvent *me );
 
 private:
-    int mx,my,ox,oy;
+    int mx, my, ox, oy;
     bool update_contents_running;
     QPixmap image13;
     QApplication *app;
@@ -89,32 +89,32 @@ private:
     bool paintEventRunning;
 
 public slots:
-    int editC ( void );
-    int showC ( void );
-    int editCategory ( void );
-    int showCategory ( void );
+    int editC( void );
+    int showC( void );
+    int editCategory( void );
+    int showCategory( void );
 };
 
-//-------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------
 class commentEdit : public QDialog {
     Q_OBJECT
 
 public:
-    commentEdit ( QString cc, CdCatConfig *cconfig = NULL, QWidget* parent = 0, const char* name = 0, bool modal = FALSE, bool isCommentEdit=true, Qt::WFlags fl = 0 );
+    commentEdit ( QString cc, CdCatConfig *cconfig = NULL, QWidget *parent = 0, const char *name = 0, bool modal = FALSE, bool isCommentEdit = true, Qt::WFlags fl = 0 );
     ~commentEdit();
 
-    QTextEdit* teComm;
-    QPushButton* buttonOk;
-    QPushButton* buttonCancel;
+    QTextEdit *teComm;
+    QPushButton *buttonOk;
+    QPushButton *buttonCancel;
 
 public slots:
     virtual int pushOk();
     virtual int pushCancel();
 
 protected:
-    QGridLayout* CommentEditBaseLayout;
-    QVBoxLayout* layout5;
-    QHBoxLayout* layout4;
+    QGridLayout *CommentEditBaseLayout;
+    QVBoxLayout *layout5;
+    QHBoxLayout *layout4;
 
 public:
     QString newc;

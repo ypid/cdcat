@@ -1,12 +1,12 @@
 /****************************************************************************
-                             Hyper's CD Catalog
-		A multiplatform qt and xml based catalog program
-
- Author    : Christoph Thielecke (crissi99@gmx.de)
- License   : GPL
- Copyright : (C) 2011 Christoph Thielecke
-
- Info: read mediainfo using libmediainfo
+*                            Hyper's CD Catalog
+*               A multiplatform qt and xml based catalog program
+*
+*  Author    : Christoph Thielecke (crissi99@gmx.de)
+*  License   : GPL
+*  Copyright : (C) 2011 Christoph Thielecke
+*
+*  Info: read mediainfo using libmediainfo
 ****************************************************************************/
 #ifndef CDCAT_MEDIAINFO_H
 #define CDCAT_MEDIAINFO_H
@@ -22,15 +22,15 @@
 #endif
 
 
-//#define MEDIAINFO_STATIC
+// #define MEDIAINFO_STATIC
 
 #ifdef MEDIAINFO_STATIC
-    #include "MediaInfo/MediaInfo.h" //Staticly-loaded library (.lib or .a)
-    #define MediaInfoNameSpace MediaInfoLib
-#else //MEDIAINFO_STATIC
-    #include "MediaInfoDLL/MediaInfoDLL.h" //Dynamicly-loaded library (.dll or .so)
-    #define MediaInfoNameSpace MediaInfoDLL
-#endif //MEDIAINFO_STATIC
+#include "MediaInfo/MediaInfo.h"     // Staticly-loaded library (.lib or .a)
+#define MediaInfoNameSpace MediaInfoLib
+#else // MEDIAINFO_STATIC
+#include "MediaInfoDLL/MediaInfoDLL.h"     // Dynamicly-loaded library (.dll or .so)
+#define MediaInfoNameSpace MediaInfoDLL
+#endif // MEDIAINFO_STATIC
 
 #ifdef UNSETUNICODE // from the mediainfo unicode workaround
 #undef UNICODE
@@ -38,12 +38,12 @@
 #endif
 
 #ifdef __MINGW32__
-    #ifdef _UNICODE
-        #define _itot _itow
-    #else //_UNICODE
-        #define _itot itoa
-    #endif //_UNICODE
-#endif //__MINGW32
+#ifdef _UNICODE
+#define _itot _itow
+#else     // _UNICODE
+#define _itot itoa
+#endif    // _UNICODE
+#endif // __MINGW32
 
 #include <string>
 #include <stdio.h>
@@ -71,12 +71,11 @@ public:
 
 
 private:
-	QString InfoText;
-	bool initMediaInfoLib();
+    QString InfoText;
+    bool initMediaInfoLib();
 };
 
 
 
 #endif
 #endif
-

@@ -1,10 +1,10 @@
 /****************************************************************************
-                             Hyper's CD Catalog
-		A multiplatform qt and xml based catalog program
-
- Author    : Peter Deak (hyperr@freemail.hu)
- License   : GPL
- Copyright : (C) 2003 Peter Deak
+*                            Hyper's CD Catalog
+*               A multiplatform qt and xml based catalog program
+*
+*  Author    : Peter Deak (hyperr@freemail.hu)
+*  License   : GPL
+*  Copyright : (C) 2003 Peter Deak
 ****************************************************************************/
 
 #ifndef DIRVIEW_H
@@ -39,67 +39,65 @@ class QColorGroup;
 class LNode : public QTreeWidgetItem {
 public:
 
-    LNode ( QTreeWidget * parent, Node * dbnodep );
-    LNode ( LNode * parent, Node* dbnodep, const QString &col2="" );
-    LNode ( LNode * parent,LNode *after,Node* dbnodep, const QString &col2 );
+    LNode ( QTreeWidget *parent, Node *dbnodep );
+    LNode ( LNode *parent, Node *dbnodep, const QString &col2 = "" );
+    LNode ( LNode *parent, LNode *after, Node *dbnodep, const QString &col2 );
 
-    QString text ( int column ) const;
+    QString text( int column ) const;
 
     QString fullName();
 
-    void setExpanded ( bool );
+    void setExpanded( bool );
     void setup();
 
-    const QPixmap *pixmap ( int i ) const;
-    void setPixmap ( QPixmap *p );
+    const QPixmap *pixmap( int i ) const;
+    void setPixmap( QPixmap *p );
 
 private:
-    Node  * node;
-    LNode * p;
+    Node *node;
+    LNode *p;
     QPixmap *pix;
     bool childsCollected;
-
 };
 
 class HDirectoryView : public QTreeWidget {
     Q_OBJECT
 
 public:
-    void start ( void );
-    HDirectoryView ( DataBase **dbp,QWidget *parent = 0, const char *name = 0 );
+    void start( void );
+    HDirectoryView ( DataBase **dbp, QWidget *parent = 0, const char *name = 0 );
     ~HDirectoryView();
     DataBase **db;
 
 public slots:
-    void setDir ( Node *node );
-    void closeAllBranch ( void );
+    void setDir( Node *node );
+    void closeAllBranch( void );
 
 
 signals:
-    void folderSelected ( const QString & );
-    void hitkey ( QKeyEvent * );
+    void folderSelected( const QString & );
+    void hitkey( QKeyEvent * );
 
 protected slots:
-    void slotFolderSelected ( QTreeWidgetItem *item, int col );
-    void slotFolderSelectedR ( QTreeWidgetItem *item, int col );
+    void slotFolderSelected( QTreeWidgetItem *item, int col );
+    void slotFolderSelectedR( QTreeWidgetItem *item, int col );
 //     void openFolder();
-    void itemExpanded ( QTreeWidgetItem * item );
-    void itemCollapsed ( QTreeWidgetItem * item );
+    void itemExpanded( QTreeWidgetItem *item );
+    void itemCollapsed( QTreeWidgetItem *item );
 
 
 protected:
-    void keyPressEvent ( QKeyEvent *e );
-    void contentsMousePressEvent ( QMouseEvent *e );
-    void contentsMouseReleaseEvent ( QMouseEvent *e );
+    void keyPressEvent( QKeyEvent *e );
+    void contentsMousePressEvent( QMouseEvent *e );
+    void contentsMouseReleaseEvent( QMouseEvent *e );
 
 private:
-    QString fullPath ( QTreeWidgetItem* item );
+    QString fullPath( QTreeWidgetItem *item );
     QTreeWidgetItem *oldCurrent;
     QTreeWidgetItem *dropItem;
-    QTimer* autoopen_timer;
+    QTimer *autoopen_timer;
     QPoint presspos;
     bool mousePressed;
-
 };
 
 #endif

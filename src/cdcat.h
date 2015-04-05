@@ -1,10 +1,10 @@
 /****************************************************************************
-                             Hyper's CD Catalog
-		A multiplatform qt and xml based catalog program
-
- Author    : Peter Deak (hyperr@freemail.hu)
- License   : GPL
- Copyright : (C) 2003 Peter Deak
+*                            Hyper's CD Catalog
+*               A multiplatform qt and xml based catalog program
+*
+*  Author    : Peter Deak (hyperr@freemail.hu)
+*  License   : GPL
+*  Copyright : (C) 2003 Peter Deak
 ****************************************************************************/
 
 #ifndef CDCAT_CDCAT
@@ -13,7 +13,7 @@
 #include <qtranslator.h>
 #include "config.h"
 
-//#define IS_RELEASE
+// #define IS_RELEASE
 
 
 // CdCat version text:
@@ -32,10 +32,9 @@
 
 class QString;
 
-char  * mstr ( const char *imp );
-QString applicationDirPath ( char **argc );
-QString applicationFilePath ( char **argc );
+char *mstr( const char *imp );
+QString applicationDirPath( char **argc );
+QString applicationFilePath( char **argc );
 static QTranslator *translator;
-bool * init_debug_info();
+bool *init_debug_info();
 #endif
-

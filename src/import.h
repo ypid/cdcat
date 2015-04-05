@@ -1,10 +1,10 @@
 /****************************************************************************
-                         Hyper's CD Catalog
-A multiplatform qt and xml based catalog program
-
-Author    : Christoph Thielecke (crissi99@gmx.de)
-License   : GPL
-Copyright : (C) 2003 Christoph Thielecke
+*                        Hyper's CD Catalog
+*  A multiplatform qt and xml based catalog program
+*
+*  Author    : Christoph Thielecke (crissi99@gmx.de)
+*  License   : GPL
+*  Copyright : (C) 2003 Christoph Thielecke
 ****************************************************************************/
 
 #ifndef IMPORT__
@@ -34,7 +34,7 @@ Copyright : (C) 2003 Christoph Thielecke
 class Node;
 class CdCatMainWidget;
 
-class lineObject: public QObject {
+class lineObject : public QObject {
     Q_OBJECT
 public:
 
@@ -43,11 +43,10 @@ public:
      * Example: folder1/subfolder/subsubfolder/file @param size Size of
      * file @param date Date of file @param time Mod time of file
      */
-    lineObject ( QString medianame, QString path, QString filename,
-                 double size, QDateTime datetime, QString comment, QString information, QString category, QList<ArchiveFile> archivecontent = QList<ArchiveFile>(), bool is_archive=false  );
+    lineObject ( QString medianame, QString path, QString filename, double size, QDateTime datetime, QString comment, QString information, QString category, QList<ArchiveFile> archivecontent = QList<ArchiveFile>(), bool is_archive = false  );
     ~lineObject();
     lineObject ( const lineObject& );
-    lineObject& operator= ( const lineObject& );
+    lineObject& operator=( const lineObject& );
 
     QString getMediaName();
     QString getPath();
@@ -59,8 +58,8 @@ public:
     QString getCategory();
     QList<ArchiveFile> getArchiveFileContent();
     bool isArchive();
-    void setArchiveFileContent(QList<ArchiveFile> archivecontent);
-    void appendArchiveFileContent(ArchiveFile af);
+    void setArchiveFileContent( QList<ArchiveFile> archivecontent );
+    void appendArchiveFileContent( ArchiveFile af );
 
 protected:
     QString medianame;
@@ -74,32 +73,31 @@ protected:
     double size;
     bool is_archive;
 public:
-	QList<ArchiveFile> archivecontent;
+    QList<ArchiveFile> archivecontent;
 };
 
-class importGtktalogCsv: public QObject {
+class importGtktalogCsv : public QObject {
     Q_OBJECT
 public:
-    importGtktalogCsv ( GuiSlave * parent, QString separator, QString filename, bool createdatabase, bool correctbadstyle, QString csvtype="gtktalog", QString cdcat_pattern = "", QString extra_media_name = "" );
+    importGtktalogCsv ( GuiSlave *parent, QString separator, QString filename, bool createdatabase, bool correctbadstyle, QString csvtype = "gtktalog", QString cdcat_pattern = "", QString extra_media_name = "" );
     ~importGtktalogCsv();
 
     /*
-      * @param medianame Name of media @param path Full path of file.
-      * Example: folder1/subfolder/subsubfolder/file @param size Size of
-      * file @param datetime Date + time of file
-      */
-    int addNewItem ( QString medianame, QString path, QString filename,
-                     double size, QDateTime datetime, QString comment, QString category );
+     * @param medianame Name of media @param path Full path of file.
+     * Example: folder1/subfolder/subsubfolder/file @param size Size of
+     * file @param datetime Date + time of file
+     */
+    int addNewItem( QString medianame, QString path, QString filename, double size, QDateTime datetime, QString comment, QString category );
 
     /*
      * @param new_medianame Name of new media
      */
 
-    int addNewMedia ( QString new_medianame, QDateTime media_modification, QString media_comment, QString media_category, QList < lineObject > *medialines );
+    int addNewMedia( QString new_medianame, QDateTime media_modification, QString media_comment, QString media_category, QList<lineObject> *medialines );
 
 protected:
-    GuiSlave * guislave;
-    QList < lineObject > *medialines;
+    GuiSlave *guislave;
+    QList<lineObject> *medialines;
     DataBase *db;
     int mediacount;
     int filecount;
@@ -109,13 +107,12 @@ protected:
     bool correctbadstyle;
     QString filename;
     QString separator;
-
 };
 
 
 class importGtktalogXml : public QObject, public QXmlDefaultHandler {
-Q_OBJECT public:
-    importGtktalogXml ( GuiSlave * parent, QString filename, bool createdatabase );
+    Q_OBJECT public:
+    importGtktalogXml ( GuiSlave *parent, QString filename, bool createdatabase );
     ~importGtktalogXml();
 
     /*
@@ -123,13 +120,12 @@ Q_OBJECT public:
      * Example: folder1/subfolder/subsubfolder/file @param size Size of
      * file @param datetime Date + time of file
      */
-    int addNewItem ( QString medianame, QString path,
-                                    QString filename, long size, QDateTime datetime, QString comment, QString information, QString category,  QList<ArchiveFile> archivecontent = QList<ArchiveFile>(), bool is_archive=false );
+    int addNewItem( QString medianame, QString path, QString filename, long size, QDateTime datetime, QString comment, QString information, QString category, QList<ArchiveFile> archivecontent = QList<ArchiveFile>(), bool is_archive = false );
 
     /*
      * @param new_medianame Name of new media
      */
-    int addNewMedia ( QString new_medianame, QDateTime media_modification, QString media_comment, QString media_category, QList < lineObject > *medialines );
+    int addNewMedia( QString new_medianame, QDateTime media_modification, QString media_comment, QString media_category, QList<lineObject> *medialines );
 
     int lines;
     int linecount;
@@ -155,34 +151,33 @@ Q_OBJECT public:
     QString directory;
     QString last_tag;
     QString tag_content;
-    GuiSlave * guislave;
-    QList < lineObject > *medialines;
+    GuiSlave *guislave;
+    QList<lineObject> *medialines;
     QProgressDialog *progress;
-	bool startDocument();
-	bool startElement( const QString&, const QString&, const QString& , const QXmlAttributes& );
-	bool endElement( const QString&, const QString&, const QString& );
-	bool characters ( const QString & ch ) ;
-	bool fatalError(const QXmlParseException &exception);
-	void setDocumentLocator ( QXmlLocator * locator );
-	QXmlLocator *locator;
-	QXmlAttributes attr;
-	bool is_directory;
-	bool is_archive;
+    bool startDocument();
+    bool startElement( const QString&, const QString&, const QString&, const QXmlAttributes& );
+    bool endElement( const QString&, const QString&, const QString& );
+    bool characters( const QString & ch );
+    bool fatalError( const QXmlParseException &exception );
+    void setDocumentLocator( QXmlLocator *locator );
+    QXmlLocator *locator;
+    QXmlAttributes attr;
+    bool is_directory;
+    bool is_archive;
 
-	protected:
+protected:
 protected:
     DataBase *db;
     bool createdatabase;
     QString currentText;
-
 };
 
-//enum tag_type {empty, media,file,folder};
+// enum tag_type {empty, media,file,folder};
 
 class importWhereIsItXml : public QObject, public QXmlDefaultHandler {
-Q_OBJECT
+    Q_OBJECT
 public:
-    importWhereIsItXml ( GuiSlave * parent, QString filename, bool createdatabase );
+    importWhereIsItXml ( GuiSlave *parent, QString filename, bool createdatabase );
     ~importWhereIsItXml();
 
 
@@ -215,47 +210,45 @@ public:
     QString comment;
     QString last_tag;
     QString last_type;
-    GuiSlave * guislave;
+    GuiSlave *guislave;
     QProgressDialog *progress;
     Node *last_upper_container_node;
     DataBase *db;
     QDate date;
-		//tag_type last_type;
+    // tag_type last_type;
 protected:
 
 
-		bool startDocument();
-		bool startElement( const QString&, const QString&, const QString& , const QXmlAttributes& );
-		bool endElement( const QString&, const QString&, const QString& );
-		bool characters ( const QString & ch ) ;
-		bool fatalError(const QXmlParseException &exception);
-		void setDocumentLocator ( QXmlLocator * locator );
-		QXmlLocator *locator;
-		QXmlAttributes attr;
+    bool startDocument();
+    bool startElement( const QString&, const QString&, const QString&, const QXmlAttributes& );
+    bool endElement( const QString&, const QString&, const QString& );
+    bool characters( const QString & ch );
+    bool fatalError( const QXmlParseException &exception );
+    void setDocumentLocator( QXmlLocator *locator );
+    QXmlLocator *locator;
+    QXmlAttributes attr;
 
-	protected:
-		bool createdatabase;
-		QString currentText;
-
+protected:
+    bool createdatabase;
+    QString currentText;
 };
 
 class import : public QObject {
     Q_OBJECT
 
 public:
-    import ( GuiSlave * parent );
+    import ( GuiSlave *parent );
 
 protected:
-
 };
 
 class pattern_entry {
 public:
-	pattern_entry(int index, QString pattern_name, QString pattern) : index(index), pattern_name(pattern_name), pattern(pattern) {
-	};
-	int index;
-	QString pattern_name;
-	QString pattern;
+    pattern_entry( int index, QString pattern_name, QString pattern ) : index( index ), pattern_name( pattern_name ), pattern( pattern ) {
+    };
+    int index;
+    QString pattern_name;
+    QString pattern;
 };
 
 #endif

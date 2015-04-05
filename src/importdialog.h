@@ -1,10 +1,10 @@
 /****************************************************************************
-                            Hyper's CD Catalog
-	A multiplatform qt and xml based catalog program
-
-Author    : Christoph Thielecke (crissi99@gmx.de)
-License   : GPL
-Copyright : (C) 2003 Christoph Thielecke
+*                           Hyper's CD Catalog
+*       A multiplatform qt and xml based catalog program
+*
+*  Author    : Christoph Thielecke (crissi99@gmx.de)
+*  License   : GPL
+*  Copyright : (C) 2003 Christoph Thielecke
 ****************************************************************************/
 
 #ifndef IMPORTDIALOG_H
@@ -30,28 +30,28 @@ class QLabel;
 class QLineEdit;
 class QPushButton;
 
-QList<QList<QString>> getImportPatternList();
+QList<QList<QString> > getImportPatternList();
 
 class ImportDialog : public QDialog {
     Q_OBJECT
 
 public:
-    ImportDialog ( QWidget* parent = 0, const char* name = 0, bool modal = true, Qt::WFlags fl = 0 );
+    ImportDialog ( QWidget *parent = 0, const char *name = 0, bool modal = true, Qt::WFlags fl = 0 );
     ~ImportDialog();
 
 
-    QLabel* filename_lab;
-    QLabel* separator_lab;
-    QLabel* info_lab;
+    QLabel *filename_lab;
+    QLabel *separator_lab;
+    QLabel *info_lab;
     QLabel *genericRegexPattern_lab;
     QLabel *genericRegexInfo;
 
-    QPushButton* buttonCancel;
-    QPushButton* buttonOK;
-    QPushButton* buttonGetFile;
-    QLineEdit* filename_lineedit;
-    QLineEdit* separator_lineedit;
-    QLineEdit* genericRegex_lineedit;
+    QPushButton *buttonCancel;
+    QPushButton *buttonOK;
+    QPushButton *buttonGetFile;
+    QLineEdit *filename_lineedit;
+    QLineEdit *separator_lineedit;
+    QLineEdit *genericRegex_lineedit;
     QCheckBox *newdatabase;
     QCheckBox *correctbadstyle;
     QRadioButton *importTypeCsvGtktalog;
@@ -70,12 +70,12 @@ public:
 
 
 protected:
-    QGridLayout* layout4;
-    QGridLayout* ImportDialogLayout;
-    QVBoxLayout* type_layout;
-    QHBoxLayout* csv_layout;
-    QVBoxLayout* layoutGroupBox;
-    QHBoxLayout* layoutGenericRegex;
+    QGridLayout *layout4;
+    QGridLayout *ImportDialogLayout;
+    QVBoxLayout *type_layout;
+    QHBoxLayout *csv_layout;
+    QVBoxLayout *layoutGroupBox;
+    QHBoxLayout *layoutGenericRegex;
 
 protected slots:
     virtual void languageChange();
@@ -86,14 +86,14 @@ protected slots:
 
 
 private:
-	QString lastDir;
+    QString lastDir;
 
 public:
     int OK;
     QString filename, separator;
     bool createdatabase;
     int type;
-    void setLastDir(QString lastDir);
+    void setLastDir( QString lastDir );
     QString getLastDir();
 };
 
