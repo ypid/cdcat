@@ -20,7 +20,7 @@
 
 using namespace std;
 
-#include <qfileinfo.h>
+#include <QFileInfo>
 #include <qregexp.h>
 #include <qtextcodec.h>
 #include <qstringlist.h>

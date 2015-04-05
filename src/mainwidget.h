@@ -13,7 +13,7 @@
 #include <qvariant.h>
 #include <qpixmap.h>
 #include <qwidget.h>
-#include <qapplication.h>
+#include <QApplication>
 #include <QMenu>
 #include <QGridLayout>
 #include <QHBoxLayout>

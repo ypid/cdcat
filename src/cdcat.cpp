@@ -11,22 +11,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
-#include <qtextcodec.h>
-#include <qfont.h>
-#include <qapplication.h>
-#include <qmessagebox.h>
-#include <qdir.h>
+#include <QApplication>
+#include <QFont>
+#include <QMessageBox>
+#include <QDir>
 #include <QList>
+#include <QFileInfo>
+#include <QTextCodec>
 
 #include "dbase.h"
 #include "cdcat.h"
 #include "mainwidget.h"
 #include "icons.h"
 
-#include <qfileinfo.h>
 #include <iostream>
-#include <QTextCodec>
 
 using namespace std;
 

@@ -22,7 +22,7 @@
 #include <qlabel.h>
 #include <qspinbox.h>
 #include <qfile.h>
-#include <qfont.h>
+#include <QFont>
 #include <qcolor.h>
 #include <QFrame>
 #include <qtextstream.h>

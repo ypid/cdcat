@@ -9,9 +9,9 @@
 
 #include "hdirview.h"
 
-#include <qdir.h>
+#include <QDir>
 #include <qfile.h>
-#include <qfileinfo.h>
+#include <QFileInfo>
 #include <qpixmap.h>
 #include <qevent.h>
 #include <qpoint.h>
@@ -19,7 +19,7 @@
 #include <qmime.h>
 #include <QStringList>
 #include <qstringlist.h>
-#include <qapplication.h>
+#include <QApplication>
 #include <qevent.h>
 #include <QHeaderView>
 #include <qpainter.h>

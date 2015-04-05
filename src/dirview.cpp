@@ -7,16 +7,16 @@
 *  Copyright : (C) 2003 Peter Deak
 ****************************************************************************/
 
-#include <qdir.h>
+#include <QDir>
 #include <qfile.h>
-#include <qfileinfo.h>
+#include <QFileInfo>
 #include <qpixmap.h>
 #include <qevent.h>
 #include <qpoint.h>
 #include <qmessagebox.h>
 #include <qmime.h>
 #include <qstringlist.h>
-#include <qapplication.h>
+#include <QApplication>
 #include <qobject.h>
 #include <QMouseEvent>
 

@@ -22,7 +22,7 @@
 #include <qtooltip.h>
 #include <qmessagebox.h>
 #include <qtextstream.h>
-#include <qapplication.h>
+#include <QApplication>
 #include <qstring.h>
 #include <qregexp.h>
 #include <QTextCodec>

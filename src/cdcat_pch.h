@@ -15,7 +15,7 @@
 #include <QTextBrowser>
 #include <QList>
 #include <QVBoxLayout>
-#include <qapplication.h>
+#include <QApplication>
 #include <QCalendarWidget>
 #include <QCheckBox>
 #include <qcheckbox.h>
@@ -27,7 +27,7 @@
 #include <QDateTimeEdit>
 #include <qdatetime.h>
 #include <qdialog.h>
-#include <qdir.h>
+#include <QDir>
 #include <QDragEnterEvent>
 #include <QDragLeaveEvent>
 #include <QDragMoveEvent>
@@ -39,8 +39,8 @@
 #include <qfile.h>
 #include <qfile.h>
 #include <QFileInfo>
-#include <qfileinfo.h>
-#include <qfont.h>
+#include <QFileInfo>
+#include <QFont>
 #include <qfontmetrics.h>
 #include <qimage.h>
 #include <QKeyEvent>

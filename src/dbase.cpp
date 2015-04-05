@@ -8,9 +8,9 @@
 ****************************************************************************/
 
 #include <qdatetime.h>
-#include <qfileinfo.h>
+#include <QFileInfo>
 #include <qmessagebox.h>
-#include <qdir.h>
+#include <QDir>
 #include <qfile.h>
 #include <qregexp.h>
 

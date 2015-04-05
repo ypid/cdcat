@@ -19,9 +19,9 @@
 #include <qtooltip.h>
 #include <qimage.h>
 #include <qpixmap.h>
-#include <qdir.h>
+#include <QDir>
 #include <qfile.h>
-#include <qfileinfo.h>
+#include <QFileInfo>
 #include <qlabel.h>
 #include <qfontmetrics.h>
 #include <qsplitter.h>

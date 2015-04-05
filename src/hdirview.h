@@ -14,7 +14,7 @@
 #include <QTreeWidgetItem>
 #include <qstring.h>
 #include <qfile.h>
-#include <qfileinfo.h>
+#include <QFileInfo>
 #include <qtimer.h>
 #include <QPixmap>
 #include <QDragEnterEvent>

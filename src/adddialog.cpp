@@ -25,11 +25,11 @@
 #include <qimage.h>
 #include <qpixmap.h>
 #include <qfile.h>
-#include <qdir.h>
-#include <qfileinfo.h>
+#include <QDir>
+#include <QFileInfo>
 #include <qpainter.h>
 #include <qdatetime.h>
-#include <qapplication.h>
+#include <QApplication>
 #include <qfontmetrics.h>
 #include <qfiledialog.h>
 #include <QHBoxLayout>
