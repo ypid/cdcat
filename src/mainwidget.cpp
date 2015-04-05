@@ -466,7 +466,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
     mainMenu->addMenu( inoutMenu );
     mainMenu->addMenu( othersMenu );
     mainMenu->addMenu( helpMenu );
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
     mainMenu->hide();
 #endif
 

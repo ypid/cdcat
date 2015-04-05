@@ -200,7 +200,7 @@ DirectoryView::DirectoryView ( QWidget *parent, const char * )
             root->setExpanded( true );
         }
     }
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
     // Directory * volume_dir = new Directory ( this, "/Volumes" );
     QDir volumedir( "/Volumes" );
     QFileInfoList volumes( volumedir.entryInfoList());

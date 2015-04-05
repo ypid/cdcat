@@ -178,7 +178,7 @@ public:
 #if defined(_WIN32) || defined(_OS2)
     QString lang;
 #endif
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
     QString lang;
 #endif
 
@@ -252,7 +252,7 @@ protected:
     QLabel *langLabel;
 #endif
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
     QHBoxLayout *layout9;
     QComboBox *cbLang;
     QLabel *langLabel;

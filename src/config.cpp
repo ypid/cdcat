@@ -174,7 +174,7 @@ CdCatConfig::CdCatConfig ( void ) :
     mounteject = false;
 #endif
 
-#if defined(_WIN32) || defined(Q_WS_MAC) || defined(_OS2)
+#if defined(_WIN32) || defined(Q_OS_MAC) || defined(_OS2)
     lang = "eng";
 #endif
 }
@@ -415,7 +415,7 @@ int CdCatConfig::readConfig( void ) {
                 }
 #endif
 
-#if defined(_WIN32) || defined(Q_WS_MAC) || defined(_OS2)
+#if defined(_WIN32) || defined(Q_OS_MAC) || defined(_OS2)
                 if (var == "lang") {
                     lang = val;
                     continue;
@@ -1137,7 +1137,7 @@ int CdCatConfig::writeConfig( void ) {
         }
 #endif
 
-#if defined(_WIN32) || defined(Q_WS_MAC) || defined(_OS2)
+#if defined(_WIN32) || defined(Q_OS_MAC) || defined(_OS2)
         str << "lang=" + lang << endl;
 #endif
 
@@ -1565,7 +1565,7 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget *parent, const char *name, bool mod
     ConfigDialogBaseLayout->addWidget( cbMoEj, 12, 0 );
 #endif
 
-#if defined(_WIN32) || defined(Q_WS_MAC) || defined(_OS2)
+#if defined(_WIN32) || defined(Q_OS_MAC) || defined(_OS2)
     layout9 = new QHBoxLayout( this );
     cbLang = new QComboBox( this );
     langLabel = new QLabel( this );
@@ -1707,7 +1707,7 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget *parent, const char *name, bool mod
     cbMoEj->setChecked( p->cconfig->mounteject );
 #endif
 
-#if defined(_WIN32) || defined(Q_WS_MAC) || defined(_OS2)
+#if defined(_WIN32) || defined(Q_OS_MAC) || defined(_OS2)
     cbLang->setCurrentIndex( 0 );
     int index = cbLang->findText( p->cconfig->lang );
     if (index != -1) {
@@ -1749,7 +1749,7 @@ void ConfigDialog::languageChange() {
     cbMoEj->setText( tr( "Scanning: mount cdrom at start / eject when finish" ));
 #endif
 
-#if defined(_WIN32) || defined(Q_WS_MAC) || defined(_OS2)
+#if defined(_WIN32) || defined(Q_OS_MAC) || defined(_OS2)
     langLabel->setText( tr( "The language of CdCat interface" ));
 #endif
 
@@ -1788,7 +1788,7 @@ void ConfigDialog::okExit() {
     p->cconfig->mounteject = cbMoEj->isChecked();
 #endif
 
-#if defined(_WIN32) || defined(Q_WS_MAC) || defined(_OS2)
+#if defined(_WIN32) || defined(Q_OS_MAC) || defined(_OS2)
     QString langfile( "./lang/cdcat_" );
     langfile += p->cconfig->lang;
     langfile += ".qm";
