@@ -298,7 +298,7 @@ void HDirectoryView::start( void ) {
 
 HDirectoryView::HDirectoryView ( DataBase **dbp, QWidget *parent, const char *name )
     : QTreeWidget( parent ), oldCurrent( 0 ),
-    dropItem( 0 ), mousePressed( FALSE ) {
+    dropItem( 0 ), mousePressed( false ) {
     db = dbp;
     autoopen_timer = new QTimer( this );
 
@@ -327,8 +327,8 @@ HDirectoryView::HDirectoryView ( DataBase **dbp, QWidget *parent, const char *na
     labels.append( tr( "Directory Tree" ));
     labels.append( tr( "Type" ));
     setHeaderLabels( labels );
-    // header()->setClickEnabled ( FALSE, header()->count() - 1 ); // FIXME
-    // header()->setResizeEnabled ( FALSE, header()->count() - 1 ); //FIXME
+    // header()->setClickEnabled ( false, header()->count() - 1 ); // FIXME
+    // header()->setResizeEnabled ( false, header()->count() - 1 ); //FIXME
 
     // header()->setResizeMode(0,QHeaderView::Stretch);
     // header()->setResizeMode(1,QHeaderView::Stretch);
@@ -387,7 +387,7 @@ void HDirectoryView::slotFolderSelectedR( QTreeWidgetItem *i, int col ) {
 //              dropItem->setExpanded ( true );
 //              //dropItem->repaint();
 //              } else {
-//              dropItem->setExpanded ( FALSE );
+//              dropItem->setExpanded ( false );
 //              //dropItem->repaint();
 //              }
 //      }
@@ -439,7 +439,7 @@ void HDirectoryView::contentsMousePressEvent( QMouseEvent *e ) {
 
 
 void HDirectoryView::contentsMouseReleaseEvent( QMouseEvent * ) {
-    mousePressed = FALSE;
+    mousePressed = false;
 }
 
 void HDirectoryView::keyPressEvent( QKeyEvent *e ) {

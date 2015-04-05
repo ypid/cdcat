@@ -11,7 +11,7 @@
 
 #include <QVariant>
 #include <QPixmap>
-#include <qdialog.h>
+#include <QDialog>
 #include <QVBoxLayout>
 #include <QGridLayout>
 #include <QHBoxLayout>
@@ -34,7 +34,7 @@ class ShowContent : public QDialog {
     Q_OBJECT
 
 public:
-    ShowContent ( Node *node, bool isCategory = false, CdCatConfig *cconfig = NULL, QWidget *parent = 0, const char *name = 0, bool modal = FALSE, Qt::WFlags fl = 0 );
+    ShowContent ( Node *node, bool isCategory = false, CdCatConfig *cconfig = NULL, QWidget *parent = 0, const char *name = 0, bool modal = false, Qt::WindowFlags fl = 0 );
     ~ShowContent();
 
     QPushButton *closeButton;

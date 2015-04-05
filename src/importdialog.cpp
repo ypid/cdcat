@@ -116,7 +116,7 @@ QList<QList<QString> > getImportPatternList() {
     return regex_pattern_list;
 }
 
-ImportDialog::ImportDialog ( QWidget *parent, const char *name, bool modal, Qt::WFlags fl )
+ImportDialog::ImportDialog ( QWidget *parent, const char *name, bool modal, Qt::WindowFlags fl )
     : QDialog( parent, fl ) {
     if (!name) {
         setObjectName( "ImportDialog" );

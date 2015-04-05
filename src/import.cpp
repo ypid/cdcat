@@ -2853,7 +2853,7 @@ importWhereIsItXml::importWhereIsItXml ( GuiSlave *parent, QString filename, boo
         if ((filehdl = fopen( filename.toLocal8Bit().constData(), "r" )) == NULL) {
             std::cerr << "Can't open " << qPrintable( filename ) << endl;
         } else {
-            //      file_raise( f, FALSE );
+            //      file_raise( f, false );
             //      statfile( f );
             while ((c = getc( filehdl )) != EOF) {
                 if (c == '\n') {

@@ -26,7 +26,7 @@
 #include <QDateTime>
 #include <QDateTimeEdit>
 #include <qdatetime.h>
-#include <qdialog.h>
+#include <QDialog>
 #include <QDir>
 #include <QDragEnterEvent>
 #include <QDragLeaveEvent>

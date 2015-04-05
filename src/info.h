@@ -11,7 +11,7 @@
 #define __HELPDIALOG_H__
 
 #include <QVariant>
-#include <qdialog.h>
+#include <QDialog>
 #include <qstring.h>
 #include <QVBoxLayout>
 #include <QGridLayout>
@@ -33,7 +33,7 @@ class InfoDialog : public QDialog {
     Q_OBJECT
 
 public:
-    InfoDialog ( QWidget *parent = 0, const char *name = 0, bool modal = FALSE, Qt::WFlags fl = 0 );
+    InfoDialog ( QWidget *parent = 0, const char *name = 0, bool modal = false, Qt::WindowFlags fl = 0 );
     ~InfoDialog();
 
     QPushButton *closeButton;
@@ -62,7 +62,7 @@ class KeyBindingDialog : public QDialog {
     Q_OBJECT
 
 public:
-    KeyBindingDialog ( GuiSlave *gs, QWidget *parent = 0, const char *name = 0, bool modal = FALSE, Qt::WFlags fl = 0 );
+    KeyBindingDialog ( GuiSlave *gs, QWidget *parent = 0, const char *name = 0, bool modal = false, Qt::WindowFlags fl = 0 );
     ~KeyBindingDialog();
 
     QGridLayout *keyBindingDialogLayout;

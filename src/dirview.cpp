@@ -87,12 +87,12 @@ void Directory::setExpanded( bool o ) {
         QString s( fullName());
         QDir thisDir( s );
         if (!thisDir.isReadable()) {
-            readable = FALSE;
-            // setExpandable ( FALSE ); // FIXME
+            readable = false;
+            // setExpandable ( false ); // FIXME
             return;
         }
 
-        // listView()->setUpdatesEnabled ( FALSE ); //FIXME
+        // listView()->setUpdatesEnabled ( false ); //FIXME
         QFileInfoList files( thisDir.entryInfoList());
         if (files.size() > 0) {
             for (int i = 0; i < files.size(); ++i) {
@@ -155,7 +155,7 @@ QString Directory::text( int column ) const {
 *****************************************************************************/
 
 DirectoryView::DirectoryView ( QWidget *parent, const char * )
-    : QTreeWidget( parent ), oldCurrent( 0 ), dropItem( 0 ), mousePressed( FALSE ) {
+    : QTreeWidget( parent ), oldCurrent( 0 ), dropItem( 0 ), mousePressed( false ) {
 //      autoopen_timer = new QTimer ( this );
 
     setSortingEnabled( true );
@@ -304,7 +304,7 @@ void DirectoryView::contentsMousePressEvent( QMouseEvent *  ) {
 
 
 void DirectoryView::contentsMouseReleaseEvent( QMouseEvent * ) {
-    mousePressed = FALSE;
+    mousePressed = false;
 }
 
 void DirectoryView::setDir( const QString &s ) {

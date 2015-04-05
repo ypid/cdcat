@@ -33,7 +33,7 @@
  *  The dialog will by default be modeless, unless you set 'modal' to
  *  true to construct a modal dialog.
  */
-ShowContent::ShowContent ( Node *node, bool isCategory, CdCatConfig *cconfig, QWidget *parent, const char *name, bool modal, Qt::WFlags fl )
+ShowContent::ShowContent ( Node *node, bool isCategory, CdCatConfig *cconfig, QWidget *parent, const char *name, bool modal, Qt::WindowFlags fl )
     : QDialog( parent, fl ) {
     this->cconfig = cconfig;
     mynode = NULL;

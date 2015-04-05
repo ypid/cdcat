@@ -11,7 +11,7 @@
 #define FINDDIALOG_H
 
 #include <QVariant>
-#include <qdialog.h>
+#include <QDialog>
 #include <qobject.h>
 #include <QGridLayout>
 #include <QHBoxLayout>
@@ -108,7 +108,7 @@ class findDialog : public QDialog {
     Q_OBJECT
 
 public:
-    findDialog ( CdCatMainWidget *parent = 0, const char *name = 0, bool isFindDuplicates = false, bool modal = FALSE, Qt::WFlags fl = Qt::WindowMinMaxButtonsHint );
+    findDialog ( CdCatMainWidget *parent = 0, const char *name = 0, bool isFindDuplicates = false, bool modal = false, Qt::WindowFlags fl = Qt::WindowMinMaxButtonsHint );
     ~findDialog();
 
 

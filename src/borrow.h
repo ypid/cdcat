@@ -11,7 +11,7 @@
 #define BORROW_H
 
 #include <QVariant>
-#include <qdialog.h>
+#include <QDialog>
 #include <QVBoxLayout>
 #include <QGridLayout>
 #include <QHBoxLayout>
@@ -37,7 +37,7 @@ class borrowDialog : public QDialog {
 public:
     QString m;
     int ok;
-    borrowDialog ( QString mname, QWidget *parent = 0, const char *name = 0, bool modal = FALSE, Qt::WFlags fl = 0 );
+    borrowDialog ( QString mname, QWidget *parent = 0, const char *name = 0, bool modal = false, Qt::WindowFlags fl = 0 );
     ~borrowDialog();
 
     QLabel *textLabel;
@@ -64,7 +64,7 @@ class borrowingDialog : public QDialog {
 
 public:
     int ch;
-    borrowingDialog ( DataBase *dbp, QWidget *parent = 0, const char *name = 0, bool modal = FALSE, Qt::WFlags fl = 0 );
+    borrowingDialog ( DataBase *dbp, QWidget *parent = 0, const char *name = 0, bool modal = false, Qt::WindowFlags fl = 0 );
     ~borrowingDialog();
 
     DataBase *db;

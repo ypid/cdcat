@@ -12,7 +12,7 @@
 
 #include <QList>
 #include <qobject.h>
-#include <qdialog.h>
+#include <QDialog>
 #include <QTreeWidget>
 #include <QTreeWidgetItem>
 #include <QMenu>
@@ -52,7 +52,7 @@ class HQListView : public QTreeWidget {
     Q_OBJECT
 public:
     CdCatMainWidget * mainw;
-    HQListView ( CdCatMainWidget *mw, QWidget *parent = 0, const char *name = 0, Qt::WFlags f = 0 );
+    HQListView ( CdCatMainWidget *mw, QWidget *parent = 0, const char *name = 0, Qt::WindowFlags f = 0 );
     void start( void );
     void setCurrentVisible( void );
     void changed( void );

@@ -35,7 +35,7 @@ bool MString::SlavoGermanic() {
         return true;
     }
 
-    return FALSE;
+    return false;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -92,7 +92,7 @@ inline void MString::MetaphAdd( const char *main, const char *alt ) {
 ////////////////////////////////////////////////////////////////////////////////
 bool MString::StringAt( int start, int len, ... ) {
     if (start < 0) {
-        return FALSE;
+        return false;
     }
 
     char buffer[64];
@@ -131,7 +131,7 @@ void MString::DoubleMetaphone( QString &metaph, QString &metaph2 ) {
     }
     last = len - 1;    // zero based index
 
-    alternate = FALSE;
+    alternate = false;
 
     // this=MString(toUpper());
 

@@ -45,7 +45,7 @@ using namespace std;
  *  The dialog will by default be modeless, unless you set 'modal' to
  *  true to construct a modal dialog.
  */
-exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget *parent, const char *name, bool modal, Qt::WFlags fl ) : QDialog( parent, fl ) {
+exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget *parent, const char *name, bool modal, Qt::WindowFlags fl ) : QDialog( parent, fl ) {
     this->mainw = mainw;
     p = mainw->db;
     app = mainw->app;

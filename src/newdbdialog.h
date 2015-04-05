@@ -11,7 +11,7 @@
 #define NEWDBDIALOG_H
 
 #include <QVariant>
-#include <qdialog.h>
+#include <QDialog>
 #include <qstring.h>
 #include <QVBoxLayout>
 #include <QGridLayout>
@@ -47,7 +47,7 @@ public:
     QString encryptionPassword;
 #endif
 
-    newdbdialog ( QWidget *parent = 0, const char *name = 0, bool modal = FALSE, Qt::WFlags fl = 0 );
+    newdbdialog ( QWidget *parent = 0, const char *name = 0, bool modal = false, Qt::WindowFlags fl = 0 );
     ~newdbdialog();
 
     QLabel *textLabelDatabase;

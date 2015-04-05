@@ -34,7 +34,7 @@
 
 char *buff = NULL;
 
-borrowDialog::borrowDialog ( QString mname, QWidget *parent, const char *name, bool modal, Qt::WFlags fl )
+borrowDialog::borrowDialog ( QString mname, QWidget *parent, const char *name, bool modal, Qt::WindowFlags fl )
     : QDialog( parent, fl ) {
     ok = 0;
     setModal( modal );
@@ -117,7 +117,7 @@ void borrowDialog::languageChange() {
 ** CLASS borrowingDialog
 ****************************************************************************/
 
-borrowingDialog::borrowingDialog ( DataBase *dbp, QWidget *parent, const char *name, bool modal, Qt::WFlags fl )
+borrowingDialog::borrowingDialog ( DataBase *dbp, QWidget *parent, const char *name, bool modal, Qt::WindowFlags fl )
     : QDialog( parent, fl ) {
     setModal( modal );
     last_row_clicked = -1;
@@ -296,7 +296,7 @@ int borrowingDialog::filltable() {
         num++;
     }
 
-    table->setSortingEnabled( FALSE );
+    table->setSortingEnabled( false );
     // table->setSelectionMode ( QTableWidget::NoSelection );
 
     return 0;

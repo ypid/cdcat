@@ -12,7 +12,7 @@
 
 #include <QVariant>
 #include <QPixmap>
-#include <qdialog.h>
+#include <QDialog>
 #include <qdatetime.h>
 #include <QList>
 #include <QGridLayout>
@@ -44,7 +44,7 @@ class addDialog : public QDialog {
 
 public:
 
-    addDialog ( GuiSlave *c, QWidget *parent = 0, const char *name = 0, bool modal = FALSE, Qt::WFlags fl = 0 );
+    addDialog ( GuiSlave *c, QWidget *parent = 0, const char *name = 0, bool modal = false, Qt::WindowFlags fl = 0 );
     ~addDialog();
 
     int volumename;

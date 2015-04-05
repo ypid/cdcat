@@ -49,7 +49,7 @@
 #endif
 
 
-SelReadable::SelReadable ( CdCatConfig *confp, QWidget *parent, const char *name, bool modal, Qt::WFlags fl )
+SelReadable::SelReadable ( CdCatConfig *confp, QWidget *parent, const char *name, bool modal, Qt::WindowFlags fl )
     : QDialog( parent, fl ) {
     conf = confp;
     DEBUG_INFO_ENABLED = init_debug_info();

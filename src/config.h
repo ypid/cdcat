@@ -13,7 +13,7 @@
 #include <qstring.h>
 #include <QVariant>
 #include <qobject.h>
-#include <qdialog.h>
+#include <QDialog>
 #include <qstringlist.h>
 #include <QHBoxLayout>
 #include <QGridLayout>
@@ -194,7 +194,7 @@ class ConfigDialog : public QDialog {
     Q_OBJECT
 
 public:
-    ConfigDialog ( CdCatMainWidget *parent = 0, const char *name = 0, bool modal = FALSE, Qt::WFlags fl = 0 );
+    ConfigDialog ( CdCatMainWidget *parent = 0, const char *name = 0, bool modal = false, Qt::WindowFlags fl = 0 );
     ~ConfigDialog();
 
     CdCatMainWidget *p;

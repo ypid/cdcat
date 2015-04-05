@@ -189,7 +189,7 @@ void HQListView::start( void ) {
     ;
 }
 
-HQListView::HQListView ( CdCatMainWidget *mw, QWidget *parent, const char *, Qt::WFlags )
+HQListView::HQListView ( CdCatMainWidget *mw, QWidget *parent, const char *, Qt::WindowFlags )
     : QTreeWidget( parent ) {
     mainw = mw;
     setColumnCount( 3 );

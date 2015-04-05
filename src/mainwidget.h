@@ -48,7 +48,7 @@ class QScrollArea;
 class CdCatMainWidget : public QMainWindow {
     Q_OBJECT
 public:
-    CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget *parent = 0, const char *name = 0, Qt::WFlags fl = 0 );
+    CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget *parent = 0, const char *name = 0, Qt::WindowFlags fl = 0 );
     ~CdCatMainWidget();
 
     CdCatConfig *cconfig;

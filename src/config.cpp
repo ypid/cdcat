@@ -1475,7 +1475,7 @@ int CdCatConfig::writeConfig( void ) {
 }
 
 /************************************************************************************/
-ConfigDialog::ConfigDialog ( CdCatMainWidget *parent, const char *name, bool modal, Qt::WFlags fl )
+ConfigDialog::ConfigDialog ( CdCatMainWidget *parent, const char *name, bool modal, Qt::WindowFlags fl )
     : QDialog( parent, fl ) {
     if (!name) {
         setObjectName( "ConfigDialog" );
@@ -1492,7 +1492,7 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget *parent, const char *name, bool mod
     filename = new QLineEdit( this );
     searchButton = new QPushButton( this );
     searchButton->setText( "..." );
-    searchButton->setFlat( FALSE );
+    searchButton->setFlat( false );
 
     layout1->addWidget( cbAutoload );
 
@@ -1556,7 +1556,7 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget *parent, const char *name, bool mod
     layout5->addWidget( cdrom_lab );
     searchButton2 = new QPushButton( this );
     searchButton2->setText( "..." );
-    searchButton2->setFlat( FALSE );
+    searchButton2->setFlat( false );
     layout5->addWidget( searchButton2 );
     ConfigDialogBaseLayout->addLayout( layout5, 10, 0 );
 

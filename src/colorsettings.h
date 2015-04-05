@@ -12,7 +12,7 @@
 
 #include <QVariant>
 #include <QPixmap>
-#include <qdialog.h>
+#include <QDialog>
 #include <QFrame>
 #include <QGridLayout>
 #include <QHBoxLayout>
@@ -66,7 +66,7 @@ public:
     QColor bg, ts, td, fr;
     int current;
 
-    ColorSettings ( CdCatConfig *cfgp, QWidget *parent = 0, const char *name = 0, bool modal = FALSE, Qt::WFlags fl = 0 );
+    ColorSettings ( CdCatConfig *cfgp, QWidget *parent = 0, const char *name = 0, bool modal = false, Qt::WindowFlags fl = 0 );
     ~ColorSettings();
 
 

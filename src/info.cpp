@@ -37,7 +37,7 @@
  *  The dialog will by default be modeless, unless you set 'modal' to
  *  true to construct a modal dialog.
  */
-InfoDialog::InfoDialog ( QWidget *parent, const char *name, bool modal, Qt::WFlags fl )
+InfoDialog::InfoDialog ( QWidget *parent, const char *name, bool modal, Qt::WindowFlags fl )
     : QDialog( parent, fl ) {
     if (!name) {
         setObjectName( "helpDialog" );
@@ -465,7 +465,7 @@ void InfoDialog::languageChange() {
     tabWidget2->setTabText( 2, tr( "Thanks" ));
 }
 
-KeyBindingDialog::KeyBindingDialog ( GuiSlave *gs, QWidget *parent, const char *name, bool modal, Qt::WFlags fl )
+KeyBindingDialog::KeyBindingDialog ( GuiSlave *gs, QWidget *parent, const char *name, bool modal, Qt::WindowFlags fl )
     : QDialog( parent, fl ) {
     if (!name) {
         setObjectName( "Key bindings" );

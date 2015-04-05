@@ -12,7 +12,7 @@
 
 #include <QVariant>
 #include <QPixmap>
-#include <qdialog.h>
+#include <QDialog>
 #include <qdatetime.h>
 #include <qcheckbox.h>
 #include <QLayout>
@@ -36,7 +36,7 @@ class ImportDialog : public QDialog {
     Q_OBJECT
 
 public:
-    ImportDialog ( QWidget *parent = 0, const char *name = 0, bool modal = true, Qt::WFlags fl = 0 );
+    ImportDialog ( QWidget *parent = 0, const char *name = 0, bool modal = true, Qt::WindowFlags fl = 0 );
     ~ImportDialog();
 
 

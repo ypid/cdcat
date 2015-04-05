@@ -240,9 +240,8 @@ win32 {
 	#QMAKE_CXXFLAGS += -std=c++0x -g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Wformat-security -Werror=format-security
 }
 
-FORMS      	    = help.ui
-TARGET          = cdcat
+FORMS     =  help.ui
+TARGET    =  cdcat
 INSTALLS += target translations distfiles
-QT += xml
-CONFIG += uic
-
+QT       += xml widgets
+CONFIG   += uic

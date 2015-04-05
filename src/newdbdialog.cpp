@@ -38,7 +38,7 @@
  *  The dialog will by default be modeless, unless you set 'modal' to
  *  true to construct a modal dialog.
  */
-newdbdialog::newdbdialog ( QWidget *parent, const char *name, bool modal, Qt::WFlags fl )
+newdbdialog::newdbdialog ( QWidget *parent, const char *name, bool modal, Qt::WindowFlags fl )
     : QDialog( parent, fl ) {
     setModal( modal );
     if (!name) {

@@ -9,44 +9,32 @@
 *  Copyright : (C) 2003 Christoph Thielecke
 ****************************************************************************/
 
-#include <QVariant>
-#include <QPixmap>
-#include <qdialog.h>
-#include <qdatetime.h>
-#include <qcheckbox.h>
-#include <QLayout>
-#include <qobject.h>
-#include <qfiledialog.h>
-#include <qwidget.h>
-#include <qdatetime.h>
-#include <qdialog.h>
-#include <QGridLayout>
-#include <QHBoxLayout>
-#include <QVBoxLayout>
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <QVariant>
-#include <QPixmap>
-#include <QLayout>
-#include <QLabel>
-#include <QListWidget>
-#include <qpushbutton.h>
+#include <ctype.h>
+
 #include <qcheckbox.h>
+#include <qdatetime.h>
+#include <QDialog>
+#include <QFile>
+#include <qfiledialog.h>
+#include <QGridLayout>
 #include <QGroupBox>
+#include <QHBoxLayout>
+#include <QLabel>
+#include <QLayout>
+#include <qlineedit.h>
+#include <QListWidget>
+#include <qobject.h>
+#include <QPixmap>
+#include <qpushbutton.h>
 #include <qradiobutton.h>
 #include <qspinbox.h>
-#include <qlineedit.h>
-#include <qdialog.h>
-#include <QLabel>
-#include <stdio.h>
-#include <ctype.h>
-#include <QFile>
-#include <QLayout>
-#include <QGridLayout>
-#include <QVBoxLayout>
 #include <QStandardItemModel>
-
+#include <QVariant>
+#include <QVBoxLayout>
+#include <qwidget.h>
 
 #include "guibase.h"
 #include "dbase.h"
@@ -63,7 +51,7 @@ class exportCdcatDB : public QDialog {
     Q_OBJECT
 
 public:
-    exportCdcatDB ( CdCatMainWidget *mainw, QWidget *parent = 0, const char *name = 0, bool modal = true, Qt::WFlags fl = 0 );
+    exportCdcatDB ( CdCatMainWidget *mainw, QWidget *parent = 0, const char *name = 0, bool modal = true, Qt::WindowFlags fl = 0 );
     ~exportCdcatDB();
 
 

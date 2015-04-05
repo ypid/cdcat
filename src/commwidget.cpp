@@ -62,7 +62,7 @@ void HQToolButton::leaveEvent( QEvent * ) {
     QApplication::setOverrideCursor( Qt::PointingHandCursor );
 }
 
-CommentWidget::CommentWidget ( CdCatConfig *cc, QApplication *appl, QWidget *parent, const char *name, Qt::WFlags fl )
+CommentWidget::CommentWidget ( CdCatConfig *cc, QApplication *appl, QWidget *parent, const char *name, Qt::WindowFlags fl )
     : QWidget( parent, fl ) {
     if (!name) {
         setObjectName( "CommentWidget" );
@@ -1016,7 +1016,7 @@ int CommentWidget::showCategory( void ) {
 
 /****************************************************************************************/
 
-commentEdit::commentEdit ( QString cc, CdCatConfig *cconfig, QWidget *parent, const char *name, bool modal, bool isCommentEdit, Qt::WFlags fl )
+commentEdit::commentEdit ( QString cc, CdCatConfig *cconfig, QWidget *parent, const char *name, bool modal, bool isCommentEdit, Qt::WindowFlags fl )
     : QDialog( parent, fl ) {
     setModal( modal );
     OK = 0;

@@ -85,7 +85,7 @@ void ColorSchemePreview::paintEvent( QPaintEvent *event ) {
 
 
 
-ColorSettings::ColorSettings ( CdCatConfig *cfgp, QWidget *parent, const char *name, bool modal, Qt::WFlags fl )
+ColorSettings::ColorSettings ( CdCatConfig *cfgp, QWidget *parent, const char *name, bool modal, Qt::WindowFlags fl )
     : QDialog( parent, fl ) {
     if (!name) {
         setObjectName( "ColorSettings" );

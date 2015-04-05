@@ -49,7 +49,7 @@
 #include "misc.h"
 #include "selreadable.h"
 
-addDialog::addDialog ( GuiSlave *c, QWidget *parent, const char *name, bool modal, Qt::WFlags fl )
+addDialog::addDialog ( GuiSlave *c, QWidget *parent, const char *name, bool modal, Qt::WindowFlags fl )
     : QDialog( parent, fl ) {
     int i;
 

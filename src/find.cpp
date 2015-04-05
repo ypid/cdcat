@@ -62,7 +62,7 @@
 #include <QFileDialog>
 using namespace std;
 
-findDialog::findDialog ( CdCatMainWidget *parent, const char *name, bool isFindDuplicates, bool modal, Qt::WFlags fl )
+findDialog::findDialog ( CdCatMainWidget *parent, const char *name, bool isFindDuplicates, bool modal, Qt::WindowFlags fl )
     : QDialog( parent, fl ) {
     if (!name) {
         if (isFindDuplicates) {
