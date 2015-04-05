@@ -6,24 +6,24 @@
 *  License   : GPL
 *  Copyright : (C) 2003 Peter Deak
 ****************************************************************************/
+
 #include <stdio.h>
 #include <string.h>
-#include <QRegExp>
-#include <QFile>
-#include <QTextStream>
 
 #include "config.h"
 #include "cdcat.h"
 #include <iostream>
 
-using namespace std;
-
 #ifdef _WIN32
-#include <windows.h>
+    #include <windows.h>
 #endif
 
 #include <QMessageBox>
+#include <QRegExp>
+#include <QFile>
+#include <QTextStream>
 
+using namespace std;
 
 #ifndef _WIN32
 // Linux:

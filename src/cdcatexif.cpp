@@ -8,17 +8,16 @@
 *
 *  Info: read exif data from pictures
 ****************************************************************************/
+
 #ifdef USE_LIBEXIF
+
 #include "config.h"
 #include "cdcat.h"
 #include "cdcatexif.h"
+
 #include <libexif/exif-data.h>
 #include <libexif/exif-loader.h>
 #include <string.h>
-#include <QString>
-#include <QFile>
-#include <QMessageBox>
-#include <QPainter>
 #include <stdio.h>
 #include <ctype.h>
 #include <stdlib.h>
@@ -26,10 +25,15 @@
 #include <iostream>
 
 #ifdef _WIN32
-#include <windows.h>
+    #include <windows.h>
 #else
-#include <dlfcn.h>
+    #include <dlfcn.h>
 #endif
+
+#include <QString>
+#include <QFile>
+#include <QMessageBox>
+#include <QPainter>
 
 using namespace std;
 

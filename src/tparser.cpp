@@ -27,6 +27,7 @@
  */
 #include <iostream>
 #include <stdio.h>
+
 #include <QString>
 
 #include "tparser.h"
@@ -34,11 +35,11 @@
 #include "cdcat.h"
 
 #ifdef _WIN32
-#define _UINT4 unsigned long
-#define _INT4 long
+    #define _UINT4 unsigned long
+    #define _INT4 long
 #else
-#define _UINT4 unsigned int
-#define _INT4 int
+    #define _UINT4 unsigned int
+    #define _INT4 int
 #endif
 
 /*

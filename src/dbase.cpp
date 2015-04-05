@@ -12,7 +12,7 @@
 #include <ctype.h>
 
 #ifdef WIN32
-#include <windows.h>
+    #include <windows.h>
 #endif
 
 #include <zlib.h>
@@ -41,8 +41,8 @@
 #include <bzlib.h>
 
 #if !defined(_WIN32)
-#include <pwd.h>
-#include <grp.h>
+    #include <pwd.h>
+    #include <grp.h>
 #endif
 
 // lib7zip archive scanning
@@ -66,11 +66,10 @@
 #include <QFile>
 #include <QDir>
 #include <QApplication>
-
 #include <QImageReader>
 
 #ifdef USE_LIB7ZIP
-#include <lib7zip.h>
+    #include <lib7zip.h>
 #endif
 
 
@@ -173,7 +172,7 @@ public:
 #endif
 
 #ifdef USE_LIBEXIF
-#include "cdcatexif.h"
+    #include "cdcatexif.h"
 #endif
 
 // FIXME: currently disabled because lib7zip has problems with std namespace :(

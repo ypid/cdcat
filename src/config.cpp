@@ -31,14 +31,14 @@
 #include <QHBoxLayout>
 #include <QGridLayout>
 
+#include <QTranslator>
+#include <QTextCodec>
+
 
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <iostream>
-
-#include <QTranslator>
-#include <QTextCodec>
 
 #include "dbase.h"
 #include "icons.h"
@@ -48,9 +48,9 @@
 #include "selreadable.h"
 
 #if defined(_WIN32) || defined(_OS2)
-#define CONFIGFILE "cdcat.cfg"
+    #define CONFIGFILE "cdcat.cfg"
 #else
-#define CONFIGFILE ".cdcatconf"
+    #define CONFIGFILE ".cdcatconf"
 #endif
 
 using namespace std;

@@ -21,13 +21,13 @@
 
 
 #ifdef _WIN32
-typedef int uid_t;
-typedef int gid_t;
+    typedef int uid_t;
+    typedef int gid_t;
 #endif
 
 #ifndef _WIN32
-#include <pwd.h>
-#include <grp.h>
+    #include <pwd.h>
+    #include <grp.h>
 #endif
 
 #include <libtar.h>
