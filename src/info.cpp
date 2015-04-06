@@ -31,11 +31,11 @@
 
 
 /*
- *  Constructs a InfoDialog as a child of 'parent', with the
- *  name 'name' and widget flags set to 'f'.
+ * Constructs a InfoDialog as a child of 'parent', with the
+ * name 'name' and widget flags set to 'f'.
  *
- *  The dialog will by default be modeless, unless you set 'modal' to
- *  true to construct a modal dialog.
+ * The dialog will by default be modeless, unless you set 'modal' to
+ * true to construct a modal dialog.
  */
 InfoDialog::InfoDialog ( QWidget *parent, const char *name, bool modal, Qt::WindowFlags fl )
     : QDialog( parent, fl ) {

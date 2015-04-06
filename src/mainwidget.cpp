@@ -33,12 +33,9 @@
 #include <QAction>
 #include <QPixmap>
 #include <QLatin1String>
+#include <QDockWidget>
 
 #include <iostream>
-
-// #include <QPlastiqueStyle>
-
-#include <QDockWidget>
 
 #include "commwidget.h"
 #include "hdirview.h"
@@ -60,6 +57,7 @@
  */
 CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget *parent, const char *name, Qt::WindowFlags fl )
     : QMainWindow( parent, fl ) {
+
     main = new QWidget( this );
     setCentralWidget( main );
     app = appp;
@@ -528,8 +526,6 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
     splitMain->setSizes( splitterSizesList );
     splitMain->setStretchFactor( splitMain->indexOf( DirView ), 1 );
     splitMain->setStretchFactor( splitMain->indexOf( listView ), 1 );
-    // QPlastiqueStyle plastic_style;
-    // splitMain->setStyle( &plastic_style );
 
     if (!cconfig->commentDockIsFloating) {
         CommentDock->resize( QSize( cconfig->mainP3, CommentDock->height()));
