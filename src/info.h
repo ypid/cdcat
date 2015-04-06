@@ -56,6 +56,8 @@ protected:
 
 protected slots:
     virtual void languageChange();
+    virtual QString formatAuthorTR(QString name, QString email, QString year);
+    virtual QString formatAuthor(QString name, QString email, QString year);
 };
 
 class KeyBindingDialog : public QDialog {

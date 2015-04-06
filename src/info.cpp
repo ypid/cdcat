@@ -23,11 +23,12 @@
 #include <QStandardItemModel>
 #include <QStandardItem>
 #include <QHeaderView>
+
 #include <iostream>
 
 #include "cdcat.h"
 #include "icons.h"
-
+#include "mustache.h"
 
 
 /*
@@ -81,93 +82,118 @@ InfoDialog::InfoDialog ( QWidget *parent, const char *name, bool modal, Qt::Wind
     helpDialogLayout->addWidget( tabWidget2, 0, 0 );
 
     /******************************************************************************************/
-    infotext = "<p align=\"center\"><font size=\"+1\"><p align=\"center\"><h1><b>";
-    infotext += tr( "-= CdCatalog by Hyper =-" );
-    infotext += "</b></h1><br>\n<font size=\"+1\">";
+
+    infotext += "<center>";
+    infotext += "<h1>";
+    infotext += PROGRAM_NAME;
+    infotext += "</h1>";
     infotext += HOMEPAGE;
-    infotext += "<br></font>\n<h2>";
+    infotext += "</center>";
+
+    /* Version {{{ */
+    infotext += "<h2>";
     infotext += tr( "Version:" ) + " ";
+
 #ifdef QT_DEBUG
-    QString DEBUG_INFO = tr( " (with debug)" ) + "<br>\n";
+    QString DEBUG_INFO = tr( " (with debug)" );
 #else
     QString DEBUG_INFO = "";
 #endif
+
 #ifdef IS_RELEASE
     infotext += QString( VERSION );
 #else
     infotext += QString( VERSION );
 #endif
+
     infotext += "</h2>\n";
 
 #ifdef IS_RELEASE
     infotext += QString( "<b>(Release" ) + ", Qt " + QString( QT_VERSION_STR ) + ")" + QString( DEBUG_INFO ) + "</b>";
 #else
-    infotext += "<b>(" + tr( "Development version build at" ) + " " + __DATE__ + " " + __TIME__ + ", Qt " + QString( QT_VERSION_STR ) + ")" + DEBUG_INFO + "</b>";
+    infotext += "(" + tr( "Development version build at" ) + " " + __DATE__ + " " + __TIME__ + ", Qt " + QString( QT_VERSION_STR ) + ")" + DEBUG_INFO;
+#endif
+    /* }}} */
+
+    /* Features {{{ */
+#if defined(USE_LIB7ZIP) || defined(MEDIAINFO_STATIC) || defined(MEDIAINFO_UNICODE) || defined(USE_LIBEXIF)
+    infotext += "<h2>";
+    infotext += tr( "Features:" );
+    infotext += "</h2>";
+    infotext += "<ul>";
 #endif
 
-    infotext += "<b>";
-    infotext += tr( "Features:" );
-    infotext += "</b><br>\n";
-
 #ifdef USE_LIB7ZIP
-    infotext += tr( "archive read support using lib7zip" ) + "<br>";
+    infotext += "<li>";
+    infotext += tr( "archive read support using lib7zip" );
+    infotext += "</li>";
 #endif
 
 #ifdef MEDIAINFO_STATIC
-    infotext += tr( "mediainfo (compiled in)" ) + "<br>";
+    infotext += "<li>";
+    infotext += tr( "mediainfo (compiled in)" );
+    infotext += "</li>";
 #endif
 
 #ifdef MEDIAINFO_UNICODE
-    infotext += tr( "mediainfo" ) + "<br>";
+    infotext += "<li>";
+    infotext += tr( "mediainfo" );
+    infotext += "</li>";
 #endif
 
 #ifdef USE_LIBEXIF
-    infotext += tr( "exif data read support" ) + "<br>";
+    infotext += "<li>";
+    infotext += tr( "exif data read support" );
+    infotext += "</li>";
 #endif
 
 #ifdef CATALOG_ENCRYPTION
-    infotext += tr( "encrypted catalog support" ) + "<br>";
+    infotext += "<li>";
+    infotext += tr( "encrypted catalog support" );
+    infotext += "</li>";
 #endif
+    infotext += "</ul>";
+    /* }}} */
 
-
-    infotext += "<br>\n";
-    infotext += tr( "Author:" );
-    infotext += "<br><font size=\"+2\"><b>Christoph Thielecke (crissi99@gmx.de)</b><br></font>\n";
-    infotext += tr( "Copyright (C) 2003 Peter Deak (GPL)" );
-    infotext += "<br>\n";
-    infotext += tr( "Copyright (C) 2010 Christoph Thielecke (GPL)" );
-    infotext += "</p></font></p>";
+    /* Authors {{{ */
+    // TODO: Maybe link names to homepages?
+    infotext += "<h2>";
+    infotext += tr( "Author:" ); // FIXME: Rename to Authors:
+    infotext += "</h2>";
+    infotext += "<table cellspacing=\"10\">";
+    infotext += formatAuthorTR("Robin Schneider"    , "ypid@riseup.net"   , "2015");
+    infotext += formatAuthorTR("Christoph Thielecke", "crissi99@gmx.de"   , "2010");
+    infotext += formatAuthorTR("Peter Deak"         , "hyperr@freemail.hu", "2003");
+    infotext += "</table>";
+    /* }}} */
 
     /******************************************************************************************/
-    contribution = "<br><p align=\"center\"><font size=\"+2\"><b>";
-    contribution += "Christoph Thielecke (crissi99@gmx.de)";
-    contribution += "</b></font><br>\n";
-    contribution += tr( "German translation & additional programming" );
-    contribution += "<br>\n";
-    contribution += tr( "Ported to Qt4" );
+    contribution += formatAuthor("Robin Schneider", "ypid@riseup.net", "2015");
+    contribution += "<ul>";
+    contribution += "<li>" + tr( "Ported to Qt5" ) + "</li>";
+    contribution += "</ul>";
 
-    contribution += "<br>";
-    contribution += "<p align=\"center\"><font size=\"+2\"><b>";
-    contribution += "Techno (techno@punkt.pl)";
-    contribution += "</b></font><br>\n";
-    contribution += tr( "AVI reader plugin & Polish translation" );
+    contribution += formatAuthor("Christoph Thielecke", "crissi99@gmx.de", "2010");
+    contribution += "<ul>";
+    contribution += "<li>" + tr( "German translation & additional programming" ) + "</li>";
+    contribution += "<li>" + tr( "Ported to Qt4" ) + "</li>";
+    contribution += "</ul>";
 
-    contribution += "<br><br>";
-    contribution += "<p align=\"center\"><font size=\"+1\"><b>";
-    contribution += "Rafael (rcb6@alu.ua.es)";
-    contribution += "</b></font><br>\n";
-    contribution += tr( "Spanish translation" );
+    contribution += formatAuthor("Techno", "techno@punkt.pl", "");
+    contribution += "<ul>";
+    contribution += "<li>" + tr( "AVI reader plugin & Polish translation" ) + "</li>";
+    contribution += "</ul>";
 
-    contribution += "<br>";
-    contribution += "<p align=\"center\"><font size=\"+1\"><b>";
-    contribution += "Vlada (vladovi@altas.cz)";
-    contribution += "</b></font><br>\n";
-    contribution += tr( "Czech translation" );
+    contribution += formatAuthor("Rafael", "rcb6@alu.ua.es", "");
+    contribution += "<ul>";
+    contribution += "<li>" + tr( "Spanish translation" ) + "</li>";
+    contribution += "</ul>";
 
-    contribution += "<br>\n";
-    contribution += "</p>\n";
+    contribution += formatAuthor("Vlada ", "vladovi@altas.cz", "");
+    contribution += "<ul>";
+    contribution += "<li>" + tr( "Czech translation" ) + "</li>";
+    contribution += "</ul>";
 
-    contribution += "</p>\n";
     /******************************************************************************************/
     license = tr( "For more details about the GPL license and to read in other languages, visit %1." ).arg( "<a href=\"http://www.gnu.org/licenses/gpl.html\">%1</a>" ).arg( tr( "GPL page on GNU website" )) + "<br><br>";
     license +=
@@ -448,6 +474,45 @@ InfoDialog::InfoDialog ( QWidget *parent, const char *name, bool modal, Qt::Wind
 InfoDialog::~InfoDialog() {
     // no need to delete child widgets, Qt does it all for us
 }
+
+QString InfoDialog::formatAuthor(QString name, QString email, QString year) {
+    QVariantHash author;
+
+    author["name"]  = name;
+    author["email"] = email;
+    author["year"]  = year;
+
+    QString contactTemplate = "<h2>"
+        "<b>{{name}}</b> "
+        "&lt;<a href=\"mailto:{{email}}\">{{email}}</a>&gt;"
+        // ", {{year}}"
+        "</h2>";
+
+    Mustache::Renderer renderer;
+    Mustache::QtVariantContext context(author);
+
+    return renderer.render(contactTemplate, &context);
+}
+
+QString InfoDialog::formatAuthorTR(QString name, QString email, QString year) {
+    QVariantHash author;
+
+    author["name"]  = name;
+    author["email"] = email;
+    author["year"]  = year;
+
+    QString contactTemplate = "<tr>"
+        "<td>Copyright (C) {{year}}</td>"
+        "<td><b>{{name}}</b></td>"
+        "<td>&lt;<a href=\"mailto:{{email}}\">{{email}}</a>&gt;</td>"
+        "</tr>";
+
+    Mustache::Renderer renderer;
+    Mustache::QtVariantContext context(author);
+
+    return renderer.render(contactTemplate, &context);
+}
+
 
 /*
  *  Sets the strings of the subwidgets using the current

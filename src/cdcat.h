@@ -18,7 +18,7 @@
 
 // CdCat version text:
 
-#define VERSION  "UNICODE 2.3.1"
+#define VERSION  "2.4 alpha"
 
 
 // Datafile version:
@@ -27,6 +27,7 @@
 
 // CdCat homepage location:
 #define HOMEPAGE "<a href=\"http://cdcat.sf.net\">http://cdcat.sf.net</a>"
+#define PROGRAM_NAME "cdCat"
 // + help.ui
 
 
