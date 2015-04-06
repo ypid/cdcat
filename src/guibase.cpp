@@ -972,13 +972,13 @@ int GuiSlave::cHcaption( void ) {
         if (*DEBUG_INFO_ENABLED) {
             cerr << "case:1" << endl;
         }
-        mainw->setWindowTitle( tr( "Hyper's CD Catalogizer (modified)" ));
+        mainw->setWindowTitle( PROGRAM_NAME + tr( "modified" ));
     } else {
         if (*DEBUG_INFO_ENABLED) {
             cerr << "case:2" << endl;
         }
 
-        mainw->setWindowTitle( tr( "Hyper's CD Catalogizer" ));
+        mainw->setWindowTitle( PROGRAM_NAME );
     }
 
     if (*DEBUG_INFO_ENABLED) {

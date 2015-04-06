@@ -1007,7 +1007,7 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
         <translation>Datei</translation>
     </message>
     <message>
-        <source>Hyper&apos;s CD Catalogizer (modified)</source>
+        <source>modified</source>
         <translation>Hyper´s CD-Katalogisierer (geändert)</translation>
     </message>
     <message>

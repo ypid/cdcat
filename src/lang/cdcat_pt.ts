@@ -1578,7 +1578,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     </message>
     <message>
         <location line="+216"/>
-        <source>Hyper&apos;s CD Catalogizer (modified)</source>
+        <source>modified</source>
         <translation>Hyper&apos;s CD Catalogador (modificado)</translation>
     </message>
     <message>

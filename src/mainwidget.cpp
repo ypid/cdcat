@@ -631,7 +631,7 @@ CdCatMainWidget::~CdCatMainWidget() {
  *  language.
  */
 void CdCatMainWidget::languageChange() {
-    setWindowTitle( tr( "Hyper's CD Catalogizer" ));
+    setWindowTitle( PROGRAM_NAME );
     // Toolbar->setTitle (tr ( "Main toolbar" ) );
 
     fileMenu->setTitle( tr( "File" ));
@@ -744,7 +744,7 @@ void CdCatMainWidget::languageChange() {
         restoreAction->setText( tr( "&Restore" ));
         quitAction->setText( tr( "&Quit" ));
     }
-    setWindowTitle( tr( "Hyper's CD Catalogizer" ));
+    setWindowTitle( PROGRAM_NAME );
 }
 
 void CdCatMainWidget::closeEvent( QCloseEvent *e ) {
