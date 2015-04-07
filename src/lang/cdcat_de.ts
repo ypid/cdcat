@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1">
+<TS version="2.0" language="de_DE" sourcelanguage="en_US">
 <context>
     <name></name>
     <message>
@@ -100,8 +100,7 @@
 Check the file, or change the autoload option in the config dialog!
 </source>
         <translation>Katalog kann nicht automatisch geladen werden.
-Datei überprüfen oder Option &apos;automatisches Laden&apos; im Konfigurationsdialog ändern
-
+Datei überprüfen oder Option &apos;automatisches Laden&apos; im Konfigurationsdialog ändern!
 </translation>
     </message>
     <message>
@@ -135,7 +134,7 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     <name>CdCatMainWidget</name>
     <message>
         <source>Hyper&apos;s CD Catalogizer</source>
-        <translation type="vanished">Hypers CD-Katalogisierer</translation>
+        <translation>Hypers CD-Katalogisierer</translation>
     </message>
     <message>
         <source>Help</source>
@@ -552,7 +551,7 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     <name>CommentWidget</name>
     <message>
         <source>Edit and refresh the actual comment page.</source>
-        <translation>Aktuelle Kommentarseite bearbeiten und aktualisieren</translation>
+        <translation>Aktuelle Kommentarseite bearbeiten und aktualisieren.</translation>
     </message>
     <message>
         <source>Upper container! (..)</source>
@@ -628,7 +627,7 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     </message>
     <message>
         <source>Edit and refresh the actual category page.</source>
-        <translation>Aktuelle Kategorie bearbeiten und aktualisieren</translation>
+        <translation>Aktuelle Kategorie bearbeiten und aktualisieren.</translation>
     </message>
     <message>
         <source>Category:</source>
@@ -954,7 +953,7 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     </message>
     <message>
         <source>decrypting file, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Datei wird verschlüsselt, bitte warten …</translation>
     </message>
 </context>
 <context>
@@ -1016,7 +1015,7 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     </message>
     <message>
         <source>Hyper&apos;s CD Catalogizer</source>
-        <translation type="vanished">Hyper´s CD-Katalogisierer</translation>
+        <translation>Hyper´s CD-Katalogisierer</translation>
     </message>
     <message>
         <source>CdCat databases (*.hcf )</source>
@@ -1078,7 +1077,7 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
         <source>The size of &quot;%1&quot; :
  %2
  %3 file /%4 directory</source>
-        <translation type="vanished">Die Grösse von &quot;%1&quot;:
+        <translation>Die Grösse von &quot;%1&quot;:
 %2
 %3 Datei(en) / %4 Verzeichnis(se)</translation>
     </message>
@@ -1167,7 +1166,7 @@ Datenbank kann unvollständig sein</translation>
     <message>
         <source>An error occurred while scanning, the rescan operation was cancelled:
 %1</source>
-        <translation type="vanished">Es trat ein Fehler während des Durchsuchens auf, Aktualisierenoperation abgebrochen:
+        <translation>Es trat ein Fehler während des Durchsuchens auf, Aktualisierenoperation abgebrochen:
 %1</translation>
     </message>
     <message>
@@ -1316,7 +1315,7 @@ die Datenbank wird unvollständig sein</translation>
     </message>
     <message>
         <source>The cdcat is graphical (QT based) multiplatform (Linux/Windows) catalog program which scans the directories/drives you want and memorize the filesystem including the tags of mp3&apos;s and other data and store it in a small file. The database is stored in a gzipped XML format, so you can hack it, or use it if necessary :-).)</source>
-        <translation>CdCat ist ein graphisches, Multiplattform-Katalogprogramm, welches gewünschte Verzeichnisse/Laufwerke durchsucht und die Dateisystemstruktur (inklusive MP3-Tags) in einer kleinen Datei speichert. Die Datenbank wird in einem gezipptem XML-Format abgespeichert, so dass man diese hacken oder anderweitig benutzen kann.</translation>
+        <translation>CdCat ist ein graphisches, Multiplattform-Katalogprogramm, welches Verzeichnisse/Laufwerke durchsucht und die Dateisystemstruktur (inklusive MP3-Tags) in einer kleinen Datei speichert. Die Datenbank wird in einem gezippten XML-Format abgespeichert, so dass man diese auch unabhängig von CdCat auswerten und bearbeiten kann.</translation>
     </message>
     <message>
         <source>The program can store the content of some specified files up to a limit size if you want. (for example: *.nfo)</source>
@@ -1472,7 +1471,8 @@ wirklich löschen?</translation>
     <message>
         <source>An error occurred while scanning, the rescan operation was cancelled: 
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Es trat ein Fehler während des Durchsuchens auf, Aktualisierenoperation abgebrochen:
+%1</translation>
     </message>
     <message>
         <source>The size of &quot;%1&quot; : 
@@ -1589,7 +1589,7 @@ wirklich löschen?</translation>
     </message>
     <message>
         <source>Open the file dialog for selecting file to import.</source>
-        <translation>Öffnet den Dateidialog zum Auwählen der Datei, die importiert werden soll</translation>
+        <translation>Öffnet den Dateidialog zum Auwählen der Datei, die importiert werden soll.</translation>
     </message>
     <message>
         <source>Corrects bad output style from gtktalog.
@@ -1623,7 +1623,7 @@ wird zu
     </message>
     <message>
         <source>Select this for importing a text import (csv) generated from Kat-CeDe.</source>
-        <translation>Wählen Sie dies, um einen Textimport (CSV), welcher von Kat-CeDe generiert wurde, durchzuführen</translation>
+        <translation>Wählen Sie dies, um einen Textimport (CSV), welcher von Kat-CeDe generiert wurde, durchzuführen.</translation>
     </message>
     <message>
         <source>Select this for importing a xml report generated from gtktalog</source>
@@ -1631,7 +1631,7 @@ wird zu
     </message>
     <message>
         <source>Select this for importing a xml report generated from WhereIsIt?</source>
-        <translation>Wählen Sie dies, um einen XML-Import, welcher von WhereIsIt? generiert wurde, durchzuführen</translation>
+        <translation>Wählen Sie dies, um einen XML-Import, welcher von WhereIsIt? generiert wurde, durchzuführen.</translation>
     </message>
     <message>
         <source>&amp;Disclib (csv)</source>
@@ -1639,7 +1639,7 @@ wird zu
     </message>
     <message>
         <source>Select this for importing a text import (csv) generated from Disclib.</source>
-        <translation>Wählen Sie dies, um einen Textimport (CSV), welcher von Disclib generiert wurde, durchzuführen</translation>
+        <translation>Wählen Sie dies, um einen Textimport (CSV), welcher von Disclib generiert wurde, durchzuführen.</translation>
     </message>
     <message>
         <source>&amp;VisualCD (csv)</source>
@@ -1647,7 +1647,7 @@ wird zu
     </message>
     <message>
         <source>Select this for importing a text import (csv) generated from VisualCD.</source>
-        <translation>Wählen Sie dies, um einen Textimport (CSV), welcher von VisualCD generiert wurde, durchzuführen</translation>
+        <translation>Wählen Sie dies, um einen Textimport (CSV), welcher von VisualCD generiert wurde, durchzuführen.</translation>
     </message>
     <message>
         <source>&amp;VVV (csv)</source>
@@ -1655,7 +1655,7 @@ wird zu
     </message>
     <message>
         <source>Select this for importing a text import (csv) generated from VVV.</source>
-        <translation>Wählen Sie dies, um einen Textimport (CSV), welcher von VVV (Virtual Volumes View) generiert wurde, durchzuführen</translation>
+        <translation>Wählen Sie dies, um einen Textimport (CSV), welcher von VVV (Virtual Volumes View) generiert wurde, durchzuführen.</translation>
     </message>
     <message>
         <source>&amp;Advanced File Organizer (csv)</source>
@@ -1663,7 +1663,7 @@ wird zu
     </message>
     <message>
         <source>Select this for importing a text import (csv) generated from Advanced File Organizer.</source>
-        <translation>Wählen Sie dies, um einen Textimport (CSV), welcher von Advanced File Organizer generiert wurde, durchzuführen</translation>
+        <translation>Wählen Sie dies, um einen Textimport (CSV), welcher von Advanced File Organizer generiert wurde, durchzuführen.</translation>
     </message>
     <message>
         <source>&amp;File Archivist</source>
@@ -1683,7 +1683,7 @@ wird zu
     </message>
     <message>
         <source>Select this for importing a text import (csv) generated from Advanced Disk Catalog.</source>
-        <translation>Wählen Sie dies, um einen Textimport (CSV), welcher von Advanced Disk Catalog generiert wurde, durchzuführen</translation>
+        <translation>Wählen Sie dies, um einen Textimport (CSV), welcher von Advanced Disk Catalog generiert wurde, durchzuführen.</translation>
     </message>
     <message>
         <source>W&amp;hereIsIt (csv)</source>
@@ -1691,7 +1691,7 @@ wird zu
     </message>
     <message>
         <source>Select this for importing a text import (csv) generated from WhereIsIt.</source>
-        <translation>Wählen Sie dies, um einen Textimport (CSV), welcher von WhereIsIt? generiert wurde, durchzuführen</translation>
+        <translation>Wählen Sie dies, um einen Textimport (CSV), welcher von WhereIsIt? generiert wurde, durchzuführen.</translation>
     </message>
     <message>
         <source>Generic regex</source>
@@ -1826,11 +1826,11 @@ wird zu
     </message>
     <message>
         <source>Copyright (C) 2003 Peter Deak (GPL)</source>
-        <translation type="vanished">Copyright (C) 2003 Peter Deak (GPL)</translation>
+        <translation>Copyright (C) 2003 Peter Deak (GPL)</translation>
     </message>
     <message>
         <source>-= CdCatalog by Hyper =-</source>
-        <translation type="vanished">-= CdCatalog von Hyper =-</translation>
+        <translation>-= CdCatalog von Hyper =-</translation>
     </message>
     <message>
         <source>Version:</source>
@@ -1842,7 +1842,7 @@ wird zu
     </message>
     <message>
         <source>Copyright (C) 2010 Christoph Thielecke (GPL)</source>
-        <translation type="vanished">Copyright (C) 2010 Christoph Thielecke (GPL)</translation>
+        <translation>Copyright (C) 2010 Christoph Thielecke (GPL)</translation>
     </message>
     <message>
         <source>Ported to Qt4</source>
@@ -1890,7 +1890,7 @@ wird zu
     </message>
     <message>
         <source>Ported to Qt5</source>
-        <translation type="unfinished">Portiert nach Qt5</translation>
+        <translation>Nach  Qt5 portiert</translation>
     </message>
 </context>
 <context>
@@ -2349,7 +2349,7 @@ wird zu
     </message>
     <message>
         <source>Add exclude rule...</source>
-        <translation>Aussschlußregel hinzufügen</translation>
+        <translation>Aussschlußregel hinzufügen …</translation>
     </message>
     <message>
         <source>Enter regular expression for exclude:</source>
@@ -2465,11 +2465,11 @@ wird zu
     </message>
     <message>
         <source>matches &quot;&lt;i&gt;hat&lt;/i&gt;&quot; and &quot;&lt;i&gt;cat&lt;/i&gt;&quot;, but only at the beginning of the string or line.</source>
-        <translation>passt auf &quot;&lt;i&gt;hat&lt;/i&gt;&quot; und &quot;&lt;i&gt;cat&lt;/i&gt;&quot;, aber nur am Anfang der Zeichenkette oder Zeile</translation>
+        <translation>passt auf &quot;&lt;i&gt;hat&lt;/i&gt;&quot; und &quot;&lt;i&gt;cat&lt;/i&gt;&quot;, aber nur am Anfang der Zeichenkette oder Zeile.</translation>
     </message>
     <message>
         <source>matches &quot;&lt;i&gt;hat&lt;/i&gt;&quot; and &quot;&lt;i&gt;cat&lt;/i&gt;&quot;, but only at the end of the string or line.</source>
-        <translation>passt auf &quot;&lt;i&gt;hat&lt;/i&gt;&quot; und &quot;&lt;i&gt;cat&lt;/i&gt;&quot;, aber nur am Ende der Zeichenkette oder Zeile</translation>
+        <translation>passt auf &quot;&lt;i&gt;hat&lt;/i&gt;&quot; und &quot;&lt;i&gt;cat&lt;/i&gt;&quot;, aber nur am Ende der Zeichenkette oder Zeile.</translation>
     </message>
     <message>
         <source>Source:</source>
@@ -3082,7 +3082,7 @@ wird zu
     </message>
     <message>
         <source>Search in the database...</source>
-        <translation>In Datenbank suchen...</translation>
+        <translation>In Datenbank suchen …</translation>
     </message>
     <message>
         <source>Close / Go to selected</source>
@@ -3780,7 +3780,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>There is no matching.</source>
-        <translation>Keine Übereinstimmung gefunden</translation>
+        <translation>Keine Übereinstimmung gefunden.</translation>
     </message>
     <message>
         <source>media</source>
