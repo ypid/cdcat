@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0">
+<TS version="2.1">
 <context>
     <name>AddLnk</name>
     <message>
-        <location filename="../adddialog.cpp" line="+763"/>
+        <location filename="../adddialog.cpp" line="+775"/>
         <source>Add a &quot;Catalog Link&quot; to the database</source>
         <translation type="unfinished">Tambahkan &quot;Link Katalog&quot; ke dalam database</translation>
     </message>
@@ -24,7 +24,7 @@
         <translation type="unfinished">Ok</translation>
     </message>
     <message>
-        <location line="+17"/>
+        <location line="+18"/>
         <source>CdCat databases (*.hcf )</source>
         <translation type="unfinished">Database CdCat (*.hcf )</translation>
     </message>
@@ -50,7 +50,7 @@
 <context>
     <name>CatalogTypeEditDialog</name>
     <message>
-        <location filename="../guibase.cpp" line="+3138"/>
+        <location filename="../guibase.cpp" line="+3304"/>
         <source>Change media type</source>
         <translation type="unfinished"></translation>
     </message>
@@ -108,7 +108,7 @@
 <context>
     <name>CdCatConfig</name>
     <message>
-        <location filename="../config.cpp" line="+212"/>
+        <location filename="../config.cpp" line="+216"/>
         <source>Error during autoload...</source>
         <translation>Terjadi kesalahan saat memuat otomatis...</translation>
     </message>
@@ -139,7 +139,7 @@ It is necessary couse I&apos;d like to save the config file into your home direc
 Variabel tersebut penting karena file konfigurasi disimpan pada direktori rumah Anda.</translation>
     </message>
     <message>
-        <location line="+1133"/>
+        <location line="+1252"/>
         <source>I can&apos;t create or rewrite the ./cdcat.cfg file </source>
         <translation>Gagal membuat atau menulis ulang file ./cdcat.cfg</translation>
     </message>
@@ -149,14 +149,14 @@ Variabel tersebut penting karena file konfigurasi disimpan pada direktori rumah 
         <translation>Gagal membuat atau menulis ulang file $(HOME)/.cdcatconfig</translation>
     </message>
     <message>
-        <location line="-378"/>
-        <location line="+376"/>
+        <location line="-430"/>
+        <location line="+428"/>
         <location line="+2"/>
         <source>Error while saving config file...</source>
         <translation>Terjadi kesalahan saat menulis konfigurasi...</translation>
     </message>
     <message>
-        <location line="-377"/>
+        <location line="-429"/>
         <source>I can&apos;t get the $HOME environment variable.
 It is necessary because I&apos;d like to save the config file into your home directory.</source>
         <translation type="unfinished"></translation>
@@ -165,20 +165,20 @@ It is necessary because I&apos;d like to save the config file into your home dir
 <context>
     <name>CdCatMainWidget</name>
     <message>
-        <location filename="../mainwidget.cpp" line="+89"/>
-        <location line="+557"/>
+        <location filename="../mainwidget.cpp" line="+87"/>
+        <location line="+559"/>
         <source>Directory Tree</source>
         <translation>Pohon direktori</translation>
     </message>
     <message>
-        <location line="-551"/>
-        <location line="+554"/>
+        <location line="-553"/>
+        <location line="+556"/>
         <source>Name</source>
         <translation>Nama</translation>
     </message>
     <message>
-        <location line="-553"/>
-        <location line="+554"/>
+        <location line="-555"/>
+        <location line="+556"/>
         <source>Size</source>
         <translation>Ukuran</translation>
     </message>
@@ -207,34 +207,34 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Keluar</translation>
     </message>
     <message>
-        <location line="-430"/>
-        <location line="+457"/>
+        <location line="-432"/>
+        <location line="+459"/>
         <source>Add media...</source>
         <translation>Tambahkan media...</translation>
     </message>
     <message>
-        <location line="-442"/>
-        <location line="+446"/>
+        <location line="-444"/>
+        <location line="+448"/>
         <source>Rescan media...</source>
         <translation>Scan ulang media...</translation>
     </message>
     <message>
-        <location line="-437"/>
-        <location line="+439"/>
+        <location line="-439"/>
+        <location line="+441"/>
         <source>Insert Catalog...</source>
         <translation>Masukkan Katalog...</translation>
     </message>
     <message>
-        <location line="-422"/>
-        <location line="+426"/>
+        <location line="-424"/>
+        <location line="+428"/>
         <source>Rename node...</source>
         <translation>Ubah nama node...</translation>
     </message>
     <message>
-        <location line="-405"/>
+        <location line="-407"/>
         <location line="+1"/>
         <location line="+2"/>
-        <location line="+407"/>
+        <location line="+409"/>
         <location line="+1"/>
         <source>Delete node</source>
         <translation>Hapus node</translation>
@@ -244,7 +244,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Urutkan media berdasarkan nomor</translation>
     </message>
     <message>
-        <location line="-386"/>
+        <location line="-388"/>
         <source>Sort media by name</source>
         <translation>Urutkan media berdasarkan nama</translation>
     </message>
@@ -258,28 +258,28 @@ It is necessary because I&apos;d like to save the config file into your home dir
     </message>
     <message>
         <location line="+71"/>
-        <location line="+340"/>
+        <location line="+342"/>
         <source>Seek in database...</source>
         <translation>Cari dalam database...</translation>
     </message>
     <message>
-        <location line="-319"/>
-        <location line="+325"/>
+        <location line="-321"/>
+        <location line="+327"/>
         <source>Node size</source>
         <translation>Ukuran node</translation>
     </message>
     <message>
-        <location line="-318"/>
-        <location line="+320"/>
+        <location line="-320"/>
+        <location line="+322"/>
         <source>Configuration...</source>
         <translation>Konfigurasi...</translation>
     </message>
     <message>
-        <location line="-593"/>
+        <location line="-595"/>
         <location line="+301"/>
         <location line="+1"/>
         <location line="+2"/>
-        <location line="+206"/>
+        <location line="+208"/>
         <location line="+91"/>
         <location line="+1"/>
         <source>Help</source>
@@ -294,22 +294,20 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Katalog</translation>
     </message>
     <message>
-        <location line="-612"/>
-        <location line="+515"/>
+        <location line="-614"/>
+        <location line="+517"/>
         <source>Edit</source>
         <translation>Edit</translation>
     </message>
     <message>
-        <location line="-507"/>
-        <location line="+511"/>
+        <location line="-509"/>
+        <location line="+513"/>
         <source>Others</source>
         <translation>Lainnya</translation>
     </message>
     <message>
-        <location line="-8"/>
-        <location line="+113"/>
         <source>Hyper&apos;s CD Catalogizer</source>
-        <translation>Katalog CD Hyper</translation>
+        <translation type="vanished">Katalog CD Hyper</translation>
     </message>
     <message>
         <source>Open a catalog from a file.</source>
@@ -344,8 +342,8 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Cari sebuah elemen.</translation>
     </message>
     <message>
-        <location line="-557"/>
-        <location line="+482"/>
+        <location line="-454"/>
+        <location line="+484"/>
         <source>Recent files...</source>
         <translation>File sebelumnya...</translation>
     </message>
@@ -354,14 +352,14 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Exspor database</translation>
     </message>
     <message>
-        <location line="-543"/>
-        <location line="+512"/>
+        <location line="-545"/>
+        <location line="+514"/>
         <source>Import/Export</source>
         <translation>Impor/Ekspor</translation>
     </message>
     <message>
-        <location line="-373"/>
-        <location line="+421"/>
+        <location line="-375"/>
+        <location line="+423"/>
         <source>Re-Number media node...</source>
         <translation>Ubah nomor node media...</translation>
     </message>
@@ -370,8 +368,8 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Impor database (csv/gtktalog)</translation>
     </message>
     <message>
-        <location line="-297"/>
-        <location line="+330"/>
+        <location line="-299"/>
+        <location line="+332"/>
         <location line="+1"/>
         <source>Borrowing info...</source>
         <translation>Informasi peminjaman...</translation>
@@ -389,8 +387,8 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Tambahkan link ke sebuah katalog CdCat...</translation>
     </message>
     <message>
-        <location line="-310"/>
-        <location line="+315"/>
+        <location line="-312"/>
+        <location line="+317"/>
         <source>Set Colors...</source>
         <translation>Pilih warna...</translation>
     </message>
@@ -403,244 +401,244 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Scan ulang media yang dipilih.</translation>
     </message>
     <message>
-        <location line="-343"/>
+        <location line="-345"/>
         <location line="+1"/>
         <location line="+2"/>
-        <location line="+332"/>
+        <location line="+334"/>
         <location line="+1"/>
         <source>Seek in the panel</source>
         <translation>Cari di dalam panel</translation>
     </message>
     <message>
-        <location line="-266"/>
-        <location line="+283"/>
+        <location line="-268"/>
+        <location line="+285"/>
         <source>About Qt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-510"/>
-        <location line="+451"/>
+        <location line="-512"/>
+        <location line="+453"/>
         <source>Add a link to a CdCat Catalog...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+120"/>
+        <location line="+122"/>
         <source>Scanning:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-379"/>
-        <location line="+310"/>
+        <location line="-383"/>
+        <location line="+312"/>
         <source>Import database (CSV/XML)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-303"/>
+        <location line="-305"/>
         <location line="+1"/>
         <location line="+2"/>
-        <location line="+302"/>
+        <location line="+304"/>
         <location line="+1"/>
         <source>Export database (CSV/HTML/XML)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-606"/>
-        <location line="+513"/>
+        <location line="-608"/>
+        <location line="+515"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-505"/>
-        <location line="+520"/>
+        <location line="-507"/>
+        <location line="+522"/>
         <source>&amp;New...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-518"/>
-        <location line="+519"/>
+        <location line="-520"/>
+        <location line="+521"/>
         <source>Create a new catalog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-515"/>
-        <location line="+516"/>
+        <location line="-517"/>
+        <location line="+518"/>
         <source>&amp;Open...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-514"/>
-        <location line="+515"/>
+        <location line="-516"/>
+        <location line="+517"/>
         <source>Open a existing catalog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-511"/>
-        <location line="+512"/>
+        <location line="-513"/>
+        <location line="+514"/>
         <source>&amp;Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-510"/>
-        <location line="+511"/>
+        <location line="-512"/>
+        <location line="+513"/>
         <source>Save catalog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-507"/>
-        <location line="+508"/>
+        <location line="-509"/>
+        <location line="+510"/>
         <source>&amp;Save as...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-506"/>
-        <location line="+507"/>
+        <location line="-508"/>
+        <location line="+509"/>
         <source>save catalog with new name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-459"/>
+        <location line="-461"/>
         <location line="+1"/>
         <location line="+2"/>
-        <location line="+467"/>
+        <location line="+469"/>
         <location line="+1"/>
         <source>Close catalog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-462"/>
-        <location line="+463"/>
+        <location line="-464"/>
+        <location line="+465"/>
         <location line="+70"/>
-        <location line="+76"/>
+        <location line="+78"/>
         <source>&amp;Quit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-608"/>
+        <location line="-612"/>
         <location line="+2"/>
-        <location line="+461"/>
+        <location line="+463"/>
         <source>Close program</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-455"/>
+        <location line="-457"/>
         <location line="+2"/>
-        <location line="+455"/>
+        <location line="+457"/>
         <source>Add new media to catalog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-449"/>
+        <location line="-451"/>
         <location line="+2"/>
-        <location line="+449"/>
+        <location line="+451"/>
         <source>Add a link to a existing cdcat catalog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-444"/>
+        <location line="-446"/>
         <location line="+2"/>
-        <location line="+444"/>
+        <location line="+446"/>
         <source>Rescan existing media</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-437"/>
+        <location line="-439"/>
         <location line="+2"/>
-        <location line="+437"/>
+        <location line="+439"/>
         <source>Insert catalog into database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-422"/>
+        <location line="-424"/>
         <location line="+2"/>
-        <location line="+424"/>
+        <location line="+426"/>
         <source>Rename node</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-419"/>
+        <location line="-421"/>
         <location line="+2"/>
-        <location line="+419"/>
+        <location line="+421"/>
         <source>Renumber node</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-311"/>
-        <location line="+2"/>
-        <location line="+338"/>
-        <source>Seek in database for files and folders</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-319"/>
-        <location line="+2"/>
-        <location line="+323"/>
-        <source>Calculate node size</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-318"/>
-        <location line="+2"/>
-        <location line="+318"/>
-        <source>Edit cdcat configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="-313"/>
         <location line="+2"/>
-        <location line="+313"/>
+        <location line="+340"/>
+        <source>Seek in database for files and folders</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-321"/>
+        <location line="+2"/>
+        <location line="+325"/>
+        <source>Calculate node size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-320"/>
+        <location line="+2"/>
+        <location line="+320"/>
+        <source>Edit cdcat configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-315"/>
+        <location line="+2"/>
+        <location line="+315"/>
         <source>Set the colors for display</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-308"/>
+        <location line="-310"/>
         <location line="+2"/>
-        <location line="+308"/>
+        <location line="+310"/>
         <source>Import database (CSV/XML) from various catalog programs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-283"/>
+        <location line="-285"/>
         <location line="+1"/>
         <location line="+2"/>
-        <location line="+285"/>
+        <location line="+287"/>
         <location line="+1"/>
         <source>About Cdcat</source>
         <translation type="unfinished">Tentang CdCat</translation>
     </message>
     <message>
-        <location line="-281"/>
+        <location line="-283"/>
         <location line="+2"/>
-        <location line="+281"/>
+        <location line="+283"/>
         <source>About the Qt toolkit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+3"/>
-        <location line="+70"/>
-        <source>Mi&amp;nimize</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-69"/>
         <location line="+72"/>
-        <source>Ma&amp;ximize</source>
+        <source>Mi&amp;nimize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="-71"/>
         <location line="+74"/>
+        <source>Ma&amp;ximize</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-73"/>
+        <location line="+76"/>
         <source>&amp;Restore</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-340"/>
-        <location line="+263"/>
-        <location line="+179"/>
+        <location line="-344"/>
+        <location line="+265"/>
+        <location line="+185"/>
         <source>Cdcat - idle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-839"/>
+        <location line="-847"/>
         <source>Main toolbar</source>
         <translation type="unfinished"></translation>
     </message>
@@ -651,61 +649,61 @@ It is necessary because I&apos;d like to save the config file into your home dir
     </message>
     <message>
         <location line="+233"/>
-        <location line="+368"/>
+        <location line="+370"/>
         <source>view tool bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-367"/>
+        <location line="-369"/>
         <location line="+2"/>
-        <location line="+366"/>
+        <location line="+368"/>
         <source>View tool bar in main window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-360"/>
-        <location line="+361"/>
+        <location line="-362"/>
+        <location line="+363"/>
         <source>view status bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-360"/>
+        <location line="-362"/>
         <location line="+2"/>
-        <location line="+359"/>
+        <location line="+361"/>
         <source>View status bar in main window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-353"/>
-        <location line="+354"/>
+        <location line="-355"/>
+        <location line="+356"/>
         <source>view comment dock</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-353"/>
+        <location line="-355"/>
         <location line="+2"/>
-        <location line="+352"/>
+        <location line="+354"/>
         <source>show comment dock</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-590"/>
-        <location line="+514"/>
+        <location line="-592"/>
+        <location line="+516"/>
         <source>View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-270"/>
+        <location line="-272"/>
         <location line="+1"/>
         <location line="+2"/>
-        <location line="+344"/>
+        <location line="+346"/>
         <location line="+1"/>
         <source>show systray icon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-596"/>
-        <location line="+516"/>
+        <location line="-598"/>
+        <location line="+518"/>
         <source>File</source>
         <translation type="unfinished">File</translation>
     </message>
@@ -720,68 +718,68 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="-361"/>
+        <location filename="../mainwidget.cpp" line="-363"/>
         <location line="+1"/>
         <location line="+2"/>
         <location line="+12"/>
-        <location line="+389"/>
+        <location line="+391"/>
         <location line="+1"/>
         <source>Sort media by number (ascending)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-398"/>
+        <location line="-400"/>
         <location line="+1"/>
         <location line="+2"/>
-        <location line="+396"/>
+        <location line="+398"/>
         <location line="+1"/>
         <source>Sort media by number (descending)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-379"/>
+        <location line="-381"/>
         <location line="+2"/>
-        <location line="+382"/>
+        <location line="+384"/>
         <location line="+1"/>
         <source>Sort media by time (ascending)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-379"/>
+        <location line="-381"/>
         <location line="+2"/>
-        <location line="+378"/>
+        <location line="+380"/>
         <location line="+1"/>
         <source>Sort media by time (descending)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-401"/>
-        <location line="+394"/>
+        <location line="-403"/>
+        <location line="+396"/>
         <location line="+1"/>
         <source>Sort media by name (ascending)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-388"/>
+        <location line="-390"/>
         <location line="+1"/>
         <location line="+2"/>
-        <location line="+386"/>
+        <location line="+388"/>
         <location line="+1"/>
         <source>Sort media by name (descending)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-371"/>
+        <location line="-373"/>
         <location line="+2"/>
-        <location line="+374"/>
+        <location line="+376"/>
         <location line="+1"/>
         <source>Sort media by type (ascending)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-371"/>
+        <location line="-373"/>
         <location line="+2"/>
-        <location line="+370"/>
+        <location line="+372"/>
         <location line="+1"/>
         <source>Sort media by type (descending)</source>
         <translation type="unfinished"></translation>
@@ -797,7 +795,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-435"/>
+        <location line="-437"/>
         <source>Insert Cdcat export XML...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -809,42 +807,42 @@ It is necessary because I&apos;d like to save the config file into your home dir
     </message>
     <message>
         <location line="-94"/>
-        <location line="+504"/>
+        <location line="+506"/>
         <source>Change password...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-502"/>
-        <location line="+503"/>
+        <location line="-504"/>
+        <location line="+505"/>
         <source>Changes password for catalog encryption</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-498"/>
-        <location line="+499"/>
+        <location line="-500"/>
+        <location line="+501"/>
         <source>Disable encryption</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-497"/>
-        <location line="+498"/>
+        <location line="-499"/>
+        <location line="+500"/>
         <source>Disables catalog encryption</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-493"/>
-        <location line="+494"/>
+        <location line="-495"/>
+        <location line="+496"/>
         <source>Enable encryption</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-492"/>
-        <location line="+493"/>
+        <location line="-494"/>
+        <location line="+495"/>
         <source>Enables catalog encryption</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-276"/>
+        <location line="-278"/>
         <location line="+2"/>
         <source>Borrowing info</source>
         <translation type="unfinished"></translation>
@@ -860,7 +858,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
 <context>
     <name>ColorSchemePreview</name>
     <message>
-        <location filename="../colorsettings.cpp" line="+71"/>
+        <location filename="../colorsettings.cpp" line="+73"/>
         <source>Title:</source>
         <translation>Judul:</translation>
     </message>
@@ -873,7 +871,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
 <context>
     <name>ColorSettings</name>
     <message>
-        <location line="+148"/>
+        <location line="+149"/>
         <source>ColorSettings</source>
         <translation>Pengaturan Warna</translation>
     </message>
@@ -931,7 +929,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
 <context>
     <name>CommentWidget</name>
     <message>
-        <location filename="../commwidget.cpp" line="+88"/>
+        <location filename="../commwidget.cpp" line="+89"/>
         <source>Edit and refresh the actual comment page.</source>
         <translation>Edit dan muatkan ulang halaman komentar.</translation>
     </message>
@@ -942,7 +940,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Kontainer atas! (..)</translation>
     </message>
     <message>
-        <location line="+57"/>
+        <location line="+62"/>
         <source> CdCat Catalog root</source>
         <translation>Induk katalog CdCat</translation>
     </message>
@@ -962,20 +960,20 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Media</translation>
     </message>
     <message>
-        <location line="+13"/>
+        <location line="+14"/>
         <location line="+1"/>
         <source>Size:</source>
         <translation>Ukuran:</translation>
     </message>
     <message>
-        <location line="+62"/>
+        <location line="+67"/>
         <location line="+1"/>
         <source>Owner:</source>
         <translation>Pemilik:</translation>
     </message>
     <message>
-        <location line="-116"/>
-        <location line="+124"/>
+        <location line="-124"/>
+        <location line="+133"/>
         <source>Unknown</source>
         <translation>Tidak diketahui</translation>
     </message>
@@ -984,7 +982,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Media (nomor/nama):</translation>
     </message>
     <message>
-        <location line="+49"/>
+        <location line="+54"/>
         <location line="+1"/>
         <source>Mp3-Tag:</source>
         <translation>Tag MP3:</translation>
@@ -994,64 +992,64 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">(Artis/Judul/Album/Tahun/Komentar)</translation>
     </message>
     <message>
-        <location line="+31"/>
-        <location line="+77"/>
+        <location line="+36"/>
+        <location line="+81"/>
         <location line="+1"/>
         <source>Comment:</source>
         <translation>Komentar:</translation>
     </message>
     <message>
-        <location line="-412"/>
+        <location line="-438"/>
         <source>Shows the content of the file.</source>
         <translation>Tampilkan isi file.</translation>
     </message>
     <message>
-        <location line="+107"/>
+        <location line="+108"/>
         <location line="+1"/>
         <source>Name:</source>
         <translation>Nama:</translation>
     </message>
     <message>
-        <location line="+42"/>
+        <location line="+45"/>
         <location line="+1"/>
         <source>Type:</source>
         <translation>Tipe:</translation>
     </message>
     <message>
-        <location line="+610"/>
+        <location line="+635"/>
         <source>There is no selected element.</source>
         <translation>Tidak ada elemen yang dipilih.</translation>
     </message>
     <message>
-        <location line="-602"/>
+        <location line="-626"/>
         <source> Link to a CdCat catalog</source>
         <translation>Link menuju ke sebuah katalog CdCat</translation>
     </message>
     <message>
-        <location line="+40"/>
+        <location line="+43"/>
         <location line="+1"/>
         <source>Location:</source>
         <translation>Lokasi:</translation>
     </message>
     <message>
-        <location line="+13"/>
+        <location line="+14"/>
         <location line="+1"/>
         <source>Last modification:</source>
         <translation>Modifikasi terakhir:</translation>
     </message>
     <message>
-        <location line="-94"/>
+        <location line="-101"/>
         <location line="+1"/>
         <source>At media (number/name):</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-106"/>
+        <location line="-108"/>
         <source>Edit and refresh the actual category page.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+461"/>
+        <location line="+488"/>
         <location line="+1"/>
         <source>Category:</source>
         <translation type="unfinished"></translation>
@@ -1063,12 +1061,12 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-222"/>
+        <location line="-231"/>
         <source>Artist:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+6"/>
+        <location line="+7"/>
         <source>Title:</source>
         <translation type="unfinished">Judul:</translation>
     </message>
@@ -1078,23 +1076,23 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+6"/>
+        <location line="+7"/>
         <source>Album:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+6"/>
+        <location line="+7"/>
         <source>Year:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+318"/>
+        <location line="+326"/>
         <location line="+1"/>
         <source>File info:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-94"/>
+        <location line="-95"/>
         <source>Rights</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1129,30 +1127,30 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished">Path</translation>
     </message>
     <message>
-        <location line="-231"/>
+        <location line="-236"/>
         <location line="+1"/>
         <source>Exif data:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+25"/>
+        <location line="+27"/>
         <location line="+1"/>
         <source>Thumbnail:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+367"/>
+        <location line="+370"/>
         <location line="+1"/>
         <source>Stored size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+20"/>
+        <location line="+21"/>
         <source>There is no selected element:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-492"/>
+        <location line="-505"/>
         <source>Number</source>
         <translation type="unfinished">Nomor</translation>
     </message>
@@ -1181,7 +1179,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
 <context>
     <name>ConfigDialog</name>
     <message>
-        <location filename="../config.cpp" line="+637"/>
+        <location filename="../config.cpp" line="+689"/>
         <source>Configure  CdCat...</source>
         <translation>Konfigurasikan CdCat...</translation>
     </message>
@@ -1224,8 +1222,8 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Scanning: mount cdrom saat mulai / eject saat selesai</translation>
     </message>
     <message>
-        <location line="-241"/>
-        <location line="+233"/>
+        <location line="-240"/>
+        <location line="+232"/>
         <source>Use own font size</source>
         <translation>Gunakan ukuran font sendiri</translation>
     </message>
@@ -1235,12 +1233,12 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Jumlah histori yang ditampilkan</translation>
     </message>
     <message>
-        <location line="+24"/>
+        <location line="+26"/>
         <source>Choose path to cdrom!</source>
         <translation>Pilih path menuju cdrom!</translation>
     </message>
     <message>
-        <location line="-15"/>
+        <location line="-17"/>
         <source>The language of CdCat interface</source>
         <translation>Bahasa untuk antarmuka CdCat</translation>
     </message>
@@ -1289,18 +1287,18 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-126"/>
+        <location line="-127"/>
         <source>show systray icon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+116"/>
+        <location line="+117"/>
         <source>Show systray icon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-115"/>
-        <location line="+116"/>
+        <location line="-116"/>
+        <location line="+117"/>
         <source>display current scanned file in tray</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1323,7 +1321,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
 <context>
     <name>DataBase</name>
     <message>
-        <location filename="../dbase.cpp" line="+718"/>
+        <location filename="../dbase.cpp" line="+721"/>
         <source>I can&apos;t rewrite the file: %1</source>
         <translation>Gagal menulis ulang ke dalam file: %1</translation>
     </message>
@@ -1333,23 +1331,23 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Gagal membuat file: %1</translation>
     </message>
     <message>
-        <location line="+32"/>
-        <location line="+7"/>
-        <location line="+99"/>
-        <location line="+1209"/>
+        <location line="+33"/>
+        <location line="+6"/>
+        <location line="+94"/>
+        <location line="+1262"/>
         <source>I can&apos;t open the file: %1</source>
         <translation>Gagal membuka file: %1</translation>
     </message>
     <message>
-        <location line="-1101"/>
+        <location line="-1152"/>
         <source>Cannot read directory: %1</source>
         <translation>Gagal membaca direktori: %1</translation>
     </message>
     <message>
         <location line="+4"/>
-        <location line="+1097"/>
-        <location line="+24"/>
-        <location line="+12"/>
+        <location line="+1148"/>
+        <location line="+25"/>
+        <location line="+11"/>
         <source>Error</source>
         <translation>Kesalahan</translation>
     </message>
@@ -1358,7 +1356,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Abaikan direktori</translation>
     </message>
     <message>
-        <location line="-1133"/>
+        <location line="-1184"/>
         <source>Cancel scanning</source>
         <translation>Batalkan scanning</translation>
     </message>
@@ -1367,17 +1365,17 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Symbolic link# Menunjuk ke:</translation>
     </message>
     <message>
-        <location line="+1133"/>
+        <location line="+1184"/>
         <source>Error while parsing file: %1</source>
         <translation>Gagal saat mem-parse file: %1</translation>
     </message>
     <message>
-        <location line="-1358"/>
+        <location line="-1405"/>
         <source>No database opened!</source>
         <translation>Tidak ada database yang dibuka!</translation>
     </message>
     <message>
-        <location line="+223"/>
+        <location line="+219"/>
         <source>Cannot read file: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1387,17 +1385,17 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+96"/>
+        <location line="+97"/>
         <source>Symbolic link to file:#</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+52"/>
+        <location line="+49"/>
         <source>Symbolic link to directory:#</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+29"/>
+        <location line="+27"/>
         <source>DEAD Symbolic link to:#</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1407,23 +1405,28 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-276"/>
-        <location line="+1209"/>
+        <location line="-273"/>
+        <location line="+1262"/>
         <source>Not enough memory to open the file: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../wdbfile.cpp" line="+959"/>
+        <location filename="../wdbfile.cpp" line="+1036"/>
         <source>Reading file, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+128"/>
+        <location line="+77"/>
+        <source>decrypting file, please wait...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+67"/>
         <source>Parsing file, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-7"/>
+        <location line="-8"/>
         <source>Converting to unicode, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1436,13 +1439,13 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Batal</translation>
     </message>
     <message>
-        <location line="-104"/>
-        <location line="+118"/>
+        <location line="-118"/>
+        <location line="+133"/>
         <source>You have cancelled catalog reading.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="-239"/>
+        <location filename="../dbase.cpp" line="-254"/>
         <source>device </source>
         <translation type="unfinished"></translation>
     </message>
@@ -1452,28 +1455,28 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-684"/>
+        <location line="-725"/>
         <source>reading mp3 info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+49"/>
-        <location line="+5"/>
+        <location line="+53"/>
+        <location line="+7"/>
         <source>reading media info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+17"/>
+        <location line="+19"/>
         <source>reading avi info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+74"/>
+        <location line="+80"/>
         <source>reading file content</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+54"/>
+        <location line="+57"/>
         <source>reading exif data</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1483,21 +1486,21 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+361"/>
-        <location line="+3"/>
-        <location line="+145"/>
-        <location line="+3"/>
+        <location line="+377"/>
+        <location line="+4"/>
+        <location line="+156"/>
+        <location line="+4"/>
         <source>scanning archive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-113"/>
-        <location line="+209"/>
+        <location line="-122"/>
+        <location line="+222"/>
         <source>scanning archive, file:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1473"/>
+        <location line="-1517"/>
         <source>unknown</source>
         <translation type="unfinished">tidak diketahui</translation>
     </message>
@@ -1505,7 +1508,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
 <context>
     <name>DirectoryView</name>
     <message>
-        <location filename="../dirview.cpp" line="+185"/>
+        <location filename="../dirview.cpp" line="+183"/>
         <source>Name</source>
         <translation>Nama</translation>
     </message>
@@ -1513,100 +1516,99 @@ It is necessary because I&apos;d like to save the config file into your home dir
 <context>
     <name>GuiSlave</name>
     <message>
-        <location filename="../guibase.cpp" line="-2549"/>
+        <location filename="../guibase.cpp" line="-2685"/>
         <location line="+20"/>
         <source>Directory</source>
         <translation>Direktori</translation>
     </message>
     <message>
-        <location line="+57"/>
+        <location line="+59"/>
         <source>Catalog</source>
         <translation>Katalog</translation>
     </message>
     <message>
         <location line="+5"/>
-        <location line="+1590"/>
+        <location line="+1683"/>
         <source>Unknown(DB)</source>
         <translation>Tidak diketahui(DB)</translation>
     </message>
     <message>
-        <location line="-1587"/>
-        <location line="+1591"/>
+        <location line="-1680"/>
+        <location line="+1684"/>
         <source>CD</source>
         <translation>CD</translation>
     </message>
     <message>
-        <location line="-1588"/>
-        <location line="+1592"/>
+        <location line="-1681"/>
+        <location line="+1685"/>
         <source>DVD</source>
         <translation>DVD</translation>
     </message>
     <message>
-        <location line="-1589"/>
-        <location line="+1593"/>
+        <location line="-1682"/>
+        <location line="+1686"/>
         <source>HardDisc</source>
         <translation>Hardisk</translation>
     </message>
     <message>
-        <location line="-1590"/>
-        <location line="+1594"/>
+        <location line="-1683"/>
+        <location line="+1687"/>
         <source>Floppy</source>
         <translation>Disket</translation>
     </message>
     <message>
-        <location line="-1591"/>
-        <location line="+1595"/>
+        <location line="-1684"/>
+        <location line="+1688"/>
         <source>NetworkDrv</source>
         <translation>NetworkDrv</translation>
     </message>
     <message>
-        <location line="-1592"/>
-        <location line="+1596"/>
+        <location line="-1685"/>
+        <location line="+1689"/>
         <source>FlashDrv</source>
         <translation>FlashDrv</translation>
     </message>
     <message>
-        <location line="-1593"/>
-        <location line="+1597"/>
+        <location line="-1686"/>
+        <location line="+1690"/>
         <source>OtherDevice</source>
         <translation>Divais lain</translation>
     </message>
     <message>
-        <location line="-1592"/>
+        <location line="-1685"/>
         <source>File</source>
         <translation>File</translation>
     </message>
     <message>
-        <location line="+216"/>
+        <location line="+233"/>
         <source>modified</source>
         <translation>Katalog CD Hyper (termodifikasi)</translation>
     </message>
     <message>
-        <location line="+6"/>
         <source>Hyper&apos;s CD Catalogizer</source>
-        <translation>Katalog CD Hyper</translation>
+        <translation type="vanished">Katalog CD Hyper</translation>
     </message>
     <message>
-        <location line="+244"/>
-        <location line="+169"/>
-        <location line="+785"/>
-        <location line="+68"/>
+        <location line="+254"/>
+        <location line="+185"/>
+        <location line="+827"/>
+        <location line="+74"/>
         <source>CdCat databases (*.hcf )</source>
         <translation>Database CdCat (*.hcf )</translation>
     </message>
     <message>
-        <location line="-1022"/>
+        <location line="-1086"/>
         <source>Open a file...</source>
         <translation>Buka file...</translation>
     </message>
     <message>
-        <location line="+38"/>
-        <location line="+929"/>
-        <location line="+34"/>
-        <location line="+34"/>
-        <location line="+432"/>
-        <location line="+163"/>
-        <location line="+41"/>
+        <location line="+40"/>
+        <location line="+986"/>
+        <location line="+37"/>
+        <location line="+37"/>
+        <location line="+453"/>
+        <location line="+174"/>
+        <location line="+42"/>
         <source>Error while opening...</source>
         <translation>Terjadi kesalahan saat membuka...</translation>
     </message>
@@ -1615,17 +1617,17 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Ok</translation>
     </message>
     <message>
-        <location line="-1502"/>
+        <location line="-1584"/>
         <source>Save to file...</source>
         <translation>Simpan ke file...</translation>
     </message>
     <message>
-        <location line="+25"/>
+        <location line="+28"/>
         <source>Error while saving...</source>
         <translation>Terjadi kesalahan saat menyimpan...</translation>
     </message>
     <message>
-        <location line="+48"/>
+        <location line="+53"/>
         <source>Closing previous database...</source>
         <translation>Menutup database sebelumnya...</translation>
     </message>
@@ -1636,28 +1638,28 @@ It is necessary because I&apos;d like to save the config file into your home dir
     </message>
     <message>
         <location line="+1"/>
-        <location line="+36"/>
-        <location line="+1459"/>
+        <location line="+41"/>
+        <location line="+1536"/>
         <source>Yes</source>
         <translation>Ya</translation>
     </message>
     <message>
-        <location line="-1495"/>
-        <location line="+36"/>
-        <location line="+1459"/>
+        <location line="-1577"/>
+        <location line="+41"/>
+        <location line="+1536"/>
         <source>No</source>
         <translation>Tidak</translation>
     </message>
     <message>
-        <location line="-1465"/>
-        <location line="+504"/>
+        <location line="-1542"/>
+        <location line="+526"/>
         <location line="+4"/>
         <location line="+76"/>
-        <location line="+196"/>
-        <location line="+88"/>
+        <location line="+212"/>
+        <location line="+95"/>
         <location line="+5"/>
-        <location line="+16"/>
-        <location line="+592"/>
+        <location line="+18"/>
+        <location line="+625"/>
         <source>Error:</source>
         <translation>Kesalahan:</translation>
     </message>
@@ -1668,61 +1670,60 @@ It is necessary because I&apos;d like to save the config file into your home dir
 %1</translation>
     </message>
     <message>
-        <location line="-1476"/>
-        <location line="+1458"/>
+        <location line="-1556"/>
+        <location line="+1535"/>
         <source>Confirmation</source>
         <translation>Konfirmasi</translation>
     </message>
     <message>
-        <location line="-2574"/>
-        <location line="+1432"/>
-        <location line="+41"/>
+        <location line="-2724"/>
+        <location line="+1516"/>
+        <location line="+42"/>
         <source>Warning...</source>
         <translation>Peringatan...</translation>
     </message>
     <message>
-        <location line="+146"/>
+        <location line="+156"/>
         <source>You can refresh ONLY a MEDIA node!</source>
         <translation>Anda hanya dapat memuat ulang node MEDIA!</translation>
     </message>
     <message>
-        <location line="+173"/>
-        <location line="+68"/>
+        <location line="+180"/>
+        <location line="+74"/>
         <source>Insert a database file...</source>
         <translation>Masukkan sebuah file database...</translation>
     </message>
     <message>
-        <location line="+180"/>
         <source>The size of &quot;%1&quot; :
  %2
  %3 file /%4 directory</source>
-        <translation>Ukuran dari &quot;%1&quot; :
+        <translation type="vanished">Ukuran dari &quot;%1&quot; :
 %2
 %3 file /%4 direktori</translation>
     </message>
     <message>
-        <location line="-837"/>
+        <location line="-688"/>
         <source>Cannot mount CD</source>
         <translation>Tidak dapat me-mount CD</translation>
     </message>
     <message>
-        <location line="+346"/>
+        <location line="+357"/>
         <source>Cannot eject CD!</source>
         <translation>Tidak dapat meng-eject CD!</translation>
     </message>
     <message>
-        <location line="-346"/>
+        <location line="-357"/>
         <source>I can&apos;t find the &quot;mount&quot; program</source>
         <translation>Tidak dapat menemukan program &quot;mount&quot;</translation>
     </message>
     <message>
-        <location line="+87"/>
-        <location line="+277"/>
+        <location line="+90"/>
+        <location line="+287"/>
         <source>Cannot mount CD!</source>
         <translation>Tidak dapat me-mount CD!</translation>
     </message>
     <message>
-        <location line="-52"/>
+        <location line="-56"/>
         <source>Cannot eject CD</source>
         <translation>Tidak dapat meng-eject CD</translation>
     </message>
@@ -1732,14 +1733,14 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Tidak dapat menemukan program &quot;eject&quot;</translation>
     </message>
     <message>
-        <location line="-860"/>
-        <location line="+49"/>
+        <location line="-905"/>
+        <location line="+50"/>
         <source>Rename node...</source>
         <translation>Ubah nama node...</translation>
     </message>
     <message>
-        <location line="-48"/>
-        <location line="+49"/>
+        <location line="-49"/>
+        <location line="+50"/>
         <source>Delete node</source>
         <translation>Hapus node</translation>
     </message>
@@ -1751,47 +1752,47 @@ It is necessary because I&apos;d like to save the config file into your home dir
     </message>
     <message>
         <location line="-39"/>
-        <location line="+62"/>
-        <location line="+1467"/>
+        <location line="+61"/>
+        <location line="+1552"/>
         <source>Add media...</source>
         <translation>Tambahkan media...</translation>
     </message>
     <message>
-        <location line="-1527"/>
-        <location line="+62"/>
+        <location line="-1611"/>
+        <location line="+61"/>
         <source>Insert Catalog...</source>
         <translation>Masukkan katalog...</translation>
     </message>
     <message>
-        <location line="+884"/>
+        <location line="+938"/>
         <source>Rescan %1</source>
         <translation>Scan ulang %1</translation>
     </message>
     <message>
-        <location line="-956"/>
+        <location line="-1009"/>
         <location line="+48"/>
         <source>Re-Number media...</source>
         <translation>Ubah nomor media...</translation>
     </message>
     <message>
-        <location line="+1269"/>
+        <location line="+1345"/>
         <source>It is NOT a media node!</source>
         <translation>Bukan sebuah node media!</translation>
     </message>
     <message>
-        <location line="-1344"/>
-        <location line="+59"/>
+        <location line="-1421"/>
+        <location line="+61"/>
         <source>Node size</source>
         <translation>Ukuran node</translation>
     </message>
     <message>
-        <location line="-62"/>
-        <location line="+59"/>
+        <location line="-64"/>
+        <location line="+61"/>
         <source>View/Edit Comment...</source>
         <translation>Lihat/Edit Komentar...</translation>
     </message>
     <message>
-        <location line="+47"/>
+        <location line="+45"/>
         <source>Close all branch</source>
         <translation>Tutup semua cabang</translation>
     </message>
@@ -1800,59 +1801,58 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Tampilkan/Hapus Isian...</translation>
     </message>
     <message>
-        <location line="+368"/>
-        <location line="+780"/>
-        <location line="+88"/>
-        <location line="+21"/>
-        <location line="+592"/>
+        <location line="+400"/>
+        <location line="+818"/>
+        <location line="+95"/>
+        <location line="+23"/>
+        <location line="+625"/>
         <source>There is no selected item in the middle list box!</source>
         <translation>Tidak ada item yang dipilih di kotak bagian tengah!</translation>
     </message>
     <message>
-        <location line="-1119"/>
+        <location line="-1187"/>
         <source>An error occurred while scanning,
 the DataBase may be incomplete</source>
         <translation>Terjadi kesalahan saat scanning,
 database mungkin tidak lengkap</translation>
     </message>
     <message>
-        <location line="+142"/>
+        <location line="+152"/>
         <source>There is no selected Media in the middle list box!</source>
         <translation>Tidak ada media yang dipilih di kotak bagian tengah!</translation>
     </message>
     <message>
-        <location line="+73"/>
         <source>An error occurred while scanning, the rescan operation was cancelled:
 %1</source>
-        <translation>Terjadi kesalahan saat scanning, operasi scan ulang dibatalkan:
+        <translation type="vanished">Terjadi kesalahan saat scanning, operasi scan ulang dibatalkan:
 %1</translation>
     </message>
     <message>
-        <location line="-1027"/>
+        <location line="-1008"/>
         <location line="+49"/>
         <source>Borrow this media to...</source>
         <translation>Meminjamkan media ini kepada...</translation>
     </message>
     <message>
-        <location line="+1865"/>
+        <location line="+1974"/>
         <source>Do you want to clear the borrowing mark from media &quot;%1&quot;?
 (Say yes if you got it back.)</source>
         <translation>Apakah Anda ingin menghapus tanda peminjaman dari media &quot;%1&quot;?
 (Katakan Ya jika sudah dikembalikan.)</translation>
     </message>
     <message>
-        <location line="-1912"/>
+        <location line="-2021"/>
         <location line="+49"/>
         <source>I got it back! (clear borrowing mark)</source>
         <translation>Saya telah mendapatkannya kembali! (hapus tanda peminjaman)</translation>
     </message>
     <message>
-        <location line="-337"/>
+        <location line="-355"/>
         <source>Catalog Link</source>
         <translation>Link katalog</translation>
     </message>
     <message>
-        <location line="+278"/>
+        <location line="+295"/>
         <source>Follow the link (Open it) !</source>
         <translation>Ikuti link (Buka) !</translation>
     </message>
@@ -1861,22 +1861,22 @@ database mungkin tidak lengkap</translation>
         <translation type="obsolete">Tambahkan link ke sebuah katalog CdCat...</translation>
     </message>
     <message>
-        <location line="+1816"/>
+        <location line="+1917"/>
         <source>The link is empty.</source>
         <translation>Link kosong.</translation>
     </message>
     <message>
-        <location line="-2212"/>
+        <location line="-2331"/>
         <source>Number</source>
         <translation>Nomor</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+2"/>
         <source>Size</source>
         <translation>Ukuran</translation>
     </message>
     <message>
-        <location line="-259"/>
+        <location line="-280"/>
         <source>The database file has newer version than this version of cdcat can work with:
 I understand maximum %1 datafile version but readed %2
 
@@ -1903,37 +1903,37 @@ Homepage: %3</translation>
         <translation type="obsolete">Hasilnya:</translation>
     </message>
     <message>
-        <location line="+1606"/>
+        <location line="+1701"/>
         <source>Select directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+422"/>
+        <location line="+444"/>
         <source>The result:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-878"/>
-        <location line="+248"/>
-        <location line="+214"/>
+        <location line="-918"/>
+        <location line="+253"/>
+        <location line="+228"/>
         <location line="+2"/>
         <location line="+15"/>
         <source>Scanning directory tree, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1009"/>
-        <location line="+59"/>
+        <location line="-1064"/>
+        <location line="+61"/>
         <source>View/Edit Category...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+22"/>
+        <location line="+21"/>
         <source>Change media type...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+661"/>
+        <location line="+701"/>
         <source>Enter media name...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1948,77 +1948,90 @@ Homepage: %3</translation>
         <translation type="unfinished">Media</translation>
     </message>
     <message>
-        <location line="-711"/>
+        <location line="-751"/>
         <source>search for duplicates...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-26"/>
+        <location line="-27"/>
         <source>Show content...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+2"/>
         <source>Show/Remove content...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+28"/>
+        <location line="+30"/>
         <source>Add a link to a CdCat Catalog...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+62"/>
+        <location line="+61"/>
         <source>Add a link to a Cdcat catalog...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+694"/>
+        <location line="+737"/>
         <source>You have cancelled catalog scanning,
 the DataBase may be incomplete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-13"/>
-        <location line="+231"/>
+        <location line="-15"/>
+        <location line="+245"/>
         <source>Scan started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-231"/>
-        <location line="+231"/>
+        <location line="-245"/>
+        <location line="+245"/>
         <source>Scanning %1 into %2 has been started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-210"/>
-        <location line="+225"/>
+        <location line="-222"/>
+        <location line="+237"/>
         <source>Scanning %1 into %2 has been finished</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-225"/>
-        <location line="+4"/>
-        <location line="+221"/>
-        <location line="+4"/>
+        <location line="-237"/>
+        <location line="+3"/>
+        <location line="+234"/>
+        <location line="+3"/>
         <source>Scan finished</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-225"/>
-        <location line="+225"/>
+        <location line="-237"/>
+        <location line="+237"/>
         <source>Scanning %1 into %2 has been finished (NOT complete)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-222"/>
-        <location line="+225"/>
-        <location line="+85"/>
+        <location line="-234"/>
+        <location line="+237"/>
+        <location line="+88"/>
         <source>Cdcat - idle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+419"/>
+        <location line="-72"/>
+        <source>An error occurred while scanning, the rescan operation was cancelled: 
+%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+374"/>
+        <source>The size of &quot;%1&quot; : 
+ %2 
+ %3 file /%4 directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+145"/>
         <source>Help</source>
         <translation type="unfinished">Bantuan</translation>
     </message>
@@ -2133,13 +2146,13 @@ the DataBase may be incomplete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1239"/>
-        <location line="+44"/>
+        <location line="-1307"/>
+        <location line="+47"/>
         <source>Saving catalog, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+812"/>
+        <location line="+856"/>
         <source>Insert a cdcat exported xml file...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2149,80 +2162,80 @@ the DataBase may be incomplete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1099"/>
+        <location line="-1162"/>
         <source>Change password...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1890"/>
+        <location line="+2001"/>
         <source>Password has been successfully changed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+0"/>
-        <location line="+31"/>
-        <location line="+21"/>
+        <location line="+29"/>
+        <location line="+20"/>
         <source>Password changed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-46"/>
-        <location line="+33"/>
+        <location line="-44"/>
+        <location line="+31"/>
         <source>Password length is too short, must be minimum 4 chars</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-33"/>
-        <location line="+33"/>
+        <location line="-31"/>
+        <location line="+31"/>
         <source>Password too short</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-43"/>
-        <location line="+30"/>
+        <location line="-39"/>
+        <location line="+28"/>
         <source>Password length is too big, must be maximal %1 chars</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-30"/>
-        <location line="+30"/>
+        <location line="-28"/>
+        <location line="+28"/>
         <source>Password too big</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1915"/>
+        <location line="-2025"/>
         <source>Disable encryption</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+4"/>
+        <location line="+3"/>
         <source>Enable encryption</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1916"/>
+        <location line="+2026"/>
         <source>Encryption has been successfully enabled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+21"/>
+        <location line="+20"/>
         <source>Encryption has been successfully disabled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-42"/>
-        <location line="+33"/>
+        <location line="-41"/>
+        <location line="+31"/>
         <source>Passwords not match</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-33"/>
-        <location line="+33"/>
+        <location line="-31"/>
+        <location line="+31"/>
         <source>Passwords does not match</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1545"/>
+        <location line="-1621"/>
         <source>Do you really want to delete
 &quot;%1&quot;?</source>
         <translation type="unfinished"></translation>
@@ -2231,7 +2244,7 @@ the DataBase may be incomplete</source>
 <context>
     <name>HDirectoryView</name>
     <message>
-        <location filename="../hdirview.cpp" line="+322"/>
+        <location filename="../hdirview.cpp" line="+327"/>
         <source>Directory Tree</source>
         <translation>Pohon direktori</translation>
     </message>
@@ -2276,7 +2289,7 @@ the DataBase may be incomplete</source>
 <context>
     <name>HQListView</name>
     <message>
-        <location filename="../guibase.cpp" line="-1255"/>
+        <location filename="../guibase.cpp" line="-1341"/>
         <source>Name</source>
         <translation>Nama</translation>
     </message>
@@ -2294,7 +2307,7 @@ the DataBase may be incomplete</source>
 <context>
     <name>ImportDialog</name>
     <message>
-        <location filename="../importdialog.cpp" line="+175"/>
+        <location filename="../importdialog.cpp" line="+176"/>
         <source>Create new Database</source>
         <translation>Buat database baru</translation>
     </message>
@@ -2317,7 +2330,7 @@ the DataBase may be incomplete</source>
         <translation type="obsolete">Perbaiki gaya keluaran yang buruk (gtktalog)</translation>
     </message>
     <message>
-        <location line="+70"/>
+        <location line="+68"/>
         <location line="+5"/>
         <source>Error:</source>
         <translation>Kesalahan:</translation>
@@ -2327,7 +2340,7 @@ the DataBase may be incomplete</source>
         <translation type="obsolete">Ok</translation>
     </message>
     <message>
-        <location line="+64"/>
+        <location line="+53"/>
         <source>csv files(*.csv)</source>
         <translation>File csv(*.csv)</translation>
     </message>
@@ -2336,12 +2349,12 @@ the DataBase may be incomplete</source>
         <translation type="obsolete">Buka dialog file</translation>
     </message>
     <message>
-        <location line="+23"/>
+        <location line="+21"/>
         <source>Choose a file for import</source>
         <translation>Pilih sebuah file yang akan diimpor</translation>
     </message>
     <message>
-        <location line="-316"/>
+        <location line="-301"/>
         <location line="+157"/>
         <source>Type</source>
         <translation>Tipe</translation>
@@ -2362,13 +2375,13 @@ the DataBase may be incomplete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+92"/>
-        <location line="+3"/>
+        <location line="+78"/>
+        <location line="+2"/>
         <source>xml files(*.xml)</source>
         <translation>File xml(*.xml)</translation>
     </message>
     <message>
-        <location line="-152"/>
+        <location line="-137"/>
         <source>Import CSV file</source>
         <translation>Impor file CSV</translation>
     </message>
@@ -2489,12 +2502,12 @@ menjadi
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+8"/>
+        <location line="+7"/>
         <source>Example:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+8"/>
+        <location line="+7"/>
         <source>You must be fill the &quot;Filename&quot; field!</source>
         <translation>Anda harus mengisi field &quot;Nama file&quot;!</translation>
     </message>
@@ -2504,12 +2517,12 @@ menjadi
         <translation>Anda harus mengisi field &quot;Pemisah&quot;!</translation>
     </message>
     <message>
-        <location line="+75"/>
+        <location line="+61"/>
         <source>all files(*.*)</source>
         <translation>semua file(*.*)</translation>
     </message>
     <message>
-        <location line="-146"/>
+        <location line="-130"/>
         <source>&amp;Gtktalog (csv)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2630,12 +2643,12 @@ menjadi
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+117"/>
+        <location line="+101"/>
         <source>File Archivist files(*.arch)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-137"/>
+        <location line="-121"/>
         <source>&amp;Advanced Disk Catalog (csv)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2658,22 +2671,22 @@ menjadi
 <context>
     <name>InfoDialog</name>
     <message>
-        <location filename="../info.cpp" line="+143"/>
+        <location filename="../info.cpp" line="+181"/>
         <source>German translation &amp; additional programming</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+14"/>
+        <location line="+11"/>
         <source>Spanish translation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+6"/>
+        <location line="+5"/>
         <source>Czech translation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+293"/>
+        <location line="+328"/>
         <source>About cdcat</source>
         <translation>Tentang cdcat</translation>
     </message>
@@ -2698,52 +2711,46 @@ menjadi
         <translation>Terimakasih</translation>
     </message>
     <message>
-        <location line="-382"/>
         <source>-= CdCatalog by Hyper =-</source>
-        <translation>-= CdCatalog oleh Hyper =-</translation>
+        <translation type="vanished">-= CdCatalog oleh Hyper =-</translation>
     </message>
     <message>
-        <location line="+4"/>
+        <location line="-439"/>
         <source>Version:</source>
         <translation>Versi:</translation>
     </message>
     <message>
-        <location line="+45"/>
+        <location line="+69"/>
         <source>Author:</source>
         <translation>Penulis:</translation>
     </message>
     <message>
-        <location line="+2"/>
-        <source>Copyright (C) 2003 Peter Deak (GPL)</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location line="+17"/>
+        <location line="+23"/>
         <source>AVI reader plugin &amp; Polish translation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-15"/>
-        <source>Copyright (C) 2010 Christoph Thielecke (GPL)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+9"/>
+        <location line="-5"/>
         <source>Ported to Qt4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-56"/>
+        <location line="-84"/>
         <source> (with debug)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+14"/>
+        <location line="+16"/>
         <source>Development version build at</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+67"/>
+        <location line="+62"/>
+        <source>Ported to Qt5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+25"/>
         <source>For more details about the GPL license and to read in other languages, visit %1.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2753,32 +2760,32 @@ menjadi
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-63"/>
+        <location line="-80"/>
         <source>Compiled with the following features:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+4"/>
+        <location line="+7"/>
         <source>archive read support using lib7zip</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+4"/>
+        <location line="+6"/>
         <source>mediainfo (compiled in)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+4"/>
+        <location line="+6"/>
         <source>mediainfo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+4"/>
+        <location line="+6"/>
         <source>exif data read support</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+4"/>
+        <location line="+6"/>
         <source>encrypted catalog support</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2786,7 +2793,7 @@ menjadi
 <context>
     <name>KeyBindingDialog</name>
     <message>
-        <location line="+356"/>
+        <location line="+402"/>
         <source>Action</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2797,7 +2804,7 @@ menjadi
     </message>
     <message>
         <location line="-6"/>
-        <location line="+58"/>
+        <location line="+57"/>
         <source>Key bindings</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2810,7 +2817,7 @@ menjadi
 <context>
     <name>PWw</name>
     <message>
-        <location filename="../adddialog.cpp" line="-296"/>
+        <location filename="../adddialog.cpp" line="-305"/>
         <source>Please Wait...</source>
         <translation type="unfinished">Silakan Tunggu...</translation>
     </message>
@@ -2820,7 +2827,7 @@ menjadi
     </message>
     <message>
         <location line="-7"/>
-        <location line="+107"/>
+        <location line="+114"/>
         <source>&amp;Cancel</source>
         <translation type="unfinished">&amp;Batal</translation>
     </message>
@@ -2829,8 +2836,8 @@ menjadi
     <name>QObject</name>
     <message>
         <location filename="../dirview.cpp" line="-39"/>
-        <location filename="../hdirview.cpp" line="-132"/>
-        <location line="+63"/>
+        <location filename="../hdirview.cpp" line="-133"/>
+        <location line="+65"/>
         <source>Directory</source>
         <translation>Direktori</translation>
     </message>
@@ -2840,61 +2847,61 @@ menjadi
         <translation>Direktori tidak dapat dibaca</translation>
     </message>
     <message>
-        <location filename="../hdirview.cpp" line="-105"/>
-        <location line="+83"/>
+        <location filename="../hdirview.cpp" line="-108"/>
+        <location line="+85"/>
         <source>Catalog</source>
         <translation>Katalog</translation>
     </message>
     <message>
-        <location line="-75"/>
-        <location line="+79"/>
+        <location line="-76"/>
+        <location line="+81"/>
         <source>Unknown(DB)</source>
         <translation>Tidak diketahui(DB)</translation>
     </message>
     <message>
-        <location line="-75"/>
-        <location line="+77"/>
+        <location line="-77"/>
+        <location line="+79"/>
         <source>CD</source>
         <translation>CD</translation>
     </message>
     <message>
-        <location line="-73"/>
-        <location line="+75"/>
+        <location line="-75"/>
+        <location line="+77"/>
         <source>DVD</source>
         <translation>DVD</translation>
     </message>
     <message>
-        <location line="-71"/>
-        <location line="+73"/>
+        <location line="-73"/>
+        <location line="+75"/>
         <source>HardDisc</source>
         <translation>Hardisk</translation>
     </message>
     <message>
-        <location line="-69"/>
-        <location line="+71"/>
+        <location line="-71"/>
+        <location line="+73"/>
         <source>Floppy</source>
         <translation>Disket</translation>
     </message>
     <message>
-        <location line="-67"/>
-        <location line="+69"/>
+        <location line="-69"/>
+        <location line="+71"/>
         <source>NetworkDrv</source>
         <translation>NetworkDrv</translation>
     </message>
     <message>
-        <location line="-65"/>
-        <location line="+67"/>
+        <location line="-67"/>
+        <location line="+69"/>
         <source>FlashDrv</source>
         <translation>FlashDrv</translation>
     </message>
     <message>
-        <location line="-63"/>
-        <location line="+65"/>
+        <location line="-65"/>
+        <location line="+67"/>
         <source>OtherDevice</source>
         <translation>Divais Lain</translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="+640"/>
+        <location filename="../tparser.cpp" line="+673"/>
         <source>Video:
 </source>
         <translation>Video:</translation>
@@ -2928,64 +2935,64 @@ menjadi
         <translation>Artis</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+3"/>
         <source>Comments</source>
         <translation>Komentar</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+3"/>
         <source>Copyright</source>
         <translation>Hak Cipta</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+3"/>
         <source>Creation Date</source>
         <translation>Tanggal Pembuatan</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+3"/>
         <source>Engineer</source>
         <translation>Engineer</translation>
     </message>
     <message>
-        <location line="+4"/>
+        <location line="+6"/>
         <source>Name</source>
         <translation>Nama</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+3"/>
         <source>Product</source>
         <translation>Produk</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+3"/>
         <source>Software</source>
         <translation>Software</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+3"/>
         <source>Source</source>
         <translation>Sumber</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+3"/>
         <source>Subject</source>
         <translation>Subyek</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+3"/>
         <source>Technician</source>
         <translation>Teknisi</translation>
     </message>
     <message>
-        <location line="+85"/>
+        <location line="+87"/>
         <source>Unknown/not implemented/broken header
 </source>
         <translation>Tidak diketahui/tidak diimplementasikan/header rusak
 </translation>
     </message>
     <message>
-        <location line="-115"/>
+        <location line="-128"/>
         <source>Channels</source>
         <translation>Saluran</translation>
     </message>
@@ -2995,32 +3002,32 @@ menjadi
         <translation>Bitrate</translation>
     </message>
     <message>
-        <location line="+16"/>
+        <location line="+21"/>
         <source>Genre</source>
         <translation>Genre</translation>
     </message>
     <message>
-        <location line="-370"/>
-        <location line="+8"/>
-        <location line="+19"/>
-        <location line="+20"/>
-        <location line="+24"/>
-        <location line="+25"/>
-        <location line="+15"/>
+        <location line="-405"/>
         <location line="+9"/>
-        <location line="+24"/>
+        <location line="+20"/>
+        <location line="+21"/>
+        <location line="+25"/>
+        <location line="+26"/>
+        <location line="+16"/>
+        <location line="+10"/>
+        <location line="+26"/>
         <location line="+8"/>
-        <location line="+44"/>
+        <location line="+55"/>
         <source>Not a RIFF/AVI file OR header broken!</source>
         <translation>Bukan file RIFF/AVI atau header rusak!</translation>
     </message>
     <message>
-        <location line="+157"/>
+        <location line="+167"/>
         <source>Sample/s</source>
         <translation>Sample/s</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="+2701"/>
+        <location filename="../import.cpp" line="+2652"/>
         <source>importuser</source>
         <translation type="unfinished">importuser</translation>
     </message>
@@ -3037,55 +3044,55 @@ menjadi
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="+2745"/>
+        <location filename="../guibase.cpp" line="+2911"/>
         <location line="+1"/>
-        <location line="+29"/>
+        <location line="+27"/>
         <location line="+1"/>
-        <location filename="../wdbfile.cpp" line="-90"/>
+        <location filename="../wdbfile.cpp" line="-102"/>
         <source>Enter password...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-31"/>
-        <location line="+30"/>
+        <location line="-29"/>
+        <location line="+28"/>
         <location filename="../wdbfile.cpp" line="+0"/>
         <source>Enter password for catalog:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../hdirview.cpp" line="-99"/>
-        <location line="+79"/>
+        <location filename="../hdirview.cpp" line="-102"/>
+        <location line="+81"/>
         <source>Catalog (encrypted)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../wdbfile.cpp" line="+4"/>
+        <location filename="../wdbfile.cpp" line="+5"/>
         <source>password empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+6"/>
+        <location line="+7"/>
         <source>cant set password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+20"/>
+        <location line="+24"/>
         <source>decrypt failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+13"/>
+        <location line="+15"/>
         <source>cant load catalog: encrypted catalog support not available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="-29"/>
-        <location line="+30"/>
+        <location filename="../guibase.cpp" line="-27"/>
+        <location line="+28"/>
         <source>Enter password for catalog (again):</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="-285"/>
+        <location filename="../importdialog.cpp" line="-286"/>
         <source>directory separator</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3148,7 +3155,7 @@ menjadi
 <context>
     <name>SelReadable</name>
     <message>
-        <location filename="../selreadable.cpp" line="+836"/>
+        <location filename="../selreadable.cpp" line="+838"/>
         <source>Select readable items</source>
         <translation>Pilih item yang bisa dibaca</translation>
     </message>
@@ -3188,13 +3195,13 @@ menjadi
         <translation>Tag default</translation>
     </message>
     <message>
-        <location line="-740"/>
+        <location line="-743"/>
         <location line="+1"/>
         <source>version</source>
         <translation>versi</translation>
     </message>
     <message>
-        <location line="+741"/>
+        <location line="+744"/>
         <source>Read mp3 technical info as comment (bitrate,freq,length...)</source>
         <translation>Baca informasi teknis mp3 sebagai komentar(bitrate,freq,length...)</translation>
     </message>
@@ -3208,9 +3215,9 @@ menjadi
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-442"/>
-        <location line="+32"/>
-        <location line="+388"/>
+        <location line="-444"/>
+        <location line="+33"/>
+        <location line="+389"/>
         <source>Supported extensions:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3250,8 +3257,8 @@ menjadi
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-542"/>
-        <location line="+292"/>
+        <location line="-544"/>
+        <location line="+291"/>
         <source>Path to external content viewer (found)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3262,12 +3269,12 @@ menjadi
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-23"/>
+        <location line="-25"/>
         <source>Choose path to external context viewer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+260"/>
+        <location line="+265"/>
         <source>...</source>
         <translation type="unfinished">...</translation>
     </message>
@@ -3277,12 +3284,12 @@ menjadi
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-692"/>
+        <location line="-695"/>
         <source>KiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+238"/>
+        <location line="+239"/>
         <source>lib7zip found</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3307,13 +3314,13 @@ menjadi
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="+2"/>
         <location line="+4"/>
         <source>mediainfo status:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+386"/>
+        <location line="+387"/>
         <source>Permission</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3393,14 +3400,14 @@ menjadi
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-227"/>
-        <location line="+32"/>
+        <location line="-230"/>
+        <location line="+34"/>
         <source>Add exclude rule...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-32"/>
-        <location line="+32"/>
+        <location line="-34"/>
+        <location line="+34"/>
         <source>Enter regular expression for exclude:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3415,7 +3422,7 @@ menjadi
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+221"/>
+        <location line="+222"/>
         <source>exclude files/directories</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3430,17 +3437,17 @@ menjadi
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-189"/>
+        <location line="-187"/>
         <source>regular expression is invalid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+4"/>
+        <location line="+3"/>
         <source>regular expression is valid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+141"/>
+        <location line="+140"/>
         <source>show archive file at scanning in status</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3575,7 +3582,7 @@ menjadi
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-472"/>
+        <location line="-474"/>
         <source>lib7zip not found</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3586,7 +3593,7 @@ menjadi
     </message>
     <message>
         <location line="+7"/>
-        <location line="+39"/>
+        <location line="+40"/>
         <source>support not compiled in</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3596,7 +3603,7 @@ menjadi
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+418"/>
+        <location line="+419"/>
         <source>Supported image extensions found: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -3624,12 +3631,12 @@ menjadi
         <translation>Isi dari %1</translation>
     </message>
     <message>
-        <location line="+90"/>
+        <location line="+91"/>
         <source>Close</source>
         <translation>Tutup</translation>
     </message>
     <message>
-        <location line="+46"/>
+        <location line="+49"/>
         <source>Confirmation</source>
         <translation>Konfirmasi</translation>
     </message>
@@ -3644,7 +3651,7 @@ menjadi
         <translation>Tidak</translation>
     </message>
     <message>
-        <location line="-184"/>
+        <location line="-188"/>
         <source>Remove the file content from the database. (Warning: Unrecoverable!)</source>
         <translation>Hapus isi file dari database. (Peringatan: Tidak dapat dikembalikan lagi!)</translation>
     </message>
@@ -3663,7 +3670,7 @@ menjadi
         <translation type="obsolete">Simpan isi...</translation>
     </message>
     <message>
-        <location line="+154"/>
+        <location line="+158"/>
         <source>Select a filename below</source>
         <translation>Pilih nama file di bawah ini</translation>
     </message>
@@ -3692,7 +3699,7 @@ menjadi
         <translation type="unfinished">Database CdCat (*.hcf )</translation>
     </message>
     <message>
-        <location line="-137"/>
+        <location line="-141"/>
         <source>Category of %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3707,7 +3714,7 @@ menjadi
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="+2"/>
         <source>select font for display</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3715,7 +3722,7 @@ menjadi
 <context>
     <name>addDialog</name>
     <message>
-        <location filename="../adddialog.cpp" line="-511"/>
+        <location filename="../adddialog.cpp" line="-520"/>
         <source>Directory Browser</source>
         <translation>Browser Direktori</translation>
     </message>
@@ -3800,13 +3807,13 @@ menjadi
     <message>
         <location line="+100"/>
         <location line="+5"/>
-        <location line="+21"/>
+        <location line="+22"/>
         <location line="+5"/>
         <source>Error:</source>
         <translation>Kesalahan:</translation>
     </message>
     <message>
-        <location line="-31"/>
+        <location line="-32"/>
         <source>You must be fill the &quot;Name&quot; field!</source>
         <translation>Anda harus mengisi field &quot;Nama&quot;!</translation>
     </message>
@@ -3823,7 +3830,7 @@ menjadi
         <translation type="obsolete">Pilih item yang bisa dibaca</translation>
     </message>
     <message>
-        <location line="+26"/>
+        <location line="+27"/>
         <source>The Value of Serial Number must be unique! Please change it!</source>
         <translation>Nilai Nomor Seri harus unik! Silakan ubah!</translation>
     </message>
@@ -3833,7 +3840,7 @@ menjadi
         <translation>Anda belum memilih direktori! Silakan pilih satu!</translation>
     </message>
     <message>
-        <location line="-26"/>
+        <location line="-27"/>
         <source>The media name can&apos;t begin with the &quot;@&quot; character!</source>
         <translation>Nama media tidak boleh berawalan karakter &quot;@&quot;!</translation>
     </message>
@@ -3908,14 +3915,14 @@ menjadi
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+90"/>
-        <location line="+36"/>
+        <location line="+89"/>
+        <location line="+37"/>
         <source>Enter media name...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-36"/>
-        <location line="+36"/>
+        <location line="-37"/>
+        <location line="+37"/>
         <source>The Media Name must be unique! Enter new media name:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3928,7 +3935,7 @@ menjadi
 <context>
     <name>borrowDialog</name>
     <message>
-        <location filename="../borrow.cpp" line="+116"/>
+        <location filename="../borrow.cpp" line="+111"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
@@ -3938,12 +3945,12 @@ menjadi
         <translation>Batal</translation>
     </message>
     <message>
-        <location line="-42"/>
+        <location line="-39"/>
         <source>I borrow the &quot;%1&quot; named media to:</source>
         <translation>Saya meminjamkan media yang bernama &quot;%1&quot; kepada:</translation>
     </message>
     <message>
-        <location line="+12"/>
+        <location line="+9"/>
         <source>unknown</source>
         <translation>tidak diketahui</translation>
     </message>
@@ -3953,8 +3960,8 @@ menjadi
         <translation>Saya meminjamkan media yang bernama &quot;&quot; kepada:</translation>
     </message>
     <message>
-        <location line="-72"/>
-        <location line="+71"/>
+        <location line="-69"/>
+        <location line="+68"/>
         <source>Borrowing...</source>
         <translation>Meminjamkan...</translation>
     </message>
@@ -3962,30 +3969,30 @@ menjadi
 <context>
     <name>borrowingDialog</name>
     <message>
-        <location line="+97"/>
+        <location line="+96"/>
         <source>Media borrowing info:</source>
         <translation>Informasi peminjaman media:</translation>
     </message>
     <message>
         <location line="+4"/>
-        <location line="+33"/>
+        <location line="+35"/>
         <source>Media</source>
         <translation>Media</translation>
     </message>
     <message>
-        <location line="-32"/>
-        <location line="+33"/>
+        <location line="-34"/>
+        <location line="+35"/>
         <source>Borrowed</source>
         <translation>Dipinjam</translation>
     </message>
     <message>
-        <location line="-32"/>
-        <location line="+33"/>
+        <location line="-34"/>
+        <location line="+35"/>
         <source>where is it now?</source>
         <translation>ada dimana sekarang?</translation>
     </message>
     <message>
-        <location line="-30"/>
+        <location line="-32"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
@@ -3994,38 +4001,38 @@ menjadi
         <translation type="obsolete">0</translation>
     </message>
     <message>
-        <location line="+57"/>
+        <location line="+61"/>
         <location line="+38"/>
         <location line="+1"/>
         <location line="+1"/>
-        <location line="+15"/>
-        <location line="+9"/>
+        <location line="+16"/>
+        <location line="+10"/>
         <location line="+11"/>
-        <location line="+39"/>
-        <location line="+65"/>
+        <location line="+43"/>
+        <location line="+68"/>
         <source>No</source>
         <translation>Tidak</translation>
     </message>
     <message>
-        <location line="-179"/>
+        <location line="-188"/>
         <location line="+38"/>
         <location line="+7"/>
-        <location line="+12"/>
+        <location line="+13"/>
+        <location line="+10"/>
         <location line="+9"/>
-        <location line="+9"/>
-        <location line="+22"/>
-        <location line="+17"/>
-        <location line="+72"/>
+        <location line="+23"/>
+        <location line="+20"/>
+        <location line="+75"/>
         <source>Yes</source>
         <translation>Ya</translation>
     </message>
     <message>
-        <location line="-138"/>
+        <location line="-147"/>
         <source>unknown</source>
         <translation>tidak diketahui</translation>
     </message>
     <message>
-        <location line="+4"/>
+        <location line="+5"/>
         <source>Error</source>
         <translation>Kesalahan</translation>
     </message>
@@ -4035,23 +4042,23 @@ menjadi
         <translation>Pilih &quot;Ya&quot; atau &quot;Tidak&quot; !</translation>
     </message>
     <message>
-        <location line="+23"/>
-        <location line="+39"/>
+        <location line="+24"/>
+        <location line="+43"/>
         <source>Warning</source>
         <translation>Peringatan</translation>
     </message>
     <message>
-        <location line="-39"/>
+        <location line="-43"/>
         <source>Do you save the changes?</source>
         <translation>Apakah Anda menyimpan perubahannya?</translation>
     </message>
     <message>
-        <location line="+39"/>
+        <location line="+43"/>
         <source>Are you sure want to clear all borrow?</source>
         <translation>Apakah Anda yakin untuk menghapus semua data peminjaman?</translation>
     </message>
     <message>
-        <location line="+31"/>
+        <location line="+34"/>
         <source>I got it back!</source>
         <translation>Saya telah mendapatkannya kembali!</translation>
     </message>
@@ -4061,7 +4068,7 @@ menjadi
         <translation>&lt;&lt;</translation>
     </message>
     <message>
-        <location line="-217"/>
+        <location line="-230"/>
         <source>Borrowing info...</source>
         <translation>Informasi peminjaman...</translation>
     </message>
@@ -4083,7 +4090,7 @@ menjadi
         <translation type="obsolete">Edit Komentar</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="+692"/>
+        <location filename="../commwidget.cpp" line="+715"/>
         <source>Cancel</source>
         <translation></translation>
     </message>
@@ -4093,7 +4100,7 @@ menjadi
         <translation>OK</translation>
     </message>
     <message>
-        <location line="-4"/>
+        <location line="-5"/>
         <source>Edit comment of</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4106,7 +4113,7 @@ menjadi
 <context>
     <name>exportCdcatDB</name>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="+310"/>
+        <location filename="../exportcdcatdb.cpp" line="+311"/>
         <source>Availiable media</source>
         <translation>Media yang tersedia</translation>
     </message>
@@ -4157,7 +4164,7 @@ menjadi
         <translation>Masukkan nama file!</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+2"/>
         <source>Separator missing</source>
         <translation>Pemisah hilang</translation>
     </message>
@@ -4175,7 +4182,7 @@ menjadi
         <translation type="obsolete">Ok</translation>
     </message>
     <message>
-        <location line="+312"/>
+        <location line="+313"/>
         <source>All files (*.*)</source>
         <translation>Semua file(*.*)</translation>
     </message>
@@ -4216,29 +4223,29 @@ menjadi
         <translation>ekspor sebagai CSV</translation>
     </message>
     <message>
-        <location line="+140"/>
-        <location line="+19"/>
+        <location line="+133"/>
+        <location line="+28"/>
         <source>Media</source>
         <translation>Media</translation>
     </message>
     <message>
-        <location line="-15"/>
+        <location line="-22"/>
         <source>File</source>
         <translation>File</translation>
     </message>
     <message>
-        <location line="-286"/>
+        <location line="-281"/>
         <location line="+154"/>
-        <location line="+134"/>
-        <location line="+40"/>
+        <location line="+130"/>
+        <location line="+44"/>
         <source>Size</source>
         <translation>Ukuran</translation>
     </message>
     <message>
         <location line="-325"/>
         <location line="+152"/>
-        <location line="+135"/>
-        <location line="+43"/>
+        <location line="+132"/>
+        <location line="+46"/>
         <source>Date</source>
         <translation>Tanggal</translation>
     </message>
@@ -4249,12 +4256,12 @@ menjadi
         <translation>Gagal membuat atau menulis ulang file</translation>
     </message>
     <message>
-        <location line="-169"/>
+        <location line="-177"/>
         <source>Export from cdcat:</source>
         <translation>Ekspor dari cdcat:</translation>
     </message>
     <message>
-        <location line="-381"/>
+        <location line="-373"/>
         <source>Export database...</source>
         <translation>EksExspor database...</translation>
     </message>
@@ -4284,8 +4291,8 @@ menjadi
     <message>
         <location line="-317"/>
         <location line="+150"/>
-        <location line="+136"/>
-        <location line="+46"/>
+        <location line="+134"/>
+        <location line="+48"/>
         <source>Comment</source>
         <translation>Komentar</translation>
     </message>
@@ -4325,14 +4332,14 @@ menjadi
         <translation>Ekspor database CdCat:</translation>
     </message>
     <message>
-        <location line="+87"/>
-        <location line="+33"/>
+        <location line="+79"/>
+        <location line="+41"/>
         <source>Export from cdcat, catalog:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-32"/>
-        <location line="+33"/>
+        <location line="-39"/>
+        <location line="+40"/>
         <source>Generated at:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4356,13 +4363,13 @@ menjadi
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+125"/>
+        <location line="+119"/>
         <source>#</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+10"/>
-        <location line="+49"/>
+        <location line="+15"/>
+        <location line="+50"/>
         <source>MP3 tag</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4373,7 +4380,7 @@ menjadi
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+515"/>
+        <location line="+529"/>
         <source>Artist:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4393,7 +4400,7 @@ menjadi
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-877"/>
+        <location line="-891"/>
         <location line="+173"/>
         <source>table header/comment line</source>
         <translation type="unfinished"></translation>
@@ -4422,8 +4429,8 @@ menjadi
     <message>
         <location line="-420"/>
         <location line="+148"/>
-        <location line="+141"/>
-        <location line="+53"/>
+        <location line="+142"/>
+        <location line="+52"/>
         <source>Category</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4436,52 +4443,52 @@ menjadi
 <context>
     <name>findDialog</name>
     <message>
-        <location filename="../find.cpp" line="+182"/>
-        <location line="+242"/>
-        <location line="+75"/>
-        <location line="+30"/>
-        <location line="+398"/>
+        <location filename="../find.cpp" line="+180"/>
+        <location line="+243"/>
+        <location line="+74"/>
+        <location line="+29"/>
+        <location line="+413"/>
         <source>Name</source>
         <translation>Nama</translation>
     </message>
     <message>
-        <location line="-744"/>
-        <location line="+242"/>
-        <location line="+75"/>
-        <location line="+30"/>
-        <location line="+398"/>
+        <location line="-758"/>
+        <location line="+243"/>
+        <location line="+74"/>
+        <location line="+29"/>
+        <location line="+413"/>
         <source>Type</source>
         <translation>Tipe</translation>
     </message>
     <message>
-        <location line="-743"/>
-        <location line="+242"/>
-        <location line="+75"/>
-        <location line="+30"/>
-        <location line="+398"/>
+        <location line="-757"/>
+        <location line="+243"/>
+        <location line="+74"/>
+        <location line="+29"/>
+        <location line="+413"/>
         <source>Media</source>
         <translation>Media</translation>
     </message>
     <message>
-        <location line="-744"/>
-        <location line="+242"/>
-        <location line="+75"/>
-        <location line="+30"/>
-        <location line="+398"/>
+        <location line="-758"/>
+        <location line="+243"/>
+        <location line="+74"/>
+        <location line="+29"/>
+        <location line="+413"/>
         <source>Path</source>
         <translation>Path</translation>
     </message>
     <message>
-        <location line="-744"/>
-        <location line="+242"/>
-        <location line="+75"/>
-        <location line="+30"/>
-        <location line="+398"/>
+        <location line="-758"/>
+        <location line="+243"/>
+        <location line="+74"/>
+        <location line="+29"/>
+        <location line="+413"/>
         <source>Modification</source>
         <translation>Modifikasi</translation>
     </message>
     <message>
-        <location line="-407"/>
+        <location line="-422"/>
         <source>Search in the database...</source>
         <translation>Temukan dalam database...</translation>
     </message>
@@ -4506,60 +4513,60 @@ menjadi
         <translation>Pemilik:</translation>
     </message>
     <message>
-        <location line="-339"/>
-        <location line="+242"/>
-        <location line="+75"/>
-        <location line="+30"/>
+        <location line="-338"/>
+        <location line="+243"/>
+        <location line="+74"/>
+        <location line="+29"/>
         <location line="+12"/>
-        <location line="+329"/>
-        <location line="+57"/>
+        <location line="+336"/>
+        <location line="+65"/>
         <source>Comment</source>
         <translation>Komentar</translation>
     </message>
     <message>
-        <location line="-392"/>
-        <location line="+333"/>
+        <location line="-407"/>
+        <location line="+339"/>
         <source>File name</source>
         <translation>Nama file</translation>
     </message>
     <message>
-        <location line="-330"/>
-        <location line="+342"/>
+        <location line="-336"/>
+        <location line="+354"/>
         <source>mp3-tag Comment</source>
         <translation>Komentar tag mp3</translation>
     </message>
     <message>
-        <location line="-344"/>
-        <location line="+342"/>
+        <location line="-356"/>
+        <location line="+353"/>
         <source>mp3-tag Album</source>
         <translation>Album tag mp3</translation>
     </message>
     <message>
-        <location line="-338"/>
-        <location line="+336"/>
+        <location line="-349"/>
+        <location line="+346"/>
         <source>mp3-tag Title</source>
         <translation>Judul tag mp3</translation>
     </message>
     <message>
-        <location line="-339"/>
-        <location line="+337"/>
+        <location line="-349"/>
+        <location line="+346"/>
         <source>mp3-tag Artist</source>
         <translation>Artis tag mp3</translation>
     </message>
     <message>
-        <location line="-310"/>
-        <location line="+289"/>
+        <location line="-319"/>
+        <location line="+293"/>
         <source>Case sensitive</source>
         <translation>Bedakan huruf besar dan kecil</translation>
     </message>
     <message>
-        <location line="-288"/>
-        <location line="+280"/>
+        <location line="-292"/>
+        <location line="+283"/>
         <source>Use easy matching instead regex</source>
         <translation>Gunakan metode easy matching, bukan regex</translation>
     </message>
     <message>
-        <location line="-199"/>
+        <location line="-204"/>
         <source>All/Everybody</source>
         <translation>Semua</translation>
     </message>
@@ -4573,8 +4580,8 @@ menjadi
         <translation type="obsolete">&amp;OK</translation>
     </message>
     <message>
-        <location line="-142"/>
-        <location line="+48"/>
+        <location line="-139"/>
+        <location line="+47"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Batal</translation>
     </message>
@@ -4584,30 +4591,30 @@ menjadi
     </message>
     <message>
         <location line="-13"/>
-        <location line="+329"/>
+        <location line="+337"/>
         <source>Content</source>
         <translation>Isi</translation>
     </message>
     <message>
-        <location line="-333"/>
-        <location line="+327"/>
+        <location line="-341"/>
+        <location line="+332"/>
         <source>Media / Directory name</source>
         <translation>Media / Nama direktori</translation>
     </message>
     <message>
-        <location line="-322"/>
-        <location line="+355"/>
+        <location line="-327"/>
+        <location line="+370"/>
         <source>Date start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-354"/>
-        <location line="+358"/>
+        <location line="-369"/>
+        <location line="+373"/>
         <source>Date end</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-761"/>
+        <location line="-775"/>
         <location line="+7"/>
         <source>Byte</source>
         <translation type="unfinished"></translation>
@@ -4631,40 +4638,40 @@ menjadi
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+394"/>
-        <location line="+361"/>
+        <location line="+393"/>
+        <location line="+376"/>
         <source>Min size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-360"/>
-        <location line="+364"/>
+        <location line="-375"/>
+        <location line="+379"/>
         <source>Max size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-407"/>
-        <location line="+47"/>
+        <location line="-421"/>
+        <location line="+46"/>
         <source>&amp;Start search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-373"/>
-        <location line="+242"/>
-        <location line="+75"/>
-        <location line="+30"/>
-        <location line="+398"/>
+        <location line="-372"/>
+        <location line="+243"/>
+        <location line="+74"/>
+        <location line="+29"/>
+        <location line="+413"/>
         <source>Size</source>
         <translation type="unfinished">Ukuran</translation>
     </message>
     <message>
-        <location line="-375"/>
-        <location line="+339"/>
+        <location line="-390"/>
+        <location line="+353"/>
         <source>Unsharp search (slow)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-338"/>
+        <location line="-352"/>
         <source>Find in archives too</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4679,7 +4686,7 @@ menjadi
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+246"/>
+        <location line="+250"/>
         <source>Print cdcat result</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4699,7 +4706,7 @@ menjadi
         <translation type="unfinished">Masukkan nama file!</translation>
     </message>
     <message>
-        <location line="+14"/>
+        <location line="+13"/>
         <location line="+3"/>
         <source>Cdcat search result</source>
         <translation type="unfinished"></translation>
@@ -4726,35 +4733,35 @@ menjadi
     </message>
     <message>
         <location line="+6"/>
-        <location line="+8"/>
-        <location line="+34"/>
+        <location line="+9"/>
+        <location line="+44"/>
         <source>on</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-40"/>
-        <location line="+8"/>
-        <location line="+34"/>
+        <location line="-51"/>
+        <location line="+9"/>
+        <location line="+44"/>
         <source>off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-28"/>
+        <location line="-37"/>
         <source>Search in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+20"/>
+        <location line="+28"/>
         <source>archives</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+14"/>
+        <location line="+16"/>
         <source>other options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+90"/>
+        <location line="+89"/>
         <source>File cant open: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -4764,7 +4771,7 @@ menjadi
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-496"/>
+        <location line="-509"/>
         <source>Search for duplicates in the database...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4779,52 +4786,52 @@ menjadi
         <translation type="unfinished">Tutup</translation>
     </message>
     <message>
-        <location line="+47"/>
+        <location line="+46"/>
         <source>Results: search not started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-376"/>
-        <location line="+242"/>
-        <location line="+75"/>
-        <location line="+30"/>
+        <location line="-375"/>
+        <location line="+243"/>
+        <location line="+74"/>
+        <location line="+29"/>
         <source>Extension</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-385"/>
+        <location line="-384"/>
         <location line="+7"/>
         <source>TiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+381"/>
+        <location line="+380"/>
         <source>Keep search result</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-20"/>
-        <location line="+36"/>
+        <location line="-19"/>
+        <location line="+35"/>
         <source>Clear search results</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-367"/>
-        <location line="+242"/>
-        <location line="+75"/>
-        <location line="+30"/>
+        <location line="-366"/>
+        <location line="+243"/>
+        <location line="+74"/>
+        <location line="+29"/>
         <location line="+12"/>
-        <location line="+386"/>
+        <location line="+401"/>
         <source>Category</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-376"/>
+        <location line="-391"/>
         <source>Category for find</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+146"/>
+        <location line="+149"/>
         <source>Selected dir: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -4927,7 +4934,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>importGtktalogCsv</name>
     <message>
-        <location filename="../import.cpp" line="-1068"/>
+        <location filename="../import.cpp" line="-1011"/>
         <source>Imported from %1 (CSV import).</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4947,7 +4954,7 @@ p, li { white-space: pre-wrap; }
         <translation>media</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+4"/>
         <source>1 directory,
 </source>
         <translation>1 direktori:,
@@ -4959,7 +4966,7 @@ p, li { white-space: pre-wrap; }
         <translation>direktori</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+4"/>
         <source>1 file</source>
         <translation>1 file</translation>
     </message>
@@ -4969,7 +4976,7 @@ p, li { white-space: pre-wrap; }
         <translation>file</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+3"/>
         <source>are imported.</source>
         <translation>telah diimpor.</translation>
     </message>
@@ -4979,7 +4986,7 @@ p, li { white-space: pre-wrap; }
         <translation>Impor berhasil dilakukan</translation>
     </message>
     <message>
-        <location line="-1467"/>
+        <location line="-1479"/>
         <source>file read error</source>
         <translation>Terjadi kesalahan pembacaan file</translation>
     </message>
@@ -4989,7 +4996,7 @@ p, li { white-space: pre-wrap; }
         <translation>Tidak dapat membaca file</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+4"/>
         <source>Fatal error</source>
         <translation>Kesalahan fatal</translation>
     </message>
@@ -4999,7 +5006,7 @@ p, li { white-space: pre-wrap; }
         <translation>Terjadi kesalahan fatal.</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+4"/>
         <source>file open error</source>
         <translation>Terjadi kesalahan pembukaan file</translation>
     </message>
@@ -5009,7 +5016,7 @@ p, li { white-space: pre-wrap; }
         <translation>Tidak dapat membuka file</translation>
     </message>
     <message>
-        <location line="+1357"/>
+        <location line="+1363"/>
         <source>importedMedia_</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5024,12 +5031,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+91"/>
+        <location line="+98"/>
         <source>importuser</source>
         <translation>importuser</translation>
     </message>
     <message>
-        <location line="-1492"/>
+        <location line="-1504"/>
         <source>Importing CSV...</source>
         <translation>Mengimpor CSV...</translation>
     </message>
@@ -5039,7 +5046,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished">Batal</translation>
     </message>
     <message>
-        <location line="+1138"/>
+        <location line="+1162"/>
         <source>tag: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -5047,12 +5054,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>importGtktalogXml</name>
     <message>
-        <location line="+761"/>
+        <location line="+723"/>
         <source>Importing XML...</source>
         <translation>Mengimpor XML...</translation>
     </message>
     <message>
-        <location line="+37"/>
+        <location line="+35"/>
         <source>XML import was successful.</source>
         <translation>Impor XML berhasil dilakukan.</translation>
     </message>
@@ -5067,7 +5074,7 @@ p, li { white-space: pre-wrap; }
         <translation>media</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+4"/>
         <source>1 directory,
 </source>
         <translation>1 direktori:,
@@ -5079,7 +5086,7 @@ p, li { white-space: pre-wrap; }
         <translation>direktori</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+4"/>
         <source>1 file</source>
         <translation>1 file</translation>
     </message>
@@ -5089,7 +5096,7 @@ p, li { white-space: pre-wrap; }
         <translation>file</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+3"/>
         <source>are imported.</source>
         <translation>telah diimpor.</translation>
     </message>
@@ -5099,7 +5106,7 @@ p, li { white-space: pre-wrap; }
         <translation>Impor berhasil dilakukan</translation>
     </message>
     <message>
-        <location line="+5"/>
+        <location line="+3"/>
         <source>parse error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5109,12 +5116,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+114"/>
+        <location line="+120"/>
         <source>importuser</source>
         <translation>importuser</translation>
     </message>
     <message>
-        <location line="-175"/>
+        <location line="-180"/>
         <source>Cancel</source>
         <translation type="unfinished">Batal</translation>
     </message>
@@ -5122,12 +5129,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>importWhereIsItXml</name>
     <message>
-        <location line="+844"/>
+        <location line="+798"/>
         <source>Importing XML...</source>
         <translation>Mengimpor XML...</translation>
     </message>
     <message>
-        <location line="+36"/>
+        <location line="+34"/>
         <source>Importing XML from WhereIsIt was successful.</source>
         <translation>Impor XML dari WhereIsIt berhasil dilakukan.</translation>
     </message>
@@ -5142,7 +5149,7 @@ p, li { white-space: pre-wrap; }
         <translation>media</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+4"/>
         <source>1 directory,
 </source>
         <translation>1 direktori:,
@@ -5154,7 +5161,7 @@ p, li { white-space: pre-wrap; }
         <translation>direktori</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+4"/>
         <source>1 file</source>
         <translation>1 file</translation>
     </message>
@@ -5164,7 +5171,7 @@ p, li { white-space: pre-wrap; }
         <translation>file</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+3"/>
         <source>are imported.</source>
         <translation>telah diimpor.</translation>
     </message>
@@ -5174,7 +5181,7 @@ p, li { white-space: pre-wrap; }
         <translation>Impor berhasil dilakukan</translation>
     </message>
     <message>
-        <location line="+5"/>
+        <location line="+3"/>
         <source>parse error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5184,12 +5191,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-60"/>
+        <location line="-59"/>
         <source>Cancel</source>
         <translation type="unfinished">Batal</translation>
     </message>
     <message>
-        <location line="-268"/>
+        <location line="-258"/>
         <source>tag:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5197,7 +5204,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>newdbdialog</name>
     <message>
-        <location filename="../newdbdialog.cpp" line="+133"/>
+        <location filename="../newdbdialog.cpp" line="+131"/>
         <source>DataBase&apos;s Properties</source>
         <translation>Properti Database</translation>
     </message>
@@ -5280,7 +5287,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>renamedialog</name>
     <message>
-        <location line="+64"/>
+        <location line="+63"/>
         <source>Rename node...</source>
         <translation>Ubah nama node...</translation>
     </message>
@@ -5300,7 +5307,7 @@ p, li { white-space: pre-wrap; }
         <translation>Batal</translation>
     </message>
     <message>
-        <location line="+19"/>
+        <location line="+20"/>
         <location line="+5"/>
         <source>Error:</source>
         <translation>Kesalahan:</translation>
@@ -5372,7 +5379,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>seekEngine</name>
     <message>
-        <location filename="../find.cpp" line="+373"/>
+        <location filename="../find.cpp" line="+389"/>
         <source>Error in the pattern:</source>
         <translation>Terjadi kesalahan pada urutan:</translation>
     </message>
@@ -5381,12 +5388,12 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Ok</translation>
     </message>
     <message>
-        <location line="+86"/>
+        <location line="+98"/>
         <source>There is no matching.</source>
         <translation>Tidak ada hasil yang sesuai.</translation>
     </message>
     <message>
-        <location line="+489"/>
+        <location line="+494"/>
         <source>dir</source>
         <translation>dir</translation>
     </message>
@@ -5406,12 +5413,12 @@ p, li { white-space: pre-wrap; }
         <translation>media</translation>
     </message>
     <message>
-        <location line="-605"/>
+        <location line="-627"/>
         <source>Searching, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+117"/>
+        <location line="+134"/>
         <source>Search cancelled</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5422,14 +5429,14 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location line="+317"/>
+        <location line="+6"/>
         <location line="+8"/>
-        <location line="+11"/>
-        <location line="+11"/>
+        <location line="+8"/>
         <source>File in archive: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-351"/>
+        <location line="-343"/>
         <source>Results:</source>
         <translation type="unfinished"></translation>
     </message>

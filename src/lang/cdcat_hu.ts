@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0">
+<TS version="2.1">
 <context>
     <name></name>
     <message>
@@ -62,7 +62,7 @@
 <context>
     <name>AddLnk</name>
     <message>
-        <location filename="../adddialog.cpp" line="+763"/>
+        <location filename="../adddialog.cpp" line="+775"/>
         <source>Add a &quot;Catalog Link&quot; to the database</source>
         <translation type="unfinished">&quot;Cdcat katalógus hivatkozás&quot; hozzáadása az adatbázishoz</translation>
     </message>
@@ -82,7 +82,7 @@
         <translation type="unfinished">Ok</translation>
     </message>
     <message>
-        <location line="+17"/>
+        <location line="+18"/>
         <source>CdCat databases (*.hcf )</source>
         <translation type="unfinished">CdCat adatbázis (*.hcf)</translation>
     </message>
@@ -108,7 +108,7 @@
 <context>
     <name>CatalogTypeEditDialog</name>
     <message>
-        <location filename="../guibase.cpp" line="+3138"/>
+        <location filename="../guibase.cpp" line="+3304"/>
         <source>Change media type</source>
         <translation>Média típus váltás</translation>
     </message>
@@ -166,7 +166,7 @@
 <context>
     <name>CdCatConfig</name>
     <message>
-        <location filename="../config.cpp" line="+212"/>
+        <location filename="../config.cpp" line="+216"/>
         <source>Error during autoload...</source>
         <translation>Hiba az automatikus betöltés alatt...</translation>
     </message>
@@ -215,7 +215,7 @@ It is necessary couse I&apos;d like to save the config file into your home direc
 Ez szükséges lenne, mert a home-könyvtárba kerülne a beállításokat tartalmazó fájl.</translation>
     </message>
     <message>
-        <location line="+1133"/>
+        <location line="+1252"/>
         <source>I can&apos;t create or rewrite the ./cdcat.cfg file </source>
         <translation>Nem tudom létrehozni vagy módosítani a következő fájlt:  ./cdcat.cfg </translation>
     </message>
@@ -225,14 +225,14 @@ Ez szükséges lenne, mert a home-könyvtárba kerülne a beállításokat tarta
         <translation>Nem tudom létrehozni vagy írni a $(HOME)/.cdcatconfig fájlt</translation>
     </message>
     <message>
-        <location line="-378"/>
-        <location line="+376"/>
+        <location line="-430"/>
+        <location line="+428"/>
         <location line="+2"/>
         <source>Error while saving config file...</source>
         <translation>Hiba a configfájl mentése alatt...</translation>
     </message>
     <message>
-        <location line="-377"/>
+        <location line="-429"/>
         <source>I can&apos;t get the $HOME environment variable.
 It is necessary because I&apos;d like to save the config file into your home directory.</source>
         <translation>Nem tudom lekérdezni a $HOME környezeti változót. Ez szükséges lenne, mert a konfigurációs állományt erre a helyre szeretném menteni.</translation>
@@ -245,10 +245,8 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Nincs kiválasztott elem</translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="+634"/>
-        <location line="+113"/>
         <source>Hyper&apos;s CD Catalogizer</source>
-        <translation>Hyper CD Katalogizálója</translation>
+        <translation type="vanished">Hyper CD Katalogizálója</translation>
     </message>
     <message>
         <source>Open a catalog from a file.</source>
@@ -283,11 +281,11 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">A program beállításai.</translation>
     </message>
     <message>
-        <location line="-614"/>
+        <location filename="../mainwidget.cpp" line="+131"/>
         <location line="+301"/>
         <location line="+1"/>
         <location line="+2"/>
-        <location line="+206"/>
+        <location line="+208"/>
         <location line="+91"/>
         <location line="+1"/>
         <source>Help</source>
@@ -310,20 +308,20 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Névjegy</translation>
     </message>
     <message>
-        <location line="-646"/>
-        <location line="+557"/>
+        <location line="-648"/>
+        <location line="+559"/>
         <source>Directory Tree</source>
         <translation>Könyvtárfa</translation>
     </message>
     <message>
-        <location line="-551"/>
-        <location line="+554"/>
+        <location line="-553"/>
+        <location line="+556"/>
         <source>Name</source>
         <translation>Név</translation>
     </message>
     <message>
-        <location line="-553"/>
-        <location line="+554"/>
+        <location line="-555"/>
+        <location line="+556"/>
         <source>Size</source>
         <translation>Méret</translation>
     </message>
@@ -352,53 +350,53 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Kilépés</translation>
     </message>
     <message>
-        <location line="-430"/>
-        <location line="+457"/>
+        <location line="-432"/>
+        <location line="+459"/>
         <source>Add media...</source>
         <translation>Média hozzáadása...</translation>
     </message>
     <message>
-        <location line="-442"/>
-        <location line="+446"/>
+        <location line="-444"/>
+        <location line="+448"/>
         <source>Rescan media...</source>
         <translation>Média újraolvasása...</translation>
     </message>
     <message>
-        <location line="-437"/>
-        <location line="+439"/>
+        <location line="-439"/>
+        <location line="+441"/>
         <source>Insert Catalog...</source>
         <translation>Katalógus beillesztése...</translation>
     </message>
     <message>
-        <location line="-422"/>
-        <location line="+426"/>
+        <location line="-424"/>
+        <location line="+428"/>
         <source>Rename node...</source>
         <translation>Csomópont átnevezése...</translation>
     </message>
     <message>
-        <location line="-405"/>
+        <location line="-407"/>
         <location line="+1"/>
         <location line="+2"/>
-        <location line="+407"/>
+        <location line="+409"/>
         <location line="+1"/>
         <source>Delete node</source>
         <translation>Csomópont törlése</translation>
     </message>
     <message>
-        <location line="-315"/>
-        <location line="+340"/>
+        <location line="-317"/>
+        <location line="+342"/>
         <source>Seek in database...</source>
         <translation>Keresés az adatbázisban...</translation>
     </message>
     <message>
-        <location line="-319"/>
-        <location line="+325"/>
+        <location line="-321"/>
+        <location line="+327"/>
         <source>Node size</source>
         <translation>Helyfoglalás</translation>
     </message>
     <message>
-        <location line="-318"/>
-        <location line="+320"/>
+        <location line="-320"/>
+        <location line="+322"/>
         <source>Configuration...</source>
         <translation>Beállítások...</translation>
     </message>
@@ -407,14 +405,14 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Katalógus</translation>
     </message>
     <message>
-        <location line="-603"/>
-        <location line="+515"/>
+        <location line="-605"/>
+        <location line="+517"/>
         <source>Edit</source>
         <translation>Szerkesztés</translation>
     </message>
     <message>
-        <location line="-507"/>
-        <location line="+511"/>
+        <location line="-509"/>
+        <location line="+513"/>
         <source>Others</source>
         <translation>Egyebek</translation>
     </message>
@@ -427,7 +425,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Médiák rendezése számuk szerint</translation>
     </message>
     <message>
-        <location line="-335"/>
+        <location line="-337"/>
         <source>Sort media by name</source>
         <translation>Médiák rendezése nevük szerint</translation>
     </message>
@@ -449,7 +447,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     </message>
     <message>
         <location line="-117"/>
-        <location line="+482"/>
+        <location line="+484"/>
         <source>Recent files...</source>
         <translation>Legutóbb megnyitott állományok...</translation>
     </message>
@@ -458,14 +456,14 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Adatbázis exportálása</translation>
     </message>
     <message>
-        <location line="-543"/>
-        <location line="+512"/>
+        <location line="-545"/>
+        <location line="+514"/>
         <source>Import/Export</source>
         <translation>Import/Export</translation>
     </message>
     <message>
-        <location line="-373"/>
-        <location line="+421"/>
+        <location line="-375"/>
+        <location line="+423"/>
         <source>Re-Number media node...</source>
         <translation>Média átsorszámozása...</translation>
     </message>
@@ -474,8 +472,8 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Adatbázis importálása(csv/gtktalog)</translation>
     </message>
     <message>
-        <location line="-297"/>
-        <location line="+330"/>
+        <location line="-299"/>
+        <location line="+332"/>
         <location line="+1"/>
         <source>Borrowing info...</source>
         <translation>Kölcsönzési információk...</translation>
@@ -493,8 +491,8 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">CdCat Katalógus hivatkozás hozzáadása...</translation>
     </message>
     <message>
-        <location line="-310"/>
-        <location line="+315"/>
+        <location line="-312"/>
+        <location line="+317"/>
         <source>Set Colors...</source>
         <translation>Színek beállítása...</translation>
     </message>
@@ -507,23 +505,23 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Újraolvassa a kiválasztott médiát.</translation>
     </message>
     <message>
-        <location line="-343"/>
+        <location line="-345"/>
         <location line="+1"/>
         <location line="+2"/>
-        <location line="+332"/>
+        <location line="+334"/>
         <location line="+1"/>
         <source>Seek in the panel</source>
         <translation>Keresés a panelen</translation>
     </message>
     <message>
-        <location line="-266"/>
-        <location line="+283"/>
+        <location line="-268"/>
+        <location line="+285"/>
         <source>About Qt</source>
         <translation>A Qt ról</translation>
     </message>
     <message>
-        <location line="-510"/>
-        <location line="+451"/>
+        <location line="-512"/>
+        <location line="+453"/>
         <source>Add a link to a CdCat Catalog...</source>
         <translation>Hivatkozás egy CdCat katalógusra...</translation>
     </message>
@@ -532,223 +530,223 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">A kijelöl csomópont törlése.</translation>
     </message>
     <message>
-        <location line="+120"/>
+        <location line="+122"/>
         <source>Scanning:</source>
         <translation>Vizsgálat:</translation>
     </message>
     <message>
-        <location line="-379"/>
-        <location line="+310"/>
+        <location line="-383"/>
+        <location line="+312"/>
         <source>Import database (CSV/XML)</source>
         <translation>Adatbázis importálása (CSV/XML)</translation>
     </message>
     <message>
-        <location line="-303"/>
+        <location line="-305"/>
         <location line="+1"/>
         <location line="+2"/>
-        <location line="+302"/>
+        <location line="+304"/>
         <location line="+1"/>
         <source>Export database (CSV/HTML/XML)</source>
         <translation>Adatbázis exportálása (CSV/HTML/XML)</translation>
     </message>
     <message>
-        <location line="-606"/>
-        <location line="+513"/>
+        <location line="-608"/>
+        <location line="+515"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-505"/>
-        <location line="+520"/>
+        <location line="-507"/>
+        <location line="+522"/>
         <source>&amp;New...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-518"/>
-        <location line="+519"/>
+        <location line="-520"/>
+        <location line="+521"/>
         <source>Create a new catalog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-515"/>
-        <location line="+516"/>
+        <location line="-517"/>
+        <location line="+518"/>
         <source>&amp;Open...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-514"/>
-        <location line="+515"/>
+        <location line="-516"/>
+        <location line="+517"/>
         <source>Open a existing catalog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-511"/>
-        <location line="+512"/>
+        <location line="-513"/>
+        <location line="+514"/>
         <source>&amp;Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-510"/>
-        <location line="+511"/>
+        <location line="-512"/>
+        <location line="+513"/>
         <source>Save catalog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-507"/>
-        <location line="+508"/>
+        <location line="-509"/>
+        <location line="+510"/>
         <source>&amp;Save as...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-506"/>
-        <location line="+507"/>
+        <location line="-508"/>
+        <location line="+509"/>
         <source>save catalog with new name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-459"/>
+        <location line="-461"/>
         <location line="+1"/>
         <location line="+2"/>
-        <location line="+467"/>
+        <location line="+469"/>
         <location line="+1"/>
         <source>Close catalog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-462"/>
-        <location line="+463"/>
+        <location line="-464"/>
+        <location line="+465"/>
         <location line="+70"/>
-        <location line="+76"/>
+        <location line="+78"/>
         <source>&amp;Quit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-608"/>
+        <location line="-612"/>
         <location line="+2"/>
-        <location line="+461"/>
+        <location line="+463"/>
         <source>Close program</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-455"/>
+        <location line="-457"/>
         <location line="+2"/>
-        <location line="+455"/>
+        <location line="+457"/>
         <source>Add new media to catalog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-449"/>
+        <location line="-451"/>
         <location line="+2"/>
-        <location line="+449"/>
+        <location line="+451"/>
         <source>Add a link to a existing cdcat catalog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-444"/>
+        <location line="-446"/>
         <location line="+2"/>
-        <location line="+444"/>
+        <location line="+446"/>
         <source>Rescan existing media</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-437"/>
+        <location line="-439"/>
         <location line="+2"/>
-        <location line="+437"/>
+        <location line="+439"/>
         <source>Insert catalog into database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-422"/>
+        <location line="-424"/>
         <location line="+2"/>
-        <location line="+424"/>
+        <location line="+426"/>
         <source>Rename node</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-419"/>
+        <location line="-421"/>
         <location line="+2"/>
-        <location line="+419"/>
+        <location line="+421"/>
         <source>Renumber node</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-311"/>
-        <location line="+2"/>
-        <location line="+338"/>
-        <source>Seek in database for files and folders</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-319"/>
-        <location line="+2"/>
-        <location line="+323"/>
-        <source>Calculate node size</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-318"/>
-        <location line="+2"/>
-        <location line="+318"/>
-        <source>Edit cdcat configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="-313"/>
         <location line="+2"/>
-        <location line="+313"/>
+        <location line="+340"/>
+        <source>Seek in database for files and folders</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-321"/>
+        <location line="+2"/>
+        <location line="+325"/>
+        <source>Calculate node size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-320"/>
+        <location line="+2"/>
+        <location line="+320"/>
+        <source>Edit cdcat configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-315"/>
+        <location line="+2"/>
+        <location line="+315"/>
         <source>Set the colors for display</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-308"/>
+        <location line="-310"/>
         <location line="+2"/>
-        <location line="+308"/>
+        <location line="+310"/>
         <source>Import database (CSV/XML) from various catalog programs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-283"/>
+        <location line="-285"/>
         <location line="+1"/>
         <location line="+2"/>
-        <location line="+285"/>
+        <location line="+287"/>
         <location line="+1"/>
         <source>About Cdcat</source>
         <translation type="unfinished">A CdCat-ról</translation>
     </message>
     <message>
-        <location line="-281"/>
+        <location line="-283"/>
         <location line="+2"/>
-        <location line="+281"/>
+        <location line="+283"/>
         <source>About the Qt toolkit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+3"/>
-        <location line="+70"/>
-        <source>Mi&amp;nimize</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-69"/>
         <location line="+72"/>
-        <source>Ma&amp;ximize</source>
+        <source>Mi&amp;nimize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="-71"/>
         <location line="+74"/>
+        <source>Ma&amp;ximize</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-73"/>
+        <location line="+76"/>
         <source>&amp;Restore</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-340"/>
-        <location line="+263"/>
-        <location line="+179"/>
+        <location line="-344"/>
+        <location line="+265"/>
+        <location line="+185"/>
         <source>Cdcat - idle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-839"/>
+        <location line="-847"/>
         <source>Main toolbar</source>
         <translation type="unfinished"></translation>
     </message>
@@ -759,61 +757,61 @@ It is necessary because I&apos;d like to save the config file into your home dir
     </message>
     <message>
         <location line="+233"/>
-        <location line="+368"/>
+        <location line="+370"/>
         <source>view tool bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-367"/>
+        <location line="-369"/>
         <location line="+2"/>
-        <location line="+366"/>
+        <location line="+368"/>
         <source>View tool bar in main window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-360"/>
-        <location line="+361"/>
+        <location line="-362"/>
+        <location line="+363"/>
         <source>view status bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-360"/>
+        <location line="-362"/>
         <location line="+2"/>
-        <location line="+359"/>
+        <location line="+361"/>
         <source>View status bar in main window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-353"/>
-        <location line="+354"/>
+        <location line="-355"/>
+        <location line="+356"/>
         <source>view comment dock</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-353"/>
+        <location line="-355"/>
         <location line="+2"/>
-        <location line="+352"/>
+        <location line="+354"/>
         <source>show comment dock</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-590"/>
-        <location line="+514"/>
+        <location line="-592"/>
+        <location line="+516"/>
         <source>View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-270"/>
+        <location line="-272"/>
         <location line="+1"/>
         <location line="+2"/>
-        <location line="+344"/>
+        <location line="+346"/>
         <location line="+1"/>
         <source>show systray icon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-596"/>
-        <location line="+516"/>
+        <location line="-598"/>
+        <location line="+518"/>
         <source>File</source>
         <translation type="unfinished">Fájl</translation>
     </message>
@@ -828,68 +826,68 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwidget.cpp" line="-361"/>
+        <location filename="../mainwidget.cpp" line="-363"/>
         <location line="+1"/>
         <location line="+2"/>
         <location line="+12"/>
-        <location line="+389"/>
+        <location line="+391"/>
         <location line="+1"/>
         <source>Sort media by number (ascending)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-398"/>
+        <location line="-400"/>
         <location line="+1"/>
         <location line="+2"/>
-        <location line="+396"/>
+        <location line="+398"/>
         <location line="+1"/>
         <source>Sort media by number (descending)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-379"/>
+        <location line="-381"/>
         <location line="+2"/>
-        <location line="+382"/>
+        <location line="+384"/>
         <location line="+1"/>
         <source>Sort media by time (ascending)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-379"/>
+        <location line="-381"/>
         <location line="+2"/>
-        <location line="+378"/>
+        <location line="+380"/>
         <location line="+1"/>
         <source>Sort media by time (descending)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-401"/>
-        <location line="+394"/>
+        <location line="-403"/>
+        <location line="+396"/>
         <location line="+1"/>
         <source>Sort media by name (ascending)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-388"/>
+        <location line="-390"/>
         <location line="+1"/>
         <location line="+2"/>
-        <location line="+386"/>
+        <location line="+388"/>
         <location line="+1"/>
         <source>Sort media by name (descending)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-371"/>
+        <location line="-373"/>
         <location line="+2"/>
-        <location line="+374"/>
+        <location line="+376"/>
         <location line="+1"/>
         <source>Sort media by type (ascending)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-371"/>
+        <location line="-373"/>
         <location line="+2"/>
-        <location line="+370"/>
+        <location line="+372"/>
         <location line="+1"/>
         <source>Sort media by type (descending)</source>
         <translation type="unfinished"></translation>
@@ -905,7 +903,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-435"/>
+        <location line="-437"/>
         <source>Insert Cdcat export XML...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -917,42 +915,42 @@ It is necessary because I&apos;d like to save the config file into your home dir
     </message>
     <message>
         <location line="-94"/>
-        <location line="+504"/>
+        <location line="+506"/>
         <source>Change password...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-502"/>
-        <location line="+503"/>
+        <location line="-504"/>
+        <location line="+505"/>
         <source>Changes password for catalog encryption</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-498"/>
-        <location line="+499"/>
+        <location line="-500"/>
+        <location line="+501"/>
         <source>Disable encryption</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-497"/>
-        <location line="+498"/>
+        <location line="-499"/>
+        <location line="+500"/>
         <source>Disables catalog encryption</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-493"/>
-        <location line="+494"/>
+        <location line="-495"/>
+        <location line="+496"/>
         <source>Enable encryption</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-492"/>
-        <location line="+493"/>
+        <location line="-494"/>
+        <location line="+495"/>
         <source>Enables catalog encryption</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-276"/>
+        <location line="-278"/>
         <location line="+2"/>
         <source>Borrowing info</source>
         <translation type="unfinished"></translation>
@@ -968,7 +966,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
 <context>
     <name>ColorSchemePreview</name>
     <message>
-        <location filename="../colorsettings.cpp" line="+71"/>
+        <location filename="../colorsettings.cpp" line="+73"/>
         <source>Title:</source>
         <translation>Cím:</translation>
     </message>
@@ -981,7 +979,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
 <context>
     <name>ColorSettings</name>
     <message>
-        <location line="+148"/>
+        <location line="+149"/>
         <source>ColorSettings</source>
         <translation>Színbeállítások</translation>
     </message>
@@ -1039,7 +1037,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
 <context>
     <name>CommentWidget</name>
     <message>
-        <location filename="../commwidget.cpp" line="+88"/>
+        <location filename="../commwidget.cpp" line="+89"/>
         <source>Edit and refresh the actual comment page.</source>
         <translation>Az aktuális megjegyzéslap szerkesztése és frissítése.</translation>
     </message>
@@ -1058,7 +1056,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">típus:</translation>
     </message>
     <message>
-        <location line="+57"/>
+        <location line="+62"/>
         <source> CdCat Catalog root</source>
         <translation>CdCat gyökér adatbázis</translation>
     </message>
@@ -1078,7 +1076,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Média</translation>
     </message>
     <message>
-        <location line="+13"/>
+        <location line="+14"/>
         <location line="+1"/>
         <source>Size:</source>
         <translation>Méret:</translation>
@@ -1088,14 +1086,14 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Utolsó módosítás:</translation>
     </message>
     <message>
-        <location line="+62"/>
+        <location line="+67"/>
         <location line="+1"/>
         <source>Owner:</source>
         <translation>Tulajdonos:</translation>
     </message>
     <message>
-        <location line="-116"/>
-        <location line="+124"/>
+        <location line="-124"/>
+        <location line="+133"/>
         <source>Unknown</source>
         <translation>Ismeretlen</translation>
     </message>
@@ -1104,7 +1102,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Média (szám/név):</translation>
     </message>
     <message>
-        <location line="+49"/>
+        <location line="+54"/>
         <location line="+1"/>
         <source>Mp3-Tag:</source>
         <translation>Mp3-tag:</translation>
@@ -1114,8 +1112,8 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">(Szerz/Cím/Alb/Év/Megj)</translation>
     </message>
     <message>
-        <location line="+31"/>
-        <location line="+77"/>
+        <location line="+36"/>
+        <location line="+81"/>
         <location line="+1"/>
         <source>Comment:</source>
         <translation>Megjegyzés:</translation>
@@ -1125,7 +1123,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Nincs kiválasztott elem!</translation>
     </message>
     <message>
-        <location line="-412"/>
+        <location line="-438"/>
         <source>Shows the content of the file.</source>
         <translation>Megmutatja a fájl tartalmát.</translation>
     </message>
@@ -1134,52 +1132,52 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Nincs kiválasztott elem.</translation>
     </message>
     <message>
-        <location line="+107"/>
+        <location line="+108"/>
         <location line="+1"/>
         <source>Name:</source>
         <translation>Név:</translation>
     </message>
     <message>
-        <location line="+42"/>
+        <location line="+45"/>
         <location line="+1"/>
         <source>Type:</source>
         <translation>Típus:</translation>
     </message>
     <message>
-        <location line="+610"/>
+        <location line="+635"/>
         <source>There is no selected element.</source>
         <translation>Nincs kiválasztott elem.</translation>
     </message>
     <message>
-        <location line="-602"/>
+        <location line="-626"/>
         <source> Link to a CdCat catalog</source>
         <translation>Hivatkozás egy CdCat katalógusra</translation>
     </message>
     <message>
-        <location line="+40"/>
+        <location line="+43"/>
         <location line="+1"/>
         <source>Location:</source>
         <translation>Hely:</translation>
     </message>
     <message>
-        <location line="+13"/>
+        <location line="+14"/>
         <location line="+1"/>
         <source>Last modification:</source>
         <translation>Utolsó módosítás:</translation>
     </message>
     <message>
-        <location line="-94"/>
+        <location line="-101"/>
         <location line="+1"/>
         <source>At media (number/name):</source>
         <translation>Médiában (Szám/Név):</translation>
     </message>
     <message>
-        <location line="-106"/>
+        <location line="-108"/>
         <source>Edit and refresh the actual category page.</source>
         <translation>Szerkeszti és frissíti az aktuális kategória lapot.</translation>
     </message>
     <message>
-        <location line="+461"/>
+        <location line="+488"/>
         <location line="+1"/>
         <source>Category:</source>
         <translation>Kategória:</translation>
@@ -1191,12 +1189,12 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-222"/>
+        <location line="-231"/>
         <source>Artist:</source>
         <translation type="unfinished">Szerző:</translation>
     </message>
     <message>
-        <location line="+6"/>
+        <location line="+7"/>
         <source>Title:</source>
         <translation type="unfinished">Cím:</translation>
     </message>
@@ -1206,23 +1204,23 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+6"/>
+        <location line="+7"/>
         <source>Album:</source>
         <translation type="unfinished">Album:</translation>
     </message>
     <message>
-        <location line="+6"/>
+        <location line="+7"/>
         <source>Year:</source>
         <translation type="unfinished">Év:</translation>
     </message>
     <message>
-        <location line="+318"/>
+        <location line="+326"/>
         <location line="+1"/>
         <source>File info:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-94"/>
+        <location line="-95"/>
         <source>Rights</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1257,30 +1255,30 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished">Elérési út</translation>
     </message>
     <message>
-        <location line="-231"/>
+        <location line="-236"/>
         <location line="+1"/>
         <source>Exif data:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+25"/>
+        <location line="+27"/>
         <location line="+1"/>
         <source>Thumbnail:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+367"/>
+        <location line="+370"/>
         <location line="+1"/>
         <source>Stored size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+20"/>
+        <location line="+21"/>
         <source>There is no selected element:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-492"/>
+        <location line="-505"/>
         <source>Number</source>
         <translation type="unfinished">Sorszám</translation>
     </message>
@@ -1309,7 +1307,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
 <context>
     <name>ConfigDialog</name>
     <message>
-        <location filename="../config.cpp" line="+637"/>
+        <location filename="../config.cpp" line="+689"/>
         <source>Configure  CdCat...</source>
         <translation>CdCat beállításai...</translation>
     </message>
@@ -1360,8 +1358,8 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Felszkennelés: CD becsatolás kezdéskor / kidobás ha vége van</translation>
     </message>
     <message>
-        <location line="-241"/>
-        <location line="+233"/>
+        <location line="-240"/>
+        <location line="+232"/>
         <source>Use own font size</source>
         <translation>Saját betűtípus használata</translation>
     </message>
@@ -1371,12 +1369,12 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Legutóbb megnyitott fájlok darabszáma</translation>
     </message>
     <message>
-        <location line="+24"/>
+        <location line="+26"/>
         <source>Choose path to cdrom!</source>
         <translation>Add meg a CDROM eszköz elérési útját!</translation>
     </message>
     <message>
-        <location line="-15"/>
+        <location line="-17"/>
         <source>The language of CdCat interface</source>
         <translation>A CdCat által használt nyelv</translation>
     </message>
@@ -1429,18 +1427,18 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-126"/>
+        <location line="-127"/>
         <source>show systray icon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+116"/>
+        <location line="+117"/>
         <source>Show systray icon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-115"/>
-        <location line="+116"/>
+        <location line="-116"/>
+        <location line="+117"/>
         <source>display current scanned file in tray</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1480,9 +1478,9 @@ It is necessary because I&apos;d like to save the config file into your home dir
     </message>
     <message>
         <location filename="../dbase.cpp" line="+993"/>
-        <location line="+1097"/>
-        <location line="+24"/>
-        <location line="+12"/>
+        <location line="+1148"/>
+        <location line="+25"/>
+        <location line="+11"/>
         <source>Error</source>
         <translation>Hiba</translation>
     </message>
@@ -1491,7 +1489,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Könyvtár kihagyása</translation>
     </message>
     <message>
-        <location line="-1133"/>
+        <location line="-1184"/>
         <source>Cancel scanning</source>
         <translation>Felolvasás megszakítása</translation>
     </message>
@@ -1508,7 +1506,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Szimbólikus Link#A következö helyre:</translation>
     </message>
     <message>
-        <location line="-275"/>
+        <location line="-272"/>
         <source>I can&apos;t rewrite the file: %1</source>
         <translation>Nem tudom újraírni a fájlt: %1</translation>
     </message>
@@ -1518,15 +1516,15 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Nem tudom létrehozni a fájlt: %1</translation>
     </message>
     <message>
-        <location line="+32"/>
-        <location line="+7"/>
-        <location line="+99"/>
-        <location line="+1209"/>
+        <location line="+33"/>
+        <location line="+6"/>
+        <location line="+94"/>
+        <location line="+1262"/>
         <source>I can&apos;t open the file: %1</source>
         <translation>Nem tudom megnyitni a fájlt: %1</translation>
     </message>
     <message>
-        <location line="-1101"/>
+        <location line="-1152"/>
         <source>Cannot read directory: %1</source>
         <translation>Nem tudom olvasni a könyvtárat: %1</translation>
     </message>
@@ -1535,17 +1533,17 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Szimbolikus link#Ide mutat:</translation>
     </message>
     <message>
-        <location line="+1137"/>
+        <location line="+1188"/>
         <source>Error while parsing file: %1</source>
         <translation>Hiba a felolvasás közben, fájl: %1</translation>
     </message>
     <message>
-        <location line="-1358"/>
+        <location line="-1405"/>
         <source>No database opened!</source>
         <translation>Nincs megnyitott adatbázis!</translation>
     </message>
     <message>
-        <location line="+223"/>
+        <location line="+219"/>
         <source>Cannot read file: %1</source>
         <translation>Nem tudom felolvasni a fájlt: %1</translation>
     </message>
@@ -1555,17 +1553,17 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Kihagyás</translation>
     </message>
     <message>
-        <location line="+96"/>
+        <location line="+97"/>
         <source>Symbolic link to file:#</source>
         <translation>Azimbólikus link egy fájlra:#</translation>
     </message>
     <message>
-        <location line="+52"/>
+        <location line="+49"/>
         <source>Symbolic link to directory:#</source>
         <translation>Szimbólikus link egy könyvtárra:#</translation>
     </message>
     <message>
-        <location line="+29"/>
+        <location line="+27"/>
         <source>DEAD Symbolic link to:#</source>
         <translation>Halott szimbólikus link:#</translation>
     </message>
@@ -1575,23 +1573,28 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Rendszerfájl (Pl: FIFO vagy socket)</translation>
     </message>
     <message>
-        <location line="-276"/>
-        <location line="+1209"/>
+        <location line="-273"/>
+        <location line="+1262"/>
         <source>Not enough memory to open the file: %1</source>
         <translation>Nincs elég memória a fájl megnyitásához: %1</translation>
     </message>
     <message>
-        <location filename="../wdbfile.cpp" line="+959"/>
+        <location filename="../wdbfile.cpp" line="+1036"/>
         <source>Reading file, please wait...</source>
         <translation>Fájl felolvasása, kérem várjon...</translation>
     </message>
     <message>
-        <location line="+128"/>
+        <location line="+77"/>
+        <source>decrypting file, please wait...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+67"/>
         <source>Parsing file, please wait...</source>
         <translation>Fájl beolvasása, kérem várjon...</translation>
     </message>
     <message>
-        <location line="-7"/>
+        <location line="-8"/>
         <source>Converting to unicode, please wait...</source>
         <translation>Unikódra konvertálás, kérem várjon...</translation>
     </message>
@@ -1608,13 +1611,13 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Beolvasási hiba</translation>
     </message>
     <message>
-        <location line="-104"/>
-        <location line="+118"/>
+        <location line="-118"/>
+        <location line="+133"/>
         <source>You have cancelled catalog reading.</source>
         <translation>Leállítottad a katalógus felolvasását.</translation>
     </message>
     <message>
-        <location filename="../dbase.cpp" line="-239"/>
+        <location filename="../dbase.cpp" line="-254"/>
         <source>device </source>
         <translation type="unfinished"></translation>
     </message>
@@ -1624,28 +1627,28 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-684"/>
+        <location line="-725"/>
         <source>reading mp3 info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+49"/>
-        <location line="+5"/>
+        <location line="+53"/>
+        <location line="+7"/>
         <source>reading media info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+17"/>
+        <location line="+19"/>
         <source>reading avi info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+74"/>
+        <location line="+80"/>
         <source>reading file content</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+54"/>
+        <location line="+57"/>
         <source>reading exif data</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1655,21 +1658,21 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+361"/>
-        <location line="+3"/>
-        <location line="+145"/>
-        <location line="+3"/>
+        <location line="+377"/>
+        <location line="+4"/>
+        <location line="+156"/>
+        <location line="+4"/>
         <source>scanning archive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-113"/>
-        <location line="+209"/>
+        <location line="-122"/>
+        <location line="+222"/>
         <source>scanning archive, file:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1473"/>
+        <location line="-1517"/>
         <source>unknown</source>
         <translation type="unfinished">ismeretlen</translation>
     </message>
@@ -1677,7 +1680,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
 <context>
     <name>DirectoryView</name>
     <message>
-        <location filename="../dirview.cpp" line="+185"/>
+        <location filename="../dirview.cpp" line="+183"/>
         <source>Name</source>
         <translation>Név</translation>
     </message>
@@ -1725,105 +1728,104 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Nincs kiválasztott elem.</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="-2549"/>
+        <location filename="../guibase.cpp" line="-2685"/>
         <location line="+20"/>
         <source>Directory</source>
         <translation>Könyvtár</translation>
     </message>
     <message>
-        <location line="+57"/>
+        <location line="+59"/>
         <source>Catalog</source>
         <translation>Katalógus</translation>
     </message>
     <message>
         <location line="+5"/>
-        <location line="+1590"/>
+        <location line="+1683"/>
         <source>Unknown(DB)</source>
         <translation>Ismeretlen(DB)</translation>
     </message>
     <message>
-        <location line="-1587"/>
-        <location line="+1591"/>
+        <location line="-1680"/>
+        <location line="+1684"/>
         <source>CD</source>
         <translation>CD</translation>
     </message>
     <message>
-        <location line="-1588"/>
-        <location line="+1592"/>
+        <location line="-1681"/>
+        <location line="+1685"/>
         <source>DVD</source>
         <translation>DVD</translation>
     </message>
     <message>
-        <location line="-1589"/>
-        <location line="+1593"/>
+        <location line="-1682"/>
+        <location line="+1686"/>
         <source>HardDisc</source>
         <translation>Merevlemez</translation>
     </message>
     <message>
-        <location line="-1590"/>
-        <location line="+1594"/>
+        <location line="-1683"/>
+        <location line="+1687"/>
         <source>Floppy</source>
         <translation>Floppy</translation>
     </message>
     <message>
-        <location line="-1591"/>
-        <location line="+1595"/>
+        <location line="-1684"/>
+        <location line="+1688"/>
         <source>NetworkDrv</source>
         <translation>HálózatiMegh</translation>
     </message>
     <message>
-        <location line="-1592"/>
-        <location line="+1596"/>
+        <location line="-1685"/>
+        <location line="+1689"/>
         <source>FlashDrv</source>
         <translation>FlashMegh</translation>
     </message>
     <message>
-        <location line="-1593"/>
-        <location line="+1597"/>
+        <location line="-1686"/>
+        <location line="+1690"/>
         <source>OtherDevice</source>
         <translation>EgyébEszköz</translation>
     </message>
     <message>
-        <location line="-1592"/>
+        <location line="-1685"/>
         <source>File</source>
         <translation>Fájl</translation>
     </message>
     <message>
-        <location line="+216"/>
+        <location line="+233"/>
         <source>modified</source>
         <translation>Hyper CD Katalogizálója (módosítva)</translation>
     </message>
     <message>
-        <location line="+6"/>
         <source>Hyper&apos;s CD Catalogizer</source>
-        <translation>Hyper CD Katalogizálója</translation>
+        <translation type="vanished">Hyper CD Katalogizálója</translation>
     </message>
     <message>
-        <location line="+244"/>
-        <location line="+169"/>
-        <location line="+785"/>
-        <location line="+68"/>
+        <location line="+254"/>
+        <location line="+185"/>
+        <location line="+827"/>
+        <location line="+74"/>
         <source>CdCat databases (*.hcf )</source>
         <translation>CdCat adatbázis (*.hcf)</translation>
     </message>
     <message>
-        <location line="-984"/>
-        <location line="+929"/>
-        <location line="+34"/>
-        <location line="+34"/>
-        <location line="+432"/>
-        <location line="+163"/>
-        <location line="+41"/>
+        <location line="-1046"/>
+        <location line="+986"/>
+        <location line="+37"/>
+        <location line="+37"/>
+        <location line="+453"/>
+        <location line="+174"/>
+        <location line="+42"/>
         <source>Error while opening...</source>
         <translation>Hiba megnyitás alatt...</translation>
     </message>
     <message>
-        <location line="-1477"/>
+        <location line="-1556"/>
         <source>Error while saving...</source>
         <translation>Hiba mentés közben...</translation>
     </message>
     <message>
-        <location line="+48"/>
+        <location line="+53"/>
         <source>Closing previous database...</source>
         <translation>Az előző adatbázis bezárása...</translation>
     </message>
@@ -1833,15 +1835,15 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>El akarod menteni a változásokat?</translation>
     </message>
     <message>
-        <location line="+31"/>
-        <location line="+504"/>
+        <location line="+36"/>
+        <location line="+526"/>
         <location line="+4"/>
         <location line="+76"/>
-        <location line="+196"/>
-        <location line="+88"/>
+        <location line="+212"/>
+        <location line="+95"/>
         <location line="+5"/>
-        <location line="+16"/>
-        <location line="+592"/>
+        <location line="+18"/>
+        <location line="+625"/>
         <source>Error:</source>
         <translation>Hiba:</translation>
     </message>
@@ -1854,15 +1856,15 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Biztosan törölni akarod az alábbi elemet?</translation>
     </message>
     <message>
-        <location line="-1476"/>
-        <location line="+1458"/>
+        <location line="-1556"/>
+        <location line="+1535"/>
         <source>Confirmation</source>
         <translation>Megerösítés</translation>
     </message>
     <message>
-        <location line="-2574"/>
-        <location line="+1432"/>
-        <location line="+41"/>
+        <location line="-2724"/>
+        <location line="+1516"/>
+        <location line="+42"/>
         <source>Warning...</source>
         <translation>Vigyázat...</translation>
     </message>
@@ -1877,7 +1879,7 @@ az adatbázis lehet hogy nem teljes</translation>
         <translation type="obsolete">Nincs kiválasztott média a középsö lista részben!</translation>
     </message>
     <message>
-        <location line="+146"/>
+        <location line="+156"/>
         <source>You can refresh ONLY a MEDIA node!</source>
         <translation>Csak MÉDIA típusú elemet tudsz újraolvastatni!</translation>
     </message>
@@ -1914,26 +1916,26 @@ Szerzö: Deák Péter (deakpe@delfin.klte.hu)</translation>
         <translation type="obsolete">Ok</translation>
     </message>
     <message>
-        <location line="-538"/>
-        <location line="+36"/>
-        <location line="+1459"/>
+        <location line="-565"/>
+        <location line="+41"/>
+        <location line="+1536"/>
         <source>Yes</source>
         <translation>Igen</translation>
     </message>
     <message>
-        <location line="-1495"/>
-        <location line="+36"/>
-        <location line="+1459"/>
+        <location line="-1577"/>
+        <location line="+41"/>
+        <location line="+1536"/>
         <source>No</source>
         <translation>Nem</translation>
     </message>
     <message>
-        <location line="-1738"/>
+        <location line="-1844"/>
         <source>Open a file...</source>
         <translation>Fájl megnyitása...</translation>
     </message>
     <message>
-        <location line="+169"/>
+        <location line="+185"/>
         <source>Save to file...</source>
         <translation>Fájlba mentés...</translation>
     </message>
@@ -1946,8 +1948,8 @@ Verzio: 0.6 (beta)
 Szerzö: Deák Péter (deakpe@delfin.klte.hu)</translation>
     </message>
     <message>
-        <location line="+785"/>
-        <location line="+68"/>
+        <location line="+827"/>
+        <location line="+74"/>
         <source>Insert a database file...</source>
         <translation>Adatbázisfájl beszúrása...</translation>
     </message>
@@ -2004,37 +2006,36 @@ Copyright (C) 2003 Deák Péter (GPL)</translation>
 %1</translation>
     </message>
     <message>
-        <location line="+180"/>
         <source>The size of &quot;%1&quot; :
  %2
  %3 file /%4 directory</source>
-        <translation>A következő elem helyfoglalása &quot;%1&quot; :
+        <translation type="vanished">A következő elem helyfoglalása &quot;%1&quot; :
 %2
 %3 fájl / %4 könyvtár</translation>
     </message>
     <message>
-        <location line="-837"/>
+        <location line="-688"/>
         <source>Cannot mount CD</source>
         <translation>Nem tudom becsatolni a CDROM ot</translation>
     </message>
     <message>
-        <location line="+346"/>
+        <location line="+357"/>
         <source>Cannot eject CD!</source>
         <translation>Nem tudom lecsatolni, kiadni a CDROM tálcáját!</translation>
     </message>
     <message>
-        <location line="-346"/>
+        <location line="-357"/>
         <source>I can&apos;t find the &quot;mount&quot; program</source>
         <translation>Nem találom a &quot;mount&quot; programot</translation>
     </message>
     <message>
-        <location line="+87"/>
-        <location line="+277"/>
+        <location line="+90"/>
+        <location line="+287"/>
         <source>Cannot mount CD!</source>
         <translation>Nem tudom becsatolni a CD-t!</translation>
     </message>
     <message>
-        <location line="-52"/>
+        <location line="-56"/>
         <source>Cannot eject CD</source>
         <translation>Nem tudom kidobatni a CD-t</translation>
     </message>
@@ -2044,14 +2045,14 @@ Copyright (C) 2003 Deák Péter (GPL)</translation>
         <translation>Nem találom az &quot;eject&quot; programot</translation>
     </message>
     <message>
-        <location line="-860"/>
-        <location line="+49"/>
+        <location line="-905"/>
+        <location line="+50"/>
         <source>Rename node...</source>
         <translation>Csomópont átnevezése...</translation>
     </message>
     <message>
-        <location line="-48"/>
-        <location line="+49"/>
+        <location line="-49"/>
+        <location line="+50"/>
         <source>Delete node</source>
         <translation>Csomópont törlése</translation>
     </message>
@@ -2063,47 +2064,47 @@ Copyright (C) 2003 Deák Péter (GPL)</translation>
     </message>
     <message>
         <location line="-39"/>
-        <location line="+62"/>
-        <location line="+1467"/>
+        <location line="+61"/>
+        <location line="+1552"/>
         <source>Add media...</source>
         <translation>Média hozzáadása...</translation>
     </message>
     <message>
-        <location line="-1527"/>
-        <location line="+62"/>
+        <location line="-1611"/>
+        <location line="+61"/>
         <source>Insert Catalog...</source>
         <translation>Katalógus beillesztése...</translation>
     </message>
     <message>
-        <location line="+884"/>
+        <location line="+938"/>
         <source>Rescan %1</source>
         <translation>Rescan %1</translation>
     </message>
     <message>
-        <location line="-956"/>
+        <location line="-1009"/>
         <location line="+48"/>
         <source>Re-Number media...</source>
         <translation>Média átsorszámozása...</translation>
     </message>
     <message>
-        <location line="+1269"/>
+        <location line="+1345"/>
         <source>It is NOT a media node!</source>
         <translation>Ez NEM egy média elem!</translation>
     </message>
     <message>
-        <location line="-1344"/>
-        <location line="+59"/>
+        <location line="-1421"/>
+        <location line="+61"/>
         <source>Node size</source>
         <translation>Helyfoglalás</translation>
     </message>
     <message>
-        <location line="-62"/>
-        <location line="+59"/>
+        <location line="-64"/>
+        <location line="+61"/>
         <source>View/Edit Comment...</source>
         <translation>Megjegyzést megnéz/szerkeszt...</translation>
     </message>
     <message>
-        <location line="+47"/>
+        <location line="+45"/>
         <source>Close all branch</source>
         <translation>Minden ágat bezár</translation>
     </message>
@@ -2112,35 +2113,34 @@ Copyright (C) 2003 Deák Péter (GPL)</translation>
         <translation type="obsolete">Fájltartalmat megnéz/töröl...</translation>
     </message>
     <message>
-        <location line="+368"/>
-        <location line="+780"/>
-        <location line="+88"/>
-        <location line="+21"/>
-        <location line="+592"/>
+        <location line="+400"/>
+        <location line="+818"/>
+        <location line="+95"/>
+        <location line="+23"/>
+        <location line="+625"/>
         <source>There is no selected item in the middle list box!</source>
         <translation>Nincs kiválasztott elem a középsö lista részben!</translation>
     </message>
     <message>
-        <location line="-1119"/>
+        <location line="-1187"/>
         <source>An error occurred while scanning,
 the DataBase may be incomplete</source>
         <translation>Volt pár hiba felolvasás közben,
 az adatbázis lehet hogy nem teljes</translation>
     </message>
     <message>
-        <location line="+142"/>
+        <location line="+152"/>
         <source>There is no selected Media in the middle list box!</source>
         <translation>Nincs kiválasztott média a középsö lista részben!</translation>
     </message>
     <message>
-        <location line="+73"/>
         <source>An error occurred while scanning, the rescan operation was cancelled:
 %1</source>
-        <translation>Hiba történt felolvasás közben, a müvelet meg lett szakítva:
+        <translation type="vanished">Hiba történt felolvasás közben, a müvelet meg lett szakítva:
 %1</translation>
     </message>
     <message>
-        <location line="-1027"/>
+        <location line="-1008"/>
         <location line="+49"/>
         <source>Borrow this media to...</source>
         <translation>Kölcsönadom ezt a médiát...</translation>
@@ -2150,14 +2150,14 @@ az adatbázis lehet hogy nem teljes</translation>
         <translation type="obsolete">Visszakaptam! (kölcsönadás jelzésének törlése)</translation>
     </message>
     <message>
-        <location line="+1865"/>
+        <location line="+1974"/>
         <source>Do you want to clear the borrowing mark from media &quot;%1&quot;?
 (Say yes if you got it back.)</source>
         <translation>Biztos hogy törölni akarod a kölcsönadás jelzését a &quot;%1&quot; médiáról?
 (Felelj igennel ha visszakaptad)</translation>
     </message>
     <message>
-        <location line="-1912"/>
+        <location line="-2021"/>
         <location line="+49"/>
         <source>I got it back! (clear borrowing mark)</source>
         <translation>Visszakaptam! (A kölcsönadás jelzésének törlése)</translation>
@@ -2175,12 +2175,12 @@ Eröteljesen ajánlott frissiteni a cdcat-ot!!!
 Honlap: %3</translation>
     </message>
     <message>
-        <location line="-337"/>
+        <location line="-355"/>
         <source>Catalog Link</source>
         <translation>Katalógus hivatkozás</translation>
     </message>
     <message>
-        <location line="+278"/>
+        <location line="+295"/>
         <source>Follow the link (Open it) !</source>
         <translation>Ugrás a hivatkozottra (Megnyitás) !</translation>
     </message>
@@ -2189,22 +2189,22 @@ Honlap: %3</translation>
         <translation type="obsolete">Cdcat Katalógus hivatkozás hozzáadása...</translation>
     </message>
     <message>
-        <location line="+1816"/>
+        <location line="+1917"/>
         <source>The link is empty.</source>
         <translation>A hivatkozás üres.</translation>
     </message>
     <message>
-        <location line="-2212"/>
+        <location line="-2331"/>
         <source>Number</source>
         <translation>Sorszám</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+2"/>
         <source>Size</source>
         <translation>Méret</translation>
     </message>
     <message>
-        <location line="-259"/>
+        <location line="-280"/>
         <source>The database file has newer version than this version of cdcat can work with:
 I understand maximum %1 datafile version but readed %2
 
@@ -2231,12 +2231,12 @@ Honlap: %3</translation>
         <translation type="obsolete">Az eredmény:</translation>
     </message>
     <message>
-        <location line="+1606"/>
+        <location line="+1701"/>
         <source>Select directory</source>
         <translation>Könyvtár kiválasztása</translation>
     </message>
     <message>
-        <location line="+422"/>
+        <location line="+444"/>
         <source>The result:</source>
         <translation>Az eredmény:</translation>
     </message>
@@ -2245,27 +2245,27 @@ Honlap: %3</translation>
         <translation type="obsolete">MiB</translation>
     </message>
     <message>
-        <location line="-878"/>
-        <location line="+248"/>
-        <location line="+214"/>
+        <location line="-918"/>
+        <location line="+253"/>
+        <location line="+228"/>
         <location line="+2"/>
         <location line="+15"/>
         <source>Scanning directory tree, please wait...</source>
         <translation>Könyvtárfa felolvasása, kérem várjon...</translation>
     </message>
     <message>
-        <location line="-1009"/>
-        <location line="+59"/>
+        <location line="-1064"/>
+        <location line="+61"/>
         <source>View/Edit Category...</source>
         <translation>Kategóriát néz/szerkeszt...</translation>
     </message>
     <message>
-        <location line="+22"/>
+        <location line="+21"/>
         <source>Change media type...</source>
         <translation>Média típus változtatás...</translation>
     </message>
     <message>
-        <location line="+661"/>
+        <location line="+701"/>
         <source>Enter media name...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2280,77 +2280,90 @@ Honlap: %3</translation>
         <translation type="unfinished">Média</translation>
     </message>
     <message>
-        <location line="-711"/>
+        <location line="-751"/>
         <source>search for duplicates...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-26"/>
+        <location line="-27"/>
         <source>Show content...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+2"/>
         <source>Show/Remove content...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+28"/>
+        <location line="+30"/>
         <source>Add a link to a CdCat Catalog...</source>
         <translation type="unfinished">Hivatkozás egy CdCat katalógusra...</translation>
     </message>
     <message>
-        <location line="+62"/>
+        <location line="+61"/>
         <source>Add a link to a Cdcat catalog...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+694"/>
+        <location line="+737"/>
         <source>You have cancelled catalog scanning,
 the DataBase may be incomplete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-13"/>
-        <location line="+231"/>
+        <location line="-15"/>
+        <location line="+245"/>
         <source>Scan started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-231"/>
-        <location line="+231"/>
+        <location line="-245"/>
+        <location line="+245"/>
         <source>Scanning %1 into %2 has been started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-210"/>
-        <location line="+225"/>
+        <location line="-222"/>
+        <location line="+237"/>
         <source>Scanning %1 into %2 has been finished</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-225"/>
-        <location line="+4"/>
-        <location line="+221"/>
-        <location line="+4"/>
+        <location line="-237"/>
+        <location line="+3"/>
+        <location line="+234"/>
+        <location line="+3"/>
         <source>Scan finished</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-225"/>
-        <location line="+225"/>
+        <location line="-237"/>
+        <location line="+237"/>
         <source>Scanning %1 into %2 has been finished (NOT complete)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-222"/>
-        <location line="+225"/>
-        <location line="+85"/>
+        <location line="-234"/>
+        <location line="+237"/>
+        <location line="+88"/>
         <source>Cdcat - idle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+419"/>
+        <location line="-72"/>
+        <source>An error occurred while scanning, the rescan operation was cancelled: 
+%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+374"/>
+        <source>The size of &quot;%1&quot; : 
+ %2 
+ %3 file /%4 directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+145"/>
         <source>Help</source>
         <translation type="unfinished">Súgó</translation>
     </message>
@@ -2465,13 +2478,13 @@ the DataBase may be incomplete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1239"/>
-        <location line="+44"/>
+        <location line="-1307"/>
+        <location line="+47"/>
         <source>Saving catalog, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+812"/>
+        <location line="+856"/>
         <source>Insert a cdcat exported xml file...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2481,80 +2494,80 @@ the DataBase may be incomplete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1099"/>
+        <location line="-1162"/>
         <source>Change password...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1890"/>
+        <location line="+2001"/>
         <source>Password has been successfully changed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+0"/>
-        <location line="+31"/>
-        <location line="+21"/>
+        <location line="+29"/>
+        <location line="+20"/>
         <source>Password changed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-46"/>
-        <location line="+33"/>
+        <location line="-44"/>
+        <location line="+31"/>
         <source>Password length is too short, must be minimum 4 chars</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-33"/>
-        <location line="+33"/>
+        <location line="-31"/>
+        <location line="+31"/>
         <source>Password too short</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-43"/>
-        <location line="+30"/>
+        <location line="-39"/>
+        <location line="+28"/>
         <source>Password length is too big, must be maximal %1 chars</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-30"/>
-        <location line="+30"/>
+        <location line="-28"/>
+        <location line="+28"/>
         <source>Password too big</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1915"/>
+        <location line="-2025"/>
         <source>Disable encryption</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+4"/>
+        <location line="+3"/>
         <source>Enable encryption</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1916"/>
+        <location line="+2026"/>
         <source>Encryption has been successfully enabled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+21"/>
+        <location line="+20"/>
         <source>Encryption has been successfully disabled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-42"/>
-        <location line="+33"/>
+        <location line="-41"/>
+        <location line="+31"/>
         <source>Passwords not match</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-33"/>
-        <location line="+33"/>
+        <location line="-31"/>
+        <location line="+31"/>
         <source>Passwords does not match</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1545"/>
+        <location line="-1621"/>
         <source>Do you really want to delete
 &quot;%1&quot;?</source>
         <translation type="unfinished"></translation>
@@ -2563,7 +2576,7 @@ the DataBase may be incomplete</source>
 <context>
     <name>HDirectoryView</name>
     <message>
-        <location filename="../hdirview.cpp" line="+322"/>
+        <location filename="../hdirview.cpp" line="+327"/>
         <source>Directory Tree</source>
         <translation>Könyvtárfa</translation>
     </message>
@@ -2608,7 +2621,7 @@ the DataBase may be incomplete</source>
 <context>
     <name>HQListView</name>
     <message>
-        <location filename="../guibase.cpp" line="-1255"/>
+        <location filename="../guibase.cpp" line="-1341"/>
         <source>Name</source>
         <translation>Név</translation>
     </message>
@@ -2626,7 +2639,7 @@ the DataBase may be incomplete</source>
 <context>
     <name>ImportDialog</name>
     <message>
-        <location filename="../importdialog.cpp" line="+182"/>
+        <location filename="../importdialog.cpp" line="+183"/>
         <source>Correct bad style from gtktalog export</source>
         <translation>Rossz stílusú gtktalog export korrekciója</translation>
     </message>
@@ -2709,7 +2722,7 @@ konvertálja
         <translation type="obsolete">&lt;strong&gt;Figyelem! Olvasd el a README_CSV_IMPORT fájlt mielőtt importálsz&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location line="+69"/>
+        <location line="+67"/>
         <location line="+5"/>
         <source>Error:</source>
         <translation>Hiba:</translation>
@@ -2728,7 +2741,7 @@ konvertálja
         <translation type="obsolete">A &quot;szeparátor&quot; mező kitöltése kötelező!</translation>
     </message>
     <message>
-        <location line="+69"/>
+        <location line="+58"/>
         <source>csv files(*.csv)</source>
         <translation>csv fájlok (*.csv)</translation>
     </message>
@@ -2737,12 +2750,12 @@ konvertálja
         <translation type="obsolete">fájl megnyitása tallózó panel</translation>
     </message>
     <message>
-        <location line="+23"/>
+        <location line="+21"/>
         <source>Choose a file for import</source>
         <translation>Válaszd ki az importálandó fájlt</translation>
     </message>
     <message>
-        <location line="-316"/>
+        <location line="-301"/>
         <location line="+157"/>
         <source>Type</source>
         <translation>Típus</translation>
@@ -2810,13 +2823,13 @@ konvertálja
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+8"/>
+        <location line="+7"/>
         <source>Example:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+80"/>
-        <location line="+3"/>
+        <location line="+67"/>
+        <location line="+2"/>
         <source>xml files(*.xml)</source>
         <translation>xml fájlok(*.xml)</translation>
     </message>
@@ -2833,7 +2846,7 @@ konvertálja
         <translation type="obsolete">Válaszd ki ezt text/csv importálásakor</translation>
     </message>
     <message>
-        <location line="-108"/>
+        <location line="-93"/>
         <source>Select this for importing a xml report generated from gtktalog</source>
         <translation>Válaszd ki ezt ha gtktalog xml fájlt importálsz</translation>
     </message>
@@ -2951,17 +2964,17 @@ konvertálja
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+25"/>
+        <location line="+23"/>
         <source>You must be fill the &quot;Separator&quot; field!</source>
         <translation>Ki kell töltened a &quot;Szeparátor&quot; mezőt!</translation>
     </message>
     <message>
-        <location line="+75"/>
+        <location line="+61"/>
         <source>all files(*.*)</source>
         <translation>minden fájl(*.*)</translation>
     </message>
     <message>
-        <location line="-146"/>
+        <location line="-130"/>
         <source>&amp;Gtktalog (csv)</source>
         <translation>&amp;Gtktalog (csv)</translation>
     </message>
@@ -3082,12 +3095,12 @@ konvertálja
         <translation>File Archivist által készített fájl beolvasásához.</translation>
     </message>
     <message>
-        <location line="+117"/>
+        <location line="+101"/>
         <source>File Archivist files(*.arch)</source>
         <translation>File Archivist fájlok (*.arch)</translation>
     </message>
     <message>
-        <location line="-137"/>
+        <location line="-121"/>
         <source>&amp;Advanced Disk Catalog (csv)</source>
         <translation>&amp;Advanced Disk Catalog (csv)</translation>
     </message>
@@ -3126,22 +3139,22 @@ Szerző:&lt;br&gt;&lt;font size=&quot;+2&quot;&gt; Deák Péter (hyperr@freemail
 Copyright (C) 2003 Deák Péter (GPL)&lt;/p&gt;&lt;/font&gt;&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../info.cpp" line="+143"/>
+        <location filename="../info.cpp" line="+181"/>
         <source>German translation &amp; additional programming</source>
         <translation>Német fordítás &amp; módosítások</translation>
     </message>
     <message>
-        <location line="+14"/>
+        <location line="+11"/>
         <source>Spanish translation</source>
         <translation>Spanyol fordítás</translation>
     </message>
     <message>
-        <location line="+6"/>
+        <location line="+5"/>
         <source>Czech translation</source>
         <translation>Cseh fordítás</translation>
     </message>
     <message>
-        <location line="+293"/>
+        <location line="+328"/>
         <source>About cdcat</source>
         <translation>A CdCat-ról</translation>
     </message>
@@ -3166,56 +3179,58 @@ Copyright (C) 2003 Deák Péter (GPL)&lt;/p&gt;&lt;/font&gt;&lt;/p&gt;</translat
         <translation>Köszönet</translation>
     </message>
     <message>
-        <location line="-382"/>
         <source>-= CdCatalog by Hyper =-</source>
-        <translation>-= CdKatalog Hyper-től =-</translation>
+        <translation type="vanished">-= CdKatalog Hyper-től =-</translation>
     </message>
     <message>
-        <location line="+4"/>
+        <location line="-439"/>
         <source>Version:</source>
         <translation>Verzió:</translation>
     </message>
     <message>
-        <location line="+45"/>
+        <location line="+69"/>
         <source>Author:</source>
         <translation>Szerző:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Copyright (C) 2003 Peter Deak (GPL)</source>
-        <translation>Copyright (C) 2003 Deák Péter (GPL)</translation>
+        <translation type="vanished">Copyright (C) 2003 Deák Péter (GPL)</translation>
     </message>
     <message>
         <source>Polish translation</source>
         <translation type="obsolete">Lengyel fordítás</translation>
     </message>
     <message>
-        <location line="+17"/>
+        <location line="+23"/>
         <source>AVI reader plugin &amp; Polish translation</source>
         <translation>AVI felolvasó plugin &amp; lengyel fordítás</translation>
     </message>
     <message>
-        <location line="-15"/>
         <source>Copyright (C) 2010 Christoph Thielecke (GPL)</source>
-        <translation>Copyright (C) 2010 Christoph Thielecke (GPL)</translation>
+        <translation type="vanished">Copyright (C) 2010 Christoph Thielecke (GPL)</translation>
     </message>
     <message>
-        <location line="+9"/>
+        <location line="-5"/>
         <source>Ported to Qt4</source>
         <translation>Qt4 re portolta</translation>
     </message>
     <message>
-        <location line="-56"/>
+        <location line="-84"/>
         <source> (with debug)</source>
         <translation>(debug mód)</translation>
     </message>
     <message>
-        <location line="+14"/>
+        <location line="+16"/>
         <source>Development version build at</source>
         <translation>Fejlesztői verzió</translation>
     </message>
     <message>
-        <location line="+67"/>
+        <location line="+62"/>
+        <source>Ported to Qt5</source>
+        <translation type="unfinished">Qt5 re portolta</translation>
+    </message>
+    <message>
+        <location line="+25"/>
         <source>For more details about the GPL license and to read in other languages, visit %1.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3225,32 +3240,32 @@ Copyright (C) 2003 Deák Péter (GPL)&lt;/p&gt;&lt;/font&gt;&lt;/p&gt;</translat
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-63"/>
+        <location line="-80"/>
         <source>Compiled with the following features:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+4"/>
+        <location line="+7"/>
         <source>archive read support using lib7zip</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+4"/>
+        <location line="+6"/>
         <source>mediainfo (compiled in)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+4"/>
+        <location line="+6"/>
         <source>mediainfo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+4"/>
+        <location line="+6"/>
         <source>exif data read support</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+4"/>
+        <location line="+6"/>
         <source>encrypted catalog support</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3258,7 +3273,7 @@ Copyright (C) 2003 Deák Péter (GPL)&lt;/p&gt;&lt;/font&gt;&lt;/p&gt;</translat
 <context>
     <name>KeyBindingDialog</name>
     <message>
-        <location line="+356"/>
+        <location line="+402"/>
         <source>Action</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3269,7 +3284,7 @@ Copyright (C) 2003 Deák Péter (GPL)&lt;/p&gt;&lt;/font&gt;&lt;/p&gt;</translat
     </message>
     <message>
         <location line="-6"/>
-        <location line="+58"/>
+        <location line="+57"/>
         <source>Key bindings</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3282,7 +3297,7 @@ Copyright (C) 2003 Deák Péter (GPL)&lt;/p&gt;&lt;/font&gt;&lt;/p&gt;</translat
 <context>
     <name>PWw</name>
     <message>
-        <location filename="../adddialog.cpp" line="-296"/>
+        <location filename="../adddialog.cpp" line="-305"/>
         <source>Please Wait...</source>
         <translation type="unfinished">Dolgozom...</translation>
     </message>
@@ -3292,7 +3307,7 @@ Copyright (C) 2003 Deák Péter (GPL)&lt;/p&gt;&lt;/font&gt;&lt;/p&gt;</translat
     </message>
     <message>
         <location line="-7"/>
-        <location line="+107"/>
+        <location line="+114"/>
         <source>&amp;Cancel</source>
         <translation type="unfinished">&amp;Mégsem</translation>
     </message>
@@ -3301,8 +3316,8 @@ Copyright (C) 2003 Deák Péter (GPL)&lt;/p&gt;&lt;/font&gt;&lt;/p&gt;</translat
     <name>QObject</name>
     <message>
         <location filename="../dirview.cpp" line="-39"/>
-        <location filename="../hdirview.cpp" line="-132"/>
-        <location line="+63"/>
+        <location filename="../hdirview.cpp" line="-133"/>
+        <location line="+65"/>
         <source>Directory</source>
         <translation>Könyvtár</translation>
     </message>
@@ -3312,56 +3327,56 @@ Copyright (C) 2003 Deák Péter (GPL)&lt;/p&gt;&lt;/font&gt;&lt;/p&gt;</translat
         <translation>Nem olvasható könyvtár</translation>
     </message>
     <message>
-        <location filename="../hdirview.cpp" line="-105"/>
-        <location line="+83"/>
+        <location filename="../hdirview.cpp" line="-108"/>
+        <location line="+85"/>
         <source>Catalog</source>
         <translation>Katalógus</translation>
     </message>
     <message>
-        <location line="-75"/>
-        <location line="+79"/>
+        <location line="-76"/>
+        <location line="+81"/>
         <source>Unknown(DB)</source>
         <translation>Ismeretlen(DB)</translation>
     </message>
     <message>
-        <location line="-75"/>
-        <location line="+77"/>
+        <location line="-77"/>
+        <location line="+79"/>
         <source>CD</source>
         <translation>CD</translation>
     </message>
     <message>
-        <location line="-73"/>
-        <location line="+75"/>
+        <location line="-75"/>
+        <location line="+77"/>
         <source>DVD</source>
         <translation>DVD</translation>
     </message>
     <message>
-        <location line="-71"/>
-        <location line="+73"/>
+        <location line="-73"/>
+        <location line="+75"/>
         <source>HardDisc</source>
         <translation>Merevlemez</translation>
     </message>
     <message>
-        <location line="-69"/>
-        <location line="+71"/>
+        <location line="-71"/>
+        <location line="+73"/>
         <source>Floppy</source>
         <translation>Floppy</translation>
     </message>
     <message>
-        <location line="-67"/>
-        <location line="+69"/>
+        <location line="-69"/>
+        <location line="+71"/>
         <source>NetworkDrv</source>
         <translation>HálózatiMegh</translation>
     </message>
     <message>
-        <location line="-65"/>
-        <location line="+67"/>
+        <location line="-67"/>
+        <location line="+69"/>
         <source>FlashDrv</source>
         <translation>FlashMegh</translation>
     </message>
     <message>
-        <location line="-63"/>
-        <location line="+65"/>
+        <location line="-65"/>
+        <location line="+67"/>
         <source>OtherDevice</source>
         <translation>EgyébEszköz</translation>
     </message>
@@ -3370,7 +3385,7 @@ Copyright (C) 2003 Deák Péter (GPL)&lt;/p&gt;&lt;/font&gt;&lt;/p&gt;</translat
         <translation type="obsolete">Fájl</translation>
     </message>
     <message>
-        <location filename="../tparser.cpp" line="+640"/>
+        <location filename="../tparser.cpp" line="+673"/>
         <source>Video:
 </source>
         <translation>Videó:</translation>
@@ -3404,64 +3419,64 @@ Copyright (C) 2003 Deák Péter (GPL)&lt;/p&gt;&lt;/font&gt;&lt;/p&gt;</translat
         <translation>Szerzö</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+3"/>
         <source>Comments</source>
         <translation>Megjegyzés</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+3"/>
         <source>Copyright</source>
         <translation>Szerzöi jog</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+3"/>
         <source>Creation Date</source>
         <translation>
 Létreh. dátuma</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+3"/>
         <source>Engineer</source>
         <translation>Mérnök</translation>
     </message>
     <message>
-        <location line="+4"/>
+        <location line="+6"/>
         <source>Name</source>
         <translation>Név</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+3"/>
         <source>Product</source>
         <translation>Termék</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+3"/>
         <source>Software</source>
         <translation>Szoftver</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+3"/>
         <source>Source</source>
         <translation>Forrás</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+3"/>
         <source>Subject</source>
         <translation>Tárgy</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+3"/>
         <source>Technician</source>
         <translation>Technikus</translation>
     </message>
     <message>
-        <location line="+85"/>
+        <location line="+87"/>
         <source>Unknown/not implemented/broken header
 </source>
         <translation>Ismeretlen/nem implementált/rossz fejléc</translation>
     </message>
     <message>
-        <location line="-115"/>
+        <location line="-128"/>
         <source>Channels</source>
         <translation>Csatornák</translation>
     </message>
@@ -3475,32 +3490,32 @@ Létreh. dátuma</translation>
         <translation>Bitráta</translation>
     </message>
     <message>
-        <location line="+16"/>
+        <location line="+21"/>
         <source>Genre</source>
         <translation>Műfaj</translation>
     </message>
     <message>
-        <location line="-370"/>
-        <location line="+8"/>
-        <location line="+19"/>
-        <location line="+20"/>
-        <location line="+24"/>
-        <location line="+25"/>
-        <location line="+15"/>
+        <location line="-405"/>
         <location line="+9"/>
-        <location line="+24"/>
+        <location line="+20"/>
+        <location line="+21"/>
+        <location line="+25"/>
+        <location line="+26"/>
+        <location line="+16"/>
+        <location line="+10"/>
+        <location line="+26"/>
         <location line="+8"/>
-        <location line="+44"/>
+        <location line="+55"/>
         <source>Not a RIFF/AVI file OR header broken!</source>
         <translation>Nem egy RIFF/AVI fájl VAGY rossz fejléc!</translation>
     </message>
     <message>
-        <location line="+157"/>
+        <location line="+167"/>
         <source>Sample/s</source>
         <translation>Minták</translation>
     </message>
     <message>
-        <location filename="../import.cpp" line="+2701"/>
+        <location filename="../import.cpp" line="+2652"/>
         <source>importuser</source>
         <translation>importfelhasználó</translation>
     </message>
@@ -3517,55 +3532,55 @@ Létreh. dátuma</translation>
         <translation>Több adat:</translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="+2745"/>
+        <location filename="../guibase.cpp" line="+2911"/>
         <location line="+1"/>
-        <location line="+29"/>
+        <location line="+27"/>
         <location line="+1"/>
-        <location filename="../wdbfile.cpp" line="-90"/>
+        <location filename="../wdbfile.cpp" line="-102"/>
         <source>Enter password...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-31"/>
-        <location line="+30"/>
+        <location line="-29"/>
+        <location line="+28"/>
         <location filename="../wdbfile.cpp" line="+0"/>
         <source>Enter password for catalog:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../hdirview.cpp" line="-99"/>
-        <location line="+79"/>
+        <location filename="../hdirview.cpp" line="-102"/>
+        <location line="+81"/>
         <source>Catalog (encrypted)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../wdbfile.cpp" line="+4"/>
+        <location filename="../wdbfile.cpp" line="+5"/>
         <source>password empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+6"/>
+        <location line="+7"/>
         <source>cant set password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+20"/>
+        <location line="+24"/>
         <source>decrypt failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+13"/>
+        <location line="+15"/>
         <source>cant load catalog: encrypted catalog support not available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../guibase.cpp" line="-29"/>
-        <location line="+30"/>
+        <location filename="../guibase.cpp" line="-27"/>
+        <location line="+28"/>
         <source>Enter password for catalog (again):</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../importdialog.cpp" line="-285"/>
+        <location filename="../importdialog.cpp" line="-286"/>
         <source>directory separator</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3628,7 +3643,7 @@ Létreh. dátuma</translation>
 <context>
     <name>SelReadable</name>
     <message>
-        <location filename="../selreadable.cpp" line="+836"/>
+        <location filename="../selreadable.cpp" line="+838"/>
         <source>Select readable items</source>
         <translation>Felolvasandó elemek kiválasztása</translation>
     </message>
@@ -3676,13 +3691,13 @@ Létreh. dátuma</translation>
         <translation>Alapértelmezett tag</translation>
     </message>
     <message>
-        <location line="-740"/>
+        <location line="-743"/>
         <location line="+1"/>
         <source>version</source>
         <translation>verzió</translation>
     </message>
     <message>
-        <location line="+741"/>
+        <location line="+744"/>
         <source>Read mp3 technical info as comment (bitrate,freq,length...)</source>
         <translation>Az MP3 technikai információinak felolvasása megjegyzésként (bitráta, frekvencia,stb...)</translation>
     </message>
@@ -3696,9 +3711,9 @@ Létreh. dátuma</translation>
         <translation>Az AVI fájlok technikai információinak felolvasása (hossz, kodek, stb,...)</translation>
     </message>
     <message>
-        <location line="-442"/>
-        <location line="+32"/>
-        <location line="+388"/>
+        <location line="-444"/>
+        <location line="+33"/>
+        <location line="+389"/>
         <source>Supported extensions:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3738,8 +3753,8 @@ Létreh. dátuma</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-542"/>
-        <location line="+292"/>
+        <location line="-544"/>
+        <location line="+291"/>
         <source>Path to external content viewer (found)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3750,12 +3765,12 @@ Létreh. dátuma</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-23"/>
+        <location line="-25"/>
         <source>Choose path to external context viewer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+260"/>
+        <location line="+265"/>
         <source>...</source>
         <translation type="unfinished">...</translation>
     </message>
@@ -3765,12 +3780,12 @@ Létreh. dátuma</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-692"/>
+        <location line="-695"/>
         <source>KiB</source>
         <translation type="unfinished">KiB</translation>
     </message>
     <message>
-        <location line="+238"/>
+        <location line="+239"/>
         <source>lib7zip found</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3795,13 +3810,13 @@ Létreh. dátuma</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="+2"/>
         <location line="+4"/>
         <source>mediainfo status:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+386"/>
+        <location line="+387"/>
         <source>Permission</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3881,14 +3896,14 @@ Létreh. dátuma</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-227"/>
-        <location line="+32"/>
+        <location line="-230"/>
+        <location line="+34"/>
         <source>Add exclude rule...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-32"/>
-        <location line="+32"/>
+        <location line="-34"/>
+        <location line="+34"/>
         <source>Enter regular expression for exclude:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3903,7 +3918,7 @@ Létreh. dátuma</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+221"/>
+        <location line="+222"/>
         <source>exclude files/directories</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3918,17 +3933,17 @@ Létreh. dátuma</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-189"/>
+        <location line="-187"/>
         <source>regular expression is invalid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+4"/>
+        <location line="+3"/>
         <source>regular expression is valid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+141"/>
+        <location line="+140"/>
         <source>show archive file at scanning in status</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4063,7 +4078,7 @@ Létreh. dátuma</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-472"/>
+        <location line="-474"/>
         <source>lib7zip not found</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4074,7 +4089,7 @@ Létreh. dátuma</translation>
     </message>
     <message>
         <location line="+7"/>
-        <location line="+39"/>
+        <location line="+40"/>
         <source>support not compiled in</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4084,7 +4099,7 @@ Létreh. dátuma</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+418"/>
+        <location line="+419"/>
         <source>Supported image extensions found: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -4112,12 +4127,12 @@ Létreh. dátuma</translation>
         <translation>%1 fájl tartalma</translation>
     </message>
     <message>
-        <location line="+90"/>
+        <location line="+91"/>
         <source>Close</source>
         <translation>Bezárás</translation>
     </message>
     <message>
-        <location line="+46"/>
+        <location line="+49"/>
         <source>Confirmation</source>
         <translation>Megerösítés</translation>
     </message>
@@ -4136,7 +4151,7 @@ Létreh. dátuma</translation>
         <translation>Nem</translation>
     </message>
     <message>
-        <location line="-184"/>
+        <location line="-188"/>
         <source>Remove the file content from the database. (Warning: Unrecoverable!)</source>
         <translation>Eltávolítja a fájl tartalmát az adatbázisból. (Vigyázz: Maradandó változtatás! )</translation>
     </message>
@@ -4155,7 +4170,7 @@ Létreh. dátuma</translation>
         <translation type="obsolete">Tartalom mentése...</translation>
     </message>
     <message>
-        <location line="+154"/>
+        <location line="+158"/>
         <source>Select a filename below</source>
         <translation>Válassz ki lent egy fájlnevet</translation>
     </message>
@@ -4184,7 +4199,7 @@ Létreh. dátuma</translation>
         <translation>CdCat adatbázis (*.hcf)</translation>
     </message>
     <message>
-        <location line="-137"/>
+        <location line="-141"/>
         <source>Category of %1</source>
         <translation>A %1 kategóriája</translation>
     </message>
@@ -4199,7 +4214,7 @@ Létreh. dátuma</translation>
         <translation>Tartalom beállítása</translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="+2"/>
         <source>select font for display</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4207,7 +4222,7 @@ Létreh. dátuma</translation>
 <context>
     <name>addDialog</name>
     <message>
-        <location filename="../adddialog.cpp" line="-511"/>
+        <location filename="../adddialog.cpp" line="-520"/>
         <source>Directory Browser</source>
         <translation>Könyvtár tallózó</translation>
     </message>
@@ -4291,13 +4306,13 @@ Létreh. dátuma</translation>
     <message>
         <location line="+100"/>
         <location line="+5"/>
-        <location line="+21"/>
+        <location line="+22"/>
         <location line="+5"/>
         <source>Error:</source>
         <translation>Hiba:</translation>
     </message>
     <message>
-        <location line="-31"/>
+        <location line="-32"/>
         <source>You must be fill the &quot;Name&quot; field!</source>
         <translation>Ki kell töltened a &quot;Név&quot; mezőt!</translation>
     </message>
@@ -4335,7 +4350,7 @@ Létreh. dátuma</translation>
         <translation type="obsolete">Felolvasandó elemek kiválasztása</translation>
     </message>
     <message>
-        <location line="+70"/>
+        <location line="+71"/>
         <source>The Value of Serial Number must be unique! Please change it!</source>
         <translation>A Sorszám értékének egyedinek kell lennie! Légyszives válassz másikat!</translation>
     </message>
@@ -4345,7 +4360,7 @@ Létreh. dátuma</translation>
         <translation>Nem választottál ki könyvtárat! Ez a lényeg :), válassz ki egyet!</translation>
     </message>
     <message>
-        <location line="-26"/>
+        <location line="-27"/>
         <source>The media name can&apos;t begin with the &quot;@&quot; character!</source>
         <translation>Az új média neve nem kezdődhet a &apos;&apos;@&quot; karakterrel!</translation>
     </message>
@@ -4428,14 +4443,14 @@ Létreh. dátuma</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+90"/>
-        <location line="+36"/>
+        <location line="+89"/>
+        <location line="+37"/>
         <source>Enter media name...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-36"/>
-        <location line="+36"/>
+        <location line="-37"/>
+        <location line="+37"/>
         <source>The Media Name must be unique! Enter new media name:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4452,7 +4467,7 @@ Létreh. dátuma</translation>
         <translation type="obsolete">Kölcsönadás...</translation>
     </message>
     <message>
-        <location filename="../borrow.cpp" line="+116"/>
+        <location filename="../borrow.cpp" line="+111"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
@@ -4462,12 +4477,12 @@ Létreh. dátuma</translation>
         <translation>Mégsem</translation>
     </message>
     <message>
-        <location line="-42"/>
+        <location line="-39"/>
         <source>I borrow the &quot;%1&quot; named media to:</source>
         <translation>Kölcsönadom a &quot;%1&quot; médiát a következö személynek:</translation>
     </message>
     <message>
-        <location line="+12"/>
+        <location line="+9"/>
         <source>unknown</source>
         <translation>ismeretlen</translation>
     </message>
@@ -4477,8 +4492,8 @@ Létreh. dátuma</translation>
         <translation>Kölcsönadom a &quot;&quot; médiát a következö személynek:</translation>
     </message>
     <message>
-        <location line="-72"/>
-        <location line="+71"/>
+        <location line="-69"/>
+        <location line="+68"/>
         <source>Borrowing...</source>
         <translation>Kölcsönadás...</translation>
     </message>
@@ -4490,7 +4505,7 @@ Létreh. dátuma</translation>
         <translation type="obsolete">Kölcsönzési információk...</translation>
     </message>
     <message>
-        <location line="+97"/>
+        <location line="+96"/>
         <source>Media borrowing info:</source>
         <translation>A médiák kölcsönadási információi:</translation>
     </message>
@@ -4504,24 +4519,24 @@ Létreh. dátuma</translation>
     </message>
     <message>
         <location line="+4"/>
-        <location line="+33"/>
+        <location line="+35"/>
         <source>Media</source>
         <translation>Média</translation>
     </message>
     <message>
-        <location line="-32"/>
-        <location line="+33"/>
+        <location line="-34"/>
+        <location line="+35"/>
         <source>Borrowed</source>
         <translation>Kölcsönzött</translation>
     </message>
     <message>
-        <location line="-32"/>
-        <location line="+33"/>
+        <location line="-34"/>
+        <location line="+35"/>
         <source>where is it now?</source>
         <translation>hol van most?</translation>
     </message>
     <message>
-        <location line="-30"/>
+        <location line="-32"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
@@ -4534,38 +4549,38 @@ Létreh. dátuma</translation>
         <translation type="obsolete">0</translation>
     </message>
     <message>
-        <location line="+57"/>
+        <location line="+61"/>
         <location line="+38"/>
         <location line="+1"/>
         <location line="+1"/>
-        <location line="+15"/>
-        <location line="+9"/>
+        <location line="+16"/>
+        <location line="+10"/>
         <location line="+11"/>
-        <location line="+39"/>
-        <location line="+65"/>
+        <location line="+43"/>
+        <location line="+68"/>
         <source>No</source>
         <translation>Nem</translation>
     </message>
     <message>
-        <location line="-179"/>
+        <location line="-188"/>
         <location line="+38"/>
         <location line="+7"/>
-        <location line="+12"/>
+        <location line="+13"/>
+        <location line="+10"/>
         <location line="+9"/>
-        <location line="+9"/>
-        <location line="+22"/>
-        <location line="+17"/>
-        <location line="+72"/>
+        <location line="+23"/>
+        <location line="+20"/>
+        <location line="+75"/>
         <source>Yes</source>
         <translation>Igen</translation>
     </message>
     <message>
-        <location line="-138"/>
+        <location line="-147"/>
         <source>unknown</source>
         <translation>ismeretlen</translation>
     </message>
     <message>
-        <location line="+4"/>
+        <location line="+5"/>
         <source>Error</source>
         <translation>Hiba</translation>
     </message>
@@ -4575,23 +4590,23 @@ Létreh. dátuma</translation>
         <translation>Válaszolj &quot;Igen&quot; -t vagy &quot;Nem&quot; -et!</translation>
     </message>
     <message>
-        <location line="+23"/>
-        <location line="+39"/>
+        <location line="+24"/>
+        <location line="+43"/>
         <source>Warning</source>
         <translation>Vigyázat</translation>
     </message>
     <message>
-        <location line="-39"/>
+        <location line="-43"/>
         <source>Do you save the changes?</source>
         <translation>Aktualizálod a változtatásokat?</translation>
     </message>
     <message>
-        <location line="+39"/>
+        <location line="+43"/>
         <source>Are you sure want to clear all borrow?</source>
         <translation>Biztos hogy minden kölcsönzési információt törölni akarsz?</translation>
     </message>
     <message>
-        <location line="+31"/>
+        <location line="+34"/>
         <source>I got it back!</source>
         <translation>Visszakaptam!</translation>
     </message>
@@ -4601,7 +4616,7 @@ Létreh. dátuma</translation>
         <translation>&lt;&lt;</translation>
     </message>
     <message>
-        <location line="-217"/>
+        <location line="-230"/>
         <source>Borrowing info...</source>
         <translation>Kölcsönzési információk...</translation>
     </message>
@@ -4623,7 +4638,7 @@ Létreh. dátuma</translation>
         <translation type="obsolete">Megjegyzés szerkesztése</translation>
     </message>
     <message>
-        <location filename="../commwidget.cpp" line="+692"/>
+        <location filename="../commwidget.cpp" line="+715"/>
         <source>Cancel</source>
         <translation>Mégsem</translation>
     </message>
@@ -4633,7 +4648,7 @@ Létreh. dátuma</translation>
         <translation>OK</translation>
     </message>
     <message>
-        <location line="-4"/>
+        <location line="-5"/>
         <source>Edit comment of</source>
         <translation>Megjegyzés szerkesztése</translation>
     </message>
@@ -4650,7 +4665,7 @@ Létreh. dátuma</translation>
         <translation type="obsolete">CdCat adatbázis exportálása </translation>
     </message>
     <message>
-        <location filename="../exportcdcatdb.cpp" line="+310"/>
+        <location filename="../exportcdcatdb.cpp" line="+311"/>
         <source>Availiable media</source>
         <translation>Elérhető médiák</translation>
     </message>
@@ -4705,7 +4720,7 @@ Létreh. dátuma</translation>
         <translation>Légyszives adj meg egy fájlnevet!</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+2"/>
         <source>Separator missing</source>
         <translation>A szeparátort nem adta meg</translation>
     </message>
@@ -4723,7 +4738,7 @@ Létreh. dátuma</translation>
         <translation type="obsolete">Ok</translation>
     </message>
     <message>
-        <location line="+312"/>
+        <location line="+313"/>
         <source>All files (*.*)</source>
         <translation>Minen fájl (*.*)</translation>
     </message>
@@ -4764,29 +4779,29 @@ Létreh. dátuma</translation>
         <translation>Exportálás CSV-be</translation>
     </message>
     <message>
-        <location line="+140"/>
-        <location line="+19"/>
+        <location line="+133"/>
+        <location line="+28"/>
         <source>Media</source>
         <translation>Média</translation>
     </message>
     <message>
-        <location line="-15"/>
+        <location line="-22"/>
         <source>File</source>
         <translation>Fájl</translation>
     </message>
     <message>
-        <location line="-286"/>
+        <location line="-281"/>
         <location line="+154"/>
-        <location line="+134"/>
-        <location line="+40"/>
+        <location line="+130"/>
+        <location line="+44"/>
         <source>Size</source>
         <translation>Méret</translation>
     </message>
     <message>
         <location line="-325"/>
         <location line="+152"/>
-        <location line="+135"/>
-        <location line="+43"/>
+        <location line="+132"/>
+        <location line="+46"/>
         <source>Date</source>
         <translation>Dátum</translation>
     </message>
@@ -4797,12 +4812,12 @@ Létreh. dátuma</translation>
         <translation>Nem tudom létrehozni vagy felülírni a fájlt</translation>
     </message>
     <message>
-        <location line="-169"/>
+        <location line="-177"/>
         <source>Export from cdcat:</source>
         <translation>Exportálás a cdcat-ból:</translation>
     </message>
     <message>
-        <location line="-381"/>
+        <location line="-373"/>
         <source>Export database...</source>
         <translation>Adatbázis exportálása...</translation>
     </message>
@@ -4832,8 +4847,8 @@ Létreh. dátuma</translation>
     <message>
         <location line="-317"/>
         <location line="+150"/>
-        <location line="+136"/>
-        <location line="+46"/>
+        <location line="+134"/>
+        <location line="+48"/>
         <source>Comment</source>
         <translation>Megjegyzés</translation>
     </message>
@@ -4873,14 +4888,14 @@ Létreh. dátuma</translation>
         <translation>CdCat adatbázis exportálása:</translation>
     </message>
     <message>
-        <location line="+87"/>
-        <location line="+33"/>
+        <location line="+79"/>
+        <location line="+41"/>
         <source>Export from cdcat, catalog:</source>
         <translation>Exportálás a cdcatból:</translation>
     </message>
     <message>
-        <location line="-32"/>
-        <location line="+33"/>
+        <location line="-39"/>
+        <location line="+40"/>
         <source>Generated at:</source>
         <translation>Generálva:</translation>
     </message>
@@ -4904,13 +4919,13 @@ Létreh. dátuma</translation>
         <translation>kölcsönzési infók exportálása</translation>
     </message>
     <message>
-        <location line="+125"/>
+        <location line="+119"/>
         <source>#</source>
         <translation>#</translation>
     </message>
     <message>
-        <location line="+10"/>
-        <location line="+49"/>
+        <location line="+15"/>
+        <location line="+50"/>
         <source>MP3 tag</source>
         <translation>MP+ tag</translation>
     </message>
@@ -4921,7 +4936,7 @@ Létreh. dátuma</translation>
         <translation>Kölcsönözve</translation>
     </message>
     <message>
-        <location line="+515"/>
+        <location line="+529"/>
         <source>Artist:</source>
         <translation>Szerző:</translation>
     </message>
@@ -4941,7 +4956,7 @@ Létreh. dátuma</translation>
         <translation>Év:</translation>
     </message>
     <message>
-        <location line="-877"/>
+        <location line="-891"/>
         <location line="+173"/>
         <source>table header/comment line</source>
         <translation>tábla fejléc/megjegyzés sor</translation>
@@ -4970,8 +4985,8 @@ Létreh. dátuma</translation>
     <message>
         <location line="-420"/>
         <location line="+148"/>
-        <location line="+141"/>
-        <location line="+53"/>
+        <location line="+142"/>
+        <location line="+52"/>
         <source>Category</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4984,52 +4999,52 @@ Létreh. dátuma</translation>
 <context>
     <name>findDialog</name>
     <message>
-        <location filename="../find.cpp" line="+182"/>
-        <location line="+242"/>
-        <location line="+75"/>
-        <location line="+30"/>
-        <location line="+398"/>
+        <location filename="../find.cpp" line="+180"/>
+        <location line="+243"/>
+        <location line="+74"/>
+        <location line="+29"/>
+        <location line="+413"/>
         <source>Name</source>
         <translation>Név</translation>
     </message>
     <message>
-        <location line="-744"/>
-        <location line="+242"/>
-        <location line="+75"/>
-        <location line="+30"/>
-        <location line="+398"/>
+        <location line="-758"/>
+        <location line="+243"/>
+        <location line="+74"/>
+        <location line="+29"/>
+        <location line="+413"/>
         <source>Type</source>
         <translation>Típus</translation>
     </message>
     <message>
-        <location line="-743"/>
-        <location line="+242"/>
-        <location line="+75"/>
-        <location line="+30"/>
-        <location line="+398"/>
+        <location line="-757"/>
+        <location line="+243"/>
+        <location line="+74"/>
+        <location line="+29"/>
+        <location line="+413"/>
         <source>Media</source>
         <translation>Média</translation>
     </message>
     <message>
-        <location line="-744"/>
-        <location line="+242"/>
-        <location line="+75"/>
-        <location line="+30"/>
-        <location line="+398"/>
+        <location line="-758"/>
+        <location line="+243"/>
+        <location line="+74"/>
+        <location line="+29"/>
+        <location line="+413"/>
         <source>Path</source>
         <translation>Elérési út</translation>
     </message>
     <message>
-        <location line="-744"/>
-        <location line="+242"/>
-        <location line="+75"/>
-        <location line="+30"/>
-        <location line="+398"/>
+        <location line="-758"/>
+        <location line="+243"/>
+        <location line="+74"/>
+        <location line="+29"/>
+        <location line="+413"/>
         <source>Modification</source>
         <translation>Módosítva</translation>
     </message>
     <message>
-        <location line="-407"/>
+        <location line="-422"/>
         <source>Search in the database...</source>
         <translation>Keresés az adatbázisban...</translation>
     </message>
@@ -5066,19 +5081,19 @@ Létreh. dátuma</translation>
         <translation type="obsolete">Eredmény</translation>
     </message>
     <message>
-        <location line="-339"/>
-        <location line="+242"/>
-        <location line="+75"/>
-        <location line="+30"/>
+        <location line="-338"/>
+        <location line="+243"/>
+        <location line="+74"/>
+        <location line="+29"/>
         <location line="+12"/>
-        <location line="+329"/>
-        <location line="+57"/>
+        <location line="+336"/>
+        <location line="+65"/>
         <source>Comment</source>
         <translation>Megjegyzés</translation>
     </message>
     <message>
-        <location line="-392"/>
-        <location line="+333"/>
+        <location line="-407"/>
+        <location line="+339"/>
         <source>File name</source>
         <translation>Fájlnév</translation>
     </message>
@@ -5087,43 +5102,43 @@ Létreh. dátuma</translation>
         <translation type="obsolete">Könyvtárnév</translation>
     </message>
     <message>
-        <location line="-330"/>
-        <location line="+342"/>
+        <location line="-336"/>
+        <location line="+354"/>
         <source>mp3-tag Comment</source>
         <translation>mp3-tag megjegyzés</translation>
     </message>
     <message>
-        <location line="-344"/>
-        <location line="+342"/>
+        <location line="-356"/>
+        <location line="+353"/>
         <source>mp3-tag Album</source>
         <translation>mp3-tag album</translation>
     </message>
     <message>
-        <location line="-338"/>
-        <location line="+336"/>
+        <location line="-349"/>
+        <location line="+346"/>
         <source>mp3-tag Title</source>
         <translation>mp3-tag cím</translation>
     </message>
     <message>
-        <location line="-339"/>
-        <location line="+337"/>
+        <location line="-349"/>
+        <location line="+346"/>
         <source>mp3-tag Artist</source>
         <translation>mp3-tag szerzö</translation>
     </message>
     <message>
-        <location line="-310"/>
-        <location line="+289"/>
+        <location line="-319"/>
+        <location line="+293"/>
         <source>Case sensitive</source>
         <translation>Nagybetü-érzékeny</translation>
     </message>
     <message>
-        <location line="-288"/>
-        <location line="+280"/>
+        <location line="-292"/>
+        <location line="+283"/>
         <source>Use easy matching instead regex</source>
         <translation>Egyszerű illeszkedés a regex helyett</translation>
     </message>
     <message>
-        <location line="-199"/>
+        <location line="-204"/>
         <source>All/Everybody</source>
         <translation>Mindenki</translation>
     </message>
@@ -5137,8 +5152,8 @@ Létreh. dátuma</translation>
         <translation type="obsolete">&amp;OK</translation>
     </message>
     <message>
-        <location line="-142"/>
-        <location line="+48"/>
+        <location line="-139"/>
+        <location line="+47"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Mégsem</translation>
     </message>
@@ -5148,30 +5163,30 @@ Létreh. dátuma</translation>
     </message>
     <message>
         <location line="-13"/>
-        <location line="+329"/>
+        <location line="+337"/>
         <source>Content</source>
         <translation>Tartalom</translation>
     </message>
     <message>
-        <location line="-333"/>
-        <location line="+327"/>
+        <location line="-341"/>
+        <location line="+332"/>
         <source>Media / Directory name</source>
         <translation>Média / Könyvtárnév</translation>
     </message>
     <message>
-        <location line="-322"/>
-        <location line="+355"/>
+        <location line="-327"/>
+        <location line="+370"/>
         <source>Date start</source>
         <translation>Kezdődátum</translation>
     </message>
     <message>
-        <location line="-354"/>
-        <location line="+358"/>
+        <location line="-369"/>
+        <location line="+373"/>
         <source>Date end</source>
         <translation>Végdátum</translation>
     </message>
     <message>
-        <location line="-761"/>
+        <location line="-775"/>
         <location line="+7"/>
         <source>Byte</source>
         <translation>Byte</translation>
@@ -5195,40 +5210,40 @@ Létreh. dátuma</translation>
         <translation>GiB</translation>
     </message>
     <message>
-        <location line="+394"/>
-        <location line="+361"/>
+        <location line="+393"/>
+        <location line="+376"/>
         <source>Min size</source>
         <translation>Minimum méret</translation>
     </message>
     <message>
-        <location line="-360"/>
-        <location line="+364"/>
+        <location line="-375"/>
+        <location line="+379"/>
         <source>Max size</source>
         <translation>MAximum méret</translation>
     </message>
     <message>
-        <location line="-407"/>
-        <location line="+47"/>
+        <location line="-421"/>
+        <location line="+46"/>
         <source>&amp;Start search</source>
         <translation>Kere&amp;sés kezdete</translation>
     </message>
     <message>
-        <location line="-373"/>
-        <location line="+242"/>
-        <location line="+75"/>
-        <location line="+30"/>
-        <location line="+398"/>
+        <location line="-372"/>
+        <location line="+243"/>
+        <location line="+74"/>
+        <location line="+29"/>
+        <location line="+413"/>
         <source>Size</source>
         <translation>Méret</translation>
     </message>
     <message>
-        <location line="-375"/>
-        <location line="+339"/>
+        <location line="-390"/>
+        <location line="+353"/>
         <source>Unsharp search (slow)</source>
         <translation>Nem pontos keresés (lassú)</translation>
     </message>
     <message>
-        <location line="-338"/>
+        <location line="-352"/>
         <source>Find in archives too</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5243,7 +5258,7 @@ Létreh. dátuma</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+246"/>
+        <location line="+250"/>
         <source>Print cdcat result</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5263,7 +5278,7 @@ Létreh. dátuma</translation>
         <translation type="unfinished">Légyszives adj meg egy fájlnevet!</translation>
     </message>
     <message>
-        <location line="+14"/>
+        <location line="+13"/>
         <location line="+3"/>
         <source>Cdcat search result</source>
         <translation type="unfinished"></translation>
@@ -5290,35 +5305,35 @@ Létreh. dátuma</translation>
     </message>
     <message>
         <location line="+6"/>
-        <location line="+8"/>
-        <location line="+34"/>
+        <location line="+9"/>
+        <location line="+44"/>
         <source>on</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-40"/>
-        <location line="+8"/>
-        <location line="+34"/>
+        <location line="-51"/>
+        <location line="+9"/>
+        <location line="+44"/>
         <source>off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-28"/>
+        <location line="-37"/>
         <source>Search in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+20"/>
+        <location line="+28"/>
         <source>archives</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+14"/>
+        <location line="+16"/>
         <source>other options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+90"/>
+        <location line="+89"/>
         <source>File cant open: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -5328,7 +5343,7 @@ Létreh. dátuma</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-496"/>
+        <location line="-509"/>
         <source>Search for duplicates in the database...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5343,52 +5358,52 @@ Létreh. dátuma</translation>
         <translation type="unfinished">Bezárás</translation>
     </message>
     <message>
-        <location line="+47"/>
+        <location line="+46"/>
         <source>Results: search not started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-376"/>
-        <location line="+242"/>
-        <location line="+75"/>
-        <location line="+30"/>
+        <location line="-375"/>
+        <location line="+243"/>
+        <location line="+74"/>
+        <location line="+29"/>
         <source>Extension</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-385"/>
+        <location line="-384"/>
         <location line="+7"/>
         <source>TiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+381"/>
+        <location line="+380"/>
         <source>Keep search result</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-20"/>
-        <location line="+36"/>
+        <location line="-19"/>
+        <location line="+35"/>
         <source>Clear search results</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-367"/>
-        <location line="+242"/>
-        <location line="+75"/>
-        <location line="+30"/>
+        <location line="-366"/>
+        <location line="+243"/>
+        <location line="+74"/>
+        <location line="+29"/>
         <location line="+12"/>
-        <location line="+386"/>
+        <location line="+401"/>
         <source>Category</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-376"/>
+        <location line="-391"/>
         <source>Category for find</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+146"/>
+        <location line="+149"/>
         <source>Selected dir: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -5899,12 +5914,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>importGtktalogCsv</name>
     <message>
-        <location filename="../import.cpp" line="-2496"/>
+        <location filename="../import.cpp" line="-2445"/>
         <source>Importing CSV...</source>
         <translation>CSV Importálása...</translation>
     </message>
     <message>
-        <location line="+1353"/>
+        <location line="+1358"/>
         <source>importedMedia_</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5919,7 +5934,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+37"/>
+        <location line="+38"/>
         <source>Import was successful.</source>
         <translation>Az importálás sikeresen befelyeződött.</translation>
     </message>
@@ -5934,7 +5949,7 @@ p, li { white-space: pre-wrap; }
         <translation>média</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+4"/>
         <source>1 directory,
 </source>
         <translation>1 könyvtár;,
@@ -5946,7 +5961,7 @@ p, li { white-space: pre-wrap; }
         <translation>könyvtár</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+4"/>
         <source>1 file</source>
         <translation>1 Fájl</translation>
     </message>
@@ -5956,7 +5971,7 @@ p, li { white-space: pre-wrap; }
         <translation>fájl</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+3"/>
         <source>are imported.</source>
         <translation>importálva.</translation>
     </message>
@@ -5966,7 +5981,7 @@ p, li { white-space: pre-wrap; }
         <translation>Az importálás sikeresen befelyeződött</translation>
     </message>
     <message>
-        <location line="-1467"/>
+        <location line="-1479"/>
         <source>file read error</source>
         <translation>fájl olvasási hiba</translation>
     </message>
@@ -5976,7 +5991,7 @@ p, li { white-space: pre-wrap; }
         <translation>Nem tudtam olvasni a fájlt</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+4"/>
         <source>Fatal error</source>
         <translation>Végzetes hiba</translation>
     </message>
@@ -5986,7 +6001,7 @@ p, li { white-space: pre-wrap; }
         <translation>Végzetes hiba történt.</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+4"/>
         <source>file open error</source>
         <translation>fájl megnyitási hiba</translation>
     </message>
@@ -5996,12 +6011,12 @@ p, li { white-space: pre-wrap; }
         <translation>Nem tudtam megnyitni a fájlt</translation>
     </message>
     <message>
-        <location line="+1432"/>
+        <location line="+1439"/>
         <source>Imported from %1 (CSV import).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+64"/>
+        <location line="+70"/>
         <source>importuser</source>
         <translation>import-flh</translation>
     </message>
@@ -6010,12 +6025,12 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Csv importálása...</translation>
     </message>
     <message>
-        <location line="-1492"/>
+        <location line="-1504"/>
         <source>Cancel</source>
         <translation>Mégsem</translation>
     </message>
     <message>
-        <location line="+1138"/>
+        <location line="+1162"/>
         <source>tag: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -6023,12 +6038,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>importGtktalogXml</name>
     <message>
-        <location line="+761"/>
+        <location line="+723"/>
         <source>Importing XML...</source>
         <translation>XML Importálás...</translation>
     </message>
     <message>
-        <location line="+37"/>
+        <location line="+35"/>
         <source>XML import was successful.</source>
         <translation>Az XML importálás sikeres volt.</translation>
     </message>
@@ -6043,7 +6058,7 @@ p, li { white-space: pre-wrap; }
         <translation>média</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+4"/>
         <source>1 directory,
 </source>
         <translation>1 könyvtár;,
@@ -6055,7 +6070,7 @@ p, li { white-space: pre-wrap; }
         <translation>könyvtár</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+4"/>
         <source>1 file</source>
         <translation>1 Fájl</translation>
     </message>
@@ -6065,7 +6080,7 @@ p, li { white-space: pre-wrap; }
         <translation>fájl</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+3"/>
         <source>are imported.</source>
         <translation>importálva.</translation>
     </message>
@@ -6075,7 +6090,7 @@ p, li { white-space: pre-wrap; }
         <translation>Az importálás sikeresen befelyeződött</translation>
     </message>
     <message>
-        <location line="+5"/>
+        <location line="+3"/>
         <source>parse error</source>
         <translation>parsolási hiba</translation>
     </message>
@@ -6085,12 +6100,12 @@ p, li { white-space: pre-wrap; }
         <translation>hiba a feldolgozás alatt</translation>
     </message>
     <message>
-        <location line="+114"/>
+        <location line="+120"/>
         <source>importuser</source>
         <translation>import-felhasználó</translation>
     </message>
     <message>
-        <location line="-175"/>
+        <location line="-180"/>
         <source>Cancel</source>
         <translation>Mégsem</translation>
     </message>
@@ -6098,12 +6113,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>importWhereIsItXml</name>
     <message>
-        <location line="+844"/>
+        <location line="+798"/>
         <source>Importing XML...</source>
         <translation>XML Importálás...</translation>
     </message>
     <message>
-        <location line="+36"/>
+        <location line="+34"/>
         <source>Importing XML from WhereIsIt was successful.</source>
         <translation>A WhereIsIt-es XML importálása sikeresen megtörtént.</translation>
     </message>
@@ -6118,7 +6133,7 @@ p, li { white-space: pre-wrap; }
         <translation>média</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+4"/>
         <source>1 directory,
 </source>
         <translation>1 könyvtár;,
@@ -6130,7 +6145,7 @@ p, li { white-space: pre-wrap; }
         <translation>könyvtár</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+4"/>
         <source>1 file</source>
         <translation>1 Fájl</translation>
     </message>
@@ -6140,7 +6155,7 @@ p, li { white-space: pre-wrap; }
         <translation>fájl</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+3"/>
         <source>are imported.</source>
         <translation>importálva.</translation>
     </message>
@@ -6150,7 +6165,7 @@ p, li { white-space: pre-wrap; }
         <translation>Az importálás sikeresen befelyeződött</translation>
     </message>
     <message>
-        <location line="+5"/>
+        <location line="+3"/>
         <source>parse error</source>
         <translation>parsolási hiba</translation>
     </message>
@@ -6160,12 +6175,12 @@ p, li { white-space: pre-wrap; }
         <translation>hiba a feldolgozás alatt</translation>
     </message>
     <message>
-        <location line="-60"/>
+        <location line="-59"/>
         <source>Cancel</source>
         <translation>Mégsem</translation>
     </message>
     <message>
-        <location line="-268"/>
+        <location line="-258"/>
         <source>tag:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6230,7 +6245,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>newdbdialog</name>
     <message>
-        <location filename="../newdbdialog.cpp" line="+133"/>
+        <location filename="../newdbdialog.cpp" line="+131"/>
         <source>DataBase&apos;s Properties</source>
         <translation>Az adatbázis jellemzői</translation>
     </message>
@@ -6313,7 +6328,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>renamedialog</name>
     <message>
-        <location line="+64"/>
+        <location line="+63"/>
         <source>Rename node...</source>
         <translation>Csomópont átnevezése...</translation>
     </message>
@@ -6333,7 +6348,7 @@ p, li { white-space: pre-wrap; }
         <translation>Mégsem</translation>
     </message>
     <message>
-        <location line="+19"/>
+        <location line="+20"/>
         <location line="+5"/>
         <source>Error:</source>
         <translation>Hiba:</translation>
@@ -6417,7 +6432,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>seekEngine</name>
     <message>
-        <location filename="../find.cpp" line="+373"/>
+        <location filename="../find.cpp" line="+389"/>
         <source>Error in the pattern:</source>
         <translation>Hiba az illesztömintában:</translation>
     </message>
@@ -6430,7 +6445,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Minden média</translation>
     </message>
     <message>
-        <location line="+575"/>
+        <location line="+592"/>
         <source>dir</source>
         <translation>könyvt</translation>
     </message>
@@ -6445,7 +6460,7 @@ p, li { white-space: pre-wrap; }
         <translation>hiba</translation>
     </message>
     <message>
-        <location line="-506"/>
+        <location line="-511"/>
         <source>There is no matching.</source>
         <translation>Nincs illeszkedés.</translation>
     </message>
@@ -6454,17 +6469,17 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Ok</translation>
     </message>
     <message>
-        <location line="+483"/>
+        <location line="+488"/>
         <source>media</source>
         <translation>média</translation>
     </message>
     <message>
-        <location line="-605"/>
+        <location line="-627"/>
         <source>Searching, please wait...</source>
         <translation>Keresés, kérem várjon...</translation>
     </message>
     <message>
-        <location line="+117"/>
+        <location line="+134"/>
         <source>Search cancelled</source>
         <translation>Keresés törölve</translation>
     </message>
@@ -6475,14 +6490,14 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location line="+317"/>
+        <location line="+6"/>
         <location line="+8"/>
-        <location line="+11"/>
-        <location line="+11"/>
+        <location line="+8"/>
         <source>File in archive: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-351"/>
+        <location line="-343"/>
         <source>Results:</source>
         <translation type="unfinished"></translation>
     </message>
