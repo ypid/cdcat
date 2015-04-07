@@ -3226,7 +3226,7 @@ Copyright (C) 2003 Deák Péter (GPL)&lt;/p&gt;&lt;/font&gt;&lt;/p&gt;</translat
     </message>
     <message>
         <location line="-63"/>
-        <source>Features:</source>
+        <source>Compiled with the following features:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

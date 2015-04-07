@@ -1,4 +1,4 @@
-VERSION = 2.0
+# lessThan(QT_VERSION, 5.2.0): error(This project requires Qt 5.2.0 or later)
 
 TRANSLATIONS = lang/cdcat_hu.ts \
                lang/cdcat_de.ts \
@@ -90,12 +90,21 @@ PRECOMPILED_HEADER = cdcat_pch.h
 
 precompile_header:!isEmpty(PRECOMPILED_HEADER) {
     DEFINES += USING_PCH
-    CONFIG += precompile_header
+    CONFIG  += precompile_header
 }
 
-CONFIG      += qt xml release
-MOC_DIR      = moc_files/
-OBJECTS_DIR  = obj_files/
+TEMPLATE     =  app
+FORMS        =  help.ui
+TARGET       =  cdcat
+INSTALLS    += target translations distfiles
+QT          += xml widgets printsupport
+CONFIG      += qt xml uic
+# CONFIG      += release
+CONFIG      += debug
+CONFIG      += warn_on
+# CONFIG      += warn_off
+MOC_DIR      =  moc_files/
+OBJECTS_DIR  =  obj_files/
 
 win32 {
     ########## lib7zip
@@ -104,10 +113,10 @@ win32 {
     LIBS       += c:/zlib/lib/libz.a c:/libs/lib7zip.a c:/libs/bzip2.dll c:/libs/libtar.a  -loleaut32 -luuid
     INCLUDEPATH   += c:/Expat/Source/lib c:/zlib/include c:/pcre/include C:/includes c:/mediainfo
 
-    ###### encryption
+    ###### encryption {{{
     DEFINES += CATALOG_ENCRYPTION
     LIBS+= c:/libs/libcrypto++.a -lpthread
-    ###### end encryption
+    ###### end encryption }}}
 
     # enable if cdcat should made console output
     #CONFIG           += console
@@ -118,8 +127,8 @@ win32 {
 } else:mac {
     ########## lib7zip
     # use lib7zip?
-    DEFINES+=USE_LIB7ZIP
-    LIBS       += -lz -ldl /usr/lib/libtar.a /usr/lib/libbz2.a /usr/lib/lib7zip.a
+    DEFINES += USE_LIB7ZIP
+    LIBS    += -lz -ldl /usr/lib/libtar.a /usr/lib/libbz2.a /usr/lib/lib7zip.a
 } else:os2 {
     # OS/2
     CONFIG += console
@@ -135,7 +144,7 @@ win32 {
     #LIBS+= -llib7zip
     ######### end lib7zip
 
-    ######### mediainfo
+    ######### mediainfo {{{
     # use libmediainfo as static library?
     # STATIC
     #DEFINES += MEDIAINFO_STATIC
@@ -151,13 +160,13 @@ win32 {
 
     # disable mediainfo
     DEFINES += NO_MEDIAINFO
+    ######### end mediainfo }}}
 
-
-    ########## exif
+    ########## exif {{{
     # use exif?
     #DEFINES += USE_LIBEXIF
     #LIBS += -lexif
-    ######### end exif
+    ######### end exif }}}
 
     #LIBS             += -lz -ltar -lbz2 -ldl
     LIBS              += -lz c:/usr/lib/libtar.a -lbz2
@@ -172,44 +181,43 @@ win32 {
 } else {
     # unix
 
-    ########## lib7zip
+    ########## lib7zip {{{
     # use lib7zip?
-    DEFINES+=USE_LIB7ZIP
+    # DEFINES+=USE_LIB7ZIP
 
     # STATIC
     #LIBS+=/usr/local/lib/lib7zip.a
 
     # DYNAMIC
-    LIBS+= -l7zip
-    ######### end lib7zip
+    # LIBS+= -l7zip
+    ######### end lib7zip }}}
 
-    ######### mediainfo
+    ######### mediainfo {{{
     # use libmediainfo as static library?
     # STATIC
-    #DEFINES += MEDIAINFO_STATIC
-    #LIBS+=/usr/local/lib/libmediainfo.a
+    # DEFINES += MEDIAINFO_STATIC
+    # LIBS+=/usr/local/lib/libmediainfo.a
 
     # DYNAMIC. no pkgconfig
-    #LIBS+= -lmediainfo
+    # LIBS+= -lmediainfo
 
     # disable mediainfo
     #DEFINES += NO_MEDIAINFO
 
     # libmediainfo ships API info via pkgconfig so use it!
-    #CONFIG += link_pkgconfig
-    #PKGCONFIG += libmediainfo
+    # CONFIG += link_pkgconfig
+    # PKGCONFIG += libmediainfo
     # temporary kluge until it's decided how to get char type from libmediainfo,
     # maybe also via pkgconfig (Debian Bug #656929, could remove the extra
     # hack in cdcatmediainfo.h when it's ready)
     #DEFINES += MEDIAINFO_UNICODE
-    ######### end mediainfo
+    ######### end mediainfo }}}
 
-
-    ########## exif
+    ########## exif {{{
     # use exif?
     #DEFINES += USE_LIBEXIF
     #LIBS += -lexif
-    ######### end exif
+    ######### end exif }}}
 
     #LIBS       += -lz -ltar -lbz2 -ldl
     # libmediainfo ships API info via pkgconfig so use it!
@@ -220,19 +228,19 @@ win32 {
     # hack in cdcatmediainfo.h when it's ready)
     #DEFINES += MEDIAINFO_UNICODE
 
-    ###### libtar
+    ###### libtar {{{
     # STATIC
     #LIBS += /usr/local/lib/libtar.a
 
     # DYNAMIC
     LIBS += -ltar
-    ###### end libtar
+    ###### end libtar }}}
 
 
-    ###### encryption
+    ###### encryption {{{
     DEFINES += CATALOG_ENCRYPTION
     LIBS+= -lcrypto++ -lpthread
-    ###### end encryption
+    ###### end encryption }}}
 
     LIBS              += -lz -lbz2 -ldl
     distfiles.files   += ../README_CSV_IMPORT ../Authors ../README ../ChangeLog ../COPYING ../TRANSLATORS_README ../cdcat.png
@@ -242,11 +250,6 @@ win32 {
 
     # security hardening flags
     #DEFINES += _FORTIFY_SOURCE=2
+    DEFINES += _FORTIFY_SOURCE=1
     #QMAKE_CXXFLAGS += -std=c++0x -g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Wformat-security -Werror=format-security
 }
-
-FORMS     =  help.ui
-TARGET    =  cdcat
-INSTALLS += target translations distfiles
-QT       += xml widgets printsupport
-CONFIG   += uic

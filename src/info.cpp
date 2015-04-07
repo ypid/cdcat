@@ -116,9 +116,9 @@ InfoDialog::InfoDialog ( QWidget *parent, const char *name, bool modal, Qt::Wind
     /* }}} */
 
     /* Features {{{ */
-#if defined(USE_LIB7ZIP) || defined(MEDIAINFO_STATIC) || defined(MEDIAINFO_UNICODE) || defined(USE_LIBEXIF)
+#if defined(USE_LIB7ZIP) || defined(MEDIAINFO_STATIC) || defined(MEDIAINFO_UNICODE) || defined(USE_LIBEXIF) || defined(CATALOG_ENCRYPTION)
     infotext += "<h2>";
-    infotext += tr( "Features:" );
+    infotext += tr( "Compiled with the following features:" );
     infotext += "</h2>";
     infotext += "<ul>";
 #endif
@@ -152,7 +152,10 @@ InfoDialog::InfoDialog ( QWidget *parent, const char *name, bool modal, Qt::Wind
     infotext += tr( "encrypted catalog support" );
     infotext += "</li>";
 #endif
+
+#if defined(USE_LIB7ZIP) || defined(MEDIAINFO_STATIC) || defined(MEDIAINFO_UNICODE) || defined(USE_LIBEXIF) || defined(CATALOG_ENCRYPTION)
     infotext += "</ul>";
+#endif
     /* }}} */
 
     /* Authors {{{ */

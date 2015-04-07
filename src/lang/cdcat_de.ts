@@ -1850,8 +1850,8 @@ wird zu
         <translation>GPL-Seite auf der GNU-Webseite</translation>
     </message>
     <message>
-        <source>Features:</source>
-        <translation>Fähigkeiten:</translation>
+        <source>Compiled with the following features:</source>
+        <translation>Übersetzt mit den folgenden Funktionen:</translation>
     </message>
     <message>
         <source>archive read support using lib7zip</source>

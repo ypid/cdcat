@@ -10,6 +10,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <iostream>
 
 #include <QApplication>
 #include <QFont>
@@ -24,8 +25,6 @@
 #include "mainwidget.h"
 #include "icons.h"
 
-#include <iostream>
-
 using namespace std;
 
 bool *init_debug_info() {
@@ -36,33 +35,38 @@ bool *init_debug_info() {
 }
 
 #ifndef QT_NO_DEBUG
-static void myMessageOutput( QtMsgType type, const char *msg ) {
+void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg) {
+    QByteArray localMsg = msg.toLocal8Bit();
+
     switch (type) {
     case QtDebugMsg:
-        fprintf( stderr, "Debug: %s\n", msg );
+        fprintf(stderr, "Debug: %s (%s:%u, %s)\n", localMsg.constData(), context.file, context.line, context.function);
         break;
     case QtWarningMsg:
-        fprintf( stderr, "Warning: %s\n", msg );
+        fprintf(stderr, "Warning: %s (%s:%u, %s)\n", localMsg.constData(), context.file, context.line, context.function);
         break;
     case QtCriticalMsg:
-        fprintf( stderr, "Critical: %s\n", msg );
+        fprintf(stderr, "Critical: %s (%s:%u, %s)\n", localMsg.constData(), context.file, context.line, context.function);
         break;
     case QtFatalMsg:
-        fprintf( stderr, "Fatal: %s\n", msg );
-        // abort();
+        fprintf(stderr, "Fatal: %s (%s:%u, %s)\n", localMsg.constData(), context.file, context.line, context.function);
+        abort();
     }
 }
 #endif
 
 int main( int argi, char **argc ) {
+
 #ifndef QT_NO_DEBUG
-#warning ====> installing own message handler
-    qInstallMsgHandler( myMessageOutput );
+    #warning ====> installing own message handler
+    qInstallMessageHandler( myMessageOutput );
 #endif
 
     QTextCodec::setCodecForLocale( QTextCodec::codecForName( "UTF-8" ));
 
     QApplication app( argi, argc );
+    QCoreApplication::setApplicationName(PROGRAM_NAME);
+    QCoreApplication::setApplicationVersion(VERSION);
 
     CdCatConfig *cconfig = new CdCatConfig();
     translator = 0;

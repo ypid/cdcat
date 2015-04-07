@@ -2503,7 +2503,7 @@ the DataBase may be incomplete</source>
     </message>
     <message>
         <location filename="../../info.cpp" line="107"/>
-        <source>Features:</source>
+        <source>Compiled with the following features:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

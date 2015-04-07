@@ -3044,7 +3044,7 @@ debe ser
     </message>
     <message>
         <location line="-63"/>
-        <source>Features:</source>
+        <source>Compiled with the following features:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
