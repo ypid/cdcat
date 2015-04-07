@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0">
+<TS version="2.1">
 <context>
     <name></name>
     <message>
@@ -135,7 +135,7 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     <name>CdCatMainWidget</name>
     <message>
         <source>Hyper&apos;s CD Catalogizer</source>
-        <translation>Hypers CD-Katalogisierer</translation>
+        <translation type="vanished">Hypers CD-Katalogisierer</translation>
     </message>
     <message>
         <source>Help</source>
@@ -952,6 +952,10 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
         <source>unknown</source>
         <translation>unbekannt</translation>
     </message>
+    <message>
+        <source>decrypting file, please wait...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DirectoryView</name>
@@ -1012,7 +1016,7 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     </message>
     <message>
         <source>Hyper&apos;s CD Catalogizer</source>
-        <translation>Hyper´s CD-Katalogisierer</translation>
+        <translation type="vanished">Hyper´s CD-Katalogisierer</translation>
     </message>
     <message>
         <source>CdCat databases (*.hcf )</source>
@@ -1074,7 +1078,7 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
         <source>The size of &quot;%1&quot; :
  %2
  %3 file /%4 directory</source>
-        <translation>Die Grösse von &quot;%1&quot;:
+        <translation type="vanished">Die Grösse von &quot;%1&quot;:
 %2
 %3 Datei(en) / %4 Verzeichnis(se)</translation>
     </message>
@@ -1163,7 +1167,7 @@ Datenbank kann unvollständig sein</translation>
     <message>
         <source>An error occurred while scanning, the rescan operation was cancelled:
 %1</source>
-        <translation>Es trat ein Fehler während des Durchsuchens auf, Aktualisierenoperation abgebrochen:
+        <translation type="vanished">Es trat ein Fehler während des Durchsuchens auf, Aktualisierenoperation abgebrochen:
 %1</translation>
     </message>
     <message>
@@ -1464,6 +1468,17 @@ die Datenbank wird unvollständig sein</translation>
         <translation>Möchten Sie
 &quot;%1&quot;
 wirklich löschen?</translation>
+    </message>
+    <message>
+        <source>An error occurred while scanning, the rescan operation was cancelled: 
+%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The size of &quot;%1&quot; : 
+ %2 
+ %3 file /%4 directory</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1811,11 +1826,11 @@ wird zu
     </message>
     <message>
         <source>Copyright (C) 2003 Peter Deak (GPL)</source>
-        <translation>Copyright (C) 2003 Peter Deak (GPL)</translation>
+        <translation type="vanished">Copyright (C) 2003 Peter Deak (GPL)</translation>
     </message>
     <message>
         <source>-= CdCatalog by Hyper =-</source>
-        <translation>-= CdCatalog von Hyper =-</translation>
+        <translation type="vanished">-= CdCatalog von Hyper =-</translation>
     </message>
     <message>
         <source>Version:</source>
@@ -1827,7 +1842,7 @@ wird zu
     </message>
     <message>
         <source>Copyright (C) 2010 Christoph Thielecke (GPL)</source>
-        <translation>Copyright (C) 2010 Christoph Thielecke (GPL)</translation>
+        <translation type="vanished">Copyright (C) 2010 Christoph Thielecke (GPL)</translation>
     </message>
     <message>
         <source>Ported to Qt4</source>
@@ -1872,6 +1887,10 @@ wird zu
     <message>
         <source>encrypted catalog support</source>
         <translation>Unterstützung für verschlüsselten Katalog</translation>
+    </message>
+    <message>
+        <source>Ported to Qt5</source>
+        <translation type="unfinished">Portiert nach Qt5</translation>
     </message>
 </context>
 <context>
