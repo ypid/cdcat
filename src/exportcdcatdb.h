@@ -26,7 +26,7 @@
 #include <QLayout>
 #include <qlineedit.h>
 #include <QListWidget>
-#include <qobject.h>
+#include <QObject>
 #include <QPixmap>
 #include <QPushButton>
 #include <QRadioButton>

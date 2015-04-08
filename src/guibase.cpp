@@ -1180,9 +1180,8 @@ QKeySequence GuiSlave::getKeyBinding( int eventDefine ) {
 int GuiSlave::newEvent( void ) {
     newdbdialog *d = new newdbdialog( mainw, "new_db_dialog", true );
 
-    while (closeEvent() != 0) {
-    }
-    ;
+    while (closeEvent() != 0) { }
+
     d->exec();
     if (d->OK == 1) {
         panelsOFF();
@@ -1549,6 +1548,7 @@ int GuiSlave::addEvent( void ) {
 #if !defined(_WIN32) && !defined(_OS2)
     bool mount_successful = false;
 #endif
+
     QString cdrom_mountpath = mainw->cconfig->cdrompath;
     DEBUG_INFO_ENABLED = init_debug_info();
     if (mainw->db == NULL) {

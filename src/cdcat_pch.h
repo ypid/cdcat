@@ -59,7 +59,7 @@
 #include <QMessageBox>
 // #include <qmime.h>
 #include <QMouseEvent>
-#include <qobject.h>
+#include <QObject>
 #include <QPainter>
 #include <QPaintEvent>
 #include <qpalette.h>

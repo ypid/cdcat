@@ -7,11 +7,10 @@
 *  Copyright : (C) 2003 Peter Deak
 ****************************************************************************/
 
-
 #ifndef CDCAT_DBASE
 #define CDCAT_DBASE
 
-#include <qobject.h>
+#include <QObject>
 #include <QString>
 #include <QStringList>
 #include <QDateTime>
@@ -19,21 +18,20 @@
 #include <QImage>
 
 
-
 #ifdef _WIN32
-typedef int uid_t;
-typedef int gid_t;
+    typedef int uid_t;
+    typedef int gid_t;
 #endif
 
 #ifndef _WIN32
-#include <pwd.h>
-#include <grp.h>
+    #include <pwd.h>
+    #include <grp.h>
 #endif
 
 #include <libtar.h>
 
 #ifndef NO_MEDIAINFO
-#include "cdcatmediainfo.h"
+    #include "cdcatmediainfo.h"
 #endif
 
 // values for class Node::type
@@ -108,11 +106,11 @@ public:
      *      7 - catlnk
      *      8 - archive.prop.
      *      9 - exif
-     *      10 - thumbnail
+     *     10 - thumbnail
      */
     int type;             // node type
 
-    Node *next;           // neighbour node. (Same level)
+    Node *next;           // neighbor node. (Same level)
     Node *child;          // one level below
     Node *parent;         // the parent element (Upper level)
 
@@ -137,11 +135,7 @@ public:
     ~Node ( void );
 };
 
-/*
- *    DB ... classes:
- */
-
-class DBCatalog { // type is 1
+class DBCatalog { /* Type 1 {{{ */
 public:
     QString name;
     QString owner;
@@ -149,7 +143,7 @@ public:
     QString category;
 
     int writed;
-    // Writed to the disc  1=yes 0=no
+    // Write to the disc  1=yes 0=no
 
     char filename[256];
     // the file name of the database. (If you opened it or save it yet.)
@@ -171,9 +165,9 @@ public:
 
     int sortedBy;
     bool isEncryptedCatalog;
-};
+}; /* }}} */
 
-class DBMedia { // type is 2
+class DBMedia { /* Type 2 {{{ */
 public:
     QString name;
     // the media name, must be unique
@@ -182,25 +176,43 @@ public:
     // the unique serial name of the media
 
     QString owner;
-    // if not defined is NULL
+    // NULL, if not defined
 
+    // FIXME: Use enum …
     int type;
-    // 0-unknown 1-CD 2-DVD 3-HardDisc 4-Floppy 5-NetworPlace 6-FlashDrive 7-OtherDevice
+    /*
+     *   0: unknown
+     *   1: CD
+     *   2: DVD
+     *   3: HardDisc
+     *   4: Floppy
+     *   5: NetworPlace
+     *   6: FlashDrive
+     *   7: OtherDevice
+     */
 
     QDateTime modification;
     QString comment;
     QString category;
 
-    // Is the media borrowed? NULL=>No ; String=>Yes , contains: for who?
     QString borrowing;
+    // Is the media borrowed? NULL=>No ; String=>Yes , contains: for who?
 
     DBMedia ( QString n, int nu, QString o, int t, QString c, QDateTime mod = QDateTime::currentDateTime(), QString pcategory = "" );
-    // n:name , nu:number o:owner , t:type , c:comment, mod:modification, pcategory:category
+    /*
+     *        n  : name
+     *        nu : number
+     *        o  : owner
+     *        t  : type
+     *        c  : comment
+     *       mod : modification
+     *  pcategory: category
+     */
     DBMedia ( void );
     ~DBMedia ( void );
-};
+}; /* }}} */
 
-class DBDirectory { // type is 3
+class DBDirectory { /* Type 3 {{{ */
 public:
     QString name;
     QDateTime modification;
@@ -209,12 +221,17 @@ public:
 
     DBDirectory ( void );
     DBDirectory ( QString n, QDateTime mod, QString c, QString pcategory = "" );
-    // n:name , mod:modification , c:comment, pcategory:category
+    /*
+     *        n  : name
+     *        c  : comment
+     *       mod : modification
+     *  pcategory: category
+     */
 
     ~DBDirectory ( void );
-};
+}; /* }}} */
 
-class DBFile { // type is 4
+class DBFile {  /* Type 4 {{{ */
 public:
     QString name;
     QDateTime modification;
@@ -236,9 +253,9 @@ public:
     // n:name , mod:modification , c:comment , s:size , st:sizeType, pcategory:category, fileinfo:fileinfo
 
     ~DBFile ( void );
-};
+}; /* }}} */
 
-class DBMp3Tag { // type is 5
+class DBMp3Tag { /* Type 5 {{{ */
 public:
     QString artist;
     QString title;
@@ -252,9 +269,9 @@ public:
     // a:artist , t:title , c:commnet , al:album , y:year, tnum:tnumber
 
     ~DBMp3Tag ( void );
-};
+}; /* }}} */
 
-class DBContent { // type is 6
+class DBContent { /* Type 6 {{{ */
 public:
     DBContent ( void );
     DBContent ( unsigned char *pbytes, unsigned long pstoredSize );
@@ -262,10 +279,9 @@ public:
 
     unsigned char *bytes;
     unsigned long storedSize;
-};
+}; /* }}} */
 
-
-class DBCatLnk { // type is 7
+class DBCatLnk { /* Type 7 {{{ */
 public:
     QString name;
     char *location;
@@ -275,9 +291,9 @@ public:
     DBCatLnk ( void );
     DBCatLnk ( QString pname, char *plocation, QString pcomment, QString pcategory = "" );
     ~DBCatLnk ( void );
-};
+}; /* }}} */
 
-class ArchiveFile : public QObject { // type is 8
+class ArchiveFile : public QObject { /* Type 8 {{{ */
     Q_OBJECT
 public:
     ArchiveFile ( QString fileattr = "-rw- rw- rw-", QString user = tr ("unknown"), QString group = tr ("unknown"), long long int size = 0, QDateTime date = QDateTime().currentDateTime(), QString path = "/", QString filetype = tr (""));
@@ -297,29 +313,28 @@ public:
 
 private:
     QChar div;
-};
+}; /* }}} */
 
-
-class DBExifData : public QObject { // type is 9
+class DBExifData : public QObject { /* Type 9 {{{ */
 public:
     DBExifData ( void );
     DBExifData ( QStringList ExifDataList );
     ~DBExifData ( void );
 
     QStringList ExifDataList;
-};
+}; /* }}} */
 
-class DBThumb : public QObject { // type is 10
+class DBThumb : public QObject { /* Type 10 {{{ */
 public:
     DBThumb ( void );
     DBThumb ( QImage ThumbImage );
     ~DBThumb ( void );
 
     QImage ThumbImage;
-};
+}; /* }}} */
 
 
-class DataBase : public QObject {
+class DataBase : public QObject { /* {{{ */
     Q_OBJECT
 public:
     DataBase ( void );
@@ -333,21 +348,21 @@ public:
     // saving option (niceFormat) pass to the FileWriter class
 
     bool storeMp3tags;
-    // strore the mp3 tags
+    // store the mp3 tags
 
     bool v1_over_v2;
     // true is the version 1 tag the default
 
     bool storeMp3techinfo;
-    // store mp3 technical informations: time,bitrate,freq, stereo type
+    // store mp3 technical informations: time, bitrate, freq, stereo type
 
     bool storeAvitechinfo;
-    // store avi technical informations: time,bitrate,...
+    // store avi technical informations: time, bitrate, ...
 
     bool storeFileInfo;
     // store informations got from fileinfo
 
-    // The database will store some file's contetn if ..
+    // The database will store some file's content if ..
     bool storeContent;
     // the storing enabled...
     QString storedFiles;
@@ -420,7 +435,8 @@ public:
     unsigned long getCountFiles( Node *s, int level = 0 );
     unsigned long getCountDirs( Node *s, int level = 0 );
 
-    PWw *pww;             // Pease Wait Window :-)
+    PWw *pww;
+    // Please wait window :-)
 
     QStringList SupportedFileInfoExtensionsList;
 
@@ -509,15 +525,11 @@ signals:
     void pathScanned( QString path );
     void fileScanned( QString filepath );
     void pathExtraInfoAppend( QString extrainfo );
-};
-
-
+}; /* }}} */
 
 
 // char *getTime        (QDateTimeTime dt); ???
 // char *getCurrentTime (void); ???
 #endif
-
-
 
 // kate: indent-mode cstyle; replace-tabs off; tab-width 8;

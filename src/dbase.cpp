@@ -1181,7 +1181,7 @@ int DataBase::scanFsToNode( QString what, Node *to ) {
         if (pww->appl->hasPendingEvents()) {
             pww->appl->processEvents();
         }
-    }    /*end of for,..next directory entry*/
+    }    /* end of for,..next directory entry */
     return ret;
 }
 

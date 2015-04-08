@@ -17,7 +17,7 @@
 // #include <qmime.h>
 #include <QStringList>
 #include <QApplication>
-#include <qobject.h>
+#include <QObject>
 #include <QMouseEvent>
 
 #include <QHeaderView>

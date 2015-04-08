@@ -51,6 +51,7 @@
 
 addDialog::addDialog ( GuiSlave *c, QWidget *parent, const char *name, bool modal, Qt::WindowFlags fl )
     : QDialog( parent, fl ) {
+
     int i;
 
     setModal( modal );
@@ -461,14 +462,21 @@ void addDialog::setBusyState( bool state ) {
 
 /**************************************************************************/
 
-PWw::PWw ( QWidget *parent, QApplication *qapp, bool showProgress, long long int steps, QString progresstext, bool showCancel ) : QWidget( parent
+PWw::PWw ( QWidget *parent,
+           QApplication *qapp,
+           bool showProgress,
+           long long int steps,
+           QString progresstext,
+           bool showCancel ) : QWidget(
+               parent
 #ifdef QT_NO_COMPAT
-                                                                                                                                           , Qt::WType_Dialog /*| Qt::FramelessWindowHint*/
+               , Qt::WType_Dialog /*| Qt::FramelessWindowHint*/
 #else
-                                                                                                                                                              /*, Qt::FramelessWindowHint*/
+               /*, Qt::FramelessWindowHint*/
 #endif
 
-                                                                                                                                           ) {
+               ) {
+
     int i = 0;
     QFont ownf;
 
@@ -504,7 +512,7 @@ PWw::PWw ( QWidget *parent, QApplication *qapp, bool showProgress, long long int
     mywidth = 160;
     myheight = baseheight;
 
-    /* Calculate the necesary font size*/
+    /* Calculate the necessary font size*/
     ownf = font();
 
     ownf.setPointSize( i );
@@ -522,9 +530,6 @@ PWw::PWw ( QWidget *parent, QApplication *qapp, bool showProgress, long long int
         myheight += cancelButton->height() + 4;
     }
 
-//     std::cerr << "mywidth: " << mywidth << std::endl;
-
-
     setMinimumSize( 10, myheight );
     setMaximumSize( mywidth, myheight );
     QPoint p( parent->x(), parent->y());
@@ -537,10 +542,9 @@ PWw::PWw ( QWidget *parent, QApplication *qapp, bool showProgress, long long int
 
     setFont( ownf );
 
-
     anim_list = get_anim_list();
 
-    /*Get the firt value of the timer*/
+    /*Get the first value of the timer*/
     t = QTime::currentTime();
     s = 0;
 }
@@ -563,7 +567,7 @@ void PWw::setProgressText( QString progresstext ) {
 
     this->progresstext = progresstext;
 
-    /* Calculate the necesary font size*/
+    /* Calculate the necessary font size*/
     ownf = font();
     i = 10;
 

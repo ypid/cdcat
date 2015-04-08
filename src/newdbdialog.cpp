@@ -11,6 +11,7 @@
 #include "dbase.h"
 #include "cdcat.h"
 #include "guibase.h"
+#include "icons.h"
 
 #include <QVariant>
 #include <QLabel>
@@ -27,10 +28,9 @@
 #include <string.h>
 
 #ifdef CATALOG_ENCRYPTION
-#include <crypto++/blowfish.h>
+    #include <crypto++/blowfish.h>
 #endif
 
-#include "icons.h"
 /*
  *  Constructs a newdbdialog as a child of 'parent', with the
  *  name 'name' and widget flags set to 'f'.
@@ -40,6 +40,7 @@
  */
 newdbdialog::newdbdialog ( QWidget *parent, const char *name, bool modal, Qt::WindowFlags fl )
     : QDialog( parent, fl ) {
+
     setModal( modal );
     if (!name) {
         setObjectName( "NewDBDialogBase" );
@@ -158,7 +159,12 @@ int newdbdialog::ok( void ) {
             return 1;
         }
         if (leEncryptionPassword->text().size() > CryptoPP::Blowfish::BLOCKSIZE) {
-            QMessageBox::warning( this, tr( "Password too big" ), tr( "Password length is too big, must be maximal %1 chars" ).arg( QString().setNum( CryptoPP::Blowfish::BLOCKSIZE )));
+            QMessageBox::warning( this,
+                tr( "Password too big" ),
+                tr( "Password length is too big, must be maximal %1 chars" )
+                    .arg( QString()
+                    .setNum( CryptoPP::Blowfish::BLOCKSIZE ))
+            );
             return 1;
         }
     }

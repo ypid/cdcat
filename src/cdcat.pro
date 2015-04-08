@@ -1,4 +1,4 @@
-# lessThan(QT_VERSION, 5.2.0): error(This project requires Qt 5.2.0 or later)
+lessThan(QT_VERSION, 5.2.0): error(This project requires Qt 5.2.0 or later)
 
 TRANSLATIONS = lang/cdcat_hu.ts \
                lang/cdcat_de.ts \
@@ -103,6 +103,8 @@ CONFIG      += qt xml uic
 CONFIG      += debug
 CONFIG      += warn_on
 # CONFIG      += warn_off
+DEFINES     += QT_FORCE_ASSERTS
+## QT_FORCE_ASSERTS is needed for the code to work …
 MOC_DIR      =  moc_files/
 OBJECTS_DIR  =  obj_files/
 

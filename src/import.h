@@ -11,7 +11,7 @@
 #define IMPORT__
 
 
-#include <qobject.h>
+#include <QObject>
 #include <QFileDialog>
 #include <QWidget>
 #include <QDateTime>

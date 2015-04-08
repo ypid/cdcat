@@ -11,7 +11,7 @@
 #define GUIBASE_CDCAT
 
 #include <QList>
-#include <qobject.h>
+#include <QObject>
 #include <QDialog>
 #include <QTreeWidget>
 #include <QTreeWidgetItem>

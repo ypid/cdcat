@@ -12,7 +12,7 @@
 
 #include <QString>
 #include <QVariant>
-#include <qobject.h>
+#include <QObject>
 #include <QDialog>
 #include <QStringList>
 #include <QHBoxLayout>

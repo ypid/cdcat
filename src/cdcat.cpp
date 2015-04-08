@@ -12,6 +12,8 @@
 #include <stdlib.h>
 #include <iostream>
 
+#include <QCommandLineOption>
+#include <QCommandLineParser>
 #include <QApplication>
 #include <QFont>
 #include <QMessageBox>
@@ -19,6 +21,7 @@
 #include <QList>
 #include <QFileInfo>
 #include <QTextCodec>
+#include <QDebug>
 
 #include "dbase.h"
 #include "cdcat.h"
@@ -27,6 +30,7 @@
 
 using namespace std;
 
+/* Own debug output {{{ */
 bool *init_debug_info() {
     if (DEBUG_INFO_ENABLED == NULL) {
         DEBUG_INFO_ENABLED = new bool();
@@ -54,6 +58,7 @@ void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QS
     }
 }
 #endif
+/* }}} */
 
 int main( int argi, char **argc ) {
 
@@ -72,9 +77,102 @@ int main( int argi, char **argc ) {
     translator = 0;
     int font_size = 8;
 
-    if (argi > 1) {
-        cconfig->setParameter( argc[1] );
+    /* Declare command line parameters {{{ */
+    QCommandLineParser parser;
+
+    parser.addHelpOption();
+    parser.addVersionOption();
+
+    parser.addPositionalArgument("db_filename",
+        QCoreApplication::translate("main_cli", "Optional database file, if given, it will be used as database.")
+    );
+
+    /* Export database to other format {{{ */
+    QCommandLineOption optionImportFile(QStringList() << "i" << "import-file",
+        QCoreApplication::translate("main_cli", "Import %1 in the format specified by the \"%2\" parameter into the database."
+            " Use the \"%3\" parameter to get a list of all supported import formats.")
+                .arg("<" + QCoreApplication::translate("seekEngine", "file") + ">")
+                .arg("import-format")
+        ,
+        QCoreApplication::translate("seekEngine", "file")
+    );
+    Q_ASSERT(parser.addOption(optionImportFile));
+
+    QCommandLineOption optionImportFormat(QStringList() << "f" << "import-format",
+        QCoreApplication::translate("main_cli", "Format used to by the \"%1\" parameter."
+            " Use the \"%2\" parameter to get a list of all supported export formats."
+            " Default is \"%3\".")
+                .arg("<" + QCoreApplication::translate("seekEngine", "file") + ">")
+                .arg("import-list")
+                .arg("Whereisit")
+        ,
+        QCoreApplication::translate("main_cli", "format"),
+        "Whereisit"
+    );
+    Q_ASSERT(parser.addOption(optionImportFormat));
+    /* }}} */
+
+    /* Export database to other format {{{ */
+    QCommandLineOption optionExportFile(QStringList() << "e" << "export-file",
+        QCoreApplication::translate("main_cli", "Export to the contents of the database to %1 in the format specified by the \"%2\" parameter.")
+            .arg("<" + QCoreApplication::translate("seekEngine", "file") + ">")
+            .arg("export-format")
+        ,
+        QCoreApplication::translate("seekEngine", "file")
+    );
+    Q_ASSERT(parser.addOption(optionExportFile));
+
+    QCommandLineOption optionExportFormat(QStringList() << "t" << "export-format",
+        QCoreApplication::translate("main_cli", "Format used to by the \"%1\" parameter."
+            " Use the \"%2\" parameter to get a list of all supported export formats."
+            " Default is \"%3\".")
+                .arg("<" + QCoreApplication::translate("seekEngine", "file") + ">")
+                .arg("export-list")
+                .arg("Whereisit")
+        ,
+        QCoreApplication::translate("main_cli", "format"),
+        "Whereisit"
+    );
+    Q_ASSERT(parser.addOption(optionExportFormat));
+    /* }}} */
+
+    QCommandLineOption addressOption(QStringList() << "n" << "address", QCoreApplication::translate("main_cli", "Specify decimal starting address (default is 0)."), QCoreApplication::translate("main_cli", "address"), "0");
+    Q_ASSERT(parser.addOption(addressOption));
+
+    QCommandLineOption optionSwitchBatchMode(QStringList() << "b" << "batch",
+        QCoreApplication::translate("main_cli", "Run in non iterative batch mode. This mode is CLI only which means no GUI is going to appear.")
+    );
+    Q_ASSERT(parser.addOption(optionSwitchBatchMode));
+    /* }}} */
+
+    /* Evaluate command line parameters {{{ */
+    parser.process(app);
+
+    const QStringList args = parser.positionalArguments();
+
+    QString address(parser.value(optionImportFile));
+    // Display values of arguments and options.
+    // qDebug() << "filename:  " << args.at(0);
+    // qDebug() << "no list:   " << parser.isSet(noListOption);
+    qDebug() << "address:   " << address;
+    qDebug() << "format:    " << args.size();
+
+    /* Evaluate command line parameters: Error checking {{{ */
+    if (args.size() > 1) {
+        fprintf(stderr, "%s\n", qPrintable(
+            QCoreApplication::translate("main_cli", "Error: You can only specify one %1.")
+                .arg("\"db_filename\"" + args.size() )
+            )
+        );
+        parser.showHelp(1);
     }
+    /* }}} */
+
+    /* }}} */
+
+    // if (argi > 1) {
+        // cconfig->setParameter( argc[1] );
+    // }
 
     if (cconfig->readConfig() == 0) {
         font_size = cconfig->fsize;
@@ -82,14 +180,12 @@ int main( int argi, char **argc ) {
         cconfig->writeConfig();
     }
 
+    // FIXME remove
     DEBUG_INFO_ENABLED = init_debug_info();
     *DEBUG_INFO_ENABLED = cconfig->debug_info_enabled;
-    if (*DEBUG_INFO_ENABLED) {
-        cerr << qPrintable( QString( "DEBUG_INFO_ENABLED: true" )) << endl;
-    } else {
-        cerr << qPrintable( QString( "DEBUG_INFO_ENABLED: false" )) << endl;
-    }
+    qDebug() << "DEBUG_INFO_ENABLED:" << QString(*DEBUG_INFO_ENABLED ? "true" : "false");
 
+    /* Internationalization {{{ */
 #if defined(_WIN32) || defined(Q_OS_MAC) || defined(_OS2)
     QString langpath( applicationDirPath( argc ) + "/lang/cdcat_" );
     langpath += cconfig->lang;
@@ -140,23 +236,32 @@ int main( int argi, char **argc ) {
         translator->load( langpath, "." );
         app.installTranslator( translator );
     }
+    /* }}} */
 
-    init_icon_base();
+    int ret_val = 2;
+    if (parser.isSet(optionSwitchBatchMode)) {
 
-    CdCatMainWidget mw( cconfig, &app, 0, "MainWindow" );
+    } else {
+        /* Create GUI {{{ */
+        init_icon_base();
 
-    cconfig->defaultfont = app.font();
-    if (cconfig->ownfont) {
-        QFont font;
-        font.setPointSize( font_size );
-        app.setFont( font );
+        CdCatMainWidget mw( cconfig, &app, 0, "MainWindow" );
+
+        cconfig->defaultfont = app.font();
+        if (cconfig->ownfont) {
+            QFont font;
+            font.setPointSize( font_size );
+            app.setFont( font );
+        }
+
+        mw.show();
+
+        ret_val = app.exec();
+        deinit_icon_base();
+        /* }}} */
     }
-
-    mw.show();
-
-    int ret_val = app.exec();
-    deinit_icon_base();
     delete cconfig;
+
     return ret_val;
 }
 
