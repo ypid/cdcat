@@ -186,7 +186,7 @@ QString date_to_str( QDateTime dt ) {
         text.sprintf( "%d-%02d-%02d %02d:%02d:%02d", dt.date().year(), dt.date().month(), dt.date().day(),
                       dt.time().hour(), dt.time().minute(), dt.time().second());
     } else {
-        text = QObject().tr( "Not available" );
+        text = QApplication::translate( "dbase", "Not available" );
     }
 
     return text;

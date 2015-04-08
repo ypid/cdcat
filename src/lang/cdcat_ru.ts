@@ -3811,6 +3811,14 @@ the DataBase may be incomplete</source>
     </message>
 </context>
 <context>
+    <name>dbase</name>
+    <message>
+        <location filename="../dbase.cpp" line="189"/>
+        <source>Not available</source>
+        <translation type="unfinished">Недоступно</translation>
+    </message>
+</context>
+<context>
     <name>exportCdcatDB</name>
     <message>
         <location filename="../exportcdcatdb.cpp" line="311"/>

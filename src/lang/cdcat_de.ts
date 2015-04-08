@@ -2836,6 +2836,13 @@ wird zu
     </message>
 </context>
 <context>
+    <name>dbase</name>
+    <message>
+        <source>Not available</source>
+        <translation type="unfinished">Nicht verfügbar</translation>
+    </message>
+</context>
+<context>
     <name>exportCdcatDB</name>
     <message>
         <source>All media</source>

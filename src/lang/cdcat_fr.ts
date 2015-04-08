@@ -4213,6 +4213,14 @@ deviendra
     </message>
 </context>
 <context>
+    <name>dbase</name>
+    <message>
+        <location filename="../dbase.cpp" line="189"/>
+        <source>Not available</source>
+        <translation type="unfinished">Indisponible</translation>
+    </message>
+</context>
+<context>
     <name>exportCdcatDB</name>
     <message>
         <location filename="../exportcdcatdb.cpp" line="311"/>

@@ -4425,6 +4425,14 @@ bude změněno na
     </message>
 </context>
 <context>
+    <name>dbase</name>
+    <message>
+        <location filename="../dbase.cpp" line="-383"/>
+        <source>Not available</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>exportCdcatDB</name>
     <message>
         <source>exportCdcatDB database</source>
