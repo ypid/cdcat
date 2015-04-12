@@ -530,11 +530,11 @@ QString InfoDialog::formatAuthorTR(QString name, QString email, QString year) {
  *  language.
  */
 void InfoDialog::languageChange() {
-    setWindowTitle( tr( "About cdcat" ));
+    setWindowTitle( tr( "About %1" ).arg(PROGRAM_NAME));
     closeButton->setText( tr( "close" ));
     textBrowser2->setHtml( infotext );
     textBrowser2->setOpenExternalLinks( true );
-    tabWidget2->setTabText( 0, tr( "About Cdcat" ));
+    tabWidget2->setTabText( 0, tr( "About %1" ).arg(PROGRAM_NAME) );
     textBrowser1->setHtml( license );
     textBrowser1->setOpenExternalLinks( true );
     tabWidget2->setTabText( 1, tr( "License" ));

@@ -9,14 +9,13 @@
 
 #include <stdio.h>
 #include <ctype.h>
+#include <iostream>
 
 #include <QtXml/QXmlInputSource>
 #include <zlib.h>
 #include <QString>
 #include <QDateTime>
 #include <QRegExp>
-
-
 #include <QStringList>
 #include <QtDebug>
 #include <QBuffer>
@@ -24,6 +23,7 @@
 #include <QMessageBox>
 #include <QInputDialog>
 #include <QTextCodec>
+
 #include "wdbfile.h"
 #include "adddialog.h"
 #include "dbase.h"
@@ -32,9 +32,7 @@
 
 #define BUFFSIZE        8192
 
-#include <iostream>
 using namespace std;
-
 
 char encodeHex[] = "0123456789ABCDEF";
 /*************************************************************************/

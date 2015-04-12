@@ -442,10 +442,16 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
     connect( keybindings_action, SIGNAL( triggered()), guis, SLOT( keyBindingsEvent()));
     helpMenu->addAction( keybindings_action );
 
-    about_action = new QAction( QIcon( *get_p_icon()), tr( "About Cdcat" ), this );
-    guis->KeyShortCutList.append( CdcatKeyBinding( guis->key_aboutEvent, QKeySequence( Qt::ControlModifier + Qt::AltModifier + Qt::Key_A ), tr( "About Cdcat" )));
+    about_action = new QAction( QIcon( *get_p_icon()), tr( "About %1" ).arg(PROGRAM_NAME), this );
+    guis->KeyShortCutList.append(
+        CdcatKeyBinding(
+            guis->key_aboutEvent,
+            QKeySequence( Qt::ControlModifier + Qt::AltModifier + Qt::Key_A ),
+            tr( "About %1" ).arg(PROGRAM_NAME)
+        )
+    );
     about_action->setShortcut( guis->getKeyBinding( guis->key_aboutEvent ));
-    about_action->setStatusTip( tr( "About Cdcat" ));
+    about_action->setStatusTip( tr( "About %1" ).arg(PROGRAM_NAME) );
     connect( about_action, SIGNAL( triggered()), guis, SLOT( aboutEvent()));
     helpMenu->addAction( about_action );
 
@@ -732,8 +738,8 @@ void CdCatMainWidget::languageChange() {
     export_action->setStatusTip( tr( "Export database (CSV/HTML/XML)" ));
     help_action->setText( tr( "Help" ));
     help_action->setStatusTip( tr( "Help" ));
-    about_action->setText( tr( "About Cdcat" ));
-    about_action->setStatusTip( tr( "About Cdcat" ));
+    about_action->setText( tr( "About %1" ).arg(PROGRAM_NAME) );
+    about_action->setStatusTip( tr( "About %1" ).arg(PROGRAM_NAME) );
     aboutqt_action->setText( tr( "About Qt" ));
     aboutqt_action->setStatusTip( tr( "About the Qt toolkit" ));
     if (trayIcon != NULL) {
