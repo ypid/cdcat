@@ -2668,7 +2668,7 @@ int GuiSlave::helpEvent( void ) {
     helptext += tr( "The program was written by Peter Deak (hungary)" );
 
     helptext += "<br />";
-    helptext += tr( "The current maintainer is %1." ).arg( "Christoph Thielecke" );
+    helptext += tr( "The current maintainer is %1." ).arg( MAINTAINER_NAME );
 
     helptext += "</p>";
 
@@ -2684,9 +2684,9 @@ int GuiSlave::helpEvent( void ) {
 
     helptext += "<p>";
 
-    helptext += tr( "You can read about the program and get new versions, sources etc, in the hompage of cdcat:" ) + " ";
+    helptext += tr( "You can read about the program and get new versions, sources etc, from the hompage of %1:" ).arg(PROGRAM_NAME) + " ";
 
-    helptext += "<a href=\"http://cdcat.sourceforge.net/\">http://cdcat.sourceforge.net</a>";
+    helptext += HOMEPAGE;
     helptext += "</p></body></html>";
 
 
