@@ -591,7 +591,7 @@ DataBase::DataBase ( void ) {
 #endif
     if (storeThumb) {
         if (*DEBUG_INFO_ENABLED) {
-            qDebug() << "Supported thumbnail image formats:" << " " << QImageReader::supportedImageFormats();
+            qDebug() << "Supported thumbnail image formats:" << QImageReader::supportedImageFormats();
         }
     }
 }
@@ -735,7 +735,7 @@ int DataBase::saveAsDB( char *filename ) {
     FileWriter *fw = NULL;
 
     progress( pww );
-    /*Check overwriting !!! */
+    /* Check overwriting !!! */
     f = gzopen( filename, "wb" );
     if (f == NULL) {
         errormsg = tr( "I can't create the file: %1" ).arg( filename );

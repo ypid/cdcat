@@ -1134,15 +1134,15 @@ int GuiSlave::hotKeys( QKeyEvent *ke ) {
     switch (ke->key()) {
     /*  Handled from mainwidget.cpp
      *
-     *  case (Qt::Key_O) :     openEvent();    return 1;
-     *  case (Qt::Key_N) :     newEvent();     return 1;
-     *  case (Qt::Key_C) :     closeEvent();   return 1;
-     *  case (Qt::Key_A) :     addEvent();     return 1;
-     *  case (Qt::Key_R) :     rescanEvent();  return 1;
-     *  case (Qt::Key_G) :     configEvent();  return 1;
-     *  case (Qt::Key_F) :     findEvent();    return 1;
-     *  case (Qt::Key_H) :     helpEvent();    return 1;
-     *  case (Qt::Key_Q) :     mainw->close(); return 1;
+     *  case (Qt::Key_O) :      openEvent();    return 1;
+     *  case (Qt::Key_N) :      newEvent();     return 1;
+     *  case (Qt::Key_C) :      closeEvent();   return 1;
+     *  case (Qt::Key_A) :      addEvent();     return 1;
+     *  case (Qt::Key_R) :      rescanEvent();  return 1;
+     *  case (Qt::Key_G) :      configEvent();  return 1;
+     *  case (Qt::Key_F) :      findEvent();    return 1;
+     *  case (Qt::Key_H) :      helpEvent();    return 1;
+     *  case (Qt::Key_Q) :      mainw->close(); return 1;
      *  case (Qt::Key_Space) :  sizeEvent();    return 1;
      */
     case (Qt::Key_Escape):

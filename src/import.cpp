@@ -134,7 +134,7 @@ void lineObject::appendArchiveFileContent( ArchiveFile af ) {
 /*
  * import a file with following format:
  * <media>/<path>/..../<file><separator><size><separator><day/month/year><space><hour>:<minute>:<second>
- * the hashmark '#' can be used as comment in csv file.
+ * the number sign '#' can be used as comment in csv file.
  *
  */
 

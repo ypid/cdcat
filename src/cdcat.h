@@ -28,6 +28,8 @@
 // CdCat homepage location:
 #define HOMEPAGE "<a href=\"http://cdcat.sf.net\">http://cdcat.sf.net</a>"
 #define PROGRAM_NAME "cdCat"
+// #define AUTHOR "Pe'ter Dea'k  hyperr@freemail.hu"
+#define AUTHOR "Christoph Thielecke  (crissi99@gmx.de)"
 // + help.ui
 
 

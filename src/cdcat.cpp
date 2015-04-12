@@ -100,7 +100,7 @@ int main( int argi, char **argc ) {
 
     QCommandLineOption optionImportFormat(QStringList() << "f" << "import-format",
         QCoreApplication::translate("main_cli", "Format used to by the \"%1\" parameter."
-            " Use the \"%2\" parameter to get a list of all supported export formats."
+            " Use the \"%2\" parameter to get a list of all supported import formats."
             " Default is \"%3\".")
                 .arg("<" + QCoreApplication::translate("seekEngine", "file") + ">")
                 .arg("import-list")
@@ -110,6 +110,11 @@ int main( int argi, char **argc ) {
         "Whereisit"
     );
     Q_ASSERT(parser.addOption(optionImportFormat));
+
+    QCommandLineOption optionImportList(QStringList() << "l" << "import-list",
+        QCoreApplication::translate("main_cli", "Print a list of all supported import formats and exit.")
+    );
+    Q_ASSERT(parser.addOption(optionImportList));
     /* }}} */
 
     /* Export database to other format {{{ */
@@ -143,6 +148,11 @@ int main( int argi, char **argc ) {
         QCoreApplication::translate("main_cli", "Run in non iterative batch mode. This mode is CLI only which means no GUI is going to appear.")
     );
     Q_ASSERT(parser.addOption(optionSwitchBatchMode));
+
+    QCommandLineOption optionExportList(QStringList() << "L" << "export-list",
+        QCoreApplication::translate("main_cli", "Print a list of all supported export formats and exit.")
+    );
+    Q_ASSERT(parser.addOption(optionExportList));
     /* }}} */
 
     /* Evaluate command line parameters {{{ */
@@ -207,16 +217,12 @@ int main( int argi, char **argc ) {
     QString langpath;
 
     for (int i = 0; i < translation_paths.count(); ++i) {
-        // cerr <<"path: " << qPrintable(translation_paths.at(i)) << endl;
         QFileInfo info( translation_paths.at( i ) + "/cdcat_" + locale + ".qm" );
         if (info.exists()) {
-            // cerr << "file " + qPrintable(translation_paths.at( i )) + "/cdcat_" + qPrintable(locale) + ".qm" + " does exist!" << endl;
             langpath = translation_paths.at( i ) + "/cdcat_" + locale + ".qm";
         } else {
-            // cerr << "file " + qPrintable(translation_paths.at( i ) + "/cdcat_" + qPrintable(locale) + ".qm" + " does NOT exist!" << endl;
             QFileInfo info2( translation_paths.at( i ) + "/cdcat_" + locale2 + ".qm" );
             if (info2.exists()) {
-                // cerr << "file " + qPrintable(translation_paths.at( i )) + "/cdcat_" + qPrintable(locale2) + ".qm" + " does exist!" << endl;
                 langpath = translation_paths.at( i ) + "/cdcat_" + locale2 + ".qm";
             }
         }
@@ -232,7 +238,6 @@ int main( int argi, char **argc ) {
     translator = new QTranslator( 0 );
 
     if (!langpath.isEmpty()) {
-        // cerr << "using language file " << langpath << endl;
         translator->load( langpath, "." );
         app.installTranslator( translator );
     }
@@ -240,7 +245,17 @@ int main( int argi, char **argc ) {
 
     int ret_val = 2;
     if (parser.isSet(optionSwitchBatchMode)) {
-
+        DataBase *db;
+        db = new DataBase();
+        // db->openDB( "test" );
+        if (args.size() == 1) {
+            QByteArray filename_a = args.at(0).toUtf8();
+            char* filename = filename_a.data();
+            qDebug() << "filename:" << filename;
+            qDebug() << db->saveAsDB( filename );
+        }
+    } else if (parser.isSet(optionImportList)) {
+    } else if (parser.isSet(optionExportList)) {
     } else {
         /* Create GUI {{{ */
         init_icon_base();
