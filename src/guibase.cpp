@@ -7,6 +7,36 @@
 *  Copyright : (C) 2003 Peter Deak
 ****************************************************************************/
 
+#include "cdcat.h"
+#include "guibase.h"
+#include "borrow.h"
+#include "mainwidget.h"
+#include "colorsettings.h"
+#include "dbase.h"
+#include "cdcat.h"
+#include "wdbfile.h"
+#include "commwidget.h"
+#include "hdirview.h"
+#include "newdbdialog.h"
+#include "adddialog.h"
+#include "find.h"
+#include "config.h"
+#include "ui_help.h"
+#include "import.h"
+#include "exportcdcatdb.h"
+#include "info.h"
+#include "showcontent.h"
+#include "icons.h"
+#include "misc.h"
+
+#ifndef NO_MEDIAINFO
+    #include "cdcatmediainfo.h"
+#endif
+
+#ifdef USE_LIBEXIF
+    #include "cdcatexif.h"
+#endif
+
 #include <QImage>
 #include <QLabel>
 #include <QPainter>
@@ -32,48 +62,12 @@
 #include <QKeySequence>
 #include <QDebug>
 
+// #include <iostream>
 #include <string.h>
 #ifndef _WIN32
     #include <unistd.h>
     #include <sys/wait.h>
 #endif
-
-#include "cdcat.h"
-#include "guibase.h"
-#include "borrow.h"
-#include "mainwidget.h"
-#include "colorsettings.h"
-#include "dbase.h"
-#include "cdcat.h"
-#include "wdbfile.h"
-#include "commwidget.h"
-#include "hdirview.h"
-#include "newdbdialog.h"
-#include "adddialog.h"
-#include "find.h"
-#include "config.h"
-#include "ui_help.h"
-#include "import.h"
-#include "exportcdcatdb.h"
-#include "info.h"
-#include "showcontent.h"
-
-#include "icons.h"
-
-#include "misc.h"
-
-#ifndef NO_MEDIAINFO
-    #include "cdcatmediainfo.h"
-#endif
-
-#ifdef USE_LIBEXIF
-    #include "cdcatexif.h"
-#endif
-
-
-#include <iostream>
-using namespace std;
-
 
 char *rbuff = NULL;
 
@@ -92,6 +86,7 @@ HQListViewItem::HQListViewItem ( QTreeWidget *parent )
 
 HQListViewItem::HQListViewItem ( QTreeWidget *parent, QString label1, QString label2, QString label3 )
     : QTreeWidgetItem( parent ), etype( HC_UNINITIALIZED ) {
+
     setChildIndicatorPolicy( QTreeWidgetItem::DontShowIndicator );
     setText( 0, label1 );
     setText( 1, label2 );
@@ -100,7 +95,7 @@ HQListViewItem::HQListViewItem ( QTreeWidget *parent, QString label1, QString la
 
 bool HQListViewItem::operator <( const QTreeWidgetItem &other ) const {
     // int col = treeWidget()->sortColumn();
-    // qDebug() << "HQListViewItem::operator < col: " << col << ", text(0): " << qPrintable(text(0)) << ", other.text(0): " << qPrintable(other.text(0));
+    // qDebug() << "col: " << col << ", text(0): " << qPrintable(text(0)) << ", other.text(0): " << qPrintable(other.text(0));
     // this is the item to compare
     if (text( 0 ) == "..") {
         return false;
@@ -138,27 +133,18 @@ QString HQListViewItem::key( int column, bool ascending ) const {
     int mod = ascending ? etype : 5 - etype;
 
     switch (column) {
-    // NAME
-    case 0:
+    case 0: // NAME
         return text( column ).prepend( '1' + mod );
-    // SIZE
-    case 1:
+    case 1: // SIZE
         // ret = (QListViewItem::key(1,ascending)).append('0'+mod);
         if (etype == HC_FILE && !text( 1 ).isEmpty()) {
             value = getSizeFS( text( 1 ).toUtf8().constData());
+
             switch (getSizetFS( text( 1 ).toUtf8().constData())) {
-            case UNIT_KBYTE:
-                value *= SIZE_ONE_KBYTE;
-                break;
-            case UNIT_MBYTE:
-                value *= SIZE_ONE_MBYTE;
-                break;
-            case UNIT_GBYTE:
-                value *= SIZE_ONE_GBYTE;
-                break;
-            case UNIT_TBYTE:
-                value *= SIZE_ONE_GBYTE * 1024;
-                break;
+            case UNIT_KBYTE: value *= SIZE_ONE_KBYTE       ; break;
+            case UNIT_MBYTE: value *= SIZE_ONE_MBYTE       ; break;
+            case UNIT_GBYTE: value *= SIZE_ONE_GBYTE       ; break;
+            case UNIT_TBYTE: value *= SIZE_ONE_GBYTE * 1024; break;
             default:
                 break;
             }
@@ -172,8 +158,7 @@ QString HQListViewItem::key( int column, bool ascending ) const {
                    .prepend( '1' + mod );
         }
         return text( 0 ).prepend( '1' + mod );
-    // TYPE
-    case 2:
+    case 2: // TYPE
         return (text( 2 ).append( text( 0 ))).prepend( '1' + mod );
     }
     return "";
@@ -1911,8 +1896,11 @@ int GuiSlave::addEvent( void ) {
         }
         panelsON();
         if (i != 0 && !pww->doCancel) {
-            QMessageBox::warning( mainw,
-                                  tr( "Warning..." ), tr( "An error occurred while scanning,\nthe DataBase may be incomplete" ));
+            QMessageBox::warning(
+                mainw,
+                tr( "Warning..." ),
+                tr( "An error occurred while scanning,\nthe DataBase may be incomplete" )
+            );
         }
 
         if (!(d->dComm).isEmpty()) {
