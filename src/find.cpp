@@ -833,10 +833,10 @@ void findDialog::exportResult( bool isPrint ) {
     result_str += "<html>\n";
     result_str += "<head>\n";
     result_str += "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>\n";
-    result_str += "<title>" + tr( "Cdcat search result" ) + "</title>\n";
+    result_str += "<title>" + tr( "%1 search result" ).arg(PROGRAM_NAME) + "</title>\n";
     result_str += "</head>\n";
     result_str += "<body>\n";
-    result_str += "<h1>" + tr( "Cdcat search result" ) + "</h1>\n";
+    result_str += "<h1>" + tr( "%1 search result" ).arg(PROGRAM_NAME) + "</h1>\n";
     result_str += tr( "catalog" ) + ": " + mainw->db->getRootNode()->getNameOf() + ", " + tr( "created at:" ) + " " + QDateTime::currentDateTime().toLocalTime().toString() + "\n";
 
     // TODO: include search options in result

@@ -222,10 +222,24 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
     editMenu->addAction( add_action );
     Toolbar->addAction( add_action );
 
-    addlink_action = new QAction( QIcon( *get_p_icon()), tr( "Add a link to a CdCat Catalog..." ), this );
-    guis->KeyShortCutList.append( CdcatKeyBinding( guis->key_addlnkEvent, QKeySequence( Qt::ControlModifier + Qt::Key_L ), tr( "Add a link to a existing cdcat catalog" )));
+    addlink_action = new QAction( QIcon( *get_p_icon()),
+        tr( "Add a link to a %1 catalog …" )
+            .arg(PROGRAM_NAME),
+        this
+    );
+    guis->KeyShortCutList.append(
+        CdcatKeyBinding(
+            guis->key_addlnkEvent,
+            QKeySequence( Qt::ControlModifier + Qt::Key_L ),
+            tr( "Add a link to a existing %1 catalog" )
+                .arg(tr( "About %1" ).arg(PROGRAM_NAME))
+        )
+    );
     addlink_action->setShortcut( guis->getKeyBinding( guis->key_addlnkEvent ));
-    addlink_action->setStatusTip( tr( "Add a link to a existing cdcat catalog" ));
+    addlink_action->setStatusTip(
+        tr( "Add a link to a existing %1 catalog" )
+            .arg(tr( "About %1" ).arg(PROGRAM_NAME))
+    );
     connect( addlink_action, SIGNAL( triggered()), guis, SLOT( addlnkEvent()));
     editMenu->addAction( addlink_action );
 
@@ -245,10 +259,22 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
     connect( insert_action, SIGNAL( triggered()), guis, SLOT( insertcEvent()));
     editMenu->addAction( insert_action );
 
-    insert_cdcat_xml_action = new QAction( QIcon( *get_m_import_icon()), tr( "Insert Cdcat export XML..." ), this );
-    guis->KeyShortCutList.append( CdcatKeyBinding( guis->key_insertCdcatXmlEvent, QKeySequence( Qt::Key_X ), tr( "Insert Cdcat exported XML into database" )));
+    insert_cdcat_xml_action = new QAction(
+        QIcon( *get_m_import_icon()),
+        tr( "Insert %1 export XML " )
+            .arg(PROGRAM_NAME),
+        this
+    );
+    guis->KeyShortCutList.append(
+        CdcatKeyBinding(
+            guis->key_insertCdcatXmlEvent,
+            QKeySequence( Qt::Key_X ),
+            tr( "Insert %1 exported XML into database" )
+                .arg(PROGRAM_NAME)
+        )
+    );
     insert_cdcat_xml_action->setShortcut( guis->getKeyBinding( guis->key_insertCdcatXmlEvent ));
-    insert_cdcat_xml_action->setStatusTip( tr( "Insert Cdcat exported XML into database" ));
+    insert_cdcat_xml_action->setStatusTip( tr( "Insert %1 exported XML into database" ).arg(PROGRAM_NAME) );
     connect( insert_cdcat_xml_action, SIGNAL( triggered()), guis, SLOT( insertCdcatXmlEvent()));
     editMenu->addAction( insert_cdcat_xml_action );
 
@@ -478,7 +504,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
     if (cconfig->showTrayIcon) {
         createTrayIcon();
         trayIcon->show();
-        trayIcon->setToolTip( tr( "Cdcat - idle" ));
+        trayIcon->setToolTip( tr( "%1 - idle" ).arg(PROGRAM_NAME));
     }
 
     languageChange();
@@ -681,14 +707,14 @@ void CdCatMainWidget::languageChange() {
     quit_action->setStatusTip( tr( "Close program" ));
     add_action->setText( tr( "Add media..." ));
     add_action->setStatusTip( tr( "Add new media to catalog" ));
-    addlink_action->setText( tr( "Add a link to a CdCat Catalog..." ));
-    addlink_action->setStatusTip( tr( "Add a link to a existing cdcat catalog" ));
+    addlink_action->setText( tr( "Add a link to a %1 catalog …" ).arg(PROGRAM_NAME) );
+    addlink_action->setStatusTip( tr( "Add a link to a existing %1 catalog" ).arg(PROGRAM_NAME) );
     rescan_action->setText( tr( "Rescan media..." ));
     rescan_action->setStatusTip( tr( "Rescan existing media" ));
     insert_action->setText( tr( "Insert Catalog..." ));
     insert_action->setStatusTip( tr( "Insert catalog into database" ));
-    insert_cdcat_xml_action->setText( tr( "Insert Cdcat XML export..." ));
-    insert_cdcat_xml_action->setStatusTip( tr( "Insert Cdcat XML export" ));
+    insert_cdcat_xml_action->setText( tr( "Insert %1 XML export …" ).arg(PROGRAM_NAME) );
+    insert_cdcat_xml_action->setStatusTip( tr( "Insert %1 XML export" ).arg(PROGRAM_NAME));
     rename_action->setText( tr( "Rename node..." ));
     rename_action->setStatusTip( tr( "Rename node" ));
     renumber_action->setText( tr( "Re-Number media node..." ));
@@ -743,7 +769,7 @@ void CdCatMainWidget::languageChange() {
     aboutqt_action->setText( tr( "About Qt" ));
     aboutqt_action->setStatusTip( tr( "About the Qt toolkit" ));
     if (trayIcon != NULL) {
-        trayIcon->setToolTip( tr( "Cdcat - idle" ));
+        trayIcon->setToolTip( tr( "%1 - idle" ).arg(PROGRAM_NAME));
         minimizeAction->setText( tr( "Mi&nimize" ));
         maximizeAction->setText( tr( "Ma&ximize" ));
         restoreAction->setText( tr( "&Restore" ));
@@ -928,7 +954,7 @@ void CdCatMainWidget::dockToogled() {
             createTrayIcon();
         }
         trayIcon->show();
-        trayIcon->setToolTip( tr( "Cdcat - idle" ));
+        trayIcon->setToolTip( tr( "%1 - idle" ).arg(PROGRAM_NAME));
     } else {
         if (trayIcon != NULL) {
             trayIcon->hide();
