@@ -200,6 +200,11 @@ InfoDialog::InfoDialog ( QWidget *parent, const char *name, bool modal, Qt::Wind
     contribution += "<li>" + tr( "Spanish translation" ) + "</li>";
     contribution += "</ul>";
 
+    contribution += formatAuthor("Vitaly V. Kuzmin", "mail@vitalykuzmin.net", "2013");
+    contribution += "<ul>";
+    contribution += "<li>" + tr( "Russian translation" ) + "</li>";
+    contribution += "</ul>";
+
     contribution += formatAuthor("Vlada ", "vladovi@altas.cz", "");
     contribution += "<ul>";
     contribution += "<li>" + tr( "Czech translation" ) + "</li>";
