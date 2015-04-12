@@ -38,7 +38,7 @@ borrowDialog::borrowDialog ( QString mname, QWidget *parent, const char *name, b
     : QDialog( parent, fl ) {
     ok = 0;
     setModal( modal );
-    setWindowTitle( tr( "Borrowing..." ));
+    setWindowTitle( tr( "Borrowing …" ));
     setSizeGripEnabled( true );
     setWindowIcon( *get_t_sborrow_icon());
 
@@ -106,7 +106,7 @@ borrowDialog::~borrowDialog() {
  *  language.
  */
 void borrowDialog::languageChange() {
-    setWindowTitle( tr( "Borrowing..." ));
+    setWindowTitle( tr( "Borrowing …" ));
     textLabel->setText( tr( "I borrow the \"\" named media to:" ));
     buttonOk->setText( tr( "Ok" ));
     buttonCancel->setText( tr( "Cancel" ));
@@ -201,7 +201,7 @@ borrowingDialog::~borrowingDialog() {
  *  language.
  */
 void borrowingDialog::languageChange() {
-    setWindowTitle( tr( "Borrowing info..." ));
+    setWindowTitle( tr( "Borrowing info …" ));
     textLabel->setText( tr( "Media borrowing info:" ));
     cbOnlyBorrowed->setText( tr( "Show only borrowed items" ));
     buttonClear->setText( tr( "Clear all borrowing info" ));

@@ -30,8 +30,8 @@
     </message>
     <message>
         <location line="+0"/>
-        <source>Open a file...</source>
-        <translation type="unfinished">otvori fajl...</translation>
+        <source>Open a file …</source>
+        <translation type="unfinished">otvori fajl …</translation>
     </message>
 </context>
 <context>
@@ -104,8 +104,8 @@
     <name>CdCatConfig</name>
     <message>
         <location filename="../config.cpp" line="+216"/>
-        <source>Error during autoload...</source>
-        <translation>Greška prilikom autoučitavanja...</translation>
+        <source>Error during autoload …</source>
+        <translation>Greška prilikom autoučitavanja …</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -149,8 +149,8 @@ To je neophodno jer konfiguracioni fajl hoću da sačuvam u tvom HOME direkrorij
         <location line="-430"/>
         <location line="+428"/>
         <location line="+2"/>
-        <source>Error while saving config file...</source>
-        <translation>Greška prilikom snimanja konfiguracionog fajla... </translation>
+        <source>Error while saving config file …</source>
+        <translation>Greška prilikom snimanja konfiguracionog fajla … </translation>
     </message>
     <message>
         <location line="-429"/>
@@ -180,20 +180,20 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Veličina</translation>
     </message>
     <message>
-        <source>New...</source>
-        <translation type="obsolete">Novo...</translation>
+        <source>New …</source>
+        <translation type="obsolete">Novo …</translation>
     </message>
     <message>
-        <source>Open...</source>
-        <translation type="obsolete">Otvori...</translation>
+        <source>Open …</source>
+        <translation type="obsolete">Otvori …</translation>
     </message>
     <message>
         <source>Save</source>
         <translation type="obsolete">Sačuvaj</translation>
     </message>
     <message>
-        <source>Save As...</source>
-        <translation type="obsolete">Sačuvaj kao...</translation>
+        <source>Save As …</source>
+        <translation type="obsolete">Sačuvaj kao …</translation>
     </message>
     <message>
         <source>Close</source>
@@ -206,26 +206,26 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location line="-432"/>
         <location line="+459"/>
-        <source>Add media...</source>
-        <translation>Dodaj medij...</translation>
+        <source>Add media …</source>
+        <translation>Dodaj medij …</translation>
     </message>
     <message>
         <location line="-444"/>
         <location line="+448"/>
-        <source>Rescan media...</source>
-        <translation>Ponovo skeniraj  medij...</translation>
+        <source>Rescan media …</source>
+        <translation>Ponovo skeniraj  medij …</translation>
     </message>
     <message>
         <location line="-439"/>
         <location line="+441"/>
-        <source>Insert Catalog...</source>
-        <translation>Ubaci katalog...</translation>
+        <source>Insert Catalog …</source>
+        <translation>Ubaci katalog …</translation>
     </message>
     <message>
         <location line="-424"/>
         <location line="+428"/>
-        <source>Rename node...</source>
-        <translation>Promeni naziv čvora...</translation>
+        <source>Rename node …</source>
+        <translation>Promeni naziv čvora …</translation>
     </message>
     <message>
         <location line="-407"/>
@@ -256,8 +256,8 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location line="+71"/>
         <location line="+342"/>
-        <source>Seek in database...</source>
-        <translation>Traži u bazi...</translation>
+        <source>Seek in database …</source>
+        <translation>Traži u bazi …</translation>
     </message>
     <message>
         <location line="-321"/>
@@ -268,8 +268,8 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location line="-320"/>
         <location line="+322"/>
-        <source>Configuration...</source>
-        <translation>Podešavanja...</translation>
+        <source>Configuration …</source>
+        <translation>Podešavanja …</translation>
     </message>
     <message>
         <location line="-595"/>
@@ -331,8 +331,8 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Napravi novi, prazni katalog i zatvori predhodni.</translation>
     </message>
     <message>
-        <source>Search an element in the database(catalog).You can search filenames, directory names, name parts or mp3 tags etc...</source>
-        <translation type="obsolete">Traži element u bazi(katalogu). Možeš tražiti po imenu fajla, imenu direktorijuma, imenu delova ili mp3 tagova itd...</translation>
+        <source>Search an element in the database(catalog).You can search filenames, directory names, name parts or mp3 tags etc …</source>
+        <translation type="obsolete">Traži element u bazi(katalogu). Možeš tražiti po imenu fajla, imenu direktorijuma, imenu delova ili mp3 tagova itd …</translation>
     </message>
     <message>
         <source>Search an element.</source>
@@ -341,8 +341,8 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location line="-454"/>
         <location line="+484"/>
-        <source>Recent files...</source>
-        <translation>Skorašnji fajlovi...</translation>
+        <source>Recent files …</source>
+        <translation>Skorašnji fajlovi …</translation>
     </message>
     <message>
         <source>Export database</source>
@@ -357,8 +357,8 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location line="-375"/>
         <location line="+423"/>
-        <source>Re-Number media node...</source>
-        <translation>Promeni broj čvora...</translation>
+        <source>Re-Number media node …</source>
+        <translation>Promeni broj čvora …</translation>
     </message>
     <message>
         <source>Import database (csv/gtktalog)</source>
@@ -368,8 +368,8 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <location line="-299"/>
         <location line="+332"/>
         <location line="+1"/>
-        <source>Borrowing info...</source>
-        <translation>Informacije o pozajmljivanju...</translation>
+        <source>Borrowing info …</source>
+        <translation>Informacije o pozajmljivanju …</translation>
     </message>
     <message>
         <source>Save all modifications to the disc.</source>
@@ -380,14 +380,14 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Sačuvaj katalog u novom fajlu.</translation>
     </message>
     <message>
-        <source>Add a link to a CdCAt Catalog...</source>
-        <translation type="obsolete">Dodaj link CdCat Katalogu...</translation>
+        <source>Add a link to a CdCAt Catalog …</source>
+        <translation type="obsolete">Dodaj link CdCat Katalogu …</translation>
     </message>
     <message>
         <location line="-312"/>
         <location line="+317"/>
-        <source>Set Colors...</source>
-        <translation>Podesi boje...</translation>
+        <source>Set Colors …</source>
+        <translation>Podesi boje …</translation>
     </message>
     <message>
         <source>No item selected</source>
@@ -409,7 +409,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location line="-495"/>
         <location line="+453"/>
-        <source>Add a link to a CdCat Catalog...</source>
+        <source>Add a link to a CdCat Catalog …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -447,7 +447,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location line="-507"/>
         <location line="+522"/>
-        <source>&amp;New...</source>
+        <source>&amp;New …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -459,7 +459,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location line="-517"/>
         <location line="+518"/>
-        <source>&amp;Open...</source>
+        <source>&amp;Open …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -483,7 +483,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location line="-509"/>
         <location line="+510"/>
-        <source>&amp;Save as...</source>
+        <source>&amp;Save as …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -783,7 +783,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     </message>
     <message>
         <location line="-24"/>
-        <source>Insert Cdcat XML export...</source>
+        <source>Insert Cdcat XML export …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -793,7 +793,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     </message>
     <message>
         <location line="-437"/>
-        <source>Insert Cdcat export XML...</source>
+        <source>Insert Cdcat export XML …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -805,7 +805,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location line="-94"/>
         <location line="+506"/>
-        <source>Change password...</source>
+        <source>Change password …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1177,8 +1177,8 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <name>ConfigDialog</name>
     <message>
         <location filename="../config.cpp" line="+689"/>
-        <source>Configure  CdCat...</source>
-        <translation>Podesi CdCat...</translation>
+        <source>Configure  CdCat …</source>
+        <translation>Podesi CdCat …</translation>
     </message>
     <message>
         <location line="+4"/>
@@ -1372,8 +1372,8 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Nijedna baza nije otvorena!</translation>
     </message>
     <message>
-        <source>Please Wait...</source>
-        <translation type="obsolete">Sačekajte...</translation>
+        <source>Please Wait …</source>
+        <translation type="obsolete">Sačekajte …</translation>
     </message>
     <message>
         <location line="+132"/>
@@ -1423,22 +1423,22 @@ It is necessary because I&apos;d like to save the config file into your home dir
     </message>
     <message>
         <location filename="../wdbfile.cpp" line="+1036"/>
-        <source>Reading file, please wait...</source>
+        <source>Reading file, please wait …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+77"/>
-        <source>decrypting file, please wait...</source>
+        <source>decrypting file, please wait …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+59"/>
-        <source>Converting to unicode, please wait...</source>
+        <source>Converting to unicode, please wait …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+8"/>
-        <source>Parsing file, please wait...</source>
+        <source>Parsing file, please wait …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1591,8 +1591,8 @@ It is necessary because I&apos;d like to save the config file into your home dir
     </message>
     <message>
         <location line="-1086"/>
-        <source>Open a file...</source>
-        <translation>Otvori fajl...</translation>
+        <source>Open a file …</source>
+        <translation>Otvori fajl …</translation>
     </message>
     <message>
         <location line="+40"/>
@@ -1602,8 +1602,8 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <location line="+453"/>
         <location line="+174"/>
         <location line="+42"/>
-        <source>Error while opening...</source>
-        <translation>Greška prilikom otvaranja...</translation>
+        <source>Error while opening …</source>
+        <translation>Greška prilikom otvaranja …</translation>
     </message>
     <message>
         <source>Ok</source>
@@ -1611,18 +1611,18 @@ It is necessary because I&apos;d like to save the config file into your home dir
     </message>
     <message>
         <location line="-1584"/>
-        <source>Save to file...</source>
-        <translation>Sačuvaj u fajl...</translation>
+        <source>Save to file …</source>
+        <translation>Sačuvaj u fajl …</translation>
     </message>
     <message>
         <location line="+28"/>
-        <source>Error while saving...</source>
-        <translation>Greška prilikom sačuvavanja...</translation>
+        <source>Error while saving …</source>
+        <translation>Greška prilikom sačuvavanja …</translation>
     </message>
     <message>
         <location line="+53"/>
-        <source>Closing previous database...</source>
-        <translation>Zatvaram predhodnu bazu...</translation>
+        <source>Closing previous database …</source>
+        <translation>Zatvaram predhodnu bazu …</translation>
     </message>
     <message>
         <location line="+0"/>
@@ -1672,8 +1672,8 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <location line="-2724"/>
         <location line="+1516"/>
         <location line="+42"/>
-        <source>Warning...</source>
-        <translation>Upozorenje...</translation>
+        <source>Warning …</source>
+        <translation>Upozorenje …</translation>
     </message>
     <message>
         <location line="+156"/>
@@ -1683,8 +1683,8 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location line="+180"/>
         <location line="+74"/>
-        <source>Insert a database file...</source>
-        <translation>Ubaci fajl baze...</translation>
+        <source>Insert a database file …</source>
+        <translation>Ubaci fajl baze …</translation>
     </message>
     <message>
         <source>The size of &quot;%1&quot; :
@@ -1728,8 +1728,8 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location line="-905"/>
         <location line="+50"/>
-        <source>Rename node...</source>
-        <translation>Promeni naziv čvora...</translation>
+        <source>Rename node …</source>
+        <translation>Promeni naziv čvora …</translation>
     </message>
     <message>
         <location line="-49"/>
@@ -1740,21 +1740,21 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location line="-39"/>
         <location line="+48"/>
-        <source>Rescan media...</source>
-        <translation>Ponovo skeniraj  medij...</translation>
+        <source>Rescan media …</source>
+        <translation>Ponovo skeniraj  medij …</translation>
     </message>
     <message>
         <location line="-39"/>
         <location line="+61"/>
         <location line="+1552"/>
-        <source>Add media...</source>
-        <translation>Dodaj medij...</translation>
+        <source>Add media …</source>
+        <translation>Dodaj medij …</translation>
     </message>
     <message>
         <location line="-1611"/>
         <location line="+61"/>
-        <source>Insert Catalog...</source>
-        <translation>Ubaci katalog...</translation>
+        <source>Insert Catalog …</source>
+        <translation>Ubaci katalog …</translation>
     </message>
     <message>
         <location line="+938"/>
@@ -1764,8 +1764,8 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location line="-1009"/>
         <location line="+48"/>
-        <source>Re-Number media...</source>
-        <translation>Promeni broj medija...</translation>
+        <source>Re-Number media …</source>
+        <translation>Promeni broj medija …</translation>
     </message>
     <message>
         <location line="+1345"/>
@@ -1781,8 +1781,8 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location line="-64"/>
         <location line="+61"/>
-        <source>View/Edit Comment...</source>
-        <translation>Pogledaj/Izmeni komentar...</translation>
+        <source>View/Edit Comment …</source>
+        <translation>Pogledaj/Izmeni komentar …</translation>
     </message>
     <message>
         <location line="+45"/>
@@ -1790,8 +1790,8 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Zatvori sve grane</translation>
     </message>
     <message>
-        <source>Show/Remove Content...</source>
-        <translation type="obsolete">Prokaži/Izbaci sadržaj...</translation>
+        <source>Show/Remove Content …</source>
+        <translation type="obsolete">Prokaži/Izbaci sadržaj …</translation>
     </message>
     <message>
         <location line="+400"/>
@@ -1823,8 +1823,8 @@ moguće da je baza nepotpuna</translation>
     <message>
         <location line="-1008"/>
         <location line="+49"/>
-        <source>Borrow this media to...</source>
-        <translation>Pozajmi medij...</translation>
+        <source>Borrow this media to …</source>
+        <translation>Pozajmi medij …</translation>
     </message>
     <message>
         <location line="+1974"/>
@@ -1850,8 +1850,8 @@ moguće da je baza nepotpuna</translation>
         <translation>Prati link (Otvori ga) !</translation>
     </message>
     <message>
-        <source>Add a link to a CdCAt Catalog...</source>
-        <translation type="obsolete">Dodaj link CdCat Katalogu...</translation>
+        <source>Add a link to a CdCAt Catalog …</source>
+        <translation type="obsolete">Dodaj link CdCat Katalogu …</translation>
     </message>
     <message>
         <location line="+1917"/>
@@ -1898,12 +1898,12 @@ Homepage: %3</translation>
     <message>
         <location line="+661"/>
         <location line="+61"/>
-        <source>View/Edit Category...</source>
+        <source>View/Edit Category …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+21"/>
-        <source>Change media type...</source>
+        <source>Change media type …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1912,7 +1912,7 @@ Homepage: %3</translation>
         <location line="+228"/>
         <location line="+2"/>
         <location line="+15"/>
-        <source>Scanning directory tree, please wait...</source>
+        <source>Scanning directory tree, please wait …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1927,7 +1927,7 @@ Homepage: %3</translation>
     </message>
     <message>
         <location line="-701"/>
-        <source>Enter media name...</source>
+        <source>Enter media name …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1942,27 +1942,27 @@ Homepage: %3</translation>
     </message>
     <message>
         <location line="-751"/>
-        <source>search for duplicates...</source>
+        <source>search for duplicates …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="-27"/>
-        <source>Show content...</source>
+        <source>Show content …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Show/Remove content...</source>
+        <source>Show/Remove content …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+30"/>
-        <source>Add a link to a CdCat Catalog...</source>
+        <source>Add a link to a CdCat Catalog …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+61"/>
-        <source>Add a link to a Cdcat catalog...</source>
+        <source>Add a link to a Cdcat catalog …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2141,12 +2141,12 @@ the DataBase may be incomplete</source>
     <message>
         <location line="-1307"/>
         <location line="+47"/>
-        <source>Saving catalog, please wait...</source>
+        <source>Saving catalog, please wait …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+856"/>
-        <source>Insert a cdcat exported xml file...</source>
+        <source>Insert a cdcat exported xml file …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2156,7 +2156,7 @@ the DataBase may be incomplete</source>
     </message>
     <message>
         <location line="-1162"/>
-        <source>Change password...</source>
+        <source>Change password …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2815,8 +2815,8 @@ the DataBase may be incomplete</source>
     <name>PWw</name>
     <message>
         <location filename="../adddialog.cpp" line="-305"/>
-        <source>Please Wait...</source>
-        <translation type="unfinished">Sačekajte...</translation>
+        <source>Please Wait …</source>
+        <translation type="unfinished">Sačekajte …</translation>
     </message>
     <message>
         <location line="-7"/>
@@ -3043,7 +3043,7 @@ the DataBase may be incomplete</source>
         <location line="+27"/>
         <location line="+1"/>
         <location filename="../wdbfile.cpp" line="-102"/>
-        <source>Enter password...</source>
+        <source>Enter password …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3196,12 +3196,12 @@ the DataBase may be incomplete</source>
     </message>
     <message>
         <location line="+744"/>
-        <source>Read mp3 technical info as comment (bitrate,freq,length...)</source>
-        <translation>Čitaj tehničke informacije iz mp3 fajla kao komentar (birate, freq, dužina...)</translation>
+        <source>Read mp3 technical info as comment (bitrate,freq,length …)</source>
+        <translation>Čitaj tehničke informacije iz mp3 fajla kao komentar (birate, freq, dužina …)</translation>
     </message>
     <message>
         <source>Read avi technical info as comment (codecs,lenhth,...)</source>
-        <translation type="obsolete">Čitaj tehničke informacije iz avi fajla kao komentar (kodek, birate, dužina...)</translation>
+        <translation type="obsolete">Čitaj tehničke informacije iz avi fajla kao komentar (kodek, birate, dužina …)</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -3274,7 +3274,7 @@ the DataBase may be incomplete</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>Select external viewer...</source>
+        <source>Select external viewer …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3396,7 +3396,7 @@ the DataBase may be incomplete</source>
     <message>
         <location line="-230"/>
         <location line="+34"/>
-        <source>Add exclude rule...</source>
+        <source>Add exclude rule …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3407,12 +3407,12 @@ the DataBase may be incomplete</source>
     </message>
     <message>
         <location line="-16"/>
-        <source>edit rule...</source>
+        <source>edit rule …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+4"/>
-        <source>delete rule...</source>
+        <source>delete rule …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3422,7 +3422,7 @@ the DataBase may be incomplete</source>
     </message>
     <message>
         <location line="+7"/>
-        <source>add exclude rule...</source>
+        <source>add exclude rule …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3472,7 +3472,7 @@ the DataBase may be incomplete</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>About regular expressions....</source>
+        <source>About regular expressions ….</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3660,8 +3660,8 @@ the DataBase may be incomplete</source>
         <translation>Sačuvaj ovaj sadržaj u novi fajl</translation>
     </message>
     <message>
-        <source>Save content...</source>
-        <translation type="obsolete">Sačuvaj sadržaj...</translation>
+        <source>Save content …</source>
+        <translation type="obsolete">Sačuvaj sadržaj …</translation>
     </message>
     <message>
         <location line="+158"/>
@@ -3675,8 +3675,8 @@ the DataBase may be incomplete</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>Error while saving...</source>
-        <translation>Greška prilikom sačuvavanja...</translation>
+        <source>Error while saving …</source>
+        <translation>Greška prilikom sačuvavanja …</translation>
     </message>
     <message>
         <source>Ok</source>
@@ -3903,7 +3903,7 @@ the DataBase may be incomplete</source>
     <message>
         <location line="+89"/>
         <location line="+37"/>
-        <source>Enter media name...</source>
+        <source>Enter media name …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3948,8 +3948,8 @@ the DataBase may be incomplete</source>
     <message>
         <location line="-69"/>
         <location line="+68"/>
-        <source>Borrowing...</source>
-        <translation>Pozajmljivanje...</translation>
+        <source>Borrowing …</source>
+        <translation>Pozajmljivanje …</translation>
     </message>
 </context>
 <context>
@@ -4055,8 +4055,8 @@ the DataBase may be incomplete</source>
     </message>
     <message>
         <location line="-230"/>
-        <source>Borrowing info...</source>
-        <translation>Informacije o pozajmljivanju...</translation>
+        <source>Borrowing info …</source>
+        <translation>Informacije o pozajmljivanju …</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -4168,8 +4168,8 @@ the DataBase may be incomplete</source>
         <translation>Unesite separator!</translation>
     </message>
     <message>
-        <source>Error during write config...</source>
-        <translation type="obsolete">Greška prilikom čuvanja konfiguracije...</translation>
+        <source>Error during write config …</source>
+        <translation type="obsolete">Greška prilikom čuvanja konfiguracije …</translation>
     </message>
     <message>
         <source>Ok</source>
@@ -4256,8 +4256,8 @@ the DataBase may be incomplete</source>
     </message>
     <message>
         <location line="-373"/>
-        <source>Export database...</source>
-        <translation>Izvezi bazu...</translation>
+        <source>Export database …</source>
+        <translation>Izvezi bazu …</translation>
     </message>
     <message>
         <location line="+103"/>
@@ -4404,13 +4404,13 @@ the DataBase may be incomplete</source>
     </message>
     <message>
         <location line="+70"/>
-        <source>Exporting, please wait...</source>
+        <source>Exporting, please wait …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+24"/>
         <location line="+25"/>
-        <source>Error during write export...</source>
+        <source>Error during write export …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4483,8 +4483,8 @@ the DataBase may be incomplete</source>
     </message>
     <message>
         <location line="-422"/>
-        <source>Search in the database...</source>
-        <translation>Traži u bazi...</translation>
+        <source>Search in the database …</source>
+        <translation>Traži u bazi …</translation>
     </message>
     <message>
         <location line="+42"/>
@@ -4671,12 +4671,12 @@ the DataBase may be incomplete</source>
     </message>
     <message>
         <location line="+11"/>
-        <source>Print result...</source>
+        <source>Print result …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Export result to HTML...</source>
+        <source>Export result to HTML …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4766,7 +4766,7 @@ the DataBase may be incomplete</source>
     </message>
     <message>
         <location line="-509"/>
-        <source>Search for duplicates in the database...</source>
+        <source>Search for duplicates in the database …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5060,8 +5060,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location line="-1504"/>
-        <source>Importing CSV...</source>
-        <translation>Uvozim CSV...</translation>
+        <source>Importing CSV …</source>
+        <translation>Uvozim CSV …</translation>
     </message>
     <message>
         <location line="+0"/>
@@ -5078,8 +5078,8 @@ p, li { white-space: pre-wrap; }
     <name>importGtktalogXml</name>
     <message>
         <location line="+723"/>
-        <source>Importing XML...</source>
-        <translation>Uvoz XML...</translation>
+        <source>Importing XML …</source>
+        <translation>Uvoz XML …</translation>
     </message>
     <message>
         <location line="+35"/>
@@ -5153,8 +5153,8 @@ p, li { white-space: pre-wrap; }
     <name>importWhereIsItXml</name>
     <message>
         <location line="+798"/>
-        <source>Importing XML...</source>
-        <translation>Uvoz XML...</translation>
+        <source>Importing XML …</source>
+        <translation>Uvoz XML …</translation>
     </message>
     <message>
         <location line="+34"/>
@@ -5311,8 +5311,8 @@ p, li { white-space: pre-wrap; }
     <name>renamedialog</name>
     <message>
         <location line="+63"/>
-        <source>Rename node...</source>
-        <translation>Promeni naziv čvora...</translation>
+        <source>Rename node …</source>
+        <translation>Promeni naziv čvora …</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -5370,8 +5370,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location line="+37"/>
-        <source>Re-Number media...</source>
-        <translation>Promeni broj medija...</translation>
+        <source>Re-Number media …</source>
+        <translation>Promeni broj medija …</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -5437,7 +5437,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location line="-627"/>
-        <source>Searching, please wait...</source>
+        <source>Searching, please wait …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

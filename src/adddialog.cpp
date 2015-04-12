@@ -346,7 +346,7 @@ int addDialog::setMediaName( const QString & ds ) {
     medianame_tmp += ".1";
     QString text = tm;
     while (text.isEmpty() || (!text.isEmpty() && caller->isIdentical( text ))) {
-        text = QInputDialog::getText( 0, tr( "Enter media name..." ), tr( "The Media Name must be unique! Enter new media name:" ), QLineEdit::Normal, medianame_tmp, &ok );
+        text = QInputDialog::getText( 0, tr( "Enter media name …" ), tr( "The Media Name must be unique! Enter new media name:" ), QLineEdit::Normal, medianame_tmp, &ok );
         if (!ok) {
             return 0;
         }
@@ -383,7 +383,7 @@ int addDialog::bOk( void ) {
         medianame_tmp += ".1";
         QString text = "";
         while (text.isEmpty() || (!text.isEmpty() && caller->isIdentical( text ))) {
-            text = QInputDialog::getText( 0, tr( "Enter media name..." ), tr( "The Media Name must be unique! Enter new media name:" ), QLineEdit::Normal, medianame_tmp, &ok );
+            text = QInputDialog::getText( 0, tr( "Enter media name …" ), tr( "The Media Name must be unique! Enter new media name:" ), QLineEdit::Normal, medianame_tmp, &ok );
             if (!ok) {
                 return 0;
             }
@@ -497,7 +497,7 @@ PWw::PWw ( QWidget *parent,
     if (!progresstext.isEmpty()) {
         this->progresstext = progresstext;
     } else {
-        this->progresstext = tr( "Please Wait..." );
+        this->progresstext = tr( "Please Wait …" );
     }
 
     baseheight = 120;
@@ -798,7 +798,7 @@ int AddLnk::scancel( void ) {
 int AddLnk::sselect( void ) {
     QString fn;
 
-    fn = QFileDialog::getOpenFileName( 0, tr( "Open a file..." ), caller->mainw->cconfig->lastDir, tr( "CdCat databases (*.hcf )" ));
+    fn = QFileDialog::getOpenFileName( 0, tr( "Open a file …" ), caller->mainw->cconfig->lastDir, tr( "CdCat databases (*.hcf )" ));
     if (fn.isEmpty()) {
         return 0;
     }

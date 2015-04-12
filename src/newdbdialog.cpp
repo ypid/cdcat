@@ -227,7 +227,7 @@ renamedialog::~renamedialog() {
  *  language.
  */
 void renamedialog::languageChange() {
-    setWindowTitle( tr( "Rename node..." ));
+    setWindowTitle( tr( "Rename node …" ));
     label->setText( tr( "Give the new name:" ));
     okB->setText( tr( "OK" ));
     caB->setText( tr( "Cancel" ));
@@ -339,7 +339,7 @@ renumberdialog::~renumberdialog() {
  *  language.
  */
 void renumberdialog::languageChange() {
-    setWindowTitle( tr( "Re-Number media..." ));
+    setWindowTitle( tr( "Re-Number media …" ));
     label->setText( tr( "Give the new serial number:" ));
     okB->setText( tr( "OK" ));
     caB->setText( tr( "Cancel" ));

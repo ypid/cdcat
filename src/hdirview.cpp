@@ -451,7 +451,7 @@ void HDirectoryView::setDir( Node *node ) {
     QString part, s((node->getFullPath()).remove( 0, 2 ));
 
     if (!s.isEmpty()) {
-        /*Jump to...*/
+        /*Jump to …*/
         QStringList lst = s.split( "/" );
         QTreeWidgetItemIterator it( this );
 
@@ -471,7 +471,7 @@ void HDirectoryView::setDir( Node *node ) {
             setAllColumnsShowFocus( true );
             // ensureItemVisible ( (*it) ); //FIXME
         }
-        /*Jump to...*/
+        /*Jump to …*/
     }
 }
 

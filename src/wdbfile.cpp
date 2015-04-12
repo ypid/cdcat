@@ -1024,12 +1024,12 @@ int FileReader::readFrom( Node *source, bool skipDuplicatesOnInsert, bool only_n
     char tmpbuffer[READ_BLOCKSIZE + 1];
 
     if (*DEBUG_INFO_ENABLED) {
-        std::cerr << "start reading file..." << endl;
+        std::cerr << "start reading file …" << endl;
     }
 
     pww->showProgress = true;
     pww->steps = allocated_buffer_len;
-    pww->setProgressText( DataBase::tr( "Reading file, please wait..." ));
+    pww->setProgressText( DataBase::tr( "Reading file, please wait …" ));
     pww->setCancel( true );
     while (len != allocated_buffer_len) {
         if (isGzFile) {
@@ -1078,7 +1078,7 @@ int FileReader::readFrom( Node *source, bool skipDuplicatesOnInsert, bool only_n
             }
             bool ok = false;
 #ifdef CATALOG_ENCRYPTION
-            QString password = QInputDialog::getText( 0, QObject::tr( "Enter password..." ), QObject::tr( "Enter password for catalog:" ), QLineEdit::Password, "", &ok );
+            QString password = QInputDialog::getText( 0, QObject::tr( "Enter password …" ), QObject::tr( "Enter password for catalog:" ), QLineEdit::Password, "", &ok );
             if (!ok) {
                 if (*DEBUG_INFO_ENABLED) {
                     std::cerr << "no password entered, cancelled" << std::endl;
@@ -1106,7 +1106,7 @@ int FileReader::readFrom( Node *source, bool skipDuplicatesOnInsert, bool only_n
             free( dataBuffer );
             dataBuffer = NULL;
 
-            pww->setProgressText( DataBase::tr( "decrypting file, please wait..." ));
+            pww->setProgressText( DataBase::tr( "decrypting file, please wait …" ));
 
             int decrypt_ret = decrypt( inbuff_str, outbuff_str );
 
@@ -1161,19 +1161,19 @@ int FileReader::readFrom( Node *source, bool skipDuplicatesOnInsert, bool only_n
     QXmlInputSource mysource;
     if (XML_ENCODING == "UTF-8") {
         if (*DEBUG_INFO_ENABLED) {
-            std::cerr << "set data source text..." << endl;
+            std::cerr << "set data source text …" << endl;
         }
         mysource.setData( databufferByteArray );
     } else {
-        pww->setProgressText( DataBase::tr( "Converting to unicode, please wait..." ));
+        pww->setProgressText( DataBase::tr( "Converting to unicode, please wait …" ));
         if (*DEBUG_INFO_ENABLED) {
-            std::cerr << "set data source to utf8 converted text..." << endl;
+            std::cerr << "set data source to utf8 converted text …" << endl;
         }
         mysource.setData( converter->toUnicode( databufferByteArray ));
     }
 
     pww->setCancel( true );
-    pww->setProgressText( DataBase::tr( "Parsing file, please wait..." ));
+    pww->setProgressText( DataBase::tr( "Parsing file, please wait …" ));
 
     parseresult = xmlReader.parse( mysource );
     cerr << "parse result: " << parseresult << ", errormsg: " << qPrintable( errormsg ) << endl;
@@ -1462,7 +1462,7 @@ Please change it with an older version or rewrite it in the xml file!" );
                                 // old behavior
                                 newname.append( "#" + QString().setNum( ser ));
                             } else {
-                                /* FIXME: crash... */
+                                /* FIXME: crash … */
                                 // dont change name
                                 r->sp = ch;
                                 if (*DEBUG_INFO_ENABLED) {

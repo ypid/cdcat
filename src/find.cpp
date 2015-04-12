@@ -492,7 +492,7 @@ findDialog::~findDialog() {
 /***************************************************************************/
 void findDialog::languageChange() {
     if (isFindDuplicates) {
-        setWindowTitle( tr( "Search for duplicates in the database..." ));
+        setWindowTitle( tr( "Search for duplicates in the database …" ));
         QStringList labels;
         labels.append( tr( "Name" ));
         labels.append( tr( "Type" ));
@@ -519,7 +519,7 @@ void findDialog::languageChange() {
 
         resultsl->clear();
     } else {
-        setWindowTitle( tr( "Search in the database..." ));
+        setWindowTitle( tr( "Search in the database …" ));
         textLabel1->setText( tr( "Seek in:" ));
         textLabel2->setText( tr( "Owner:" ));
         QStringList labels;
@@ -562,8 +562,8 @@ void findDialog::languageChange() {
 #endif
         textLabel5->setText( tr( "Results: search not started" ));
         buttonClose->setText( tr( "Close / Go to selected" ));
-        buttonPrintResult->setText( tr( "Print result..." ));
-        buttonExportResult->setText( tr( "Export result to HTML..." ));
+        buttonPrintResult->setText( tr( "Print result …" ));
+        buttonExportResult->setText( tr( "Export result to HTML …" ));
         cbCasesens->setText( tr( "Case sensitive" ));
         cbEasy->setText( tr( "Use easy matching instead regex" ));
         resultsl->clear();
@@ -1049,7 +1049,7 @@ int seekEngine::start_seek( void ) {
     pww = new PWw( fd, fd->mainw->app );
     pww->setCancel( true );
     pww->refreshTime = 200;
-    pww->setProgressText( tr( "Searching, please wait..." ));
+    pww->setProgressText( tr( "Searching, please wait …" ));
     pww->show();
 
     QObject::connect( pww, SIGNAL( cancelReceivedByUser( bool )), pww, SLOT( doCancelReceived( bool )));
@@ -1180,7 +1180,7 @@ int seekEngine::start_seek( void ) {
 
     progress( pww );
     fd->textLabel5->setText( tr( "Results:" ) + " " + tr( "searching is in progress" ));
-    /*seek...*/
+    /*seek …*/
     analyzeNode( pww, fd->mainw->db->getRootNode());
     if (pww->doCancel) {
         QMessageBox::warning( 0, tr( "Search cancelled" ), tr( "You have cancelled searching." ));

@@ -177,7 +177,7 @@ void MString::DoubleMetaphone( QString &metaph, QString &metaph2 ) {
             current += 1;
             break;
         case 'B':
-            // "-mb", e.g", "dumb", already skipped over...
+            // "-mb", e.g", "dumb", already skipped over …
             MetaphAdd( "P" );
             if (at( current + 1 ) == 'B') {
                 current += 2;

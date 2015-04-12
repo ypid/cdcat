@@ -165,7 +165,7 @@ void CommentWidget::updateContents() {
     bool need_showc_button = false;
     bool need_editc_button = false;
 
-    pixelsHigh -= 1;     // I think it was too big...
+    pixelsHigh -= 1;     // I think it was too big …
 
     p.setFont( QFont( "Fixed", cconfig->fsize - 1 ));
     p.setPen( cconfig->comm_fr );
@@ -865,7 +865,7 @@ void CommentWidget::updateContents() {
             w += pixelsHigh;
             w += pixelsHigh;
         }
-        /*others...*/
+        /*others …*/
     } else {
         need_editc_button = false;
         p.setPen( cconfig->comm_stext );

@@ -631,7 +631,7 @@ void SelReadable::selectExternalContentViewerString( const QString &s ) {
 
 void SelReadable::addExcludeRulesClicked() {
     bool ok;
-    QString text = QInputDialog::getText( this, tr( "Add exclude rule..." ), tr( "Enter regular expression for exclude:" ), QLineEdit::Normal, "", &ok );
+    QString text = QInputDialog::getText( this, tr( "Add exclude rule …" ), tr( "Enter regular expression for exclude:" ), QLineEdit::Normal, "", &ok );
 
     if (ok) {
         QStandardItem *modelitem = new QStandardItem( text );
@@ -649,11 +649,11 @@ void SelReadable::excludeContextMenuRequested( const QPoint& pos ) {
 
     contextmenu_modelindex = modelindex;
     QMenu excludeContextMenu( this );
-    QAction EditRuleAction( tr( "edit rule..." ), this );
+    QAction EditRuleAction( tr( "edit rule …" ), this );
     excludeContextMenu.addAction( &EditRuleAction );
     connect( &EditRuleAction, SIGNAL( triggered()), this, SLOT( editExcludeRuleClicked()));
 
-    QAction DeleteRuleAction( tr( "delete rule..." ), this );
+    QAction DeleteRuleAction( tr( "delete rule …" ), this );
     excludeContextMenu.addAction( &DeleteRuleAction );
     connect( &DeleteRuleAction, SIGNAL( triggered()), this, SLOT( deleteExcludeRuleClicked()));
 
@@ -665,7 +665,7 @@ void SelReadable::editExcludeRuleClicked() {
     QString itemtext = exclude_model->data( contextmenu_modelindex, 0 ).toString();
     std::cout << qPrintable( itemtext ) << " is is to edited" << std::endl;
     bool ok;
-    QString text = QInputDialog::getText( this, tr( "Add exclude rule..." ), tr( "Enter regular expression for exclude:" ), QLineEdit::Normal, itemtext, &ok );
+    QString text = QInputDialog::getText( this, tr( "Add exclude rule …" ), tr( "Enter regular expression for exclude:" ), QLineEdit::Normal, itemtext, &ok );
 
     if (ok) {
         exclude_model->setData( contextmenu_modelindex, text );
@@ -860,13 +860,13 @@ void SelReadable::languageChange() {
 
     labelDefaultMp3TagVersion->setText( tr( "Default tag" ));
     cbInfo->setText( tr( "Read mp3 info as comment" ));
-    cbInfo->setToolTip( tr( "Read mp3 technical info as comment (bitrate,freq,length...)" ));
+    cbInfo->setToolTip( tr( "Read mp3 technical info as comment (bitrate,freq,length …)" ));
     cbaInfo->setText( tr( "Read avi info as comment" ));
     cbaInfo->setToolTip( tr( "Read avi technical info as comment (codecs,length,...)" ));
     cbCont->setText( tr( "Store content of some files" ));
     cbUseExternalContentViewer->setText( tr( "Use external file content viewer" ));
     buttonUseExternalContentViewer->setText( tr( "..." ));
-    buttonUseExternalContentViewer->setToolTip( tr( "Select external viewer..." ));
+    buttonUseExternalContentViewer->setToolTip( tr( "Select external viewer …" ));
     cbFileInfo->setText( tr( "Read some technical info using mediainfo" ));
     labelContent->setText( tr( "file patterns:" ));
     lineFiles->setToolTip( tr( "; separated list of readable file patterns" ));
@@ -880,9 +880,9 @@ void SelReadable::languageChange() {
     cbUseWildcardInsteadRegexForExclude->setToolTip( tr( "Use wildcard expression instead regular expression" ));
     labExcludeRexexInfo->setText( tr( "About regex:" ));
     labExcludeRexexInfo->setToolTip( tr( "Information about regular expressions" ));
-    labExcludeRexexInfoButton->setText( tr( "About regular expressions...." ));
+    labExcludeRexexInfoButton->setText( tr( "About regular expressions …." ));
     labExcludeRexexInfoButton->setToolTip( tr( "Show introduction into regular expressions" ));
-    buttonAddExcludeRule->setText( tr( "add exclude rule..." ));
+    buttonAddExcludeRule->setText( tr( "add exclude rule …" ));
     listviewExcludeFiles->setToolTip( tr( "list of patterns (regular expression) for files/directories to skip on reading from filesystem" ));
     buttonOK->setText( tr( "Ok" ));
     buttonCancel->setText( tr( "Cancel" ));

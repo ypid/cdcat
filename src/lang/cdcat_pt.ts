@@ -30,8 +30,8 @@
     </message>
     <message>
         <location line="+0"/>
-        <source>Open a file...</source>
-        <translation type="unfinished">Abrir ficheiro...</translation>
+        <source>Open a file …</source>
+        <translation type="unfinished">Abrir ficheiro …</translation>
     </message>
 </context>
 <context>
@@ -109,8 +109,8 @@
     <name>CdCatConfig</name>
     <message>
         <location filename="../config.cpp" line="+216"/>
-        <source>Error during autoload...</source>
-        <translation>Erro durante o carregamento automático...</translation>
+        <source>Error during autoload …</source>
+        <translation>Erro durante o carregamento automático …</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -152,8 +152,8 @@ Ele é necessária para guardar o ficheiro de configuração na sua directoria p
         <location line="-430"/>
         <location line="+428"/>
         <location line="+2"/>
-        <source>Error while saving config file...</source>
-        <translation>Erro ao guardar o ficheiro de configuração...</translation>
+        <source>Error while saving config file …</source>
+        <translation>Erro ao guardar o ficheiro de configuração …</translation>
     </message>
     <message>
         <location line="-429"/>
@@ -183,20 +183,20 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Tamanho</translation>
     </message>
     <message>
-        <source>New...</source>
-        <translation type="obsolete">Novo...</translation>
+        <source>New …</source>
+        <translation type="obsolete">Novo …</translation>
     </message>
     <message>
-        <source>Open...</source>
-        <translation type="obsolete">Abrir...</translation>
+        <source>Open …</source>
+        <translation type="obsolete">Abrir …</translation>
     </message>
     <message>
         <source>Save</source>
         <translation type="obsolete">Guardar</translation>
     </message>
     <message>
-        <source>Save As...</source>
-        <translation type="obsolete">Guardar Como...</translation>
+        <source>Save As …</source>
+        <translation type="obsolete">Guardar Como …</translation>
     </message>
     <message>
         <source>Close</source>
@@ -209,26 +209,26 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location line="-432"/>
         <location line="+459"/>
-        <source>Add media...</source>
-        <translation>Adicionar media...</translation>
+        <source>Add media …</source>
+        <translation>Adicionar media …</translation>
     </message>
     <message>
         <location line="-444"/>
         <location line="+448"/>
-        <source>Rescan media...</source>
-        <translation>Re-varrer media...</translation>
+        <source>Rescan media …</source>
+        <translation>Re-varrer media …</translation>
     </message>
     <message>
         <location line="-439"/>
         <location line="+441"/>
-        <source>Insert Catalog...</source>
-        <translation>Inserir Catalogo...</translation>
+        <source>Insert Catalog …</source>
+        <translation>Inserir Catalogo …</translation>
     </message>
     <message>
         <location line="-424"/>
         <location line="+428"/>
-        <source>Rename node...</source>
-        <translation>Renomear nó...</translation>
+        <source>Rename node …</source>
+        <translation>Renomear nó …</translation>
     </message>
     <message>
         <location line="-407"/>
@@ -259,8 +259,8 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location line="+71"/>
         <location line="+342"/>
-        <source>Seek in database...</source>
-        <translation>Procurar na base de dados...</translation>
+        <source>Seek in database …</source>
+        <translation>Procurar na base de dados …</translation>
     </message>
     <message>
         <location line="-321"/>
@@ -271,8 +271,8 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location line="-320"/>
         <location line="+322"/>
-        <source>Configuration...</source>
-        <translation>Configuração...</translation>
+        <source>Configuration …</source>
+        <translation>Configuração …</translation>
     </message>
     <message>
         <location line="-595"/>
@@ -334,8 +334,8 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Criar um nove catálogo vazio e fechar o anterior.</translation>
     </message>
     <message>
-        <source>Search an element in the database(catalog).You can search filenames, directory names, name parts or mp3 tags etc...</source>
-        <translation type="obsolete">Procurar um elemento na base de dados(catálogo).Pode procurar nomes de ficheiros, directorias, parte de nomes ou tags de mp3&apos;s etc...</translation>
+        <source>Search an element in the database(catalog).You can search filenames, directory names, name parts or mp3 tags etc …</source>
+        <translation type="obsolete">Procurar um elemento na base de dados(catálogo).Pode procurar nomes de ficheiros, directorias, parte de nomes ou tags de mp3&apos;s etc …</translation>
     </message>
     <message>
         <source>Search an element.</source>
@@ -344,7 +344,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location line="-454"/>
         <location line="+484"/>
-        <source>Recent files...</source>
+        <source>Recent files …</source>
         <translation>Ficheiros recentes</translation>
     </message>
     <message>
@@ -360,8 +360,8 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location line="-375"/>
         <location line="+423"/>
-        <source>Re-Number media node...</source>
-        <translation>Renumerar o nó do media...</translation>
+        <source>Re-Number media node …</source>
+        <translation>Renumerar o nó do media …</translation>
     </message>
     <message>
         <source>Import database (csv/gtktalog)</source>
@@ -371,8 +371,8 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <location line="-299"/>
         <location line="+332"/>
         <location line="+1"/>
-        <source>Borrowing info...</source>
-        <translation>Informação de empréstimo...</translation>
+        <source>Borrowing info …</source>
+        <translation>Informação de empréstimo …</translation>
     </message>
     <message>
         <source>Save all modifications to the disc.</source>
@@ -383,14 +383,14 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation type="obsolete">Guardar o catálogo em novo ficheiro.</translation>
     </message>
     <message>
-        <source>Add a link to a CdCAt Catalog...</source>
-        <translation type="obsolete">Adicionar uma ligação para um catálogo do CdCat...</translation>
+        <source>Add a link to a CdCAt Catalog …</source>
+        <translation type="obsolete">Adicionar uma ligação para um catálogo do CdCat …</translation>
     </message>
     <message>
         <location line="-312"/>
         <location line="+317"/>
-        <source>Set Colors...</source>
-        <translation>Definir Cores...</translation>
+        <source>Set Colors …</source>
+        <translation>Definir Cores …</translation>
     </message>
     <message>
         <source>No item selected</source>
@@ -418,7 +418,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location line="-512"/>
         <location line="+453"/>
-        <source>Add a link to a CdCat Catalog...</source>
+        <source>Add a link to a CdCat Catalog …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -450,7 +450,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location line="-507"/>
         <location line="+522"/>
-        <source>&amp;New...</source>
+        <source>&amp;New …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -462,7 +462,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location line="-517"/>
         <location line="+518"/>
-        <source>&amp;Open...</source>
+        <source>&amp;Open …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -486,7 +486,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location line="-509"/>
         <location line="+510"/>
-        <source>&amp;Save as...</source>
+        <source>&amp;Save as …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -786,7 +786,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     </message>
     <message>
         <location line="-24"/>
-        <source>Insert Cdcat XML export...</source>
+        <source>Insert Cdcat XML export …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -796,7 +796,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     </message>
     <message>
         <location line="-437"/>
-        <source>Insert Cdcat export XML...</source>
+        <source>Insert Cdcat export XML …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -808,7 +808,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location line="-94"/>
         <location line="+506"/>
-        <source>Change password...</source>
+        <source>Change password …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1180,8 +1180,8 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <name>ConfigDialog</name>
     <message>
         <location filename="../config.cpp" line="+689"/>
-        <source>Configure  CdCat...</source>
-        <translation>Configurar  CdCat...</translation>
+        <source>Configure  CdCat …</source>
+        <translation>Configurar  CdCat …</translation>
     </message>
     <message>
         <location line="+4"/>
@@ -1412,27 +1412,27 @@ It is necessary because I&apos;d like to save the config file into your home dir
     </message>
     <message>
         <location filename="../wdbfile.cpp" line="+1036"/>
-        <source>Reading file, please wait...</source>
+        <source>Reading file, please wait …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+77"/>
-        <source>decrypting file, please wait...</source>
+        <source>decrypting file, please wait …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+67"/>
-        <source>Parsing file, please wait...</source>
+        <source>Parsing file, please wait …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="-8"/>
-        <source>Converting to unicode, please wait...</source>
+        <source>Converting to unicode, please wait …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Please Wait...</source>
-        <translation type="obsolete">Aguarde...</translation>
+        <source>Please Wait …</source>
+        <translation type="obsolete">Aguarde …</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -1598,8 +1598,8 @@ It is necessary because I&apos;d like to save the config file into your home dir
     </message>
     <message>
         <location line="-1086"/>
-        <source>Open a file...</source>
-        <translation>Abrir ficheiro...</translation>
+        <source>Open a file …</source>
+        <translation>Abrir ficheiro …</translation>
     </message>
     <message>
         <location line="+40"/>
@@ -1609,8 +1609,8 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <location line="+453"/>
         <location line="+174"/>
         <location line="+42"/>
-        <source>Error while opening...</source>
-        <translation>Erro ao abrir...</translation>
+        <source>Error while opening …</source>
+        <translation>Erro ao abrir …</translation>
     </message>
     <message>
         <source>Ok</source>
@@ -1618,18 +1618,18 @@ It is necessary because I&apos;d like to save the config file into your home dir
     </message>
     <message>
         <location line="-1584"/>
-        <source>Save to file...</source>
-        <translation>Guardar para ficheiro...</translation>
+        <source>Save to file …</source>
+        <translation>Guardar para ficheiro …</translation>
     </message>
     <message>
         <location line="+28"/>
-        <source>Error while saving...</source>
-        <translation>Erro ao gravar...</translation>
+        <source>Error while saving …</source>
+        <translation>Erro ao gravar …</translation>
     </message>
     <message>
         <location line="+53"/>
-        <source>Closing previous database...</source>
-        <translation>Fechando base de dados anterior...</translation>
+        <source>Closing previous database …</source>
+        <translation>Fechando base de dados anterior …</translation>
     </message>
     <message>
         <location line="+0"/>
@@ -1679,8 +1679,8 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <location line="-2724"/>
         <location line="+1516"/>
         <location line="+42"/>
-        <source>Warning...</source>
-        <translation>Aviso...</translation>
+        <source>Warning …</source>
+        <translation>Aviso …</translation>
     </message>
     <message>
         <location line="+156"/>
@@ -1690,8 +1690,8 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location line="+180"/>
         <location line="+74"/>
-        <source>Insert a database file...</source>
-        <translation>Inserir um ficheiro de base de dados...</translation>
+        <source>Insert a database file …</source>
+        <translation>Inserir um ficheiro de base de dados …</translation>
     </message>
     <message>
         <source>The size of &quot;%1&quot; :
@@ -1735,8 +1735,8 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location line="-905"/>
         <location line="+50"/>
-        <source>Rename node...</source>
-        <translation>Renomear nó...</translation>
+        <source>Rename node …</source>
+        <translation>Renomear nó …</translation>
     </message>
     <message>
         <location line="-49"/>
@@ -1747,21 +1747,21 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location line="-39"/>
         <location line="+48"/>
-        <source>Rescan media...</source>
-        <translation>Actualizar media...</translation>
+        <source>Rescan media …</source>
+        <translation>Actualizar media …</translation>
     </message>
     <message>
         <location line="-39"/>
         <location line="+61"/>
         <location line="+1552"/>
-        <source>Add media...</source>
-        <translation>Adicionar media...</translation>
+        <source>Add media …</source>
+        <translation>Adicionar media …</translation>
     </message>
     <message>
         <location line="-1611"/>
         <location line="+61"/>
-        <source>Insert Catalog...</source>
-        <translation>Inserir Catálgo...</translation>
+        <source>Insert Catalog …</source>
+        <translation>Inserir Catálgo …</translation>
     </message>
     <message>
         <location line="+938"/>
@@ -1771,8 +1771,8 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location line="-1009"/>
         <location line="+48"/>
-        <source>Re-Number media...</source>
-        <translation>Re-numerar media...</translation>
+        <source>Re-Number media …</source>
+        <translation>Re-numerar media …</translation>
     </message>
     <message>
         <location line="+1345"/>
@@ -1788,8 +1788,8 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location line="-64"/>
         <location line="+61"/>
-        <source>View/Edit Comment...</source>
-        <translation>Ver/Editar Comentário...</translation>
+        <source>View/Edit Comment …</source>
+        <translation>Ver/Editar Comentário …</translation>
     </message>
     <message>
         <location line="+45"/>
@@ -1797,8 +1797,8 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <translation>Fechar todos os nós</translation>
     </message>
     <message>
-        <source>Show/Remove Content...</source>
-        <translation type="obsolete">Mostrar/Remover Conteúdo...</translation>
+        <source>Show/Remove Content …</source>
+        <translation type="obsolete">Mostrar/Remover Conteúdo …</translation>
     </message>
     <message>
         <location line="+400"/>
@@ -1830,8 +1830,8 @@ a base de dados pode estar imcompleta</translation>
     <message>
         <location line="-1008"/>
         <location line="+49"/>
-        <source>Borrow this media to...</source>
-        <translation>Emprestar este media a...</translation>
+        <source>Borrow this media to …</source>
+        <translation>Emprestar este media a …</translation>
     </message>
     <message>
         <location line="+1974"/>
@@ -1857,8 +1857,8 @@ a base de dados pode estar imcompleta</translation>
         <translation>Seguir a ligação (Abrir) !</translation>
     </message>
     <message>
-        <source>Add a link to a CdCAt Catalog...</source>
-        <translation type="obsolete">Adicionar uma ligação a catálogo CdCat...</translation>
+        <source>Add a link to a CdCAt Catalog …</source>
+        <translation type="obsolete">Adicionar uma ligação a catálogo CdCat …</translation>
     </message>
     <message>
         <location line="+1917"/>
@@ -1918,23 +1918,23 @@ Página: %3</translation>
         <location line="+228"/>
         <location line="+2"/>
         <location line="+15"/>
-        <source>Scanning directory tree, please wait...</source>
+        <source>Scanning directory tree, please wait …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="-1064"/>
         <location line="+61"/>
-        <source>View/Edit Category...</source>
+        <source>View/Edit Category …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+21"/>
-        <source>Change media type...</source>
+        <source>Change media type …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+701"/>
-        <source>Enter media name...</source>
+        <source>Enter media name …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1949,27 +1949,27 @@ Página: %3</translation>
     </message>
     <message>
         <location line="-751"/>
-        <source>search for duplicates...</source>
+        <source>search for duplicates …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="-27"/>
-        <source>Show content...</source>
+        <source>Show content …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Show/Remove content...</source>
+        <source>Show/Remove content …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+30"/>
-        <source>Add a link to a CdCat Catalog...</source>
+        <source>Add a link to a CdCat Catalog …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+61"/>
-        <source>Add a link to a Cdcat catalog...</source>
+        <source>Add a link to a Cdcat catalog …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2148,12 +2148,12 @@ the DataBase may be incomplete</source>
     <message>
         <location line="-1307"/>
         <location line="+47"/>
-        <source>Saving catalog, please wait...</source>
+        <source>Saving catalog, please wait …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+856"/>
-        <source>Insert a cdcat exported xml file...</source>
+        <source>Insert a cdcat exported xml file …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2163,7 +2163,7 @@ the DataBase may be incomplete</source>
     </message>
     <message>
         <location line="-1162"/>
-        <source>Change password...</source>
+        <source>Change password …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2822,8 +2822,8 @@ será
     <name>PWw</name>
     <message>
         <location filename="../adddialog.cpp" line="-305"/>
-        <source>Please Wait...</source>
-        <translation type="unfinished">Aguarde...</translation>
+        <source>Please Wait …</source>
+        <translation type="unfinished">Aguarde …</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -3052,7 +3052,7 @@ será
         <location line="+27"/>
         <location line="+1"/>
         <location filename="../wdbfile.cpp" line="-102"/>
-        <source>Enter password...</source>
+        <source>Enter password …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3205,8 +3205,8 @@ será
     </message>
     <message>
         <location line="+744"/>
-        <source>Read mp3 technical info as comment (bitrate,freq,length...)</source>
-        <translation>Ler informação técnica do mp3 como comentário (bitrate, frequência,  duração...)</translation>
+        <source>Read mp3 technical info as comment (bitrate,freq,length …)</source>
+        <translation>Ler informação técnica do mp3 como comentário (bitrate, frequência,  duração …)</translation>
     </message>
     <message>
         <source>Read avi technical info as comment (codecs,lenhth,...)</source>
@@ -3283,7 +3283,7 @@ será
     </message>
     <message>
         <location line="+1"/>
-        <source>Select external viewer...</source>
+        <source>Select external viewer …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3405,7 +3405,7 @@ será
     <message>
         <location line="-230"/>
         <location line="+34"/>
-        <source>Add exclude rule...</source>
+        <source>Add exclude rule …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3416,12 +3416,12 @@ será
     </message>
     <message>
         <location line="-16"/>
-        <source>edit rule...</source>
+        <source>edit rule …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+4"/>
-        <source>delete rule...</source>
+        <source>delete rule …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3431,7 +3431,7 @@ será
     </message>
     <message>
         <location line="+7"/>
-        <source>add exclude rule...</source>
+        <source>add exclude rule …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3481,7 +3481,7 @@ será
     </message>
     <message>
         <location line="+1"/>
-        <source>About regular expressions....</source>
+        <source>About regular expressions ….</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3669,7 +3669,7 @@ será
         <translation>Guardar este conteúdo como um ficheiro novo</translation>
     </message>
     <message>
-        <source>Save content...</source>
+        <source>Save content …</source>
         <translation type="obsolete">Guardar conteúdo</translation>
     </message>
     <message>
@@ -3684,8 +3684,8 @@ será
     </message>
     <message>
         <location line="+1"/>
-        <source>Error while saving...</source>
-        <translation>Erro ao guardar...</translation>
+        <source>Error while saving …</source>
+        <translation>Erro ao guardar …</translation>
     </message>
     <message>
         <source>Ok</source>
@@ -3848,8 +3848,8 @@ será
         <translation>O nome de media não pode começar pelo caracter \&quot;@\&quot;!</translation>
     </message>
     <message>
-        <source>Please Wait...</source>
-        <translation type="obsolete">Aguarde...</translation>
+        <source>Please Wait …</source>
+        <translation type="obsolete">Aguarde …</translation>
     </message>
     <message>
         <source>Add a &quot;Catalog Link&quot; to the database</source>
@@ -3860,8 +3860,8 @@ será
         <translation type="obsolete">Localização do ficheiro .hcf:</translation>
     </message>
     <message>
-        <source>Open a file...</source>
-        <translation type="obsolete">Abrir ficheiro...</translation>
+        <source>Open a file …</source>
+        <translation type="obsolete">Abrir ficheiro …</translation>
     </message>
     <message>
         <source>CdCat databases (*.hcf )</source>
@@ -3920,7 +3920,7 @@ será
     <message>
         <location line="+89"/>
         <location line="+37"/>
-        <source>Enter media name...</source>
+        <source>Enter media name …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3965,8 +3965,8 @@ será
     <message>
         <location line="-69"/>
         <location line="+68"/>
-        <source>Borrowing...</source>
-        <translation>A emprestar...</translation>
+        <source>Borrowing …</source>
+        <translation>A emprestar …</translation>
     </message>
 </context>
 <context>
@@ -4072,8 +4072,8 @@ será
     </message>
     <message>
         <location line="-230"/>
-        <source>Borrowing info...</source>
-        <translation>Informação de empréstimo...</translation>
+        <source>Borrowing info …</source>
+        <translation>Informação de empréstimo …</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -4185,8 +4185,8 @@ será
         <translation>Introduzir um separador!</translation>
     </message>
     <message>
-        <source>Error during write config...</source>
-        <translation type="obsolete">Erro durante a escrita da configuração...</translation>
+        <source>Error during write config …</source>
+        <translation type="obsolete">Erro durante a escrita da configuração …</translation>
     </message>
     <message>
         <source>Ok</source>
@@ -4273,8 +4273,8 @@ será
     </message>
     <message>
         <location line="-373"/>
-        <source>Export database...</source>
-        <translation>Exportar base de dados...</translation>
+        <source>Export database …</source>
+        <translation>Exportar base de dados …</translation>
     </message>
     <message>
         <location line="+103"/>
@@ -4428,13 +4428,13 @@ será
     </message>
     <message>
         <location line="+237"/>
-        <source>Exporting, please wait...</source>
+        <source>Exporting, please wait …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+24"/>
         <location line="+25"/>
-        <source>Error during write export...</source>
+        <source>Error during write export …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4500,8 +4500,8 @@ será
     </message>
     <message>
         <location line="-422"/>
-        <source>Search in the database...</source>
-        <translation>Procurar na base de dados...</translation>
+        <source>Search in the database …</source>
+        <translation>Procurar na base de dados …</translation>
     </message>
     <message>
         <location line="+42"/>
@@ -4688,12 +4688,12 @@ será
     </message>
     <message>
         <location line="+13"/>
-        <source>Print result...</source>
+        <source>Print result …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Export result to HTML...</source>
+        <source>Export result to HTML …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4783,7 +4783,7 @@ será
     </message>
     <message>
         <location line="-509"/>
-        <source>Search for duplicates in the database...</source>
+        <source>Search for duplicates in the database …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5044,8 +5044,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location line="-1504"/>
-        <source>Importing CSV...</source>
-        <translation>Importar CSV...</translation>
+        <source>Importing CSV …</source>
+        <translation>Importar CSV …</translation>
     </message>
     <message>
         <location line="+0"/>
@@ -5062,8 +5062,8 @@ p, li { white-space: pre-wrap; }
     <name>importGtktalogXml</name>
     <message>
         <location line="+723"/>
-        <source>Importing XML...</source>
-        <translation>Importar XML...</translation>
+        <source>Importing XML …</source>
+        <translation>Importar XML …</translation>
     </message>
     <message>
         <location line="+35"/>
@@ -5136,8 +5136,8 @@ p, li { white-space: pre-wrap; }
     <name>importWhereIsItXml</name>
     <message>
         <location line="+798"/>
-        <source>Importing XML...</source>
-        <translation>Importar XML...</translation>
+        <source>Importing XML …</source>
+        <translation>Importar XML …</translation>
     </message>
     <message>
         <location line="+34"/>
@@ -5293,8 +5293,8 @@ p, li { white-space: pre-wrap; }
     <name>renamedialog</name>
     <message>
         <location line="+63"/>
-        <source>Rename node...</source>
-        <translation>Renomear nó...</translation>
+        <source>Rename node …</source>
+        <translation>Renomear nó …</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -5352,8 +5352,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location line="+37"/>
-        <source>Re-Number media...</source>
-        <translation>Renumerar media...</translation>
+        <source>Re-Number media …</source>
+        <translation>Renumerar media …</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -5419,7 +5419,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location line="-627"/>
-        <source>Searching, please wait...</source>
+        <source>Searching, please wait …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

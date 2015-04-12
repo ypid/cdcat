@@ -205,7 +205,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave *parent, QString separator, QStr
         return;
     }
 
-    QProgressDialog *progress = new QProgressDialog( tr( "Importing CSV..." ), tr( "Cancel" ), 1, lines );
+    QProgressDialog *progress = new QProgressDialog( tr( "Importing CSV …" ), tr( "Cancel" ), 1, lines );
     progress->setCancelButton( 0 );
 
     QTextStream t( &f );                   // use a text stream
@@ -294,7 +294,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave *parent, QString separator, QStr
 
         line = t.readLine();          // line of text excluding '\n'
 
-        // check for multiple lines of a entry...
+        // check for multiple lines of a entry …
         if (csvtype == "whereisit") {
             while (line.right( 1 ) != separator && !t.atEnd()) {
                 if (*DEBUG_INFO_ENABLED) {
@@ -2090,7 +2090,7 @@ importGtktalogXml::importGtktalogXml ( GuiSlave *parent, QString filename, bool 
             f.close();
         }
 
-        progress = new QProgressDialog( tr( "Importing XML..." ), tr( "Cancel" ), 1, lines );
+        progress = new QProgressDialog( tr( "Importing XML …" ), tr( "Cancel" ), 1, lines );
         progress->setCancelButton( 0 );
 
         medialines = new QList<lineObject> ();
@@ -2665,7 +2665,7 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
                 env2 = db->getMediaNode( number );
 
                 if (env2 == NULL && !new_medianame.isEmpty()) {
-                    // try name now....
+                    // try name now ….
                     env2 = db->getMediaNode( new_medianame );
                 }
 
@@ -2742,7 +2742,7 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
 
                 env2 = db->getMediaNode( number );
                 if (env2 == NULL && !new_medianame.isEmpty()) {
-                    // try name now....
+                    // try name now ….
                     env2 = db->getMediaNode( new_medianame );
                 }
 
@@ -2848,7 +2848,7 @@ importWhereIsItXml::importWhereIsItXml ( GuiSlave *parent, QString filename, boo
 
         int all_lines = 0;
 
-        /*qDebug() << "counting lines... ";*/
+        /*qDebug() << "counting lines … ";*/
         register FILE *filehdl;
         register int c;
         if ((filehdl = fopen( filename.toLocal8Bit().constData(), "r" )) == NULL) {
@@ -2888,10 +2888,10 @@ importWhereIsItXml::importWhereIsItXml ( GuiSlave *parent, QString filename, boo
 
         // now we need a link to itself :(
         class_link_whereisit = this;
-        progress = new QProgressDialog( tr( "Importing XML..." ), tr( "Cancel" ), 1, lines );
+        progress = new QProgressDialog( tr( "Importing XML …" ), tr( "Cancel" ), 1, lines );
         progress->setCancelButton( 0 );
 
-        //  guislave->mainw->status->setText(tr("Importing xml..."));
+        //  guislave->mainw->status->setText(tr("Importing xml …"));
 
         line = "";
         fullpath = "";

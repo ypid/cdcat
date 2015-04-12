@@ -235,7 +235,7 @@ int ShowContent::savenode( void ) {
             f = fopen( QFile::encodeName( fname ), "w" );
             if (f == NULL) {
                 errormsg = tr( "I can't rewrite the file: %1" ).arg( fname );
-                QMessageBox::warning( this, tr( "Error while saving..." ), errormsg );
+                QMessageBox::warning( this, tr( "Error while saving …" ), errormsg );
                 return 0;
             }
             fseek( f, 0, SEEK_SET );

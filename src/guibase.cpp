@@ -332,7 +332,7 @@ void GuiSlave::checkversion( QWidget *p, DataBase *db ) {
 
     QMessageBox::warning(
         p,
-        tr( "Warning..." ),
+        tr( "Warning …" ),
         tr(
             "The database file has newer version than this version of %4 can work with:\n"
             "I understand maximum %1 datafile version but readed %4\n\n"
@@ -974,7 +974,7 @@ void GuiSlave::panelsON( void ) {
     if (*DEBUG_INFO_ENABLED) {
         qDebug();
     }
-    panelsOFF();     // That case you forget the OFF before...
+    panelsOFF();     // That case you forget the OFF before …
 
     mainw->DirView->start();
     mainw->listView->start();
@@ -1004,17 +1004,17 @@ void GuiSlave::showListviewContextMenu( QPoint p ) {
     }
 
     if (standON != NULL) {
-        mPopup->addAction( QIcon( *get_t_comment_icon()), tr( "View/Edit Comment..." ), this, SLOT( editComment()));
-        mPopup->addAction( QIcon( *get_t_comment_icon()), tr( "View/Edit Category..." ), this, SLOT( editCategory()));
+        mPopup->addAction( QIcon( *get_t_comment_icon()), tr( "View/Edit Comment …" ), this, SLOT( editComment()));
+        mPopup->addAction( QIcon( *get_t_comment_icon()), tr( "View/Edit Category …" ), this, SLOT( editCategory()));
         mPopup->insertSeparator( NULL );
         mPopup->addAction( tr( "Node size" ), this, SLOT( sizeEvent()));
         mPopup->insertSeparator( NULL );
 
         if (haveContent( standON )) {
             if (mainw->cconfig->useExternalContentViewer && QFileInfo( mainw->cconfig->ExternalContentViewerPath ).exists()) {
-                mPopup->addAction( QIcon( *get_t_showc_icon()), tr( "Show content..." ), this, SLOT( showContent()));
+                mPopup->addAction( QIcon( *get_t_showc_icon()), tr( "Show content …" ), this, SLOT( showContent()));
             } else {
-                mPopup->addAction( QIcon( *get_t_showc_icon()), tr( "Show/Remove content..." ), this, SLOT( showContent()));
+                mPopup->addAction( QIcon( *get_t_showc_icon()), tr( "Show/Remove content …" ), this, SLOT( showContent()));
             }
         }
 
@@ -1022,28 +1022,28 @@ void GuiSlave::showListviewContextMenu( QPoint p ) {
             mPopup->addAction( QIcon( *get_p_icon()), tr( "Follow the link (Open it) !" ), this, SLOT( followLnk()));
         }
 
-        mPopup->addAction( tr( "Rename node..." ), this, SLOT( renameEvent()));
+        mPopup->addAction( tr( "Rename node …" ), this, SLOT( renameEvent()));
         mPopup->addAction( QIcon( *get_t_delete_icon()), tr( "Delete node" ), this, SLOT( deleteEvent()));
 
         if (standON->type == HC_MEDIA) {
             mPopup->insertSeparator( NULL );
             if (((DBMedia *)(standON->data))->borrowing == "") {
-                mPopup->addAction( QIcon( *get_t_sborrow_icon()), tr( "Borrow this media to..." ), this, SLOT( sborrowEvent()));
+                mPopup->addAction( QIcon( *get_t_sborrow_icon()), tr( "Borrow this media to …" ), this, SLOT( sborrowEvent()));
             } else {
                 mPopup->addAction( QIcon( *get_t_cborrow_icon()), tr( "I got it back! (clear borrowing mark)" ), this, SLOT( cborrowEvent()));
             }
 
             mPopup->insertSeparator( NULL );
-            mPopup->addAction( QIcon( *get_t_rescan_icon()), tr( "Rescan media..." ), this, SLOT( rescanEvent()));
-            mPopup->addAction( tr( "Re-Number media..." ), this, SLOT( renumberEvent()));
+            mPopup->addAction( QIcon( *get_t_rescan_icon()), tr( "Rescan media …" ), this, SLOT( rescanEvent()));
+            mPopup->addAction( tr( "Re-Number media …" ), this, SLOT( renumberEvent()));
         }
         if (standON->type == HC_FILE) {
             mPopup->insertSeparator( NULL );
-            mPopup->addAction( tr( "search for duplicates..." ), this, SLOT( searchDuplicatesEvent()));
+            mPopup->addAction( tr( "search for duplicates …" ), this, SLOT( searchDuplicatesEvent()));
         }
     }
     mPopup->insertSeparator( NULL );
-    mPopup->addAction( QIcon( *get_t_add_icon()), tr( "Add media..." ), this, SLOT( addEvent()));
+    mPopup->addAction( QIcon( *get_t_add_icon()), tr( "Add media …" ), this, SLOT( addEvent()));
     mPopup->addAction(
         QIcon( *get_p_icon() ),
         tr( "Add a link to a %1 Catalog …" )
@@ -1051,7 +1051,7 @@ void GuiSlave::showListviewContextMenu( QPoint p ) {
         this,
         SLOT( addlnkEvent())
     );
-    mPopup->addAction( tr( "Insert Catalog..." ), this, SLOT( insertcEvent()));
+    mPopup->addAction( tr( "Insert Catalog …" ), this, SLOT( insertcEvent()));
     mPopup->exec( mainw->listView->viewport()->mapToGlobal( p ));
     delete mPopup;
     mPopup = NULL;
@@ -1071,29 +1071,29 @@ void GuiSlave::showTreeContextMenu( const QPoint p2 ) {
 
     mPopup = new QMenu( mainw );
     if (on != NULL) {
-        mPopup->addAction( QIcon( *get_t_comment_icon()), tr( "View/Edit Comment..." ), this, SLOT( editComment()));
-        mPopup->addAction( tr( "View/Edit Category..." ), this, SLOT( editCategory()));
+        mPopup->addAction( QIcon( *get_t_comment_icon()), tr( "View/Edit Comment …" ), this, SLOT( editComment()));
+        mPopup->addAction( tr( "View/Edit Category …" ), this, SLOT( editCategory()));
         mPopup->insertSeparator( NULL );
         mPopup->addAction( tr( "Node size" ), this, SLOT( sizeEvent()));
         mPopup->insertSeparator( NULL );
     }
     if (on != NULL && on->type != HC_CATALOG) {
-        mPopup->addAction( tr( "Rename node..." ), this, SLOT( renameEvent()));
+        mPopup->addAction( tr( "Rename node …" ), this, SLOT( renameEvent()));
         mPopup->addAction( QIcon( *get_t_delete_icon()), tr( "Delete node" ), this, SLOT( deleteEvent()));
         mPopup->insertSeparator( NULL );
         if (on->type == HC_MEDIA) {
             if (((DBMedia *)(on->data))->borrowing == "") {
-                mPopup->addAction( QIcon( *get_t_sborrow_icon()), tr( "Borrow this media to..." ), this, SLOT( sborrowEvent()));
+                mPopup->addAction( QIcon( *get_t_sborrow_icon()), tr( "Borrow this media to …" ), this, SLOT( sborrowEvent()));
             } else {
                 mPopup->addAction( QIcon( *get_t_cborrow_icon()), tr( "I got it back! (clear borrowing mark)" ), this, SLOT( cborrowEvent()));
             }
 
-            mPopup->addAction( QIcon( *get_t_rescan_icon()), tr( "Rescan media..." ), this, SLOT( rescanEvent()));
-            mPopup->addAction( tr( "Re-Number media..." ), this, SLOT( renumberEvent()));
+            mPopup->addAction( QIcon( *get_t_rescan_icon()), tr( "Rescan media …" ), this, SLOT( rescanEvent()));
+            mPopup->addAction( tr( "Re-Number media …" ), this, SLOT( renumberEvent()));
 
             mPopup->insertSeparator( NULL );
             context_item = mainw->DirView->itemAt( p2 );
-            mPopup->addAction( QIcon( *get_t_add_icon()), tr( "Change media type..." ), this, SLOT( typeChangeEvent()));
+            mPopup->addAction( QIcon( *get_t_add_icon()), tr( "Change media type …" ), this, SLOT( typeChangeEvent()));
         }
     }
 #ifdef CATALOG_ENCRYPTION
@@ -1101,7 +1101,7 @@ void GuiSlave::showTreeContextMenu( const QPoint p2 ) {
         bool isEncryptedCatalog = ((DBCatalog *)((on)->data))->isEncryptedCatalog;
         if (isEncryptedCatalog) {
             mPopup->insertSeparator( NULL );
-            mPopup->addAction( QIcon( *get_t_change_encryption_password_icon()), tr( "Change password..." ), this, SLOT( changePassEvent()));
+            mPopup->addAction( QIcon( *get_t_change_encryption_password_icon()), tr( "Change password …" ), this, SLOT( changePassEvent()));
             mPopup->addAction( QIcon( *get_t_remove_encryption_icon()), tr( "Disable encryption" ), this, SLOT( disableEncryptionEvent()));
             mPopup->insertSeparator( NULL );
         } else {
@@ -1110,15 +1110,15 @@ void GuiSlave::showTreeContextMenu( const QPoint p2 ) {
     }
 #endif
 
-    mPopup->addAction( QIcon( *get_t_add_icon()), tr( "Add media..." ), this, SLOT( addEvent()));
+    mPopup->addAction( QIcon( *get_t_add_icon()), tr( "Add media …" ), this, SLOT( addEvent()));
     mPopup->addAction(
         QIcon( *get_p_icon() ),
-        tr( "Add a link to a %1 catalog..." )
+        tr( "Add a link to a %1 catalog …" )
             .arg(PROGRAM_NAME),
         this,
         SLOT( addlnkEvent() )
     );
-    mPopup->addAction( tr( "Insert Catalog..." ), this, SLOT( insertcEvent()));
+    mPopup->addAction( tr( "Insert Catalog …" ), this, SLOT( insertcEvent()));
     // mPopup->addAction ( tr ( "Insert Catalog (no duplicates)..." ), this, SLOT(insertcEventNoDup()) );
     if (on != NULL) {
         mPopup->insertSeparator( NULL );
@@ -1221,7 +1221,7 @@ int GuiSlave::openEvent( void ) {
 
     fn = QFileDialog::getOpenFileName(
         0,
-        tr( "Open a file..." ),
+        tr( "Open a file …" ),
         mainw->cconfig->lastDir,
         tr( "%1 databases (*.hcf )" )
             .arg(PROGRAM_NAME)
@@ -1263,7 +1263,7 @@ int GuiSlave::openEvent( void ) {
 
 
     if ((ret_val = mainw->db->openDB( fnc )) != 0) {          // An error occurred
-        QMessageBox::warning( mainw, tr( "Error while opening..." ),
+        QMessageBox::warning( mainw, tr( "Error while opening …" ),
                               mainw->db->errormsg );
         mainw->db = NULL;
         standON = NodePwd = NULL;
@@ -1356,7 +1356,7 @@ int GuiSlave::saveEvent( void ) {
 
     PWw *pww = new PWw( mainw, mainw->app );
     mainw->db->pww = pww;
-    pww->setProgressText( tr( "Saving catalog, please wait..." ));
+    pww->setProgressText( tr( "Saving catalog, please wait …" ));
     pww->show();
     progress( pww );
 
@@ -1397,7 +1397,7 @@ int GuiSlave::saveasEvent( void ) {
     }
     fn = QFileDialog::getSaveFileName(
         0,
-        tr( "Save to file..." ),
+        tr( "Save to file …" ),
         mainw->cconfig->lastDir,
         tr( "%1 databases (*.hcf )" )
             .arg(PROGRAM_NAME)
@@ -1409,7 +1409,7 @@ int GuiSlave::saveasEvent( void ) {
 
     PWw *pww = new PWw( mainw, mainw->app );
     mainw->db->pww = pww;
-    pww->setProgressText( tr( "Saving catalog, please wait..." ));
+    pww->setProgressText( tr( "Saving catalog, please wait …" ));
     pww->show();
 
     progress( pww );
@@ -1429,7 +1429,7 @@ int GuiSlave::saveasEvent( void ) {
         mainw->db->XML_ENCODING = "UTF-8";
     }
     if (mainw->db->saveAsDB( fnc ) != 0) {        // An error occurred
-        QMessageBox::warning( mainw, tr( "Error while saving..." ), mainw->db->errormsg );
+        QMessageBox::warning( mainw, tr( "Error while saving …" ), mainw->db->errormsg );
         retv = 2;
         // The file cannot be writed
         // (It is the only reason the saveAsSB return nonzero)
@@ -1482,7 +1482,7 @@ int GuiSlave::closeEvent( void ) {
         return 0;
     }
     if (((DBCatalog *)(mainw->db->getRootNode()->data))->writed == 0) {
-        userrq = QMessageBox::warning( mainw, tr( "Closing previous database..." ), tr( "Do you want to save the changes?" ),
+        userrq = QMessageBox::warning( mainw, tr( "Closing previous database …" ), tr( "Do you want to save the changes?" ),
                                        tr( "Yes" ), tr( "No" ));
 
         if (userrq == -1) {
@@ -1580,7 +1580,7 @@ int GuiSlave::addEvent( void ) {
     }
     PWw *pww = mainw->pww;
     pww->showProgress = false;
-    pww->setProgressText( tr( "Scanning directory tree, please wait..." ));
+    pww->setProgressText( tr( "Scanning directory tree, please wait …" ));
     pww->setCancel( true );
     mainw->db->pww = pww;
     QApplication::setOverrideCursor( Qt::WaitCursor );
@@ -1676,7 +1676,7 @@ int GuiSlave::addEvent( void ) {
         }
         if (mainw->cconfig->mounteject && !mount_successful) {
             if (*DEBUG_INFO_ENABLED) {
-                qWarning("Call: %s %s...", arg[0], (const char *)cdrom_mountpath.toUtf8().constData());
+                qWarning("Call: %s %s …", arg[0], (const char *)cdrom_mountpath.toUtf8().constData());
             }
             arg[1] = mstr( cdrom_mountpath.toUtf8().constData());
             arg[2] = 0;
@@ -1786,7 +1786,7 @@ int GuiSlave::addEvent( void ) {
         }
         if (d->leName->text().isEmpty()) {
             bool ok;
-            QString text = QInputDialog::getText( 0, tr( "Enter media name..." ),
+            QString text = QInputDialog::getText( 0, tr( "Enter media name …" ),
                                                   tr( "Media name:" ), QLineEdit::Normal,
                                                   tr( "Media" ), &ok );
             if (ok && !text.isEmpty()) {
@@ -1823,7 +1823,7 @@ int GuiSlave::addEvent( void ) {
         if (mainw->cconfig->showTrayIcon) {
             connect( mainw, SIGNAL( minimizedToTray()), pww, SLOT( hide()));
             connect( mainw, SIGNAL( restoredFromTray()), pww, SLOT( show()));
-            mainw->trayIcon->setToolTip( tr( "Scanning directory tree, please wait..." ));
+            mainw->trayIcon->setToolTip( tr( "Scanning directory tree, please wait …" ));
             QSystemTrayIcon::MessageIcon icon = QSystemTrayIcon::MessageIcon( 1 );
             mainw->startTrayIconAnim();
             mainw->trayIcon->showMessage( tr( "Scan started" ), tr( "Scanning %1 into %2 has been started" ).arg( d->dDir, d->dName ), icon, 3 * 1000 );
@@ -1841,7 +1841,7 @@ int GuiSlave::addEvent( void ) {
         }
         if (i == 2) {
             QMessageBox::warning( mainw,
-                tr( "Warning..." ), tr( "You have cancelled catalog scanning,\nthe DataBase may be incomplete" ));
+                tr( "Warning …" ), tr( "You have cancelled catalog scanning,\nthe DataBase may be incomplete" ));
         }
 
         if (mainw->cconfig->showTrayIcon) {
@@ -1872,7 +1872,7 @@ int GuiSlave::addEvent( void ) {
         if (mainw->cconfig->autosave) {
             int retv = 0;
             if ((retv = mainw->db->saveDB()) != 0) {
-                if (retv == 1) {                         // The database had no name. need a save as...
+                if (retv == 1) {                         // The database had no name. need a save as …
                     retv = saveasEvent();
                 }
             }
@@ -1884,7 +1884,7 @@ int GuiSlave::addEvent( void ) {
         if (i != 0 && !pww->doCancel) {
             QMessageBox::warning(
                 mainw,
-                tr( "Warning..." ),
+                tr( "Warning …" ),
                 tr( "An error occurred while scanning,\nthe DataBase may be incomplete" )
             );
         }
@@ -1940,7 +1940,7 @@ int GuiSlave::addEvent( void ) {
             }
 
             if (*DEBUG_INFO_ENABLED) {
-                qDebug("Call: %s %s...", arg[0], (const char *)mainw->cconfig->cdrompath.toUtf8().constData());
+                qDebug("Call: %s %s …", arg[0], (const char *)mainw->cconfig->cdrompath.toUtf8().constData());
             }
             arg[1] = mstr( cdrom_mountpath.toUtf8().constData());
             arg[2] = 0;
@@ -2049,9 +2049,9 @@ int GuiSlave::rescanEvent( void ) {
 
     QApplication::setOverrideCursor( Qt::WaitCursor );
 
-    PWw *pww = new PWw( mainw, mainw->app, false, 0, tr( "Scanning directory tree, please wait..." ), true );
+    PWw *pww = new PWw( mainw, mainw->app, false, 0, tr( "Scanning directory tree, please wait …" ), true );
     mainw->db->pww = pww;
-    pww->setProgressText( tr( "Scanning directory tree, please wait..." ));
+    pww->setProgressText( tr( "Scanning directory tree, please wait …" ));
     pww->setCancel( true );
     progress( pww );
 
@@ -2066,7 +2066,7 @@ int GuiSlave::rescanEvent( void ) {
     if (mainw->cconfig->showTrayIcon) {
         connect( mainw, SIGNAL( minimizedToTray()), pww, SLOT( hide()));
         connect( mainw, SIGNAL( restoredFromTray()), pww, SLOT( show()));
-        mainw->trayIcon->setToolTip( tr( "Scanning directory tree, please wait..." ));
+        mainw->trayIcon->setToolTip( tr( "Scanning directory tree, please wait …" ));
         QSystemTrayIcon::MessageIcon icon = QSystemTrayIcon::MessageIcon( 1 );
         mainw->startTrayIconAnim();
         mainw->trayIcon->showMessage( tr( "Scan started" ), tr( "Scanning %1 into %2 has been started" ).arg( rfd, "__rescanned__" ), icon, 3 * 1000 );
@@ -2142,7 +2142,7 @@ int GuiSlave::rescanEvent( void ) {
     if (mainw->cconfig->autosave) {
         int retv = 0;
         if ((retv = mainw->db->saveDB()) != 0) {
-            if (retv == 1) {             // The databas had no name. need a save as...
+            if (retv == 1) {             // The databas had no name. need a save as …
                 retv = saveasEvent();
             }
         }
@@ -2219,7 +2219,7 @@ int GuiSlave::insertcEvent( void ) {
     }
     fn = QFileDialog::getOpenFileName(
         0,
-        tr( "Insert a database file..." ),
+        tr( "Insert a database file …" ),
         mainw->cconfig->lastDir,
         tr( "%1 databases (*.hcf )" )
             .arg(PROGRAM_NAME)
@@ -2237,7 +2237,7 @@ int GuiSlave::insertcEvent( void ) {
     progress( pww );
 
     if (mainw->db->insertDB( fnc, false ) != 0) {        // An error occurred
-        QMessageBox::warning( mainw, tr( "Error while opening..." ),
+        QMessageBox::warning( mainw, tr( "Error while opening …" ),
                               mainw->db->errormsg );
     }
 
@@ -2262,7 +2262,7 @@ int GuiSlave::insertCdcatXmlEvent( void ) {
     }
     fn = QFileDialog::getOpenFileName(
         0,
-        tr( "Insert a %1 exported xml file..." )
+        tr( "Insert a %1 exported xml file …" )
             .arg(PROGRAM_NAME),
         mainw->cconfig->lastDir,
         tr( "%1 xml export (*.xml )" )
@@ -2281,7 +2281,7 @@ int GuiSlave::insertCdcatXmlEvent( void ) {
     progress( pww );
 
     if (mainw->db->insertDB( fnc, false, true ) != 0) {        // An error occurred
-        QMessageBox::warning( mainw, tr( "Error while opening..." ),
+        QMessageBox::warning( mainw, tr( "Error while opening …" ),
                               mainw->db->errormsg );
     }
 
@@ -2306,7 +2306,7 @@ int GuiSlave::insertcEventNoDup( void ) {
     }
     fn = QFileDialog::getOpenFileName(
         0,
-        tr( "Insert a database file..." ),
+        tr( "Insert a database file …" ),
         mainw->cconfig->lastDir,
         tr( "%1 databases (*.hcf )" )
             .arg(PROGRAM_NAME)
@@ -2324,7 +2324,7 @@ int GuiSlave::insertcEventNoDup( void ) {
     progress( pww );
 
     if (mainw->db->insertDB( fnc, true ) != 0) {        // An error occurred
-        QMessageBox::warning( mainw, tr( "Error while opening..." ),
+        QMessageBox::warning( mainw, tr( "Error while opening …" ),
                               mainw->db->errormsg );
     }
 
@@ -2671,7 +2671,7 @@ int GuiSlave::helpEvent( void ) {
 
     helptext += "<p>";
 
-    helptext += tr( "Run the %1 command in the edit menu. In that dialog you have to specify the directory/or drive the media you want to add. It's recommended to specify the name and the number of the media which has to be unique. (The program always generate one identical name and number). You can label the media to a owner, if necessary." ).arg( +"<i>" + tr( "Add media..." ) + "</i>" );
+    helptext += tr( "Run the %1 command in the edit menu. In that dialog you have to specify the directory/or drive the media you want to add. It's recommended to specify the name and the number of the media which has to be unique. (The program always generate one identical name and number). You can label the media to a owner, if necessary." ).arg( +"<i>" + tr( "Add media …" ) + "</i>" );
 
 
     helptext += " <br />";
@@ -2776,7 +2776,7 @@ int GuiSlave::openHistoryElementEvent( QAction *action ) {
     progress( pww );
 
     if (mainw->db->openDB( fnc ) != 0) {        // An error occurred
-        QMessageBox::warning( mainw, tr( "Error while opening..." ),
+        QMessageBox::warning( mainw, tr( "Error while opening …" ),
                               mainw->db->errormsg );
         mainw->db = NULL;
         standON = NodePwd = NULL;;
@@ -2949,7 +2949,7 @@ int GuiSlave::followLnk( void ) {
 
         if (((DBCatLnk *)(standON->data))->location == NULL ||
             !strcmp(((DBCatLnk *)(standON->data))->location, "" )) {
-            QMessageBox::warning( mainw, tr( "Error while opening..." ),
+            QMessageBox::warning( mainw, tr( "Error while opening …" ),
                                   tr( "The link is empty." ));
 
             return 0;
@@ -2991,7 +2991,7 @@ int GuiSlave::followLnk( void ) {
         progress( pww );
 
         if ((ret_val = mainw->db->openDB( fnc )) != 0) {              // An error occurred
-            QMessageBox::warning( mainw, tr( "Error while opening..." ),
+            QMessageBox::warning( mainw, tr( "Error while opening …" ),
                                   mainw->db->errormsg );
             mainw->db = NULL;
             standON = NodePwd = NULL;
@@ -3100,8 +3100,8 @@ int GuiSlave::searchDuplicatesEvent( void ) {
 int GuiSlave::changePassEvent( void ) {
     bool ok = false;
     bool ok_again = false;
-    QString Password = QInputDialog::getText( 0, QObject::tr( "Enter password..." ), QObject::tr( "Enter password for catalog:" ), QLineEdit::Password, "", &ok );
-    QString PasswordAgain = QInputDialog::getText( 0, QObject::tr( "Enter password..." ), QObject::tr( "Enter password for catalog (again):" ), QLineEdit::Password, "", &ok_again );
+    QString Password = QInputDialog::getText( 0, QObject::tr( "Enter password …" ), QObject::tr( "Enter password for catalog:" ), QLineEdit::Password, "", &ok );
+    QString PasswordAgain = QInputDialog::getText( 0, QObject::tr( "Enter password …" ), QObject::tr( "Enter password for catalog (again):" ), QLineEdit::Password, "", &ok_again );
 
     if (ok && ok_again) {
         if (Password == PasswordAgain) {
@@ -3128,8 +3128,8 @@ int GuiSlave::enableEncryptionEvent( void ) {
     Node *root = mainw->db->getRootNode();
     bool ok = false;
     bool ok_again = false;
-    QString Password = QInputDialog::getText( 0, QObject::tr( "Enter password..." ), QObject::tr( "Enter password for catalog:" ), QLineEdit::Password, "", &ok );
-    QString PasswordAgain = QInputDialog::getText( 0, QObject::tr( "Enter password..." ), QObject::tr( "Enter password for catalog (again):" ), QLineEdit::Password, "", &ok_again );
+    QString Password = QInputDialog::getText( 0, QObject::tr( "Enter password …" ), QObject::tr( "Enter password for catalog:" ), QLineEdit::Password, "", &ok );
+    QString PasswordAgain = QInputDialog::getText( 0, QObject::tr( "Enter password …" ), QObject::tr( "Enter password for catalog (again):" ), QLineEdit::Password, "", &ok_again );
 
     if (ok && ok_again) {
         if (Password == PasswordAgain) {

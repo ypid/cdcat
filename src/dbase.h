@@ -246,7 +246,7 @@ public:
     // Tell the meaning of size 0=byte 1=Kb 2=Mb 3=Gb
 
     Node *prop;
-    // the root pointer of other Nodes. can be mp3tag of etc...
+    // the root pointer of other Nodes. can be mp3tag of etc …
 
     DBFile ( void );
     DBFile ( QString n, QDateTime mod, QString c, double s, int st, QString pcategory = "", QList<ArchiveFile> parchivecontent = QList<ArchiveFile>(), QString fileinfo = "" );
@@ -364,7 +364,7 @@ public:
 
     // The database will store some file's content if ..
     bool storeContent;
-    // the storing enabled...
+    // the storing enabled …
     QString storedFiles;
     // ; separated wildcard plattern list of files
     unsigned long storeLimit;
@@ -468,7 +468,7 @@ public:
      * (environment: catalog/needn't to specify of course/ in case getMedia..
      *               media or directory in case getDir..
      *         media but rather directory in case getFile.. )
-     * so you have to use the put... functions to make the node.
+     * so you have to use the put … functions to make the node.
      *
      * Always test the existion a node before you try to create it !!!
      *

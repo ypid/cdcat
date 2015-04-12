@@ -213,7 +213,7 @@ int CdCatConfig::startProgram( DataBase **dbp, QWidget *mw ) {
         progress( pww );
         if ((*dbp)->openDB( loadablefile.toLocal8Bit().data())) {
             (*dbp) = NULL;
-            QMessageBox::warning( mw, tr( "Error during autoload..." ),
+            QMessageBox::warning( mw, tr( "Error during autoload …" ),
                                   startpar ? tr( "I can't open the autoload catalog according the first command line parameter.\nCheck the file!\n" )
                                   : tr( "I can't open the autoload catalog.\nCheck the file, or change the autoload option in the config dialog!\n" ));
         }
@@ -1038,7 +1038,7 @@ int CdCatConfig::writeConfig( void ) {
     QFile f( CONFIGFILE );
 #else
     if (getenv( "HOME" ) == NULL) {
-        QMessageBox::warning( 0, tr( "Error while saving config file..." ),
+        QMessageBox::warning( 0, tr( "Error while saving config file …" ),
                               tr( "I can't get the $HOME environment variable.\nIt is necessary because I'd like to save the config file into your home directory." ));
 
         return 1;
@@ -1466,9 +1466,9 @@ int CdCatConfig::writeConfig( void ) {
         return 0;
     } else {
 #if defined(_WIN32) || defined(_OS2)
-        QMessageBox::warning( 0, tr( "Error while saving config file..." ), tr( "I can't create or rewrite the ./cdcat.cfg file " ));
+        QMessageBox::warning( 0, tr( "Error while saving config file …" ), tr( "I can't create or rewrite the ./cdcat.cfg file " ));
 #else
-        QMessageBox::warning( 0, tr( "Error while saving config file..." ), tr( "I can't create or rewrite the $(HOME)/.cdcatconfig file " ));
+        QMessageBox::warning( 0, tr( "Error while saving config file …" ), tr( "I can't create or rewrite the $(HOME)/.cdcatconfig file " ));
 #endif
         return 1;
     }
@@ -1728,7 +1728,7 @@ ConfigDialog::~ConfigDialog() {
 }
 
 void ConfigDialog::languageChange() {
-    setWindowTitle( tr( "Configure  CdCat..." ));
+    setWindowTitle( tr( "Configure  CdCat …" ));
     cbShowTrayIcon->setText( tr( "Show systray icon" ));
     cbShowCurrentScannedFileInTrayIcon->setText( tr( "display current scanned file in tray" ));
     cbShowCurrentScannedFileInTrayIcon->setToolTip( tr( "display current scanned file in tray (mediainfo / archive scan)" ));

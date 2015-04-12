@@ -27,8 +27,8 @@
         <translation>OK</translation>
     </message>
     <message>
-        <source>Open a file...</source>
-        <translation>Datei öffnen...</translation>
+        <source>Open a file …</source>
+        <translation>Datei öffnen …</translation>
     </message>
     <message>
         <source>CdCat databases (*.hcf )</source>
@@ -92,8 +92,8 @@
 <context>
     <name>CdCatConfig</name>
     <message>
-        <source>Error during autoload...</source>
-        <translation>Fehler beim automatischen Laden...</translation>
+        <source>Error during autoload …</source>
+        <translation>Fehler beim automatischen Laden …</translation>
     </message>
     <message>
         <source>I can&apos;t open the autoload catalog.
@@ -120,8 +120,8 @@ Datei überprüfen!
         <translation>Datei $(HOME)/.cdcatconfig kann nicht erstellt/überschrieben werden</translation>
     </message>
     <message>
-        <source>Error while saving config file...</source>
-        <translation>Fehler beim Speichern der Konfigurationsdatei...</translation>
+        <source>Error while saving config file …</source>
+        <translation>Fehler beim Speichern der Konfigurationsdatei …</translation>
     </message>
     <message>
         <source>I can&apos;t get the $HOME environment variable.
@@ -153,36 +153,36 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
         <translation>Grösse</translation>
     </message>
     <message>
-        <source>Add media...</source>
-        <translation>Medium hinzufügen...</translation>
+        <source>Add media …</source>
+        <translation>Medium hinzufügen …</translation>
     </message>
     <message>
-        <source>Rescan media...</source>
-        <translation>Medium aktualisieren...</translation>
+        <source>Rescan media …</source>
+        <translation>Medium aktualisieren …</translation>
     </message>
     <message>
-        <source>Insert Catalog...</source>
-        <translation>Katalog einfügen...</translation>
+        <source>Insert Catalog …</source>
+        <translation>Katalog einfügen …</translation>
     </message>
     <message>
-        <source>Rename node...</source>
-        <translation>Knoten umbenennen...</translation>
+        <source>Rename node …</source>
+        <translation>Knoten umbenennen …</translation>
     </message>
     <message>
         <source>Delete node</source>
         <translation>Knoten löschen</translation>
     </message>
     <message>
-        <source>Seek in database...</source>
-        <translation>In Datenbank suchen...</translation>
+        <source>Seek in database …</source>
+        <translation>In Datenbank suchen …</translation>
     </message>
     <message>
         <source>Node size</source>
         <translation>Knotengrösse</translation>
     </message>
     <message>
-        <source>Configuration...</source>
-        <translation>Konfiguration...</translation>
+        <source>Configuration …</source>
+        <translation>Konfiguration …</translation>
     </message>
     <message>
         <source>Edit</source>
@@ -197,24 +197,24 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
         <translation>Medium nach Name sortieren</translation>
     </message>
     <message>
-        <source>Recent files...</source>
-        <translation>Zuletzt benutze Dateien...</translation>
+        <source>Recent files …</source>
+        <translation>Zuletzt benutze Dateien …</translation>
     </message>
     <message>
         <source>Import/Export</source>
         <translation>Import/Export</translation>
     </message>
     <message>
-        <source>Re-Number media node...</source>
-        <translation>Medienknoten umnummerieren...</translation>
+        <source>Re-Number media node …</source>
+        <translation>Medienknoten umnummerieren …</translation>
     </message>
     <message>
-        <source>Borrowing info...</source>
-        <translation>Ausleihinformation...</translation>
+        <source>Borrowing info …</source>
+        <translation>Ausleihinformation …</translation>
     </message>
     <message>
-        <source>Set Colors...</source>
-        <translation>Farben setzen...</translation>
+        <source>Set Colors …</source>
+        <translation>Farben setzen …</translation>
     </message>
     <message>
         <source>Seek in the panel</source>
@@ -225,8 +225,8 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
         <translation>Über Qt</translation>
     </message>
     <message>
-        <source>Add a link to a CdCat Catalog...</source>
-        <translation>Verweis auf CdCat-Datenbank hinzufügen...</translation>
+        <source>Add a link to a CdCat Catalog …</source>
+        <translation>Verweis auf CdCat-Datenbank hinzufügen …</translation>
     </message>
     <message>
         <source>Scanning:</source>
@@ -245,16 +245,16 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
         <translation>Suchen</translation>
     </message>
     <message>
-        <source>&amp;New...</source>
-        <translation>&amp;Neu...</translation>
+        <source>&amp;New …</source>
+        <translation>&amp;Neu …</translation>
     </message>
     <message>
         <source>Create a new catalog</source>
         <translation>Neuen Katalog erstellen</translation>
     </message>
     <message>
-        <source>&amp;Open...</source>
-        <translation>&amp;Öffnen...</translation>
+        <source>&amp;Open …</source>
+        <translation>&amp;Öffnen …</translation>
     </message>
     <message>
         <source>Open a existing catalog</source>
@@ -269,8 +269,8 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
         <translation>Katalog speichern</translation>
     </message>
     <message>
-        <source>&amp;Save as...</source>
-        <translation>&amp;Speichern als...</translation>
+        <source>&amp;Save as …</source>
+        <translation>&amp;Speichern als …</translation>
     </message>
     <message>
         <source>save catalog with new name</source>
@@ -441,24 +441,24 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
         <translation>Medium nach Typ sortieren (absteigend)</translation>
     </message>
     <message>
-        <source>Insert Cdcat XML export...</source>
-        <translation>Cdcat-XML-Export einfügen...</translation>
+        <source>Insert Cdcat XML export …</source>
+        <translation>Cdcat-XML-Export einfügen …</translation>
     </message>
     <message>
         <source>Insert Cdcat XML export</source>
         <translation>Cdcat-XML-Export einfügen</translation>
     </message>
     <message>
-        <source>Insert Cdcat export XML...</source>
-        <translation>Cdcat-XML-Export einfügen...</translation>
+        <source>Insert Cdcat export XML …</source>
+        <translation>Cdcat-XML-Export einfügen …</translation>
     </message>
     <message>
         <source>Insert Cdcat exported XML into database</source>
         <translation>Cdcat-XML-Export in Datenbank einfügen</translation>
     </message>
     <message>
-        <source>Change password...</source>
-        <translation>Passwort ändern...</translation>
+        <source>Change password …</source>
+        <translation>Passwort ändern …</translation>
     </message>
     <message>
         <source>Changes password for catalog encryption</source>
@@ -729,8 +729,8 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
 <context>
     <name>ConfigDialog</name>
     <message>
-        <source>Configure  CdCat...</source>
-        <translation>CdCat konfigurieren...</translation>
+        <source>Configure  CdCat …</source>
+        <translation>CdCat konfigurieren …</translation>
     </message>
     <message>
         <source>Autoload DataBase on startup</source>
@@ -892,16 +892,16 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
         <translation>Nicht genug Hauptspeicher um Datei %1 zu öffnen</translation>
     </message>
     <message>
-        <source>Reading file, please wait...</source>
-        <translation>Datei wird gelesen, bitte warten...</translation>
+        <source>Reading file, please wait …</source>
+        <translation>Datei wird gelesen, bitte warten …</translation>
     </message>
     <message>
-        <source>Parsing file, please wait...</source>
-        <translation>Datei wird analysiert, bitte warten...</translation>
+        <source>Parsing file, please wait …</source>
+        <translation>Datei wird analysiert, bitte warten …</translation>
     </message>
     <message>
-        <source>Converting to unicode, please wait...</source>
-        <translation>Umwandlung zu Unicode, bitte warten...</translation>
+        <source>Converting to unicode, please wait …</source>
+        <translation>Umwandlung zu Unicode, bitte warten …</translation>
     </message>
     <message>
         <source>You have cancelled catalog reading.</source>
@@ -952,7 +952,7 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
         <translation>unbekannt</translation>
     </message>
     <message>
-        <source>decrypting file, please wait...</source>
+        <source>decrypting file, please wait …</source>
         <translation>Datei wird verschlüsselt, bitte warten …</translation>
     </message>
 </context>
@@ -1022,16 +1022,16 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
         <translation>CdCat-Datenbanken (*.hcf)</translation>
     </message>
     <message>
-        <source>Error while opening...</source>
-        <translation>Fehler beim Öffnen...</translation>
+        <source>Error while opening …</source>
+        <translation>Fehler beim Öffnen …</translation>
     </message>
     <message>
-        <source>Error while saving...</source>
-        <translation>Fehler beim Speichern...</translation>
+        <source>Error while saving …</source>
+        <translation>Fehler beim Speichern …</translation>
     </message>
     <message>
-        <source>Closing previous database...</source>
-        <translation>Vorherige Datenbank wird geschlossen...</translation>
+        <source>Closing previous database …</source>
+        <translation>Vorherige Datenbank wird geschlossen …</translation>
     </message>
     <message>
         <source>Do you want to save the changes?</source>
@@ -1046,8 +1046,8 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
         <translation>Bestätigung</translation>
     </message>
     <message>
-        <source>Warning...</source>
-        <translation>Warnung...</translation>
+        <source>Warning …</source>
+        <translation>Warnung …</translation>
     </message>
     <message>
         <source>You can refresh ONLY a MEDIA node!</source>
@@ -1062,16 +1062,16 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
         <translation>Nein</translation>
     </message>
     <message>
-        <source>Open a file...</source>
-        <translation>Datei öffnen...</translation>
+        <source>Open a file …</source>
+        <translation>Datei öffnen …</translation>
     </message>
     <message>
-        <source>Save to file...</source>
-        <translation>In Datei speichern...</translation>
+        <source>Save to file …</source>
+        <translation>In Datei speichern …</translation>
     </message>
     <message>
-        <source>Insert a database file...</source>
-        <translation>Datenbankdatei einfügen...</translation>
+        <source>Insert a database file …</source>
+        <translation>Datenbankdatei einfügen …</translation>
     </message>
     <message>
         <source>The size of &quot;%1&quot; :
@@ -1106,32 +1106,32 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
         <translation>Programm \&quot;eject\&quot; kann nicht gefunden werden</translation>
     </message>
     <message>
-        <source>Rename node...</source>
-        <translation>Knoten umbenennen...</translation>
+        <source>Rename node …</source>
+        <translation>Knoten umbenennen …</translation>
     </message>
     <message>
         <source>Delete node</source>
         <translation>Knoten löschen</translation>
     </message>
     <message>
-        <source>Add media...</source>
-        <translation>Medium hinzufügen...</translation>
+        <source>Add media …</source>
+        <translation>Medium hinzufügen …</translation>
     </message>
     <message>
-        <source>Rescan media...</source>
-        <translation>Medium aktualisieren...</translation>
+        <source>Rescan media …</source>
+        <translation>Medium aktualisieren …</translation>
     </message>
     <message>
-        <source>Insert Catalog...</source>
-        <translation>Katalog einfügen...</translation>
+        <source>Insert Catalog …</source>
+        <translation>Katalog einfügen …</translation>
     </message>
     <message>
         <source>Rescan %1</source>
         <translation>Aktualisieren %1</translation>
     </message>
     <message>
-        <source>Re-Number media...</source>
-        <translation>Medium umnummerieren...</translation>
+        <source>Re-Number media …</source>
+        <translation>Medium umnummerieren …</translation>
     </message>
     <message>
         <source>It is NOT a media node!</source>
@@ -1142,8 +1142,8 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
         <translation>Knotengrösse</translation>
     </message>
     <message>
-        <source>View/Edit Comment...</source>
-        <translation>Kommentar anzeigen/bearbeiten...</translation>
+        <source>View/Edit Comment …</source>
+        <translation>Kommentar anzeigen/bearbeiten …</translation>
     </message>
     <message>
         <source>Close all branch</source>
@@ -1170,8 +1170,8 @@ Datenbank kann unvollständig sein</translation>
 %1</translation>
     </message>
     <message>
-        <source>Borrow this media to...</source>
-        <translation>Medium ausleihen an...</translation>
+        <source>Borrow this media to …</source>
+        <translation>Medium ausleihen an …</translation>
     </message>
     <message>
         <source>Do you want to clear the borrowing mark from media &quot;%1&quot;?
@@ -1232,20 +1232,20 @@ Homepage: %3</translation>
         <translation>Das Ergebnis:</translation>
     </message>
     <message>
-        <source>Scanning directory tree, please wait...</source>
-        <translation>Verzeichnisbaum wird durchsucht, bitte warten...</translation>
+        <source>Scanning directory tree, please wait …</source>
+        <translation>Verzeichnisbaum wird durchsucht, bitte warten …</translation>
     </message>
     <message>
-        <source>View/Edit Category...</source>
-        <translation>Kategorie anzeigen/bearbeiten...</translation>
+        <source>View/Edit Category …</source>
+        <translation>Kategorie anzeigen/bearbeiten …</translation>
     </message>
     <message>
-        <source>Change media type...</source>
-        <translation>Medientyp ändern...</translation>
+        <source>Change media type …</source>
+        <translation>Medientyp ändern …</translation>
     </message>
     <message>
-        <source>Enter media name...</source>
-        <translation>Medienname eingeben...</translation>
+        <source>Enter media name …</source>
+        <translation>Medienname eingeben …</translation>
     </message>
     <message>
         <source>Media name:</source>
@@ -1256,24 +1256,24 @@ Homepage: %3</translation>
         <translation>Medium</translation>
     </message>
     <message>
-        <source>search for duplicates...</source>
-        <translation>nach Duplikaten suchen...</translation>
+        <source>search for duplicates …</source>
+        <translation>nach Duplikaten suchen …</translation>
     </message>
     <message>
-        <source>Show content...</source>
-        <translation>Inhalt anzeigen...</translation>
+        <source>Show content …</source>
+        <translation>Inhalt anzeigen …</translation>
     </message>
     <message>
-        <source>Show/Remove content...</source>
-        <translation>Inhalt anzeigen/löschen...</translation>
+        <source>Show/Remove content …</source>
+        <translation>Inhalt anzeigen/löschen …</translation>
     </message>
     <message>
-        <source>Add a link to a CdCat Catalog...</source>
-        <translation>Verweis auf CdCat-Datenbank hinzufügen...</translation>
+        <source>Add a link to a CdCat Catalog …</source>
+        <translation>Verweis auf CdCat-Datenbank hinzufügen …</translation>
     </message>
     <message>
-        <source>Add a link to a Cdcat catalog...</source>
-        <translation>Verweis auf CdCat-Datenbank hinzufügen...</translation>
+        <source>Add a link to a Cdcat catalog …</source>
+        <translation>Verweis auf CdCat-Datenbank hinzufügen …</translation>
     </message>
     <message>
         <source>You have cancelled catalog scanning,
@@ -1398,20 +1398,20 @@ die Datenbank wird unvollständig sein</translation>
         <translation>Wenn Sie Ihr Medium durchsucht haben, können Sie dies im Durchsuchen-Fenster durchsuchen (wie im mc) oder in ihm suchen. Sie können den Katalog mit dem %1-Kommando aus dem Dateimenü speichern.</translation>
     </message>
     <message>
-        <source>Saving catalog, please wait...</source>
-        <translation>Katalog wird gespeichert, bitte warten...</translation>
+        <source>Saving catalog, please wait …</source>
+        <translation>Katalog wird gespeichert, bitte warten …</translation>
     </message>
     <message>
-        <source>Insert a cdcat exported xml file...</source>
-        <translation>Von Cdcat exportierte XML-Datei einfügen...</translation>
+        <source>Insert a cdcat exported xml file …</source>
+        <translation>Von Cdcat exportierte XML-Datei einfügen …</translation>
     </message>
     <message>
         <source>CdCat xml export (*.xml )</source>
         <translation>Cdcat-XML-Export (*.xml)</translation>
     </message>
     <message>
-        <source>Change password...</source>
-        <translation>Passwort ändern...</translation>
+        <source>Change password …</source>
+        <translation>Passwort ändern …</translation>
     </message>
     <message>
         <source>Password has been successfully changed</source>
@@ -1915,8 +1915,8 @@ wird zu
 <context>
     <name>PWw</name>
     <message>
-        <source>Please Wait...</source>
-        <translation>Bitte warten...</translation>
+        <source>Please Wait …</source>
+        <translation>Bitte warten …</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
@@ -2073,8 +2073,8 @@ wird zu
         <translation>Mehr Daten:</translation>
     </message>
     <message>
-        <source>Enter password...</source>
-        <translation>Passwort eingeben...</translation>
+        <source>Enter password …</source>
+        <translation>Passwort eingeben …</translation>
     </message>
     <message>
         <source>Enter password for catalog:</source>
@@ -2196,8 +2196,8 @@ wird zu
         <translation>Version</translation>
     </message>
     <message>
-        <source>Read mp3 technical info as comment (bitrate,freq,length...)</source>
-        <translation>Technische MP3-Informationen als Kommentar lesen (Bitrate, Frequenz, Länge...)</translation>
+        <source>Read mp3 technical info as comment (bitrate,freq,length …)</source>
+        <translation>Technische MP3-Informationen als Kommentar lesen (Bitrate, Frequenz, Länge …)</translation>
     </message>
     <message>
         <source>Read avi technical info as comment (codecs,length,...)</source>
@@ -2252,8 +2252,8 @@ wird zu
         <translation>...</translation>
     </message>
     <message>
-        <source>Select external viewer...</source>
-        <translation>Externen Anzeiger auswählen...</translation>
+        <source>Select external viewer …</source>
+        <translation>Externen Anzeiger auswählen …</translation>
     </message>
     <message>
         <source>KiB</source>
@@ -2348,7 +2348,7 @@ wird zu
         <translation>AVI-Info&apos;s als Kommentar lesen</translation>
     </message>
     <message>
-        <source>Add exclude rule...</source>
+        <source>Add exclude rule …</source>
         <translation>Aussschlußregel hinzufügen …</translation>
     </message>
     <message>
@@ -2356,20 +2356,20 @@ wird zu
         <translation>Regulären Ausdruck zum Ausschließen eingeben:</translation>
     </message>
     <message>
-        <source>edit rule...</source>
-        <translation>Regel bearbeiten...</translation>
+        <source>edit rule …</source>
+        <translation>Regel bearbeiten …</translation>
     </message>
     <message>
-        <source>delete rule...</source>
-        <translation>Regel löschen...</translation>
+        <source>delete rule …</source>
+        <translation>Regel löschen …</translation>
     </message>
     <message>
         <source>exclude files/directories</source>
         <translation>Dateien/Verzeichnisse ausschließen</translation>
     </message>
     <message>
-        <source>add exclude rule...</source>
-        <translation>Ausschlußregel hinzufügen...</translation>
+        <source>add exclude rule …</source>
+        <translation>Ausschlußregel hinzufügen …</translation>
     </message>
     <message>
         <source>list of patterns (regular expression) for files/directories to skip on reading from filesystem</source>
@@ -2408,8 +2408,8 @@ wird zu
         <translation>Informationen über reguläre Ausdrücke</translation>
     </message>
     <message>
-        <source>About regular expressions....</source>
-        <translation>Über reguläre Ausdrücke...</translation>
+        <source>About regular expressions ….</source>
+        <translation>Über reguläre Ausdrücke …</translation>
     </message>
     <message>
         <source>Show introduction into regular expressions</source>
@@ -2567,8 +2567,8 @@ wird zu
         <translation>Datei kann nicht überschrieben werden: %1</translation>
     </message>
     <message>
-        <source>Error while saving...</source>
-        <translation>Fehler beim Speichern...</translation>
+        <source>Error while saving …</source>
+        <translation>Fehler beim Speichern …</translation>
     </message>
     <message>
         <source>Sure to delete this file&apos;s content from the database?</source>
@@ -2702,8 +2702,8 @@ wird zu
         <translation>CDROM/DVD-Med&amp;ienname nach dem Einbinden erkennen</translation>
     </message>
     <message>
-        <source>Enter media name...</source>
-        <translation>Medienname eingeben...</translation>
+        <source>Enter media name …</source>
+        <translation>Medienname eingeben …</translation>
     </message>
     <message>
         <source>The Media Name must be unique! Enter new media name:</source>
@@ -2737,8 +2737,8 @@ wird zu
         <translation>Medium &quot;&quot; ausgeliehen an:</translation>
     </message>
     <message>
-        <source>Borrowing...</source>
-        <translation>Ausleihen...</translation>
+        <source>Borrowing …</source>
+        <translation>Ausleihen …</translation>
     </message>
 </context>
 <context>
@@ -2804,8 +2804,8 @@ wird zu
         <translation>&lt;&lt; </translation>
     </message>
     <message>
-        <source>Borrowing info...</source>
-        <translation>Aufnahme der Information...</translation>
+        <source>Borrowing info …</source>
+        <translation>Aufnahme der Information …</translation>
     </message>
     <message>
         <source>Show only borrowed items</source>
@@ -2941,8 +2941,8 @@ wird zu
         <translation>Datei kann nicht erstellt oder überschrieben werden</translation>
     </message>
     <message>
-        <source>Export database...</source>
-        <translation>Datenbank exportieren...</translation>
+        <source>Export database …</source>
+        <translation>Datenbank exportieren …</translation>
     </message>
     <message>
         <source>What to export</source>
@@ -3045,12 +3045,12 @@ wird zu
         <translation>Als XML exportieren</translation>
     </message>
     <message>
-        <source>Exporting, please wait...</source>
-        <translation>Es wird exportiert, bitte warten...</translation>
+        <source>Exporting, please wait …</source>
+        <translation>Es wird exportiert, bitte warten …</translation>
     </message>
     <message>
-        <source>Error during write export...</source>
-        <translation>Fehler beim exportieren...</translation>
+        <source>Error during write export …</source>
+        <translation>Fehler beim exportieren …</translation>
     </message>
     <message>
         <source>Category</source>
@@ -3088,7 +3088,7 @@ wird zu
         <translation>Änderung</translation>
     </message>
     <message>
-        <source>Search in the database...</source>
+        <source>Search in the database …</source>
         <translation>In Datenbank suchen …</translation>
     </message>
     <message>
@@ -3208,12 +3208,12 @@ wird zu
         <translation>Auch Dateien in Archiven finden</translation>
     </message>
     <message>
-        <source>Print result...</source>
-        <translation>Ergebnis drucken...</translation>
+        <source>Print result …</source>
+        <translation>Ergebnis drucken …</translation>
     </message>
     <message>
-        <source>Export result to HTML...</source>
-        <translation>Ergebnis nach HTML exportieren...</translation>
+        <source>Export result to HTML …</source>
+        <translation>Ergebnis nach HTML exportieren …</translation>
     </message>
     <message>
         <source>Print cdcat result</source>
@@ -3280,8 +3280,8 @@ wird zu
         <translation>Datei kann nicht geöffnet werden</translation>
     </message>
     <message>
-        <source>Search for duplicates in the database...</source>
-        <translation>Nach Duplikaten in der Datenbank suchen...</translation>
+        <source>Search for duplicates in the database …</source>
+        <translation>Nach Duplikaten in der Datenbank suchen …</translation>
     </message>
     <message>
         <source>Duplicates for:</source>
@@ -3410,8 +3410,8 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>importGtktalogCsv</name>
     <message>
-        <source>Importing CSV...</source>
-        <translation>CSV wird importiert...</translation>
+        <source>Importing CSV …</source>
+        <translation>CSV wird importiert …</translation>
     </message>
     <message>
         <source>Import was successful.</source>
@@ -3511,8 +3511,8 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>importGtktalogXml</name>
     <message>
-        <source>Importing XML...</source>
-        <translation>XML wird importiert...</translation>
+        <source>Importing XML …</source>
+        <translation>XML wird importiert …</translation>
     </message>
     <message>
         <source>XML import was successful.</source>
@@ -3572,8 +3572,8 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>importWhereIsItXml</name>
     <message>
-        <source>Importing XML...</source>
-        <translation>XML wird importiert...</translation>
+        <source>Importing XML …</source>
+        <translation>XML wird importiert …</translation>
     </message>
     <message>
         <source>Importing XML from WhereIsIt was successful.</source>
@@ -3704,8 +3704,8 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>renamedialog</name>
     <message>
-        <source>Rename node...</source>
-        <translation>Knoten umbenennen...</translation>
+        <source>Rename node …</source>
+        <translation>Knoten umbenennen …</translation>
     </message>
     <message>
         <source>Give the new name:</source>
@@ -3743,8 +3743,8 @@ p, li { white-space: pre-wrap; }
         <translation>Das Element ist kein Medium!</translation>
     </message>
     <message>
-        <source>Re-Number media...</source>
-        <translation>Medium umnummerieren...</translation>
+        <source>Re-Number media …</source>
+        <translation>Medium umnummerieren …</translation>
     </message>
     <message>
         <source>Give the new serial number:</source>
@@ -3794,8 +3794,8 @@ p, li { white-space: pre-wrap; }
         <translation>Medien</translation>
     </message>
     <message>
-        <source>Searching, please wait...</source>
-        <translation>Es wird gesucht, bitte warten...</translation>
+        <source>Searching, please wait …</source>
+        <translation>Es wird gesucht, bitte warten …</translation>
     </message>
     <message>
         <source>Search cancelled</source>

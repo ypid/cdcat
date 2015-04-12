@@ -59,7 +59,7 @@ exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget *parent, const ch
     }
     setSizeGripEnabled( true );
 
-    setWindowTitle( tr( "Export database..." ));
+    setWindowTitle( tr( "Export database …" ));
 
     exportCdcatDBLayout = new QGridLayout( this );
 
@@ -560,7 +560,7 @@ void exportCdcatDB::ok() {
         }
 
 
-        pww = new PWw( this, app, false, 0, tr( "Exporting, please wait..." ));
+        pww = new PWw( this, app, false, 0, tr( "Exporting, please wait …" ));
         progress( pww );
         if (!f.exists() || overwrite == QMessageBox::Yes) {
             if (!radioXml->isChecked()) {
@@ -584,7 +584,7 @@ void exportCdcatDB::ok() {
                     // QApplication::restoreOverrideCursor();
                 } else {
                     // QApplication::restoreOverrideCursor();
-                    QMessageBox::critical( 0, tr( "Error during write export..." ), tr( "I can't create or rewrite the file" ));
+                    QMessageBox::critical( 0, tr( "Error during write export …" ), tr( "I can't create or rewrite the file" ));
                 }
             } else {
                 // XML
@@ -607,7 +607,7 @@ void exportCdcatDB::ok() {
                     if (checkAllMedia->isChecked()) {
                         // qWarning() << "xml export: all media!" ;
                         if (mainw->db->saveAsDB( fnc ) != 0) {                                    // An error occurred
-                            QMessageBox::critical( 0, tr( "Error during write export..." ), tr( "I can't create or rewrite the file" ));
+                            QMessageBox::critical( 0, tr( "Error during write export …" ), tr( "I can't create or rewrite the file" ));
                             save_hcf_ok = false;
                         }
                     } else {

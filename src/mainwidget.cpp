@@ -129,13 +129,13 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
     helpMenu = new QMenu( this );
     helpMenu->setTitle( tr( "Help" ));
 
-    new_action = new QAction( QIcon( *get_t_new_icon()), tr( "&New..." ), this );
+    new_action = new QAction( QIcon( *get_t_new_icon()), tr( "&New …" ), this );
     new_action->setShortcuts( QKeySequence::New );
     new_action->setStatusTip( tr( "Create a new catalog" ));
     connect( new_action, SIGNAL( triggered()), guis, SLOT( newEvent()));
     fileMenu->addAction( new_action );
 
-    open_action = new QAction( QIcon( *get_t_open_icon()), tr( "&Open..." ), this );
+    open_action = new QAction( QIcon( *get_t_open_icon()), tr( "&Open …" ), this );
     open_action->setShortcuts( QKeySequence::Open );
     open_action->setStatusTip( tr( "Open a existing catalog" ));
     connect( open_action, SIGNAL( triggered()), guis, SLOT( openEvent()));
@@ -147,14 +147,14 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
     connect( save_action, SIGNAL( triggered()), guis, SLOT( saveEvent()));
     fileMenu->addAction( save_action );
 
-    saveas_action = new QAction( QIcon( *get_t_saveas_icon()), tr( "&Save as..." ), this );
+    saveas_action = new QAction( QIcon( *get_t_saveas_icon()), tr( "&Save as …" ), this );
     // saveas_action->setShortcuts( QKeySequence::Open );
     saveas_action->setStatusTip( tr( "save catalog with new name" ));
     connect( saveas_action, SIGNAL( triggered()), guis, SLOT( saveasEvent()));
     fileMenu->addAction( saveas_action );
 
 #ifdef CATALOG_ENCRYPTION
-    changepass_action = new QAction( QIcon( *get_t_change_encryption_password_icon()), tr( "Change password..." ), this );
+    changepass_action = new QAction( QIcon( *get_t_change_encryption_password_icon()), tr( "Change password …" ), this );
     // changepass_action->setShortcuts ( QKeySequence::Open );
     changepass_action->setStatusTip( tr( "Changes password for catalog encryption" ));
     connect( changepass_action, SIGNAL( triggered()), guis, SLOT( changePassEvent()));
@@ -179,12 +179,12 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
     fileMenu->insertSeparator( NULL );
     historyMenu = new QMenu( this );
 
-    // QAction *history_action = new QMenu (QIcon(*get_t_open_icon()), tr ( "Recent files..." ), this);
+    // QAction *history_action = new QMenu (QIcon(*get_t_open_icon()), tr ( "Recent files …" ), this);
     // history_action->setShortcuts(QKeySequence::Open);
     // history_action->setStatusTip(tr("save catalog with new name"));
 
     fileMenu->addMenu( historyMenu );
-    historyMenu->setTitle( tr( "Recent files..." ));
+    historyMenu->setTitle( tr( "Recent files …" ));
     historyMenu->setIcon( QIcon( *get_t_open_icon()));
 
     for (int i = cconfig->hlist.size() - 1; i > -1; i--) {
@@ -214,7 +214,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
     fileMenu->addAction( quit_action );
     Toolbar->addAction( quit_action );
 
-    add_action = new QAction( QIcon( *get_t_add_icon()), tr( "Add media..." ), this );
+    add_action = new QAction( QIcon( *get_t_add_icon()), tr( "Add media …" ), this );
     guis->KeyShortCutList.append( CdcatKeyBinding( guis->key_addEvent, QKeySequence( Qt::Key_A ), tr( "Add new media to catalog" )));
     add_action->setShortcut( guis->getKeyBinding( guis->key_addEvent ));
     add_action->setStatusTip( tr( "Add new media to catalog" ));
@@ -243,7 +243,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
     connect( addlink_action, SIGNAL( triggered()), guis, SLOT( addlnkEvent()));
     editMenu->addAction( addlink_action );
 
-    rescan_action = new QAction( QIcon( *get_t_rescan_icon()), tr( "Rescan media..." ), this );
+    rescan_action = new QAction( QIcon( *get_t_rescan_icon()), tr( "Rescan media …" ), this );
     guis->KeyShortCutList.append( CdcatKeyBinding( guis->key_rescanEvent, QKeySequence( Qt::ControlModifier + Qt::Key_R ), tr( "Rescan existing media" )));
     rescan_action->setShortcut( guis->getKeyBinding( guis->key_rescanEvent ));
     rescan_action->setStatusTip( tr( "Rescan existing media" ));
@@ -252,7 +252,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 
     editMenu->insertSeparator( NULL );
 
-    insert_action = new QAction( QIcon( *get_m_import_icon()), tr( "Insert Catalog..." ), this );
+    insert_action = new QAction( QIcon( *get_m_import_icon()), tr( "Insert Catalog …" ), this );
     guis->KeyShortCutList.append( CdcatKeyBinding( guis->key_insertcEvent, QKeySequence( Qt::Key_I ), tr( "Insert catalog into database" )));
     insert_action->setShortcut( guis->getKeyBinding( guis->key_insertcEvent ));
     insert_action->setStatusTip( tr( "Insert catalog into database" ));
@@ -281,21 +281,21 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
 
     editMenu->insertSeparator( NULL );
 
-    rename_action = new QAction( QIcon( *get_t_save_icon()), tr( "Rename node..." ), this );
+    rename_action = new QAction( QIcon( *get_t_save_icon()), tr( "Rename node …" ), this );
     guis->KeyShortCutList.append( CdcatKeyBinding( guis->key_insertCdcatXmlEvent, QKeySequence( Qt::ControlModifier + Qt::Key_E ), tr( "Rename node" )));
     rename_action->setShortcut( guis->getKeyBinding( guis->key_insertCdcatXmlEvent ));
     rename_action->setStatusTip( tr( "Rename node" ));
     connect( rename_action, SIGNAL( triggered()), guis, SLOT( renameEvent()));
     editMenu->addAction( rename_action );
 
-    renumber_action = new QAction( QIcon( *get_t_save_icon()), tr( "Re-Number media node..." ), this );
+    renumber_action = new QAction( QIcon( *get_t_save_icon()), tr( "Re-Number media node …" ), this );
     guis->KeyShortCutList.append( CdcatKeyBinding( guis->key_renumberEvent, QKeySequence( Qt::ControlModifier + Qt::AltModifier + Qt::Key_R ), tr( "Renumber node" )));
     renumber_action->setShortcut( guis->getKeyBinding( guis->key_renumberEvent ));
     renumber_action->setStatusTip( tr( "Renumber node" ));
     connect( renumber_action, SIGNAL( triggered()), guis, SLOT( renumberEvent()));
     editMenu->addAction( renumber_action );
 
-    // changemediatype_action = new QAction (QIcon(*get_t_save_icon()), tr ( "Change media type..." ), this);
+    // changemediatype_action = new QAction (QIcon(*get_t_save_icon()), tr ( "Change media type …" ), this);
     // guis->KeyShortCutList.append(CdcatKeyBinding(guis->key_typeChangeEvent, QKeySequence ( Qt::CTRL + Qt::Key_R ), tr("Change media type")));
     // changemediatype_action->setShortcut ( guis->getKeyBinding(guis->key_typeChangeEvent) );
     // changemediatype_action->setStatusTip(tr("Change media type"));
@@ -398,7 +398,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
     connect( view_tray_action, SIGNAL( triggered()), this, SLOT( dockToogled()));
     viewMenu->addAction( view_tray_action );
 
-    find_action = new QAction( QIcon( *get_t_find_icon()), tr( "Seek in database..." ), this );
+    find_action = new QAction( QIcon( *get_t_find_icon()), tr( "Seek in database …" ), this );
     guis->KeyShortCutList.append( CdcatKeyBinding( guis->key_findEvent, QKeySequence( Qt::ControlModifier + Qt::Key_F ), tr( "Seek in database for files and folders" )));
     find_action->setShortcut( guis->getKeyBinding( guis->key_findEvent ));
     find_action->setStatusTip( tr( "Seek in database for files and folders" ));
@@ -412,7 +412,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
     connect( findpanel_action, SIGNAL( triggered()), guis, SLOT( posEvent()));
     findMenu->addAction( findpanel_action );
 
-    borrow_action = new QAction( QIcon( *get_m_borrow_icon()), tr( "Borrowing info..." ), this );
+    borrow_action = new QAction( QIcon( *get_m_borrow_icon()), tr( "Borrowing info …" ), this );
     guis->KeyShortCutList.append( CdcatKeyBinding( guis->key_borrowingEvent, QKeySequence( Qt::ControlModifier + Qt::Key_B ), tr( "Borrowing info" )));
     borrow_action->setShortcut( guis->getKeyBinding( guis->key_borrowingEvent ));
     borrow_action->setStatusTip( tr( "Borrowing info" ));
@@ -426,14 +426,14 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
     connect( size_action, SIGNAL( triggered()), guis, SLOT( sizeEvent()));
     othersMenu->addAction( size_action );
 
-    config_action = new QAction( QIcon( *get_t_config_icon()), tr( "Configuration..." ), this );
+    config_action = new QAction( QIcon( *get_t_config_icon()), tr( "Configuration …" ), this );
     guis->KeyShortCutList.append( CdcatKeyBinding( guis->key_configEvent, QKeySequence( Qt::ControlModifier + Qt::Key_G ), tr( "Edit cdcat configuration" )));
     config_action->setShortcut( guis->getKeyBinding( guis->key_configEvent ));
     config_action->setStatusTip( tr( "Edit cdcat configuration" ));
     connect( config_action, SIGNAL( triggered()), guis, SLOT( configEvent()));
     othersMenu->addAction( config_action );
 
-    color_action = new QAction( QIcon( *get_t_colorconfig_icon()), tr( "Set Colors..." ), this );
+    color_action = new QAction( QIcon( *get_t_colorconfig_icon()), tr( "Set Colors …" ), this );
     guis->KeyShortCutList.append( CdcatKeyBinding( guis->key_colorEvent, QKeySequence( Qt::ControlModifier + Qt::AltModifier + Qt::Key_C ), tr( "Set the colors for display" )));
     color_action->setShortcut( guis->getKeyBinding( guis->key_colorEvent ));
     color_action->setStatusTip( tr( "Set the colors for display" ));
@@ -683,43 +683,43 @@ void CdCatMainWidget::languageChange() {
     listView->setHeaderLabels( labels2 );
     listView->sortByColumn( 0, Qt::AscendingOrder );
 
-    new_action->setText( tr( "&New..." ));
+    new_action->setText( tr( "&New …" ));
     new_action->setStatusTip( tr( "Create a new catalog" ));
-    open_action->setText( tr( "&Open..." ));
+    open_action->setText( tr( "&Open …" ));
     open_action->setStatusTip( tr( "Open a existing catalog" ));
     save_action->setText( tr( "&Save" ));
     save_action->setStatusTip( tr( "Save catalog" ));
-    saveas_action->setText( tr( "&Save as..." ));
+    saveas_action->setText( tr( "&Save as …" ));
     saveas_action->setStatusTip( tr( "save catalog with new name" ));
 #ifdef CATALOG_ENCRYPTION
-    changepass_action->setText( tr( "Change password..." ));
+    changepass_action->setText( tr( "Change password …" ));
     changepass_action->setStatusTip( tr( "Changes password for catalog encryption" ));
     disableencryption_action->setText( tr( "Disable encryption" ));
     disableencryption_action->setStatusTip( tr( "Disables catalog encryption" ));
     enableencryption_action->setText( tr( "Enable encryption" ));
     enableencryption_action->setStatusTip( tr( "Enables catalog encryption" ));
 #endif
-    // history_action->setText(tr ( "Recent files..." ), this));
-    historyMenu->setTitle( tr( "Recent files..." ));
+    // history_action->setText(tr ( "Recent files …" ), this));
+    historyMenu->setTitle( tr( "Recent files …" ));
     close_action->setText( tr( "Close catalog" ));
     close_action->setStatusTip( tr( "Close catalog" ));
     quit_action->setText( tr( "&Quit" ));
     quit_action->setStatusTip( tr( "Close program" ));
-    add_action->setText( tr( "Add media..." ));
+    add_action->setText( tr( "Add media …" ));
     add_action->setStatusTip( tr( "Add new media to catalog" ));
     addlink_action->setText( tr( "Add a link to a %1 catalog …" ).arg(PROGRAM_NAME) );
     addlink_action->setStatusTip( tr( "Add a link to a existing %1 catalog" ).arg(PROGRAM_NAME) );
-    rescan_action->setText( tr( "Rescan media..." ));
+    rescan_action->setText( tr( "Rescan media …" ));
     rescan_action->setStatusTip( tr( "Rescan existing media" ));
-    insert_action->setText( tr( "Insert Catalog..." ));
+    insert_action->setText( tr( "Insert Catalog …" ));
     insert_action->setStatusTip( tr( "Insert catalog into database" ));
     insert_cdcat_xml_action->setText( tr( "Insert %1 XML export …" ).arg(PROGRAM_NAME) );
     insert_cdcat_xml_action->setStatusTip( tr( "Insert %1 XML export" ).arg(PROGRAM_NAME));
-    rename_action->setText( tr( "Rename node..." ));
+    rename_action->setText( tr( "Rename node …" ));
     rename_action->setStatusTip( tr( "Rename node" ));
-    renumber_action->setText( tr( "Re-Number media node..." ));
+    renumber_action->setText( tr( "Re-Number media node …" ));
     renumber_action->setStatusTip( tr( "Renumber node" ));
-    // changemediatype_action->setText(tr ( "Change media type..." ), this));
+    // changemediatype_action->setText(tr ( "Change media type …" ), this));
     delete_action->setText( tr( "Delete node" ));
     delete_action->setStatusTip( tr( "Delete node" ));
     sortnu_ascending_action->setText( tr( "Sort media by number (ascending)" ));
@@ -746,17 +746,17 @@ void CdCatMainWidget::languageChange() {
     view_comment_widget_action->setStatusTip( tr( "show comment dock" ));
     view_tray_action->setText( tr( "show systray icon" ));
     view_tray_action->setStatusTip( tr( "show systray icon" ));
-    find_action->setText( tr( "Seek in database..." ));
+    find_action->setText( tr( "Seek in database …" ));
     find_action->setStatusTip( tr( "Seek in database for files and folders" ));
     findpanel_action->setText( tr( "Seek in the panel" ));
     findpanel_action->setStatusTip( tr( "Seek in the panel" ));
-    borrow_action->setText( tr( "Borrowing info..." ));
-    borrow_action->setStatusTip( tr( "Borrowing info..." ));
+    borrow_action->setText( tr( "Borrowing info …" ));
+    borrow_action->setStatusTip( tr( "Borrowing info …" ));
     size_action->setText( tr( "Node size" ));
     size_action->setStatusTip( tr( "Calculate node size" ));
-    config_action->setText( tr( "Configuration..." ));
+    config_action->setText( tr( "Configuration …" ));
     config_action->setStatusTip( tr( "Edit cdcat configuration" ));
-    color_action->setText( tr( "Set Colors..." ));
+    color_action->setText( tr( "Set Colors …" ));
     color_action->setStatusTip( tr( "Set the colors for display" ));
     import_action->setText( tr( "Import database (CSV/XML)" ));
     import_action->setStatusTip( tr( "Import database (CSV/XML) from various catalog programs" ));
@@ -791,7 +791,7 @@ void CdCatMainWidget::closeEvent( QCloseEvent *e ) {
     // else
     {
         // An error occurred during the REQUISTED saving of the database
-        // (eg: access denied for writing...)
+        // (eg: access denied for writing …)
         if (guis->closeEvent() != 0) {
             return;
         }

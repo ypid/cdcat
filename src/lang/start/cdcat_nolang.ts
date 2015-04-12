@@ -25,7 +25,7 @@
     </message>
     <message>
         <location filename="../../adddialog.cpp" line="797"/>
-        <source>Open a file...</source>
+        <source>Open a file …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -109,7 +109,7 @@
     <name>CdCatConfig</name>
     <message>
         <location filename="../../config.cpp" line="216"/>
-        <source>Error during autoload...</source>
+        <source>Error during autoload …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -140,7 +140,7 @@ Check the file!
         <location filename="../../config.cpp" line="1041"/>
         <location filename="../../config.cpp" line="1469"/>
         <location filename="../../config.cpp" line="1471"/>
-        <source>Error while saving config file...</source>
+        <source>Error while saving config file …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -173,25 +173,25 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location filename="../../mainwidget.cpp" line="218"/>
         <location filename="../../mainwidget.cpp" line="677"/>
-        <source>Add media...</source>
+        <source>Add media …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../mainwidget.cpp" line="233"/>
         <location filename="../../mainwidget.cpp" line="681"/>
-        <source>Rescan media...</source>
+        <source>Rescan media …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../mainwidget.cpp" line="242"/>
         <location filename="../../mainwidget.cpp" line="683"/>
-        <source>Insert Catalog...</source>
+        <source>Insert Catalog …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../mainwidget.cpp" line="259"/>
         <location filename="../../mainwidget.cpp" line="687"/>
-        <source>Rename node...</source>
+        <source>Rename node …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -211,7 +211,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location filename="../../mainwidget.cpp" line="376"/>
         <location filename="../../mainwidget.cpp" line="718"/>
-        <source>Seek in database...</source>
+        <source>Seek in database …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -223,7 +223,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location filename="../../mainwidget.cpp" line="404"/>
         <location filename="../../mainwidget.cpp" line="726"/>
-        <source>Configuration...</source>
+        <source>Configuration …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -252,7 +252,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location filename="../../mainwidget.cpp" line="188"/>
         <location filename="../../mainwidget.cpp" line="672"/>
-        <source>Recent files...</source>
+        <source>Recent files …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -264,20 +264,20 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location filename="../../mainwidget.cpp" line="266"/>
         <location filename="../../mainwidget.cpp" line="689"/>
-        <source>Re-Number media node...</source>
+        <source>Re-Number media node …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../mainwidget.cpp" line="390"/>
         <location filename="../../mainwidget.cpp" line="722"/>
         <location filename="../../mainwidget.cpp" line="723"/>
-        <source>Borrowing info...</source>
+        <source>Borrowing info …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../mainwidget.cpp" line="411"/>
         <location filename="../../mainwidget.cpp" line="728"/>
-        <source>Set Colors...</source>
+        <source>Set Colors …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -298,7 +298,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location filename="../../mainwidget.cpp" line="226"/>
         <location filename="../../mainwidget.cpp" line="679"/>
-        <source>Add a link to a CdCat Catalog...</source>
+        <source>Add a link to a CdCat Catalog …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -330,7 +330,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location filename="../../mainwidget.cpp" line="133"/>
         <location filename="../../mainwidget.cpp" line="655"/>
-        <source>&amp;New...</source>
+        <source>&amp;New …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -342,7 +342,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location filename="../../mainwidget.cpp" line="139"/>
         <location filename="../../mainwidget.cpp" line="657"/>
-        <source>&amp;Open...</source>
+        <source>&amp;Open …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -366,7 +366,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location filename="../../mainwidget.cpp" line="151"/>
         <location filename="../../mainwidget.cpp" line="661"/>
-        <source>&amp;Save as...</source>
+        <source>&amp;Save as …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -666,7 +666,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     </message>
     <message>
         <location filename="../../mainwidget.cpp" line="685"/>
-        <source>Insert Cdcat XML export...</source>
+        <source>Insert Cdcat XML export …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -676,7 +676,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     </message>
     <message>
         <location filename="../../mainwidget.cpp" line="249"/>
-        <source>Insert Cdcat export XML...</source>
+        <source>Insert Cdcat export XML …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -688,7 +688,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location filename="../../mainwidget.cpp" line="158"/>
         <location filename="../../mainwidget.cpp" line="664"/>
-        <source>Change password...</source>
+        <source>Change password …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1052,7 +1052,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <name>ConfigDialog</name>
     <message>
         <location filename="../../config.cpp" line="1731"/>
-        <source>Configure  CdCat...</source>
+        <source>Configure  CdCat …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1264,22 +1264,22 @@ It is necessary because I&apos;d like to save the config file into your home dir
     </message>
     <message>
         <location filename="../../wdbfile.cpp" line="1036"/>
-        <source>Reading file, please wait...</source>
+        <source>Reading file, please wait …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../wdbfile.cpp" line="1113"/>
-        <source>decrypting file, please wait...</source>
+        <source>decrypting file, please wait …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../wdbfile.cpp" line="1180"/>
-        <source>Parsing file, please wait...</source>
+        <source>Parsing file, please wait …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../wdbfile.cpp" line="1172"/>
-        <source>Converting to unicode, please wait...</source>
+        <source>Converting to unicode, please wait …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1438,7 +1438,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     </message>
     <message>
         <location filename="../../guibase.cpp" line="1229"/>
-        <source>Open a file...</source>
+        <source>Open a file …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1449,22 +1449,22 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <location filename="../../guibase.cpp" line="2782"/>
         <location filename="../../guibase.cpp" line="2956"/>
         <location filename="../../guibase.cpp" line="2998"/>
-        <source>Error while opening...</source>
+        <source>Error while opening …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../guibase.cpp" line="1414"/>
-        <source>Save to file...</source>
+        <source>Save to file …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../guibase.cpp" line="1442"/>
-        <source>Error while saving...</source>
+        <source>Error while saving …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../guibase.cpp" line="1495"/>
-        <source>Closing previous database...</source>
+        <source>Closing previous database …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1509,7 +1509,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
         <location filename="../../guibase.cpp" line="347"/>
         <location filename="../../guibase.cpp" line="1863"/>
         <location filename="../../guibase.cpp" line="1905"/>
-        <source>Warning...</source>
+        <source>Warning …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1520,7 +1520,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location filename="../../guibase.cpp" line="2241"/>
         <location filename="../../guibase.cpp" line="2315"/>
-        <source>Insert a database file...</source>
+        <source>Insert a database file …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1557,7 +1557,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location filename="../../guibase.cpp" line="1043"/>
         <location filename="../../guibase.cpp" line="1093"/>
-        <source>Rename node...</source>
+        <source>Rename node …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1569,20 +1569,20 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location filename="../../guibase.cpp" line="1055"/>
         <location filename="../../guibase.cpp" line="1103"/>
-        <source>Rescan media...</source>
+        <source>Rescan media …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../guibase.cpp" line="1064"/>
         <location filename="../../guibase.cpp" line="1125"/>
         <location filename="../../guibase.cpp" line="2677"/>
-        <source>Add media...</source>
+        <source>Add media …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../guibase.cpp" line="1066"/>
         <location filename="../../guibase.cpp" line="1127"/>
-        <source>Insert Catalog...</source>
+        <source>Insert Catalog …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1593,7 +1593,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location filename="../../guibase.cpp" line="1056"/>
         <location filename="../../guibase.cpp" line="1104"/>
-        <source>Re-Number media...</source>
+        <source>Re-Number media …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1610,7 +1610,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location filename="../../guibase.cpp" line="1025"/>
         <location filename="../../guibase.cpp" line="1086"/>
-        <source>View/Edit Comment...</source>
+        <source>View/Edit Comment …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1641,7 +1641,7 @@ the DataBase may be incomplete</source>
     <message>
         <location filename="../../guibase.cpp" line="1049"/>
         <location filename="../../guibase.cpp" line="1098"/>
-        <source>Borrow this media to...</source>
+        <source>Borrow this media to …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1716,23 +1716,23 @@ Homepage: %3</source>
         <location filename="../../guibase.cpp" line="2073"/>
         <location filename="../../guibase.cpp" line="2075"/>
         <location filename="../../guibase.cpp" line="2090"/>
-        <source>Scanning directory tree, please wait...</source>
+        <source>Scanning directory tree, please wait …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../guibase.cpp" line="1026"/>
         <location filename="../../guibase.cpp" line="1087"/>
-        <source>View/Edit Category...</source>
+        <source>View/Edit Category …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../guibase.cpp" line="1108"/>
-        <source>Change media type...</source>
+        <source>Change media type …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../guibase.cpp" line="1809"/>
-        <source>Enter media name...</source>
+        <source>Enter media name …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1747,27 +1747,27 @@ Homepage: %3</source>
     </message>
     <message>
         <location filename="../../guibase.cpp" line="1060"/>
-        <source>search for duplicates...</source>
+        <source>search for duplicates …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../guibase.cpp" line="1033"/>
-        <source>Show content...</source>
+        <source>Show content …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../guibase.cpp" line="1035"/>
-        <source>Show/Remove content...</source>
+        <source>Show/Remove content …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../guibase.cpp" line="1065"/>
-        <source>Add a link to a CdCat Catalog...</source>
+        <source>Add a link to a CdCat Catalog …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../guibase.cpp" line="1126"/>
-        <source>Add a link to a Cdcat catalog...</source>
+        <source>Add a link to a Cdcat catalog …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1946,12 +1946,12 @@ the DataBase may be incomplete</source>
     <message>
         <location filename="../../guibase.cpp" line="1375"/>
         <location filename="../../guibase.cpp" line="1422"/>
-        <source>Saving catalog, please wait...</source>
+        <source>Saving catalog, please wait …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../guibase.cpp" line="2278"/>
-        <source>Insert a cdcat exported xml file...</source>
+        <source>Insert a cdcat exported xml file …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1961,7 +1961,7 @@ the DataBase may be incomplete</source>
     </message>
     <message>
         <location filename="../../guibase.cpp" line="1116"/>
-        <source>Change password...</source>
+        <source>Change password …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2544,7 +2544,7 @@ the DataBase may be incomplete</source>
     <name>PWw</name>
     <message>
         <location filename="../../adddialog.cpp" line="492"/>
-        <source>Please Wait...</source>
+        <source>Please Wait …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2762,7 +2762,7 @@ the DataBase may be incomplete</source>
         <location filename="../../guibase.cpp" line="3135"/>
         <location filename="../../guibase.cpp" line="3136"/>
         <location filename="../../wdbfile.cpp" line="1085"/>
-        <source>Enter password...</source>
+        <source>Enter password …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2915,7 +2915,7 @@ the DataBase may be incomplete</source>
     </message>
     <message>
         <location filename="../../selreadable.cpp" line="863"/>
-        <source>Read mp3 technical info as comment (bitrate,freq,length...)</source>
+        <source>Read mp3 technical info as comment (bitrate,freq,length …)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2989,7 +2989,7 @@ the DataBase may be incomplete</source>
     </message>
     <message>
         <location filename="../../selreadable.cpp" line="869"/>
-        <source>Select external viewer...</source>
+        <source>Select external viewer …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3111,7 +3111,7 @@ the DataBase may be incomplete</source>
     <message>
         <location filename="../../selreadable.cpp" line="634"/>
         <location filename="../../selreadable.cpp" line="668"/>
-        <source>Add exclude rule...</source>
+        <source>Add exclude rule …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3122,12 +3122,12 @@ the DataBase may be incomplete</source>
     </message>
     <message>
         <location filename="../../selreadable.cpp" line="652"/>
-        <source>edit rule...</source>
+        <source>edit rule …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../selreadable.cpp" line="656"/>
-        <source>delete rule...</source>
+        <source>delete rule …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3137,7 +3137,7 @@ the DataBase may be incomplete</source>
     </message>
     <message>
         <location filename="../../selreadable.cpp" line="885"/>
-        <source>add exclude rule...</source>
+        <source>add exclude rule …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3187,7 +3187,7 @@ the DataBase may be incomplete</source>
     </message>
     <message>
         <location filename="../../selreadable.cpp" line="883"/>
-        <source>About regular expressions....</source>
+        <source>About regular expressions ….</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3386,7 +3386,7 @@ the DataBase may be incomplete</source>
     </message>
     <message>
         <location filename="../../showcontent.cpp" line="238"/>
-        <source>Error while saving...</source>
+        <source>Error while saving …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3558,7 +3558,7 @@ the DataBase may be incomplete</source>
     <message>
         <location filename="../../adddialog.cpp" line="348"/>
         <location filename="../../adddialog.cpp" line="385"/>
-        <source>Enter media name...</source>
+        <source>Enter media name …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3603,7 +3603,7 @@ the DataBase may be incomplete</source>
     <message>
         <location filename="../../borrow.cpp" line="41"/>
         <location filename="../../borrow.cpp" line="109"/>
-        <source>Borrowing...</source>
+        <source>Borrowing …</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3706,7 +3706,7 @@ the DataBase may be incomplete</source>
     </message>
     <message>
         <location filename="../../borrow.cpp" line="204"/>
-        <source>Borrowing info...</source>
+        <source>Borrowing info …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3886,7 +3886,7 @@ the DataBase may be incomplete</source>
     </message>
     <message>
         <location filename="../../exportcdcatdb.cpp" line="61"/>
-        <source>Export database...</source>
+        <source>Export database …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4033,13 +4033,13 @@ the DataBase may be incomplete</source>
     </message>
     <message>
         <location filename="../../exportcdcatdb.cpp" line="562"/>
-        <source>Exporting, please wait...</source>
+        <source>Exporting, please wait …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../exportcdcatdb.cpp" line="586"/>
         <location filename="../../exportcdcatdb.cpp" line="611"/>
-        <source>Error during write export...</source>
+        <source>Error during write export …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4110,7 +4110,7 @@ the DataBase may be incomplete</source>
     </message>
     <message>
         <location filename="../../find.cpp" line="522"/>
-        <source>Search in the database...</source>
+        <source>Search in the database …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4290,12 +4290,12 @@ the DataBase may be incomplete</source>
     </message>
     <message>
         <location filename="../../find.cpp" line="565"/>
-        <source>Print result...</source>
+        <source>Print result …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../find.cpp" line="566"/>
-        <source>Export result to HTML...</source>
+        <source>Export result to HTML …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4385,7 +4385,7 @@ the DataBase may be incomplete</source>
     </message>
     <message>
         <location filename="../../find.cpp" line="495"/>
-        <source>Search for duplicates in the database...</source>
+        <source>Search for duplicates in the database …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4610,7 +4610,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../import.cpp" line="207"/>
-        <source>Importing CSV...</source>
+        <source>Importing CSV …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4628,7 +4628,7 @@ p, li { white-space: pre-wrap; }
     <name>importGtktalogXml</name>
     <message>
         <location filename="../../import.cpp" line="2092"/>
-        <source>Importing XML...</source>
+        <source>Importing XML …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4702,7 +4702,7 @@ p, li { white-space: pre-wrap; }
     <name>importWhereIsItXml</name>
     <message>
         <location filename="../../import.cpp" line="2890"/>
-        <source>Importing XML...</source>
+        <source>Importing XML …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4859,7 +4859,7 @@ p, li { white-space: pre-wrap; }
     <name>renamedialog</name>
     <message>
         <location filename="../../newdbdialog.cpp" line="224"/>
-        <source>Rename node...</source>
+        <source>Rename node …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4910,7 +4910,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../newdbdialog.cpp" line="336"/>
-        <source>Re-Number media...</source>
+        <source>Re-Number media …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4973,7 +4973,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../find.cpp" line="1052"/>
-        <source>Searching, please wait...</source>
+        <source>Searching, please wait …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
