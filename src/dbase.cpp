@@ -65,6 +65,7 @@
 #include <QFileInfo>
 #include <QFile>
 #include <QDir>
+#include <QDebug>
 #include <QApplication>
 #include <QImageReader>
 
@@ -485,7 +486,7 @@ DBContent::DBContent ( unsigned char *pbytes, unsigned long pstoredSize ) {
     storedSize = pstoredSize;
 }
 
-DBContent:: ~DBContent ( void ) {
+DBContent::~DBContent ( void ) {
     if (bytes != NULL) {
         delete [] bytes;
         bytes = NULL;
@@ -562,41 +563,35 @@ DataBase::DataBase ( void ) {
     WStringArray exts;
 
     if (!lib.Initialize()) {
-        fprintf( stderr, "lib7zip initialize failed, lib7zip scanning disabled\n" );
+        qWarning() << "lib7zip initialize failed, lib7zip scanning disabled";
         doScanArchiveLib7zip = false;
     } else {
-        if (*DEBUG_INFO_ENABLED) {
 #ifdef LIB_7ZIP_VERSION
-            QString Lib7ZipVersion = LIB_7ZIP_VERSION;
+        QString Lib7ZipVersion = LIB_7ZIP_VERSION;
 #else
-            QString Lib7ZipVersion = tr( "unknown" );
+        QString Lib7ZipVersion = tr( "unknown" );
 #endif
-            fprintf( stderr, "lib7zip (%s) initialize succeeded, lib7zip scanning enabled\n", Lib7ZipVersion.toLocal8Bit().constData());
-        }
+        qDebug("lib7zip (%s) initialize succeeded, lib7zip scanning enabled", Lib7ZipVersion.toLocal8Bit().constData());
     }
     if (!lib.GetSupportedExts( exts )) {
-        fprintf( stderr, "lib7zip get supported exts failed, lib7zip scanning disabled\n" );
+        qWarning() << "lib7zip get supported exts failed, lib7zip scanning disabled";
         doScanArchiveLib7zip = false;
     } else {
         for (WStringArray::const_iterator extIt = exts.begin(); extIt != exts.end(); extIt++)
             Lib7zipTypes.append( QString().fromWCharArray((*extIt).c_str()));
         if (*DEBUG_INFO_ENABLED) {
-            std::cerr << "lib7zip supported extensions: " << qPrintable( Lib7zipTypes.join( " " )) << std::endl;
+            qDebug() << "lib7zip supported extensions: " << qPrintable( Lib7zipTypes.join( " " ));
         }
     }
     lib.Deinitialize();
 #else
     if (*DEBUG_INFO_ENABLED) {
-        std::cerr << "lib7zip library not supported" << std::endl;
+        qDebug() << "lib7zip library not supported";
     }
 #endif
-    if (*DEBUG_INFO_ENABLED) {
-        if (storeThumb) {
-            std::cout << "supported thumnail image formats:";
-            QList<QByteArray> supportedFormats = QImageReader::supportedImageFormats();
-            for (int i = 0; i < supportedFormats.size(); ++i)
-                std::cout << " " << supportedFormats.at( i ).constData();
-            std::cout << std::endl;
+    if (storeThumb) {
+        if (*DEBUG_INFO_ENABLED) {
+            qDebug() << "Supported thumbnail image formats:" << " " << QImageReader::supportedImageFormats();
         }
     }
 }

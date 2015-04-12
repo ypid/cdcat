@@ -30,6 +30,7 @@
 #include <QStatusBar>
 #include <QHeaderView>
 #include <QKeySequence>
+#include <QDebug>
 
 #include <string.h>
 #ifndef _WIN32
@@ -99,8 +100,8 @@ HQListViewItem::HQListViewItem ( QTreeWidget *parent, QString label1, QString la
 
 bool HQListViewItem::operator <( const QTreeWidgetItem &other ) const {
     // int col = treeWidget()->sortColumn();
-    // std::cerr << "HQListViewItem::operator < col: " << col << ", text(0): " << qPrintable(text(0)) << ", other.text(0): " << qPrintable(other.text(0)) << std::endl;
-    // this is the item to compared
+    // qDebug() << "HQListViewItem::operator < col: " << col << ", text(0): " << qPrintable(text(0)) << ", other.text(0): " << qPrintable(other.text(0));
+    // this is the item to compare
     if (text( 0 ) == "..") {
         return false;
     } else {
@@ -355,7 +356,7 @@ Homepage: %3" ).arg( DVERS ).arg( fv ).arg( HOMEPAGE ));
 void GuiSlave::updateStatusl( Node *n ) {
     DEBUG_INFO_ENABLED = init_debug_info();
     if (*DEBUG_INFO_ENABLED) {
-        std::cerr << "F-updateStatusl" << endl;
+        qDebug();
     }
 
     if (n == NULL) {
@@ -367,7 +368,7 @@ void GuiSlave::updateStatusl( Node *n ) {
         return;
     }
     if (*DEBUG_INFO_ENABLED) {
-        cerr << "F-updateStatusl: " << qPrintable( n->getFullPath()) << endl;
+        qDebug() << n->getFullPath();
     }
     mainw->statusBar()->showMessage( n->getFullPath());
 }
@@ -375,8 +376,9 @@ void GuiSlave::updateStatusl( Node *n ) {
 bool GuiSlave::isIdentical( int i ) {
     DEBUG_INFO_ENABLED = init_debug_info();
     if (*DEBUG_INFO_ENABLED) {
-        std::cerr << "F-isIdentical" << endl;
+        qDebug();
     }
+
     Node *t;
 
     if (mainw->db == NULL) {
@@ -402,7 +404,7 @@ bool GuiSlave::isIdentical( int i ) {
 bool GuiSlave::haveContent( Node *node ) {
     DEBUG_INFO_ENABLED = init_debug_info();
     if (*DEBUG_INFO_ENABLED) {
-        cerr << "F-haveContent" << endl;
+        qDebug();
     }
     bool need_showc = false;
     Node *tmp = NULL;
@@ -426,7 +428,7 @@ bool GuiSlave::haveContent( Node *node ) {
 bool GuiSlave::isIdentical( QString q ) {
     DEBUG_INFO_ENABLED = init_debug_info();
     if (*DEBUG_INFO_ENABLED) {
-        cerr << "F-isIdentical" << endl;
+        qDebug();
     }
     Node *t;
 
@@ -462,15 +464,14 @@ Node *GuiSlave::getNodeFromFullName( Node *root, const QString& newloc ) {
     int index = 1;
 
     while (index != strl.size()) {
-//     cerr << "index: " << index << endl;
+//     qDebug() << "index: " << index;
         name = strl.at( index - 1 );
         if (*DEBUG_INFO_ENABLED) {
-            cerr << "new name: " << qPrintable( name ) << endl;
+            qDebug() << "New name: " << qPrintable( name );
         }
 
         if (down == 0) {
-            // if(*DEBUG_INFO_ENABLED)
-            //	cerr << "step->getNameOf(): " << qPrintable(step->getNameOf()) << endl;
+            // qDebug() << "step->getNameOf(): " << qPrintable(step->getNameOf());
             if (QString( name ) != step->getNameOf()) {
                 return NULL;                 /* error Not matching catalog name! */
             }
@@ -480,12 +481,10 @@ Node *GuiSlave::getNodeFromFullName( Node *root, const QString& newloc ) {
             if (tmp == NULL) {
                 return NULL;                  /* I couldn't find the requested element! */
             }
-            // if(*DEBUG_INFO_ENABLED)
-            //	cerr << "1 tmp->getNameOf(): " << qPrintable(tmp->getNameOf()) << endl;
+            // qDebug() << "1 tmp->getNameOf(): " << qPrintable(tmp->getNameOf());
             while (tmp->getNameOf() != QString( name )) {
                 tmp = tmp->next;
-                // if(*DEBUG_INFO_ENABLED)
-                //	cerr << "2 tmp->getNameOf(): " << qPrintable(tmp->getNameOf()) << endl;
+                //	qDebug() << "2 tmp->getNameOf(): " << qPrintable(tmp->getNameOf());
                 if (tmp == NULL) {
                     return NULL;                      /* I couldn't find the requested element! */
                 }
@@ -551,28 +550,28 @@ Node *GuiSlave::getNodeFromFullName( Node *root, const QString& newloc ) {
 int GuiSlave::listUpdate( const QString& newloc ) {
     DEBUG_INFO_ENABLED = init_debug_info();
     if (*DEBUG_INFO_ENABLED) {
-        cerr << "F-listUpdate 1 newloc: " << qPrintable( newloc ) << endl;
+        qDebug() << "F-listUpdate 1 newloc: " << qPrintable( newloc );
     }
     if (mainw->db == NULL) {
         return 0;
     }
     Node *pdir = getNodeFromFullName( mainw->db->getRootNode(), newloc );
     if (*DEBUG_INFO_ENABLED) {
-        cerr << "F-listUpdate: 2 newloc: " << qPrintable( newloc ) << endl;
+        qDebug() << "2 newloc: " << qPrintable( newloc );
     }
     if (pdir) {
         if (*DEBUG_INFO_ENABLED) {
-            cerr << "F-listUpdate: pdir: " << qPrintable( pdir->getNameOf()) << endl;
+            qDebug() << "pdir: " << qPrintable( pdir->getNameOf());
         }
 
         // standON = pdir;
 
         if (*DEBUG_INFO_ENABLED) {
-            cerr << "====> we are now on " << qPrintable( pdir->getNameOf()) << endl;
+            qDebug() << "====> we are now on " << qPrintable( pdir->getNameOf());
         }
     } else {
         if (*DEBUG_INFO_ENABLED) {
-            cerr << "F-listUpdate: pdir: null" << endl;
+            qDebug() << "pdir: null";
         }
     }
     updateStatusl( pdir );
@@ -585,7 +584,7 @@ int GuiSlave::listUpdate( const QString& newloc ) {
 int GuiSlave::updateListFromNode( Node *pdir ) {
     DEBUG_INFO_ENABLED = init_debug_info();
     if (*DEBUG_INFO_ENABLED) {
-        cerr << "F-updateListFromNode" << endl;
+        qDebug();
     }
     int fflag = 0;
     Node *tmp;
@@ -594,9 +593,10 @@ int GuiSlave::updateListFromNode( Node *pdir ) {
     QString qstr2;
 
     if (pdir == NULL) {
-        if (*DEBUG_INFO_ENABLED) {
-            cerr << "F-updateListFromNode: pdir is null" << endl;
-        }
+    DEBUG_INFO_ENABLED = init_debug_info();
+    if (*DEBUG_INFO_ENABLED) {
+        qDebug();
+    }
         pdir = NodePwd;
     }
 
@@ -651,15 +651,13 @@ int GuiSlave::updateListFromNode( Node *pdir ) {
             // 3. Column name:
             qstr2 = tr( "Directory" );
 
-            // if(*DEBUG_INFO_ENABLED)
-            //	cerr <<"GETNAMEOF-----------"<<qPrintable ( tmp->getNameOf() ) <<endl;
+            //	qDebug() <<"GETNAMEOF-----------"<<qPrintable ( tmp->getNameOf() ) <<endl;
             QString valami;
             valami = tmp->getNameOf();
 
             // !!!
             // valami.append("---1");
-            // if(*DEBUG_INFO_ENABLED)
-            //	cerr <<"GETNAMEOF-----------"<<qPrintable ( valami ) <<endl;
+            //	qDebug() <<"GETNAMEOF-----------"<<qPrintable ( valami ) <<endl;
 
             lvi = new HQListViewItem( mainw->listView, valami, qstr1, qstr2 );
             lvi->etype = HC_DIRECTORY;
@@ -692,7 +690,7 @@ int GuiSlave::updateListFromNode( Node *pdir ) {
 
             if (tmp->type == HC_FILE) {
                 QString filetype = QString( " " ) + tr( getSType(((DBFile *)(tmp->data))->sizeType, true ).toUtf8().constData());
-                // cerr << "file type " << qPrintable(filetype) << endl;
+                // qDebug() << "file type " << qPrintable(filetype);
                 if (filetype == " " || filetype.isEmpty()) {
                     filetype = " " + getSType(((DBFile *)(tmp->data))->sizeType, false );
                 }
@@ -746,15 +744,13 @@ int GuiSlave::updateListFromNode( Node *pdir ) {
                 break;
             }
 
-            // if(*DEBUG_INFO_ENABLED)
-            //	cerr <<"GETNAMEOF-----------"<<qPrintable ( tmp->getNameOf() ) <<endl;
+            //	qDebug() <<"GETNAMEOF-----------"<<qPrintable ( tmp->getNameOf() ) <<endl;
             QString valami;
             valami = tmp->getNameOf();
 
             // !!!
             // valami.append("---1");
-            // if(*DEBUG_INFO_ENABLED)
-            //	cerr <<"GETNAMEOF-----------"<<qPrintable ( valami ) <<endl;
+            //	qDebug() <<"GETNAMEOF-----------"<<qPrintable ( valami ) <<endl;
 
             lvi = new HQListViewItem( mainw->listView, valami, qstr1, qstr2 );
             switch (tmp->type) {
@@ -817,29 +813,23 @@ int GuiSlave::updateListFromNode( Node *pdir ) {
         mainw->listView->setCurrentItem( mainw->listView->topLevelItem( 0 ));
     }
 
-    // cerr << "current elem is \"..\", parent node path: " << qPrintable(pdir->getFullPath()) << endl;
+    // qDebug() << "current elem is \"..\", parent node path: " << qPrintable(pdir->getFullPath());
     standON = pdir;
 
     mainw->listView->resizeColumnToContents( 0 );
 
     if (*DEBUG_INFO_ENABLED) {
-        cerr << "BEACON-1" << endl;
+        qDebug() << "BEACON-1";
     }
     mainw->listView->changed();
-    if (*DEBUG_INFO_ENABLED) {
-        cerr << "BEACON-2" << endl;
-    }
     // mainw->DirView->setDir ( NodePwd );
-    if (*DEBUG_INFO_ENABLED) {
-        cerr << "BEACON-3" << endl;
-    }
     return 0;
 }
 
 int GuiSlave::standOn( QTreeWidgetItem *on, int ) {
     DEBUG_INFO_ENABLED = init_debug_info();
     if (*DEBUG_INFO_ENABLED) {
-        cerr << "F-standOn" << endl;
+        qDebug();
     }
     Node *tmp;
 
@@ -847,7 +837,7 @@ int GuiSlave::standOn( QTreeWidgetItem *on, int ) {
         return 0;
     }
     if (*DEBUG_INFO_ENABLED) {
-        cerr << "1" << endl;
+        qDebug() << "1";
     }
     mainw->listView->setItemSelected( on, true );
 
@@ -855,13 +845,13 @@ int GuiSlave::standOn( QTreeWidgetItem *on, int ) {
         mainw->commentWidget->showNode( NodePwd, 1 );
         mainw->commentWidget->updateContents();
         updateStatusl( NodePwd->parent );
-        // cerr << "current elem is \"..\", parent node path: " << qPrintable(NodePwd->getFullPath()) << endl;
+        // qDebug() << "current elem is \"..\", parent node path: " << qPrintable(NodePwd->getFullPath());
         standON = NodePwd;
         return 0;
     }
 
     if (*DEBUG_INFO_ENABLED) {
-        cerr << "2" << endl;
+        qDebug() << "2";
     }
 
     tmp = NodePwd->child;
@@ -872,22 +862,22 @@ int GuiSlave::standOn( QTreeWidgetItem *on, int ) {
         }
     }
     if (*DEBUG_INFO_ENABLED) {
-        cerr << "3" << endl;
+        qDebug() << "3";
     }
     standON = tmp;
     last_dirview_item = on;
 
     if (*DEBUG_INFO_ENABLED) {
-        cerr << "4" << endl;
+        qDebug() << "4";
     }
     mainw->commentWidget->showNode( tmp, 0 );
     mainw->commentWidget->updateContents();
     if (*DEBUG_INFO_ENABLED) {
-        cerr << "5" << endl;
+        qDebug() << "5";
     }
     updateStatusl( tmp );
     if (*DEBUG_INFO_ENABLED) {
-        cerr << "6" << endl;
+        qDebug() << "6";
     }
 
     return 0;
@@ -896,7 +886,7 @@ int GuiSlave::standOn( QTreeWidgetItem *on, int ) {
 int GuiSlave::doubleClickOn( QTreeWidgetItem *on, int ) {
     DEBUG_INFO_ENABLED = init_debug_info();
     if (*DEBUG_INFO_ENABLED) {
-        cerr << "F-doubleClickOn" << endl;
+        qDebug();
     }
     Node *tmp;
     if (on->text( 0 ) == "..") {
@@ -951,7 +941,7 @@ void GuiSlave::currentItemChanged( QTreeWidgetItem *current, QTreeWidgetItem *be
 void GuiSlave::panelsOFF( void ) {
     DEBUG_INFO_ENABLED = init_debug_info();
     if (*DEBUG_INFO_ENABLED) {
-        cerr << "F-panelsOFF" << endl;
+        qDebug();
     }
     mainw->DirView->clear();
     mainw->listView->clear();
@@ -966,23 +956,23 @@ void GuiSlave::panelsOFF( void ) {
 int GuiSlave::cHcaption( void ) {
     DEBUG_INFO_ENABLED = init_debug_info();
     if (*DEBUG_INFO_ENABLED) {
-        cerr << "F-cHcaption" << endl;
+        qDebug();
     }
     if ((mainw->db != NULL) && (((DBCatalog *)(mainw->db->getRootNode()->data))->writed == 0)) {
         if (*DEBUG_INFO_ENABLED) {
-            cerr << "case:1" << endl;
+            qDebug() << "case:1";
         }
         mainw->setWindowTitle( PROGRAM_NAME + tr( "modified" ));
     } else {
         if (*DEBUG_INFO_ENABLED) {
-            cerr << "case:2" << endl;
+            qDebug() << "case:2";
         }
 
         mainw->setWindowTitle( PROGRAM_NAME );
     }
 
     if (*DEBUG_INFO_ENABLED) {
-        cerr << "....F-done." << endl;
+        qDebug() << "F-done";
     }
     return 0;
 }
@@ -990,7 +980,7 @@ int GuiSlave::cHcaption( void ) {
 void GuiSlave::panelsON( void ) {
     DEBUG_INFO_ENABLED = init_debug_info();
     if (*DEBUG_INFO_ENABLED) {
-        cerr << "F-panelsON" << endl;
+        qDebug();
     }
     panelsOFF();     // That case you forget the OFF before...
 
@@ -1277,11 +1267,11 @@ int GuiSlave::openEvent( void ) {
 
     progress( pww );
     if (*DEBUG_INFO_ENABLED) {
-        cerr << "FLAG-1" << endl;
+        qDebug() << "FLAG-1";
     }
     panelsON();
     if (*DEBUG_INFO_ENABLED) {
-        cerr << "FLAG-2" << endl;
+        qDebug() << "FLAG-2";
     }
 
     progress( pww );
@@ -1289,44 +1279,43 @@ int GuiSlave::openEvent( void ) {
     // Save the opened file to the history
     // QMessageBox::information(0,"new history element",fn);
     if (ret_val == 0 && !fn.isEmpty()) {
-        if (*DEBUG_INFO_ENABLED) {
-            cerr << "LIST:" << qPrintable( mainw->cconfig->hlist.join( "|" )) << endl;
+        if (*DEBUG_INFO_ENABLED) { qDebug() << "LIST:" << qPrintable( mainw->cconfig->hlist.join( "|" ));
         }
 
         if (*DEBUG_INFO_ENABLED) {
-            cerr << "0-1" << endl;
+            qDebug() << "0-1";
         }
-//         if ( mainw->cconfig->hlist.isEmpty() ) cerr <<"emptlyysdsaf?ashfk"<<endl;
+//         if ( mainw->cconfig->hlist.isEmpty() ) qDebug() <<"emptlyysdsaf?ashfk"<<endl;
         if (*DEBUG_INFO_ENABLED) {
-            cerr << "0-2" << endl;
+            qDebug() << "0-2";
         }
         // mainw->cconfig->hlist.grep ( "AAAA" );
         if (*DEBUG_INFO_ENABLED) {
-            cerr << "0-3" << endl;
+            qDebug() << "0-3";
         }
 
 
         if (mainw->cconfig->hlist.isEmpty() ||
             mainw->cconfig->hlist.filter( QString( fn )).isEmpty()) {
             if (*DEBUG_INFO_ENABLED) {
-                cerr << "1" << endl;
+                qDebug() << "1";
             }
             mainw->cconfig->hlist.insert( 0, QString( fn ));
             if (*DEBUG_INFO_ENABLED) {
-                cerr << "2" << endl;
+                qDebug() << "2";
             }
             QAction *newaction = new QAction( *get_p_icon(), fn, 0 );
             mainw->historyMenu->addAction( newaction );
             if (*DEBUG_INFO_ENABLED) {
-                cerr << "3" << endl;
+                qDebug() << "3";
             }
             if ((int)mainw->cconfig->hlist.count() > (int)mainw->cconfig->historysize) {
                 if (*DEBUG_INFO_ENABLED) {
-                    cerr << "4" << endl;
+                    qDebug() << "4";
                 }
                 (mainw->cconfig->hlist).removeLast();
                 if (*DEBUG_INFO_ENABLED) {
-                    cerr << "5" << endl;
+                    qDebug() << "5";
                 }
                 QAction *last_action = mainw->historyMenu->actions().last();
                 mainw->historyMenu->removeAction( last_action );
@@ -1336,7 +1325,7 @@ int GuiSlave::openEvent( void ) {
     }
 
     if (*DEBUG_INFO_ENABLED) {
-        cerr << "FLAG-3" << endl;
+        qDebug() << "FLAG-3";
     }
 
     progress( pww );
@@ -1446,24 +1435,24 @@ int GuiSlave::saveasEvent( void ) {
         // add history item
         if (mainw->cconfig->hlist.isEmpty() || mainw->cconfig->hlist.filter( QString( fnc )).isEmpty()) {
             if (*DEBUG_INFO_ENABLED) {
-                cerr << "1" << endl;
+                qDebug() << "1";
             }
             mainw->cconfig->hlist.insert( 0, QString( fnc ));
             if (*DEBUG_INFO_ENABLED) {
-                cerr << "2" << endl;
+                qDebug() << "2";
             }
             QAction *newaction = new QAction( *get_p_icon(), fnc, 0 );
             mainw->historyMenu->addAction( newaction );
             if (*DEBUG_INFO_ENABLED) {
-                cerr << "3" << endl;
+                qDebug() << "3";
             }
             if ((int)mainw->cconfig->hlist.count() > (int)mainw->cconfig->historysize) {
                 if (*DEBUG_INFO_ENABLED) {
-                    cerr << "4" << endl;
+                    qDebug() << "4";
                 }
                 (mainw->cconfig->hlist).removeLast();
                 if (*DEBUG_INFO_ENABLED) {
-                    cerr << "5" << endl;
+                    qDebug() << "5";
                 }
                 QAction *last_action = mainw->historyMenu->actions().last();
                 mainw->historyMenu->removeAction( last_action );
@@ -1585,7 +1574,7 @@ int GuiSlave::addEvent( void ) {
     panelsOFF();
 
     if (*DEBUG_INFO_ENABLED) {
-        cerr << "ADDEVENT-1" << endl;
+        qDebug() << "ADDEVENT-1";
     }
     PWw *pww = mainw->pww;
     pww->showProgress = false;
@@ -1633,37 +1622,34 @@ int GuiSlave::addEvent( void ) {
                 }
             }
             if (*DEBUG_INFO_ENABLED) {
-                std::cout << "mount program found at: " << arg[0] << std::endl;
+                qDebug() << "mount program found at: " << arg[0];
             }
         }
         if (QFile( "/etc/mtab" ).exists()) {
             // check if already mounted
             QFile file( "/etc/mtab" );
             if (file.open( QIODevice::ReadOnly | QIODevice::Text )) {
-                // if ( *DEBUG_INFO_ENABLED )
-                //	std::cout << "/etc/mtab opened" << std::endl;
+                //	qDebug() << "/etc/mtab opened";
 
                 QString line = file.readLine();
                 while (line.length() > 0) {
                     line = file.readLine();
-                    // if ( *DEBUG_INFO_ENABLED )
-                    //	std::cout << "mtab line: " << qPrintable(line) << std::endl;
+                    //	qDebug() << "mtab line: " << qPrintable(line);
                     QStringList mtablist = line.split( ' ' );
                     if (mtablist.size() > 3) {
                         QString mtab_devicepath = mtablist.at( 0 );
                         QString mtab_mountpath = mtablist.at( 1 );
-                        // if ( *DEBUG_INFO_ENABLED )
-                        //	std::cout << "mtab device path: " << qPrintable(mtab_mountpath)<< " <=> " << qPrintable(mainw->cconfig->cdrompath) << std::endl;
+                        //	qDebug() << "mtab device path: " << qPrintable(mtab_mountpath)<< " <=> " << qPrintable(mainw->cconfig->cdrompath);
                         if (mtab_mountpath == mainw->cconfig->cdrompath) {
                             if (*DEBUG_INFO_ENABLED) {
-                                std::cout << "mount path " << qPrintable( mtab_mountpath ) << " (" << qPrintable( mtab_devicepath ) << ") is already mounted, skipping mount" << std::endl;
+                                qDebug() << "mount path " << qPrintable( mtab_mountpath ) << " (" << qPrintable( mtab_devicepath ) << ") is already mounted, skipping mount";
                             }
                             mount_successful = true;
                             break;
                         }
                         if (mtab_devicepath == mainw->cconfig->cdrompath) {
                             if (*DEBUG_INFO_ENABLED) {
-                                std::cout << "device path " << qPrintable( mtab_devicepath ) << " is already mounted (" << qPrintable( mtab_mountpath ) << "), skipping mount" << std::endl;
+                                qDebug() << "device path " << qPrintable( mtab_devicepath ) << " is already mounted (" << qPrintable( mtab_mountpath ) << "), skipping mount";
                             }
                             mount_successful = true;
                             cdrom_mountpath = mtab_mountpath;
@@ -1671,26 +1657,24 @@ int GuiSlave::addEvent( void ) {
                             break;
                         }
                     } else {
-                        // if ( *DEBUG_INFO_ENABLED )
-                        //	std::cout << "invalid mtab line: " << qPrintable(line) << ", skipping" << std::endl;
+                        //	qWarning() << "invalid mtab line: " << qPrintable(line) << ", skipping";
                     }
                 }
                 file.close();
-                // if ( *DEBUG_INFO_ENABLED )
-                //	std::cout << "/etc/mtab closed" << std::endl;
+                //	qDebug() << "/etc/mtab closed";
             } else {
                 if (*DEBUG_INFO_ENABLED) {
-                    std::cout << "mtab could not openend" << std::endl;
+                    qWarning() << "mtab could not openend";
                 }
             }
         } else {
             if (*DEBUG_INFO_ENABLED) {
-                std::cout << "mtab could not found" << std::endl;
+                qWarning() << "mtab could not found";
             }
         }
         if (mainw->cconfig->mounteject && !mount_successful) {
             if (*DEBUG_INFO_ENABLED) {
-                fprintf( stderr, "Call:%s %s...", arg[0], (const char *)cdrom_mountpath.toUtf8().constData());
+                qWarning("Call: %s %s...", arg[0], (const char *)cdrom_mountpath.toUtf8().constData());
             }
             arg[1] = mstr( cdrom_mountpath.toUtf8().constData());
             arg[2] = 0;
@@ -1712,7 +1696,7 @@ int GuiSlave::addEvent( void ) {
                     usleep( 500 );
                 }
                 pww->refreshTime = 100;
-                fprintf( stderr, "done.\n" );
+                qDebug() << "done";
                 if (WEXITSTATUS( v ) != 0) {
                     QMessageBox::warning( 0, tr( "Cannot mount CD!" ), tr( "Cannot mount CD!" ));
                 } else {
@@ -1722,7 +1706,7 @@ int GuiSlave::addEvent( void ) {
                         QString new_medianame = getCDName( cdrom_mountpath.toUtf8().constData());
                         if (!new_medianame.isEmpty()) {
                             if (*DEBUG_INFO_ENABLED) {
-                                cerr << "new_medianame after mount: " << qPrintable( new_medianame ) << endl;
+                                qDebug() << "new_medianame after mount: " << qPrintable( new_medianame );
                             }
                             d->dName = new_medianame;
                         }
@@ -1737,55 +1721,50 @@ int GuiSlave::addEvent( void ) {
             // check if already mounted
             QFile file( "/etc/mtab" );
             if (file.open( QIODevice::ReadOnly | QIODevice::Text )) {
-                // if ( *DEBUG_INFO_ENABLED )
-                //	std::cout << "/etc/mtab opened" << std::endl;
+                //	qDebug() << "/etc/mtab opened";
 
                 QString line = file.readLine();
                 while (line.length() > 0) {
                     line = file.readLine();
-                    // if ( *DEBUG_INFO_ENABLED )
-                    //	std::cout << "mtab line: " << qPrintable(line) << std::endl;
+                    //	qDebug() << "mtab line: " << qPrintable(line);
                     QStringList mtablist = line.split( ' ' );
                     if (mtablist.size() > 3) {
                         QString mtab_devicepath = mtablist.at( 0 );
                         QString mtab_mountpath = mtablist.at( 1 );
-                        // if ( *DEBUG_INFO_ENABLED )
-                        //	std::cout << "mtab device path: " << qPrintable(mtab_mountpath)<< " <=> " << qPrintable(mainw->cconfig->cdrompath) << std::endl;
+                        //	qDebug() << "mtab device path: " << qPrintable(mtab_mountpath)<< " <=> " << qPrintable(mainw->cconfig->cdrompath);
                         if (mtab_mountpath == mainw->cconfig->cdrompath) {
                             if (*DEBUG_INFO_ENABLED) {
-                                std::cout << "mount path " << qPrintable( mtab_mountpath ) << " (" << qPrintable( mtab_devicepath ) << ") is already mounted, skipping mount" << std::endl;
+                                qDebug() << "mount path " << qPrintable( mtab_mountpath ) << " (" << qPrintable( mtab_devicepath ) << ") is already mounted, skipping mount";
                             }
                             break;
                         }
                         if (mtab_devicepath == mainw->cconfig->cdrompath) {
                             if (*DEBUG_INFO_ENABLED) {
-                                std::cout << "device path " << qPrintable( mtab_devicepath ) << " is already mounted (" << qPrintable( mtab_mountpath ) << "), skipping mount" << std::endl;
+                                qDebug() << "device path " << qPrintable( mtab_devicepath ) << " is already mounted (" << qPrintable( mtab_mountpath ) << "), skipping mount";
                             }
                             cdrom_mountpath = mtab_mountpath;
                             d->dDir = mtab_mountpath;
                             break;
                         }
                     } else {
-                        // if ( *DEBUG_INFO_ENABLED )
-                        //	std::cout << "invalid mtab line: " << qPrintable(line) << ", skipping" << std::endl;
+                        //	qWarning() << "invalid mtab line: " << qPrintable(line) << ", skipping";
                     }
                 }
                 file.close();
-                // if ( *DEBUG_INFO_ENABLED )
-                //	std::cout << "/etc/mtab closed" << std::endl;
+                //	qDebug() << "/etc/mtab closed";
             } else {
                 if (*DEBUG_INFO_ENABLED) {
-                    std::cout << "mtab could not openend" << std::endl;
+                    qWarning() << "mtab could not openend";
                 }
             }
         } else {
             if (*DEBUG_INFO_ENABLED) {
-                std::cout << "mtab could not found" << std::endl;
+                qWarning() << "mtab could not found";
             }
         }
     } else {
         if (*DEBUG_INFO_ENABLED) {
-            cerr << "mount not needed" << endl;
+            qDebug() << "mount not needed";
         }
     }
 #endif
@@ -1793,8 +1772,7 @@ int GuiSlave::addEvent( void ) {
 #if !defined(_WIN32) && !defined(_OS2)
     if (((d->type == CD || d->type == DVD) && ((mainw->cconfig->mounteject && mount_successful) || (!mainw->cconfig->mounteject))) || (d->type != CD && d->type != DVD)) {
 #endif
-//      if(*DEBUG_INFO_ENABLED)
-//              cerr<< "media type: " << d->type <<endl;
+//              qDebug()<< "media type: " << d->type <<endl;
     if (d->type == CD || d->type == DVD) {
         if (mainw->cconfig->cdrompath != cdrom_mountpath) {
             d->setMediaName( mainw->cconfig->cdrompath );
@@ -1802,7 +1780,7 @@ int GuiSlave::addEvent( void ) {
             d->setMediaName( cdrom_mountpath );
         }
         if (*DEBUG_INFO_ENABLED) {
-            cerr << "media name for cd: " << qPrintable( d->leName->text()) << endl;
+            qDebug() << "media name for cd: " << qPrintable( d->leName->text());
         }
         if (d->leName->text().isEmpty()) {
             bool ok;
@@ -1815,7 +1793,8 @@ int GuiSlave::addEvent( void ) {
             } else {
                 d->OK = 0;
                 if (*DEBUG_INFO_ENABLED) {
-                    cerr << "media name for cd empty" << endl;
+                    qWarning() << "media name for cd empty";
+                }
                 }
             }
         }
@@ -1823,7 +1802,7 @@ int GuiSlave::addEvent( void ) {
     }
 
     if (*DEBUG_INFO_ENABLED) {
-        cerr << "ADDEVENT-2" << endl;
+        qDebug() << "ADDEVENT-2";
     }
     progress( pww );
 
@@ -1849,18 +1828,18 @@ int GuiSlave::addEvent( void ) {
         }
 
         if (*DEBUG_INFO_ENABLED) {
-            std::cerr << "Scanning " << qPrintable( d->dDir ) << " into " << qPrintable( d->dName ) << std::endl;
+            qDebug() << "Scanning " << qPrintable( d->dDir ) << " into " << qPrintable( d->dName );
         }
 
         i = mainw->db->addMedia( d->dDir, d->dName, d->serial, d->type,
                                  (d->dOwner.isEmpty() ? QString( "" ) : d->dOwner), (d->dCategory.isEmpty() ? QString( "" ) : d->dCategory));
 
         if (*DEBUG_INFO_ENABLED) {
-            std::cerr << "ret addMedia: " << i << std::endl;
+            qWarning() << "ret addMedia: " << i;
         }
         if (i == 2) {
             QMessageBox::warning( mainw,
-                                  tr( "Warning..." ), tr( "You have cancelled catalog scanning,\nthe DataBase may be incomplete" ));
+                tr( "Warning..." ), tr( "You have cancelled catalog scanning,\nthe DataBase may be incomplete" ));
         }
 
         if (mainw->cconfig->showTrayIcon) {
@@ -1897,7 +1876,7 @@ int GuiSlave::addEvent( void ) {
             }
         }
         if (*DEBUG_INFO_ENABLED) {
-            cerr << "ADDEVENT-3" << endl;
+            qDebug() << "ADDEVENT-3";
         }
         panelsON();
         if (i != 0 && !pww->doCancel) {
@@ -1914,8 +1893,9 @@ int GuiSlave::addEvent( void ) {
     }
     progress( pww );
     if (*DEBUG_INFO_ENABLED) {
-        cerr << "ADDEVENT-4" << endl;
+        qDebug() << "ADDEVENT-4";
     }
+
 #if !defined(_WIN32) && !defined(_OS2)
     if (mainw->cconfig->mounteject) {
         if ((d->type == CD || d->type == DVD)) {
@@ -1955,7 +1935,7 @@ int GuiSlave::addEvent( void ) {
             }
 
             if (*DEBUG_INFO_ENABLED) {
-                fprintf( stderr, "Call:%s %s...", arg[0], (const char *)mainw->cconfig->cdrompath.toUtf8().constData());
+                qDebug("Call: %s %s...", arg[0], (const char *)mainw->cconfig->cdrompath.toUtf8().constData());
             }
             arg[1] = mstr( cdrom_mountpath.toUtf8().constData());
             arg[2] = 0;
@@ -1978,7 +1958,7 @@ int GuiSlave::addEvent( void ) {
                 }
                 pww->refreshTime = 100;
                 if (*DEBUG_INFO_ENABLED) {
-                    fprintf( stderr, "done.\n" );
+                    qDebug() << "done";
                 }
                 if (WEXITSTATUS( v ) != 0) {
                     QMessageBox::warning( 0, tr( "Cannot eject CD!" ), tr( "Cannot eject CD!" ));
@@ -1989,37 +1969,31 @@ int GuiSlave::addEvent( void ) {
         }
     } else {
         if (*DEBUG_INFO_ENABLED) {
-            cerr << "umount not needed" << endl;
+            qDebug() << "umount not needed";
         }
     }
-#endif
-
-#if !defined(_WIN32) && !defined(_OS2)
     // mount_successful
-}
-if ((d->type == CD || d->type == DVD) && mainw->cconfig->mounteject && !mount_successful) {
-    if (*DEBUG_INFO_ENABLED) {
-        cerr << "mount failed" << endl;
+// }
+
+    if ((d->type == CD || d->type == DVD) && mainw->cconfig->mounteject && !mount_successful) {
+        if (*DEBUG_INFO_ENABLED) {
+            qWarning() << "mount failed";
+        }
+        QMessageBox::warning( 0, tr( "Cannot mount CD!" ), tr( "Cannot mount CD!" ));
     }
-    QMessageBox::warning( 0, tr( "Cannot mount CD!" ), tr( "Cannot mount CD!" ));
-}
 #endif
 
 
     if (*DEBUG_INFO_ENABLED) {
-        cerr << "ADDEVENT-5" << endl;
+        qDebug() << "ADDEVENT-5";
     }
     pww->end();
-    if (*DEBUG_INFO_ENABLED) {
-        cerr << "ADDEVENT-6" << endl;
-    }
+    // qDebug() << "ADDEVENT-6";
     mainw->db->pww = NULL;
-    if (*DEBUG_INFO_ENABLED) {
-        cerr << "ADDEVENT-7" << endl;
-    }
+    // qDebug() << "ADDEVENT-7";
     pww->hide();
     if (*DEBUG_INFO_ENABLED) {
-        cerr << "ADDEVENT-8" << endl;
+        qDebug() << "ADDEVENT-8";
     }
     panelsON();
     QApplication::restoreOverrideCursor();
@@ -2358,7 +2332,6 @@ int GuiSlave::renameEvent( void ) {
 }
 
 int GuiSlave::typeChangeEvent() {
-    DEBUG_INFO_ENABLED = init_debug_info();
     if (mainw->db == NULL) {
         return 0;
     }
@@ -2373,14 +2346,14 @@ int GuiSlave::typeChangeEvent() {
     }
 
     if (*DEBUG_INFO_ENABLED) {
-        std::cerr << "standON: " << qPrintable( standON->getFullPath()) << ", nodetype: " << standON->type << std::endl;
+        qDebug() << "standON: " << qPrintable( standON->getFullPath()) << ", nodetype: " << standON->type;
     }
     if (standON->type != HC_MEDIA) {
         return 0;
     }
 
     if (*DEBUG_INFO_ENABLED) {
-        std::cerr << "mediatype: " << ((DBMedia *)(standON->data))->type << std::endl;
+        qDebug() << "mediatype: " << ((DBMedia *)(standON->data))->type;
     }
     CatalogTypeEditDialog te( mainw, standON );
     te.exec();
@@ -2497,7 +2470,7 @@ int GuiSlave::sizeEvent( void ) {
         }
     }
     if (*DEBUG_INFO_ENABLED) {
-        std::cerr << "node " << qPrintable( standON->getFullPath()) << ", size raw: " << size << ", size: " << s << ", size type: " << st << std::endl;
+        qDebug() << "node " << qPrintable( standON->getFullPath()) << ", size raw: " << size << ", size: " << s << ", size type: " << st;
     }
 
     sprintf( text, "%.2f", s );
@@ -2865,18 +2838,17 @@ int GuiSlave::showContent( void ) {
     if (mainw->db == NULL) {
         return 0;
     }
-    DEBUG_INFO_ENABLED = init_debug_info();
     if (haveContent( standON )) {
         if (mainw->cconfig->useExternalContentViewer && QFileInfo( mainw->cconfig->ExternalContentViewerPath ).exists()) {
             QTemporaryFile tmpContentTempFile;
             tmpContentTempFile.setAutoRemove( false );
             if (!tmpContentTempFile.open()) {
-                std::cerr << "Cant write temp file: " << qPrintable( tmpContentTempFile.fileName()) << std::endl;
+                qWarning() << "Cant write temp file: " << qPrintable( tmpContentTempFile.fileName());
                 return 1;
             }
             QString tmpFileName = tmpContentTempFile.fileName();
             if (*DEBUG_INFO_ENABLED) {
-                std::cout << "GuiSlave::showContent tmpContentTempFile: " << qPrintable( tmpFileName ) << std::endl;
+                qDebug() << "GuiSlave::showContent tmpContentTempFile: " << qPrintable( tmpFileName );
             }
             Node *mynode = NULL;
             if (standON != NULL && standON->type == HC_FILE) {
@@ -2892,13 +2864,13 @@ int GuiSlave::showContent( void ) {
                 tmpContentTempFile.write( QByteArray((const char *)((DBContent *)(mynode->data))->bytes ));
                 tmpContentTempFile.close();
             } else {
-                std::cerr << "Cant find node content: " << qPrintable( standON->getFullPath()) << std::endl;
+                qWarning() << "Cant find node content: " << qPrintable( standON->getFullPath());
                 return 1;
             }
             QProcess FileContentProcess;
 
             if (*DEBUG_INFO_ENABLED) {
-                std::cout << "GuiSlave::showContent args: " << qPrintable( mainw->cconfig->ExternalContentViewerPath ) << " " << qPrintable( tmpFileName ) << std::endl;
+                qDebug() << "GuiSlave::showContent args: " << qPrintable( mainw->cconfig->ExternalContentViewerPath ) << " " << qPrintable( tmpFileName );
             }
             FileContentProcess.startDetached( mainw->cconfig->ExternalContentViewerPath + " " + tmpFileName );
             if (!FileContentProcess.waitForStarted()) {
@@ -3212,7 +3184,7 @@ QPosDialog::QPosDialog ( CdCatMainWidget *parent )
 int QPosDialog::pos( const QString & str ) {
     DEBUG_INFO_ENABLED = init_debug_info();
     if (*DEBUG_INFO_ENABLED) {
-        cerr << "QPosDialog::pos() str: " << qPrintable( str ) << endl;
+        qDebug();
     }
     QTreeWidgetItemIterator it( p->listView );
 
@@ -3318,15 +3290,10 @@ void CatalogTypeEditDialog::languageChange() {
 }
 
 void CatalogTypeEditDialog::okExit() {
-    DEBUG_INFO_ENABLED = init_debug_info();
     changeOk = true;
-    if (*DEBUG_INFO_ENABLED) {
-        std::cerr << "mediatype changed from " << ((DBMedia *)(n->data))->type << " to " << cbType->currentIndex() + 1 << std::endl;
-    }
+    qWarning() << "mediatype changed from " << ((DBMedia *)(n->data))->type << " to " << cbType->currentIndex() + 1;
     ((DBMedia *)(n->data))->type = cbType->currentIndex() + 1;
-    if (*DEBUG_INFO_ENABLED) {
-        std::cerr << "mediatype new: " << ((DBMedia *)(n->data))->type + 1 << std::endl;
-    }
+    qWarning() << "mediatype new: " << ((DBMedia *)(n->data))->type + 1;
     close();
 }
 
@@ -3335,10 +3302,7 @@ void CatalogTypeEditDialog::cancel() {
 }
 
 void CatalogTypeEditDialog::cbTypeToggeled( int ) {
-    DEBUG_INFO_ENABLED = init_debug_info();
-    if (*DEBUG_INFO_ENABLED) {
-        std::cerr << "mediatype changed to " << cbType->currentIndex() << std::endl;
-    }
+    qWarning() << "mediatype changed to " << cbType->currentIndex();
 }
 
 
