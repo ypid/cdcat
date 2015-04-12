@@ -345,12 +345,19 @@ void GuiSlave::checkversion( QWidget *p, DataBase *db ) {
         return;
     }
 
-    QMessageBox::warning( p, tr( "Warning..." ),
-                          tr(
-                              "The database file has newer version than this version of cdcat can work with:\n\
-I understand maximum %1 datafile version but readed %2\n\n\
-Strongly recommended to upgrade your cdcat!!!\n\
-Homepage: %3" ).arg( DVERS ).arg( fv ).arg( HOMEPAGE ));
+    QMessageBox::warning(
+        p,
+        tr( "Warning..." ),
+        tr(
+            "The database file has newer version than this version of %4 can work with:\n"
+            "I understand maximum %1 datafile version but readed %4\n\n"
+            "Strongly recommended to upgrade your %1!\n"
+            "Homepage: %3" )
+        .arg( DVERS )
+        .arg( fv )
+        .arg( HOMEPAGE )
+        .arg( PROGRAM_NAME )
+    );
 }
 
 void GuiSlave::updateStatusl( Node *n ) {
@@ -1052,7 +1059,13 @@ void GuiSlave::showListviewContextMenu( QPoint p ) {
     }
     mPopup->insertSeparator( NULL );
     mPopup->addAction( QIcon( *get_t_add_icon()), tr( "Add media..." ), this, SLOT( addEvent()));
-    mPopup->addAction( QIcon( *get_p_icon()), tr( "Add a link to a CdCat Catalog..." ), this, SLOT( addlnkEvent()));
+    mPopup->addAction(
+        QIcon( *get_p_icon() ),
+        tr( "Add a link to a %1 Catalog …" )
+            .arg(PROGRAM_NAME),
+        this,
+        SLOT( addlnkEvent())
+    );
     mPopup->addAction( tr( "Insert Catalog..." ), this, SLOT( insertcEvent()));
     mPopup->exec( mainw->listView->viewport()->mapToGlobal( p ));
     delete mPopup;
@@ -1113,7 +1126,13 @@ void GuiSlave::showTreeContextMenu( const QPoint p2 ) {
 #endif
 
     mPopup->addAction( QIcon( *get_t_add_icon()), tr( "Add media..." ), this, SLOT( addEvent()));
-    mPopup->addAction( QIcon( *get_p_icon()), tr( "Add a link to a Cdcat catalog..." ), this, SLOT( addlnkEvent()));
+    mPopup->addAction(
+        QIcon( *get_p_icon() ),
+        tr( "Add a link to a %1 catalog..." )
+            .arg(PROGRAM_NAME),
+        this,
+        SLOT( addlnkEvent() )
+    );
     mPopup->addAction( tr( "Insert Catalog..." ), this, SLOT( insertcEvent()));
     // mPopup->addAction ( tr ( "Insert Catalog (no duplicates)..." ), this, SLOT(insertcEventNoDup()) );
     if (on != NULL) {
@@ -1215,7 +1234,13 @@ int GuiSlave::openEvent( void ) {
 
     DEBUG_INFO_ENABLED = init_debug_info();
 
-    fn = QFileDialog::getOpenFileName( 0, tr( "Open a file..." ), mainw->cconfig->lastDir, tr( "CdCat databases (*.hcf )" ));
+    fn = QFileDialog::getOpenFileName(
+        0,
+        tr( "Open a file..." ),
+        mainw->cconfig->lastDir,
+        tr( "%1 databases (*.hcf )" )
+            .arg(PROGRAM_NAME)
+    );
     if (fn.isEmpty()) {
         return 0;
     }
@@ -1399,7 +1424,13 @@ int GuiSlave::saveasEvent( void ) {
     if (mainw->db == NULL) {
         return 0;
     }
-    fn = QFileDialog::getSaveFileName( 0, tr( "Save to file..." ), mainw->cconfig->lastDir, tr( "CdCat databases (*.hcf )" ));
+    fn = QFileDialog::getSaveFileName(
+        0,
+        tr( "Save to file..." ),
+        mainw->cconfig->lastDir,
+        tr( "%1 databases (*.hcf )" )
+            .arg(PROGRAM_NAME)
+    );
     if (fn.isEmpty()) {
         return 0;
     }
@@ -1853,7 +1884,7 @@ int GuiSlave::addEvent( void ) {
                 mainw->trayIcon->showMessage( tr( "Scan finished" ), tr( "Scanning %1 into %2 has been finished (NOT complete)" ).arg( d->dDir, d->dName ), icon, 3 * 1000 );
             }
             mainw->stopTrayIconAnim();
-            mainw->trayIcon->setToolTip( tr( "Cdcat - idle" ));
+            mainw->trayIcon->setToolTip( tr( "%1 - idle" ).arg(PROGRAM_NAME) );
         }
 
         if (mainw->cconfig->showProgressedFileInStatus) {
@@ -2085,7 +2116,7 @@ int GuiSlave::rescanEvent( void ) {
             mainw->trayIcon->showMessage( tr( "Scan finished" ), tr( "Scanning %1 into %2 has been finished (NOT complete)" ).arg( rfd, "__rescanned__" ), icon, 3 * 1000 );
         }
         mainw->stopTrayIconAnim();
-        mainw->trayIcon->setToolTip( tr( "Cdcat - idle" ));
+        mainw->trayIcon->setToolTip( tr( "%1 - idle" ).arg(PROGRAM_NAME) );
     }
 
     if (mainw->cconfig->showProgressedFileInStatus) {
@@ -2173,7 +2204,7 @@ int GuiSlave::configEvent( void ) {
             mainw->createTrayIcon();
         }
         mainw->trayIcon->show();
-        mainw->trayIcon->setToolTip( tr( "Cdcat - idle" ));
+        mainw->trayIcon->setToolTip( tr( "%1 - idle" ).arg(PROGRAM_NAME) );
     } else {
         if (mainw->trayIcon != NULL) {
             mainw->trayIcon->hide();
@@ -2212,7 +2243,13 @@ int GuiSlave::insertcEvent( void ) {
     if (mainw->db == NULL) {
         return 0;
     }
-    fn = QFileDialog::getOpenFileName( 0, tr( "Insert a database file..." ), mainw->cconfig->lastDir, tr( "CdCat databases (*.hcf )" ));
+    fn = QFileDialog::getOpenFileName(
+        0,
+        tr( "Insert a database file..." ),
+        mainw->cconfig->lastDir,
+        tr( "%1 databases (*.hcf )" )
+            .arg(PROGRAM_NAME)
+    );
     if (fn.isEmpty()) {
         return 0;
     }
@@ -2249,7 +2286,14 @@ int GuiSlave::insertCdcatXmlEvent( void ) {
     if (mainw->db == NULL) {
         return 0;
     }
-    fn = QFileDialog::getOpenFileName( 0, tr( "Insert a cdcat exported xml file..." ), mainw->cconfig->lastDir, tr( "CdCat xml export (*.xml )" ));
+    fn = QFileDialog::getOpenFileName(
+        0,
+        tr( "Insert a %1 exported xml file..." )
+            .arg(PROGRAM_NAME),
+        mainw->cconfig->lastDir,
+        tr( "%1 xml export (*.xml )" )
+            .arg(PROGRAM_NAME)
+    );
     if (fn.isEmpty()) {
         return 0;
     }
@@ -2286,7 +2330,13 @@ int GuiSlave::insertcEventNoDup( void ) {
     if (mainw->db == NULL) {
         return 0;
     }
-    fn = QFileDialog::getOpenFileName( 0, tr( "Insert a database file..." ), mainw->cconfig->lastDir, tr( "CdCat databases (*.hcf )" ));
+    fn = QFileDialog::getOpenFileName(
+        0,
+        tr( "Insert a database file..." ),
+        mainw->cconfig->lastDir,
+        tr( "%1 databases (*.hcf )" )
+            .arg(PROGRAM_NAME)
+    );
     if (fn.isEmpty()) {
         return 0;
     }
@@ -2624,7 +2674,7 @@ int GuiSlave::helpEvent( void ) {
     helptext += "<h2>" + tr( "Whats this?" ) + "</h2>";
     helptext += " <p>";
 
-    helptext += tr( "The cdcat is graphical (QT based) multiplatform (Linux/Windows) catalog program which scans the directories/drives you want and memorize the filesystem including the tags of mp3's and other data and store it in a small file. The database is stored in a gzipped XML format, so you can hack it, or use it if necessary :-).)" );
+    helptext += tr( "The %1 is graphical (QT based) multiplatform (Linux/Windows) catalog program which scans the directories/drives you want and memorize the filesystem including the tags of mp3's and other data and store it in a small file. The database is stored in a gzipped XML format, so you can hack it, or use it if necessary :-).)" ).arg(PROGRAM_NAME);
 
     helptext += tr( "The program can store the content of some specified files up to a limit size if you want. (for example: *.nfo)" );
 
