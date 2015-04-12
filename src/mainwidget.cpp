@@ -148,7 +148,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
     fileMenu->addAction( save_action );
 
     saveas_action = new QAction( QIcon( *get_t_saveas_icon()), tr( "&Save as..." ), this );
-    saveas_action->setShortcuts( QKeySequence::Open );
+    // saveas_action->setShortcuts( QKeySequence::Open );
     saveas_action->setStatusTip( tr( "save catalog with new name" ));
     connect( saveas_action, SIGNAL( triggered()), guis, SLOT( saveasEvent()));
     fileMenu->addAction( saveas_action );
