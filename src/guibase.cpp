@@ -1233,9 +1233,7 @@ int GuiSlave::openEvent( void ) {
     mainw->cconfig->lastDir = QFileInfo( fn ).absoluteDir().absolutePath();
 
     strcpy( fnc, (const char *)(QFile::encodeName( fn )));
-    while (closeEvent() != 0) {
-    }
-    ;
+    while (closeEvent() != 0) { }
     panelsOFF();
 
     if (mainw->db == NULL) {
@@ -1289,21 +1287,9 @@ int GuiSlave::openEvent( void ) {
     // Save the opened file to the history
     // QMessageBox::information(0,"new history element",fn);
     if (ret_val == 0 && !fn.isEmpty()) {
-        if (*DEBUG_INFO_ENABLED) { qDebug() << "LIST:" << qPrintable( mainw->cconfig->hlist.join( "|" ));
-        }
-
         if (*DEBUG_INFO_ENABLED) {
-            qDebug() << "0-1";
+            qDebug() << "LIST:" << qPrintable( mainw->cconfig->hlist.join( "|" ));
         }
-//         if ( mainw->cconfig->hlist.isEmpty() ) qDebug() <<"emptlyysdsaf?ashfk"<<endl;
-        if (*DEBUG_INFO_ENABLED) {
-            qDebug() << "0-2";
-        }
-        // mainw->cconfig->hlist.grep ( "AAAA" );
-        if (*DEBUG_INFO_ENABLED) {
-            qDebug() << "0-3";
-        }
-
 
         if (mainw->cconfig->hlist.isEmpty() ||
             mainw->cconfig->hlist.filter( QString( fn )).isEmpty()) {
@@ -3188,6 +3174,7 @@ int GuiSlave::disableEncryptionEvent( void ) {
 
 QPosDialog::QPosDialog ( CdCatMainWidget *parent )
     : QDialog( parent, Qt::FramelessWindowHint ) {
+
     QPoint point;
     QHBoxLayout *l1;
     QVBoxLayout *l2;

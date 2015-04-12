@@ -261,6 +261,7 @@ int main( int argi, char **argc ) {
         init_icon_base();
 
         CdCatMainWidget mw( cconfig, &app, 0, "MainWindow" );
+        // mw>db = new DataBase();
 
         cconfig->defaultfont = app.font();
         if (cconfig->ownfont) {
