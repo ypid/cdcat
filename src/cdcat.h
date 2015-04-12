@@ -28,8 +28,13 @@
 // CdCat homepage location:
 #define HOMEPAGE "<a href=\"http://cdcat.sf.net\">http://cdcat.sf.net</a>"
 #define PROGRAM_NAME "cdCat"
-// #define AUTHOR "Pe'ter Dea'k  hyperr@freemail.hu"
-#define AUTHOR "Christoph Thielecke  (crissi99@gmx.de)"
+
+// #define MAINTAINER "Pe'ter Dea'k  hyperr@freemail.hu"
+// #define MAINTAINER "Christoph Thielecke  (crissi99@gmx.de)"
+#define MAINTAINER_NAME  "Robin Schneider"
+#define MAINTAINER_EMAIL "ypid@riseup.net"
+#define MAINTAINER_YEAR  "2015"
+
 // + help.ui
 
 

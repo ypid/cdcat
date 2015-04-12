@@ -162,13 +162,20 @@ InfoDialog::InfoDialog ( QWidget *parent, const char *name, bool modal, Qt::Wind
     /* Authors {{{ */
     // TODO: Maybe link names to homepages?
     infotext += "<h2>";
-    infotext += tr( "Author:" ); // FIXME: Rename to Authors:
+    infotext += tr( "Authors" );
     infotext += "</h2>";
     infotext += "<table cellspacing=\"10\">";
     infotext += formatAuthorTR("Robin Schneider"    , "ypid@riseup.net"   , "2015");
-    infotext += formatAuthorTR("Christoph Thielecke", "crissi99@gmx.de"   , "2010");
+    infotext += formatAuthorTR("Christoph Thielecke", "crissi99@gmx.de"   , "2010–2014");
     infotext += formatAuthorTR("Peter Deak"         , "hyperr@freemail.hu", "2003");
     infotext += "</table>";
+    /* }}} */
+
+    /* Maintainer {{{ */
+    infotext += "<h2>";
+    infotext += tr( "Current Maintainer" );
+    infotext += "</h2>";
+    infotext += MAINTAINER_NAME;
     /* }}} */
 
     /******************************************************************************************/
