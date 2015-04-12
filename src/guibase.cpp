@@ -3305,7 +3305,4 @@ void CatalogTypeEditDialog::cbTypeToggeled( int ) {
     qWarning() << "mediatype changed to " << cbType->currentIndex();
 }
 
-
-
-
 // kate: indent-mode cstyle; replace-tabs off; tab-width 8;
