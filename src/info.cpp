@@ -8,6 +8,7 @@
 ****************************************************************************/
 #include "info.h"
 
+#include <QDebug>
 #include <QVariant>
 #include <QPushButton>
 #include <QTabWidget>
@@ -572,13 +573,13 @@ KeyBindingDialog::KeyBindingDialog ( GuiSlave *gs, QWidget *parent, const char *
     KeyBindingsTableWidget->verticalHeader()->hide();
     keyBindingDialogLayout->addWidget( KeyBindingsTableWidget, 2, 0 );
 
-//      DEBUG_INFO_ENABLED = init_debug_info();
-//      if ( *DEBUG_INFO_ENABLED ) {
-//              std::cerr << "KeyShortCutList:" << std::endl;
-//              for (int i=0; i< gs->KeyShortCutList.size(); i++) {
-//                      std::cerr << "\t" << qPrintable(gs->KeyShortCutList.at(i).description) << ": " << qPrintable(gs->KeyShortCutList.at(i).eventSequence.toString()) << std::endl;
-//              }
-//      }
+     DEBUG_INFO_ENABLED = init_debug_info();
+     if ( *DEBUG_INFO_ENABLED && gs->KeyShortCutList.size() > 0) {
+             qDebug() << "KeyShortCutList:" << gs->KeyShortCutList.size();
+             for (int i = 0; i < gs->KeyShortCutList.size(); i++) {
+                 qDebug("  %s: %s", qPrintable(gs->KeyShortCutList.at(i).description), qPrintable(gs->KeyShortCutList.at(i).eventSequence.toString()));
+             }
+     }
 
     closeButton = new QPushButton( this );
     keyBindingDialogLayout->addWidget( closeButton, 4, 0 );

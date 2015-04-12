@@ -530,13 +530,13 @@ void CommentWidget::updateContents() {
                     int max_comment_len = 80;
                     int stringlen = (*it).size();
                     if (stringlen > max_comment_len) {
-                        //              cerr << "oversized comment line (" << stringlen <<"): " << qPrintable(*it) << endl;
+                        //              qWarning() << "oversized comment line (" << stringlen <<"): " << qPrintable(*it) << endl;
                         int curlen = 0;
                         QStringList textList2;
                         for (int curidx = 0; curidx < stringlen; curidx++) {
                             if (curlen == max_comment_len) {
                                 textList2.append((*it).mid( curidx - max_comment_len, curidx ));
-                                //                              cerr << "added sub comment line (" << (*it).mid(curidx-max_comment_len, curidx).length() <<"): " << qPrintable((*it).mid(curidx-max_comment_len, curidx)) << endl;
+                                //                              qWarning() << "added sub comment line (" << (*it).mid(curidx-max_comment_len, curidx).length() <<"): " << qPrintable((*it).mid(curidx-max_comment_len, curidx)) << endl;
                                 curlen = 0;
                             }
                             curlen++;
@@ -546,7 +546,7 @@ void CommentWidget::updateContents() {
                             w += pixelsHigh;
                         }
                     } else {
-                        //              cerr << "undersized comment line (" << stringlen <<"): " << qPrintable(*it) << endl;
+                        //              qWarning() << "undersized comment line (" << stringlen <<"): " << qPrintable(*it) << endl;
                         p.drawText( mx + 20, my + w, (*it));
                         w += pixelsHigh;
                     }
@@ -597,13 +597,13 @@ void CommentWidget::updateContents() {
                     int max_category_len = 80;
                     int stringlen = (*it).size();
                     if (stringlen > max_category_len) {
-                        //              cerr << "oversized category line (" << stringlen <<"): " << qPrintable(*it) << endl;
+                        //              qWarning() << "oversized category line (" << stringlen <<"): " << qPrintable(*it) << endl;
                         int curlen = 0;
                         QStringList textList2;
                         for (int curidx = 0; curidx < stringlen; curidx++) {
                             if (curlen == max_category_len) {
                                 textList2.append((*it).mid( curidx - max_category_len, curidx ));
-                                //                              cerr << "added sub category line (" << (*it).mid(curidx-max_category_len, curidx).length() <<"): " << qPrintable((*it).mid(curidx-max_category_len, curidx)) << endl;
+                                //                              qWarning() << "added sub category line (" << (*it).mid(curidx-max_category_len, curidx).length() <<"): " << qPrintable((*it).mid(curidx-max_category_len, curidx)) << endl;
                                 curlen = 0;
                             }
                             curlen++;
@@ -613,7 +613,7 @@ void CommentWidget::updateContents() {
                             w += pixelsHigh;
                         }
                     } else {
-                        //              cerr << "undersized category line (" << stringlen <<"): " << qPrintable(*it) << endl;
+                        //              qWarning() << "undersized category line (" << stringlen <<"): " << qPrintable(*it) << endl;
                         p.drawText( mx + 20, my + w, (*it));
                         w += pixelsHigh;
                     }
@@ -768,13 +768,13 @@ void CommentWidget::updateContents() {
                         int max_fileinfo_len = 80;
                         int stringlen = (*it).size();
                         if (stringlen > max_fileinfo_len) {
-                            //          cerr << "oversized fileinfo line (" << stringlen <<"): " << qPrintable(*it) << endl;
+                            //          qWarning() << "oversized fileinfo line (" << stringlen <<"): " << qPrintable(*it) << endl;
                             int curlen = 0;
                             QStringList textList2;
                             for (int curidx = 0; curidx < stringlen; curidx++) {
                                 if (curlen == max_fileinfo_len) {
                                     textList2.append((*it).mid( curidx - max_fileinfo_len, curidx ));
-                                    //                          cerr << "added sub fileinfo line (" << (*it).mid(curidx-max_fileinfo_len, curidx).length() <<"): " << qPrintable((*it).mid(curidx-max_fileinfo_len, curidx)) << endl;
+                                    //                          qWarning() << "added sub fileinfo line (" << (*it).mid(curidx-max_fileinfo_len, curidx).length() <<"): " << qPrintable((*it).mid(curidx-max_fileinfo_len, curidx)) << endl;
                                     curlen = 0;
                                 }
                                 curlen++;
@@ -789,7 +789,7 @@ void CommentWidget::updateContents() {
                                 w += pixelsHigh;
                             }
                         } else {
-                            //          cerr << "undersized fileinfo line (" << stringlen <<"): " << qPrintable(*it) << endl;
+                            //          qWarning() << "undersized fileinfo line (" << stringlen <<"): " << qPrintable(*it) << endl;
                             text = (*it);
                             p.drawText( mx + 20, my + w, text );
                             valueoffset = fm.boundingRect( text ).size().width();
@@ -939,13 +939,13 @@ void CommentWidget::updateContents() {
 }
 
 void CommentWidget::paintEvent( QPaintEvent * ) {
-    // cerr <<"paintEvent"<<endl;
+    // qWarning();
     if (update_contents_running) {
         return;
     }
     paintEventRunning = true;
     QPainter p( this );
-    // cerr <<"paintEvent-end"<<endl;
+    // qWarning() << "end";
     p.drawPixmap( p.viewport(), contentsPixmap );
 #if (QT_VERSION >= QT_VERSION_CHECK( 4, 6, 0 )) // needs Qt 4.6.0 or better
     // p.beginNativePainting();

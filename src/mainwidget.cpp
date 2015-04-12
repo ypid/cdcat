@@ -9,6 +9,7 @@
 
 #include "mainwidget.h"
 
+#include <QDebug>
 #include <QVariant>
 #include <QMenuBar>
 #include <QFrame>
@@ -34,6 +35,9 @@
 #include <QPixmap>
 #include <QLatin1String>
 #include <QDockWidget>
+#include <QScrollArea>
+#include <QStatusBar>
+#include <QMessageBox>
 
 #include <iostream>
 
@@ -45,11 +49,6 @@
 #include "config.h"
 #include "icons.h"
 #include "adddialog.h"
-
-#include <QScrollArea>
-#include <QStatusBar>
-
-#include <QMessageBox>
 
 /*
  *  Constructs a CdCatMainWidget as a child of 'parent', with the
@@ -110,7 +109,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
     CommentDock->setWidget( scrollArea );
     guis = new GuiSlave( this );
 
-    /*Menubar*/
+    /* Menubar */
     mainMenu = menuBar();
     mainMenu->show();
     statusBar()->show();
@@ -577,9 +576,9 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
     // CommentDock->setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Minimum));
 
 
-    // std::cout << "splitmain sizes: " << std::endl;
+    // qDebug() << "splitmain sizes: ";
     // for (int i=0; i < splitMain->sizes().size(); i++)
-    //	std::cout << splitMain->sizes().at(i) << std::endl;
+    //	qDebug() << splitMain->sizes().at(i);
 
     if (cconfig->autoload) {
         guis->checkversion( this, db );
@@ -796,7 +795,7 @@ void CdCatMainWidget::closeEvent( QCloseEvent *e ) {
 }
 
 void CdCatMainWidget::pathScanned( QString path ) {
-//      std::cerr <<"CdCatMainWidget::pathScanned: " << qPrintable(path) << std::endl;
+//      qDebug() <<"CdCatMainWidget::pathScanned: " << qPrintable(path);
     lastScanPath = path;
     statusBar()->showMessage( tr( "Scanning:" ) + " " + path );
     // if(cconfig->showTrayIcon && isHidden())
@@ -847,7 +846,7 @@ void CdCatMainWidget::showTrayMessage() {
 void CdCatMainWidget::trayIconActivated( QSystemTrayIcon::ActivationReason reason ) {
     switch (reason) {
     case QSystemTrayIcon::Trigger:
-        // std::cout << "systray single click " << std::endl;
+        // qDebug() << "systray single click ";
         if (isHidden()) {
             showNormal();
             emit restoredFromTray();
@@ -857,10 +856,10 @@ void CdCatMainWidget::trayIconActivated( QSystemTrayIcon::ActivationReason reaso
         }
         break;
     case QSystemTrayIcon::DoubleClick:
-        // std::cout << "systray double click " << std::endl;
+        // qDebug() << "systray double click ";
         break;
     case QSystemTrayIcon::MiddleClick:
-        // std::cout << "systray middle click " << std::endl;
+        // qDebug() << "systray middle click ";
         break;
     default:
         ;

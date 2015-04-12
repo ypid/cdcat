@@ -7,7 +7,9 @@
 *  Copyright : (C) 2003 Christoph Thielecke
 ****************************************************************************/
 
+#include <iostream>
 
+#include <QDebug>
 #include <QVariant>
 #include <QPushButton>
 #include <QLabel>
@@ -29,10 +31,9 @@
 #include <QHBoxLayout>
 #include <QGridLayout>
 #include <QVBoxLayout>
-#include <iostream>
 
-#include "icons.h"
 #include "cdcat.h"
+#include "icons.h"
 #include "exportcdcatdb.h"
 #include "adddialog.h"
 
@@ -597,8 +598,6 @@ void exportCdcatDB::ok() {
                 sprintf( fnc, "%s.xml.gz", fn.toLocal8Bit().constData());
                 sprintf( fnc2, "%s.xml", fn.toLocal8Bit().constData());
 
-//                      std::cerr << "fnc: " << fnc << ", fnc2: " << fnc2 << std::endl;
-
                 QFile f( fnc2 );
                 bool fnc2_openend = f.open( QIODevice::ReadWrite );
 
@@ -606,17 +605,17 @@ void exportCdcatDB::ok() {
                     mainw->db->XML_ENCODING = "UTF-8";
                     bool save_hcf_ok = true;
                     if (checkAllMedia->isChecked()) {
-                        // std::cerr << "xml export: all media!"  << std::endl;
+                        // qWarning() << "xml export: all media!" ;
                         if (mainw->db->saveAsDB( fnc ) != 0) {                                    // An error occurred
                             QMessageBox::critical( 0, tr( "Error during write export..." ), tr( "I can't create or rewrite the file" ));
                             save_hcf_ok = false;
                         }
                     } else {
-                        // std::cerr << "xml export: only seleced media!"  << std::endl;
+                        // qWarning() << "xml export: only seleced media!" ;
                         unlink( fnc );
                         ff = gzopen( fnc, "wb" );
                         if (ff == NULL) {
-                            std::cerr << "open gz file failed!" << std::endl;
+                            qWarning() << "open gz file failed!";
                             save_hcf_ok = false;
                         } else {
                             fw = new FileWriter( ff, false, mainw->db->XML_ENCODING );
@@ -635,32 +634,32 @@ void exportCdcatDB::ok() {
                         // now lets rewrite it
                         gzFile ff2 = gzopen( fnc, "rb" );
                         if (ff2 == NULL) {
-                            std::cerr << "open gz file failed!" << std::endl;
+                            qWarning() << "open gz file failed!";
                         } else {
                             int readcount = 0;
                             readcount = gzread( ff2, tmpbuffer, READ_BLOCKSIZE );
 
                             while (readcount > 0) {
-//                                                      std::cerr << "read " << readcount << " bytes" << std::endl;
+//                                                      qDebug() << "read " << readcount << " bytes";
                                 f.write( tmpbuffer, readcount );
 //                                                                      if (readcount > 4096) {
-//                                                                              std::cerr << "last read: " << readcount << " bytes" << std::endl;
+//                                                                              qDebug() << "last read: " << readcount << " bytes";
 //                                                                      }
                                 progress( pww );
                                 readcount = gzread( ff2, tmpbuffer, READ_BLOCKSIZE );
                             }
-                            // std::cerr << "before gzclose" << std::endl;
+                            // qDebug() << "before gzclose";
                             gzclose( ff2 );
-                            // std::cerr << "before unlink" << std::endl;
+                            // qDebug() << "before unlink";
                             unlink( fnc );
                         }
-                        // std::cerr << "before close" << std::endl;
+                        // qDebug() << "before close";
                         f.close();
                     }
                     f.close();
                 } else {
                     if (!fnc2_openend) {
-                        std::cerr << "write file open failed!" << std::endl;
+                        qWarning() << "write file open failed!";
                     }
                 }
             }
