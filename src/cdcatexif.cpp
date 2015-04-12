@@ -15,12 +15,16 @@
 #include "cdcat.h"
 #include "cdcatexif.h"
 
+#include <QDebug>
+#include <QString>
+#include <QFile>
+#include <QMessageBox>
+#include <QPainter>
+
 #include <libexif/exif-data.h>
 #include <libexif/exif-loader.h>
 #include <string.h>
-#include <stdio.h>
 #include <ctype.h>
-#include <stdlib.h>
 // #include <libintl.h>
 #include <iostream>
 
@@ -29,13 +33,6 @@
 #else
     #include <dlfcn.h>
 #endif
-
-#include <QString>
-#include <QFile>
-#include <QMessageBox>
-#include <QPainter>
-
-using namespace std;
 
 QStringList getExifSupportedExtensions() {
     // FIXME: get from libexif?
@@ -119,7 +116,7 @@ CdcatExifData::CdcatExifData ( void ) {
 CdcatExifData::CdcatExifData ( QString filename ) {
     DEBUG_INFO_ENABLED = init_debug_info();
     if (*DEBUG_INFO_ENABLED) {
-        std::cerr << "CdcatExifData() filename: " << qPrintable( filename ) << std::endl;
+        qDebug() << "CdcatExifData() filename: " << qPrintable( filename );
     }
     this->picturefilename = filename;
     readCdcatExifData();
@@ -133,46 +130,46 @@ bool CdcatExifData::readCdcatExifData() {
 
     if (picturefilename == "") {
         if (*DEBUG_INFO_ENABLED) {
-            std::cerr << "readCdcatExifData() no filename set" << std::endl;
+            qWarning() << "readCdcatExifData() no filename set";
         }
         return false;
     }
 
     if (*DEBUG_INFO_ENABLED) {
-        std::cout << "readCdcatExifData() filename: " << qPrintable( picturefilename ) << std::endl;
+        qDebug() << "readCdcatExifData() filename: " << qPrintable( picturefilename );
     }
     ed = exif_data_new_from_file( picturefilename.toLocal8Bit().data());
     if (ed) {
         // bind_textdomain_codeset("cdcat", "UTF-8");
         // textdomain("cdcat");
         if (*DEBUG_INFO_ENABLED) {
-            std::cout << "EXIF data for file " << qPrintable( picturefilename ) << std::endl;
-            std::cout << "EXIF_IFD_EXIF" << endl;
+            qDebug() << "EXIF data for file " << qPrintable( picturefilename );
+            qDebug() << "EXIF_IFD_EXIF";
             for (i = 0x0001; i != 0xffff; i++) {
                 QString TagData = get_tag( ed, EXIF_IFD_EXIF, (ExifTag)i );
                 if (!TagData.isEmpty()) {
-                    std::cout << qPrintable( TagData ) << std::endl;
+                    qDebug() << qPrintable( TagData );
                 }
             }
 
-            std::cout << "EXIF_IFD_0" << endl;
+            qDebug() << "EXIF_IFD_0";
             for (i = 0x0001; i != 0xffff; i++) {
                 QString TagData = get_tag( ed, EXIF_IFD_0, (ExifTag)i );
                 if (!TagData.isEmpty()) {
-                    std::cout << qPrintable( TagData ) << std::endl;
+                    qDebug() << qPrintable( TagData );
                 }
             }
-            std::cout << "EXIF_IFD_1" << endl;
+            qDebug() << "EXIF_IFD_1";
             for (i = 0x0001; i != 0xffff; i++) {
                 QString TagData = get_tag( ed, EXIF_IFD_1, (ExifTag)i );
                 if (!TagData.isEmpty()) {
-                    std::cout << qPrintable( TagData ) << std::endl;
+                    qDebug() << qPrintable( TagData );
                 }
             }
         }
     } else {
         if (*DEBUG_INFO_ENABLED) {
-            std::cout << "File not readable or no EXIF data in file " << qPrintable( picturefilename ) << std::endl;
+            qWarning() << "File not readable or no EXIF data in file " << qPrintable( picturefilename );
         }
     }
     return true;
@@ -187,25 +184,25 @@ QStringList CdcatExifData::getExifData() {
 
     if (picturefilename == "") {
         if (*DEBUG_INFO_ENABLED) {
-            std::cout << "readCdcatExifData() no filename set" << std::endl;
+            qWarning() << "readCdcatExifData() no filename set";
         }
         return ExifDataStringList;
     }
     if (!ed) {
         if (*DEBUG_INFO_ENABLED) {
-            std::cout << "readCdcatExifData() no exif data yet" << std::endl;
+            qWarning() << "readCdcatExifData() no exif data yet";
         }
         return ExifDataStringList;
     }
 
     if (*DEBUG_INFO_ENABLED) {
-        std::cout << "readCdcatExifData() filename: " << qPrintable( picturefilename ) << std::endl;
+        qDebug() << "readCdcatExifData() filename: " << qPrintable( picturefilename );
     }
     ExifData *ed = exif_data_new_from_file( picturefilename.toLocal8Bit().data());
     if (ed) {
         if (*DEBUG_INFO_ENABLED) {
-            std::cout << "EXIF data for file " << qPrintable( picturefilename ) << std::endl;
-            std::cout << "EXIF_IFD_EXIF" << endl;
+            qDebug() << "EXIF data for file " << qPrintable( picturefilename );
+            qDebug() << "EXIF_IFD_EXIF";
             for (i = 0x0001; i != 0xffff; i++) {
                 QString TagData = get_tag( ed, EXIF_IFD_EXIF, (ExifTag)i );
                 if (!TagData.isEmpty()) {
@@ -213,14 +210,14 @@ QStringList CdcatExifData::getExifData() {
                 }
             }
 
-            std::cout << "EXIF_IFD_0" << endl;
+            qDebug() << "EXIF_IFD_0";
             for (i = 0x0001; i != 0xffff; i++) {
                 QString TagData = get_tag( ed, EXIF_IFD_0, (ExifTag)i );
                 if (!TagData.isEmpty()) {
                     ExifDataStringList.append( TagData );
                 }
             }
-            std::cout << "EXIF_IFD_1" << endl;
+            qDebug() << "EXIF_IFD_1";
             for (i = 0x0001; i != 0xffff; i++) {
                 QString TagData = get_tag( ed, EXIF_IFD_1, (ExifTag)i );
                 if (!TagData.isEmpty()) {
@@ -230,7 +227,7 @@ QStringList CdcatExifData::getExifData() {
         }
     } else {
         if (*DEBUG_INFO_ENABLED) {
-            std::cerr << "File not readable or no EXIF data in file " << qPrintable( picturefilename ) << std::endl;
+            qWarning() << "File not readable or no EXIF data in file " << qPrintable( picturefilename );
         }
     }
     return ExifDataStringList;
