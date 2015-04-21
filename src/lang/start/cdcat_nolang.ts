@@ -1057,7 +1057,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     </message>
     <message>
         <location filename="../../config.cpp" line="1735"/>
-        <source>Autoload DataBase on startup</source>
+        <source>Autoload Database on startup</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1179,7 +1179,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     </message>
 </context>
 <context>
-    <name>DataBase</name>
+    <name>Database</name>
     <message>
         <location filename="../../dbase.cpp" line="721"/>
         <source>I can&apos;t rewrite the file: %1</source>
@@ -1630,7 +1630,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location filename="../../guibase.cpp" line="1905"/>
         <source>An error occurred while scanning,
-the DataBase may be incomplete</source>
+the Database may be incomplete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1773,7 +1773,7 @@ Homepage: %3</source>
     <message>
         <location filename="../../guibase.cpp" line="1863"/>
         <source>You have cancelled catalog scanning,
-the DataBase may be incomplete</source>
+the Database may be incomplete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4776,17 +4776,17 @@ p, li { white-space: pre-wrap; }
     <name>newdbdialog</name>
     <message>
         <location filename="../../newdbdialog.cpp" line="131"/>
-        <source>DataBase&apos;s Properties</source>
+        <source>Database&apos;s Properties</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../newdbdialog.cpp" line="132"/>
-        <source>DataBase Name:</source>
+        <source>Database Name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../newdbdialog.cpp" line="133"/>
-        <source>DataBase Owner:</source>
+        <source>Database Owner:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

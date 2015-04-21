@@ -733,7 +733,7 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
         <translation>CdCat konfigurieren …</translation>
     </message>
     <message>
-        <source>Autoload DataBase on startup</source>
+        <source>Autoload Database on startup</source>
         <translation>Datenbank beim Start automatisch laden</translation>
     </message>
     <message>
@@ -830,7 +830,7 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     </message>
 </context>
 <context>
-    <name>DataBase</name>
+    <name>Database</name>
     <message>
         <source>Error</source>
         <translation>Fehler</translation>
@@ -1155,7 +1155,7 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     </message>
     <message>
         <source>An error occurred while scanning,
-the DataBase may be incomplete</source>
+the Database may be incomplete</source>
         <translation>Es trat ein Fehler während des Durchsuchens auf,
 Datenbank kann unvollständig sein</translation>
     </message>
@@ -1277,7 +1277,7 @@ Homepage: %3</translation>
     </message>
     <message>
         <source>You have cancelled catalog scanning,
-the DataBase may be incomplete</source>
+the Database may be incomplete</source>
         <translation>Sie haben das Durchsuchen für den Katalog abgebrochen,
 die Datenbank wird unvollständig sein</translation>
     </message>
@@ -3633,15 +3633,15 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>newdbdialog</name>
     <message>
-        <source>DataBase&apos;s Properties</source>
+        <source>Database&apos;s Properties</source>
         <translation>Datenbank-Eigenschaften</translation>
     </message>
     <message>
-        <source>DataBase Name:</source>
+        <source>Database Name:</source>
         <translation>Datenbank-Name:</translation>
     </message>
     <message>
-        <source>DataBase Owner:</source>
+        <source>Database Owner:</source>
         <translation>Datenbank-Eigentümer:</translation>
     </message>
     <message>

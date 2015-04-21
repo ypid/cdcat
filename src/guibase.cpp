@@ -1842,7 +1842,7 @@ int GuiSlave::addEvent( void ) {
         }
         if (i == 2) {
             QMessageBox::warning( mainw,
-                tr( "Warning …" ), tr( "You have cancelled catalog scanning,\nthe DataBase may be incomplete" ));
+                tr( "Warning …" ), tr( "You have cancelled catalog scanning,\nthe Database may be incomplete" ));
         }
 
         if (mainw->cconfig->showTrayIcon) {
@@ -1890,7 +1890,7 @@ int GuiSlave::addEvent( void ) {
             QMessageBox::warning(
                 mainw,
                 tr( "Warning …" ),
-                tr( "An error occurred while scanning,\nthe DataBase may be incomplete" )
+                tr( "An error occurred while scanning,\nthe Database may be incomplete" )
             );
         }
 

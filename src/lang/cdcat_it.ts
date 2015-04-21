@@ -1182,7 +1182,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     </message>
     <message>
         <location line="+4"/>
-        <source>Autoload DataBase on startup</source>
+        <source>Autoload Database on startup</source>
         <translation>Carica automaticamente il database all&apos;avvio</translation>
     </message>
     <message>
@@ -1316,7 +1316,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     </message>
 </context>
 <context>
-    <name>DataBase</name>
+    <name>Database</name>
     <message>
         <location filename="../dbase.cpp" line="+721"/>
         <source>I can&apos;t rewrite the file: %1</source>
@@ -1809,9 +1809,9 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location line="-1187"/>
         <source>An error occurred while scanning,
-the DataBase may be incomplete</source>
+the Database may be incomplete</source>
         <translation>E&apos; avvenuto un errore durante la scansione,
-il DataBase potrebbe essere incompleto</translation>
+il Database potrebbe essere incompleto</translation>
     </message>
     <message>
         <location line="+152"/>
@@ -1971,7 +1971,7 @@ Homepage: %3</translation>
     <message>
         <location line="+737"/>
         <source>You have cancelled catalog scanning,
-the DataBase may be incomplete</source>
+the Database may be incomplete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5216,17 +5216,17 @@ p, li { white-space: pre-wrap; }
     <name>newdbdialog</name>
     <message>
         <location filename="../newdbdialog.cpp" line="+131"/>
-        <source>DataBase&apos;s Properties</source>
+        <source>Database&apos;s Properties</source>
         <translation>Proprietà del database</translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>DataBase Name:</source>
+        <source>Database Name:</source>
         <translation>Nome del database:</translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>DataBase Owner:</source>
+        <source>Database Owner:</source>
         <translation>Proprietario del database:</translation>
     </message>
     <message>

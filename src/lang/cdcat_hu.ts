@@ -1313,7 +1313,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     </message>
     <message>
         <location line="+4"/>
-        <source>Autoload DataBase on startup</source>
+        <source>Autoload Database on startup</source>
         <translation>Adatbázis automatikus betöltése induláskor</translation>
     </message>
     <message>
@@ -1459,7 +1459,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     </message>
 </context>
 <context>
-    <name>DataBase</name>
+    <name>Database</name>
     <message>
         <source>I can&apos;t rewrite the file</source>
         <translation type="obsolete">Nem tudom ujraírni a fájlt</translation>
@@ -1870,7 +1870,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     </message>
     <message>
         <source>There was some error during the scanning,
-the DataBase may be incomplete</source>
+the Database may be incomplete</source>
         <translation type="obsolete">Volt pár hiba felolvasás közben,
 az adatbázis lehet hogy nem teljes</translation>
     </message>
@@ -2124,7 +2124,7 @@ Copyright (C) 2003 Deák Péter (GPL)</translation>
     <message>
         <location line="-1187"/>
         <source>An error occurred while scanning,
-the DataBase may be incomplete</source>
+the Database may be incomplete</source>
         <translation>Volt pár hiba felolvasás közben,
 az adatbázis lehet hogy nem teljes</translation>
     </message>
@@ -2307,7 +2307,7 @@ Honlap: %3</translation>
     <message>
         <location line="+737"/>
         <source>You have cancelled catalog scanning,
-the DataBase may be incomplete</source>
+the Database may be incomplete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6254,17 +6254,17 @@ p, li { white-space: pre-wrap; }
     <name>newdbdialog</name>
     <message>
         <location filename="../newdbdialog.cpp" line="+131"/>
-        <source>DataBase&apos;s Properties</source>
+        <source>Database&apos;s Properties</source>
         <translation>Az adatbázis jellemzői</translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>DataBase Name:</source>
+        <source>Database Name:</source>
         <translation>Adatbázis neve:</translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>DataBase Owner:</source>
+        <source>Database Owner:</source>
         <translation>Adatbázis tulaja:</translation>
     </message>
     <message>

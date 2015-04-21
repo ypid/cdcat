@@ -129,9 +129,9 @@ newdbdialog::~newdbdialog() {
  *  language.
  */
 void newdbdialog::languageChange() {
-    setWindowTitle( tr( "DataBase's Properties" ));
-    textLabelDatabase->setText( tr( "DataBase Name:" ));
-    textLabelOwner->setText( tr( "DataBase Owner:" ));
+    setWindowTitle( tr( "Database's Properties" ));
+    textLabelDatabase->setText( tr( "Database Name:" ));
+    textLabelOwner->setText( tr( "Database Owner:" ));
     textLabelComment->setText( tr( "Comment:" ));
     textLabelCategory->setText( tr( "Category:" ));
     leName->setText( tr( "Catalog" ));
