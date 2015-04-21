@@ -54,7 +54,7 @@
  *  Constructs a CdCatMainWidget as a child of 'parent', with the
  *  name 'name' and widget flags set to 'f'.
  */
-CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget *parent, const char *name, Qt::WindowFlags fl )
+CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget *parent, const char *name, Qt::WindowFlags fl)
     : QMainWindow( parent, fl ) {
 
     main = new QWidget( this );

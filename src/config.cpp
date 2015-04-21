@@ -188,6 +188,7 @@ CdCatConfig::~CdCatConfig ( void ) {
     }
 }
 
+// FIXME change to Unicode
 void CdCatConfig::setParameter( char *par ) {
     startpar = true;
     startfn = par;
@@ -211,15 +212,19 @@ int CdCatConfig::startProgram( DataBase **dbp, QWidget *mw ) {
         PWw *pww = new PWw( mw );
         (*dbp)->pww = pww;
         progress( pww );
-        if ((*dbp)->openDB( loadablefile.toLocal8Bit().data())) {
-            (*dbp) = NULL;
-            QMessageBox::warning(
-                mw,
-                tr( "Error during autoload …" ),
-                startpar
-                    ? tr( "I can't open the autoload catalog according the first command line parameter.\nCheck the file!\n" )
-                    : tr( "I can't open the autoload catalog.\nCheck the file, or change the autoload option in the config dialog!\n" )
-            );
+        if ((*dbp)->openDB( loadablefile.toLocal8Bit().data() )) {
+            if (startpar) {
+                qDebug() << (*dbp)->saveAsDB(  loadablefile.toLocal8Bit().data() );
+            } else {
+                (*dbp) = NULL;
+                QMessageBox::warning(
+                    mw,
+                    tr( "Error during autoload …" ),
+                    startpar
+                        ? tr( "I can't open the autoload catalog according the first command line parameter.\nCheck the file!\n" )
+                        : tr( "I can't open the autoload catalog.\nCheck the file, or change the autoload option in the config dialog!\n" )
+                );
+            }
         }
         progress( pww );
         pww->end();

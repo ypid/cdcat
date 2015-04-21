@@ -180,9 +180,14 @@ int main( int argi, char **argc ) {
 
     /* }}} */
 
-    // if (argi > 1) {
-        // cconfig->setParameter( argc[1] );
-    // }
+    if (args.size() == 1) {
+        QByteArray filename_a = args.at(0).toUtf8();
+        char* filename = filename_a.data();
+        qDebug() << "filename:" << filename;
+        // qDebug() << mw.db->saveAsDB( filename );
+        cconfig->setParameter( filename );
+        // qDebug() << mw.db->openDB( filename );
+    }
 
     if (cconfig->readConfig() == 0) {
         font_size = cconfig->fsize;
@@ -245,15 +250,6 @@ int main( int argi, char **argc ) {
 
     int ret_val = 2;
     if (parser.isSet(optionSwitchBatchMode)) {
-        DataBase *db;
-        db = new DataBase();
-        // db->openDB( "test" );
-        if (args.size() == 1) {
-            QByteArray filename_a = args.at(0).toUtf8();
-            char* filename = filename_a.data();
-            qDebug() << "filename:" << filename;
-            qDebug() << db->saveAsDB( filename );
-        }
     } else if (parser.isSet(optionImportList)) {
     } else if (parser.isSet(optionExportList)) {
     } else {
@@ -261,7 +257,6 @@ int main( int argi, char **argc ) {
         init_icon_base();
 
         CdCatMainWidget mw( cconfig, &app, 0, "MainWindow" );
-        // mw>db = new DataBase();
 
         cconfig->defaultfont = app.font();
         if (cconfig->ownfont) {
