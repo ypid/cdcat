@@ -25,15 +25,17 @@
  *
  * Copyright Piotr "|TEcHNO|" Lewandowski, 2004
  */
+
+#include "tparser.h"
+
+#include "config.h"
+#include "cdcat.h"
+
 #include <iostream>
 #include <stdio.h>
 
 #include <QDebug>
 #include <QString>
-
-#include "tparser.h"
-#include "config.h"
-#include "cdcat.h"
 
 #ifdef _WIN32
     #define _UINT4 unsigned long
@@ -262,9 +264,6 @@ struct INFOLIST {
 } infoList;                 /*12*/
 
 unsigned int allcCount = 0; /*temportarily used for additional data stored after waveH*/
-
-#include <iostream>
-using namespace std;
 
 QString parseAviHeader( FILE *file ) {
     long filelength = 0;

@@ -9,7 +9,23 @@
 
 #include "find.h"
 
+#include "dbase.h"
+#include "mainwidget.h"
+#include "wdbfile.h"
+#include "guibase.h"
+#include "adddialog.h"
+#include "config.h"
+#include "cdcat.h"
+#include "icons.h"
+
+#include "dmetaph.h"
+
+#include <string.h>
+#include <ctype.h>
+#include <iostream>
+
 #include <QDebug>
+#include <QFileDialog>
 #include <QVariant>
 #include <QCheckBox>
 #include <QComboBox>
@@ -42,26 +58,7 @@
 #include <QTextCodec>
 #include <QDir>
 #include <QStatusBar>
-
-// #include <pcre.h>
 #include <QRegExp>
-#include <string.h>
-#include <ctype.h>
-
-#include "dbase.h"
-#include "mainwidget.h"
-#include "wdbfile.h"
-#include "guibase.h"
-#include "adddialog.h"
-#include "config.h"
-#include "cdcat.h"
-#include "icons.h"
-
-#include <string.h>
-#include "dmetaph.h"
-#include <iostream>
-#include <QFileDialog>
-using namespace std;
 
 findDialog::findDialog ( CdCatMainWidget *parent, const char *name, bool isFindDuplicates, bool modal, Qt::WindowFlags fl )
     : QDialog( parent, fl ) {

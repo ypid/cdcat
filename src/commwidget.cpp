@@ -9,6 +9,16 @@
 
 #include "commwidget.h"
 
+#include "dbase.h"
+#include "cdcat.h"
+#include "wdbfile.h"
+#include "config.h"
+#include "icons.h"
+#include "mainwidget.h"
+#include "showcontent.h"
+
+#include <iostream>
+
 #include <QDebug>
 #include <QImage>
 #include <QWidget>
@@ -31,20 +41,6 @@
 #include <QVBoxLayout>
 #include <QLocale>
 #include <QScrollArea>
-
-#include "dbase.h"
-#include "cdcat.h"
-#include "wdbfile.h"
-#include "config.h"
-#include "icons.h"
-#include "mainwidget.h"
-#include "showcontent.h"
-
-#include <iostream>
-using namespace std;
-
-
-
 
 int cshow = 1;
 char *abuff = NULL;

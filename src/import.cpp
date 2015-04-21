@@ -8,11 +8,15 @@
 ****************************************************************************/
 
 #include "import.h"
+
 #include "importdialog.h"
 #include "mainwidget.h"
 #include "dbase.h"
 #include "cdcat.h"
 #include "config.h"
+
+#include <iostream>
+#include <stdio.h>
 
 #include <QDebug>
 #include <QMessageBox>
@@ -29,11 +33,6 @@
 #include <QStringList>
 #include <QTextStream>
 #include <QLineEdit>
-
-#include <iostream>
-#include <stdio.h>
-
-using namespace std;
 
 lineObject::lineObject ( QString medianame, QString path, QString filename,
                          double size, QDateTime datetime, QString comment, QString information, QString category, QList<ArchiveFile> archivecontent, bool is_archive ) {

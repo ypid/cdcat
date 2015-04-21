@@ -1293,6 +1293,7 @@ int GuiSlave::openEvent( void ) {
 
         if (mainw->cconfig->hlist.isEmpty() ||
             mainw->cconfig->hlist.filter( QString( fn )).isEmpty()) {
+
             if (*DEBUG_INFO_ENABLED) {
                 qDebug() << "1";
             }
@@ -2779,7 +2780,7 @@ int GuiSlave::openHistoryElementEvent( QAction *action ) {
     mainw->db->pww = pww;
     progress( pww );
 
-    if (mainw->db->openDB( fnc ) != 0) {        // An error occurred
+    if (mainw->db->openDB( fnc ) != 0) { // An error occurred
         QMessageBox::warning( mainw, tr( "Error while opening …" ),
                               mainw->db->errormsg );
         mainw->db = NULL;

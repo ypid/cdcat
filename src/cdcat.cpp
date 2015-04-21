@@ -7,6 +7,12 @@
 *  Copyright : (C) 2003 Peter Deak
 ****************************************************************************/
 
+#include "cdcat.h"
+
+#include "dbase.h"
+#include "mainwidget.h"
+#include "icons.h"
+
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -22,13 +28,6 @@
 #include <QFileInfo>
 #include <QTextCodec>
 #include <QDebug>
-
-#include "dbase.h"
-#include "cdcat.h"
-#include "mainwidget.h"
-#include "icons.h"
-
-using namespace std;
 
 /* Own debug output {{{ */
 bool *init_debug_info() {

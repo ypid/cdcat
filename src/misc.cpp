@@ -7,11 +7,13 @@
 *  Copyright : (C) 2003 Peter Deak
 ****************************************************************************/
 
-#include <stdio.h>
-#include <string.h>
+#include "misc.h"
 
 #include "config.h"
 #include "cdcat.h"
+
+#include <stdio.h>
+#include <string.h>
 #include <iostream>
 
 #ifdef _WIN32
@@ -23,8 +25,6 @@
 #include <QRegExp>
 #include <QFile>
 #include <QTextStream>
-
-using namespace std;
 
 #ifndef _WIN32
 // Linux:

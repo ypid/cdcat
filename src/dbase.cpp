@@ -7,6 +7,15 @@
 *  Copyright : (C) 2003 Peter Deak
 ****************************************************************************/
 
+#include "dbase.h"
+
+#include "cdcat.h"
+#include "mp3tag.h"
+#include "wdbfile.h"
+#include "adddialog.h"
+#include "config.h"
+#include "tparser.h"
+
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
@@ -15,44 +24,23 @@
     #include <windows.h>
 #endif
 
-#include <zlib.h>
-// #include <pcre.h>
-#include <QRegExp>
-
-#include "dbase.h"
-#include "cdcat.h"
-#include "mp3tag.h"
-#include "wdbfile.h"
-#include "adddialog.h"
-#include "config.h"
-
-#include "tparser.h"
-
 #include <iostream>
 #include <string>
 // tar archive scanning
 
-#include <zlib.h>
 #include <stdlib.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <time.h>
 
 #include <bzlib.h>
+#include <zlib.h>
 
 #if !defined(_WIN32)
     #include <pwd.h>
     #include <grp.h>
 #endif
 
-// lib7zip archive scanning
-#include <stdlib.h>
-#include <stdio.h>
-#include <errno.h>
-#include <fcntl.h>
-#include <time.h>
-
-#include <string>
 #include <sys/types.h>
 #include <sys/stat.h>
 
@@ -69,7 +57,9 @@
 #include <QDebug>
 #include <QApplication>
 #include <QImageReader>
+#include <QRegExp>
 
+// lib7zip archive scanning
 #ifdef USE_LIB7ZIP
     #include <lib7zip.h>
 #endif

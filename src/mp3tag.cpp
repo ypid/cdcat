@@ -7,9 +7,10 @@
 *  Copyright : (C) 2003 Peter Deak
 ****************************************************************************/
 
+#include "mp3tag.h"
+
 #include "config.h"
 #include "cdcat.h"
-#include "mp3tag.h"
 
 #include <string.h>
 #include <stdio.h>
@@ -18,8 +19,6 @@
 #include <iostream>
 
 #include <QDebug>
-
-using namespace std;
 
 #define TITLE  0
 #define ARTIST 1

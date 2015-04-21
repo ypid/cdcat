@@ -48,8 +48,6 @@
 #include <stdlib.h>
 #include <iostream>
 
-using namespace std;
-
 #if defined(_WIN32) || defined(_OS2)
     #define CONFIGFILE "cdcat.cfg"
 #else

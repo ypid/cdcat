@@ -9,6 +9,15 @@
 
 #include "hdirview.h"
 
+#include "config.h"
+#include "cdcat.h"
+#include "dbase.h"
+#include "mainwidget.h"
+#include "guibase.h"
+#include "icons.h"
+
+#include <iostream>
+
 #include <QDebug>
 #include <QDir>
 #include <QFile>
@@ -30,16 +39,6 @@
 #include <QMouseEvent>
 #include <QKeyEvent>
 #include <QDragEnterEvent>
-
-#include <iostream>
-using namespace std;
-
-#include "config.h"
-#include "cdcat.h"
-#include "dbase.h"
-#include "mainwidget.h"
-#include "guibase.h"
-#include "icons.h"
 
 LNode::LNode ( LNode *parent, Node *dbnodep, const QString &col2 )
     : QTreeWidgetItem( parent, QTreeWidgetItem::UserType ), pix( 0 ) {

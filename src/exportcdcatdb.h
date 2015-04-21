@@ -9,6 +9,11 @@
 *  Copyright : (C) 2003 Christoph Thielecke
 ****************************************************************************/
 
+#include "guibase.h"
+#include "dbase.h"
+#include "wdbfile.h"
+#include "mainwidget.h"
+
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -35,11 +40,6 @@
 #include <QVariant>
 #include <QVBoxLayout>
 #include <QWidget>
-
-#include "guibase.h"
-#include "dbase.h"
-#include "wdbfile.h"
-#include "mainwidget.h"
 
 class QLabel;
 class QLineEdit;

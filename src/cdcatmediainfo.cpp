@@ -47,7 +47,7 @@ void cleanupMediainfo() {
     mediaInfoLibInitDone = false;
 }
 
-/* convienent funcs for MediaInfo */
+/* convenient functions for MediaInfo */
 QString fromMediaInfoStrtoQString( MediaInfoNameSpace::String str ) {
     QString str2;
 
