@@ -37,6 +37,7 @@ using namespace std;
 
 lineObject::lineObject ( QString medianame, QString path, QString filename,
                          double size, QDateTime datetime, QString comment, QString information, QString category, QList<ArchiveFile> archivecontent, bool is_archive ) {
+
     this->medianame = medianame;
     this->path = path;
     this->filename = filename;
@@ -139,6 +140,7 @@ void lineObject::appendArchiveFileContent( ArchiveFile af ) {
  */
 
 importGtktalogCsv::importGtktalogCsv ( GuiSlave *parent, QString separator, QString filename, bool createdatabase, bool correctbadstyle, QString csvtype, QString cdcat_pattern, QString extra_media_name ) {
+
     this->filename = filename;
     this->correctbadstyle = correctbadstyle;
     this->createdatabase = createdatabase;
@@ -185,7 +187,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave *parent, QString separator, QStr
         }
         f.close();
         if (*DEBUG_INFO_ENABLED) {
-            qDebug() << "importGtktalogCsv:: " << lines << " lines found.";
+            qDebug() << lines << " lines found.";
         }
     }
 

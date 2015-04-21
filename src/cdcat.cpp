@@ -184,9 +184,7 @@ int main( int argi, char **argc ) {
         QByteArray filename_a = args.at(0).toUtf8();
         char* filename = filename_a.data();
         qDebug() << "filename:" << filename;
-        // qDebug() << mw.db->saveAsDB( filename );
         cconfig->setParameter( filename );
-        // qDebug() << mw.db->openDB( filename );
     }
 
     if (cconfig->readConfig() == 0) {

@@ -1852,7 +1852,11 @@ int GuiSlave::addEvent( void ) {
                 mainw->trayIcon->showMessage( tr( "Scan finished" ), tr( "Scanning %1 into %2 has been finished" ).arg( d->dDir, d->dName ), icon, 3 * 1000 );
             } else {
                 QSystemTrayIcon::MessageIcon icon = QSystemTrayIcon::MessageIcon( 2 );
-                mainw->trayIcon->showMessage( tr( "Scan finished" ), tr( "Scanning %1 into %2 has been finished (NOT complete)" ).arg( d->dDir, d->dName ), icon, 3 * 1000 );
+                mainw->trayIcon->showMessage(
+                    tr( "Scan finished" ),
+                    tr( "Scanning %1 into %2 has been finished (NOT complete)" ).arg( d->dDir, d->dName ),
+                    icon, 3 * 1000
+                );
             }
             mainw->stopTrayIconAnim();
             mainw->trayIcon->setToolTip( tr( "%1 - idle" ).arg(PROGRAM_NAME) );
@@ -1868,7 +1872,7 @@ int GuiSlave::addEvent( void ) {
             disconnect( mainw->db, SIGNAL( fileScanned( QString )), mainw, SLOT( setTrayToolTipInfo( QString )));
         }
 
-        // Do autosave if the user ask it in the config
+        // Do autosave if the user ask for it in the config
         if (mainw->cconfig->autosave) {
             int retv = 0;
             if ((retv = mainw->db->saveDB()) != 0) {

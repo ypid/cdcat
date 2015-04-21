@@ -10,12 +10,14 @@
 #ifndef IMPORT__
 #define IMPORT__
 
+#include "guibase.h"
+#include "dbase.h"
 
 #include <QObject>
+#include <QList>
 #include <QFileDialog>
 #include <QWidget>
 #include <QDateTime>
-
 #include <QProgressDialog>
 
 #include <QtXml/QXmlDefaultHandler>
@@ -24,11 +26,6 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "guibase.h"
-#include "dbase.h"
-
-
-#include <QList>
 
 
 class Node;
