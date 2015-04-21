@@ -11,6 +11,7 @@
 #include "guibase.h"
 #include "dbase.h"
 
+#include <QDebug>
 #include <QVariant>
 #include <QComboBox>
 #include <QLabel>
@@ -286,7 +287,7 @@ int addDialog::setMediaName( const QString & ds ) {
     QApplication::setOverrideCursor( Qt::WaitCursor );
 
     if (cbType->currentIndex() == CD || cbType->currentIndex() == DVD) {
-        // qDebug() << "setMediaName(): mediatype is cd/dvd"<< std::endl;
+        // qDebug() << "setMediaName(): mediatype is cd/dvd";
         if (cbType->currentIndex() == CD && cbType->currentIndex() == DVD) {
 #if defined(_WIN32) || defined(_OS2)
 
@@ -327,7 +328,7 @@ int addDialog::setMediaName( const QString & ds ) {
             leName->setText( tm );
         }
     } else {
-        // qDebug() << "setMediaName: mediatype is not cd/dvd"<< std::endl;
+        // qDebug() << "setMediaName: mediatype is not cd/dvd";
 #if !defined(_WIN32) && !defined(_OS2)
         tm = dirView->sDir.split( '/' ).at( dirView->sDir.split( '/' ).size() - 2 );
 #else
@@ -358,7 +359,7 @@ int addDialog::setMediaName( const QString & ds ) {
     }
 
 
-    // qDebug() << "setMediaName: sDir: " << qPrintable(dirView->sDir)<< std::endl;
+    // qDebug() << "setMediaName: sDir: " << qPrintable(dirView->sDir);
     caller->mainw->cconfig->lastDir = dirView->sDir;
 
     QApplication::restoreOverrideCursor();
@@ -412,7 +413,7 @@ int addDialog::bOk( void ) {
     dCategory = leCategory->text();
     dDir = dirView->sDir;
 
-    std::cout << "dDir: " << qPrintable( dDir );
+    qDebug() << "dDir: " << qPrintable( dDir );
     caller->mainw->cconfig->addX = x();
     caller->mainw->cconfig->addY = y();
     caller->mainw->cconfig->addWidth = width();

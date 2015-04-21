@@ -829,7 +829,7 @@ void findDialog::exportResult( bool isPrint ) {
     QTextCodec::setCodecForLocale( QTextCodec::codecForName( "UTF-8" ));
     QString result_str;
     if (*DEBUG_INFO_ENABLED) {
-        cerr << "result (childCount: " << resultsl->children().count() << "): ";
+        qDebug() << "result (childCount: " << resultsl->children().count() << "): ";
     }
     result_str += "<html>\n";
     result_str += "<head>\n";
@@ -961,7 +961,7 @@ void findDialog::exportResult( bool isPrint ) {
          */
         if (*DEBUG_INFO_ENABLED) {
             for (int j = 0; j <= 6; j++)
-                cerr << "result[" << i << "][" << j << "]: " << qPrintable((*lastChild)->text( j ));
+                qDebug() << "result[" << i << "][" << j << "]: " << qPrintable((*lastChild)->text( j ));
         }
 
         result_str += "<tr>";
@@ -976,7 +976,7 @@ void findDialog::exportResult( bool isPrint ) {
         result_str += "<td style=\"font-size:-2;\">" + (*lastChild)->text( 7 ).replace( "\n", "<br>" ) + "</td>";
         result_str += "</tr>\n";
         if (*DEBUG_INFO_ENABLED) {
-            cerr << "result_str: " << qPrintable( result_str );
+            qDebug() << "result_str: " << qPrintable( result_str );
         }
         ++lastChild;
         i++;
@@ -1423,7 +1423,7 @@ int seekEngine::analyzeNode( PWw *pww, Node *n, Node *pa ) {
                     real_size = (((DBFile *)(n->data))->size) * 1024.0 * 1024.0 * 1024.0 * 1024.0;
                     break;                                     // Tb
                 }
-                //              qDebug() << "minsize checked, min size " << real_size_min << " ~ " << real_size<< endl;
+                //              qDebug() << "minsize checked, min size " << real_size_min << " ~ " << real_size;
                 if (real_size < real_size_min) {
                     isOk = false;
                 }
@@ -1612,7 +1612,7 @@ int seekEngine::matchIt( QString txt ) {
         // match   = pcre_exec ( re,hints,encoded,strlen ( encoded ),0,0,offsets,99 );
         // match = re->exactMatch (QString( encoded));
         match = re->exactMatch( QString( txt ));
-        // cerr << "matchit: " << qPrintable(txt) << " <==> " << qPrintable(re->pattern()) <<" result: " << match;
+        // qDebug() << "matchit: " << qPrintable(txt) << " <==> " << qPrintable(re->pattern()) <<" result: " << match;
 
         if (match == 1) {
             return 1;
@@ -1650,7 +1650,7 @@ bool seekEngine::matchUnsharp( char *matchpattern, char *str ) {
     match = res_str_str1.indexOf( res_matchpattern_str1 );
 
     if (*DEBUG_INFO_ENABLED) {
-        cerr << "matchUnsharp: " << matchpattern << " (" << qPrintable( res_matchpattern_str1 ) << ") <=> " << str << " (" << qPrintable( res_str_str1 ) << ")  ===> " << match;
+        qDebug() << "matchUnsharp: " << matchpattern << " (" << qPrintable( res_matchpattern_str1 ) << ") <=> " << str << " (" << qPrintable( res_str_str1 ) << ")  ===> " << match;
     }
 
     if (match > -1) {

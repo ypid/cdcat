@@ -2766,7 +2766,7 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
 
                                 if (curr3 == NULL) {
                                     if (*DEBUG_INFO_ENABLED) {
-                                        qDebug() << "add file: " << qPrintable( tmp_path2 ) << "/" << qPrintable( file ) << /*", comment: " << qPrintable(comment) <<*/ endl;
+                                        qDebug() << "add file: " << qPrintable( tmp_path2 ) << "/" << qPrintable( file ) << ", comment: " << qPrintable(comment);
                                     }
                                     curr3 = db->putDirectoryNode( curr2, tmp_path2, datetime, comment );
                                 }

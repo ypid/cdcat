@@ -103,7 +103,7 @@ QString getCDName( const char *CDpath ) {
 
         deviceptr = openDevice( CDpath );
         if (*DEBUG_INFO_ENABLED) {
-            qWarning() << "getCDName(): could not open device" << endl;
+            qWarning() << "getCDName(): could not open device";
         }
         if (!deviceptr) {
             return name;
@@ -113,7 +113,7 @@ QString getCDName( const char *CDpath ) {
         fclose( deviceptr );
 
         if (*DEBUG_INFO_ENABLED) {
-            qDebug() << "getCDName(): " << name << endl;
+            qDebug() << "getCDName(): " << name;
         }
         name[32] = '\0';
 

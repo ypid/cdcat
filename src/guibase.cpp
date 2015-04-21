@@ -643,13 +643,13 @@ int GuiSlave::updateListFromNode( Node *pdir ) {
             // 3. Column name:
             qstr2 = tr( "Directory" );
 
-            //	qDebug() <<"GETNAMEOF-----------"<<qPrintable ( tmp->getNameOf() ) <<endl;
+            //	qDebug() <<"GETNAMEOF-----------"<<qPrintable ( tmp->getNameOf() );
             QString valami;
             valami = tmp->getNameOf();
 
             // !!!
             // valami.append("---1");
-            //	qDebug() <<"GETNAMEOF-----------"<<qPrintable ( valami ) <<endl;
+            //	qDebug() <<"GETNAMEOF-----------"<<qPrintable ( valami );
 
             lvi = new HQListViewItem( mainw->listView, valami, qstr1, qstr2 );
             lvi->etype = HC_DIRECTORY;
@@ -736,13 +736,13 @@ int GuiSlave::updateListFromNode( Node *pdir ) {
                 break;
             }
 
-            //	qDebug() <<"GETNAMEOF-----------"<<qPrintable ( tmp->getNameOf() ) <<endl;
+            //	qDebug() <<"GETNAMEOF-----------"<<qPrintable ( tmp->getNameOf() );
             QString valami;
             valami = tmp->getNameOf();
 
             // !!!
             // valami.append("---1");
-            //	qDebug() <<"GETNAMEOF-----------"<<qPrintable ( valami ) <<endl;
+            //	qDebug() <<"GETNAMEOF-----------"<<qPrintable ( valami );
 
             lvi = new HQListViewItem( mainw->listView, valami, qstr1, qstr2 );
             switch (tmp->type) {
@@ -1774,7 +1774,7 @@ int GuiSlave::addEvent( void ) {
 #if !defined(_WIN32) && !defined(_OS2)
     if (((d->type == CD || d->type == DVD) && ((mainw->cconfig->mounteject && mount_successful) || (!mainw->cconfig->mounteject))) || (d->type != CD && d->type != DVD)) {
 #endif
-//              qDebug()<< "media type: " << d->type <<endl;
+//              qDebug()<< "media type: " << d->type;
     if (d->type == CD || d->type == DVD) {
         if (mainw->cconfig->cdrompath != cdrom_mountpath) {
             d->setMediaName( mainw->cconfig->cdrompath );

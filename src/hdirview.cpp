@@ -369,7 +369,7 @@ void HDirectoryView::slotFolderSelectedR( QTreeWidgetItem *i, int col ) {
 
     LNode *lnode = (LNode *)i;
     if (*DEBUG_INFO_ENABLED) {
-        // cerr << lnode->fullName()<<endl;
+        // qDebug() << lnode->fullName();
     }
     if (lnode->isExpanded()) {
         lnode->setExpanded( false );
