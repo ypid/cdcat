@@ -122,7 +122,7 @@ win32 {
 
     # enable if cdcat should made console output
     #CONFIG           += console
-    distfiles.files   += ../README_CSV_IMPORT ../Authors ../README ../ChangeLog ../COPYING ../TRANSLATORS_README ../cdcat.ico ../cdcat.png
+    distfiles.files   += ../README_CSV_IMPORT ../AUTHORS ../README ../ChangeLog ../COPYING ../TRANSLATORS_README ../cdcat.ico ../cdcat.png
     target.path       += c:/program files/cdcat
     translations.path += c:/program files/cdcat
     distfiles.path    += c:/program files/cdcat
@@ -173,7 +173,7 @@ win32 {
     #LIBS             += -lz -ltar -lbz2 -ldl
     LIBS              += -lz c:/usr/lib/libtar.a -lbz2
     INCLUDEPATH       += c:/usr/include
-    distfiles.files   += ../README_CSV_IMPORT ../Authors ../README ../ChangeLog ../COPYING ../TRANSLATORS_README ../cdcat.png
+    distfiles.files   += ../README_CSV_IMPORT ../AUTHORS ../README ../ChangeLog ../COPYING ../TRANSLATORS_README ../cdcat.png
     distfiles.path     = c:/usr/share/cdcat
     target.path       += c:/usr/bin
     translations.path += c:/usr/share/cdcat/translations
@@ -245,7 +245,7 @@ win32 {
     ###### end encryption }}}
 
     LIBS              += -lz -lbz2 -ldl
-    distfiles.files   += ../README_CSV_IMPORT ../Authors ../README ../ChangeLog ../COPYING ../TRANSLATORS_README ../cdcat.png
+    distfiles.files   += ../README_CSV_IMPORT ../AUTHORS ../README ../ChangeLog ../COPYING ../TRANSLATORS_README ../cdcat.png
     distfiles.path     = /usr/local/share/cdcat
     target.path       += /usr/local/bin
     translations.path += /usr/local/share/cdcat/translations

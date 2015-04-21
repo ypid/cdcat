@@ -56,7 +56,7 @@ Then build the cdcat with:       "make"
 
 
 ## Author:
-see ./Authors
+see ./AUTHORS
 
 The main program was written by Peter Deak (hungary) but the active Maintainer is Christoph Thielecke.
 E-mail: crissi99 at gmx dot de
