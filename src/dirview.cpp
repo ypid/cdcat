@@ -187,7 +187,7 @@ DirectoryView::DirectoryView ( QWidget *parent, const char * )
 
     for (int ri = 0; ri < roots.size(); ++ri) {
         QFileInfo fi( roots.at( ri ));
-        // std::cerr << "DirView::DirView() root found: " << qPrintable(fi.filePath()) << std::endl;
+        // qDebug() << "DirView::DirView() root found: " << qPrintable(fi.filePath());
 
         Directory *root = new Directory( this, fi.filePath());
 #if defined(_WIN32) || defined(_OS2)

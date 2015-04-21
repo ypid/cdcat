@@ -272,10 +272,10 @@ void addDialog::languageChange() {
 }
 
 int addDialog::setMediaName( const QString & ds ) {
-    // std::cerr << "setMediaName(): ds: " << qPrintable(ds) << std::endl;
+    // qDebug() << "setMediaName(): ds: " << qPrintable(ds);
     QString tm;
 
-    // std::cerr << "mediatype " << cbType->currentIndex() << std::endl;
+    // qDebug() << "mediatype " << cbType->currentIndex();
 
 #if defined(_WIN32) || defined(_OS2)
     QDir selected( ds.toLower());
@@ -286,7 +286,7 @@ int addDialog::setMediaName( const QString & ds ) {
     QApplication::setOverrideCursor( Qt::WaitCursor );
 
     if (cbType->currentIndex() == CD || cbType->currentIndex() == DVD) {
-        // std::cerr << "setMediaName(): mediatype is cd/dvd"<< std::endl;
+        // qDebug() << "setMediaName(): mediatype is cd/dvd"<< std::endl;
         if (cbType->currentIndex() == CD && cbType->currentIndex() == DVD) {
 #if defined(_WIN32) || defined(_OS2)
 
@@ -306,7 +306,7 @@ int addDialog::setMediaName( const QString & ds ) {
             tm = getCDName( ds.toUtf8().constData());
 #endif
         }
-        // std::cerr << "setMediaName(): tm: " << qPrintable(tm) << std::endl;
+        // qDebug() << "setMediaName(): tm: " << qPrintable(tm);
         if (!tm.isEmpty()) {
 #if !defined(_WIN32) && !defined(_OS2)
             // also set the media type to DVD if needed
@@ -327,7 +327,7 @@ int addDialog::setMediaName( const QString & ds ) {
             leName->setText( tm );
         }
     } else {
-        // std::cerr << "setMediaName: mediatype is not cd/dvd"<< std::endl;
+        // qDebug() << "setMediaName: mediatype is not cd/dvd"<< std::endl;
 #if !defined(_WIN32) && !defined(_OS2)
         tm = dirView->sDir.split( '/' ).at( dirView->sDir.split( '/' ).size() - 2 );
 #else
@@ -358,7 +358,7 @@ int addDialog::setMediaName( const QString & ds ) {
     }
 
 
-    // std::cerr << "setMediaName: sDir: " << qPrintable(dirView->sDir)<< std::endl;
+    // qDebug() << "setMediaName: sDir: " << qPrintable(dirView->sDir)<< std::endl;
     caller->mainw->cconfig->lastDir = dirView->sDir;
 
     QApplication::restoreOverrideCursor();
@@ -412,7 +412,7 @@ int addDialog::bOk( void ) {
     dCategory = leCategory->text();
     dDir = dirView->sDir;
 
-    std::cout << "dDir: " << qPrintable( dDir ) << std::endl;
+    std::cout << "dDir: " << qPrintable( dDir );
     caller->mainw->cconfig->addX = x();
     caller->mainw->cconfig->addY = y();
     caller->mainw->cconfig->addWidth = width();
@@ -445,7 +445,7 @@ void addDialog::autoDetectAtMountToggled() {
 
 void addDialog::cbTypeToggeled( int ) {
     if (caller->mainw->cconfig->lastMediaType != cbType->currentIndex()) {
-//      std::cerr << "mediatype changed from " << caller->mainw->cconfig->lastMediaType << " to " << cbType->currentItem() +1 << std::endl;
+//      qDebug() << "mediatype changed from " << caller->mainw->cconfig->lastMediaType << " to " << cbType->currentItem() +1;
         caller->mainw->cconfig->lastMediaType = cbType->currentIndex();
         caller->mainw->cconfig->writeConfig();
     }
@@ -665,14 +665,14 @@ void PWw::paintEvent( QPaintEvent * ) {
         p.drawRect( 1, buttom_offset - 1, mywidth - 4, 15 );
         int percent = 0;
         int steps_hundered = (steps / 100);
-//              std::cerr << progress_step << "/"<< steps <<  " steps/100: " << (steps/100) << std::endl;
+//              qDebug() << progress_step << "/"<< steps <<  " steps/100: " << (steps/100);
         if (steps_hundered != 0) {
             percent = progress_step / (steps / 100);
         }
         p.setBrush( QBrush( Qt::blue ));
         p.drawRect( 2, buttom_offset, (borderless_width - 4) * percent / 100, 14 );
 
-        //         std::cerr << progress_step << "/"<< steps <<  " p: " << percent << "%" << std::endl;
+        //         qDebug() << progress_step << "/"<< steps <<  " p: " << percent << "%";
     }
     if (showCancel && cancelButton != NULL) {
         //	buttom_offset += 30;
@@ -702,7 +702,7 @@ void PWw::mousePressEvent( QMouseEvent *me ) {
     if (showCancel) {
         int buttom_offset = myheight - 15;
         if (lastx > 0 && lastx < mywidth && lasty > buttom_offset && lasty < buttom_offset + 16) {
-//              std::cerr << "cancel clicked!" << std::endl;
+//              qWarning() << "cancel clicked!";
             emit cancelReceivedByUser( true );
         }
     }

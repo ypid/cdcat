@@ -287,7 +287,6 @@ int ShowContent::deletenode( void ) {
 
 
 void ShowContent::setCurrentFont( const QFont &font ) {
-    // std::cout << "setCurrentFont" << std::endl;
     QString text = textBrowser->toPlainText();
 
     textBrowser->setCurrentFont( font );

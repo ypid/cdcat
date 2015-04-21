@@ -18,6 +18,7 @@
     #include <windows.h>
 #endif
 
+#include <QDebug>
 #include <QMessageBox>
 #include <QRegExp>
 #include <QFile>
@@ -102,7 +103,7 @@ QString getCDName( const char *CDpath ) {
 
         deviceptr = openDevice( CDpath );
         if (*DEBUG_INFO_ENABLED) {
-            std::cerr << "getCDName(): could not open device" << endl;
+            qWarning() << "getCDName(): could not open device" << endl;
         }
         if (!deviceptr) {
             return name;
@@ -112,7 +113,7 @@ QString getCDName( const char *CDpath ) {
         fclose( deviceptr );
 
         if (*DEBUG_INFO_ENABLED) {
-            std::cerr << "getCDName(): " << name << endl;
+            qDebug() << "getCDName(): " << name << endl;
         }
         name[32] = '\0';
 

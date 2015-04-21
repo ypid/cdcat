@@ -13,9 +13,12 @@
 #include "config.h"
 #include "cdcat.h"
 #include "cdcatmediainfo.h"
+
 #include <QString>
 #include <QFile>
 #include <QMessageBox>
+#include <QDebug>
+
 #include <stdio.h>
 #include <ctype.h>
 #include <stdlib.h>
@@ -78,7 +81,7 @@ CdcatMediaInfo::CdcatMediaInfo ( void ) : filename( "" ), InfoText( "" ) {
 CdcatMediaInfo::CdcatMediaInfo ( QString filename ) {
     DEBUG_INFO_ENABLED = init_debug_info();
     if (*DEBUG_INFO_ENABLED) {
-        cerr << "CdcatMediaInfo() filename: " << qPrintable( filename ) << endl;
+        qDebug() << "CdcatMediaInfo() filename: " << qPrintable( filename );
     }
     this->filename = filename;
     if (!mediaInfoLibInitDone) {
@@ -94,14 +97,14 @@ bool CdcatMediaInfo::readCdcatMediaInfo() {
     DEBUG_INFO_ENABLED = init_debug_info();
     if (MediaInfoHandler == NULL) {
         if (*DEBUG_INFO_ENABLED) {
-            cout << "readCdcatMediaInfo() MediaInfoHandler is invalid" << endl;
+            qWarning() << "readCdcatMediaInfo() MediaInfoHandler is invalid";
         }
         return false;
     }
 
     if (filename == "") {
         if (*DEBUG_INFO_ENABLED) {
-            cout << "readCdcatMediaInfo() no filename set" << endl;
+            qWarning() << "readCdcatMediaInfo() no filename set";
         }
         return false;
     }
@@ -110,18 +113,18 @@ bool CdcatMediaInfo::readCdcatMediaInfo() {
     if (fileopencount > 0) {
         // MediaInfoHandler->Option("Language", "German;German" );
         // if(*DEBUG_INFO_ENABLED)
-        //	cout << "langs of mediainfo: " << MediaInfoHandler.Option("Language_Get").c_str() << endl;
+        //	qDebug() << "langs of mediainfo: " << MediaInfoHandler.Option("Language_Get").c_str();
 
         //      MediaInfoHandler.Option("Language", QString(QString("Image")+QString(";")+tr("Image")).toLocal8Bit().constData());
         //      MediaInfoHandler.Option("Language", "Image;Bild");
         String info = MediaInfoHandler->Inform();
         if (*DEBUG_INFO_ENABLED) {
-            cout << "mediainfo for " << filename.toLocal8Bit().constData() << ": " << fromMediaInfoStrtoQString( info ).toLocal8Bit().constData() << endl;
+            qDebug() << "mediainfo for " << filename.toLocal8Bit().constData() << ": " << fromMediaInfoStrtoQString( info ).toLocal8Bit().constData();
         }
         if (*DEBUG_INFO_ENABLED) {
             // String ver = toMediaInfoString(QString("Info_Version"));
-            //  cout << "mediainfo version: " << fromMediaInfoStrtoQString(MediaInfoHandler->Option(ver)).toLocal8Bit().constData() << endl;
-            //  cout << "mediainfo codecs: " << MediaInfoHandler.Option("Info_Codecs").c_str() << endl;
+            //  qDebug() << "mediainfo version: " << fromMediaInfoStrtoQString(MediaInfoHandler->Option(ver)).toLocal8Bit().constData();
+            //  qDebug() << "mediainfo codecs: " << MediaInfoHandler.Option("Info_Codecs").c_str();
         }
         InfoText = fromMediaInfoStrtoQString( info );
 
@@ -139,7 +142,7 @@ bool CdcatMediaInfo::readCdcatMediaInfo() {
         //      size_t MenuCount =  MediaInfoHandler.Count_Get (Stream_General, Stream_Menu_Number);
         //
         //      if(*DEBUG_INFO_ENABLED)
-        //              cout << "general: " << GeneralCount << ", video: " << VideoCount << ", audio: " << AudioCount << ", text: " << TextCount << ", chapters: " << ChaptersCount << ", menu: " << MenuCount << endl;
+        //              qDebug() << "general: " << GeneralCount << ", video: " << VideoCount << ", audio: " << AudioCount << ", text: " << TextCount << ", chapters: " << ChaptersCount << ", menu: " << MenuCount;
         //
         // //   Stream_General    StreamKind = General.
         // //   Stream_Video    StreamKind = Video.
@@ -151,7 +154,7 @@ bool CdcatMediaInfo::readCdcatMediaInfo() {
         MediaInfoHandler->Close();
         return true;
     } else {
-        cout << "mediainfo for " << filename.toLocal8Bit().constData() << " has been failed" << endl;
+        qDebug() << "mediainfo for " << filename.toLocal8Bit().constData() << " has been failed";
         MediaInfoHandler->Close();
         return false;
     }
@@ -171,11 +174,11 @@ bool CdcatMediaInfo::initMediaInfoLib() {
     if (MediaInfoHandler != NULL) {
         mediaInfoLibFound = true;
         if (*DEBUG_INFO_ENABLED) {
-            cout << "initMediaInfoLib(): mediainfo lib version: " << fromMediaInfoStrtoQString( MediaInfoHandler->Option( toMediaInfoString( QString( "Info_Version" )))).split( " - " ).at( 1 ).toStdString() << endl;
+            qDebug() << "initMediaInfoLib(): mediainfo lib version: " << fromMediaInfoStrtoQString( MediaInfoHandler->Option( toMediaInfoString( QString( "Info_Version" )))).split( " - " ).at( 1 );
         }
     } else {
         if (*DEBUG_INFO_ENABLED) {
-            cout << "initMediaInfoLib(): init mediainfo lib failed" << endl;
+            qWarning() << "initMediaInfoLib(): init mediainfo lib failed";
         }
     }
 #else
@@ -183,15 +186,15 @@ bool CdcatMediaInfo::initMediaInfoLib() {
     if (MediaInfoDLL_IsLoaded()) {
         mediaInfoLibFound = true;
         if (*DEBUG_INFO_ENABLED) {
-            cout << "initMediaInfoLib(): loading mediainfo lib " << MEDIAINFODLL_NAME << " succeeded" << endl;
+            qDebug() << "initMediaInfoLib(): loading mediainfo lib " << MEDIAINFODLL_NAME << " succeeded";
         }
         MediaInfoHandler = new MediaInfo();
         if (*DEBUG_INFO_ENABLED) {
-            cout << "initMediaInfoLib(): mediainfo lib version: " << fromMediaInfoStrtoQString( MediaInfoHandler->Option( toMediaInfoString( QString( "Info_Version" )))).split( " - " ).at( 1 ).toStdString() << endl;
+            qDebug() << "initMediaInfoLib(): mediainfo lib version: " << fromMediaInfoStrtoQString( MediaInfoHandler->Option( toMediaInfoString( QString( "Info_Version" )))).split( " - " ).at( 1 );
         }
     } else {
         if (*DEBUG_INFO_ENABLED) {
-            cout << "initMediaInfoLib(): loading mediainfo lib " << MEDIAINFODLL_NAME << " failed" << endl;
+            qDebug() << "initMediaInfoLib(): loading mediainfo lib " << MEDIAINFODLL_NAME << " failed";
         }
     }
 #endif // MEDIAINFO_STATIC

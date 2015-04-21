@@ -9,6 +9,7 @@
 
 #include "find.h"
 
+#include <QDebug>
 #include <QVariant>
 #include <QCheckBox>
 #include <QComboBox>
@@ -689,7 +690,7 @@ int findDialog::select( QTreeWidgetItem *i, QTreeWidgetItem * ) {
     }
 
     QString nodepath = i->text( 4 ).mid( 2, i->text( 4 ).length() - 1 );
-    // std::cerr << "select: nodepath " << qPrintable(nodepath) << std::endl;
+    // qDebug() << "select: nodepath " << qPrintable(nodepath);
 
     mainw->guis->updateListFromNode(
         (mainw->guis->getNodeFromFullName( mainw->db->getRootNode(), nodepath )));
@@ -700,7 +701,7 @@ int findDialog::select( QTreeWidgetItem *i, QTreeWidgetItem * ) {
             mainw->listView->setCurrentVisible();
             mainw->listView->repaint();
             QString dirpath = QFileInfo( i->text( 4 )).absoluteDir().absolutePath();
-            // std::cout << "path: " << qPrintable(i->text(4)) << ", dirpath: " << qPrintable(dirpath) << std::endl;
+            // qDebug() << "path: " << qPrintable(i->text(4)) << ", dirpath: " << qPrintable(dirpath);
             mainw->statusBar()->showMessage( tr( "Selected dir: " ) + dirpath );
         }
         ++it;
@@ -768,7 +769,7 @@ void findDialog::dateEndChanged( int ) {
 void findDialog::dateStartDoubleClicked() {
     DEBUG_INFO_ENABLED = init_debug_info();
     if (*DEBUG_INFO_ENABLED) {
-        std::cerr << "dateStartDoubleClicked" << endl;
+        qDebug() << "dateStartDoubleClicked";
     }
 }
 
@@ -828,7 +829,7 @@ void findDialog::exportResult( bool isPrint ) {
     QTextCodec::setCodecForLocale( QTextCodec::codecForName( "UTF-8" ));
     QString result_str;
     if (*DEBUG_INFO_ENABLED) {
-        cerr << "result (childCount: " << resultsl->children().count() << "): " << endl;
+        cerr << "result (childCount: " << resultsl->children().count() << "): ";
     }
     result_str += "<html>\n";
     result_str += "<head>\n";
@@ -960,7 +961,7 @@ void findDialog::exportResult( bool isPrint ) {
          */
         if (*DEBUG_INFO_ENABLED) {
             for (int j = 0; j <= 6; j++)
-                cerr << "result[" << i << "][" << j << "]: " << qPrintable((*lastChild)->text( j )) << endl;
+                cerr << "result[" << i << "][" << j << "]: " << qPrintable((*lastChild)->text( j ));
         }
 
         result_str += "<tr>";
@@ -975,7 +976,7 @@ void findDialog::exportResult( bool isPrint ) {
         result_str += "<td style=\"font-size:-2;\">" + (*lastChild)->text( 7 ).replace( "\n", "<br>" ) + "</td>";
         result_str += "</tr>\n";
         if (*DEBUG_INFO_ENABLED) {
-            cerr << "result_str: " << qPrintable( result_str ) << endl;
+            cerr << "result_str: " << qPrintable( result_str );
         }
         ++lastChild;
         i++;
@@ -1142,7 +1143,7 @@ int seekEngine::start_seek( void ) {
             if (fd->cbSizeUnitMin->currentIndex() == 4) {
                 size_min = fd->spSizeMin->value() * 1024.0 * 1024.0 * 1024.0 * 1024.0;                 // TByte
             }
-            //  std::cerr << "minsize checked, type "<< fd->cbSizeUnitMin->currentIndex() <<", min size " << size_min << endl;
+            //  qDebug() << "minsize checked, type "<< fd->cbSizeUnitMin->currentIndex() <<", min size " << size_min;
         }
 
         if (sizeMaxChecked) {
@@ -1161,7 +1162,7 @@ int seekEngine::start_seek( void ) {
             if (fd->cbSizeUnitMax->currentIndex() == 4) {
                 size_max = fd->spSizeMax->value() * 1024.0 * 1024.0 * 1024.0 * 1024.0;                 // TByte
             }
-            //  std::cerr << "maxsize checked, type "<< fd->cbSizeUnitMax->currentIndex() <<", max size " << size_max << endl;
+            //  qDebug() << "maxsize checked, type "<< fd->cbSizeUnitMax->currentIndex() <<", max size " << size_max;
         }
 
         allmedia = false;
@@ -1220,7 +1221,7 @@ int seekEngine::analyzeNode( PWw *pww, Node *n, Node *pa ) {
     if (searchForDuplicates) {
         if (fd->mainw->guis->standON == NULL) {
             if (*DEBUG_INFO_ENABLED) {
-                std::cout << "standON is NULL! " << std::endl;
+                qWarning() << "standON is NULL! ";
             }
         }
         return 0;
@@ -1266,17 +1267,17 @@ int seekEngine::analyzeNode( PWw *pww, Node *n, Node *pa ) {
                 }
             }
             if (*DEBUG_INFO_ENABLED) {
-                // std::cout << "testing file: " << qPrintable(n->getNameOf()) << " name: " << qPrintable(fd->mainw->guis->standON->getNameOf()) << " <=> " << qPrintable(n->getNameOf()) << ". size: " <<  (( DBFile * ) ( fd->mainw->guis->standON ))->size << " <=> " << ( ( DBFile * ) ( n->data ) )->size << ", size type: " <<  (( DBFile * ) ( fd->mainw->guis->standON ) )->sizeType << " <=> " << ( ( DBFile * ) ( n->data ) )->sizeType  << std::endl;
-                std::cout << "testing file: " << qPrintable( n->getNameOf()) << " name: " << qPrintable( fd->mainw->guis->standON->getNameOf()) << " <=> " << qPrintable( n->getNameOf()) << std::endl;
+                // qDebug() << "testing file: " << qPrintable(n->getNameOf()) << " name: " << qPrintable(fd->mainw->guis->standON->getNameOf()) << " <=> " << qPrintable(n->getNameOf()) << ". size: " <<  (( DBFile * ) ( fd->mainw->guis->standON ))->size << " <=> " << ( ( DBFile * ) ( n->data ) )->size << ", size type: " <<  (( DBFile * ) ( fd->mainw->guis->standON ) )->sizeType << " <=> " << ( ( DBFile * ) ( n->data ) )->sizeType ;
+                qDebug() << "testing file: " << qPrintable( n->getNameOf()) << " name: " << qPrintable( fd->mainw->guis->standON->getNameOf()) << " <=> " << qPrintable( n->getNameOf());
             }
             if (fd->mainw->guis->standON->getNameOf() == n->getNameOf() && fd->mainw->guis->standON->getFullPath() != n->getFullPath()) {
                 if (*DEBUG_INFO_ENABLED) {
-                    std::cout << "filename match!" << std::endl;
-                    std::cout << "size: " << fd->mainw->guis->mainw->db->getSize( fd->mainw->guis->standON ) << " <=> " << ((DBFile *)(n->data))->size << std::endl;
+                    qDebug() << "filename match!";
+                    qDebug() << "size: " << fd->mainw->guis->mainw->db->getSize( fd->mainw->guis->standON ) << " <=> " << ((DBFile *)(n->data))->size;
                 }
                 if (fd->mainw->guis->mainw->db->getSize( fd->mainw->guis->standON ) == ((DBFile *)(n->data))->size) {
                     if (*DEBUG_INFO_ENABLED) {
-                        std::cout << "filesize match!" << std::endl;
+                        qDebug() << "filesize match!";
                     }
                     putNodeToList( n );
                 }
@@ -1422,7 +1423,7 @@ int seekEngine::analyzeNode( PWw *pww, Node *n, Node *pa ) {
                     real_size = (((DBFile *)(n->data))->size) * 1024.0 * 1024.0 * 1024.0 * 1024.0;
                     break;                                     // Tb
                 }
-                //              std::cerr << "minsize checked, min size " << real_size_min << " ~ " << real_size<< endl;
+                //              qDebug() << "minsize checked, min size " << real_size_min << " ~ " << real_size<< endl;
                 if (real_size < real_size_min) {
                     isOk = false;
                 }
@@ -1447,7 +1448,7 @@ int seekEngine::analyzeNode( PWw *pww, Node *n, Node *pa ) {
                     real_size = (((DBFile *)(n->data))->size) * 1024.0 * 1024.0 * 1024.0 * 1024.0;
                     break;                                     // Tb
                 }
-                //              std::cerr << "size type: "<<  ( ( DBFile * ) ( n->data ) )->sizeType <<", maxsize checked, max size " << real_size_max << " ~ " << real_size << endl;
+                //              qDebug() << "size type: "<<  ( ( DBFile * ) ( n->data ) )->sizeType <<", maxsize checked, max size " << real_size_max << " ~ " << real_size;
                 if (real_size > real_size_max) {
                     isOk = false;
                 }
@@ -1473,7 +1474,7 @@ int seekEngine::analyzeNode( PWw *pww, Node *n, Node *pa ) {
                     real_size = (((DBFile *)(n->data))->size) * 1024.0 * 1024.0 * 1024.0 * 1024.0;
                     break;                                     // Tb
                 }
-                //              std::cerr << "min & maxsize checked, min size " << real_size_min << "/max size " << real_size_max << " ~ " << real_size << endl;
+                //              qDebug() << "min & maxsize checked, min size " << real_size_min << "/max size " << real_size_max << " ~ " << real_size;
                 if (real_size < real_size_min || real_size > real_size_max) {
                     isOk = false;
                 }
@@ -1487,14 +1488,14 @@ int seekEngine::analyzeNode( PWw *pww, Node *n, Node *pa ) {
                     ArchiveFile af = ArchiveFileList.at( i );
                     QString filepath = af.path.section( '/', -1, -1 );
                     if (*DEBUG_INFO_ENABLED) {
-                        std::cout << "testing file inside archive: " << qPrintable( filepath ) << std::endl;
+                        qDebug() << "testing file inside archive: " << qPrintable( filepath );
                     }
 
                     for (int i = 0; i < ArchiveFileList.size(); i++) {
                         ArchiveFile af = ArchiveFileList.at( i );
                         QString filepath = af.path.section( '/', -1, -1 );
                         if (*DEBUG_INFO_ENABLED) {
-                            std::cout << "testing file inside archive: " << qPrintable( filepath ) << std::endl;
+                            qDebug() << "testing file inside archive: " << qPrintable( filepath );
                         }
 
                         if (filename) {
@@ -1611,7 +1612,7 @@ int seekEngine::matchIt( QString txt ) {
         // match   = pcre_exec ( re,hints,encoded,strlen ( encoded ),0,0,offsets,99 );
         // match = re->exactMatch (QString( encoded));
         match = re->exactMatch( QString( txt ));
-        // cerr << "matchit: " << qPrintable(txt) << " <==> " << qPrintable(re->pattern()) <<" result: " << match << endl;
+        // cerr << "matchit: " << qPrintable(txt) << " <==> " << qPrintable(re->pattern()) <<" result: " << match;
 
         if (match == 1) {
             return 1;
@@ -1649,7 +1650,7 @@ bool seekEngine::matchUnsharp( char *matchpattern, char *str ) {
     match = res_str_str1.indexOf( res_matchpattern_str1 );
 
     if (*DEBUG_INFO_ENABLED) {
-        cerr << "matchUnsharp: " << matchpattern << " (" << qPrintable( res_matchpattern_str1 ) << ") <=> " << str << " (" << qPrintable( res_str_str1 ) << ")  ===> " << match << endl;
+        cerr << "matchUnsharp: " << matchpattern << " (" << qPrintable( res_matchpattern_str1 ) << ") <=> " << str << " (" << qPrintable( res_str_str1 ) << ")  ===> " << match;
     }
 
     if (match > -1) {
@@ -1704,7 +1705,7 @@ void seekEngine::putNodeToList( Node *n, QString comment ) {
     }
     tmp = n;
     if (*DEBUG_INFO_ENABLED) {
-        std::cout << "putNodeToList: path: " << qPrintable( n->getFullPath()) << ",  type: " << qPrintable( type ) << std::endl;
+        qDebug() << "putNodeToList: path: " << qPrintable( n->getFullPath()) << ",  type: " << qPrintable( type );
     }
     while (tmp->type != HC_MEDIA) {
         tmp = tmp->parent;

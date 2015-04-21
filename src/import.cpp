@@ -319,7 +319,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave *parent, QString separator, QStr
             }
             if (correctbadstyle) {
                 // if(*DEBUG_INFO_ENABLED) {
-                //	qWarning() << "correcting bad style"<< endl;
+                //	qWarning() << "correcting bad style";
                 // }
                 //     QMessageBox::warning (0, "wrong", line);
                 int idx = 0;
@@ -555,7 +555,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave *parent, QString separator, QStr
                 if (*DEBUG_INFO_ENABLED) {
                     qDebug() << "line: " << qPrintable( line );
                     for (int i = 0; i < csvList.size(); ++i)
-                        cout << "csvList[" << i << "]: " << csvList.at( i ).toLocal8Bit().constData();
+                        qDebug() << "csvList[" << i << "]: " << csvList.at( i ).toLocal8Bit().constData();
                 }
 
                 filename = QString( csvList.at( 0 ));
@@ -677,7 +677,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave *parent, QString separator, QStr
                 if (*DEBUG_INFO_ENABLED) {
                     qDebug() << "line: " << qPrintable( line );
                     for (int i = 0; i < csvList.size(); ++i)
-                        cout << "csvList[" << i << "]: " << csvList.at( i ).toLocal8Bit().constData();
+                        qDebug() << "csvList[" << i << "]: " << csvList.at( i ).toLocal8Bit().constData();
                 }
 
                 filename = QString( csvList.at( 0 ));
@@ -792,7 +792,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave *parent, QString separator, QStr
                 if (*DEBUG_INFO_ENABLED) {
                     qDebug() << "line: " << qPrintable( line );
                     for (int i = 0; i < csvList.size(); ++i)
-                        cout << "csvList[" << i << "]: " << csvList.at( i ).toLocal8Bit().constData();
+                        qDebug() << "csvList[" << i << "]: " << csvList.at( i ).toLocal8Bit().constData();
                 }
 
                 filename = QString( csvList.at( 2 )).replace( "\"", "" );
@@ -905,7 +905,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave *parent, QString separator, QStr
                 if (*DEBUG_INFO_ENABLED) {
                     qDebug() << "line: " << qPrintable( line );
                     for (int i = 0; i < csvList.size(); ++i)
-                        cout << "csvList[" << i << "]: " << csvList.at( i ).toLocal8Bit().constData();
+                        qDebug() << "csvList[" << i << "]: " << csvList.at( i ).toLocal8Bit().constData();
                 }
 
                 QString type = QString( csvList.at( 6 )).replace( "\"", "" );
@@ -1034,7 +1034,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave *parent, QString separator, QStr
                 if (*DEBUG_INFO_ENABLED) {
                     qDebug() << "line: " << qPrintable( line );
                     for (int i = 0; i < csvList.size(); ++i)
-                        cout << "csvList[" << i << "]: " << csvList.at( i ).toLocal8Bit().constData();
+                        qDebug() << "csvList[" << i << "]: " << csvList.at( i ).toLocal8Bit().constData();
                 }
 
                 filename = QString( csvList.at( 1 ));
@@ -1155,7 +1155,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave *parent, QString separator, QStr
                         } else {
                             csvList.append( buffer.trimmed());
                             // if(*DEBUG_INFO_ENABLED) {
-                            //	cout << "appending field";
+                            //	qDebug() << "appending field";
                             // }
                             buffer = "";
                         }
@@ -1166,14 +1166,14 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave *parent, QString separator, QStr
                     } else {
                         buffer.append( ch );
                         // if(*DEBUG_INFO_ENABLED) {
-                        //	cout << "appending field content to buffer";
+                        //	qDebug() << "appending field content to buffer";
                         // }
                     }
                 }
                 if (*DEBUG_INFO_ENABLED) {
                     qDebug() << "line (fields " << csvList.size() << "): " << qPrintable( line );
                     for (int i = 0; i < csvList.size(); ++i)
-                        cout << "csvList[" << i << "]: " << csvList.at( i ).toLocal8Bit().constData();
+                        qDebug() << "csvList[" << i << "]: " << csvList.at( i ).toLocal8Bit().constData();
                 }
 
                 if (csvList.count() != 11 && csvList.count() != 12) {
@@ -1300,7 +1300,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave *parent, QString separator, QStr
                 if (*DEBUG_INFO_ENABLED) {
                     qDebug() << "line: " << qPrintable( line );
                     for (int i = 0; i < csvList.size(); ++i)
-                        cout << "csvList[" << i << "]: " << csvList.at( i ).toLocal8Bit().constData();
+                        qDebug() << "csvList[" << i << "]: " << csvList.at( i ).toLocal8Bit().constData();
                 }
 
                 new_medianame = QString( csvList.at( 4 ));
@@ -1833,7 +1833,6 @@ int importGtktalogCsv::addNewMedia( QString new_medianame, QDateTime media_modif
 
 QString tmpdirname;
 bool importGtktalogXml::startDocument() {
-    // cout << "startDocument: ";
     return true;
 }
 
@@ -1855,7 +1854,7 @@ bool importGtktalogXml::startElement( const QString&, const QString&,
 bool importGtktalogXml::endElement( const QString&, const QString & tag, const QString& ) {
     DEBUG_INFO_ENABLED = init_debug_info();
     if (*DEBUG_INFO_ENABLED) {
-        cout << "importGtktalogXml::endElement: " << "tag: " << qPrintable( tag );
+        qDebug() << "tag: " << qPrintable( tag );
     }
     QString line = "";
     last_tag = tag;
@@ -1871,7 +1870,7 @@ bool importGtktalogXml::endElement( const QString&, const QString & tag, const Q
     }
 
     if (*DEBUG_INFO_ENABLED) {
-        cout << "importGtktalogXml::endElement: " << "tag content: \"" << qPrintable( tag_content ) << "\"";
+        qDebug() << "tag content: \"" << qPrintable( tag_content ) << "\"";
     }
 
     if (tag == "information") {
@@ -2373,7 +2372,6 @@ QString tmpdirname_whereisit;
 int lines;
 
 bool importWhereIsItXml::startDocument() {
-    // cout << "startDocument: ";
     return true;
 }
 
@@ -2382,16 +2380,16 @@ bool importWhereIsItXml::startElement( const QString&, const QString&,
                                        const QXmlAttributes & atts ) {
     DEBUG_INFO_ENABLED = init_debug_info();
     if (*DEBUG_INFO_ENABLED) {
-        cout << "startElement: " << qPrintable( name2 );
+        qDebug() << qPrintable( name2 );
     }
     currentText = "";
 
     if (atts.length() > 0) {
         if (*DEBUG_INFO_ENABLED) {
-            cout << "atts: ";
+            qDebug() << "atts: ";
             for (int i = 0; i < atts.length(); i++)
-                cout << "atts[" << i << "]: " << qPrintable( atts.qName( i )) << "=" << qPrintable( atts.value( i ));
-            cout;
+                qDebug() << "atts[" << i << "]: " << qPrintable( atts.qName( i )) << "=" << qPrintable( atts.value( i ));
+            qDebug();
         }
     }
 
@@ -2433,11 +2431,11 @@ bool importWhereIsItXml::startElement( const QString&, const QString&,
 bool importWhereIsItXml::endElement( const QString&, const QString & tag, const QString& ) {
     DEBUG_INFO_ENABLED = init_debug_info();
     if (*DEBUG_INFO_ENABLED) {
-        cout << "endElement: " << "tag: " << qPrintable( tag );
+        qDebug() << "tag:" << qPrintable( tag );
     }
 
     if (*DEBUG_INFO_ENABLED) {
-        cout << "cdata: " << qPrintable( currentText );
+        qDebug() << "cdata:" << qPrintable( currentText );
     }
 
 
@@ -2560,7 +2558,7 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
     } else if (tag == "EXT") {
         if (last_type == "file") {
             // qDebug() << "getCdata_whereisit_parse(): EXT: \"" << currentText.replace("\n", "") << "\"";
-//            qDebug() << "getCdata_whereisit_parse(): EXT\""<< currentText.replace("\n", "") << "\", " << "cut: " << file.rightRef(currentText.replace("\n", "").length()+2)<< endl;
+//            qDebug() << "getCdata_whereisit_parse(): EXT\""<< currentText.replace("\n", "") << "\", " << "cut: " << file.rightRef(currentText.replace("\n", "").length()+2);
             if (file.rightRef( currentText.replace( "\n", "" ).length() + 1 ) != QString( "." + currentText.replace( "\n", "" ))) {
                 file += QString( "." + currentText.replace( "\n", "" ));
             }
@@ -2628,7 +2626,7 @@ bool importWhereIsItXml::endElement( const QString&, const QString & tag, const 
     else if (tag == "FLAG") {
         // this is tag
         // qDebug() << "getCdata_whereisit_parse(): FLAG: \"" << currentText.replace("\n", "") << "\"";
-//            qDebug() << "getCdata_whereisit_parse(): FLAG\""<< currentText.replace("\n", "") << "\", " << "cut: " << file.rightRef(currentText.replace("\n", "").length()+2)<< endl;
+//            qDebug() << "getCdata_whereisit_parse(): FLAG\""<< currentText.replace("\n", "") << "\", " << "cut: " << file.rightRef(currentText.replace("\n", "").length()+2);
         if (currentText.size() > 0) {
             comment += tr( "tag:" ) + " " + currentText;
         }

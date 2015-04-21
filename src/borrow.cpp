@@ -14,6 +14,7 @@
 #include "dbase.h"
 #include "cdcat.h"
 
+#include <QDebug>
 #include <QVariant>
 #include <QLabel>
 #include <QPoint>
@@ -445,7 +446,7 @@ int borrowingDialog::click( const QPoint &mousePos ) {
                 b = 1;
             }
         if (!b) {
-            std::cout << "borrowingDialog::addtem: " << qPrintable( s ) << std::endl;
+            qDebug() << "borrowingDialog::addtem: " << qPrintable( s );
             QAction *a = new QAction( pma );
             a->setText( s );
             pma->addAction( a );

@@ -9,10 +9,11 @@
 
 #include <stdio.h>
 #include <ctype.h>
+#include <zlib.h>
 #include <iostream>
 
+#include <QDebug>
 #include <QtXml/QXmlInputSource>
-#include <zlib.h>
 #include <QString>
 #include <QDateTime>
 #include <QRegExp>
@@ -31,8 +32,6 @@
 
 
 #define BUFFSIZE        8192
-
-using namespace std;
 
 char encodeHex[] = "0123456789ABCDEF";
 /*************************************************************************/
@@ -112,13 +111,13 @@ int   getSizetFS( const char *str ) {
     if (str == NULL) {
         return -1;
     }
-//     cerr << "str: \"" << str << "\"" << endl;
+//     qWarning() << "str: \"" << str << "\"";
     QString unit;
     QStringList l = QString( str ).simplified().split( ' ' );
     unit = l.at( 1 );
     r = l.at( 0 ).toDouble();
-    // cerr << "l: " << qPrintable(l.join(",")) << endl;
-    // cerr << "unit: " << qPrintable(unit) << endl;
+    // qWarning() << "l: " << qPrintable(l.join(","));
+    // qWarning() << "unit: " << qPrintable(unit);
 
     if (unit == "byte") {
         return UNIT_BYTE;
@@ -186,7 +185,7 @@ FileWriter::FileWriter ( gzFile ff, bool nicefp, QString encoding ) {
     XML_ENCODING = encoding;
     DEBUG_INFO_ENABLED = init_debug_info();
     if (*DEBUG_INFO_ENABLED) {
-        std::cerr << "using encoding for writing: " << qPrintable( XML_ENCODING ) << endl;
+        qDebug() << "using encoding for writing: " << qPrintable( XML_ENCODING );
     }
     if (XML_ENCODING != "UTF-8") {
         converter = QTextCodec::codecForName( XML_ENCODING.toUtf8());
@@ -437,7 +436,7 @@ int FileWriter::writeCatalog( Node *source ) {
     if (isEncryptedCatalog) {
         DEBUG_INFO_ENABLED = init_debug_info();
 //              if ( *DEBUG_INFO_ENABLED )
-//                      std::cerr << "unencryptedBuffer:\n=====\n" << qPrintable(unencryptedBuffer)<< "\n====\n" << endl;
+//                      qWarning() << "unencryptedBuffer:\n=====\n" << qPrintable(unencryptedBuffer)<< "\n====\n";
         gzwrite( f, enc_hcf_header, strlen( enc_hcf_header ));
 
         std::string inbuff_str( unencryptedBuffer.toLocal8Bit().constData());
@@ -646,15 +645,15 @@ int FileWriter::writeThumb( Node *source ) {
 
     msg.sprintf( "%s<thumb>", spg( level ));
     real_write( msg );
-    // std::cout << "save image size: " << ( ( DBThumb * ) ( source->data ) )->ThumbImage.width() << "x" << ( ( DBThumb * ) ( source->data ) )->ThumbImage.height() << std::endl;
+    // qWarning() << "save image size: " << ( ( DBThumb * ) ( source->data ) )->ThumbImage.width() << "x" << ( ( DBThumb * ) ( source->data ) )->ThumbImage.height();
     QByteArray byteArray;
     QBuffer buffer( &byteArray );
     buffer.open( QIODevice::WriteOnly );
     ((DBThumb *)(source->data))->ThumbImage.save( &buffer, "PNG" );
 
-    // std::cerr << "qbuffer size: " << buffer.size() << std::endl;
+    // qDebug() << "qbuffer size: " << buffer.size();
     buffer.close();
-    // std::cerr << "byteArray size: " << byteArray.size() << std::endl;
+    // qDebug() << "byteArray size: " << byteArray.size();
 
     msg = "<![CDATA[";
     real_write( msg );
@@ -735,7 +734,7 @@ QString FileReader::get_cutf8( QString s ) {
         return QString( "" );
     }
     // if(*DEBUG_INFO_ENABLED)
-    //	cerr<<"Start-converting |"<<s<<"|"<<endl;
+    //	qDebug()<<"Start-converting |"<<s<<"|";
     if (XML_ENCODING != "UTF8") {
         ret = converter->toUnicode( s.toUtf8());
         return ret;
@@ -743,7 +742,7 @@ QString FileReader::get_cutf8( QString s ) {
         return QString( s );
     }
     // if(*DEBUG_INFO_ENABLED)
-    //	cerr<<"End-converting   |" << qPrintable ( ret ) <<"|"<<endl;
+    //	qDebug()<<"End-converting   |" << qPrintable ( ret ) <<"|";
     // ret =  QString(s);
 }
 
@@ -757,11 +756,11 @@ QDateTime FileReader::get_dcutf8( QString s ) {
 
     DEBUG_INFO_ENABLED = init_debug_info();
 //     if (*DEBUG_INFO_ENABLED)
-//      std::cerr <<"FileReader::get_dcutf8 datestr:"<<  s  <<endl;
+//      qWarning() <<"FileReader::get_dcutf8 datestr:"<<  s  ;
 
     if (sscanf( s.toUtf8().constData(), "%d-%d-%d %d:%d:%d", &year, &month, &day, &hour, &minute, &second ) == 6) {
 //  if (*DEBUG_INFO_ENABLED)
-//      std::cerr <<"FileReader::get_dcutf8 new format found"<<endl;
+//      qWarning() <<"FileReader::get_dcutf8 new format found";
         r.setDate( QDate( year, month, day ));
         r.setTime( QTime( hour, minute, second ));
         return r;
@@ -770,7 +769,7 @@ QDateTime FileReader::get_dcutf8( QString s ) {
     /* OLD VERSION FOUND */
     if (sscanf( s.toUtf8().constData(), "%s %02d %02d:%02d %04d", p, &day, &hour, &minute, &year ) == 5) {
 //      if (*DEBUG_INFO_ENABLED)
-//      std::cerr <<"FileReader::get_dcutf8 old format found"<<endl;
+//      qWarning() <<"FileReader::get_dcutf8 old format found";
         if (!strcmp( p, "Jan" )) {
             month = 1;
         }
@@ -815,17 +814,17 @@ QDateTime FileReader::get_dcutf8( QString s ) {
     /* date format is: "Apr.12 15:43 2001" => "MonthShort.DayNum HourNum,MinuteNum YearLong" */
     if (sscanf( s.toUtf8().constData(), "%s %s %04d", p2, p3, &year ) == 3) {
 //              if (*DEBUG_INFO_ENABLED)
-//              std::cerr <<"FileReader::get_dcutf8 old format2 found"<<endl;
+//              qWarning() <<"FileReader::get_dcutf8 old format2 found";
         if (QString( p2 ).contains( '.' )) {
             // if (*DEBUG_INFO_ENABLED)
-            // std::cerr <<"FileReader::get_dcutf8 p2 0: " << qPrintable(QString(p2).split('.').at(0)) << ", p2 1: " << qPrintable(QString(p2).split('.').at(1))<<endl;
+            // qWarning() <<"FileReader::get_dcutf8 p2 0: " << qPrintable(QString(p2).split('.').at(0)) << ", p2 1: " << qPrintable(QString(p2).split('.').at(1));
             strcpy( p, QString( p2 ).split( '.' ).at( 0 ).toUtf8().data());
             day = QString( p2 ).split( '.' ).at( 1 ).toInt();
         }
 
         if (QString( p3 ).contains( ':' )) {
             if (*DEBUG_INFO_ENABLED) {
-                // std::cerr <<"FileReader::get_dcutf8 p3 0: " << qPrintable(QString(p3).split(':').at(0)) << ", p3 1: " << qPrintable(QString(p3).split(':').at(1))<<endl;
+                // qWarning() <<"FileReader::get_dcutf8 p3 0: " << qPrintable(QString(p3).split(':').at(0)) << ", p3 1: " << qPrintable(QString(p3).split(':').at(1));
                 hour = QString( p3 ).split( ':' ).at( 0 ).toInt();
             }
             minute = QString( p3 ).split( ':' ).at( 1 ).toInt();
@@ -834,7 +833,7 @@ QDateTime FileReader::get_dcutf8( QString s ) {
 
 
 //        if (*DEBUG_INFO_ENABLED)
-//      std::cerr <<"FileReader::get_dcutf8 p: " << p  << ", p2: " << p2 << ", p3: " << p3 << ", day: " << day << ", minute: " << minute << ", hour: " << hour <<", year: " << year << endl;
+//      qWarning() <<"FileReader::get_dcutf8 p: " << p  << ", p2: " << p2 << ", p3: " << p3 << ", day: " << day << ", minute: " << minute << ", hour: " << hour <<", year: " << year;
 
         if (!strcmp( p, "Jan" )) {
             month = 1;
@@ -942,7 +941,7 @@ QString FileReader::getStr2( const QXmlAttributes &atts, QString what, QString e
         // errormsg = QString ( "Line %1: %2" ).arg ( XML_GetCurrentLineNumber ( *pp ) ).arg ( err );
         errormsg = err;
         error_found = 1;
-        cerr << "ERROR: " << qPrintable( errormsg ) << endl;
+        qCritical() << "ERROR: " << qPrintable( errormsg );
         return "";
     }
     for (i = 0; i < atts.length(); i++) {
@@ -953,7 +952,7 @@ QString FileReader::getStr2( const QXmlAttributes &atts, QString what, QString e
     // errormsg = QString ( "Line %1: %2:I can't find \"%3\" attribute." )
     //	.arg ( XML_GetCurrentLineNumber ( *pp ) ).arg ( err ).arg ( what );
     errormsg = QString( "%1:I can't find \"%2\" attribute." ).arg( err ).arg( what );
-    cerr << "ERROR: " << qPrintable( errormsg ) << endl;
+    qCritical() << "ERROR: " << qPrintable( errormsg );
     error_found = 1;
     return "";
 }
@@ -965,7 +964,7 @@ double FileReader::getDouble2( const QXmlAttributes &atts, QString what, QString
     if (atts.length() == 0) {
 //         errormsg = QString ( "Line %1: %2" ).arg ( XML_GetCurrentLineNumber ( *pp ) ).arg ( err );
         errormsg = QString( "%1" ).arg( err );
-        cerr << "ERROR: " << qPrintable( errormsg ) << endl;
+        qCritical() << "ERROR: " << qPrintable( errormsg );
         error_found = 1;
         return 0;
     }
@@ -976,7 +975,7 @@ double FileReader::getDouble2( const QXmlAttributes &atts, QString what, QString
     }
 
     errormsg = QString( "%1,I can't find \"%2\" attribute" ).arg( err ).arg( what );
-    cerr << "ERROR: " << qPrintable( errormsg ) << endl;
+    qCritical() << "ERROR: " << qPrintable( errormsg );
     error_found = 1;
     return 0;
 }
@@ -1011,7 +1010,7 @@ int FileReader::readFrom( Node *source, bool skipDuplicatesOnInsert, bool only_n
     this->skipDuplicatesOnInsert = skipDuplicatesOnInsert;
 
     if (*DEBUG_INFO_ENABLED) {
-        cerr << "Start Cycle" << endl;
+        qDebug() << "Start Cycle";
     }
 
     line[0] = '\0';
@@ -1024,7 +1023,7 @@ int FileReader::readFrom( Node *source, bool skipDuplicatesOnInsert, bool only_n
     char tmpbuffer[READ_BLOCKSIZE + 1];
 
     if (*DEBUG_INFO_ENABLED) {
-        std::cerr << "start reading file …" << endl;
+        qDebug() << "start reading file …";
     }
 
     pww->showProgress = true;
@@ -1039,7 +1038,7 @@ int FileReader::readFrom( Node *source, bool skipDuplicatesOnInsert, bool only_n
         }
         len += readcount;
         if (*DEBUG_INFO_ENABLED) {
-            cerr << "readcount: " << readcount << endl;
+            qDebug() << "readcount: " << readcount;
         }
         for (int i = 0; i < readcount; i++)
             dataBuffer[i + offset] = tmpbuffer[i];
@@ -1053,12 +1052,12 @@ int FileReader::readFrom( Node *source, bool skipDuplicatesOnInsert, bool only_n
     }
 
     if (*DEBUG_INFO_ENABLED) {
-        std::cerr << "read done: " << len << " of " << allocated_buffer_len << " bytes" << endl;
+        qDebug() << "read done: " << len << " of " << allocated_buffer_len << " bytes";
     }
 
     linecount += QString( dataBuffer ).count( '\n' );
     if (*DEBUG_INFO_ENABLED) {
-        cerr << "linecount: " << linecount << endl;
+        qDebug() << "linecount: " << linecount;
     }
 
     bool isEncryptedCatalog = false;
@@ -1070,25 +1069,25 @@ int FileReader::readFrom( Node *source, bool skipDuplicatesOnInsert, bool only_n
         headline[0] = '\0';
         int offset = strlen( enc_hcf_header );
         strncpy( headline, dataBuffer, offset );
-        // std::cerr << "headline: " << qPrintable(QString(headline).left(16)) << std::endl;
+        // qDebug() << "headline: " << qPrintable(QString(headline).left(16));
         if ((QString( headline )).left( offset ) == QString( enc_hcf_header )) {
             isEncryptedCatalog = true;
             if (*DEBUG_INFO_ENABLED) {
-                std::cerr << "encrypted catalog found" << std::endl;
+                qDebug() << "encrypted catalog found";
             }
             bool ok = false;
 #ifdef CATALOG_ENCRYPTION
             QString password = QInputDialog::getText( 0, QObject::tr( "Enter password …" ), QObject::tr( "Enter password for catalog:" ), QLineEdit::Password, "", &ok );
             if (!ok) {
                 if (*DEBUG_INFO_ENABLED) {
-                    std::cerr << "no password entered, cancelled" << std::endl;
+                    qWarning() << "no password entered, cancelled";
                 }
                 errormsg = QObject::tr( "password empty" );
                 return 1;
             }
             if (generate_cryptokey( password ) != 0) {
                 if (*DEBUG_INFO_ENABLED) {
-                    std::cerr << "generate cryptokey failed, cancelled" << std::endl;
+                    qWarning() << "generate cryptokey failed, cancelled";
                 }
                 errormsg = QObject::tr( "cant set password" );
                 return 1;
@@ -1112,22 +1111,22 @@ int FileReader::readFrom( Node *source, bool skipDuplicatesOnInsert, bool only_n
 
             if (decrypt_ret == 0) {
                 if (*DEBUG_INFO_ENABLED) {
-                    std::cerr << "decrypt failed, cancelled" << std::endl;
+                    qWarning() << "decrypt failed, cancelled";
                 }
                 errormsg = QObject::tr( "decrypt failed" );
                 return 1;
             } else {
                 if (*DEBUG_INFO_ENABLED) {
-                    std::cerr << "decrypt successful" << std::endl;
+                    qDebug() << "decrypt successful";
                 }
 
                 databufferByteArray.append( outbuff_str.c_str());
-//                              std::cerr << "databufferByteArray " << databufferByteArray.data() << std::endl;
+//                              qDebug() << "databufferByteArray " << databufferByteArray.data();
             }
 //                      return 1;
 #else
             if (*DEBUG_INFO_ENABLED) {
-                std::cerr << "encrypted catalog support not available, cancelled" << std::endl;
+                qCritical() << "encrypted catalog support not available, cancelled";
             }
             errormsg = QObject::tr( "cant load catalog: encrypted catalog support not available" );
             return 1;
@@ -1137,7 +1136,7 @@ int FileReader::readFrom( Node *source, bool skipDuplicatesOnInsert, bool only_n
         }
         QString line2( databufferByteArray.left( 80 ));
         //      if (*DEBUG_INFO_ENABLED)
-        //              std::cerr <<"line2: " << line2.constData() <<endl;
+        //              qDebug() << "line2:" << line2.constData() ;
         QStringList encodingline_parts = line2.split( '"' );
         if (encodingline_parts.size() > 2) {
             XML_ENCODING = encodingline_parts.at( 3 );
@@ -1147,7 +1146,7 @@ int FileReader::readFrom( Node *source, bool skipDuplicatesOnInsert, bool only_n
         }
 
         if (*DEBUG_INFO_ENABLED) {
-            std::cerr << "detected encoding: " << XML_ENCODING.constData() << endl;
+            qDebug() << "detected encoding: " << XML_ENCODING.constData();
         }
     }
 
@@ -1161,13 +1160,13 @@ int FileReader::readFrom( Node *source, bool skipDuplicatesOnInsert, bool only_n
     QXmlInputSource mysource;
     if (XML_ENCODING == "UTF-8") {
         if (*DEBUG_INFO_ENABLED) {
-            std::cerr << "set data source text …" << endl;
+            qDebug() << "set data source text …";
         }
         mysource.setData( databufferByteArray );
     } else {
         pww->setProgressText( DataBase::tr( "Converting to unicode, please wait …" ));
         if (*DEBUG_INFO_ENABLED) {
-            std::cerr << "set data source to utf8 converted text …" << endl;
+            qDebug() << "set data source to utf8 converted text …";
         }
         mysource.setData( converter->toUnicode( databufferByteArray ));
     }
@@ -1176,7 +1175,7 @@ int FileReader::readFrom( Node *source, bool skipDuplicatesOnInsert, bool only_n
     pww->setProgressText( DataBase::tr( "Parsing file, please wait …" ));
 
     parseresult = xmlReader.parse( mysource );
-    cerr << "parse result: " << parseresult << ", errormsg: " << qPrintable( errormsg ) << endl;
+    qWarning() << "parse result: " << parseresult << ", errormsg: " << qPrintable( errormsg );
 
     if (!parseresult) {
         if (pww->doCancel) {
@@ -1188,18 +1187,18 @@ int FileReader::readFrom( Node *source, bool skipDuplicatesOnInsert, bool only_n
     } else {
         ((DBCatalog *)((sp)->data))->isEncryptedCatalog = isEncryptedCatalog;
         if (*DEBUG_INFO_ENABLED) {
-            std::cerr << "parsing was successful" << endl;
+            qDebug() << "parsing was successful";
         }
     }
     pww->showProgress = false;
 
     delete handler;
     if (*DEBUG_INFO_ENABLED) {
-        std::cerr << "parsing done" << endl;
+        qDebug() << "parsing done";
     }
 
     if (*DEBUG_INFO_ENABLED) {
-        std::cerr << "End Cycle" << endl;
+        qDebug() << "End Cycle";
     }
 
     if (!isEncryptedCatalog) {
@@ -1246,7 +1245,7 @@ QString FileReader::getCatName( void ) {
         readFrom( NULL, false, true );
     }
 
-    std::cerr << "catname: \"" << qPrintable( this->catname ) << "\"" << endl;
+    qDebug() << "catname: \"" << qPrintable( this->catname ) << "\"";
 
     if (error_found != 1 || catname != "") {
         return this->catname;
@@ -1277,7 +1276,7 @@ bool CdCatXmlHandler::characters( const QString &ch ) {
     }
     // DEBUG_INFO_ENABLED = init_debug_info();
     // if(*DEBUG_INFO_ENABLED)
-    //	cerr << "CdCatXmlHandler::characters: " << qPrintable(ch) << endl;
+    //	qWarning() << "CdCatXmlHandler::characters: " << qPrintable(ch);
     currentText += ch;
     progress( pww, locator->lineNumber());
     return true;
@@ -1292,22 +1291,22 @@ bool CdCatXmlHandler::startElement( const QString &namespaceURI, const QString &
     currentText = "";
 
     if (r->error_found) {
-        cerr << "current errormsg:" << qPrintable( r->errormsg ) << endl;
+        qWarning() << "current errormsg:" << qPrintable( r->errormsg );
         return false;
     }
     /*That case I found an error in file -> needs exit the pasing as fast as I can.*/
     // if(*DEBUG_INFO_ENABLED)
-    //	cerr <<"Start_start:"<<qPrintable(el)<<endl;
+    //	qWarning() <<"Start_start:"<<qPrintable(el);
 
     // if(*DEBUG_INFO_ENABLED)
-    // cerr <<"line number:"<<locator->lineNumber()<<endl;
+    // qDebug() <<"line number:"<<locator->lineNumber();
     progress( pww, locator->lineNumber());
 
     clearbuffer = 1;
     if (el == "catalog") {
         if (r->insert) {
             // if(*DEBUG_INFO_ENABLED)
-            //	cerr <<"insert catalog not supported" <<endl;
+            //	qWarning() <<"insert catalog not supported" ;
             // return false;
             return true;
         }
@@ -1319,7 +1318,7 @@ bool CdCatXmlHandler::startElement( const QString &namespaceURI, const QString &
         ((DBCatalog *)((r->sp)->data))->name =
             r->getStr2( attr, QString( "name" ), QString( "Error while parsing \"catalog\" node" ));
         if (r->error_found) {
-            cerr << "Error while parsing \"catalog\" node, el: " << qPrintable( el ) << endl;
+            qCritical() << "Error while parsing \"catalog\" node, el: " << qPrintable( el );
             return false;
         }
 
@@ -1329,14 +1328,14 @@ bool CdCatXmlHandler::startElement( const QString &namespaceURI, const QString &
         ((DBCatalog *)((r->sp)->data))->owner =
             r->getStr2( attr, QString( "owner" ), QString( "Error while parsing \"catalog\" node" ));
         if (r->error_found) {
-            cerr << qPrintable( r->errormsg ) << " el: " << qPrintable( el ) << endl;
+            qCritical() << qPrintable( r->errormsg ) << " el: " << qPrintable( el );
             return false;
         }
 
         ((DBCatalog *)((r->sp)->data))->modification =
             r->get_dcutf8( r->getStr2( attr, QString( "time" ), QString( "Error while parsing \"catalog\" node" )));
         if (r->error_found) {
-            cerr << qPrintable( r->errormsg ) << " el: " << qPrintable( el ) << endl;
+            qCritical() << qPrintable( r->errormsg ) << " el: " << qPrintable( el );
             return false;
         }
 
@@ -1346,25 +1345,25 @@ bool CdCatXmlHandler::startElement( const QString &namespaceURI, const QString &
             r->error_found = 0;
             ((DBCatalog *)((r->sp)->data))->sortedBy = 1;                       // NAME
             if (*DEBUG_INFO_ENABLED) {
-                std::cerr << "sortedBy (default): " << ((DBCatalog *)((r->sp)->data))->sortedBy << std::endl;
+                qDebug() << "sortedBy (default): " << ((DBCatalog *)((r->sp)->data))->sortedBy;
             }
         } else {
             if (sortedByRaw == "") {
                 // default
                 ((DBCatalog *)((r->sp)->data))->sortedBy = 1;                           // NAME
                 if (*DEBUG_INFO_ENABLED) {
-                    std::cerr << "sortedBy (default): " << ((DBCatalog *)((r->sp)->data))->sortedBy << std::endl;
+                    qDebug() << "sortedBy (default): " << ((DBCatalog *)((r->sp)->data))->sortedBy;
                 }
             } else {
                 int val = sortedByRaw.toInt();
                 if (val == NUMBER || val == NAME || val == TIME || val == TYPE) {
                     ((DBCatalog *)((r->sp)->data))->sortedBy = val;
                     if (*DEBUG_INFO_ENABLED) {
-                        std::cerr << "sortedBy (valid): " << ((DBCatalog *)((r->sp)->data))->sortedBy << std::endl;
+                        qDebug() << "sortedBy (valid): " << ((DBCatalog *)((r->sp)->data))->sortedBy;
                     }
                 } else {
                     if (*DEBUG_INFO_ENABLED) {
-                        std::cerr << "sortedBy (invalid: " << val << ", default): " << ((DBCatalog *)((r->sp)->data))->sortedBy << std::endl;
+                        qWarning() << "sortedBy (invalid: " << val << ", default): " << ((DBCatalog *)((r->sp)->data))->sortedBy;
                     }
                 }
             }
@@ -1374,12 +1373,12 @@ bool CdCatXmlHandler::startElement( const QString &namespaceURI, const QString &
             Node *tmp = r->sp;
             if (r->insert) {
                 // if(*DEBUG_INFO_ENABLED)
-                //	cerr <<"insert catalog not supported" <<endl;
+                //	qCritical() <<"insert catalog not supported" ;
                 // return false;
                 return true;
             }
             if (r->sp == NULL) {
-                cerr << "datafile but no datafile node, el: " << qPrintable( el ) << endl;
+                qCritical() << "datafile but no datafile node, el: " << qPrintable( el );
                 return false;
             }
 
@@ -1389,7 +1388,7 @@ bool CdCatXmlHandler::startElement( const QString &namespaceURI, const QString &
             ((DBCatalog *)(tmp->data))->fileversion =
                 r->getStr2( attr, QString( "version" ), QString( "Error while parsing \"datafile\" node" ));
             if (r->error_found) {
-                cerr << "Error while parsing \"datafile\" node, el: " << qPrintable( el ) << endl;
+                qCritical() << "Error while parsing \"datafile\" node, el: " << qPrintable( el );
                 return false;
             }
         } else {
@@ -1411,7 +1410,7 @@ bool CdCatXmlHandler::startElement( const QString &namespaceURI, const QString &
 
                     newname = r->getStr2( attr, QString( "name" ), QString( "Error while parsing \"media\" node" ));
                     if (r->error_found) {
-                        cerr << qPrintable( r->errormsg ) << " el: " << qPrintable( el ) << endl;
+                        qCritical() << qPrintable( r->errormsg ) << " el: " << qPrintable( el );
                         return false;
                     }
 
@@ -1421,13 +1420,13 @@ It is disallowed since cdcat version 0.98 !\n\
 Please change it with an older version or rewrite it in the xml file!" );
 
                         r->error_found = 1;
-                        cerr << qPrintable( r->errormsg ) << " el: " << qPrintable( el ) << endl;
+                        qCritical() << qPrintable( r->errormsg ) << " el: " << qPrintable( el );
                         return false;
                     }
 
                     newnum = (int)r->getDouble2( attr, QString( "number" ), QString( "Error while parsing \"media\" node" ));
                     if (r->error_found) {
-                        cerr << qPrintable( r->errormsg ) << " el: " << qPrintable( el ) << endl;
+                        qCritical() << qPrintable( r->errormsg ) << " el: " << qPrintable( el );
                         return false;
                     }
 
@@ -1466,7 +1465,7 @@ Please change it with an older version or rewrite it in the xml file!" );
                                 // dont change name
                                 r->sp = ch;
                                 if (*DEBUG_INFO_ENABLED) {
-                                    cerr << "end_start:" << qPrintable( el ) << endl;
+                                    qCritical() << "end_start:" << qPrintable( el );
                                 }
                                 return true;
                             }
@@ -1476,18 +1475,18 @@ Please change it with an older version or rewrite it in the xml file!" );
                     /*Fill data part:*/
                     ts1 = r->getStr2( attr, QString( "owner" ), QString( "Error while parsing \"media\" node" ));
                     if (r->error_found) {
-                        cerr << qPrintable( r->errormsg ) << " el: " << qPrintable( el ) << endl;
+                        qCritical() << qPrintable( r->errormsg ) << " el: " << qPrintable( el );
                         return false;
                     }
                     td1 = r->get_dcutf8( r->getStr2( attr, QString( "time" ), QString( "Error while parsing \"media\" node" )));
                     if (r->error_found) {
-                        cerr << qPrintable( r->errormsg ) << " el: " << qPrintable( el ) << endl;
+                        qCritical() << qPrintable( r->errormsg ) << " el: " << qPrintable( el );
                         return false;
                     }
 
                     ti1 = getTypeFS( r->getStr2( attr, QString( "type" ), QString( "Error while parsing \"media\" node" )).toUtf8().constData());
                     if (r->error_found) {
-                        cerr << qPrintable( r->errormsg ) << " el: " << qPrintable( el ) << endl;
+                        qCritical() << qPrintable( r->errormsg ) << " el: " << qPrintable( el );
                         return false;
                     }
                     if (ti1 == UNKNOWN) {
@@ -1495,7 +1494,7 @@ Please change it with an older version or rewrite it in the xml file!" );
 //                                                               .arg ( r->getStr2 ( attr, QString("type"), QString("Error while parsing \"media\" node") ).toUtf8().constData() );
 //
 //                                              r->error_found = 1;
-//                                              cerr << qPrintable(r->errormsg) << " el: "<<qPrintable(el)<<endl;
+//                                              qCritical() << qPrintable(r->errormsg) << " el: "<<qPrintable(el);
 //                                              return false;
                         ti1 = OTHERD;
                         r->error_found = 0;
@@ -1509,27 +1508,27 @@ Please change it with an older version or rewrite it in the xml file!" );
                     tf1 = r->getDouble2( attr, QString( "number" ), QString( "Error while parsing \"media\" node" ));
                     td1 = r->get_dcutf8( r->getStr2( attr, QString( "time" ), QString( "Error while parsing \"media\" node" )));
                     if (r->error_found) {
-                        cerr << qPrintable( r->errormsg ) << " el: " << qPrintable( el ) << endl;
+                        qCritical() << qPrintable( r->errormsg ) << " el: " << qPrintable( el );
                         return false;
                     }
 
                     if (ts2.startsWith( "@" )) {
                         r->errormsg = QString( "The media name begin with \"@\".\nIt is disallowed since cdcat version 0.98 !\nPlease change it with an older version or rewrite it in the xml file!" );
                         r->error_found = 1;
-                        cerr << qPrintable( r->errormsg ) << " el: " << qPrintable( el ) << endl;
+                        qCritical() << qPrintable( r->errormsg ) << " el: " << qPrintable( el );
                         return false;
                     }
 
                     ti1 = getTypeFS( r->getStr2( attr, QString( "type" ), QString( "Error while parsing \"media\" node" )).toUtf8().constData());
                     if (r->error_found) {
-                        cerr << qPrintable( r->errormsg ) << " el: " << qPrintable( el ) << endl;
+                        qCritical() << qPrintable( r->errormsg ) << " el: " << qPrintable( el );
                         return false;
                     }
                     if (ti1 == UNKNOWN) {
 //                                              r->errormsg = QString ( "Line %1: Unknown media type in the file. (\"%1\")" )
 //                                                               .arg ( r->getStr2 ( attr, QString("type"), QString("Error while parsing \"media\" node" )) );
 //                                              r->error_found = 1;
-//                                              cerr << qPrintable(r->errormsg) << " el: "<<qPrintable(el)<<endl;
+//                                              qCritical() << qPrintable(r->errormsg) << " el: "<<qPrintable(el);
 //                                              return false;
                         r->error_found = 0;
                         ti1 = OTHERD;
@@ -1555,7 +1554,7 @@ Please change it with an older version or rewrite it in the xml file!" );
                     ts1 = r->getStr2( attr, QString( "name" ), QString( "Error while parsing \"directory\" node" ));
                     td1 = r->get_dcutf8( r->getStr2( attr, QString( "time" ), QString( "Error while parsing \"directory\" node" )));
                     if (r->error_found) {
-                        cerr << qPrintable( r->errormsg ) << " el: " << qPrintable( el ) << endl;
+                        qCritical() << qPrintable( r->errormsg ) << " el: " << qPrintable( el );
                         return false;
                     }
                     tt->data = (void *)new DBDirectory( ts1, td1, "" );
@@ -1576,67 +1575,67 @@ Please change it with an older version or rewrite it in the xml file!" );
                         }
                         /*Fill data part:*/
                         // if(*DEBUG_INFO_ENABLED)
-                        //	cerr <<"1"<<endl;
+                        //	qDebug() <<"1";
                         ts1 = r->getStr2( attr, QString( "name" ), QString( "Error while parsing \"file\" node" ));
                         // if(*DEBUG_INFO_ENABLED)
-                        //	cerr <<"2"<<endl;
+                        //	qDebug() <<"2";
 
                         if (r->error_found) {
-                            cerr << qPrintable( r->errormsg ) << " el: " << qPrintable( el ) << endl;
+                            qCritical() << qPrintable( r->errormsg ) << " el: " << qPrintable( el );
                             return false;
                         }
 
                         td1 = r->get_dcutf8( r->getStr2( attr, QString( "time" ), QString( "Error while parsing \"file\" node" )));
                         // if(*DEBUG_INFO_ENABLED)
-                        //	cerr <<"3"<<endl;
+                        //	qDebug() <<"3";
 
                         if (r->error_found) {
-                            cerr << qPrintable( r->errormsg ) << " el: " << qPrintable( el ) << endl;
+                            qCritical() << qPrintable( r->errormsg ) << " el: " << qPrintable( el );
                             return false;
                         }
                         // if(*DEBUG_INFO_ENABLED)
-                        //	cerr <<"4"<<endl;
+                        //	qDebug() <<"4";
 
                         tf1 = getSizeFS( r->getStr2( attr, QString( "size" ), QString( "Error while parsing \"file\" node" )).toUtf8().constData());
                         // if(*DEBUG_INFO_ENABLED)
-                        //	cerr <<"5"<<endl;
+                        //	qDebug() <<"5";
 
                         if (r->error_found) {
-                            cerr << qPrintable( r->errormsg ) << " el: " << qPrintable( el ) << endl;
+                            qCritical() << qPrintable( r->errormsg ) << " el: " << qPrintable( el );
                             return false;
                         }
                         if (tf1 == -1) {
                             r->errormsg = QString( "Unknown size data in file node. (\"%1\")" )
                                           .arg( r->getStr2( attr, QString( "size" ), QString( "Error while parsing \"file\" node" )));
                             r->error_found = 1;
-                            cerr << qPrintable( r->errormsg ) << " el: " << qPrintable( el ) << endl;
+                            qCritical() << qPrintable( r->errormsg ) << " el: " << qPrintable( el );
                             return false;
                         }
 
                         ti1 = getSizetFS( r->getStr2( attr, QString( "size" ), QString( "Error while parsing \"file\" node" )).toUtf8().constData());
                         if (r->error_found) {
-                            cerr << qPrintable( r->errormsg ) << " el: " << qPrintable( el ) << endl;
+                            qCritical() << qPrintable( r->errormsg ) << " el: " << qPrintable( el );
                             return false;
                         }
                         if (ti1 == -1) {
                             r->errormsg = QString( "Unknown size type in file node. (\"%1\")" )
                                           .arg( r->getStr2( attr, QString( "size" ), QString( "Error while parsing \"file\" node" )).toUtf8().constData());
                             r->error_found = 1;
-                            cerr << qPrintable( r->errormsg ) << " el: " << qPrintable( el ) << endl;
+                            qCritical() << qPrintable( r->errormsg ) << " el: " << qPrintable( el );
                             return false;
                         }
 
-                        // std::cerr << "file size: " << tf1 << " " << ti1 << std::endl;
+                        // qDebug() << "file size: " << tf1 << " " << ti1;
                         bool addFile = true;
                         if (r->insert && r->skipDuplicatesOnInsert) {
                             // search for file in catalog
                             if (*DEBUG_INFO_ENABLED) {
-                                std::cerr << "testing if file already in DB: " << qPrintable( tt->parent->getFullPath() + "/" + ts1 ) << std::endl;
+                                qDebug() << "testing if file already in DB: " << qPrintable( tt->parent->getFullPath() + "/" + ts1 );
                             }
 
                             if (isFileInDB( r->sb_backup, tt->parent->getFullPath() + "/" + ts1, tf1 )) {
                                 if (*DEBUG_INFO_ENABLED) {
-                                    std::cerr << "file already in DB (skip adding): " << qPrintable( tt->parent->getFullPath() + "/" + ts1 ) << std::endl;
+                                    qDebug() << "file already in DB (skip adding): " << qPrintable( tt->parent->getFullPath() + "/" + ts1 );
                                 }
                                 addFile = false;
                             }
@@ -1664,7 +1663,7 @@ Please change it with an older version or rewrite it in the xml file!" );
                             ts3 = r->getStr2( attr, QString( "album" ), QString( "Error while parsing \"mp3tag\" node" ));
                             ts4 = r->getStr2( attr, QString( "year" ), QString( "Error while parsing \"mp3tag\" node" ));
                             if (r->error_found) {
-                                cerr << qPrintable( r->errormsg ) << " el: " << qPrintable( el ) << endl;
+                                qCritical() << qPrintable( r->errormsg ) << " el: " << qPrintable( el );
                                 return false;
                             }
                             ti1 = 0;
@@ -1693,7 +1692,7 @@ Please change it with an older version or rewrite it in the xml file!" );
 
                                 readed_loc = mstr( r->getStr2( attr, QString( "location" ), QString( "Error while parsing \"catlnk\" node" )).toUtf8().constData());
                                 if (r->error_found) {
-                                    cerr << qPrintable( r->errormsg ) << " el: " << qPrintable( el ) << endl;
+                                    qCritical() << qPrintable( r->errormsg ) << " el: " << qPrintable( el );
                                     return false;
                                 }
 
@@ -1742,7 +1741,7 @@ Please change it with an older version or rewrite it in the xml file!" );
     }
 
     // if(*DEBUG_INFO_ENABLED)
-    //	cerr <<"end_start:"<<qPrintable(el)<<endl;
+    //	qDebug() <<"end_start:"<<qPrintable(el);
     return true;
 }
 
@@ -1752,7 +1751,7 @@ bool CdCatXmlHandler::endElement( const QString &namespaceURI, const QString &lo
     void *data = r;
 
     // if ( *DEBUG_INFO_ENABLED )
-    //	cerr << "Start_end:" << qPrintable ( el ) << endl;
+    //	qDebug() << "Start_end:" << qPrintable ( el );
 
     /*That case I found an error in file -> needs exit the pasing as fast as I can.*/
     if (r->error_found || pww->doCancel) {
@@ -1771,7 +1770,7 @@ bool CdCatXmlHandler::endElement( const QString &namespaceURI, const QString &lo
         } else {
             if (el == "media") {
                 if (r->sp == NULL) {
-                    cerr << "Start_end: media but media node NULL, el: " << qPrintable( el ) << endl;
+                    qCritical() << "Start_end: media but media node NULL, el: " << qPrintable( el );
                     return false;
                 }
                 /*Restore the parent node tho the actual node:*/
@@ -1779,7 +1778,7 @@ bool CdCatXmlHandler::endElement( const QString &namespaceURI, const QString &lo
             } else {
                 if (el == "directory") {
                     if (r->sp == NULL) {
-                        cerr << "Start_end: directory but directory node NULL, el: " << qPrintable( el ) << endl;
+                        qCritical() << "Start_end: directory but directory node NULL, el: " << qPrintable( el );
                         return false;
                     }
                     /*Restore the parent node tho the actual node:*/
@@ -1787,7 +1786,7 @@ bool CdCatXmlHandler::endElement( const QString &namespaceURI, const QString &lo
                 } else {
                     if (el == "file") {
                         if (r->sp == NULL) {
-                            cerr << "Start_end: file but file node NULL, el: " << qPrintable( el ) << endl;
+                            qCritical() << "Start_end: file but file node NULL, el: " << qPrintable( el );
                             return false;
                         }
                         /*Restore the parent node tho the actual node:*/
@@ -1796,20 +1795,20 @@ bool CdCatXmlHandler::endElement( const QString &namespaceURI, const QString &lo
                         if (el == "mp3tag") {
                             // strcpy(tmp_tagp->comment,currentText);
                             // if(*DEBUG_INFO_ENABLED)
-                            //	cerr <<"1"<<endl;
+                            //	qDebug() <<"1";
                             // if(*DEBUG_INFO_ENABLED)
-                            //	cerr <<"2"<<endl;
+                            //	qDebug() <<"2";
                             tmp_tagp->comment = r->get_cutf8( currentText );
                             // if(*DEBUG_INFO_ENABLED)
-                            //	cerr <<"3"<<endl;
+                            //	qDebug() <<"3";
                             tmp_tagp = NULL;
                             // if(*DEBUG_INFO_ENABLED)
-                            //	cerr <<"4"<<endl;
+                            //	qDebug() <<"4";
                         } else {
                             if (el == "catlnk") {
                                 /*Restore the parent node tho the actual node:*/
                                 if (r->sp == NULL) {
-                                    cerr << "Start_end: catlnk but catlnk node NULL, el: " << qPrintable( el ) << endl;
+                                    qCritical() << "Start_end: catlnk but catlnk node NULL, el: " << qPrintable( el );
                                     return false;
                                 }
                                 r->sp = r->sp->parent;
@@ -1830,7 +1829,7 @@ bool CdCatXmlHandler::endElement( const QString &namespaceURI, const QString &lo
                                     /*Fill data part:*/
                                     rsize = (strlen( currentText.toUtf8().data()) / 2);
                                     if (*DEBUG_INFO_ENABLED) {
-                                        cerr << "Start_end: content size: " << currentText.size() << " (raw: " << rsize << ")" << endl;
+                                        qDebug() << "Start_end: content size: " << currentText.size() << " (raw: " << rsize << ")";
                                     }
                                     char *tempbuffer = NULL;
                                     tempbuffer = strdup( currentText.toUtf8().data());
@@ -1847,7 +1846,7 @@ bool CdCatXmlHandler::endElement( const QString &namespaceURI, const QString &lo
                                         while (currentText.length() > 0 && currentText.at( 0 ) == '\n')
                                             currentText = currentText.right( currentText.length() - 1 );
                                         if (r->sp == NULL) {
-                                            cerr << "Start_end: comment but comment node NULL, el: " << qPrintable( el ) << endl;
+                                            qCritical() << "Start_end: comment but comment node NULL, el: " << qPrintable( el );
                                             return false;
                                         }
                                         switch (r->sp->type) {
@@ -1874,13 +1873,13 @@ bool CdCatXmlHandler::endElement( const QString &namespaceURI, const QString &lo
                                         case HC_MP3TAG:
                                             r->errormsg = QString( "It isnt allowed comment node in mp3tag node." );
                                             r->error_found = 1;
-                                            cerr << qPrintable( r->errormsg ) << " el: " << qPrintable( el ) << endl;
+                                            qCritical() << qPrintable( r->errormsg ) << " el: " << qPrintable( el );
                                             break;
                                         }
                                     } else {
                                         if (el == "category") {
                                             if (r->sp == NULL) {
-                                                cerr << "Start_end: catagory but file catagory NULL, el: " << qPrintable( el ) << endl;
+                                                qCritical() << "Start_end: catagory but file catagory NULL, el: " << qPrintable( el );
                                                 return false;
                                             }
                                             switch (r->sp->type) {
@@ -1908,25 +1907,25 @@ bool CdCatXmlHandler::endElement( const QString &namespaceURI, const QString &lo
                                             case HC_MP3TAG:
                                                 r->errormsg = QString( "It isnt allowed category node in mp3tag node." );
                                                 r->error_found = 1;
-                                                cerr << qPrintable( r->errormsg ) << " el: " << qPrintable( el ) << endl;
+                                                qCritical() << qPrintable( r->errormsg ) << " el: " << qPrintable( el );
                                                 break;
                                             }
                                         } else {
                                             if (el == "archivecontent") {
                                                 if (r->sp == NULL) {
-                                                    cerr << "Start_end: archivecontent but archivecontent node NULL, el: " << qPrintable( el ) << endl;
+                                                    qCritical() << "Start_end: archivecontent but archivecontent node NULL, el: " << qPrintable( el );
                                                     return false;
                                                 }
                                                 switch (r->sp->type) {
                                                 case HC_FILE:
                                                     if (!currentText.isEmpty()) {
-//                      std::cout << "currentText: " << qPrintable(currentText) << std::endl;
+//                      qWarning() << "currentText: " << qPrintable(currentText);
                                                         QList<ArchiveFile> ArchiveFileList;
                                                         ArchiveFileList.clear();
                                                         QStringList textList = currentText.split( '\n' );
                                                         for (int i = 0; i < textList.size(); i++) {
                                                             if (!textList.at( i ).isEmpty() && textList.at( i ).trimmed().size() > 4) {
-//                                      std::cout << "line: \"" << qPrintable(textList.at(i)) << "\""<< std::endl;
+//                                      qWarning() << "line: \"" << qPrintable(textList.at(i)) << "\"";
                                                                 ArchiveFile af;
                                                                 af.setDbString( textList.at( i ));
                                                                 ArchiveFileList.append( af );
@@ -1943,7 +1942,7 @@ bool CdCatXmlHandler::endElement( const QString &namespaceURI, const QString &lo
                                                     while (currentText.length() > 0 && currentText.at( 0 ) == '\n')
                                                         currentText = currentText.right( currentText.length() - 1 );
                                                     if (r->sp == NULL) {
-                                                        cerr << "Start_end: fileinfo but fileinfo node NULL, el: " << qPrintable( el ) << endl;
+                                                        qCritical() << "Start_end: fileinfo but fileinfo node NULL, el: " << qPrintable( el );
                                                         return false;
                                                     }
                                                     switch (r->sp->type) {
@@ -1960,7 +1959,7 @@ bool CdCatXmlHandler::endElement( const QString &namespaceURI, const QString &lo
                                                         while (currentText.length() > 0 && currentText.at( 0 ) == '\n')
                                                             currentText = currentText.right( currentText.length() - 1 );
                                                         if (r->sp == NULL) {
-                                                            cerr << "Start_end: exif but exif node NULL, el: " << qPrintable( el ) << endl;
+                                                            qCritical() << "Start_end: exif but exif node NULL, el: " << qPrintable( el );
                                                             return false;
                                                         }
                                                         switch (r->sp->type) {
@@ -1986,7 +1985,7 @@ bool CdCatXmlHandler::endElement( const QString &namespaceURI, const QString &lo
                                                             // while (currentText.length() > 0 && currentText.at(0) == '\n')
                                                             //  currentText = currentText.right(currentText.length()-1);
                                                             if (r->sp == NULL) {
-                                                                cerr << "Start_end: thumb but thumb node NULL, el: " << qPrintable( el ) << endl;
+                                                                qCritical() << "Start_end: thumb but thumb node NULL, el: " << qPrintable( el );
                                                                 return false;
                                                             }
                                                             switch (r->sp->type) {
@@ -2006,7 +2005,7 @@ bool CdCatXmlHandler::endElement( const QString &namespaceURI, const QString &lo
                                                                 QImage tmpThumbImage;
                                                                 tmpThumbImage.loadFromData( QByteArray::fromHex( currentText.toUtf8()), "PNG" );
                                                                 if (*DEBUG_INFO_ENABLED) {
-                                                                    cout << "found thumb: (" << QByteArray::fromHex( currentText.toUtf8()).size() << " bytes), size: " << tmpThumbImage.width() << "x" << tmpThumbImage.height() << std::endl;
+                                                                    qDebug() << "found thumb: (" << QByteArray::fromHex( currentText.toUtf8()).size() << " bytes), size: " << tmpThumbImage.width() << "x" << tmpThumbImage.height();
                                                                 }
                                                                 tt->data = (void *)new DBThumb( tmpThumbImage );
                                                                 break;
@@ -2014,7 +2013,7 @@ bool CdCatXmlHandler::endElement( const QString &namespaceURI, const QString &lo
                                                         } else {
                                                             if (el == "borrow") {
                                                                 if (r->sp == NULL) {
-                                                                    cerr << "Start_end: borrow but borrow node NULL, el: " << qPrintable( el ) << endl;
+                                                                    qCritical() << "Start_end: borrow but borrow node NULL, el: " << qPrintable( el );
                                                                     return false;
                                                                 }
                                                                 switch (r->sp->type) {
@@ -2024,7 +2023,7 @@ bool CdCatXmlHandler::endElement( const QString &namespaceURI, const QString &lo
                                                                 case HC_MP3TAG:
                                                                 case HC_CATLNK:
                                                                     r->errormsg = QString( "The borrow node only allowed in media node." );
-                                                                    cerr << qPrintable( r->errormsg ) << " el: " << qPrintable( el ) << endl;
+                                                                    qCritical() << qPrintable( r->errormsg ) << " el: " << qPrintable( el );
                                                                     r->error_found = 1;
                                                                     break;
                                                                 case HC_MEDIA:
@@ -2051,14 +2050,14 @@ bool CdCatXmlHandler::endElement( const QString &namespaceURI, const QString &lo
     currentText = "";
 
     // if(*DEBUG_INFO_ENABLED)
-    //	cerr <<"end_end:"<<qPrintable(el)<<endl;
+    //	qCritical() <<"end_end:"<<qPrintable(el);
     return true;
 }
 
 bool CdCatXmlHandler::fatalError( const QXmlParseException &exception ) {
-    std::cerr << "Parse error at line " << exception.lineNumber()
+    qWarning() << "Parse error at line " << exception.lineNumber()
               << ", " << "column " << exception.columnNumber() << ": "
-              << qPrintable( exception.message()) << std::endl;
+              << qPrintable( exception.message());
 
     return true;
 }
@@ -2100,17 +2099,17 @@ int CdCatXmlHandler::analyzeNodeIsFileinDB( Node *n, Node *pa ) {
         return 0;
     case HC_FILE:
         if (*DEBUG_INFO_ENABLED) {
-//                              std::cout << "testing file: " << qPrintable(n->getNameOf()) << " name: " << qPrintable(fdp->mainw->guis->standON->getNameOf()) << " <=> " << qPrintable(n->getNameOf()) << ". size: " <<  (( DBFile * ) ( fdp->mainw->guis->standON ))->size << " <=> " << ( ( DBFile * ) ( n->data ) )->size << ", size type: " <<  (( DBFile * ) ( fdp->mainw->guis->standON ) )->sizeType << " <=> " << ( ( DBFile * ) ( n->data ) )->sizeType  << std::endl;
-            std::cout << "testing file: " << qPrintable( n->getNameOf()) << " path: " << qPrintable( testFileInDBPath ) << " <=> " << qPrintable( n->getFullPath()) << std::endl;
+//                              qWarning() << "testing file: " << qPrintable(n->getNameOf()) << " name: " << qPrintable(fdp->mainw->guis->standON->getNameOf()) << " <=> " << qPrintable(n->getNameOf()) << ". size: " <<  (( DBFile * ) ( fdp->mainw->guis->standON ))->size << " <=> " << ( ( DBFile * ) ( n->data ) )->size << ", size type: " <<  (( DBFile * ) ( fdp->mainw->guis->standON ) )->sizeType << " <=> " << ( ( DBFile * ) ( n->data ) )->sizeType ;
+            qWarning() << "testing file: " << qPrintable( n->getNameOf()) << " path: " << qPrintable( testFileInDBPath ) << " <=> " << qPrintable( n->getFullPath());
         }
         if (testFileInDBPath == n->getFullPath()) {
             if (*DEBUG_INFO_ENABLED) {
-                std::cout << "filepath match!" << std::endl;
-                std::cout << "size: " << testFileInDBSize << " <=> " << ((DBFile *)(n->data))->size << std::endl;
+                qWarning() << "filepath match!";
+                qWarning() << "size: " << testFileInDBSize << " <=> " << ((DBFile *)(n->data))->size;
             }
             if (testFileInDBSize == ((DBFile *)(n->data))->size) {
                 if (*DEBUG_INFO_ENABLED) {
-                    std::cout << "filesize match!" << std::endl;
+                    qWarning() << "filesize match!";
                 }
                 testFileInDBFound = true;
                 return 0;
@@ -2154,18 +2153,18 @@ int decrypt( std::string &encrypted_data, std::string &decrypted_data ) {
     CryptoPP::StringSource s2( encrypted_data, true, new CryptoPP::HexEncoder( new CryptoPP::StringSink( encoded )));
 
 //	printf ( "inbuff string (stripped) (%d):\n", encrypted_data.size() );
-//      std::cout << "cipher: " << encrypted_data<< std::endl;
+//      qWarning() << "cipher: " << encrypted_data;
 
 
-//      std::cout << "cipher: " << std::endl;
+//      qWarning() << "cipher: ";
 //      for(i = 0; i < encrypted_data.size() ; ++i)
 //      {
 //              stringstream ss;
-//              std::cout << " 0x" << hex << setw(8) << setfill('0') << int(encrypted_data.at(i));
+//              qWarning() << " 0x" << hex << setw(8) << setfill('0') << int(encrypted_data.at(i));
 //      }
-//      std::cout << std::endl;
+//      qWarning();
 
-    // std::cout << "cipher text: " << encoded << std::endl;
+    // qWarning() << "cipher text: " << encoded;
 
     /*********************************\
     \*********************************/
@@ -2181,11 +2180,11 @@ int decrypt( std::string &encrypted_data, std::string &decrypted_data ) {
         CryptoPP::StringSource s3( encrypted_data, true, new CryptoPP::StreamTransformationFilter( d, new CryptoPP::StringSink( recovered )));
 
         decrypted_data = recovered;
-//      std::cout << "recovered: \"" << recovered.c_str() << "\"" << std::endl;
-//      std::cout << "recovered text: " << recovered << std::endl;
+//      qWarning() << "recovered: \"" << recovered.c_str() << "\"";
+//      qWarning() << "recovered text: " << recovered;
         return 1;
     } catch (const CryptoPP::Exception &e) {
-        std::cerr << e.what() << std::endl;
+        qWarning() << e.what();
         return 0;
     }
 }
@@ -2195,7 +2194,7 @@ int encrypt( std::string &decrypted_data, std::string &encrypted_data ) {
     std::string encoded;
 
     try {
-//              std::cout << "plain text: " << decrypted_data << std::endl;
+//              qWarning() << "plain text: " << decrypted_data;
 
         CryptoPP::CBC_Mode<CryptoPP::Blowfish>::Encryption e;
         init_iv();
@@ -2206,25 +2205,25 @@ int encrypt( std::string &decrypted_data, std::string &encrypted_data ) {
         //  to the block size of the cipher.
         CryptoPP::StringSource s1( decrypted_data, true, new CryptoPP::StreamTransformationFilter( e, new CryptoPP::StringSink( cipher )));
     } catch (const CryptoPP::Exception &e) {
-        std::cerr << "error: " << e.what() << std::endl;
+        qWarning() << "error: " << e.what();
         return 0;
     }
 
 // Pretty print
     CryptoPP::StringSource s2( cipher, true, new CryptoPP::HexEncoder( new CryptoPP::StringSink( encoded )));
     encrypted_data = cipher;
-//      std::cout << "cipher: " << cipher.c_str() << std::endl;
-    std::cout << "cipher (" << cipher.size() << "): " << std::endl;
+//      qWarning() << "cipher: " << cipher.c_str();
+    qWarning() << "cipher (" << cipher.size() << "): ";
 
-//      std::cout << "cipher: " << std::endl;
+//      qWarning() << "cipher: ";
 //      for(size_t i = 0; i < cipher.length() ; ++i)
 //      {
 //              stringstream ss;
-//              std::cout << " 0x" << hex << setw(8) << setfill('0') << int(cipher.at(i));
+//              qWarning() << " 0x" << hex << setw(8) << setfill('0') << int(cipher.at(i));
 //      }
-//      std::cout << std::endl;
+//      qWarning();
 
-//      std::cout << "cipher text (" << cipher.size() <<  "): " << encoded << std::endl;
+//      qWarning() << "cipher text (" << cipher.size() <<  "): " << encoded;
     return 1;
 }
 

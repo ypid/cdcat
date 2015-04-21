@@ -9,6 +9,7 @@
 
 #include "hdirview.h"
 
+#include <QDebug>
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
@@ -351,7 +352,7 @@ void HDirectoryView::slotFolderSelected( QTreeWidgetItem *i, int col ) {
     }
     DEBUG_INFO_ENABLED = init_debug_info();
     if (*DEBUG_INFO_ENABLED) {
-        std::cerr << "HDirectoryView::slotFolderSelected item path: " << qPrintable(((LNode *)i)->fullName()) << std::endl;
+        qDebug() << "HDirectoryView::slotFolderSelected item path: " << qPrintable(((LNode *)i)->fullName());
     }
 
     emit folderSelected(((LNode *)i)->fullName());
@@ -363,7 +364,7 @@ void HDirectoryView::slotFolderSelectedR( QTreeWidgetItem *i, int col ) {
     }
     DEBUG_INFO_ENABLED = init_debug_info();
     if (*DEBUG_INFO_ENABLED) {
-        std::cerr << "HDirectoryView::slotFolderSelectedR item path: " << qPrintable(((LNode *)i)->fullName()) << std::endl;
+        qDebug() << "HDirectoryView::slotFolderSelectedR item path: " << qPrintable(((LNode *)i)->fullName());
     }
 
     LNode *lnode = (LNode *)i;

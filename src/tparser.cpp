@@ -28,6 +28,7 @@
 #include <iostream>
 #include <stdio.h>
 
+#include <QDebug>
 #include <QString>
 
 #include "tparser.h"
@@ -294,7 +295,7 @@ QString parseAviHeader( FILE *file ) {
      */
     if (filelength - ftell( file ) < (long)sizeof(_UINT4) * (3 + 3 + 16 + 3 + 16 + 3)) {
         if (*DEBUG_INFO_ENABLED) {
-            std::cerr << "Not a RIFF/AVI file OR header broken! " << std::endl;
+            qWarning() << "Not a RIFF/AVI file OR header broken! ";
         }
         return QObject::tr( "Not a RIFF/AVI file OR header broken!" );
     }
@@ -302,7 +303,7 @@ QString parseAviHeader( FILE *file ) {
     fread((void *)&topHeader.header, sizeof(_UINT4), 3, file );
     if (topHeader.header.hex != RIFF && topHeader.fType.hex != _AVI) {
         if (*DEBUG_INFO_ENABLED) {
-            std::cerr << "Not a RIFF/AVI file OR header broken! " << std::endl;
+            qWarning() << "Not a RIFF/AVI file OR header broken! ";
         }
 #ifdef DoAviDebug
         ReturnData += QObject::tr( "Not a RIFF/AVI file OR header broken!" );
@@ -314,7 +315,7 @@ QString parseAviHeader( FILE *file ) {
                       .arg( topHeader.header.txt[2] )
                       .arg( topHeader.header.txt[3] );
         ReturnData += "\000";
-        cout << qPrintable( ReturnData ) << endl;
+        qDebug() << qPrintable( ReturnData );
 #endif
         ReturnData += "\000";
         return ReturnData;
@@ -322,7 +323,7 @@ QString parseAviHeader( FILE *file ) {
     fread((void *)&listH.header.hex, sizeof(_UINT4), 3, file );
     if (listH.header.hex != LIST && listH.fType.hex != HDRL) {
         if (*DEBUG_INFO_ENABLED) {
-            std::cerr << "Not a RIFF/AVI file OR header broken! " << std::endl;
+            qWarning() << "Not a RIFF/AVI file OR header broken! ";
         }
 #ifdef DoAviDebug
         ReturnData += QObject::tr( "Not a RIFF/AVI file OR header broken!" );
@@ -334,7 +335,7 @@ QString parseAviHeader( FILE *file ) {
                       .arg( listH.header.txt[2] )
                       .arg( listH.header.txt[3] );
         ReturnData += "\000";
-        cout << qPrintable( ReturnData ) << endl;
+        qDebug() << qPrintable( ReturnData );
 #endif
         ReturnData += "\000";
         return ReturnData;
@@ -343,7 +344,7 @@ QString parseAviHeader( FILE *file ) {
     fread((void *)&strl.header.hex, sizeof(_UINT4), 3, file );
     if (listH.header.hex != LIST && listH.fType.hex != STRL) {
         if (*DEBUG_INFO_ENABLED) {
-            std::cerr << "Not a RIFF/AVI file OR header broken! " << std::endl;
+            qWarning() << "Not a RIFF/AVI file OR header broken! ";
         }
 #ifdef DoAviDebug
         ReturnData += QObject::tr( "Not a RIFF/AVI file OR header broken!" );
@@ -355,7 +356,7 @@ QString parseAviHeader( FILE *file ) {
                       .arg( topHeader.header.txt[3] )
                       .arg( topHeader.header.hex );
         ReturnData += "\000";
-        cout << qPrintable( ReturnData ) << endl;
+        qDebug() << qPrintable( ReturnData );
 #endif
         ReturnData += "\000";
         return ReturnData;
@@ -368,7 +369,7 @@ QString parseAviHeader( FILE *file ) {
      */
     if (strf.header.hex != STRF && strf.fType.hex != 0x00000028) {       /*Broken? 0x28=="(   "*/
         if (*DEBUG_INFO_ENABLED) {
-            std::cerr << "Not a RIFF/AVI file OR header broken! " << std::endl;
+            qWarning() << "Not a RIFF/AVI file OR header broken! ";
         }
 #ifdef DoAviDebug
         ReturnData += QObject::tr( "Not a RIFF/AVI file OR header broken!" );
@@ -387,7 +388,7 @@ QString parseAviHeader( FILE *file ) {
                       .arg( strf.fType.txt[3] )
                       .arg( strf.fType.hex );
         ReturnData += "\000";
-        cout << qPrintable( ReturnData ) << endl;
+        qDebug() << qPrintable( ReturnData );
 #endif
         ReturnData += "\000";
         return ReturnData;
@@ -395,7 +396,7 @@ QString parseAviHeader( FILE *file ) {
     fseek( file, 12, SEEK_CUR );
     if (filelength - ftell( file ) < (long)sizeof(_UINT4) * 1) {
         if (*DEBUG_INFO_ENABLED) {
-            std::cerr << "Not a RIFF/AVI file OR header broken! " << std::endl;
+            qWarning() << "Not a RIFF/AVI file OR header broken! ";
         }
         return QObject::tr( "Not a RIFF/AVI file OR header broken!" );
     }
@@ -411,7 +412,7 @@ QString parseAviHeader( FILE *file ) {
 
     if (filelength - ftell( file ) < (long)sizeof(_UINT4) * 21) {
         if (*DEBUG_INFO_ENABLED) {
-            std::cerr << "Not a RIFF/AVI file OR header broken! " << std::endl;
+            qWarning() << "Not a RIFF/AVI file OR header broken! ";
         }
         return QObject::tr( "Not a RIFF/AVI file OR header broken!" );
     }
@@ -420,7 +421,7 @@ QString parseAviHeader( FILE *file ) {
     fread((void *)&strf2.header.hex, sizeof(_UINT4), 3, file );
     if (strf2.header.hex != STRF) {       /*Broken? 0x28=="(   "*/
         if (*DEBUG_INFO_ENABLED) {
-            std::cerr << "Not a RIFF/AVI file OR header broken! " << std::endl;
+            qWarning() << "Not a RIFF/AVI file OR header broken! ";
         }
 #ifdef DoAviDebug
         ReturnData += QObject::tr( "Not a RIFF/AVI file OR header broken!" );
@@ -438,7 +439,7 @@ QString parseAviHeader( FILE *file ) {
                       .arg( strf2.fType.txt[3] )
                       .arg( strf2.fType.hex );
         ReturnData += "\000";
-        cout << qPrintable( ReturnData ) << endl;
+        qDebug() << qPrintable( ReturnData );
 #endif
         ReturnData += "\000";
         return ReturnData;
@@ -447,7 +448,7 @@ QString parseAviHeader( FILE *file ) {
     fseek( file, -4, SEEK_CUR );
     if (filelength - ftell( file ) < (long)sizeof(short int) * 9) {
         if (*DEBUG_INFO_ENABLED) {
-            std::cerr << "Not a RIFF/AVI file OR header broken! " << std::endl;
+            qWarning() << "Not a RIFF/AVI file OR header broken! ";
         }
         return QObject::tr( "Not a RIFF/AVI file OR header broken!" );
     }
@@ -486,7 +487,7 @@ QString parseAviHeader( FILE *file ) {
      */
     listDW.hex = 0x0;
     if (*DEBUG_INFO_ENABLED) {
-        std::cerr << "\t=> We'll chcek it if it's Junk or Something" << std::endl;
+        qWarning() << "\t=> We'll check it if it's Junk or Something";
     }
     while (listDW.hex != LIST) {
         fread((void *)&listDW.txt[0], sizeof(char), 1, file );
@@ -510,7 +511,7 @@ QString parseAviHeader( FILE *file ) {
 
     if (filelength - ftell( file ) < 4 * 3) {
         if (*DEBUG_INFO_ENABLED) {
-            std::cerr << "Not a RIFF/AVI file OR header broken! " << std::endl;
+            qWarning() << "Not a RIFF/AVI file OR header broken! ";
         }
         return QObject::tr( "Not a RIFF/AVI file OR header broken!" );
     }
@@ -521,12 +522,12 @@ QString parseAviHeader( FILE *file ) {
     if (listI.fType.hex == ODML) {
         listDW.hex = 0x00000000;         /*clear data*/
         if (*DEBUG_INFO_ENABLED) {
-            std::cerr << "\t=> skip ODML data for now" << std::endl;
+            qWarning() << "\t=> skip ODML data for now";
         }
         while (listDW.hex != LIST) {
             fread((void *)&listDW.txt[0], sizeof(char), 1, file );
             // if ( *DEBUG_INFO_ENABLED )
-            //	std::cerr << "\t=> ( int ) listDW.txt[0]: " << ( int ) listDW.txt[0] << std::endl;
+            //	qWarning() << "\t=> ( int ) listDW.txt[0]: " << ( int ) listDW.txt[0];
             if ((int)listDW.txt[0] == EOF || (int)listDW.txt[0] == 0) {
                 return ReturnData;
             }
@@ -551,14 +552,14 @@ QString parseAviHeader( FILE *file ) {
      */
     if (filelength - ftell( file ) < 4 * 3) {
         if (*DEBUG_INFO_ENABLED) {
-            std::cerr << "broken header " << std::endl;
+            qWarning() << "broken header ";
         }
         return QString( "Broken header" );
     }
     fread((void *)&listI2.header.hex, 4, 3, file );
     if (listI2.fType.hex == INFO) {
         if (*DEBUG_INFO_ENABLED) {
-            std::cerr << "\t=> now we are somewhere around LIST/INFO" << std::endl;
+            qWarning() << "\t=> now we are somewhere around LIST/INFO";
         }
         while (infoH.header.hex != JUNK && infoH.header.hex != LIST) {
             /*
@@ -724,7 +725,7 @@ QString parseAviHeader( FILE *file ) {
 
     freeINFOLIST();
     ReturnData += "\0";     // Protection?
-//	cout << "\n" << ReturnData;
+//	qDebug() << "\n" << ReturnData;
     return ReturnData;
 }
 

@@ -10,11 +10,14 @@
 #include "config.h"
 #include "cdcat.h"
 #include "mp3tag.h"
+
 #include <string.h>
 #include <stdio.h>
 #include <ctype.h>
 #include <stdlib.h>
 #include <iostream>
+
+#include <QDebug>
 
 using namespace std;
 
@@ -141,7 +144,7 @@ char *ReadMp3Tag::strbcut( char *a ) {   // Oly used by A ReadTAG function
 int ReadMp3Tag::Work( const char *filename ) {
     DEBUG_INFO_ENABLED = init_debug_info();
     if (*DEBUG_INFO_ENABLED) {
-        cerr << "Load file: " << filename << " ...";
+        qDebug() << "Load file: " << filename << " ...";
     }
     bTAGreaded = 1;
     bTAGexist = 0;

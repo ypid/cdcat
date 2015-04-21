@@ -56,6 +56,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
+#include <QDebug>
 #include <QDateTime>
 #include <QMessageBox>
 #include <QString>
@@ -794,7 +795,7 @@ int DataBase::insertDB( char *filename, bool skipDuplicatesOnInsert, bool isGzFi
     while (readcount != 0) {
         filesize += readcount;
         // if(*DEBUG_INFO_ENABLED)
-        //  cerr << "readcount: " << readcount;
+        //  qDebug() << "readcount: " << readcount;
         if (isGzFile) {
             readcount = gzread( gf, testbuffer, READ_BLOCKSIZE );
         } else {
@@ -883,7 +884,7 @@ int DataBase::openDB( char *filename ) {
     while (readcount != 0) {
         filesize += readcount;
         // if(*DEBUG_INFO_ENABLED)
-        //  cerr << "readcount: " << readcount;
+        //  qDebug() << "readcount: " << readcount;
         readcount = gzread( f, testbuffer, READ_BLOCKSIZE );
         progress( pww );
     }
@@ -2145,7 +2146,7 @@ void DataBase::addLnk( const char *loc ) {
     while (readcount != 0) {
         filesize += readcount;
         // if(*DEBUG_INFO_ENABLED)
-        //  cerr << "readcount: " << readcount;
+        //  qDebug() << "readcount: " << readcount;
         readcount = gzread( f, testbuffer, 1024 );
         progress( pww );
     }
@@ -2648,13 +2649,13 @@ void ArchiveFile::setDbString( QString DbString ) {
     // from db
     if (DbString.at( 0 ) == this->div) {
         DbString = DbString.right( DbString.size() - 2 );
-        std::cout << "first char was sep, skipping, new DbString: " << DbString.toLocal8Bit().constData();
+        qDebug() << "first char was sep, skipping, new DbString: " << DbString.toLocal8Bit().constData();
     }
     QStringList fileentry = DbString.split( this->div );
-//      std::cout << "DbString: " << qPrintable(DbString) << "count of " << qPrintable(QString(this->div)) << ": " << DbString.count(this->div);
-//      std::cout << "FileEntry (size: " << fileentry.size() << "): " << qPrintable(fileentry.join(" "));
+//      qDebug() << "DbString: " << qPrintable(DbString) << "count of " << qPrintable(QString(this->div)) << ": " << DbString.count(this->div);
+//      qDebug() << "FileEntry (size: " << fileentry.size() << "): " << qPrintable(fileentry.join(" "));
 //      for ( int i = 0; i < fileentry.size(); ++i )
-//              std::cout << "fileentry[" << i << "]: " << fileentry.at ( i ).toLocal8Bit().constData();
+//              qDebug() << "fileentry[" << i << "]: " << fileentry.at ( i ).toLocal8Bit().constData();
 //
 
     if (fileentry.size() == 8) {
@@ -2665,7 +2666,7 @@ void ArchiveFile::setDbString( QString DbString ) {
         this->date = QDateTime().fromString( fileentry.at( 4 ), "MMM d h:s yyyy" );
         this->path = fileentry.at( 5 );
         this->filetype = fileentry.at( 6 );
-//              std::cout << "FileEntry(8): " << qPrintable(toPrettyString());
+//              qDebug() << "FileEntry(8): " << qPrintable(toPrettyString());
     }
 }
 
