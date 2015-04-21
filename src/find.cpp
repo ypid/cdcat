@@ -11,11 +11,11 @@
 
 #include <QVariant>
 #include <QCheckBox>
-#include <qcombobox.h>
+#include <QComboBox>
 #include <QFrame>
 #include <QLayout>
 #include <QLabel>
-#include <qlineedit.h>
+#include <QLineEdit>
 #include <QHeaderView>
 #include <QPushButton>
 #include <QLayout>

@@ -16,7 +16,7 @@
 #include <QWidget>
 #include <QDateTime>
 
-#include <qprogressdialog.h>
+#include <QProgressDialog>
 
 #include <QtXml/QXmlDefaultHandler>
 #include <QtXml/QXmlLocator>
@@ -28,7 +28,7 @@
 #include "dbase.h"
 
 
-#include <qlist.h>
+#include <QList>
 
 
 class Node;

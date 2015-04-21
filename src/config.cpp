@@ -23,19 +23,19 @@
 #include <QVariant>
 #include <QCheckBox>
 #include <QFileDialog>
-#include <qlineedit.h>
+#include <QLineEdit>
 #include <QPushButton>
 #include <QLayout>
 #include <QToolTip>
 #include <QLabel>
-#include <qspinbox.h>
+#include <QSpinBox>
 #include <QFile>
 #include <QFont>
-#include <qcolor.h>
+#include <QColor>
 #include <QFrame>
 #include <QTextStream>
-#include <qcombobox.h>
-#include <qgroupbox.h>
+#include <QComboBox>
+#include <QGroupBox>
 #include <QHBoxLayout>
 #include <QGridLayout>
 

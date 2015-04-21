@@ -16,9 +16,9 @@
 
 #include <QVariant>
 #include <QLabel>
-#include <qpoint.h>
+#include <QPoint>
 #include <QMenu>
-#include <qlineedit.h>
+#include <QLineEdit>
 #include <QPushButton>
 #include <QLayout>
 #include <QToolTip>

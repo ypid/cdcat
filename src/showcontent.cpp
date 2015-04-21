@@ -10,7 +10,7 @@
 
 #include <QVariant>
 #include <QPushButton>
-#include <qtextbrowser.h>
+#include <QTextBrowser>
 #include <QToolButton>
 #include <QLayout>
 #include <QToolTip>

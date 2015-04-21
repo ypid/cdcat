@@ -24,13 +24,13 @@
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QLayout>
-#include <qlineedit.h>
+#include <QLineEdit>
 #include <QListWidget>
 #include <QObject>
 #include <QPixmap>
 #include <QPushButton>
 #include <QRadioButton>
-#include <qspinbox.h>
+#include <QSpinBox>
 #include <QStandardItemModel>
 #include <QVariant>
 #include <QVBoxLayout>

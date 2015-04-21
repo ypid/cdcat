@@ -18,7 +18,7 @@
 #include <QCheckBox>
 #include <QGroupBox>
 #include <QRadioButton>
-#include <qlineedit.h>
+#include <QLineEdit>
 #include <QLayout>
 #include <QPixmap>
 #include <QToolTip>

@@ -15,7 +15,7 @@
 
 #include <QVariant>
 #include <QLabel>
-#include <qlineedit.h>
+#include <QLineEdit>
 #include <QPushButton>
 #include <QTextEdit>
 #include <QLayout>

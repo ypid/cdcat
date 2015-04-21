@@ -13,17 +13,16 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QPixmap>
-#include <qevent.h>
-#include <qpoint.h>
+#include <QEvent>
+#include <QPoint>
 #include <QMessageBox>
-// #include <qmime.h>
 #include <QStringList>
 #include <QStringList>
 #include <QApplication>
-#include <qevent.h>
+#include <QEvent>
 #include <QHeaderView>
 #include <QPainter>
-#include <qpalette.h>
+#include <QPalette>
 #include <QDragMoveEvent>
 #include <QDropEvent>
 #include <QDragLeaveEvent>

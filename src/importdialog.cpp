@@ -11,7 +11,7 @@
 #include "importdialog.h"
 
 #include <QLabel>
-#include <qlineedit.h>
+#include <QLineEdit>
 #include <QPushButton>
 #include <QMessageBox>
 #include <QToolTip>

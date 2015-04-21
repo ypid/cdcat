@@ -12,11 +12,11 @@
 #include "dbase.h"
 
 #include <QVariant>
-#include <qcombobox.h>
+#include <QComboBox>
 #include <QLabel>
-#include <qlineedit.h>
+#include <QLineEdit>
 #include <QPushButton>
-#include <qspinbox.h>
+#include <QSpinBox>
 #include <QCheckBox>
 #include <QTextEdit>
 #include <QLayout>

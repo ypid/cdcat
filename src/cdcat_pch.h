@@ -20,8 +20,8 @@
 #include <QCheckBox>
 #include <QCheckBox>
 #include <QCloseEvent>
-#include <qcolor.h>
-#include <qcombobox.h>
+#include <QColor>
+#include <QComboBox>
 #include <QDate>
 #include <QDateTime>
 #include <QDateTimeEdit>
@@ -33,7 +33,7 @@
 #include <QDragMoveEvent>
 #include <QDropEvent>
 #include <QEvent>
-#include <qevent.h>
+#include <QEvent>
 #include <QFileDialog>
 #include <QFileDialog>
 #include <QFile>
@@ -50,32 +50,31 @@
 #include <QLayout>
 #include <QLayout>
 #include <QLayout>
-#include <qlineedit.h>
+#include <QLineEdit>
 #include <QList>
-#include <qlist.h>
+#include <QList>
 #include <QLocale>
 #include <QMenuBar>
 #include <QMessageBox>
 #include <QMessageBox>
-// #include <qmime.h>
 #include <QMouseEvent>
 #include <QObject>
 #include <QPainter>
 #include <QPaintEvent>
-#include <qpalette.h>
+#include <QPalette>
 #include <QPixmap>
 #include <QPixmap>
 // #include <QPlastiqueStyle>
-#include <qpoint.h>
+#include <QPoint>
 #include <QProgressDialog>
-#include <qprogressdialog.h>
+#include <QProgressDialog>
 #include <QPushButton>
 #include <QRadioButton>
 #include <QRegExp>
 #include <QRegExp>
 #include <QResizeEvent>
 #include <QSpinBox>
-#include <qspinbox.h>
+#include <QSpinBox>
 #include <QSplitter>
 #include <QString>
 #include <QString>
@@ -87,7 +86,7 @@
 #include <QtCore/QVariant>
 #include <QtDebug>
 #include <QTextBrowser>
-#include <qtextbrowser.h>
+#include <QTextBrowser>
 #include <QTextCodec>
 #include <QTextStream>
 #include <QTextStream>
