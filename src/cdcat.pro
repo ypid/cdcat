@@ -113,7 +113,7 @@ win32 {
     # use lib7zip?
     DEFINES+=USE_LIB7ZIP
     LIBS       += c:/zlib/lib/libz.a c:/libs/lib7zip.a c:/libs/bzip2.dll c:/libs/libtar.a  -loleaut32 -luuid
-    INCLUDEPATH   += c:/Expat/Source/lib c:/zlib/include c:/pcre/include C:/includes c:/mediainfo
+    INCLUDEPATH   += c:/zlib/include c:/pcre/include C:/includes c:/mediainfo
 
     ###### encryption {{{
     DEFINES += CATALOG_ENCRYPTION
