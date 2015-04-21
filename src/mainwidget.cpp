@@ -187,12 +187,14 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
     historyMenu->setTitle( tr( "Recent files …" ));
     historyMenu->setIcon( QIcon( *get_t_open_icon()));
 
-    for (int i = cconfig->hlist.size() - 1; i > -1; i--) {
+    for (int i = 0; i < cconfig->hlist.size(); i++) {
         if (!cconfig->hlist.at( i ).isEmpty()) {
             QAction *history_action = new QAction( QIcon( *get_p_icon()), cconfig->hlist.at( i ), this );
             // history_action->setShortcut( QKeySequence (Qt::CTRL + Qt::Key_W));
             // history_action->setStatusTip(tr("Open catalog history element"));
             historyMenu->addAction( history_action );
+        } else {
+            qWarning() << "Hlist element empty?";
         }
     }
     connect( historyMenu, SIGNAL( triggered( QAction * )), guis, SLOT( openHistoryElementEvent( QAction * )));
