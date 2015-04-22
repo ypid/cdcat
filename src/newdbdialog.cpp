@@ -155,16 +155,19 @@ int newdbdialog::ok( void ) {
     categoryD = leCategory->text();
 #ifdef CATALOG_ENCRYPTION
     if (cbEncryption->isChecked()) {
-        if (leEncryptionPassword->text().size() < 4) {
-            QMessageBox::warning( this, tr( "Password too short" ), tr( "Password length is too short, must be minimum 4 chars" ));
+        if (leEncryptionPassword->text().size() <= MIN_PASSWORD_LENGTH) {
+            QMessageBox::warning( this,
+                tr( "Password too short" ),
+                tr( "Password length is too short, must be minimum %1 chars" )
+                    .arg(MIN_PASSWORD_LENGTH)
+            );
             return 1;
         }
         if (leEncryptionPassword->text().size() > CryptoPP::Blowfish::BLOCKSIZE) {
             QMessageBox::warning( this,
                 tr( "Password too big" ),
                 tr( "Password length is too big, must be maximal %1 chars" )
-                    .arg( QString()
-                    .setNum( CryptoPP::Blowfish::BLOCKSIZE ))
+                    .arg( QString().setNum( CryptoPP::Blowfish::BLOCKSIZE ))
             );
             return 1;
         }

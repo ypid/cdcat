@@ -403,7 +403,7 @@ void exportCdcatDB::ok() {
 
         separator = separatorInput->text();
 
-        /*extension correction:*/
+        /* extension correction: */
         if (radioHtml->isChecked() &&
             !(((fileName->text()).right( 5 )).toLower() == ".html" ||
               ((fileName->text()).right( 4 )).toLower() == ".htm")) {
@@ -603,13 +603,13 @@ void exportCdcatDB::ok() {
                     mainw->db->XML_ENCODING = "UTF-8";
                     bool save_hcf_ok = true;
                     if (checkAllMedia->isChecked()) {
-                        // qWarning() << "xml export: all media!" ;
+                        // qDebug() << "xml export: all media" ;
                         if (mainw->db->saveAsDB( fnc ) != 0) {                                    // An error occurred
                             QMessageBox::critical( 0, tr( "Error during write export …" ), tr( "I can't create or rewrite the file" ));
                             save_hcf_ok = false;
                         }
                     } else {
-                        // qWarning() << "xml export: only seleced media!" ;
+                        qDebug() << "xml export: only selected media" ;
                         unlink( fnc );
                         ff = gzopen( fnc, "wb" );
                         if (ff == NULL) {
@@ -638,20 +638,13 @@ void exportCdcatDB::ok() {
                             readcount = gzread( ff2, tmpbuffer, READ_BLOCKSIZE );
 
                             while (readcount > 0) {
-//                                                      qDebug() << "read " << readcount << " bytes";
                                 f.write( tmpbuffer, readcount );
-//                                                                      if (readcount > 4096) {
-//                                                                              qDebug() << "last read: " << readcount << " bytes";
-//                                                                      }
                                 progress( pww );
                                 readcount = gzread( ff2, tmpbuffer, READ_BLOCKSIZE );
                             }
-                            // qDebug() << "before gzclose";
                             gzclose( ff2 );
-                            // qDebug() << "before unlink";
                             unlink( fnc );
                         }
-                        // qDebug() << "before close";
                         f.close();
                     }
                     f.close();

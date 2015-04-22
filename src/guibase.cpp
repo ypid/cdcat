@@ -3069,9 +3069,12 @@ int GuiSlave::cborrowEvent( void ) {
         return 0;
     }
 
-    i = QMessageBox::warning( mainw, tr( "Confirmation" ),
-                              tr( "Do you want to clear the borrowing mark from media \"%1\"?\n(Say yes if you got it back.)" ).arg( standON->getNameOf())
-                              , tr( "Yes" ), tr( "No" ));
+    i = QMessageBox::warning( mainw,
+        tr( "Confirmation" ),
+        tr( "Do you want to clear the borrowing mark from media \"%1\"?\n(Say yes if you got it back.)" )
+            .arg( standON->getNameOf()),
+        tr( "Yes" ), tr( "No" )
+    );
 
     if (i != 0) {
         return 0;
@@ -3105,14 +3108,20 @@ int GuiSlave::searchDuplicatesEvent( void ) {
 int GuiSlave::changePassEvent( void ) {
     bool ok = false;
     bool ok_again = false;
-    QString Password = QInputDialog::getText( 0, QObject::tr( "Enter password …" ), QObject::tr( "Enter password for catalog:" ), QLineEdit::Password, "", &ok );
-    QString PasswordAgain = QInputDialog::getText( 0, QObject::tr( "Enter password …" ), QObject::tr( "Enter password for catalog (again):" ), QLineEdit::Password, "", &ok_again );
+    QString Password = QInputDialog::getText( 0,
+        tr( "Enter password …" ),
+        tr( "Enter password for catalog:" ), QLineEdit::Password, "", &ok
+    );
+    QString PasswordAgain = QInputDialog::getText( 0, tr( "Enter password …" ), tr( "Enter password for catalog (again):" ), QLineEdit::Password, "", &ok_again );
 
     if (ok && ok_again) {
         if (Password == PasswordAgain) {
-            if (Password.size() >= 4) {
+            if (Password.size() >= MIN_PASSWORD_LENGTH) {
                 if (Password.size() > CryptoPP::Blowfish::BLOCKSIZE) {
-                    QMessageBox::critical( 0, tr( "Password too big" ), tr( "Password length is too big, must be maximal %1 chars" ).arg( QString().setNum( CryptoPP::Blowfish::BLOCKSIZE )));
+                    QMessageBox::critical( 0,
+                        tr( "Password too big" ),
+                        tr( "Password length is too big, must be maximal %1 chars" )
+                            .arg( QString().setNum( CryptoPP::Blowfish::BLOCKSIZE )));
                 } else {
                     generate_cryptokey( Password );
                     QMessageBox::information( 0, tr( "Password changed" ), tr( "Password has been successfully changed" ));
@@ -3120,7 +3129,10 @@ int GuiSlave::changePassEvent( void ) {
                     return 0;
                 }
             } else {
-                QMessageBox::critical( 0, tr( "Password too short" ), tr( "Password length is too short, must be minimum 4 chars" ));
+                QMessageBox::critical( 0,
+                    tr( "Password too short" ),
+                    tr( "Password length is too short, must be minimum %1 chars" )
+                        .arg(MIN_PASSWORD_LENGTH));
             }
         } else {
             QMessageBox::critical( 0, tr( "Passwords not match" ), tr( "Passwords does not match" ));
@@ -3133,25 +3145,42 @@ int GuiSlave::enableEncryptionEvent( void ) {
     Node *root = mainw->db->getRootNode();
     bool ok = false;
     bool ok_again = false;
-    QString Password = QInputDialog::getText( 0, QObject::tr( "Enter password …" ), QObject::tr( "Enter password for catalog:" ), QLineEdit::Password, "", &ok );
-    QString PasswordAgain = QInputDialog::getText( 0, QObject::tr( "Enter password …" ), QObject::tr( "Enter password for catalog (again):" ), QLineEdit::Password, "", &ok_again );
+    QString Password = QInputDialog::getText( 0,
+        tr( "Enter password …" ),
+        tr( "Enter password for catalog:" ), QLineEdit::Password, "", &ok
+    );
+    QString PasswordAgain = QInputDialog::getText( 0,
+        tr( "Enter password …" ),
+        tr( "Enter password for catalog (again):" ), QLineEdit::Password, "", &ok_again
+    );
 
     if (ok && ok_again) {
         if (Password == PasswordAgain) {
-            if (Password.size() >= 4) {
+            if (Password.size() >= MIN_PASSWORD_LENGTH) {
                 if (Password.size() > CryptoPP::Blowfish::BLOCKSIZE) {
-                    QMessageBox::critical( 0, tr( "Password too big" ), tr( "Password length is too big, must be maximal %1 chars" ).arg( QString().setNum( CryptoPP::Blowfish::BLOCKSIZE )));
+                    QMessageBox::critical( 0,
+                        tr( "Password too big" ),
+                        tr( "Password length is too big, must be maximal %1 chars" )
+                            .arg( QString().setNum( CryptoPP::Blowfish::BLOCKSIZE ))
+                    );
                 } else {
                     ((DBCatalog *)((root)->data))->isEncryptedCatalog = true;
                     generate_cryptokey( Password );
-                    QMessageBox::information( 0, tr( "Password changed" ), tr( "Encryption has been successfully enabled" ));
+                    QMessageBox::information( 0,
+                        tr( "Password changed" ),
+                        tr( "Encryption has been successfully enabled" )
+                    );
                     saveEvent();
                     mainw->disableencryption_action->setEnabled( true );
                     mainw->enableencryption_action->setEnabled( false );
                     return 0;
                 }
             } else {
-                QMessageBox::critical( 0, tr( "Password too short" ), tr( "Password length is too short, must be minimum 4 chars" ));
+                QMessageBox::critical( 0,
+                    tr( "Password too short" ),
+                    tr( "Password length is too short, must be minimum %1 chars" )
+                        .arg(MIN_PASSWORD_LENGTH)
+                );
             }
         } else {
             QMessageBox::critical( 0, tr( "Passwords not match" ), tr( "Passwords does not match" ));

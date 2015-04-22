@@ -19,6 +19,7 @@
 #include <QKeyEvent>
 #include <QKeySequence>
 
+#define MIN_PASSWORD_LENGTH 8
 
 class Node;
 class CdCatMainWidget;
