@@ -84,6 +84,7 @@ CdCatConfig::CdCatConfig ( QString arg_config_file ) :
         config_file = CONFIGFILE;
 #else
     if (getenv( "HOME" ) == NULL) {
+        qWarning() << "getent('HOME') == NULL";
         QMessageBox::warning(
             0,
             tr( "Error while saving config file …" ),
@@ -91,13 +92,15 @@ CdCatConfig::CdCatConfig ( QString arg_config_file ) :
         );
 
         config_file == NULL;
+    } else {
+        config_file = QString( getenv( "HOME" )) + QString( "/" );
+        config_file += CONFIGFILE;
     }
-    QString config_file = QString( getenv( "HOME" )) + QString( "/" );
-    config_file += CONFIGFILE;
 #endif
     } else {
         config_file = arg_config_file;
     }
+    qDebug() << "config_file:" << config_file;
 
 
     ownfont = false;
@@ -310,6 +313,7 @@ int CdCatConfig::readConfig() {
     int error = 0;
 
     if (config_file == NULL) {
+        qWarning() << "config_file == NULL";
         return 1;
     }
 
@@ -1072,6 +1076,7 @@ int CdCatConfig::readConfig() {
 
 int CdCatConfig::writeConfig( void ) {
     if (config_file == NULL) {
+        qWarning() << "config_file == NULL";
         return 1;
     }
 
