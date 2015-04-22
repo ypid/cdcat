@@ -72,10 +72,6 @@ int main( int argi, char **argc ) {
     QCoreApplication::setApplicationName(PROGRAM_NAME);
     QCoreApplication::setApplicationVersion(VERSION);
 
-    CdCatConfig *cconfig = new CdCatConfig();
-    translator = 0;
-    int font_size = 8;
-
     /* Declare command line parameters {{{ */
     QCommandLineParser parser;
 
@@ -140,8 +136,11 @@ int main( int argi, char **argc ) {
     Q_ASSERT(parser.addOption(optionExportFormat));
     /* }}} */
 
-    QCommandLineOption addressOption(QStringList() << "n" << "address", QCoreApplication::translate("main_cli", "Specify decimal starting address (default is 0)."), QCoreApplication::translate("main_cli", "address"), "0");
-    Q_ASSERT(parser.addOption(addressOption));
+    QCommandLineOption optionConfigFile(QStringList() << "c" << "config-file",
+        QCoreApplication::translate("main_cli", "Configuration file to use."),
+        QCoreApplication::translate("main_cli", "file")
+    );
+    Q_ASSERT(parser.addOption(optionConfigFile));
 
     QCommandLineOption optionSwitchBatchMode(QStringList() << "b" << "batch",
         QCoreApplication::translate("main_cli", "Run in non iterative batch mode. This mode is CLI only which means no GUI is going to appear.")
@@ -178,6 +177,16 @@ int main( int argi, char **argc ) {
     /* }}} */
 
     /* }}} */
+
+    CdCatConfig *cconfig;
+    translator = 0;
+    int font_size = 8;
+
+    if (parser.isSet(optionConfigFile)) {
+        cconfig = new CdCatConfig(parser.value(optionConfigFile));
+    } else {
+        cconfig = new CdCatConfig(NULL);
+    }
 
     if (args.size() == 1) {
         QByteArray filename_a = args.at(0).toUtf8();

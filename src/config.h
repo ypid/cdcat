@@ -42,7 +42,7 @@ class QColor;
 class CdCatConfig : public QObject {
     Q_OBJECT
 public:
-    CdCatConfig ( void );
+    CdCatConfig ( QString arg_config_file );
     ~CdCatConfig ( void );
 
     int startProgram( DataBase **dbp, QWidget *mw );
@@ -53,8 +53,9 @@ public:
 public:
     bool startpar;
     QString startfn;
+    QString config_file;
 
-    // Configureable items:
+    // Configurable items:
     int fsize;
     int historysize;
     bool showTrayIcon;

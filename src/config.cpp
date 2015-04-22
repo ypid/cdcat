@@ -16,6 +16,11 @@
 #include "mainwidget.h"
 #include "selreadable.h"
 
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <iostream>
+
 #include <QDebug>
 #include <QString>
 #include <QMessageBox>
@@ -42,19 +47,15 @@
 #include <QTranslator>
 #include <QTextCodec>
 
-
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <iostream>
-
 #if defined(_WIN32) || defined(_OS2)
     #define CONFIGFILE "cdcat.cfg"
 #else
     #define CONFIGFILE ".cdcatconf"
 #endif
 
-CdCatConfig::CdCatConfig ( void ) :
+// FIXME Use QSettings
+
+CdCatConfig::CdCatConfig ( QString arg_config_file ) :
     usefileinfo( false ),
     useExternalContentViewer( false ),
     storeExifData( false ),
@@ -77,6 +78,27 @@ CdCatConfig::CdCatConfig ( void ) :
 
     startpar = false;
     startfn = "";
+
+    if (arg_config_file == NULL) {
+#if defined(_WIN32) || defined(_OS2)
+        config_file = CONFIGFILE;
+#else
+    if (getenv( "HOME" ) == NULL) {
+        QMessageBox::warning(
+            0,
+            tr( "Error while saving config file …" ),
+            tr( "I can't get the $HOME environment variable.\nIt is necessary because I'd like to save the config file into your home directory." )
+        );
+
+        config_file == NULL;
+    }
+    QString config_file = QString( getenv( "HOME" )) + QString( "/" );
+    config_file += CONFIGFILE;
+#endif
+    } else {
+        config_file = arg_config_file;
+    }
+
 
     ownfont = false;
     fsize = 8;
@@ -284,26 +306,20 @@ int secv( const char *s, int i ) {
     return 0;
 }
 
-int CdCatConfig::readConfig( void ) {
+int CdCatConfig::readConfig() {
     int error = 0;
 
-#if defined(_WIN32) || defined(_OS2)
-    QFile f( CONFIGFILE );
-#else
-
-    if (getenv( "HOME" ) == NULL) {
+    if (config_file == NULL) {
         return 1;
     }
-    QString tmp;
-    tmp += getenv( "HOME" );
-    tmp += "/";
-    tmp += QString( CONFIGFILE );
-    QFile f( tmp );
-#endif
+
+    QFile f( config_file );
 
     QString msg;
     if (f.open( QIODevice::ReadOnly )) {  // file opened successfully
-        QTextStream t( &f );              // use a text stream
+        qDebug() << "Reading configuration file:" << config_file;
+
+        QTextStream t( &f ); // use a text stream
 
         while (!t.atEnd()) {
             QString line;
@@ -323,6 +339,7 @@ int CdCatConfig::readConfig( void ) {
                     fsize = val.toInt();
                     continue;
                 }
+                /* file history {{{ */
                 if (var == "history_size") {
                     historysize = val.toInt();
                     continue;
@@ -345,8 +362,8 @@ int CdCatConfig::readConfig( void ) {
                             hlist.removeFirst();
                     }
                     continue;
-                }                 // history
-
+                }
+                /* }}} */
 
                 if (var == "showTrayIcon") {
                     if (val == "true") {
@@ -1054,24 +1071,15 @@ int CdCatConfig::readConfig( void ) {
 }
 
 int CdCatConfig::writeConfig( void ) {
-#if defined(_WIN32) || defined(_OS2)
-    QFile f( CONFIGFILE );
-#else
-    if (getenv( "HOME" ) == NULL) {
-        QMessageBox::warning(
-            0,
-            tr( "Error while saving config file …" ),
-            tr( "I can't get the $HOME environment variable.\nIt is necessary because I'd like to save the config file into your home directory." )
-        );
-
+    if (config_file == NULL) {
         return 1;
     }
-    QString filepath = QString( getenv( "HOME" )) + QString( "/" );
-    filepath += CONFIGFILE;
-    QFile f( filepath );
-#endif
+
+    QFile f( config_file );
 
     if (f.open( QIODevice::WriteOnly )) {
+        qDebug() << "Writing configuration file:" << config_file;
+
         QTextStream str( &f );          // we will serialize the data into file f
         // str.setCodec( QTextCodec::codecForName( "ISO-8859-1" ));
 
@@ -1493,14 +1501,14 @@ int CdCatConfig::writeConfig( void ) {
             0,
             tr( "Error while saving config file …" ),
             tr( "I can't create or rewrite the %1 file " )
-                .arg("./" CONFIGFILE)
+                .arg("./" + config_file)
         );
 #else
         QMessageBox::warning(
             0,
             tr( "Error while saving config file …" ),
             tr( "I can't create or rewrite the %1 file " )
-                .arg("${HOME}/" CONFIGFILE)
+                .arg("${HOME}/" + config_file)
         );
 #endif
         return 1;

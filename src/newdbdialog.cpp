@@ -8,10 +8,18 @@
 ****************************************************************************/
 
 #include "newdbdialog.h"
+
 #include "dbase.h"
 #include "cdcat.h"
 #include "guibase.h"
 #include "icons.h"
+
+#include <stdio.h>
+#include <string.h>
+
+#ifdef CATALOG_ENCRYPTION
+    #include <crypto++/blowfish.h>
+#endif
 
 #include <QVariant>
 #include <QLabel>
@@ -23,13 +31,6 @@
 #include <QMessageBox>
 #include <QGridLayout>
 #include <QHBoxLayout>
-
-#include <stdio.h>
-#include <string.h>
-
-#ifdef CATALOG_ENCRYPTION
-    #include <crypto++/blowfish.h>
-#endif
 
 /*
  *  Constructs a newdbdialog as a child of 'parent', with the
