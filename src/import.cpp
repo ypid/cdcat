@@ -179,19 +179,19 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave *parent, QString separator, QStr
     QFile f( filename );
 
     if (f.open( QIODevice::ReadOnly )) {
+        qDebug() << "opened file";
         QTextStream in( &f );
         while (!in.atEnd()) {
-            QString line = in.readLine();
+            in.readLine();
             lines++;
         }
         f.close();
         if (*DEBUG_INFO_ENABLED) {
             qDebug() << lines << " lines found.";
         }
-    }
+    } else {
+        qWarning() << "File open failed";
 
-    // FIXME: Why not use else?
-    if (!f.open( QIODevice::ReadOnly )) {              // file open failed
         if (f.error() == QFile::ReadError) {
             QMessageBox::critical( 0, tr( "file read error" ), tr( "Could not read file" ));
         }
@@ -209,7 +209,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave *parent, QString separator, QStr
     QProgressDialog *progress = new QProgressDialog( tr( "Importing CSV …" ), tr( "Cancel" ), 1, lines );
     progress->setCancelButton( 0 );
 
-    QTextStream t( &f );                   // use a text stream
+    QTextStream t( &f );
     QString medianame = "";
     QString comment = "";
     QString category = "";
@@ -302,7 +302,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave *parent, QString separator, QStr
                     qDebug() << "importGtktalogCsv:: multi line entry found";
                 }
                 line += '\n';
-                line += t.readLine();                  // line of text excluding '\n'
+                line += t.readLine(); // line of text excluding '\n'
             }
         }
 
@@ -1652,17 +1652,9 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave *parent, QString separator, QStr
     QString msg;
     msg += tr( "Import was successful." );
     msg += "\n";
-    if (mediacount < 2) {
-        msg += tr( "1 media" ) + ",\n";
-    } else {
-        msg += QString().setNum( mediacount ) + " " + QString( tr( "media" )) + ",\n";
-    }
+    msg += tr( "%Ln media(s)", "media", mediacount ) + ",\n";
 
-    if (dircount < 2) {
-        msg += QString( tr( "1 directory,\n" ));
-    } else {
-        msg += QString().setNum( dircount ) + " " + QString( tr( "directories" )) + ",\n";
-    }
+    msg += tr( "%Ln directori(es)", "directory", dircount ) + ",\n";
 
     if (filecount < 2) {
         msg += tr( "1 file" ) + ",\n";

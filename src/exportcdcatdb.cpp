@@ -8,6 +8,7 @@
 ****************************************************************************/
 
 #include "exportcdcatdb.h"
+
 #include "cdcat.h"
 #include "icons.h"
 #include "adddialog.h"
@@ -44,7 +45,9 @@
  *  The dialog will by default be modeless, unless you set 'modal' to
  *  true to construct a modal dialog.
  */
-exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget *parent, const char *name, bool modal, Qt::WindowFlags fl ) : QDialog( parent, fl ) {
+exportCdcatDB::exportCdcatDB ( CdCatMainWidget *mainw, QWidget *parent, const char *name, bool modal, Qt::WindowFlags fl )
+    : QDialog( parent, fl ) {
+
     this->mainw = mainw;
     p = mainw->db;
     app = mainw->app;
@@ -547,12 +550,14 @@ void exportCdcatDB::ok() {
 
         if (f.exists()) {
             // QApplication::restoreOverrideCursor();
-            QMessageBox mb( tr( "Overwrite?" ),
-                            tr( "Do you want overwrite this file?" ),
-                            QMessageBox::Critical,
-                            QMessageBox::Yes,
-                            QMessageBox::Cancel | QMessageBox::Escape | QMessageBox::Default,
-                            0 );
+            QMessageBox mb(
+                tr( "Overwrite?" ),
+                tr( "Do you want to overwrite this file?" ),
+                QMessageBox::Critical,
+                QMessageBox::Yes,
+                QMessageBox::Cancel | QMessageBox::Escape | QMessageBox::Default,
+                0
+            );
             mb.setButtonText( QMessageBox::Yes, tr( "Yes" ));
             mb.setButtonText( QMessageBox::Cancel, tr( "Discard" ));
             overwrite = mb.exec();
@@ -582,7 +587,10 @@ void exportCdcatDB::ok() {
                     // QApplication::restoreOverrideCursor();
                 } else {
                     // QApplication::restoreOverrideCursor();
-                    QMessageBox::critical( 0, tr( "Error during write export …" ), tr( "I can't create or rewrite the file" ));
+                    QMessageBox::critical( 0,
+                        tr( "Error during write export …" ),
+                        tr( "I can't create or rewrite the file" )
+                    );
                 }
             } else {
                 // XML
@@ -687,11 +695,11 @@ void exportCdcatDB::addMedia() {
 void exportCdcatDB::removeMedia() {
     uint i;
 
-    for (i = 0; i < listSelectedMedia->count(); i++)
+    for (i = 0; i < listSelectedMedia->count(); i++) {
         if (listSelectedMedia->item( i )->isSelected()) {
             listAllMedia->insertItem( 0, listSelectedMedia->item( i )->text());
         }
-
+    }
 
     for (i = 0; i < listSelectedMedia->count(); i++)
         while (i < listSelectedMedia->count() && listSelectedMedia->item( i )->isSelected())

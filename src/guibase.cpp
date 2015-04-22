@@ -307,42 +307,30 @@ void GuiSlave::checkversion( QWidget *p, DataBase *db ) {
 
     QString fv = ((DBCatalog *)((db->getRootNode())->data))->fileversion;
 
-    if (fv.isEmpty()) {     // vers < 1.2
-        return;
-    }
+    if (fv.isEmpty() // version < 1.2
+        || fv == "1.2"
+        || fv == "1.3"
+        || fv == "1.4"
+        || fv == "2.0"
+        || fv == "2.1"
+        || fv == "2.2"
+            ) {
 
-    if (fv == "1.2") {
-        return;
+    } else {
+        QMessageBox::warning(
+            p,
+            tr( "Warning …" ),
+            tr(
+                "The database file has newer version than this version of %4 can work with:\n"
+                "I understand maximum %1 datafile version but readed %4\n\n"
+                "Strongly recommended to upgrade your %1!\n"
+                "Homepage: %3" )
+            .arg( DVERS )
+            .arg( fv )
+            .arg( HOMEPAGE )
+            .arg( PROGRAM_NAME )
+        );
     }
-    if (fv == "1.3") {
-        return;
-    }
-    if (fv == "1.4") {
-        return;
-    }
-    if (fv == "2.0") {
-        return;
-    }
-    if (fv == "2.1") {
-        return;
-    }
-    if (fv == "2.2") {
-        return;
-    }
-
-    QMessageBox::warning(
-        p,
-        tr( "Warning …" ),
-        tr(
-            "The database file has newer version than this version of %4 can work with:\n"
-            "I understand maximum %1 datafile version but readed %4\n\n"
-            "Strongly recommended to upgrade your %1!\n"
-            "Homepage: %3" )
-        .arg( DVERS )
-        .arg( fv )
-        .arg( HOMEPAGE )
-        .arg( PROGRAM_NAME )
-    );
 }
 
 void GuiSlave::updateStatusl( Node *n ) {
@@ -946,25 +934,11 @@ void GuiSlave::panelsOFF( void ) {
 }
 
 int GuiSlave::cHcaption( void ) {
-    DEBUG_INFO_ENABLED = init_debug_info();
-    if (*DEBUG_INFO_ENABLED) {
-        qDebug();
-    }
+    qDebug();
     if ((mainw->db != NULL) && (((DBCatalog *)(mainw->db->getRootNode()->data))->writed == 0)) {
-        if (*DEBUG_INFO_ENABLED) {
-            qDebug() << "case:1";
-        }
-        mainw->setWindowTitle( PROGRAM_NAME + tr( "modified" ));
+        mainw->setWindowTitle( PROGRAM_NAME " (" + tr( "modified" ) + ")" );
     } else {
-        if (*DEBUG_INFO_ENABLED) {
-            qDebug() << "case:2";
-        }
-
         mainw->setWindowTitle( PROGRAM_NAME );
-    }
-
-    if (*DEBUG_INFO_ENABLED) {
-        qDebug() << "F-done";
     }
     return 0;
 }

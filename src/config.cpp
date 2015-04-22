@@ -93,8 +93,7 @@ CdCatConfig::CdCatConfig ( QString arg_config_file ) :
 
         config_file == NULL;
     } else {
-        config_file = QString( getenv( "HOME" )) + QString( "/" );
-        config_file += CONFIGFILE;
+        config_file = QString( getenv( "HOME" )) + QString( "/" ) + CONFIGFILE;
     }
 #endif
     } else {
@@ -1501,21 +1500,16 @@ int CdCatConfig::writeConfig( void ) {
         f.close();
         return 0;
     } else {
+        QMessageBox::warning(
+            0,
+            tr( "Error while saving config file …" ),
+            tr( "I can't create or rewrite the %1 file " )
 #if defined(_WIN32) || defined(_OS2)
-        QMessageBox::warning(
-            0,
-            tr( "Error while saving config file …" ),
-            tr( "I can't create or rewrite the %1 file " )
                 .arg("./" + config_file)
-        );
 #else
-        QMessageBox::warning(
-            0,
-            tr( "Error while saving config file …" ),
-            tr( "I can't create or rewrite the %1 file " )
                 .arg("${HOME}/" + config_file)
-        );
 #endif
+        );
         return 1;
     }
 }
@@ -1523,6 +1517,7 @@ int CdCatConfig::writeConfig( void ) {
 /************************************************************************************/
 ConfigDialog::ConfigDialog ( CdCatMainWidget *parent, const char *name, bool modal, Qt::WindowFlags fl )
     : QDialog( parent, fl ) {
+
     if (!name) {
         setObjectName( "ConfigDialog" );
     }

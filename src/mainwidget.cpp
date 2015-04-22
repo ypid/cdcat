@@ -9,6 +9,17 @@
 
 #include "mainwidget.h"
 
+#include "commwidget.h"
+#include "hdirview.h"
+#include "dbase.h"
+#include "guibase.h"
+#include "cdcat.h"
+#include "config.h"
+#include "icons.h"
+#include "adddialog.h"
+
+#include <iostream>
+
 #include <QDebug>
 #include <QVariant>
 #include <QMenuBar>
@@ -38,17 +49,6 @@
 #include <QScrollArea>
 #include <QStatusBar>
 #include <QMessageBox>
-
-#include <iostream>
-
-#include "commwidget.h"
-#include "hdirview.h"
-#include "dbase.h"
-#include "guibase.h"
-#include "cdcat.h"
-#include "config.h"
-#include "icons.h"
-#include "adddialog.h"
 
 /*
  *  Constructs a CdCatMainWidget as a child of 'parent', with the
@@ -255,7 +255,11 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
     editMenu->insertSeparator( NULL );
 
     insert_action = new QAction( QIcon( *get_m_import_icon()), tr( "Insert Catalog …" ), this );
-    guis->KeyShortCutList.append( CdcatKeyBinding( guis->key_insertcEvent, QKeySequence( Qt::Key_I ), tr( "Insert catalog into database" )));
+    guis->KeyShortCutList.append( CdcatKeyBinding(
+        guis->key_insertcEvent,
+        QKeySequence( Qt::Key_I ),
+        tr( "Insert catalog into database" ))
+    );
     insert_action->setShortcut( guis->getKeyBinding( guis->key_insertcEvent ));
     insert_action->setStatusTip( tr( "Insert catalog into database" ));
     connect( insert_action, SIGNAL( triggered()), guis, SLOT( insertcEvent()));
@@ -443,14 +447,22 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
     othersMenu->addAction( color_action );
 
     import_action = new QAction( QIcon( *get_m_import_icon()), tr( "Import database (CSV/XML)" ), this );
-    guis->KeyShortCutList.append( CdcatKeyBinding( guis->key_importEvent, QKeySequence( Qt::ControlModifier + Qt::AltModifier + Qt::Key_I ), tr( "Import database (CSV/XML) from various catalog programs" )));
+    guis->KeyShortCutList.append( CdcatKeyBinding(
+        guis->key_importEvent,
+        QKeySequence( Qt::ControlModifier + Qt::AltModifier + Qt::Key_I ),
+        tr( "Import database (CSV/XML) from various catalog programs" ))
+    );
     import_action->setShortcut( guis->getKeyBinding( guis->key_importEvent ));
     import_action->setStatusTip( tr( "Import database (CSV/XML) from various catalog programs" ));
     connect( import_action, SIGNAL( triggered()), guis, SLOT( importEvent()));
     inoutMenu->addAction( import_action );
 
     export_action = new QAction( QIcon( *get_m_export_icon()), tr( "Export database (CSV/HTML/XML)" ), this );
-    guis->KeyShortCutList.append( CdcatKeyBinding( guis->key_exportEvent, QKeySequence( Qt::ControlModifier + Qt::AltModifier + Qt::Key_E ), tr( "Export database (CSV/HTML/XML)" )));
+    guis->KeyShortCutList.append( CdcatKeyBinding(
+        guis->key_exportEvent,
+        QKeySequence( Qt::ControlModifier + Qt::AltModifier + Qt::Key_E ),
+        tr( "Export database (CSV/HTML/XML)" ))
+    );
     export_action->setShortcut( guis->getKeyBinding( guis->key_exportEvent ));
     export_action->setStatusTip( tr( "Export database (CSV/HTML/XML)" ));
     connect( export_action, SIGNAL( triggered()), guis, SLOT( exportEvent()));
