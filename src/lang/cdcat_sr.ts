@@ -5352,22 +5352,17 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>main_cli</name>
     <message>
-        <location filename="../cdcat.cpp" line="+82"/>
+        <location filename="../cdcat.cpp" line="+146"/>
         <source>Optional database file, if given, it will be used as database.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+5"/>
-        <source>Import %1 in the format specified by the &quot;%2&quot; parameter into the database. Use the &quot;%3&quot; parameter to get a list of all supported import formats.</source>
+        <source>Import %1 in the format specified by the %2 parameter into the database.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+10"/>
-        <source>Format used to by the &quot;%1&quot; parameter. Use the &quot;%2&quot; parameter to get a list of all supported import formats. Default is &quot;%3&quot;.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+7"/>
+        <location line="+16"/>
         <location line="+29"/>
         <source>format</source>
         <translation type="unfinished"></translation>
@@ -5378,13 +5373,28 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+7"/>
-        <source>Export to the contents of the database to %1 in the format specified by the &quot;%2&quot; parameter.</source>
+        <location line="-41"/>
+        <source>Displays this help.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>Displays version information.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+20"/>
+        <source>Format used by the %1 parameter. Use the %2 parameter to get a list of all supported import formats. Default is %3.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+20"/>
+        <source>Export the contents of the database to %1 in the format specified by the %2 parameter.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+9"/>
-        <source>Format used to by the &quot;%1&quot; parameter. Use the &quot;%2&quot; parameter to get a list of all supported export formats. Default is &quot;%3&quot;.</source>
+        <source>Format used by the %1 parameter. Use the %2 parameter to get a list of all supported export formats. Default is %3.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5408,7 +5418,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+20"/>
+        <location line="+34"/>
         <source>Error: You can only specify one %1.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5610,12 +5620,10 @@ p, li { white-space: pre-wrap; }
         <translation>direktorijum</translation>
     </message>
     <message>
-        <location filename="../cdcat.cpp" line="-82"/>
+        <location filename="../cdcat.cpp" line="-96"/>
         <location line="+3"/>
-        <location line="+8"/>
-        <location line="+18"/>
+        <location line="+26"/>
         <location line="+3"/>
-        <location line="+8"/>
         <location filename="../find.cpp" line="+6"/>
         <source>file</source>
         <translation>fajl</translation>
