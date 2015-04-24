@@ -2,6 +2,7 @@ lessThan(QT_VERSION, 5.2.0): error(This project requires Qt 5.2.0 or later)
 
 TRANSLATIONS = lang/cdcat_hu.ts \
                lang/cdcat_de.ts \
+               lang/cdcat_en_us.ts \
                lang/cdcat_es.ts \
                lang/cdcat_fr.ts \
                lang/cdcat_cz.ts \
@@ -16,6 +17,7 @@ TRANSLATIONS = lang/cdcat_hu.ts \
                lang/start/cdcat_nolang.ts
 
 translations.files += lang/cdcat_de.qm \
+                      lang/cdcat_en_us.qm \
                       lang/cdcat_es.qm \
                       lang/cdcat_fr.qm \
                       lang/cdcat_cz.qm \

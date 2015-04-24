@@ -227,6 +227,7 @@ int main( int argi, char **argc ) {
 
     QString langpath;
 
+    qDebug() << "locale:" << locale;
     for (int i = 0; i < translation_paths.count(); ++i) {
         QFileInfo info( translation_paths.at( i ) + "/cdcat_" + locale + ".qm" );
         if (info.exists()) {
@@ -249,6 +250,7 @@ int main( int argi, char **argc ) {
     translator = new QTranslator( 0 );
 
     if (!langpath.isEmpty()) {
+        qDebug() << "load language:" << langpath;
         translator->load( langpath, "." );
         app.installTranslator( translator );
     }
