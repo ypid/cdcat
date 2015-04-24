@@ -1023,7 +1023,7 @@ void GuiSlave::showListviewContextMenu( QPoint p ) {
         tr( "Add a link to a %1 Catalog …" )
             .arg(PROGRAM_NAME),
         this,
-        SLOT( addlnkEvent())
+        SLOT( addlnkEvent() )
     );
     mPopup->addAction( tr( "Insert Catalog …" ), this, SLOT( insertcEvent()));
     mPopup->exec( mainw->listView->viewport()->mapToGlobal( p ));
@@ -1087,7 +1087,7 @@ void GuiSlave::showTreeContextMenu( const QPoint p2 ) {
     mPopup->addAction( QIcon( *get_t_add_icon()), tr( "Add media …" ), this, SLOT( addEvent()));
     mPopup->addAction(
         QIcon( *get_p_icon() ),
-        tr( "Add a link to a %1 catalog …" )
+        tr( "Add a link to a %1 Catalog …" )
             .arg(PROGRAM_NAME),
         this,
         SLOT( addlnkEvent() )
@@ -2873,7 +2873,7 @@ int GuiSlave::showContent( void ) {
             QProcess FileContentProcess;
 
             if (*DEBUG_INFO_ENABLED) {
-                qDebug() << "GuiSlave::showContent args: " << qPrintable( mainw->cconfig->ExternalContentViewerPath ) << " " << qPrintable( tmpFileName );
+                qDebug() << "args: " << qPrintable( mainw->cconfig->ExternalContentViewerPath ) << " " << qPrintable( tmpFileName );
             }
             FileContentProcess.startDetached( mainw->cconfig->ExternalContentViewerPath + " " + tmpFileName );
             if (!FileContentProcess.waitForStarted()) {

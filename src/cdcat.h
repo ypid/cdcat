@@ -43,6 +43,5 @@ class QString;
 char *mstr( const char *imp );
 QString applicationDirPath( char **argc );
 QString applicationFilePath( char **argc );
-static QTranslator *translator;
 bool *init_debug_info();
 #endif

@@ -29,6 +29,8 @@
 #include <QTextCodec>
 #include <QDebug>
 
+static QTranslator *translator;
+
 /* Own debug output {{{ */
 bool *init_debug_info() {
     if (DEBUG_INFO_ENABLED == NULL) {
@@ -79,33 +81,33 @@ int main( int argi, char **argc ) {
     langpath += ".qm";
 #endif
 
-#ifndef _WIN32
-#if !defined(Q_OS_MAC) && !defined(_OS2)
+#if !defined(_WIN32) && !defined(Q_OS_MAC) && !defined(_OS2)
     QList<QString> translation_paths;
     // translation_paths = new QList <QString> ();
     QString locale = QLocale().name();
-    QString locale2 = locale.left( 2 );
-    QString prefix = applicationDirPath( argc ).left( applicationDirPath( argc ).length() - 4 ) + "/";        // /usr/local/bin -> /usr/local
+    QString locale_short = locale.left( 2 );
+    QString prefix = applicationDirPath( argc ).left( applicationDirPath( argc ).length() - 4 ) + "/";
+    // /usr/local/bin -> /usr/local
     translation_paths.append( QString( prefix + "share/cdcat/translations" ));
     translation_paths.append( QString( applicationDirPath( argc ) + "/lang" ));
     translation_paths.append( QString( prefix + "share/locale/" + locale + "/LC_MESSAGES" ));
-    translation_paths.append( QString( prefix + "share/locale/" + locale2 + "/LC_MESSAGES" ));
+    translation_paths.append( QString( prefix + "share/locale/" + locale_short + "/LC_MESSAGES" ));
 
     QString langpath;
 
-    qDebug() << "locale:" << locale;
+    qDebug() << "Using locale:" << locale;
     for (int i = 0; i < translation_paths.count(); ++i) {
+        qDebug() << "Testing path for translations:" << translation_paths.at(i);
         QFileInfo info( translation_paths.at( i ) + "/cdcat_" + locale + ".qm" );
         if (info.exists()) {
             langpath = translation_paths.at( i ) + "/cdcat_" + locale + ".qm";
         } else {
-            QFileInfo info2( translation_paths.at( i ) + "/cdcat_" + locale2 + ".qm" );
-            if (info2.exists()) {
-                langpath = translation_paths.at( i ) + "/cdcat_" + locale2 + ".qm";
+            QFileInfo info( translation_paths.at( i ) + "/cdcat_" + locale_short + ".qm" );
+            if (info.exists()) {
+                langpath = translation_paths.at( i ) + "/cdcat_" + locale_short + ".qm";
             }
         }
     }
-#endif
 #endif
 
     if (translator) {
@@ -116,7 +118,7 @@ int main( int argi, char **argc ) {
     translator = new QTranslator( 0 );
 
     if (!langpath.isEmpty()) {
-        qDebug() << "load language:" << langpath;
+        qDebug() << "Load language:" << langpath;
         translator->load( langpath, "." );
         app.installTranslator( translator );
     }

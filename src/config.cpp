@@ -55,6 +55,8 @@
 
 // FIXME Use QSettings
 
+static QTranslator *translator;
+
 CdCatConfig::CdCatConfig ( QString arg_config_file ) :
     usefileinfo( false ),
     useExternalContentViewer( false ),
