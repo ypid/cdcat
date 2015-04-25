@@ -71,11 +71,6 @@ CdCatConfig::CdCatConfig ( QString arg_config_file ) {
 
     hlist.clear();
     lastMediaType = CD;
-
-    windowSize.setWidth( windowSize_width = 640 );
-    windowSize.setHeight( windowSize_height = 480 );
-
-    comm_vtext = QColor( 10, 10, 255 );
 }
 
 
@@ -159,10 +154,7 @@ int CdCatConfig::readConfig() {
 
     if (config_file == NULL) {
         qWarning() << "config_file == NULL";
-        return 1;
     }
-
-    QFile f( config_file );
 
     QSettings settings;
     QSettings settings_shortcuts(QCoreApplication::organizationName(), PROGRAM_NAME "_shortcuts");
@@ -176,15 +168,96 @@ int CdCatConfig::readConfig() {
      * the values will be set to these:
      */
 
-#ifndef _WIN32
-    mounteject = settings.value("main/mounteject", false).toBool();
-#endif
-
+    /* UI {{{ */
 #if defined(_WIN32) || defined(Q_OS_MAC) || defined(_OS2)
     lang = settings.value("main/lang", "eng").toString();
 #endif
 
-    /* file history {{{ */
+    fsize                             = settings.value("ui/font_size"                             , 8).toInt();
+    ownfont                           = settings.value("ui/use_own_font_size"                     , false).toBool();
+    ContentViewerFont                 = settings.value("ui/content_viewer_font"                   , "").toString();
+    showTrayIcon                      = settings.value("ui/show_tray_icon"                        , true).toBool();
+    displayCurrentScannedFileInTray   = settings.value("ui/display_current_scanned_file_in_tray"  , false).toBool();
+    showStatusBar                     = settings.value("ui/show_status_bar"                       , true).toBool();
+    showToolBar                       = settings.value("ui/show_tool_bar"                         , true).toBool();
+    showCommentDock                   = settings.value("ui/show_comment_dock"                     , true).toBool();
+    showProgressedFileInStatus        = settings.value("ui/show_progressed_file_in_status"        , true).toBool();
+    showProgressedArchiveFileInStatus = settings.value("ui/show_progressed_archive_file_in_status", true).toBool();
+    commentDockSize_height            = settings.value("ui/comment_dock_height"                   , 0).toInt();
+    commentDockSize_width             = settings.value("ui/comment_dock_width"                    , 0).toInt();
+    commentDockPos_x                  = settings.value("ui/comment_dock_position_x"               , 0).toInt();
+    commentDockPos_y                  = settings.value("ui/comment_dock_position_y"               , 0).toInt();
+    commentDockSize_dockarea          = settings.value("ui/comment_dock_dockarea"                 , Qt::RightDockWidgetArea).toInt();
+    commentDockIsFloating             = settings.value("ui/comment_dock_is_floating"              , false).toBool();
+    contentWindowSize_height          = settings.value("ui/content_window_height"                 , 0).toInt();
+    contentWindowSize_width           = settings.value("ui/content_window_width"                  , 0).toInt();
+    contentWindowPos_x                = settings.value("ui/content_window_position_x"             , 0).toInt();
+    contentWindowPos_y                = settings.value("ui/content_window_position_y"             , 0).toInt();
+    commentWindowSize_height          = settings.value("ui/comment_window_height"                 , 0).toInt();
+    commentWindowSize_width           = settings.value("ui/comment_window_width"                  , 0).toInt();
+    commentWindowPos_x                = settings.value("ui/comment_window_position_x"             , 0).toInt();
+    commentWindowPos_y                = settings.value("ui/comment_window_position_y"             , 0).toInt();
+    findWidth                         = settings.value("ui/find_width"                            , 600).toInt();
+    findHeight                        = settings.value("ui/find_height"                           , 500).toInt();
+    findX                             = settings.value("ui/find_position_x"                       , 10).toInt();
+    findY                             = settings.value("ui/find_position_y"                       , 10).toInt();
+    addX                              = settings.value("ui/add_position_x"                        , 50).toInt();
+    addY                              = settings.value("ui/add_position_y"                        , 10).toInt();
+    addWidth                          = settings.value("ui/add_width"                             , 600).toInt();
+    addHeight                         = settings.value("ui/add_height"                            , 500).toInt();
+    mainP1                            = settings.value("ui/dirview_size"                          , 200).toInt();
+    mainP2                            = settings.value("ui/listview_size"                         , 270).toInt();
+    mainP3                            = settings.value("ui/commentview_size"                      , 170).toInt();
+    useExternalContentViewer          = settings.value("ui/use_ext_content_viewer"                , false).toBool();
+    ExternalContentViewerPath         = settings.value("ui/ext_content_viewer_path"               , "").toString();
+    windowPos.setX(                     settings.value("ui/window_position_x"                     , 5).toInt() );
+    windowPos.setY(                     settings.value("ui/window_position_y"                     , 5).toInt() );
+    windowSize.setHeight(               settings.value("ui/window_height"                         , 480).toInt() );
+    windowSize.setWidth(                settings.value("ui/window_width"                          , 640).toInt() );
+    /* }}} */
+
+    /* Find dialog {{{ */
+    lastFindCategory       = settings.value("find/last_category"           , "").toString();
+    keep_search_result     = settings.value("find/keep_search_result"      , false).toBool();
+    find_in_archive        = settings.value("find/in_archive"              , false).toBool();
+    find_cs                = settings.value("find/checkbox_casesens"       , false).toBool();
+    find_em                = settings.value("find/checkbox_easymatch"      , true).toBool();
+    find_di                = settings.value("find/checkbox_directory"      , true).toBool();
+    find_fi                = settings.value("find/checkbox_file"           , true).toBool();
+    find_co                = settings.value("find/checkbox_comment"        , true).toBool();
+    find_ct                = settings.value("find/checkbox_content"        , true).toBool();
+    find_mar               = settings.value("find/checkbox_mp3artist"      , true).toBool();
+    find_mti               = settings.value("find/checkbox_mp3title"       , true).toBool();
+    find_mal               = settings.value("find/checkbox_mp3album"       , true).toBool();
+    find_mco               = settings.value("find/checkbox_mp3comment"     , true).toBool();
+    find_size_min          = settings.value("find/checkbox_size_min"       , false).toBool();
+    find_size_max          = settings.value("find/checkbox_size_max"       , false).toBool();
+    find_category          = settings.value("find/category"                , false).toBool();
+    find_size_min_val      = settings.value("find/find_size_min_val"       , 1).toInt();
+    find_size_max_val      = settings.value("find/find_size_max_val"       , 10).toInt();
+    find_size_unit_min_val = settings.value("find/find_size_unit_min_val"  , 2).toInt();
+    find_size_unit_max_val = settings.value("find/find_size_unit_max_val"  , 2).toInt();
+    find_date_start        = settings.value("find/find_checkbox_date_start", false).toBool();
+    find_date_end          = settings.value("find/find_checkbox_date_end"  , false).toBool();
+    find_date_start_val    = QDateTime().fromString( settings.value("find/date_start_val", "").toString() );
+    find_date_end_val      = QDateTime().fromString( settings.value("find/date_end_val"  , "").toString() );
+    /* }}} */
+
+    /* Main settings {{{ */
+    debug_info_enabled = settings.value("main/debug_info_enabled" , false).toBool();
+    autoload           = settings.value("main/autoload"           , false).toBool();
+    autosave           = settings.value("main/autosave"           , false).toBool();
+    autoloadfn         = settings.value("main/autoload_file"      , "").toString();
+    lastSearchPattern  = settings.value("main/last_search_pattern", "").toString();
+    lastDir            = settings.value("main/last_dir"           , lastDir).toString();
+    lastMediaType      = settings.value("main/last_media_type"    , CD).toInt();
+    cdrompath          = settings.value("main/cdrom_path"         , cdrompath).toString();
+
+#ifndef _WIN32
+    mounteject = settings.value("main/mounteject", false).toBool();
+#endif
+
+    /* DB file history {{{ */
     historysize = settings.value("main/history_size", 10).toInt();
     size = settings.beginReadArray("history");
     for (int i = 0; i < size; ++i) {
@@ -196,94 +269,12 @@ int CdCatConfig::readConfig() {
     }
     settings.endArray();
     /* }}} */
+    /* }}} */
 
-    fsize = settings.value("ui/font_size", 8).toInt();
-    ownfont = settings.value("ui/use_own_font_size", false).toBool();
-
-    showTrayIcon = settings.value("ui/show_tray_icon", true).toBool();
-    showStatusBar = settings.value("ui/show_status_bar", true).toBool();
-    showToolBar = settings.value("ui/show_tool_bar", true).toBool();
-    showCommentDock = settings.value("ui/show_comment_dock", true).toBool();
-
-    autoload = settings.value("main/autoload", false).toBool();
-    autosave = settings.value("main/autosave", false).toBool();
-    autoloadfn = settings.value("main/autoload_file", "").toString();
-
-    nice = settings.value("db/nice_format", false).toBool();
-
-    cdrompath = settings.value("main/cdrom_path", cdrompath).toString();
-
-    windowPos.setX( settings.value("ui/window_position_x", 5).toInt() );
-    windowPos.setY( settings.value("ui/window_position_y", 5).toInt() );
-
-    windowSize_height        = settings.value("ui/window_height"            , windowSize.height()).toInt();
-    windowSize_width         = settings.value("ui/window_width"             , windowSize.width()).toInt();
-    commentDockSize_height   = settings.value("ui/comment_dock_height"      , 0).toInt();
-    commentDockSize_width    = settings.value("ui/comment_dock_width"       , 0).toInt();
-    commentDockPos_x         = settings.value("ui/comment_dock_position_x"  , 0).toInt();
-    commentDockPos_y         = settings.value("ui/comment_dock_position_y"  , 0).toInt();
-    commentDockSize_dockarea = settings.value("ui/comment_dock_dockarea"    , Qt::RightDockWidgetArea).toInt();
-    commentDockIsFloating    = settings.value("ui/comment_dock_is_floating" , false).toBool();
-    contentWindowSize_height = settings.value("ui/content_window_height"    , 0).toInt();
-    contentWindowSize_width  = settings.value("ui/content_window_width"     , 0).toInt();
-    contentWindowPos_x       = settings.value("ui/content_window_position_x", 0).toInt();
-    contentWindowPos_y       = settings.value("ui/content_window_position_y", 0).toInt();
-    commentWindowSize_height = settings.value("ui/comment_window_height"    , 0).toInt();
-    commentWindowSize_width  = settings.value("ui/comment_window_width"     , 0).toInt();
-    commentWindowPos_x       = settings.value("ui/comment_window_position_x", 0).toInt();
-    commentWindowPos_y       = settings.value("ui/comment_window_position_y", 0).toInt();
-    findWidth                = settings.value("ui/find_width"               , 600).toInt();
-    findHeight               = settings.value("ui/find_height"              , 500).toInt();
-    findX                    = settings.value("ui/find_position_x"          , 10).toInt();
-    findY                    = settings.value("ui/find_position_y"          , 10).toInt();
-    addX                     = settings.value("ui/add_position_x"           , 50).toInt();
-    addY                     = settings.value("ui/add_position_y"           , 10).toInt();
-    addWidth                 = settings.value("ui/add_width"                , 600).toInt();
-    addHeight                = settings.value("ui/add_height"               , 500).toInt();
-    mainP1                   = settings.value("ui/dirview_size"             , 200).toInt();
-    mainP2                   = settings.value("ui/listview_size"            , 270).toInt();
-    mainP3                   = settings.value("ui/commentview_size"         , 170).toInt();
-
-    // Read the options of find dialog
-    find_cs = settings.value("ui/find_checkbox_casesens", false).toBool();
-    find_em = settings.value("ui/find_checkbox_easymatch", true).toBool();
-    find_di = settings.value("ui/find_checkbox_directory", true).toBool();
-    find_fi = settings.value("ui/find_checkbox_file", true).toBool();
-    find_co = settings.value("ui/find_checkbox_comment", true).toBool();
-    find_category = settings.value("ui/find_category", false).toBool();
-
-    lastFindCategory = settings.value("ui/last_find_category", "").toString();
-    find_ct = settings.value("ui/find_checkbox_content", true).toBool();
-    find_mar = settings.value("ui/find_checkbox_mp3artist", true).toBool();
-    find_mti = settings.value("ui/find_checkbox_mp3title", true).toBool();
-    find_mal = settings.value("ui/find_checkbox_mp3album", true).toBool();
-    find_mco = settings.value("ui/find_checkbox_mp3comment", true).toBool();
-    find_size_min = settings.value("ui/find_checkbox_size_min", false).toBool();
-    find_size_max = settings.value("ui/find_checkbox_size_max", false).toBool();
-    readavii = settings.value("ui/read_avi_metadata", true).toBool();
-    readtag = settings.value("ui/read_mp3tag", true).toBool();
-    v1_over_v2 = settings.value("ui/mp3tag_default_v1", false).toBool();
-    readinfo = settings.value("ui/read_mp3_metadata", true).toBool();
-    readcontent = settings.value("ui/read_content", false).toBool();
-    usefileinfo = settings.value("ui/use_fileinfo", false).toBool();
-
-    readcfiles = settings.value("ui/read_content_files", "*.nfo;*.diz").toString();
-    useExternalContentViewer = settings.value("ui/use_ext_content_viewer", false).toBool();
-    ExternalContentViewerPath = settings.value("ui/ext_content_viewer_path").toString();
-    ContentViewerFont = settings.value("ui/content_viewer_font").toString();
-    readclimit = settings.value("ui/content_viewer_font", 32 * 1024).toInt();
-    find_date_start = settings.value("ui/find_checkbox_date_start", false).toBool();
-    find_date_end = settings.value("ui/find_checkbox_date_end", false).toBool();
-    find_date_start_val = QDateTime().fromString( settings.value("ui/find_date_start_val", "").toString() );
-    find_date_end_val = QDateTime().fromString( settings.value("ui/find_date_end_val", "").toString() );
-    find_size_min_val = settings.value("ui/find_size_min_val", 1).toInt();
-    find_size_max_val = settings.value("ui/find_size_max_val", 10).toInt();
-    find_size_unit_min_val = settings.value("ui/find_size_unit_min_val", 2).toInt();
-    find_size_unit_max_val = settings.value("ui/find_size_unit_max_val", 2).toInt();
-
-    r = settings.value("ui/comment_bg_color/red", 255).toInt();
+    /* Color settings {{{ */
+    r = settings.value("ui/comment_bg_color/red"  , 255).toInt();
     g = settings.value("ui/comment_bg_color/green", 255).toInt();
-    b = settings.value("ui/comment_bg_color/blue", 0).toInt();
+    b = settings.value("ui/comment_bg_color/blue" , 0  ).toInt();
     comm_bg.setRgb( r, g, b );
 
     r = settings.value("ui/comment_fg_color/red"  , 0).toInt();
@@ -300,46 +291,48 @@ int CdCatConfig::readConfig() {
     g = settings.value("ui/comment_td_color/green", 10 ).toInt();
     b = settings.value("ui/comment_td_color/blue" , 255).toInt();
     comm_vtext.setRgb( r, g, b );
+    /* }}} */
 
-    linkf = settings.value("ui/catalog_link_is_first", true).toBool();
-    debug_info_enabled = settings.value("main/debug_info_enabled", false).toBool();
-    lastDir = settings.value("main/last_dir", lastDir).toString();
+    /* DB settings {{{ */
     saveAlwaysCatalogInUtf8 = settings.value("db/save_always_catalog_in_utf8", true).toBool();
-    lastMediaType = settings.value("ui/last_media_type", lastMediaType).toInt();
-    lastSearchPattern = settings.value("ui/last_media_type").toString();
-    doScanArchive = settings.value("ui/do_scan_archive", true).toBool();
-    showProgressedFileInStatus = settings.value("ui/show_progressed_file_in_status", true).toBool();
-    showProgressedArchiveFileInStatus = settings.value("ui/show_progressed_archive_file_in_status", true).toBool();
-    displayCurrentScannedFileInTray = settings.value("ui/display_current_scanned_file_in_tray", false).toBool();
+    nice  = settings.value("db/nice_format", false).toBool();
+    linkf = settings.value("ui/catalog_link_is_first", true).toBool();
+    /* }}} */
 
-    find_in_archive = settings.value("ui/find_in_archive", false).toBool();
-    show_archive_file_perms = settings.value("ui/show_archive_file_perms", true).toBool();
-    show_archive_file_user = settings.value("ui/show_archive_file_user", true).toBool();
-    show_archive_file_group = settings.value("ui/show_archive_file_group", true).toBool();
-    show_archive_file_size = settings.value("ui/show_archive_file_group", true).toBool();
-    show_archive_file_date = settings.value("ui/show_archive_file_date", true).toBool();
-    show_archive_file_comment = settings.value("ui/show_archive_file_comment", true).toBool();
-    storeThumb = settings.value("db/store_thumb", true).toBool();
-    thumbWidth = settings.value("db/thumb_width", 150).toInt();
-    thumbHeight = settings.value("db/thumb_height", 150).toInt();
+    /* Media scanner {{{ */
+    ThumbExtsList  = settings.value("media_scanner/thumb_for_file_extensions", "png;gif;jpg;jpeg;bmp" ).toString().split( ';' );
+    storeThumb     = settings.value("media_scanner/store_thumb"              , true).toBool();
+    thumbWidth     = settings.value("media_scanner/thumb_width"              , 150).toInt();
+    thumbHeight    = settings.value("media_scanner/thumb_height"             , 150).toInt();
+    readcfiles     = settings.value("media_scanner/read_content_files"       , "*.nfo;*.diz").toString();
+    readclimit     = settings.value("media_scanner/read_content_limit"       , 32 * 1024).toInt();
+    doScanArchive  = settings.value("media_scanner/do_scan_archive"          , true).toBool();
+    readavii       = settings.value("media_scanner/read_avi_metadata"        , true).toBool();
+    readtag        = settings.value("media_scanner/read_mp3tag"              , true).toBool();
+    v1_over_v2     = settings.value("media_scanner/mp3tag_default_v1"        , false).toBool();
+    readinfo       = settings.value("media_scanner/read_mp3_metadata"        , true).toBool();
+    readcontent    = settings.value("media_scanner/read_content"             , false).toBool();
+    usefileinfo    = settings.value("media_scanner/use_fileinfo"             , false).toBool();
+    storeExifData  = settings.value("media_scanner/store_exif_data"          , false).toBool();
 
-    ThumbExtsList = settings.value("db/thumb_for_file_extensions",  "png;gif;jpg;jpeg;bmp" ).toString().split( ';' );
-    storeExifData = settings.value("db/store_exif_data", false).toBool();
-    doExcludeFiles = settings.value("db/do_exclude_files", false).toBool();
-
-    useWildcardInsteadRegexForExclude = settings.value("db/use_wildcard_instead_regex_for_exclude", false).toBool();
+    doExcludeFiles = settings.value("media_scanner/do_exclude_files", false).toBool();
+    useWildcardInsteadRegexForExclude = settings.value("media_scanner/use_wildcard_instead_regex_for_exclude", false).toBool();
     size = settings.beginReadArray("db_exclude_pattern_list");
     for (int i = 0; i < size; ++i) {
         settings.setArrayIndex(i);
         ExcludeFileList.append(settings.value("pattern").toString());
     }
     settings.endArray();
+    /* }}} */
 
-    keep_search_result = settings.value("db/keep_search_result", false).toBool();
-
-
-    windowSize.setHeight( windowSize_height );
-    windowSize.setWidth( windowSize_width );
+    /* Export: HTML {{{ */
+    show_archive_file_perms   = settings.value("ui/show_archive_file_perms"  , true).toBool();
+    show_archive_file_user    = settings.value("ui/show_archive_file_user"   , true).toBool();
+    show_archive_file_group   = settings.value("ui/show_archive_file_group"  , true).toBool();
+    show_archive_file_size    = settings.value("ui/show_archive_file_size"   , true).toBool();
+    show_archive_file_date    = settings.value("ui/show_archive_file_date"   , true).toBool();
+    show_archive_file_comment = settings.value("ui/show_archive_file_comment", true).toBool();
+    /* }}} */
 
     return 0;
 }
@@ -347,10 +340,25 @@ int CdCatConfig::readConfig() {
 int CdCatConfig::writeConfig( void ) {
     if (config_file == NULL) {
         qWarning() << "config_file == NULL";
-        return 1;
     }
 
     QSettings settings;
+
+    settings.setValue("id/use_own_font_size", ownfont );
+
+    settings.setValue("ui/font_size", fsize );
+
+    /* DB file history {{{ */
+    settings.setValue("main/history_size", historysize );
+
+    settings.beginWriteArray("history");
+    for (int i = 0; i < hlist.size(); ++i) {
+        settings.setArrayIndex(i);
+        settings.setValue("path", hlist.at(i));
+    }
+    settings.endArray();
+    /* }}} */
+
 
     QFile f( config_file );
 
@@ -361,19 +369,6 @@ int CdCatConfig::writeConfig( void ) {
         // str.setCodec( QTextCodec::codecForName( "ISO-8859-1" ));
 
         QString fsize_str;
-
-        settings.setValue("id/use_own_font_size", ownfont );
-
-        settings.setValue("ui/font_size", fsize );
-
-        settings.setValue("main/history_size", historysize );
-
-        settings.beginWriteArray("history");
-        for (int i = 0; i < hlist.size(); ++i) {
-            settings.setArrayIndex(i);
-            settings.setValue("path", hlist.at(i));
-        }
-        settings.endArray();
 
         if (showTrayIcon) {
             str << "showTrayIcon=true" << endl;
@@ -757,19 +752,8 @@ int CdCatConfig::writeConfig( void ) {
 
         f.close();
         return 0;
-    } else {
-        QMessageBox::warning(
-            0,
-            tr( "Error while saving config file …" ),
-            tr( "I can't create or rewrite the %1 file " )
-#if defined(_WIN32) || defined(_OS2)
-                .arg("./" + config_file)
-#else
-                .arg("${HOME}/" + config_file)
-#endif
-        );
-        return 1;
     }
+    return 0;
 }
 
 /************************************************************************************/
@@ -1020,14 +1004,14 @@ ConfigDialog::ConfigDialog ( CdCatMainWidget *parent, const char *name, bool mod
 }
 
 /*
- *  Destroys the object and frees any allocated resources
+ *  Destroys the object and frees any allocated resources.
  */
 ConfigDialog::~ConfigDialog() {
-    // no need to delete child widgets, Qt does it all for us
+    // No need to delete child widgets, Qt does it all for us.
 }
 
 void ConfigDialog::languageChange() {
-    setWindowTitle( tr( "Configure  %1 …" ).arg(PROGRAM_NAME));
+    setWindowTitle( tr( "Configure %1 …" ).arg(PROGRAM_NAME));
     cbShowTrayIcon->setText( tr( "Show systray icon" ));
     cbShowCurrentScannedFileInTrayIcon->setText( tr( "display current scanned file in tray" ));
     cbShowCurrentScannedFileInTrayIcon->setToolTip( tr( "display current scanned file in tray (mediainfo / archive scan)" ));

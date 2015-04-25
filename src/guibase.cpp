@@ -7,8 +7,9 @@
 *  Copyright : (C) 2003 Peter Deak
 ****************************************************************************/
 
-#include "cdcat.h"
 #include "guibase.h"
+
+#include "cdcat.h"
 #include "borrow.h"
 #include "mainwidget.h"
 #include "colorsettings.h"
@@ -37,6 +38,13 @@
     #include "cdcatexif.h"
 #endif
 
+// #include <iostream>
+#include <string.h>
+#ifndef _WIN32
+    #include <unistd.h>
+    #include <sys/wait.h>
+#endif
+
 #include <QImage>
 #include <QLabel>
 #include <QPainter>
@@ -61,13 +69,6 @@
 #include <QHeaderView>
 #include <QKeySequence>
 #include <QDebug>
-
-// #include <iostream>
-#include <string.h>
-#ifndef _WIN32
-    #include <unistd.h>
-    #include <sys/wait.h>
-#endif
 
 char *rbuff = NULL;
 
@@ -617,7 +618,7 @@ int GuiSlave::updateListFromNode( Node *pdir ) {
     NodePwd = pdir;
     tmp = pdir->child;
 
-    /*List everything*/
+    /* List everything */
 
     // step 1: list dirs
     while (tmp != NULL) {
@@ -660,7 +661,8 @@ int GuiSlave::updateListFromNode( Node *pdir ) {
     }
 
     tmp = pdir->child;
-    // step 2: list other
+
+    /* List other {{{ */
     while (tmp != NULL) {
         if (tmp->type == HC_MP3TAG) {
             return 1;             // Error
@@ -786,6 +788,7 @@ int GuiSlave::updateListFromNode( Node *pdir ) {
         }
         tmp = tmp->next;
     }
+    /* }}} */
 
     // mainw->listView->setSorting ( mainw->listView->scol, mainw->listView->sasc );
 
@@ -2846,12 +2849,12 @@ int GuiSlave::showContent( void ) {
             QTemporaryFile tmpContentTempFile;
             tmpContentTempFile.setAutoRemove( false );
             if (!tmpContentTempFile.open()) {
-                qWarning() << "Cant write temp file: " << qPrintable( tmpContentTempFile.fileName());
+                qWarning() << "Can‘t write temp file:" << qPrintable( tmpContentTempFile.fileName());
                 return 1;
             }
             QString tmpFileName = tmpContentTempFile.fileName();
             if (*DEBUG_INFO_ENABLED) {
-                qDebug() << "GuiSlave::showContent tmpContentTempFile: " << qPrintable( tmpFileName );
+                qDebug() << "tmpContentTempFile:" << qPrintable( tmpFileName );
             }
             Node *mynode = NULL;
             if (standON != NULL && standON->type == HC_FILE) {
@@ -2873,7 +2876,7 @@ int GuiSlave::showContent( void ) {
             QProcess FileContentProcess;
 
             if (*DEBUG_INFO_ENABLED) {
-                qDebug() << "args: " << qPrintable( mainw->cconfig->ExternalContentViewerPath ) << " " << qPrintable( tmpFileName );
+                qDebug() << "args:" << qPrintable( mainw->cconfig->ExternalContentViewerPath ) << qPrintable( tmpFileName );
             }
             FileContentProcess.startDetached( mainw->cconfig->ExternalContentViewerPath + " " + tmpFileName );
             if (!FileContentProcess.waitForStarted()) {

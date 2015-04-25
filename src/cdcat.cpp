@@ -279,6 +279,7 @@ int main( int argi, char **argc ) {
 
     if (cconfig->readConfig() == 0) {
         font_size = cconfig->fsize;
+        qDebug() << font_size;
     } else {
         cconfig->writeConfig();
     }
