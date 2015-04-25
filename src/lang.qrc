@@ -1,0 +1,18 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+    <file>lang/cdcat_cz.qm</file>
+    <file>lang/cdcat_de.qm</file>
+    <file>lang/cdcat_el.qm</file>
+    <file>lang/cdcat_en_us.qm</file>
+    <file>lang/cdcat_es.qm</file>
+    <file>lang/cdcat_fr.qm</file>
+    <file>lang/cdcat_hu.qm</file>
+    <file>lang/cdcat_id.qm</file>
+    <file>lang/cdcat_it.qm</file>
+    <file>lang/cdcat_pl.qm</file>
+    <file>lang/cdcat_pt.qm</file>
+    <file>lang/cdcat_ru.qm</file>
+    <file>lang/cdcat_sk.qm</file>
+    <file>lang/cdcat_sr.qm</file>
+</qresource>
+</RCC>

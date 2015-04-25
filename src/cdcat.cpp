@@ -16,7 +16,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <iostream>
+// #include <iostream>
 
 #include <QCommandLineOption>
 #include <QCommandLineParser>
@@ -28,6 +28,7 @@
 #include <QFileInfo>
 #include <QTextCodec>
 #include <QDebug>
+#include <QResource>
 
 static QTranslator *translator;
 
@@ -77,41 +78,6 @@ int main( int argi, char **argc ) {
     QCoreApplication::setApplicationVersion(VERSION);
 
     /* Internationalization {{{ */
-#if defined(_WIN32) || defined(Q_OS_MAC) || defined(_OS2)
-    QString langpath( applicationDirPath( argc ) + "/lang/cdcat_" );
-    langpath += cconfig->lang;
-    langpath += ".qm";
-#endif
-
-#if !defined(_WIN32) && !defined(Q_OS_MAC) && !defined(_OS2)
-    QList<QString> translation_paths;
-    // translation_paths = new QList <QString> ();
-    QString locale = QLocale().name();
-    QString locale_short = locale.left( 2 );
-    QString prefix = applicationDirPath( argc ).left( applicationDirPath( argc ).length() - 4 ) + "/";
-    // /usr/local/bin -> /usr/local
-    translation_paths.append( QString( prefix + "share/cdcat/translations" ));
-    translation_paths.append( QString( applicationDirPath( argc ) + "/lang" ));
-    translation_paths.append( QString( prefix + "share/locale/" + locale + "/LC_MESSAGES" ));
-    translation_paths.append( QString( prefix + "share/locale/" + locale_short + "/LC_MESSAGES" ));
-
-    QString langpath;
-
-    qDebug() << "Using locale:" << locale;
-    for (int i = 0; i < translation_paths.count(); ++i) {
-        // qDebug() << "Testing path for translations:" << translation_paths.at(i);
-        QFileInfo info( translation_paths.at( i ) + "/cdcat_" + locale + ".qm" );
-        if (info.exists()) {
-            langpath = translation_paths.at( i ) + "/cdcat_" + locale + ".qm";
-        } else {
-            QFileInfo info( translation_paths.at( i ) + "/cdcat_" + locale_short + ".qm" );
-            if (info.exists()) {
-                langpath = translation_paths.at( i ) + "/cdcat_" + locale_short + ".qm";
-            }
-        }
-    }
-#endif
-
     if (translator) {
         app.removeTranslator( translator );
         delete translator;
@@ -119,11 +85,18 @@ int main( int argi, char **argc ) {
 
     translator = new QTranslator( 0 );
 
-    if (!langpath.isEmpty()) {
-        qDebug() << "Load language:" << langpath;
-        translator->load( langpath, "." );
-        app.installTranslator( translator );
-    }
+#ifdef QT_NO_DEBUG
+    qDebug() << "translator->load, resource file:" << translator->load( "cdcat_" + QLocale::system().name(), ":/lang" );
+#else
+
+#if defined(_WIN32) || defined(Q_OS_MAC) || defined(_OS2)
+    QString langpath( applicationDirPath( argc ) + "/lang/cdcat_" );
+    langpath += cconfig->lang;
+    langpath += ".qm";
+#endif
+    qDebug() << "translator->load, ./lang/:" << translator->load( "cdcat_" + QLocale::system().name(), "./lang" );
+#endif
+    app.installTranslator( translator );
     /* }}} */
 
     /* Declare command line parameters {{{ */

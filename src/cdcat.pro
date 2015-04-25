@@ -95,16 +95,26 @@ precompile_header:!isEmpty(PRECOMPILED_HEADER) {
     CONFIG  += precompile_header
 }
 
+RESOURCES = lang.qrc
+
 TEMPLATE     =  app
 FORMS        =  help.ui
 TARGET       =  cdcat
 INSTALLS    += target translations distfiles
 QT          += xml widgets printsupport
 CONFIG      += qt xml uic
-# CONFIG      += release
+
+## Overwritten by debug
+CONFIG      += release
 CONFIG      += debug
+
+# DEFINES     += QT_NO_DEBUG_OUTPUT
+
+## Compiler warnings {{{
 CONFIG      += warn_on
 # CONFIG      += warn_off
+## }}}
+
 DEFINES     += QT_FORCE_ASSERTS
 ## QT_FORCE_ASSERTS is needed for the code to work …
 MOC_DIR      =  moc_files/

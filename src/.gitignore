@@ -4,3 +4,4 @@ cdcat.pro.user
 ui_help.h
 moc_files/
 hlist
+qrc_*.cpp
