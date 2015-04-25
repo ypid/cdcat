@@ -226,13 +226,6 @@ int main( int argi, char **argc ) {
 
     const QStringList args = parser.positionalArguments();
 
-    QString address(parser.value(optionImportFile));
-    // Display values of arguments and options.
-    // qDebug() << "filename:  " << args.at(0);
-    // qDebug() << "no list:   " << parser.isSet(noListOption);
-    qDebug() << "address:   " << address;
-    qDebug() << "format:    " << args.size();
-
     if (parser.isSet(optionPrintHelp)) {
         parser.showHelp(0);
     }

@@ -37,9 +37,9 @@ char *buff = NULL;
 
 borrowDialog::borrowDialog ( QString mname, QWidget *parent, const char *name, bool modal, Qt::WindowFlags fl )
     : QDialog( parent, fl ) {
+
     ok = 0;
     setModal( modal );
-    setWindowTitle( tr( "Borrowing …" ));
     setSizeGripEnabled( true );
     setWindowIcon( *get_t_sborrow_icon());
 
@@ -235,7 +235,6 @@ int borrowingDialog::filltable() {
         return 0;
     }
 
-    int i = 0;
     int num = 0;
     Node *tmp = NULL;
 
@@ -247,15 +246,7 @@ int borrowingDialog::filltable() {
     headerTitleList.append( tr( "where is it now?" ));
     table->setHorizontalHeaderLabels( headerTitleList );
 
-//      for ( i = 0; i < table->rowCount(); i++ ) {
-//              table->item ( i, 0 )->setText ( "" );
-//              table->item ( i, 1 )->setText ( "" );
-//              table->item ( i, 2 )->setText ( "" );
-//      }
-
     table->setRowCount( table->rowCount() + 1 );
-    // table->item(table->rowCount() - 1)->setText (tr ( "0" ) );
-    // return 0;
 
     tmp = (db->getRootNode())->child;
     for (num = 0; tmp != NULL; tmp = tmp->next) {
@@ -349,11 +340,11 @@ int borrowingDialog::schanged( int row, int col ) {
 }
 
 int borrowingDialog::sonlyb( void ) {
-    if (ch) {
-        if (0 == QMessageBox::warning( this, tr( "Warning" ), tr( "Do you save the changes?" ), tr( "Yes" ), tr( "No" ))) {
+    // if (ch) {
+        // if (0 == QMessageBox::warning( this, tr( "Warning" ), tr( "Do you save the changes?" ), tr( "Yes" ), tr( "No" ))) {
             sstore();
-        }
-    }
+        // }
+    // }
 
     filltable();
     return 0;
@@ -431,7 +422,6 @@ int borrowingDialog::click( const QPoint &mousePos ) {
     pm->addAction( back_action );
     connect( back_action, SIGNAL( triggered( bool )), this, SLOT( click_clr()));
     connect( pma, SIGNAL( triggered( bool )), pma, SLOT( open( bool )));
-    QAction *pma_action = new QAction( this );
     pma->setTitle( tr( "<< " ));
     pm->addMenu( pma );
 

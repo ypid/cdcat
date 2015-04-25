@@ -87,6 +87,7 @@ void ColorSchemePreview::paintEvent( QPaintEvent *event ) {
 
 ColorSettings::ColorSettings ( CdCatConfig *cfgp, QWidget *parent, const char *name, bool modal, Qt::WindowFlags fl )
     : QDialog( parent, fl ) {
+
     if (!name) {
         setObjectName( "ColorSettings" );
     }
@@ -264,7 +265,7 @@ int ColorSettings::changedr( int v ) {
     case 2: r = ts.red(); g = ts.green(); b = ts.blue();  ts.setRgb( v, g, b );   break;
     case 3: r = td.red(); g = td.green(); b = td.blue();  td.setRgb( v, g, b );   break;
     }
-    ;
+
     change();
     return 0;
 }
