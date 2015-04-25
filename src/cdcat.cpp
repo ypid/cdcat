@@ -71,6 +71,8 @@ int main( int argi, char **argc ) {
     QTextCodec::setCodecForLocale( QTextCodec::codecForName( "UTF-8" ));
 
     QApplication app( argi, argc );
+    // QCoreApplication::setOrganizationDomain();
+    QCoreApplication::setOrganizationName(PROGRAM_NAME);
     QCoreApplication::setApplicationName(PROGRAM_NAME);
     QCoreApplication::setApplicationVersion(VERSION);
 
@@ -97,7 +99,7 @@ int main( int argi, char **argc ) {
 
     qDebug() << "Using locale:" << locale;
     for (int i = 0; i < translation_paths.count(); ++i) {
-        qDebug() << "Testing path for translations:" << translation_paths.at(i);
+        // qDebug() << "Testing path for translations:" << translation_paths.at(i);
         QFileInfo info( translation_paths.at( i ) + "/cdcat_" + locale + ".qm" );
         if (info.exists()) {
             langpath = translation_paths.at( i ) + "/cdcat_" + locale + ".qm";

@@ -123,7 +123,7 @@ CdCatMainWidget::CdCatMainWidget ( CdCatConfig *ccp, QApplication *appp, QWidget
     findMenu = new QMenu( this );
     findMenu->setTitle( tr( "Search" ));
     inoutMenu = new QMenu( this );
-    inoutMenu->setTitle( tr( "Import/Export" ));
+    inoutMenu->setTitle( tr( "&Import/Export" ));
     othersMenu = new QMenu( this );
     othersMenu->setTitle( tr( "Others" ));
     helpMenu = new QMenu( this );
@@ -679,11 +679,11 @@ void CdCatMainWidget::languageChange() {
     setWindowTitle( PROGRAM_NAME );
     // Toolbar->setTitle (tr ( "Main toolbar" ) );
 
-    fileMenu->setTitle( tr( "File" ));
+    fileMenu->setTitle( tr( "&File" ));
     editMenu->setTitle( tr( "Edit" ));
     viewMenu->setTitle( tr( "View" ));
     findMenu->setTitle( tr( "Search" ));
-    inoutMenu->setTitle( tr( "Import/Export" ));
+    inoutMenu->setTitle( tr( "&Import/Export" ));
     othersMenu->setTitle( tr( "Others" ));
     helpMenu->setTitle( tr( "Help" ));
 

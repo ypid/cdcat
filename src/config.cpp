@@ -22,6 +22,7 @@
 #include <iostream>
 
 #include <QDebug>
+#include <QSettings>
 #include <QString>
 #include <QMessageBox>
 #include <QWidget>
@@ -47,75 +48,19 @@
 #include <QTranslator>
 #include <QTextCodec>
 
-#if defined(_WIN32) || defined(_OS2)
-    #define CONFIGFILE "cdcat.cfg"
-#else
-    #define CONFIGFILE ".cdcatconf"
-#endif
-
-// FIXME Use QSettings
-
 static QTranslator *translator;
 
-CdCatConfig::CdCatConfig ( QString arg_config_file ) :
-    usefileinfo( false ),
-    useExternalContentViewer( false ),
-    storeExifData( false ),
-    commentDockPos_x( 0 ),
-    commentDockPos_y( 0 ),
-    commentWindowPos_x( 0 ),
-    commentWindowPos_y( 0 ),
-    commentDockSize_width( 0 ),
-    commentDockSize_height( 0 ),
-    contentWindowPos_x( 0 ),
-    contentWindowPos_y( 0 ),
-    contentWindowSize_width( 0 ),
-    contentWindowSize_height( 0 ),
-    commentWindowSize_width( 0 ),
-    commentWindowSize_height( 0 ) {
-    /* The default values of config.
-     * If you delete the config file (or parts of file)
-     * the values will be set to these:
-     */
+CdCatConfig::CdCatConfig ( QString arg_config_file ) {
 
     startpar = false;
     startfn = "";
 
     if (arg_config_file == NULL) {
-#if defined(_WIN32) || defined(_OS2)
-        config_file = CONFIGFILE;
-#else
-    if (getenv( "HOME" ) == NULL) {
-        qWarning() << "getent('HOME') == NULL";
-        QMessageBox::warning(
-            0,
-            tr( "Error while saving config file …" ),
-            tr( "I can't get the $HOME environment variable.\nIt is necessary because I'd like to save the config file into your home directory." )
-        );
-
-        config_file == NULL;
-    } else {
-        config_file = QString( getenv( "HOME" )) + QString( "/" ) + CONFIGFILE;
-    }
-#endif
     } else {
         config_file = arg_config_file;
     }
     qDebug() << "config_file:" << config_file;
 
-
-    ownfont = false;
-    fsize = 8;
-    historysize = 10;
-    showTrayIcon = true;
-    commentDockIsFloating = false;
-    showStatusBar = true;
-    showToolBar = true;
-    showCommentDock = true;
-    autoload = false;
-    autoloadfn = "";
-    nice = true;
-    // set dummy
 #if defined(_WIN32) || defined(_OS2)
     cdrompath = "D:/";
     lastDir = getenv( "USER_PROFILE" );
@@ -125,96 +70,12 @@ CdCatConfig::CdCatConfig ( QString arg_config_file ) :
 #endif
 
     hlist.clear();
-    autosave = false;
-    debug_info_enabled = false;
-    readtag = true;
-    v1_over_v2 = false;
-    readinfo = true;
-    readcontent = false;
-    readcfiles = "*.nfo;*.diz";
-    ContentViewerFont = "";
-    ThumbExtsList.clear();
-    ThumbExtsList.append( "png" );
-    ThumbExtsList.append( "gif" );
-    ThumbExtsList.append( "jpg" );
-    ThumbExtsList.append( "jpeg" );
-    ThumbExtsList.append( "bmp" );
-    readclimit = 32 * 1024;
     lastMediaType = CD;
-    saveAlwaysCatalogInUtf8 = true;
-    showProgressedFileInStatus = true;
-    doScanArchive = true;
-    showProgressedArchiveFileInStatus = true;
-    displayCurrentScannedFileInTray = false;
-    doExcludeFiles = false;
-    useWildcardInsteadRegexForExclude = false;
-    storeThumb = true;
-    keep_search_result = false;
-    readavii = true;
-
-    find_cs = false;
-    find_em = true;
-    find_di = true;
-    find_fi = true;
-    find_co = true;
-    find_category = false;
-    find_ct = true;
-    find_mco = true;
-    find_mar = true;
-    find_mti = true;
-    find_mal = true;
-    find_size_min = false;
-    find_size_max = false;
-    find_date_start = false;
-    find_date_end = false;
-    find_unsharp_search = false;
-    find_in_archive = false;
-    show_archive_file_perms = true;
-    show_archive_file_user = true;
-    show_archive_file_group = true;
-    show_archive_file_size = true;
-    show_archive_file_date = true;
-    show_archive_file_comment = true;
-    find_size_unit_min_val = 2;
-    find_size_unit_max_val = 2;
-    find_size_min_val = 1;
-    find_size_max_val = 10;
-    findX = 10;
-    findY = 10;
-    findWidth = 600;
-    findHeight = 500;
-    addX = 50;
-    addY = 10;
-    addWidth = 600;
-    addHeight = 500;
-    thumbHeight = 150;
-    thumbWidth = 150;
-
-    mainP1 = 200;
-    mainP2 = 270;
-    mainP3 = 170;
 
     windowSize.setWidth( windowSize_width = 640 );
     windowSize.setHeight( windowSize_height = 480 );
-    windowPos.setX( 5 );
-    windowPos.setY( 5 );
 
-    commentDockSize_dockarea = Qt::RightDockWidgetArea;
-
-    comm_bg = QColor( 255, 225, 0 );
-    comm_stext = QColor( 0, 0, 0 );
     comm_vtext = QColor( 10, 10, 255 );
-    comm_fr = QColor( 0, 0, 0 );
-
-    linkf = true;
-
-#ifndef _WIN32
-    mounteject = false;
-#endif
-
-#if defined(_WIN32) || defined(Q_OS_MAC) || defined(_OS2)
-    lang = "eng";
-#endif
 }
 
 
@@ -265,6 +126,7 @@ int CdCatConfig::startProgram( DataBase **dbp, QWidget *mw ) {
         }
         progress( pww );
         pww->end();
+        delete pww;
         if ((*dbp) != NULL) {
             (*dbp)->pww = NULL;
             (*dbp)->storeMp3tags = readtag;
@@ -288,30 +150,12 @@ int CdCatConfig::startProgram( DataBase **dbp, QWidget *mw ) {
             (*dbp)->useWildcardInsteadRegexForExclude = useWildcardInsteadRegexForExclude;
             (*dbp)->displayCurrentScannedFileInTray = displayCurrentScannedFileInTray;
         }
-        delete pww;
-    }
-    return 0;
-}
-
-int secv( const char *s, int i ) {
-    int v1, v2, v3;
-
-    sscanf( s, "%d,%d,%d", &v1, &v2, &v3 );
-
-    if (i == 0) {
-        return v1;
-    }
-    if (i == 1) {
-        return v2;
-    }
-    if (i == 2) {
-        return v3;
     }
     return 0;
 }
 
 int CdCatConfig::readConfig() {
-    int error = 0;
+    int r = 0, g = 0, b = 0, size = 0;
 
     if (config_file == NULL) {
         qWarning() << "config_file == NULL";
@@ -320,759 +164,184 @@ int CdCatConfig::readConfig() {
 
     QFile f( config_file );
 
-    QString msg;
-    if (f.open( QIODevice::ReadOnly )) {  // file opened successfully
-        qDebug() << "Reading configuration file:" << config_file;
+    QSettings settings;
+    QSettings settings_shortcuts(QCoreApplication::organizationName(), PROGRAM_NAME "_shortcuts");
+    settings.setValue("editor/wrapMargin", 68);
+    settings_shortcuts.setValue("editor/wrapMargin", 68);
+    qDebug() << settings.value("animal/zebra", 1024).toInt();
 
-        QTextStream t( &f ); // use a text stream
 
-        while (!t.atEnd()) {
-            QString line;
-            line = t.readLine();                  // line of text excluding '\n'
-            msg += line;
-            msg += "\n";
+    /* The default values of config.
+     * If you delete the config file (or parts of file)
+     * the values will be set to these:
+     */
 
-            if (!line.startsWith( "#" ) && !line.isEmpty() && line.contains( "=" )) {
-                int index = line.indexOf( '=' );
-                QString var = (line.left( index )).simplified();
-                QString val = (line.mid( index + 1, line.length() - index )).simplified();
-
-                //   QString info = "variable: "+var+", val: "+val;
-                //   QMessageBox::information(0,"found",info);
-
-                if (var == "font_size") {
-                    fsize = val.toInt();
-                    continue;
-                }
-                /* file history {{{ */
-                if (var == "history_size") {
-                    historysize = val.toInt();
-                    continue;
-                }
-                if (var == "history") {
-                    QString history = val;
-                    if (!history.isEmpty()) {
-                        int idx = 0;
-                        int idx2 = 0;
-                        while (idx2 > -1) {
-                            idx2 = history.indexOf( ';', idx );
-                            if ((int)idx != (int)(history.length() - 1)) {
-                                if (!(history.mid( idx, idx2 - idx )).isEmpty()) {
-                                    hlist.append( history.mid( idx, idx2 - idx ));
-                                }
-                            }
-                            idx = idx2 + 1;
-                        }
-                        while ((int)hlist.count() > (int)historysize)
-                            hlist.removeFirst();
-                    }
-                    continue;
-                }
-                /* }}} */
-
-                if (var == "showTrayIcon") {
-                    if (val == "true") {
-                        showTrayIcon = true;
-                    } else {
-                        showTrayIcon = false;
-                    }
-                    continue;
-                }
-                if (var == "showStatusBar") {
-                    if (val == "true") {
-                        showStatusBar = true;
-                    } else {
-                        showStatusBar = false;
-                    }
-                    continue;
-                }
-                if (var == "showToolBar") {
-                    if (val == "true") {
-                        showToolBar = true;
-                    } else {
-                        showToolBar = false;
-                    }
-                    continue;
-                }
-                if (var == "showCommentDock") {
-                    if (val == "true") {
-                        showCommentDock = true;
-                    } else {
-                        showCommentDock = false;
-                    }
-                    continue;
-                }
-
-                if (var == "autoload") {
-                    if (val == "true") {
-                        autoload = true;
-                    } else {
-                        autoload = false;
-                    }
-                    continue;
-                }
-
-                if (var == "autosave") {
-                    if (val == "true") {
-                        autosave = true;
-                    } else {
-                        autosave = false;
-                    }
-                    continue;
-                }
-                if (var == "ownfont") {
-                    if (val == "true") {
-                        ownfont = true;
-                    } else {
-                        ownfont = false;
-                    }
-                    continue;
-                }
-                if (var == "autoload_file") {
-                    autoloadfn = val;
-                    continue;
-                }
-                if (var == "niceformat") {
-                    if (val == "true") {
-                        nice = true;
-                    } else {
-                        nice = false;
-                    }
-                    continue;
-                }
-                if (var == "cdrompath") {
-                    if (!val.isEmpty()) {
-                        cdrompath = val;
-                    }
-                    continue;
-                }
 #ifndef _WIN32
-                if (var == "mounteject") {
-                    if (val == "true") {
-                        mounteject = true;
-                    } else {
-                        mounteject = false;
-                    }
-                    continue;
-                }
+    mounteject = settings.value("main/mounteject", false).toBool();
 #endif
 
 #if defined(_WIN32) || defined(Q_OS_MAC) || defined(_OS2)
-                if (var == "lang") {
-                    lang = val;
-                    continue;
-                }
+    lang = settings.value("main/lang", "eng").toString();
 #endif
-                if (var == "windowSize_height") {
-                    windowSize_height = val.toInt();
-                    continue;
-                }
-                if (var == "windowSize_width") {
-                    windowSize_width = val.toInt();
-                    continue;
-                }
-                if (var == "windowPos_x") {
-                    windowPos.setX( val.toInt());
-                    continue;
-                }
-                if (var == "windowPos_y") {
-                    windowPos.setY( val.toInt());
-                    continue;
-                }
-                if (var == "commentDockSize_width") {
-                    commentDockSize_width = val.toInt();
-                    continue;
-                }
-                if (var == "commentDockSize_height") {
-                    commentDockSize_height = val.toInt();
-                    continue;
-                }
-                if (var == "commentDockPos_x") {
-                    commentDockPos_x = val.toInt();
-                    continue;
-                }
-                if (var == "commentDockPos_y") {
-                    commentDockPos_y = val.toInt();
-                    continue;
-                }
-                if (var == "commentDockSize_dockarea") {
-                    commentDockSize_dockarea = val.toInt();
-                    continue;
-                }
-                if (var == "commentDockIsFloating") {
-                    if (val == "true") {
-                        commentDockIsFloating = true;
-                    } else {
-                        commentDockIsFloating = false;
-                    }
-                    continue;
-                }
-                if (var == "contentWindowSize_height") {
-                    contentWindowSize_height = val.toInt();
-                    continue;
-                }
-                if (var == "contentWindowSize_width") {
-                    contentWindowSize_width = val.toInt();
-                    continue;
-                }
-                if (var == "contentWindowPos_x") {
-                    contentWindowPos_x = val.toInt();
-                    continue;
-                }
-                if (var == "contentWindowPos_y") {
-                    contentWindowPos_y = val.toInt();
-                    continue;
-                }
-                if (var == "commentWindowSize_height") {
-                    commentWindowSize_height = val.toInt();
-                    continue;
-                }
-                if (var == "commentWindowSize_width") {
-                    commentWindowSize_width = val.toInt();
-                    continue;
-                }
-                if (var == "commentWindowPos_x") {
-                    commentWindowPos_x = val.toInt();
-                    continue;
-                }
-                if (var == "commentWindowPos_y") {
-                    commentWindowPos_y = val.toInt();
-                    continue;
-                }
-                if (var == "dirview_size") {
-                    mainP1 = val.toInt();
-                    continue;
-                }
-                if (var == "listview_size") {
-                    mainP2 = val.toInt();
-                    continue;
-                }
-                if (var == "commentview_size") {
-                    mainP3 = val.toInt();
-                    continue;
-                }
 
-                // Read the options of find dialog
-                if (var == "find_checkbox_casesens") {
-                    if (val == "true") {
-                        find_cs = true;
-                    } else {
-                        find_cs = false;
-                    }
-                    continue;
-                }
-                if (var == "find_checkbox_easymatch") {
-                    if (val == "true") {
-                        find_em = true;
-                    } else {
-                        find_em = false;
-                    }
-                    continue;
-                }
-                if (var == "find_checkbox_directory") {
-                    if (val == "true") {
-                        find_di = true;
-                    } else {
-                        find_di = false;
-                    }
-                    continue;
-                }
-                if (var == "find_checkbox_file") {
-                    if (val == "true") {
-                        find_fi = true;
-                    } else {
-                        find_fi = false;
-                    }
-                    continue;
-                }
-                if (var == "find_checkbox_comment") {
-                    if (val == "true") {
-                        find_co = true;
-                    } else {
-                        find_co = false;
-                    }
-                    continue;
-                }
-                if (var == "find_checkbox_comment") {
-                    if (val == "true") {
-                        find_co = true;
-                    } else {
-                        find_co = false;
-                    }
-                    continue;
-                }
-                if (var == "find_category") {
-                    if (val == "true") {
-                        find_category = true;
-                    } else {
-                        find_category = false;
-                    }
-                    continue;
-                }
-                if (var == "lastFindCategory") {
-                    lastFindCategory = val;
-                    continue;
-                }
-
-                if (var == "find_checkbox_content") {
-                    if (val == "true") {
-                        find_ct = true;
-                    } else {
-                        find_ct = false;
-                    }
-                    continue;
-                }
-                if (var == "find_checkbox_mp3artist") {
-                    if (val == "true") {
-                        find_mar = true;
-                    } else {
-                        find_mar = false;
-                    }
-                    continue;
-                }
-                if (var == "find_checkbox_mp3title") {
-                    if (val == "true") {
-                        find_mti = true;
-                    } else {
-                        find_mti = false;
-                    }
-                    continue;
-                }
-                if (var == "find_checkbox_mp3album") {
-                    if (val == "true") {
-                        find_mal = true;
-                    } else {
-                        find_mal = false;
-                    }
-                    continue;
-                }
-                if (var == "find_checkbox_mp3comment") {
-                    if (val == "true") {
-                        find_mco = true;
-                    } else {
-                        find_mco = false;
-                    }
-                    continue;
-                }
-                if (var == "find_checkbox_size_min") {
-                    if (val == "true") {
-                        find_size_min = true;
-                    } else {
-                        find_size_min = false;
-                    }
-                    continue;
-                }
-                if (var == "find_checkbox_size_max") {
-                    if (val == "true") {
-                        find_size_max = true;
-                    } else {
-                        find_size_max = false;
-                    }
-                    continue;
-                }
-                if (var == "findPos_x") {
-                    findX = val.toInt();
-                    continue;
-                }
-                if (var == "findPos_y") {
-                    findY = val.toInt();
-                    continue;
-                }
-                if (var == "findSize_width") {
-                    findWidth = val.toInt();
-                    continue;
-                }
-                if (var == "findSize_height") {
-                    findHeight = val.toInt();
-                    continue;
-                }
-                if (var == "addPos_x") {
-                    addX = val.toInt();
-                    continue;
-                }
-                if (var == "addPos_y") {
-                    addY = val.toInt();
-                    continue;
-                }
-                if (var == "addSize_width") {
-                    addWidth = val.toInt();
-                    continue;
-                }
-                if (var == "addSize_height") {
-                    addHeight = val.toInt();
-                    continue;
-                }
-                if (var == "read_avi_techinfo") {
-                    if (val == "true") {
-                        readavii = true;
-                    } else {
-                        readavii = false;
-                    }
-                    continue;
-                }
-                if (var == "read_mp3tag") {
-                    if (val == "true") {
-                        readtag = true;
-                    } else {
-                        readtag = false;
-                    }
-                    continue;
-                }
-                if (var == "mp3tag_default_v1") {
-                    if (val == "true") {
-                        v1_over_v2 = true;
-                    } else {
-                        v1_over_v2 = false;
-                    }
-                    continue;
-                }
-                if (var == "read_mp3techinfo") {
-                    if (val == "true") {
-                        readinfo = true;
-                    } else {
-                        readinfo = false;
-                    }
-                    continue;
-                }
-                if (var == "read_content") {
-                    if (val == "true") {
-                        readcontent = true;
-                    } else {
-                        readcontent = false;
-                    }
-                    continue;
-                }
-                if (var == "use_fileinfo") {
-                    if (val == "true") {
-                        usefileinfo = true;
-                    } else {
-                        usefileinfo = false;
-                    }
-                    continue;
-                }
-                if (var == "read_content_files") {
-                    if (!val.isEmpty()) {
-                        readcfiles = val;
-                    }
-                    continue;
-                }
-                if (var == "use_ext_content_viewer") {
-                    if (val == "true") {
-                        useExternalContentViewer = true;
-                    } else {
-                        useExternalContentViewer = false;
-                    }
-                    continue;
-                }
-                if (var == "ext_content_viewer_path") {
-                    if (!val.isEmpty()) {
-                        ExternalContentViewerPath = val;
-                    }
-                    continue;
-                }
-                if (var == "ContentViewerFont") {
-                    if (!val.isEmpty()) {
-                        ContentViewerFont = val;
-                    }
-                    continue;
-                }
-                if (var == "read_content_limit") {
-                    readclimit = val.toInt();
-                    continue;
-                }
-                if (var == "find_checkbox_date_start") {
-                    if (val == "true") {
-                        find_date_start = true;
-                    } else {
-                        find_date_start = false;
-                    }
-                    continue;
-                }
-                if (var == "find_checkbox_date_end") {
-                    if (val == "true") {
-                        find_date_end = true;
-                    } else {
-                        find_date_end = false;
-                    }
-                    continue;
-                }
-                if (var == "find_date_start_val") {
-                    find_date_start_val = QDateTime().fromString( val );
-                    continue;
-                }
-                if (var == "find_date_end_val") {
-                    find_date_end_val = QDateTime().fromString( val );
-                    continue;
-                }
-                if (var == "find_size_min_val") {
-                    find_size_min_val = val.toInt();
-                    continue;
-                }
-                if (var == "find_size_min") {
-                    if (val == "true") {
-                        find_size_min = true;
-                    } else {
-                        find_size_min = false;
-                    }
-                    continue;
-                }
-                if (var == "find_size_max") {
-                    if (val == "true") {
-                        find_size_max = true;
-                    } else {
-                        find_size_max = false;
-                    }
-                    continue;
-                }
-                if (var == "find_size_max_val") {
-                    find_size_max_val = val.toInt();
-                    continue;
-                }
-                if (var == "find_size_unit_min_val") {
-                    find_size_unit_min_val = val.toInt();
-                    continue;
-                }
-                if (var == "find_size_unit_max_val") {
-                    find_size_unit_max_val = val.toInt();
-                    continue;
-                }
-                if (var == "comment_bg_color") {
-                    int r = 0, g = 0, b = 0;
-                    r = secv( val.toLocal8Bit().data(), 0 );
-                    g = secv( val.toLocal8Bit().data(), 1 );
-                    b = secv( val.toLocal8Bit().data(), 2 );
-                    comm_bg.setRgb( r, g, b );
-                    continue;
-                }
-                if (var == "comment_fr_color") {
-                    int r = 0, g = 0, b = 0;
-                    r = secv( val.toLocal8Bit().data(), 0 );
-                    g = secv( val.toLocal8Bit().data(), 1 );
-                    b = secv( val.toLocal8Bit().data(), 2 );
-                    comm_fr.setRgb( r, g, b );
-                    continue;
-                }
-                if (var == "comment_ts_color") {
-                    int r = 0, g = 0, b = 0;
-                    r = secv( val.toLocal8Bit().data(), 0 );
-                    g = secv( val.toLocal8Bit().data(), 1 );
-                    b = secv( val.toLocal8Bit().data(), 2 );
-                    comm_stext.setRgb( r, g, b );
-                    continue;
-                }
-                if (var == "comment_td_color") {
-                    int r = 0, g = 0, b = 0;
-                    r = secv( val.toLocal8Bit().data(), 0 );
-                    g = secv( val.toLocal8Bit().data(), 1 );
-                    b = secv( val.toLocal8Bit().data(), 2 );
-                    comm_vtext.setRgb( r, g, b );
-                    continue;
-                }
-                if (var == "catalog_link_is_first") {
-                    if (val == "true") {
-                        linkf = true;
-                    } else {
-                        linkf = false;
-                    }
-                    continue;
-                }
-                if (var == "debug_info_enabled") {
-                    if (val == "true") {
-                        debug_info_enabled = true;
-                    } else {
-                        debug_info_enabled = false;
-                    }
-                    continue;
-                }
-                if (var == "last_dir") {
-                    if (!val.isEmpty()) {
-                        lastDir = val;
-                    }
-                    continue;
-                }
-                if (var == "saveAlwaysCatalogInUtf8") {
-                    if (val == "true") {
-                        saveAlwaysCatalogInUtf8 = true;
-                    } else {
-                        saveAlwaysCatalogInUtf8 = false;
-                    }
-                    continue;
-                }
-                if (var == "showProgressedFileInStatus") {
-                    if (val == "true") {
-                        showProgressedFileInStatus = true;
-                    } else {
-                        showProgressedFileInStatus = false;
-                    }
-                    continue;
-                }
-                if (var == "lastMediaType") {
-                    lastMediaType = val.toInt();
-                    continue;
-                }
-                if (var == "lastSearchPattern") {
-                    lastSearchPattern = val;
-                    continue;
-                }
-                if (var == "find_unsharp_search") {
-                    if (val == "true") {
-                        find_unsharp_search = true;
-                    } else {
-                        find_unsharp_search = false;
-                    }
-                    continue;
-                }
-                if (var == "do_scan_archive") {
-                    if (val == "true") {
-                        doScanArchive = true;
-                    } else {
-                        doScanArchive = false;
-                    }
-                    continue;
-                }
-                if (var == "showProgressedArchiveFileInStatus") {
-                    if (val == "true") {
-                        showProgressedArchiveFileInStatus = true;
-                    } else {
-                        showProgressedArchiveFileInStatus = false;
-                    }
-                    continue;
-                }
-                if (var == "displayCurrentScannedFileInTray") {
-                    if (val == "true") {
-                        displayCurrentScannedFileInTray = true;
-                    } else {
-                        displayCurrentScannedFileInTray = false;
-                    }
-                    continue;
-                }
-
-                if (var == "find_in_archive") {
-                    if (val == "true") {
-                        find_in_archive = true;
-                    } else {
-                        find_in_archive = false;
-                    }
-                    continue;
-                }
-                if (var == "show_archive_file_perms") {
-                    if (val == "true") {
-                        show_archive_file_perms = true;
-                    } else {
-                        show_archive_file_perms = false;
-                    }
-                    continue;
-                }
-                if (var == "show_archive_file_user") {
-                    if (val == "true") {
-                        show_archive_file_user = true;
-                    } else {
-                        show_archive_file_user = false;
-                    }
-                    continue;
-                }
-                if (var == "show_archive_file_group") {
-                    if (val == "true") {
-                        show_archive_file_group = true;
-                    } else {
-                        show_archive_file_group = false;
-                    }
-                    continue;
-                }
-                if (var == "show_archive_file_size") {
-                    if (val == "true") {
-                        show_archive_file_size = true;
-                    } else {
-                        show_archive_file_size = false;
-                    }
-                    continue;
-                }
-                if (var == "show_archive_file_date") {
-                    if (val == "true") {
-                        show_archive_file_date = true;
-                    } else {
-                        show_archive_file_date = false;
-                    }
-                    continue;
-                }
-                if (var == "show_archive_file_comment") {
-                    if (val == "true") {
-                        show_archive_file_comment = true;
-                    } else {
-                        show_archive_file_comment = false;
-                    }
-                    continue;
-                }
-                if (var == "store_thumb") {
-                    if (val == "true") {
-                        storeThumb = true;
-                    } else {
-                        storeThumb = false;
-                    }
-                    continue;
-                }
-                if (var == "thumb_width") {
-                    thumbWidth = val.toInt();
-                    continue;
-                }
-                if (var == "thumb_height") {
-                    thumbHeight = val.toInt();
-                    continue;
-                }
-                if (var == "thumb_exts") {
-                    ThumbExtsList = val.split( ';' );
-                    continue;
-                }
-                if (var == "store_exif_data") {
-                    if (val == "true") {
-                        storeExifData = true;
-                    } else {
-                        storeExifData = false;
-                    }
-                    continue;
-                }
-                if (var == "do_exclude_files") {
-                    if (val == "true") {
-                        doExcludeFiles = true;
-                    } else {
-                        doExcludeFiles = false;
-                    }
-                    continue;
-                }
-                if (var == "exclude_file_list") {
-                    ExcludeFileList = val.split( ';' );
-                    continue;
-                }
-                if (var == "useWildcardInsteadRegexForExclude") {
-                    if (val == "true") {
-                        useWildcardInsteadRegexForExclude = true;
-                    } else {
-                        useWildcardInsteadRegexForExclude = false;
-                    }
-                    continue;
-                }
-                if (var == "keep_search_result") {
-                    if (val == "true") {
-                        keep_search_result = true;
-                    } else {
-                        keep_search_result = false;
-                    }
-                    continue;
-                }
-
-
-                qWarning() << "Unknown key found: " << qPrintable( var );
-                error = 1;
-            }     // no comment
-        }         // while lines
-        f.close();
-        windowSize.setHeight( windowSize_height );
-        windowSize.setWidth( windowSize_width );
-    }     // file exist
-    else {
-        return 1;
+    /* file history {{{ */
+    historysize = settings.value("main/history_size", 10).toInt();
+    size = settings.beginReadArray("history");
+    for (int i = 0; i < size; ++i) {
+        settings.setArrayIndex(i);
+        hlist.append(settings.value("path").toString());
+        while ((int)hlist.count() > (int)historysize) {
+            hlist.removeFirst();
+        }
     }
-    return error;
+    settings.endArray();
+    /* }}} */
+
+    fsize = settings.value("ui/font_size", 8).toInt();
+    ownfont = settings.value("ui/use_own_font_size", false).toBool();
+
+    showTrayIcon = settings.value("ui/show_tray_icon", true).toBool();
+    showStatusBar = settings.value("ui/show_status_bar", true).toBool();
+    showToolBar = settings.value("ui/show_tool_bar", true).toBool();
+    showCommentDock = settings.value("ui/show_comment_dock", true).toBool();
+
+    autoload = settings.value("main/autoload", false).toBool();
+    autosave = settings.value("main/autosave", false).toBool();
+    autoloadfn = settings.value("main/autoload_file", "").toString();
+
+    nice = settings.value("db/nice_format", false).toBool();
+
+    cdrompath = settings.value("main/cdrom_path", cdrompath).toString();
+
+    windowPos.setX( settings.value("ui/window_position_x", 5).toInt() );
+    windowPos.setY( settings.value("ui/window_position_y", 5).toInt() );
+
+    windowSize_height        = settings.value("ui/window_height"            , windowSize.height()).toInt();
+    windowSize_width         = settings.value("ui/window_width"             , windowSize.width()).toInt();
+    commentDockSize_height   = settings.value("ui/comment_dock_height"      , 0).toInt();
+    commentDockSize_width    = settings.value("ui/comment_dock_width"       , 0).toInt();
+    commentDockPos_x         = settings.value("ui/comment_dock_position_x"  , 0).toInt();
+    commentDockPos_y         = settings.value("ui/comment_dock_position_y"  , 0).toInt();
+    commentDockSize_dockarea = settings.value("ui/comment_dock_dockarea"    , Qt::RightDockWidgetArea).toInt();
+    commentDockIsFloating    = settings.value("ui/comment_dock_is_floating" , false).toBool();
+    contentWindowSize_height = settings.value("ui/content_window_height"    , 0).toInt();
+    contentWindowSize_width  = settings.value("ui/content_window_width"     , 0).toInt();
+    contentWindowPos_x       = settings.value("ui/content_window_position_x", 0).toInt();
+    contentWindowPos_y       = settings.value("ui/content_window_position_y", 0).toInt();
+    commentWindowSize_height = settings.value("ui/comment_window_height"    , 0).toInt();
+    commentWindowSize_width  = settings.value("ui/comment_window_width"     , 0).toInt();
+    commentWindowPos_x       = settings.value("ui/comment_window_position_x", 0).toInt();
+    commentWindowPos_y       = settings.value("ui/comment_window_position_y", 0).toInt();
+    findWidth                = settings.value("ui/find_width"               , 600).toInt();
+    findHeight               = settings.value("ui/find_height"              , 500).toInt();
+    findX                    = settings.value("ui/find_position_x"          , 10).toInt();
+    findY                    = settings.value("ui/find_position_y"          , 10).toInt();
+    addX                     = settings.value("ui/add_position_x"           , 50).toInt();
+    addY                     = settings.value("ui/add_position_y"           , 10).toInt();
+    addWidth                 = settings.value("ui/add_width"                , 600).toInt();
+    addHeight                = settings.value("ui/add_height"               , 500).toInt();
+    mainP1                   = settings.value("ui/dirview_size"             , 200).toInt();
+    mainP2                   = settings.value("ui/listview_size"            , 270).toInt();
+    mainP3                   = settings.value("ui/commentview_size"         , 170).toInt();
+
+    // Read the options of find dialog
+    find_cs = settings.value("ui/find_checkbox_casesens", false).toBool();
+    find_em = settings.value("ui/find_checkbox_easymatch", true).toBool();
+    find_di = settings.value("ui/find_checkbox_directory", true).toBool();
+    find_fi = settings.value("ui/find_checkbox_file", true).toBool();
+    find_co = settings.value("ui/find_checkbox_comment", true).toBool();
+    find_category = settings.value("ui/find_category", false).toBool();
+
+    lastFindCategory = settings.value("ui/last_find_category", "").toString();
+    find_ct = settings.value("ui/find_checkbox_content", true).toBool();
+    find_mar = settings.value("ui/find_checkbox_mp3artist", true).toBool();
+    find_mti = settings.value("ui/find_checkbox_mp3title", true).toBool();
+    find_mal = settings.value("ui/find_checkbox_mp3album", true).toBool();
+    find_mco = settings.value("ui/find_checkbox_mp3comment", true).toBool();
+    find_size_min = settings.value("ui/find_checkbox_size_min", false).toBool();
+    find_size_max = settings.value("ui/find_checkbox_size_max", false).toBool();
+    readavii = settings.value("ui/read_avi_metadata", true).toBool();
+    readtag = settings.value("ui/read_mp3tag", true).toBool();
+    v1_over_v2 = settings.value("ui/mp3tag_default_v1", false).toBool();
+    readinfo = settings.value("ui/read_mp3_metadata", true).toBool();
+    readcontent = settings.value("ui/read_content", false).toBool();
+    usefileinfo = settings.value("ui/use_fileinfo", false).toBool();
+
+    readcfiles = settings.value("ui/read_content_files", "*.nfo;*.diz").toString();
+    useExternalContentViewer = settings.value("ui/use_ext_content_viewer", false).toBool();
+    ExternalContentViewerPath = settings.value("ui/ext_content_viewer_path").toString();
+    ContentViewerFont = settings.value("ui/content_viewer_font").toString();
+    readclimit = settings.value("ui/content_viewer_font", 32 * 1024).toInt();
+    find_date_start = settings.value("ui/find_checkbox_date_start", false).toBool();
+    find_date_end = settings.value("ui/find_checkbox_date_end", false).toBool();
+    find_date_start_val = QDateTime().fromString( settings.value("ui/find_date_start_val", "").toString() );
+    find_date_end_val = QDateTime().fromString( settings.value("ui/find_date_end_val", "").toString() );
+    find_size_min_val = settings.value("ui/find_size_min_val", 1).toInt();
+    find_size_max_val = settings.value("ui/find_size_max_val", 10).toInt();
+    find_size_unit_min_val = settings.value("ui/find_size_unit_min_val", 2).toInt();
+    find_size_unit_max_val = settings.value("ui/find_size_unit_max_val", 2).toInt();
+
+    r = settings.value("ui/comment_bg_color/red", 255).toInt();
+    g = settings.value("ui/comment_bg_color/green", 255).toInt();
+    b = settings.value("ui/comment_bg_color/blue", 0).toInt();
+    comm_bg.setRgb( r, g, b );
+
+    r = settings.value("ui/comment_fg_color/red"  , 0).toInt();
+    g = settings.value("ui/comment_fg_color/green", 0).toInt();
+    b = settings.value("ui/comment_fg_color/blue" , 0).toInt();
+    comm_fr.setRgb( r, g, b );
+
+    r = settings.value("ui/comment_ts_color/red"  , 0).toInt();
+    g = settings.value("ui/comment_ts_color/green", 0).toInt();
+    b = settings.value("ui/comment_ts_color/blue" , 0).toInt();
+    comm_stext.setRgb( r, g, b );
+
+    r = settings.value("ui/comment_td_color/red"  , 10 ).toInt();
+    g = settings.value("ui/comment_td_color/green", 10 ).toInt();
+    b = settings.value("ui/comment_td_color/blue" , 255).toInt();
+    comm_vtext.setRgb( r, g, b );
+
+    linkf = settings.value("ui/catalog_link_is_first", true).toBool();
+    debug_info_enabled = settings.value("main/debug_info_enabled", false).toBool();
+    lastDir = settings.value("main/last_dir", lastDir).toString();
+    saveAlwaysCatalogInUtf8 = settings.value("db/save_always_catalog_in_utf8", true).toBool();
+    lastMediaType = settings.value("ui/last_media_type", lastMediaType).toInt();
+    lastSearchPattern = settings.value("ui/last_media_type").toString();
+    doScanArchive = settings.value("ui/do_scan_archive", true).toBool();
+    showProgressedFileInStatus = settings.value("ui/show_progressed_file_in_status", true).toBool();
+    showProgressedArchiveFileInStatus = settings.value("ui/show_progressed_archive_file_in_status", true).toBool();
+    displayCurrentScannedFileInTray = settings.value("ui/display_current_scanned_file_in_tray", false).toBool();
+
+    find_in_archive = settings.value("ui/find_in_archive", false).toBool();
+    show_archive_file_perms = settings.value("ui/show_archive_file_perms", true).toBool();
+    show_archive_file_user = settings.value("ui/show_archive_file_user", true).toBool();
+    show_archive_file_group = settings.value("ui/show_archive_file_group", true).toBool();
+    show_archive_file_size = settings.value("ui/show_archive_file_group", true).toBool();
+    show_archive_file_date = settings.value("ui/show_archive_file_date", true).toBool();
+    show_archive_file_comment = settings.value("ui/show_archive_file_comment", true).toBool();
+    storeThumb = settings.value("db/store_thumb", true).toBool();
+    thumbWidth = settings.value("db/thumb_width", 150).toInt();
+    thumbHeight = settings.value("db/thumb_height", 150).toInt();
+
+    ThumbExtsList = settings.value("db/thumb_for_file_extensions",  "png;gif;jpg;jpeg;bmp" ).toString().split( ';' );
+    storeExifData = settings.value("db/store_exif_data", false).toBool();
+    doExcludeFiles = settings.value("db/do_exclude_files", false).toBool();
+
+    useWildcardInsteadRegexForExclude = settings.value("db/use_wildcard_instead_regex_for_exclude", false).toBool();
+    size = settings.beginReadArray("db_exclude_pattern_list");
+    for (int i = 0; i < size; ++i) {
+        settings.setArrayIndex(i);
+        ExcludeFileList.append(settings.value("pattern").toString());
+    }
+    settings.endArray();
+
+    keep_search_result = settings.value("db/keep_search_result", false).toBool();
+
+
+    windowSize.setHeight( windowSize_height );
+    windowSize.setWidth( windowSize_width );
+
+    return 0;
 }
 
 int CdCatConfig::writeConfig( void ) {
@@ -1080,6 +349,8 @@ int CdCatConfig::writeConfig( void ) {
         qWarning() << "config_file == NULL";
         return 1;
     }
+
+    QSettings settings;
 
     QFile f( config_file );
 
@@ -1089,35 +360,20 @@ int CdCatConfig::writeConfig( void ) {
         QTextStream str( &f );          // we will serialize the data into file f
         // str.setCodec( QTextCodec::codecForName( "ISO-8859-1" ));
 
-        QString fsize_str, historysize_str, historylength_str, history_str;
+        QString fsize_str;
 
-        str << "#" << endl;
-        str << "#  " << PROGRAM_NAME << " configuration file." << endl;
-        str << "#  Program version: " << VERSION << endl;
-        str << "#  Do not edit directly unless you know what you are doing :)" << endl;
-        str << "#" << endl;
+        settings.setValue("id/use_own_font_size", ownfont );
 
-        if (ownfont) {
-            str << "ownfont=true" << endl;
-        } else {
-            str << "ownfont=false" << endl;
+        settings.setValue("ui/font_size", fsize );
+
+        settings.setValue("main/history_size", historysize );
+
+        settings.beginWriteArray("history");
+        for (int i = 0; i < hlist.size(); ++i) {
+            settings.setArrayIndex(i);
+            settings.setValue("path", hlist.at(i));
         }
-
-        fsize_str.setNum( fsize );
-        str << "font_size=" + fsize_str << endl;
-
-        historysize_str.setNum( historysize );
-        str << "history_size=" + historysize_str << endl;
-
-        for (QStringList::Iterator it = hlist.begin(); it != hlist.end(); ++it) {
-            if (!(*it).isEmpty()) {
-                history_str += *it;
-                history_str += ";";
-                // QMessageBox::information(0,"new history element",*it);
-            }
-        }
-
-        str << "history=" + history_str << endl;
+        settings.endArray();
 
         if (showTrayIcon) {
             str << "showTrayIcon=true" << endl;
