@@ -95,18 +95,7 @@ QString date_to_str( QDateTime dt );
 
 class Node {
 public:
-    /*
-     *      0 - uninitialized
-     *      1 - catalog
-     *      2 - media
-     *      3 - directory
-     *      4 - file
-     *      5 - mp3tag
-     *      6 - content
-     *      7 - catlnk
-     *      8 - archive.prop.
-     *      9 - exif
-     *     10 - thumbnail
+    /* Search "values for class Node::type".
      */
     int type;             // node type
 
@@ -180,15 +169,7 @@ public:
 
     // FIXME: Use enum …
     int type;
-    /*
-     *   0: unknown
-     *   1: CD
-     *   2: DVD
-     *   3: HardDisc
-     *   4: Floppy
-     *   5: NetworPlace
-     *   6: FlashDrive
-     *   7: OtherDevice
+    /*   Search "values for class DBMedia::type".
      */
 
     QDateTime modification;

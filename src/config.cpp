@@ -70,7 +70,6 @@ CdCatConfig::CdCatConfig ( QString arg_config_file ) {
 #endif
 
     hlist.clear();
-    lastMediaType = CD;
 }
 
 
@@ -250,7 +249,7 @@ int CdCatConfig::readConfig() {
     autoloadfn         = settings.value("main/autoload_file"      , "").toString();
     lastSearchPattern  = settings.value("main/last_search_pattern", "").toString();
     lastDir            = settings.value("main/last_dir"           , lastDir).toString();
-    lastMediaType      = settings.value("main/last_media_type"    , CD).toInt();
+    lastMediaType      = settings.value("main/last_media_type"    , HARDDISC).toInt();
     cdrompath          = settings.value("main/cdrom_path"         , cdrompath).toString();
 
 #ifndef _WIN32
