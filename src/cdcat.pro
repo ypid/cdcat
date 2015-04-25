@@ -106,9 +106,10 @@ INSTALLS    += target translations distfiles
 QT          += xml widgets printsupport
 CONFIG      += qt xml uic
 
-## Overwritten by debug
-CONFIG      += release
-CONFIG      += debug
+## Release is the default and will be overwritten by debug
+## Don‘t specify it in the file. Use 'CONFIG+=debug' for qmake.
+# CONFIG      += release
+# CONFIG      += debug
 
 # DEFINES     += QT_NO_DEBUG_OUTPUT
 
