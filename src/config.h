@@ -10,6 +10,7 @@
 #ifndef CONFIGDIALOG_H
 #define CONFIGDIALOG_H
 
+#include <QSettings>
 #include <QString>
 #include <QVariant>
 #include <QObject>
@@ -41,6 +42,7 @@ class QColor;
 
 class CdCatConfig : public QObject {
     Q_OBJECT
+
 public:
     CdCatConfig ( QString arg_config_file );
     ~CdCatConfig ( void );
@@ -50,12 +52,11 @@ public:
     int readConfig();
     void setParameter( char *par );
 
-public:
     bool startpar;
     QString startfn;
     QString config_file;
 
-    // Configurable items:
+    /* Configurable items {{{ */
     int fsize;
     int historysize;
     bool showTrayIcon;
@@ -90,7 +91,7 @@ public:
     bool storeExifData;
     bool storeThumb;
 
-    unsigned long readclimit;
+    int readclimit;
 
     QStringList hlist;
     QStringList ThumbExtsList;
@@ -176,17 +177,15 @@ public:
     bool mounteject;
 #endif
 
-#if defined(_WIN32) || defined(_OS2)
-    QString lang;
-#endif
-#ifdef Q_OS_MAC
+#if defined(_WIN32) || defined(_OS2) || defined(Q_OS_MAC)
     QString lang;
 #endif
 
     bool linkf;
+    /* }}} */
 
-
-    /*end configureable items*/
+private:
+    QSettings settings;
 };
 
 /*****************************************************************************/
