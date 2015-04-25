@@ -96,6 +96,8 @@ precompile_header:!isEmpty(PRECOMPILED_HEADER) {
 }
 
 RESOURCES = lang.qrc
+RC_ICONS = img/cdcat.ico
+ICON = img/cdcat.icns
 
 TEMPLATE     =  app
 FORMS        =  help.ui
