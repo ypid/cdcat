@@ -208,7 +208,7 @@ int main( int argi, char **argc ) {
         QCoreApplication::translate("main_cli", "Configuration file to use."),
         QCoreApplication::translate("main_cli", "file")
     );
-    Q_ASSERT(parser.addOption(optionConfigFile));
+    // Q_ASSERT(parser.addOption(optionConfigFile));
 
     QCommandLineOption optionSwitchBatchMode(QStringList() << "b" << "batch",
         QCoreApplication::translate("main_cli", "Run in non iterative batch mode. This mode is CLI only which means no GUI is going to appear.")
@@ -262,7 +262,6 @@ int main( int argi, char **argc ) {
 
     CdCatConfig *cconfig;
     translator = 0;
-    int font_size = 8;
 
     if (parser.isSet(optionConfigFile)) {
         cconfig = new CdCatConfig(parser.value(optionConfigFile));
@@ -277,12 +276,7 @@ int main( int argi, char **argc ) {
         cconfig->setParameter( filename );
     }
 
-    if (cconfig->readConfig() == 0) {
-        font_size = cconfig->fsize;
-        qDebug() << font_size;
-    } else {
-        cconfig->writeConfig();
-    }
+    cconfig->readConfig();
 
     // FIXME remove
     DEBUG_INFO_ENABLED = init_debug_info();
@@ -302,7 +296,7 @@ int main( int argi, char **argc ) {
         cconfig->defaultfont = app.font();
         if (cconfig->ownfont) {
             QFont font;
-            font.setPointSize( font_size );
+            font.setPointSize( cconfig->fsize );
             app.setFont( font );
         }
 

@@ -35,7 +35,6 @@
 #include <QToolTip>
 #include <QLabel>
 #include <QSpinBox>
-#include <QFile>
 #include <QFont>
 #include <QColor>
 #include <QFrame>
@@ -58,10 +57,13 @@ CdCatConfig::CdCatConfig ( QString arg_config_file ) {
     startfn = "";
 
     if (arg_config_file == NULL) {
+        QSettings settings;
     } else {
-        config_file = arg_config_file;
+        QSettings settings(arg_config_file, QSettings::NativeFormat);
+        qDebug() << "config_file:" << arg_config_file;
     }
-    qDebug() << "config_file:" << config_file;
+    qDebug() << "settings.fileName():" << settings.fileName();
+    // QSettings settings_shortcuts(QCoreApplication::organizationName(), PROGRAM_NAME "_shortcuts");
 
 #if defined(_WIN32) || defined(_OS2)
     cdrompath = "D:/";
@@ -97,9 +99,6 @@ int CdCatConfig::startProgram( DataBase **dbp, QWidget *mw ) {
     if (startpar) {
         loadablefile = startfn;
     }
-
-    QSettings settings;
-    // QSettings settings_shortcuts(QCoreApplication::organizationName(), PROGRAM_NAME "_shortcuts");
 
     if (autoload || startpar) {
         if ((*dbp) == NULL) {
@@ -155,10 +154,6 @@ int CdCatConfig::startProgram( DataBase **dbp, QWidget *mw ) {
 
 int CdCatConfig::readConfig() {
     int r = 0, g = 0, b = 0, size = 0;
-
-    if (config_file == NULL) {
-        qWarning() << "config_file == NULL";
-    }
 
     /* Default values are the second argument of QSettings.value.
      * If you delete the configuration file (or parts of file)
@@ -335,11 +330,6 @@ int CdCatConfig::readConfig() {
 }
 
 int CdCatConfig::writeConfig( void ) {
-    if (config_file == NULL) {
-        qWarning() << "config_file == NULL";
-    }
-
-    QSettings settings;
 
     /* UI {{{ */
 #if defined(_WIN32) || defined(Q_OS_MAC) || defined(_OS2)
