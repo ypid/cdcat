@@ -31,7 +31,7 @@ configure: configure-stamp
 configure-stamp:
 	dh_testdir
 	#cd src && qmake-qt4 cdcat.pro DEFINES+=MEDIAINFO_STATIC
-	cd src &&  qmake-qt4 cdcat.pro
+	cd src && qmake cdcat.pro
 	perl -pe s/usr.local/usr/g -i src/Makefile
 	touch configure-stamp
 
@@ -47,9 +47,9 @@ clean:
 	dh_testdir
 	dh_testroot
 	rm -f build-stamp configure-stamp src/cdcat
-	-test -f src/Makefile || ./debian/rules configure 
+	-test -f src/Makefile || ./debian/rules configure
 	-cd src && $(MAKE) clean && rm Makefile
-	dh_clean 
+	dh_clean
 
 install: build
 	dh_testdir
@@ -65,7 +65,10 @@ binary-arch: build install
 	dh_install
 	dh_installchangelogs ChangeLog
 	cp debian/cdcat.desktop debian/cdcat/usr/share/applications
-	cp cdcat.png debian/cdcat/usr/share/icons
+	cp src/img/cdcat_logo_48x48.png debian/cdcat/usr/share/icons/hicolor/48x48/apps/cdcat.png
+	cp src/img/cdcat_logo_64x64.png debian/cdcat/usr/share/icons/hicolor/64x64/apps/cdcat.png
+	cp src/img/cdcat_logo_512x512.png debian/cdcat/usr/share/icons/hicolor/512x512/apps/cdcat.png
+	cp src/img/cdcat_logo.svg debian/cdcat /usr/share/icons/hicolor/scalable/apps/cdcat.svg
 	dh_installdocs
 	dh_installman debian/cdcat.1
 	dh_link
@@ -82,3 +85,29 @@ binary-arch: build install
 
 binary: binary-indep binary-arch
 .PHONY: build clean binary-indep binary-arch binary install configure
+
+all: lupdate lrelease src/lang.qrc src/img/cdcat.icns
+	$(MAKE) --directory src
+
+lupdate: src/cdcat.pro
+	lupdate -locations relative "$<"
+
+lrelease: src/cdcat.pro
+	lrelease "$<"
+
+enforce-coding-style:
+	git ls-files src | egrep '\.(cpp|h)$$' | xargs uncrustify --no-backup -c ./uncrustify.cfg
+
+src/lang.qrc: src/cdcat.pro
+	@(echo '<!DOCTYPE RCC><RCC version="1.0">'; \
+	echo "<qresource>"; \
+	cd src; \
+	for file in lang/*.qm; do \
+		echo "    <file>$$file</file>"; \
+	done; \
+	echo "</qresource>"; \
+	echo "</RCC>"; \
+	) > "$@"
+
+src/img/cdcat.icns: src/img/cdcat_logo_1024x1024.png
+	png2icns "$@" "$<"

@@ -1,3 +1,2 @@
 usr/bin
 debian/cdcat.xpm usr/share/cdcat
-src/lang/*.qm usr/share/cdcat/translations
