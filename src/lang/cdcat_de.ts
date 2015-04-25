@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="de_DE" sourcelanguage="en_US">
+<TS version="2.1" language="de_DE" sourcelanguage="en_US">
 <context>
     <name></name>
     <message>
@@ -44,7 +44,7 @@
 <context>
     <name>ArchiveFile</name>
     <message>
-        <location filename="../dbase.h" line="+299"/>
+        <location filename="../dbase.h" line="+280"/>
         <source>unknown</source>
         <translation>unbekannt</translation>
     </message>
@@ -52,7 +52,7 @@
 <context>
     <name>CatalogTypeEditDialog</name>
     <message>
-        <location filename="../guibase.cpp" line="+3309"/>
+        <location filename="../guibase.cpp" line="+3312"/>
         <source>Change media type</source>
         <translation>Medientyp ändern</translation>
     </message>
@@ -110,7 +110,7 @@
 <context>
     <name>CdCatConfig</name>
     <message>
-        <location filename="../config.cpp" line="+257"/>
+        <location filename="../config.cpp" line="+118"/>
         <source>Error during autoload …</source>
         <translation>Fehler beim automatischen Laden …</translation>
     </message>
@@ -134,36 +134,28 @@ Datei überprüfen!
     </message>
     <message>
         <source>I can&apos;t create or rewrite the ./cdcat.cfg file </source>
-        <translation>Datei ./cdcat.cfg kann nicht erstellt/überschrieben werden</translation>
+        <translation type="vanished">Datei ./cdcat.cfg kann nicht erstellt/überschrieben werden</translation>
     </message>
     <message>
         <source>I can&apos;t create or rewrite the $(HOME)/.cdcatconfig file </source>
-        <translation>Datei $(HOME)/.cdcatconfig kann nicht erstellt/überschrieben werden</translation>
+        <translation type="vanished">Datei $(HOME)/.cdcatconfig kann nicht erstellt/überschrieben werden</translation>
     </message>
     <message>
-        <location line="-169"/>
-        <location line="+1415"/>
         <source>Error while saving config file …</source>
-        <translation>Fehler beim Speichern der Konfigurationsdatei …</translation>
+        <translation type="vanished">Fehler beim Speichern der Konfigurationsdatei …</translation>
     </message>
     <message>
-        <location line="-1414"/>
         <source>I can&apos;t get the $HOME environment variable.
 It is necessary because I&apos;d like to save the config file into your home directory.</source>
-        <translation>Die $HOME-Umgebungsvariable kann nicht gelesen werden.
+        <translation type="vanished">Die $HOME-Umgebungsvariable kann nicht gelesen werden.
 Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzeichnis schreiben muss.</translation>
-    </message>
-    <message>
-        <location line="+1415"/>
-        <source>I can&apos;t create or rewrite the %1 file </source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>CdCatMainWidget</name>
     <message>
         <source>Hyper&apos;s CD Catalogizer</source>
-        <translation>Hypers CD-Katalogisierer</translation>
+        <translation type="vanished">Hypers CD-Katalogisierer</translation>
     </message>
     <message>
         <location filename="../mainwidget.cpp" line="+130"/>
@@ -269,13 +261,11 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
         <translation>Zuletzt benutze Dateien …</translation>
     </message>
     <message>
-        <location line="-591"/>
-        <location line="+560"/>
         <source>Import/Export</source>
-        <translation>Import/Export</translation>
+        <translation type="vanished">Import/Export</translation>
     </message>
     <message>
-        <location line="-389"/>
+        <location line="-420"/>
         <location line="+437"/>
         <source>Re-Number media node …</source>
         <translation>Medienknoten umnummerieren …</translation>
@@ -310,7 +300,7 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     </message>
     <message>
         <source>Add a link to a CdCat Catalog …</source>
-        <translation>Verweis auf CdCat-Datenbank hinzufügen …</translation>
+        <translation type="vanished">Verweis auf CdCat-Datenbank hinzufügen …</translation>
     </message>
     <message>
         <location line="+63"/>
@@ -339,7 +329,13 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
         <translation>Suchen</translation>
     </message>
     <message>
-        <location line="-553"/>
+        <location line="-559"/>
+        <location line="+560"/>
+        <source>&amp;Import/Export</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-554"/>
         <location line="+568"/>
         <source>&amp;New …</source>
         <translation>&amp;Neu …</translation>
@@ -419,7 +415,7 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     </message>
     <message>
         <source>Add a link to a existing cdcat catalog</source>
-        <translation>Einen Verweis zu einem existierendem Katalog hinzufügen</translation>
+        <translation type="vanished">Einen Verweis zu einem existierendem Katalog hinzufügen</translation>
     </message>
     <message>
         <location line="-474"/>
@@ -486,7 +482,7 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     </message>
     <message>
         <source>About Cdcat</source>
-        <translation>Über Cdcat</translation>
+        <translation type="vanished">Über Cdcat</translation>
     </message>
     <message>
         <location line="-277"/>
@@ -515,7 +511,7 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     </message>
     <message>
         <source>Cdcat - idle</source>
-        <translation>Cdcat - Leerlauf</translation>
+        <translation type="vanished">Cdcat - Leerlauf</translation>
     </message>
     <message>
         <location line="-787"/>
@@ -583,12 +579,11 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     </message>
     <message>
         <location line="-644"/>
-        <location line="+564"/>
         <source>File</source>
         <translation>Datei</translation>
     </message>
     <message>
-        <location line="+14"/>
+        <location line="+578"/>
         <source>Type</source>
         <translation>Typ</translation>
     </message>
@@ -666,19 +661,19 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     </message>
     <message>
         <source>Insert Cdcat XML export …</source>
-        <translation>Cdcat-XML-Export einfügen …</translation>
+        <translation type="vanished">Cdcat-XML-Export einfügen …</translation>
     </message>
     <message>
         <source>Insert Cdcat XML export</source>
-        <translation>Cdcat-XML-Export einfügen</translation>
+        <translation type="vanished">Cdcat-XML-Export einfügen</translation>
     </message>
     <message>
         <source>Insert Cdcat export XML …</source>
-        <translation>Cdcat-XML-Export einfügen …</translation>
+        <translation type="vanished">Cdcat-XML-Export einfügen …</translation>
     </message>
     <message>
         <source>Insert Cdcat exported XML into database</source>
-        <translation>Cdcat-XML-Export in Datenbank einfügen</translation>
+        <translation type="vanished">Cdcat-XML-Export in Datenbank einfügen</translation>
     </message>
     <message>
         <location line="-597"/>
@@ -751,7 +746,7 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
         <location line="+287"/>
         <location line="+1"/>
         <source>About %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Über %1</translation>
     </message>
     <message>
         <location line="-512"/>
@@ -772,7 +767,12 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-241"/>
+        <location line="-289"/>
+        <source>&amp;File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+48"/>
         <source>Insert %1 XML export …</source>
         <translation type="unfinished"></translation>
     </message>
@@ -798,7 +798,7 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
 <context>
     <name>ColorSettings</name>
     <message>
-        <location line="+149"/>
+        <location line="+150"/>
         <source>ColorSettings</source>
         <translation>Farbeinstellungen</translation>
     </message>
@@ -1099,14 +1099,15 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     <name>ConfigDialog</name>
     <message>
         <source>Configure  CdCat …</source>
-        <translation>CdCat konfigurieren …</translation>
+        <translation type="vanished">CdCat konfigurieren …</translation>
     </message>
     <message>
+        <location filename="../config.cpp" line="+636"/>
         <source>Autoload Database on startup</source>
         <translation>Datenbank beim Start automatisch laden</translation>
     </message>
     <message>
-        <location filename="../config.cpp" line="+273"/>
+        <location line="+3"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
@@ -1148,7 +1149,7 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     </message>
     <message>
         <source>The language of CdCat interface</source>
-        <translation>Die Sprache der CDdCat-Oberfäche</translation>
+        <translation type="vanished">Die Sprache der CDdCat-Oberfäche</translation>
     </message>
     <message>
         <location line="-12"/>
@@ -1172,7 +1173,7 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     </message>
     <message>
         <source>CdCat databases (*.hcf )</source>
-        <translation>CdCat-Datenbanken (*.hcf)</translation>
+        <translation type="vanished">CdCat-Datenbanken (*.hcf)</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1206,7 +1207,12 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
         <translation>aktuell eingelesene Datei in Dock anzeigen</translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="-2"/>
+        <source>Configure %1 …</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
         <source>display current scanned file in tray (mediainfo / archive scan)</source>
         <translation>aktuell eingelesene Datei in Dock anzeigen (Medieninfo- / Archive durchsuchen)</translation>
     </message>
@@ -1221,17 +1227,7 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
         <translation>Dies ist der Pfad zum CDROM-/DVD-Gerät oder der Pafd wo es eingebunden ist</translation>
     </message>
     <message>
-        <location line="-15"/>
-        <source>Configure  %1 …</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+4"/>
-        <source>Autoload Database on startup</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+18"/>
+        <location line="+7"/>
         <source>The language of %1 interface</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1242,7 +1238,7 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     </message>
 </context>
 <context>
-    <name>Database</name>
+    <name>DataBase</name>
     <message>
         <location filename="../dbase.cpp" line="+563"/>
         <source>unknown</source>
@@ -1415,128 +1411,128 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
 <context>
     <name>Database</name>
     <message>
-        <source>Error</source>
-        <translation>Fehler</translation>
-    </message>
-    <message>
-        <source>Cancel scanning</source>
-        <translation>Durchsuchen abbrechen</translation>
+        <source>unknown</source>
+        <translation type="obsolete">unbekannt</translation>
     </message>
     <message>
         <source>I can&apos;t rewrite the file: %1</source>
-        <translation>Datei kann nicht überschrieben werden: %1</translation>
+        <translation type="obsolete">Datei kann nicht überschrieben werden: %1</translation>
     </message>
     <message>
         <source>I can&apos;t create the file: %1</source>
-        <translation>Datei kann nicht erstellt werden: %1</translation>
-    </message>
-    <message>
-        <source>I can&apos;t open the file: %1</source>
-        <translation>Datei kann nicht geöffnet werden: %1</translation>
-    </message>
-    <message>
-        <source>Cannot read directory: %1</source>
-        <translation>Verzeichnis kann nicht gelesen werden: %1</translation>
-    </message>
-    <message>
-        <source>Error while parsing file: %1</source>
-        <translation>Fehler beim Parsen der Datei: %1</translation>
+        <translation type="obsolete">Datei kann nicht erstellt werden: %1</translation>
     </message>
     <message>
         <source>No database opened!</source>
-        <translation>Keine Datenbank geöffnet!</translation>
+        <translation type="obsolete">Keine Datenbank geöffnet!</translation>
     </message>
     <message>
-        <source>Cannot read file: %1</source>
-        <translation>Datei kann nicht gelesen werden: %1</translation>
-    </message>
-    <message>
-        <source>Ignore</source>
-        <translation>Ignorieren</translation>
-    </message>
-    <message>
-        <source>Symbolic link to file:#</source>
-        <translation>Symbolischer Verweis auf Datei:#</translation>
-    </message>
-    <message>
-        <source>Symbolic link to directory:#</source>
-        <translation>Symbolischer Verweis auf Verzeichnis:#</translation>
-    </message>
-    <message>
-        <source>DEAD Symbolic link to:#</source>
-        <translation>TOTER symbolischer Verweis auf:#</translation>
-    </message>
-    <message>
-        <source>System file (e.g. FIFO, socket or device file)</source>
-        <translation>Systemdatei (z.B. FIFO, Socket oder Gerätedatei)</translation>
+        <source>I can&apos;t open the file: %1</source>
+        <translation type="obsolete">Datei kann nicht geöffnet werden: %1</translation>
     </message>
     <message>
         <source>Not enough memory to open the file: %1</source>
-        <translation>Nicht genug Hauptspeicher um Datei %1 zu öffnen</translation>
+        <translation type="obsolete">Nicht genug Hauptspeicher um Datei %1 zu öffnen</translation>
     </message>
     <message>
-        <source>Reading file, please wait …</source>
-        <translation>Datei wird gelesen, bitte warten …</translation>
+        <source>Cannot read directory: %1</source>
+        <translation type="obsolete">Verzeichnis kann nicht gelesen werden: %1</translation>
     </message>
     <message>
-        <source>Parsing file, please wait …</source>
-        <translation>Datei wird analysiert, bitte warten …</translation>
+        <source>Cannot read file: %1</source>
+        <translation type="obsolete">Datei kann nicht gelesen werden: %1</translation>
     </message>
     <message>
-        <source>Converting to unicode, please wait …</source>
-        <translation>Umwandlung zu Unicode, bitte warten …</translation>
+        <source>Error</source>
+        <translation type="obsolete">Fehler</translation>
     </message>
     <message>
-        <source>You have cancelled catalog reading.</source>
-        <translation>Sie haben das Lesen das Katalogs abgebrochen.</translation>
+        <source>Ignore</source>
+        <translation type="obsolete">Ignorieren</translation>
     </message>
     <message>
-        <source>device </source>
-        <translation>Gerät</translation>
+        <source>Cancel scanning</source>
+        <translation type="obsolete">Durchsuchen abbrechen</translation>
     </message>
     <message>
-        <source> link to </source>
-        <translation> Verweis nach</translation>
+        <source>Symbolic link to file:#</source>
+        <translation type="obsolete">Symbolischer Verweis auf Datei:#</translation>
+    </message>
+    <message>
+        <source>Symbolic link to directory:#</source>
+        <translation type="obsolete">Symbolischer Verweis auf Verzeichnis:#</translation>
+    </message>
+    <message>
+        <source>DEAD Symbolic link to:#</source>
+        <translation type="obsolete">TOTER symbolischer Verweis auf:#</translation>
+    </message>
+    <message>
+        <source>System file (e.g. FIFO, socket or device file)</source>
+        <translation type="obsolete">Systemdatei (z.B. FIFO, Socket oder Gerätedatei)</translation>
     </message>
     <message>
         <source>reading mp3 info</source>
-        <translation>MP3-Info wird gelesen</translation>
+        <translation type="obsolete">MP3-Info wird gelesen</translation>
     </message>
     <message>
         <source>reading media info</source>
-        <translation>Medien-Info wird gelesen</translation>
+        <translation type="obsolete">Medien-Info wird gelesen</translation>
     </message>
     <message>
         <source>reading avi info</source>
-        <translation>AVI-Info wird gelesen</translation>
+        <translation type="obsolete">AVI-Info wird gelesen</translation>
     </message>
     <message>
         <source>reading file content</source>
-        <translation>Dateiinhalt wird gelesen</translation>
+        <translation type="obsolete">Dateiinhalt wird gelesen</translation>
     </message>
     <message>
         <source>reading exif data</source>
-        <translation>Exif-Daten werden gelesen</translation>
+        <translation type="obsolete">Exif-Daten werden gelesen</translation>
     </message>
     <message>
         <source>reading thumbnail data</source>
-        <translation>Vorschaubild wird gelesen</translation>
+        <translation type="obsolete">Vorschaubild wird gelesen</translation>
     </message>
     <message>
         <source>scanning archive</source>
-        <translation>Archiv wird durchsucht</translation>
+        <translation type="obsolete">Archiv wird durchsucht</translation>
     </message>
     <message>
         <source>scanning archive, file:</source>
-        <translation>Archiv wird durchsucht, Datei:</translation>
+        <translation type="obsolete">Archiv wird durchsucht, Datei:</translation>
     </message>
     <message>
-        <source>unknown</source>
-        <translation>unbekannt</translation>
+        <source>device </source>
+        <translation type="obsolete">Gerät</translation>
+    </message>
+    <message>
+        <source> link to </source>
+        <translation type="obsolete"> Verweis nach</translation>
+    </message>
+    <message>
+        <source>Error while parsing file: %1</source>
+        <translation type="obsolete">Fehler beim Parsen der Datei: %1</translation>
+    </message>
+    <message>
+        <source>Reading file, please wait …</source>
+        <translation type="obsolete">Datei wird gelesen, bitte warten …</translation>
+    </message>
+    <message>
+        <source>You have cancelled catalog reading.</source>
+        <translation type="obsolete">Sie haben das Lesen das Katalogs abgebrochen.</translation>
     </message>
     <message>
         <source>decrypting file, please wait …</source>
-        <translation>Datei wird verschlüsselt, bitte warten …</translation>
+        <translation type="obsolete">Datei wird verschlüsselt, bitte warten …</translation>
+    </message>
+    <message>
+        <source>Converting to unicode, please wait …</source>
+        <translation type="obsolete">Umwandlung zu Unicode, bitte warten …</translation>
+    </message>
+    <message>
+        <source>Parsing file, please wait …</source>
+        <translation type="obsolete">Datei wird analysiert, bitte warten …</translation>
     </message>
 </context>
 <context>
@@ -1550,81 +1546,81 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
 <context>
     <name>GuiSlave</name>
     <message>
-        <location filename="../guibase.cpp" line="-2710"/>
+        <location filename="../guibase.cpp" line="-2712"/>
         <location line="+20"/>
         <source>Directory</source>
         <translation>Verzeichnis</translation>
     </message>
     <message>
-        <location line="+57"/>
+        <location line="+58"/>
         <source>Catalog</source>
         <translation>Katalog</translation>
     </message>
     <message>
         <location line="+5"/>
-        <location line="+1681"/>
+        <location line="+1682"/>
         <source>Unknown(DB)</source>
         <translation>Unbekannt(DB)</translation>
     </message>
     <message>
-        <location line="-1678"/>
-        <location line="+1682"/>
+        <location line="-1679"/>
+        <location line="+1683"/>
         <source>CD</source>
         <translation>CD</translation>
     </message>
     <message>
-        <location line="-1679"/>
-        <location line="+1683"/>
+        <location line="-1680"/>
+        <location line="+1684"/>
         <source>DVD</source>
         <translation>DVD</translation>
     </message>
     <message>
-        <location line="-1680"/>
-        <location line="+1684"/>
+        <location line="-1681"/>
+        <location line="+1685"/>
         <source>HardDisc</source>
         <translation>Festplatte</translation>
     </message>
     <message>
-        <location line="-1681"/>
-        <location line="+1685"/>
+        <location line="-1682"/>
+        <location line="+1686"/>
         <source>Floppy</source>
         <translation>Diskette</translation>
     </message>
     <message>
-        <location line="-1682"/>
-        <location line="+1686"/>
+        <location line="-1683"/>
+        <location line="+1687"/>
         <source>NetworkDrv</source>
         <translation>Netzwerkgerät</translation>
     </message>
     <message>
-        <location line="-1683"/>
-        <location line="+1687"/>
+        <location line="-1684"/>
+        <location line="+1688"/>
         <source>FlashDrv</source>
         <translation>Flashspeicher</translation>
     </message>
     <message>
-        <location line="-1684"/>
-        <location line="+1688"/>
+        <location line="-1685"/>
+        <location line="+1689"/>
         <source>OtherDevice</source>
         <translation>Anderes Gerät</translation>
     </message>
     <message>
-        <location line="-1683"/>
+        <location line="-1684"/>
         <source>File</source>
         <translation>Datei</translation>
     </message>
     <message>
-        <location line="+219"/>
+        <location line="+220"/>
         <source>modified</source>
         <translation>Hyper´s CD-Katalogisierer (geändert)</translation>
     </message>
     <message>
         <source>Hyper&apos;s CD Catalogizer</source>
-        <translation>Hyper´s CD-Katalogisierer</translation>
+        <translation type="vanished">Hyper´s CD-Katalogisierer</translation>
     </message>
     <message>
         <source>CdCat databases (*.hcf )</source>
-        <translation>CdCat-Datenbanken (*.hcf)</translation>
+        <translation type="vanished">CdCat-Datenbanken (*.hcf)</translation>
     </message>
     <message>
         <location line="+301"/>
@@ -1672,8 +1668,8 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
         <translation>Bestätigung</translation>
     </message>
     <message>
-        <location line="-2725"/>
-        <location line="+1497"/>
+        <location line="-2727"/>
+        <location line="+1499"/>
         <location line="+47"/>
         <source>Warning …</source>
         <translation>Warnung …</translation>
@@ -1717,7 +1713,7 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
         <source>The size of &quot;%1&quot; :
  %2
  %3 file /%4 directory</source>
-        <translation>Die Grösse von &quot;%1&quot;:
+        <translation type="vanished">Die Grösse von &quot;%1&quot;:
 %2
 %3 Datei(en) / %4 Verzeichnis(se)</translation>
     </message>
@@ -1840,7 +1836,7 @@ Datenbank kann unvollständig sein</translation>
     <message>
         <source>An error occurred while scanning, the rescan operation was cancelled:
 %1</source>
-        <translation>Es trat ein Fehler während des Durchsuchens auf, Aktualisierenoperation abgebrochen:
+        <translation type="vanished">Es trat ein Fehler während des Durchsuchens auf, Aktualisierenoperation abgebrochen:
 %1</translation>
     </message>
     <message>
@@ -1863,12 +1859,12 @@ Datenbank kann unvollständig sein</translation>
         <translation>I bekam es zurück! (Ausleihmarke löschen)</translation>
     </message>
     <message>
-        <location line="-339"/>
+        <location line="-340"/>
         <source>Catalog Link</source>
         <translation>Katalog-Verknüpfung</translation>
     </message>
     <message>
-        <location line="+273"/>
+        <location line="+274"/>
         <source>Follow the link (Open it) !</source>
         <translation>Der Verknüpfung folgen (Öffnen)!</translation>
     </message>
@@ -1878,7 +1874,7 @@ Datenbank kann unvollständig sein</translation>
         <translation>Die Verknüpfung ist leer.</translation>
     </message>
     <message>
-        <location line="-2326"/>
+        <location line="-2328"/>
         <source>Number</source>
         <translation>Nummer</translation>
     </message>
@@ -1893,7 +1889,7 @@ I understand maximum %1 datafile version but readed %2
 
 Strongly recommended to upgrade your cdcat!!!
 Homepage: %3</source>
-        <translation>Die Datenbankdatei hat eine neuere Version als diese Version von Cdcat verarbeiten kann:
+        <translation type="vanished">Die Datenbankdatei hat eine neuere Version als diese Version von Cdcat verarbeiten kann:
 Es wird nur bis Version %1 unterstützt, aber Version %2 wurde gelesen
 
 Es wird dringend empfohlen, Cdcat zu aktualisieren!
@@ -1910,7 +1906,7 @@ Homepage: %3</translation>
         <translation>Kein Element ausgewählt.</translation>
     </message>
     <message>
-        <location line="+1678"/>
+        <location line="+1680"/>
         <source>Select directory</source>
         <translation>Verzeichnis auswählen</translation>
     </message>
@@ -1971,11 +1967,11 @@ Homepage: %3</translation>
     </message>
     <message>
         <source>Add a link to a CdCat Catalog …</source>
-        <translation>Verweis auf CdCat-Datenbank hinzufügen …</translation>
+        <translation type="vanished">Verweis auf CdCat-Datenbank hinzufügen …</translation>
     </message>
     <message>
         <source>Add a link to a Cdcat catalog …</source>
-        <translation>Verweis auf CdCat-Datenbank hinzufügen …</translation>
+        <translation type="vanished">Verweis auf CdCat-Datenbank hinzufügen …</translation>
     </message>
     <message>
         <location line="+828"/>
@@ -2018,7 +2014,7 @@ die Datenbank wird unvollständig sein</translation>
     </message>
     <message>
         <source>Cdcat - idle</source>
-        <translation>Cdcat - Leerlauf</translation>
+        <translation type="vanished">Cdcat - Leerlauf</translation>
     </message>
     <message>
         <location line="+556"/>
@@ -2032,7 +2028,7 @@ die Datenbank wird unvollständig sein</translation>
     </message>
     <message>
         <source>The cdcat is graphical (QT based) multiplatform (Linux/Windows) catalog program which scans the directories/drives you want and memorize the filesystem including the tags of mp3&apos;s and other data and store it in a small file. The database is stored in a gzipped XML format, so you can hack it, or use it if necessary :-).)</source>
-        <translation>CdCat ist ein graphisches, Multiplattform-Katalogprogramm, welches Verzeichnisse/Laufwerke durchsucht und die Dateisystemstruktur (inklusive MP3-Tags) in einer kleinen Datei speichert. Die Datenbank wird in einem gezippten XML-Format abgespeichert, so dass man diese auch unabhängig von CdCat auswerten und bearbeiten kann.</translation>
+        <translation type="vanished">CdCat ist ein graphisches, Multiplattform-Katalogprogramm, welches Verzeichnisse/Laufwerke durchsucht und die Dateisystemstruktur (inklusive MP3-Tags) in einer kleinen Datei speichert. Die Datenbank wird in einem gezippten XML-Format abgespeichert, so dass man diese auch unabhängig von CdCat auswerten und bearbeiten kann.</translation>
     </message>
     <message>
         <location line="+5"/>
@@ -2121,7 +2117,7 @@ die Datenbank wird unvollständig sein</translation>
     </message>
     <message>
         <source>You can read about the program and get new versions, sources etc, in the hompage of cdcat:</source>
-        <translation>Sie können Informationen über das Programm, neue Versionen, Quellcode, etc. auf der Homepage von Cdcat erhalten:</translation>
+        <translation type="vanished">Sie können Informationen über das Programm, neue Versionen, Quellcode, etc. auf der Homepage von Cdcat erhalten:</translation>
     </message>
     <message>
         <location line="-22"/>
@@ -2141,11 +2137,11 @@ die Datenbank wird unvollständig sein</translation>
     </message>
     <message>
         <source>Insert a cdcat exported xml file …</source>
-        <translation>Von Cdcat exportierte XML-Datei einfügen …</translation>
+        <translation type="vanished">Von Cdcat exportierte XML-Datei einfügen …</translation>
     </message>
     <message>
         <source>CdCat xml export (*.xml )</source>
-        <translation>Cdcat-XML-Export (*.xml)</translation>
+        <translation type="vanished">Cdcat-XML-Export (*.xml)</translation>
     </message>
     <message>
         <location line="-309"/>
@@ -2166,7 +2162,7 @@ die Datenbank wird unvollständig sein</translation>
     </message>
     <message>
         <source>Password length is too short, must be minimum 4 chars</source>
-        <translation>Passwortlänge ist zu kurz, muss mindestens 4 Zeichen lang sein</translation>
+        <translation type="vanished">Passwortlänge ist zu kurz, muss mindestens 4 Zeichen lang sein</translation>
     </message>
     <message>
         <location line="-63"/>
@@ -2241,7 +2237,7 @@ wirklich löschen?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-2157"/>
+        <location line="-2159"/>
         <source>The database file has newer version than this version of %4 can work with:
 I understand maximum %1 datafile version but readed %4
 
@@ -2250,13 +2246,9 @@ Homepage: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+700"/>
-        <source>Add a link to a %1 Catalog …</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
+        <location line="+702"/>
         <location line="+67"/>
-        <source>Add a link to a %1 catalog …</source>
+        <source>Add a link to a %1 Catalog …</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2337,7 +2329,7 @@ Homepage: %3</source>
 <context>
     <name>HQListView</name>
     <message>
-        <location filename="../guibase.cpp" line="-2975"/>
+        <location filename="../guibase.cpp" line="-2977"/>
         <source>Name</source>
         <translation>Name</translation>
     </message>
@@ -2704,7 +2696,7 @@ wird zu
     <name>InfoDialog</name>
     <message>
         <source>About cdcat</source>
-        <translation>Über Cdcat</translation>
+        <translation type="vanished">Über Cdcat</translation>
     </message>
     <message>
         <location filename="../info.cpp" line="+539"/>
@@ -2713,7 +2705,7 @@ wird zu
     </message>
     <message>
         <source>About Cdcat</source>
-        <translation>Über Cdcat</translation>
+        <translation type="vanished">Über Cdcat</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -2742,15 +2734,15 @@ wird zu
     </message>
     <message>
         <source>Author:</source>
-        <translation>Autor:</translation>
+        <translation type="vanished">Autor:</translation>
     </message>
     <message>
         <source>Copyright (C) 2003 Peter Deak (GPL)</source>
-        <translation>Copyright (C) 2003 Peter Deak (GPL)</translation>
+        <translation type="vanished">Copyright (C) 2003 Peter Deak (GPL)</translation>
     </message>
     <message>
         <source>-= CdCatalog by Hyper =-</source>
-        <translation>-= CdCatalog von Hyper =-</translation>
+        <translation type="vanished">-= CdCatalog von Hyper =-</translation>
     </message>
     <message>
         <location line="-114"/>
@@ -2764,7 +2756,7 @@ wird zu
     </message>
     <message>
         <source>Copyright (C) 2010 Christoph Thielecke (GPL)</source>
-        <translation>Copyright (C) 2010 Christoph Thielecke (GPL)</translation>
+        <translation type="vanished">Copyright (C) 2010 Christoph Thielecke (GPL)</translation>
     </message>
     <message>
         <location line="-5"/>
@@ -2819,7 +2811,7 @@ wird zu
     <message>
         <location line="+6"/>
         <source>encrypted catalog support</source>
-        <translation>Unterstützung für verschlüsselten Katalog</translation>
+        <translation>Unterstützung für das verschlüsseln von Katalogen</translation>
     </message>
     <message>
         <location line="+31"/>
@@ -2845,7 +2837,7 @@ wird zu
         <location line="+333"/>
         <location line="+4"/>
         <source>About %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Über %1</translation>
     </message>
 </context>
 <context>
@@ -3129,7 +3121,7 @@ wird zu
     </message>
     <message>
         <source>Enter password for catalog (again):</source>
-        <translation>Passwort für Katalog eingeben (nochmal):</translation>
+        <translation type="vanished">Passwort für Katalog eingeben (nochmal):</translation>
     </message>
     <message>
         <location filename="../importdialog.cpp" line="-267"/>
@@ -3932,8 +3924,7 @@ wird zu
         <translation>Medium &quot;&quot; ausgeliehen an:</translation>
     </message>
     <message>
-        <location line="-69"/>
-        <location line="+68"/>
+        <location line="-1"/>
         <source>Borrowing …</source>
         <translation>Ausleihen …</translation>
     </message>
@@ -3947,55 +3938,53 @@ wird zu
     </message>
     <message>
         <location line="+4"/>
-        <location line="+35"/>
+        <location line="+34"/>
         <source>Media</source>
         <translation>Medium</translation>
     </message>
     <message>
-        <location line="-34"/>
-        <location line="+35"/>
+        <location line="-33"/>
+        <location line="+34"/>
         <source>Borrowed</source>
         <translation>Ausgeliehen</translation>
     </message>
     <message>
-        <location line="-34"/>
-        <location line="+35"/>
+        <location line="-33"/>
+        <location line="+34"/>
         <source>where is it now?</source>
         <translation>Wo ist es jetzt?</translation>
     </message>
     <message>
-        <location line="-32"/>
+        <location line="-31"/>
         <source>Ok</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location line="+61"/>
+        <location line="+52"/>
         <location line="+38"/>
         <location line="+1"/>
         <location line="+1"/>
         <location line="+16"/>
         <location line="+10"/>
-        <location line="+11"/>
-        <location line="+43"/>
-        <location line="+68"/>
+        <location line="+54"/>
+        <location line="+67"/>
         <source>No</source>
         <translation>Nein</translation>
     </message>
     <message>
-        <location line="-188"/>
+        <location line="-187"/>
         <location line="+38"/>
         <location line="+7"/>
         <location line="+13"/>
         <location line="+10"/>
-        <location line="+9"/>
-        <location line="+23"/>
+        <location line="+32"/>
         <location line="+20"/>
-        <location line="+75"/>
+        <location line="+74"/>
         <source>Yes</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location line="-147"/>
+        <location line="-146"/>
         <source>unknown</source>
         <translation>unbekannt</translation>
     </message>
@@ -4010,18 +3999,16 @@ wird zu
         <translation>&quot;Ja&quot; oder &quot;Nein&quot;!</translation>
     </message>
     <message>
-        <location line="+24"/>
-        <location line="+43"/>
+        <location line="+67"/>
         <source>Warning</source>
         <translation>Warnung</translation>
     </message>
     <message>
-        <location line="-43"/>
         <source>Do you save the changes?</source>
-        <translation>Sollen die Änderungen gespeichert werden?</translation>
+        <translation type="vanished">Sollen die Änderungen gespeichert werden?</translation>
     </message>
     <message>
-        <location line="+43"/>
+        <location line="+0"/>
         <source>Are you sure want to clear all borrow?</source>
         <translation>Sollen wirklich alle Ausleihen gelöscht werden?</translation>
     </message>
@@ -4031,12 +4018,12 @@ wird zu
         <translation>I bekam  es zurück!</translation>
     </message>
     <message>
-        <location line="+5"/>
+        <location line="+4"/>
         <source>&lt;&lt; </source>
         <translation>&lt;&lt; </translation>
     </message>
     <message>
-        <location line="-230"/>
+        <location line="-220"/>
         <source>Borrowing info …</source>
         <translation>Aufnahme der Information …</translation>
     </message>
@@ -4206,7 +4193,7 @@ wird zu
     </message>
     <message>
         <source>Export from cdcat:</source>
-        <translation>Export von cdcat:</translation>
+        <translation type="vanished">Export von cdcat:</translation>
     </message>
     <message>
         <location line="+276"/>
@@ -4259,7 +4246,7 @@ wird zu
     </message>
     <message>
         <source>Do you want overwrite this file?</source>
-        <translation>Soll diese Datei überschrieben werden?</translation>
+        <translation type="vanished">Soll diese Datei überschrieben werden?</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -4273,11 +4260,11 @@ wird zu
     </message>
     <message>
         <source>Export CdCat database: </source>
-        <translation>CdCat-Datenbank exportieren:</translation>
+        <translation type="vanished">CdCat-Datenbank exportieren:</translation>
     </message>
     <message>
         <source>Export from cdcat, catalog:</source>
-        <translation>Export von cdcat, Katalog:</translation>
+        <translation type="vanished">Export von cdcat, Katalog:</translation>
     </message>
     <message>
         <location line="-108"/>
@@ -4667,7 +4654,7 @@ wird zu
     </message>
     <message>
         <source>Cdcat search result</source>
-        <translation>Cdcat-Suchergebnis</translation>
+        <translation type="vanished">Cdcat-Suchergebnis</translation>
     </message>
     <message>
         <location line="+17"/>
@@ -4886,6 +4873,11 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:40px; margin-right:40px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
+    <message>
+        <location filename="../cdcat.cpp" line="+98"/>
+        <source>The %1 is graphical (QT based) multiplatform (Linux/Windows) catalog program which scans the directories/drives you want and memorize the filesystem including the tags of mp3&apos;s and other data and store it in a small file. The database is stored in a gzipped XML format, so you can hack it, or use it if necessary :-).)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>importGtktalogCsv</name>
@@ -4901,21 +4893,21 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>1 media</source>
-        <translation>1 Medium</translation>
+        <translation type="vanished">1 Medium</translation>
     </message>
     <message>
         <source>media</source>
-        <translation>Medien</translation>
+        <translation type="vanished">Medien</translation>
     </message>
     <message>
         <source>1 directory,
 </source>
-        <translation>1 Verzeichnis:,
+        <translation type="vanished">1 Verzeichnis:,
 </translation>
     </message>
     <message>
         <source>directories</source>
-        <translation>Verzeichnisse</translation>
+        <translation type="vanished">Verzeichnisse</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -5012,6 +5004,7 @@ p, li { white-space: pre-wrap; }
         <comment>media</comment>
         <translation type="unfinished">
             <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -5019,6 +5012,7 @@ p, li { white-space: pre-wrap; }
         <source>%Ln directori(es)</source>
         <comment>directory</comment>
         <translation type="unfinished">
+            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -5176,13 +5170,13 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>main_cli</name>
     <message>
-        <location filename="../cdcat.cpp" line="+146"/>
+        <location filename="../cdcat.cpp" line="+20"/>
         <source>Optional database file, if given, it will be used as database.</source>
         <translation>Datenbank Datei (optional). </translation>
     </message>
     <message>
         <source>Import %1 in the format specified by the &quot;%2&quot; parameter into the database. Use the &quot;%3&quot; parameter to get a list of all supported import formats.</source>
-        <translation>Importiere %1, im mittels &quot;%2&quot; angegebenen Format, in die Datenbank. &quot;%3&quot; listet alle unterstützten Import Formate auf.  </translation>
+        <translation type="vanished">Importiere %1, im mittels &quot;%2&quot; angegebenen Format, in die Datenbank. &quot;%3&quot; listet alle unterstützten Import Formate auf.  </translation>
     </message>
     <message>
         <location line="+21"/>
@@ -5197,7 +5191,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Format used by the &quot;%1&quot; parameter. Use the &quot;%2&quot; parameter to get a list of all supported import formats. Default is &quot;%3&quot;.</source>
-        <translation>Gibt das Format für den &quot;%1&quot; Parameter an. &quot;%2&quot; listet alle unterstützten Import Formate auf. Der Standart ist &quot;%3&quot;. </translation>
+        <translation type="vanished">Gibt das Format für den &quot;%1&quot; Parameter an. &quot;%2&quot; listet alle unterstützten Import Formate auf. Der Standart ist &quot;%3&quot;. </translation>
     </message>
     <message>
         <location line="-41"/>
@@ -5211,11 +5205,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Export the contents of the database to %1 in the format specified by the &quot;%2&quot; parameter.</source>
-        <translation>Exportiere den Inhalt der Datenbank in %1 im mittels dem &quot;%2&quot; Parameter angegebenen Format. </translation>
+        <translation type="vanished">Exportiere den Inhalt der Datenbank in %1 im mittels dem &quot;%2&quot; Parameter angegebenen Format. </translation>
     </message>
     <message>
         <source>Format used by the &quot;%1&quot; parameter. Use the &quot;%2&quot; parameter to get a list of all supported export formats. Default is &quot;%3&quot;.</source>
-        <translation>Gibt das Format für den &quot;%1&quot; Parameter an. &quot;%2&quot; listet alle unterstützten Export Formate auf. Der Standart ist &quot;%3&quot;. </translation>
+        <translation type="vanished">Gibt das Format für den &quot;%1&quot; Parameter an. &quot;%2&quot; listet alle unterstützten Export Formate auf. Der Standart ist &quot;%3&quot;. </translation>
     </message>
     <message>
         <source>Import %1 in the format specified by the %2 parameter into the database. Use the %3 parameter to get a list of all supported import formats.</source>
@@ -5262,7 +5256,7 @@ p, li { white-space: pre-wrap; }
         <translation>Liste alle unterstützen Export Formate auf.</translation>
     </message>
     <message>
-        <location line="+34"/>
+        <location line="+27"/>
         <source>Error: You can only specify one %1.</source>
         <translation>Fehler: Es kann nur ein %1 angegeben werden.</translation>
     </message>
@@ -5326,7 +5320,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Password length is too short, must be minimum 4 chars</source>
-        <translation>Passwortlänge ist zu kurz, muss mindestens 4 Zeichen lang sein</translation>
+        <translation type="vanished">Passwortlänge ist zu kurz, muss mindestens 4 Zeichen lang sein</translation>
     </message>
     <message>
         <location line="+15"/>
@@ -5455,7 +5449,7 @@ p, li { white-space: pre-wrap; }
         <translation>Verzeichnis</translation>
     </message>
     <message>
-        <location filename="../cdcat.cpp" line="-96"/>
+        <location filename="../cdcat.cpp" line="-89"/>
         <location line="+3"/>
         <location line="+26"/>
         <location line="+3"/>
