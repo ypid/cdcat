@@ -10,13 +10,7 @@
 #ifndef CDCAT_CDCAT
 #define CDCAT_CDCAT
 
-#include <QTranslator>
 #include "config.h"
-
-// #define IS_RELEASE
-
-
-// CdCat version text:
 
 #define VERSION  "2.4 alpha"
 
@@ -44,4 +38,5 @@ char *mstr( const char *imp );
 QString applicationDirPath( char **argc );
 QString applicationFilePath( char **argc );
 bool *init_debug_info();
+
 #endif

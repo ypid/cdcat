@@ -58,6 +58,7 @@ QPixmap *get_t_cborrow_icon( void );
 QPixmap *get_t_colorconfig_icon( void );
 QPixmap *get_t_qtlogo_icon( void );
 QPixmap *get_t_info_icon( void );
+
 #ifdef CATALOG_ENCRYPTION
 QPixmap *get_t_add_encryption_icon( void );
 QPixmap *get_t_remove_encryption_icon( void );

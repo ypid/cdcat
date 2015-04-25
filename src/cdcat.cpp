@@ -21,6 +21,7 @@
 #include <QCommandLineOption>
 #include <QCommandLineParser>
 #include <QApplication>
+#include <QTranslator>
 #include <QFont>
 #include <QMessageBox>
 #include <QDir>
@@ -29,8 +30,6 @@
 #include <QTextCodec>
 #include <QDebug>
 #include <QResource>
-
-static QTranslator *translator;
 
 /* Own debug output {{{ */
 bool *init_debug_info() {
@@ -78,15 +77,10 @@ int main( int argi, char **argc ) {
     QCoreApplication::setApplicationVersion(VERSION);
 
     /* Internationalization {{{ */
-    if (translator) {
-        app.removeTranslator( translator );
-        delete translator;
-    }
-
-    translator = new QTranslator( 0 );
+    QTranslator translator;
 
 #ifdef QT_NO_DEBUG
-    qDebug() << "translator->load, resource file:" << translator->load( "cdcat_" + QLocale::system().name(), ":/lang" );
+    qDebug() << "translator.load, resource file:" << translator.load( "cdcat_" + QLocale::system().name(), ":/lang" );
 #else
 
 #if defined(_WIN32) || defined(Q_OS_MAC) || defined(_OS2)
@@ -94,9 +88,9 @@ int main( int argi, char **argc ) {
     langpath += cconfig->lang;
     langpath += ".qm";
 #endif
-    qDebug() << "translator->load, ./lang/:" << translator->load( "cdcat_" + QLocale::system().name(), "./lang" );
+    qDebug() << "translator.load, ./lang/:" << translator.load( "cdcat_" + QLocale::system().name(), "./lang" );
 #endif
-    app.installTranslator( translator );
+    app.installTranslator( &translator );
     /* }}} */
 
     /* Declare command line parameters {{{ */
@@ -227,7 +221,6 @@ int main( int argi, char **argc ) {
     /* }}} */
 
     CdCatConfig *cconfig;
-    translator = 0;
 
     if (parser.isSet(optionConfigFile)) {
         cconfig = new CdCatConfig(parser.value(optionConfigFile));

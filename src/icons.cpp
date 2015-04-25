@@ -8,6 +8,7 @@
 ****************************************************************************/
 
 #include "icons.h"
+
 #include <QPixmap>
 
 static const char *const m_catalog_icon_data[] = {
@@ -9138,9 +9139,3 @@ QList<QPixmap> get_anim_list() {
         animlist.append( *get_anim( i ));
     return animlist;
 }
-
-
-
-
-
-
