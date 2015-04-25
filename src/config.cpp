@@ -753,7 +753,7 @@ void ConfigDialog::languageChange() {
     cbShowTrayIcon->setText( tr( "Show systray icon" ));
     cbShowCurrentScannedFileInTrayIcon->setText( tr( "display current scanned file in tray" ));
     cbShowCurrentScannedFileInTrayIcon->setToolTip( tr( "display current scanned file in tray (mediainfo / archive scan)" ));
-    cbAutoload->setText( tr( "Autoload DataBase on startup" ));
+    cbAutoload->setText( tr( "Autoload Database on startup" ));
     cbAutosave->setText( tr( "Automatically save the database after every scan (for safety sake)" ));
     cbNice->setText( tr( "Save the XML-db.file nicer format(needs more space)" ));
     cancelButton->setText( tr( "Cancel" ));

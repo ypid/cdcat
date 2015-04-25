@@ -1275,7 +1275,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     </message>
     <message>
         <location line="+4"/>
-        <source>Autoload DataBase on startup</source>
+        <source>Autoload Database on startup</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1340,7 +1340,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     </message>
 </context>
 <context>
-    <name>DataBase</name>
+    <name>Database</name>
     <message>
         <location filename="../dbase.cpp" line="+563"/>
         <source>unknown</source>

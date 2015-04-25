@@ -1227,7 +1227,7 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     </message>
     <message>
         <location line="+4"/>
-        <source>Autoload DataBase on startup</source>
+        <source>Autoload Database on startup</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1242,7 +1242,7 @@ Diese ist notwendig, da cdcat die Konfigurationsdatei in das persönliche Verzei
     </message>
 </context>
 <context>
-    <name>DataBase</name>
+    <name>Database</name>
     <message>
         <location filename="../dbase.cpp" line="+563"/>
         <source>unknown</source>
