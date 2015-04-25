@@ -1,0 +1,15 @@
+Source: cdcat
+Section: x11
+Priority: optional
+Maintainer: Eduard Bloch <blade@debian.org>
+Build-Depends: debhelper (>= 7), qt4-qmake, libqt4-dev, libpcre3-dev, libexpat1-dev, zlib1g-dev, libtar-dev, libmediainfo-dev (>= 0.7.53), libzen-dev, libtinyxml-dev, pkg-config, libbz2-dev
+Standards-Version: 3.9.2
+
+Package: cdcat
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: media catalog program 
+ CDCat is a graphical, multiplatform media catalog program which scans the      
+ directories/drives you specify and makes a list of the filesystem
+ contents (including the tags of MP3 files) and stores the result in a
+ gzipped XML file. 

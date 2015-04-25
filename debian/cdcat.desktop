@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=CdCat
+Exec=cdcat
+Icon=cdcat
+Categories=Qt;KDE;Utility;X-KDE-Utilities-File;System;Archiving;
+StartupNotify=false
+NoDisplay=false
+Terminal=false
+Comment=Disk and data archive management tool
+Comment[de]=Verwaltung für Datendisks und Archive

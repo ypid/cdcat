@@ -1,0 +1,25 @@
+This package was debianized by Eduard Bloch <blade@debian.org> on
+Fri,  5 Mar 2004 15:31:31 +0100.
+
+It was downloaded from http://cdcat.sourceforge.net/
+
+Upstream Authors: Peter Deak <hyperr@freemail.dot.hu>, Christoph Thielecke <crissi99@gmx.de>, Piotr "|TEcHNO|" Lewandowski <techno@punkt.pl>
+
+Copyright:
+
+ 2003-2006       Peter Deak
+ 2003,2010-2011  Christoph Thielecke
+ 2004            Piotr "|TEcHNO|" Lewandowski
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+On Debian systems, see "/usr/share/common-licenses/GPL" for details.
+

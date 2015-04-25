@@ -1,0 +1,47 @@
+Index: cdcat-1.7.obsolete.0.0209119243818385/src/cdcat.pro
+===================================================================
+--- cdcat-1.7.obsolete.0.0209119243818385.orig/src/cdcat.pro	2012-02-14 11:12:46.000000000 +0100
++++ cdcat-1.7.obsolete.0.0209119243818385/src/cdcat.pro	2012-02-17 17:16:53.611182872 +0100
+@@ -112,10 +112,10 @@
+ 	
+ 	########## lib7zip
+ 	# use lib7zip?
+-	DEFINES+=USE_LIB7ZIP
++	#DEFINES+=USE_LIB7ZIP
+ 	
+ 	# STATIC
+-	LIBS+=/usr/local/lib/lib7zip.a
++	#LIBS+=/usr/local/lib/lib7zip.a
+ 	
+ 	# DYNAMIC
+ 	#LIBS+= -llib7zip
+@@ -124,19 +124,15 @@
+ 	######### mediainfo
+ 	# use libmediainfo as static library?
+ 	# STATIC
+-	#DEFINES += MEDIAINFO_STATIC
++	DEFINES += MEDIAINFO_STATIC
+ 	#LIBS+=/usr/local/lib/libmediainfo.a
+ 	
+ 	# DYNAMIC. no pkgconfig
+-	LIBS+= -lmediainfo
++	#LIBS+= -lmediainfo
+ 	
+ 	# libmediainfo ships API info via pkgconfig so use it!
+ 	CONFIG += link_pkgconfig
+ 	PKGCONFIG += libmediainfo
+-	# temporary kluge until it's decided how to get char type from libmediainfo,
+-	# maybe also via pkgconfig (Debian Bug #656929, could remove the extra 
+-	# hack in cdcatmediainfo.h when it's ready)
+-	DEFINES += MEDIAINFO_UNICODE
+ 	######### end mediainfo
+ 	
+ 	
+@@ -158,6 +154,7 @@
+    # security hardening flags
+    DEFINES += _FORTIFY_SOURCE=2
+    QMAKE_CXXFLAGS += -std=c++0x -g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Wformat-security -Werror=format-security 
++   QMAKE_LFLAGS += -Wl,--as-needed
+ }
+ 
+ FORMS      	    = help.ui

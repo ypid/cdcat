@@ -1,0 +1,113 @@
+cdcat (1.8-1) unstable; urgency=low
+
+  * New upstream release
+    + search crash fix (closes: #662030)
+
+ -- Eduard Bloch <blade@debian.org>  Sat, 17 Mar 2012 11:11:34 +0100
+
+cdcat (1.7-2) unstable; urgency=low
+
+  * Adjusted build dependencies (closes: #660322)
+
+ -- Eduard Bloch <blade@debian.org>  Fri, 17 Feb 2012 17:51:55 +0100
+
+cdcat (1.7-1) unstable; urgency=low
+
+  * New upstream release (closes: LP: #899988)
+    + includes various crash fixes (closes: #453271, #446054)
+    + includes my mp3 tag parses fixes (closes: #342934)
+  * packaging conversion to 3.0 (quilt) and xz compression
+
+ -- Eduard Bloch <blade@debian.org>  Fri, 17 Feb 2012 17:40:08 +0100
+
+cdcat (1.2-1) unstable; urgency=low
+
+  * New upstream release (closes: #604505) 
+  * added cdcat.desktop (closes: #496097)
+
+ -- Eduard Bloch <blade@debian.org>  Wed, 23 Mar 2011 08:38:48 +0100
+
+cdcat (1.01b+1.1beta4-1) experimental; urgency=low
+
+  * New upstream beta release
+    + using qt4 (closes: #604505)
+  * using new style menu entry location (closes: #496097)
+  * disabling strip call with nostrip in DEB_BUILD_OPTIONS (closes: #436617)
+
+ -- Eduard Bloch <blade@debian.org>  Thu, 10 Feb 2011 21:10:51 +0100
+
+cdcat (1.01b-2) unstable; urgency=low
+
+  * mp3tag_string_termination.dpatch by arno:
+    String termination correction (closes: #358929)
+  * explicitely use qmake-qt3 (potential FTBFS), also updated Standards-Version
+
+ -- Eduard Bloch <blade@debian.org>  Thu, 12 Jul 2007 22:35:44 +0200
+
+cdcat (1.01b-1) unstable; urgency=low
+
+  * New upstream release
+    + adopted the hidden-files-display patch
+  * g++-4.1_fix.dpatch for incorrect constructor prototype (closes: #356234)
+
+ -- Eduard Bloch <blade@debian.org>  Sat, 11 Mar 2006 00:33:32 +0100
+
+cdcat (1.0-3) unstable; urgency=low
+
+  * CXX 4.0 transition
+
+ -- Eduard Bloch <blade@debian.org>  Mon, 15 Aug 2005 09:46:01 +0200
+
+cdcat (1.0-2) unstable; urgency=low
+
+  * dpatched the filesystem scanning function to "see" hidden and system
+    files (was easier than I expected, closes: #315286)
+
+ -- Eduard Bloch <blade@debian.org>  Sat,  2 Jul 2005 13:38:14 +0200
+
+cdcat (1.0-1) unstable; urgency=low
+
+  * New upstream release
+    + includes almost identical french translation (closes: #316410)
+    + no more crashing on WHALE.AVI (closes: #269754)
+
+ -- Eduard Bloch <blade@debian.org>  Sat,  2 Jul 2005 13:15:15 +0200
+
+cdcat (0.99-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Eduard Bloch <blade@debian.org>  Thu,  2 Dec 2004 21:05:41 +0100
+
+cdcat (0.98-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Eduard Bloch <blade@debian.org>  Wed, 22 Sep 2004 10:19:15 +0200
+
+cdcat (0.97+0.98pre3-1) unstable; urgency=low
+
+  * New upstream pre-release
+
+ -- Eduard Bloch <blade@debian.org>  Mon, 20 Sep 2004 17:03:23 +0200
+
+cdcat (0.97-1) unstable; urgency=low
+
+  * New upstream release
+  * using libqt3-mt now
+
+ -- Eduard Bloch <blade@debian.org>  Thu, 20 May 2004 14:24:28 +0200
+
+cdcat (0.96-2) unstable; urgency=low
+
+  * Completed build dependencies
+
+ -- Eduard Bloch <blade@debian.org>  Fri,  5 Mar 2004 16:45:04 +0100
+
+cdcat (0.96-1) unstable; urgency=low
+
+  * Initial Release (closes: #219139)
+  * Included manpage from Jorge Bernal
+
+ -- Eduard Bloch <blade@debian.org>  Fri,  5 Mar 2004 15:31:31 +0100
+
