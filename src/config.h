@@ -279,4 +279,3 @@ protected slots:
 static bool *DEBUG_INFO_ENABLED;
 #endif
 
-// kate: indent-mode cstyle; replace-tabs off; tab-width 8;

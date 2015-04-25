@@ -209,4 +209,3 @@ protected slots:
 };
 
 #endif // FINDDIALOG_H
-// kate: indent-mode cstyle; replace-tabs off; tab-width 4;

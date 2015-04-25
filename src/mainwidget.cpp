@@ -991,4 +991,3 @@ void CdCatMainWidget::setTrayText( QString text, QString header ) {
 
 
 
-// kate: indent-mode cstyle; indent-width 8; replace-tabs off; tab-width 8;

@@ -2231,4 +2231,3 @@ int encrypt( std::string &decrypted_data, std::string &encrypted_data ) {
 #endif
 
 
-// kate: indent-mode cstyle; indent-width 8; replace-tabs off; tab-width 8;

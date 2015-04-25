@@ -887,4 +887,3 @@ void ConfigDialog::runri() {
     delete sr;
 }
 
-// kate: indent-mode cstyle; replace-tabs off; tab-width 8;

@@ -2794,4 +2794,3 @@ QString ArchiveFile::toDbString() {
 }
 
 
-// kate: indent-mode cstyle; replace-tabs off; tab-width 8;

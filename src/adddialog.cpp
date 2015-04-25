@@ -808,4 +808,3 @@ int AddLnk::sselect( void ) {
     return 0;
 }
 
-// kate: indent-mode cstyle; replace-tabs off; tab-width 8;

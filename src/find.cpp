@@ -1734,4 +1734,3 @@ void seekEngine::putNodeToList( Node *n, QString comment ) {
 }
 
 
-// kate: indent-mode cstyle; replace-tabs off; tab-width 8;

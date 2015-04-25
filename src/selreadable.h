@@ -154,4 +154,3 @@ protected slots:
 };
 
 #endif // SELREADABLE_H
-// kate: indent-mode cstyle; replace-tabs off; tab-width 8;

@@ -253,4 +253,3 @@ QString getCDSerial( const char *CDpath ) {
 
 #endif
 
-// kate: indent-mode cstyle; replace-tabs off; tab-width 8;

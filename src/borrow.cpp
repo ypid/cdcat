@@ -474,4 +474,3 @@ void borrowingDialog::setCurrentItem( QTableWidgetItem *item ) {
 
 
 
-// kate: indent-mode cstyle; replace-tabs off; tab-width 8;

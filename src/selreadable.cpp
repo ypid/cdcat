@@ -889,4 +889,3 @@ void SelReadable::languageChange() {
     buttonCancel->setText( tr( "Cancel" ));
 }
 
-// kate: indent-mode cstyle; replace-tabs off; tab-width 8;

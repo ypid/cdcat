@@ -513,4 +513,3 @@ signals:
 // char *getCurrentTime (void); ???
 #endif
 
-// kate: indent-mode cstyle; replace-tabs off; tab-width 8;

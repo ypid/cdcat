@@ -9144,4 +9144,3 @@ QList<QPixmap> get_anim_list() {
 
 
 
-// kate: indent-mode cstyle; replace-tabs on;

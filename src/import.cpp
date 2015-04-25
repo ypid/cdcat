@@ -3019,4 +3019,3 @@ import::import ( GuiSlave *parent ) {
     }
 }
 
-// kate: indent-mode cstyle; replace-tabs off; tab-width 8;          ;

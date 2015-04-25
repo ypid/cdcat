@@ -370,4 +370,3 @@ const QPixmap *FileItem::pixmap( int i ) const {
     }
     return pix;
 }
-// kate: indent-mode cstyle; replace-tabs off; tab-width 8;
