@@ -30,10 +30,8 @@
 #include <QtXml/QXmlInputSource>
 #include <QtXml/QXmlAttributes>
 #include <QRegExp>
-#include <QTextCodec>
 #include <QStringList>
 #include <QTextStream>
-#include <QLineEdit>
 
 lineObject::lineObject ( QString medianame, QString path, QString filename,
                          double size, QDateTime datetime, QString comment, QString information, QString category, QList<ArchiveFile> archivecontent, bool is_archive ) {
@@ -238,7 +236,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave *parent, QString separator, QStr
 
                 if (new_index > -1) {
                     if (*DEBUG_INFO_ENABLED) {
-                        qDebug() << "pattern [" << qPrintable( regex_pattern_list.at( i ).at( 0 )) << "] lookup result: " << new_index;
+                        qDebug() << "pattern [" << qPrintable( regex_pattern_list.at( i ).at( 0 )) << "] lookup result:" << new_index;
                     }
 
                     last_index = new_index;
@@ -264,18 +262,18 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave *parent, QString separator, QStr
         }
 
         if (*DEBUG_INFO_ENABLED) {
-            qDebug() << "cdcat_pattern: " << qPrintable( cdcat_pattern );
+            qDebug() << "cdcat_pattern:" << qPrintable( cdcat_pattern );
         }
         for (int i = 0; i < pattern_list.size(); i++) {
             if (*DEBUG_INFO_ENABLED) {
-                qDebug() << "regex_pattern[" << i << "]: " << pattern_list.at( i ).index << " / [" << qPrintable( pattern_list.at( i ).pattern_name ) << "] (" << qPrintable( pattern_list.at( i ).pattern ) << ")";
+                qDebug() << "regex_pattern[" << i << "]:" << pattern_list.at( i ).index << " / [" << qPrintable( pattern_list.at( i ).pattern_name ) << "] (" << qPrintable( pattern_list.at( i ).pattern ) << ")";
             }
             pattern += pattern_list.at( i ).pattern;
         }
         pattern = "^" + pattern + "$";
 
         if (*DEBUG_INFO_ENABLED) {
-            qDebug() << "line pattern: " << qPrintable( pattern );
+            qDebug() << "line pattern:" << qPrintable( pattern );
         }
 
         regex_pattern = QRegExp( pattern, Qt::CaseInsensitive, QRegExp::RegExp2 );
@@ -300,7 +298,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave *parent, QString separator, QStr
         if (csvtype == "whereisit") {
             while (line.right( 1 ) != separator && !t.atEnd()) {
                 if (*DEBUG_INFO_ENABLED) {
-                    qDebug() << "importGtktalogCsv:: multi line entry found";
+                    qDebug() << "multi line entry found";
                 }
                 line += '\n';
                 line += t.readLine(); // line of text excluding '\n'
@@ -312,7 +310,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave *parent, QString separator, QStr
         }
 
         // if(*DEBUG_INFO_ENABLED) {
-        //	qDebug() << "line raw: " << qPrintable(line);
+        //	qDebug() << "line raw:" << qPrintable(line);
         // }
 
         if (line_ok) {
@@ -353,27 +351,27 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave *parent, QString separator, QStr
                     fullpath = "/" + fullpath;
                 }
                 // if(*DEBUG_INFO_ENABLED)
-                //  qDebug() << "importGtktalogCsv fullpath: " << qPrintable(fullpath);
+                //  qDebug() << "importGtktalogCsv fullpath:" << qPrintable(fullpath);
                 new_medianame = (line.left( mediaindex ));
                 // if(*DEBUG_INFO_ENABLED)
-                //  qDebug() << "importGtktalogCsv new_medianame: " << qPrintable(new_medianame);
+                //  qDebug() << "importGtktalogCsv new_medianame:" << qPrintable(new_medianame);
 
                 path = fullpath.mid( mediaindex + 1, medianame.length() + 1 );
                 // if(*DEBUG_INFO_ENABLED)
-                //  qDebug() << "importGtktalogCsv path: " << qPrintable(path);
+                //  qDebug() << "importGtktalogCsv path:" << qPrintable(path);
 
                 int sizeindex = line.indexOf( separator, pathindex + 1 );
                 QString sizestring = line.mid( pathindex + 1, sizeindex - pathindex - 1 ).trimmed();
                 // if(*DEBUG_INFO_ENABLED)
-                //  qDebug() << "importGtktalogCsv sizestring: " << qPrintable(sizestring);
+                //  qDebug() << "importGtktalogCsv sizestring:" << qPrintable(sizestring);
                 size = ((line.mid( pathindex + 1, sizeindex - pathindex - 1 )).trimmed()).toDouble();
 
                 // if(*DEBUG_INFO_ENABLED)
-                //  qDebug() << "importGtktalogCsv size: " << size;
+                //  qDebug() << "importGtktalogCsv size:" << size;
 
                 datetimestring = (line.mid( sizeindex + 1, line.length())).trimmed();
                 if (*DEBUG_INFO_ENABLED) {
-                    qDebug() << "importGtktalogCsv datetimestring: " << qPrintable( datetimestring );
+                    qDebug() << "importGtktalogCsv datetimestring:" << qPrintable( datetimestring );
                 }
 
                 // date is normally day/month/year hour:minute:second
@@ -406,7 +404,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave *parent, QString separator, QStr
 
                 int fileindex = fullpath.lastIndexOf( '/' );
                 // if(*DEBUG_INFO_ENABLED)
-                //  qDebug() << "importGtktalogCsv fileindex: " << fileindex;
+                //  qDebug() << "importGtktalogCsv fileindex:" << fileindex;
 
                 QString dirpath = "";
                 if (fileindex != 0) {
@@ -452,7 +450,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave *parent, QString separator, QStr
                 QStringList csvList = line.split( separator );
                 if (csvList.count() != 10) {
                     if (*DEBUG_INFO_ENABLED) {
-                        qWarning() << "importGtktalogCsv invalid line (not 9 fields): " << qPrintable( line );
+                        qWarning() << "importGtktalogCsv invalid line (not 9 fields):" << qPrintable( line );
                     }
                     continue;
                 }
@@ -461,10 +459,10 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave *parent, QString separator, QStr
                 // size is double and its kib!
                 size = uint( QString( csvList.at( 6 )).replace( "\"", "" ).replace( ",", "." ).replace( ".", "" ).replace( "#", "" ).trimmed().toDouble() * 1024 );
                 // if(*DEBUG_INFO_ENABLED)
-                //	qDebug() << "importGtktalogCsv size: " << size;
+                //	qDebug() << "importGtktalogCsv size:" << size;
                 datetimestring = QString( csvList.at( 7 )).replace( "\"", "" );
                 // if (*DEBUG_INFO_ENABLED)
-                //	qDebug() << "importGtktalogCsv datetimestring: " << qPrintable(datetimestring);
+                //	qDebug() << "importGtktalogCsv datetimestring:" << qPrintable(datetimestring);
 
                 QString datesep = ".";
                 // date is in format: year.month.day hour:minute
@@ -492,7 +490,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave *parent, QString separator, QStr
 
                 new_medianame = QString( csvList.at( 2 )).replace( "\"", "" );
                 // if(*DEBUG_INFO_ENABLED)
-                //	qDebug() << "importGtktalogCsv new_medianame: " << qPrintable(new_medianame);
+                //	qDebug() << "importGtktalogCsv new_medianame:" << qPrintable(new_medianame);
 
                 dirpath = QString( csvList.at( 8 )).replace( "\"", "" );
                 dirpath = dirpath.mid( 0, dirpath.length() - 1 );
@@ -503,19 +501,19 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave *parent, QString separator, QStr
                 //	dirpath = "/"+dirpath;
                 path = dirpath + "/" + filename;
                 // if(*DEBUG_INFO_ENABLED)
-                //	qDebug() << "importGtktalogCsv path: " << qPrintable(path);
+                //	qDebug() << "importGtktalogCsv path:" << qPrintable(path);
 
                 fullpath = path;
                 // if(*DEBUG_INFO_ENABLED)
-                //	qDebug() << "importGtktalogCsv fullpath: " << qPrintable(fullpath);
+                //	qDebug() << "importGtktalogCsv fullpath:" << qPrintable(fullpath);
 
                 comment = QString( csvList.at( 9 )).replace( "\"", "" );
                 // if(*DEBUG_INFO_ENABLED)
-                //	qDebug() << "importGtktalogCsv comment: " << qPrintable(comment);
+                //	qDebug() << "importGtktalogCsv comment:" << qPrintable(comment);
 
                 category = QString( csvList.at( 3 )).replace( "\"", "" );
                 // if(*DEBUG_INFO_ENABLED)
-                //	qDebug() << "importGtktalogCsv category: " << qPrintable(category);
+                //	qDebug() << "importGtktalogCsv category:" << qPrintable(category);
                 if (*DEBUG_INFO_ENABLED) {
                     // if (!validDate)
                     QString msg;
@@ -551,13 +549,13 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave *parent, QString separator, QStr
                 QStringList csvList = line.split( separator );
                 // if (csvList.count() < 10) {
                 //	if(*DEBUG_INFO_ENABLED)
-                //	qWarning() << "importGtktalogCsv invalid line (at least 10 fields): " << qPrintable(line);
+                //	qWarning() << "importGtktalogCsv invalid line (at least 10 fields):" << qPrintable(line);
                 //	continue;
                 // }
                 if (*DEBUG_INFO_ENABLED) {
-                    qDebug() << "line: " << qPrintable( line );
+                    qDebug() << "line:" << qPrintable( line );
                     for (int i = 0; i < csvList.size(); ++i)
-                        qDebug() << "csvList[" << i << "]: " << csvList.at( i ).toLocal8Bit().constData();
+                        qDebug() << "csvList[" << i << "]:" << csvList.at( i ).toLocal8Bit().constData();
                 }
 
                 filename = QString( csvList.at( 0 ));
@@ -1410,19 +1408,19 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave *parent, QString separator, QStr
                  * <path>
                  *
                  */
-                if (linecount < 1) {
-                    linecount++;
-                    continue;
-                }
+                // if (linecount < 1) {
+                    // linecount++;
+                    // continue;
+                // }
 
                 if (*DEBUG_INFO_ENABLED) {
-                    qDebug() << "line: " << qPrintable( line );
+                    qDebug() << "line" << linecount + ":" << qPrintable( line );
                 }
 
                 if (!regex_pattern.exactMatch( line )) {
                     linecount++;
                     if (*DEBUG_INFO_ENABLED) {
-                        qWarning() << "importGtktalogCsv:: invalid line entry found";
+                        qWarning() << "invalid line entry found";
                     }
                     continue;
                 }
@@ -1553,7 +1551,6 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave *parent, QString separator, QStr
                         // qDebug() << "line mod " << qPrintable( line );
                     }
                 }
-
 
 
                 // if(*DEBUG_INFO_ENABLED)
@@ -3019,4 +3016,3 @@ import::import ( GuiSlave *parent ) {
         }
     }
 }
-

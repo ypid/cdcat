@@ -79,13 +79,13 @@ QList<QList<QString> > getImportPatternList() {
     tmplist.clear();
 
     tmplist.append( QString( "%sizeb%" ));
-    tmplist.append( QString( "([0-9])+" ));
+    tmplist.append( QString( "([0-9],.)+" ));
     tmplist.append( QObject::tr( "File size (number only, in bytes)" ));
     regex_pattern_list.append( tmplist );
     tmplist.clear();
 
     tmplist.append( QString( "%sizekb%" ));
-    tmplist.append( QString( "([0-9])+" ));
+    tmplist.append( QString( "([0-9],.)+" ));
     tmplist.append( QObject::tr( "File size (number only, in kilobytes)" ));
     regex_pattern_list.append( tmplist );
     tmplist.clear();
@@ -360,6 +360,7 @@ void ImportDialog::languageChange() {
 
     genericRegexTipText += "</table>";
     genericRegexTipText += tr( "Example:" );
+    // FIXME: Change to du --all --time --bytes --time-style full-iso
     genericRegexTipText += "<br><i><b>du --all --human-readable --time<b/>: %size_human%%tab%%dateyear4%%space%%time_hm%%tab%%fullpath%<i>";
     genericRegexInfo->setToolTip( genericRegexTipText );
     newdatabase->setText( tr( "Create new Data&base" ));
@@ -422,9 +423,15 @@ int ImportDialog::bCan( void ) {
 void ImportDialog::getFileName() {
     QString filetypes = "";
 
-    if (importTypeCsvGtktalog->isChecked() || importTypeCsvKatCeDe->isChecked() || importTypeCsvDisclib->isChecked()
-        || importTypeCsvVisualcd->isChecked() || importTypeCsvVvv->isChecked() || importTypeCsvAdvancedFileOrganizer->isChecked()
-        || importTypeCsvAdvancedDiskCatalog->isChecked() || importTypeCsvWhereisit->isChecked()) {
+    if (   importTypeCsvGtktalog->isChecked()
+        || importTypeCsvKatCeDe->isChecked()
+        || importTypeCsvDisclib->isChecked()
+        || importTypeCsvVisualcd->isChecked()
+        || importTypeCsvVvv->isChecked()
+        || importTypeCsvAdvancedFileOrganizer->isChecked()
+        || importTypeCsvAdvancedDiskCatalog->isChecked()
+        || importTypeCsvWhereisit->isChecked()) {
+
         filetypes = QString( tr( "csv files(*.csv)" ));
     } else if (importTypeGtktalogXml->isChecked()) {
         filetypes = QString( tr( "xml files(*.xml)" ));
@@ -446,21 +453,21 @@ void ImportDialog::getFileName() {
         lastDir = homedir;
     }
 
+    qDebug() << lastDir;
+
     filename_lineedit->setText( QFileDialog::getOpenFileName( this, tr( "Choose a file for import" ), lastDir, filetypes ));
     filename = filename_lineedit->text();
 }
 
 void ImportDialog::typeChanged() {
-    if (importTypeCsvGtktalog->isChecked() || importTypeCsvKatCeDe->isChecked() || importTypeCsvKatCeDe->isChecked()) {
-        if (importTypeCsvGtktalog->isChecked() || importTypeCsvDisclib->isChecked()) {
-            correctbadstyle->setEnabled( true );
-            separator_lab->setEnabled( true );
-            separator_lineedit->setEnabled( true );
-        } else {
-            correctbadstyle->setEnabled( false );
-            separator_lab->setEnabled( false );
-            separator_lineedit->setEnabled( false );
-        }
+    // FIXME: if statement …
+    if (   importTypeCsvGtktalog->isChecked()
+        || importTypeCsvKatCeDe->isChecked()) {
+
+        correctbadstyle->setEnabled( true );
+        separator_lab->setEnabled( true );
+        separator_lineedit->setEnabled( true );
+
         if (importTypeCsvWhereisit->isChecked()) {
             separator_lab->setEnabled( true );
             separator_lineedit->setEnabled( true );
