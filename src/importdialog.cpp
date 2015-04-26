@@ -79,13 +79,13 @@ QList<QList<QString> > getImportPatternList() {
     tmplist.clear();
 
     tmplist.append( QString( "%sizeb%" ));
-    tmplist.append( QString( "([0-9],.)+" ));
+    tmplist.append( QString( "([0-9,\\.])+" ));
     tmplist.append( QObject::tr( "File size (number only, in bytes)" ));
     regex_pattern_list.append( tmplist );
     tmplist.clear();
 
     tmplist.append( QString( "%sizekb%" ));
-    tmplist.append( QString( "([0-9],.)+" ));
+    tmplist.append( QString( "([0-9,\\.])+" ));
     tmplist.append( QObject::tr( "File size (number only, in kilobytes)" ));
     regex_pattern_list.append( tmplist );
     tmplist.clear();
@@ -113,9 +113,11 @@ QList<QList<QString> > getImportPatternList() {
     tmplist.append( QObject::tr( "time with hour and minute only (e.g. 07:28)" ));
     regex_pattern_list.append( tmplist );
     tmplist.clear();
-    for (int i = 0; i < regex_pattern_list.size(); ++i) {
-        qDebug() << regex_pattern_list.at(i);
-    }
+    /*
+     * for (int i = 0; i < regex_pattern_list.size(); ++i) {
+     *     qDebug() << regex_pattern_list.at(i);
+     * }
+     */
     return regex_pattern_list;
 }
 
