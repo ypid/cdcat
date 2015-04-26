@@ -2976,7 +2976,7 @@ import::import ( GuiSlave *parent ) {
         separator = d->separator;
         filename = d->filename;
         if (!filename.isEmpty()) {
-            parent->mainw->cconfig->lastDir = QDir( d->filename ).dirName();
+            parent->mainw->cconfig->lastDir = QFileInfo( d->filename ).absolutePath();
         }
         createdatabase = d->newdatabase;
         correctbadstyle = d->correctbadstyle;
