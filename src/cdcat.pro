@@ -109,7 +109,7 @@ CONFIG      += qt xml uic
 ## Release is the default and will be overwritten by debug
 ## Don‘t specify it in the file. Use 'CONFIG+=debug' for qmake.
 # CONFIG      += release
-# CONFIG      += debug
+CONFIG      += debug
 
 # DEFINES     += QT_NO_DEBUG_OUTPUT
 

@@ -14,6 +14,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <QDebug>
 #include <QLabel>
 #include <QLineEdit>
 #include <QPushButton>
@@ -28,23 +29,21 @@
 QList<QList<QString> > getImportPatternList() {
     /* extract special cdcat pattern
      *      defined patterns:
-     *      %dirseparator%		directory separtor (unix: /, windows: \)
-     *      %filename%		filename
-     *      %fullpath%		full path (<dirpath><divider><file>)
-     *      %sizehuman%		size (1234,56[<unit>])
-     *                                      unit: ((empty) => B, k => kB, K => KiB, m => mb, M => MiB, g = gb, G => GB, t = tb, T => TiB)
-     *      %sizeb%			size in bytes (123456)
-     *      %sizekb%			size in kilobytes (123456)
-     *      %YYMMDD%		date (2 letter year)
-     *      %YYYYMMDD%	date (4 letter year)
-     *
+     *      %dirseparator%   directory separator (unix: /, windows: \)
+     *      %filename%       filename
+     *      %fullpath%       full path (<dirpath><divider><file>)
+     *      %sizehuman%      size (1234,56[<unit>]) unit: ((empty) => B, k => kB, K => KiB, m => mb, M => MiB, g = gb, G => GB, t = tb, T => TiB)
+     *      %sizeb%          size in bytes (123456)
+     *      %sizekb%         size in kilobytes (123456)
+     *      %YYMMDD%         date (2 letter year)
+     *      %YYYYMMDD%       date (4 letter year)
      *
      *      list elems: <pattern label><matching regex pattern><description>
      */
     QList<QList<QString> > regex_pattern_list;
     QList<QString> tmplist;
     tmplist.append( QString( "%dirseparator%" ));
-    tmplist.append( QString( QDir::separator()));
+    tmplist.append( QString( QDir::separator() ));
     tmplist.append( QObject::tr( "directory separator" ));
     regex_pattern_list.append( tmplist );
     tmplist.clear();
@@ -62,13 +61,13 @@ QList<QList<QString> > getImportPatternList() {
     tmplist.clear();
 
     tmplist.append( QString( "%filename%" ));
-    tmplist.append( QString( "[0-9a-zA-Z\\_\\-\\.\\+\\=\ \\~]+" ));
+    tmplist.append( QString( "[0-9a-zA-Z\\_\\-\\.\\+\\= \\~]+" ));
     tmplist.append( QObject::tr( "file name" ));
     regex_pattern_list.append( tmplist );
     tmplist.clear();
 
     tmplist.append( QString( "%fullpath%" ));
-    tmplist.append( QString( "(([\\/\\" ) + QDir::separator() + "]|)([0-9a-zA-Z\\_\\-\\.\\+\\=\ \\~]+))+" );
+    tmplist.append( QString( "(([\\/\\" ) + QDir::separator() + "]|)([0-9a-zA-Z\\_\\-\\.\\+\\= \\~]+))+" );
     tmplist.append( QObject::tr( "full path (including directory name and file name)" ));
     regex_pattern_list.append( tmplist );
     tmplist.clear();
@@ -92,7 +91,7 @@ QList<QList<QString> > getImportPatternList() {
     tmplist.clear();
 
     tmplist.append( QString( "%dateyear2%" ));
-    tmplist.append( QString( "[0-9][0-9]\-([0-9]|[0-9][0-9])\\-([0-9]|[0-9][0-9])" ));
+    tmplist.append( QString( "[0-9][0-9]-([0-9]|[0-9][0-9])\\-([0-9]|[0-9][0-9])" ));
     tmplist.append( QObject::tr( "date with 2 year digit (e.g. 25th. may 2012: 12-05-25)" ));
     regex_pattern_list.append( tmplist );
     tmplist.clear();
@@ -114,6 +113,9 @@ QList<QList<QString> > getImportPatternList() {
     tmplist.append( QObject::tr( "time with hour and minute only (e.g. 07:28)" ));
     regex_pattern_list.append( tmplist );
     tmplist.clear();
+    for (int i = 0; i < regex_pattern_list.size(); ++i) {
+        qDebug() << regex_pattern_list.at(i);
+    }
     return regex_pattern_list;
 }
 
@@ -140,24 +142,24 @@ ImportDialog::ImportDialog ( QWidget *parent, const char *name, bool modal, Qt::
     layout4->addWidget( buttonGetFile, 2, 5, 1, 2 );
 
     info_lab = new QLabel( this );
-    info_lab->setText( "info" );
+    info_lab->setText( "" );
     layout4->addWidget( info_lab, 0, 0, 1, 5 );
 
-    importButtonBox = new QGroupBox( tr( "Type" ), this );
+    importButtonBox = new QGroupBox( "", this );
     layoutGroupBox = new QVBoxLayout( this );
     importButtonBox->setLayout( layoutGroupBox );
-    importTypeCsvGtktalog = new QRadioButton( tr( "&Gtktalog CSV" ), importButtonBox );
-    importTypeCsvKatCeDe = new QRadioButton( tr( "&Kat-DeCe CSV" ), importButtonBox );
-    importTypeCsvDisclib = new QRadioButton( tr( "&Disclib CSV" ), importButtonBox );
-    importTypeCsvVisualcd = new QRadioButton( tr( "&VisualCD CSV" ), importButtonBox );
-    importTypeCsvVvv = new QRadioButton( tr( "&VVV CSV" ), importButtonBox );
-    importTypeCsvAdvancedFileOrganizer = new QRadioButton( tr( "&Advanced file organizer CSV" ), importButtonBox );
-    importTypeCsvFileArchivist = new QRadioButton( tr( "&File Archivist CSV" ), importButtonBox );
-    importTypeCsvAdvancedDiskCatalog = new QRadioButton( tr( "&Advanced Disk Catalog CSV" ), importButtonBox );
-    importTypeCsvWhereisit = new QRadioButton( tr( "&Advanced Disk Catalog CSV" ), importButtonBox );
-    importTypeGtktalogXml = new QRadioButton( tr( "Gtktalog &XML" ), importButtonBox );
-    importTypeWhereisitXml = new QRadioButton( tr( "&WhereIsIt XML (classic)" ), importButtonBox );
-    importTypeGenericRegex = new QRadioButton( tr( "&" ), importButtonBox );
+    importTypeCsvGtktalog = new QRadioButton( "", importButtonBox );
+    importTypeCsvKatCeDe = new QRadioButton( "", importButtonBox );
+    importTypeCsvDisclib = new QRadioButton( "", importButtonBox );
+    importTypeCsvVisualcd = new QRadioButton( "", importButtonBox );
+    importTypeCsvVvv = new QRadioButton( "", importButtonBox );
+    importTypeCsvAdvancedFileOrganizer = new QRadioButton( "", importButtonBox );
+    importTypeCsvFileArchivist = new QRadioButton( "", importButtonBox );
+    importTypeCsvAdvancedDiskCatalog = new QRadioButton( "", importButtonBox );
+    importTypeCsvWhereisit = new QRadioButton( "", importButtonBox );
+    importTypeGtktalogXml = new QRadioButton( "", importButtonBox );
+    importTypeWhereisitXml = new QRadioButton( "", importButtonBox );
+    importTypeGenericRegex = new QRadioButton( "", importButtonBox );
 
     layoutGroupBox->addWidget( importTypeCsvGtktalog );
     layoutGroupBox->addWidget( importTypeCsvKatCeDe );
@@ -175,7 +177,6 @@ ImportDialog::ImportDialog ( QWidget *parent, const char *name, bool modal, Qt::
     layout4->addWidget( importButtonBox, 3, 0, 1, 4 );
 
     newdatabase = new QCheckBox( this );
-    newdatabase->setText( tr( "Create new Database" ));
     layout4->addWidget( newdatabase, 4, 0, 1, 2 );
 
 
@@ -361,6 +362,7 @@ void ImportDialog::languageChange() {
     genericRegexTipText += tr( "Example:" );
     genericRegexTipText += "<br><i><b>du --all --human-readable --time<b/>: %size_human%%tab%%dateyear4%%space%%time_hm%%tab%%fullpath%<i>";
     genericRegexInfo->setToolTip( genericRegexTipText );
+    newdatabase->setText( tr( "Create new Database" ));
 }
 
 int ImportDialog::bOk( void ) {
