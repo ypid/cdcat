@@ -2138,7 +2138,7 @@ int importGtktalogXml::addNewItem( QString medianame, QString path, QString file
     DEBUG_INFO_ENABLED = init_debug_info();
     lineObject l( medianame, path, filename, size, datetime, comment, information, category, archivecontent, is_archive );
     if (*DEBUG_INFO_ENABLED) {
-        qDebug() << "importGtktalogXml::addNewItem: medianame: " <<
+        qDebug() << "medianame:" <<
             qPrintable( medianame ) << ", path: " << qPrintable( path ) << ", filename: " <<
             qPrintable( filename ) << ", size: " << size << ", date: " <<
             qPrintable( datetime.toString()) << ", comment: " << qPrintable( comment ) << ", category: " << qPrintable( category ) << ", is_archive: " << is_archive;
@@ -2977,34 +2977,33 @@ import::import ( GuiSlave *parent ) {
         createdatabase = d->newdatabase;
         delete d;
 
-        if (type == 0) {
-            importGtktalogCsv import( parent, separator, filename, createdatabase, correctbadstyle );
-        } else if (type == 1) {
-            importGtktalogXml import( parent, filename, createdatabase );
-        } else if (type == 2) {
-            importWhereIsItXml import( parent, filename, createdatabase );
-        } else if (type == 3) {
-            importGtktalogCsv import( parent, separator, filename, createdatabase, correctbadstyle, "kat-dece" );
-        } else if (type == 4) {
-            importGtktalogCsv import( parent, separator, filename, createdatabase, correctbadstyle, "disclib" );
-        } else if (type == 5) {
-            importGtktalogCsv import( parent, separator, filename, createdatabase, false, "visualcd" );
-        } else if (type == 6) {
-            importGtktalogCsv import( parent, separator, filename, createdatabase, false, "vvv" );
-        } else if (type == 7) {
-            importGtktalogCsv import( parent, separator, filename, createdatabase, false, "afo" );
-        } else if (type == 8) {
-            importGtktalogCsv import( parent, separator, filename, createdatabase, false, "filearchivist" );
-        } else if (type == 9) {
-            importGtktalogCsv import( parent, separator, filename, createdatabase, false, "advanceddiskcatalog" );
-        } else if (type == 10) {
-            importGtktalogCsv import( parent, separator, filename, createdatabase, false, "whereisit" );
-        } else {
-            if (type == 11) {
-                importGtktalogCsv import( parent, separator, filename, createdatabase, false, "generic_plaintext_regex", mypattern );
-            } else {
-               qCritical() << "wrong type!!!";
-            }
+        switch (type) {
+        case 0: { importGtktalogCsv import( parent, separator, filename, createdatabase, correctbadstyle ); }
+            break;
+        case 1: { importGtktalogXml import( parent, filename, createdatabase ); }
+            break;
+        case 2: { importWhereIsItXml import( parent, filename, createdatabase ); }
+            break;
+        case 3: { importGtktalogCsv import( parent, separator, filename, createdatabase, correctbadstyle, "kat-dece" ); }
+            break;
+        case 4: { importGtktalogCsv import( parent, separator, filename, createdatabase, correctbadstyle, "disclib" ); }
+            break;
+        case 5: { importGtktalogCsv import( parent, separator, filename, createdatabase, false, "visualcd" ); }
+            break;
+        case 6: { importGtktalogCsv import( parent, separator, filename, createdatabase, false, "vvv" ); }
+            break;
+        case 7: { importGtktalogCsv import( parent, separator, filename, createdatabase, false, "afo" ); }
+            break;
+        case 8: { importGtktalogCsv import( parent, separator, filename, createdatabase, false, "filearchivist" ); }
+            break;
+        case 9: { importGtktalogCsv import( parent, separator, filename, createdatabase, false, "advanceddiskcatalog" ); }
+            break;
+        case 10: { importGtktalogCsv import( parent, separator, filename, createdatabase, false, "whereisit" ); }
+            break;
+        case 11: { importGtktalogCsv import( parent, separator, filename, createdatabase, false, "generic_plaintext_regex", mypattern ); }
+            break;
+        default:
+           qCritical() << "wrong type!!!";
         }
     }
 }
