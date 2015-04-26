@@ -299,17 +299,17 @@ void ImportDialog::languageChange() {
     separator_lineedit->setToolTip( tr( "This is the separator in dataline\n<path>SEPARATOR<size>SEPARATOR<date><space><time>" ));
     buttonCancel->setText( tr( "Cancel" ));
     buttonOK->setText( tr( "Import" ));
-    buttonGetFile->setText( tr( "..." ));
+    buttonGetFile->setText( tr( "&..." )); // Allow typographically incorrect … in this case.
 
     importButtonBox->setTitle( tr( "Type" ));
     importTypeCsvGtktalog->setText( tr( "&Gtktalog (csv)" ));
     importTypeCsvKatCeDe->setText( tr( "&Kat-CeDe (csv)" ));
     importTypeCsvDisclib->setText( tr( "&Disclib (csv)" ));
-    importTypeCsvVisualcd->setText( tr( "&VisualCD (csv)" ));
+    importTypeCsvVisualcd->setText( tr( "Visual&CD (csv)" ));
     importTypeCsvVvv->setText( tr( "&VVV (csv)" ));
     importTypeCsvAdvancedFileOrganizer->setText( tr( "&Advanced File Organizer (csv)" ));
     importTypeCsvFileArchivist->setText( tr( "&File Archivist" ));
-    importTypeCsvAdvancedDiskCatalog->setText( tr( "&Advanced Disk Catalog (csv)" ));
+    importTypeCsvAdvancedDiskCatalog->setText( tr( "Adva&nced Disk Catalog (csv)" ));
     importTypeCsvWhereisit->setText( tr( "W&hereIsIt (csv)" ));
     importTypeGtktalogXml->setText( tr( "Gtktalog &XML" ));
     importTypeWhereisitXml->setText( tr( "&WhereIsIt XML (classic)" ));
@@ -362,7 +362,7 @@ void ImportDialog::languageChange() {
     genericRegexTipText += tr( "Example:" );
     genericRegexTipText += "<br><i><b>du --all --human-readable --time<b/>: %size_human%%tab%%dateyear4%%space%%time_hm%%tab%%fullpath%<i>";
     genericRegexInfo->setToolTip( genericRegexTipText );
-    newdatabase->setText( tr( "Create new Database" ));
+    newdatabase->setText( tr( "Create new Data&base" ));
 }
 
 int ImportDialog::bOk( void ) {
