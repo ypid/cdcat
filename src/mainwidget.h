@@ -10,13 +10,12 @@
 #ifndef CDCATMAINWIDGET_H
 #define CDCATMAINWIDGET_H
 
-#include <QVariant>
+#include "adddialog.h"
+
 #include <QPixmap>
 #include <QWidget>
 #include <QApplication>
 #include <QMenu>
-#include <QGridLayout>
-#include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QFrame>
@@ -27,23 +26,15 @@
 #include <QToolBar>
 #include <QMainWindow>
 
-#include "adddialog.h"
-
-class QVBoxLayout;
-class QHBoxLayout;
-class QGridLayout;
-class QFrame;
 class QToolButton;
+class QSplitter;
+class QScrollArea;
 class CommentWidget;
 class HDirectoryView;
 class DataBase;
 class GuiSlave;
 class HQListView;
-class QLabel;
 class CdCatConfig;
-class QSplitter;
-class QSystemTrayIcon;
-class QScrollArea;
 
 class CdCatMainWidget : public QMainWindow {
     Q_OBJECT
@@ -181,4 +172,4 @@ signals:
     void restoredFromTray();
 };
 
-#endif // CDCATMAINWIDGET_H
+#endif

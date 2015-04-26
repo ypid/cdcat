@@ -7,8 +7,12 @@
 *  Copyright : (C) 2003 Christoph Thielecke
 ****************************************************************************/
 
-
 #include "importdialog.h"
+
+#include "icons.h"
+
+#include <stdio.h>
+#include <stdlib.h>
 
 #include <QLabel>
 #include <QLineEdit>
@@ -18,11 +22,8 @@
 #include <QFile>
 #include <QFileDialog>
 #include <QGridLayout>
-#include <stdio.h>
-#include <stdlib.h>
 #include <QVariant>
 #include <QLocale>
-#include "icons.h"
 
 QList<QList<QString> > getImportPatternList() {
     /* extract special cdcat pattern

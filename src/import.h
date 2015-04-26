@@ -15,17 +15,15 @@
 
 #include <QObject>
 #include <QList>
-#include <QFileDialog>
-#include <QWidget>
 #include <QDateTime>
 #include <QProgressDialog>
 
 #include <QtXml/QXmlDefaultHandler>
 #include <QtXml/QXmlLocator>
 
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
+// #include <string.h>
+// #include <stdio.h>
+// #include <stdlib.h>
 
 
 class Node;

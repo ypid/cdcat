@@ -21,13 +21,14 @@
 #include <QDebug>
 #include <QMessageBox>
 #include <QFile>
+#include <QFileInfo>
+#include <QFileDialog>
 #include <QTextStream>
 #include <QDateTime>
 #include <QProgressDialog>
 #include <QList>
 #include <QtXml/QXmlInputSource>
 #include <QtXml/QXmlAttributes>
-#include <QFileInfo>
 #include <QRegExp>
 #include <QTextCodec>
 #include <QStringList>

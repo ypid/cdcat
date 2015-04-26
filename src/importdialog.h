@@ -10,12 +10,7 @@
 #ifndef IMPORTDIALOG_H
 #define IMPORTDIALOG_H
 
-#include <QVariant>
-#include <QPixmap>
 #include <QDialog>
-#include <QDateTime>
-#include <QCheckBox>
-#include <QLayout>
 #include <QCheckBox>
 #include <QRadioButton>
 #include <QGroupBox>
@@ -23,12 +18,8 @@
 #include <QGridLayout>
 #include <QHBoxLayout>
 #include <QLabel>
-
-
-
-class QLabel;
-class QLineEdit;
-class QPushButton;
+#include <QLineEdit>
+#include <QPushButton>
 
 QList<QList<QString> > getImportPatternList();
 
@@ -97,4 +88,4 @@ public:
     QString getLastDir();
 };
 
-#endif // IMPORTDIALOG_H
+#endif
