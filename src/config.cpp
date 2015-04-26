@@ -231,6 +231,7 @@ int CdCatConfig::readConfig() {
     find_size_unit_max_val = settings.value("find/size_unit_max_val"  , 2).toInt();
     find_date_start        = settings.value("find/checkbox_date_start", false).toBool();
     find_date_end          = settings.value("find/checkbox_date_end"  , false).toBool();
+    lastSearchPattern      = settings.value("find/last_search_pattern", "").toString();
     find_date_start_val    = QDateTime().fromString( settings.value("find/date_start_val", "").toString() );
     find_date_end_val      = QDateTime().fromString( settings.value("find/date_end_val"  , "").toString() );
     /* }}} */
@@ -240,7 +241,6 @@ int CdCatConfig::readConfig() {
     autoload           = settings.value("main/autoload"           , false).toBool();
     autosave           = settings.value("main/autosave"           , false).toBool();
     autoloadfn         = settings.value("main/autoload_file"      , "").toString();
-    lastSearchPattern  = settings.value("main/last_search_pattern", "").toString();
     lastDir            = settings.value("main/last_dir"           , lastDir).toString();
     lastMediaType      = settings.value("main/last_media_type"    , HARDDISC).toInt();
     cdrompath          = settings.value("main/cdrom_path"         , cdrompath).toString();
@@ -315,6 +315,10 @@ int CdCatConfig::readConfig() {
         ExcludeFileList.append(settings.value("pattern").toString());
     }
     settings.endArray();
+    /* }}} */
+
+    /* Import {{{ */
+    import__last_generic_regex = settings.value("import/last_generic_regex", "").toString();
     /* }}} */
 
     /* Export: HTML {{{ */
@@ -402,6 +406,7 @@ int CdCatConfig::writeConfig( void ) {
     settings.setValue("find/size_unit_max_val"  , find_size_unit_max_val);
     settings.setValue("find/checkbox_date_start", find_date_start);
     settings.setValue("find/checkbox_date_end"  , find_date_end);
+    settings.setValue("find/last_search_pattern", lastSearchPattern );
     settings.setValue("find/date_start_val"     , find_date_start_val.toString());
     settings.setValue("find/date_end_val"       , find_date_end_val.toString());
     /* }}} */
@@ -411,7 +416,6 @@ int CdCatConfig::writeConfig( void ) {
     settings.setValue("main/autoload"           , autoload          );
     settings.setValue("main/autosave"           , autosave          );
     settings.setValue("main/autoload_file"      , autoloadfn        );
-    settings.setValue("main/last_search_pattern", lastSearchPattern );
     settings.setValue("main/last_dir"           , lastDir           );
     settings.setValue("main/last_media_type"    , lastMediaType     );
     settings.setValue("main/cdrom_path"         , cdrompath         );
@@ -480,6 +484,10 @@ int CdCatConfig::writeConfig( void ) {
         settings.setValue("pattern", ExcludeFileList.at(i));
     }
     settings.endArray();
+    /* }}} */
+
+    /* Import {{{ */
+    settings.setValue("import/last_generic_regex", import__last_generic_regex);
     /* }}} */
 
     /* Export: HTML {{{ */

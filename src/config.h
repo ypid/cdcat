@@ -56,6 +56,8 @@ public:
     QString startfn;
     QString config_file;
 
+    QString import__last_generic_regex;
+
     /* Configurable items {{{ */
     int fsize;
     int historysize;

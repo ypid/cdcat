@@ -2954,6 +2954,9 @@ import::import ( GuiSlave *parent ) {
 
     d->setLastDir( parent->mainw->cconfig->lastDir );
     QString mypattern = "%size_human%%tab%%dateyear4%%space%%time_hm%%tab%%fullpath%";
+    if (!parent->mainw->cconfig->import__last_generic_regex.isEmpty()) {
+        mypattern = parent->mainw->cconfig->import__last_generic_regex;
+    }
     d->genericRegex_lineedit->setText( mypattern );
     d->exec();
 
@@ -2968,6 +2971,10 @@ import::import ( GuiSlave *parent ) {
         separator = d->separator;
         type = d->type;
         mypattern = d->genericRegex_lineedit->text();
+        if (!mypattern.isEmpty()) {
+            parent->mainw->cconfig->import__last_generic_regex = mypattern;
+        }
+        createdatabase = d->newdatabase;
         delete d;
 
         if (type == 0) {
