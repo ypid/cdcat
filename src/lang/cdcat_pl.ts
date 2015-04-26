@@ -1716,7 +1716,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location line="+219"/>
         <source>modified</source>
-        <translation>Katalog CD Hyper&apos;a (zmienione)</translation>
+        <translation>zmienione</translation>
     </message>
     <message>
         <source>Hyper&apos;s CD Catalogizer</source>

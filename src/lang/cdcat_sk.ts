@@ -1679,7 +1679,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location line="+219"/>
         <source>modified</source>
-        <translation>Hyperov CD katalogizér (upravený)</translation>
+        <translation>upravený</translation>
     </message>
     <message>
         <source>Hyper&apos;s CD Catalogizer</source>

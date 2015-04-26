@@ -1630,15 +1630,11 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave *parent, QString separator, QStr
     QString msg;
     msg += tr( "Import was successful." );
     msg += "\n";
-    msg += tr( "%Ln media(s)", "media", mediacount ) + ",\n";
+    msg += tr( "%n media(s)", "media", mediacount ) + ",\n";
 
-    msg += tr( "%Ln directori(es)", "directory", dircount ) + ",\n";
+    msg += tr( "%n director(y|ies)", "directory", dircount ) + ",\n";
 
-    if (filecount < 2) {
-        msg += tr( "1 file" ) + ",\n";
-    } else {
-        msg += QString().setNum( filecount ) + " " + QString( tr( "files" )) + "\n";
-    }
+    msg += tr( "%n file(s)", "files", filecount ) + "\n";
 
     msg += tr( "are imported." );
 

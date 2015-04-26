@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+/<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
@@ -1759,7 +1759,7 @@ It is necessary because I&apos;d like to save the config file into your home dir
     <message>
         <location line="+219"/>
         <source>modified</source>
-        <translation>Hyperův CD katalogizer (upravený)</translation>
+        <translation>upravený</translation>
     </message>
     <message>
         <source>Hyper&apos;s CD Catalogizer</source>
