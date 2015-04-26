@@ -2876,7 +2876,7 @@ konvertálja
     </message>
     <message>
         <location line="-5"/>
-        <source>You must be fill the &quot;Filename&quot; field!</source>
+        <source>The  &quot;Filename&quot; field can not be empty.</source>
         <translation>A &quot;fájlnév&quot; mező kitöltése kötelező!</translation>
     </message>
     <message>
@@ -2884,7 +2884,7 @@ konvertálja
         <translation type="obsolete">Ok</translation>
     </message>
     <message>
-        <source>You must be fill the &quot;Seperator&quot; field!</source>
+        <source>The  &quot;Seperator&quot; field can not be empty.</source>
         <translation type="obsolete">A &quot;szeparátor&quot; mező kitöltése kötelező!</translation>
     </message>
     <message>
@@ -3051,11 +3051,11 @@ konvertálja
         <translation type="obsolete">Válaszd ki ezt ha gtktalog xml fájlt importálsz</translation>
     </message>
     <message>
-        <source>You must fill the &quot;Filename&quot; field!</source>
+        <source>The  &quot;Filename&quot; field can not be empty.</source>
         <translation type="obsolete">A &quot;fájlnév&quot; mező kitöltése kötelező!</translation>
     </message>
     <message>
-        <source>You must fill the &quot;Seperator&quot; field!</source>
+        <source>The  &quot;Seperator&quot; field can not be empty.</source>
         <translation type="obsolete">A &quot;szeparátor&quot; mező kitöltése kötelező!</translation>
     </message>
     <message>
@@ -3112,7 +3112,7 @@ konvertálja
     </message>
     <message>
         <location line="+23"/>
-        <source>You must be fill the &quot;Separator&quot; field!</source>
+        <source>The  &quot;Separator&quot; field can not be empty.</source>
         <translation>Ki kell töltened a &quot;Szeparátor&quot; mezőt!</translation>
     </message>
     <message>
@@ -4466,7 +4466,7 @@ Létreh. dátuma</translation>
     </message>
     <message>
         <location line="-32"/>
-        <source>You must be fill the &quot;Name&quot; field!</source>
+        <source>The  &quot;Name&quot; field can not be empty.</source>
         <translation>Ki kell töltened a &quot;Név&quot; mezőt!</translation>
     </message>
     <message>

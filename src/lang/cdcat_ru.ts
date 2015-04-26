@@ -2564,12 +2564,12 @@ the Database may be incomplete</source>
     </message>
     <message>
         <location line="+7"/>
-        <source>You must be fill the &quot;Filename&quot; field!</source>
+        <source>The  &quot;Filename&quot; field can not be empty.</source>
         <translation>Вым необходимо заполнить поле &quot;Имя файла&quot;!</translation>
     </message>
     <message>
         <location line="+5"/>
-        <source>You must be fill the &quot;Separator&quot; field!</source>
+        <source>The  &quot;Separator&quot; field can not be empty.</source>
         <translation>Вам необходимо заполнить поле &quot;Разделитель&quot;</translation>
     </message>
     <message>
@@ -3803,7 +3803,7 @@ the Database may be incomplete</source>
     </message>
     <message>
         <location line="-32"/>
-        <source>You must be fill the &quot;Name&quot; field!</source>
+        <source>The  &quot;Name&quot; field can not be empty.</source>
         <translation>Вым необходимо заполнить поле &quot;Имя&quot;!</translation>
     </message>
     <message>

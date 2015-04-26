@@ -2603,12 +2603,12 @@ será
     </message>
     <message>
         <location line="+7"/>
-        <source>You must be fill the &quot;Filename&quot; field!</source>
+        <source>The  &quot;Filename&quot; field can not be empty.</source>
         <translation>Tem de preencher o campo \&quot;Nome do Ficheiro\&quot;!</translation>
     </message>
     <message>
         <location line="+5"/>
-        <source>You must be fill the &quot;Separator&quot; field!</source>
+        <source>The  &quot;Separator&quot; field can not be empty.</source>
         <translation>Tem de preencher o campo \&quot;Separador\&quot;!</translation>
     </message>
     <message>
@@ -3918,7 +3918,7 @@ será
     </message>
     <message>
         <location line="-32"/>
-        <source>You must be fill the &quot;Name&quot; field!</source>
+        <source>The  &quot;Name&quot; field can not be empty.</source>
         <translation>Tem de preencher o campo \&quot;Nome\&quot;!</translation>
     </message>
     <message>

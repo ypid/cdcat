@@ -2498,7 +2498,7 @@ will be to
     </message>
     <message>
         <location line="-5"/>
-        <source>You must be fill the &quot;Filename&quot; field!</source>
+        <source>The  &quot;Filename&quot; field can not be empty.</source>
         <translation type="unfinished">Πρέπει να συμπληρωθεί το πεδίο &quot;Όνομα αρχείου&quot;!</translation>
     </message>
     <message>
@@ -2506,7 +2506,7 @@ will be to
         <translation type="obsolete">Ok</translation>
     </message>
     <message>
-        <source>You must be fill the &quot;Seperator&quot; field!</source>
+        <source>The  &quot;Seperator&quot; field can not be empty.</source>
         <translation type="obsolete">Πρέπει να συμπληρωθεί το πεδίο &quot;Separator&quot;!</translation>
     </message>
     <message>
@@ -2674,7 +2674,7 @@ will be to
     </message>
     <message>
         <location line="+12"/>
-        <source>You must be fill the &quot;Separator&quot; field!</source>
+        <source>The  &quot;Separator&quot; field can not be empty.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3945,7 +3945,7 @@ will be to
     </message>
     <message>
         <location line="-32"/>
-        <source>You must be fill the &quot;Name&quot; field!</source>
+        <source>The  &quot;Name&quot; field can not be empty.</source>
         <translation>Πρέπει να συμπληρωθεί το πεδίο &quot;Όνομα&quot;!</translation>
     </message>
     <message>

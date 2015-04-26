@@ -2562,7 +2562,7 @@ the Database may be incomplete</source>
     </message>
     <message>
         <location line="-5"/>
-        <source>You must be fill the &quot;Filename&quot; field!</source>
+        <source>The  &quot;Filename&quot; field can not be empty.</source>
         <translation>Musisz uzupełnić pole &quot;Nazwa pliku&quot;!</translation>
     </message>
     <message>
@@ -2570,7 +2570,7 @@ the Database may be incomplete</source>
         <translation type="obsolete">Ok</translation>
     </message>
     <message>
-        <source>You must be fill the &quot;Seperator&quot; field!</source>
+        <source>The  &quot;Seperator&quot; field can not be empty.</source>
         <translation type="obsolete">Musisz uzupełnić pole &quot;Seperator&quot;!</translation>
     </message>
     <message>
@@ -2692,11 +2692,11 @@ zostanie zmieniony na
         <translation type="obsolete">Zaznacz to aby importować plik XML wygenerowany w gtktalog</translation>
     </message>
     <message>
-        <source>You must fill the &quot;Filename&quot; field!</source>
+        <source>The  &quot;Filename&quot; field can not be empty.</source>
         <translation type="obsolete">Musisz uzupełnić pole &quot;Nazwa pliku&quot;!</translation>
     </message>
     <message>
-        <source>You must fill the &quot;Seperator&quot; field!</source>
+        <source>The  &quot;Seperator&quot; field can not be empty.</source>
         <translation type="obsolete">Musisz uzupełnić pole &quot;Seperator&quot;!</translation>
     </message>
     <message>
@@ -2798,7 +2798,7 @@ zostanie zmieniony na
     </message>
     <message>
         <location line="+12"/>
-        <source>You must be fill the &quot;Separator&quot; field!</source>
+        <source>The  &quot;Separator&quot; field can not be empty.</source>
         <translation>Musisz uzupełnić pole &quot;Separator&quot;!</translation>
     </message>
     <message>
@@ -4132,7 +4132,7 @@ zostanie zmieniony na
     </message>
     <message>
         <location line="-32"/>
-        <source>You must be fill the &quot;Name&quot; field!</source>
+        <source>The  &quot;Name&quot; field can not be empty.</source>
         <translation>Musisz uzupełnić pole &quot;nazwa&quot;!</translation>
     </message>
     <message>

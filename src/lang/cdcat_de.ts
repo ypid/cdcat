@@ -2369,7 +2369,7 @@ Homepage: %3</source>
     </message>
     <message>
         <location line="-5"/>
-        <source>You must be fill the &quot;Filename&quot; field!</source>
+        <source>The  &quot;Filename&quot; field can not be empty.</source>
         <translation>Das &quot;Dateiname&quot;-Feld darf nicht leer sein.</translation>
     </message>
     <message>
@@ -2466,7 +2466,7 @@ wird zu
     </message>
     <message>
         <location line="+28"/>
-        <source>You must be fill the &quot;Separator&quot; field!</source>
+        <source>The  &quot;Separator&quot; field can not be empty.</source>
         <translation>Das \&quot;Trennzeichen\&quot;-Feld darf nicht leer sein.</translation>
     </message>
     <message>
@@ -3805,7 +3805,7 @@ wird zu
     </message>
     <message>
         <location line="-32"/>
-        <source>You must be fill the &quot;Name&quot; field!</source>
+        <source>The  &quot;Name&quot; field can not be empty.</source>
         <translation>Das \&quot;Name\&quot;-Feld darf nicht leer sein.</translation>
     </message>
     <message>

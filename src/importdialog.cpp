@@ -367,12 +367,12 @@ void ImportDialog::languageChange() {
 
 int ImportDialog::bOk( void ) {
     if ((filename_lineedit->text()).isEmpty()) {
-        QMessageBox::warning( this, tr( "Error:" ), tr( "You must be fill the \"Filename\" field!" ));
+        QMessageBox::warning( this, tr( "Error:" ), tr( "The  \"Filename\" field can not be empty." ));
         return 0;
     }
 
     if (importTypeCsvGtktalog->isChecked() && separator_lineedit->text().isEmpty()) {
-        QMessageBox::warning( this, tr( "Error:" ), tr( "You must be fill the \"Separator\" field!" ));
+        QMessageBox::warning( this, tr( "Error:" ), tr( "The  \"Separator\" field can not be empty." ));
         return 0;
     }
 

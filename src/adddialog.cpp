@@ -368,7 +368,7 @@ int addDialog::setMediaName( const QString & ds ) {
 
 int addDialog::bOk( void ) {
     if ((leName->text()).isEmpty() && !(cbType->currentIndex() == CD || cbType->currentIndex() == DVD)) {
-        QMessageBox::warning((QWidget *)this, tr( "Error:" ), tr( "You must be fill the \"Name\" field!" ));
+        QMessageBox::warning((QWidget *)this, tr( "Error:" ), tr( "The  \"Name\" field can not be empty." ));
         return 0;
     }
 

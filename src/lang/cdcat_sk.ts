@@ -2574,11 +2574,11 @@ the Database may be incomplete</source>
         <translation type="obsolete">Import XML súborov generovaných gtkatalógom</translation>
     </message>
     <message>
-        <source>You must fill the &quot;Filename&quot; field!</source>
+        <source>The  &quot;Filename&quot; field can not be empty.</source>
         <translation type="obsolete">Nebolo zadané meno súboru !</translation>
     </message>
     <message>
-        <source>You must fill the &quot;Seperator&quot; field!</source>
+        <source>The  &quot;Seperator&quot; field can not be empty.</source>
         <translation type="obsolete">Nebol zadaný separátor !</translation>
     </message>
     <message>
@@ -2699,12 +2699,12 @@ na
     </message>
     <message>
         <location line="+7"/>
-        <source>You must be fill the &quot;Filename&quot; field!</source>
+        <source>The  &quot;Filename&quot; field can not be empty.</source>
         <translation>Nebolo zadané meno súboru !</translation>
     </message>
     <message>
         <location line="+5"/>
-        <source>You must be fill the &quot;Separator&quot; field!</source>
+        <source>The  &quot;Separator&quot; field can not be empty.</source>
         <translation>Nebolo zadaný separátor!</translation>
     </message>
     <message>
@@ -4038,7 +4038,7 @@ na
     </message>
     <message>
         <location line="-32"/>
-        <source>You must be fill the &quot;Name&quot; field!</source>
+        <source>The  &quot;Name&quot; field can not be empty.</source>
         <translation>Nebolo zadané meno súboru !</translation>
     </message>
     <message>

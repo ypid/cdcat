@@ -2751,12 +2751,12 @@ deviendra
     </message>
     <message>
         <location line="+18"/>
-        <source>You must be fill the &quot;Filename&quot; field!</source>
+        <source>The  &quot;Filename&quot; field can not be empty.</source>
         <translation>Le champ &quot;Nom de Fichier&quot; doit être renseigné !</translation>
     </message>
     <message>
         <location line="+5"/>
-        <source>You must be fill the &quot;Separator&quot; field!</source>
+        <source>The  &quot;Separator&quot; field can not be empty.</source>
         <translation>Le champ &quot;Séparateur&quot; doit être renseigné !</translation>
     </message>
     <message>
@@ -4157,7 +4157,7 @@ deviendra
     </message>
     <message>
         <location line="-32"/>
-        <source>You must be fill the &quot;Name&quot; field!</source>
+        <source>The  &quot;Name&quot; field can not be empty.</source>
         <translation>Le champ &quot;Nom&quot; doit être renseigné !</translation>
     </message>
     <message>

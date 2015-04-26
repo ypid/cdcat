@@ -2650,7 +2650,7 @@ bude
     </message>
     <message>
         <location line="-5"/>
-        <source>You must be fill the &quot;Filename&quot; field!</source>
+        <source>The  &quot;Filename&quot; field can not be empty.</source>
         <translation>Musíte vyplnit políčko &quot;Název souboru&quot;!</translation>
     </message>
     <message>
@@ -2658,7 +2658,7 @@ bude
         <translation type="obsolete">OK</translation>
     </message>
     <message>
-        <source>You must be fill the &quot;Seperator&quot; field!</source>
+        <source>The  &quot;Seperator&quot; field can not be empty.</source>
         <translation type="obsolete">Musíte vyplnit políčko &quot;Oddělovač&quot;!</translation>
     </message>
     <message>
@@ -2748,11 +2748,11 @@ bude (new line)
         <translation type="obsolete">Vyberte toto pro import XML souborů generovaných Gtkatalogem</translation>
     </message>
     <message>
-        <source>You must fill the &quot;Filename&quot; field!</source>
+        <source>The  &quot;Filename&quot; field can not be empty.</source>
         <translation type="obsolete">Musíte vyplnit políčko &quot;Název souboru&quot;!</translation>
     </message>
     <message>
-        <source>You must fill the &quot;Seperator&quot; field!</source>
+        <source>The  &quot;Seperator&quot; field can not be empty.</source>
         <translation type="obsolete">Musíte vyplnit políčko &quot;Oddělovač&quot;!</translation>
     </message>
     <message>
@@ -2859,7 +2859,7 @@ bude změněno na
     </message>
     <message>
         <location line="+12"/>
-        <source>You must be fill the &quot;Separator&quot; field!</source>
+        <source>The  &quot;Separator&quot; field can not be empty.</source>
         <translation>Musíte vyplnit políčko &quot;Oddělovač&quot;!</translation>
     </message>
     <message>
@@ -4197,7 +4197,7 @@ bude změněno na
     </message>
     <message>
         <location line="-32"/>
-        <source>You must be fill the &quot;Name&quot; field!</source>
+        <source>The  &quot;Name&quot; field can not be empty.</source>
         <translation>Musíte vyplnit políčko &quot;Název&quot;!</translation>
     </message>
     <message>

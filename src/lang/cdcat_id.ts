@@ -2603,12 +2603,12 @@ menjadi
     </message>
     <message>
         <location line="+7"/>
-        <source>You must be fill the &quot;Filename&quot; field!</source>
+        <source>The  &quot;Filename&quot; field can not be empty.</source>
         <translation>Anda harus mengisi field &quot;Nama file&quot;!</translation>
     </message>
     <message>
         <location line="+5"/>
-        <source>You must be fill the &quot;Separator&quot; field!</source>
+        <source>The  &quot;Separator&quot; field can not be empty.</source>
         <translation>Anda harus mengisi field &quot;Pemisah&quot;!</translation>
     </message>
     <message>
@@ -3915,7 +3915,7 @@ menjadi
     </message>
     <message>
         <location line="-32"/>
-        <source>You must be fill the &quot;Name&quot; field!</source>
+        <source>The  &quot;Name&quot; field can not be empty.</source>
         <translation>Anda harus mengisi field &quot;Nama&quot;!</translation>
     </message>
     <message>
