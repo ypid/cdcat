@@ -215,6 +215,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave *parent, QString separator, QStr
     QString category = "";
     QDateTime datetime;
     QString import_filename = filename;
+    QString last_fullpath;
 
     medialines = new QList<lineObject> ();
     // medialines->setAutoDelete( true );  // the list owns the objects
@@ -1588,6 +1589,10 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave *parent, QString separator, QStr
                     msg += "comment: " + comment + "\n";
                     msg += "category: " + category;
                     qDebug() << "msg: " << msg.replace( '\n', "\n\t" );
+                    if (last_fullpath.contains(fullpath)) {
+                        qWarning() << "\"" << last_fullpath << "\" contains \"" << fullpath << "\", skipping.";
+                        continue;
+                    }
                 } /* }}} */
             } else {
                 QMessageBox::warning( 0, tr( "unknown import type" ), tr( "unknown import type: %1" ).arg( csvtype ));
@@ -1599,7 +1604,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave *parent, QString separator, QStr
             }
 
             if (medianame != new_medianame) {
-                //        QMessageBox::warning (0, "info", medianame);
+                       QMessageBox::warning (0, "info", medianame);
                 addNewMedia( medianame, datetime, comment, category, medialines );
                 medialines->clear();
                 medianame = new_medianame;
@@ -1610,6 +1615,7 @@ importGtktalogCsv::importGtktalogCsv ( GuiSlave *parent, QString separator, QStr
             }
         }             // valid line
         linecount++;
+        last_fullpath = fullpath;
         progress->setValue( linecount );
         if (parent->mainw->app->hasPendingEvents()) {
             parent->mainw->app->processEvents();

@@ -67,7 +67,8 @@ QList<QList<QString> > getImportPatternList() {
     tmplist.clear();
 
     tmplist.append( QString( "%fullpath%" ));
-    tmplist.append( QString( "(([\\/\\" ) + QDir::separator() + "]|)([0-9a-zA-Z\\_\\-\\.\\+\\= \\~]+))+" );
+    // tmplist.append( QString( "(([\\/\\" ) + QDir::separator() + "]|)([0-9a-zA-Z\\_\\-\\.\\+\\= \\~]+))+" );
+    tmplist.append( QString( ".+" ));
     tmplist.append( QObject::tr( "full path (including directory name and file name)" ));
     regex_pattern_list.append( tmplist );
     tmplist.clear();
@@ -363,6 +364,7 @@ void ImportDialog::languageChange() {
     genericRegexTipText += "</table>";
     genericRegexTipText += tr( "Example:" );
     // FIXME: Change to du --all --time --bytes --time-style full-iso
+    // %sizeb%%tab%%dateyear4%%space%%time_hm%%tab%%fullpath%
     genericRegexTipText += "<br><i><b>du --all --human-readable --time<b/>: %size_human%%tab%%dateyear4%%space%%time_hm%%tab%%fullpath%<i>";
     genericRegexInfo->setToolTip( genericRegexTipText );
     newdatabase->setText( tr( "Create new Data&base" ));

@@ -812,7 +812,7 @@ int GuiSlave::updateListFromNode( Node *pdir ) {
 int GuiSlave::standOn( QTreeWidgetItem *on, int ) {
     DEBUG_INFO_ENABLED = init_debug_info();
     if (*DEBUG_INFO_ENABLED) {
-        qDebug();
+        // qDebug();
     }
     Node *tmp;
 
@@ -834,7 +834,7 @@ int GuiSlave::standOn( QTreeWidgetItem *on, int ) {
     }
 
     if (*DEBUG_INFO_ENABLED) {
-        qDebug() << "2";
+        // qDebug() << "2";
     }
 
     tmp = NodePwd->child;
@@ -845,22 +845,22 @@ int GuiSlave::standOn( QTreeWidgetItem *on, int ) {
         }
     }
     if (*DEBUG_INFO_ENABLED) {
-        qDebug() << "3";
+        // qDebug() << "3";
     }
     standON = tmp;
     last_dirview_item = on;
 
     if (*DEBUG_INFO_ENABLED) {
-        qDebug() << "4";
+        // qDebug() << "4";
     }
     mainw->commentWidget->showNode( tmp, 0 );
     mainw->commentWidget->updateContents();
     if (*DEBUG_INFO_ENABLED) {
-        qDebug() << "5";
+        // qDebug() << "5";
     }
     updateStatusl( tmp );
     if (*DEBUG_INFO_ENABLED) {
-        qDebug() << "6";
+        // qDebug() << "6";
     }
 
     return 0;
