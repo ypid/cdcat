@@ -175,6 +175,7 @@ void HQListView::start( void ) {
 
 HQListView::HQListView ( CdCatMainWidget *mw, QWidget *parent, const char *, Qt::WindowFlags )
     : QTreeWidget( parent ) {
+
     mainw = mw;
     setColumnCount( 3 );
     QStringList labels;
@@ -221,7 +222,8 @@ void HQListView::keyPressEvent( QKeyEvent *ke ) {
 
 
     if (mainw->guis->hotKeys( ke )) {
-        return;         // It was a hotkey and it's handled yet
+        // It was a hotkey and it's handled yet
+        return;
     }
     if (mainw->db == NULL) {
         return;
@@ -1808,7 +1810,7 @@ int GuiSlave::addEvent( void ) {
         }
 
         if (*DEBUG_INFO_ENABLED) {
-            qDebug() << "Scanning " << qPrintable( d->dDir ) << " into " << qPrintable( d->dName );
+            qDebug() << "Scanning" << qPrintable( d->dDir ) << "into" << qPrintable( d->dName );
         }
 
         i = mainw->db->addMedia( d->dDir, d->dName, d->serial, d->type,

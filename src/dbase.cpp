@@ -939,7 +939,7 @@ int DataBase::openDB( char *filename ) {
 
     ((DBCatalog *)(root->data))->writed = 1;
     strcpy(((DBCatalog *)(root->data))->filename, filename );
-    qDebug() << "isEncryptedCatalog: " << ((DBCatalog *)(root->data))->isEncryptedCatalog;
+    qDebug() << "isEncryptedCatalog:" << ((DBCatalog *)(root->data))->isEncryptedCatalog;
     progress( pww );
 
     gzclose( f );
@@ -966,15 +966,15 @@ int DataBase::scanFsToNode( QString what, Node *to ) {
     QDir dir( what );
     if (!dir.isReadable()) {
         if (*DEBUG_INFO_ENABLED) {
-            qDebug() << "dir " << qPrintable( what ) << " is not readable";
+            qWarning() << "dir " << qPrintable( what ) << " is not readable";
         }
 
         int i = 0;
         if (!ignoreReadErrors) {
             if (QFileInfo( what ).isDir()) {
                 errormsg = tr( "Cannot read directory: %1" ).arg( what );
-            } else {
-                errormsg = tr( "Cannot read file: %1" ).arg( what );                   /* socket files and dead symbolic links end here */
+            } else { /* socket files and dead symbolic links end here */
+                errormsg = tr( "Cannot read file: %1" ).arg( what );
             }
             i = 1 + (QMessageBox::warning( NULL, tr( "Error" ), errormsg, tr( "Ignore" ), tr( "Cancel scanning" )));
         }
@@ -992,13 +992,14 @@ int DataBase::scanFsToNode( QString what, Node *to ) {
         }
 
         if (*DEBUG_INFO_ENABLED) {
-            qDebug() << "processing in dir " << qPrintable( what ) << " node: " << qPrintable( fileInfo.fileName());
+            qDebug() << "processing in dir" << qPrintable( what ) << "node:" << qPrintable( fileInfo.fileName());
         }
 
         if (showProgressedFileInStatus) {
             emit pathScanned( fileInfo.filePath());
         }
 
+        /* Check against exclude list {{{ */
         if (doExcludeFiles) {
             bool exclude_path_matched = false;
             for (int i = 0; i < excludeFileRegExList.size(); i++) {
@@ -1016,9 +1017,9 @@ int DataBase::scanFsToNode( QString what, Node *to ) {
             if (exclude_path_matched) {
                 continue;
             }
-        }
+        } /* }}} */
 
-        /* Make a new node */
+        /* Make a new node {{{ */
         Node *tt = to->child;
         if (to->child == NULL) {
             to->child = tt = new Node( fileInfo.isDir() ? HC_DIRECTORY : HC_FILE, to );
@@ -1028,21 +1029,20 @@ int DataBase::scanFsToNode( QString what, Node *to ) {
             tt->next = new Node( fileInfo.isDir() ? HC_DIRECTORY : HC_FILE, to );
             tt = tt->next;
         }
-        /*Fill the data field */
-        if (fileInfo.isFile()) {           /* FILE */
+        /* Fill the data field */
+        if (fileInfo.isFile()) { /* File {{{ */
             if (*DEBUG_INFO_ENABLED) {
-                qDebug() << "adding file: " << qPrintable( fileInfo.fileName());
+                qDebug() << "Scanning file: " << qPrintable( fileInfo.fileName());
             }
 
             // if ( displayCurrentScannedFileInTray ) {
             //	emit fileScanned ( fileInfo->filePath() );
             // }
 
+            /* File size {{{ */
             double size = fileInfo.size();
             double s = size;
             int st = UNIT_BYTE;
-//                      if ( *DEBUG_INFO_ENABLED )
-//                              qDebug() << "adding file size: " << s;
 
             if (size >= (double)SIZE_ONE_GBYTE * 1024.0) {
                 s = size / SIZE_ONE_GBYTE / 1024.0;
@@ -1067,13 +1067,14 @@ int DataBase::scanFsToNode( QString what, Node *to ) {
                 }
             }
 
-//                      if ( *DEBUG_INFO_ENABLED )
-//                              qDebug() << "adding file size 2: " << qPrintable ( QString().setNum ( s ) ) << qPrintable ( getSType ( st ) );
+            if ( *DEBUG_INFO_ENABLED ) {
+                qDebug() << "Saving file size:" << QString().setNum( s ) << qPrintable ( getSType ( st ) );
+            }
 
             progress( pww );
 
-            if (fileInfo.isSymLink()) {               /* SYMBOLIC LINK to a FILE */
-                comm = tr( "Symbolic link to file:#" )
+            if (fileInfo.isSymLink()) { /* SYMBOLIC LINK to a FILE */
+                    comm = tr( "Symbolic link to file:#" )
                        + dir.relativeFilePath( fileInfo.symLinkTarget());
             } else {
                 comm = (char *)NULL;
@@ -1098,7 +1099,14 @@ int DataBase::scanFsToNode( QString what, Node *to ) {
                         }
                     }
                     if (doScanArchiveLib7zip) {
-                        if (Lib7zipTypes.contains( extension ) && !(fileInfo.fileName().toLower().section( '.', -1, -1 ) == "tar" || fileInfo.fileName().toLower().section( '.', -2, -1 ) == "tar.gz" || fileInfo.fileName().toLower().section( '.', -2, -1 ) == "tar.bz2")) {
+                        if (Lib7zipTypes.contains( extension )
+                            && !(
+                                   fileInfo.fileName().toLower().section( '.', -1, -1 ) == "tar"
+                                || fileInfo.fileName().toLower().section( '.', -2, -1 ) == "tar.gz"
+                                || fileInfo.fileName().toLower().section( '.', -2, -1 ) == "tar.bz2"
+                                )
+                            ) {
+
                             if (*DEBUG_INFO_ENABLED) {
                                 qDebug() << "lib7zip found: " << qPrintable( what + "/" + fileInfo.fileName());
                             }
@@ -1110,16 +1118,16 @@ int DataBase::scanFsToNode( QString what, Node *to ) {
             tt->data = (void *)new DBFile( fileInfo.fileName(), fileInfo.lastModified(), comm, s, st, this->pcategory, archivecontent );
             archivecontent.clear();
             scanFileProp( &fileInfo, (DBFile *)tt->data );
-        } else if (fileInfo.isDir()) {            /* DIRECTORY */
+        } else if (fileInfo.isDir()) { /* Directory {{{ */
             if (*DEBUG_INFO_ENABLED) {
-                qDebug() << "adding dir: " << qPrintable( fileInfo.fileName());
+                qDebug() << "Adding dir:" << qPrintable( fileInfo.fileName());
             }
 
             progress( pww );
 
             if (fileInfo.isSymLink()) {                       /* SYMBOLIC LINK to a DIRECTORY */
                 /* These links appear as empty directories in the GUI */
-                /* Change to DBFile for show them as files */
+                /* Change to DBFile to show them as files */
                 tt->data = (void *)new DBDirectory(
                     fileInfo.fileName(), fileInfo.lastModified(),
                     tr( "Symbolic link to directory:#" )
@@ -1144,7 +1152,7 @@ int DataBase::scanFsToNode( QString what, Node *to ) {
             }
         } else if (fileInfo.isSymLink()) {                    /* DEAD SYMBOLIC LINK */
             if (*DEBUG_INFO_ENABLED) {
-                qDebug() << "adding dead symlink: " << qPrintable( fileInfo.fileName());
+                qDebug() << "adding dead symlink:" << qPrintable( fileInfo.fileName());
             }
 
             progress( pww );
@@ -1167,6 +1175,7 @@ int DataBase::scanFsToNode( QString what, Node *to ) {
         if (pww->appl->hasPendingEvents()) {
             pww->appl->processEvents();
         }
+        /* }}} */
     }    /* end of for,..next directory entry */
     return ret;
 }
@@ -1182,7 +1191,7 @@ int DataBase::scanFileProp( QFileInfo *fi, DBFile *fc ) {
     QString file_name = fi->fileName();
     qint64 file_size = fi->size();
 
-    /***MP3 tag scanning */
+    /* MP3 tag scanning {{{ */
     if (storeMp3tags || storeMp3techinfo) {
         if (file_suffix.toLower() == "mp3" || file_suffix.toLower() == "mp2") {
             if (showProgressedFileInStatus) {
@@ -1207,14 +1216,16 @@ int DataBase::scanFileProp( QFileInfo *fi, DBFile *fc ) {
                         tt->next = new Node( HC_MP3TAG, fc->prop );
                         tt = tt->next;
                     }
-                    /*Fill the fields:*/
-                    tt->data = (void *)new DBMp3Tag( QString::fromLocal8Bit( reader->artist()),
-                                                     QString::fromLocal8Bit( reader->title()),
-                                                     QString::fromLocal8Bit( reader->comment()),
-                                                     QString::fromLocal8Bit( reader->album()),
-                                                     QString::fromLocal8Bit( reader->year()),
-                                                     reader->tnum());
-                }                // storetag-if
+                    /* Fill the fields: */
+                    tt->data = (void *)new DBMp3Tag(
+                        QString::fromLocal8Bit( reader->artist()),
+                        QString::fromLocal8Bit( reader->title()),
+                        QString::fromLocal8Bit( reader->comment()),
+                        QString::fromLocal8Bit( reader->album()),
+                        QString::fromLocal8Bit( reader->year()),
+                        reader->tnum()
+                    );
+                }
             }
             // Put some technical info to comment
             if (storeMp3techinfo) {
@@ -1226,16 +1237,16 @@ int DataBase::scanFileProp( QFileInfo *fi, DBFile *fc ) {
                     fc->comment.append( info );
                     delete [] info;
                 }
-            }            // storeinfo-if
+            }
             if (reader != NULL) {
                 delete reader;
                 reader = NULL;
             }
         }
-    }
+    } /* }}} */
 
+    /* Media info scanning {{{ */
 #ifndef NO_MEDIAINFO
-    /* using fileinfo */
     if (storeFileInfo && me.getMediaInfoLibFound()) {
         if (SupportedFileInfoExtensionsList.contains( file_suffix.toLower())) {
             if (showProgressedFileInStatus) {
@@ -1260,46 +1271,46 @@ int DataBase::scanFileProp( QFileInfo *fi, DBFile *fc ) {
         }
     }
 #endif
+    /* }}} */
 
-    /***Experimental AVI Header Scanning  */
-    if (storeAvitechinfo) {
-        if ((file_suffix).toLower() == "avi") {
+    /* Experimental AVI Header Scanning {{{ */
+    if (storeAvitechinfo && (file_suffix).toLower() == "avi") {
+        FILE *filePTR;
+        filePTR = fopen((const char *)QFile::encodeName( file_abspath ), "r" );
+        if (filePTR != NULL) {
             if (showProgressedFileInStatus) {
                 emit pathExtraInfoAppend( tr( "reading avi info" ));
             }
             if (*DEBUG_INFO_ENABLED) {
-                qDebug() << "reading avi info for " << qPrintable( file_path );
+                qDebug() << "reading avi info for:" << qPrintable( file_path );
             }
-            FILE *filePTR;
-            filePTR = fopen((const char *)QFile::encodeName( file_abspath ), "r" );
-            if (filePTR != NULL) {
-                QString got = parseAviHeader( filePTR ).replace( QRegExp( "\n" ), "#" );
-                fclose( filePTR );
 
-                if (*DEBUG_INFO_ENABLED) {
-                    qDebug() << "avi info for " << qPrintable( file_path ) << ": " << qPrintable( got );
-                }
+            QString got = parseAviHeader( filePTR ).replace( QRegExp( "\n" ), "#" );
+            fclose( filePTR );
 
-                if (pww->appl->hasPendingEvents()) {
-                    pww->appl->processEvents();
-                }
+            if (*DEBUG_INFO_ENABLED) {
+                qDebug() << "avi info for " << qPrintable( file_path ) << ": " << qPrintable( got );
+            }
 
-                // store it as comment
-                if (!got.isEmpty()) {
-                    if (!fc->comment.isEmpty()) {
-                        fc->comment.append( "#" );
-                    }
-                    fc->comment.append( got );
+            if (pww->appl->hasPendingEvents()) {
+                pww->appl->processEvents();
+            }
+
+            // store it as comment
+            if (!got.isEmpty()) {
+                if (!fc->comment.isEmpty()) {
+                    fc->comment.append( "#" );
                 }
-            } else {
-                if (*DEBUG_INFO_ENABLED) {
-                    qWarning() << "could not reading avi info for " << qPrintable( file_path );
-                }
+                fc->comment.append( got );
+            }
+        } else {
+            if (*DEBUG_INFO_ENABLED) {
+                qWarning() << "could not reading avi info for:" << qPrintable( file_path );
             }
         }
-    }
+    } /* }}} */
 
-    /***File content scanning */
+    /* File content scanning {{{ */
     if (storeContent) {
         //         pcre       *pcc = NULL;
         //         const char *error;
@@ -1310,7 +1321,7 @@ int DataBase::scanFileProp( QFileInfo *fi, DBFile *fc ) {
         QStringList exts = storedFiles.split( ";" );
         QStringList::Iterator it = exts.begin();
 
-        for (; it != exts.end(); ++it) {           // stepping on the ; separated patterns
+        for (; it != exts.end(); ++it) { // Iterate over the ';' separated patterns.
             strcpy( pattern, ((*it).toLocal8Bit().constData()));
             easyFormConversion( pattern );
             caseSensConversion( pattern );
@@ -1333,7 +1344,7 @@ int DataBase::scanFileProp( QFileInfo *fi, DBFile *fc ) {
             }
         }
 
-        if (match) {           // the file need to be read
+        if (match) { // The file needs to be read.
             FILE *f = NULL;
             bool success = true;
             unsigned long rsize = 0, rrsize = 0;
@@ -1341,7 +1352,7 @@ int DataBase::scanFileProp( QFileInfo *fi, DBFile *fc ) {
             Node *tt = fc->prop;
 
             if (*DEBUG_INFO_ENABLED) {
-                qDebug() << "pattern " << pattern << ", matched for file " << (const char *)QFile::encodeName( file_name ) << ", reading content";
+                qDebug() << "Pattern \"" << pattern << "\", matched for file\"" << (const char *)QFile::encodeName( file_name ) << "\", reading content …";
             }
 
             if (showProgressedFileInStatus) {

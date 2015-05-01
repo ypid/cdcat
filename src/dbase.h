@@ -10,13 +10,9 @@
 #ifndef CDCAT_DBASE
 #define CDCAT_DBASE
 
-#include <QObject>
-#include <QString>
-#include <QStringList>
-#include <QDateTime>
-#include <QLocale>
-#include <QImage>
-
+#ifndef NO_MEDIAINFO
+    #include "cdcatmediainfo.h"
+#endif
 
 #ifdef _WIN32
     typedef int uid_t;
@@ -30,9 +26,12 @@
 
 #include <libtar.h>
 
-#ifndef NO_MEDIAINFO
-    #include "cdcatmediainfo.h"
-#endif
+#include <QObject>
+#include <QString>
+#include <QStringList>
+#include <QDateTime>
+#include <QImage>
+
 
 // values for class Node::type
 #define HC_UNINITIALIZED 0
@@ -443,7 +442,7 @@ private:
 
 public:
     /*
-     * funtions /below/ for make import from another formats:
+     * functions /below/ for make import from another formats:
      * The get..  function try to specify a node and return that node's pointer.
      * If the return value is NULL the node is not exist in that environment
      * (environment: catalog/needn't to specify of course/ in case getMedia..
@@ -451,10 +450,10 @@ public:
      *         media but rather directory in case getFile.. )
      * so you have to use the put … functions to make the node.
      *
-     * Always test the existion a node before you try to create it !!!
+     * Always test the existence a node before you try to create it!
      *
      * example:
-     * you want to add "MY_CD/install/sources/cdcat.tar.bz2" where is MY_CD is the media name:
+     * you want to add "MY_CD/install/sources/cdcat.tar.bz2" where MY_CD is the media name:
      *
      *  Node *env,*curr;
      *  curr = getMediaNode("MY_CD");
@@ -512,4 +511,3 @@ signals:
 // char *getTime        (QDateTimeTime dt); ???
 // char *getCurrentTime (void); ???
 #endif
-

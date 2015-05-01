@@ -222,11 +222,11 @@ int main( int argi, char **argc ) {
 
     CdCatConfig *cconfig;
 
-    if (parser.isSet(optionConfigFile)) {
-        cconfig = new CdCatConfig(parser.value(optionConfigFile));
-    } else {
+    // if (parser.isSet(optionConfigFile)) {
+        // cconfig = new CdCatConfig(parser.value(optionConfigFile));
+    // } else {
         cconfig = new CdCatConfig(NULL);
-    }
+    // }
 
     if (args.size() == 1) {
         QByteArray filename_a = args.at(0).toUtf8();

@@ -1023,7 +1023,7 @@ int FileReader::readFrom( Node *source, bool skipDuplicatesOnInsert, bool only_n
     char tmpbuffer[READ_BLOCKSIZE + 1];
 
     if (*DEBUG_INFO_ENABLED) {
-        qDebug() << "start reading file …";
+        qDebug() << "Start reading file …";
     }
 
     pww->showProgress = true;
