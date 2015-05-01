@@ -113,7 +113,7 @@ QString getCDName( const char *CDpath ) {
         fclose( deviceptr );
 
         if (*DEBUG_INFO_ENABLED) {
-            qDebug() << "getCDName(): " << name;
+            qDebug() << "getCDName():" << name;
         }
         name[32] = '\0';
 

@@ -96,7 +96,7 @@ HQListViewItem::HQListViewItem ( QTreeWidget *parent, QString label1, QString la
 
 bool HQListViewItem::operator <( const QTreeWidgetItem &other ) const {
     // int col = treeWidget()->sortColumn();
-    // qDebug() << "col: " << col << ", text(0): " << qPrintable(text(0)) << ", other.text(0): " << qPrintable(other.text(0));
+    // qDebug() << "col: " << col << ", text(0): " << qPrintable(text(0)) << ", other.text(0):" << qPrintable(other.text(0));
     // this is the item to compare
     if (text( 0 ) == "..") {
         return false;
@@ -447,14 +447,14 @@ Node *GuiSlave::getNodeFromFullName( Node *root, const QString& newloc ) {
     int index = 1;
 
     while (index != strl.size()) {
-//     qDebug() << "index: " << index;
+//     qDebug() << "index:" << index;
         name = strl.at( index - 1 );
         if (*DEBUG_INFO_ENABLED) {
-            qDebug() << "New name: " << qPrintable( name );
+            qDebug() << "New name:" << qPrintable( name );
         }
 
         if (down == 0) {
-            // qDebug() << "step->getNameOf(): " << qPrintable(step->getNameOf());
+            // qDebug() << "step->getNameOf():" << qPrintable(step->getNameOf());
             if (QString( name ) != step->getNameOf()) {
                 return NULL;                 /* error Not matching catalog name! */
             }
@@ -464,10 +464,10 @@ Node *GuiSlave::getNodeFromFullName( Node *root, const QString& newloc ) {
             if (tmp == NULL) {
                 return NULL;                  /* I couldn't find the requested element! */
             }
-            // qDebug() << "1 tmp->getNameOf(): " << qPrintable(tmp->getNameOf());
+            // qDebug() << "1 tmp->getNameOf():" << qPrintable(tmp->getNameOf());
             while (tmp->getNameOf() != QString( name )) {
                 tmp = tmp->next;
-                //	qDebug() << "2 tmp->getNameOf(): " << qPrintable(tmp->getNameOf());
+                //	qDebug() << "2 tmp->getNameOf():" << qPrintable(tmp->getNameOf());
                 if (tmp == NULL) {
                     return NULL;                      /* I couldn't find the requested element! */
                 }
@@ -533,24 +533,24 @@ Node *GuiSlave::getNodeFromFullName( Node *root, const QString& newloc ) {
 int GuiSlave::listUpdate( const QString& newloc ) {
     DEBUG_INFO_ENABLED = init_debug_info();
     if (*DEBUG_INFO_ENABLED) {
-        qDebug() << "F-listUpdate 1 newloc: " << qPrintable( newloc );
+        qDebug() << "F-listUpdate 1 newloc:" << qPrintable( newloc );
     }
     if (mainw->db == NULL) {
         return 0;
     }
     Node *pdir = getNodeFromFullName( mainw->db->getRootNode(), newloc );
     if (*DEBUG_INFO_ENABLED) {
-        qDebug() << "2 newloc: " << qPrintable( newloc );
+        qDebug() << "2 newloc:" << qPrintable( newloc );
     }
     if (pdir) {
         if (*DEBUG_INFO_ENABLED) {
-            qDebug() << "pdir: " << qPrintable( pdir->getNameOf());
+            qDebug() << "pdir:" << qPrintable( pdir->getNameOf());
         }
 
         // standON = pdir;
 
         if (*DEBUG_INFO_ENABLED) {
-            qDebug() << "====> we are now on " << qPrintable( pdir->getNameOf());
+            qDebug() << "====> we are now on" << qPrintable( pdir->getNameOf());
         }
     } else {
         if (*DEBUG_INFO_ENABLED) {
@@ -674,7 +674,7 @@ int GuiSlave::updateListFromNode( Node *pdir ) {
 
             if (tmp->type == HC_FILE) {
                 QString filetype = QString( " " ) + tr( getSType(((DBFile *)(tmp->data))->sizeType, true ).toUtf8().constData());
-                // qDebug() << "file type " << qPrintable(filetype);
+                // qDebug() << "file type" << qPrintable(filetype);
                 if (filetype == " " || filetype.isEmpty()) {
                     filetype = " " + getSType(((DBFile *)(tmp->data))->sizeType, false );
                 }
@@ -798,7 +798,7 @@ int GuiSlave::updateListFromNode( Node *pdir ) {
         mainw->listView->setCurrentItem( mainw->listView->topLevelItem( 0 ));
     }
 
-    // qDebug() << "current elem is \"..\", parent node path: " << qPrintable(pdir->getFullPath());
+    // qDebug() << "current elem is \"..\", parent node path:" << qPrintable(pdir->getFullPath());
     standON = pdir;
 
     mainw->listView->resizeColumnToContents( 0 );
@@ -830,7 +830,7 @@ int GuiSlave::standOn( QTreeWidgetItem *on, int ) {
         mainw->commentWidget->showNode( NodePwd, 1 );
         mainw->commentWidget->updateContents();
         updateStatusl( NodePwd->parent );
-        // qDebug() << "current elem is \"..\", parent node path: " << qPrintable(NodePwd->getFullPath());
+        // qDebug() << "current elem is \"..\", parent node path:" << qPrintable(NodePwd->getFullPath());
         standON = NodePwd;
         return 0;
     }
@@ -1604,7 +1604,7 @@ int GuiSlave::addEvent( void ) {
                 }
             }
             if (*DEBUG_INFO_ENABLED) {
-                qDebug() << "mount program found at: " << arg[0];
+                qDebug() << "mount program found at:" << arg[0];
             }
         }
         if (QFile( "/etc/mtab" ).exists()) {
@@ -1616,22 +1616,22 @@ int GuiSlave::addEvent( void ) {
                 QString line = file.readLine();
                 while (line.length() > 0) {
                     line = file.readLine();
-                    //	qDebug() << "mtab line: " << qPrintable(line);
+                    //	qDebug() << "mtab line:" << qPrintable(line);
                     QStringList mtablist = line.split( ' ' );
                     if (mtablist.size() > 3) {
                         QString mtab_devicepath = mtablist.at( 0 );
                         QString mtab_mountpath = mtablist.at( 1 );
-                        //	qDebug() << "mtab device path: " << qPrintable(mtab_mountpath)<< " <=> " << qPrintable(mainw->cconfig->cdrompath);
+                        //	qDebug() << "mtab device path: " << qPrintable(mtab_mountpath)<< "<=>" << qPrintable(mainw->cconfig->cdrompath);
                         if (mtab_mountpath == mainw->cconfig->cdrompath) {
                             if (*DEBUG_INFO_ENABLED) {
-                                qDebug() << "mount path " << qPrintable( mtab_mountpath ) << " (" << qPrintable( mtab_devicepath ) << ") is already mounted, skipping mount";
+                                qDebug() << "mount path" << qPrintable( mtab_mountpath ) << "(" << qPrintable( mtab_devicepath ) << ") is already mounted, skipping mount";
                             }
                             mount_successful = true;
                             break;
                         }
                         if (mtab_devicepath == mainw->cconfig->cdrompath) {
                             if (*DEBUG_INFO_ENABLED) {
-                                qDebug() << "device path " << qPrintable( mtab_devicepath ) << " is already mounted (" << qPrintable( mtab_mountpath ) << "), skipping mount";
+                                qDebug() << "device path" << qPrintable( mtab_devicepath ) << "is already mounted (" << qPrintable( mtab_mountpath ) << "), skipping mount";
                             }
                             mount_successful = true;
                             cdrom_mountpath = mtab_mountpath;
@@ -1639,7 +1639,7 @@ int GuiSlave::addEvent( void ) {
                             break;
                         }
                     } else {
-                        //	qWarning() << "invalid mtab line: " << qPrintable(line) << ", skipping";
+                        //	qWarning() << "invalid mtab line:" << qPrintable(line) << ", skipping";
                     }
                 }
                 file.close();
@@ -1688,7 +1688,7 @@ int GuiSlave::addEvent( void ) {
                         QString new_medianame = getCDName( cdrom_mountpath.toUtf8().constData());
                         if (!new_medianame.isEmpty()) {
                             if (*DEBUG_INFO_ENABLED) {
-                                qDebug() << "new_medianame after mount: " << qPrintable( new_medianame );
+                                qDebug() << "new_medianame after mount:" << qPrintable( new_medianame );
                             }
                             d->dName = new_medianame;
                         }
@@ -1708,28 +1708,28 @@ int GuiSlave::addEvent( void ) {
                 QString line = file.readLine();
                 while (line.length() > 0) {
                     line = file.readLine();
-                    //	qDebug() << "mtab line: " << qPrintable(line);
+                    //	qDebug() << "mtab line:" << qPrintable(line);
                     QStringList mtablist = line.split( ' ' );
                     if (mtablist.size() > 3) {
                         QString mtab_devicepath = mtablist.at( 0 );
                         QString mtab_mountpath = mtablist.at( 1 );
-                        //	qDebug() << "mtab device path: " << qPrintable(mtab_mountpath)<< " <=> " << qPrintable(mainw->cconfig->cdrompath);
+                        //	qDebug() << "mtab device path: " << qPrintable(mtab_mountpath)<< "<=>" << qPrintable(mainw->cconfig->cdrompath);
                         if (mtab_mountpath == mainw->cconfig->cdrompath) {
                             if (*DEBUG_INFO_ENABLED) {
-                                qDebug() << "mount path " << qPrintable( mtab_mountpath ) << " (" << qPrintable( mtab_devicepath ) << ") is already mounted, skipping mount";
+                                qDebug() << "mount path" << qPrintable( mtab_mountpath ) << "(" << qPrintable( mtab_devicepath ) << ") is already mounted, skipping mount";
                             }
                             break;
                         }
                         if (mtab_devicepath == mainw->cconfig->cdrompath) {
                             if (*DEBUG_INFO_ENABLED) {
-                                qDebug() << "device path " << qPrintable( mtab_devicepath ) << " is already mounted (" << qPrintable( mtab_mountpath ) << "), skipping mount";
+                                qDebug() << "device path" << qPrintable( mtab_devicepath ) << "is already mounted (" << qPrintable( mtab_mountpath ) << "), skipping mount";
                             }
                             cdrom_mountpath = mtab_mountpath;
                             d->dDir = mtab_mountpath;
                             break;
                         }
                     } else {
-                        //	qWarning() << "invalid mtab line: " << qPrintable(line) << ", skipping";
+                        //	qWarning() << "invalid mtab line:" << qPrintable(line) << ", skipping";
                     }
                 }
                 file.close();
@@ -1754,7 +1754,7 @@ int GuiSlave::addEvent( void ) {
 #if !defined(_WIN32) && !defined(_OS2)
     if (((d->type == CD || d->type == DVD) && ((mainw->cconfig->mounteject && mount_successful) || (!mainw->cconfig->mounteject))) || (d->type != CD && d->type != DVD)) {
 #endif
-//              qDebug()<< "media type: " << d->type;
+//              qDebug()<< "media type:" << d->type;
     if (d->type == CD || d->type == DVD) {
         if (mainw->cconfig->cdrompath != cdrom_mountpath) {
             d->setMediaName( mainw->cconfig->cdrompath );
@@ -1762,7 +1762,7 @@ int GuiSlave::addEvent( void ) {
             d->setMediaName( cdrom_mountpath );
         }
         if (*DEBUG_INFO_ENABLED) {
-            qDebug() << "media name for cd: " << qPrintable( d->leName->text());
+            qDebug() << "media name for cd:" << qPrintable( d->leName->text());
         }
         if (d->leName->text().isEmpty()) {
             bool ok;
@@ -1817,7 +1817,7 @@ int GuiSlave::addEvent( void ) {
                                  (d->dOwner.isEmpty() ? QString( "" ) : d->dOwner), (d->dCategory.isEmpty() ? QString( "" ) : d->dCategory));
 
         if (*DEBUG_INFO_ENABLED) {
-            qWarning() << "ret addMedia: " << i;
+            qWarning() << "ret addMedia:" << i;
         }
         if (i == 2) {
             QMessageBox::warning( mainw,
@@ -2354,14 +2354,14 @@ int GuiSlave::typeChangeEvent() {
     }
 
     if (*DEBUG_INFO_ENABLED) {
-        qDebug() << "standON: " << qPrintable( standON->getFullPath()) << ", nodetype: " << standON->type;
+        qDebug() << "standON: " << qPrintable( standON->getFullPath()) << ", nodetype:" << standON->type;
     }
     if (standON->type != HC_MEDIA) {
         return 0;
     }
 
     if (*DEBUG_INFO_ENABLED) {
-        qDebug() << "mediatype: " << ((DBMedia *)(standON->data))->type;
+        qDebug() << "mediatype:" << ((DBMedia *)(standON->data))->type;
     }
     CatalogTypeEditDialog te( mainw, standON );
     te.exec();
@@ -2478,7 +2478,7 @@ int GuiSlave::sizeEvent( void ) {
         }
     }
     if (*DEBUG_INFO_ENABLED) {
-        qDebug() << "node " << qPrintable( standON->getFullPath()) << ", size raw: " << size << ", size: " << s << ", size type: " << st;
+        qDebug() << "node " << qPrintable( standON->getFullPath()) << ", size raw: " << size << ", size: " << s << ", size type:" << st;
     }
 
     sprintf( text, "%.2f", s );
@@ -2872,7 +2872,7 @@ int GuiSlave::showContent( void ) {
                 tmpContentTempFile.write( QByteArray((const char *)((DBContent *)(mynode->data))->bytes ));
                 tmpContentTempFile.close();
             } else {
-                qWarning() << "Cant find node content: " << qPrintable( standON->getFullPath());
+                qWarning() << "Cant find node content:" << qPrintable( standON->getFullPath());
                 return 1;
             }
             QProcess FileContentProcess;
@@ -3329,9 +3329,9 @@ void CatalogTypeEditDialog::languageChange() {
 
 void CatalogTypeEditDialog::okExit() {
     changeOk = true;
-    qWarning() << "mediatype changed from " << ((DBMedia *)(n->data))->type << " to " << cbType->currentIndex() + 1;
+    qWarning() << "mediatype changed from " << ((DBMedia *)(n->data))->type << "to" << cbType->currentIndex() + 1;
     ((DBMedia *)(n->data))->type = cbType->currentIndex() + 1;
-    qWarning() << "mediatype new: " << ((DBMedia *)(n->data))->type + 1;
+    qWarning() << "mediatype new:" << ((DBMedia *)(n->data))->type + 1;
     close();
 }
 
@@ -3340,6 +3340,6 @@ void CatalogTypeEditDialog::cancel() {
 }
 
 void CatalogTypeEditDialog::cbTypeToggeled( int ) {
-    qWarning() << "mediatype changed to " << cbType->currentIndex();
+    qWarning() << "mediatype changed to" << cbType->currentIndex();
 }
 

@@ -143,7 +143,7 @@ char *ReadMp3Tag::strbcut( char *a ) {   // Oly used by A ReadTAG function
 int ReadMp3Tag::Work( const char *filename ) {
     DEBUG_INFO_ENABLED = init_debug_info();
     if (*DEBUG_INFO_ENABLED) {
-        qDebug() << "Load file: " << filename << " ...";
+        qDebug() << "Load file:" << filename << "...";
     }
     bTAGreaded = 1;
     bTAGexist = 0;

@@ -526,7 +526,7 @@ QString parseAviHeader( FILE *file ) {
         while (listDW.hex != LIST) {
             fread((void *)&listDW.txt[0], sizeof(char), 1, file );
             // if ( *DEBUG_INFO_ENABLED )
-            //	qWarning() << "\t=> ( int ) listDW.txt[0]: " << ( int ) listDW.txt[0];
+            //	qWarning() << "\t=> ( int ) listDW.txt[0]:" << ( int ) listDW.txt[0];
             if ((int)listDW.txt[0] == EOF || (int)listDW.txt[0] == 0) {
                 return ReturnData;
             }

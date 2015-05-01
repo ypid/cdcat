@@ -457,7 +457,7 @@ void CommentWidget::updateContents() {
                         p.setPen( cconfig->comm_vtext );
                         QStringList ExifData = ((DBExifData *)(tmp->data))->ExifDataList;
 
-                        // qDebug() << "exif data: " << qPrintable ( ExifData.join ( "#" ) );
+                        // qDebug() << "exif data:" << qPrintable ( ExifData.join ( "#" ) );
                         for (int i = 0; i < ExifData.size(); ++i) {
                             text = ExifData.at( i );
                             p.drawText( mx + 20, my + w, text );
@@ -527,13 +527,13 @@ void CommentWidget::updateContents() {
                     int max_comment_len = 80;
                     int stringlen = (*it).size();
                     if (stringlen > max_comment_len) {
-                        //              qWarning() << "oversized comment line (" << stringlen <<"): " << qPrintable(*it);
+                        //              qWarning() << "oversized comment line (" << stringlen <<"):" << qPrintable(*it);
                         int curlen = 0;
                         QStringList textList2;
                         for (int curidx = 0; curidx < stringlen; curidx++) {
                             if (curlen == max_comment_len) {
                                 textList2.append((*it).mid( curidx - max_comment_len, curidx ));
-                                //                              qWarning() << "added sub comment line (" << (*it).mid(curidx-max_comment_len, curidx).length() <<"): " << qPrintable((*it).mid(curidx-max_comment_len, curidx));
+                                //                              qWarning() << "added sub comment line (" << (*it).mid(curidx-max_comment_len, curidx).length() <<"):" << qPrintable((*it).mid(curidx-max_comment_len, curidx));
                                 curlen = 0;
                             }
                             curlen++;
@@ -543,7 +543,7 @@ void CommentWidget::updateContents() {
                             w += pixelsHigh;
                         }
                     } else {
-                        //              qWarning() << "undersized comment line (" << stringlen <<"): " << qPrintable(*it);
+                        //              qWarning() << "undersized comment line (" << stringlen <<"):" << qPrintable(*it);
                         p.drawText( mx + 20, my + w, (*it));
                         w += pixelsHigh;
                     }
@@ -594,13 +594,13 @@ void CommentWidget::updateContents() {
                     int max_category_len = 80;
                     int stringlen = (*it).size();
                     if (stringlen > max_category_len) {
-                        //              qWarning() << "oversized category line (" << stringlen <<"): " << qPrintable(*it);
+                        //              qWarning() << "oversized category line (" << stringlen <<"):" << qPrintable(*it);
                         int curlen = 0;
                         QStringList textList2;
                         for (int curidx = 0; curidx < stringlen; curidx++) {
                             if (curlen == max_category_len) {
                                 textList2.append((*it).mid( curidx - max_category_len, curidx ));
-                                //                              qWarning() << "added sub category line (" << (*it).mid(curidx-max_category_len, curidx).length() <<"): " << qPrintable((*it).mid(curidx-max_category_len, curidx));
+                                //                              qWarning() << "added sub category line (" << (*it).mid(curidx-max_category_len, curidx).length() <<"):" << qPrintable((*it).mid(curidx-max_category_len, curidx));
                                 curlen = 0;
                             }
                             curlen++;
@@ -610,7 +610,7 @@ void CommentWidget::updateContents() {
                             w += pixelsHigh;
                         }
                     } else {
-                        //              qWarning() << "undersized category line (" << stringlen <<"): " << qPrintable(*it);
+                        //              qWarning() << "undersized category line (" << stringlen <<"):" << qPrintable(*it);
                         p.drawText( mx + 20, my + w, (*it));
                         w += pixelsHigh;
                     }
@@ -765,13 +765,13 @@ void CommentWidget::updateContents() {
                         int max_fileinfo_len = 80;
                         int stringlen = (*it).size();
                         if (stringlen > max_fileinfo_len) {
-                            //          qWarning() << "oversized fileinfo line (" << stringlen <<"): " << qPrintable(*it);
+                            //          qWarning() << "oversized fileinfo line (" << stringlen <<"):" << qPrintable(*it);
                             int curlen = 0;
                             QStringList textList2;
                             for (int curidx = 0; curidx < stringlen; curidx++) {
                                 if (curlen == max_fileinfo_len) {
                                     textList2.append((*it).mid( curidx - max_fileinfo_len, curidx ));
-                                    //                          qWarning() << "added sub fileinfo line (" << (*it).mid(curidx-max_fileinfo_len, curidx).length() <<"): " << qPrintable((*it).mid(curidx-max_fileinfo_len, curidx));
+                                    //                          qWarning() << "added sub fileinfo line (" << (*it).mid(curidx-max_fileinfo_len, curidx).length() <<"):" << qPrintable((*it).mid(curidx-max_fileinfo_len, curidx));
                                     curlen = 0;
                                 }
                                 curlen++;
@@ -786,7 +786,7 @@ void CommentWidget::updateContents() {
                                 w += pixelsHigh;
                             }
                         } else {
-                            //          qWarning() << "undersized fileinfo line (" << stringlen <<"): " << qPrintable(*it);
+                            //          qWarning() << "undersized fileinfo line (" << stringlen <<"):" << qPrintable(*it);
                             text = (*it);
                             p.drawText( mx + 20, my + w, text );
                             valueoffset = fm.boundingRect( text ).size().width();
@@ -1019,7 +1019,7 @@ commentEdit::commentEdit ( QString cc, CdCatConfig *cconfig, QWidget *parent, co
     OK = 0;
     this->isCommentEdit = isCommentEdit;
     this->cconfig = cconfig;
-    qDebug() << "commentEdit cconfig " << this->cconfig;
+    qDebug() << "commentEdit cconfig" << this->cconfig;
     if (!name) {
         setObjectName( "commentEdit" );
     }

@@ -472,7 +472,7 @@ SelReadable::SelReadable ( CdCatConfig *confp, QWidget *parent, const char *name
     QStringList excludeList = conf->ExcludeFileList;
     exclude_model = new QStandardItemModel( 0, 1, this );
     for (int i = 0; i < excludeList.size(); i++) {
-        // qDebug() << "insert rule: " << qPrintable(excludeList.at(i));
+        // qDebug() << "insert rule:" << qPrintable(excludeList.at(i));
         if (QString( excludeList.at( i )).isEmpty()) {
             continue;
         }
@@ -637,7 +637,7 @@ void SelReadable::addExcludeRulesClicked() {
     if (ok) {
         QStandardItem *modelitem = new QStandardItem( text );
         exclude_model->appendRow( modelitem );
-        qDebug() << "add rule: " << qPrintable( text );
+        qDebug() << "add rule:" << qPrintable( text );
         checkExcludeRules();
     }
 }
@@ -646,7 +646,7 @@ void SelReadable::excludeContextMenuRequested( const QPoint& pos ) {
     QPoint globalPos = listviewExcludeFiles->mapToGlobal( pos );
     QModelIndex modelindex = listviewExcludeFiles->indexAt( pos );
     QString itemtext = exclude_model->data( modelindex, 0 ).toString();
-    qDebug() << qPrintable( itemtext ) << " is clicked";
+    qDebug() << qPrintable( itemtext ) << "is clicked";
 
     contextmenu_modelindex = modelindex;
     QMenu excludeContextMenu( this );
@@ -664,20 +664,20 @@ void SelReadable::excludeContextMenuRequested( const QPoint& pos ) {
 
 void SelReadable::editExcludeRuleClicked() {
     QString itemtext = exclude_model->data( contextmenu_modelindex, 0 ).toString();
-    qDebug() << qPrintable( itemtext ) << " is to be edited";
+    qDebug() << qPrintable( itemtext ) << "is to be edited";
     bool ok;
     QString text = QInputDialog::getText( this, tr( "Add exclude rule …" ), tr( "Enter regular expression for exclude:" ), QLineEdit::Normal, itemtext, &ok );
 
     if (ok) {
         exclude_model->setData( contextmenu_modelindex, text );
-        qDebug() << "edited rule: " << qPrintable( text );
+        qDebug() << "edited rule:" << qPrintable( text );
         checkExcludeRules();
     }
 }
 
 void SelReadable::deleteExcludeRuleClicked() {
     QString itemtext = exclude_model->data( contextmenu_modelindex, 0 ).toString();
-    qDebug() << qPrintable( itemtext ) << " is to be deleted";
+    qDebug() << qPrintable( itemtext ) << "is to be deleted";
 
     exclude_model->removeRows( contextmenu_modelindex.row(), 1 );
 }
@@ -685,7 +685,7 @@ void SelReadable::deleteExcludeRuleClicked() {
 void SelReadable::checkExcludeRules() {
     for (int i = 0; i < exclude_model->rowCount(); i++) {
         QString itemtext = exclude_model->index( i, 0 ).data().toString();
-        qDebug() << qPrintable( itemtext ) << " is to be checked";
+        qDebug() << qPrintable( itemtext ) << "is to be checked";
         QRegExp re;
         re.setPattern( itemtext );
         if (cbUseWildcardInsteadRegexForExclude->isChecked()) {

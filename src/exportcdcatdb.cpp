@@ -958,10 +958,10 @@ int exportCdcatDB::writeFile( Node *source ) {
                 tmp = tmp->next;
             }
 
-            qDebug() << "export: artist: " << qPrintable(Mp3Artist);
-            qDebug() << "export: title: " << qPrintable(Mp3Title);
-            qDebug() << "export: album: " << qPrintable(Mp3Album);
-            qDebug() << "export: year: " << qPrintable(Mp3Year);
+            qDebug() << "export: artist:" << qPrintable(Mp3Artist);
+            qDebug() << "export: title:" << qPrintable(Mp3Title);
+            qDebug() << "export: album:" << qPrintable(Mp3Album);
+            qDebug() << "export: year:" << qPrintable(Mp3Year);
 
             if (hasMp3Tag) {
                 outstring += QString( Mp3Artist ) + "/" + QString( Mp3Title ) + "/" + QString( Mp3Album ) + "/" + QString( Mp3Year );
@@ -1045,10 +1045,10 @@ int exportCdcatDB::writeFile( Node *source ) {
                 tmp = tmp->next;
             }
 
-            //          qDebug() << "export: artist: " << qPrintable(Mp3Artist);
-            //          qDebug() << "export: title: " << qPrintable(Mp3Title);
-            //          qDebug() << "export: album: " << qPrintable(Mp3Album);
-            //          qDebug() << "export: year: " << qPrintable(Mp3Year);
+            //          qDebug() << "export: artist:" << qPrintable(Mp3Artist);
+            //          qDebug() << "export: title:" << qPrintable(Mp3Title);
+            //          qDebug() << "export: album:" << qPrintable(Mp3Album);
+            //          qDebug() << "export: year:" << qPrintable(Mp3Year);
 
             outstring += "<td class=\"m\">\n";
             if (hasMp3Tag) {

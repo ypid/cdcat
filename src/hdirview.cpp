@@ -351,7 +351,7 @@ void HDirectoryView::slotFolderSelected( QTreeWidgetItem *i, int col ) {
     }
     DEBUG_INFO_ENABLED = init_debug_info();
     if (*DEBUG_INFO_ENABLED) {
-        qDebug() << "HDirectoryView::slotFolderSelected item path: " << qPrintable(((LNode *)i)->fullName());
+        qDebug() << "HDirectoryView::slotFolderSelected item path:" << qPrintable(((LNode *)i)->fullName());
     }
 
     emit folderSelected(((LNode *)i)->fullName());
@@ -363,7 +363,7 @@ void HDirectoryView::slotFolderSelectedR( QTreeWidgetItem *i, int col ) {
     }
     DEBUG_INFO_ENABLED = init_debug_info();
     if (*DEBUG_INFO_ENABLED) {
-        qDebug() << "HDirectoryView::slotFolderSelectedR item path: " << qPrintable(((LNode *)i)->fullName());
+        qDebug() << "HDirectoryView::slotFolderSelectedR item path:" << qPrintable(((LNode *)i)->fullName());
     }
 
     LNode *lnode = (LNode *)i;

@@ -571,7 +571,7 @@ DataBase::DataBase ( void ) {
         for (WStringArray::const_iterator extIt = exts.begin(); extIt != exts.end(); extIt++)
             Lib7zipTypes.append( QString().fromWCharArray((*extIt).c_str()));
         if (*DEBUG_INFO_ENABLED) {
-            qDebug() << "lib7zip supported extensions: " << qPrintable( Lib7zipTypes.join( " " ));
+            qDebug() << "lib7zip supported extensions:" << qPrintable( Lib7zipTypes.join( " " ));
         }
     }
     lib.Deinitialize();
@@ -785,7 +785,7 @@ int DataBase::insertDB( char *filename, bool skipDuplicatesOnInsert, bool isGzFi
     while (readcount != 0) {
         filesize += readcount;
         // if(*DEBUG_INFO_ENABLED)
-        //  qDebug() << "readcount: " << readcount;
+        //  qDebug() << "readcount:" << readcount;
         if (isGzFile) {
             readcount = gzread( gf, testbuffer, READ_BLOCKSIZE );
         } else {
@@ -799,7 +799,7 @@ int DataBase::insertDB( char *filename, bool skipDuplicatesOnInsert, bool isGzFi
         rewind( f );
     }
     if (*DEBUG_INFO_ENABLED) {
-        qDebug() << "detected uncompressed size: " << filesize;
+        qDebug() << "detected uncompressed size:" << filesize;
     }
 
     char *allocated_buffer = NULL;
@@ -874,13 +874,13 @@ int DataBase::openDB( char *filename ) {
     while (readcount != 0) {
         filesize += readcount;
         // if(*DEBUG_INFO_ENABLED)
-        //  qDebug() << "readcount: " << readcount;
+        //  qDebug() << "readcount:" << readcount;
         readcount = gzread( f, testbuffer, READ_BLOCKSIZE );
         progress( pww );
     }
     gzrewind( f );
     if (*DEBUG_INFO_ENABLED) {
-        qDebug() << "detected uncompressed size: " << filesize;
+        qDebug() << "detected uncompressed size:" << filesize;
     }
 
     char *allocated_buffer = NULL;
@@ -966,7 +966,7 @@ int DataBase::scanFsToNode( QString what, Node *to ) {
     QDir dir( what );
     if (!dir.isReadable()) {
         if (*DEBUG_INFO_ENABLED) {
-            qWarning() << "dir " << qPrintable( what ) << " is not readable";
+            qWarning() << "dir" << qPrintable( what ) << "is not readable";
         }
 
         int i = 0;
@@ -1004,11 +1004,11 @@ int DataBase::scanFsToNode( QString what, Node *to ) {
             bool exclude_path_matched = false;
             for (int i = 0; i < excludeFileRegExList.size(); i++) {
                 if (*DEBUG_INFO_ENABLED) {
-                    qDebug() << "exclude files: checking regex \"" << qPrintable( excludeFileRegExList.at( i ).pattern()) << "\" against file path " << qPrintable( fileInfo.filePath());
+                    qDebug() << "exclude files: checking regex \"" << qPrintable( excludeFileRegExList.at( i ).pattern()) << "\" against file path" << qPrintable( fileInfo.filePath());
                 }
                 if (excludeFileRegExList.at( i ).exactMatch( fileInfo.filePath())) {
                     if (*DEBUG_INFO_ENABLED) {
-                        qDebug() << "exclude files: regex MATCH: \"" << qPrintable( excludeFileRegExList.at( i ).pattern()) << "\" against file path " << qPrintable( fileInfo.filePath()) << ", skipping";
+                        qDebug() << "exclude files: regex MATCH: \"" << qPrintable( excludeFileRegExList.at( i ).pattern()) << "\" against file path" << qPrintable( fileInfo.filePath()) << ", skipping";
                     }
                     exclude_path_matched = true;
                     break;
@@ -1032,7 +1032,7 @@ int DataBase::scanFsToNode( QString what, Node *to ) {
         /* Fill the data field */
         if (fileInfo.isFile()) { /* File {{{ */
             if (*DEBUG_INFO_ENABLED) {
-                qDebug() << "Scanning file: " << qPrintable( fileInfo.fileName());
+                qDebug() << "Scanning file:" << qPrintable( fileInfo.fileName());
             }
 
             // if ( displayCurrentScannedFileInTray ) {
@@ -1083,17 +1083,17 @@ int DataBase::scanFsToNode( QString what, Node *to ) {
                     if (doScanArchiveTar) {
                         if (extension == "tar") {
                             if (*DEBUG_INFO_ENABLED) {
-                                qDebug() << "tarfile found: " << qPrintable( what + "/" + fileInfo.fileName());
+                                qDebug() << "tarfile found:" << qPrintable( what + "/" + fileInfo.fileName());
                             }
                             archivecontent = scanArchive( what + "/" + fileInfo.fileName(), Archive_tar );
                         } else if (fileInfo.fileName().toLower().section( '.', -2, -1 ) == "tar.gz") {
                             if (*DEBUG_INFO_ENABLED) {
-                                qDebug() << "targz found: " << qPrintable( what + "/" + fileInfo.fileName());
+                                qDebug() << "targz found:" << qPrintable( what + "/" + fileInfo.fileName());
                             }
                             archivecontent = scanArchive( what + "/" + fileInfo.fileName(), Archive_targz );
                         } else if (fileInfo.fileName().toLower().section( '.', -2, -1 ) == "tar.bz2") {
                             if (*DEBUG_INFO_ENABLED) {
-                                qDebug() << "tarbz2 found: " << qPrintable( what + "/" + fileInfo.fileName());
+                                qDebug() << "tarbz2 found:" << qPrintable( what + "/" + fileInfo.fileName());
                             }
                             archivecontent = scanArchive( what + "/" + fileInfo.fileName(), Archive_tarbz2 );
                         }
@@ -1108,7 +1108,7 @@ int DataBase::scanFsToNode( QString what, Node *to ) {
                             ) {
 
                             if (*DEBUG_INFO_ENABLED) {
-                                qDebug() << "lib7zip found: " << qPrintable( what + "/" + fileInfo.fileName());
+                                qDebug() << "lib7zip found:" << qPrintable( what + "/" + fileInfo.fileName());
                             }
                             archivecontent = scanArchive( what + "/" + fileInfo.fileName(), Archive_lib7zip );
                         }
@@ -1163,7 +1163,7 @@ int DataBase::scanFsToNode( QString what, Node *to ) {
                                            comm, 0, UNIT_BYTE, this->pcategory );
         } else {                         /* SYSTEM FILE (e.g. FIFO, socket or device file) */
             if (*DEBUG_INFO_ENABLED) {
-                qDebug() << "adding system file: " << qPrintable( fileInfo.fileName());
+                qDebug() << "adding system file:" << qPrintable( fileInfo.fileName());
             }
 
             progress( pww );
@@ -1198,7 +1198,7 @@ int DataBase::scanFileProp( QFileInfo *fi, DBFile *fc ) {
                 emit pathExtraInfoAppend( tr( "reading mp3 info" ));
             }
             if (*DEBUG_INFO_ENABLED) {
-                qDebug() << "reading mp3 info for " << qPrintable( file_path );
+                qDebug() << "reading mp3 info for" << qPrintable( file_path );
             }
 
             ReadMp3Tag *reader = new ReadMp3Tag((const char *)QFile::encodeName( file_abspath ), v1_over_v2 );
@@ -1253,7 +1253,7 @@ int DataBase::scanFileProp( QFileInfo *fi, DBFile *fc ) {
                 emit pathExtraInfoAppend( tr( "reading media info" ));
             }
             if (*DEBUG_INFO_ENABLED) {
-                qDebug() << "reading media info for " << qPrintable( file_path );
+                qDebug() << "reading media info for" << qPrintable( file_path );
             }
 
             if (displayCurrentScannedFileInTray) {
@@ -1289,7 +1289,7 @@ int DataBase::scanFileProp( QFileInfo *fi, DBFile *fc ) {
             fclose( filePTR );
 
             if (*DEBUG_INFO_ENABLED) {
-                qDebug() << "avi info for " << qPrintable( file_path ) << ": " << qPrintable( got );
+                qDebug() << "avi info for " << qPrintable( file_path ) << ":" << qPrintable( got );
             }
 
             if (pww->appl->hasPendingEvents()) {
@@ -1330,9 +1330,9 @@ int DataBase::scanFileProp( QFileInfo *fi, DBFile *fc ) {
             pcc2.setCaseSensitivity( Qt::CaseInsensitive );
             // pcc   = pcre_compile ( pattern,0,&error,&erroroffset,NULL );
             // if(*DEBUG_INFO_ENABLED)
-            //	qDebug() << "pcc2 pattern: " << pattern << ", match: " << pcc2.exactMatch(QString(( const char * ) QFile::encodeName ( file_name)));
+            //	qDebug() << "pcc2 pattern: " << pattern << ", match:" << pcc2.exactMatch(QString(( const char * ) QFile::encodeName ( file_name)));
             // if(*DEBUG_INFO_ENABLED)
-            //  qDebug() << "pcre_exec match: " << pcre_exec ( pcc,NULL, ( const char * ) QFile::encodeName ( file_name )
+            //  qDebug() << "pcre_exec match:" << pcre_exec ( pcc,NULL, ( const char * ) QFile::encodeName ( file_name )
             //                                   ,strlen ( ( const char * ) QFile::encodeName ( file_name ) )
             //                                   ,0,0,ovector,30 ) ;
             //             if ( 1 == pcre_exec ( pcc,NULL, ( const char * ) QFile::encodeName ( file_name )
@@ -1580,7 +1580,7 @@ int bz2open_frontend( char *pathname, int oflags, int mode ) {
         return -1;
     }
 //      if (*DEBUG_INFO_ENABLED)
-//              qDebug() << "bz2open_frontend ret: " << (int)(long)bz2f;
+//              qDebug() << "bz2open_frontend ret:" << (int)(long)bz2f;
     return (int)(long)bz2f;
 }
 
@@ -1815,7 +1815,7 @@ QList<ArchiveFile> DataBase::scanArchive( QString path, ArchiveType type ) {
             use_zlib = 1;
         }
         if (*DEBUG_INFO_ENABLED) {
-            qDebug() << "scanning archive " << qPrintable( path ) << ",  type: " << type;
+            qDebug() << "scanning archive " << qPrintable( path ) << ",  type:" << type;
         }
 
         if (showProgressedFileInStatus) {
@@ -1844,7 +1844,7 @@ QList<ArchiveFile> DataBase::scanArchive( QString path, ArchiveType type ) {
 
         if (tar_open_ret == -1) {
             if (*DEBUG_INFO_ENABLED) {
-                qDebug() << "scanning archive " << qPrintable( path ) << " failed";
+                qDebug() << "scanning archive" << qPrintable( path ) << "failed";
             }
             return filelist;
         } else {
@@ -1853,11 +1853,11 @@ QList<ArchiveFile> DataBase::scanArchive( QString path, ArchiveType type ) {
                 ArchiveFile af;
                 if (*DEBUG_INFO_ENABLED) {
                     if (type == Archive_targz) {
-                        qDebug() << "file inside tar.gz: " << t->th_buf.name;
+                        qDebug() << "file inside tar.gz:" << t->th_buf.name;
                     } else if (type == Archive_tarbz2) {
-                        qDebug() << "file inside tar.bz2: " << t->th_buf.name;
+                        qDebug() << "file inside tar.bz2:" << t->th_buf.name;
                     } else if (type == Archive_tar) {
-                        qDebug() << "file inside tar: " << t->th_buf.name;
+                        qDebug() << "file inside tar:" << t->th_buf.name;
                     }
                 }
                 if (showProgressedArchiveFileInStatus) {
@@ -1947,7 +1947,7 @@ QList<ArchiveFile> DataBase::scanArchive( QString path, ArchiveType type ) {
                 }
             }
             if (*DEBUG_INFO_ENABLED) {
-                qDebug() << "reading " << qPrintable( path ) << " done.";
+                qDebug() << "reading" << qPrintable( path ) << "done.";
             }
         }
         tar_close( t );
@@ -1971,11 +1971,11 @@ QList<ArchiveFile> DataBase::scanArchive( QString path, ArchiveType type ) {
         } else {
             for (WStringArray::const_iterator extIt = exts.begin(); extIt != exts.end(); extIt++)
                 Lib7zipTypes.append( QString().fromWCharArray((*extIt).c_str()));
-            // qDebug() << "lib7zip supported extensions: " << qPrintable(Lib7zipTypes.join(" "));
+            // qDebug() << "lib7zip supported extensions:" << qPrintable(Lib7zipTypes.join(" "));
         }
 
         if (*DEBUG_INFO_ENABLED) {
-            qDebug() << "scanning archive " << qPrintable( path ) << ",  type: " << type;
+            qDebug() << "scanning archive " << qPrintable( path ) << ",  type:" << type;
         }
 
         if (showProgressedFileInStatus) {
@@ -2046,7 +2046,7 @@ QList<ArchiveFile> DataBase::scanArchive( QString path, ArchiveType type ) {
                     af.fileattr += attr2;
                     af.fileattr += " ";
 
-                    // qDebug() << "file: " << qPrintable(QString::fromWCharArray ( pArchiveItem->GetFullPath().c_str() )) << ", attr: " << qPrintable(af.fileattr);
+                    // qDebug() << "file: " << qPrintable(QString::fromWCharArray ( pArchiveItem->GetFullPath().c_str() )) << ", attr:" << qPrintable(af.fileattr);
                     wstring user = L"";
                     result = pArchiveItem->GetStringProperty( lib7zip::kpidUser, user );
                     QString user2 = QString::fromWCharArray( user.c_str());
@@ -2079,7 +2079,7 @@ QList<ArchiveFile> DataBase::scanArchive( QString path, ArchiveType type ) {
 
                     QString path = QString::fromWCharArray( pArchiveItem->GetFullPath().c_str());
                     if (*DEBUG_INFO_ENABLED) {
-                        qDebug() << "file inside archive: " << qPrintable( path );
+                        qDebug() << "file inside archive:" << qPrintable( path );
                     }
 
                     if (showProgressedArchiveFileInStatus) {
@@ -2113,7 +2113,7 @@ QList<ArchiveFile> DataBase::scanArchive( QString path, ArchiveType type ) {
         }
         lib.Deinitialize();
         if (*DEBUG_INFO_ENABLED) {
-            qDebug() << "reading " << qPrintable( path ) << " done.";
+            qDebug() << "reading" << qPrintable( path ) << "done.";
         }
     }
 #endif
@@ -2147,13 +2147,13 @@ void DataBase::addLnk( const char *loc ) {
     while (readcount != 0) {
         filesize += readcount;
         // if(*DEBUG_INFO_ENABLED)
-        //  qDebug() << "readcount: " << readcount;
+        //  qDebug() << "readcount:" << readcount;
         readcount = gzread( f, testbuffer, 1024 );
         progress( pww );
     }
     gzrewind( f );
     if (*DEBUG_INFO_ENABLED) {
-        qDebug() << "detected uncompressed size: " << filesize;
+        qDebug() << "detected uncompressed size:" << filesize;
     }
 
     char *allocated_buffer = NULL;
@@ -2650,13 +2650,13 @@ void ArchiveFile::setDbString( QString DbString ) {
     // from db
     if (DbString.at( 0 ) == this->div) {
         DbString = DbString.right( DbString.size() - 2 );
-        qDebug() << "first char was sep, skipping, new DbString: " << DbString.toLocal8Bit().constData();
+        qDebug() << "first char was sep, skipping, new DbString:" << DbString.toLocal8Bit().constData();
     }
     QStringList fileentry = DbString.split( this->div );
-//      qDebug() << "DbString: " << qPrintable(DbString) << "count of " << qPrintable(QString(this->div)) << ": " << DbString.count(this->div);
-//      qDebug() << "FileEntry (size: " << fileentry.size() << "): " << qPrintable(fileentry.join(" "));
+//      qDebug() << "DbString: " << qPrintable(DbString) << "count of " << qPrintable(QString(this->div)) << ":" << DbString.count(this->div);
+//      qDebug() << "FileEntry (size: " << fileentry.size() << "):" << qPrintable(fileentry.join(" "));
 //      for ( int i = 0; i < fileentry.size(); ++i )
-//              qDebug() << "fileentry[" << i << "]: " << fileentry.at ( i ).toLocal8Bit().constData();
+//              qDebug() << "fileentry[" << i << "]:" << fileentry.at ( i ).toLocal8Bit().constData();
 //
 
     if (fileentry.size() == 8) {
@@ -2667,7 +2667,7 @@ void ArchiveFile::setDbString( QString DbString ) {
         this->date = QDateTime().fromString( fileentry.at( 4 ), "MMM d h:s yyyy" );
         this->path = fileentry.at( 5 );
         this->filetype = fileentry.at( 6 );
-//              qDebug() << "FileEntry(8): " << qPrintable(toPrettyString());
+//              qDebug() << "FileEntry(8):" << qPrintable(toPrettyString());
     }
 }
 

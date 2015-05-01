@@ -841,7 +841,7 @@ void CdCatMainWidget::closeEvent( QCloseEvent *e ) {
 }
 
 void CdCatMainWidget::pathScanned( QString path ) {
-//      qDebug() <<"CdCatMainWidget::pathScanned: " << qPrintable(path);
+//      qDebug() <<"CdCatMainWidget::pathScanned:" << qPrintable(path);
     lastScanPath = path;
     statusBar()->showMessage( tr( "Scanning:" ) + " " + path );
     // if(cconfig->showTrayIcon && isHidden())

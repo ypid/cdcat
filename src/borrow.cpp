@@ -436,7 +436,7 @@ int borrowingDialog::click( const QPoint &mousePos ) {
                 b = 1;
             }
         if (!b) {
-            qDebug() << "borrowingDialog::addtem: " << qPrintable( s );
+            qDebug() << "borrowingDialog::addtem:" << qPrintable( s );
             QAction *a = new QAction( pma );
             a->setText( s );
             pma->addAction( a );

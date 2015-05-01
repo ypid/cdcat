@@ -687,7 +687,7 @@ int findDialog::select( QTreeWidgetItem *i, QTreeWidgetItem * ) {
     }
 
     QString nodepath = i->text( 4 ).mid( 2, i->text( 4 ).length() - 1 );
-    // qDebug() << "select: nodepath " << qPrintable(nodepath);
+    // qDebug() << "select: nodepath" << qPrintable(nodepath);
 
     mainw->guis->updateListFromNode(
         (mainw->guis->getNodeFromFullName( mainw->db->getRootNode(), nodepath )));
@@ -698,7 +698,7 @@ int findDialog::select( QTreeWidgetItem *i, QTreeWidgetItem * ) {
             mainw->listView->setCurrentVisible();
             mainw->listView->repaint();
             QString dirpath = QFileInfo( i->text( 4 )).absoluteDir().absolutePath();
-            // qDebug() << "path: " << qPrintable(i->text(4)) << ", dirpath: " << qPrintable(dirpath);
+            // qDebug() << "path: " << qPrintable(i->text(4)) << ", dirpath:" << qPrintable(dirpath);
             mainw->statusBar()->showMessage( tr( "Selected dir: " ) + dirpath );
         }
         ++it;
@@ -826,7 +826,7 @@ void findDialog::exportResult( bool isPrint ) {
     QTextCodec::setCodecForLocale( QTextCodec::codecForName( "UTF-8" ));
     QString result_str;
     if (*DEBUG_INFO_ENABLED) {
-        qDebug() << "result (childCount: " << resultsl->children().count() << "): ";
+        qDebug() << "result (childCount:" << resultsl->children().count() << "): ";
     }
     result_str += "<html>\n";
     result_str += "<head>\n";
@@ -958,7 +958,7 @@ void findDialog::exportResult( bool isPrint ) {
          */
         if (*DEBUG_INFO_ENABLED) {
             for (int j = 0; j <= 6; j++)
-                qDebug() << "result[" << i << "][" << j << "]: " << qPrintable((*lastChild)->text( j ));
+                qDebug() << "result[" << i << "][" << j << "]:" << qPrintable((*lastChild)->text( j ));
         }
 
         result_str += "<tr>";
@@ -973,7 +973,7 @@ void findDialog::exportResult( bool isPrint ) {
         result_str += "<td style=\"font-size:-2;\">" + (*lastChild)->text( 7 ).replace( "\n", "<br>" ) + "</td>";
         result_str += "</tr>\n";
         if (*DEBUG_INFO_ENABLED) {
-            qDebug() << "result_str: " << qPrintable( result_str );
+            qDebug() << "result_str:" << qPrintable( result_str );
         }
         ++lastChild;
         i++;
@@ -1140,7 +1140,7 @@ int seekEngine::start_seek( void ) {
             if (fd->cbSizeUnitMin->currentIndex() == 4) {
                 size_min = fd->spSizeMin->value() * 1024.0 * 1024.0 * 1024.0 * 1024.0;                 // TByte
             }
-            //  qDebug() << "minsize checked, type "<< fd->cbSizeUnitMin->currentIndex() <<", min size " << size_min;
+            //  qDebug() << "minsize checked, type "<< fd->cbSizeUnitMin->currentIndex() <<", min size" << size_min;
         }
 
         if (sizeMaxChecked) {
@@ -1159,7 +1159,7 @@ int seekEngine::start_seek( void ) {
             if (fd->cbSizeUnitMax->currentIndex() == 4) {
                 size_max = fd->spSizeMax->value() * 1024.0 * 1024.0 * 1024.0 * 1024.0;                 // TByte
             }
-            //  qDebug() << "maxsize checked, type "<< fd->cbSizeUnitMax->currentIndex() <<", max size " << size_max;
+            //  qDebug() << "maxsize checked, type "<< fd->cbSizeUnitMax->currentIndex() <<", max size" << size_max;
         }
 
         allmedia = false;
@@ -1264,13 +1264,13 @@ int seekEngine::analyzeNode( PWw *pww, Node *n, Node *pa ) {
                 }
             }
             if (*DEBUG_INFO_ENABLED) {
-                // qDebug() << "testing file: " << qPrintable(n->getNameOf()) << " name: " << qPrintable(fd->mainw->guis->standON->getNameOf()) << " <=> " << qPrintable(n->getNameOf()) << ". size: " <<  (( DBFile * ) ( fd->mainw->guis->standON ))->size << " <=> " << ( ( DBFile * ) ( n->data ) )->size << ", size type: " <<  (( DBFile * ) ( fd->mainw->guis->standON ) )->sizeType << " <=> " << ( ( DBFile * ) ( n->data ) )->sizeType ;
-                qDebug() << "testing file: " << qPrintable( n->getNameOf()) << " name: " << qPrintable( fd->mainw->guis->standON->getNameOf()) << " <=> " << qPrintable( n->getNameOf());
+                // qDebug() << "testing file: " << qPrintable(n->getNameOf()) << " name: " << qPrintable(fd->mainw->guis->standON->getNameOf()) << " <=> " << qPrintable(n->getNameOf()) << ". size: " <<  (( DBFile * ) ( fd->mainw->guis->standON ))->size << " <=> " << ( ( DBFile * ) ( n->data ) )->size << ", size type: " <<  (( DBFile * ) ( fd->mainw->guis->standON ) )->sizeType << "<=>" << ( ( DBFile * ) ( n->data ) )->sizeType ;
+                qDebug() << "testing file: " << qPrintable( n->getNameOf()) << " name: " << qPrintable( fd->mainw->guis->standON->getNameOf()) << "<=>" << qPrintable( n->getNameOf());
             }
             if (fd->mainw->guis->standON->getNameOf() == n->getNameOf() && fd->mainw->guis->standON->getFullPath() != n->getFullPath()) {
                 if (*DEBUG_INFO_ENABLED) {
                     qDebug() << "filename match!";
-                    qDebug() << "size: " << fd->mainw->guis->mainw->db->getSize( fd->mainw->guis->standON ) << " <=> " << ((DBFile *)(n->data))->size;
+                    qDebug() << "size: " << fd->mainw->guis->mainw->db->getSize( fd->mainw->guis->standON ) << "<=>" << ((DBFile *)(n->data))->size;
                 }
                 if (fd->mainw->guis->mainw->db->getSize( fd->mainw->guis->standON ) == ((DBFile *)(n->data))->size) {
                     if (*DEBUG_INFO_ENABLED) {
@@ -1420,7 +1420,7 @@ int seekEngine::analyzeNode( PWw *pww, Node *n, Node *pa ) {
                     real_size = (((DBFile *)(n->data))->size) * 1024.0 * 1024.0 * 1024.0 * 1024.0;
                     break;                                     // Tb
                 }
-                //              qDebug() << "minsize checked, min size " << real_size_min << " ~ " << real_size;
+                //              qDebug() << "minsize checked, min size " << real_size_min << "~" << real_size;
                 if (real_size < real_size_min) {
                     isOk = false;
                 }
@@ -1445,7 +1445,7 @@ int seekEngine::analyzeNode( PWw *pww, Node *n, Node *pa ) {
                     real_size = (((DBFile *)(n->data))->size) * 1024.0 * 1024.0 * 1024.0 * 1024.0;
                     break;                                     // Tb
                 }
-                //              qDebug() << "size type: "<<  ( ( DBFile * ) ( n->data ) )->sizeType <<", maxsize checked, max size " << real_size_max << " ~ " << real_size;
+                //              qDebug() << "size type: "<<  ( ( DBFile * ) ( n->data ) )->sizeType <<", maxsize checked, max size " << real_size_max << "~" << real_size;
                 if (real_size > real_size_max) {
                     isOk = false;
                 }
@@ -1471,7 +1471,7 @@ int seekEngine::analyzeNode( PWw *pww, Node *n, Node *pa ) {
                     real_size = (((DBFile *)(n->data))->size) * 1024.0 * 1024.0 * 1024.0 * 1024.0;
                     break;                                     // Tb
                 }
-                //              qDebug() << "min & maxsize checked, min size " << real_size_min << "/max size " << real_size_max << " ~ " << real_size;
+                //              qDebug() << "min & maxsize checked, min size " << real_size_min << "/max size " << real_size_max << "~" << real_size;
                 if (real_size < real_size_min || real_size > real_size_max) {
                     isOk = false;
                 }
@@ -1485,14 +1485,14 @@ int seekEngine::analyzeNode( PWw *pww, Node *n, Node *pa ) {
                     ArchiveFile af = ArchiveFileList.at( i );
                     QString filepath = af.path.section( '/', -1, -1 );
                     if (*DEBUG_INFO_ENABLED) {
-                        qDebug() << "testing file inside archive: " << qPrintable( filepath );
+                        qDebug() << "testing file inside archive:" << qPrintable( filepath );
                     }
 
                     for (int i = 0; i < ArchiveFileList.size(); i++) {
                         ArchiveFile af = ArchiveFileList.at( i );
                         QString filepath = af.path.section( '/', -1, -1 );
                         if (*DEBUG_INFO_ENABLED) {
-                            qDebug() << "testing file inside archive: " << qPrintable( filepath );
+                            qDebug() << "testing file inside archive:" << qPrintable( filepath );
                         }
 
                         if (filename) {
@@ -1609,7 +1609,7 @@ int seekEngine::matchIt( QString txt ) {
         // match   = pcre_exec ( re,hints,encoded,strlen ( encoded ),0,0,offsets,99 );
         // match = re->exactMatch (QString( encoded));
         match = re->exactMatch( QString( txt ));
-        // qDebug() << "matchit: " << qPrintable(txt) << " <==> " << qPrintable(re->pattern()) <<" result: " << match;
+        // qDebug() << "matchit: " << qPrintable(txt) << "<==> " << qPrintable(re->pattern()) <<" result:" << match;
 
         if (match == 1) {
             return 1;
@@ -1647,7 +1647,7 @@ bool seekEngine::matchUnsharp( char *matchpattern, char *str ) {
     match = res_str_str1.indexOf( res_matchpattern_str1 );
 
     if (*DEBUG_INFO_ENABLED) {
-        qDebug() << "matchUnsharp: " << matchpattern << " (" << qPrintable( res_matchpattern_str1 ) << ") <=> " << str << " (" << qPrintable( res_str_str1 ) << ")  ===> " << match;
+        qDebug() << "matchUnsharp: " << matchpattern << " (" << qPrintable( res_matchpattern_str1 ) << ") <=> " << str << "(" << qPrintable( res_str_str1 ) << ")  ===>" << match;
     }
 
     if (match > -1) {
@@ -1702,7 +1702,7 @@ void seekEngine::putNodeToList( Node *n, QString comment ) {
     }
     tmp = n;
     if (*DEBUG_INFO_ENABLED) {
-        qDebug() << "putNodeToList: path: " << qPrintable( n->getFullPath()) << ",  type: " << qPrintable( type );
+        qDebug() << "putNodeToList: path: " << qPrintable( n->getFullPath()) << ",  type:" << qPrintable( type );
     }
     while (tmp->type != HC_MEDIA) {
         tmp = tmp->parent;

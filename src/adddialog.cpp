@@ -273,10 +273,10 @@ void addDialog::languageChange() {
 }
 
 int addDialog::setMediaName( const QString & ds ) {
-    // qDebug() << "setMediaName(): ds: " << qPrintable(ds);
+    // qDebug() << "setMediaName(): ds:" << qPrintable(ds);
     QString tm;
 
-    // qDebug() << "mediatype " << cbType->currentIndex();
+    // qDebug() << "mediatype" << cbType->currentIndex();
 
 #if defined(_WIN32) || defined(_OS2)
     QDir selected( ds.toLower());
@@ -307,7 +307,7 @@ int addDialog::setMediaName( const QString & ds ) {
             tm = getCDName( ds.toUtf8().constData());
 #endif
         }
-        // qDebug() << "setMediaName(): tm: " << qPrintable(tm);
+        // qDebug() << "setMediaName(): tm:" << qPrintable(tm);
         if (!tm.isEmpty()) {
 #if !defined(_WIN32) && !defined(_OS2)
             // also set the media type to DVD if needed
@@ -359,7 +359,7 @@ int addDialog::setMediaName( const QString & ds ) {
     }
 
 
-    // qDebug() << "setMediaName: sDir: " << qPrintable(dirView->sDir);
+    // qDebug() << "setMediaName: sDir:" << qPrintable(dirView->sDir);
     caller->mainw->cconfig->lastDir = dirView->sDir;
 
     QApplication::restoreOverrideCursor();
@@ -413,7 +413,7 @@ int addDialog::bOk( void ) {
     dCategory = leCategory->text();
     dDir = dirView->sDir;
 
-    qDebug() << "dDir: " << qPrintable( dDir );
+    qDebug() << "dDir:" << qPrintable( dDir );
     caller->mainw->cconfig->addX = x();
     caller->mainw->cconfig->addY = y();
     caller->mainw->cconfig->addWidth = width();
@@ -446,7 +446,7 @@ void addDialog::autoDetectAtMountToggled() {
 
 void addDialog::cbTypeToggeled( int ) {
     if (caller->mainw->cconfig->lastMediaType != cbType->currentIndex()) {
-//      qDebug() << "mediatype changed from " << caller->mainw->cconfig->lastMediaType << " to " << cbType->currentItem() +1;
+//      qDebug() << "mediatype changed from " << caller->mainw->cconfig->lastMediaType << "to" << cbType->currentItem() +1;
         caller->mainw->cconfig->lastMediaType = cbType->currentIndex();
         caller->mainw->cconfig->writeConfig();
     }
@@ -666,14 +666,14 @@ void PWw::paintEvent( QPaintEvent * ) {
         p.drawRect( 1, buttom_offset - 1, mywidth - 4, 15 );
         int percent = 0;
         int steps_hundered = (steps / 100);
-//              qDebug() << progress_step << "/"<< steps <<  " steps/100: " << (steps/100);
+//              qDebug() << progress_step << "/"<< steps << "steps/100:" << (steps/100);
         if (steps_hundered != 0) {
             percent = progress_step / (steps / 100);
         }
         p.setBrush( QBrush( Qt::blue ));
         p.drawRect( 2, buttom_offset, (borderless_width - 4) * percent / 100, 14 );
 
-        //         qDebug() << progress_step << "/"<< steps <<  " p: " << percent << "%";
+        //         qDebug() << progress_step << "/"<< steps << "p:" << percent << "%";
     }
     if (showCancel && cancelButton != NULL) {
         //	buttom_offset += 30;

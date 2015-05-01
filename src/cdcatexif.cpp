@@ -116,7 +116,7 @@ CdcatExifData::CdcatExifData ( void ) {
 CdcatExifData::CdcatExifData ( QString filename ) {
     DEBUG_INFO_ENABLED = init_debug_info();
     if (*DEBUG_INFO_ENABLED) {
-        qDebug() << "CdcatExifData() filename: " << qPrintable( filename );
+        qDebug() << "CdcatExifData() filename:" << qPrintable( filename );
     }
     this->picturefilename = filename;
     readCdcatExifData();
@@ -136,14 +136,14 @@ bool CdcatExifData::readCdcatExifData() {
     }
 
     if (*DEBUG_INFO_ENABLED) {
-        qDebug() << "readCdcatExifData() filename: " << qPrintable( picturefilename );
+        qDebug() << "readCdcatExifData() filename:" << qPrintable( picturefilename );
     }
     ed = exif_data_new_from_file( picturefilename.toLocal8Bit().data());
     if (ed) {
         // bind_textdomain_codeset("cdcat", "UTF-8");
         // textdomain("cdcat");
         if (*DEBUG_INFO_ENABLED) {
-            qDebug() << "EXIF data for file " << qPrintable( picturefilename );
+            qDebug() << "EXIF data for file" << qPrintable( picturefilename );
             qDebug() << "EXIF_IFD_EXIF";
             for (i = 0x0001; i != 0xffff; i++) {
                 QString TagData = get_tag( ed, EXIF_IFD_EXIF, (ExifTag)i );
@@ -169,7 +169,7 @@ bool CdcatExifData::readCdcatExifData() {
         }
     } else {
         if (*DEBUG_INFO_ENABLED) {
-            qWarning() << "File not readable or no EXIF data in file " << qPrintable( picturefilename );
+            qWarning() << "File not readable or no EXIF data in file" << qPrintable( picturefilename );
         }
     }
     return true;
@@ -196,12 +196,12 @@ QStringList CdcatExifData::getExifData() {
     }
 
     if (*DEBUG_INFO_ENABLED) {
-        qDebug() << "readCdcatExifData() filename: " << qPrintable( picturefilename );
+        qDebug() << "readCdcatExifData() filename:" << qPrintable( picturefilename );
     }
     ExifData *ed = exif_data_new_from_file( picturefilename.toLocal8Bit().data());
     if (ed) {
         if (*DEBUG_INFO_ENABLED) {
-            qDebug() << "EXIF data for file " << qPrintable( picturefilename );
+            qDebug() << "EXIF data for file" << qPrintable( picturefilename );
             qDebug() << "EXIF_IFD_EXIF";
             for (i = 0x0001; i != 0xffff; i++) {
                 QString TagData = get_tag( ed, EXIF_IFD_EXIF, (ExifTag)i );
@@ -227,7 +227,7 @@ QStringList CdcatExifData::getExifData() {
         }
     } else {
         if (*DEBUG_INFO_ENABLED) {
-            qWarning() << "File not readable or no EXIF data in file " << qPrintable( picturefilename );
+            qWarning() << "File not readable or no EXIF data in file" << qPrintable( picturefilename );
         }
     }
     return ExifDataStringList;
